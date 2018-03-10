@@ -26,7 +26,7 @@ GNU GENERAL PUBLIC LICENSE v.3.0
 	'hash_method' => 'Метод хэширования',
 	'hash_sha256' => 'SHA2 (SHA256)',
 	'install_button' => 'УСТАНОВИТЬ',
-	'install_panel' => 'МАСТЕР УСТАНОВКИ CODESHIELD',
+	'install_panel' => 'Мастер установки eMarket',
 	'login_admin' => 'E-Mail администратора',
 	'login_db' => 'Пользователь базы данных',
 	'meta-language' => 'ru',
@@ -41,7 +41,7 @@ GNU GENERAL PUBLIC LICENSE v.3.0
 	'server_db_error' => 'Соединение с базой данных отсутствует!',
 	'server_db_name_error' => 'База данных не существует!',
 	'success' => 'Инсталляция успешно завершена!',
-	'title_login' => 'Инсталляция CODESHIELD',
+	'title_login' => 'Инсталляция eMarket',
 	'title_success' => 'Инсталляция успешно завершена',
 	);
 

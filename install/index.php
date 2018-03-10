@@ -77,7 +77,7 @@ GNU GENERAL PUBLIC LICENSE v.3.0
 										<tr>
 											<td align="right"><?php echo $lang['database_prefix'] ?>:</td>
 											<td align="left">
-												<input type='text' name='database_prefix' size='2' value='csd_' />
+												<input type='text' name='database_prefix' size='2' value='emkt_' />
 											</td>
 										</tr>
 										<tr>
