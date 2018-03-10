@@ -1,14 +1,14 @@
 <?php
-/*******************************
-    Copyright © 2018 eMarket    
-GNU GENERAL PUBLIC LICENSE v.3.0
-********************************/
+/****** Copyright © 2018 eMarket ******* 
+*   GNU GENERAL PUBLIC LICENSE v.3.0   *    
+* https://github.com/musicman3/eMarket *
+****************************************/
 
 	error_reporting(-1);
 
 	/***********  CONNECT PAGE START  ***********/
 	require_once($_SERVER['DOCUMENT_ROOT'].'/model/connect_page_start.php');
-	/********************************************/
+	/****** Copyright © 2018 eMarket ******* *************/
 
 	$table = $PDO->getColRow("SELECT * FROM csd_project", array());
 
@@ -33,6 +33,6 @@ GNU GENERAL PUBLIC LICENSE v.3.0
 
 	/************  CONNECT PAGE END  ************/
 	require_once($_SERVER['DOCUMENT_ROOT'].'/model/connect_page_end.php');
-	/********************************************/
+	/****** Copyright © 2018 eMarket ******* *************/
 
 ?>

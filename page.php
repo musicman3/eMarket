@@ -1,8 +1,8 @@
 <?php
-/*******************************
-    Copyright © 2018 eMarket    
-GNU GENERAL PUBLIC LICENSE v.3.0
-********************************/
+/****** Copyright © 2018 eMarket *******
+*   GNU GENERAL PUBLIC LICENSE v.3.0   *    
+* https://github.com/musicman3/eMarket *
+****************************************/
 ?>
 
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
