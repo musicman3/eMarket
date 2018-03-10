@@ -1,0 +1,10 @@
+<?php
+/*******************************
+    Copyright © 2018 eMarket    
+GNU GENERAL PUBLIC LICENSE v.3.0
+********************************/
+
+session_start();    //инициализируем механизм сессий
+session_destroy();    //удаляем текущую сессию
+header('Location: /controller/verify/login.php');    //перенаправляем на protected.php
+?>
