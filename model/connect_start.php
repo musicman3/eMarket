@@ -12,6 +12,6 @@
 
 	require_once($_SERVER['DOCUMENT_ROOT'].'/model/configure/session_autorize.php');
 
-	require_once($_SERVER['DOCUMENT_ROOT'].'/language/'.$_SESSION['default_language'].'.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/language/lang_router.php');
 
 ?>
