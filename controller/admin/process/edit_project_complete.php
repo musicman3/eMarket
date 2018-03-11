@@ -6,9 +6,9 @@
 
 	error_reporting(-1);
 
-	/***********  CONNECT PAGE START  ***********/
+	/********  CONNECT PAGE START  ********/
 	require_once($_SERVER['DOCUMENT_ROOT'].'/model/connect_page_start.php');
-	/*******Copyright © 2018 eMarket******** *************/
+	***************************************/
 
 	//POST FORM
 	if(isset($_POST['project_name']) && isset($_POST['project_status'])){
@@ -28,8 +28,8 @@
 		$PDO->insertPrepare("UPDATE csd_project SET project_name=?, project_status=? WHERE id=?", array($project_name, $project_status, $id));
 	}
 
-	/************  CONNECT PAGE END  ************/
+	/*********  CONNECT PAGE END  *********/
 	require_once($_SERVER['DOCUMENT_ROOT'].'/model/connect_page_end.php');
-	/*******Copyright © 2018 eMarket******** *************/
+	***************************************/
 
 ?>
