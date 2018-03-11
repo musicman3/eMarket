@@ -38,7 +38,12 @@
 	}
 
 	//Подключение и парсинг языкового файла
-	$files_patch = FilesPatch($_SERVER['DOCUMENT_ROOT'].'/language/'.DEFAULT_LANGUAGE.'/'.$patch);
+	$lang_default = DEFAULT_LANGUAGE;
+	if (!empty($_SESSION['default_language'])){
+		$lang_default = $_SESSION['default_language'];
+	}
+
+	$files_patch = FilesPatch($_SERVER['DOCUMENT_ROOT'].'/language/'.$lang_default.'/'.$patch);
 	$parse_temp = parse_ini_file ($files_patch[0]);
 	for ($i = 0; $i < count($files_patch); $i++)
 	{

@@ -1,0 +1,9 @@
+/****** Copyright © 2018 eMarket ******* 
+*   GNU GENERAL PUBLIC LICENSE v.3.0   *    
+* https://github.com/musicman3/eMarket *
+***************************************/
+
+; Замечание: Если значение в lng-файле содержит прочие символы, оно должно заключаться в кавычки ''. Пример: Привет'!'
+
+[catalog]
+hello_world = Hello World'!'
