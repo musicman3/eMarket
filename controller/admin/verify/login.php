@@ -9,7 +9,7 @@
 	//LOAD CONFIGURE.PHP
 	require_once($_SERVER['DOCUMENT_ROOT'].'/model/configure/configure.php');
 	//LOAD LANGUAGE
-	require_once($_SERVER['DOCUMENT_ROOT'].'/language/'.DEFAULT_LANGUAGE.'.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/model/lang_router.php');
 
 	require_once($_SERVER['DOCUMENT_ROOT'].'/model/router_out.php');
 

@@ -16,7 +16,7 @@
 
 	require_once($_SERVER['DOCUMENT_ROOT'].'/model/router_out.php');
 
-	require_once($_SERVER['DOCUMENT_ROOT'].'/language/'.DEFAULT_LANGUAGE.'.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/model/lang_router.php');
 
 	require_once($_SERVER['DOCUMENT_ROOT'].'/model/html_start.php');
 
