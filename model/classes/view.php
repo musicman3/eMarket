@@ -10,7 +10,9 @@
 
 		function Routing (){
 
-			$str = str_replace('controller','view/default',$_SERVER['SCRIPT_FILENAME']);
+			$template = 'default';
+
+			$str = str_replace('controller','view/' . $template, $_SERVER['SCRIPT_FILENAME']);
 
 			return $str;
 		}
