@@ -6,5 +6,5 @@
 
 session_start();    //инициализируем механизм сессий
 session_destroy();    //удаляем текущую сессию
-header('Location: /controller/verify/login.php');    //перенаправляем на protected.php
+header('Location: /controller/admin/verify/login.php');    //перенаправляем на protected.php
 ?>

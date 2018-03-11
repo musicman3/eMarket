@@ -30,9 +30,9 @@
 
 	if($verify != 1){    //if user failed:
 
-		header('Location: /controller/verify/login_error.php');    // if user failed: redirect to login_error.php
+		header('Location: /controller/admin/verify/login_error.php');    // if user failed: redirect to login_error.php
 	}else{
-		header('Location: /controller/index.php');    // else: redirect to index.php
+		header('Location: /controller/admin/index.php');    // else: redirect to index.php
 	}
 
 	$deflang = $PDO->selectPrepare("SELECT language FROM ".TABLE_USERS." WHERE login=? AND password=?", array($_SESSION['login'], $_SESSION['pass']));

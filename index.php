@@ -4,6 +4,6 @@
 * https://github.com/musicman3/eMarket *
 ***************************************/
 
-header('Location: controller/index.php');
+header('Location: controller/admin/index.php');
 
 ?>

@@ -13,7 +13,7 @@
 	<tbody>
 		<tr align="center">
 			<td align="center">
-				<form action="/controller/process/add_project_complete.php" method="post" accept-charset="utf-8">
+				<form action="/controller/admin/process/add_project_complete.php" method="post" accept-charset="utf-8">
 					<table cellspacing="0" style="border: 1px solid #62AC04; border-collapse: collapse;">
 						<tr>
 							<td align="right" style="background: #62AC04; border: 1px solid #62AC04; border-bottom: 1px solid #ffffff; color:#ffffff; padding: 4px;">
@@ -43,10 +43,10 @@
 				</form>
 				<br />
 				<br />
-				<a href='/controller/index.php'><b><?php echo $lang['back'] ?></b></a>
+				<a href='/controller/admin/index.php'><b><?php echo $lang['back'] ?></b></a>
 				<br />
 				<br />
-				<a href='/controller/verify/logout.php'><b><?php echo $lang['exit'] ?></b></a>
+				<a href='/controller/admin/verify/logout.php'><b><?php echo $lang['exit'] ?></b></a>
 			</td>
 		</tr>
 	</tbody>

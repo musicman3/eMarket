@@ -188,7 +188,7 @@
 		<table cellspacing="0" style="border: 1px solid #ffffff; border-collapse: collapse; width: 100%; height: 100%">
 			<tr align="center">
 				<td align="center">
-					<form action='../controller/verify/login.php' method='post' accept-charset='utf-8' style='display: inline;'>
+					<form action='../controller/admin/verify/login.php' method='post' accept-charset='utf-8' style='display: inline;'>
 						<table cellspacing="0" style="border: 1px solid #ffffff; border-collapse: collapse; width:50%; position:absolute; top:100%; left:50%; margin:-25% 0 0 -25%;">
 							<tr align="center">
 								<td align="center">

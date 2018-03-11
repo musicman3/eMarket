@@ -12,12 +12,12 @@
 <table cellspacing="0" style="width: 99%; height: 99%">
 	<tr align="center">
 		<td align="center">
-			<form action='/controller/index.php' method='post' accept-charset='utf-8' style='display: inline;'>
+			<form action='/controller/admin/index.php' method='post' accept-charset='utf-8' style='display: inline;'>
 				<table cellspacing="0" style="border: 1px solid #62AC04; border-radius: 3px; width: 25%">
 					<tr align="center">
 						<td align="center">
 							<br />
-							<h3><?php echo $lang['project_edit'] ?></h3>
+							<h3><?php echo $lang['project_complete'] ?></h3>
 							<input class="button" type="submit" name="button_go_login" value="<?php echo $lang['button_go_login'] ?>" />
 							<br />
 							<br />

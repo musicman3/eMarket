@@ -62,7 +62,7 @@
 
 								<td style="padding: 4px; border-right: 1px solid #62AC04;"><?php echo $status ?></td>
 								<td style="width: 134px">
-									<form action="/controller/pages/edit_project.php" method="post" accept-charset="utf-8" style="display: inline;">
+									<form action="/controller/admin/pages/edit_project.php" method="post" accept-charset="utf-8" style="display: inline;">
 										<div><input type="hidden" name="edit_id" value="<?php echo $vol[0] ?>" /></div>
 										<div><input type="hidden" name="project_name" value="<?php echo $vol[1] ?>" /></div>
 										<div><input class="button" type="submit" name="edit_button" value="<?php echo $lang['edit'] ?>" /></div>
@@ -76,7 +76,7 @@
 					</tbody>
 				</table>
 
-				<br /><br /><a href='/controller/verify/logout.php'><b><?php echo $lang['exit'] ?></b></a>
+				<br /><br /><a href='/controller/admin/verify/logout.php'><b><?php echo $lang['exit'] ?></b></a>
 			</td>
 		</tr>
 	</tbody>
