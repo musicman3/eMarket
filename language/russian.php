@@ -39,6 +39,7 @@
 	'hash_gost' => 'ГОСТ Р 34.11-94',
 	'hash_method' => 'Метод хэширования',
 	'hash_sha256' => 'SHA2 (SHA256)',
+	'hello_world' => 'Hello World!',
 	'input_site' => 'Введите адрес сайта: http://www.',
 	'license' => 'ЛИЦЕНЗИЯ',
 	'license_deleted_successful' => 'Лицензия успешно удалена',
