@@ -1,6 +1,6 @@
 
 // directory of where all the images are
-var cmThemeOfficeBase = 'external/jscookmenu/ThemeOffice/';
+var cmThemeOfficeBase = '/view/default/admin/js/jscookmenu/ThemeOffice/';
 
 // the follow block allows user to re-define theme base directory
 // before it is loaded.
