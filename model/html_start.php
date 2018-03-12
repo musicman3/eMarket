@@ -14,8 +14,8 @@
 		<meta name="robots" content="noindex,nofollow" />
 		<meta name="generator" content="HippoEDIT, Notepad++" />
 		<meta name="classification" content="software" />
-		<meta name="author" content="Alexander Kholodov" />
-		<meta name="owner" content="Alexander Kholodov" />
-		<meta name="copyright" content="CopyrightÂ©2011 by Alexander Kholodov. All right reserved." />
-	 <link rel="stylesheet" type="text/css" href="/view/default/style.css" media="screen" />
+		<meta name="author" content="eMarket" />
+		<meta name="owner" content="eMarket" />
+		<meta name="copyright" content="Copyright©2011 by eMerket. All right reserved." />
+	 <link rel="stylesheet" type="text/css" href="/view/default/<?php echo $patch ?>/style.css" media="screen" />
 	 <script type="text/javascript" src="/ext/jquery/jquery.min.js"></script>

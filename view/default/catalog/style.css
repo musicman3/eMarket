@@ -1,0 +1,141 @@
+/****** Copyright © 2018 eMarket ******* 
+*   GNU GENERAL PUBLIC LICENSE v.3.0   *    
+* https://github.com/musicman3/eMarket *
+***************************************/
+
+* {
+	margin: 0;
+	padding: 0
+}
+
+html, body {
+	height: 99%;
+	min-height: 99%
+}
+
+body, #common {
+	position: relative;
+ 	margin: 0px auto;
+ 	height: 99%
+}
+
+#common * td {
+	height: 99%;
+ 	text-align: center;
+ 	vertical-align: middle
+}
+
+body {
+	color: #555555;
+	font-size: 8pt;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+/* default */
+p, #content h1, h2, h3, h4, h5, h6, ol, ul {
+	padding-bottom:10px;
+}
+.clear {
+	clear:both;
+	height:1px;
+}
+img {
+	border:0px;
+}
+/*text */
+#title h1 {
+	font-size:22pt;
+	font-weight: normal;
+	padding: 52px 0 0px 20px;
+	margin-bottom:0px;
+	line-height:60px;
+	color: #fff;
+}
+#title h1 a {
+	color: #fff;
+	text-decoration: none;
+}
+
+h2 {
+	font-size: 12pt;
+}
+
+h3, h4 {
+	font-size: 11pt;
+	color: #325706;
+}
+
+ul li ul li {
+	margin-left: 10px;
+}
+ul li ul li ul li {
+	margin-left: 10px;
+}
+
+blockquote {
+	margin: 15px;
+	font-size: 10pt;
+	font-style: italic;
+}
+
+a {
+	color: #62ac04;
+	text-decoration: none;
+}
+
+/* form */
+fieldset {
+	border: 0px;
+	padding: 0px 15px 15px 15px;
+}
+input, textarea, select {
+	border: 1px solid #d9d9d9;
+	padding: 5px;
+	font-size: 8pt;
+	background:transparent;
+	color: #666666;
+	font-family: Arial, Helvetica, sans-serif;
+	margin-bottom:2px;
+}
+
+.submit, .searchsubmit, .preview, .button, .searchbutton {
+	background-color: #62ac04;
+	color: #ffffff;
+	border: 1px solid #d9d9d9;
+	font-size: 8pt;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	padding-left: 8px;
+	padding-right: 8px;
+	margin-top: 3px;
+	font-weight: bold;
+	font-family: Arial, Helvetica, sans-serif;
+	cursor:	pointer;
+	width: 130px;
+	border-radius: 3px;
+}
+
+.small {
+	color: #898989;
+	font-size: 7pt;
+}
+
+td {
+	font-size: 8pt;
+}
+
+#ButtonAdd {
+	background-color: #62ac04;
+	color: #ffffff;
+	border: 1px solid #d9d9d9;
+	font-size: 8pt;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	padding-left: 8px;
+	padding-right: 8px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	font-weight: bold;
+	font-family: Arial, Helvetica, sans-serif;
+	cursor:	pointer;
+}
