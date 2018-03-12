@@ -8,7 +8,7 @@
 
 	/********  CONNECT PAGE START  ********/
 	require_once($_SERVER['DOCUMENT_ROOT'].'/model/connect_page_start.php');
-	***************************************/
+	/**************************************/
 
 	$table = $PDO->getColRow("SELECT * FROM csd_project", array());
 
@@ -33,6 +33,6 @@
 
 	/*********  CONNECT PAGE END  *********/
 	require_once($_SERVER['DOCUMENT_ROOT'].'/model/connect_page_end.php');
-	***************************************/
+	/**************************************/
 
 ?>
