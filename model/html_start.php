@@ -19,3 +19,6 @@
 		<meta name="copyright" content="Copyright©2011 by eMerket. All right reserved." />
 	 <link rel="stylesheet" type="text/css" href="/view/default/<?php echo $patch ?>/style.css" media="screen" />
 	 <script type="text/javascript" src="/ext/jquery/jquery.min.js"></script>
+	 <?php if ($patch == 'admin'){ ?> <script type="text/javascript" src="/view/default/admin/js/jscookmenu/JSCookMenu.js"></script>
+	 <script type="text/javascript" src="/view/default/admin/js/jscookmenu/ThemeOffice/theme.js"></script>
+	 <link rel="stylesheet" href="/view/default/admin/js/jscookmenu/ThemeOffice/theme.css" type="text/css"> <?php } ?>

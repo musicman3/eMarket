@@ -1,0 +1,211 @@
+/*
+ * ThemeOffice Style Sheet
+ * by Ian Reyes and Heng Yuan
+ */
+
+.ThemeOfficeMenu,.ThemeOfficeSubMenuTable
+{
+	font-family: Tahoma;
+
+	font-size: 11px;
+
+	color: white;
+	background-color: #ffffff;
+
+	cursor:		pointer;
+	cursor:		hand !important;
+	white-space:	nowrap;
+}
+
+.ThemeOfficeSubMenu
+{
+	position:	absolute;
+	display:	block;
+	visibility:	hidden;
+	overflow:	hidden;
+
+	border:		1px outset #9C9A9C;
+	background-color: transparent;
+}
+
+.ThemeOfficeSubMenuTable
+{
+	border-collapse:	separate;
+	opacity:	0.9;
+	filter:Alpha(style=0,opacity=90);
+}
+
+.ThemeOfficeMenuItem,.ThemeOfficeMenuItemHover,.ThemeOfficeMenuItemActive
+{
+	cursor:		pointer;
+	cursor:		hand !important;
+	white-space:	nowrap;
+}
+
+.ThemeOfficeMainItem,
+.ThemeOfficeMenuItem
+{
+	padding:	3px 6px 3px 6px;
+
+	border:		0px solid #ffffff;
+	background-color:	#5f5f5f;
+}
+
+.ThemeOfficeMainItemHover,
+.ThemeOfficeMainItemActive
+{
+	padding:	3px 6px 3px 6px;
+	
+	border:		0px solid #ffffff;
+	background-color:	#444444;
+}
+
+.ThemeOfficeMenuItemHover,
+.ThemeOfficeMenuItemActive
+{
+	padding:	5px;
+	border:		1px solid #ffffff;
+	background-color:	#333333;
+}
+
+/* horizontal main menu sub components */
+/* panel doesn't really support horizontal menus */
+/* there are simpler approaches, but the setting here allows me to
+   set a background image for the menu without lines all over it */
+
+.ThemeOfficeMainFolderLeft,
+.ThemeOfficeMainItemLeft,
+.ThemeOfficeMainFolderText,
+.ThemeOfficeMainItemText,
+.ThemeOfficeMainItemRight,
+.ThemeOfficeMainFolderRight
+{
+	border: 0;
+	background-color: inherit;
+	white-space: nowrap;
+}
+
+/* sub menus sub components */
+
+.ThemeOfficeMenuFolderLeft,
+.ThemeOfficeMenuItemLeft
+{
+	padding:	3px 0px 3px 3px;
+	border:		0;
+	white-space:	nowrap;
+	background-color:	inherit;
+}
+
+.ThemeOfficeMenuFolderText,
+.ThemeOfficeMenuItemText
+{
+	padding:	3px 3px 3px 5px;
+
+	border:		0;
+	white-space:	nowrap;
+	background-color:	inherit;
+}
+
+.ThemeOfficeMenuItemRight,
+.ThemeOfficeMenuFolderRight
+{
+	padding:	3px 1px 3px 0px;
+
+	border:		0;
+	white-space:	nowrap;
+	background-color:	inherit;
+}
+
+/* hoover and active border */
+.ThemeOfficeMenuItemHover .ThemeOfficeMenuFolderLeft,
+.ThemeOfficeMenuItemActive .ThemeOfficeMenuFolderLeft,
+.ThemeOfficeMenuItemHover .ThemeOfficeMenuItemLeft,
+.ThemeOfficeMenuItemActive .ThemeOfficeMenuItemLeft,
+.ThemeOfficeMenuItemHover .ThemeOfficeMenuFolderText,
+.ThemeOfficeMenuItemActive .ThemeOfficeMenuFolderText,
+.ThemeOfficeMenuItemHover .ThemeOfficeMenuItemText,
+.ThemeOfficeMenuItemActive .ThemeOfficeMenuItemText,
+.ThemeOfficeMenuItemHover .ThemeOfficeMenuFolderRight,
+.ThemeOfficeMenuItemActive .ThemeOfficeMenuFolderRight,
+.ThemeOfficeMenuItemHover .ThemeOfficeMenuItemRight,
+.ThemeOfficeMenuItemActive .ThemeOfficeMenuItemRight
+{
+	border-color:	#9C9A9C;
+}
+
+.ThemeOfficeMenuItemHover .ThemeOfficeMenuFolderLeft,
+.ThemeOfficeMenuItemActive .ThemeOfficeMenuFolderLeft,
+.ThemeOfficeMenuItemHover .ThemeOfficeMenuItemLeft,
+.ThemeOfficeMenuItemActive .ThemeOfficeMenuItemLeft
+{
+	border-width:	1px 0px 1px 1px;
+	border-style:	solid;
+	padding:	2px 0px 2px 2px;
+}
+
+.ThemeOfficeMenuItemHover .ThemeOfficeMenuFolderText,
+.ThemeOfficeMenuItemActive .ThemeOfficeMenuFolderText,
+.ThemeOfficeMenuItemHover .ThemeOfficeMenuItemText,
+.ThemeOfficeMenuItemActive .ThemeOfficeMenuItemText
+{
+	border-width:	1px 0px 1px 0px;
+	border-style:	solid;
+	padding:	2px 3px 2px 5px;
+}
+
+.ThemeOfficeMenuItemHover .ThemeOfficeMenuFolderRight,
+.ThemeOfficeMenuItemActive .ThemeOfficeMenuFolderRight,
+.ThemeOfficeMenuItemHover .ThemeOfficeMenuItemRight,
+.ThemeOfficeMenuItemActive .ThemeOfficeMenuItemRight
+{
+	border-width:	1px 1px 1px 0px;
+	border-style:	solid;
+	padding:	2px 0px 2px 0px;
+}
+
+td.ThemeOfficeMenuSplit
+{
+	padding:	0px;
+	margin:		0px;
+	height:		5px;
+	border:		0px;
+	background-color:	inherit;
+	overflow:	hidden;
+}
+
+div.ThemeOfficeMenuSplit
+{
+	margin: 2px;
+	height: 1px;
+	overflow: hidden;
+	background-color: inherit;
+	border-top: 1px solid #9C9A9C;
+}
+
+/* image shadow animation */
+
+/*
+	seq1:	image for normal
+	seq2:	image for hover and active
+
+	To use, in the icon field, input the following:
+	<img class="seq1" src="normal.gif" /><img class="seq2" src="hover.gif" />
+*/
+
+.ThemeOfficeMenuItem img.seq1
+{
+	display:	inline;
+}
+
+.ThemeOfficeMenuItemHover seq2,
+.ThemeOfficeMenuItemActive seq2
+{
+	display:	inline;
+}
+
+.ThemeOfficeMenuItem .seq2,
+.ThemeOfficeMenuItemHover .seq1,
+.ThemeOfficeMenuItemActive .seq1
+{
+	display:	none;
+}

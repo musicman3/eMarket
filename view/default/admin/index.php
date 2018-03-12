@@ -9,75 +9,93 @@
 
 </head>
 <body>
-<table cellspacing="0" style="width: 99%; height: 99%">
-	<tbody>
-		<tr align="center">
-			<td align="center">
-				<form action="pages/new_project.php" method="post" accept-charset="utf-8" style="display: inline;">
-					<table cellspacing="0" style="border: 1px solid #FFFFFF; border-collapse: collapse; width: 90%">
-						<tbody>
-							<tr>
-								<td align="left">
-									<div style="border: 3px solid #62AC04; background: #62AC04; border-radius: 3px; color:#ffffff; display: inline-block;">
-										<?php echo $lang['hash_method'] ?>: <b><?php echo $hash ?></b>
-										<br />
-										<?php echo $lang['crypt_method'] ?>: <b><?php echo $crypt ?></b>
-									</div>
-								</td>
-								<td align="right">
-									<input class="button" id="ButtonAdd" type="submit" value="<?php echo $lang['add_project_button'] ?>" onclick="return pass_check();" />
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</form>
-
-				<table cellspacing="0" style="border: 1px solid #62AC04; border-collapse: collapse; width: 90%">
-					<tbody>
-						<tr align="center" style="border: 1px solid #62AC04; background: #62AC04; color:#ffffff">
-							<td style="padding: 4px;"><b><?php echo $lang['number'] ?></b></td>
-							<td><b><?php echo $lang['project_name'] ?></b></td>
-							<td><b><?php echo $lang['date_create'] ?></b></td>
-							<td><b><?php echo $lang['status'] ?></b></td>
-							<td><b><?php echo $lang['action'] ?></b></td>
-							<td><b><?php echo $lang['action'] ?></b></td>
-						</tr>
-						<?php $i=0; 
-							foreach ($table as $key => $vol){
- 								$i=$i+1;
-							?>
-							<tr align="center" style="border: 1px solid #62AC04;">
-								<td style="padding: 4px; border-right: 1px solid #62AC04;"><?php echo $i ?></td>
-								<td><?php echo $vol[1] ?></td>
-								<td><?php echo date_format(date_create($vol[2]), 'd.m.Y H:i:s') ?></td>
-
-								<?php //CHECK STATUS
-									$status = $vol[3];
-									if ($status == 'on'){
-										$status = 'ON';
-									}else{
-										$status = 'OFF';
-									}
-								?>
-
-								<td style="padding: 4px; border-right: 1px solid #62AC04;"><?php echo $status ?></td>
-								<td style="width: 134px">
-									<form action="/controller/admin/pages/edit_project.php" method="post" accept-charset="utf-8" style="display: inline;">
-										<div><input type="hidden" name="edit_id" value="<?php echo $vol[0] ?>" /></div>
-										<div><input type="hidden" name="project_name" value="<?php echo $vol[1] ?>" /></div>
-										<div><input class="button" type="submit" name="edit_button" value="<?php echo $lang['edit'] ?>" /></div>
-									</form>
-								</td>
-								<td style="width: 134px">
-									<div><input class="button" type="submit" name="browse_button" value="<?php echo $lang['browse_project_button'] ?>" /></div>
-								</td>
-							</tr>
-							<?php } ?>
-					</tbody>
-				</table>
-
-				<br /><br /><a href='/controller/admin/verify/logout.php'><b><?php echo $lang['exit'] ?></b></a>
-			</td>
-		</tr>
-	</tbody>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td style="padding: 0 5px 0 5px;"><img src="/view/default/admin/images/img.png"></td>
+    <td width="330" align="right" style="padding-right: 5px;" >
+<span style="color: #000000;"><b>SSL</b></span>
+    </td>
+  </tr>
 </table>
+
+<div id="administrationMenu" class="ThemeOfficeMainItem">
+<ul style="visibility: hidden">
+	<li>
+	<span></span><span>Раздел</span>
+		<ul>
+			<li>
+				<span><img src="/view/default/admin/images/icons/" /></span><span>Меню 1</span>
+					<ul>
+						<li>
+							<span><img src="/view/default/admin/images/icons/" /></span><a href="http://#">Подменю меню 1</a>
+						</li>
+					</ul>
+			</li>
+						<li>
+							<span><img src="/view/default/admin/images/icons/" /></span><span>Меню 2</span>
+					<ul>
+						<li>
+							<span><img src="/view/default/admin/images/icons/" /></span><a href="http://#">Подменю меню 2</a>
+						</li>
+					</ul>
+			</li>
+						<li>
+							<span><img src="/view/default/admin/images/icons/"/></span><a href="#">Меню 3</a>
+						</li>
+		</ul>
+	</li>
+
+	<li>
+	<span></span><span>Раздел</span>
+		<ul>
+			<li>
+				<span><img src="/view/default/admin/images/icons/" /></span><span>Меню 1</span>
+					<ul>
+						<li>
+							<span><img src="/view/default/admin/images/icons/" /></span><a href="http://#">Подменю меню 1</a>
+						</li>
+					</ul>
+			</li>
+						<li>
+							<span><img src="/view/default/admin/images/icons/" /></span><span>Меню 2</span>
+					<ul>
+						<li>
+							<span><img src="/view/default/admin/images/icons/" /></span><a href="http://#">Подменю меню 2</a>
+						</li>
+					</ul>
+			</li>
+						<li>
+							<span><img src="/view/default/admin/images/icons/"/></span><a href="#">Меню 3</a>
+						</li>
+		</ul>
+	</li>
+	
+</ul>
+</div>
+
+<script type="text/javascript"><!--
+  cmDrawFromText('administrationMenu', 'hbr', cmThemeOffice, 'ThemeOffice');
+//--></script>
+
+<div class="pageContents">
+  
+Информа́ция (от лат. informātiō — «разъяснение, представление, понятие о чём-либо», от лат. informare — «придавать вид, форму, обучать; мыслить, воображать»[1]) — сведения независимо от формы их представления[2].
+
+Несмотря на широкую распространённость, понятие информации остаётся одним из самых дискуссионных в науке, а термин может иметь различные значения в разных отраслях человеческой деятельности.
+
+Информация — это не материя и не энергия, информация — это информация
+Норберт Винер[3]
+
+Определений информации существует множество, причём академик Н. Н. Моисеев даже полагал, что в силу широты этого понятия нет и не может быть строгого и достаточно универсального определения информации[4].
+
+В международных и российских стандартах даются следующие определения:
+
+    знания о предметах, фактах, идеях и т. д., которыми могут обмениваться люди в рамках конкретного контекста (ISO/IEC 10746-2:1996)[5];
+    знания относительно фактов, событий, вещей, идей и понятий, которые в определённом контексте имеют конкретный смысл (ISO/IEC 2382:2015)[6];
+    сведения, воспринимаемые человеком и (или) специальными устройствами как отражение фактов материального или духовного мира в процессе коммуникации (ГОСТ 7.0-99)[7].
+
+Хотя информация должна обрести некоторую форму представления (то есть превратиться в данные), чтобы ею можно было обмениваться, информация есть в первую очередь интерпретация (смысл) такого представления (ISO/IEC/IEEE 24765:2010)[8]. Поэтому в строгом смысле информация отличается от данных, хотя в неформальном контексте эти два термина очень часто используют как синонимы.
+
+Первоначально «информация» — сведения, передаваемые людьми устным, письменным или другим способом (с помощью условных сигналов, технических средств и т. д.); с середины XX века термин «информация» превратился в общенаучное понятие, включающее обмен сведениями между людьми, человеком и автоматом, автоматом и автоматом; обмен сигналами в животном и растительном мире; передачу признаков от клетки к клетке, от организма к организму (например, генетическая информация); одно из основных понятий кибернетики[9]. 
+  
+</div>
