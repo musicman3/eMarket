@@ -6,6 +6,7 @@ body{padding-top:0px;}
 :focus {outline: 0;}
 .btn {display: inline-block;padding: 3px 10px;}
 #header{padding-top:10px;}
+#bodyContent {padding-bottom: 10px;}
 .container {background-color:#ffffff;border:1px solid #dedede;border-radius:6px;margin-top:10px;}
 .breadcrumb{margin-bottom:10px;}
 #Carousel {border: 1px solid #ddd;border-radius: 6px;}

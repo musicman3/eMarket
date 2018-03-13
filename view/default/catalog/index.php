@@ -111,7 +111,7 @@
     <br><strong>Demonstration of Twitter Bootstrap 3 Framework.</strong><br><br>The default shopping cart comes with Jquery UI, Grid960, Fancybox and BxGallery, in this demo those have been replaced by Boostrap and Bootstrap 3 Lightbox making it lighter, faster and responsive.<br><br>This demo is based of the with default demo content, but with higher resolution product images and an automatic thumbnail generator added.<br><br><strong>NOTE:</strong> This demo is a plain "boilerplate" version without extra styling.
   </div>		
 		
-		<div style="clear: both;"></div>
+		<div class="clearfix"></div>
 
   <div class="contentText before">
     <br><strong>Demonstration of Twitter Bootstrap 3 Framework.</strong><br><br>The default shopping cart comes with Jquery UI, Grid960, Fancybox and BxGallery, in this demo those have been replaced by Boostrap and Bootstrap 3 Lightbox making it lighter, faster and responsive.<br><br>This demo is based of the with default demo content, but with higher resolution product images and an automatic thumbnail generator added.<br><br><strong>NOTE:</strong> This demo is a plain "boilerplate" version without extra styling.
