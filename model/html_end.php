@@ -14,12 +14,12 @@
 	?>
 <?php //вывод только в каталоге
 	if ($patch == 'catalog'){ ?>
+				<link rel="stylesheet" type="text/css" href="/view/default/catalog/style.css" media="screen" />
 				<script type="text/javascript" src="/ext/jquery/jquery.min.js"></script>
-						<script src="/ext/bootstrap/js/bootstrap.min.js"></script>
-					</body>
-				</html>
-			</body>
-		</html>
+				<script type="text/javascript" src="/ext/bootstrap/js/bootstrap.min.js"></script>
 		<?php 
 	} // конец вывода только в каталоге
 	?>
+	
+</body>
+</html>
