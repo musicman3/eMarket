@@ -10,7 +10,7 @@ body{padding-top:0px;}
 .container {background-color:#ffffff;border:1px solid #dedede;border-radius:6px;margin-top:10px;}
 .breadcrumb{margin-bottom:10px;}
 #Carousel {border: 1px solid #ddd;border-radius: 6px;}
-.footer{color:#000000;width:100%;margin-top:25px;padding:10px;}
+.footer{color:#000000;width:100%;margin-top:10px;padding:10px;}
 .panel-heading{padding:5px 10px;}
 .panel-default > .panel-heading{color:#428bca;}
 .panel-body{padding:5px;}
