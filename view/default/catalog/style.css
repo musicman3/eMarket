@@ -14,7 +14,7 @@ body{padding-top:0px;}
 .panel-default > .panel-heading{color:#428bca;}
 .panel-body{padding:5px;}
 h1 {font-size: 16px;color: #03539a;font-weight: bold;border-bottom: 1px solid #dedede;margin-bottom: 12px;padding-bottom: 6px;}
-#bodyContent h6 {font-size: 16px;color: #333;font-weight: bold;margin-bottom: 6px;padding: 5px 0px 5px 0px;}
+#bodyContent h6 {font-size: 15px;color: #333;font-weight: bold;margin-bottom: 6px;padding: 5px 0px 5px 0px;}
 .contentText .after {border: 1px solid #eaeaea;border-radius: 6px;background: linear-gradient(0deg, #f5f5f5, #FAFAFA);padding: 5px;margin-bottom: 5px;}
 .contentText .before {border: 1px solid #eaeaea;border-radius: 6px;background: linear-gradient(0deg, #f5f5f5, #FAFAFA);padding: 5px;margin-bottom: 5px;}
 #pageIcon {float: right;}
