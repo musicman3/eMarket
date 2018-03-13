@@ -4,7 +4,6 @@
 * https://github.com/musicman3/eMarket *
 ***************************************/
 
-	
 		// Структура меню
 		$level = array();
 		$menu = array();
@@ -13,47 +12,47 @@
 		//LEVEL 0
 		$level[0] = 'Раздел 1';
 	
-			$menu[0][0] = 'Меню 0';
-				$submenu[0][0][0] = 'Подменю 0';
-				$submenu[0][0][1] = 'Подменю 1';
+			$menu[0][0] = '<span><img src="/view/default/admin/images/icons/" /></span><span>Меню 0</span>';
+				$submenu[0][0][0] = '<span><img src="/view/default/admin/images/icons/" /></span><a href="http://www.mail.ru">Подменю 0</a>';
+				$submenu[0][0][1] = '<span><img src="/view/default/admin/images/icons/" /></span><a href="http://www.mail.ru">Подменю 1</a>';
 	
-			$menu[0][1] = 'Меню 1';
-				$submenu[0][1][0] = 'Подменю 0';
-				$submenu[0][1][1] = 'Подменю 1';
-				$submenu[0][1][2] = 'Подменю 2';
-				$submenu[0][1][3] = 'Подменю 3';
+			$menu[0][1] = '<span><img src="/view/default/admin/images/icons/" /></span><span>Меню 1</span>';
+				$submenu[0][1][0] = '<span><img src="/view/default/admin/images/icons/" /></span><a href="http://www.mail.ru">Подменю 0</a>';
+				$submenu[0][1][1] = '<span><img src="/view/default/admin/images/icons/" /></span><a href="http://www.mail.ru">Подменю 1</a>';
+				$submenu[0][1][2] = '<span><img src="/view/default/admin/images/icons/" /></span><a href="http://www.mail.ru">Подменю 2</a>';
+				$submenu[0][1][3] = '<span><img src="/view/default/admin/images/icons/" /></span><a href="http://www.mail.ru">Подменю 3</a>';
 	
-			$menu[0][2] = 'Меню 2';
+			$menu[0][2] = '<span><img src="/view/default/admin/images/icons/" /></span><span>Меню 2</span>';
 	
 		//LEVEL 1
 		$level[1] = 'Раздел 2';
 	
-			$menu[1][0] = 'Меню 0';
-				$submenu[1][0][0] = 'Подменю 0';
-				$submenu[1][0][1] = 'Подменю 1';
+			$menu[1][0] = '<span><img src="/view/default/admin/images/icons/" /></span><span>Меню 0</span>';
+				$submenu[1][0][0] = '<span><img src="/view/default/admin/images/icons/" /></span><a href="http://www.mail.ru">Подменю 0</a>';
+				$submenu[1][0][1] = '<span><img src="/view/default/admin/images/icons/" /></span><a href="http://www.mail.ru">Подменю 1</a>';
 	
-			$menu[1][1] = 'Меню 1';
-				$submenu[1][1][0] = 'Подменю 0';
-				$submenu[1][1][1] = 'Подменю 1';
+			$menu[1][1] = '<span><img src="/view/default/admin/images/icons/" /></span><span>Меню 1</span>';
+				$submenu[1][1][0] = '<span><img src="/view/default/admin/images/icons/" /></span><a href="http://www.mail.ru">Подменю 0</a>';
+				$submenu[1][1][1] = '<span><img src="/view/default/admin/images/icons/" /></span><a href="http://www.mail.ru">Подменю 1</a>';
 
-			$menu[1][2] = 'Меню 2';
-				$submenu[1][2][0] = 'Подменю 0';
-				$submenu[1][2][1] = 'Подменю 1';
+			$menu[1][2] = '<span><img src="/view/default/admin/images/icons/" /></span><span>Меню 2</span>';
+				$submenu[1][2][0] = '<span><img src="/view/default/admin/images/icons/" /></span><a href="http://www.mail.ru">Подменю 0</a>';
+				$submenu[1][2][1] = '<span><img src="/view/default/admin/images/icons/" /></span><a href="http://www.mail.ru">Подменю 1</a>';
 	
-			$menu[1][3] = 'Меню 3';
+			$menu[1][3] = '<span><img src="/view/default/admin/images/icons/" /></span><span>Меню 3</span>';
 
 		//LEVEL 2
 		$level[2] = 'Раздел 3';
 	
-			$menu[2][0] = 'Меню 0';
-				$submenu[2][0][0] = 'Подменю 0';
-				$submenu[2][0][1] = 'Подменю 1';
+			$menu[2][0] = '<span><img src="/view/default/admin/images/icons/" /></span><span>Меню 0</span>';
+				$submenu[2][0][0] = '<span><img src="/view/default/admin/images/icons/" /></span><a href="http://www.mail.ru">Подменю 0</a>';
+				$submenu[2][0][1] = '<span><img src="/view/default/admin/images/icons/" /></span><a href="http://www.mail.ru">Подменю 1</a>';
 	
-			$menu[2][1] = 'Меню 1';
-				$submenu[2][1][0] = 'Подменю 0';
-				$submenu[2][1][1] = 'Подменю 1';
+			$menu[2][1] = '<span><img src="/view/default/admin/images/icons/" /></span><span>Меню 1</span>';
+				$submenu[2][1][0] = '<span><img src="/view/default/admin/images/icons/" /></span><a href="http://www.mail.ru">Подменю 0</a>';
+				$submenu[2][1][1] = '<span><img src="/view/default/admin/images/icons/" /></span><a href="http://www.mail.ru">Подменю 1</a>';
 	
-			$menu[2][2] = 'Меню 2';
+			$menu[2][2] = '<span><img src="/view/default/admin/images/icons/" /></span><span>Меню 2</span>';
 
 ?>
 
@@ -79,11 +78,11 @@
 			<ul>
 				<?php	for ($x = 0; $x < count($menu[$i]); $x++) { ?>
 				<li>
-					<span><img src="/view/default/admin/images/icons/" /></span><span><?php echo $menu[$i][$x]; ?></span>
+					<?php echo $menu[$i][$x]; ?>
 					<ul>
 						<?php	for ($y = 0; $y < count($submenu[$i][$x]); $y++) { ?>
 						<li>
-							<span><img src="/view/default/admin/images/icons/" /></span><a href="http://#"><?php echo $submenu[$i][$x][$y]; ?></a>
+							<?php echo $submenu[$i][$x][$y]; ?>
 						</li>
 						<?php } ?>
 					</ul>
