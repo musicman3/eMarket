@@ -10,7 +10,7 @@
 		$submenu = array();
 	
 		//LEVEL 0
-		$level[0] = 'Раздел 1';
+		$level[0] = '<span></span><span>Раздел 0</span>';
 	
 			$menu[0][0] = '<span><img src="/view/default/admin/images/icons/" /></span><span>Меню 0</span>';
 				$submenu[0][0][0] = '<span><img src="/view/default/admin/images/icons/" /></span><a href="http://www.mail.ru">Подменю 0</a>';
@@ -25,7 +25,7 @@
 			$menu[0][2] = '<span><img src="/view/default/admin/images/icons/" /></span><span>Меню 2</span>';
 	
 		//LEVEL 1
-		$level[1] = 'Раздел 2';
+		$level[1] = '<span></span><span>Раздел 1</span>';
 	
 			$menu[1][0] = '<span><img src="/view/default/admin/images/icons/" /></span><span>Меню 0</span>';
 				$submenu[1][0][0] = '<span><img src="/view/default/admin/images/icons/" /></span><a href="http://www.mail.ru">Подменю 0</a>';
@@ -42,7 +42,7 @@
 			$menu[1][3] = '<span><img src="/view/default/admin/images/icons/" /></span><span>Меню 3</span>';
 
 		//LEVEL 2
-		$level[2] = 'Раздел 3';
+		$level[2] = '<span></span><span>Раздел 2</span>';
 	
 			$menu[2][0] = '<span><img src="/view/default/admin/images/icons/" /></span><span>Меню 0</span>';
 				$submenu[2][0][0] = '<span><img src="/view/default/admin/images/icons/" /></span><a href="http://www.mail.ru">Подменю 0</a>';
@@ -53,6 +53,10 @@
 				$submenu[2][1][1] = '<span><img src="/view/default/admin/images/icons/" /></span><a href="http://www.mail.ru">Подменю 1</a>';
 	
 			$menu[2][2] = '<span><img src="/view/default/admin/images/icons/" /></span><span>Меню 2</span>';
+
+		//LEVEL 3
+		$level[3] = '<span></span><a href="/controller/admin/verify/logout.php">'.$lang['menu_exit'].'</a>';
+	
 
 ?>
 
@@ -72,7 +76,7 @@
 	<ul style="visibility: hidden">
 	<?php	for ($i = 0; $i < count($level); $i++) { ?>
 		<li>
-			<span></span><span><?php echo $level[$i]; ?></span>
+			<?php echo $level[$i]; ?>
 			<ul>
 				<?php	for ($x = 0; $x < count($menu[$i]); $x++) { ?>
 				<li>
