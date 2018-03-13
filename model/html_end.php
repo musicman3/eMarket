@@ -4,10 +4,34 @@
 * https://github.com/musicman3/eMarket *
 ***************************************/
 ?>
-<?php //вывод только в админке
+<?php
+	//ФУНКЦИЯ ПОЛУЧЕНИЯ ПОЛНОГО ПУТИ К ФАЙЛАМ С УЧЕТОМ ПОДКАТЕГОРИЙ (БЕЗ ПУСТЫХ ПАПОК)
+	function FilesPatch($dir)  {
+		$handle = opendir($dir) or die("Error: Can't open directory $dir");  
+		$files = Array();  
+		$subfiles = Array();  
+		while (false !== ($file = readdir($handle)))  {
+			if ($file != "." && $file != ".." && $file != '.gitkeep')  {
+				if(is_dir($dir."/".$file))  {
+  
+					// Получим список файлов вложенной папки...  
+					$subfiles = FilesPatch($dir."/".$file);  
+	
+					// ...и добавим их к общему списку  
+					$files = array_merge($files,$subfiles);  
+				} else{
+					$files[] = $dir."/".$file;
+				}
+			}
+		}
+		closedir($handle);  
+		return $files;  
+	}
+
+ //вывод только в админке
 	if ($patch == 'admin'){ ?>
 		
-	} // конец вывода только в админке
+	<?php } // конец вывода только в админке
 	?>
 <?php //вывод только в каталоге
 	if ($patch == 'catalog'){ ?>
