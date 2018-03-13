@@ -18,6 +18,7 @@
 	
 	/*********  CONNECT PAGE END  *********/
 	require_once($_SERVER['DOCUMENT_ROOT'].'/model/connect_page_end.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/model/html_end.php');
 	/**************************************/
 
 ?>
