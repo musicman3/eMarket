@@ -5,7 +5,6 @@
 ***************************************/
 ?>
 
-<title><?php echo $lang['title_login'] ?></title>
 </head>
 <body>
 

@@ -56,8 +56,6 @@
 
 ?>
 
-<title><?php echo $lang['title_index'] ?></title>
-
 </head>
 <body>
 <table border="0" width="100%" cellspacing="0" cellpadding="0">

@@ -5,8 +5,6 @@
 ***************************************/
 ?>
 
-<title><?php echo $lang['title_index'] ?></title>
-
 </head>
 <body>
 <table cellspacing="0" style="width: 99%; height: 99%">
