@@ -13,7 +13,15 @@ login_name = ПАНЕЛЬ АДМИНИСТРАТОРА
 button_add = Добавить
 button_cancel = Отмена
 button_edit = Изменить
+
+;кнопки меню
 menu_exit = Выход
+menu_help = Помощь
+menu_extra = Дополнительно
+menu_languages = Языки
+menu_catalog = Онлайн каталог
+menu_support = Поддержка
+menu_language = Русский
 
 ; старые языковые переменные, в будущем выбрать что надо и лишнее удалить
 action = ДЕЙСТВИЕ
