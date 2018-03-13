@@ -19,14 +19,20 @@
 <meta name="copyright" content="Copyright©2018 by eMarket. All right reserved." />
 <?php $title_prefix = basename(($_SERVER['REQUEST_URI']), '.php'); // автогенерация префикса title по названию файла. Пример: для index.php = index ?>
 <title><?php echo $lang['title_'.$title_prefix] ?></title>
-<link rel="stylesheet" type="text/css" href="/view/default/<?php echo $patch ?>/style.css" media="screen" />
-<script type="text/javascript" src="/ext/jquery/jquery.min.js"></script>
 <?php //вывод только в админке
 	if ($patch == 'admin'){ ?>
+		<link rel="stylesheet" type="text/css" href="/view/default/admin/style.css" media="screen" />
+		<link rel="stylesheet" href="/view/default/admin/js/jscookmenu/ThemeOffice/theme.css" type="text/css">
 		<script type="text/javascript" src="/view/default/admin/js/jscookmenu/JSCookMenu.js"></script>
 		<script type="text/javascript" src="/view/default/admin/js/jscookmenu/ThemeOffice/theme.js"></script>
-		<link rel="stylesheet" href="/view/default/admin/js/jscookmenu/ThemeOffice/theme.css" type="text/css">
 		<?php 
 		require_once($_SERVER['DOCUMENT_ROOT'].'/view/default/admin/header.php');
 	} // конец вывода только в админке
+	?>
+<?php //вывод только в каталоге
+	if ($patch == 'catalog'){ ?>
+		<link href="/ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+		<link href="/ext/bootstrap/css/normalize.css" rel="stylesheet" media="screen" />
+		<?php 
+	} // конец вывода только в каталоге
 	?>
