@@ -26,6 +26,7 @@
 		<script type="text/javascript" src="/view/default/admin/js/jscookmenu/JSCookMenu.js"></script>
 		<script type="text/javascript" src="/view/default/admin/js/jscookmenu/ThemeOffice/theme.js"></script>
 		<?php 
+		require_once($_SERVER['DOCUMENT_ROOT'].'/controller/admin/header.php');
 		require_once($_SERVER['DOCUMENT_ROOT'].'/view/default/admin/header.php');
 	} // конец вывода только в админке
 	?>
