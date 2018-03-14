@@ -40,7 +40,7 @@
 							<table>
 								<tr>
 									<td align="center" style="padding-bottom: 5px;">
-										<input class='button' type='submit' name='ok' value='<?php echo $lang['entrance'] ?>' />
+										<input class='loginbutton' type='submit' name='ok' value='<?php echo $lang['entrance'] ?>' />
 									</td>
 								</tr>
 							</table>

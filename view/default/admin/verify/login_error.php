@@ -17,7 +17,7 @@
 						<td align="center">
 							<br />
 							<h3><?php echo $lang['login_error'] ?></h3>
-							<input class="button" type="submit" name="button_go_login" value="<?php echo $lang['button_go_login'] ?>" />
+							<input class="loginbutton" type="submit" name="button_go_login" value="<?php echo $lang['button_go_login'] ?>" />
 							<br />
 							<br />
 						</td>

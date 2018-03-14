@@ -4,7 +4,8 @@
 ***************************************/
 
 * {margin: 0;padding: 0}
-/*html, body {height: 99%;min-height: 99%}*/
+:focus {outline: 0;}
 body {color: #555555;font-size: 14px;font-family: Arial, Helvetica, sans-serif;background: url(images/header.png) repeat-x;background-color: #FFFFFF;}
 img {border:0px;}
 .pageContents {padding: 10px;}
+.loginbutton {margin: 1px;background-color: #257DB3;border: 1px solid #dddddd;border-radius: 5px;line-height: 130%;text-decoration: none;font-weight: bold;color: #FFF;cursor: pointer;padding: 5px 10px;outline: 0;}
