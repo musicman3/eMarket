@@ -52,7 +52,7 @@
 	$submenu[2][1][0] = '<span><img src="/view/default/admin/images/worldflags/ru.png" /></span><a href="http://#">'.$lang['menu_language'].'</a>';
 	$submenu[2][1][1] = '<span><img src="/view/default/admin/images/worldflags/gb.png" /></span><a href="http://#">English</a>';
 	
-	$menu[2][2] = '<span><img src="/view/default/admin/images/icons/16x16/home.png" /></span><a href="/controller/catalog/index.php">'.$lang['menu_catalog'].'</a>';
+	$menu[2][2] = '<span><img src="/view/default/admin/images/icons/16x16/home.png" /></span><a target="_blank" href="/controller/catalog/index.php">'.$lang['menu_catalog'].'</a>';
 
 	//LEVEL 3
 	$level[3] = '<span></span><a href="/controller/admin/verify/logout.php">'.$lang['menu_exit'].'</a>';

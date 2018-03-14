@@ -46,7 +46,7 @@
 .ThemeOfficeMenuItem
 {
 	padding:	3px 6px 3px 6px;
-
+	margin-top:     -3px;
 	border:		0px solid #ffffff;
 	background-color:	#5f5f5f;
 }
