@@ -9,8 +9,10 @@
 
  //вывод только в админке
 	if ($patch == 'admin'){ ?>
-		
+
 	<?php } // конец вывода только в админке
+		require_once($_SERVER['DOCUMENT_ROOT'].'/controller/admin/footer.php');
+		require_once($_SERVER['DOCUMENT_ROOT'].'/view/default/admin/footer.php');
 	?>
 <?php //вывод только в каталоге
 	if ($patch == 'catalog'){ ?>
