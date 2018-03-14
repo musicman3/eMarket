@@ -16,6 +16,8 @@
 	</tr>
 </table>
 
+<?php 	if(isset($_SESSION['login']) && isset($_SESSION['pass'])){ // Выводим если авторизованы ?>
+
 <div id="administrationMenu" class="ThemeOfficeMainItem">
 	
 	<ul style="visibility: hidden">
@@ -41,6 +43,8 @@
 	</ul>
 	
 </div>
+
+<?php } ?>
 
 <script type="text/javascript"><!--
 	cmDrawFromText('administrationMenu', 'hbr', cmThemeOffice, 'ThemeOffice');

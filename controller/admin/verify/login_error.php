@@ -6,8 +6,6 @@
 
 	error_reporting(-1);
 
-	session_start();
-
 	require_once($_SERVER['DOCUMENT_ROOT'].'/model/configure/configure.php');
 
 	require_once($_SERVER['DOCUMENT_ROOT'].'/model/configure/connect.php');
