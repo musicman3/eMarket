@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<table cellspacing="0" style="width: 99%; height: 99%">
+<table cellspacing="0" style="margin-top:50px; width: 99%; height: 99%">
 	<tr align="center">
 		<td align="center">
 			<form action='login.php' method='post' accept-charset='utf-8' style='display: inline;'>

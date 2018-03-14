@@ -8,14 +8,14 @@
 </head>
 <body>
 
-<table cellspacing="0" style="border: 1px solid #ffffff; border-collapse: collapse; width: 100%; height: 100%">
+<table cellspacing="0" style="margin-top:50px; width: 99%; height: 99%">
 	<tr align="center">
 		<td align="center">
 			<table cellspacing="0" style="border: 1px solid #257DB3; border-radius: 3px; width:25%;">
 				<tr align="center">
 					<td align="center">
 						<form  action='verify_autorize.php' method='post'>
-							<table cellspacing="0" style="border: 1px solid #ffffff; border-collapse: collapse; width: 100%; height: 100%">
+							<table cellspacing="0" style="width: 100%; height: 100%">
 								<tr align="center">
 									<td align="center" style="border: 1px solid #257DB3; background: #257DB3; color:#ffffff; padding: 4px;"><b><?php echo $lang['login_name'] ?></b><br /></td>
 								</tr>
