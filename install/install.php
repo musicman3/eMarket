@@ -10,11 +10,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 
-		<?php
-			error_reporting(-1);
+<?php
+	error_reporting(-1);
 
-			//LOAD LANGUAGE
-			require_once 'language/'.$_POST['language'].'.php';
+	//LOAD LANGUAGE
+	require_once 'language/'.$_POST['language'].'.php';
 		?>
 
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -31,64 +31,64 @@
 	</head>
 	<body>
 
-		<?php
+<?php
 
-			$http = 'http://' . $_SERVER['HTTP_HOST'];
+	$http = 'http://' . $_SERVER['HTTP_HOST'];
 
-			if (isset($_SERVER['REQUEST_URI']) && (empty($_SERVER['REQUEST_URI']) === false)) {
-				$http .= $_SERVER['REQUEST_URI'];
-			} else {
-				$http .= $_SERVER['SCRIPT_FILENAME'];
-			}
+	if (isset($_SERVER['REQUEST_URI']) && (empty($_SERVER['REQUEST_URI']) === false)) {
+		$http .= $_SERVER['REQUEST_URI'];
+	} else {
+		$http .= $_SERVER['SCRIPT_FILENAME'];
+	}
 
-			//IMPORT CONFIGURE
-			$http = substr($http, 0, strpos($http, 'install'));
-			$serv_db = $_POST['server_db'];
-			$logindb = $_POST['login_db'];
-			$passdb = $_POST['password_db'];
-			$dbname = $_POST['database_name'];
-			$dbpref = $_POST['database_prefix'];
-			$dbport = $_POST['database_port'];
-			$dbtype = $_POST['database_type'];
-			$dbfamyl = $_POST['database_family'];
-			$logadm = $_POST['login_admin'];
-			$pasadm = $_POST['password_admin'];
-			$lng = $_POST['language'];
-			$tabusr = $dbpref.'users';
-			$tab_lic = $dbpref.'license';
-			$tablist = $dbpref.'listing';
-			$hashmet = $_POST['hash_method'];
-			$crypt = $_POST['crypt_method'];
+	//IMPORT CONFIGURE
+	$http = substr($http, 0, strpos($http, 'install'));
+	$serv_db = $_POST['server_db'];
+	$logindb = $_POST['login_db'];
+	$passdb = $_POST['password_db'];
+	$dbname = $_POST['database_name'];
+	$dbpref = $_POST['database_prefix'];
+	$dbport = $_POST['database_port'];
+	$dbtype = $_POST['database_type'];
+	$dbfamyl = $_POST['database_family'];
+	$logadm = $_POST['login_admin'];
+	$pasadm = $_POST['password_admin'];
+	$lng = $_POST['language'];
+	$tabusr = $dbpref.'users';
+	$tab_lic = $dbpref.'license';
+	$tablist = $dbpref.'listing';
+	$hashmet = $_POST['hash_method'];
+	$crypt = $_POST['crypt_method'];
 
-			$formhid = '<input type="hidden" name="language" value="'.$lng.'" />';
+	$formhid = '<input type="hidden" name="language" value="'.$lng.'" />';
 
-			//WRITE IN FILE CONFIGURE.PHP
-			$datconf = '<?php' . "\n" .
-			'  define(\'HTTP_SERVER\', \'' . $http . '\');' . "\n" .
-			'  define(\'DB_SERVER\', \'' . $serv_db . '\');' . "\n" .
-			'  define(\'DB_USERNAME\', \'' . $logindb . '\');' . "\n" .
-			'  define(\'DB_PASSWORD\', \'' . $passdb . '\');' . "\n" .
-			'  define(\'DB_NAME\', \'' . $dbname . '\');' . "\n" .
-			'  define(\'DB_PREFIX\', \'' . $dbpref . '\');' . "\n" .
-			'  define(\'DB_PORT\', \'' . $dbport . '\');' . "\n" .
-			'  define(\'DB_TYPE\', \'' . $dbtype . '\');' . "\n" .
-			'  define(\'HASH_METHOD\', \'' . $hashmet . '\');' . "\n" .
-			'  define(\'CRYPT_METHOD\', \'' . $crypt . '\');' . "\n" .
-			'  define(\'DEFAULT_LANGUAGE\', \'' . $lng . '\');' . "\n" .
-			'  define(\'TABLE_USERS\', \'' . $tabusr . '\');' . "\n" .
-			'  define(\'TABLE_LICENSE\', \'' . $tab_lic . '\');' . "\n" .
-			'  define(\'TABLE_LISTING\', \'' . $tablist . '\');' . "\n" .
-			'?>';
+	//WRITE IN FILE CONFIGURE.PHP
+	$datconf = '<?php' . "\n" .
+	'  define(\'HTTP_SERVER\', \'' . $http . '\');' . "\n" .
+	'  define(\'DB_SERVER\', \'' . $serv_db . '\');' . "\n" .
+	'  define(\'DB_USERNAME\', \'' . $logindb . '\');' . "\n" .
+	'  define(\'DB_PASSWORD\', \'' . $passdb . '\');' . "\n" .
+	'  define(\'DB_NAME\', \'' . $dbname . '\');' . "\n" .
+	'  define(\'DB_PREFIX\', \'' . $dbpref . '\');' . "\n" .
+	'  define(\'DB_PORT\', \'' . $dbport . '\');' . "\n" .
+	'  define(\'DB_TYPE\', \'' . $dbtype . '\');' . "\n" .
+	'  define(\'HASH_METHOD\', \'' . $hashmet . '\');' . "\n" .
+	'  define(\'CRYPT_METHOD\', \'' . $crypt . '\');' . "\n" .
+	'  define(\'DEFAULT_LANGUAGE\', \'' . $lng . '\');' . "\n" .
+	'  define(\'TABLE_USERS\', \'' . $tabusr . '\');' . "\n" .
+	'  define(\'TABLE_LICENSE\', \'' . $tab_lic . '\');' . "\n" .
+	'  define(\'TABLE_LISTING\', \'' . $tablist . '\');' . "\n" .
+	'?>';
 
-			if (file_exists('../model/configure/configure.php') && !is_writeable('../model/configure/configure.php')) {
-				@chmod('../model/configure/configure.php', 0777);
-			}
+	if (file_exists('../model/configure/configure.php') && !is_writeable('../model/configure/configure.php')) {
+		@chmod('../model/configure/configure.php', 0777);
+	}
 
-			if (file_exists('../model/configure/configure.php') && is_writeable('../model/configure/configure.php')) {
-				$fp = fopen('../model/configure/configure.php', 'w');
-				fputs($fp, $datconf);
-				fclose($fp);
-			}else{
+	if (file_exists('../model/configure/configure.php') && is_writeable('../model/configure/configure.php')) {
+		$fp = fopen('../model/configure/configure.php', 'w');
+		fputs($fp, $datconf);
+		fclose($fp);
+	}else{
 
 			echo '
 			<table cellspacing="0" style="border: 1px solid #ffffff; border-collapse: collapse; width: 100%; height: 100%">
@@ -108,16 +108,16 @@
 					</td>
 				</tr>
 			</table>';
-				exit;
-			}
+		exit;
+	}
 
-			//REQUIRE CONFIGURE.PHP
-			require_once('../model/configure/configure.php');
+	//REQUIRE CONFIGURE.PHP
+	require_once('../model/configure/configure.php');
 
-			$DB = new PDO(DB_TYPE.':host='.DB_SERVER.';dbname='.DB_NAME,DB_USERNAME,DB_PASSWORD);
+	$DB = new PDO(DB_TYPE.':host='.DB_SERVER.';dbname='.DB_NAME,DB_USERNAME,DB_PASSWORD);
 
-			if (!$DB)
-			{
+	if (!$DB)
+	{
 			?>
 
 			<table cellspacing="0" style="border: 1px solid #ffffff; border-collapse: collapse; width: 100%; height: 100%">
@@ -138,16 +138,16 @@
 				</tr>
 			</table>
 
-			<?php
-				exit();
-			}
+	<?php
+		exit();
+		}
 
-			if ($dbfamyl == 'myisam'){
-				$fname = "databases/".$dbfamyl.".sql";
-			}
-			if ($dbfamyl == 'innodb'){
-				$fname = "databases/".$dbfamyl.".sql";
-			}
+	if ($dbfamyl == 'myisam'){
+		$fname = "databases/".$dbfamyl.".sql";
+	}
+	if ($dbfamyl == 'innodb'){
+		$fname = "databases/".$dbfamyl.".sql";
+	}
 
 			if (!file_exists($fname)) die ('
 			<table cellspacing="0" style="border: 1px solid #ffffff; border-collapse: collapse; width: 100%; height: 100%">
@@ -168,20 +168,49 @@
 				</tr>
 			</table>');
 
-		$buffer = implode(file($fname));
-		$buffer = str_replace('csd_',DB_PREFIX,$buffer); //REPLACE PREFIX
+$buffer = implode(file($fname));
+$buffer = str_replace('csd_',DB_PREFIX,$buffer); //REPLACE PREFIX
 
-		$DB->exec($buffer);
-		//END IMPORT DB
+$DB->exec($buffer);
+//END IMPORT DB
 
-		//SAVE E-MAIL AND PASSWORD
-		$pasadm = hash(HASH_METHOD, $pasadm);
+//SAVE E-MAIL AND PASSWORD
+$pasadm = hash(HASH_METHOD, $pasadm);
 
-			if(isset($_POST['login_admin']) and isset($_POST['password_admin'])){
-				$DB->exec("INSERT INTO ".TABLE_USERS." (login, password, permission, language) VALUES ('$logadm','$pasadm','admin','$lng')");
-			}
+	if(isset($_POST['login_admin']) and isset($_POST['password_admin'])){
+		$DB->exec("INSERT INTO ".TABLE_USERS." (login, password, permission, language) VALUES ('$logadm','$pasadm','admin','$lng')");
+	}
 
-		$DB = null;
+$DB = null;
+
+// СОЗДАЕМ .HTACCESS
+$text = 
+"#****** Copyright © 2018 eMarket ******#
+#   GNU GENERAL PUBLIC LICENSE v.3.0   #
+# https://github.com/musicman3/eMarket #
+#**************************************#
+		
+php_flag ignore_repeated_errors off
+php_flag ignore_repeated_source off
+php_flag track_errors on
+php_flag display_errors on
+php_flag display_startup_errors on
+php_flag log_errors on
+php_flag mysql.trace_mode on
+php_value error_reporting -1
+php_value error_log ".$_SERVER['DOCUMENT_ROOT']."/model/work/errors.log";
+		 
+
+//Если файл существует, то ставим права 777
+if (file_exists('../.htaccess') && !is_writeable('../.htaccess')) {
+	@chmod('../.htaccess', 0777);
+}
+// открываем файл, если файл не существует, то делается попытка создать его
+$fp = fopen($_SERVER['DOCUMENT_ROOT'].'/.htaccess', "w");
+		 
+// записываем в файл текст
+fwrite($fp, $text);
+fclose($fp);
 
 	?>
 
