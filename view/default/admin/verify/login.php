@@ -10,7 +10,7 @@
 
 <table cellspacing="0" style="margin-top:50px; width: 99%; height: 99%">
 	<tr align="center">
-		<td align="center">
+		<td align="center"><?php echo $login_error ?>
 			<table cellspacing="0" style="border: 1px solid #257DB3; border-radius: 3px; width:25%;">
 				<tr align="center">
 					<td align="center">

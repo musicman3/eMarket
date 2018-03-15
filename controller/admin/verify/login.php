@@ -5,7 +5,7 @@
 ***************************************/
 
 	error_reporting(-1);
-
+	session_start();
 	//LOAD CONFIGURE.PHP
 	require_once($_SERVER['DOCUMENT_ROOT'].'/model/configure/configure.php');
 	//LOAD LANGUAGE
@@ -13,9 +13,17 @@
 
 	require_once($_SERVER['DOCUMENT_ROOT'].'/model/router_out.php');
 
-	if(!isset($_POST['ok'])) {
-		// если форма не заполнена, то выводим ее
+	// если логин или пароль не верные, то готовим уведомление
+	if (isset($_SESSION['login_error']) == TRUE){
+		$login_error = $_SESSION['login_error'];
+		session_destroy();
+	}else{
+		$login_error = '';
+	}
 
+	// если форма не заполнена, то выводим ее
+	if(!isset($_POST['ok'])) {
+		
 		require_once($_SERVER['DOCUMENT_ROOT'].'/model/html_start.php');
 
 		//LOAD TEMPLATE
