@@ -5,6 +5,20 @@
 ***************************************/
 ?>
 
-<div class="footer">
-Пишем сюда одну строку
-</div>
+<?php 	if(isset($_SESSION['login']) && isset($_SESSION['pass'])){ // Выводим если авторизованы ?>
+
+    <div id="footerwrap">
+        <footer class="clearfix"></footer>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p><img src="/view/default/admin/images/emarket.png" width="80" alt="" class="img-responsive center-block"></p>
+
+                    <p>Copyright (c) 2018-<?php echo date('Y') ?>, <a href="#">eMarket team</a>. All rights reserved.</p>
+                </div>
+            </div><!-- /row -->
+        </div><!-- /container -->
+    </div><!-- /footerwrap -->
+    
+<?php } ?>

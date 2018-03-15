@@ -7,20 +7,25 @@
 
 </head>
 <body>
-<table border="0" width="100%" cellspacing="0" cellpadding="0">
-	<tr>
-		<td style="padding: 0 5px 0 5px;"><img src="/view/default/admin/images/img.png"></td>
-		<td width="330" align="right" style="padding-right: 5px;" >
-			<span style="color: #000000;"><b>SSL</b></span>
-		</td>
-	</tr>
-</table>
 
 <?php 	if(isset($_SESSION['login']) && isset($_SESSION['pass'])){ // Выводим если авторизованы ?>
 
-<div id="administrationMenu" class="ThemeOfficeMainItem">
-	
-	<ul style="visibility: hidden">
+<nav class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <div id="administrationMenu" class="ThemeOfficeMainItem">
+      <ul class="nav navbar-nav" style="visibility: hidden">
 			<?php	for ($i = 0; $i < count($level); $i++) { ?>
 			<li>
 				<?php echo $level[$i]; ?>
@@ -40,9 +45,11 @@
 				</ul>
 			</li>
 	<?php } ?>
-	</ul>
-	
-</div>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+    </div>
+  </div><!-- /.container-fluid -->
+</nav>
 
 <?php } ?>
 

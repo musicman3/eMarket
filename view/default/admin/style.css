@@ -3,10 +3,25 @@
 * https://github.com/musicman3/eMarket *
 ***************************************/
 
-* {margin: 0;padding: 0}
+*, ::after, ::before {box-sizing: border-box;}
 :focus {outline: 0;}
-body {color: #555555;font-size: 14px;font-family: Arial, Helvetica, sans-serif;background: url(images/header.png) repeat-x;background-color: #FFFFFF;}
-img {border:0px;}
-.pageContents {padding: 10px;}
-.loginbutton {margin: 1px;background-color: #257DB3;border: 1px solid #dddddd;border-radius: 5px;line-height: 130%;text-decoration: none;font-weight: bold;color: #FFF;cursor: pointer;padding: 5px 10px;outline: 0;}
-.footer {text-align:center;width:50%;margin: auto;font-size:12px;color:#DCDCDC;background-color: #257DB3;height: 15px;padding:10px;border: 1px solid #dddddd;border-radius: 5px;}
+html {position: relative;min-height: 100%;}
+body {background:#e4e4da;font-family: 'Open Sans', sans-serif;background-image:url('images/sep-half.png');margin-bottom: 80px;}
+h3,h4,h5 {font-family: 'Open Sans', sans-serif;font-weight:lighter;}
+h2{font-size:22px;}
+h3 {font-size:46px;color:#ff6e01;}
+h5 {color:#ff6e01}
+.welcome {text-align: center;font-size: 40px;color: #c6c6c6;text-shadow: 0px 1px 1px #FFF;padding-top: 60px;}
+.welcome_logo {padding-top: 30px;padding-bottom: 30px;font-size: 100px;}
+.login_logo span, .welcome_logo span {font-size: 60px;}
+.welcome_description {font-size: 20px;}
+#footerwrap {width: 100%;background: #4c453d;background-image: none;border-top-style: solid;border-top-width: 8px;border-top-color: #312d27;background-image: url('images/sep-half.png');text-align: center;position: absolute;bottom: 0;height: 80px;}
+#footerwrap p {color: white;font-size: 12px;}
+.ThemeOfficeMainItem, .ThemeOfficeMenuItem {margin-top: 10px;}
+[class*=lbox-] {background:rgba(0,0,0,.4);position:absolute}
+.lbox-horz {height: 136px;width: 100%;margin-top: -68px;top: 50%}
+.lbox-vert {height: 100%;width: 200px;left: 70%}
+.login_logo {position: absolute;top: 20px;left: 40px;padding: 15px;text-align: center;font-size: 110px;color: #101010;text-shadow: 0px 1px 1px #575757;}
+.login_logo span,.welcome_logo span {font-size: 60px;}
+.login-box {width: 200px;height: 136px;position: absolute;margin-top: -68px;top: 50%;left: 70%;padding: 15px;text-align: center}
+.login-box .btn, .login-box .btn a:active {border: 1px solid #000;color:#fff;background: none;}
