@@ -1,5 +1,5 @@
 <?php
-/****** Copyright В© 2018 eMarket ******* 
+/****** Copyright Р’В© 2018 eMarket ******* 
 *   GNU GENERAL PUBLIC LICENSE v.3.0   *    
 * https://github.com/musicman3/eMarket *
 ***************************************/
@@ -24,7 +24,7 @@
 		<meta name="classification" content="software" />
 		<meta name="author" content="Alexander Kholodov" />
 		<meta name="owner" content="Alexander Kholodov" />
-		<meta name="copyright" content="CopyrightВ©2011 by Alexander Kholodov. All right reserved." />
+		<meta name="copyright" content="CopyrightР’В©2011 by Alexander Kholodov. All right reserved." />
 
 		<link rel="stylesheet" type="text/css" href="../view/default/style.css" media="screen" />
 		<title><?php echo $lang['title_success'] ?></title>
@@ -183,9 +183,9 @@ $pasadm = hash(HASH_METHOD, $pasadm);
 
 $DB = null;
 
-// СОЗДАЕМ .HTACCESS
+// РЎРћР—Р”РђР•Рњ .HTACCESS
 $text = 
-"#****** Copyright © 2018 eMarket ******#
+"#****** Copyright В© 2018 eMarket ******#
 #   GNU GENERAL PUBLIC LICENSE v.3.0   #
 # https://github.com/musicman3/eMarket #
 #**************************************#
@@ -201,14 +201,14 @@ php_value error_reporting -1
 php_value error_log ".$_SERVER['DOCUMENT_ROOT']."/model/work/errors.log";
 		 
 
-//Если файл существует, то ставим права 777
+//Р•СЃР»Рё С„Р°Р№Р» СЃСѓС‰РµСЃС‚РІСѓРµС‚, С‚Рѕ СЃС‚Р°РІРёРј РїСЂР°РІР° 777
 if (file_exists('../.htaccess') && !is_writeable('../.htaccess')) {
 	@chmod('../.htaccess', 0777);
 }
-// открываем файл, если файл не существует, то делается попытка создать его
+// РѕС‚РєСЂС‹РІР°РµРј С„Р°Р№Р», РµСЃР»Рё С„Р°Р№Р» РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚, С‚Рѕ РґРµР»Р°РµС‚СЃСЏ РїРѕРїС‹С‚РєР° СЃРѕР·РґР°С‚СЊ РµРіРѕ
 $fp = fopen($_SERVER['DOCUMENT_ROOT'].'/.htaccess', "w");
 		 
-// записываем в файл текст
+// Р·Р°РїРёСЃС‹РІР°РµРј РІ С„Р°Р№Р» С‚РµРєСЃС‚
 fwrite($fp, $text);
 fclose($fp);
 

@@ -10,9 +10,12 @@
 	require_once($_SERVER['DOCUMENT_ROOT'].'/model/connect_page_start.php');
 
 	/**************************************/
-
+	
+	$lines = array();
+	if (file_exists($_SERVER['DOCUMENT_ROOT'].'/model/work/errors.log')) {
 	// Получаем содержимое файла в виде массива
 	$lines = file($_SERVER['DOCUMENT_ROOT'].'/model/work/errors.log');
+	}
 
 	/*********  CONNECT PAGE END  *********/
 	require_once($_SERVER['DOCUMENT_ROOT'].'/model/connect_page_end.php');
