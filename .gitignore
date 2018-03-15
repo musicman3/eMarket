@@ -1,2 +1,3 @@
 /.htaccess
-/model/work
+
+/model/work/errors.log
