@@ -19,7 +19,7 @@ h5 {color:#ff6e01}
 #footerwrap p {color: white;font-size: 12px;}
 .ThemeOfficeMainItem, .ThemeOfficeMenuItem {margin-top: 10px;}
 [class*=lbox-] {background:rgba(0,0,0,.4);position:absolute}
-.lbox-horz {height: 136px;width: 100%;margin-top: -68px;top: 50%}
+.lbox-horz {height: 136px;width: 100%;padding-left: 50px;margin-top: -68px;top: 50%}
 .lbox-vert {height: 100%;width: 200px;left: 70%}
 .login_logo {position: absolute;top: 20px;left: 40px;padding: 15px;text-align: center;font-size: 110px;color: #101010;text-shadow: 0px 1px 1px #575757;}
 .login_logo span,.welcome_logo span {font-size: 60px;}
