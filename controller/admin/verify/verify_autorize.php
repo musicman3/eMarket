@@ -37,7 +37,7 @@
 		session_start();
 		$_SESSION['login_error'] = $lang['login_error'];
 
-		header('Location: /controller/admin/verify/login.php');    // if user failed: redirect to login_error.php
+		header('Location: /controller/admin/verify/login.php');    // if user failed: redirect to login.php
 	}else{
 		header('Location: /controller/admin/index.php');    // else: redirect to index.php
 	}
