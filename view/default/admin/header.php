@@ -30,11 +30,19 @@
 			<li>
 				<?php echo $level[$i]; ?>
 				<ul>
-						<?php	for ($x = 0; $x < count($menu[$i]); $x++) { ?>
+						<?php	
+						if (!isset($menu[$i])) {
+						   $menu[$i] = array();
+						 }
+						for ($x = 0; $x < count($menu[$i]); $x++) { ?>
 						<li>
 							<?php echo $menu[$i][$x]; ?>
 							<ul>
-									<?php	for ($y = 0; $y < count($submenu[$i][$x]); $y++) { ?>
+									<?php	
+									if (!isset($submenu[$i][$x])) {
+									   $submenu[$i][$x] = array();
+									 }
+									for ($y = 0; $y < count($submenu[$i][$x]); $y++) { ?>
 									<li>
 										<?php echo $submenu[$i][$x][$y]; ?>
 									</li>

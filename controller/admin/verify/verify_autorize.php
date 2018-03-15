@@ -30,20 +30,22 @@
 
 	//VERIFY USER
 	$verify = $PDO->getRowCount("SELECT * FROM ".TABLE_USERS." WHERE login=? AND password=?", array($_SESSION['login'], $_SESSION['pass']));
+	
+	//DEFAULT LANGUAGE
+	$deflang = $PDO->selectPrepare("SELECT language FROM ".TABLE_USERS." WHERE login=? AND password=?", array($_SESSION['login'], $_SESSION['pass']));
 
 	if($verify != 1){    //if user failed:
 
 		session_destroy();
 		session_start();
+
+		$_SESSION['default_language'] = $deflang;
 		$_SESSION['login_error'] = $lang['login_error'];
 
 		header('Location: /controller/admin/verify/login.php');    // if user failed: redirect to login.php
 	}else{
 		header('Location: /controller/admin/index.php');    // else: redirect to index.php
 	}
-	
-	$deflang = $PDO->selectPrepare("SELECT language FROM ".TABLE_USERS." WHERE login=? AND password=?", array($_SESSION['login'], $_SESSION['pass']));
-	$_SESSION['default_language'] = $deflang;
 
 	//END CONNECT DATABASE
 	require_once($_SERVER['DOCUMENT_ROOT'].'/model/connect_end.php');
