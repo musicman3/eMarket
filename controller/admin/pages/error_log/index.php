@@ -8,8 +8,11 @@
 
 	/********  CONNECT PAGE START  ********/
 	require_once($_SERVER['DOCUMENT_ROOT'].'/model/connect_page_start.php');
+
 	/**************************************/
 
+	// Получаем содержимое файла в виде массива
+	$lines = file($_SERVER['DOCUMENT_ROOT'].'/model/work/errors.log');
 
 	/*********  CONNECT PAGE END  *********/
 	require_once($_SERVER['DOCUMENT_ROOT'].'/model/connect_page_end.php');
