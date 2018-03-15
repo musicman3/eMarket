@@ -12,8 +12,8 @@
         <div id="login" class="lbox-vert">
 <?php if ($login_error == true) { ?>
         <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i><?php echo $login_error ?><button type="button" class="close" data-dismiss="alert">×</button>
-<?php } ?>
             </div>
+<?php } ?>
             </div>
         
         <div class="login_logo">eMarket <span>v1</span></div>
