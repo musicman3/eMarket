@@ -6,4 +6,5 @@
 ; Замечание: Если значение в lng-файле содержит прочие символы, оно должно заключаться в кавычки ''. Пример: Привет'!'
 
 [catalog]
-hello_world = Hello World'!'
+title_index = Интернет-магазин eMarket
+meta-language = ru

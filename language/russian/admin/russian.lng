@@ -13,6 +13,7 @@ login_name = ПАНЕЛЬ АДМИНИСТРАТОРА
 button_add = Добавить
 button_cancel = Отмена
 button_edit = Изменить
+meta-language = ru
 
 ;кнопки меню
 menu_exit = Выход
