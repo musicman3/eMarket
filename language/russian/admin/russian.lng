@@ -22,6 +22,8 @@ menu_languages = Языки
 menu_catalog = Онлайн каталог
 menu_support = Поддержка
 menu_language = Русский
+menu_tools = Инструменты
+menu_error_log = Лог ошибок
 
 ; старые языковые переменные, в будущем выбрать что надо и лишнее удалить
 action = ДЕЙСТВИЕ

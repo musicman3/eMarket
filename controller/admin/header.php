@@ -27,21 +27,9 @@
 	$menu[0][2] = '<span><img src="/view/default/admin/images/icons/" /></span><span>Меню 2</span>';
 	
 	//LEVEL 1
-	$level[1] = '<span></span><span>Раздел 1</span>';
+	$level[1] = '<span></span><span>'.$lang['menu_tools'].'</span>';
 	
-	$menu[1][0] = '<span><img src="/view/default/admin/images/icons/" /></span><span>Меню 0</span>';
-	$submenu[1][0][0] = '<span><img src="/view/default/admin/images/icons/" /></span><a href="http://www.mail.ru">Подменю 0</a>';
-	$submenu[1][0][1] = '<span><img src="/view/default/admin/images/icons/" /></span><a href="http://www.mail.ru">Подменю 1</a>';
-	
-	$menu[1][1] = '<span><img src="/view/default/admin/images/icons/" /></span><span>Меню 1</span>';
-	$submenu[1][1][0] = '<span><img src="/view/default/admin/images/icons/" /></span><a href="http://www.mail.ru">Подменю 0</a>';
-	$submenu[1][1][1] = '<span><img src="/view/default/admin/images/icons/" /></span><a href="http://www.mail.ru">Подменю 1</a>';
-
-	$menu[1][2] = '<span><img src="/view/default/admin/images/icons/" /></span><span>Меню 2</span>';
-	$submenu[1][2][0] = '<span><img src="/view/default/admin/images/icons/" /></span><a href="http://www.mail.ru">Подменю 0</a>';
-	$submenu[1][2][1] = '<span><img src="/view/default/admin/images/icons/" /></span><a href="http://www.mail.ru">Подменю 1</a>';
-	
-	$menu[1][3] = '<span><img src="/view/default/admin/images/icons/" /></span><span>Меню 3</span>';
+	$menu[1][0] = '<span><img src="/view/default/admin/images/icons/16x16/error.png" /></span><a href="/controller/admin/pages/error_log/index.php">'.$lang['menu_error_log'].'</a>';
 
 	//LEVEL 2
 	$level[2] = '<span></span><span>'.$lang['menu_help'].'</span>';
