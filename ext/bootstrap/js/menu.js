@@ -5,7 +5,7 @@ $(document).ready(function() {
         $(this).parent("li").toggleClass('open');
 
         if(!$parent.parent().hasClass('nav')) {
-            $el.next().css({"top": $el[0].offsetTop, "left": $parent.outerWidth() - 4});
+            $el.next().css({"top": $el[0].offsetTop - 9, "left": $parent.outerWidth() - 2});
         }
 
         $('.nav li.open').not($(this).parents("li")).removeClass("open");
