@@ -31,6 +31,6 @@ h5 {color:#ff6e01}
 .dropdown-menu {background:#000000;font-size:12px;}
 .dropdown-menu > ul {margin-top:5px;}
 .dropdown-menu > li > a {color:#ffffff;padding: 2px 5px;}
-.dropdown-menu > li > a:hover {background:#505050;color:#ffffff;}
+.dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover {background:#505050;color:#ffffff;}
 .nav > li > a {padding: 5px 5px 0px 5px;}
 .nav .open > a, .nav .open > a:focus, .nav .open > a:hover {background:#505050;color:#ffffff;}
