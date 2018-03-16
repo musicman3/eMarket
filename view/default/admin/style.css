@@ -26,6 +26,7 @@ h5 {color:#ff6e01}
 .login-box .btn, .login-box .btn a:active {border: 1px solid #000;color:#fff;background: none;}
 #login .alert-danger {position: absolute;top: 10%;}
 .navbar {min-height: 30px;}
+.navbar-inverse .navbar-nav .open .dropdown-menu > li > a {font-size:12px;color:#ffffff;}
 .navbar-inverse .navbar-nav > li > a {font-size:12px;color:#ffffff;}
 .dropdown-menu {background:#000000;font-size:12px;}
 .dropdown-menu > ul {margin-top:5px;}
