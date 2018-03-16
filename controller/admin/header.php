@@ -29,7 +29,7 @@
 	//LEVEL 1
 	$level[1] = '<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span></span> '.$lang['menu_tools'].' <b class="caret"></b></a>';
 	
-	$menu[1][0] = '<a href="/controller/admin/pages/error_log/index.php"><span><img src="/view/default/admin/images/icons/16x16/error.png" /></span> '.$lang['menu_error_log'].'</a>';
+	$menu[1][0] = '<a href="/controller/admin/pages/error_log/error_log_index.php"><span><img src="/view/default/admin/images/icons/16x16/error.png" /></span> '.$lang['menu_error_log'].'</a>';
 
 	//LEVEL 2
 	$level[2] = '<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span></span> '.$lang['menu_help'].' <b class="caret"></b></a>';
