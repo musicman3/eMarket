@@ -24,12 +24,11 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-    <div id="administrationMenu" class="ThemeOfficeMainItem">
-      <ul class="nav navbar-nav" style="visibility: hidden">
+      <ul class="nav navbar-nav">
 			<?php	for ($i = 0; $i < count($level); $i++) { ?>
 			<li>
 				<?php echo $level[$i]; ?>
-				<ul>
+				<ul class="dropdown-menu">
 						<?php	
 						if (!isset($menu[$i])) {
 						   $menu[$i] = array();
@@ -37,7 +36,7 @@
 						for ($x = 0; $x < count($menu[$i]); $x++) { ?>
 						<li>
 							<?php echo $menu[$i][$x]; ?>
-							<ul>
+							<ul class="dropdown-menu">
 									<?php	
 									if (!isset($submenu[$i][$x])) {
 									   $submenu[$i][$x] = array();
@@ -55,12 +54,7 @@
 	<?php } ?>
       </ul>
     </div><!-- /.navbar-collapse -->
-    </div>
   </div><!-- /.container-fluid -->
 </nav>
 
 <?php } ?>
-
-<script type="text/javascript"><!--
-	cmDrawFromText('administrationMenu', 'hbr', cmThemeOffice, 'ThemeOffice');
-//--></script>
