@@ -55,20 +55,20 @@
 			
 <?php	for ($i; $i < $lines_p; $i++) { 
 
-		if (strrpos ($lines[$i], 'PHP Notice:') == true ){ ?><tr class="success"><td colspan="2"><?php echo $lines[$i].'<br>'; ?><?php }elseif
+		if (strrpos ($lines[$i], 'PHP Notice:') == true ){ ?><tr class="success"><td colspan="2"><?php echo $lines[$i].'</td></tr>'; ?><?php }elseif
 
-		(strrpos ($lines[$i], 'PHP Warning:') == true ){ ?><tr class="danger"><td colspan="2"><?php echo $lines[$i].'<br>'; ?><?php }elseif
+		(strrpos ($lines[$i], 'PHP Warning:') == true ){ ?><tr class="danger"><td colspan="2"><?php echo $lines[$i].'</td></tr>'; ?><?php }elseif
 
-		(strrpos ($lines[$i], 'PHP Warning2:') == true ){ ?><tr class="warning"><td colspan="2"><?php echo $lines[$i].'<br>'; ?><?php }elseif
+		(strrpos ($lines[$i], 'PHP Warning2:') == true ){ ?><tr class="warning"><td colspan="2"><?php echo $lines[$i].'</td></tr>'; ?><?php }elseif
 			
-			(strrpos ($lines[$i], 'PHP Parse error:') == true ){ ?><tr class="info"><td colspan="2"><?php echo $lines[$i].'<br>'; ?><?php }elseif
+			(strrpos ($lines[$i], 'PHP Parse error:') == true ){ ?><tr class="info"><td colspan="2"><?php echo $lines[$i].'</td></tr>'; ?><?php }elseif
 			
 			($counter > 0){ ?><tr><td colspan="2"><?php
 
-				echo $lines[$i].'<br>';
-			?>
-
-		</td></tr><?php }} ?>
+				echo $lines[$i].'</td></tr>';
+			}
+		}
+	?>
 
 	</tbody>
 	
