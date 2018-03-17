@@ -22,10 +22,10 @@
 	<thead>
 		<tr>
 			<th>
-			<?php if ($counter > 0) { ?><b>c <?php echo $lines_p-19 ?> по <?php echo $lines_p ?> ( из <?php echo $counter; ?> )</b><?php } ?>
+			<?php if (file_exists($_SERVER['DOCUMENT_ROOT'].'/model/work/errors.log') == true) { ?><b>c <?php echo $lines_p-19 ?> по <?php echo $lines_p ?> ( из <?php echo $counter; ?> )</b><?php } ?>
 			</th>
 			<th>
-<?php if ($counter > 0) { ?>	
+<?php if (file_exists($_SERVER['DOCUMENT_ROOT'].'/model/work/errors.log') == true) { ?>	
   <form>
    <input hidden name="i" value="<?php echo $i ?>">
    <input hidden name="lines_p" value="<?php echo $lines_p ?>">
@@ -45,7 +45,7 @@
 <tfoot>
     <tr>
       <th colspan="2">
-<?php if ($counter > 0) { ?>
+<?php if (file_exists($_SERVER['DOCUMENT_ROOT'].'/model/work/errors.log') == true) { ?>
       <div class="log-del"><button type="submit" class="btn btn-primary btn-sm" action="#" formmethod="post">Удалить</button></div>
 <?php } ?>
       </th>
@@ -53,7 +53,8 @@
 </tfoot>
 	<tbody>
 			
-<?php	for ($i; $i < $lines_p; $i++) { 
+<?php	if (file_exists($_SERVER['DOCUMENT_ROOT'].'/model/work/errors.log') == true) {
+	  for ($i; $i < $lines_p; $i++) { 
 
 		if (strrpos ($lines[$i], 'PHP Notice:') == true ){ ?><tr class="success"><td colspan="2"><?php echo $lines[$i].'</td></tr>'; ?><?php }elseif
 
@@ -61,10 +62,8 @@
 
 		(strrpos ($lines[$i], 'PHP Warning2:') == true ){ ?><tr class="warning"><td colspan="2"><?php echo $lines[$i].'</td></tr>'; ?><?php }elseif
 			
-			(strrpos ($lines[$i], 'PHP Parse error:') == true ){ ?><tr class="info"><td colspan="2"><?php echo $lines[$i].'</td></tr>'; ?><?php }elseif
+			(strrpos ($lines[$i], 'PHP Parse error:') == true ){ ?><tr class="info"><td colspan="2"><?php echo $lines[$i].'</td></tr>'; ?><?php }else
 			
-			($counter > 0){ ?><tr><td colspan="2"><?php
-
 				echo $lines[$i].'</td></tr>';
 			}
 		}
