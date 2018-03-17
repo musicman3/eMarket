@@ -15,9 +15,9 @@
 				      <div class="clearfix"></div>
 				</h3>
 			</div>
-
-		<div class="panel-body">
 <?php if (file_exists($_SERVER['DOCUMENT_ROOT'].'/model/work/errors.log') == true) { ?>
+		<div class="panel-body">
+
 <table class="table">
 	<thead>
 		<tr>
@@ -73,8 +73,11 @@
 	</tbody>
 	
 </table>
-<?php } ?>
+
 			</div>
+<?php } else { ?>
+		<div class="panel-body"><?php echo $lang['no_log'] ?></div>
+<?php } ?>
 		</div>
 	</div>
 </div>

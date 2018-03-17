@@ -19,6 +19,7 @@ button_delete = Удалить
 s = с
 po = по
 iz = из
+no_log = Лог ошибок пустой
 
 ;кнопки меню
 menu_exit = Выход
