@@ -66,7 +66,7 @@
 			
 			(strrpos ($lines[$i], 'PHP Parse error:') == true ){ ?><tr class="info"><td colspan="2"><?php echo $lines[$i].'</td></tr>'; ?><?php }else
 			
-				echo $lines[$i].'</td></tr>';
+				{ ?><tr><td colspan="2"><?php echo $lines[$i].'</td></tr>'; }
 			}
 	?>
 
