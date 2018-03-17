@@ -24,7 +24,7 @@
 	// если форма не заполнена, то выводим ее
 	if(!isset($_POST['ok'])) {
 		
-		require_once($_SERVER['DOCUMENT_ROOT'].'/model/html_start_login.php');
+		require_once($_SERVER['DOCUMENT_ROOT'].'/model/html_start.php');
 
 		//LOAD TEMPLATE
 		require_once($View->Routing());
