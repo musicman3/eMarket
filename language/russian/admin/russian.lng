@@ -8,6 +8,7 @@
 [admin]
 title_index = Панель администратора
 title_login = Страница авторизации
+title_error_log_index = Лог ошибок
 login_error = Пароль или логин ошибочные
 login_name = ПАНЕЛЬ АДМИНИСТРАТОРА
 button_add = Добавить
