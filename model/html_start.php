@@ -34,5 +34,7 @@
 		<link href="/ext/bootstrap/css/normalize.css" rel="stylesheet" media="screen" />
 		<?php 
 	} // конец вывода только в каталоге
-	?>
-<style type="text/css">body {padding-top:40px;}</style>
+	if (isset($_SESSION['login']) == TRUE && isset($_SESSION['pass']) == TRUE) {
+		?>
+		<style type="text/css">body {padding-top:40px;}</style>
+	<?php } ?>
