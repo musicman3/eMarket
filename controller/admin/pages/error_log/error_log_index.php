@@ -21,7 +21,7 @@
 	if(isset($_POST['log_delete']) == 'delete'){
 		// назначаем количество строк на странице
 		unlink($_SERVER['DOCUMENT_ROOT'].'/model/work/errors.log');
-		}
+	}
 
 	// Если файл открыт, то
 	if (file_exists($_SERVER['DOCUMENT_ROOT'].'/model/work/errors.log')) {
