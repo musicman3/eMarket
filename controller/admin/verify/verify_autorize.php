@@ -25,8 +25,8 @@
 	//LOAD CLASS PDO
 	$PDO = new Model\Classes\Pdo\PdoClass;
 
-	//REQUIRE LANG_ROUTER.PHP
-	require_once($_SERVER['DOCUMENT_ROOT'].'/model/lang_router.php');
+	//REQUIRE router_lang.PHP
+	require_once($_SERVER['DOCUMENT_ROOT'].'/model/router_lang.php');
 
 	//VERIFY USER
 	$verify = $PDO->getRowCount("SELECT * FROM ".TABLE_USERS." WHERE login=? AND password=?", array($_SESSION['login'], $_SESSION['pass']));

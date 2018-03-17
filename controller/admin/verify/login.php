@@ -9,9 +9,9 @@
 	//LOAD CONFIGURE.PHP
 	require_once($_SERVER['DOCUMENT_ROOT'].'/model/configure/configure.php');
 	//LOAD LANGUAGE
-	require_once($_SERVER['DOCUMENT_ROOT'].'/model/lang_router.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/model/router_lang.php');
 
-	require_once($_SERVER['DOCUMENT_ROOT'].'/model/out_router.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/model/router_class.php');
 
 	// если логин или пароль не верные, то готовим уведомление
 	if (isset($_SESSION['login_error']) == TRUE){
