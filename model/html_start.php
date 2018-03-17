@@ -23,10 +23,15 @@
 	if ($patch == 'admin'){ ?>
 		<link href="/ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
 		<link href="/ext/bootstrap/css/normalize.css" rel="stylesheet" media="screen" />
-		<?php 
+		<?php
+		if (isset($_SESSION['login']) == TRUE && isset($_SESSION['pass']) == TRUE) {
+		?>
+		<style type="text/css">body {padding-top:40px;}</style>
+			<?php }
 		require_once($_SERVER['DOCUMENT_ROOT'].'/controller/admin/header.php');
 		require_once($_SERVER['DOCUMENT_ROOT'].'/view/default/admin/header.php');
-	} // конец вывода только в админке
+
+		} // конец вывода только в админке
 	?>
 <?php //вывод только в каталоге
 	if ($patch == 'catalog'){ ?>
@@ -34,7 +39,4 @@
 		<link href="/ext/bootstrap/css/normalize.css" rel="stylesheet" media="screen" />
 		<?php 
 	} // конец вывода только в каталоге
-	if (isset($_SESSION['login']) == TRUE && isset($_SESSION['pass']) == TRUE) {
 		?>
-		<style type="text/css">body {padding-top:40px;}</style>
-	<?php } ?>
