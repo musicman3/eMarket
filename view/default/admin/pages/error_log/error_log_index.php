@@ -17,15 +17,15 @@
 			</div>
 
 		<div class="panel-body">
-
+<?php if (file_exists($_SERVER['DOCUMENT_ROOT'].'/model/work/errors.log') == true) { ?>
 <table class="table">
 	<thead>
 		<tr>
 			<th>
-			<?php if (file_exists($_SERVER['DOCUMENT_ROOT'].'/model/work/errors.log') == true) { ?><b><?php echo $lang['s'] ?> <?php echo $i+1 ?> <?php echo $lang['po'] ?> <?php echo $lines_p ?> ( <?php echo $lang['iz'] ?> <?php echo $counter; ?> )</b><?php } ?>
+			<b><?php echo $lang['s'] ?> <?php echo $i+1 ?> <?php echo $lang['po'] ?> <?php echo $lines_p ?> ( <?php echo $lang['iz'] ?> <?php echo $counter; ?> )</b>
 			</th>
 			<th>
-<?php if (file_exists($_SERVER['DOCUMENT_ROOT'].'/model/work/errors.log') == true) { ?>	
+
   <form>
    <input hidden name="i" value="<?php echo $i ?>">
    <input hidden name="lines_p" value="<?php echo $lines_p ?>">
@@ -38,26 +38,25 @@
    <input hidden name="lines_p2" value="<?php echo $lines_p ?>">
    <div class="log-left"><button type="submit" class="btn btn-primary btn-xs"  action="/controller/admin/pages/error_log/error_log_index.php" formmethod="post"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
   </form>
-<?php } ?>
+
 			</th>
 		</tr>
 	</thead>
 <tfoot>
     <tr>
       <th colspan="2">
-<?php if (file_exists($_SERVER['DOCUMENT_ROOT'].'/model/work/errors.log') == true) { ?>
+
 	  <form>
 	  	<input hidden name="log_delete" value="delete">
       <div class="log-del"><button type="submit" name="log_delete" class="btn btn-primary btn-sm" action="/controller/admin/pages/error_log/error_log_index.php" formmethod="post"><?php echo $lang['button_delete'] ?></button></div>
 	  </form>
-<?php } ?>
+
       </th>
     </tr>
 </tfoot>
 	<tbody>
 			
-<?php	if (file_exists($_SERVER['DOCUMENT_ROOT'].'/model/work/errors.log') == true) {
-	  for ($i; $i < $lines_p; $i++) { 
+<?php	for ($i; $i < $lines_p; $i++) { 
 
 		if (strrpos ($lines[$i], 'PHP Notice:') == true ){ ?><tr class="success"><td colspan="2"><?php echo $lines[$i].'</td></tr>'; ?><?php }elseif
 
@@ -69,13 +68,12 @@
 			
 				echo $lines[$i].'</td></tr>';
 			}
-		}
 	?>
 
 	</tbody>
 	
 </table>
-
+<?php } ?>
 			</div>
 		</div>
 	</div>
