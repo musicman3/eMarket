@@ -46,7 +46,10 @@
     <tr>
       <th colspan="2">
 <?php if (file_exists($_SERVER['DOCUMENT_ROOT'].'/model/work/errors.log') == true) { ?>
-      <div class="log-del"><button type="submit" class="btn btn-primary btn-sm" action="#" formmethod="post">Удалить</button></div>
+	  <form>
+	  	<input hidden name="log_delete" value="delete">
+      <div class="log-del"><button type="submit" name="log_delete" class="btn btn-primary btn-sm" action="/controller/admin/pages/error_log/error_log_index.php" formmethod="post">Удалить</button></div>
+	  </form>
 <?php } ?>
       </th>
     </tr>

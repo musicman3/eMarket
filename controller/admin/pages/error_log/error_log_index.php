@@ -17,6 +17,12 @@
 	// устанавливаем страницу в ноль при заходе
 	$i = 0;
 	
+	// Если нажали на кнопку Удалить
+	if(isset($_POST['log_delete']) == 'delete'){
+		// назначаем количество строк на странице
+		unlink($_SERVER['DOCUMENT_ROOT'].'/model/work/errors.log');
+		}
+
 	// Если файл открыт, то
 	if (file_exists($_SERVER['DOCUMENT_ROOT'].'/model/work/errors.log')) {
 		// Получаем содержимое файла в виде массива
@@ -37,7 +43,7 @@
 			}
 			if ($lines_p > $counter) {
 				$lines_p = $counter;
-			}
+			}	
 		}
 		
 		// Если нажали на кнопку назад
