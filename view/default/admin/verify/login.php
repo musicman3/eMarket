@@ -5,9 +5,6 @@
 ***************************************/
 ?>
 
-</head>
-<body>
-
         <div class="lbox-horz"></div>
         <div id="login" class="lbox-vert">
 <?php if ($login_error == true) { ?>
