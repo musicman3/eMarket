@@ -25,7 +25,7 @@ h5 {color:#ff6e01}
 .login-box .btn, .login-box .btn a:active {border: 1px solid #000;color:#fff;background: none;}
 #login .alert-danger {position: absolute;top: 10%;}
 .navbar-right {color:#ffffff;font-size:12px;margin-right:5px;}
-.navbar {min-height: 30px;}
+.navbar {min-height: 30px;position: relative;}
 .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {font-size:12px;color:#ffffff;}
 .navbar-inverse .navbar-nav > li > a {font-size:12px;color:#ffffff;}
 .dropdown-menu {background:#000000;font-size:12px;}
@@ -34,3 +34,5 @@ h5 {color:#ff6e01}
 .dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover {background:#505050;color:#ffffff;}
 .nav > li > a {padding: 5px 5px 0px 5px;}
 .nav .open > a, .nav .open > a:focus, .nav .open > a:hover {background:#505050;color:#ffffff;}
+.table {margin-bottom:0px;}
+.panel-heading {font-weight:bold;}
