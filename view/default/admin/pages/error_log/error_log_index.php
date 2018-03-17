@@ -29,14 +29,14 @@
   <form>
    <input hidden name="i" value="<?php echo $i ?>">
    <input hidden name="lines_p" value="<?php echo $lines_p ?>">
-   <div style="display: inline-block;float: right; padding-left:5px;"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/error_log/error_log_index.php" formmethod="post"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
+   <div class="log-right"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/error_log/error_log_index.php" formmethod="post"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
   </form>
 		
 			
   <form>
    <input hidden name="i2" value="<?php echo $i ?>">
    <input hidden name="lines_p2" value="<?php echo $lines_p ?>">
-   <div style="display: inline-block;float: right; padding-right:5px;"><button type="submit" class="btn btn-primary btn-xs"  action="/controller/admin/pages/error_log/error_log_index.php" formmethod="post"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
+   <div class="log-left"><button type="submit" class="btn btn-primary btn-xs"  action="/controller/admin/pages/error_log/error_log_index.php" formmethod="post"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
   </form>
 <?php } ?>
 			</th>
@@ -46,7 +46,7 @@
     <tr>
       <th colspan="2">
 <?php if ($counter > 0) { ?>
-      <div style="display: inline-block;float: right;"><button type="submit" class="btn btn-primary btn-sm" action="#" formmethod="post">Удалить</button></div>
+      <div class="log-del"><button type="submit" class="btn btn-primary btn-sm" action="#" formmethod="post">Удалить</button></div>
 <?php } ?>
       </th>
     </tr>
