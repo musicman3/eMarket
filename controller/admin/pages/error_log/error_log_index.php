@@ -38,8 +38,8 @@
 			$lines_p = $_POST['lines_p'] + $lines_page;
 			//задаем значение счетчика
 			$i = $_POST['i'] + $lines_page;
-			if ($i > $counter-$lines_page) {
-				$i = $counter-$lines_page;
+			if ($i > $counter) {
+				$i = $_POST['i'];
 			}
 			if ($lines_p > $counter) {
 				$lines_p = $counter;
