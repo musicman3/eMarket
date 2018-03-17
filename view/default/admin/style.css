@@ -6,7 +6,7 @@
 *, ::after, ::before {box-sizing: border-box;}
 :focus {outline: 0;}
 html {position: relative;min-height: 100%;}
-body {background:#e4e4da;font-family: 'Open Sans', sans-serif;background-image:url('images/sep-half.png');padding-top:40px;margin-bottom: 70px;}
+body {background:#e4e4da;font-family: 'Open Sans', sans-serif;background-image:url('images/sep-half.png');margin-bottom: 70px;}
 h3,h4,h5 {font-family: 'Open Sans', sans-serif;font-weight:lighter;}
 h2{font-size:22px;}
 h3 {font-size:46px;color:#ff6e01;}
