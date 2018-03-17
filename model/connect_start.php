@@ -8,7 +8,7 @@
 
 	require_once($_SERVER['DOCUMENT_ROOT'].'/model/configure/connect.php');
 
-	require_once($_SERVER['DOCUMENT_ROOT'].'/model/router_out.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/model/out_router.php');
 
 	require_once($_SERVER['DOCUMENT_ROOT'].'/model/configure/session_autorize.php');
 

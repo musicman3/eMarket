@@ -8,7 +8,6 @@
 
 	/********  CONNECT PAGE START  ********/
 	require_once($_SERVER['DOCUMENT_ROOT'].'/model/connect_page_start.php');
-
 	/**************************************/
 	
 	$lines = array();
@@ -54,7 +53,7 @@
 				$lines_p = $lines_page;
 			}
 		}
-				
+	
 	}
 
 	/*********  CONNECT PAGE END  *********/
