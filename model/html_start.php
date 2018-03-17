@@ -35,3 +35,4 @@
 		<?php 
 	} // конец вывода только в каталоге
 	?>
+<style type="text/css">body {padding-top:40px;}</style>
