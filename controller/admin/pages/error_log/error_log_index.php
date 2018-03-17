@@ -31,10 +31,10 @@
 		if(isset($_POST['lines_p']) && isset($_POST['i'])){
 			$lines_p = $_POST['lines_p'] + $lines_page; // назначаем количество строк на странице
 			$i = $_POST['i'] + $lines_page; //задаем значение счетчика
-			if ($i > $counter) {
+			if ($i >= $counter) {
 				$i = $_POST['i'];
 			}
-			if ($lines_p > $counter) {
+			if ($lines_p >= $counter) {
 				$lines_p = $counter;
 			}	
 		}
