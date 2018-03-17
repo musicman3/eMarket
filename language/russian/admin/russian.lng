@@ -16,6 +16,9 @@ button_cancel = Отмена
 button_edit = Изменить
 meta-language = ru
 button_delete = Удалить
+s = с
+po = по
+iz = из
 
 ;кнопки меню
 menu_exit = Выход
