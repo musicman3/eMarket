@@ -22,7 +22,7 @@
 	<thead>
 		<tr>
 			<th>
-			<?php if (file_exists($_SERVER['DOCUMENT_ROOT'].'/model/work/errors.log') == true) { ?><b>c <?php echo $lines_p-19 ?> по <?php echo $lines_p ?> ( из <?php echo $counter; ?> )</b><?php } ?>
+			<?php if (file_exists($_SERVER['DOCUMENT_ROOT'].'/model/work/errors.log') == true) { ?><b><?php echo $lang['s'] ?> <?php echo $lines_p-19 ?> <?php echo $lang['po'] ?> <?php echo $lines_p ?> ( <?php echo $lang['iz'] ?> <?php echo $counter; ?> )</b><?php } ?>
 			</th>
 			<th>
 <?php if (file_exists($_SERVER['DOCUMENT_ROOT'].'/model/work/errors.log') == true) { ?>	
@@ -48,7 +48,7 @@
 <?php if (file_exists($_SERVER['DOCUMENT_ROOT'].'/model/work/errors.log') == true) { ?>
 	  <form>
 	  	<input hidden name="log_delete" value="delete">
-      <div class="log-del"><button type="submit" name="log_delete" class="btn btn-primary btn-sm" action="/controller/admin/pages/error_log/error_log_index.php" formmethod="post">Удалить</button></div>
+      <div class="log-del"><button type="submit" name="log_delete" class="btn btn-primary btn-sm" action="/controller/admin/pages/error_log/error_log_index.php" formmethod="post"><?php echo $lang['button_delete'] ?></button></div>
 	  </form>
 <?php } ?>
       </th>

@@ -9,12 +9,17 @@
 title_index = Панель администратора
 title_login = Страница авторизации
 title_error_log_index = Лог ошибок
+
 login_error = Пароль или логин ошибочные
 login_name = ПАНЕЛЬ АДМИНИСТРАТОРА
 button_add = Добавить
 button_cancel = Отмена
 button_edit = Изменить
+button_delete = Удалить
 meta-language = ru
+s = с;
+po = по;
+iz = из;
 
 ;кнопки меню
 menu_exit = Выход
