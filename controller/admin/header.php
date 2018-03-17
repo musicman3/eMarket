@@ -20,7 +20,7 @@
 	
 	$menu[0][1] = '<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span><img src="/view/default/admin/images/icons/" /></span> Меню 1 <b class="caret"></b></a>';
 	$submenu[0][1][0] = '<a href="http://www.mail.ru"><span><img src="/view/default/admin/images/icons/" /></span> Подменю 0</a>';
-	$submenu[0][1][1] = '</span><a href="http://www.mail.ru"><span><img src="/view/default/admin/images/icons/" /></span> Подменю 1</a>';
+	$submenu[0][1][1] = '<a href="http://www.mail.ru"><span><img src="/view/default/admin/images/icons/" /></span> Подменю 1</a>';
 	$submenu[0][1][2] = '<a href="http://www.mail.ru"><span><img src="/view/default/admin/images/icons/" /></span> Подменю 2</a>';
 	$submenu[0][1][3] = '<a href="http://www.mail.ru"><span><img src="/view/default/admin/images/icons/" /></span> Подменю 3</a>';
 	

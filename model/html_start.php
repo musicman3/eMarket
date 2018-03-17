@@ -23,10 +23,6 @@
 	if ($patch == 'admin'){ ?>
 		<link href="/ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
 		<link href="/ext/bootstrap/css/normalize.css" rel="stylesheet" media="screen" />
-		<link rel="stylesheet" type="text/css" href="/view/default/admin/style.css" media="screen" />
-		<link rel="stylesheet" href="/view/default/admin/js/jscookmenu/ThemeOffice/theme.css" type="text/css">
-		<script type="text/javascript" src="/view/default/admin/js/jscookmenu/JSCookMenu.js"></script>
-		<script type="text/javascript" src="/view/default/admin/js/jscookmenu/ThemeOffice/theme.js"></script>
 		<?php 
 		require_once($_SERVER['DOCUMENT_ROOT'].'/controller/admin/header.php');
 		require_once($_SERVER['DOCUMENT_ROOT'].'/view/default/admin/header.php');
