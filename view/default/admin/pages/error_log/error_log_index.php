@@ -63,7 +63,7 @@
 			
 			(strrpos ($lines[$i], 'PHP Parse error:') == true ){ ?><tr class="info"><td colspan="2"><?php echo $lines[$i].'<br>'; ?><?php }elseif
 			
-			($counter > 0){
+			($counter > 0){ ?><tr><td colspan="2"><?php
 
 				echo $lines[$i].'<br>';
 			?>
