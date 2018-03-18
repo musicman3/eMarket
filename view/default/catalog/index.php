@@ -41,9 +41,9 @@
 		 </div>
 		 <div class="col-md-8 text-right headerlinks"><div class="btn-group">
 
-			 <a id="btn1" href="#" class="btn btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span> Корзина</a>
-			 <a id="btn2" href="#" class="btn btn-primary"><span class="glyphicon glyphicon-play"></span> Оплата</a>
-			 <a id="btn3" href="#" class="btn btn-primary"><span class="glyphicon glyphicon-user"></span> Аккаунт</a>
+			 <a id="btn1" href="#" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-shopping-cart"></span> Корзина</a>
+			 <a id="btn2" href="#" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-play"></span> Оплата</a>
+			 <a id="btn3" href="#" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-user"></span> Аккаунт</a>
 
 			</div>
 			</div>
