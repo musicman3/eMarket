@@ -13,10 +13,10 @@
 	          <div class="col-md-12">
 	          
 <div class="welcome text-center">
-	Добро пожаловать в систему управления контентом
+	<?php echo $lang['index-title'] ?>
 	<div class="welcome_logo">eMarket <span>v1</span></div>
-	<div class="welcome_description">Вы можете задать интересующие Вас вопросы по функционированию сайта, а также обсудить любую другую информацию относительно системы управления, по E-Mail: <strong>***@gmail.com<strong></strong></strong></div><strong><strong>	
-</strong></strong></div>
+	<div class="welcome_description"><?php echo $lang['index-text'] ?>: <strong>***@gmail.com</strong></div>
+</div>
 
 	          </div>
 
