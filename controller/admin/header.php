@@ -75,12 +75,14 @@
 	$level[$menu_prefences] = '<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span></span> Настройки <b class="caret"></b></a>';
 	
 	$menu[$menu_prefences][0] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/configure.png" /> Конфигурация </a>';
-	$menu[$menu_prefences][1] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/templates.png" /> Шаблоны </a>';
-	$menu[$menu_prefences][2] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/currencies.png" /> Валюты </a>';
-	$menu[$menu_prefences][3] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/world.png" /> Страны </a>';
-	$menu[$menu_prefences][4] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/zones.png" /> Зоны</a>';
-	$menu[$menu_prefences][5] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/taxes.png" /> Налоги </a>';
-	$menu[$menu_prefences][6] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/admins.png" /> Администраторы </a>';
+	$menu[$menu_prefences][1] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/admins.png" /> Администраторы </a>';
+	$menu[$menu_prefences][2] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/templates.png" /> Шаблоны </a>';
+	$menu[$menu_prefences][3] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/currencies.png" /> Валюты </a>';
+	$menu[$menu_prefences][4] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/world.png" /> Страны </a>';
+	$menu[$menu_prefences][5] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/zones.png" /> Зоны</a>';
+	$menu[$menu_prefences][6] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/taxes.png" /> Налоги </a>';
+	$menu[$menu_prefences][7] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/locale.png" /> Языки </a>';
+	
 
 	//ПОМОЩЬ
 	$level[$menu_help] = '<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span></span> '.$lang['menu_help'].' <b class="caret"></b></a>';
