@@ -25,7 +25,7 @@
 	if (file_exists($_SERVER['DOCUMENT_ROOT'].'/model/work/errors.log')) { // Если файл существует, то
 		$lines = file($_SERVER['DOCUMENT_ROOT'].'/model/work/errors.log'); // получаем содержимое файла в виде массива
 		$lines = array_reverse($lines); // сортируем в обратном порядке
-		$counter = count($lines); // считаем количество строк
+		$counter = 15;//count($lines);  считаем количество строк
 		
 		// Если нажали на кнопку вперед
 		if(isset($_POST['lines_p']) && isset($_POST['i'])){

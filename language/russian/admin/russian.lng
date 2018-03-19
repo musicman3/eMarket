@@ -20,6 +20,7 @@ login_name = ПАНЕЛЬ АДМИНИСТРАТОРА
 button_add = Добавить
 button_cancel = Отмена
 button_edit = Изменить
+button_add = Добавить
 meta-language = ru
 button_delete = Удалить
 s = с

@@ -26,6 +26,11 @@
 			</th>
 			
 			<th>
+
+  	<form>
+	  	<input hidden name="category_add" value="delete">
+		<div class="category-add"><button type="button" name="category_add" class="btn btn-primary btn-xs" onclick="document.location.href='/controller/admin/pages/categories/categories_add.php'"><?php echo $lang['button_add'] ?></button></div>
+	</form><br>
   <form>
    <input hidden name="i" value="<?php echo $i ?>">
    <input hidden name="lines_p" value="<?php echo $lines_p ?>">
