@@ -16,12 +16,12 @@ ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS emkt_categories;
 CREATE TABLE emkt_categories (
-	categories_id int NOT NULL auto_increment,
-	categories_name varchar(255) NOT NULL,
-	categories_image varchar(255),
+	id int NOT NULL auto_increment,
+	name varchar(255) NOT NULL,
+	image varchar(255),
 	language varchar(64) NOT NULL,
 	sort_order int,
 	date_added datetime,
 	last_modified datetime,
-	PRIMARY KEY (categories_id))
+	PRIMARY KEY (id))
 ENGINE=MyISAM DEFAULT CHARSET=utf8;
