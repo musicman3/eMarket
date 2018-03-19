@@ -91,9 +91,10 @@
 	$submenu[$menu_help][0][0] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/wrench_orange.png" /></span> '.$lang['menu_support'].'</a>';
 	
 	$menu[$menu_help][1] = '<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span><img src="/view/default/admin/images/icons/16x16/locale.png" /></span> '.$lang['menu_languages'].' <b class="caret"></b></a>';
-
-	$submenu[$menu_help][1][0] = '<a href="#"><span><img src="/view/default/admin/images/worldflags/ru.png" /></span> '.$lang['menu_russian'].'</a>';
-	$submenu[$menu_help][1][1] = '<a href="#"><span><img src="/view/default/admin/images/worldflags/gb.png" /></span> '.$lang['menu_english'].'</a>';
+	
+	//Сделать парсер языков для вывода списка языков
+	$submenu[$menu_help][1][0] = '<a href="#"><span><img src="/view/default/admin/images/worldflags/ru.png" /></span> '.$lang['menu_language'].' </a>';
+	$submenu[$menu_help][1][1] = '<a href="#"><span><img src="/view/default/admin/images/worldflags/gb.png" />Английский</span>  </a>';
 	
 	$menu[$menu_help][2] = '<a target="_blank" href="/controller/catalog/index.php"><span><img src="/view/default/admin/images/icons/16x16/home.png" /></span> '.$lang['menu_catalog'].'</a>';
 
