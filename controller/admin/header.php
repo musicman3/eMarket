@@ -92,8 +92,8 @@
 	
 	$menu[$menu_help][1] = '<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span><img src="/view/default/admin/images/icons/16x16/locale.png" /></span> '.$lang['menu_languages'].' <b class="caret"></b></a>';
 
-	$submenu[$menu_help][1][0] = '<a href="#"><span><img src="/view/default/admin/images/worldflags/ru.png" /></span> '.$lang['menu_language'].'</a>';
-	$submenu[$menu_help][1][1] = '<a href="#"><span><img src="/view/default/admin/images/worldflags/gb.png" /></span> English</a>';
+	$submenu[$menu_help][1][0] = '<a href="#"><span><img src="/view/default/admin/images/worldflags/ru.png" /></span> '.$lang['menu_russian'].'</a>';
+	$submenu[$menu_help][1][1] = '<a href="#"><span><img src="/view/default/admin/images/worldflags/gb.png" /></span> '.$lang['menu_english'].'</a>';
 	
 	$menu[$menu_help][2] = '<a target="_blank" href="/controller/catalog/index.php"><span><img src="/view/default/admin/images/icons/16x16/home.png" /></span> '.$lang['menu_catalog'].'</a>';
 

@@ -31,7 +31,8 @@ menu_extra = Дополнительно
 menu_languages = Языки
 menu_catalog = Онлайн каталог
 menu_support = Поддержка
-menu_language = Русский
+menu_russian = Русский
+menu_english = Английский
 menu_tools = Инструменты
 menu_error_log = Лог ошибок
 
