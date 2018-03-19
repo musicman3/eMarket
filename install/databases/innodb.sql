@@ -23,5 +23,5 @@ CREATE TABLE emkt_categories (
 	sort_order int,
 	date_added datetime,
 	last_modified datetime,
-	PRIMARY KEY (categories_id),
+	PRIMARY KEY (categories_id),)
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
