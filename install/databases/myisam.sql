@@ -8,7 +8,7 @@ CREATE TABLE emkt_administrators (
 	id int NOT NULL auto_increment,
 	login varchar(128) binary NOT NULL,
 	password varchar(64) NOT NULL,
-	language varchar(128) NOT NULL,
+	language varchar(64) NOT NULL,
 	permission varchar(20) NOT NULL,
 	note varchar(256) NOT NULL,
 PRIMARY KEY (id))
@@ -17,11 +17,11 @@ ENGINE=MyISAM DEFAULT CHARSET=utf8;
 DROP TABLE IF EXISTS emkt_categories;
 CREATE TABLE emkt_categories (
 	categories_id int NOT NULL auto_increment,
+	categories_name varchar(255) NOT NULL,
 	categories_image varchar(255),
-	parent_id int DEFAULT '0' NOT NULL,
+	language varchar(64) NOT NULL,
 	sort_order int,
 	date_added datetime,
 	last_modified datetime,
 	PRIMARY KEY (categories_id),
-KEY idx_categories_parent_id (parent_id))
 ENGINE=MyISAM DEFAULT CHARSET=utf8;
