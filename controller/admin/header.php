@@ -26,7 +26,7 @@
 	//МАГАЗИН
 	$level[$menu_market] = '<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span></span>Магазин<b class="caret"></b></a>';
 	
-	$menu[$menu_market][0] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/folder.png" /></span> Категории </a>';
+	$menu[$menu_market][0] = '<a href="/controller/admin/pages/categories/categories.php"><span><img src="/view/default/admin/images/icons/16x16/folder.png" /></span> Категории </a>';
 	$menu[$menu_market][1] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/products.png" /></span> Товары </a>';
 	$menu[$menu_market][2] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/manufacturers.png" /></span> Производители </a>';
 	$menu[$menu_market][3] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/attributes.png" /></span> Атрибуты </a>';
@@ -65,7 +65,7 @@
 	//ИНСТРУМЕНТЫ
 	$level[$menu_tools] = '<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span></span> '.$lang['menu_tools'].' <b class="caret"></b></a>';
 	
-	$menu[$menu_tools][0] = '<a href="/controller/admin/pages/error_log/error_log_index.php"><span><img src="/view/default/admin/images/icons/16x16/error.png" /></span> '.$lang['menu_error_log'].' </a>';
+	$menu[$menu_tools][0] = '<a href="/controller/admin/pages/error_log/error_log.php"><span><img src="/view/default/admin/images/icons/16x16/error.png" /></span> '.$lang['menu_error_log'].' </a>';
 	$menu[$menu_tools][1] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/folder_explore.png" /></span> Файловый менеджер </a>';
 	$menu[$menu_tools][2] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/backup.png" /></span> Бэкап </a>';
 	$menu[$menu_tools][3] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/server_info.png" /></span> Информация о сервере </a>';

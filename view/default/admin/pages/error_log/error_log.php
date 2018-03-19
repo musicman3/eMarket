@@ -29,19 +29,19 @@
   <form>
    <input hidden name="i" value="<?php echo $i ?>">
    <input hidden name="lines_p" value="<?php echo $lines_p ?>">
-   <div class="log-right"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/error_log/error_log_index.php" formmethod="post"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
+   <div class="log-right"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/error_log/error_log.php" formmethod="post"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
   </form>
 		
 			
   <form>
    <input hidden name="i2" value="<?php echo $i ?>">
    <input hidden name="lines_p2" value="<?php echo $lines_p ?>">
-   <div class="log-left"><button type="submit" class="btn btn-primary btn-xs"  action="/controller/admin/pages/error_log/error_log_index.php" formmethod="post"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
+   <div class="log-left"><button type="submit" class="btn btn-primary btn-xs"  action="/controller/admin/pages/error_log/error_log.php" formmethod="post"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
   </form>
   
   	<form>
 	  	<input hidden name="log_delete" value="delete">
-		<div class="log-del"><button type="submit" name="log_delete" class="btn btn-primary btn-xs" action="/controller/admin/pages/error_log/error_log_index.php" formmethod="post"><?php echo $lang['button_delete'] ?></button></div>
+		<div class="log-del"><button type="submit" name="log_delete" class="btn btn-primary btn-xs" action="/controller/admin/pages/error_log/error_log.php" formmethod="post"><?php echo $lang['button_delete'] ?></button></div>
 	</form>
 			</th>
 		</tr>
