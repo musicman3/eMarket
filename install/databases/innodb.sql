@@ -11,6 +11,7 @@ CREATE TABLE emkt_administrators (
 	language varchar(64) NOT NULL,
 	permission varchar(20) NOT NULL,
 	note varchar(256) NOT NULL,
+	status int,
 PRIMARY KEY (id))
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -24,5 +25,6 @@ CREATE TABLE emkt_categories (
 	sort_order int,
 	date_added datetime,
 	last_modified datetime,
+	status int,
 	PRIMARY KEY (id))
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
