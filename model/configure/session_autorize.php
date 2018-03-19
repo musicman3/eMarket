@@ -15,7 +15,7 @@
 		$pass= $_SESSION['pass'];
 	}
 
-	$verify = $PDO->getRowCount("SELECT * FROM ".TABLE_USERS." WHERE login=? AND password=?", array($login, $pass));
+	$verify = $PDO->getRowCount("SELECT * FROM ".TABLE_ADMINISTRATORS." WHERE login=? AND password=?", array($login, $pass));
 	if($verify != 1){ //NO USER
 		header('Location: /controller/admin/verify/login.php'); // REDIRECT TO LOGIN.PHP
 	}

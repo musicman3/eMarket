@@ -29,10 +29,10 @@
 	require_once($_SERVER['DOCUMENT_ROOT'].'/model/router_lang.php');
 
 	//VERIFY USER
-	$verify = $PDO->getRowCount("SELECT * FROM ".TABLE_USERS." WHERE login=? AND password=?", array($_SESSION['login'], $_SESSION['pass']));
+	$verify = $PDO->getRowCount("SELECT * FROM ".TABLE_ADMINISTRATORS." WHERE login=? AND password=?", array($_SESSION['login'], $_SESSION['pass']));
 	
 	//DEFAULT LANGUAGE
-	$deflang = $PDO->selectPrepare("SELECT language FROM ".TABLE_USERS." WHERE login=? AND password=?", array($_SESSION['login'], $_SESSION['pass']));
+	$deflang = $PDO->selectPrepare("SELECT language FROM ".TABLE_ADMINISTRATORS." WHERE login=? AND password=?", array($_SESSION['login'], $_SESSION['pass']));
 
 	if($verify != 1){    //if user failed:
 

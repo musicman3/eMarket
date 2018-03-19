@@ -54,8 +54,8 @@
 	$logadm = $_POST['login_admin'];
 	$pasadm = $_POST['password_admin'];
 	$lng = $_POST['language'];
-	$tabusr = $dbpref.'users';
-	$tab_lic = $dbpref.'license';
+	$tabusr = $dbpref.'administrators';
+	$tab_lic = $dbpref.'categories';
 	$tablist = $dbpref.'listing';
 	$hashmet = $_POST['hash_method'];
 	$crypt = $_POST['crypt_method'];
@@ -75,9 +75,8 @@
 	'  define(\'HASH_METHOD\', \'' . $hashmet . '\');' . "\n" .
 	'  define(\'CRYPT_METHOD\', \'' . $crypt . '\');' . "\n" .
 	'  define(\'DEFAULT_LANGUAGE\', \'' . $lng . '\');' . "\n" .
-	'  define(\'TABLE_USERS\', \'' . $tabusr . '\');' . "\n" .
-	'  define(\'TABLE_LICENSE\', \'' . $tab_lic . '\');' . "\n" .
-	'  define(\'TABLE_LISTING\', \'' . $tablist . '\');' . "\n" .
+	'  define(\'TABLE_ADMINISTRATORS\', \'' . $tabusr . '\');' . "\n" .
+	'  define(\'TABLE_CATEGORIES\', \'' . $tab_lic . '\');' . "\n" .
 	'?>';
 
 	if (file_exists('../model/configure/configure.php') && !is_writeable('../model/configure/configure.php')) {
@@ -178,7 +177,7 @@ $DB->exec($buffer);
 $pasadm = hash(HASH_METHOD, $pasadm);
 
 	if(isset($_POST['login_admin']) and isset($_POST['password_admin'])){
-		$DB->exec("INSERT INTO ".TABLE_USERS." (login, password, permission, language) VALUES ('$logadm','$pasadm','admin','$lng')");
+		$DB->exec("INSERT INTO ".TABLE_ADMINISTRATORS." (login, password, permission, language) VALUES ('$logadm','$pasadm','admin','$lng')");
 	}
 
 $DB = null;

@@ -3,13 +3,14 @@
 * https://github.com/musicman3/eMarket *
 ***************************************/
 
-DROP TABLE IF EXISTS emkt_users;
-CREATE TABLE emkt_users (
+DROP TABLE IF EXISTS emkt_administrators;
+CREATE TABLE emkt_administrators (
 	id int NOT NULL auto_increment,
 	login varchar(128) binary NOT NULL,
 	password varchar(64) NOT NULL,
 	language varchar(128) NOT NULL,
 	permission varchar(20) NOT NULL,
+	note varchar(256) NOT NULL,
 PRIMARY KEY (id))
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

@@ -3,8 +3,8 @@
 * https://github.com/musicman3/eMarket *
 ***************************************/
 
-DROP TABLE IF EXISTS emkt_users;
-CREATE TABLE emkt_users (
+DROP TABLE IF EXISTS emkt_administrators;
+CREATE TABLE emkt_administrators (
 	id int NOT NULL auto_increment,
 	login varchar(128) binary NOT NULL,
 	password varchar(64) NOT NULL,

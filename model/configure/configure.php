@@ -10,7 +10,6 @@
   define('HASH_METHOD', 'gost');
   define('CRYPT_METHOD', 'gost');
   define('DEFAULT_LANGUAGE', 'russian');
-  define('TABLE_USERS', 'emkt_users');
-  define('TABLE_LICENSE', 'emkt_license');
-  define('TABLE_LISTING', 'emkt_listing');
+  define('TABLE_ADMINISTRATORS', 'emkt_administrators');
+  define('TABLE_CATEGORIES', 'emkt_categories');
 ?>
