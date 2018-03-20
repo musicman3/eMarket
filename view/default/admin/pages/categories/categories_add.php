@@ -40,8 +40,8 @@
     </fieldset>
 
     <p align="center">
-        <input type="hidden" name="subaction" value="confirm" /><input type="submit" value="Сохранить" class="btn btn-primary btn-xs" /> 
-    <input type="button" value="Отмена" onclick="document.location.href='/controller/admin/pages/categories/categories.php'" class="btn btn-primary btn-xs" />
+        <input type="hidden" name="subaction" value="confirm" /><button type="submit" class="btn btn-primary btn-xs" /><span class="glyphicon glyphicon-save"></span> Сохранить</button>
+        <button type="button" onclick="document.location.href='/controller/admin/pages/categories/categories.php'" class="btn btn-primary btn-xs" /><span class="glyphicon glyphicon-remove"></span> Отмена</button>
     </p>
 
 </form>
