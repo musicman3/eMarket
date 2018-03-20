@@ -51,9 +51,17 @@
 
 	<tbody>
 			
-<?php	for ($i; $i < $lines_p; $i++) { 
+<?php	for ($i; $i < $lines_p; $i++) { ?>
 		
-				 ?><tr><td colspan="2"><?php echo $lines[$i][1] ?></td><td colspan="2">Редактировать</td><td colspan="2">Переместить</td><td colspan="2">Удалить</td><td colspan="2">Чекбокс</td></tr> 
+				 <tr>
+				 <td align="left"><?php echo $lines[$i][1] ?></td>
+				 <td align="right">
+				 <button class="btn btn-primary btn-xs" title="Редактировать" action="" formmethod="post"><span class="glyphicon glyphicon-list-alt"> </span></button>
+				 <button class="btn btn-primary btn-xs" title="Переместить" action="" formmethod="post"><span class="glyphicon glyphicon-transfer"> </span></button> 
+				 <button class="btn btn-primary btn-xs" title="Удалить" action="" formmethod="post"><span class="glyphicon glyphicon-trash"> </span></button>
+				 <input class="check-box" type="checkbox" value="">
+				 </td>
+				 </tr> 
 			<?php }
 	?>
 
