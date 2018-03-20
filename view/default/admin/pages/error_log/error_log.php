@@ -41,7 +41,7 @@
   
   	<form>
 	  	<input hidden name="log_delete" value="delete">
-		<div class="log-left"><button type="submit" name="log_delete" class="btn btn-primary btn-xs" action="/controller/admin/pages/error_log/error_log.php" formmethod="post"><?php echo $lang['button_delete'] ?></button></div>
+		<div class="log-left"><button type="submit" name="log_delete" class="btn btn-primary btn-xs" title="<?php echo $lang['button_delete'] ?>" action="/controller/admin/pages/error_log/error_log.php" formmethod="post"><span class="glyphicon glyphicon-trash"> </span></button></div>
 	</form>
 			</th>
 		</tr>
