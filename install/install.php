@@ -55,8 +55,8 @@
 	$logadm = $_POST['login_admin'];
 	$pasadm = $_POST['password_admin'];
 	$lng = $_POST['language'];
-	$tabusr = $dbpref.'administrators';
-	$tab_lic = $dbpref.'categories';
+	$tabadm = $dbpref.'administrators';
+	$tab_cat = $dbpref.'categories';
 	$tablist = $dbpref.'listing';
 	$hashmet = $_POST['hash_method'];
 	$crypt = $_POST['crypt_method'];
@@ -76,8 +76,8 @@
 	'  define(\'HASH_METHOD\', \'' . $hashmet . '\');' . "\n" .
 	'  define(\'CRYPT_METHOD\', \'' . $crypt . '\');' . "\n" .
 	'  define(\'DEFAULT_LANGUAGE\', \'' . $lng . '\');' . "\n" .
-	'  define(\'TABLE_ADMINISTRATORS\', \'' . $tabusr . '\');' . "\n" .
-	'  define(\'TABLE_CATEGORIES\', \'' . $tab_lic . '\');' . "\n" .
+	'  define(\'TABLE_ADMINISTRATORS\', \'' . $tabadm . '\');' . "\n" .
+	'  define(\'TABLE_CATEGORIES\', \'' . $tab_cat . '\');' . "\n" .
 	'?>';
 
 	if (file_exists('../model/configure/configure.php') && !is_writeable('../model/configure/configure.php')) {
@@ -227,7 +227,7 @@ echo '
 ');
 
 $buffer = implode(file($fname));
-$buffer = str_replace('csd_',DB_PREFIX,$buffer); //REPLACE PREFIX
+$buffer = str_replace('emkt_',DB_PREFIX,$buffer); //REPLACE PREFIX
 
 $DB->exec($buffer);
 //END IMPORT DB
