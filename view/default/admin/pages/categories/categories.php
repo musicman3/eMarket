@@ -5,7 +5,7 @@
 ***************************************/
 ?>
 
-<div id="log" class="container">
+<div id="category" class="container">
 	<div class="row">
 		<div class="panel panel-default">
 		

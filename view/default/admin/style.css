@@ -36,4 +36,5 @@ body {background:#e4e4da;font-family: 'Open Sans', sans-serif;background-image:u
 .log-right {display: inline-block;float: right;}
 .log-left {display: inline-block;float: right; padding-right:10px;}
 .log-del {display: inline-block;float: right; padding-right:10px;}
-.category-add {display: inline-block;float: right; padding-right:10px;}
+#category .category-add {display: inline-block;float: right; padding-right:10px;}
+#category_add .form-control {width: auto;}
