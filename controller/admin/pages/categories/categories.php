@@ -22,13 +22,12 @@
 	$i = 0;	// устанавливаем страницу в ноль при заходе
 	$lines_p = $lines_page;
 
-		$lines = $PDO->getColRow("SELECT * FROM ".TABLE_CATEGORIES." WHERE parent_id=?", array (0)); // получаем содержимое файла в виде массива
-		//$lines = array_reverse($lines); // сортируем в обратном порядке
+	$lines = $PDO->getColRow("SELECT * FROM ".TABLE_CATEGORIES." WHERE parent_id=?", array (0)); // получаем содержимое файла в виде массива
 	$counter = count($lines);  //считаем количество строк
+
 	if ($counter <= $lines_page) {
 		$lines_p = $counter;
-	}
-		
+	}	
 	// Если нажали на кнопку вперед
 	if(isset($_POST['lines_p']) && isset($_POST['i'])){
 		$lines_p = $_POST['lines_p'] + $lines_page; // пересчитываем количество строк на странице
