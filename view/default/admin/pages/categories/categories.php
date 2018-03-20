@@ -22,20 +22,15 @@
 	<thead>
 		<tr>
 			<th>
-			<div class="log-page"><?php echo $lang['s'] ?> <?php echo $i+1 ?> <?php echo $lang['po'] ?> <?php echo $lines_p ?> ( <?php echo $lang['iz'] ?> <?php echo $counter; ?> )<div>
+			<div class="log-page"><?php echo $lang['s'] ?> <?php echo $i+1 ?> <?php echo $lang['po'] ?> <?php echo $lines_p ?> ( <?php echo $lang['iz'] ?> <?php echo $counter; ?> )</div>
 			</th>
 			
 			<th>
-
-
-		<div class="category-add"><button type="button" name="category_add" class="btn btn-primary btn-xs" onclick="document.location.href='/controller/admin/pages/categories/categories_add.php'"><?php echo $lang['button_add'] ?></button></div>
-	<br>
   <form>
    <input hidden name="i" value="<?php echo $i ?>">
    <input hidden name="lines_p" value="<?php echo $lines_p ?>">
    <div class="log-right"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
   </form>
-		
 			
   <form>
    <input hidden name="i2" value="<?php echo $i ?>">
@@ -47,6 +42,9 @@
 	  	<input hidden name="log_delete" value="delete">
 		<div class="log-del"><button type="submit" name="log_delete" class="btn btn-primary btn-xs" action="/controller/admin/pages/categories/categories.php" formmethod="post"><?php echo $lang['button_delete'] ?></button></div>
 	</form>
+	
+	<div class="category-add"><button type="button" name="category_add" class="btn btn-primary btn-xs" onclick="document.location.href='/controller/admin/pages/categories/categories_add.php'"><?php echo $lang['button_add'] ?></button></div>
+	
 			</th>
 		</tr>
 	</thead>
