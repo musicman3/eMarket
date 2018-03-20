@@ -26,7 +26,7 @@
 		<meta name="owner" content="eMarket" />
 		<meta name="copyright" content="CopyrightВ©2011 by eMarket Team. All right reserved." />
 
-		<link rel="stylesheet" type="text/css" href="../view/default/style.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
 		<title><?php echo $lang['title_success'] ?></title>
 	</head>
 	<body>
@@ -177,7 +177,7 @@ $DB->exec($buffer);
 $pasadm = hash(HASH_METHOD, $pasadm);
 
 	if(isset($_POST['login_admin']) and isset($_POST['password_admin'])){
-		$DB->exec("INSERT INTO ".TABLE_ADMINISTRATORS." (login, password, permission, language, note, status) VALUES ('$logadm','$pasadm','admin','$lng', '0', '0')");
+		$DB->exec("INSERT INTO ".TABLE_ADMINISTRATORS." (login, password, permission, language) VALUES ('$logadm','$pasadm','admin','$lng')");
 	}
 
 $DB = null;

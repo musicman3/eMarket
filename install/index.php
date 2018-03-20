@@ -30,7 +30,7 @@
 		<meta name="owner" content="eMarket" />
 		<meta name="copyright" content="Copyright©2011 by eMarket Team. All right reserved." />
 
-		<link rel="stylesheet" type="text/css" href="../view/default/style.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
 		<title><?php echo $lang['title_login'] ?></title>
 	</head>
 	<body>
