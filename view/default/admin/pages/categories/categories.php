@@ -16,7 +16,7 @@
 				      <div class="clearfix"></div>
 				</h3>
 			</div>
-
+<?php if ($lines == true) { ?>
 		<div class="panel-body">
 <div class="table-responsive">
 <table class="table">
@@ -75,7 +75,9 @@
 </div>
 			</div>
 
-
+<?php } else { ?>
+		<div class="panel-body"><?php echo $lang['no_cat'] ?></div>
+<?php } ?>
 
 		</div>
 	</div>
