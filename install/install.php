@@ -22,9 +22,9 @@
 		<meta name="robots" content="noindex,nofollow" />
 		<meta name="generator" content="HippoEDIT, Notepad++, Notepad++" />
 		<meta name="classification" content="software" />
-		<meta name="author" content="Alexander Kholodov" />
-		<meta name="owner" content="Alexander Kholodov" />
-		<meta name="copyright" content="CopyrightВ©2011 by Alexander Kholodov. All right reserved." />
+		<meta name="author" content="eMarket" />
+		<meta name="owner" content="eMarket" />
+		<meta name="copyright" content="CopyrightВ©2011 by eMarket Team. All right reserved." />
 
 		<link href="../ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
 		<link href="../ext/bootstrap/css/normalize.css" rel="stylesheet" media="screen" />
@@ -118,7 +118,7 @@ echo '
                 <div class="col-md-12">
                     <p><img src="../view/default/admin/images/emarket.png" width="80" alt="" class="img-responsive center-block"></p>
 
-                    <p>Copyright (c) 2018-'.date('Y').', <a href="#">eMarket team</a>. All rights reserved.</p>
+                    <p>Copyright (c) 2018-'.date('Y').', <a href="#">eMarket Team</a>. All rights reserved.</p>
                 </div>
             </div>
         </div>
@@ -167,7 +167,7 @@ echo '
                 <div class="col-md-12">
                     <p><img src="../view/default/admin/images/emarket.png" width="80" alt="" class="img-responsive center-block"></p>
 
-                    <p>Copyright (c) 2018-<?php echo date('Y') ?>, <a href="#">eMarket team</a>. All rights reserved.</p>
+                    <p>Copyright (c) 2018-<?php echo date('Y') ?>, <a href="#">eMarket Team</a>. All rights reserved.</p>
                 </div>
             </div>
         </div>
@@ -215,7 +215,7 @@ echo '
                 <div class="col-md-12">
                     <p><img src="../view/default/admin/images/emarket.png" width="80" alt="" class="img-responsive center-block"></p>
 
-                    <p>Copyright (c) 2018-'.date('Y').', <a href="#">eMarket team</a>. All rights reserved.</p>
+                    <p>Copyright (c) 2018-'.date('Y').', <a href="#">eMarket Team</a>. All rights reserved.</p>
                 </div>
             </div>
         </div>
@@ -300,7 +300,7 @@ fclose($fp);
                 <div class="col-md-12">
                     <p><img src="../view/default/admin/images/emarket.png" width="80" alt="" class="img-responsive center-block"></p>
 
-                    <p>Copyright (c) 2018-<?php echo date('Y') ?>, <a href="#">eMarket team</a>. All rights reserved.</p>
+                    <p>Copyright (c) 2018-<?php echo date('Y') ?>, <a href="#">eMarket Team</a>. All rights reserved.</p>
                 </div>
             </div>
         </div>

@@ -16,7 +16,7 @@
 <meta name="classification" content="software" />
 <meta name="author" content="eMarket" />
 <meta name="owner" content="eMarket" />
-<meta name="copyright" content="Copyright©2018 by eMarket. All right reserved." />
+<meta name="copyright" content="Copyright©2018 by eMarket Team. All right reserved." />
 <?php $title_prefix = basename(($_SERVER['REQUEST_URI']), '.php'); // автогенерация префикса title по названию файла. Пример: для index.php = index ?>
 <title><?php echo $lang['title_'.$title_prefix] ?></title>
 <?php //вывод только в админке
