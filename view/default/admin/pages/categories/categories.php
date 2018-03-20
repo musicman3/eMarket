@@ -44,7 +44,7 @@
 	</thead>
 <tfoot>
 	<tr>
-		<th align="left"> </th>
+		<th align="left">Групповые действия</th>
 		<th align="right">
 			<div class="log-right"><input class="check-box" type="checkbox" value=""></div>
 			<form><input hidden name="log_delete" value="delete"><div class="log-left"><button type="submit" name="cat_delete" class="btn btn-primary btn-xs" title="Удалить" action="" formmethod="post"><span class="glyphicon glyphicon-trash"> </span></button></div></form>
