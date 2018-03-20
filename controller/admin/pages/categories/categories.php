@@ -9,11 +9,13 @@
 	/********  CONNECT PAGE START  ********/
 	require_once($_SERVER['DOCUMENT_ROOT'].'/model/connect_page_start.php');
 	/**************************************/
+
+	$parrent_id = 0; // устанавливаем родительскую категорию при первом заходе
 	
 	// Если нажали на кнопку Добавить
 	if(isset($_POST['name']) == TRUE && isset($_POST['sort_category']) == TRUE){
 		// добавляем запись
-		$PDO->insertPrepare("INSERT INTO ".TABLE_CATEGORIES." SET name=?, sort_category=?, parent_id=?", array($_POST['name'], $_POST['sort_category'], '0'));
+		$PDO->insertPrepare("INSERT INTO ".TABLE_CATEGORIES." SET name=?, sort_category=?, parent_id=?, date_added=?", array($_POST['name'], $_POST['sort_category'], '0', date("Y-m-d H:i:s")));
 	}
 
 	// Если нажали на кнопку Удалить
@@ -28,7 +30,7 @@
 	$i = 0;	// устанавливаем страницу в ноль при заходе
 	$lines_p = $lines_page;
 
-	$lines = $PDO->getColRow("SELECT * FROM ".TABLE_CATEGORIES." WHERE parent_id=?", array (0)); // получаем содержимое файла в виде массива
+	$lines = $PDO->getColRow("SELECT * FROM ".TABLE_CATEGORIES." WHERE parent_id=?", array ($parrent_id)); // получаем содержимое файла в виде массива
 	$lines = array_reverse($lines); // сортируем в обратном порядке
 	$counter = count($lines);  //считаем количество строк
 

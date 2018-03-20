@@ -106,10 +106,10 @@
 			if ($exec = $DB->prepare($sql) AND $exec->execute($a) AND $exec = $exec->fetchColumn());
 			return $exec;
 		}
-/*getCellFalse выдает значение ячейки. Если ячейка не найдена то возвращает FALSE
-Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах. Если значение не найдено, то выдает пустой массив: Array()
-Использовать так: $a = $PDO->getCellFalse("SELECT permission FROM users WHERE login=? AND password=?", array($_SESSION['login'],$_SESSION['password']));
-*/
+		/*getCellFalse выдает значение ячейки. Если ячейка не найдена то возвращает FALSE
+		Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах. Если значение не найдено, то выдает пустой массив: Array()
+		Использовать так: $a = $PDO->getCellFalse("SELECT permission FROM users WHERE login=? AND password=?", array($_SESSION['login'],$_SESSION['password']));
+		*/
 
 
 
@@ -120,8 +120,8 @@
 			return $exec;
 		}
 	/* getColCount показывает количество столбцов в запросе. Результат выдается простым числовым значением.
-Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах. Если значение не найдено, то выдает пустой массив: Array()
-Использовать так: $a = $PDO->getColCount("SELECT permission FROM users WHERE login=? AND password=?", array($_SESSION['login'],$_SESSION['password']));
+	Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах. Если значение не найдено, то выдает пустой массив: Array()
+	Использовать так: $a = $PDO->getColCount("SELECT permission FROM users WHERE login=? AND password=?", array($_SESSION['login'],$_SESSION['password']));
 	*/
 
 
@@ -133,8 +133,8 @@
 			return $exec;
 		}
 	/* getRowCount показывает количество строк в запросе. Результат выдается простым числовым значением.
-Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах. Если значение не найдено, то выдает пустой массив: Array()
-Использовать так: $a = $PDO->getRowCount("SELECT permission FROM users WHERE login=? AND password=?", array($_SESSION['login'],$_SESSION['password']));
+	Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах. Если значение не найдено, то выдает пустой массив: Array()
+	Использовать так: $a = $PDO->getRowCount("SELECT permission FROM users WHERE login=? AND password=?", array($_SESSION['login'],$_SESSION['password']));
 	*/
 
 
@@ -161,8 +161,10 @@
 	/* insertPrepare служит для INSERT INTO, DELETE и UPDATE. Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых записях.
 	Если значения нет, то передает пустой массив: Array()
 	Использовать так:
-	$PDO->insertPrepare("INSERT INTO users SET login=?, password=?", array($_SESSION['login'],$_SESSION['password'])); - создает новую строку
+	$PDO->insertPrepare("INSERT INTO emkt_table SET login=?, password=?", array($_SESSION['login'],$_SESSION['password'])); - создает новую строку
+	$PDO->insertPrepare("UPDATE emkt_table SET login=?, password=?", array($_SESSION['login'],$_SESSION['password'])); - обновляет строку с конкретным id
 	$PDO->insertPrepare("DELETE FROM emkt_table WHERE id=?", array($id)); - удаляет строку с конкретным id
+	Также можно применять для SELECT.
 	*/
 
 	}
