@@ -22,12 +22,13 @@
 		<meta name="robots" content="noindex,nofollow" />
 		<meta name="generator" content="HippoEDIT, Notepad++, Notepad++" />
 		<meta name="classification" content="software" />
-		<meta name="author" content="eMarket" />
-		<meta name="owner" content="eMarket" />
-		<meta name="copyright" content="CopyrightВ©2011 by eMarket Team. All right reserved." />
+		<meta name="author" content="Alexander Kholodov" />
+		<meta name="owner" content="Alexander Kholodov" />
+		<meta name="copyright" content="CopyrightВ©2011 by Alexander Kholodov. All right reserved." />
 
-		<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
-		<title><?php echo $lang['title_success'] ?></title>
+		<link href="../ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+		<link href="../ext/bootstrap/css/normalize.css" rel="stylesheet" media="screen" />
+		<style type="text/css">body {padding-top:5px;}</style>
 	</head>
 	<body>
 
@@ -54,8 +55,8 @@
 	$logadm = $_POST['login_admin'];
 	$pasadm = $_POST['password_admin'];
 	$lng = $_POST['language'];
-	$tabadm = $dbpref.'administrators';
-	$tab_cat = $dbpref.'categories';
+	$tabusr = $dbpref.'administrators';
+	$tab_lic = $dbpref.'categories';
 	$tablist = $dbpref.'listing';
 	$hashmet = $_POST['hash_method'];
 	$crypt = $_POST['crypt_method'];
@@ -75,8 +76,8 @@
 	'  define(\'HASH_METHOD\', \'' . $hashmet . '\');' . "\n" .
 	'  define(\'CRYPT_METHOD\', \'' . $crypt . '\');' . "\n" .
 	'  define(\'DEFAULT_LANGUAGE\', \'' . $lng . '\');' . "\n" .
-	'  define(\'TABLE_ADMINISTRATORS\', \'' . $tabadm . '\');' . "\n" .
-	'  define(\'TABLE_CATEGORIES\', \'' . $tab_cat . '\');' . "\n" .
+	'  define(\'TABLE_ADMINISTRATORS\', \'' . $tabusr . '\');' . "\n" .
+	'  define(\'TABLE_CATEGORIES\', \'' . $tab_lic . '\');' . "\n" .
 	'?>';
 
 	if (file_exists('../model/configure/configure.php') && !is_writeable('../model/configure/configure.php')) {
@@ -89,24 +90,44 @@
 		fclose($fp);
 	}else{
 
-			echo '
-			<table cellspacing="0" style="border: 1px solid #ffffff; border-collapse: collapse; width: 100%; height: 100%">
-				<tr align="center">
-					<td align="center">
-						<form style="display: inline;" action="index.php" method="post" accept-charset="utf-8">
-							<table cellspacing="0" style="border: 1px solid #ffffff; border-collapse: collapse; width:50%; position:absolute; top:100%; left:50%; margin:-25% 0 0 -25%;">
-								<tr align="center">
-									<td align="center">
-										<h3>'.$lang['file_configure_not_found'].'</h3>
-										'.$formhid.'
-										<input class="button" type="submit" value="'.$lang["button_go_login"].'" />
-									</td>
-								</tr>
-							</table>
-						</form>
-					</td>
-				</tr>
-			</table>';
+echo '
+<div class="container">
+        <div class="row">
+	          <div class="panel panel-default">
+	          
+			 <div class="panel-heading">
+				<h3 class="panel-title">
+				      <div class="pull-left"><b>'.$lang['install_panel'].'</b></div>
+				      <div class="clearfix"></div>
+				</h3>
+			</div>
+<div class="panel-body">
+<form style="display: inline;" action="index.php" method="post" accept-charset="utf-8">
+<div class="alert alert-warning">'.$lang['file_configure_not_found'].'</div>
+<button class="btn btn-info btn-sm" type="submit" />'.$lang["button_go_login"].'</button>
+</form>
+</div>
+		  </div>
+	</div>
+</div>
+    <div id="footerwrap">
+        <footer class="clearfix"></footer>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p><img src="../view/default/admin/images/emarket.png" width="80" alt="" class="img-responsive center-block"></p>
+
+                    <p>Copyright (c) 2018-'.date('Y').', <a href="#">eMarket team</a>. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+			<link rel="stylesheet" type="text/css" href="../view/default/admin/style.css" media="screen" />
+			<script type="text/javascript" src="../ext/jquery/jquery.min.js"></script>
+			<script type="text/javascript" src="../ext/bootstrap/js/bootstrap.min.js"></script>
+			<script type="text/javascript" src="../ext/bootstrap/js/menu.js"></script>
+';
 		exit;
 	}
 
@@ -119,24 +140,42 @@
 	{
 			?>
 
-			<table cellspacing="0" style="border: 1px solid #ffffff; border-collapse: collapse; width: 100%; height: 100%">
-				<tr align="center">
-					<td align="center">
-						<form action='index.php' method='post' accept-charset='utf-8' style='display: inline;'>
-							<table cellspacing="0" style="border: 1px solid #ffffff; border-collapse: collapse; width:50%; position:absolute; top:100%; left:50%; margin:-25% 0 0 -25%;">
-								<tr align="center">
-									<td align="center">
-										<h3><?php echo $lang['server_db_error'] ?></h3>
-										<?php echo $formhid ?>
-										<input class="button" type="submit" name="button_go_login" value="<?php echo $lang['button_go_login'] ?>" />
-									</td>
-								</tr>
-							</table>
-						</form>
-					</td>
-				</tr>
-			</table>
+<div class="container">
+        <div class="row">
+	          <div class="panel panel-default">
+	          
+			 <div class="panel-heading">
+				<h3 class="panel-title">
+				      <div class="pull-left"><b><?php echo $lang['install_panel'] ?></b></div>
+				      <div class="clearfix"></div>
+				</h3>
+			</div>
+<div class="panel-body">
+<form action='index.php' method='post' accept-charset='utf-8' style='display: inline;'>
+<div class="alert alert-warning"><?php echo $lang['server_db_error'] ?></div>
+<button class="btn btn-info btn-sm" type="submit" name="button_go_login" /><?php echo $lang['button_go_login'] ?></button>
+</form>
+</div>
+		  </div>
+	</div>
+</div>
+    <div id="footerwrap">
+        <footer class="clearfix"></footer>
 
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p><img src="../view/default/admin/images/emarket.png" width="80" alt="" class="img-responsive center-block"></p>
+
+                    <p>Copyright (c) 2018-<?php echo date('Y') ?>, <a href="#">eMarket team</a>. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+			<link rel="stylesheet" type="text/css" href="../view/default/admin/style.css" media="screen" />
+			<script type="text/javascript" src="../ext/jquery/jquery.min.js"></script>
+			<script type="text/javascript" src="../ext/bootstrap/js/bootstrap.min.js"></script>
+			<script type="text/javascript" src="../ext/bootstrap/js/menu.js"></script>
 	<?php
 		exit();
 		}
@@ -149,26 +188,46 @@
 	}
 
 			if (!file_exists($fname)) die ('
-			<table cellspacing="0" style="border: 1px solid #ffffff; border-collapse: collapse; width: 100%; height: 100%">
-				<tr align="center">
-					<td align="center">
-						<form style="display: inline;" action="index.php" method="post" accept-charset="utf-8">
-							<table cellspacing="0" style="border: 1px solid #ffffff; border-collapse: collapse; width:50%; position:absolute; top:100%; left:50%; margin:-25% 0 0 -25%;">
-								<tr align="center">
-									<td align="center">
-										<h3>'.$lang['file_not_found'].'</h3>
-										'.$formhid.'
-										<input class="button" type="submit" value="'.$lang["button_go_login"].'" />
-									</td>
-								</tr>
-							</table>
-						</form>
-					</td>
-				</tr>
-			</table>');
+<div class="container">
+        <div class="row">
+	          <div class="panel panel-default">
+	          
+			 <div class="panel-heading">
+				<h3 class="panel-title">
+				      <div class="pull-left"><b>'.$lang['install_panel'].'</b></div>
+				      <div class="clearfix"></div>
+				</h3>
+			</div>
+<div class="panel-body">
+<form style="display: inline;" action="index.php" method="post" accept-charset="utf-8">
+<div class="alert alert-warning">'.$lang['file_not_found'].'</div>
+<button class="btn btn-info btn-sm" type="submit" />'.$lang["button_go_login"].'</button>
+</form>
+</div>
+		  </div>
+	</div>
+</div>
+    <div id="footerwrap">
+        <footer class="clearfix"></footer>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p><img src="../view/default/admin/images/emarket.png" width="80" alt="" class="img-responsive center-block"></p>
+
+                    <p>Copyright (c) 2018-'.date('Y').', <a href="#">eMarket team</a>. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+			<link rel="stylesheet" type="text/css" href="../view/default/admin/style.css" media="screen" />
+			<script type="text/javascript" src="../ext/jquery/jquery.min.js"></script>
+			<script type="text/javascript" src="../ext/bootstrap/js/bootstrap.min.js"></script>
+			<script type="text/javascript" src="../ext/bootstrap/js/menu.js"></script>
+');
 
 $buffer = implode(file($fname));
-$buffer = str_replace('emkt_',DB_PREFIX,$buffer); //REPLACE PREFIX
+$buffer = str_replace('csd_',DB_PREFIX,$buffer); //REPLACE PREFIX
 
 $DB->exec($buffer);
 //END IMPORT DB
@@ -212,23 +271,43 @@ fwrite($fp, $text);
 fclose($fp);
 
 	?>
+	
+<div class="container">
+        <div class="row">
+	          <div class="panel panel-default">
+	          
+			 <div class="panel-heading">
+				<h3 class="panel-title">
+				      <div class="pull-left"><b><?php echo $lang['install_panel'] ?></b></div>
+				      <div class="clearfix"></div>
+				</h3>
+			</div>
+<div class="panel-body">
+<form action='../controller/admin/verify/login.php' method='post' accept-charset='utf-8' style='display: inline;'>
+<div class="alert alert-success"><?php echo $lang['success'] ?></div>
+<div class="alert alert-info"><?php echo $formhid ?></div>
+<button class="btn btn-info btn-sm" type="submit" name="button_go_login" /><?php echo $lang['button_go_login'] ?></button>
+</form>
+</div>
+		  </div>
+	</div>
+</div>
+    <div id="footerwrap">
+        <footer class="clearfix"></footer>
 
-		<table cellspacing="0" style="border: 1px solid #ffffff; border-collapse: collapse; width: 100%; height: 100%">
-			<tr align="center">
-				<td align="center">
-					<form action='../controller/admin/verify/login.php' method='post' accept-charset='utf-8' style='display: inline;'>
-						<table cellspacing="0" style="border: 1px solid #ffffff; border-collapse: collapse; width:50%; position:absolute; top:100%; left:50%; margin:-25% 0 0 -25%;">
-							<tr align="center">
-								<td align="center">
-									<h3><?php echo $lang['success'] ?></h3>
-									<?php echo $formhid ?>
-									<input class="button" type="submit" name="button_go_login" value="<?php echo $lang['button_go_login'] ?>" />
-								</td>
-							</tr>
-						</table>
-					</form>
-				</td>
-			</tr>
-		</table>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p><img src="../view/default/admin/images/emarket.png" width="80" alt="" class="img-responsive center-block"></p>
+
+                    <p>Copyright (c) 2018-<?php echo date('Y') ?>, <a href="#">eMarket team</a>. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+			<link rel="stylesheet" type="text/css" href="../view/default/admin/style.css" media="screen" />
+			<script type="text/javascript" src="../ext/jquery/jquery.min.js"></script>
+			<script type="text/javascript" src="../ext/bootstrap/js/bootstrap.min.js"></script>
+			<script type="text/javascript" src="../ext/bootstrap/js/menu.js"></script>
 	</body>
 </html>
