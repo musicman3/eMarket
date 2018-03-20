@@ -116,14 +116,14 @@ echo '
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <p><img src="../view/default/admin/images/emarket.png" width="80" alt="" class="img-responsive center-block"></p>
+                    <p><img src="images/emarket.png" width="80" alt="" class="img-responsive center-block"></p>
 
                     <p>Copyright (c) 2018-'.date('Y').', <a href="#">eMarket Team</a>. All rights reserved.</p>
                 </div>
             </div>
         </div>
     </div>
-			<link rel="stylesheet" type="text/css" href="../view/default/admin/style.css" media="screen" />
+			<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
 			<script type="text/javascript" src="../ext/jquery/jquery.min.js"></script>
 			<script type="text/javascript" src="../ext/bootstrap/js/bootstrap.min.js"></script>
 			<script type="text/javascript" src="../ext/bootstrap/js/menu.js"></script>
@@ -165,14 +165,14 @@ echo '
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <p><img src="../view/default/admin/images/emarket.png" width="80" alt="" class="img-responsive center-block"></p>
+                    <p><img src="images/emarket.png" width="80" alt="" class="img-responsive center-block"></p>
 
                     <p>Copyright (c) 2018-<?php echo date('Y') ?>, <a href="#">eMarket Team</a>. All rights reserved.</p>
                 </div>
             </div>
         </div>
     </div>
-			<link rel="stylesheet" type="text/css" href="../view/default/admin/style.css" media="screen" />
+			<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
 			<script type="text/javascript" src="../ext/jquery/jquery.min.js"></script>
 			<script type="text/javascript" src="../ext/bootstrap/js/bootstrap.min.js"></script>
 			<script type="text/javascript" src="../ext/bootstrap/js/menu.js"></script>
@@ -213,14 +213,14 @@ echo '
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <p><img src="../view/default/admin/images/emarket.png" width="80" alt="" class="img-responsive center-block"></p>
+                    <p><img src="images/emarket.png" width="80" alt="" class="img-responsive center-block"></p>
 
                     <p>Copyright (c) 2018-'.date('Y').', <a href="#">eMarket Team</a>. All rights reserved.</p>
                 </div>
             </div>
         </div>
     </div>
-			<link rel="stylesheet" type="text/css" href="../view/default/admin/style.css" media="screen" />
+			<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
 			<script type="text/javascript" src="../ext/jquery/jquery.min.js"></script>
 			<script type="text/javascript" src="../ext/bootstrap/js/bootstrap.min.js"></script>
 			<script type="text/javascript" src="../ext/bootstrap/js/menu.js"></script>
@@ -298,14 +298,14 @@ fclose($fp);
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <p><img src="../view/default/admin/images/emarket.png" width="80" alt="" class="img-responsive center-block"></p>
+                    <p><img src="images/emarket.png" width="80" alt="" class="img-responsive center-block"></p>
 
                     <p>Copyright (c) 2018-<?php echo date('Y') ?>, <a href="#">eMarket Team</a>. All rights reserved.</p>
                 </div>
             </div>
         </div>
     </div>
-			<link rel="stylesheet" type="text/css" href="../view/default/admin/style.css" media="screen" />
+			<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
 			<script type="text/javascript" src="../ext/jquery/jquery.min.js"></script>
 			<script type="text/javascript" src="../ext/bootstrap/js/bootstrap.min.js"></script>
 			<script type="text/javascript" src="../ext/bootstrap/js/menu.js"></script>
