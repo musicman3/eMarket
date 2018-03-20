@@ -64,6 +64,8 @@
 				 <div class="log-left"><form><button class="btn btn-primary btn-xs" title="<?php echo $lang['button_delete'] ?>" name="cat_delete" value="<?php echo $lines[$i][0] ?>" action="/controller/admin/pages/categories/categories.php" formmethod="post"></form><span class="glyphicon glyphicon-trash"> </span></button></div>
 				 <div class="log-left"><button class="btn btn-primary btn-xs" title="<?php echo $lang['button_move'] ?>" action="" formmethod="post"><span class="glyphicon glyphicon-transfer"> </span></button></div>
 				 <div class="log-left"><button class="btn btn-primary btn-xs" title="<?php echo $lang['button_edit'] ?>" action="" formmethod="post"><span class="glyphicon glyphicon-list-alt"> </span></button></div>
+				 <div class="log-left"><button class="btn btn-primary btn-xs" title="Вверх" action="" formmethod="post"><span class="glyphicon glyphicon-arrow-up"> </span></button></div>
+				 <div class="log-left"><button class="btn btn-primary btn-xs" title="Вниз" action="" formmethod="post"><span class="glyphicon glyphicon-arrow-down"> </span></button></div>
 				 </td>
 				 </tr> 
 			<?php }
