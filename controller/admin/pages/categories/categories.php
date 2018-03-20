@@ -11,9 +11,9 @@
 	/**************************************/
 	
 	// Если нажали на кнопку Удалить
-	if(isset($_POST['log_delete']) == 'delete'){
-		// удаляем лог
-		unlink($_SERVER['DOCUMENT_ROOT'].'/model/work/errors.log');
+	if(isset($_POST['name']) && isset($_POST['sort_category'])){
+		// добавляем запись
+		$PDO->insertPrepare("INSERT INTO ".TABLE_CATEGORIES." SET name=?, sort_category=?, image=?", array($_POST['name'], $_POST['sort_category'], isset($_POST['image'])));
 	}
 
 	//КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
@@ -21,24 +21,27 @@
 	$lines_page = 20; // задаем количество строк на странице вывода
 	$i = 0;	// устанавливаем страницу в ноль при заходе
 	$lines_p = $lines_page;
-	// Если файл открыт, то
-	if (file_exists($_SERVER['DOCUMENT_ROOT'].'/model/work/errors.log')) { // Если файл существует, то
-		$lines = file($_SERVER['DOCUMENT_ROOT'].'/model/work/errors.log'); // получаем содержимое файла в виде массива
-		$lines = array_reverse($lines); // сортируем в обратном порядке
-		$counter = 15;//count($lines);  считаем количество строк
+
+		$lines = $PDO->getColRow("SELECT * FROM ".TABLE_CATEGORIES." WHERE parent_id=?", array (0)); // получаем содержимое файла в виде массива
+		//$lines = array_reverse($lines); // сортируем в обратном порядке
+	$counter = count($lines);  //считаем количество строк
+	if ($counter <= $lines_page) {
+		$lines_p = $counter;
+	}
 		
-		// Если нажали на кнопку вперед
-		if(isset($_POST['lines_p']) && isset($_POST['i'])){
-			$lines_p = $_POST['lines_p'] + $lines_page; // пересчитываем количество строк на странице
-			$i = $_POST['i'] + $lines_page; // задаем значение счетчика
-			if ($i >= $counter) {
-				$i = $_POST['i'];
-			}
-			if ($lines_p >= $counter) {
-				$lines_p = $counter;
-			}	
+	// Если нажали на кнопку вперед
+	if(isset($_POST['lines_p']) && isset($_POST['i'])){
+		$lines_p = $_POST['lines_p'] + $lines_page; // пересчитываем количество строк на странице
+		$i = $_POST['i'] + $lines_page; // задаем значение счетчика
+		if ($i >= $counter) {
+			$i = $_POST['i'];
 		}
-		// Если нажали на кнопку назад
+		if ($lines_p >= $counter) {
+			$lines_p = $counter;
+		}	
+	}
+	// Если нажали на кнопку назад
+	if ($counter >= $lines_page) {
 		if(isset($_POST['lines_p2']) && isset($_POST['i2'])){
 			$lines_p = $_POST['i2']; // пересчитываем количество строк на странице
 			$i = $_POST['i2'] - $lines_page; // задаем значение счетчика
@@ -50,6 +53,7 @@
 			}
 		}
 	}
+	
 	//КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 
 	/*********  CONNECT PAGE END  *********/

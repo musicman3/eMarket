@@ -26,6 +26,9 @@
 		$lines = file($_SERVER['DOCUMENT_ROOT'].'/model/work/errors.log'); // получаем содержимое файла в виде массива
 		$lines = array_reverse($lines); // сортируем в обратном порядке
 		$counter = count($lines); // считаем количество строк
+		if ($counter <= $lines_page) {
+			$lines_p = $counter;
+		}
 		
 		// Если нажали на кнопку вперед
 		if(isset($_POST['lines_p']) && isset($_POST['i'])){
@@ -39,14 +42,16 @@
 			}	
 		}
 		// Если нажали на кнопку назад
-		if(isset($_POST['lines_p2']) && isset($_POST['i2'])){
-			$lines_p = $_POST['i2']; // пересчитываем количество строк на странице
-			$i = $_POST['i2'] - $lines_page; // задаем значение счетчика
-			if ($i < 0) {
-				$i = 0;
-			}
-			if ($lines_p < $lines_page) {
-				$lines_p = $lines_page;
+		if ($counter >= $lines_page) {
+			if(isset($_POST['lines_p2']) && isset($_POST['i2'])){
+				$lines_p = $_POST['i2']; // пересчитываем количество строк на странице
+				$i = $_POST['i2'] - $lines_page; // задаем значение счетчика
+				if ($i < 0) {
+					$i = 0;
+				}
+				if ($lines_p < $lines_page) {
+					$lines_p = $lines_page;
+				}
 			}
 		}
 	}

@@ -15,7 +15,7 @@
 				      <div class="clearfix"></div>
 				</h3>
 			</div>
-<?php if (file_exists($_SERVER['DOCUMENT_ROOT'].'/model/work/errors.log') == true) { ?>
+
 		<div class="panel-body">
 <div class="table-responsive">
 <table class="table">
@@ -27,10 +27,9 @@
 			
 			<th>
 
-  	<form>
-	  	<input hidden name="category_add" value="delete">
+
 		<div class="category-add"><button type="button" name="category_add" class="btn btn-primary btn-xs" onclick="document.location.href='/controller/admin/pages/categories/categories_add.php'"><?php echo $lang['button_add'] ?></button></div>
-	</form><br>
+	<br>
   <form>
    <input hidden name="i" value="<?php echo $i ?>">
    <input hidden name="lines_p" value="<?php echo $lines_p ?>">
@@ -56,7 +55,7 @@
 			
 <?php	for ($i; $i < $lines_p; $i++) { 
 		
-				 ?><tr><td colspan="2">Ноутбуки</td><td colspan="2">Редактировать</td><td colspan="2">Переместить</td><td colspan="2">Удалить</td><td colspan="2">Чекбокс</td></tr> 
+				 ?><tr><td colspan="2"><?php echo $lines[$i][1] ?></td><td colspan="2">Редактировать</td><td colspan="2">Переместить</td><td colspan="2">Удалить</td><td colspan="2">Чекбокс</td></tr> 
 			<?php }
 	?>
 
@@ -65,9 +64,9 @@
 </table>
 </div>
 			</div>
-<?php } else { ?>
-		<div class="panel-body"><?php echo $lang['no_log'] ?></div>
-<?php } ?>
+
+
+
 		</div>
 	</div>
 </div>

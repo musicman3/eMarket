@@ -4,21 +4,28 @@
 * https://github.com/musicman3/eMarket *
 ***************************************/
 ?>
+<form name="category_add" action="/controller/admin/pages/categories/categories.php" method="post" enctype="multipart/form-data">
+    <fieldset>
+      
+        <div><label for="parent_id">Родительская категория:</label><br><select name="parent_id" id="parent_id"><option value="0" selected="selected">-- Топ --</option><option value="2">Настольные</option><option value="1">Ноутбуки</option></select></div>
+        <div><br><label>Имя:</label>
 
-<p>Пожалуйста, заполните необходимую информацию в поле для новой категории.</p>
+            <p><img src="/view/default/admin/images/worldflags/ru.png" alt="Russian" title="Russian" width="16" height="10" />Russian<br />
+            
+            <?php // вывод из массива: name="categories_name[1]" id="categories_name[1] ?>
+            <input type="text" name="name" id="name" /></p>
+        </div>
+        <div><br><label for="image">Изображение:</label>
+        <input type="file" name="image" id="image" /> Макс.: 100M</div>
 
-  <fieldset>
-    <div><label for="parent_id">Родительская категория:</label><select name="parent_id" id="parent_id"><option value="0" selected="selected">-- Топ --</option><option value="2">Настольные</option><option value="1">Ноутбуки</option></select></div>
-    <div><label>Имя:</label>
+        <div><br><label for="sort_category">Сортировать список:</label><br>
+        <input type="text" name="sort_category" id="sort_category" /></div>
+    </fieldset>
 
-<p><img src="../images/worldflags/ru.png" alt="Russian" title="Russian" width="16" height="10" />&nbsp;Russian<br /><input type="text" name="categories_name[1]" id="categories_name[1]" /></p>
-    </div>
-    <div><label for="categories_image">Изображение:</label><input type="file" name="categories_image" id="categories_image" />&nbsp;Макс.: 100M</div>
-    <div><label for="sort_order">Сортировать список:</label><input type="text" name="sort_order" id="sort_order" /></div>
-  </fieldset>
+    <p align="center">
+        <input type="hidden" name="subaction" value="confirm" /><input type="submit" value="Сохранить" class="btn btn-primary btn-xs" /> 
+    <input type="button" value="Отмена" onclick="document.location.href='/controller/admin/pages/categories/categories.php'" class="btn btn-primary btn-xs" /></p>
 
-  <p align="center"><input type="hidden" name="subaction" value="confirm" /><input type="submit" value="Сохранить" class="btn btn-primary btn-xs" /> <input type="button" value="Отмена" onclick="document.location.href='http://emarket.com/admin/index.php?categories=';" class="btn btn-primary btn-xs" /></p>
-
-  </form>
+</form>
 </div>
 </div>

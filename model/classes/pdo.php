@@ -36,8 +36,8 @@
 	Если несколько вариантов, удовлетворяющих условию, то выдает только верхний.
 	Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах.
 	Если значение не найдено, то выдает пустой массив: Array()
-	Запрос вида getCell("SELECT language FROM table WHERE id=?", array ('1')); выдаст конкретное значение russian - НЕ МАССИВ!
-	Запрос вида getCell("SELECT * FROM table WHERE language=?", array ('russian')); выдаст значение первого поля, т.е. номер id.
+	Запрос вида $PDO->getCell("SELECT language FROM table WHERE id=?", array ('1')); выдаст конкретное значение russian - НЕ МАССИВ!
+	Запрос вида $PDO->getCell("SELECT * FROM table WHERE language=?", array ('russian')); выдаст значение первого поля, т.е. номер id.
 	*/
 
 
@@ -50,7 +50,7 @@
 		}
 	/* getColRow для запроса колонки. Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах.
 	Если значение не найдено, то выдает пустой массив: Array()
-	Если применять в запросе getColRow("SELECT id FROM table WHERE language=?", array ('russian')) то выдаст все значения колонки id в виде массива,
+	Если применять в запросе $PDO->getColRow("SELECT id FROM table WHERE language=?", array ('russian')) то выдаст все значения колонки id в виде массива,
 	удовлетворяющие условию language='russian'.
 
 	Array
@@ -66,7 +66,7 @@
 	        )
 	)
 
-	Если применить в запросе getColRow("SELECT * FROM table WHERE language=?", array ('russian')), то выдаст полностью данные всех ячеек строк(и),
+	Если применить в запросе $PDO->getColRow("SELECT * FROM table WHERE language=?", array ('russian')), то выдаст полностью данные всех ячеек строк(и),
 	содержащих это условие (в массиве). Т.е. получится строковая выборка по условию:
 
 	Array
@@ -90,12 +90,12 @@
 	        )
 	)
 
-	Если применить в запросе getColRow("SELECT id, language FROM table"), то выдаст таблицу из указанных колонок в массиве.
+	Если применить в запросе $PDO->getColRow("SELECT id, language FROM table"), то выдаст таблицу из указанных колонок в массиве.
 
-	Если применить в запросе getColRow("SELECT id, language FROM table WHERE language=?", array ('russian')), то выдаст таблицу из id
+	Если применить в запросе $PDO->getColRow("SELECT id, language FROM table WHERE language=?", array ('russian')), то выдаст таблицу из id
 	и language, удовлетворяющих требованию language='russian'.
 
-	Если применить в запросе getColRow("SELECT * FROM table"), то выдаст всю таблицу в массиве.
+	Если применить в запросе $PDO->getColRow("SELECT * FROM table"), то выдаст всю таблицу в массиве.
 	*/
 
 
@@ -108,7 +108,7 @@
 		}
 /*getCellFalse выдает значение ячейки. Если ячейка не найдена то возвращает FALSE
 Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах. Если значение не найдено, то выдает пустой массив: Array()
-Использовать так: $a = getCellFalse("SELECT permission FROM users WHERE login=? AND password=?", array($_SESSION['login'],$_SESSION['password']));
+Использовать так: $a = $PDO->getCellFalse("SELECT permission FROM users WHERE login=? AND password=?", array($_SESSION['login'],$_SESSION['password']));
 */
 
 
@@ -121,7 +121,7 @@
 		}
 	/* getColCount показывает количество столбцов в запросе. Результат выдается простым числовым значением.
 Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах. Если значение не найдено, то выдает пустой массив: Array()
-Использовать так: $a = getColCount("SELECT permission FROM users WHERE login=? AND password=?", array($_SESSION['login'],$_SESSION['password']));
+Использовать так: $a = $PDO->getColCount("SELECT permission FROM users WHERE login=? AND password=?", array($_SESSION['login'],$_SESSION['password']));
 	*/
 
 
@@ -134,7 +134,7 @@
 		}
 	/* getRowCount показывает количество строк в запросе. Результат выдается простым числовым значением.
 Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах. Если значение не найдено, то выдает пустой массив: Array()
-Использовать так: $a = getRowCount("SELECT permission FROM users WHERE login=? AND password=?", array($_SESSION['login'],$_SESSION['password']));
+Использовать так: $a = $PDO->getRowCount("SELECT permission FROM users WHERE login=? AND password=?", array($_SESSION['login'],$_SESSION['password']));
 	*/
 
 
@@ -147,7 +147,7 @@
 		}
 	/* selectPrepare показывает значение ячейки (не массив). Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах.
 	Если значение не найдено, то выдает пустой массив: Array()
-	Использовать так: $a = selectPrepare("SELECT permission FROM users WHERE login=? AND password=?", array($_SESSION['login'],$_SESSION['password']));
+	Использовать так: $a = $PDO->selectPrepare("SELECT permission FROM users WHERE login=? AND password=?", array($_SESSION['login'],$_SESSION['password']));
 	*/
 
 
@@ -160,7 +160,7 @@
 		}
 	/* insertPrepare служит для INSERT INTO и UPDATE. Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых записях.
 	Если значения нет, то передает пустой массив: Array()
-	Использовать так: insertPrepare("INSERT INTO users SET login=?, password=?", array($_SESSION['login'],$_SESSION['password']));
+	Использовать так: $PDO->insertPrepare("INSERT INTO users SET login=?, password=?", array($_SESSION['login'],$_SESSION['password']));
 	*/
 
 	}
