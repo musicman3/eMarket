@@ -158,9 +158,11 @@
 			if ($exec = $DB->prepare($sql) AND $exec->execute($a));
 			return $exec;
 		}
-	/* insertPrepare служит для INSERT INTO и UPDATE. Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых записях.
+	/* insertPrepare служит для INSERT INTO, DELETE и UPDATE. Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых записях.
 	Если значения нет, то передает пустой массив: Array()
-	Использовать так: $PDO->insertPrepare("INSERT INTO users SET login=?, password=?", array($_SESSION['login'],$_SESSION['password']));
+	Использовать так:
+	$PDO->insertPrepare("INSERT INTO users SET login=?, password=?", array($_SESSION['login'],$_SESSION['password'])); - создает новую строку
+	$PDO->insertPrepare("DELETE FROM emkt_table WHERE id=?", array($id)); - удаляет строку с конкретным id
 	*/
 
 	}

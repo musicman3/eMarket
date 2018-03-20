@@ -10,10 +10,16 @@
 	require_once($_SERVER['DOCUMENT_ROOT'].'/model/connect_page_start.php');
 	/**************************************/
 	
-	// Если нажали на кнопку Удалить
-	if(isset($_POST['name']) && isset($_POST['sort_category'])){
+	// Если нажали на кнопку Добавить
+	if(isset($_POST['name']) == TRUE && isset($_POST['sort_category']) == TRUE){
 		// добавляем запись
 		$PDO->insertPrepare("INSERT INTO ".TABLE_CATEGORIES." SET name=?, sort_category=?, parent_id=?", array($_POST['name'], $_POST['sort_category'], '0'));
+	}
+
+	// Если нажали на кнопку Удалить
+	if(isset($_POST['cat_delete']) == TRUE){
+		// удаляем запись
+		$PDO->insertPrepare("DELETE FROM ".TABLE_CATEGORIES." WHERE id=?", array($_POST['cat_delete']));
 	}
 
 	//КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
@@ -23,6 +29,7 @@
 	$lines_p = $lines_page;
 
 	$lines = $PDO->getColRow("SELECT * FROM ".TABLE_CATEGORIES." WHERE parent_id=?", array (0)); // получаем содержимое файла в виде массива
+	$lines = array_reverse($lines); // сортируем в обратном порядке
 	$counter = count($lines);  //считаем количество строк
 
 	if ($counter <= $lines_page) {

@@ -47,7 +47,7 @@
 		<th align="left">Групповые действия</th>
 		<th align="right">
 			<div class="log-right"><input class="check-box" type="checkbox" value=""></div>
-			<form><input hidden name="log_delete" value="delete"><div class="log-left"><button type="submit" name="cat_delete" class="btn btn-primary btn-xs" title="Удалить" action="" formmethod="post"><span class="glyphicon glyphicon-trash"> </span></button></div></form>
+			<form><input hidden name="log_delete" value="delete"><div class="log-left"><button type="submit" name="cat_delete_batch" class="btn btn-primary btn-xs" title="Удалить" action="" formmethod="post"><span class="glyphicon glyphicon-trash"> </span></button></div></form>
 			<div class="log-left"><button class="btn btn-primary btn-xs" title="Переместить" action="" formmethod="post"><span class="glyphicon glyphicon-transfer"> </span></button></div>
 			
 		</th>
@@ -61,7 +61,7 @@
 				 <td align="left"><?php echo $lines[$i][1] ?></td>
 				 <td align="right">
 				 <div class="log-right"><input class="check-box" type="checkbox" value=""></div>
-				 <div class="log-left"><button class="btn btn-primary btn-xs" title="Удалить" action="" formmethod="post"><span class="glyphicon glyphicon-trash"> </span></button></div>
+				 <div class="log-left"><form><button class="btn btn-primary btn-xs" title="Удалить" name="cat_delete" value="<?php echo $lines[$i][0] ?>" action="/controller/admin/pages/categories/categories.php" formmethod="post"></form><span class="glyphicon glyphicon-trash"> </span></button></div>
 				 <div class="log-left"><button class="btn btn-primary btn-xs" title="Переместить" action="" formmethod="post"><span class="glyphicon glyphicon-transfer"> </span></button></div>
 				 <div class="log-left"><button class="btn btn-primary btn-xs" title="Редактировать" action="" formmethod="post"><span class="glyphicon glyphicon-list-alt"> </span></button></div>
 				 </td>
