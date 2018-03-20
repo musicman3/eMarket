@@ -13,7 +13,7 @@
 	// Если нажали на кнопку Удалить
 	if(isset($_POST['name']) && isset($_POST['sort_category'])){
 		// добавляем запись
-		$PDO->insertPrepare("INSERT INTO ".TABLE_CATEGORIES." SET name=?, sort_category=?, image=?", array($_POST['name'], $_POST['sort_category'], isset($_POST['image'])));
+		$PDO->insertPrepare("INSERT INTO ".TABLE_CATEGORIES." SET name=?, sort_category=?, parent_id=?", array($_POST['name'], $_POST['sort_category'], '0'));
 	}
 
 	//КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
