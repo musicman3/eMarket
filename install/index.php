@@ -26,9 +26,9 @@
 		<meta name="robots" content="noindex,nofollow" />
 		<meta name="generator" content="HippoEDIT, Notepad++" />
 		<meta name="classification" content="software" />
-		<meta name="author" content="Alexander Kholodov" />
-		<meta name="owner" content="Alexander Kholodov" />
-		<meta name="copyright" content="Copyright©2011 by Alexander Kholodov. All right reserved." />
+		<meta name="author" content="eMarket" />
+		<meta name="owner" content="eMarket" />
+		<meta name="copyright" content="Copyright©2011 by eMarket Team. All right reserved." />
 
 		<link rel="stylesheet" type="text/css" href="../view/default/style.css" media="screen" />
 		<title><?php echo $lang['title_login'] ?></title>

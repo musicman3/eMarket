@@ -22,9 +22,9 @@
 		<meta name="robots" content="noindex,nofollow" />
 		<meta name="generator" content="HippoEDIT, Notepad++, Notepad++" />
 		<meta name="classification" content="software" />
-		<meta name="author" content="Alexander Kholodov" />
-		<meta name="owner" content="Alexander Kholodov" />
-		<meta name="copyright" content="CopyrightВ©2011 by Alexander Kholodov. All right reserved." />
+		<meta name="author" content="eMarket" />
+		<meta name="owner" content="eMarket" />
+		<meta name="copyright" content="CopyrightВ©2011 by eMarket Team. All right reserved." />
 
 		<link rel="stylesheet" type="text/css" href="../view/default/style.css" media="screen" />
 		<title><?php echo $lang['title_success'] ?></title>
@@ -54,8 +54,8 @@
 	$logadm = $_POST['login_admin'];
 	$pasadm = $_POST['password_admin'];
 	$lng = $_POST['language'];
-	$tabusr = $dbpref.'administrators';
-	$tab_lic = $dbpref.'categories';
+	$tabadm = $dbpref.'administrators';
+	$tab_cat = $dbpref.'categories';
 	$tablist = $dbpref.'listing';
 	$hashmet = $_POST['hash_method'];
 	$crypt = $_POST['crypt_method'];
@@ -75,8 +75,8 @@
 	'  define(\'HASH_METHOD\', \'' . $hashmet . '\');' . "\n" .
 	'  define(\'CRYPT_METHOD\', \'' . $crypt . '\');' . "\n" .
 	'  define(\'DEFAULT_LANGUAGE\', \'' . $lng . '\');' . "\n" .
-	'  define(\'TABLE_ADMINISTRATORS\', \'' . $tabusr . '\');' . "\n" .
-	'  define(\'TABLE_CATEGORIES\', \'' . $tab_lic . '\');' . "\n" .
+	'  define(\'TABLE_ADMINISTRATORS\', \'' . $tabadm . '\');' . "\n" .
+	'  define(\'TABLE_CATEGORIES\', \'' . $tab_cat . '\');' . "\n" .
 	'?>';
 
 	if (file_exists('../model/configure/configure.php') && !is_writeable('../model/configure/configure.php')) {
@@ -168,7 +168,7 @@
 			</table>');
 
 $buffer = implode(file($fname));
-$buffer = str_replace('csd_',DB_PREFIX,$buffer); //REPLACE PREFIX
+$buffer = str_replace('emkt_',DB_PREFIX,$buffer); //REPLACE PREFIX
 
 $DB->exec($buffer);
 //END IMPORT DB
@@ -177,7 +177,7 @@ $DB->exec($buffer);
 $pasadm = hash(HASH_METHOD, $pasadm);
 
 	if(isset($_POST['login_admin']) and isset($_POST['password_admin'])){
-		$DB->exec("INSERT INTO ".TABLE_ADMINISTRATORS." (login, password, permission, language) VALUES ('$logadm','$pasadm','admin','$lng')");
+		$DB->exec("INSERT INTO ".TABLE_ADMINISTRATORS." (login, password, permission, language, note, status) VALUES ('$logadm','$pasadm','admin','$lng', '0', '0')");
 	}
 
 $DB = null;
