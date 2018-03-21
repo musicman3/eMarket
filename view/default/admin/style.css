@@ -20,6 +20,7 @@ body {background:#e4e4da;font-family: 'Open Sans', sans-serif;background-image:u
 .login-box {width: 200px;height: 136px;position: absolute;margin-top: -68px;top: 50%;left: 70%;padding: 15px;text-align: center}
 .login-box .btn, .login-box .btn a:active {border: 1px solid #000;color:#fff;background: none;}
 #login .alert-danger {position: absolute;top: 10%;}
+@media screen and (max-height:420px) and (orientation:landscape) {.navbar-fixed-top {position: absolute;}body {padding-top:60px;}}
 .navbar-right {color:#ffffff;margin-right:5px;}
 .navbar {min-height: 30px;}
 .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {color:#ffffff;}
