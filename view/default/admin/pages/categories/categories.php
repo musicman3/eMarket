@@ -58,7 +58,7 @@
 		
 		 <tr>
 		   <?php if($lines[$i][8] == 0){ ?>
-			<form><td align="left"><button name="parrent" value="<?php echo $lines[$i][0] ?>" class="danger" title="<?php echo $lines[$i][1] ?>" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-folder-open"> </span></button> <?php echo $lines[$i][1] ?></td></form>	  
+			<form><td align="left"><button name="parrent" value="<?php echo $lines[$i][0] ?>" class="btn btn-default btn-xs" title="<?php echo $lines[$i][1] ?>" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-folder-open"> </span></button> <?php echo $lines[$i][1] ?></td></form>	  
 		   <?php }else{ ?>
 			<form><td align="left"><button name="parrent" value="<?php echo $lines[$i][0] ?>" class="btn btn-primary btn-xs" title="<?php echo $lines[$i][1] ?>" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-folder-open"> </span></button> <?php echo $lines[$i][1] ?></td></form>
 		   <?php } ?>
