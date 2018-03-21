@@ -22,7 +22,7 @@ CREATE TABLE emkt_categories (
 	image varchar(255),
 	language varchar(64),
 	parent_id int DEFAULT '0' NOT NULL,
-	sort_category int,
+	sort_category int DEFAULT '0' NOT NULL,
 	date_added datetime,
 	last_modified datetime,
 	status int,
