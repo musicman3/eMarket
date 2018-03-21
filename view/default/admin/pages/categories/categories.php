@@ -12,7 +12,7 @@
    <div class="panel-heading">
 	<h3 class="panel-title">
 	 <div class="pull-left"><?php echo $lang['menu_categories'] ?></div>
-	 <form name="category_add" action="/controller/admin/pages/categories/categories_add.php" method="post"><div class="category-add"><button type="submit" name="category_add" value="<?php echo $parrent_id ?>" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus"></span> <?php echo $lang['button_add'] ?></button></div></form>
+	 <form name="category_add" action="/controller/admin/pages/categories/categories_add.php" method="post"><div class="add"><button type="submit" name="category_add" value="<?php echo $parrent_id ?>" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus"></span> <?php echo $lang['button_add'] ?></button></div></form>
 	 <div class="clearfix"></div>
 	</h3>
    </div>
