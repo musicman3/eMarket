@@ -37,7 +37,7 @@
 							<input class="input-sm form-control" type="text" name="sort_category" id="sort_category" />
 						</div>
 						<div class="form-group">
-							<input class="check-box" type="checkbox" name="view" checked>
+							<input class="check-box" type="checkbox" name="view_cat" checked>
 							<label for="view_category"> Отображать</label> 
 						</div>
 					</fieldset>

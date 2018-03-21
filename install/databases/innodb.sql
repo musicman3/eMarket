@@ -11,7 +11,7 @@ CREATE TABLE emkt_administrators (
 	language varchar(64) NOT NULL,
 	permission varchar(20) NOT NULL,
 	note varchar(256),
-	status int,
+	status int DEFAULT '0' NOT NULL,
 PRIMARY KEY (id))
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
