@@ -12,7 +12,7 @@
 			<div class="panel-heading">
 				<h3 class="panel-title">
 				      <div class="pull-left"><?php echo $lang['menu_categories'] ?></div>
-				      <div class="category-add"><button type="button" name="category_add" class="btn btn-success btn-xs" onclick="document.location.href='/controller/admin/pages/categories/categories_add.php'"><span class="glyphicon glyphicon-plus"></span> <?php echo $lang['button_add'] ?></button></div>
+				      <form name="category_add" action="/controller/admin/pages/categories/categories_add.php" method="post"><div class="category-add"><button type="submit" name="category_add" value="<?php echo $parrent_id ?>" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus"></span> <?php echo $lang['button_add'] ?></button></div></form>
 				      <div class="clearfix"></div>
 				</h3>
 			</div>
@@ -25,7 +25,6 @@
 			<th>
 			<div class="log-page"><?php echo $lang['s'] ?> <?php echo $i+1 ?> <?php echo $lang['po'] ?> <?php echo $lines_p ?> ( <?php echo $lang['iz'] ?> <?php echo $counter; ?> )</div>
 			</th>
-			
 			<th>
   <form>
    <input hidden name="i" value="<?php echo $i ?>">
@@ -58,14 +57,12 @@
 <?php	for ($i; $i < $lines_p; $i++) { ?>
 		
 				 <tr>
-				 <td align="left"><?php echo $lines[$i][1] ?></td>
+				 <form><td align="left"><button name="parrent" value="<?php echo $lines[$i][0] ?>" class="btn btn-primary btn-xs" title="<?php echo $lines[$i][1] ?>" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-folder-open"> </span></button> <?php echo $lines[$i][1] ?></td></form>
 				 <td align="right">
 				 <div class="log-right"><input class="check-box" type="checkbox" value=""></div>
-				 <div class="log-left"><form><button class="btn btn-primary btn-xs" title="<?php echo $lang['button_delete'] ?>" name="cat_delete" value="<?php echo $lines[$i][0] ?>" action="/controller/admin/pages/categories/categories.php" formmethod="post"></form><span class="glyphicon glyphicon-trash"> </span></button></div>
+				 <form><div class="log-left"><button class="btn btn-primary btn-xs" title="<?php echo $lang['button_delete'] ?>" name="cat_delete" value="<?php echo $lines[$i][0] ?>" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-trash"> </span></button></div></form>
 				 <div class="log-left"><button class="btn btn-primary btn-xs" title="<?php echo $lang['button_move'] ?>" action="" formmethod="post"><span class="glyphicon glyphicon-transfer"> </span></button></div>
 				 <div class="log-left"><button class="btn btn-primary btn-xs" title="<?php echo $lang['button_edit'] ?>" action="" formmethod="post"><span class="glyphicon glyphicon-list-alt"> </span></button></div>
-				 <div class="log-left"><button class="btn btn-primary btn-xs" title="Вверх" action="" formmethod="post"><span class="glyphicon glyphicon-arrow-up"> </span></button></div>
-				 <div class="log-left"><button class="btn btn-primary btn-xs" title="Вниз" action="" formmethod="post"><span class="glyphicon glyphicon-arrow-down"> </span></button></div>
 				 </td>
 				 </tr> 
 			<?php }
