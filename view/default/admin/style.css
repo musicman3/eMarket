@@ -38,3 +38,4 @@ body {background:#e4e4da;font-family: 'Open Sans', sans-serif;background-image:u
 #category .category-add {display: inline-block;float: right; padding-right:10px;}
 #category .check-box {vertical-align: middle;margin-top: 0;}
 #category_add .form-control {width: auto;}
+input[type="checkbox"], input[type="radio"] {vertical-align: text-bottom;}
