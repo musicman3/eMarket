@@ -18,10 +18,12 @@
 	}
 
 	// Если нажали на кнопку Добавить
-	if(isset($_POST['name']) == TRUE && isset($_POST['sort_category']) == TRUE && isset($_POST['parent_id']) == TRUE && isset($_POST['view_cat']) == TRUE){
+	if(isset($_POST['name']) == TRUE && isset($_POST['sort_category']) == TRUE && isset($_POST['parent_id']) == TRUE){
 		$parrent_id = $_POST['parent_id'];
-		if(($_POST['view_cat']) == 'on');{
+		if(isset($_POST['view_cat']) == 'on'){
 			$view_cat = 1;
+		}else{
+			$view_cat = 0;
 		}
 		// добавляем запись
 		$PDO->insertPrepare("INSERT INTO ".TABLE_CATEGORIES." SET name=?, sort_category=?, parent_id=?, date_added=?, status=?", array($_POST['name'], $_POST['sort_category'], $parrent_id, date("Y-m-d H:i:s"), $view_cat));
