@@ -9,17 +9,22 @@
 	/********  CONNECT PAGE START  ********/
 	require_once($_SERVER['DOCUMENT_ROOT'].'/model/connect_page_start.php');
 	/**************************************/
+
+	$parent_id = 0; // Устанавливаем родительскую категорию при первом заходе
 	
-	// Устанавливаем родительскую категорию
-	if(isset($_POST['parrent']) == TRUE){
-		$parrent_id = $_POST['parrent'];
-	}else{
-		$parrent_id = 0;
+	// Устанавливаем родительскую категорию при переходе на уровень выше
+	if(isset($_POST['parent_up']) == TRUE){
+		$parent_id = $PDO->selectPrepare("SELECT parent_id FROM ".TABLE_CATEGORIES." WHERE id=?", array($_POST['parent_up']));
+	}
+
+	// Устанавливаем родительскую категорию при переходе на уровень ниже
+	if(isset($_POST['parent_down']) == TRUE){
+		$parent_id = $_POST['parent_down'];
 	}
 
 	// Если нажали на кнопку Добавить
 	if(isset($_POST['name']) == TRUE && isset($_POST['parent_id']) == TRUE){
-		$parrent_id = $_POST['parent_id'];
+		$parent_id = $_POST['parent_id'];
 		
 		if(isset($_POST['view_cat']) == 'on'){
 			$view_cat = 1;
@@ -33,7 +38,7 @@
 			$sort_category = $_POST['sort_category'];
 		}
 		// добавляем запись
-		$PDO->insertPrepare("INSERT INTO ".TABLE_CATEGORIES." SET name=?, sort_category=?, parent_id=?, date_added=?, status=?", array($_POST['name'], $sort_category, $parrent_id, date("Y-m-d H:i:s"), $view_cat));
+		$PDO->insertPrepare("INSERT INTO ".TABLE_CATEGORIES." SET name=?, sort_category=?, parent_id=?, date_added=?, status=?", array($_POST['name'], $sort_category, $parent_id, date("Y-m-d H:i:s"), $view_cat));
 	}
 
 	// Если нажали на кнопку Удалить
@@ -48,7 +53,7 @@
 	$i = 0;	// устанавливаем страницу в ноль при заходе
 	$lines_p = $lines_page;
 
-	$lines = $PDO->getColRow("SELECT * FROM ".TABLE_CATEGORIES." WHERE parent_id=?", array ($parrent_id)); // получаем содержимое в виде массива
+	$lines = $PDO->getColRow("SELECT * FROM ".TABLE_CATEGORIES." WHERE parent_id=?", array ($parent_id)); // получаем содержимое в виде массива
 	$lines = array_reverse($lines); // сортируем в обратном порядке
 	$counter = count($lines);  //считаем количество строк
 
