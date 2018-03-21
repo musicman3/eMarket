@@ -53,7 +53,7 @@
 				</ul>
 			</li>
 	<?php } ?>
-      </ul>
+      </ul><span class="visible-xs"></br></br></br></br></br></span>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
