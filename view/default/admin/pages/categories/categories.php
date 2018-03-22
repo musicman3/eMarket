@@ -46,7 +46,7 @@
 		<th align="left">Групповые действия</th>
 		<th align="right">
 		 <div class="log-right"><input class="check-box" type="checkbox" value=""></div>
-		 <form><input hidden name="log_delete" value="delete"><div class="log-left"><button type="submit" name="cat_delete_batch" class="btn btn-primary btn-xs" title="<?php echo $lang['button_delete'] ?>" action="" formmethod="post"><span class="glyphicon glyphicon-trash"> </span></button></div></form>
+		 <form><input hidden name="log_delete" value="delete"><div class="log-left"><button type="submit" name="cat_delete_batch" class="btn btn-primary btn-xs" data-toggle="confirmation" title="<?php echo $lang['button_delete'] ?>" action="" formmethod="post"><span class="glyphicon glyphicon-trash"> </span></button></div></form>
 		 <div class="log-left"><button class="btn btn-primary btn-xs" title="<?php echo $lang['button_move'] ?>" action="" formmethod="post"><span class="glyphicon glyphicon-transfer"> </span></button></div>
 			
 		</th>
@@ -58,7 +58,7 @@
 	   if ($parent_up > 0) { ?>
 
 	   <tr>
-	   <td colspan="2" align="left"><form><div><button name="parent_up" value="<?php echo $parent_up ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/categories/categories.php" formmethod="post">...</button></div></form></td>
+	   <td colspan="2" align="left"><form><div><button name="parent_up" value="<?php echo $parent_up ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/categories/categories.php" formmethod="post">....</button></div></form></td>
 	   </tr>
 		 
 	   <?php } for ($i; $i < $lines_p; $i++) { ?>
@@ -71,7 +71,7 @@
 		<?php } ?>
 		<td align="right">
 		 <div class="log-right"><input class="check-box" type="checkbox" value=""></div>
-		 <form><div class="log-left"><button class="btn btn-primary btn-xs" title="<?php echo $lang['button_delete'] ?>" name="cat_delete" value="<?php echo $lines[$i][0] ?>" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-trash"> </span></button></div></form>
+		 <form><div class="log-left"><button class="btn btn-primary btn-xs" data-toggle="confirmation" title="<?php echo $lang['button_delete'] ?>" name="cat_delete" value="<?php echo $lines[$i][0] ?>" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-trash"> </span></button></div></form>
 		 <div class="log-left"><button class="btn btn-primary btn-xs" title="<?php echo $lang['button_move'] ?>" action="" formmethod="post"><span class="glyphicon glyphicon-transfer"> </span></button></div>
 		 <div class="log-left"><button class="btn btn-primary btn-xs" title="<?php echo $lang['button_edit'] ?>" action="" formmethod="post"><span class="glyphicon glyphicon-list-alt"> </span></button></div>
 		</td>
