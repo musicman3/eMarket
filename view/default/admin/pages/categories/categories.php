@@ -57,15 +57,17 @@
 	   <?php $parent_up = $lines[0][4];
 	   if ($parent_up > 0) { ?>
 
-	   <form><td align="left"><button name="parent_up" value="<?php echo $parent_up ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-folder-open">...</span></button> </td></form>
+	   <tr>
+	   <form><td colspan="2" align="left"><button name="parent_up" value="<?php echo $parent_up ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-level-up"></span></button> </td></form>
+	   </tr>
 		 
 	   <?php } for ($i; $i < $lines_p; $i++) { ?>
 		
 	   <tr>
 		<?php if($lines[$i][8] == 0){ ?>
-		<form><td align="left"><button name="parent_down" value="<?php echo $lines[$i][0] ?>" class="btn btn-default btn-xs" title="<?php echo $lines[$i][1] ?>" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-folder-open"> </span></button> <?php echo $lines[$i][1] ?></td></form>	  
+		<td align="left"><form><div><button name="parent_down" value="<?php echo $lines[$i][0] ?>" class="btn btn-default btn-xs" title="<?php echo $lines[$i][1] ?>" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-folder-open"> </span></button> <?php echo $lines[$i][1] ?></form></div></td>	  
 		<?php }else{ ?>
-		<form><td align="left"><button name="parent_down" value="<?php echo $lines[$i][0] ?>" class="btn btn-primary btn-xs" title="<?php echo $lines[$i][1] ?>" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-folder-open"> </span></button> <?php echo $lines[$i][1] ?></td></form>
+		<td align="left"><form><div><button name="parent_down" value="<?php echo $lines[$i][0] ?>" class="btn btn-primary btn-xs" title="<?php echo $lines[$i][1] ?>" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-folder-open"> </span></button> <?php echo $lines[$i][1] ?></form></div></td>
 		<?php } ?>
 		<td align="right">
 		 <div class="log-right"><input class="check-box" type="checkbox" value=""></div>
@@ -83,14 +85,22 @@
 	</div>
    </div>
 
-   <?php } else { 
-   if (isset($_POST['parent_down']) > 0) { ?>
+   <?php } elseif ($lines == false && isset($_POST['parent_down']) > 0) { ?>
 
-   <div class="panel-body"><?php echo $lang['no_cat'] ?></div>
-   <form><td align="left"><button name="parent_up" value="<?php echo $_POST['parent_down'] ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-folder-open">...</span></button> </td></form>
-
-   <?php } } ?>
-
+<div class="panel-body"><?php echo $lang['no_cat'] ?>
+   	 <div class="table-responsive">
+	 <table class="table">
+		<tbody>
+	   <tr>
+	   <td colspan="2" align="left"><form><div><button name="parent_up" value="<?php echo $_POST['parent_down'] ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-level-up"></span></button></form></div></td>
+	   </tr>
+		</tbody>
+	</table>
+	</div>
+</div>
+   <?php } else { ?>
+<div class="panel-body"><?php echo $lang['no_cat'] ?></div>
+   <?php } ?>
   </div>
  </div>
 </div>
