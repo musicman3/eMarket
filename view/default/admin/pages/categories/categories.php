@@ -58,16 +58,16 @@
 	   if ($parent_up > 0) { ?>
 
 	   <tr>
-	   <form><td colspan="2" align="left"><button name="parent_up" value="<?php echo $parent_up ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-level-up"></span></button> </td></form>
+	   <td colspan="2" align="left"><form><div><button name="parent_up" value="<?php echo $parent_up ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-level-up"></span></button></div></form></td>
 	   </tr>
 		 
 	   <?php } for ($i; $i < $lines_p; $i++) { ?>
 		
 	   <tr>
 		<?php if($lines[$i][8] == 0){ ?>
-		<td align="left"><form><div><button name="parent_down" value="<?php echo $lines[$i][0] ?>" class="btn btn-default btn-xs" title="<?php echo $lines[$i][1] ?>" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-folder-open"> </span></button> <?php echo $lines[$i][1] ?></form></div></td>	  
+		<td align="left"><form><div><button name="parent_down" value="<?php echo $lines[$i][0] ?>" class="btn btn-default btn-xs" title="<?php echo $lines[$i][1] ?>" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-folder-open"> </span></button> <?php echo $lines[$i][1] ?></div></form></td>	  
 		<?php }else{ ?>
-		<td align="left"><form><div><button name="parent_down" value="<?php echo $lines[$i][0] ?>" class="btn btn-primary btn-xs" title="<?php echo $lines[$i][1] ?>" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-folder-open"> </span></button> <?php echo $lines[$i][1] ?></form></div></td>
+		<td align="left"><form><div><button name="parent_down" value="<?php echo $lines[$i][0] ?>" class="btn btn-primary btn-xs" title="<?php echo $lines[$i][1] ?>" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-folder-open"> </span></button> <?php echo $lines[$i][1] ?></div></form></td>
 		<?php } ?>
 		<td align="right">
 		 <div class="log-right"><input class="check-box" type="checkbox" value=""></div>
@@ -92,7 +92,7 @@
 	 <table class="table">
 		<tbody>
 	   <tr>
-	   <td colspan="2" align="left"><form><div><button name="parent_up" value="<?php echo $_POST['parent_down'] ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-level-up"></span></button></form></div></td>
+	   <td colspan="2" align="left"><form><div><button name="parent_up" value="<?php echo $_POST['parent_down'] ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-level-up"></span></button></div></form></td>
 	   </tr>
 		</tbody>
 	</table>
