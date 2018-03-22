@@ -24,6 +24,7 @@
 
 	// Если нажали на кнопку Добавить
 	if(isset($_POST['name']) == TRUE && isset($_POST['parent_id']) == TRUE){
+		// Устанавливаем родительскую категорию
 		$parent_id = $_POST['parent_id'];
 		
 		if(isset($_POST['view_cat']) == 'on'){
@@ -43,10 +44,6 @@
 
 	// Если нажали на кнопку Удалить
 	if(isset($_POST['cat_delete']) == TRUE){
-	
-		//Выбираем данные из БД
-		$data_cat = $DB->prepare("SELECT id, parent_id FROM ".TABLE_CATEGORIES);
-		$data_cat->execute();
 
 		// Устанавливаем родительскую категорию
 		$parent_id = $PDO->selectPrepare("SELECT parent_id FROM ".TABLE_CATEGORIES." WHERE id=?", array($_POST['cat_delete']));
@@ -54,25 +51,29 @@
 		$parent_id_up = $PDO->selectPrepare("SELECT parent_id FROM ".TABLE_CATEGORIES." WHERE id=?", array($parent_id));
 		// считаем одинаковые parent_id
 		$parent_id_num = $PDO->getColRow("SELECT id FROM ".TABLE_CATEGORIES." WHERE parent_id=?", array($parent_id));
-		//Если меньше 2-х значений, то устанавливаем parent_id как родительский родительского
+		// если меньше 2-х значений, то устанавливаем parent_id как родительский родительского
 		if(count($parent_id_num) < 2 ){
 			$parent_id = $parent_id_up;
 		}
+	
+		//Выбираем данные из БД
+		$data_cat = $DB->prepare("SELECT id, parent_id FROM ".TABLE_CATEGORIES);
+		$data_cat->execute();
 
 		$category = $_POST['cat_delete']; // id родителя
-		$categories  = array(); //
-		$keys = array(); // здесь будет массив ключей
+		$categories  = array();
+		$keys = array(); // массив ключей
 		$keys[] = $category; // добавляем первый ключ в массив
 
-		//В цикле формируем ассоциативный массив разделов
+		// В цикле формируем ассоциативный массив разделов
 		while($category =  $data_cat->fetch(PDO::FETCH_ASSOC)){
-			// Проверяем наличие ID категории в массиве ключей
+			// Проверяем наличие id категории в массиве ключей
 			if (in_array($category['parent_id'], $keys)) {
 				$categories[$category['parent_id']][] = $category['id'];
 				$keys[] = $category['id']; // расширяем массив
 			}
 		}
-		
+
 		for ($x = 0; $x < count($keys); $x++){
 			//Удаляем подкатегории
 			$PDO->insertPrepare("DELETE FROM ".TABLE_CATEGORIES." WHERE id=?", array($keys[$x]));
@@ -81,7 +82,7 @@
 		$PDO->insertPrepare("DELETE FROM ".TABLE_CATEGORIES." WHERE id=?", array($_POST['cat_delete']));
 	}
 
-	//КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
+	// КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 	$lines = array();
 	$lines_page = 20; // задаем количество строк на странице вывода
 	$i = 0;	// устанавливаем страницу в ноль при заходе
@@ -119,7 +120,7 @@
 		}
 	}
 	
-	//КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
+	// КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 
 	/*********  CONNECT PAGE END  *********/
 	require_once($_SERVER['DOCUMENT_ROOT'].'/model/connect_page_end.php');
