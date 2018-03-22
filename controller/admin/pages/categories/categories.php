@@ -43,7 +43,30 @@
 
 	// Если нажали на кнопку Удалить
 	if(isset($_POST['cat_delete']) == TRUE){
-		// удаляем запись
+	
+		//Выбираем данные из БД
+		$data_cat = $DB->prepare("SELECT id, parent_id FROM ".TABLE_CATEGORIES);
+		$data_cat->execute();
+
+		$category = $_POST['cat_delete']; // id родителя
+		$categories  = array(); //
+		$keys = array(); // здесь будет массив ключей
+		$keys[] = $category; // добавляем первый ключ в массив
+
+		//В цикле формируем ассоциативный массив разделов
+		while($category =  $data_cat->fetch(PDO::FETCH_ASSOC)){
+			// Проверяем наличие ID категории в массиве ключей
+			if (in_array($category['parent_id'], $keys)) {
+				$categories[$category['parent_id']][] = $category['id'];
+				$keys[] = $category['id']; // расширяем массив
+			}
+		}
+
+		for ($x = 0; $x < count($keys); $x++){
+			//Удаляем подкатегории
+			$PDO->insertPrepare("DELETE FROM ".TABLE_CATEGORIES." WHERE id=?", array($keys[$x]));
+		}
+		//удаляем основную категорию
 		$PDO->insertPrepare("DELETE FROM ".TABLE_CATEGORIES." WHERE id=?", array($_POST['cat_delete']));
 	}
 
