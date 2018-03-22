@@ -92,7 +92,7 @@
 	 <table class="table">
 		<tbody>
 	   <tr>
-	   <td colspan="2" align="left"><form><div><button name="parent_up" value="<?php echo $_POST['parent_down'] ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/categories/categories.php" formmethod="post">...</button></div></form></td>
+	   <td colspan="2" align="left"><form><div><button name="parent_up" value="<?php echo $_POST['parent_down'] ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/categories/categories.php" formmethod="post">....</button></div></form></td>
 	   </tr>
 		</tbody>
 	</table>

@@ -13,6 +13,7 @@ title_admin = Панель администратора
 title_login = Страница авторизации
 title_error_log = Лог ошибок
 title_categories = Категории
+title_categories_add = Категории
 
 
 login_error = Пароль или логин ошибочные
