@@ -87,7 +87,7 @@
 
    <?php } elseif ($lines == false && isset($_POST['parent_down']) > 0) { ?>
 
-<div class="panel-body"><?php echo $lang['no_cat'] ?>
+<div class="panel-body"><p><?php echo $lang['no_cat'] ?></p>
    	 <div class="table-responsive">
 	 <table class="table">
 		<tbody>
