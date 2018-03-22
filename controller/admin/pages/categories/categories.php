@@ -48,6 +48,17 @@
 		$data_cat = $DB->prepare("SELECT id, parent_id FROM ".TABLE_CATEGORIES);
 		$data_cat->execute();
 
+		// Устанавливаем родительскую категорию
+		$parent_id = $PDO->selectPrepare("SELECT parent_id FROM ".TABLE_CATEGORIES." WHERE id=?", array($_POST['cat_delete']));
+		// Устанавливаем родительскую категорию родительской категории
+		$parent_id_up = $PDO->selectPrepare("SELECT parent_id FROM ".TABLE_CATEGORIES." WHERE id=?", array($parent_id));
+		// считаем одинаковые parent_id
+		$parent_id_num = $PDO->getColRow("SELECT id FROM ".TABLE_CATEGORIES." WHERE parent_id=?", array($parent_id));
+		//Если меньше 2-х значений, то устанавливаем parent_id как родительский родительского
+		if(count($parent_id_num) < 2 ){
+			$parent_id = $parent_id_up;
+		}
+
 		$category = $_POST['cat_delete']; // id родителя
 		$categories  = array(); //
 		$keys = array(); // здесь будет массив ключей
@@ -61,7 +72,7 @@
 				$keys[] = $category['id']; // расширяем массив
 			}
 		}
-
+		
 		for ($x = 0; $x < count($keys); $x++){
 			//Удаляем подкатегории
 			$PDO->insertPrepare("DELETE FROM ".TABLE_CATEGORIES." WHERE id=?", array($keys[$x]));
