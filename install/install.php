@@ -126,7 +126,6 @@ echo '
 			<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
 			<script type="text/javascript" src="../ext/jquery/jquery.min.js"></script>
 			<script type="text/javascript" src="../ext/bootstrap/js/bootstrap.min.js"></script>
-			<script type="text/javascript" src="../ext/bootstrap/js/menu.js"></script>
 ';
 		exit;
 	}
@@ -175,7 +174,6 @@ echo '
 			<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
 			<script type="text/javascript" src="../ext/jquery/jquery.min.js"></script>
 			<script type="text/javascript" src="../ext/bootstrap/js/bootstrap.min.js"></script>
-			<script type="text/javascript" src="../ext/bootstrap/js/menu.js"></script>
 	<?php
 		exit();
 		}
@@ -223,7 +221,6 @@ echo '
 			<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
 			<script type="text/javascript" src="../ext/jquery/jquery.min.js"></script>
 			<script type="text/javascript" src="../ext/bootstrap/js/bootstrap.min.js"></script>
-			<script type="text/javascript" src="../ext/bootstrap/js/menu.js"></script>
 ');
 
 $buffer = implode(file($fname));
@@ -308,6 +305,5 @@ fclose($fp);
 			<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
 			<script type="text/javascript" src="../ext/jquery/jquery.min.js"></script>
 			<script type="text/javascript" src="../ext/bootstrap/js/bootstrap.min.js"></script>
-			<script type="text/javascript" src="../ext/bootstrap/js/menu.js"></script>
 	</body>
 </html>
