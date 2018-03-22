@@ -53,9 +53,11 @@
 
 		if (strrpos ($lines[$i], 'PHP Notice:') == true ){ ?><tr class="success"><td colspan="2"><?php echo $lines[$i].'</td></tr>'; ?><?php }elseif
 
-		(strrpos ($lines[$i], 'PHP Warning:') == true ){ ?><tr class="danger"><td colspan="2"><?php echo $lines[$i].'</td></tr>'; ?><?php }elseif
+		(strrpos ($lines[$i], 'PHP Warning:') == true ){ ?><tr class="warning"><td colspan="2"><?php echo $lines[$i].'</td></tr>'; ?><?php }elseif
 
-		(strrpos ($lines[$i], 'PHP Fatal error:') == true ){ ?><tr class="warning"><td colspan="2"><?php echo $lines[$i].'</td></tr>'; ?><?php }elseif
+		(strrpos ($lines[$i], 'PHP Catchable fatal error:') == true ){ ?><tr class="danger"><td colspan="2"><?php echo $lines[$i].'</td></tr>'; ?><?php }elseif
+
+		(strrpos ($lines[$i], 'PHP Fatal error:') == true ){ ?><tr class="danger"><td colspan="2"><?php echo $lines[$i].'</td></tr>'; ?><?php }elseif
 			
 			(strrpos ($lines[$i], 'PHP Parse error:') == true ){ ?><tr class="info"><td colspan="2"><?php echo $lines[$i].'</td></tr>'; ?><?php }else
 			
