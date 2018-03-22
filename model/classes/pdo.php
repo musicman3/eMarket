@@ -90,12 +90,12 @@
 	        )
 	)
 
-	Если применить в запросе $PDO->getColRow("SELECT id, language FROM table"), то выдаст таблицу из указанных колонок в массиве.
+	Если применить в запросе $PDO->getColRow("SELECT id, language FROM table", array()), то выдаст таблицу из указанных колонок в массиве.
 
 	Если применить в запросе $PDO->getColRow("SELECT id, language FROM table WHERE language=?", array ('russian')), то выдаст таблицу из id
 	и language, удовлетворяющих требованию language='russian'.
 
-	Если применить в запросе $PDO->getColRow("SELECT * FROM table"), то выдаст всю таблицу в массиве.
+	Если применить в запросе $PDO->getColRow("SELECT * FROM table", array()), то выдаст всю таблицу в массиве.
 	*/
 
 

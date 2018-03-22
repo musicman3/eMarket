@@ -58,7 +58,7 @@
 	   if ($parent_up > 0) { ?>
 
 	   <tr>
-	   <td colspan="2" align="left"><form><div><button name="parent_up" value="<?php echo $parent_up ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-level-up"></span></button></div></form></td>
+	   <td colspan="2" align="left"><form><div><button name="parent_up" value="<?php echo $parent_up ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/categories/categories.php" formmethod="post">...</button></div></form></td>
 	   </tr>
 		 
 	   <?php } for ($i; $i < $lines_p; $i++) { ?>
@@ -92,7 +92,7 @@
 	 <table class="table">
 		<tbody>
 	   <tr>
-	   <td colspan="2" align="left"><form><div><button name="parent_up" value="<?php echo $_POST['parent_down'] ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-level-up"></span></button></div></form></td>
+	   <td colspan="2" align="left"><form><div><button name="parent_up" value="<?php echo $_POST['parent_down'] ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/categories/categories.php" formmethod="post">...</button></div></form></td>
 	   </tr>
 		</tbody>
 	</table>
