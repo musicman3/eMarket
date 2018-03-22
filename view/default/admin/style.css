@@ -40,3 +40,4 @@ body {background:#e4e4da;font-family: 'Open Sans', sans-serif;background-image:u
 #category .check-box {vertical-align: middle;margin-top: 0;}
 #category_add .form-control {width: auto;}
 input[type="checkbox"], input[type="radio"] {vertical-align: text-bottom;}
+.popover-title {text-align:center;padding:5px 0 5px 0;}
