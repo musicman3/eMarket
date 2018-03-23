@@ -19,7 +19,7 @@
    <?php if ($lines == true) { ?>
    <div class="panel-body">
 	<div class="table-responsive">
-	 <table class="table">
+	 <table class="table table-hover">
 	  <thead>
 	   <tr>
 		<th>
@@ -57,7 +57,7 @@
 	   <?php $parent_up = $lines[0][4];
 	   if ($parent_up > 0) { ?>
 
-	   <tr>
+	   <tr style="background:none;">
 	   <td colspan="2" align="left"><form><div><button name="parent_up" value="<?php echo $parent_up ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/categories/categories.php" formmethod="post">....</button></div></form></td>
 	   </tr>
 		 
