@@ -93,6 +93,11 @@
 		$parent_id = 0;
 	}
 
+	// Устанавливаем родительскую категорию при навигации влево-вправо
+	if(isset($_POST['parent_id_temp']) == TRUE){
+		$parent_id = $_POST['parent_id_temp'];
+	}
+
 	$lines = $PDO->getColRow("SELECT * FROM ".TABLE_CATEGORIES." WHERE parent_id=?", array ($parent_id)); // получаем содержимое в виде массива
 	$lines = array_reverse($lines); // сортируем в обратном порядке
 	$counter = count($lines);  //считаем количество строк
