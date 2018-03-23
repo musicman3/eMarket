@@ -24,14 +24,14 @@ body {background:#e4e4da;font-family: 'Open Sans', sans-serif;background-image:u
 .navbar-right {color:#ffffff;margin-right:5px;}
 .navbar {min-height: 30px;}
 .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {color:#ffffff;}
-.navbar-inverse .navbar-nav > li > a {color:#ffffff;}
+.navbar-inverse .navbar-nav>li> a {color:#ffffff;}
 .dropdown-menu {background:#000000;}
-.dropdown-menu > ul {margin-top:5px;}
-.dropdown-menu > li > a {color:#ffffff;padding: 3px 5px;}
-.dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover {background:#505050;color:#ffffff;}
-.nav > li > a {padding: 5px;}
-.navbar-nav > li > .dropdown-menu {margin-top: -5px;}
-.nav .open > a, .nav .open > a:focus, .nav .open > a:hover {background:#505050;color:#ffffff;}
+.dropdown-menu>ul {margin-top:5px;}
+.dropdown-menu>li>a {color:#ffffff;padding: 3px 5px;}
+.dropdown-menu>li>a:focus, .dropdown-menu > li > a:hover {background:#505050;color:#ffffff;}
+.nav>li>a {padding: 5px;}
+.navbar-nav>li>.dropdown-menu {margin-top: -5px;}
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {background:#505050;color:#ffffff;}
 .table {margin-bottom:0px;}
 .panel-heading {font-weight:bold;}
 .log-right {display: inline-block;float: right;}
@@ -41,3 +41,4 @@ body {background:#e4e4da;font-family: 'Open Sans', sans-serif;background-image:u
 #category_add .form-control {width: auto;}
 input[type="checkbox"], input[type="radio"] {vertical-align: text-bottom;}
 .popover-title {text-align:center;padding:5px 0 5px 0;}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {padding:5px;}
