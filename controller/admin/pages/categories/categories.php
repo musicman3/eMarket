@@ -87,6 +87,11 @@
 	$lines_page = 20; // задаем количество строк на странице вывода
 	$i = 0;	// устанавливаем страницу в ноль при заходе
 	$lines_p = $lines_page;
+	
+	// Если parrent_id является массивом, то
+	if (is_array($parent_id) == TRUE){
+		$parent_id = 0;
+	}
 
 	$lines = $PDO->getColRow("SELECT * FROM ".TABLE_CATEGORIES." WHERE parent_id=?", array ($parent_id)); // получаем содержимое в виде массива
 	$lines = array_reverse($lines); // сортируем в обратном порядке
