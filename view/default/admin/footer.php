@@ -22,3 +22,26 @@
     </div><!-- /footerwrap -->
     
 <?php } ?>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#my-list").sortable({
+        items: 'tr',
+        handle: 'td',
+        stop: function(event,ui){ sortList(); }
+    });
+});
+</script>
+
+<script type="text/javascript">
+function sortList(){
+    var ids = [];
+    $("#my-list tr").each(function(){ ids[ids.length] = $(this).attr('unitid'); });
+    $.ajax({
+        type: 'POST',
+        dataType: 'text',
+        url: 'listsorter.php',
+        data: ({ ids: ids.join() })
+    });
+}
+</script>
