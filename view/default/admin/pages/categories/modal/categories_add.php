@@ -27,10 +27,6 @@
 			 <input type="file" name="image" id="image" /> Макс.: 100M
 			</div>
 			<div class="form-group">
-			 <label for="sort_category">Сортировать:</label></br>
-			 <input class="input-sm form-control" type="text" name="sort_category" id="sort_category" />
-			</div>
-			<div class="form-group">
 			 <label for="view_category">Отображать </label>
 			 <input class="check-box" type="checkbox" name="view_cat" checked>
 			</div>
