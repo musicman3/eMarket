@@ -32,7 +32,7 @@
             cursor: "move",
             axis: "y",
             over: function(event, ui) {
-            ui.helper.css("background-color", "#DDDDDD")
+            ui.helper.css("background-color", "#F5F5F5")
 	    },
 	    beforeStop: function(event, ui) {
             ui.helper.css("background-color", "#ffffff")

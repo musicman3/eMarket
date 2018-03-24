@@ -42,3 +42,4 @@ body {background:#e4e4da;font-family: 'Open Sans', sans-serif;background-image:u
 input[type="checkbox"], input[type="radio"] {vertical-align: text-bottom;}
 .popover-title {text-align:center;padding:5px 0 5px 0;}
 .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {padding:5px;}
+#sort-list>tr {cursor:move;}

@@ -19,7 +19,7 @@
 	<?php if ($lines == TRUE) { ?>
 	<div class="panel-body">
 	 <div class="table-responsive">
-	  <table class="table table-hover">
+	  <table class="table">
 	   <thead>
 		<tr>
 		 <th>
