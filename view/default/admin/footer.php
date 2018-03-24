@@ -29,6 +29,14 @@
         $("#sort-list").sortable({
             items: 'tr',
             handle: 'td',
+            cursor: "move",
+            axis: "y",
+            over: function(event, ui) {
+            ui.helper.css("background-color", "#DDDDDD")
+	    },
+	    beforeStop: function(event, ui) {
+            ui.helper.css("background-color", "#ffffff")
+	    },
             stop: function(event,ui){ sortList(); }
         });
     });
