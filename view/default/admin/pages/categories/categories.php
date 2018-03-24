@@ -47,7 +47,7 @@
 		<tr>
 		 <th align="left">Групповые действия</th>
 		 <th align="right">
-		  <div class="log-right"><input class="check-box" type="checkbox" value=""></div>
+		  <div class="log-right"><input class="select-all check-box" type="checkbox" value=""></div>
 		  <form><input hidden name="log_delete" value="delete"><div class="log-left"><button type="submit" name="cat_delete_batch" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo $lang['confirm-yes'] ?>" data-btn-cancel-label="<?php echo $lang['confirm-no'] ?>" title="<?php echo $lang['confirm-del'] ?>" action="" formmethod="post"><span class="glyphicon glyphicon-trash"> </span></button></div></form>
 		  <div class="log-left"><button class="btn btn-primary btn-xs" title="<?php echo $lang['button_move'] ?>" action="" formmethod="post"><span class="glyphicon glyphicon-transfer"> </span></button></div>
 			
@@ -72,7 +72,7 @@
 			<td align="left"><form><div><button name="parent_down" value="<?php echo $lines[$i][0] ?>" class="btn btn-primary btn-xs" title="<?php echo $lines[$i][1] ?>" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-folder-open"> </span></button> <?php echo $lines[$i][1] ?></div></form></td>
 		   <?php } ?>
 		  <td align="right">
-		   <div class="log-right"><input class="check-box" type="checkbox" value=""></div>
+		   <div class="log-right"><input class="select-item check-box" type="checkbox" value=""></div>
 		   <form><div class="log-left"><button class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo $lang['confirm-yes'] ?>" data-btn-cancel-label="<?php echo $lang['confirm-no'] ?>" title="<?php echo $lang['confirm-del'] ?>" name="cat_delete" value="<?php echo $lines[$i][0] ?>" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-trash"> </span></button></div></form>
 		   <div class="log-left"><button class="btn btn-primary btn-xs" title="<?php echo $lang['button_move'] ?>" action="" formmethod="post"><span class="glyphicon glyphicon-transfer"> </span></button></div>
 		   <div class="log-left"><button class="btn btn-primary btn-xs" title="<?php echo $lang['button_edit'] ?>" action="" formmethod="post"><span class="glyphicon glyphicon-list-alt"> </span></button></div>
