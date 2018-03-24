@@ -21,7 +21,15 @@
         </div><!-- /container -->
     </div><!-- /footerwrap -->
     
-<?php } ?>
+<?php 
+} 
+	if (isset($j) == false){
+		$j = 0;
+	}
+	if (isset($token) == false){
+		$token = 0;
+	}
+?>
 
 <!-- /сортировка мышкой -->
 <script type="text/javascript">
@@ -32,11 +40,11 @@
             cursor: "move",
             axis: "y",
             over: function(event, ui) {
-            ui.helper.css("background-color", "#F5F5F5")
-	    },
-	    beforeStop: function(event, ui) {
-            ui.helper.css("background-color", "#ffffff")
-	    },
+				ui.helper.css("background-color", "#F5F5F5")
+			},
+			beforeStop: function(event, ui) {
+				ui.helper.css("background-color", "#ffffff")
+			},
             stop: function(event,ui){ sortList(); }
         });
     });
@@ -65,6 +73,6 @@
             $("input.select-item").each(function (index,item) {
                 item.checked = checked;
             });
-});
+		});
     });
 </script>
