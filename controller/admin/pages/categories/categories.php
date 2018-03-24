@@ -33,11 +33,8 @@
 			$view_cat = 0;
 		}
 
-		if($_POST['sort_category'] == false){
-			$sort_category = 0;
-		}else{
-			$sort_category = $_POST['sort_category'];
-		}
+		$sort_category = 0;
+
 		// добавляем запись
 		$PDO->insertPrepare("INSERT INTO ".TABLE_CATEGORIES." SET name=?, sort_category=?, parent_id=?, date_added=?, status=?", array($_POST['name'], $sort_category, $parent_id, date("Y-m-d H:i:s"), $view_cat));
 	}
