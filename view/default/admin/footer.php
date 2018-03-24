@@ -5,7 +5,7 @@
 ***************************************/
 ?>
 
-<?php 	if(isset($_SESSION['login']) && isset($_SESSION['pass'])){ // Выводим если авторизованы ?>
+    <?php 	if(isset($_SESSION['login']) && isset($_SESSION['pass'])){ // Выводим если авторизованы ?>
 
     <div id="footerwrap">
         <footer class="clearfix"></footer>
@@ -23,25 +23,24 @@
     
 <?php } ?>
 
+<!-- /сортировка мышкой -->
 <script type="text/javascript">
-$(document).ready(function(){
-    $("#my-list").sortable({
-        items: 'tr',
-        handle: 'td',
-        stop: function(event,ui){ sortList(); }
+    $(document).ready(function(){
+        $("#sort-list").sortable({
+            items: 'tr',
+            handle: 'td',
+            stop: function(event,ui){ sortList(); }
+        });
     });
-});
-</script>
 
-<script type="text/javascript">
-function sortList(){
-    var ids = [];
-    $("#my-list tr").each(function(){ ids[ids.length] = $(this).attr('unitid'); });
-    $.ajax({
-        type: 'POST',
-        dataType: 'text',
-        url: 'listsorter.php',
-        data: ({ ids: ids.join() })
-    });
-}
+    function sortList(){
+        var ids = [];
+        $("#sort-list tr").each(function(){ ids[ids.length] = $(this).attr('unitid'); });
+        $.ajax({
+            method: 'POST',
+            dataType: 'text',
+            url: '/controller/admin/pages/categories/categories.php',
+            data: ({ ids: ids.join() })
+        });
+    }
 </script>

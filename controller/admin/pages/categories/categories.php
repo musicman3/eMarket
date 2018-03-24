@@ -97,8 +97,8 @@
 	if(isset($_POST['parent_id_temp']) == TRUE){
 		$parent_id = $_POST['parent_id_temp'];
 	}
-
-	$lines = $PDO->getColRow("SELECT * FROM ".TABLE_CATEGORIES." WHERE parent_id=?", array ($parent_id)); // получаем содержимое в виде массива
+	// получаем отсортированное по sort_category содержимое в виде массива
+	$lines = $PDO->getColRow("SELECT * FROM ".TABLE_CATEGORIES." WHERE parent_id=? ORDER BY sort_category DESC", array ($parent_id));
 	$lines = array_reverse($lines); // сортируем в обратном порядке
 	$counter = count($lines);  //считаем количество строк
 
@@ -129,8 +129,15 @@
 			}
 		}
 	}
+	// КОНЕЦ-> КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 	
-	// КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
+	// если сортируем категории мышкой
+	if (isset($_POST['ids'])){
+		$sort_ajax = explode(',' , $_POST['ids']);
+		for ($ajax_i = 0; $ajax_i < count($sort_ajax); $ajax_i++) { 
+			$PDO->insertPrepare("UPDATE ".TABLE_CATEGORIES." SET sort_category=? WHERE id=?", array($ajax_i, $sort_ajax[$ajax_i]));
+		}
+	}
 
 	/*********  CONNECT PAGE END  *********/
 	require_once($_SERVER['DOCUMENT_ROOT'].'/model/connect_page_end.php');
