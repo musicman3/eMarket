@@ -43,12 +43,15 @@
 
     function sortList(){
         var ids = [];
+		var j = '<?php echo $j ?>';
         $("#sort-list tr").each(function(){ ids[ids.length] = $(this).attr('unitid'); });
         $.ajax({
             method: 'POST',
             dataType: 'text',
             url: '/controller/admin/pages/categories/categories.php',
-            data: ({ ids: ids.join() })
+            data: ({
+				j: j,
+ 			ids: ids.join() })
         });
     }
 </script>

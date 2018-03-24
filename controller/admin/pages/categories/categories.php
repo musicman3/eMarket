@@ -132,10 +132,12 @@
 	// КОНЕЦ-> КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 	
 	// если сортируем категории мышкой
+	$j = $i; //  переменная для передачи POST в javascript сортировки
 	if (isset($_POST['ids'])){
+		$j2 = $_POST['j'];
 		$sort_ajax = explode(',' , $_POST['ids']);
 		for ($ajax_i = 0; $ajax_i < count($sort_ajax); $ajax_i++) { 
-			$PDO->insertPrepare("UPDATE ".TABLE_CATEGORIES." SET sort_category=? WHERE id=?", array($ajax_i, $sort_ajax[$ajax_i]));
+			$PDO->insertPrepare("UPDATE ".TABLE_CATEGORIES." SET sort_category=? WHERE id=?", array($ajax_i+$j2, $sort_ajax[$ajax_i]));
 		}
 	}
 
