@@ -19,7 +19,7 @@
 	if($verify != 1){ //NO USER
 		header('Location: /controller/admin/verify/login.php'); // REDIRECT TO LOGIN.PHP
 	}else{
-		$token = $_SESSION['login'].$_SESSION['pass']; // создаем токен для ajax и пр.
+		$token = hash(HASH_METHOD, $_SESSION['login'].$_SESSION['pass']); // создаем токен для ajax и пр.
 	}
 
 ?>
