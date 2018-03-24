@@ -44,12 +44,14 @@
     function sortList(){
         var ids = [];
 		var j = '<?php echo $j ?>';
+		var token = '<?php echo $token ?>';
         $("#sort-list tr").each(function(){ ids[ids.length] = $(this).attr('unitid'); });
         $.ajax({
             method: 'POST',
             dataType: 'text',
             url: '/controller/admin/pages/categories/categories.php',
             data: ({
+				token_ajax: token,
 				j: j,
  			ids: ids.join() })
         });

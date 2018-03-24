@@ -133,7 +133,7 @@
 	
 	// если сортируем категории мышкой
 	$j = $i; //  переменная для передачи POST в javascript сортировки
-	if (isset($_POST['ids'])){
+	if (isset($_POST['ids']) && $_POST['token_ajax'] == $token){
 		$j2 = $_POST['j'];
 		$sort_ajax = explode(',' , $_POST['ids']);
 		for ($ajax_i = 0; $ajax_i < count($sort_ajax); $ajax_i++) { 
