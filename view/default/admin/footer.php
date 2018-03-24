@@ -27,7 +27,7 @@
 <script type="text/javascript">
     $(document).ready(function(){
         $("#sort-list").sortable({
-            items: 'tr',
+            items: 'tr.sort-list',
             handle: 'td',
             cursor: "move",
             axis: "y",
