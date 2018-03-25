@@ -64,7 +64,7 @@
 		<?php $parent_up = $lines[0][4]; ?>
 		 <?php if ($parent_up > 0) { ?>
 
-		 <tr style="cursor:default;background:none;">
+		 <tr>
 		  <td colspan="3" align="left"><form><div><button name="parent_up" value="<?php echo $parent_up ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/categories/categories.php" formmethod="post">....</button></div></form></td>
 		 </tr>
 		 
