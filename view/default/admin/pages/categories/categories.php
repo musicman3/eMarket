@@ -23,11 +23,11 @@
    </div>
 	<?php if ($lines == TRUE) { ?>
 	<div class="panel-body">
-	 <div class="table-responsive">
+	 <!--<div class="table-responsive">-->
 	  <table class="table">
 	   <thead>
 		<tr>
-		 <th>
+		 <th colspan="2">
 		  <div class="log-page"><?php echo $lang['s'] ?> <?php echo $i+1 ?> <?php echo $lang['po'] ?> <?php echo $lines_p ?> ( <?php echo $lang['iz'] ?> <?php echo $counter; ?> )</div>
 		 </th>
 		 <th>
@@ -50,7 +50,7 @@
 	   </thead>
 	   <tfoot>
 		<tr>
-		 <th align="left">Групповые действия</th>
+		 <th colspan="2" align="left">Групповые действия</th>
 		 <th align="right">
 		  <div class="log-right"><input class="select-all check-box" type="checkbox" value=""></div>
 		  <form><input hidden name="log_delete" value="delete"><div class="log-left"><button type="submit" name="cat_delete_batch" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo $lang['confirm-yes'] ?>" data-btn-cancel-label="<?php echo $lang['confirm-no'] ?>" title="<?php echo $lang['confirm-del'] ?>" action="" formmethod="post"><span class="glyphicon glyphicon-trash"> </span></button></div></form>
@@ -65,18 +65,19 @@
 		 <?php if ($parent_up > 0) { ?>
 
 		 <tr style="cursor:default;background:none;">
-		  <td colspan="2" align="left"><form><div><button name="parent_up" value="<?php echo $parent_up ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/categories/categories.php" formmethod="post">....</button></div></form></td>
+		  <td colspan="3" align="left"><form><div><button name="parent_up" value="<?php echo $parent_up ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/categories/categories.php" formmethod="post">....</button></div></form></td>
 		 </tr>
 		 
 		 <?php } for ($i; $i < $lines_p; $i++) { ?>
 		
 		 <tr class="sort-list" unitid="<?php echo $lines[$i][0] ?>">
 		   <?php if($lines[$i][8] == 0){ ?>
-			<td class="sortyes" align="left"><form><div><button name="parent_down" value="<?php echo $lines[$i][0] ?>" class="btn btn-default btn-xs" title="<?php echo $lines[$i][1] ?>" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-folder-open"> </span></button> <?php echo $lines[$i][1] ?></div></form></td>	  
+			<td class="sortleft" align="left"><form><div><button name="parent_down" value="<?php echo $lines[$i][0] ?>" class="btn btn-default btn-xs" title="<?php echo $lines[$i][1] ?>" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-folder-open"> </span></button></div></form></td>	  
 		   <?php }else{ ?>
-			<td class="sortyes" align="left"><form><div><button name="parent_down" value="<?php echo $lines[$i][0] ?>" class="btn btn-primary btn-xs" title="<?php echo $lines[$i][1] ?>" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-folder-open"> </span></button> <?php echo $lines[$i][1] ?></div></form></td>
+			<td class="sortleft" align="left"><form><div><button name="parent_down" value="<?php echo $lines[$i][0] ?>" class="btn btn-primary btn-xs" title="<?php echo $lines[$i][1] ?>" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-folder-open"> </span></button></div></form></td>
 		   <?php } ?>
-		  <td class="sorthidden" align="right">
+			<td class="sortyes" align="left"><div><?php echo $lines[$i][1] ?></div></td>	  
+		   <td class="sorthidden" align="right">
 		   <div class="log-right"><input class="select-item check-box" type="checkbox" value=""></div>
 		   <form><div class="log-left"><button class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo $lang['confirm-yes'] ?>" data-btn-cancel-label="<?php echo $lang['confirm-no'] ?>" title="<?php echo $lang['confirm-del'] ?>" name="cat_delete" value="<?php echo $lines[$i][0] ?>" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-trash"> </span></button></div></form>
 		   <div class="log-left"><button class="btn btn-primary btn-xs" title="<?php echo $lang['button_move'] ?>" action="" formmethod="post"><span class="glyphicon glyphicon-transfer"> </span></button></div>
@@ -93,21 +94,21 @@
 	   </tbody>
 	
 	  </table>
-	 </div>
+	 <!--</div>-->
 	</div>
 
 	<?php } elseif ($lines == false && isset($_POST['parent_down']) > 0) { ?>
 
 	<div class="panel-body"><p><?php echo $lang['no_cat'] ?></p>
-   	 <div class="table-responsive">
+   	 <!--<div class="table-responsive">-->
 	  <table class="table">
 	   <tbody>
 		<tr>
-		 <td colspan="2" align="left"><form><div><button name="parent_up" value="<?php echo $_POST['parent_down'] ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/categories/categories.php" formmethod="post">....</button></div></form></td>
+		 <td colspan="3" align="left"><form><div><button name="parent_up" value="<?php echo $_POST['parent_down'] ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/categories/categories.php" formmethod="post">....</button></div></form></td>
 		</tr>
 	   </tbody>
 	  </table>
-	 </div>
+	 <!--</div>-->
 	</div>
 	<?php } else { ?>
 	 <div class="panel-body"><?php echo $lang['no_cat'] ?></div>

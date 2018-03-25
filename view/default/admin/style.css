@@ -44,7 +44,8 @@ input[type="checkbox"], input[type="radio"] {vertical-align: text-bottom;}
 .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {padding:5px;}
 .sortyes {cursor:move;}
 .modal-header {background-color: #f5f5f5;padding: 10px 15px;border-bottom: 1px solid transparent;border-bottom-color: transparent;border-top-left-radius: 3px;border-top-right-radius: 3px;}
-.modal-content {text-align:left;cursor:default;}
+.modal-content {text-align:left;}
 .ui-sortable-helper .sorthidden button {visibility:hidden;}
 .ui-sortable-helper .sorthidden input {visibility:hidden;}
-.sorthidden {min-width: 150px;}
+.table .sorthidden {width: 140px;vertical-align: middle;}
+.table .sortleft {width:30px;vertical-align: middle;}
