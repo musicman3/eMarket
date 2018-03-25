@@ -39,6 +39,21 @@
 		$PDO->insertPrepare("INSERT INTO ".TABLE_CATEGORIES." SET name=?, sort_category=?, parent_id=?, date_added=?, status=?", array($_POST['name'], $sort_category, $parent_id, date("Y-m-d H:i:s"), $view_cat));
 	}
 
+	// Если нажали на кнопку Редактировать
+	if(isset($_POST['name_edit']) == TRUE && isset($_POST['parent_id']) == TRUE && isset($_POST['cat_edit']) == TRUE){
+		// Устанавливаем родительскую категорию
+		$parent_id = $_POST['parent_id'];
+		
+		if(isset($_POST['view_cat']) == 'on'){
+			$view_cat = 1;
+		}else{
+			$view_cat = 0;
+		}
+
+		// обновляем запись
+		$PDO->insertPrepare("UPDATE ".TABLE_CATEGORIES." SET name=?, last_modified=?, status=? WHERE id=?", array($_POST['name_edit'], date("Y-m-d H:i:s"), $view_cat, $_POST['cat_edit']));
+	}
+
 	// Если нажали на кнопку Удалить
 	if(isset($_POST['cat_delete']) == TRUE){
 
