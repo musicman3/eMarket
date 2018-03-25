@@ -38,8 +38,11 @@ body {background:#e4e4da;font-family: 'Open Sans', sans-serif;background-image:u
 .log-left {display: inline-block;float: right; padding-right:10px;}
 .add {display: inline-block;float: right; padding-right:10px;}
 #category .check-box {vertical-align: middle;margin-top: 0;}
-#category_add .form-control {width: auto;}
+#addCategory .form-control {width: auto;}
 input[type="checkbox"], input[type="radio"] {vertical-align: text-bottom;}
 .popover-title {text-align:center;padding:5px 0 5px 0;}
 .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {padding:5px;}
 #sort-list>tr {cursor:move;}
+.modal-header {background-color: #f5f5f5;padding: 10px 15px;border-bottom: 1px solid transparent;border-bottom-color: transparent;border-top-left-radius: 3px;border-top-right-radius: 3px;}
+.ui-sortable-helper .sorthidden button {visibility:hidden;}
+.ui-sortable-helper .sorthidden input {visibility:hidden;}
