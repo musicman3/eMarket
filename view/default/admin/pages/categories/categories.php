@@ -17,7 +17,6 @@
 	  <!-- Модальное окно "Добавить категорию" -->
 	  <?php require_once('modal/categories_add.php') ?>
 	 </div>
-
 	 <div class="clearfix"></div>
 	</h3>
    </div>
@@ -104,7 +103,7 @@
 	  <table class="table">
 	   <tbody>
 		<tr>
-		 <td colspan="3" align="left"><form><div><button name="parent_up" value="<?php echo $_POST['parent_down'] ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/categories/categories.php" formmethod="post">....</button></div></form></td>
+		 <td align="left"><form><div><button name="parent_up" value="<?php echo $_POST['parent_down'] ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/categories/categories.php" formmethod="post">....</button></div></form></td>
 		</tr>
 	   </tbody>
 	  </table>
