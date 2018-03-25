@@ -36,8 +36,7 @@
     $(document).ready(function(){
         $("#sort-list").sortable({
             items: 'tr.sort-list',
-            handle: 'td',
-            cursor: "move",
+            handle: 'td.sortyes',
             axis: "y",
             over: function(event, ui) {
 				ui.helper.css("opacity", "0.7"),
