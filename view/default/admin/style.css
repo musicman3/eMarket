@@ -47,3 +47,4 @@ input[type="checkbox"], input[type="radio"] {vertical-align: text-bottom;}
 .modal-content {text-align:left;cursor:default;}
 .ui-sortable-helper .sorthidden button {visibility:hidden;}
 .ui-sortable-helper .sorthidden input {visibility:hidden;}
+.sorthidden {min-width: 150px;}
