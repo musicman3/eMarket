@@ -17,6 +17,7 @@
 	  <!-- Модальное окно "Добавить категорию" -->
 	  <?php require_once('modal/categories_add.php') ?>
 	 </div>
+	 <div class="add"><select class="input-xs form-control"><option>10</option><option>30</option></select></div>
 	 <div class="clearfix"></div>
 	</h3>
    </div>
