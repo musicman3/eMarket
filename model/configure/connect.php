@@ -4,7 +4,7 @@
 // https://github.com/musicman3/eMarket //
 // *************************************//
 
-	$DB = new PDO(DB_TYPE.':host='.DB_SERVER.';dbname='.DB_NAME.'',DB_USERNAME,DB_PASSWORD);
-	$DB->exec("set names utf8");
+$DB = new PDO(DB_TYPE . ':host=' . DB_SERVER . ';dbname=' . DB_NAME . '', DB_USERNAME, DB_PASSWORD);
+$DB->exec("set names utf8");
 
 ?>

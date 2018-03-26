@@ -4,6 +4,6 @@
 // https://github.com/musicman3/eMarket //
 // *************************************//
 
-	$DB = null;
+$DB = null;
 
 ?>

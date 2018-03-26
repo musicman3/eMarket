@@ -9,6 +9,7 @@ error_reporting(-1);
 // ********  CONNECT PAGE START  ******** //
 require_once($_SERVER['DOCUMENT_ROOT'] . '/model/connect_page_start.php');
 // ************************************** //
+// 
 // Устанавливаем родительскую категорию
 $parent_id = $VALID->inPOST('parent_id');
 if ($parent_id == FALSE) {

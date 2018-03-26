@@ -3,9 +3,10 @@
 //   GNU GENERAL PUBLIC LICENSE v.3.0   //    
 // https://github.com/musicman3/eMarket //
 // *************************************//
+
 ?>
 
-    <?php 	if(isset($_SESSION['login']) && isset($_SESSION['pass'])){ // Выводим если авторизованы ?>
+<?php if (isset($_SESSION['login']) && isset($_SESSION['pass'])) { // Выводим если авторизованы  ?>
 
     <div id="footerwrap">
         <footer class="clearfix"></footer>
@@ -20,60 +21,65 @@
             </div><!-- /row -->
         </div><!-- /container -->
     </div><!-- /footerwrap -->
-    
-<?php 
-} 
-	if (isset($j) == false){
-		$j = 0;
-	}
-	if (isset($token) == false){
-		$token = 0;
-	}
+
+    <?php
+}
+if (isset($j) == false) {
+    $j = 0;
+}
+if (isset($token) == false) {
+    $token = 0;
+}
+
 ?>
 
 <!-- /сортировка мышкой -->
 <script type="text/javascript">
-    $(document).ready(function(){
+    $(document).ready(function () {
         $("#sort-list").sortable({
             items: 'tr.sort-list',
             handle: 'td.sortyes',
             axis: "y",
-            over: function(event, ui) {
-				ui.helper.css("opacity", "0.7"),
-				ui.helper.css("background-color", "#F5F5F5")
-			},
-			beforeStop: function(event, ui) {
-				ui.helper.css("opacity", "1.0"),
-				ui.helper.css("background-color", "#ffffff")
-			},
-            stop: function(event,ui){ sortList(); }
+            over: function (event, ui) {
+                ui.helper.css("opacity", "0.7"),
+                        ui.helper.css("background-color", "#F5F5F5")
+            },
+            beforeStop: function (event, ui) {
+                ui.helper.css("opacity", "1.0"),
+                        ui.helper.css("background-color", "#ffffff")
+            },
+            stop: function (event, ui) {
+                sortList();
+            }
         });
     });
 
-    function sortList(){
+    function sortList() {
         var ids = [];
-		var j = '<?php echo $j ?>';
-		var token = '<?php echo $token ?>';
-        $("#sort-list tr").each(function(){ ids[ids.length] = $(this).attr('unitid'); });
+        var j = '<?php echo $j ?>';
+        var token = '<?php echo $token ?>';
+        $("#sort-list tr").each(function () {
+            ids[ids.length] = $(this).attr('unitid');
+        });
         $.ajax({
             method: 'POST',
             dataType: 'text',
             url: '/controller/admin/pages/categories/categories.php',
             data: ({
-				token_ajax: token,
-				j: j,
- 			ids: ids.join() })
+                token_ajax: token,
+                j: j,
+                ids: ids.join()})
         });
     }
 </script>
 
 <script>
-    $(function(){
+    $(function () {
         $("input.select-all").click(function () {
             var checked = this.checked;
-            $("input.select-item").each(function (index,item) {
+            $("input.select-item").each(function (index, item) {
                 item.checked = checked;
             });
-		});
+        });
     });
 </script>

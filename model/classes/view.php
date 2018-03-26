@@ -4,19 +4,19 @@
 // https://github.com/musicman3/eMarket //
 // *************************************//
 
-	namespace Model\Classes\View;
+namespace Model\Classes\View;
 
-	class ViewClass {
+class ViewClass {
 
-		function Routing (){
+    function Routing() {
 
-			$template = 'default';
+        $template = 'default';
 
-			$str = str_replace('controller','view/' . $template, $_SERVER['SCRIPT_FILENAME']);
+        $str = str_replace('controller', 'view/' . $template, $_SERVER['SCRIPT_FILENAME']);
 
-			return $str;
-		}
+        return $str;
+    }
 
-	}
+}
 
 ?>

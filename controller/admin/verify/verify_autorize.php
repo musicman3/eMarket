@@ -4,50 +4,49 @@
 // https://github.com/musicman3/eMarket //
 // *************************************//
 
-	error_reporting(-1);
+error_reporting(-1);
 
-	//REQUIRE CONFIGURE.PHP
-	require_once($_SERVER['DOCUMENT_ROOT'].'/model/configure/configure.php');
+//REQUIRE CONFIGURE.PHP
+require_once($_SERVER['DOCUMENT_ROOT'] . '/model/configure/configure.php');
 
-	//SESSION = POST FORM
-	session_start();
-	if(isset($_POST['login']) && isset($_POST['pass'])){
-		$_SESSION['login'] = $_POST['login'];
-		$_SESSION['pass'] = hash(HASH_METHOD, $_POST['pass']);
-	}
-	
-	//REQUIRE CONNECT.PHP
-	require_once($_SERVER['DOCUMENT_ROOT'].'/model/configure/connect.php');
+//SESSION = POST FORM
+session_start();
+if (isset($_POST['login']) && isset($_POST['pass'])) {
+    $_SESSION['login'] = $_POST['login'];
+    $_SESSION['pass'] = hash(HASH_METHOD, $_POST['pass']);
+}
 
-	//REQUIRE PDO.PHP
-	require_once($_SERVER['DOCUMENT_ROOT'].'/model/classes/pdo.php');
+//REQUIRE CONNECT.PHP
+require_once($_SERVER['DOCUMENT_ROOT'] . '/model/configure/connect.php');
 
-	//LOAD CLASS PDO
-	$PDO = new Model\Classes\Pdo\PdoClass;
+//REQUIRE PDO.PHP
+require_once($_SERVER['DOCUMENT_ROOT'] . '/model/classes/pdo.php');
 
-	//REQUIRE router_lang.PHP
-	require_once($_SERVER['DOCUMENT_ROOT'].'/model/router_lang.php');
+//LOAD CLASS PDO
+$PDO = new Model\Classes\Pdo\PdoClass;
 
-	//VERIFY USER
-	$verify = $PDO->getRowCount("SELECT * FROM ".TABLE_ADMINISTRATORS." WHERE login=? AND password=?", array($_SESSION['login'], $_SESSION['pass']));
-	
-	//DEFAULT LANGUAGE
-	$deflang = $PDO->selectPrepare("SELECT language FROM ".TABLE_ADMINISTRATORS." WHERE login=? AND password=?", array($_SESSION['login'], $_SESSION['pass']));
+//REQUIRE router_lang.PHP
+require_once($_SERVER['DOCUMENT_ROOT'] . '/model/router_lang.php');
 
-	if($verify != 1){    //if user failed:
+//VERIFY USER
+$verify = $PDO->getRowCount("SELECT * FROM " . TABLE_ADMINISTRATORS . " WHERE login=? AND password=?", array($_SESSION['login'], $_SESSION['pass']));
 
-		session_destroy();
-		session_start();
+//DEFAULT LANGUAGE
+$deflang = $PDO->selectPrepare("SELECT language FROM " . TABLE_ADMINISTRATORS . " WHERE login=? AND password=?", array($_SESSION['login'], $_SESSION['pass']));
 
-		$_SESSION['default_language'] = $deflang;
-		$_SESSION['login_error'] = $lang['login_error'];
+if ($verify != 1) {    //if user failed:
+    session_destroy();
+    session_start();
 
-		header('Location: /controller/admin/verify/login.php');    // if user failed: redirect to login.php
-	}else{
-		header('Location: /controller/admin/index.php');    // else: redirect to index.php
-	}
+    $_SESSION['default_language'] = $deflang;
+    $_SESSION['login_error'] = $lang['login_error'];
 
-	//END CONNECT DATABASE
-	require_once($_SERVER['DOCUMENT_ROOT'].'/model/connect_end.php');
+    header('Location: /controller/admin/verify/login.php');    // if user failed: redirect to login.php
+} else {
+    header('Location: /controller/admin/index.php');    // else: redirect to index.php
+}
+
+//END CONNECT DATABASE
+require_once($_SERVER['DOCUMENT_ROOT'] . '/model/connect_end.php');
 
 ?>
