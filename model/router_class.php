@@ -9,7 +9,7 @@
 require_once($_SERVER['DOCUMENT_ROOT'] . '/model/classes/pdo.php');
 $PDO = new Model\Classes\Pdo\PdoClass;
 
-//LOAD CLASS PDO
+//LOAD CLASS VALID
 require_once($_SERVER['DOCUMENT_ROOT'] . '/model/classes/valid.php');
 $VALID = new Model\Classes\Valid\ValidClass;
 
