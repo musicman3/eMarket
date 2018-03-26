@@ -16,17 +16,17 @@
 		   <fieldset>
 			<input type="hidden" name="parent_id" value="<?php echo $parent_id ?>" />
 			<div class="form-group">
-			 <label>Имя:</label><br>
+			 <label><?php echo $lang['name'] ?>:</label><br>
 			 <img src="/view/default/admin/images/worldflags/ru.png" alt="Russian" title="Russian" width="16" height="10" />Russian<br>
 			 <?php // вывод из массива: name="categories_name[1]" id="categories_name[1] ?>
 			 <input class="input-sm form-control" type="text" name="name" id="name" />
 			</div>
 			<div class="form-group">
-			 <label for="image">Изображение:</label><br>
-			 <input type="file" name="image" id="image" /> Макс.: 100M
+			 <label for="image"><?php echo $lang['images'] ?>:</label><br>
+			 <input type="file" name="image" id="image" /> <?php echo $lang['max'] ?>: 100M
 			</div>
 			<div class="form-group">
-			 <label for="view_category">Отображать </label>
+			 <label for="view_category"><?php echo $lang['display'] ?> </label>
 			 <input class="check-box" type="checkbox" name="view_cat" checked>
 			</div>
 		   </fieldset>
