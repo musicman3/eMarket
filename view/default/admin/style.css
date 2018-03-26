@@ -1,4 +1,4 @@
-/****** Copyright © 2018 eMarket ******* 
+/****** Copyright ï¿½ 2018 eMarket ******* 
 *   GNU GENERAL PUBLIC LICENSE v.3.0   *    
 * https://github.com/musicman3/eMarket *
 ***************************************/
@@ -36,7 +36,7 @@ body {background:#e4e4da;font-family: 'Open Sans', sans-serif;background-image:u
 .panel-heading {font-weight:bold;}
 .panel-title {font-size: 18px;}
 .modal-body, .panel-body, .input-sm {font-size: 14px;}
-.input-xs {height: 24px;padding: 0px 5px;}
+.input-xs {height:24px;font-size:12px;padding:0px 5px;}
 .modal-content {text-align:left;}
 .modal-header {background-color: #f5f5f5;padding: 10px 15px;border-top-left-radius: 3px;border-top-right-radius: 3px;}
 .log-right {display: inline-block;float: right;}
