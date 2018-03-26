@@ -4,16 +4,16 @@
 // https://github.com/musicman3/eMarket //
 // *************************************//
 // 
-//LOAD CLASS PDO
-require_once($_SERVER['DOCUMENT_ROOT'] . '/model/classes/pdo.php');
-$PDO = new Model\Classes\Pdo\PdoClass;
-
 //LOAD CLASS VALID
 require_once($_SERVER['DOCUMENT_ROOT'] . '/model/classes/valid.php');
 $VALID = new Model\Classes\Valid\ValidClass;
 
+//LOAD CLASS PDO
+require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/classes/pdo.php');
+$PDO = new Model\Classes\Pdo\PdoClass;
+
 //LOAD CLASS VIEW
-require_once($_SERVER['DOCUMENT_ROOT'] . '/model/classes/view.php');
-$View = new Model\Classes\View\ViewClass;
+require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/classes/view.php');
+$VIEW = new Model\Classes\View\ViewClass;
 
 ?>

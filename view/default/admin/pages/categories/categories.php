@@ -98,14 +98,14 @@
                     <!--</div>-->
                 </div>
 
-<?php } elseif ($lines == false && isset($_POST['parent_down']) > 0) { ?>
+<?php } elseif ($lines == FALSE && $VALID->inPOST('parent_down') > 0) { ?>
 
                 <div class="panel-body"><p><?php echo $lang['no_cat'] ?></p>
                     <!--<div class="table-responsive">-->
                     <table class="table">
                         <tbody>
                             <tr>
-                                <td align="left"><form><div><button name="parent_up" value="<?php echo $_POST['parent_down'] ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/categories/categories.php" formmethod="post">....</button></div></form></td>
+                                <td align="left"><form><div><button name="parent_up" value="<?php echo $VALID->inPOST('parent_down') ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/categories/categories.php" formmethod="post">....</button></div></form></td>
                             </tr>
                         </tbody>
                     </table>

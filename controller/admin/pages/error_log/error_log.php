@@ -12,7 +12,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/model/connect_page_start.php');
 // Если нажали на кнопку Удалить
 if ($VALID->inPOST('log_delete') == 'delete') {
     // удаляем лог
-    unlink($_SERVER['DOCUMENT_ROOT'] . '/model/work/errors.log');
+    unlink($VALID->inSERVER('DOCUMENT_ROOT') . '/model/work/errors.log');
 }
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
@@ -21,8 +21,8 @@ $lines_page = 20; // задаем количество строк на стра�
 $i = 0; // устанавливаем страницу в ноль при заходе
 $lines_p = $lines_page;
 
-if (file_exists($_SERVER['DOCUMENT_ROOT'] . '/model/work/errors.log')) { // Если файл существует, то
-    $lines = file($_SERVER['DOCUMENT_ROOT'] . '/model/work/errors.log'); // получаем содержимое файла в виде массива
+if (file_exists($VALID->inSERVER('DOCUMENT_ROOT') . '/model/work/errors.log')) { // Если файл существует, то
+    $lines = file($VALID->inSERVER('DOCUMENT_ROOT') . '/model/work/errors.log'); // получаем содержимое файла в виде массива
     $lines = array_reverse($lines); // сортируем в обратном порядке
     $counter = count($lines); // считаем количество строк
 
@@ -56,8 +56,8 @@ if (file_exists($_SERVER['DOCUMENT_ROOT'] . '/model/work/errors.log')) { // Ес
 }
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 // *********  CONNECT PAGE END  ********* //
-require_once($_SERVER['DOCUMENT_ROOT'] . '/model/connect_page_end.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/model/html_end.php');
+require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/connect_page_end.php');
+require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/html_end.php');
 // ************************************** //
 
 ?>

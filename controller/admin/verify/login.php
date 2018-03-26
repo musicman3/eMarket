@@ -6,12 +6,13 @@
 
 error_reporting(-1);
 session_start();
-//LOAD CONFIGURE.PHP
-require_once($_SERVER['DOCUMENT_ROOT'] . '/model/configure/configure.php');
-//LOAD LANGUAGE
-require_once($_SERVER['DOCUMENT_ROOT'] . '/model/router_lang.php');
 
 require_once($_SERVER['DOCUMENT_ROOT'] . '/model/router_class.php');
+//LOAD CONFIGURE.PHP
+require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/configure/configure.php');
+//LOAD LANGUAGE
+require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/router_lang.php');
+
 
 // если логин или пароль не верные, то готовим уведомление
 if (isset($_SESSION['login_error']) == TRUE) {
@@ -22,14 +23,14 @@ if (isset($_SESSION['login_error']) == TRUE) {
 }
 
 // если форма не заполнена, то выводим ее
-if (!isset($_POST['ok'])) {
+if ($VALID->inPOST('ok') == FALSE) {
 
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/model/html_start.php');
+    require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/html_start.php');
 
     //LOAD TEMPLATE
-    require_once($View->Routing());
+    require_once($VIEW->Routing());
 
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/model/html_end.php');
+    require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/html_end.php');
 }
 
 ?>

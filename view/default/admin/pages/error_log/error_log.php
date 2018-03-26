@@ -16,7 +16,7 @@
                     <div class="clearfix"></div>
                 </h3>
             </div>
-<?php if (file_exists($_SERVER['DOCUMENT_ROOT'] . '/model/work/errors.log') == true) { ?>
+<?php if (file_exists($VALID->inSERVER('DOCUMENT_ROOT') . '/model/work/errors.log') == true) { ?>
                 <div class="panel-body">
                     <!--<div class="table-responsive">-->
                     <table class="table">

@@ -6,33 +6,28 @@
 
 error_reporting(-1);
 
+require_once($_SERVER['DOCUMENT_ROOT'] . '/model/router_class.php');
+
 //REQUIRE CONFIGURE.PHP
-require_once($_SERVER['DOCUMENT_ROOT'] . '/model/configure/configure.php');
+require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/configure/configure.php');
 
 //SESSION = POST FORM
 session_start();
-if (isset($_POST['login']) && isset($_POST['pass'])) {
-    $_SESSION['login'] = $_POST['login'];
-    $_SESSION['pass'] = hash(HASH_METHOD, $_POST['pass']);
-}
+
+$_SESSION['login'] = $VALID->inPOST('login');
+$_SESSION['pass'] = hash(HASH_METHOD, $VALID->inPOST('pass'));
 
 //REQUIRE CONNECT.PHP
-require_once($_SERVER['DOCUMENT_ROOT'] . '/model/configure/connect.php');
-
-//REQUIRE PDO.PHP
-require_once($_SERVER['DOCUMENT_ROOT'] . '/model/classes/pdo.php');
-
-//LOAD CLASS PDO
-$PDO = new Model\Classes\Pdo\PdoClass;
+require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/configure/connect.php');
 
 //REQUIRE router_lang.PHP
-require_once($_SERVER['DOCUMENT_ROOT'] . '/model/router_lang.php');
+require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/router_lang.php');
 
 //VERIFY USER
-$verify = $PDO->getRowCount("SELECT * FROM " . TABLE_ADMINISTRATORS . " WHERE login=? AND password=?", array($_SESSION['login'], $_SESSION['pass']));
+$verify = $PDO->getRowCount("SELECT * FROM " . TABLE_ADMINISTRATORS . " WHERE login=? AND password=?", [$_SESSION['login'], $_SESSION['pass']]);
 
 //DEFAULT LANGUAGE
-$deflang = $PDO->selectPrepare("SELECT language FROM " . TABLE_ADMINISTRATORS . " WHERE login=? AND password=?", array($_SESSION['login'], $_SESSION['pass']));
+$deflang = $PDO->selectPrepare("SELECT language FROM " . TABLE_ADMINISTRATORS . " WHERE login=? AND password=?", [$_SESSION['login'], $_SESSION['pass']]);
 
 if ($verify != 1) {    //if user failed:
     session_destroy();
@@ -47,6 +42,6 @@ if ($verify != 1) {    //if user failed:
 }
 
 //END CONNECT DATABASE
-require_once($_SERVER['DOCUMENT_ROOT'] . '/model/connect_end.php');
+require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/connect_end.php');
 
 ?>

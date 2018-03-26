@@ -29,7 +29,7 @@ function FilesPatch($dir) {
 }
 
 //Текущий основной путь (admin или catalog)
-$uri_explode = explode('/', ($_SERVER['REQUEST_URI']));
+$uri_explode = explode('/', ($VALID->inSERVER('REQUEST_URI')));
 
 if ($uri_explode[2] == 'admin') {
     $patch = 'admin';
@@ -44,7 +44,7 @@ if (!empty($_SESSION['default_language'])) {
     $lang_default = $_SESSION['default_language'];
 }
 
-$files_patch = FilesPatch($_SERVER['DOCUMENT_ROOT'] . '/language/' . $lang_default . '/' . $patch);
+$files_patch = FilesPatch($VALID->inSERVER('DOCUMENT_ROOT') . '/language/' . $lang_default . '/' . $patch);
 $parse_temp = parse_ini_file($files_patch[0]);
 for ($i = 0; $i < count($files_patch); $i++) {
     $ini = parse_ini_file($files_patch[$i]);

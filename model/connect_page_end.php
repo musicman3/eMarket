@@ -5,7 +5,7 @@
 // *************************************//
 // 
 //LOAD TEMPLATE
-require_once($View->Routing());
+require_once($VIEW->Routing());
 
 //CONNECT END
 require_once($_SERVER['DOCUMENT_ROOT'] . '/model/connect_end.php');
