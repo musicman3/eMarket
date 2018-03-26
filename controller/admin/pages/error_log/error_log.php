@@ -10,7 +10,7 @@ error_reporting(-1);
 require_once($_SERVER['DOCUMENT_ROOT'] . '/model/connect_page_start.php');
 // ************************************** //
 // Если нажали на кнопку Удалить
-if (isset($_POST['log_delete']) == 'delete') {
+if ($VALID->inPOST('log_delete') == 'delete') {
     // удаляем лог
     unlink($_SERVER['DOCUMENT_ROOT'] . '/model/work/errors.log');
 }
@@ -30,11 +30,11 @@ if (file_exists($_SERVER['DOCUMENT_ROOT'] . '/model/work/errors.log')) { // Ес
         $lines_p = $counter;
     }
     // Если нажали на кнопку вперед
-    if (isset($_POST['lines_p']) && isset($_POST['i'])) {
-        $lines_p = $_POST['lines_p'] + $lines_page; // пересчитываем количество строк на странице
-        $i = $_POST['i'] + $lines_page; // задаем значение счетчика
+    if ($VALID->inPOST('lines_p')) {
+        $lines_p = $VALID->inPOST('lines_p') + $lines_page; // пересчитываем количество строк на странице
+        $i = $VALID->inPOST('i') + $lines_page; // задаем значение счетчика
         if ($i >= $counter) {
-            $i = $_POST['i'];
+            $i = $VALID->inPOST('i');
         }
         if ($lines_p >= $counter) {
             $lines_p = $counter;
@@ -42,9 +42,9 @@ if (file_exists($_SERVER['DOCUMENT_ROOT'] . '/model/work/errors.log')) { // Ес
     }
     // Если нажали на кнопку назад
     if ($counter >= $lines_page) {
-        if (isset($_POST['lines_p2']) && isset($_POST['i2'])) {
-            $lines_p = $_POST['i2']; // пересчитываем количество строк на странице
-            $i = $_POST['i2'] - $lines_page; // задаем значение счетчика
+        if ($VALID->inPOST('lines_p2')) {
+            $lines_p = $VALID->inPOST('i2'); // пересчитываем количество строк на странице
+            $i = $VALID->inPOST('i2') - $lines_page; // задаем значение счетчика
             if ($i < 0) {
                 $i = 0;
             }
