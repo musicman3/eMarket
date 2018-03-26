@@ -148,7 +148,7 @@ if ($counter >= $lines_page) {
 // КОНЕЦ-> КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 // если сортируем категории мышкой
 $j = $i; //  переменная для передачи POST в javascript сортировки
-if ($VALID->inPOST('ids') && $VALID->inPOST('token_ajax') == $token) {
+if ($VALID->inPOST('token_ajax') == $TOKEN) {
     $j2 = $VALID->inPOST('j');
     $sort_ajax = explode(',', $VALID->inPOST('ids'));
     for ($ajax_i = 0; $ajax_i < count($sort_ajax); $ajax_i++) {

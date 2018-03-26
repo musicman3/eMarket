@@ -57,7 +57,7 @@ if (isset($token) == false) {
     function sortList() {
         var ids = [];
         var j = '<?php echo $j ?>';
-        var token = '<?php echo $token ?>';
+        var token = '<?php echo $TOKEN ?>';
         $("#sort-list tr").each(function () {
             ids[ids.length] = $(this).attr('unitid');
         });
