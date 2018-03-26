@@ -36,11 +36,12 @@ body {background:#e4e4da;font-family: 'Open Sans', sans-serif;background-image:u
 .panel-heading {font-weight:bold;}
 .panel-title {font-size: 18px;}
 .modal-body, .panel-body, .input-sm {font-size: 14px;}
+.input-xs {height: 24px;padding: 0px 5px;}
 .modal-content {text-align:left;}
 .modal-header {background-color: #f5f5f5;padding: 10px 15px;border-top-left-radius: 3px;border-top-right-radius: 3px;}
 .log-right {display: inline-block;float: right;}
 .log-left {display: inline-block;float: right; padding-right:10px;}
-.add {display: inline-block;float: right; padding-right:10px;}
+.add {display: inline-block;float: right; padding-right:5px;padding-left:5px;}
 #category .check-box {vertical-align: middle;margin-top: 0;}
 /*.modal-content input {width: auto;}*/
 input[type="checkbox"], input[type="radio"] {vertical-align: text-bottom;}
