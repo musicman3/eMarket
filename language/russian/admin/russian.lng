@@ -16,7 +16,7 @@ title_categories = Категории
 title_categories_add = Категории
 
 
-login_error = Пароль или логин ошибочные
+login_error = Введены неверные E-Mail или пароль
 login_name = ПАНЕЛЬ АДМИНИСТРАТОРА
 button_add = Добавить
 button_cancel = Отмена
@@ -43,6 +43,9 @@ name = Название
 images = Изображение
 display = Отображать
 max = Макс.
+password = Пароль
+email = E-Mail
+entrance = Вход
 
 ;кнопки меню
 menu_exit = Выход
@@ -56,17 +59,3 @@ menu_tools = Инструменты
 menu_error_log = Лог ошибок
 menu_categories = Категории
 
-; старые языковые переменные, в будущем выбрать что надо и лишнее удалить
-action = ДЕЙСТВИЕ
-back = Назад
-button_go_login = Далее
-delete = Удалить
-edit = Редактировать
-email = E-Mail
-entrance = Вход
-error = Ошибка
-exit = [Выход]
-
-meta-language = ru
-not_autorize = Введены неверные E-Mail или пароль
-password = Пароль
