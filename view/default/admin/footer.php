@@ -28,7 +28,7 @@ if (isset($j) == false) {
     $j = 0;
 }
 if (isset($token) == false) {
-    $token = 0;
+    $TOKEN = 0;
 }
 
 ?>
