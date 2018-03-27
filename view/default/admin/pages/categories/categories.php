@@ -3,7 +3,6 @@
 //   GNU GENERAL PUBLIC LICENSE v.3.0   //    
 // https://github.com/musicman3/eMarket //
 // *************************************//
-
 ?>
 
 <div id="category" class="container">
@@ -16,13 +15,14 @@
 
                     <div class="add"><button type="submit" name="category_add" class="btn btn-success btn-xs" data-toggle="modal" data-target="#addCategory"><span class="glyphicon glyphicon-plus"></span> <?php echo $lang['button_add'] ?></button>
                         <!-- Модальное окно "Добавить категорию" -->
-<?php require_once('modal/categories_add.php') ?>
+                        <?php require_once('modal/categories_add.php') ?>
+                        <!-- КОНЕЦ Модальное окно "Добавить категорию" -->
                     </div>
-                    <div class="add"><select class="input-xs form-control"><option>10</option><option>30</option></select></div>
+                    <form action="/controller/admin/pages/categories/categories.php" method="post"><div class="add"><select name="select_row" class="input-xs form-control" onchange="this.form.submit()"><option>Строк на листе</option><option>20</option><option>35</option><option>50</option><option>100</option></select></div></form>
                     <div class="clearfix"></div>
                 </h3>
             </div>
-<?php if ($lines == TRUE) { ?>
+            <?php if ($lines == TRUE) { ?>
                 <div class="panel-body">
                     <!--<div class="table-responsive">-->
                     <table class="table">
@@ -63,20 +63,20 @@
                         <tbody id="sort-list">
 
                             <?php $parent_up = $lines[0][4]; ?>
-    <?php if ($parent_up > 0) { ?>
+                            <?php if ($parent_up > 0) { ?>
 
                                 <tr>
                                     <td colspan="3" align="left"><form><div><button name="parent_up" value="<?php echo $parent_up ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/categories/categories.php" formmethod="post">....</button></div></form></td>
                                 </tr>
 
-    <?php } for ($i; $i < $lines_p; $i++) { ?>
+                            <?php } for ($i; $i < $lines_p; $i++) { ?>
 
                                 <tr class="sort-list" unitid="<?php echo $lines[$i][0] ?>">
                                     <?php if ($lines[$i][8] == 0) { ?>
                                         <td class="sortleft" align="left"><form><div><button name="parent_down" value="<?php echo $lines[$i][0] ?>" class="btn btn-default btn-xs" title="<?php echo $lines[$i][1] ?>" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-folder-open"> </span></button></div></form></td>	  
                                     <?php } else { ?>
                                         <td class="sortleft" align="left"><form><div><button name="parent_down" value="<?php echo $lines[$i][0] ?>" class="btn btn-primary btn-xs" title="<?php echo $lines[$i][1] ?>" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-folder-open"> </span></button></div></form></td>
-        <?php } ?>
+                                    <?php } ?>
                                     <td class="sortyes" align="left"><div><?php echo $lines[$i][1] ?></div></td>	  
                                     <td class="sorthidden" align="right">
                                         <div class="log-right"><input class="select-item check-box" type="checkbox" value=""></div>
@@ -84,13 +84,13 @@
                                         <div class="log-left"><button class="btn btn-primary btn-xs" title="<?php echo $lang['button_move'] ?>" action="" formmethod="post"><span class="glyphicon glyphicon-transfer"> </span></button></div>
                                         <div class="log-left"><button class="btn btn-primary btn-xs" title="<?php echo $lang['button_edit'] ?>" name="but_edit" data-toggle="modal" data-target="<?php echo '#addCategory' . $lines[$i][0] ?>"><span class="glyphicon glyphicon-list-alt"> </span></button>
                                             <!-- Модальное окно "Редактировать категорию" -->
-        <?php require('modal/categories_edit.php') ?>
+                                            <?php require('modal/categories_edit.php') ?>
                                             <!-- КОНЕЦ Модальное окно "Редактировать категорию" -->
                                         </div>
                                     </td>
                                 </tr>
 
-    <?php } ?>
+                            <?php } ?>
 
                         </tbody>
 
@@ -98,7 +98,7 @@
                     <!--</div>-->
                 </div>
 
-<?php } elseif ($lines == FALSE && $VALID->inPOST('parent_down') > 0) { ?>
+            <?php } elseif ($lines == FALSE && $VALID->inPOST('parent_down') > 0) { ?>
 
                 <div class="panel-body"><p><?php echo $lang['no_cat'] ?></p>
                     <!--<div class="table-responsive">-->
@@ -113,7 +113,7 @@
                 </div>
             <?php } else { ?>
                 <div class="panel-body"><?php echo $lang['no_cat'] ?></div>
-<?php } ?>
+            <?php } ?>
         </div>
     </div>
 </div>

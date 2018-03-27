@@ -1,4 +1,5 @@
 <?php
+
 // ****** Copyright © 2018 eMarket *****//
 //   GNU GENERAL PUBLIC LICENSE v.3.0   //
 // https://github.com/musicman3/eMarket //
@@ -95,7 +96,18 @@ if ($VALID->inPOST('cat_delete')) {
 
 // КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 $lines = array();
-$lines_page = 20; // задаем количество строк на странице вывода
+
+// задаем количество строк на странице вывода категорий
+if (isset($_SESSION['select_category']) == FALSE) {
+    $lines_page = 20;
+    $_SESSION['select_category'] = $lines_page;
+} elseif (isset($_SESSION['select_category']) == TRUE && $VALID->inPOST('select_row')) {
+    $_SESSION['select_category'] = $VALID->inPOST('select_row');
+    $lines_page = $_SESSION['select_category'];
+} else {
+    $lines_page = $_SESSION['select_category'];
+}
+
 $i = 0; // устанавливаем страницу в ноль при заходе
 $lines_p = $lines_page;
 
@@ -160,5 +172,4 @@ if ($VALID->inPOST('token_ajax') == $TOKEN) {
 require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/connect_page_end.php');
 require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/html_end.php');
 // ************************************ //
-
 ?>
