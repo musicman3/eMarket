@@ -27,7 +27,7 @@
 if (isset($j) == false) {
     $j = 0;
 }
-if (isset($token) == false) {
+if (isset($TOKEN) == false) {
     $TOKEN = 0;
 }
 
