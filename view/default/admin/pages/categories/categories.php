@@ -18,7 +18,7 @@
                         <?php require_once('modal/categories_add.php') ?>
                         <!-- КОНЕЦ Модальное окно "Добавить категорию" -->
                     </div>
-                    <form action="/controller/admin/pages/categories/categories.php" method="post"><div class="add"><select name="select_row" class="input-xs form-control" onchange="this.form.submit()"><option>Строк на листе</option><option>20</option><option>35</option><option>50</option><option>100</option></select></div></form>
+                    <form action="/controller/admin/pages/categories/categories.php" method="post"><div class="add">Строк на странице:<select name="select_row" class="input-xs form-control" onchange="this.form.submit()"><option>(<?php echo $lines_page ?>)</option><option>20</option><option>35</option><option>50</option><option>100</option></select></div></form>
                     <div class="clearfix"></div>
                 </h3>
             </div>
