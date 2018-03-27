@@ -76,7 +76,7 @@
                                     <?php } else { ?>
                                         <td class="sortleft" align="left"><form><div><button name="parent_down" value="<?php echo $lines[$i][0] ?>" class="btn btn-primary btn-xs" title="<?php echo $lines[$i][1] ?>" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-folder-open"> </span></button></div></form></td>
                                     <?php } ?>
-                                    <td class="sortyes" align="left"><div><?php echo $lines[$i][1] ?></div></td>	  
+                                    <td class="sortyes" align="left"><div class="context-one"><?php echo $lines[$i][1] ?></div></td>	  
                                     <td class="sorthidden" align="right">
                                         <div class="log-right"><input class="select-item check-box" type="checkbox" value=""></div>
                                         <form><div class="log-left"><button class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo $lang['confirm-yes'] ?>" data-btn-cancel-label="<?php echo $lang['confirm-no'] ?>" title="<?php echo $lang['confirm-del'] ?>" name="cat_delete" value="<?php echo $lines[$i][0] ?>" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-trash"> </span></button></div></form>
