@@ -42,6 +42,7 @@ body {background:#e4e4da;font-family: 'Open Sans', sans-serif;background-image:u
 .log-right {display: inline-block;float: right;}
 .log-left {display: inline-block;float: right; padding-right:10px;}
 .add {display: inline-block;float: right; padding-right:5px;padding-left:5px;}
+.add-xs {font-size:14px;display: inline-block;float: right; padding-right:5px;padding-left:5px;}
 #category .check-box {vertical-align: middle;margin-top: 0;}
 /*.modal-content input {width: auto;}*/
 input[type="checkbox"], input[type="radio"] {vertical-align: text-bottom;}

@@ -12,13 +12,12 @@
             <div class="panel-heading">
                 <h3 class="panel-title">
                     <div class="pull-left"><?php echo $lang['menu_categories'] ?></div>
-
+                    <form action="/controller/admin/pages/categories/categories.php" method="post" class="form-inline"><div class="add-xs">Строк на странице: <select name="select_row" class="input-xs form-control" onchange="this.form.submit()"><option>(<?php echo $lines_page ?>)</option><option>20</option><option>35</option><option>50</option><option>75</option><option>100</option></select></div></form>
                     <div class="add"><button type="submit" name="category_add" class="btn btn-success btn-xs" data-toggle="modal" data-target="#addCategory"><span class="glyphicon glyphicon-plus"></span> <?php echo $lang['button_add'] ?></button>
                         <!-- Модальное окно "Добавить категорию" -->
                         <?php require_once('modal/categories_add.php') ?>
                         <!-- КОНЕЦ Модальное окно "Добавить категорию" -->
                     </div>
-                    <form action="/controller/admin/pages/categories/categories.php" method="post"><div class="add">Строк на странице:<select name="select_row" class="input-xs form-control" onchange="this.form.submit()"><option>(<?php echo $lines_page ?>)</option><option>20</option><option>35</option><option>50</option><option>100</option></select></div></form>
                     <div class="clearfix"></div>
                 </h3>
             </div>
