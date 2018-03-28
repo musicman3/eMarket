@@ -53,4 +53,3 @@ input[type="checkbox"], input[type="radio"] {vertical-align: text-bottom;}
 .ui-sortable-helper .sorthidden input {visibility:hidden;}
 .table .sorthidden {width: 140px;vertical-align: middle;}
 .table .sortleft {width:30px;vertical-align: middle;}
-.context-one {display: inline-block;}
