@@ -4,7 +4,7 @@
 // https://github.com/musicman3/eMarket //
 // *************************************//
 ?>
-
+<div id="ajax">
 <div id="category" class="container">
     <div class="row">
         <div class="panel panel-default">
@@ -24,6 +24,7 @@
             <?php if ($lines == TRUE) { ?>
                 <div class="panel-body">
                     <!--<div class="table-responsive">-->
+
                     <table class="table">
                         <thead>
                             <tr>
@@ -59,6 +60,7 @@
                                 </th>
                             </tr>
                         </tfoot>
+                        
                         <tbody id="sort-list">
 
                             <?php $parent_up = $lines[0][4]; ?>
@@ -92,8 +94,10 @@
                             <?php } ?>
 
                         </tbody>
+                        
 
                     </table>
+   
                     <!--</div>-->
                 </div>
 
@@ -115,4 +119,5 @@
             <?php } ?>
         </div>
     </div>
+</div>
 </div>

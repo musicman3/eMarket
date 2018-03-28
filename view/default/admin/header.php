@@ -6,7 +6,7 @@
 ?>
 
 </head>
-<body id="ajax">
+<body>
 
     <?php if (isset($_SESSION['login']) && isset($_SESSION['pass'])) { // Выводим если авторизованы   ?>
 

@@ -3,9 +3,10 @@
 //   GNU GENERAL PUBLIC LICENSE v.3.0   //    
 // https://github.com/musicman3/eMarket //
 // *************************************//
+
 ?>
 
-<?php if (isset($_SESSION['login']) && isset($_SESSION['pass'])) { // Выводим если авторизованы   ?>
+<?php if (isset($_SESSION['login']) && isset($_SESSION['pass'])) { // Выводим если авторизованы    ?>
 
     <div id="footerwrap">
         <footer class="clearfix"></footer>
@@ -29,9 +30,21 @@ if (isset($j) == false) {
 if (isset($TOKEN) == false) {
     $TOKEN = 0;
 }
-?>
 
-<!-- /сортировка мышкой -->
+?>
+<!-- /Выбрать все селекты -->
+<script type="text/javascript">
+    $(function () {
+        $("input.select-all").click(function () {
+            var checked = this.checked;
+            $("input.select-item").each(function (index, item) {
+                item.checked = checked;
+            });
+        });
+    });
+</script>
+
+<!-- /Сортировка мышкой -->
 <script type="text/javascript">
     $(document).ready(function () {
         $("#sort-list").sortable({
@@ -71,14 +84,13 @@ if (isset($TOKEN) == false) {
     }
 </script>
 
+<!-- /Контекстное меню -->
 <script type="text/javascript">
     $(function () {
         $.contextMenu({
             selector: '.context-one',
             callback: function (itemKey, opt) {
-
-
-                function mode() {
+                function send() {
                     $.ajax({
                         method: 'POST',
                         dataType: 'text',
@@ -88,41 +100,57 @@ if (isset($TOKEN) == false) {
                             ids2: opt.$trigger.attr("id")}),
                         success: function (data) {
                             setTimeout(function () {
-                                $('#ajax').html(data)
+                                $('#ajax').html(data);
                             }, 1000);
                         }
                     });
                 }
                 ;
-                return mode();
-
-                // Alert the key of the item and the trigger element's id.
-
-                // Do not close the menu after clicking an item
-                return false;
+                return send();
             },
             items: {
-                "edit": {name: "Edit", icon: "edit"},
-                "cut": {name: "Cut", icon: "cut"},
-                "copy": {name: "Copy", icon: "copy"},
-                "paste": {name: "Paste", icon: "paste"},
-                "delete": {name: "Delete", icon: "delete"},
+
+                "addItem": {
+                    name: "Добавить товар",
+                    icon: "edit",
+                    callback: function (itemKey, opt, rootMenu, originalEvent) {
+                        var m = "Отдельная функция для " + itemKey + " " + opt.$trigger.attr("id");
+                        window.console && console.log(m) || alert(m);
+                    }
+                },
+
+                "addCat": {
+                    name: "Добавить категорию",
+                    icon: "edit",
+                    callback: function (itemKey, opt, rootMenu, originalEvent) {
+                        var m = "Отдельная функция для " + itemKey + " " + opt.$trigger.attr("id");
+                        window.console && console.log(m) || alert(m);
+                    }
+                },
+
+                "sep": "---------",
+
+                "edit": {
+                    name: "Редактировать",
+                    icon: "edit",
+                    callback: function (itemKey, opt, rootMenu, originalEvent) {
+                        var m = "Отдельная функция для " + itemKey + " " + opt.$trigger.attr("id");
+                        window.console && console.log(m) || alert(m);
+                    }
+                },
+
+                "delete": {name: "Удалить", icon: "delete"},
                 "sep1": "---------",
-                "quit": {name: "Quit", icon: function () {
+
+                "cut": {name: "Вырезать", icon: "cut"},
+                "copy": {name: "Копировать", icon: "copy"},
+                "paste": {name: "Вставить", icon: "paste"},
+
+                "sep2": "---------",
+                "quit": {name: "Выход", icon: function () {
                         return 'context-menu-icon context-menu-icon-quit';
                     }}
             }
-        });
-    });
-</script>
-
-<script type="text/javascript">
-    $(function () {
-        $("input.select-all").click(function () {
-            var checked = this.checked;
-            $("input.select-item").each(function (index, item) {
-                item.checked = checked;
-            });
         });
     });
 </script>
