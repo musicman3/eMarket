@@ -72,13 +72,16 @@ if (isset($TOKEN) == false) {
         });
     }
 </script>
+
 <script type="text/javascript">
-    $(function() {
+    $(function () {
         $.contextMenu({
-            selector: '.context-one', 
-            callback: function(key, options) {
-                var m = "clicked: " + key;
-                window.console && console.log(m) || alert(m); 
+            selector: '.context-one',
+            callback: function (itemKey, opt) {
+                // Alert the key of the item and the trigger element's id.
+                alert("Clicked on " + itemKey + " on element " + opt.$trigger.attr("id"));
+                // Do not close the menu after clicking an item
+                return false;
             },
             items: {
                 "edit": {name: "Edit", icon: "edit"},
@@ -87,17 +90,14 @@ if (isset($TOKEN) == false) {
                 "paste": {name: "Paste", icon: "paste"},
                 "delete": {name: "Delete", icon: "delete"},
                 "sep1": "---------",
-                "quit": {name: "Quit", icon: function(){
-                    return 'context-menu-icon context-menu-icon-quit';
-                }}
+                "quit": {name: "Quit", icon: function () {
+                        return 'context-menu-icon context-menu-icon-quit';
+                    }}
             }
         });
-
-        $('.context-one').on('click', function(e){
-            console.log('clicked', this);
-        })    
     });
 </script>
+
 <script type="text/javascript">
     $(function () {
         $("input.select-all").click(function () {
