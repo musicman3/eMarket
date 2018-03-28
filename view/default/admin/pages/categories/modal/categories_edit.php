@@ -12,7 +12,6 @@ if ($status_category_edit == 1) {
 } else {
     $status_category_edit = '';
 }
-
 ?>
 
 <!-- Модальное окно "Редактировать категорию" -->
@@ -30,7 +29,7 @@ if ($status_category_edit == 1) {
                         <div class="form-group">
                             <label><?php echo $lang['name'] ?>:</label><br>
                             <img src="/view/default/admin/images/worldflags/ru.png" alt="Russian" title="Russian" width="16" height="10" />Russian<br>
-                            <?php // вывод из массива: name="categories_name[1]" id="categories_name[1] ?>
+                            <?php // вывод из массива: name="categories_name[1]" id="categories_name[1]  ?>
                             <input class="input-sm form-control" type="text" name="name_edit" id="name" value="<?php echo $name_category_edit ?>" />
                         </div>
                         <div class="form-group">
@@ -44,7 +43,8 @@ if ($status_category_edit == 1) {
                     </fieldset>
                 </div>
                 <div class="modal-footer">
-                    <input type="hidden" name="subaction" value="confirm" /><button type="submit" class="btn btn-primary btn-xs" /><span class="glyphicon glyphicon-save"></span> <?php echo $lang['save'] ?></button>
+                    <input type="hidden" name="subaction" value="confirm" />
+                    <button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-save"></span> <?php echo $lang['save'] ?></button>
                     <button class="btn btn-primary btn-xs" type="button" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> <?php echo $lang['cancel'] ?></button>
                 </div>
             </form>

@@ -3,7 +3,6 @@
 //   GNU GENERAL PUBLIC LICENSE v.3.0   //    
 // https://github.com/musicman3/eMarket //
 // *************************************//
-
 ?>
 <!-- Модальное окно "Добавить категорию" -->
 <div id="addCategory" class="modal fade" tabindex="-1">
@@ -33,7 +32,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <input type="hidden" name="subaction" value="confirm" /><button type="submit" class="btn btn-primary btn-xs" /><span class="glyphicon glyphicon-save"></span> <?php echo $lang['save'] ?></button>
+                    <input type="hidden" name="subaction" value="confirm" />
+                    <button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-save"></span> <?php echo $lang['save'] ?></button>
                     <button class="btn btn-primary btn-xs" type="button" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> <?php echo $lang['cancel'] ?></button>
                 </div>
             </form>
