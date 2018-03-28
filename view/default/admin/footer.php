@@ -3,10 +3,9 @@
 //   GNU GENERAL PUBLIC LICENSE v.3.0   //    
 // https://github.com/musicman3/eMarket //
 // *************************************//
-
 ?>
 
-<?php if (isset($_SESSION['login']) && isset($_SESSION['pass'])) { // Выводим если авторизованы  ?>
+<?php if (isset($_SESSION['login']) && isset($_SESSION['pass'])) { // Выводим если авторизованы   ?>
 
     <div id="footerwrap">
         <footer class="clearfix"></footer>
@@ -30,7 +29,6 @@ if (isset($j) == false) {
 if (isset($TOKEN) == false) {
     $TOKEN = 0;
 }
-
 ?>
 
 <!-- /сортировка мышкой -->
@@ -78,8 +76,28 @@ if (isset($TOKEN) == false) {
         $.contextMenu({
             selector: '.context-one',
             callback: function (itemKey, opt) {
+
+
+                function mode() {
+                    $.ajax({
+                        method: 'POST',
+                        dataType: 'text',
+                        url: '/controller/admin/pages/categories/categories.php',
+                        data: ({
+                            itemName: itemKey,
+                            ids2: opt.$trigger.attr("id")}),
+                        success: function (data) {
+                            setTimeout(function () {
+                                $('#ajax').html(data)
+                            }, 1000);
+                        }
+                    });
+                }
+                ;
+                return mode();
+
                 // Alert the key of the item and the trigger element's id.
-                alert("Clicked on " + itemKey + " on element " + opt.$trigger.attr("id"));
+
                 // Do not close the menu after clicking an item
                 return false;
             },

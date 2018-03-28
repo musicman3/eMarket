@@ -56,10 +56,10 @@ if ($VALID->inPOST('name_edit') && $VALID->inPOST('cat_edit')) {
 }
 
 // Если нажали на кнопку Удалить
-if ($VALID->inPOST('cat_delete')) {
+if ($VALID->inPOST('itemName') == 'delete') {
 
     // Устанавливаем родительскую категорию
-    $parent_id = $PDO->selectPrepare("SELECT parent_id FROM " . TABLE_CATEGORIES . " WHERE id=?", [$VALID->inPOST('cat_delete')]);
+    $parent_id = $PDO->selectPrepare("SELECT parent_id FROM " . TABLE_CATEGORIES . " WHERE id=?", [$VALID->inPOST('ids2')]);
     // Устанавливаем родительскую категорию родительской категории
     $parent_id_up = $PDO->selectPrepare("SELECT parent_id FROM " . TABLE_CATEGORIES . " WHERE id=?", [$parent_id]);
     // считаем одинаковые parent_id
@@ -73,7 +73,7 @@ if ($VALID->inPOST('cat_delete')) {
     $data_cat = $DB->prepare("SELECT id, parent_id FROM " . TABLE_CATEGORIES);
     $data_cat->execute();
 
-    $category = $VALID->inPOST('cat_delete'); // id родителя
+    $category = $VALID->inPOST('ids2'); // id родителя
     $categories = array();
     $keys = array(); // массив ключей
     $keys[] = $category; // добавляем первый ключ в массив
@@ -91,7 +91,7 @@ if ($VALID->inPOST('cat_delete')) {
         $PDO->insertPrepare("DELETE FROM " . TABLE_CATEGORIES . " WHERE id=?", [$keys[$x]]);
     }
     //удаляем основную категорию
-    $PDO->insertPrepare("DELETE FROM " . TABLE_CATEGORIES . " WHERE id=?", [$VALID->inPOST('cat_delete')]);
+    $PDO->insertPrepare("DELETE FROM " . TABLE_CATEGORIES . " WHERE id=?", [$VALID->inPOST('ids2')]);
 }
 
 // КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
