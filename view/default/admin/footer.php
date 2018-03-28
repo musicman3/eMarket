@@ -96,8 +96,8 @@ if (isset($TOKEN) == false) {
                         dataType: 'text',
                         url: '/controller/admin/pages/categories/categories.php',
                         data: ({
-                            itemName: itemKey,
-                            ids2: opt.$trigger.attr("id")}),
+                            itemName: itemKey, //название ключа из меню (edit, delete, copy и т.п.)
+                            ids2: opt.$trigger.attr("id")}), //id строки
                         success: function (data) {
                             setTimeout(function () {
                                 $('#ajax').html(data);
@@ -123,8 +123,7 @@ if (isset($TOKEN) == false) {
                     name: "Добавить категорию",
                     icon: "edit",
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
-                        var m = "Отдельная функция для " + itemKey + " " + opt.$trigger.attr("id");
-                        window.console && console.log(m) || alert(m);
+                        $('#addCategory').modal('show');
                     }
                 },
 
@@ -134,8 +133,7 @@ if (isset($TOKEN) == false) {
                     name: "Редактировать",
                     icon: "edit",
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
-                        var m = "Отдельная функция для " + itemKey + " " + opt.$trigger.attr("id");
-                        window.console && console.log(m) || alert(m);
+                        $('#addCategory' + opt.$trigger.attr("id")).modal('show');
                     }
                 },
 
