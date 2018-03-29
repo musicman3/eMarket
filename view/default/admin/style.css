@@ -51,7 +51,8 @@ input[type="checkbox"], input[type="radio"] {vertical-align: text-bottom;}
 .sortyes {cursor:move;}
 .ui-sortable-helper .sorthidden button {visibility:hidden;}
 .ui-sortable-helper .sorthidden input {visibility:hidden;}
+.ui-selected {background-color: #f5f5f5;}
 .table .sorthidden {vertical-align: middle;}
-.table .sortleft {width:30px;vertical-align: middle;}
-.table .sortleft-m {width:20px;vertical-align: middle;}
+.table .sortleft {width:30px;vertical-align: middle;text-align: center;}
+.table .sortleft-m {width:25px;vertical-align: middle;text-align: center;}
 .table .sortno:hover {background: none;}

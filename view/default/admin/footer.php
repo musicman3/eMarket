@@ -32,22 +32,14 @@ if (isset($TOKEN) == false) {
 }
 
 ?>
-<!-- /Выбрать все селекты -->
-<script type="text/javascript">
-    $(function () {
-        $("input.select-all").click(function () {
-            var checked = this.checked;
-            $("input.select-item").each(function (index, item) {
-                item.checked = checked;
-            });
-        });
-    });
-</script>
 
 <!-- /Сортировка мышкой -->
 <script type="text/javascript">
     $(document).ready(function () {
-        $("#sort-list").sortable({
+        $("#sort-list").selectable({
+	    cancel: 'td.sortyes, td.sortleft, td.sortleft-m, tr.sortno',
+	    filter: 'tr.sort-list'
+	}).sortable({
             items: 'tr.sort-list',
             handle: 'td.sortyes',
             axis: "y",

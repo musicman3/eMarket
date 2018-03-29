@@ -54,9 +54,9 @@
                                 <?php $parent_up = $lines[0][4]; ?>
                                 <?php if ($parent_up > 0) { ?>
 
-                                    <tr  colspan="2" class="sortno">
+                                    <tr class="sortno">
                                         <td  class="sortleft-m" align="left"><div></div></td>
-					<td colspan="3" align="left"><form><div><button name="parent_up" value="<?php echo $parent_up ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/categories/categories.php" formmethod="post">....</button></div></form></td>
+					<td colspan="2" align="left"><form><div><button name="parent_up" value="<?php echo $parent_up ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/categories/categories.php" formmethod="post">....</button></div></form></td>
                                     </tr>
 
                                 <?php } for ($i; $i < $lines_p; $i++) { ?>
@@ -95,7 +95,7 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th colspan="2">
+                                    <th colspan="3">
                                         <div class="log-page"><?php echo $lang['no_cat'] ?></div>
                                     </th>
                                     <th>
@@ -108,8 +108,10 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td align="left"><form><div><button name="parent_up" value="<?php echo $VALID->inPOST('parent_down') ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/categories/categories.php" formmethod="post">....</button></div></form></td>
+                                <tr class="sortno">
+                                    <td  class="sortleft-m" align="left"><div></div></td>
+				    <td align="left"><form><div><button name="parent_up" value="<?php echo $VALID->inPOST('parent_down') ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/categories/categories.php" formmethod="post">....</button></div></form></td>
+				    <td align="left"><div></div></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -120,7 +122,7 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th colspan="2">
+                                    <th>
                                         <div class="log-page"><?php echo $lang['no_cat'] ?></div>
                                     </th>
                                     <th>
