@@ -105,7 +105,7 @@
 					<div class="log-page"><?php echo $lang['no_cat'] ?></div>
 				    </th>
 				    <th>
-                        <div class="log-left"><button type="submit" name="category_add" class="btn btn-success btn-xs" data-toggle="modal" data-target="#addCategory"><span class="glyphicon glyphicon-plus"></span> <?php echo $lang['button_add'] ?></button>
+                        <div class="log-right"><button type="submit" name="category_add" class="btn btn-success btn-xs" data-toggle="modal" data-target="#addCategory"><span class="glyphicon glyphicon-plus"></span> <?php echo $lang['button_add'] ?></button>
                             <!-- Модальное окно "Добавить категорию" -->
 <?php require_once('modal/categories_add.php') ?>
                             <!-- КОНЕЦ Модальное окно "Добавить категорию" -->
