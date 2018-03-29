@@ -37,7 +37,7 @@ if (isset($TOKEN) == false) {
 <script type="text/javascript">
     $(document).ready(function () {
         $("#sort-list").selectable({
-	    cancel: 'td.sortyes, td.sortleft, td.sortleft-m, tr.sortno',
+	    cancel: 'td.sortyes, td.sortleft, td.sortleft-m, tr.sortno, div.modal',
 	    filter: 'tr.sort-list'
 	}).sortable({
             items: 'tr.sort-list',
