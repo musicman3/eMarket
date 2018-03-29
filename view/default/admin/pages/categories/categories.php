@@ -96,9 +96,23 @@
 
 <?php } elseif ($lines == FALSE && $VALID->inPOST('parent_down') > 0) { ?>
 
-                    <div class="panel-body"><p><?php echo $lang['no_cat'] ?></p>
+                    <div class="panel-body">
                         <!--<div class="table-responsive">-->
                         <table class="table">
+			    <thead>
+				<tr>
+				    <th colspan="2">
+					<div class="log-page"><?php echo $lang['no_cat'] ?></div>
+				    </th>
+				    <th>
+                        <div class="log-left"><button type="submit" name="category_add" class="btn btn-success btn-xs" data-toggle="modal" data-target="#addCategory"><span class="glyphicon glyphicon-plus"></span> <?php echo $lang['button_add'] ?></button>
+                            <!-- Модальное окно "Добавить категорию" -->
+<?php require_once('modal/categories_add.php') ?>
+                            <!-- КОНЕЦ Модальное окно "Добавить категорию" -->
+                        </div>
+				    </th>
+				</tr>
+			    </thead>
                             <tbody>
                                 <tr>
                                     <td align="left"><form><div><button name="parent_up" value="<?php echo $VALID->inPOST('parent_down') ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/categories/categories.php" formmethod="post">....</button></div></form></td>
