@@ -39,6 +39,7 @@ body {background:#e4e4da;font-family: 'Open Sans', sans-serif;background-image:u
 .input-xs {height:24px;font-size:12px;padding:0px 5px;}
 .modal-content {text-align:left;}
 .modal-header {background-color: #f5f5f5;padding: 10px 15px;border-top-left-radius: 3px;border-top-right-radius: 3px;}
+.log-page {display: inline-block;float: left;}
 .log-right {display: inline-block;float: right;}
 .log-left {display: inline-block;float: right; padding-right:10px;}
 .add-xs {font-size:14px;display: inline-block;float: right; padding-right:5px;padding-left:5px;}
@@ -52,4 +53,5 @@ input[type="checkbox"], input[type="radio"] {vertical-align: text-bottom;}
 .ui-sortable-helper .sorthidden input {visibility:hidden;}
 .table .sorthidden {vertical-align: middle;}
 .table .sortleft {width:30px;vertical-align: middle;}
+.table .sortleft-m {width:20px;vertical-align: middle;}
 .table .sortno:hover {background: none;}
