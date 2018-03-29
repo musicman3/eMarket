@@ -26,7 +26,7 @@
                     <div class="panel-body">
                         <!--<div class="table-responsive">-->
 
-                        <table class="table">
+                        <table class="table table-hover">
                             <thead>
                                 <tr>
                                     <th colspan="2">
@@ -67,7 +67,7 @@
                                 <?php $parent_up = $lines[0][4]; ?>
     <?php if ($parent_up > 0) { ?>
 
-                                    <tr>
+                                    <tr class="sortno">
                                         <td colspan="3" align="left"><form><div><button name="parent_up" value="<?php echo $parent_up ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/categories/categories.php" formmethod="post">....</button></div></form></td>
                                     </tr>
 

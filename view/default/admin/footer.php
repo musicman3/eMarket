@@ -53,11 +53,11 @@ if (isset($TOKEN) == false) {
             axis: "y",
             over: function (event, ui) {
                 ui.helper.css("opacity", "0.7"),
-                        ui.helper.css("background-color", "#F5F5F5")
+                        ui.helper.css("background-color", "#F5F5F5");
             },
             beforeStop: function (event, ui) {
                 ui.helper.css("opacity", "1.0"),
-                        ui.helper.css("background-color", "#ffffff")
+                        ui.helper.css("background-color", "");
             },
             stop: function (event, ui) {
                 sortList();
