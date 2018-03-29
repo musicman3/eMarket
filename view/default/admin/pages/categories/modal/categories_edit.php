@@ -15,7 +15,7 @@ if ($status_category_edit == 1) {
 ?>
 
 <!-- Модальное окно "Редактировать категорию" -->
-<div id="<?php echo 'addCategory' . $lines[$i][0] ?>" class="modal fade" tabindex="-1" name="category_edit" data-toggle="modal" data-target="#"<?php echo 'addCategory' . $lines[$i][0] ?>>
+<div id="<?php echo 'addCategory' . $lines[$i][0] ?>" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header"><button class="close" type="button" data-dismiss="modal">×</button>
