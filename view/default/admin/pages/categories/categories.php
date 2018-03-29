@@ -4,6 +4,9 @@
 // https://github.com/musicman3/eMarket //
 // *************************************//
 ?>
+<!-- Модальное окно "Добавить категорию" -->
+<?php require_once('modal/categories_add.php') ?>
+<!-- КОНЕЦ Модальное окно "Добавить категорию" -->
 <div id="ajax">
 
     <div id="category" class="container">
@@ -19,8 +22,6 @@
                 </div>
                 <?php if ($lines == TRUE) { ?>
                     <div class="panel-body">
-                        <!--<div class="table-responsive">-->
-
                         <table class="table table-hover">
                             <thead>
                                 <tr>
@@ -32,7 +33,6 @@
                                             <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
                                             <div class="log-right"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
                                         </form>
-
                                         <form>
                                             <input hidden name="i2" value="<?php echo $i ?>">
                                             <input hidden name="lines_p2" value="<?php echo $lines_p ?>">
@@ -40,15 +40,10 @@
                                             <div class="log-left"><button type="submit" class="btn btn-primary btn-xs"  action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
                                         </form>
                                         <div class="log-left"><button type="submit" name="category_add" class="btn btn-success btn-xs" data-toggle="modal" data-target="#addCategory"><span class="glyphicon glyphicon-plus"></span> <?php echo $lang['button_add'] ?></button>
-                                            <!-- Модальное окно "Добавить категорию" -->
-                                            <?php require_once('modal/categories_add.php') ?>
-                                            <!-- КОНЕЦ Модальное окно "Добавить категорию" -->
-
                                         </div>
                                     </th>
                                 </tr>
                             </thead>
-
                             <tbody id="sort-list">
 
                                 <?php $parent_up = $lines[0][4]; ?>
@@ -77,21 +72,14 @@
                                             </div>
                                         </td>	  
                                     </tr>
-
                                 <?php } ?>
-
                             </tbody>
-
-
                         </table>
-
-                        <!--</div>-->
                     </div>
 
                 <?php } elseif ($lines == FALSE && $VALID->inPOST('parent_down') > 0) { ?>
 
                     <div class="panel-body">
-                        <!--<div class="table-responsive">-->
                         <table class="table">
                             <thead>
                                 <tr>
@@ -100,9 +88,6 @@
                                     </th>
                                     <th>
                                         <div class="log-right"><button type="submit" name="category_add" class="btn btn-success btn-xs" data-toggle="modal" data-target="#addCategory"><span class="glyphicon glyphicon-plus"></span> <?php echo $lang['button_add'] ?></button>
-                                            <!-- Модальное окно "Добавить категорию" -->
-                                            <?php require_once('modal/categories_add.php') ?>
-                                            <!-- КОНЕЦ Модальное окно "Добавить категорию" -->
                                         </div>
                                     </th>
                                 </tr>
@@ -115,7 +100,6 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <!--</div>-->
                     </div>
                 <?php } else { ?>
                     <div class="panel-body">
@@ -127,9 +111,6 @@
                                     </th>
                                     <th>
                                         <div class="log-right"><button type="submit" name="category_add" class="btn btn-success btn-xs" data-toggle="modal" data-target="#addCategory"><span class="glyphicon glyphicon-plus"></span> <?php echo $lang['button_add'] ?></button>
-                                            <!-- Модальное окно "Добавить категорию" -->
-                                            <?php require_once('modal/categories_add.php') ?>
-                                            <!-- КОНЕЦ Модальное окно "Добавить категорию" -->
                                         </div>
                                     </th>
                                 </tr>
