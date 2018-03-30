@@ -86,7 +86,7 @@
                                             <td class="sortleft" align="left"><form><div><button name="parent_down" value="<?php echo $lines[$i][0] ?>" class="btn btn-primary btn-xs" title="<?php echo $lines[$i][1] ?>" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-folder-open"> </span></button></div></form></td>
                                         <?php } ?>
 
-                                        <td align="left" class="option" id="<?php echo $lines[$i][0] ?>"><span class="inactive" aria-hidden="true"></span>
+                                        <td align="left" class="option" id="<?php echo $lines[$i][0] ?>"><span class="inactive" style="display: none;"></span>
                                             <div class="context-one" id="<?php echo $lines[$i][0] ?>"><?php echo $lines[$i][1] ?>
                                                 <!-- Модальное окно "Редактировать категорию" -->
                                                 <?php require('modal/categories_edit.php') ?>
