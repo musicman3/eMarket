@@ -3,10 +3,31 @@
 //   GNU GENERAL PUBLIC LICENSE v.3.0   //    
 // https://github.com/musicman3/eMarket //
 // *************************************//
+
 ?>
 <!-- Модальное окно "Добавить категорию" -->
 <?php require_once('modal/categories_add.php') ?>
 <!-- КОНЕЦ Модальное окно "Добавить категорию" -->
+
+<!-- Modal -->
+<div class="modal fade" id="ModalSelect" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <!--textarea id="textarea-list" class="col-md-12"></textarea-->
+                <ul id="summary-list">
+                </ul>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
 <div id="ajax">
 
     <div id="category" class="container">
@@ -27,7 +48,7 @@
                                 <tr>
                                     <th colspan="3">
                                         <div class="log-page"><?php echo $lang['s'] ?> <?php echo $i + 1 ?> <?php echo $lang['po'] ?> <?php echo $lines_p ?> ( <?php echo $lang['iz'] ?> <?php echo $counter; ?> )</div>
-					<form>
+                                        <form>
                                             <input hidden name="i" value="<?php echo $i ?>">
                                             <input hidden name="lines_p" value="<?php echo $lines_p ?>">
                                             <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
@@ -51,26 +72,27 @@
 
                                     <tr class="sortno">
                                         <td  class="sortleft-m" align="left"><div></div></td>
-					<td colspan="2" align="left"><form><div><button name="parent_up" value="<?php echo $parent_up ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/categories/categories.php" formmethod="post">....</button></div></form></td>
+                                        <td colspan="2" align="left"><form><div><button name="parent_up" value="<?php echo $parent_up ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/categories/categories.php" formmethod="post">....</button></div></form></td>
                                     </tr>
 
                                 <?php } for ($i; $i < $lines_p; $i++) { ?>
 
                                     <tr class="sort-list" unitid="<?php echo $lines[$i][0] ?>">
                                         <?php if ($lines[$i][8] == 0) { ?>
-                                        <td  class="sortyes sortleft-m" align="left"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
-					<td class="sortleft" align="left"><form><div><button name="parent_down" value="<?php echo $lines[$i][0] ?>" class="btn btn-default btn-xs" title="<?php echo $lines[$i][1] ?>" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-folder-open"> </span></button></div></form></td>
+                                            <td  class="sortyes sortleft-m" align="left"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
+                                            <td class="sortleft" align="left"><form><div><button name="parent_down" value="<?php echo $lines[$i][0] ?>" class="btn btn-default btn-xs" title="<?php echo $lines[$i][1] ?>" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-folder-open"> </span></button></div></form></td>
                                         <?php } else { ?>
-                                        <td  class="sortyes sortleft-m" align="left"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
-					<td class="sortleft" align="left"><form><div><button name="parent_down" value="<?php echo $lines[$i][0] ?>" class="btn btn-primary btn-xs" title="<?php echo $lines[$i][1] ?>" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-folder-open"> </span></button></div></form></td>
+                                            <td  class="sortyes sortleft-m" align="left"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
+                                            <td class="sortleft" align="left"><form><div><button name="parent_down" value="<?php echo $lines[$i][0] ?>" class="btn btn-primary btn-xs" title="<?php echo $lines[$i][1] ?>" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-folder-open"> </span></button></div></form></td>
                                         <?php } ?>
-                                        <td align="left">
+
+                                        <td align="left" class="option" id="<?php echo $lines[$i][0] ?>"><span class="inactive" aria-hidden="true"></span>
                                             <div class="context-one" id="<?php echo $lines[$i][0] ?>"><?php echo $lines[$i][1] ?>
                                                 <!-- Модальное окно "Редактировать категорию" -->
                                                 <?php require('modal/categories_edit.php') ?>
                                                 <!-- КОНЕЦ Модальное окно "Редактировать категорию" -->
                                             </div>
-                                        </td>	  
+                                        </td>	 
                                     </tr>
                                 <?php } ?>
                             </tbody>
@@ -95,8 +117,8 @@
                             <tbody>
                                 <tr class="sortno">
                                     <td  class="sortleft-m" align="left"><div></div></td>
-				    <td align="left"><form><div><button name="parent_up" value="<?php echo $VALID->inPOST('parent_down') ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/categories/categories.php" formmethod="post">....</button></div></form></td>
-				    <td align="left"><div></div></td>
+                                    <td align="left"><form><div><button name="parent_up" value="<?php echo $VALID->inPOST('parent_down') ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/categories/categories.php" formmethod="post">....</button></div></form></td>
+                                    <td align="left"><div></div></td>
                                 </tr>
                             </tbody>
                         </table>

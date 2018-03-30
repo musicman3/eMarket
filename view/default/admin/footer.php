@@ -36,10 +36,7 @@ if (isset($TOKEN) == false) {
 <!-- /Сортировка мышкой -->
 <script type="text/javascript">
     $(document).ready(function () {
-        $("#sort-list").selectable({
-	    cancel: 'td.sortyes, td.sortleft, td.sortleft-m, tr.sortno, div.modal',
-	    filter: 'tr.sort-list'
-	}).sortable({
+        $("#sort-list").sortable({
             items: 'tr.sort-list',
             handle: 'td.sortyes',
             axis: "y",
@@ -75,6 +72,23 @@ if (isset($TOKEN) == false) {
         });
     }
 </script>
+
+<!-- /Выбор мышкой -->
+<script type="text/javascript">
+    $(".option").click(function () {
+        $(this).find('span').toggleClass('inactive');
+        $(this).toggleClass('active');
+    });
+
+    $("#btn-modal").click(function () { //если нажали отдельную кнопку #btn-modal
+        $("#summary-list").empty();
+        $(".option").each(function () {
+            if (!$(this).children().hasClass('inactive'))
+                $("#summary-list").append(this.id);
+        });
+    });
+</script>
+<!-- /Выбор мышкой -->
 
 <!-- /Контекстное меню -->
 <script type="text/javascript">
@@ -112,10 +126,17 @@ if (isset($TOKEN) == false) {
                 },
 
                 "addCat": {
-                    name: "Добавить категорию",
-                    icon: "edit",
+                    name: "Выделенное",
+                    icon: "add",
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
-                        $('#addCategory').modal('show');
+                        //выводим id выделенной строки
+                        $("#summary-list").empty();
+                        $(".option").each(function () {
+                            if (!$(this).children().hasClass('inactive'))
+                                $("#summary-list").append(this.id);
+                        });
+                        $('#ModalSelect').modal('show');
+
                     }
                 },
 
