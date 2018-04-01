@@ -55,11 +55,9 @@ if ($VALID->inPOST('name_edit') && $VALID->inPOST('cat_edit')) {
 }
 
 // Если нажали на кнопку Удалить + групповое выделение
-if ($VALID->inPOST('idsx_delete_id') > 0 && $VALID->inPOST('idsx_delete_key') == 'delete') {
-    
-    if ($VALID->inPOST('idsx_delete_id') >= 0 && $VALID->inPOST('idsx_delete_key') == 'delete') {
-        $idx = $VALID->inPOST('idsx_delete_id');
-    }
+if ($VALID->inPOST('idsx_delete_id') >= 0 && $VALID->inPOST('idsx_delete_key') == 'delete') {
+
+    $idx = $VALID->inPOST('idsx_delete_id');
 
     // Устанавливаем родительскую категорию
     $parent_id = $PDO->selectPrepare("SELECT parent_id FROM " . TABLE_CATEGORIES . " WHERE id=?", [$idx]);
