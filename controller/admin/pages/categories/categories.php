@@ -1,5 +1,4 @@
 <?php
-
 // ****** Copyright © 2018 eMarket *****//
 //   GNU GENERAL PUBLIC LICENSE v.3.0   //
 // https://github.com/musicman3/eMarket //
@@ -55,11 +54,15 @@ if ($VALID->inPOST('name_edit') && $VALID->inPOST('cat_edit')) {
     $PDO->insertPrepare("UPDATE " . TABLE_CATEGORIES . " SET name=?, last_modified=?, status=? WHERE id=?", [$VALID->inPOST('name_edit'), date("Y-m-d H:i:s"), $view_cat, $VALID->inPOST('cat_edit')]);
 }
 
-// Если нажали на кнопку Удалить
-if ($VALID->inPOST('itemName') == 'delete') {
+// Если нажали на кнопку Удалить + групповое выделение
+if ($VALID->inPOST('idsx') > 0 && $VALID->inPOST('idsx_delete') == 'delete') {
+    
+    if ($VALID->inPOST('idsx') >= 0 && $VALID->inPOST('idsx_delete') == 'delete') {
+        $idx = $VALID->inPOST('idsx');
+    }
 
     // Устанавливаем родительскую категорию
-    $parent_id = $PDO->selectPrepare("SELECT parent_id FROM " . TABLE_CATEGORIES . " WHERE id=?", [$VALID->inPOST('ids2')]);
+    $parent_id = $PDO->selectPrepare("SELECT parent_id FROM " . TABLE_CATEGORIES . " WHERE id=?", [$idx]);
     // Устанавливаем родительскую категорию родительской категории
     $parent_id_up = $PDO->selectPrepare("SELECT parent_id FROM " . TABLE_CATEGORIES . " WHERE id=?", [$parent_id]);
     // считаем одинаковые parent_id
@@ -73,7 +76,7 @@ if ($VALID->inPOST('itemName') == 'delete') {
     $data_cat = $DB->prepare("SELECT id, parent_id FROM " . TABLE_CATEGORIES);
     $data_cat->execute();
 
-    $category = $VALID->inPOST('ids2'); // id родителя
+    $category = $idx; // id родителя
     $categories = array();
     $keys = array(); // массив ключей
     $keys[] = $category; // добавляем первый ключ в массив
@@ -91,7 +94,7 @@ if ($VALID->inPOST('itemName') == 'delete') {
         $PDO->insertPrepare("DELETE FROM " . TABLE_CATEGORIES . " WHERE id=?", [$keys[$x]]);
     }
     //удаляем основную категорию
-    $PDO->insertPrepare("DELETE FROM " . TABLE_CATEGORIES . " WHERE id=?", [$VALID->inPOST('ids2')]);
+    $PDO->insertPrepare("DELETE FROM " . TABLE_CATEGORIES . " WHERE id=?", [$idx]);
 }
 
 // КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
@@ -172,4 +175,5 @@ if ($VALID->inPOST('token_ajax') == $TOKEN) {
 require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/connect_page_end.php');
 require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/html_end.php');
 // ************************************ //
+
 ?>

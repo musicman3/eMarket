@@ -79,14 +79,6 @@ if (isset($TOKEN) == false) {
         $(this).find('span').toggleClass('inactive');
         $(this).toggleClass('active');
     });
-
-    $("#btn-modal").click(function () { //если нажали отдельную кнопку #btn-modal
-        $("#summary-list").empty();
-        $(".option").each(function () {
-            if (!$(this).children().hasClass('inactive'))
-                $("#summary-list").append(this.id);
-        });
-    });
 </script>
 <!-- /Выбор мышкой -->
 
@@ -115,33 +107,6 @@ if (isset($TOKEN) == false) {
                 return send();
             },
             items: {
-
-                "addItem": {
-                    name: "Добавить товар",
-                    icon: "edit",
-                    callback: function (itemKey, opt, rootMenu, originalEvent) {
-                        var m = "Отдельная функция для " + itemKey + " " + opt.$trigger.attr("id");
-                        window.console && console.log(m) || alert(m);
-                    }
-                },
-
-                "addCat": {
-                    name: "Выделенное",
-                    icon: "add",
-                    callback: function (itemKey, opt, rootMenu, originalEvent) {
-                        //выводим id выделенной строки
-                        $("#summary-list").empty();
-                        $(".option").each(function () {
-                            if (!$(this).children().hasClass('inactive'))
-                                $("#summary-list").append(this.id);
-                        });
-                        $('#ModalSelect').modal('show');
-
-                    }
-                },
-
-                "sep": "---------",
-
                 "edit": {
                     name: "Редактировать",
                     icon: "edit",
@@ -150,13 +115,48 @@ if (isset($TOKEN) == false) {
                     }
                 },
 
-                "delete": {name: "Удалить", icon: "delete"},
-                "sep1": "---------",
+                "sep": "---------",
 
-                "cut": {name: "Вырезать", icon: "cut"},
-                "copy": {name: "Копировать", icon: "copy"},
-                "paste": {name: "Вставить", icon: "paste"},
+                "fold": {
+                    "name": "Выбранное",
+                    icon: "add",
+                    "items": {
 
+                        "cut": {name: "Вырезать", icon: "cut"},
+                        "copy": {name: "Копировать", icon: "copy"},
+                        "paste": {name: "Вставить", icon: "paste"},
+
+                        "delete": {
+                            name: "Удалить",
+                            icon: "delete",
+                            callback: function (itemKey, opt, rootMenu, originalEvent) {
+
+                                $(".option").each(function () { // выделенное мышкой
+                                    if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
+                                        $.post('/controller/admin/pages/categories/categories.php', // отправка данных POST
+                                                {idsx: this.id,
+                                                    idsx_delete: itemKey});
+                                });
+
+                                function send2() { // обновление страницы
+                                    $.ajax({
+                                        method: 'POST',
+                                        dataType: 'text',
+                                        url: '/controller/admin/pages/categories/categories.php',
+                                        data: ({}),
+                                        success: function (data) {
+                                            setTimeout(function () {
+                                                $('#ajax').html(data);
+                                            }, 1000);
+                                        }
+                                    });
+                                }
+                                ;
+                                return send2();
+                            }
+                        }
+                    }
+                },
                 "sep2": "---------",
                 "quit": {name: "Выход", icon: function () {
                         return 'context-menu-icon context-menu-icon-quit';
