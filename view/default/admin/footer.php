@@ -134,9 +134,7 @@ if (isset($TOKEN) == false) {
                                                     idsx_cut_key: itemKey},
                                                 AjaxSuccess);
                                     function AjaxSuccess(data) {
-                                        setTimeout(function () {
                                             $('#ajax').html(data);
-                                        }, 1000);
                                     }
                                 });
                             }
@@ -157,9 +155,7 @@ if (isset($TOKEN) == false) {
                                                     idsx_delete_key: itemKey},
                                                 AjaxSuccess);
                                     function AjaxSuccess(data) {
-                                        setTimeout(function () {
                                             $('#ajax').html(data);
-                                        }, 1000);
                                     }
                                 });
                             }
