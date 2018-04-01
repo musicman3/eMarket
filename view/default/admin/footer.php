@@ -122,7 +122,26 @@ if (isset($TOKEN) == false) {
                     icon: "add",
                     "items": {
 
-                        "cut": {name: "Вырезать", icon: "cut"},
+                        "cut": {
+                            name: "Вырезать",
+                            icon: "cut",
+                            callback: function (itemKey, opt, rootMenu, originalEvent) {
+
+                                $(".option").each(function () { // выделенное мышкой
+                                    if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
+                                        $.post('/controller/admin/pages/categories/categories.php', // отправка данных POST
+                                                {idsx_cut_id: this.id,
+                                                    idsx_cut_key: itemKey},
+                                                AjaxSuccess);
+                                    function AjaxSuccess(data) {
+                                        setTimeout(function () {
+                                            $('#ajax').html(data);
+                                        }, 1000);
+                                    }
+                                });
+                            }
+                        },
+
                         "copy": {name: "Копировать", icon: "copy"},
                         "paste": {name: "Вставить", icon: "paste"},
 
@@ -134,27 +153,15 @@ if (isset($TOKEN) == false) {
                                 $(".option").each(function () { // выделенное мышкой
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                         $.post('/controller/admin/pages/categories/categories.php', // отправка данных POST
-                                                {idsx: this.id,
-                                                    idsx_delete: itemKey});
-                                    setTimeout(function () {
-                                    }, 1000);
+                                                {idsx_delete_id: this.id,
+                                                    idsx_delete_key: itemKey},
+                                                AjaxSuccess);
+                                    function AjaxSuccess(data) {
+                                        setTimeout(function () {
+                                            $('#ajax').html(data);
+                                        }, 1000);
+                                    }
                                 });
-
-                                function send2() { // обновление страницы
-                                    $.ajax({
-                                        method: 'POST',
-                                        dataType: 'text',
-                                        url: '/controller/admin/pages/categories/categories.php',
-                                        data: ({}),
-                                        success: function (data) {
-                                            setTimeout(function () {
-                                                $('#ajax').html(data);
-                                            }, 1000);
-                                        }
-                                    });
-                                }
-                                ;
-                                return send2();
                             }
                         }
                     }

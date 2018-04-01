@@ -55,10 +55,10 @@ if ($VALID->inPOST('name_edit') && $VALID->inPOST('cat_edit')) {
 }
 
 // Если нажали на кнопку Удалить + групповое выделение
-if ($VALID->inPOST('idsx') > 0 && $VALID->inPOST('idsx_delete') == 'delete') {
+if ($VALID->inPOST('idsx_delete_id') > 0 && $VALID->inPOST('idsx_delete_key') == 'delete') {
     
-    if ($VALID->inPOST('idsx') >= 0 && $VALID->inPOST('idsx_delete') == 'delete') {
-        $idx = $VALID->inPOST('idsx');
+    if ($VALID->inPOST('idsx_delete_id') >= 0 && $VALID->inPOST('idsx_delete_key') == 'delete') {
+        $idx = $VALID->inPOST('idsx_delete_id');
     }
 
     // Устанавливаем родительскую категорию
