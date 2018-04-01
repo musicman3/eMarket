@@ -136,6 +136,8 @@ if (isset($TOKEN) == false) {
                                         $.post('/controller/admin/pages/categories/categories.php', // отправка данных POST
                                                 {idsx: this.id,
                                                     idsx_delete: itemKey});
+                                    setTimeout(function () {
+                                    }, 1000);
                                 });
 
                                 function send2() { // обновление страницы
