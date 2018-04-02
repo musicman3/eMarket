@@ -55,21 +55,21 @@ if ($VALID->inPOST('name_edit') && $VALID->inPOST('cat_edit')) {
 }
 
 // ГРУППОВЫЕ ДЕЙСТВИЯ: Если нажали на кнопки: Отображать, Удалить + групповое выделение
-if (($VALID->inPOST('idsx_statusOn_id') >= 0 && $VALID->inPOST('idsx_statusOn_key') == 'statusOn')
-        or ( $VALID->inPOST('idsx_statusOff_id') >= 0 && $VALID->inPOST('idsx_statusOff_key') == 'statusOff')
-        or ( $VALID->inPOST('idsx_delete_id') >= 0 && $VALID->inPOST('idsx_delete_key') == 'delete')) {
+if (($VALID->inPOST('idsx_statusOn_key') == 'statusOn')
+        or ( $VALID->inPOST('idsx_statusOff_key') == 'statusOff')
+        or ( $VALID->inPOST('idsx_delete_key') == 'delete')) {
 
-    if ($VALID->inPOST('idsx_statusOn_id') >= 0 && $VALID->inPOST('idsx_statusOn_key') == 'statusOn') {
+    if ($VALID->inPOST('idsx_statusOn_key') == 'statusOn') {
         $idx = $VALID->inPOST('idsx_statusOn_id');
         $status = 1;
     }
 
-    if ($VALID->inPOST('idsx_statusOff_id') >= 0 && $VALID->inPOST('idsx_statusOff_key') == 'statusOff') {
+    if ($VALID->inPOST('idsx_statusOff_key') == 'statusOff') {
         $idx = $VALID->inPOST('idsx_statusOff_id');
         $status = 0;
     }
 
-    if ($VALID->inPOST('idsx_delete_id') >= 0 && $VALID->inPOST('idsx_delete_key') == 'delete') {
+    if ($VALID->inPOST('idsx_delete_key') == 'delete') {
 
         $idx = $VALID->inPOST('idsx_delete_id');
     }
@@ -105,24 +105,25 @@ if (($VALID->inPOST('idsx_statusOn_id') >= 0 && $VALID->inPOST('idsx_statusOn_ke
     for ($x = 0; $x < count($keys); $x++) {
 
         //Обновляем статус подкатегорий
-        if (($VALID->inPOST('idsx_statusOn_id') >= 0 && $VALID->inPOST('idsx_statusOn_key') == 'statusOn')
-                or ( $VALID->inPOST('idsx_statusOff_id') >= 0 && $VALID->inPOST('idsx_statusOff_key') == 'statusOff')) {
+        if (($VALID->inPOST('idsx_statusOn_key') == 'statusOn')
+                or ( $VALID->inPOST('idsx_statusOff_key') == 'statusOff')) {
             $PDO->insertPrepare("UPDATE " . TABLE_CATEGORIES . " SET status=? WHERE id=?", [$status, $keys[$x]]);
         }
 
         //Удаляем подкатегории
-        if ($VALID->inPOST('idsx_delete_id') >= 0 && $VALID->inPOST('idsx_delete_key') == 'delete') {
+        if ($VALID->inPOST('idsx_delete_key') == 'delete') {
             $PDO->insertPrepare("DELETE FROM " . TABLE_CATEGORIES . " WHERE id=?", [$keys[$x]]);
         }
     }
+
     //Обновляем статус основной категории
-    if (($VALID->inPOST('idsx_statusOn_id') >= 0 && $VALID->inPOST('idsx_statusOn_key') == 'statusOn')
-            or ( $VALID->inPOST('idsx_statusOff_id') >= 0 && $VALID->inPOST('idsx_statusOff_key') == 'statusOff')) {
+    if (($VALID->inPOST('idsx_statusOn_key') == 'statusOn')
+            or ( $VALID->inPOST('idsx_statusOff_key') == 'statusOff')) {
         $PDO->insertPrepare("UPDATE " . TABLE_CATEGORIES . " SET status=? WHERE id=?", [$status, $idx]);
     }
 
     //Удаляем основную категорию    
-    if ($VALID->inPOST('idsx_delete_id') >= 0 && $VALID->inPOST('idsx_delete_key') == 'delete') {
+    if ($VALID->inPOST('idsx_delete_key') == 'delete') {
         $PDO->insertPrepare("DELETE FROM " . TABLE_CATEGORIES . " WHERE id=?", [$idx]);
     }
 }
