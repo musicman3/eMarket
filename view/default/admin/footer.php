@@ -121,6 +121,8 @@ if (isset($TOKEN) == false) {
                     "name": "Выбранное",
                     icon: function () {return 'context-menu-icon glyphicon-ok';},
                     "items": {
+                        
+                        "active": {name: "Отображать", icon: function () {return 'context-menu-icon glyphicon-eye-open';}},
 
                         "cut": {
                             name: "Вырезать",
