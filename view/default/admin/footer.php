@@ -109,7 +109,7 @@ if (isset($TOKEN) == false) {
             items: {
                 "edit": {
                     name: "Редактировать",
-                    icon: "edit",
+                    icon: function () {return 'context-menu-icon glyphicon-edit';},
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
                         $('#addCategory' + opt.$trigger.attr("id")).modal('show');
                     }
@@ -119,12 +119,12 @@ if (isset($TOKEN) == false) {
 
                 "fold": {
                     "name": "Выбранное",
-                    icon: "add",
+                    icon: function () {return 'context-menu-icon glyphicon-plus';},
                     "items": {
 
                         "cut": {
                             name: "Вырезать",
-                            icon: "cut",
+                            icon: function () {return 'context-menu-icon glyphicon-scissors';},
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
 
                                 $(".option").each(function () { // выделенное мышкой
@@ -140,12 +140,12 @@ if (isset($TOKEN) == false) {
                             }
                         },
 
-                        "copy": {name: "Копировать", icon: "copy"},
-                        "paste": {name: "Вставить", icon: "paste"},
+                        "copy": {name: "Копировать", icon: function () {return 'context-menu-icon glyphicon-copy';}},
+                        "paste": {name: "Вставить", icon: function () {return 'context-menu-icon glyphicon-paste';}},
 
                         "delete": {
                             name: "Удалить",
-                            icon: "delete",
+                            icon: function () {return 'context-menu-icon glyphicon-trash';},
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
 
                                 $(".option").each(function () { // выделенное мышкой
@@ -164,7 +164,7 @@ if (isset($TOKEN) == false) {
                 },
                 "sep2": "---------",
                 "quit": {name: "Выход", icon: function () {
-                        return 'context-menu-icon context-menu-icon-quit';
+                        return 'context-menu-icon glyphicon-remove';
                     }}
             }
         });
