@@ -119,7 +119,7 @@ if (isset($TOKEN) == false) {
 
                 "fold": {
                     "name": "Выбранное",
-                    icon: function () {return 'context-menu-icon glyphicon-plus';},
+                    icon: function () {return 'context-menu-icon glyphicon-ok';},
                     "items": {
 
                         "cut": {

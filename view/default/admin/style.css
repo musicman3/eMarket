@@ -52,4 +52,4 @@ input[type="checkbox"], input[type="radio"] {vertical-align: text-bottom;}
 .table .sortleft {width:30px;vertical-align: middle;text-align: center;}
 .table .sortleft-m {color:#cccccc;width:25px;vertical-align: middle;text-align: center;}
 .table .sortno:hover {background: none;}
-.table > tbody > tr > td.active {background-color: #DCDCDC;}
+.table > tbody > tr > td.active {background-color: #f0f0f0;}
