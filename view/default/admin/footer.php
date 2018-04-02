@@ -122,7 +122,41 @@ if (isset($TOKEN) == false) {
                     icon: function () {return 'context-menu-icon glyphicon-ok';},
                     "items": {
                         
-                        "active": {name: "Отображать", icon: function () {return 'context-menu-icon glyphicon-eye-open';}},
+                        "statusOn": {
+                            name: "Отображать",
+                            icon: function () {return 'context-menu-icon glyphicon-eye-open';},
+                            callback: function (itemKey, opt, rootMenu, originalEvent) {
+
+                                $(".option").each(function () { // выделенное мышкой
+                                    if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
+                                        $.post('/controller/admin/pages/categories/categories.php', // отправка данных POST
+                                                {idsx_statusOn_id: this.id,
+                                                    idsx_statusOn_key: itemKey},
+                                                AjaxSuccess);
+                                    function AjaxSuccess(data) {
+                                        $('#ajax').html(data);
+                                    }
+                                });
+                            }
+                        },
+                        
+                        "statusOff": {
+                            name: "Скрыть",
+                            icon: function () {return 'context-menu-icon glyphicon-eye-close';},
+                            callback: function (itemKey, opt, rootMenu, originalEvent) {
+
+                                $(".option").each(function () { // выделенное мышкой
+                                    if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
+                                        $.post('/controller/admin/pages/categories/categories.php', // отправка данных POST
+                                                {idsx_statusOff_id: this.id,
+                                                    idsx_statusOff_key: itemKey},
+                                                AjaxSuccess);
+                                    function AjaxSuccess(data) {
+                                        $('#ajax').html(data);
+                                    }
+                                });
+                            }
+                        },
 
                         "cut": {
                             name: "Вырезать",
