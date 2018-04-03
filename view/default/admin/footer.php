@@ -199,10 +199,6 @@ if (isset($TOKEN) == false) {
                             }
                         },
 
-                        "copy": {name: "Копировать", icon: function () {
-                                return 'context-menu-icon glyphicon-copy';
-                            }},
-
                         "paste": {
                             name: "Вставить",
                             icon: function () {
