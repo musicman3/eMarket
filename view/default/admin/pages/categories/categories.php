@@ -111,13 +111,9 @@
                             <tbody>
                                 <tr class="sortno">
                                     <td  class="sortleft-m" align="left"></td>
-                                    <td colspan="2" align="left"><form><div><button name="parent_up" value="<?php echo $VALID->inPOST('parent_down') ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/categories/categories.php" formmethod="post">....</button></div></form></td>
-                                </tr>
-				<tr>
-				    <td  class="sortleft-m" align="left"></td>
-				    <td class="sortleft" align="left"></td>
+                                    <td class="sortleft" align="left"><form><div><button name="parent_up" value="<?php echo $VALID->inPOST('parent_down') ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/categories/categories.php" formmethod="post">....</button></div></form></td>
 				    <td align="left"><div class="context-one"><?php echo $lang['no_cat'] ?></div></td>
-				</tr>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
