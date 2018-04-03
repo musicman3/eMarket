@@ -102,41 +102,44 @@
                 <?php } elseif ($lines == FALSE && $VALID->inPOST('parent_down') > 0) { ?>
 
                     <div class="panel-body">
-                        <table class="table">
+                        <table class="table table-hover">
                             <thead>
                                 <tr>
                                     <th colspan="3">
                                         <div class="log-page"><?php echo $lang['no_cat'] ?></div>
                                     </th>
-                                    <th>
-                                        <div class="log-right"><button type="submit" name="category_add" class="btn btn-success btn-xs" data-toggle="modal" data-target="#addCategory"><span class="glyphicon glyphicon-plus"></span> <?php echo $lang['button_add'] ?></button>
-                                        </div>
-                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr class="sortno">
-                                    <td  class="sortleft-m" align="left"><div></div></td>
-                                    <td align="left"><form><div><button name="parent_up" value="<?php echo $VALID->inPOST('parent_down') ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/categories/categories.php" formmethod="post">....</button></div></form></td>
-                                    <td align="left"><div></div></td>
+                                    <td  class="sortleft-m" align="left"></td>
+                                    <td colspan="2" align="left"><form><div><button name="parent_up" value="<?php echo $VALID->inPOST('parent_down') ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/categories/categories.php" formmethod="post">....</button></div></form></td>
                                 </tr>
+				<tr>
+				    <td  class="sortleft-m" align="left"></td>
+				    <td class="sortleft" align="left"></td>
+				    <td align="left"><div class="context-one"><?php echo $lang['no_cat'] ?></div></td>
+				</tr>
                             </tbody>
                         </table>
                     </div>
                 <?php } else { ?>
                     <div class="panel-body">
-                        <table class="table">
+                        <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>
+                                    <th colspan="3">
                                         <div class="log-page"><?php echo $lang['no_cat'] ?></div>
-                                    </th>
-                                    <th>
-                                        <div class="log-right"><button type="submit" name="category_add" class="btn btn-success btn-xs" data-toggle="modal" data-target="#addCategory"><span class="glyphicon glyphicon-plus"></span> <?php echo $lang['button_add'] ?></button>
-                                        </div>
                                     </th>
                                 </tr>
                             </thead>
+                            <tbody>
+				<tr>
+				    <td  class="sortleft-m" align="left"></td>
+				    <td class="sortleft" align="left"></td>
+				    <td align="left"><div class="context-one"><?php echo $lang['no_cat'] ?></div></td>
+				</tr>
+                            </tbody>
                         </table>
                     </div>
                 <?php } ?>
