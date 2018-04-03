@@ -109,7 +109,9 @@ if (isset($TOKEN) == false) {
             items: {
                 "edit": {
                     name: "Редактировать",
-                    icon: function () {return 'context-menu-icon glyphicon-edit';},
+                    icon: function () {
+                        return 'context-menu-icon glyphicon-edit';
+                    },
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
                         $('#addCategory' + opt.$trigger.attr("id")).modal('show');
                     }
@@ -119,12 +121,16 @@ if (isset($TOKEN) == false) {
 
                 "fold": {
                     "name": "Выбранное",
-                    icon: function () {return 'context-menu-icon glyphicon-ok';},
+                    icon: function () {
+                        return 'context-menu-icon glyphicon-ok';
+                    },
                     "items": {
-                        
+
                         "statusOn": {
-                            name: "Отображать",
-                            icon: function () {return 'context-menu-icon glyphicon-eye-open';},
+                            name: "Отобразить",
+                            icon: function () {
+                                return 'context-menu-icon glyphicon-eye-open';
+                            },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
 
                                 $(".option").each(function () { // выделенное мышкой
@@ -139,10 +145,12 @@ if (isset($TOKEN) == false) {
                                 });
                             }
                         },
-                        
+
                         "statusOff": {
                             name: "Скрыть",
-                            icon: function () {return 'context-menu-icon glyphicon-eye-close';},
+                            icon: function () {
+                                return 'context-menu-icon glyphicon-eye-close';
+                            },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
 
                                 $(".option").each(function () { // выделенное мышкой
@@ -160,8 +168,13 @@ if (isset($TOKEN) == false) {
 
                         "cut": {
                             name: "Вырезать",
-                            icon: function () {return 'context-menu-icon glyphicon-scissors';},
+                            icon: function () {
+                                return 'context-menu-icon glyphicon-scissors';
+                            },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
+
+                                $.post('/controller/admin/pages/categories/categories.php', // отправка данных POST
+                                        {idsx_cut_marker: 'cut'});
 
                                 $(".option").each(function () { // выделенное мышкой
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
@@ -176,12 +189,34 @@ if (isset($TOKEN) == false) {
                             }
                         },
 
-                        "copy": {name: "Копировать", icon: function () {return 'context-menu-icon glyphicon-copy';}},
-                        "paste": {name: "Вставить", icon: function () {return 'context-menu-icon glyphicon-paste';}},
+                        "copy": {name: "Копировать", icon: function () {
+                                return 'context-menu-icon glyphicon-copy';
+                            }},
+
+                        "paste": {
+                            name: "Вставить",
+                            icon: function () {
+                                return 'context-menu-icon glyphicon-paste';
+                            },
+                            callback: function (itemKey, opt, rootMenu, originalEvent) {
+
+                                $.post('/controller/admin/pages/categories/categories.php', // отправка данных POST
+                                        {idsx_paste_id: this.id,
+                                            idsx_paste_parent_id: '<?php echo $parent_id_paste_temp ?>',
+                                            idsx_paste_key: itemKey},
+                                        AjaxSuccess);
+                                function AjaxSuccess(data) {
+                                    $('#ajax').html(data);
+                                }
+
+                            }
+                        },
 
                         "delete": {
                             name: "Удалить",
-                            icon: function () {return 'context-menu-icon glyphicon-trash';},
+                            icon: function () {
+                                return 'context-menu-icon glyphicon-trash';
+                            },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
 
                                 $(".option").each(function () { // выделенное мышкой

@@ -55,8 +55,25 @@ if ($VALID->inPOST('name_edit') && $VALID->inPOST('cat_edit')) {
 }
 
 // ГРУППОВЫЕ ДЕЙСТВИЯ: Если нажали на кнопки: Отображать, Удалить + групповое выделение
+if ($VALID->inPOST('idsx_cut_marker') == 'cut') { // очищаем буфер обмена, если он был заполнен, при нажатии Вырезать
+    unset($_SESSION['buffer']);
+}
+
+$parent_id_paste_temp = $parent_id; //для отправки в JS
+$parent_id_paste = $VALID->inPOST('idsx_paste_parent_id'); // получить значение JS
+//
+//Вставляем вырезанные категории    
+if ($VALID->inPOST('idsx_paste_key') == 'paste') {
+    for ($buf = 0; $buf < count($_SESSION['buffer']); $buf++) {
+        $buff = 0 + $_SESSION['buffer'][$buf];
+        $PDO->insertPrepare("UPDATE " . TABLE_CATEGORIES . " SET parent_id=? WHERE id=?", [$parent_id_paste, $buff]);
+    }
+    unset($_SESSION['buffer']);
+}
+
 if (($VALID->inPOST('idsx_statusOn_key') == 'statusOn')
         or ( $VALID->inPOST('idsx_statusOff_key') == 'statusOff')
+        or ( $VALID->inPOST('idsx_cut_key') == 'cut')
         or ( $VALID->inPOST('idsx_delete_key') == 'delete')) {
 
     if ($VALID->inPOST('idsx_statusOn_key') == 'statusOn') {
@@ -69,8 +86,12 @@ if (($VALID->inPOST('idsx_statusOn_key') == 'statusOn')
         $status = 0;
     }
 
-    if ($VALID->inPOST('idsx_delete_key') == 'delete') {
+    if ($VALID->inPOST('idsx_cut_key') == 'cut') {
+        $idx = $VALID->inPOST('idsx_cut_id');
+    }
 
+
+    if ($VALID->inPOST('idsx_delete_key') == 'delete') {
         $idx = $VALID->inPOST('idsx_delete_id');
     }
 
@@ -120,6 +141,14 @@ if (($VALID->inPOST('idsx_statusOn_key') == 'statusOn')
     if (($VALID->inPOST('idsx_statusOn_key') == 'statusOn')
             or ( $VALID->inPOST('idsx_statusOff_key') == 'statusOff')) {
         $PDO->insertPrepare("UPDATE " . TABLE_CATEGORIES . " SET status=? WHERE id=?", [$status, $idx]);
+    }
+
+    //Вырезаем основную родительскую категорию    
+    if ($VALID->inPOST('idsx_cut_key') == 'cut') {
+        if (!isset($_SESSION['buffer'])) {
+            $_SESSION['buffer'] = array();
+        }
+        array_push($_SESSION['buffer'], $idx);
     }
 
     //Удаляем основную категорию    
