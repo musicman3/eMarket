@@ -151,7 +151,7 @@ if (($VALID->inPOST('idsx_statusOn_key') == 'statusOn')
 }
 
 //Вставляем вырезанные категории    
-if ($VALID->inPOST('idsx_paste_key') == 'paste') {
+if ($VALID->inPOST('idsx_paste_key') == 'paste' && isset($_SESSION['buffer']) == TRUE) {
     for ($buf = 0; $buf < count($_SESSION['buffer']); $buf++) {
         $PDO->insertPrepare("UPDATE " . TABLE_CATEGORIES . " SET parent_id=? WHERE id=?", [$parent_id_paste, $_SESSION['buffer'][$buf]]);
     }
