@@ -107,6 +107,7 @@ if (isset($TOKEN) == false) {
                 return send();
             },
             items: {
+                
                 "addCategory": {
                     name: "Добавить категорию",
                     icon: function () {
@@ -175,6 +176,8 @@ if (isset($TOKEN) == false) {
                                 });
                             }
                         },
+                        
+                        "sep2": "---------",
 
                         "cut": {
                             name: "Вырезать",
@@ -190,11 +193,7 @@ if (isset($TOKEN) == false) {
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                         $.post('/controller/admin/pages/categories/categories.php', // отправка данных POST
                                                 {idsx_cut_id: this.id,
-                                                    idsx_cut_key: itemKey},
-                                                AjaxSuccess);
-                                    function AjaxSuccess(data) {
-                                        $('#ajax').html(data);
-                                    }
+                                                    idsx_cut_key: itemKey});
                                 });
                             }
                         },
@@ -215,6 +214,8 @@ if (isset($TOKEN) == false) {
                                 }
                             }
                         },
+                        
+                        "sep3": "---------",
 
                         "delete": {
                             name: "Удалить",
@@ -237,7 +238,7 @@ if (isset($TOKEN) == false) {
                         }
                     }
                 },
-                "sep2": "---------",
+                "sep4": "---------",
                 "quit": {name: "Выход", icon: function () {
                         return 'context-menu-icon glyphicon-remove';
                     }}
