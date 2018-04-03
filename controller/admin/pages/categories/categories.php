@@ -61,15 +61,6 @@ if ($VALID->inPOST('idsx_cut_marker') == 'cut') { // очищаем буфер �
 
 $parent_id_paste_temp = $parent_id; //для отправки в JS
 $parent_id_paste = $VALID->inPOST('idsx_paste_parent_id'); // получить значение JS
-//
-//Вставляем вырезанные категории    
-if ($VALID->inPOST('idsx_paste_key') == 'paste') {
-    for ($buf = 0; $buf < count($_SESSION['buffer']); $buf++) {
-        $buff = 0 + $_SESSION['buffer'][$buf];
-        $PDO->insertPrepare("UPDATE " . TABLE_CATEGORIES . " SET parent_id=? WHERE id=?", [$parent_id_paste, $buff]);
-    }
-    unset($_SESSION['buffer']);
-}
 
 if (($VALID->inPOST('idsx_statusOn_key') == 'statusOn')
         or ( $VALID->inPOST('idsx_statusOff_key') == 'statusOff')
@@ -155,6 +146,15 @@ if (($VALID->inPOST('idsx_statusOn_key') == 'statusOn')
     if ($VALID->inPOST('idsx_delete_key') == 'delete') {
         $PDO->insertPrepare("DELETE FROM " . TABLE_CATEGORIES . " WHERE id=?", [$idx]);
     }
+}
+
+//Вставляем вырезанные категории    
+if ($VALID->inPOST('idsx_paste_key') == 'paste') {
+    for ($buf = 0; $buf < count($_SESSION['buffer']); $buf++) {
+        $buff = $_SESSION['buffer'][$buf];
+        $PDO->insertPrepare("UPDATE " . TABLE_CATEGORIES . " SET parent_id=? WHERE id=?", [$parent_id_paste, $buff]);
+    }
+    unset($_SESSION['buffer']);
 }
 
 // КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
