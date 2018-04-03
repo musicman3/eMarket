@@ -201,14 +201,12 @@ if (isset($TOKEN) == false) {
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
 
                                 $.post('/controller/admin/pages/categories/categories.php', // отправка данных POST
-                                        {idsx_paste_id: this.id,
-                                            idsx_paste_parent_id: '<?php echo $parent_id_paste_temp ?>',
+                                        {idsx_paste_parent_id: '<?php echo $idsx_paste_parent_id ?>',
                                             idsx_paste_key: itemKey},
                                         AjaxSuccess);
                                 function AjaxSuccess(data) {
                                     $('#ajax').html(data);
                                 }
-
                             }
                         },
 

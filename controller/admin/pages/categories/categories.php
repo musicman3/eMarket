@@ -59,8 +59,11 @@ if ($VALID->inPOST('idsx_cut_marker') == 'cut') { // очищаем буфер �
     unset($_SESSION['buffer']);
 }
 
-$parent_id_paste_temp = $parent_id; //для отправки в JS
-$parent_id_paste = $VALID->inPOST('idsx_paste_parent_id'); // получить значение JS
+$idsx_paste_parent_id = $parent_id; //для отправки в JS
+
+if ($VALID->inPOST('idsx_paste_key') == 'paste') {
+    $parent_id_paste = $VALID->inPOST('idsx_paste_parent_id'); // получить значение из JS
+}
 
 if (($VALID->inPOST('idsx_statusOn_key') == 'statusOn')
         or ( $VALID->inPOST('idsx_statusOff_key') == 'statusOff')
@@ -80,7 +83,6 @@ if (($VALID->inPOST('idsx_statusOn_key') == 'statusOn')
     if ($VALID->inPOST('idsx_cut_key') == 'cut') {
         $idx = $VALID->inPOST('idsx_cut_id');
     }
-
 
     if ($VALID->inPOST('idsx_delete_key') == 'delete') {
         $idx = $VALID->inPOST('idsx_delete_id');
@@ -151,10 +153,12 @@ if (($VALID->inPOST('idsx_statusOn_key') == 'statusOn')
 //Вставляем вырезанные категории    
 if ($VALID->inPOST('idsx_paste_key') == 'paste') {
     for ($buf = 0; $buf < count($_SESSION['buffer']); $buf++) {
-        $buff = $_SESSION['buffer'][$buf];
-        $PDO->insertPrepare("UPDATE " . TABLE_CATEGORIES . " SET parent_id=? WHERE id=?", [$parent_id_paste, $buff]);
+        $PDO->insertPrepare("UPDATE " . TABLE_CATEGORIES . " SET parent_id=? WHERE id=?", [$parent_id_paste, $_SESSION['buffer'][$buf]]);
     }
-    unset($_SESSION['buffer']);
+    unset($_SESSION['buffer']); // очищаем буфер обмена
+    if ($parent_id_paste > 0){ 
+    $parent_id = $parent_id_paste; // Возвращаемся в свою директорию после вставки
+    }
 }
 
 // КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
