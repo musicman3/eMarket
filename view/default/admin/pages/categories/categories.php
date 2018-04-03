@@ -60,8 +60,6 @@
                                             <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
                                             <div class="log-left"><button type="submit" class="btn btn-primary btn-xs"  action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
                                         </form>
-                                        <div class="log-left"><button type="submit" name="category_add" class="btn btn-success btn-xs" data-toggle="modal" data-target="#addCategory"><span class="glyphicon glyphicon-plus"></span> <?php echo $lang['button_add'] ?></button>
-                                        </div>
                                     </th>
                                 </tr>
                             </thead>
