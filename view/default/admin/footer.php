@@ -107,6 +107,16 @@ if (isset($TOKEN) == false) {
                 return send();
             },
             items: {
+                "addCategory": {
+                    name: "Добавить категорию",
+                    icon: function () {
+                        return 'context-menu-icon glyphicon-plus';
+                    },
+                    callback: function (itemKey, opt, rootMenu, originalEvent) {
+                        $('#addCategory').modal('show');
+                    }
+                },
+                
                 "edit": {
                     name: "Редактировать",
                     icon: function () {
