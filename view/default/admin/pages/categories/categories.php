@@ -9,25 +9,6 @@
 <?php require_once('modal/categories_add.php') ?>
 <!-- КОНЕЦ Модальное окно "Добавить категорию" -->
 
-<!-- Modal -->
-<div class="modal fade" id="ModalSelect" tabindex="-1">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-            </div>
-            <div class="modal-body">
-                <!--textarea id="textarea-list" class="col-md-12"></textarea-->
-                <ul id="summary-list">
-                </ul>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
-</div>
-
 <div id="ajax">
 
     <div id="category" class="container">
