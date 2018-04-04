@@ -62,7 +62,7 @@ if ($VALID->inPOST('idsx_cut_marker') == 'cut') { // очищаем буфер �
 $idsx_paste_parent_id = $parent_id; //для отправки в JS
 
 if ($VALID->inPOST('idsx_paste_key') == 'paste') {
-    $parent_id_paste = $VALID->inPOST('idsx_paste_parent_id'); // получить значение из JS
+    $parent_id_paste = (int)$VALID->inPOST('idsx_paste_parent_id'); // получить значение из JS
 }
 
 if (($VALID->inPOST('idsx_statusOn_key') == 'statusOn')
