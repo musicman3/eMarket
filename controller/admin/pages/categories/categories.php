@@ -124,6 +124,9 @@ if (($VALID->inPOST('idsx_statusOn_key') == 'statusOn')
         if (($VALID->inPOST('idsx_statusOn_key') == 'statusOn')
                 or ( $VALID->inPOST('idsx_statusOff_key') == 'statusOff')) {
             $PDO->insertPrepare("UPDATE " . TABLE_CATEGORIES . " SET status=? WHERE id=?", [$status, $keys[$x]]);
+            if ($parent_id_real > 0) {
+            $parent_id = $parent_id_real; // Возвращаемся в свою директорию после обновления
+        }
         }
 
         //Удаляем подкатегории
@@ -136,9 +139,6 @@ if (($VALID->inPOST('idsx_statusOn_key') == 'statusOn')
     if (($VALID->inPOST('idsx_statusOn_key') == 'statusOn')
             or ( $VALID->inPOST('idsx_statusOff_key') == 'statusOff')) {
         $PDO->insertPrepare("UPDATE " . TABLE_CATEGORIES . " SET status=? WHERE id=?", [$status, $idx]);
-        if ($parent_id_real > 0) {
-            $parent_id = $parent_id_real; // Возвращаемся в свою директорию после вставки
-        }
     }
 
     //Вырезаем основную родительскую категорию    
