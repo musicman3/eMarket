@@ -148,6 +148,7 @@ if (isset($TOKEN) == false) {
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                         $.post('/controller/admin/pages/categories/categories.php', // отправка данных POST
                                                 {idsx_statusOn_id: this.id,
+                                                    idsx_real_parent_id: '<?php if (isset($idsx_real_parent_id) == TRUE){ echo $idsx_real_parent_id;} ?>',
                                                     idsx_statusOn_key: itemKey},
                                                 AjaxSuccess);
                                     function AjaxSuccess(data) {
@@ -168,6 +169,7 @@ if (isset($TOKEN) == false) {
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                         $.post('/controller/admin/pages/categories/categories.php', // отправка данных POST
                                                 {idsx_statusOff_id: this.id,
+                                                    idsx_real_parent_id: '<?php if (isset($idsx_real_parent_id) == TRUE){ echo $idsx_real_parent_id;} ?>',
                                                     idsx_statusOff_key: itemKey},
                                                 AjaxSuccess);
                                     function AjaxSuccess(data) {
@@ -206,7 +208,7 @@ if (isset($TOKEN) == false) {
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
 
                                 $.post('/controller/admin/pages/categories/categories.php', // отправка данных POST
-                                        {idsx_paste_parent_id: '<?php if (isset($idsx_paste_parent_id) == TRUE){ echo $idsx_paste_parent_id;} ?>',
+                                        {idsx_real_parent_id: '<?php if (isset($idsx_real_parent_id) == TRUE){ echo $idsx_real_parent_id;} ?>',
                                             idsx_paste_key: itemKey},
                                         AjaxSuccess);
                                 function AjaxSuccess(data) {

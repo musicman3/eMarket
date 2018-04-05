@@ -59,10 +59,12 @@ if ($VALID->inPOST('idsx_cut_marker') == 'cut') { // очищаем буфер �
     unset($_SESSION['buffer']);
 }
 
-$idsx_paste_parent_id = $parent_id; //для отправки в JS
+$idsx_real_parent_id = $parent_id; //для отправки в JS
 
-if ($VALID->inPOST('idsx_paste_key') == 'paste') {
-    $parent_id_paste = (int)$VALID->inPOST('idsx_paste_parent_id'); // получить значение из JS
+if (($VALID->inPOST('idsx_paste_key') == 'paste')
+        or ( $VALID->inPOST('idsx_statusOn_key') == 'statusOn')
+        or ( $VALID->inPOST('idsx_statusOff_key') == 'statusOff')) {
+    $parent_id_real = (int) $VALID->inPOST('idsx_real_parent_id'); // получить значение из JS
 }
 
 if (($VALID->inPOST('idsx_statusOn_key') == 'statusOn')
@@ -134,6 +136,9 @@ if (($VALID->inPOST('idsx_statusOn_key') == 'statusOn')
     if (($VALID->inPOST('idsx_statusOn_key') == 'statusOn')
             or ( $VALID->inPOST('idsx_statusOff_key') == 'statusOff')) {
         $PDO->insertPrepare("UPDATE " . TABLE_CATEGORIES . " SET status=? WHERE id=?", [$status, $idx]);
+        if ($parent_id_real > 0) {
+            $parent_id = $parent_id_real; // Возвращаемся в свою директорию после вставки
+        }
     }
 
     //Вырезаем основную родительскую категорию    
@@ -153,11 +158,11 @@ if (($VALID->inPOST('idsx_statusOn_key') == 'statusOn')
 //Вставляем вырезанные категории    
 if ($VALID->inPOST('idsx_paste_key') == 'paste' && isset($_SESSION['buffer']) == TRUE) {
     for ($buf = 0; $buf < count($_SESSION['buffer']); $buf++) {
-        $PDO->insertPrepare("UPDATE " . TABLE_CATEGORIES . " SET parent_id=? WHERE id=?", [$parent_id_paste, $_SESSION['buffer'][$buf]]);
+        $PDO->insertPrepare("UPDATE " . TABLE_CATEGORIES . " SET parent_id=? WHERE id=?", [$parent_id_real, $_SESSION['buffer'][$buf]]);
     }
     unset($_SESSION['buffer']); // очищаем буфер обмена
-    if ($parent_id_paste > 0){ 
-    $parent_id = $parent_id_paste; // Возвращаемся в свою директорию после вставки
+    if ($parent_id_real > 0) {
+        $parent_id = $parent_id_real; // Возвращаемся в свою директорию после вставки
     }
 }
 
