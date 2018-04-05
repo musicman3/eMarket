@@ -60,7 +60,7 @@
 
                                         <?php if (isset($_SESSION['buffer']) == true && in_array($lines[$i][0], $_SESSION['buffer']) == true) { ?>
                                             <td class="sortyes sortleft-m" align="left"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
-                                            <td class="sortleft" align="left"><div><button name="parent_down" value="<?php echo $lines[$i][0] ?>" class="btn btn-danger btn-xs" title="<?php echo $lines[$i][1] ?>"><span class="glyphicon glyphicon-folder-open"> </span></button></div></td>
+                                            <td class="sortleft" align="left"><div><a href="#" class="btn btn-primary btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-folder-open"> </span></a></div></td>
 
                                         <?php } elseif ($lines[$i][8] == 0) { ?>
                                             <td class="sortyes sortleft-m" align="left"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
