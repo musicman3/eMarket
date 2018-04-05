@@ -30,7 +30,7 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS emkt_products;
 CREATE TABLE emkt_products (
-	id int NOT NULL,
+	id int DEFAULT '0' NOT NULL,
         name varchar(256) NOT NULL,
         language varchar(64) NOT NULL,
 	parent_id int DEFAULT '0' NOT NULL,
