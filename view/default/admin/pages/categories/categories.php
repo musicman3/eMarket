@@ -46,7 +46,7 @@
                             </thead>
                             <tbody id="sort-list">
 
-                                <?php $parent_up = $lines[0][4]; ?>
+                                <?php $parent_up = $lines[0][3]; ?>
                                 <?php if ($parent_up > 0) { ?>
 
                                     <tr class="sortno">
