@@ -55,7 +55,7 @@
                             </li>
                                 <?php } ?>
                     </ul>
-		    <ul class="visible-xs navbar-form navbar-left"><li><br><br><br></li></ul>
+		    <ul class="visible-xs navbar-bottom"></ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
