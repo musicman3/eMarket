@@ -54,7 +54,7 @@ if ($VALID->inPOST('name_edit') && $VALID->inPOST('cat_edit')) {
     $PDO->insertPrepare("UPDATE " . TABLE_CATEGORIES . " SET name=?, last_modified=?, status=? WHERE id=?", [$VALID->inPOST('name_edit'), date("Y-m-d H:i:s"), $view_cat, $VALID->inPOST('cat_edit')]);
 }
 
-// ГРУППОВЫЕ ДЕЙСТВИЯ: Если нажали на кнопки: Отображать, Удалить + групповое выделение
+// ГРУППОВЫЕ ДЕЙСТВИЯ: Если нажали на кнопки: Отображать, Скрыть, Удалить, Вырезать, Вставить + выделение
 if ($VALID->inPOST('idsx_cut_marker') == 'cut') { // очищаем буфер обмена, если он был заполнен, при нажатии Вырезать
     unset($_SESSION['buffer']);
 }
@@ -84,6 +84,7 @@ if (($VALID->inPOST('idsx_statusOn_key') == 'statusOn')
 
     if ($VALID->inPOST('idsx_cut_key') == 'cut') {
         $idx = $VALID->inPOST('idsx_cut_id');
+        $parent_id_real = (int) $VALID->inPOST('idsx_real_parent_id'); // получить значение из JS
     }
 
     if ($VALID->inPOST('idsx_delete_key') == 'delete') {
@@ -125,8 +126,8 @@ if (($VALID->inPOST('idsx_statusOn_key') == 'statusOn')
                 or ( $VALID->inPOST('idsx_statusOff_key') == 'statusOff')) {
             $PDO->insertPrepare("UPDATE " . TABLE_CATEGORIES . " SET status=? WHERE id=?", [$status, $keys[$x]]);
             if ($parent_id_real > 0) {
-            $parent_id = $parent_id_real; // Возвращаемся в свою директорию после обновления
-        }
+                $parent_id = $parent_id_real; // Возвращаемся в свою директорию после "Вырезать"
+            }
         }
 
         //Удаляем подкатегории
@@ -147,6 +148,9 @@ if (($VALID->inPOST('idsx_statusOn_key') == 'statusOn')
             $_SESSION['buffer'] = array();
         }
         array_push($_SESSION['buffer'], $idx);
+        if ($parent_id_real > 0) {
+            $parent_id = $parent_id_real; // Возвращаемся в свою директорию после обновления
+        }
     }
 
     //Удаляем основную категорию    

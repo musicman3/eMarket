@@ -57,11 +57,17 @@
                                 <?php } for ($i; $i < $lines_p; $i++) { ?>
 
                                     <tr class="sort-list" unitid="<?php echo $lines[$i][0] ?>">
-                                        <?php if ($lines[$i][8] == 0) { ?>
-                                            <td  class="sortyes sortleft-m" align="left"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
+
+                                        <?php if (isset($_SESSION['buffer']) == true && in_array($lines[$i][0], $_SESSION['buffer']) == true) { ?>
+                                            <td class="sortyes sortleft-m" align="left"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
+                                            <td class="sortleft" align="left"><div><button name="parent_down" value="<?php echo $lines[$i][0] ?>" class="btn btn-danger btn-xs" title="<?php echo $lines[$i][1] ?>"><span class="glyphicon glyphicon-folder-open"> </span></button></div></td>
+
+                                        <?php } elseif ($lines[$i][8] == 0) { ?>
+                                            <td class="sortyes sortleft-m" align="left"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
                                             <td class="sortleft" align="left"><form><div><button name="parent_down" value="<?php echo $lines[$i][0] ?>" class="btn btn-default btn-xs" title="<?php echo $lines[$i][1] ?>" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-folder-open"> </span></button></div></form></td>
+
                                         <?php } else { ?>
-                                            <td  class="sortyes sortleft-m" align="left"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
+                                            <td class="sortyes sortleft-m" align="left"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
                                             <td class="sortleft" align="left"><form><div><button name="parent_down" value="<?php echo $lines[$i][0] ?>" class="btn btn-primary btn-xs" title="<?php echo $lines[$i][1] ?>" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-folder-open"> </span></button></div></form></td>
                                         <?php } ?>
 
@@ -93,7 +99,7 @@
                                 <tr class="sortno">
                                     <td  class="sortleft-m" align="left"></td>
                                     <td class="sortleft" align="left"><form><div><button name="parent_up" value="<?php echo $VALID->inPOST('parent_down') ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/categories/categories.php" formmethod="post">....</button></div></form></td>
-				    <td class="options" align="left"><div class="context-one"><?php echo $lang['no_cat'] ?></div></td>
+                                    <td class="options" align="left"><div class="context-one"><?php echo $lang['no_cat'] ?></div></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -109,11 +115,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-				<tr>
-				    <td  class="sortleft-m" align="left"></td>
-				    <td class="sortleft" align="left"></td>
-				    <td class="options" align="left"><div class="context-one"><?php echo $lang['no_cat'] ?></div></td>
-				</tr>
+                                <tr>
+                                    <td  class="sortleft-m" align="left"></td>
+                                    <td class="sortleft" align="left"></td>
+                                    <td class="options" align="left"><div class="context-one"><?php echo $lang['no_cat'] ?></div></td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>

@@ -194,8 +194,13 @@ if (isset($TOKEN) == false) {
                                 $(".option").each(function () { // выделенное мышкой
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                         $.post('/controller/admin/pages/categories/categories.php', // отправка данных POST
-                                                {idsx_cut_id: this.id,
-                                                    idsx_cut_key: itemKey});
+                                                {idsx_real_parent_id: '<?php if (isset($idsx_real_parent_id) == TRUE){ echo $idsx_real_parent_id;} ?>',
+                                                    idsx_cut_id: this.id,
+                                                    idsx_cut_key: itemKey},
+                                        AjaxSuccess);
+                                        function AjaxSuccess(data) {
+                                    $('#ajax').html(data);
+                                }
                                 });
                             }
                         },
