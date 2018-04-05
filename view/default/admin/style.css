@@ -20,7 +20,6 @@ body {background:#e4e4da;font-family: 'Open Sans', sans-serif;background-image:u
 .login-box {width: 200px;height: 136px;position: absolute;margin-top: -68px;top: 50%;left: 70%;padding: 15px;text-align: center}
 .login-box .btn, .login-box .btn a:active {border: 1px solid #000;color:#fff;background: none;}
 #login .alert-danger {position: absolute;top: 10%;}
-@media screen and (max-height:420px) and (orientation:landscape) {.navbar-fixed-top {position: absolute;}}
 .navbar-right {color:#ffffff;margin-right:5px;}
 .navbar {min-height: 30px;}
 .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {color:#ffffff;}
@@ -44,7 +43,6 @@ body {background:#e4e4da;font-family: 'Open Sans', sans-serif;background-image:u
 .log-left {display: inline-block;float: right; padding-right:10px;}
 .add-xs {font-size:14px;display: inline-block;float: right; padding-right:5px;padding-left:5px;}
 #category .check-box {vertical-align: middle;margin-top: 0;}
-/*.modal-content input {width: auto;}*/
 input[type="checkbox"], input[type="radio"] {vertical-align: text-bottom;}
 .popover-title {text-align:center;padding:5px 0 5px 0;}
 .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {padding:5px;}

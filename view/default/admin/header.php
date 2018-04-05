@@ -24,7 +24,6 @@
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-right"><li> </li></ul>
                     <ul class="nav navbar-nav">
                         <?php for ($i = 0; $i < count($level); $i++) { ?>
                             <li>
@@ -56,6 +55,7 @@
                             </li>
                                 <?php } ?>
                     </ul>
+		    <ul class="visible-xs navbar-form navbar-left"><li><br><br><br></li></ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
