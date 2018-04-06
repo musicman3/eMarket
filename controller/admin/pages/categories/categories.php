@@ -252,3 +252,5 @@ require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/html_end.php');
 //подгрузка JS обработок
 require_once($_SERVER['DOCUMENT_ROOT'] . '/view/default/admin/pages/categories/js/js_categories.php');
 ?>
+</body>
+</html>
