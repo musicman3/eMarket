@@ -34,3 +34,5 @@ if ($VALID->inPOST('ok') == FALSE) {
 }
 
 ?>
+</body>
+</html>
