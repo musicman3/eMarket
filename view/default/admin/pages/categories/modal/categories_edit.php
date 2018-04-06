@@ -12,6 +12,7 @@ if ($status_category_edit == 1) {
 } else {
     $status_category_edit = '';
 }
+
 ?>
 
 <!-- Модальное окно "Редактировать категорию" -->
@@ -21,7 +22,7 @@ if ($status_category_edit == 1) {
             <div class="modal-header"><button class="close" type="button" data-dismiss="modal">×</button>
                 <h4 class="modal-title"><?php echo $lang['menu_categories'] ?></h4>
             </div>
-            <form name="category_edit" action="/controller/admin/pages/categories/categories.php" method="post" enctype="multipart/form-data">
+            <form id="form_post<?php echo $i ?>" action="javascript:void(null);" onsubmit="call<?php echo $i ?>()" method="post" enctype="multipart/form-data">
                 <div class="panel-body">
                     <fieldset>
                         <input type="hidden" name="parent_id" value="<?php echo $parent_id ?>" />
@@ -29,7 +30,7 @@ if ($status_category_edit == 1) {
                         <div class="form-group">
                             <label><?php echo $lang['name'] ?>:</label><br>
                             <img src="/view/default/admin/images/worldflags/ru.png" alt="Russian" title="Russian" width="16" height="10" />Russian<br>
-                            <?php // вывод из массива: name="categories_name[1]" id="categories_name[1]  ?>
+                            <?php // вывод из массива: name="categories_name[1]" id="categories_name[1]   ?>
                             <input class="input-sm form-control" type="text" name="name_edit" id="name" value="<?php echo $name_category_edit ?>" />
                         </div>
                         <div class="form-group">
@@ -51,4 +52,19 @@ if ($status_category_edit == 1) {
         </div>
     </div>
 </div>
+
+<script type="text/javascript" language="javascript">
+    function call<?php echo $i ?>() {
+        var msg = $('#form_post<?php echo $i ?>').serialize();
+        $.ajax({
+            type: 'POST',
+            url: '/controller/admin/pages/categories/categories.php',
+            data: msg,
+            success: function (data) {
+                $('.modal-backdrop').remove();
+                $('#ajax').html(data);
+            },
+        });
+    }
+</script>
 <!-- КОНЕЦ Модальное окно "Редактировать категорию" -->

@@ -3,6 +3,7 @@
 //   GNU GENERAL PUBLIC LICENSE v.3.0   //    
 // https://github.com/musicman3/eMarket //
 // *************************************//
+
 ?>
 <!-- Модальное окно "Добавить категорию" -->
 <div id="addCategory" class="modal fade" tabindex="-1">
@@ -11,7 +12,7 @@
             <div class="modal-header"><button class="close" type="button" data-dismiss="modal">×</button>
                 <h4 class="modal-title"><?php echo $lang['menu_categories'] ?></h4>
             </div>
-            <form name="category_add" action="/controller/admin/pages/categories/categories.php" method="post" enctype="multipart/form-data">
+            <form id="form_post" name="form_post" action="javascript:void(null);" onsubmit="call()" method="post" enctype="multipart/form-data">
                 <div class="panel-body">
                     <fieldset>
                         <input type="hidden" name="parent_id" value="<?php echo $parent_id ?>" />
@@ -40,4 +41,20 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript" language="javascript">
+    function call() {
+        var msg = $('#form_post').serialize();
+        $.ajax({
+            type: 'POST',
+            url: '/controller/admin/pages/categories/categories.php',
+            data: msg,
+            success: function (data) {
+                $('#addCategory').remove();
+                $('.modal-backdrop').remove();
+                $('#ajax').html(data);
+            },
+        });
+    }
+</script>
 <!-- КОНЕЦ Модальное окно "Добавить категорию" -->
