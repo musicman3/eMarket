@@ -26,6 +26,8 @@
             ?>
             <link href="/ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
             <link href="/ext/bootstrap/css/normalize.css" rel="stylesheet" media="screen" />
+	    <link rel="stylesheet" type="text/css" href="/view/default/admin/style.css" media="screen" />
+	    <link rel="stylesheet" type="text/css" href="/ext/contextmenu/css/contextmenu.css" media="screen" />
             <?php
             if (isset($_SESSION['login']) == TRUE && isset($_SESSION['pass']) == TRUE) {
 
@@ -44,6 +46,7 @@
             ?>
             <link href="/ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
             <link href="/ext/bootstrap/css/normalize.css" rel="stylesheet" media="screen" />
+	    <link rel="stylesheet" type="text/css" href="/view/default/catalog/style.css" media="screen" />
     <?php
 } // конец вывода только в каталоге
 

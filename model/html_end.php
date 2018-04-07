@@ -10,8 +10,6 @@
 if ($patch == 'admin') {
 
     ?>
-    <link rel="stylesheet" type="text/css" href="/view/default/admin/style.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="/ext/contextmenu/css/contextmenu.css" media="screen" />
     <script type="text/javascript" src="/ext/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/ext/jquery/jquery-ui.min.js"></script>
     <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.min.js"></script>
@@ -29,7 +27,6 @@ if ($patch == 'admin') {
 if ($patch == 'catalog') {
 
     ?>
-    <link rel="stylesheet" type="text/css" href="/view/default/catalog/style.css" media="screen" />
     <script type="text/javascript" src="/ext/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.min.js"></script>
     <?php
