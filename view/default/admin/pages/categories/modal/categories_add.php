@@ -52,6 +52,8 @@
             success: function (data) {
                 $('#addCategory').remove();
                 $('.modal-backdrop').remove();
+                $('body').removeClass('modal-open');
+                $('body').css('padding-right', '');
                 $('#ajax').html(data);
             },
         });
