@@ -61,11 +61,9 @@ if ($status_category_edit == 1) {
             url: '/controller/admin/pages/categories/categories.php',
             data: msg,
             success: function (data) {
-                $("<?php echo '#addCategory' . $lines[$i][0] ?>").removeClass("in");
                 $(".modal-backdrop").remove();
                 $('body').removeClass('modal-open');
                 $('body').css('padding-right', '');
-                $("<?php echo '#addCategory' . $lines[$i][0] ?>").hide();
                 $('#ajax').html(data);
             },
         });
