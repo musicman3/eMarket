@@ -211,6 +211,7 @@
                                                 AjaxSuccess);
                                     function AjaxSuccess(data) {
                                         $('#ajax').html(data);
+                                        $('#ajax').html(data); // повторно обновляем
                                     }
                                 });
                             }

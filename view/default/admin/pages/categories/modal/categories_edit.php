@@ -22,7 +22,7 @@ if ($status_category_edit == 1) {
             <div class="modal-header"><button class="close" type="button" data-dismiss="modal">×</button>
                 <h4 class="modal-title"><?php echo $lang['menu_categories'] ?></h4>
             </div>
-            <form id="form_post<?php echo $i ?>" action="javascript:void(null);" onsubmit="call<?php echo $i ?>()" method="post" enctype="multipart/form-data">
+            <form id="form_post<?php echo $lines[$i][0] ?>" action="javascript:void(null);" onsubmit="call<?php echo $lines[$i][0] ?>()" method="post" enctype="multipart/form-data">
                 <div class="panel-body">
                     <fieldset>
                         <input type="hidden" name="parent_id" value="<?php echo $parent_id ?>" />
@@ -54,8 +54,8 @@ if ($status_category_edit == 1) {
 </div>
 
 <script type="text/javascript" language="javascript">
-    function call<?php echo $i ?>() {
-        var msg = $('#form_post<?php echo $i ?>').serialize();
+    function call<?php echo $lines[$i][0] ?>() {
+        var msg = $('#form_post<?php echo $lines[$i][0] ?>').serialize();
         $.ajax({
             type: 'POST',
             url: '/controller/admin/pages/categories/categories.php',
@@ -65,7 +65,7 @@ if ($status_category_edit == 1) {
                 $('body').removeClass('modal-open');
                 $('body').css('padding-right', '');
                 $('#ajax').html(data);
-            },
+            }
         });
     }
 </script>

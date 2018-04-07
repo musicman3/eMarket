@@ -55,7 +55,7 @@
                 $('body').removeClass('modal-open');
                 $('body').css('padding-right', '');
                 $('#ajax').html(data);
-            },
+            }
         });
     }
 </script>
