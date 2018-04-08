@@ -12,7 +12,7 @@ body {background:#e4e4da;font-family: 'Open Sans', sans-serif;background-image:u
 .welcome_logo {padding-top: 30px;padding-bottom: 30px;font-size: 100px;}
 .login_logo span, .welcome_logo span {font-size: 60px;}
 .welcome_description {font-size: 20px;}
-#footerwrap {width: 100%;background: #4c453d;background-image: none;border-top-style: solid;border-top-width: 8px;border-top-color: #312d27;background-image: url('images/sep-half.png');text-align: center;position: absolute;bottom: 0;height: 80px;}
+#footerwrap {width: 100%;background: #4c453d;border-top: 8px solid #312d27;background-image: url('images/sep-half.png');text-align: center;position: absolute;bottom: 0;height: 80px;}
 #footerwrap p {color: white;font-size: 12px;}
 [class*=lbox-] {background:rgba(0,0,0,.4);position:absolute}
 .lbox-horz {height: 136px;width: 100%;padding-left: 50px;margin-top: -68px;top: 50%}
