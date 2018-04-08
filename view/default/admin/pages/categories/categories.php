@@ -20,7 +20,17 @@
                         <div class="pull-left"><?php echo $lang['menu_categories'] ?></div>
 
                         <!-- Количество строк на странице -->
-                        <form action="/controller/admin/pages/categories/categories.php" method="post" class="form-inline"><div class="add-xs">Строк на странице: <select name="select_row" class="input-xs form-control" onchange="this.form.submit()"><option>(<?php echo $lines_page ?>)</option><option>20</option><option>35</option><option>50</option><option>75</option><option>100</option></select></div></form>
+                        <form action="/controller/admin/pages/categories/categories.php" method="post" class="form-inline">
+                            <div class="add-xs">Строк на странице: <select name="select_row" class="input-xs form-control" onchange="this.form.submit()">
+                                    <option>(<?php echo $lines_page ?>)</option>
+                                    <option>20</option>
+                                    <option>35</option>
+                                    <option>50</option>
+                                    <option>75</option>
+                                    <option>100</option>
+                                </select>
+                            </div>
+                        </form>
 
                         <div class="clearfix"></div>
                     </h3>
