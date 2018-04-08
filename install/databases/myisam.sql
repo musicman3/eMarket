@@ -56,7 +56,7 @@ CREATE TABLE emkt_products (
         seo varchar(256),
         viewed int default '0',
         description text,
-	sort_products int DEFAULT '0' NOT NULL,
+	sort int DEFAULT '0' NOT NULL,
         status int,
 	PRIMARY KEY (id))
 ENGINE=MyISAM DEFAULT CHARSET=utf8;
