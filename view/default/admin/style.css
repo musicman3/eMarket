@@ -33,7 +33,7 @@ body {background:#e4e4da;font-family: 'Open Sans', sans-serif;background-image:u
 .nav>li>a {padding: 5px;}
 .navbar-nav>li>.dropdown-menu {margin-top: -5px;}
 .nav .open>a, .nav .open>a:focus, .nav .open>a:hover {background:#505050;color:#ffffff;}
-ul.navbar-bottom {margin-bottom: 100px;}
+ul.navbar-bottom {margin-bottom: 60px;}
 .table {margin-bottom:0px;}
 .panel-heading {font-weight:bold;}
 .panel-title {font-size: 18px;}
@@ -55,4 +55,5 @@ input[type="checkbox"], input[type="radio"] {vertical-align: text-bottom;}
 .table .sortno:hover {background: none;}
 .table > tbody > tr > td.active {background-color: #f0f0f0;}
 .table > tbody > tr > td.option, .table > tbody > tr > td.options {padding:0px;}
+.table .left {width:1px;overflow:visible;vertical-align: middle;}
 div.context-one {padding:5px;}
