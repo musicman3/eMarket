@@ -17,7 +17,7 @@
                 <div class="panel-heading">
                     <h3 class="panel-title">
                         <div class="pull-left">Товары</div>
-                        <form action="/controller/admin/pages/categories/categories.php" method="post" class="form-inline">
+                        <form action="/controller/admin/pages/stock/categories/categories.php" method="post" class="form-inline">
                             <div class="add-xs">Строк на странице: <select name="select_row" class="input-xs form-control" onchange="this.form.submit()">
                                     <option>(<?php echo $lines_page ?>)</option>
                                     <option>20</option>
@@ -75,7 +75,7 @@
                         <div class="pull-left"><?php echo $lang['menu_categories'] ?></div>
 
                         <!-- Количество строк на странице -->
-                        <form action="/controller/admin/pages/categories/categories.php" method="post" class="form-inline">
+                        <form action="/controller/admin/pages/stock/categories/categories.php" method="post" class="form-inline">
                             <div class="add-xs">Строк на странице: <select name="select_row" class="input-xs form-control" onchange="this.form.submit()">
                                     <option>(<?php echo $lines_page ?>)</option>
                                     <option>20</option>
@@ -103,7 +103,7 @@
                                             <input hidden name="i" value="<?php echo $i ?>">
                                             <input hidden name="lines_p" value="<?php echo $lines_p ?>">
                                             <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
-                                            <div class="log-right"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
+                                            <div class="log-right"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/stock/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
                                         </form>
 
                                         <!-- Переключаем страницу "НАЗАД" -->
@@ -111,7 +111,7 @@
                                             <input hidden name="i2" value="<?php echo $i ?>">
                                             <input hidden name="lines_p2" value="<?php echo $lines_p ?>">
                                             <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
-                                            <div class="log-left"><button type="submit" class="btn btn-primary btn-xs"  action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
+                                            <div class="log-left"><button type="submit" class="btn btn-primary btn-xs"  action="/controller/admin/pages/stock/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
                                         </form>
 
                                     </th>
@@ -129,7 +129,7 @@
                                             <!-- Категории "ВВЕРХ" -->
                                             <form>
                                                 <div>
-                                                    <button name="parent_up" value="<?php echo $parent_up ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/categories/categories.php" formmethod="post">....</button>
+                                                    <button name="parent_up" value="<?php echo $parent_up ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/stock/categories/categories.php" formmethod="post">....</button>
                                                 </div>
                                             </form>
 
@@ -158,7 +158,7 @@
                                                 <!-- Неактивная категория "ВНИЗ" -->
                                                 <form>
                                                     <div>
-                                                        <button name="parent_down" value="<?php echo $lines[$i][0] ?>" class="btn btn-default btn-xs" title="<?php echo $lines[$i][1] ?>" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-folder-open"> </span></button>
+                                                        <button name="parent_down" value="<?php echo $lines[$i][0] ?>" class="btn btn-default btn-xs" title="<?php echo $lines[$i][1] ?>" action="/controller/admin/pages/stock/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-folder-open"> </span></button>
                                                     </div>
                                                 </form>
 
@@ -172,7 +172,7 @@
                                                 <!-- Активная категория "ВНИЗ" -->
                                                 <form>
                                                     <div>
-                                                        <button name="parent_down" value="<?php echo $lines[$i][0] ?>" class="btn btn-primary btn-xs" title="<?php echo $lines[$i][1] ?>" action="/controller/admin/pages/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-folder-open"> </span></button>
+                                                        <button name="parent_down" value="<?php echo $lines[$i][0] ?>" class="btn btn-primary btn-xs" title="<?php echo $lines[$i][1] ?>" action="/controller/admin/pages/stock/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-folder-open"> </span></button>
                                                     </div>
                                                 </form>
 
@@ -214,7 +214,7 @@
                                         <!-- Категорий нет "ВВЕРХ" -->
                                         <form>
                                             <div>
-                                                <button name="parent_up" value="<?php echo $VALID->inPOST('parent_down') ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/categories/categories.php" formmethod="post">....</button>
+                                                <button name="parent_up" value="<?php echo $VALID->inPOST('parent_down') ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/stock/categories/categories.php" formmethod="post">....</button>
                                             </div>
                                         </form>
 

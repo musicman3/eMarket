@@ -12,7 +12,7 @@ title_index = Панель администратора
 title_admin = Панель администратора
 title_login = Страница авторизации
 title_error_log = Лог ошибок
-title_categories = Категории
+title_stock = Склад
 
 login_error = Введены неверные E-Mail или пароль
 login_name = ПАНЕЛЬ АДМИНИСТРАТОРА

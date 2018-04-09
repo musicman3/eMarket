@@ -36,7 +36,7 @@
         $.ajax({
             method: 'POST',
             dataType: 'text',
-            url: '/controller/admin/pages/categories/categories.php',
+            url: '/controller/admin/pages/stock/categories/categories.php',
             data: ({
                 token_ajax: token,
                 j: j,
@@ -64,7 +64,7 @@
                     $.ajax({
                         method: 'POST',
                         dataType: 'text',
-                        url: '/controller/admin/pages/categories/categories.php',
+                        url: '/controller/admin/pages/stock/categories/categories.php',
                         data: ({
                             itemName: itemKey, //название ключа из меню (edit, delete, copy и т.п.)
                             ids2: opt.$trigger.attr("id")}), //id строки
@@ -118,7 +118,7 @@
 
                                 $(".option").each(function () { // выделенное мышкой
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
-                                        $.post('/controller/admin/pages/categories/categories.php', // отправка данных POST
+                                        $.post('/controller/admin/pages/stock/categories/categories.php', // отправка данных POST
                                                 {idsx_statusOn_id: this.id,
                                                     idsx_real_parent_id: '<?php if (isset($idsx_real_parent_id) == TRUE){ echo $idsx_real_parent_id;} ?>',
                                                     idsx_statusOn_key: itemKey},
@@ -139,7 +139,7 @@
 
                                 $(".option").each(function () { // выделенное мышкой
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
-                                        $.post('/controller/admin/pages/categories/categories.php', // отправка данных POST
+                                        $.post('/controller/admin/pages/stock/categories/categories.php', // отправка данных POST
                                                 {idsx_statusOff_id: this.id,
                                                     idsx_real_parent_id: '<?php if (isset($idsx_real_parent_id) == TRUE){ echo $idsx_real_parent_id;} ?>',
                                                     idsx_statusOff_key: itemKey},
@@ -160,12 +160,12 @@
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
 
-                                $.post('/controller/admin/pages/categories/categories.php', // отправка данных POST
+                                $.post('/controller/admin/pages/stock/categories/categories.php', // отправка данных POST
                                         {idsx_cut_marker: 'cut'});
 
                                 $(".option").each(function () { // выделенное мышкой
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
-                                        $.post('/controller/admin/pages/categories/categories.php', // отправка данных POST
+                                        $.post('/controller/admin/pages/stock/categories/categories.php', // отправка данных POST
                                                 {idsx_real_parent_id: '<?php if (isset($idsx_real_parent_id) == TRUE){ echo $idsx_real_parent_id;} ?>',
                                                     idsx_cut_id: this.id,
                                                     idsx_cut_key: itemKey},
@@ -184,7 +184,7 @@
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
 
-                                $.post('/controller/admin/pages/categories/categories.php', // отправка данных POST
+                                $.post('/controller/admin/pages/stock/categories/categories.php', // отправка данных POST
                                         {idsx_real_parent_id: '<?php if (isset($idsx_real_parent_id) == TRUE){ echo $idsx_real_parent_id;} ?>',
                                             idsx_paste_key: itemKey},
                                         AjaxSuccess);
@@ -205,7 +205,7 @@
 
                                 $(".option").each(function () { // выделенное мышкой
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
-                                        $.post('/controller/admin/pages/categories/categories.php', // отправка данных POST
+                                        $.post('/controller/admin/pages/stock/categories/categories.php', // отправка данных POST
                                                 {idsx_delete_id: this.id,
                                                     idsx_delete_key: itemKey},
                                                 AjaxSuccess);
