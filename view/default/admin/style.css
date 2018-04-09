@@ -55,5 +55,6 @@ input[type="checkbox"], input[type="radio"] {vertical-align: text-bottom;}
 .table .sortno:hover {background: none;}
 .table > tbody > tr > td.active {background-color: #f0f0f0;}
 .table > tbody > tr > td.option, .table > tbody > tr > td.options {padding:0px;}
-.table .left {width:1px;overflow:visible;vertical-align: middle;}
+.table td.left {vertical-align: middle;}
+.table td.right {vertical-align: middle;}
 div.context-one {padding:5px;}

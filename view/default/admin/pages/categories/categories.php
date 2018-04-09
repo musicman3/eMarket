@@ -50,10 +50,10 @@
                                     <tr class="sort-list">
                                         <td class="sortyes sortleft-m" align="left"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
                                         <td class="sortleft" align="left"><div><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-folder-open"> </span></button></div></td>
-                                        <td class="left" align="left">Название</td>
-					<td class="left" align="left">Модель</td>
-					<td class="left" align="left">Штук</td>
-					<td align="left">Цена</td>
+                                        <td class="left" align="left">Название товара пишем вот таким длинным для проверки длинны названия и колонок таблиц</td>
+					<td class="right" align="left">Модель</td>
+					<td class="right" align="left">Штук</td>
+					<td class="right" align="left">Цена</td>
                                     </tr>
                             </tbody>
                         </table>
