@@ -9,7 +9,7 @@
 <?php require_once('modal/categories_add.php') ?>
 <!-- КОНЕЦ Модальное окно "Добавить категорию" -->
 
-<?php if ($abc == 0) { ?>
+<?php $abc = 1; if ($abc == 0) { ?>
 <div id="ajax">
     <div id="category" class="container">
         <div class="row">
