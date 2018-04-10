@@ -50,7 +50,7 @@
                     <table class="table table-hover">
                         <tbody id="sort-list">
                             <tr class="sortno">
-                                <td class="sortleft-mp" align="left"><button class="btn btn-default btn-xs">.</button></td>
+                                <td class="sortleft-mp" align="left"><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true">.</a></td>
                                 <td colspan="6" align="left"><button class="btn btn-default btn-xs">....</button></td>
                             </tr>
                             <tr class="sort-list">
