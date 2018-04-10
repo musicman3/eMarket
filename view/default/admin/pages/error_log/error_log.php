@@ -12,7 +12,7 @@
 
             <div class="panel-heading">
                 <h3 class="panel-title">
-                    <div class="pull-left"><?php echo $lang['menu_error_log'] ?></div>
+                    <div class="pull-left"><?php echo $lang['title_error_log'] ?></div>
                     <div class="clearfix"></div>
                 </h3>
             </div>
