@@ -35,7 +35,6 @@ body {background:#e4e4da;font-family: 'Open Sans', sans-serif;background-image:u
 .nav .open>a, .nav .open>a:focus, .nav .open>a:hover {background:#505050;color:#ffffff;}
 ul.navbar-bottom {margin-bottom: 60px;}
 .table {margin-bottom:0px;}
-.panel-heading {font-weight:bold;}
 .panel-title {font-size: 18px;}
 .modal-body, .panel-body, .input-sm {font-size: 14px;}
 .input-xs {height:24px;font-size:12px;padding:0px 5px;}
