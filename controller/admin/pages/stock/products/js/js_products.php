@@ -81,12 +81,12 @@
             items: {
                 
                 "addCategory": {
-                    name: "Добавить категорию",
+                    name: "Добавить товар",
                     icon: function () {
                         return 'context-menu-icon glyphicon-plus';
                     },
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
-                        $('#addCategory').modal('show');
+                        $('#addProduct').modal('show');
                     }
                 },
                 
@@ -96,7 +96,7 @@
                         return 'context-menu-icon glyphicon-edit';
                     },
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
-                        $('#addCategory' + opt.$trigger.attr("id")).modal('show');
+                        $('#addProduct' + opt.$trigger.attr("id")).modal('show');
                     }
                 },
 

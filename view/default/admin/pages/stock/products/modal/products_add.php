@@ -6,7 +6,7 @@
 
 ?>
 <!-- Модальное окно "Добавить категорию" -->
-<div id="addCategory" class="modal fade" tabindex="-1">
+<div id="addProduct" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header"><button class="close" type="button" data-dismiss="modal">×</button>
@@ -50,7 +50,7 @@
             url: '/controller/admin/pages/stock/products/products.php',
             data: msg,
             success: function (data) {
-                $('#addCategory').remove();
+                $('#addProduct').remove();
                 $('.modal-backdrop').remove();
                 $('body').removeClass('modal-open');
                 $('body').css('padding-right', '');
