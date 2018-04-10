@@ -49,7 +49,7 @@
                     <table class="table table-hover">
                         <tbody id="sort-list">
                             <tr class="sortno">
-                                <td class="sortleft-m" align="left"><span>&nbsp;</span></td>
+                                <td class="sortleft-m" align="left">&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                 <td colspan="5" align="left"><button class="btn btn-default btn-xs">....</button></td>
                             </tr>
                             <tr class="sort-list">
