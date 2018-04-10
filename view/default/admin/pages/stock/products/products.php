@@ -4,6 +4,9 @@
 // https://github.com/musicman3/eMarket //
 // *************************************//
 ?>
+<!-- Модальное окно "Добавить категорию" -->
+<?php require_once('modal/products_add.php') ?>
+<!-- КОНЕЦ Модальное окно "Добавить категорию" -->
 
 <div id="ajax">
     <div id="category" class="container">
