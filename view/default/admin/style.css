@@ -58,3 +58,4 @@ input[type="checkbox"], input[type="radio"] {vertical-align: text-bottom;}
 .table td.left {vertical-align: middle;}
 .table td.right {vertical-align: middle;}
 div.context-one {padding:5px;}
+tr.ui-sortable-helper td.right {visibility:hidden;}

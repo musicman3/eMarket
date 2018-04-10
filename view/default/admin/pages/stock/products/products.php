@@ -45,7 +45,10 @@
                             <tr class="sort-list">
                                 <td class="sortyes sortleft-m" align="left"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
                                 <td class="sortleft" align="left"><div><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-folder-open"> </span></button></div></td>
-                                <td class="left" align="left">Название товара пишем вот таким длинным для проверки длинны названия и колонок таблиц</td>
+                                <td class="left option" align="left" id="<?php echo $lines[$i][0] ?>">
+				    <div class="context-one" id="<?php echo $lines[$i][0] ?>">Название товара пишем вот таким длинным для проверки длинны названия и колонок таблиц
+				    </div>
+				</td>
                                 <td class="right" align="left">Модель</td>
                                 <td class="right" align="left">Штук</td>
                                 <td class="right" align="left">Цена</td>
