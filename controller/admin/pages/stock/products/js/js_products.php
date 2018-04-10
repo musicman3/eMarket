@@ -80,7 +80,7 @@
             },
             items: {
                 
-                "addCategory": {
+                "addProduct": {
                     name: "Добавить товар",
                     icon: function () {
                         return 'context-menu-icon glyphicon-plus';
