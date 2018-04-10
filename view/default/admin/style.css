@@ -55,7 +55,8 @@ input[type="checkbox"], input[type="radio"] {vertical-align: text-bottom;}
 .table .sortno:hover {background: none;}
 .table > tbody > tr > td.active {background-color: #f0f0f0;}
 .table > tbody > tr > td.option, .table > tbody > tr > td.options {padding:0px;}
-.table td.left {vertical-align: middle;}
-.table td.right {vertical-align: middle;}
+.table .left {vertical-align: middle;width: 80%;}
+.table .right {vertical-align: middle;width: 10%;}
 div.context-one {padding:5px;}
-tr.ui-sortable-helper td.right {visibility:hidden;}
+/*tr.ui-sortable-helper td.right {visibility:hidden;}*/
+.al-text {text-align: center;}

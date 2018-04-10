@@ -27,31 +27,41 @@
                     </h3>
                 </div>
                 <div class="panel-body">
-                    <table class="table table-hover">
-                        <thead>
+		    <table class="table table-hover">
+			<thead>
                             <tr>
                                 <th colspan="6">
                                     <div class="log-page"><?php echo $lang['s'] ?> <?php echo $i + 1 ?> <?php echo $lang['po'] ?> <?php echo $lines_p ?> ( <?php echo $lang['iz'] ?> <?php echo $counter; ?> )</div>
                                     <div class="log-right"><button class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
                                     <div class="log-left"><button class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
                                 </th>
+				<tr>
+				    <th class="sortleft-m" align="left"></th>
+				    <th class="sortleft" align="left"></th>
+				    <th class="left al-text" align="left">Название</th>
+				    <th class="right al-text" align="left">Модель</th>
+				    <th class="right al-text" align="left">Кол-во</th>
+				    <th class="right al-text" align="left">Цена</th>
+				</tr>
                             </tr>
                         </thead>
+		    </table>
+                    <table class="table table-hover">
                         <tbody id="sort-list">
                             <tr class="sortno">
-                                <td class="sortleft-m" align="left"></td>
-                                <td colspan="5" align="left"><div><button class="btn btn-default btn-xs">....</button></div></td>
+                                <td class="sortleft-m" align="left"><span>&nbsp;</span></td>
+                                <td colspan="5" align="left"><button class="btn btn-default btn-xs">....</button></td>
                             </tr>
                             <tr class="sort-list">
-                                <td class="sortyes sortleft-m" align="left"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
-                                <td class="sortleft" align="left"><div><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-folder-open"> </span></button></div></td>
+                                <td class="sortyes sortleft-m" align="left"><span class="glyphicon glyphicon-move"> </span></td>    
+                                <td class="sortleft" align="left"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-folder-open"> </span></button></td>
                                 <td class="left option" align="left" id="<?php echo $lines[$i][0] ?>">
 				    <div class="context-one" id="<?php echo $lines[$i][0] ?>">Название товара пишем вот таким длинным для проверки длинны названия и колонок таблиц
 				    </div>
 				</td>
-                                <td class="right" align="left">Модель</td>
-                                <td class="right" align="left">Штук</td>
-                                <td class="right" align="left">Цена</td>
+                                <td class="right al-text" align="left">Модель</td>
+                                <td class="right al-text" align="left">Штук</td>
+                                <td class="right al-text" align="left">Цена</td>
                             </tr>
                         </tbody>
                     </table>
