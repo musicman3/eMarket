@@ -45,6 +45,7 @@ CREATE TABLE emkt_products (
         manufacturer int NOT NULL,
         price decimal(12,2) NOT NULL,
         quantity int NOT NULL,
+        unit varchar(256),
         weight decimal(5,2) NOT NULL,
         weight_class int NOT NULL,
         tax_class int NOT NULL,
