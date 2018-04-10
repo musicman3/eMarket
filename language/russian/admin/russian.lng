@@ -45,6 +45,7 @@ max = Макс.
 password = Пароль
 email = E-Mail
 entrance = Вход
+rows_page = Строк на странице
 
 ;кнопки меню
 menu_exit = Выход
