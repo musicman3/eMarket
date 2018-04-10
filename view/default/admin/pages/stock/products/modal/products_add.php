@@ -10,7 +10,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header"><button class="close" type="button" data-dismiss="modal">×</button>
-                <h4 class="modal-title"><?php echo $lang['menu_categories'] ?></h4>
+                <h4 class="modal-title"><?php echo $lang['title_products'] ?></h4>
             </div>
             <form id="form_post" name="form_post" action="javascript:void(null);" onsubmit="call()" method="post" enctype="multipart/form-data">
                 <div class="panel-body">
@@ -20,14 +20,27 @@
                             <label><?php echo $lang['name'] ?>:</label><br>
                             <img src="/view/default/admin/images/worldflags/ru.png" alt="Russian" title="Russian" width="16" height="10" />Russian<br>
                             <input class="input-sm form-control" type="text" name="name" id="name" />
+                            <label><?php echo $lang['product_quantity'] ?>:</label><br>
+                            <input class="input-sm form-control" type="text" name="quantity" id="quantity" />
+                            <label><?php echo $lang['product_unit'] ?>:</label><br>
+                            <select name="unit" id="unit" class="input-xs form-control">
+                                    <option>шт.</option>
+                                    <option>м.</option>
+                                    <option>л.</option>
+                                </select>
+                            <label><?php echo $lang['product_price'] ?>:</label><br>
+                            <input class="input-sm form-control" type="text" name="price" id="price" />
+                            <label><?php echo $lang['product_description'] ?>:</label><br>
+                            <img src="/view/default/admin/images/worldflags/ru.png" alt="Russian" title="Russian" width="16" height="10" />Russian<br>
+                            <textarea rows="3" class="input-sm form-control" name="description" id="description" /></textarea>
                         </div>
                         <div class="form-group">
                             <label for="image"><?php echo $lang['images'] ?>:</label><br>
                             <input type="file" name="image" id="image" /> <?php echo $lang['max'] ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>
                         </div>
                         <div class="form-group">
-                            <label for="view_category"><?php echo $lang['display'] ?> </label>
-                            <input class="check-box" type="checkbox" name="view_cat" checked>
+                            <label for="view_product"><?php echo $lang['display'] ?> </label>
+                            <input class="check-box" type="checkbox" name="view_product" checked>
                         </div>
                     </fieldset>
 

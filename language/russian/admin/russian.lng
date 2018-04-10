@@ -46,6 +46,10 @@ password = Пароль
 email = E-Mail
 entrance = Вход
 rows_page = Строк на странице
+product_price = Цена
+product_quantity = Количество
+product_unit = Единица измерения
+product_description = Описание
 
 ;кнопки меню
 menu_exit = Выход
