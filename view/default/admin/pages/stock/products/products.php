@@ -30,7 +30,7 @@
 		    <table class="table table-hover">
 			<thead>
                             <tr>
-                                <th colspan="6">
+                                <th colspan="7">
                                     <div class="log-page"><?php echo $lang['s'] ?> <?php echo $i + 1 ?> <?php echo $lang['po'] ?> <?php echo $lines_p ?> ( <?php echo $lang['iz'] ?> <?php echo $counter; ?> )</div>
                                     <div class="log-right"><button class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
                                     <div class="log-left"><button class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
@@ -40,6 +40,7 @@
 				    <th class="sortleft" align="left"></th>
 				    <th class="left al-text" align="left">Название</th>
 				    <th class="right al-text" align="left">Модель</th>
+				    <th class="right al-text" align="left">Ед. изм.</th>
 				    <th class="right al-text" align="left">Кол-во</th>
 				    <th class="right al-text" align="left">Цена</th>
 				</tr>
@@ -49,8 +50,8 @@
                     <table class="table table-hover">
                         <tbody id="sort-list">
                             <tr class="sortno">
-                                <td class="sortleft-m" align="left">&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                                <td colspan="5" align="left"><button class="btn btn-default btn-xs">....</button></td>
+                                <td class="sortleft-mp" align="left"><button class="btn btn-default btn-xs">.</button></td>
+                                <td colspan="6" align="left"><button class="btn btn-default btn-xs">....</button></td>
                             </tr>
                             <tr class="sort-list">
                                 <td class="sortyes sortleft-m" align="left"><span class="glyphicon glyphicon-move"> </span></td>    
@@ -59,9 +60,10 @@
 				    <div class="context-one" id="<?php echo $lines[$i][0] ?>">Название товара пишем вот таким длинным для проверки длинны названия и колонок таблиц
 				    </div>
 				</td>
-                                <td class="right al-text" align="left">Модель</td>
-                                <td class="right al-text" align="left">Штук</td>
-                                <td class="right al-text" align="left">Цена</td>
+                                <td class="right al-text" align="left">MD34-50</td>
+				<td class="right al-text" align="left">шт.</td>
+                                <td class="right al-text" align="left">5</td>
+                                <td class="right al-text" align="left">1200.00</td>
                             </tr>
                         </tbody>
                     </table>
