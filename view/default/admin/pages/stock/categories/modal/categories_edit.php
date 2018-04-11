@@ -24,7 +24,6 @@ if ($status_category_edit == 1) {
             </div>
             <form id="form_post<?php echo $lines[$i][0] ?>" action="javascript:void(null);" onsubmit="call<?php echo $lines[$i][0] ?>()" method="post" enctype="multipart/form-data">
                 <div class="panel-body">
-                    <fieldset>
                         <input type="hidden" name="parent_id" value="<?php echo $parent_id ?>" />
                         <input type="hidden" name="cat_edit" value="<?php echo $lines[$i][0] ?>" />
                         <div class="form-group">
@@ -41,7 +40,6 @@ if ($status_category_edit == 1) {
                             <label for="view_category"><?php echo $lang['display'] ?> </label>
                             <input class="check-box" type="checkbox" name="view_cat" <?php echo $status_category_edit ?>>
                         </div>
-                    </fieldset>
                 </div>
                 <div class="modal-footer">
                     <input type="hidden" name="subaction" value="confirm" />

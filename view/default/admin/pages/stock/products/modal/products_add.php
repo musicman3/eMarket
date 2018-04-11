@@ -21,8 +21,7 @@
 		    </ul>
 		    <div class="tab-content">
                         <input type="hidden" name="parent_id" value="<?php echo $parent_id ?>" />
-			<div id="panel1" class="tab-pane fade in active">
-                        <div class="form-group">
+			<div id="panel1" class="form-group tab-pane fade in active">
                             <label><?php echo $lang['name'] ?>:</label><br>
                             <img src="/view/default/admin/images/worldflags/ru.png" alt="Russian" title="Russian" width="16" height="10" />Russian<br>
                             <input class="input-sm form-control auto_sm" type="text" name="name" id="name" />
@@ -40,19 +39,14 @@
                             <img src="/view/default/admin/images/worldflags/ru.png" alt="Russian" title="Russian" width="16" height="10" />Russian<br>
                             <textarea rows="3" class="input-sm form-control" name="description" id="description" /></textarea>
                         </div>
-			</div>
-			<div id="panel2" class="tab-pane fade">
-                        <div class="form-group">
+			<div id="panel2" class="form-group tab-pane fade">
                             <label for="image"><?php echo $lang['images'] ?>:</label><br>
                             <input type="file" name="image" id="image" /> <?php echo $lang['max'] ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>
                         </div>
-			</div>
-			<div id="panel3" class="tab-pane fade">
-                        <div class="form-group">
+			<div id="panel3" class="form-group tab-pane fade">
                             <label for="view_product"><?php echo $lang['display'] ?> </label>
                             <input class="check-box" type="checkbox" name="view_product" checked>
                         </div>
-			</div>
 		    </div>
 
                 </div>

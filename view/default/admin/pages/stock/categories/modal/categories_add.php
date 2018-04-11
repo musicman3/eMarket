@@ -14,7 +14,6 @@
             </div>
             <form id="form_post" name="form_post" action="javascript:void(null);" onsubmit="call()" method="post" enctype="multipart/form-data">
                 <div class="panel-body">
-                    <fieldset>
                         <input type="hidden" name="parent_id" value="<?php echo $parent_id ?>" />
                         <div class="form-group">
                             <label><?php echo $lang['name'] ?>:</label><br>
@@ -29,8 +28,6 @@
                             <label for="view_category"><?php echo $lang['display'] ?> </label>
                             <input class="check-box" type="checkbox" name="view_cat" checked>
                         </div>
-                    </fieldset>
-
                 </div>
                 <div class="modal-footer">
                     <input type="hidden" name="subaction" value="confirm" />
