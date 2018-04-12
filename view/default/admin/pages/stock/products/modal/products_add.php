@@ -22,15 +22,31 @@
 		    <div class="tab-content">
                         <input type="hidden" name="parent_id" value="<?php echo $parent_id ?>" />
 			<div id="panel1" class="tab-pane fade in active">
+			    <ul class="nav nav-tabs">
+				<li class="active"><a data-toggle="tab" href="#Russian"><img src="/view/default/admin/images/worldflags/ru.png" alt="Russian" title="Russian" width="16" height="10" />Russian</a></li>
+				<li><a data-toggle="tab" href="#English"><img src="/view/default/admin/images/worldflags/us.png" alt="English" title="English" width="16" height="10" />English</a></li>
+			    </ul>
+			    <div class="tab-content">
+				<div id="Russian" class="tab-pane fade in active">
 			    <div class="form-group">
                             <label><?php echo $lang['name'] ?>:</label><br>
-                            <img src="/view/default/admin/images/worldflags/ru.png" alt="Russian" title="Russian" width="16" height="10" />Russian
                             <input class="input-sm form-control" type="text" name="name" id="name" />
 			    </div>
 			    <div class="form-group">
                             <label><?php echo $lang['product_description'] ?>:</label><br>
-                            <img src="/view/default/admin/images/worldflags/ru.png" alt="Russian" title="Russian" width="16" height="10" />Russian
                             <textarea rows="3" class="input-sm form-control" name="description" id="description" /></textarea>
+			    </div>
+				</div>
+				<div id="English" class="tab-pane fade">
+			    <div class="form-group">
+                            <label><?php echo $lang['name'] ?>:</label><br>
+                            <input class="input-sm form-control" type="text" name="name" id="name" />
+			    </div>
+			    <div class="form-group">
+                            <label><?php echo $lang['product_description'] ?>:</label><br>
+                            <textarea rows="3" class="input-sm form-control" name="description" id="description" /></textarea>
+			    </div>
+				</div>
 			    </div>
 			    <div class="form-group">
                             <label>Keyword:</label>
