@@ -59,4 +59,6 @@ input[type="checkbox"], input[type="radio"] {vertical-align: text-bottom;}
 .table .right {vertical-align: middle;width: 7%;}
 div.context-one {padding:5px;}
 .al-text {text-align: center;}
-.auto_sm {width: auto;}
+#addProduct .row {margin-left: 0;margin-right: 0;}
+#addProduct .col-left {float: left;width: 200px;margin-right: 50px;}
+#addProduct .col-right {float: left;width: 200px;}
