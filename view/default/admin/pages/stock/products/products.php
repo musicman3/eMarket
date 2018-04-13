@@ -39,7 +39,9 @@
                                     <div class="log-left"><button class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
                                 </th>
 				<tr>
-				    <th colspan="3" class="left al-text" align="left">Название</th>
+				    <th align="left"><div style="width: 14px;"></div></th>
+				    <th align="left"><div style="width: 24px;"></div></th>
+				    <th class="left al-text" align="left">Название</th>
 				    <th class="right al-text" align="left">Модель</th>
 				    <th class="right al-text" align="left">Ед. изм.</th>
 				    <th class="right al-text" align="left">Кол-во</th>
