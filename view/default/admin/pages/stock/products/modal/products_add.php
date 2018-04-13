@@ -71,22 +71,24 @@
 			
 			<!-- Содержимое панели Данные -->
 			<div id="panel2" class="tab-pane fade">
-			    <div class="form-group">
-				<label for="view_product"><?php echo $lang['display'] ?> </label>
-				<input class="check-box" type="checkbox" name="view_product" checked>
-			    </div>
 			    <div class="row">
-				<div class="col-left">
+                                <div class="col-left">
+			    <label><?php echo $lang['product_price'] ?>:</label>
+                            <input class="input-sm form-control" type="text" name="price" id="price" />
+				</div>
+				<div class="col-right">
+                            <label>Налог:</label>
+                            <select name="tax" id="tax"class="input-sm form-control">
+                                    <option>НДС</option>
+                                    <option>18%</option>
+                                    <option>12%</option>
+                            </select>
+				</div>
+                                <div class="col-left">
 			    <label><?php echo $lang['product_quantity'] ?>:</label>
                             <input class="input-sm form-control" type="text" name="quantity" id="quantity" />
 				</div>
 				<div class="col-right">
-			    <label><?php echo $lang['product_price'] ?>:</label>
-                            <input class="input-sm form-control" type="text" name="price" id="price" />
-				</div>
-			    </div>
-			    <div class="row">
-				<div class="col-left">
                             <label><?php echo $lang['product_unit'] ?>:</label>
                             <select name="unit" id="unit"class="input-sm form-control">
                                     <option>шт.</option>
@@ -94,14 +96,40 @@
                                     <option>л.</option>
                             </select>
 				</div>
-				<div class="col-right">
-                            <label>Производители:</label>
+                                <div class="col-left">
+			    <label>Минимальное количество:</label>
+                            <input class="input-sm form-control" type="text" name="quantity" id="quantity" />
+				</div>
+                                <div class="col-right">
+                            <label>Производитель:</label>
                             <select name="manufacturer" id="manufacturer"class="input-sm form-control">
                                     <option>Acer</option>
                                     <option>Asus</option>
                                     <option>Intel</option>
                             </select>
 				</div>
+                                <div class="col-left">
+			    <label>Артикул (SCU):</label>
+                            <input class="input-sm form-control" type="text" name="articul" id="articul" />
+				</div>
+				<div class="col-right">
+			    <label>Модель:</label>
+                            <input class="input-sm form-control" type="text" name="model" id="model" />
+				</div>
+                                <div class="col-left">
+			    <label>Вес:</label>
+                            <input class="input-sm form-control" type="text" name="weight" id="weight" />
+				</div>
+                                <div class="col-right">
+                            <label>Единица веса:</label>
+                            <select name="unit_weight" id="unit_weight"class="input-sm form-control">
+                                    <option>кг.</option>
+                                    <option>гр.</option>
+                                    <option>унц.</option>
+                            </select>
+				</div>
+			    </div>
+			    <div class="row">
 			    </div>
 			</div>
 			
