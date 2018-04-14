@@ -84,6 +84,8 @@
                                     <option>12%</option>
                             </select>
 				</div>
+			    </div>
+			    <div class="row">
                                 <div class="col-left">
 			    <label><?php echo $lang['product_quantity'] ?>:</label>
                             <input class="input-sm form-control" type="text" name="quantity" id="quantity" />
@@ -96,6 +98,8 @@
                                     <option>л.</option>
                             </select>
 				</div>
+			    </div>
+			    <div class="row">
                                 <div class="col-left">
 			    <label>Минимальное количество:</label>
                             <input class="input-sm form-control" type="text" name="quantity" id="quantity" />
@@ -108,6 +112,8 @@
                                     <option>Intel</option>
                             </select>
 				</div>
+			    </div>
+			    <div class="row">
                                 <div class="col-left">
 			    <label>Артикул (SCU):</label>
                             <input class="input-sm form-control" type="text" name="articul" id="articul" />
@@ -116,6 +122,8 @@
 			    <label>Модель:</label>
                             <input class="input-sm form-control" type="text" name="model" id="model" />
 				</div>
+			    </div>
+			    <div class="row">
                                 <div class="col-left">
 			    <label>Вес:</label>
                             <input class="input-sm form-control" type="text" name="weight" id="weight" />
@@ -129,8 +137,7 @@
                             </select>
 				</div>
 			    </div>
-			    <div class="row">
-			    </div>
+			    
 			</div>
 			
 			<!-- Содержимое панели Изображения -->

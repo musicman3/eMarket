@@ -60,6 +60,6 @@ input[type="checkbox"], input[type="radio"] {vertical-align: text-bottom;}
 div.context-one {padding:5px;}
 .al-text {text-align: center;}
 #addProduct .row {margin-left: 0;margin-right: 0;}
-#addProduct .col-left {float: left;width: 200px;margin-right: 50px;}
-#addProduct .col-right {float: left;width: 200px;}
+#addProduct .col-left {float: left;width: 250px;margin-right: 65px;}
+#addProduct .col-right {float: left;width: 250px;}
 #addProduct .tab-content {margin-top: 10px;}
