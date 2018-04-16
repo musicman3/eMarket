@@ -13,14 +13,14 @@
 <script type="text/javascript" language="javascript">
     tinymce.init({
         selector: 'textarea',
-        plugins: 'advlist autolink fullscreen toc lists charmap table image wordcount code preview',
+        plugins: 'advlist autolink fullscreen lists charmap table image wordcount code preview',
         language: '<?php echo $lang['meta-language'] ?>'
     });
-        	$(document).on('focusin', function(event) {
-		if ($(event.target).closest(".mce-window").length) {
-			event.stopImmediatePropagation();
-		}
-	});
+    $(document).on('focusin', function (event) {
+        if ($(event.target).closest(".mce-window").length) {
+            event.stopImmediatePropagation();
+        }
+    });
 </script>
 
 <!-- Модальное окно "Добавить категорию" -->
