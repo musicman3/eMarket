@@ -185,16 +185,4 @@
         });
     }
 </script>
-
-<!-- Подключение TinyMCE" -->
-<script src="/ext/tinymce/tinymce.min.js"></script>
-
-<!-- Настройка TinyMCE" -->
-<script type="text/javascript" language="javascript">
-    tinymce.init({
-        selector: 'textarea',
-        plugins: 'advlist autolink fullscreen toc lists charmap table wordcount code preview',
-        language: '<?php echo $lang['meta-language'] ?>'
-    });
-</script>
 <!-- КОНЕЦ Модальное окно "Добавить категорию" -->

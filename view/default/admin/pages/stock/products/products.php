@@ -3,7 +3,26 @@
 //   GNU GENERAL PUBLIC LICENSE v.3.0   //    
 // https://github.com/musicman3/eMarket //
 // *************************************//
+
 ?>
+
+<!-- Подключение TinyMCE" -->
+<script type="text/javascript" src="/ext/tinymce/tinymce.min.js"></script>
+
+<!-- Настройка TinyMCE" -->
+<script type="text/javascript" language="javascript">
+    tinymce.init({
+        selector: 'textarea',
+        plugins: 'advlist autolink fullscreen toc lists charmap table image wordcount code preview',
+        language: '<?php echo $lang['meta-language'] ?>'
+    });
+        	$(document).on('focusin', function(event) {
+		if ($(event.target).closest(".mce-window").length) {
+			event.stopImmediatePropagation();
+		}
+	});
+</script>
+
 <!-- Модальное окно "Добавить категорию" -->
 <?php require_once('modal/products_add.php') ?>
 <!-- КОНЕЦ Модальное окно "Добавить категорию" -->
@@ -30,26 +49,26 @@
                     </h3>
                 </div>
                 <div class="panel-body">
-		    <table class="table table-hover">
-			<thead>
+                    <table class="table table-hover">
+                        <thead>
                             <tr>
                                 <th colspan="7">
                                     <div class="log-page"><?php echo $lang['s'] ?> <?php echo $i + 1 ?> <?php echo $lang['po'] ?> <?php echo $lines_p ?> ( <?php echo $lang['iz'] ?> <?php echo $counter; ?> )</div>
                                     <div class="log-right"><button class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
                                     <div class="log-left"><button class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
                                 </th>
-				<tr>
-				    <th align="left"><div style="width: 14px;"></div></th>
-				    <th align="left"><div style="width: 24px;"></div></th>
-				    <th class="left al-text" align="left">Название</th>
-				    <th class="right al-text" align="left">Модель</th>
-				    <th class="right al-text" align="left">Ед. изм.</th>
-				    <th class="right al-text" align="left">Кол-во</th>
-				    <th class="right al-text" align="left">Цена</th>
-				</tr>
+                            <tr>
+                                <th align="left"><div style="width: 14px;"></div></th>
+                                <th align="left"><div style="width: 24px;"></div></th>
+                                <th class="left al-text" align="left">Название</th>
+                                <th class="right al-text" align="left">Модель</th>
+                                <th class="right al-text" align="left">Ед. изм.</th>
+                                <th class="right al-text" align="left">Кол-во</th>
+                                <th class="right al-text" align="left">Цена</th>
+                            </tr>
                             </tr>
                         </thead>
-		    </table>
+                    </table>
                     <table class="table table-hover">
                         <tbody id="sort-list">
                             <tr class="sortno">
@@ -60,11 +79,11 @@
                                 <td class="sortyes sortleft-m" align="left"><span class="glyphicon glyphicon-move"> </span></td>    
                                 <td class="sortleft" align="left"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-folder-open"> </span></button></td>
                                 <td class="left option" align="left" id="<?php echo $lines[$i][0] ?>">
-				    <div class="context-one" id="<?php echo $lines[$i][0] ?>">Название товара пишем вот таким длинным для проверки длинны названия и колонок таблиц
-				    </div>
-				</td>
+                                    <div class="context-one" id="<?php echo $lines[$i][0] ?>">Название товара пишем вот таким длинным для проверки длинны названия и колонок таблиц
+                                    </div>
+                                </td>
                                 <td class="right al-text" align="left">MD34-50</td>
-				<td class="right al-text" align="left">шт.</td>
+                                <td class="right al-text" align="left">шт.</td>
                                 <td class="right al-text" align="left">5</td>
                                 <td class="right al-text" align="left">1200.00</td>
                             </tr>
