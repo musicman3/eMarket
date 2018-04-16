@@ -193,7 +193,7 @@
 <script type="text/javascript" language="javascript">
     tinymce.init({
         selector: 'textarea',
-        plugins: 'advlist autolink image fullscreen lists charmap print preview',
+        plugins: 'advlist autolink fullscreen toc lists charmap table wordcount code preview',
         language: '<?php echo $lang['meta-language'] ?>'
     });
 </script>
