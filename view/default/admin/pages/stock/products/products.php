@@ -16,11 +16,6 @@
         plugins: 'advlist autolink fullscreen lists charmap table image wordcount code preview',
         language: '<?php echo $lang['meta-language'] ?>'
     });
-    $(document).on('focusin', function (event) {
-        if ($(event.target).closest(".mce-window").length) {
-            event.stopImmediatePropagation();
-        }
-    });
 </script>
 
 <!-- Модальное окно "Добавить категорию" -->
