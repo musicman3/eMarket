@@ -13,8 +13,12 @@
 <script type="text/javascript" language="javascript">
     tinymce.init({
         selector: 'textarea',
-        plugins: 'advlist autolink fullscreen lists charmap table link image wordcount code preview',
-        language: '<?php echo $lang['meta-language'] ?>'
+        plugins: 'advlist autolink visualblocks visualchars fullscreen lists charmap imagetools hr textcolor table link image wordcount code media preview',
+        toolbar1: 'undo redo | bold italic underline strikethrough backcolor forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent hr | visualchars visualblocks ',
+        toolbar2: 'fontselect fontsizeselect formatselect superscript removeformat | charmap link unlink image media table | preview fullscreen code',
+        language: '<?php echo $lang['meta-language'] ?>',
+        toolbar_items_size: 'small',
+        menubar: false,
     });
 </script>
 
