@@ -6,7 +6,7 @@
 
 ?>
 <!-- Модальное окно "Добавить категорию" -->
-<div id="addProduct" class="modal fade" tabindex="-1">
+<div id="addProduct" class="product modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header"><button class="close" type="button" data-dismiss="modal">×</button>
