@@ -87,6 +87,9 @@
                     },
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
                         $('#addProduct').modal('show');
+                        $('#addProduct').on('shown.bs.modal', function() {
+                        $(document).off('focusin.modal');
+                        });
                     }
                 },
                 
