@@ -63,4 +63,4 @@ div.context-one {padding:5px;}
 .product .col-left {float: left;width: 250px;margin-right: 65px;}
 .product .col-right {float: left;width: 250px;}
 .product .tab-content {margin-top: 5px;}
-.product .modal-dialog {width: 620px;}
+@media (min-width:768px){.product .modal-dialog{width:620px;margin:30px auto;}}
