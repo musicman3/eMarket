@@ -13,7 +13,7 @@
 <script type="text/javascript" language="javascript">
     tinymce.init({
         selector: 'textarea',
-        plugins: 'advlist autolink fullscreen lists charmap table image wordcount code preview',
+        plugins: 'advlist autolink fullscreen lists charmap table link image wordcount code preview',
         language: '<?php echo $lang['meta-language'] ?>'
     });
 </script>
