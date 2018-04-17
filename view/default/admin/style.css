@@ -62,5 +62,5 @@ div.context-one {padding:5px;}
 #addProduct .row {margin-left: 0;margin-right: 0;}
 #addProduct .col-left {float: left;width: 250px;margin-right: 65px;}
 #addProduct .col-right {float: left;width: 250px;}
-#addProduct .tab-content {margin-top: 10px;}
-#addProduct .modal-dialog {width: 620px;}
+#addProduct .tab-content {margin-top: 5px;}
+.modal-dialog {width: 620px;}
