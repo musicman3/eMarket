@@ -25,8 +25,15 @@
 <!-- Подключение Datepicker" -->
 <script type="text/javascript" language="javascript">
     $(function () {
-        $("#date_available").datepicker();
+    $( "#date_available" ).datepicker({
+      showOtherMonths: true,
+      showAnim: 'fadeIn',
+      showWeek: true,
+      duration: 'normal',
+      firstDay: 1,
+      selectOtherMonths: true
     });
+  } );
 </script>
 
 <!-- Автовыбор языка Datepicker" -->
