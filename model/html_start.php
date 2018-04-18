@@ -28,7 +28,7 @@
             <link href="/ext/bootstrap/css/normalize.css" rel="stylesheet" media="screen" />
 	    <link rel="stylesheet" type="text/css" href="/view/default/admin/style.css" media="screen" />
 	    <link rel="stylesheet" type="text/css" href="/ext/contextmenu/css/contextmenu.css" media="screen" />
-            <link rel="stylesheet" type="text/css" href="/ext/jquery/ui/jquery-ui.css" media="screen" />
+            <link rel="stylesheet" type="text/css" href="/ext/jquery/ui/jquery-ui.min.css" media="screen" />
             <script type="text/javascript" src="/ext/jquery/jquery.min.js"></script>
             <script type="text/javascript" src="/ext/jquery/ui/jquery-ui.min.js"></script>
 
