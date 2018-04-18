@@ -3,7 +3,6 @@
 //   GNU GENERAL PUBLIC LICENSE v.3.0   //    
 // https://github.com/musicman3/eMarket //
 // *************************************//
-
 ?>
 <!-- Модальное окно "Добавить категорию" -->
 <div id="addProduct" class="product modal fade" tabindex="-1">
@@ -142,6 +141,16 @@
                                         <option>гр.</option>
                                         <option>унц.</option>
                                     </select>
+                                </div>
+                                <div class="row">
+                                    <div class="col-left">
+                                        <label>Дата поступления:</label>
+                                        <input class="input-sm form-control" type="date" name="date_available" id="date_available" />
+                                    </div>
+                                    <div class="col-right">
+                                        <label>Другое:</label>
+                                        <input class="input-sm form-control" type="text" name="other" id="model" />
+                                    </div>
                                 </div>
                             </div>
 
