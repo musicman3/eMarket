@@ -37,7 +37,7 @@
 <!-- КОНЕЦ Модальное окно "Добавить категорию" -->
 
 <div id="ajax">
-    <div id="category" class="container">
+    <div id="products" class="container">
         <div class="row">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -87,8 +87,8 @@
                             <tr class="sort-list">
                                 <td class="sortyes sortleft-m" align="left"><span class="glyphicon glyphicon-move"> </span></td>    
                                 <td class="sortleft" align="left"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-folder-open"> </span></button></td>
-                                <td class="left option" align="left" id="<?php echo $lines[$i][0] ?>">
-                                    <div class="context-one" id="<?php echo $lines[$i][0] ?>">Название товара пишем вот таким длинным для проверки длинны названия и колонок таблиц
+                                <td class="left option" align="left">
+                                    <div class="context-one">Название товара пишем вот таким длинным для проверки длинны названия и колонок таблиц
                                     </div>
                                 </td>
                                 <td class="right al-text" align="left">MD34-50</td>
