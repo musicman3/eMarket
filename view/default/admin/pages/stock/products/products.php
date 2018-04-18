@@ -36,9 +36,6 @@
   } );
 </script>
 
-<!-- Автовыбор языка Datepicker" -->
-<script type="text/javascript" src="/ext/jquery/ui/i18n/datepicker-<?php echo $lang['meta-language'] ?>.js"></script>
-
 <!-- Модальное окно "Добавить категорию" -->
 <?php require_once('modal/products_add.php') ?>
 <!-- КОНЕЦ Модальное окно "Добавить категорию" -->

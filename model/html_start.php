@@ -20,38 +20,43 @@
         <meta name="copyright" content="Copyright©2018 by eMarket Team. All right reserved." />
         <?php $title_prefix = basename(($_SERVER['REQUEST_URI']), '.php'); // автогенерация префикса title по названию файла. Пример: для index.php = index  ?>
         <title><?php echo $lang['title_' . $title_prefix] ?></title>
-        <?php //вывод только в админке
+        <?php
+        //вывод только в админке
         if ($patch == 'admin') {
 
             ?>
             <link href="/ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
             <link href="/ext/bootstrap/css/normalize.css" rel="stylesheet" media="screen" />
-	    <link rel="stylesheet" type="text/css" href="/view/default/admin/style.css" media="screen" />
-	    <link rel="stylesheet" type="text/css" href="/ext/contextmenu/css/contextmenu.css" media="screen" />
+            <link rel="stylesheet" type="text/css" href="/view/default/admin/style.css" media="screen" />
+            <link rel="stylesheet" type="text/css" href="/ext/contextmenu/css/contextmenu.css" media="screen" />
             <link rel="stylesheet" type="text/css" href="/ext/jquery/ui/jquery-ui.min.css" media="screen" />
             <script type="text/javascript" src="/ext/jquery/jquery.min.js"></script>
             <script type="text/javascript" src="/ext/jquery/ui/jquery-ui.min.js"></script>
+
+            <!-- Автовыбор языка Datepicker" -->
+            <script type="text/javascript" src="/ext/jquery/ui/i18n/datepicker-<?php echo $lang['meta-language'] ?>.js"></script>
 
             <?php
             if (isset($_SESSION['login']) == TRUE && isset($_SESSION['pass']) == TRUE) {
 
                 ?>
                 <style type="text/css">body {padding-top:40px;} @media screen and (max-height:420px) and (orientation:landscape) {body {padding-top:60px;}}</style>
-            <?php
+                <?php
             }
             require_once($_SERVER['DOCUMENT_ROOT'] . '/controller/admin/header.php');
             require_once($_SERVER['DOCUMENT_ROOT'] . '/view/default/admin/header.php');
         } // конец вывода только в админке
-        
+
         ?>
-        <?php //вывод только в каталоге
+        <?php
+        //вывод только в каталоге
         if ($patch == 'catalog') {
 
             ?>
             <link href="/ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
             <link href="/ext/bootstrap/css/normalize.css" rel="stylesheet" media="screen" />
-	    <link rel="stylesheet" type="text/css" href="/view/default/catalog/style.css" media="screen" />
-    <?php
-} // конец вывода только в каталоге
+            <link rel="stylesheet" type="text/css" href="/view/default/catalog/style.css" media="screen" />
+            <?php
+        } // конец вывода только в каталоге
 
-?>
+        ?>
