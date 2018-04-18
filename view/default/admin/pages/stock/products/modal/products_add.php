@@ -145,7 +145,7 @@
                                 <div class="row">
                                     <div class="col-left">
                                         <label>Дата поступления:</label>
-                                        <input class="input-sm form-control" type="date" name="date_available" id="date_available" />
+                                        <input class="input-sm form-control" type="text" name="date_available" id="date_available" />
                                     </div>
                                     <div class="col-right">
                                         <label>Другое:</label>

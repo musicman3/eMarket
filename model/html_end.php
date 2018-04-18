@@ -10,8 +10,6 @@
 if ($patch == 'admin') {
 
     ?>
-    <script type="text/javascript" src="/ext/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="/ext/jquery/jquery-ui.min.js"></script>
     <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/ext/bootstrap/js/bootstrap-confirmation.min.js"></script>
     <script type="text/javascript" src="/ext/bootstrap/js/confirmation.js"></script>
