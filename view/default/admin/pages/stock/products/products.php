@@ -12,9 +12,9 @@
 <!-- Настройка TinyMCE" -->
 <script type="text/javascript" language="javascript">
     tinymce.init({
-        selector: 'textarea',
+        selector: 'textarea#description',
         plugins: 'advlist autolink visualblocks visualchars fullscreen lists charmap imagetools hr textcolor table link image wordcount code media preview',
-        toolbar1: 'undo redo | bold italic underline strikethrough backcolor forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent hr | visualchars visualblocks ',
+        toolbar1: 'undo redo | bold italic underline strikethrough backcolor forecolor | alignleft aligncenter alignright alignjustify | outdent indent bullist numlist hr | visualchars visualblocks ',
         toolbar2: 'fontselect fontsizeselect formatselect superscript removeformat | charmap link unlink image media table | code preview fullscreen',
         language: '<?php echo $lang['meta-language'] ?>',
         toolbar_items_size: 'small',
@@ -28,9 +28,8 @@
     $( "#date_available" ).datepicker({
       showOtherMonths: true,
       showAnim: 'fadeIn',
-      showWeek: true,
       duration: 'normal',
-      firstDay: 1,
+      showWeek: true,
       selectOtherMonths: true
     });
   } );
