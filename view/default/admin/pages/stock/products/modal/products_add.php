@@ -3,6 +3,7 @@
 //   GNU GENERAL PUBLIC LICENSE v.3.0   //    
 // https://github.com/musicman3/eMarket //
 // *************************************//
+
 ?>
 <!-- Модальное окно "Добавить категорию" -->
 <div id="addProduct" class="product modal fade" tabindex="-1">
@@ -107,10 +108,6 @@
                             </div>
                             <div class="row">
                                 <div class="col-left">
-                                    <label>Минимальное количество:</label>
-                                    <input class="input-sm form-control" type="text" name="quantity" id="quantity" />
-                                </div>
-                                <div class="col-right">
                                     <label>Производитель:</label>
                                     <select name="manufacturer" id="manufacturer" class="input-sm form-control">
                                         <option>Acer</option>
@@ -118,14 +115,31 @@
                                         <option>Intel</option>
                                     </select>
                                 </div>
+                                <div class="col-left">
+                                    <label>Штриховые коды:</label>
+                                    <select name="code" id="code" class="input-sm form-control">
+                                        <option>Нет</option>                                        
+                                        <option>Barcode</option>
+                                        <option>QR-code</option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-left">
-                                    <label>Артикул (SCU):</label>
-                                    <input class="input-sm form-control" type="text" name="articul" id="articul" />
+                                    <label>Тип кода товара:</label>
+                                    <select name="product_code" id="product_code" class="input-sm form-control">
+                                        <option>Нет</option>
+                                        <option>Артикул</option>
+                                        <option>SCU</option>
+                                        <option>UPC</option>
+                                        <option>EAN</option>
+                                        <option>JAN</option>
+                                        <option>ISBN</option>
+                                        <option>MPN</option>
+                                    </select>
                                 </div>
                                 <div class="col-right">
-                                    <label>Модель:</label>
+                                    <label>Значение кода товара:</label>
                                     <input class="input-sm form-control" type="text" name="model" id="model" />
                                 </div>
                             </div>
@@ -148,16 +162,16 @@
                                         <input class="input-sm form-control" type="text" name="date_available" id="date_available" />
                                     </div>
                                     <div class="col-right">
-                                        <label>Другое:</label>
-                                        <input class="input-sm form-control" type="text" name="other" id="other" />
+                                        <label>Минимальное количество:</label>
+                                        <input class="input-sm form-control" type="text" name="quantity" id="quantity" />
                                     </div>
                                 </div>
-				<div class="row">
+                                <div class="row">
                                     <div class="col-left-w">
                                         <label>Длина:</label>
                                         <input class="input-sm form-control" type="text" name="length" id="length" />
                                     </div>
-				    <div class="col-left-w">
+                                    <div class="col-left-w">
                                         <label>Ширина:</label>
                                         <input class="input-sm form-control" type="text" name="width" id="width" />
                                     </div>
