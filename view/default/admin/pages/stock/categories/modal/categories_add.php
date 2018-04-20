@@ -17,7 +17,7 @@
                         <input type="hidden" name="parent_id" value="<?php echo $parent_id ?>" />
                         <div class="form-group">
                             <label><?php echo $lang['name'] ?>:</label><br>
-                            <img src="/view/default/admin/images/worldflags/ru.png" alt="Russian" title="Russian" width="16" height="10" />Russian<br>
+                            <img src="/view/default/admin/images/worldflags/ru.png" alt="Russian" title="Russian" width="16" height="10" /> Russian<br>
                             <input class="input-sm form-control" type="text" name="name" id="name" />
                         </div>
                         <div class="form-group">

@@ -30,8 +30,8 @@
 
                             <!-- Языковые панели -->
                             <ul class="nav nav-tabs">
-                                <li class="active"><a data-toggle="tab" href="#Russian"><img src="/view/default/admin/images/worldflags/ru.png" alt="Russian" title="Russian" width="16" height="10" />Russian</a></li>
-                                <li><a data-toggle="tab" href="#English"><img src="/view/default/admin/images/worldflags/us.png" alt="English" title="English" width="16" height="10" />English</a></li>
+                                <li class="active"><a data-toggle="tab" href="#Russian"><img src="/view/default/admin/images/worldflags/ru.png" alt="Russian" title="Russian" width="16" height="10" /> Russian</a></li>
+                                <li><a data-toggle="tab" href="#English"><img src="/view/default/admin/images/worldflags/us.png" alt="English" title="English" width="16" height="10" /> English</a></li>
                             </ul>
 
                             <!-- Содержимое языковых панелей -->
@@ -149,7 +149,21 @@
                                     </div>
                                     <div class="col-right">
                                         <label>Другое:</label>
-                                        <input class="input-sm form-control" type="text" name="other" id="model" />
+                                        <input class="input-sm form-control" type="text" name="other" id="other" />
+                                    </div>
+                                </div>
+				<div class="row">
+                                    <div class="col-left-w">
+                                        <label>Длина:</label>
+                                        <input class="input-sm form-control" type="text" name="length" id="length" />
+                                    </div>
+				    <div class="col-left-w">
+                                        <label>Ширина:</label>
+                                        <input class="input-sm form-control" type="text" name="width" id="width" />
+                                    </div>
+                                    <div class="col-right-w">
+                                        <label>Высота:</label>
+                                        <input class="input-sm form-control" type="text" name="height" id="height" />
                                     </div>
                                 </div>
                             </div>
