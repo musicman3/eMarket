@@ -62,7 +62,7 @@ div.context-one {padding:5px;}
 .product .row {margin-left: 0;margin-right: 0;}
 .product .col-left {float: left;width: 250px;margin-right: 65px;}
 .product .col-right {float: left;width: 250px;}
-.product .col-left-w {float: left;width: 150px;margin-right: 25px;}
+.product .col-left-w {float: left;width: 150px;margin-right: 58px;}
 .product .col-right-w {float: left;width: 150px;}
 .product .tab-content {margin-top: 5px;}
 @media (min-width:768px){.product .modal-dialog{width:680px;margin:30px auto;}}
