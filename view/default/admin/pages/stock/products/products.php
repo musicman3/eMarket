@@ -12,7 +12,7 @@
 <!-- Настройка TinyMCE" -->
 <script type="text/javascript" language="javascript">
     tinymce.init({
-        selector: 'textarea#description',
+        selector: 'textarea',
         plugins: 'advlist autolink visualblocks visualchars fullscreen lists charmap imagetools hr textcolor table link image wordcount code media preview',
         toolbar1: 'undo redo | bold italic underline strikethrough backcolor forecolor | alignleft aligncenter alignright alignjustify | outdent indent bullist numlist hr | visualchars visualblocks ',
         toolbar2: 'fontselect fontsizeselect formatselect superscript removeformat | charmap link unlink image media table | code preview fullscreen',
