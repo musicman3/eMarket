@@ -126,7 +126,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-left">
-                                    <label>Тип кода товара:</label>
+                                    <label>Идентификатор товара:</label>
                                     <select name="product_code" id="product_code" class="input-sm form-control">
                                         <option>Нет</option>
                                         <option>Артикул</option>
@@ -139,7 +139,7 @@
                                     </select>
                                 </div>
                                 <div class="col-right">
-                                    <label>Значение кода товара:</label>
+                                    <label>Значение идентификатора:</label>
                                     <input class="input-sm form-control" type="text" name="model" id="model" />
                                 </div>
                             </div>
