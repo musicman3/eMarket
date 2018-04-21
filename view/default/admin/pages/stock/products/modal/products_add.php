@@ -115,7 +115,7 @@
                                         <option>Intel</option>
                                     </select>
                                 </div>
-                                <div class="col-left">
+                                <div class="col-right">
                                     <label>Штриховые коды:</label>
                                     <select name="code" id="code" class="input-sm form-control">
                                         <option>Нет</option>                                        
@@ -156,7 +156,8 @@
                                         <option>унц.</option>
                                     </select>
                                 </div>
-                                <div class="row">
+			    </div>
+                            <div class="row">
                                     <div class="col-left">
                                         <label>Дата поступления:</label>
                                         <input class="input-sm form-control" type="text" name="date_available" id="date_available" />
@@ -165,8 +166,8 @@
                                         <label>Минимальное количество:</label>
                                         <input class="input-sm form-control" type="text" name="quantity" id="quantity" />
                                     </div>
-                                </div>
-                                <div class="row">
+                            </div>
+                            <div class="row">
                                     <div class="col-left-w">
                                         <label>Длина:</label>
                                         <input class="input-sm form-control" type="text" name="length" id="length" />
@@ -179,7 +180,6 @@
                                         <label>Высота:</label>
                                         <input class="input-sm form-control" type="text" name="height" id="height" />
                                     </div>
-                                </div>
                             </div>
 
                         </div>
