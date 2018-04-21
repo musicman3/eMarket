@@ -13,6 +13,10 @@ require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/configure/configure.php
 //LOAD LANGUAGE
 require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/router_lang.php');
 
+// если авторизован, редирект в админку
+if (isset($_SESSION['login']) == TRUE) {    //if user true:
+    header('Location: /controller/admin/index.php');    // redirect to index.php
+}
 
 // если логин или пароль не верные, то готовим уведомление
 if (isset($_SESSION['login_error']) == TRUE) {
