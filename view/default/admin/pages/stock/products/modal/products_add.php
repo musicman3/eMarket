@@ -188,7 +188,7 @@
                         <div id="panel3" class="tab-pane fade">
                             <div class="form-group">
                                 <label for="image"><?php echo $lang['images'] ?>:</label>
-                                <input type="file" name="image" id="image" /> <?php echo $lang['max'] ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>
+                                <input type="file" multiple="multiple" name="files[]" accept="image"/> <?php echo $lang['max'] ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>
                             </div>
                         </div>
 
