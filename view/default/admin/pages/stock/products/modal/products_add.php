@@ -58,19 +58,19 @@
                                 <div id="English" class="tab-pane fade">
                                     <div class="form-group">
                                         <label><?php echo $lang['name'] ?>:</label><br>
-                                        <input class="input-sm form-control" type="text" name="name" id="name" />
+                                        <input class="input-sm form-control" type="text" name="name1" id="name1" />
                                     </div>
                                     <div class="form-group">
                                         <label><?php echo $lang['product_description'] ?>:</label><br>
-                                        <textarea rows="3" class="input-sm form-control" name="description" id="description" /></textarea>
+                                        <textarea rows="3" class="input-sm form-control" name="description1" id="description1" /></textarea>
                                     </div>
                                     <div class="col-left">
                                         <label>Keyword:</label>
-                                        <input class="input-sm form-control" type="text" name="keyword" id="keyword" />
+                                        <input class="input-sm form-control" type="text" name="keyword1" id="keyword1" />
                                     </div>
                                     <div class="col-right">
                                         <label>Tags:</label>
-                                        <input class="input-sm form-control" type="text" name="tags" id="tags" />
+                                        <input class="input-sm form-control" type="text" name="tags1" id="tags1" />
                                     </div>
                                 </div>
                             </div>
@@ -104,6 +104,16 @@
                                         <option>м.</option>
                                         <option>л.</option>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-left">
+                                    <label>Модель:</label>
+                                    <input class="input-sm form-control" type="text" name="model" id="model" />
+                                </div>
+                                <div class="col-right">
+                                    <label>Дата поступления:</label>
+                                    <input class="input-sm form-control" type="text" name="date_available" id="date_available" />
                                 </div>
                             </div>
                             <div class="row">
@@ -156,30 +166,20 @@
                                         <option>унц.</option>
                                     </select>
                                 </div>
-			    </div>
-                            <div class="row">
-                                    <div class="col-left">
-                                        <label>Дата поступления:</label>
-                                        <input class="input-sm form-control" type="text" name="date_available" id="date_available" />
-                                    </div>
-                                    <div class="col-right">
-                                        <label>Минимальное количество:</label>
-                                        <input class="input-sm form-control" type="text" name="quantity" id="quantity" />
-                                    </div>
                             </div>
                             <div class="row">
-                                    <div class="col-left-w">
-                                        <label>Длина:</label>
-                                        <input class="input-sm form-control" type="text" name="length" id="length" />
-                                    </div>
-                                    <div class="col-left-w">
-                                        <label>Ширина:</label>
-                                        <input class="input-sm form-control" type="text" name="width" id="width" />
-                                    </div>
-                                    <div class="col-right-w">
-                                        <label>Высота:</label>
-                                        <input class="input-sm form-control" type="text" name="height" id="height" />
-                                    </div>
+                                <div class="col-left-w">
+                                    <label>Длина:</label>
+                                    <input class="input-sm form-control" type="text" name="length" id="length" />
+                                </div>
+                                <div class="col-left-w">
+                                    <label>Ширина:</label>
+                                    <input class="input-sm form-control" type="text" name="width" id="width" />
+                                </div>
+                                <div class="col-right-w">
+                                    <label>Высота:</label>
+                                    <input class="input-sm form-control" type="text" name="height" id="height" />
+                                </div>
                             </div>
 
                         </div>
@@ -207,6 +207,7 @@
 
 <script type="text/javascript" language="javascript">
     function call() {
+        tinyMCE.triggerSave();
         var msg = $('#form_post').serialize();
         $.ajax({
             type: 'POST',

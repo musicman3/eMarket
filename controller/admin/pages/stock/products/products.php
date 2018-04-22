@@ -92,9 +92,14 @@ if ($VALID->inPOST('name')) {
     }
 
     $sort_product = 0;
+    $prod_id_temp = 0;
+    $prod_id = $prod_id_temp++;
 
     // добавляем запись
-    $PDO->insertPrepare("INSERT INTO " . TABLE_CATEGORIES . " SET name=?, sort_category=?, parent_id=?, date_added=?, status=?", [$VALID->inPOST('name'), $sort_category, $parent_id, date("Y-m-d H:i:s"), $view_cat]);
+    $PDO->insertPrepare("INSERT INTO " . TABLE_PRODUCTS . 
+            " SET id=?, name=?, parent_id=?, date_added=?, model=?, price=?, quantity=?, keyword=?, tags=?, description=?",
+            [$prod_id, $VALID->inPOST('name'), $parent_id, date("Y-m-d H:i:s"), $VALID->inPOST('model'), $VALID->inPOST('price'), 
+                $VALID->inPOST('quantity'), $VALID->inPOST('keyword'), $VALID->inPOST('tags'), $VALID->inPOST('description')]);
 }
 
 
