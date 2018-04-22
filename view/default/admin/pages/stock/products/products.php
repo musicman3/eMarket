@@ -22,7 +22,7 @@
     });
 </script>
 
-<!-- Подключение Datepicker" -->
+<!-- Настройка Datepicker" -->
 <script type="text/javascript" language="javascript">
     $(function () {
     $( "#date_available" ).datepicker({
