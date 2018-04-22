@@ -82,6 +82,21 @@ if ($counter >= $lines_page) {
 }
 // КОНЕЦ-> КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 
+// Если нажали на кнопку Добавить
+if ($VALID->inPOST('name')) {
+
+    if ($VALID->inPOST('view_product')) {
+        $view_product = 1;
+    } else {
+        $view_product = 0;
+    }
+
+    $sort_product = 0;
+
+    // добавляем запись
+    $PDO->insertPrepare("INSERT INTO " . TABLE_CATEGORIES . " SET name=?, sort_category=?, parent_id=?, date_added=?, status=?", [$VALID->inPOST('name'), $sort_category, $parent_id, date("Y-m-d H:i:s"), $view_cat]);
+}
+
 
 // ********  CONNECT PAGE END  ******** //
 require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/connect_page_end.php');

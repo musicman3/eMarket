@@ -58,7 +58,7 @@
         $lng = $_POST['language'];
         $tabadm = $dbpref . 'administrators';
         $tab_cat = $dbpref . 'categories';
-        $tablist = $dbpref . 'listing';
+        $tab_products = $dbpref . 'products';
         $hashmet = $_POST['hash_method'];
         $crypt = $_POST['crypt_method'];
 
@@ -79,6 +79,7 @@
                 '  define(\'DEFAULT_LANGUAGE\', \'' . $lng . '\');' . "\n" .
                 '  define(\'TABLE_ADMINISTRATORS\', \'' . $tabadm . '\');' . "\n" .
                 '  define(\'TABLE_CATEGORIES\', \'' . $tab_cat . '\');' . "\n" .
+                '  define(\'TABLE_PRODUCTS\', \'' . $tab_products . '\');' . "\n" .
                 '?>';
 
         if (file_exists('../model/configure/configure.php') && !is_writeable('../model/configure/configure.php')) {

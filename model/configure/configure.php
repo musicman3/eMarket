@@ -12,4 +12,5 @@
   define('DEFAULT_LANGUAGE', 'russian');
   define('TABLE_ADMINISTRATORS', 'emkt_administrators');
   define('TABLE_CATEGORIES', 'emkt_categories');
+  define('TABLE_PRODUCTS', 'emkt_products');
 ?>
