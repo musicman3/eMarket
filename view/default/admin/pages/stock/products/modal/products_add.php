@@ -168,6 +168,20 @@
                                 </div>
                             </div>
                             <div class="row">
+                                <div class="col-left">
+                                    <label>Минимальное количество:</label>
+                                    <input class="input-sm form-control" type="text" name="min_quantity" id="min_quantity" />
+                                </div>
+                                <div class="col-right">
+                                    <label>Единица измерения длины:</label>
+                                    <select name="unit_lenght" id="unit_lenght" class="input-sm form-control">
+                                        <option>мм</option>
+                                        <option>см</option>
+                                        <option>м</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-left-w">
                                     <label>Длина:</label>
                                     <input class="input-sm form-control" type="text" name="length" id="length" />
