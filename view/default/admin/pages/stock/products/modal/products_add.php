@@ -150,7 +150,7 @@
                                 </div>
                                 <div class="col-right">
                                     <label>Значение идентификатора:</label>
-                                    <input class="input-sm form-control" type="text" name="model" id="model" />
+                                    <input class="input-sm form-control" type="text" name="product_code_value" id="product_code_value" />
                                 </div>
                             </div>
                             <div class="row">
