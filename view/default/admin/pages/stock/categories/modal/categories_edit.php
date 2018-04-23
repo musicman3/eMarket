@@ -42,7 +42,6 @@ if ($status_category_edit == 1) {
                         </div>
                 </div>
                 <div class="modal-footer">
-                    <input type="hidden" name="subaction" value="confirm" />
                     <button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-save"></span> <?php echo $lang['save'] ?></button>
                     <button class="btn btn-primary btn-xs" type="button" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> <?php echo $lang['cancel'] ?></button>
                 </div>
