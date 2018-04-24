@@ -37,7 +37,7 @@ CREATE TABLE emkt_products (
 	images varchar(1024),
 	date_added datetime,
 	last_modified datetime,
-        date_available datetime,
+        date_available date,
         model varchar(64), 
         type varchar(256),
         articul varchar(64),

@@ -97,8 +97,8 @@ if ($VALID->inPOST('name')) {
 
     // добавляем запись
     $PDO->insertPrepare("INSERT INTO " . TABLE_PRODUCTS . 
-            " SET id=?, name=?, parent_id=?, date_added=?, model=?, price=?, quantity=?, keyword=?, tags=?, description=?",
-            [$prod_id, $VALID->inPOST('name'), $parent_id, date("Y-m-d H:i:s"), $VALID->inPOST('model'), $VALID->inPOST('price'), 
+            " SET id=?, name=?, parent_id=?, date_added=?, date_available=?, model=?, price=?, quantity=?, keyword=?, tags=?, description=?",
+            [$prod_id, $VALID->inPOST('name'), $parent_id, date("Y-m-d H:i:s"), date('Y-m-d',strtotime($VALID->inPOST('date_available'))), $VALID->inPOST('model'), $VALID->inPOST('price'), 
                 $VALID->inPOST('quantity'), $VALID->inPOST('keyword'), $VALID->inPOST('tags'), $VALID->inPOST('description')]);
 }
 
