@@ -1,5 +1,4 @@
 <?php
-
 // ****** Copyright © 2018 eMarket *****//
 //   GNU GENERAL PUBLIC LICENSE v.3.0   //
 // https://github.com/musicman3/eMarket //
@@ -10,7 +9,6 @@ error_reporting(-1);
 // ********  CONNECT PAGE START  ******** //
 require_once($_SERVER['DOCUMENT_ROOT'] . '/model/connect_page_start.php');
 // ************************************** //
-
 // Устанавливаем родительскую категорию
 $parent_id = $VALID->inPOST('parent_id');
 if ($parent_id == FALSE) {
@@ -81,6 +79,13 @@ if ($counter >= $lines_page) {
     }
 }
 // КОНЕЦ-> КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
+// Формат даты после Datepicker
+if ($VALID->inPOST('date_available')) {
+    $date_available = date('Y-m-d', strtotime($VALID->inPOST('date_available')));
+} else {
+
+    $date_available = NULL;
+}
 
 // Если нажали на кнопку Добавить
 if ($VALID->inPOST('name')) {
@@ -96,12 +101,10 @@ if ($VALID->inPOST('name')) {
     $prod_id = $prod_id_temp++;
 
     // добавляем запись
-    $PDO->insertPrepare("INSERT INTO " . TABLE_PRODUCTS . 
-            " SET id=?, name=?, parent_id=?, date_added=?, date_available=?, model=?, price=?, quantity=?, keyword=?, tags=?, description=?",
-            [$prod_id, $VALID->inPOST('name'), $parent_id, date("Y-m-d H:i:s"), date('Y-m-d',strtotime($VALID->inPOST('date_available'))), $VALID->inPOST('model'), $VALID->inPOST('price'), 
-                $VALID->inPOST('quantity'), $VALID->inPOST('keyword'), $VALID->inPOST('tags'), $VALID->inPOST('description')]);
+    $PDO->insertPrepare("INSERT INTO " . TABLE_PRODUCTS .
+            " SET id=?, name=?, parent_id=?, date_added=?, date_available=?, model=?, price=?, quantity=?, keyword=?, tags=?, description=?", [$prod_id, $VALID->inPOST('name'), $parent_id, date("Y-m-d H:i:s"), $date_available, $VALID->inPOST('model'), $VALID->inPOST('price'),
+        $VALID->inPOST('quantity'), $VALID->inPOST('keyword'), $VALID->inPOST('tags'), $VALID->inPOST('description')]);
 }
-
 
 // ********  CONNECT PAGE END  ******** //
 require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/connect_page_end.php');
@@ -109,6 +112,7 @@ require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/html_end.php');
 // ************************************ //
 //подгрузка JS обработок
 require_once('js/js_products.php');
+
 ?>
 </body>
 </html>
