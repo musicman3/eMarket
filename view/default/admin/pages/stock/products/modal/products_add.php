@@ -173,7 +173,7 @@
                                     <input class="input-sm form-control" type="text" name="min_quantity" id="min_quantity" />
                                 </div>
                                 <div class="col-right">
-                                    <label>Единица измерения длины:</label>
+                                    <label>Единица размера:</label>
                                     <select name="unit_lenght" id="unit_lenght" class="input-sm form-control">
                                         <option>мм</option>
                                         <option>см</option>
