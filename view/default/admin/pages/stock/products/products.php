@@ -6,9 +6,6 @@
 
 ?>
 
-<!-- Подключение TinyMCE" -->
-<script type="text/javascript" src="/ext/tinymce/tinymce.min.js"></script>
-
 <!-- Настройка TinyMCE" -->
 <script type="text/javascript" language="javascript">
     tinymce.init({
