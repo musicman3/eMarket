@@ -85,7 +85,7 @@
                         <tbody id="sort-list">
                             <tr class="sortno">
                                 <td class="sortleft-mp" align="left"><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true">.</a></td>
-                                <td colspan="6" align="left"><button class="btn btn-default btn-xs">...</button></td>
+                                <td colspan="6" align="left"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-option-horizontal"></span></button></td>
                             </tr>
                             <tr class="sort-list">
                                 <td class="sortyes sortleft-m" align="left"><span class="glyphicon glyphicon-move"> </span></td>    
