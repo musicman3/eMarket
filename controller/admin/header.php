@@ -28,7 +28,7 @@ $menu[$menu_market][1] = '<a href="/controller/admin/pages/stock/products/produc
 $menu[$menu_market][2] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/manufacturers.png" /></span> Производители </a>';
 $menu[$menu_market][3] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/attributes.png" /></span> Атрибуты </a>';
 $menu[$menu_market][4] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/date.png" /></span> Ожидаемые </a>';
-$menu[$menu_market][5] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/configure.png" /></span> Настройки </a>';
+$menu[$menu_market][5] = '<a href="/controller/admin/pages/settings/settings.php"><span><img src="/view/default/admin/images/icons/16x16/configure.png" /></span> Настройки </a>';
 
 //ПРОДАЖИ
 $level[$menu_sales] = '<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span></span>Продажи<b class="caret"></b></a>';
