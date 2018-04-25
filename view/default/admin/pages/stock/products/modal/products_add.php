@@ -155,11 +155,11 @@
                             </div>
                             <div class="row">
                                 <div class="col-left">
-                                    <label>Вес:</label>
+                                    <label>Значение веса:</label>
                                     <input class="input-sm form-control" type="text" name="weight" id="weight" />
                                 </div>
                                 <div class="col-right">
-                                    <label>Единица веса:</label>
+                                    <label>Вес:</label>
                                     <select name="unit_weight" id="unit_weight" class="input-sm form-control">
                                         <option>кг.</option>
                                         <option>гр.</option>
@@ -173,7 +173,7 @@
                                     <input class="input-sm form-control" type="text" name="min_quantity" id="min_quantity" />
                                 </div>
                                 <div class="col-right">
-                                    <label>Единица размера:</label>
+                                    <label>Размер:</label>
                                     <select name="unit_lenght" id="unit_lenght" class="input-sm form-control">
                                         <option>мм</option>
                                         <option>см</option>

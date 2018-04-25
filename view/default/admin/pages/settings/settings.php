@@ -37,12 +37,12 @@
                         <tr>
                             <td>
                                 <div class="settings-left"><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-road"> </span></a></div>
-                                <div class="settings-page">Единица размера</div>
+                                <div class="settings-page">Размер</div>
                                 <div class="settings-right"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/stock/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-pencil"></span></button></div>
                             </td>
                             <td>
                                 <div class="settings-left"><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-oil"> </span></a></div>
-                                <div class="settings-page">Единица веса</div>
+                                <div class="settings-page">Вес</div>
                                 <div class="settings-right"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/stock/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-pencil"></span></button></div>
                             </td>
                             <td>
