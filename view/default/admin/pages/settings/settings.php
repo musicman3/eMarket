@@ -19,9 +19,21 @@
                     <table class="table">
                         <tbody>
                             <tr>
-                                <td>111</td>
-				<td>222</td>
-				<td>333</td>
+                                <td>
+				    <div class="settings-left"><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-folder-open"> </span></a></div>
+				    <div class="settings-page">111</div>
+				    <div class="settings-right"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/stock/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
+				</td>
+				<td>
+				    <div class="settings-left"><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-folder-open"> </span></a></div>
+				    <div class="settings-page">222</div>
+				    <div class="settings-right"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/stock/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
+				</td>
+				<td>
+				    <div class="settings-left"><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-folder-open"> </span></a></div>
+				    <div class="settings-page">333</div>
+				    <div class="settings-right"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/stock/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
+				</td>
                             </tr>
                         </tbody>
                     </table>
