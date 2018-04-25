@@ -78,7 +78,6 @@
                                 <th class="right al-text" align="left">Кол-во</th>
                                 <th class="right al-text" align="left">Цена</th>
                             </tr>
-                            </tr>
                         </thead>
                     </table>
                     <table class="table table-hover">
