@@ -73,7 +73,7 @@
                                             <!-- Категории "ВВЕРХ" -->
                                             <form>
                                                 <div>
-                                                    <button name="parent_up" value="<?php echo $parent_up ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/stock/categories/categories.php" formmethod="post">....</button>
+                                                    <button name="parent_up" value="<?php echo $parent_up ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/stock/categories/categories.php" formmethod="post">...</button>
                                                 </div>
                                             </form>
 
@@ -158,7 +158,7 @@
                                         <!-- Категорий нет "ВВЕРХ" -->
                                         <form>
                                             <div>
-                                                <button name="parent_up" value="<?php echo $VALID->inPOST('parent_down') ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/stock/categories/categories.php" formmethod="post">....</button>
+                                                <button name="parent_up" value="<?php echo $VALID->inPOST('parent_down') ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/stock/categories/categories.php" formmethod="post">...</button>
                                             </div>
                                         </form>
 
