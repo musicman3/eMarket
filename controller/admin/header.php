@@ -18,9 +18,8 @@ $menu_marketing = '2'; //МАРКЕТИНГ
 $menu_counterparty = '3'; //КОНТРАГЕНТЫ
 $menu_modules = '4'; //МОДУЛИ
 $menu_tools = '5'; //ИНСТРУМЕНТЫ
-$menu_prefences = '6'; //НАСТРОЙКИ
-$menu_help = '7'; //ПОМОЩЬ
-$menu_exit = '8'; //ВЫХОД
+$menu_help = '6'; //ПОМОЩЬ
+$menu_exit = '7'; //ВЫХОД
 //МАГАЗИН
 $level[$menu_market] = '<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span></span>Магазин<b class="caret"></b></a>';
 
@@ -29,6 +28,7 @@ $menu[$menu_market][1] = '<a href="/controller/admin/pages/stock/products/produc
 $menu[$menu_market][2] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/manufacturers.png" /></span> Производители </a>';
 $menu[$menu_market][3] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/attributes.png" /></span> Атрибуты </a>';
 $menu[$menu_market][4] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/date.png" /></span> Ожидаемые </a>';
+$menu[$menu_market][5] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/configure.png" /></span> Настройки </a>';
 
 //ПРОДАЖИ
 $level[$menu_sales] = '<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span></span>Продажи<b class="caret"></b></a>';
@@ -68,18 +68,6 @@ $menu[$menu_tools][1] = '<a href="#"><span><img src="/view/default/admin/images/
 $menu[$menu_tools][2] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/backup.png" /></span> Бэкап </a>';
 $menu[$menu_tools][3] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/server_info.png" /></span> Информация о сервере </a>';
 $menu[$menu_tools][4] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/online.png" /></span> Кто в онлайне </a>';
-
-//НАСТРОЙКИ
-$level[$menu_prefences] = '<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span></span> Настройки <b class="caret"></b></a>';
-
-$menu[$menu_prefences][0] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/configure.png" /></span> Конфигурация </a>';
-$menu[$menu_prefences][1] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/admins.png" /></span> Администраторы </a>';
-$menu[$menu_prefences][2] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/templates.png" /></span> Шаблоны </a>';
-$menu[$menu_prefences][3] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/currencies.png" /></span> Валюты </a>';
-$menu[$menu_prefences][4] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/world.png" /></span> Страны </a>';
-$menu[$menu_prefences][5] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/zones.png" /></span> Зоны</a>';
-$menu[$menu_prefences][6] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/taxes.png" /></span> Налоги </a>';
-$menu[$menu_prefences][7] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/locale.png" /></span> Языки </a>';
 
 //ПОМОЩЬ
 $level[$menu_help] = '<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span></span> ' . $lang['menu_help'] . ' <b class="caret"></b></a>';
