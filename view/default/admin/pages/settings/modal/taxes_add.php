@@ -6,7 +6,7 @@
 
 ?>
 <!-- Модальное окно "Налог" -->
-<div id="taxes" class="products modal fade" tabindex="-1">
+<div id="taxes_add" class="products modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header"><button class="close" type="button" data-dismiss="modal">×</button>
@@ -72,7 +72,7 @@
             url: '/controller/admin/pages/settings/settings.php',
             data: msg,
             success: function (data) {
-                $('#taxes').remove();
+                $('#taxes_add').remove();
                 $('.modal-backdrop').remove();
                 $('body').removeClass('modal-open');
                 $('body').css('padding-right', '');

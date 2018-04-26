@@ -8,7 +8,7 @@
 <div id="ajax">
 
     <!-- Модальное окно "Налог" -->
-    <?php require_once('modal/taxes.php') ?>
+    <?php require_once('modal/taxes_add.php') ?>
     <!-- КОНЕЦ Модальное окно "Добавить категорию" -->
 
     <div id="settings" class="container">
@@ -40,7 +40,7 @@
                                     <div class="settings-left"><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-briefcase"> </span></a></div>
                                     <div class="settings-page">Налоги</div>
                                     <div class="settings-right"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/stock/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-pencil"></span></button></div>
-                                    <div class="settings-right"><a href="#taxes" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
+                                    <div class="settings-right"><a href="#taxes_add" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
                                 </td>
                             </tr>
                             <tr>
