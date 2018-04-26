@@ -66,7 +66,7 @@
                                     <div class="log-right"><button class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
                                     <div class="log-left"><button class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
                                 </th>
-                            <tr>
+                            <tr class="border">
                                 <th align="left"><div style="width: 14px;"></div></th>
                                 <th align="left"><div style="width: 24px;"></div></th>
                                 <th class="left al-text" align="left">Название</th>
