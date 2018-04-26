@@ -6,11 +6,11 @@
 
 ?>
 <!-- Модальное окно "Добавить категорию" -->
-<div id="addProduct" class="products modal fade" tabindex="-1">
+<div id="taxes" class="products modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header"><button class="close" type="button" data-dismiss="modal">×</button>
-                <h4 class="modal-title"><?php echo $lang['title_products'] ?></h4>
+                <h4 class="modal-title">Налоги</h4>
             </div>
             <form id="form_post" name="form_post" action="javascript:void(null);" onsubmit="call()" method="post" enctype="multipart/form-data">
                 <div class="panel-body">
