@@ -12,7 +12,7 @@
             <div class="modal-header"><button class="close" type="button" data-dismiss="modal">×</button>
                 <h4 class="modal-title">Налоги</h4>
             </div>
-            <form id="form_post" name="form_post" action="javascript:void(null);" onsubmit="call()" method="post" enctype="multipart/form-data">
+            <form id="form_taxes" name="form_taxes" action="javascript:void(null);" onsubmit="call_taxes()" method="post" enctype="multipart/form-data">
                 <div class="panel-body">
 
                     <!-- Содержимое панелей формы-->
@@ -65,14 +65,14 @@
 </div>
 
 <script type="text/javascript" language="javascript">
-    function call() {
-        var msg = $('#form_post').serialize();
+    function call_taxes() {
+        var msg = $('#form_taxes').serialize();
         $.ajax({
             type: 'POST',
-            url: '/controller/admin/pages/stock/categories/categories.php',
+            url: '/controller/admin/pages/settings/settings.php',
             data: msg,
             success: function (data) {
-                $('#addCategory').remove();
+                $('#taxes').remove();
                 $('.modal-backdrop').remove();
                 $('body').removeClass('modal-open');
                 $('body').css('padding-right', '');
