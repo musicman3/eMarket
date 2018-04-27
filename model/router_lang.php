@@ -58,11 +58,11 @@ foreach ($lang_dir as $lang_name) {
 }
 
 // Подгрузка главного языкового файла для всех языков админки, кроме языка по умолчанию.
-$langx = array();
 if (count($lang_all_x) > 0) {
+    $langx = array();
     for ($lang_x = 0; $lang_x < count($lang_all_x); $lang_x++) {
         $files_patch_x = $VALID->inSERVER('DOCUMENT_ROOT') . '/language/' . $lang_all_x[$lang_x] . '/admin/' . $lang_all_x[$lang_x] . '.lng';
-        $langx[$lang_x+1] = parse_ini_file($files_patch_x); // Установка языкового массива
+        $langx[$lang_x + 1] = parse_ini_file($files_patch_x); // Установка языкового массива
     }
 }
 
