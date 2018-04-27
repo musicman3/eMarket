@@ -24,7 +24,6 @@ button_cancel = Отмена
 button_edit = Изменить
 button_add = Добавить
 meta-language = ru
-flag = ru
 button_delete = Удалить
 button_move = Переместить
 button_edit = Редактировать
