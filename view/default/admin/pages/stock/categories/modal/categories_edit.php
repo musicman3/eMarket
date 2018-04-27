@@ -26,12 +26,48 @@ if ($status_category_edit == 1) {
                 <div class="panel-body">
                         <input type="hidden" name="parent_id" value="<?php echo $parent_id ?>" />
                         <input type="hidden" name="cat_edit" value="<?php echo $lines[$i][0] ?>" />
+                    <!-- Языковые панели -->
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#<?php echo $lang_all[0] ?>"><img src="/view/default/admin/images/worldflags/ru.png" alt="<?php echo $lang_all[0] ?>" title="<?php echo $lang_all[0] ?>" width="16" height="10" /> <?php echo $lang_all[0] ?></a></li>
+
+                        <?php
+                        if (count($lang_all) > 1) {
+                            for ($xl = 1; $xl < count($lang_all); $xl++) {
+                                ?>
+
+                                <li><a data-toggle="tab" href="#<?php echo $lang_all[$xl] ?>"><img src="/view/default/admin/images/worldflags/us.png" alt="<?php echo $lang_all[$xl] ?>" title="<?php echo $lang_all[$xl] ?>" width="16" height="10" /> <?php echo $lang_all[$xl] ?></a></li>
+
+                                <?php
+                            }
+                        }
+                        ?>
+
+                    </ul>
+		    <div class="tab-content">
+                        <div id="<?php echo $lang_all[0] ?>" class="tab-pane fade in active">
                         <div class="form-group">
                             <label><?php echo $lang['name'] ?>:</label><br>
-                            <img src="/view/default/admin/images/worldflags/ru.png" alt="Russian" title="Russian" width="16" height="10" /> Russian<br>
                             <?php // вывод из массива: name="categories_name[1]" id="categories_name[1]   ?>
                             <input class="input-sm form-control" type="text" name="name_edit" id="name" value="<?php echo $name_category_edit ?>" />
                         </div>
+			</div>
+                        <?php
+                        if (count($lang_all) > 1) {
+                            for ($xl = 1; $xl < count($lang_all); $xl++) {
+                                ?>
+
+                                <div id="<?php echo $lang_all[$xl] ?>" class="tab-pane fade">
+                                    <div class="form-group">
+                                        <label><?php echo $lang['name'] ?>:</label><br>
+					<input class="input-sm form-control" type="text" name="name_edit" id="name" value="<?php echo $name_category_edit ?>" />
+                                    </div>
+                                </div>
+
+                                <?php
+                            }
+                        }
+                        ?>
+		    </div>
                         <div class="form-group">
                             <label for="image"><?php echo $lang['images'] ?>:</label><br>
                             <input type="file" name="image" id="image" /> <?php echo $lang['max'] ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>
