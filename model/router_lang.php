@@ -53,7 +53,7 @@ for ($i = 0; $i < count($files_patch); $i++) {
 
 // Получаем список языков в массиве (для использования в мультиязычных функциях и т.п.)
 $lang_all = array(); // массив с языками
-$lang_dir = scandir($_SERVER['DOCUMENT_ROOT'] . '/language/');
+$lang_dir = scandir($VALID->inSERVER('DOCUMENT_ROOT') . '/language/');
 array_push($lang_all, ucfirst($lang_default)); // первым в массиве идет язык по умолчанию
 foreach ($lang_dir as $lang_name) {
     if (!in_array($lang_name, array('.', '..', $lang_default))){
