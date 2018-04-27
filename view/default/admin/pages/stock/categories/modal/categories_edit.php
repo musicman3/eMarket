@@ -3,6 +3,15 @@
 //   GNU GENERAL PUBLIC LICENSE v.3.0   //    
 // https://github.com/musicman3/eMarket //
 // *************************************//
+// 
+// собираем данные для отображения в Редактировании категорий
+$name_category_edit = $PDO->selectPrepare("SELECT name FROM " . TABLE_CATEGORIES . " WHERE id=?", array($lines[$i][0]));
+$status_category_edit = $PDO->selectPrepare("SELECT status FROM " . TABLE_CATEGORIES . " WHERE id=?", array($lines[$i][0]));
+if ($status_category_edit == 1) {
+    $status_category_edit = 'checked';
+} else {
+    $status_category_edit = '';
+}
 
 ?>
 
