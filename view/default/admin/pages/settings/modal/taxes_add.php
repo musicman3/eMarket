@@ -3,7 +3,6 @@
 //   GNU GENERAL PUBLIC LICENSE v.3.0   //    
 // https://github.com/musicman3/eMarket //
 // *************************************//
-
 ?>
 <!-- Модальное окно "Налог" -->
 <div id="taxes_add" class="modal fade" tabindex="-1">
@@ -15,35 +14,51 @@
             <form id="form_taxes" name="form_taxes" action="javascript:void(null);" onsubmit="call_taxes()" method="post" enctype="multipart/form-data">
                 <div class="panel-body">
 
-                            <!-- Языковые панели -->
-                            <ul class="nav nav-tabs">
-                                <li class="active"><a data-toggle="tab" href="#Russian"><img src="/view/default/admin/images/worldflags/ru.png" alt="Russian" title="Russian" width="16" height="10" /> Russian</a></li>
-                                <li><a data-toggle="tab" href="#English"><img src="/view/default/admin/images/worldflags/us.png" alt="English" title="English" width="16" height="10" /> English</a></li>
-                            </ul>
+                    <!-- Языковые панели -->
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#<?php echo $lang_all[0] ?>"><img src="/view/default/admin/images/worldflags/ru.png" alt="<?php echo $lang_all[0] ?>" title="<?php echo $lang_all[0] ?>" width="16" height="10" /> <?php echo $lang_all[0] ?></a></li>
+                        <?php
+                        if (count($lang_all) > 1) {
+                            for ($lang_count = 1; $lang_count < count($lang_all); $lang_count++) {
+                                ?>
+                                <li><a data-toggle="tab" href="#<?php echo $lang_all[$lang_count] ?>"><img src="/view/default/admin/images/worldflags/us.png" alt="<?php echo $lang_all[$lang_count] ?>" title="<?php echo $lang_all[$lang_count] ?>" width="16" height="10" /> <?php echo $lang_all[$lang_count] ?></a></li>
+                                <?php
+                            }
+                        }
+                        ?>
+                    </ul>
 
-                            <!-- Содержимое языковых панелей -->
-                            <div class="tab-content">
-                                <div id="Russian" class="tab-pane fade in active">
-                                    <div class="form-group">
-                                        <label><?php echo $lang['name'] ?>:</label><br>
-                                        <input class="input-sm form-control" type="text" name="name" id="name" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Ставка налога (%):</label><br>
-                                        <input class="input-sm form-control" type="text" name="rate" id="rate" />
-                                    </div>
-                                </div>
-                                <div id="English" class="tab-pane fade">
-                                    <div class="form-group">
-                                        <label><?php echo $lang['name'] ?>:</label><br>
-                                        <input class="input-sm form-control" type="text" name="name" id="name" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Ставка налога (%):</label><br>
-                                        <input class="input-sm form-control" type="text" name="rate" id="rate" />
-                                    </div>
-                                </div>
+                    <!-- Содержимое языковых панелей -->
+                    <div class="tab-content">
+                        <div id="<?php echo $lang_all[0] ?>" class="tab-pane fade in active">
+                            <div class="form-group">
+                                <label><?php echo $lang['name'] ?>:</label><br>
+                                <input class="input-sm form-control" type="text" name="name" id="name" />
                             </div>
+                            <div class="form-group">
+                                <label>Ставка налога (%):</label><br>
+                                <input class="input-sm form-control" type="text" name="rate" id="rate" />
+                            </div>
+                        </div>
+                        <?php
+                        if (count($lang_all) > 1) {
+                            for ($lang_count = 1; $lang_count < count($lang_all); $lang_count++) {
+                                ?>
+                                <div id="<?php echo $lang_all[$lang_count] ?>" class="tab-pane fade">
+                                    <div class="form-group">
+                                        <label><?php echo $lang['name'] ?>:</label><br>
+                                        <input class="input-sm form-control" type="text" name="name" id="name" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Ставка налога (%):</label><br>
+                                        <input class="input-sm form-control" type="text" name="rate" id="rate" />
+                                    </div>
+                                </div>
+                                <?php
+                            }
+                        }
+                        ?>
+                    </div>
                 </div>
 
                 <div class="modal-footer">
