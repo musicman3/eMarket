@@ -28,14 +28,14 @@ if ($status_category_edit == 1) {
                         <input type="hidden" name="cat_edit" value="<?php echo $lines[$i][0] ?>" />
                     <!-- Языковые панели -->
                     <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#<?php echo $lang_all[0] ?>"><img src="/view/default/admin/images/worldflags/ru.png" alt="<?php echo $lang_all[0] ?>" title="<?php echo $lang_all[0] ?>" width="16" height="10" /> <?php echo $lang_all[0] ?></a></li>
+                        <li class="active"><a data-toggle="tab" href="#<?php echo $lang_all[0] ?>"><img src="/view/default/admin/images/worldflags/<?php echo $lang['flag'] ?>.png" alt="<?php echo $lang_all[0] ?>" title="<?php echo $lang_all[0] ?>" width="16" height="10" /> <?php echo $lang_all[0] ?></a></li>
 
                         <?php
                         if (count($lang_all) > 1) {
                             for ($xl = 1; $xl < count($lang_all); $xl++) {
                                 ?>
 
-                                <li><a data-toggle="tab" href="#<?php echo $lang_all[$xl] ?>"><img src="/view/default/admin/images/worldflags/us.png" alt="<?php echo $lang_all[$xl] ?>" title="<?php echo $lang_all[$xl] ?>" width="16" height="10" /> <?php echo $lang_all[$xl] ?></a></li>
+                                <li><a data-toggle="tab" href="#<?php echo $lang_all[$xl] ?>"><img src="/view/default/admin/images/worldflags/<?php echo $langx[$xl]['flag'] ?>.png" alt="<?php echo $lang_all[$xl] ?>" title="<?php echo $lang_all[$xl] ?>" width="16" height="10" /> <?php echo $lang_all[$xl] ?></a></li>
 
                                 <?php
                             }
@@ -58,7 +58,7 @@ if ($status_category_edit == 1) {
 
                                 <div id="<?php echo $lang_all[$xl] ?>" class="tab-pane fade">
                                     <div class="form-group">
-                                        <label><?php echo $lang['name'] ?>:</label><br>
+                                        <label><?php echo $langx[$xl]['name'] ?>:</label><br>
 					<input class="input-sm form-control" type="text" name="name_edit" id="name" value="<?php echo $name_category_edit ?>" />
                                     </div>
                                 </div>
