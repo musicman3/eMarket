@@ -57,7 +57,7 @@ $lang_all = array(); // массив с языками
 $lang_dir = scandir($_SERVER['DOCUMENT_ROOT'] . '/language/');
 foreach ($lang_dir as $lang_name) {
     if (!in_array($lang_name, array('.', '..'))){
-        array_push($lang_all, $lang_name);
+        array_push($lang_all, ucfirst($lang_name));
     }
 }
 
