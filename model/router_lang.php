@@ -30,13 +30,7 @@ function FilesPatch($dir) {
 
 //Текущий основной путь (admin или catalog)
 $uri_explode = explode('/', ($VALID->inSERVER('REQUEST_URI')));
-
-if ($uri_explode[2] == 'admin') {
-    $patch = 'admin';
-}
-if ($uri_explode[2] == 'catalog') {
-    $patch = 'catalog';
-}
+$patch = $uri_explode[2];
 
 //Подключение и парсинг языкового файла
 $lang_default = DEFAULT_LANGUAGE;
