@@ -3,10 +3,9 @@
 //   GNU GENERAL PUBLIC LICENSE v.3.0   //    
 // https://github.com/musicman3/eMarket //
 // *************************************//
-
 ?>
-<!-- Модальное окно "Добавить категорию" -->
-<div id="taxes" class="products modal fade" tabindex="-1">
+<!-- Модальное окно "Добавить товар" -->
+<div id="addProduct" class="products modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header"><button class="close" type="button" data-dismiss="modal">×</button>
@@ -31,13 +30,25 @@
 
                             <!-- Языковые панели -->
                             <ul class="nav nav-tabs">
-                                <li class="active"><a data-toggle="tab" href="#Russian"><img src="/view/default/admin/images/worldflags/ru.png" alt="Russian" title="Russian" width="16" height="10" /> Russian</a></li>
-                                <li><a data-toggle="tab" href="#English"><img src="/view/default/admin/images/worldflags/us.png" alt="English" title="English" width="16" height="10" /> English</a></li>
+                                <li class="active"><a data-toggle="tab" href="#<?php echo $lang_all[0] ?>"><img src="/view/default/admin/images/worldflags/ru.png" alt="<?php echo $lang_all[0] ?>" title="<?php echo $lang_all[0] ?>" width="16" height="10" /> <?php echo $lang_all[0] ?></a></li>
+
+                                <?php
+                                if (count($lang_all) > 1) {
+                                    for ($xl = 1; $xl < count($lang_all); $xl++) {
+                                        ?>
+
+                                        <li><a data-toggle="tab" href="#<?php echo $lang_all[$xl] ?>"><img src="/view/default/admin/images/worldflags/us.png" alt="<?php echo $lang_all[$xl] ?>" title="<?php echo $lang_all[$xl] ?>" width="16" height="10" /> <?php echo $lang_all[$xl] ?></a></li>
+
+                                        <?php
+                                    }
+                                }
+                                ?>
+
                             </ul>
 
                             <!-- Содержимое языковых панелей -->
                             <div class="tab-content">
-                                <div id="Russian" class="tab-pane fade in active">
+                                <div id="<?php echo $lang_all[0] ?>" class="tab-pane fade in active">
                                     <div class="form-group">
                                         <label><?php echo $lang['name'] ?>:</label><br>
                                         <input class="input-sm form-control" type="text" name="name" id="name" />
@@ -55,24 +66,36 @@
                                         <input class="input-sm form-control" type="text" name="tags" id="tags" />
                                     </div>
                                 </div>
-                                <div id="English" class="tab-pane fade">
-                                    <div class="form-group">
-                                        <label><?php echo $lang['name'] ?>:</label><br>
-                                        <input class="input-sm form-control" type="text" name="name1" id="name1" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label><?php echo $lang['product_description'] ?>:</label><br>
-                                        <textarea rows="3" class="input-sm form-control" name="description1" id="description1" /></textarea>
-                                    </div>
-                                    <div class="col-left">
-                                        <label>Keyword:</label>
-                                        <input class="input-sm form-control" type="text" name="keyword1" id="keyword1" />
-                                    </div>
-                                    <div class="col-right">
-                                        <label>Tags:</label>
-                                        <input class="input-sm form-control" type="text" name="tags1" id="tags1" />
-                                    </div>
-                                </div>
+
+                                <?php
+                                if (count($lang_all) > 1) {
+                                    for ($xl = 1; $xl < count($lang_all); $xl++) {
+                                        ?>
+
+                                        <div id="<?php echo $lang_all[$xl] ?>" class="tab-pane fade">
+                                            <div class="form-group">
+                                                <label><?php echo $lang['name'] ?>:</label><br>
+                                                <input class="input-sm form-control" type="text" name="name1" id="name1" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label><?php echo $lang['product_description'] ?>:</label><br>
+                                                <textarea rows="3" class="input-sm form-control" name="description1" id="description1" /></textarea>
+                                            </div>
+                                            <div class="col-left">
+                                                <label>Keyword:</label>
+                                                <input class="input-sm form-control" type="text" name="keyword1" id="keyword1" />
+                                            </div>
+                                            <div class="col-right">
+                                                <label>Tags:</label>
+                                                <input class="input-sm form-control" type="text" name="tags1" id="tags1" />
+                                            </div>
+                                        </div>
+
+                                        <?php
+                                    }
+                                }
+                                ?>
+
                             </div>
                         </div>
 
