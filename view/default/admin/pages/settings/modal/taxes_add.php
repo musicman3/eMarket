@@ -19,9 +19,9 @@
                         <li class="active"><a data-toggle="tab" href="#<?php echo $lang_all[0] ?>"><img src="/view/default/admin/images/worldflags/ru.png" alt="<?php echo $lang_all[0] ?>" title="<?php echo $lang_all[0] ?>" width="16" height="10" /> <?php echo $lang_all[0] ?></a></li>
                         <?php
                         if (count($lang_all) > 1) {
-                            for ($x = 1; $x < count($lang_all); $x++) {
+                            for ($xl = 1; $xl < count($lang_all); $xl++) {
                                 ?>
-                                <li><a data-toggle="tab" href="#<?php echo $lang_all[$x] ?>"><img src="/view/default/admin/images/worldflags/us.png" alt="<?php echo $lang_all[$x] ?>" title="<?php echo $lang_all[$x] ?>" width="16" height="10" /> <?php echo $lang_all[$x] ?></a></li>
+                                <li><a data-toggle="tab" href="#<?php echo $lang_all[$xl] ?>"><img src="/view/default/admin/images/worldflags/us.png" alt="<?php echo $lang_all[$xl] ?>" title="<?php echo $lang_all[$xl] ?>" width="16" height="10" /> <?php echo $lang_all[$xl] ?></a></li>
                                 <?php
                             }
                         }
@@ -42,9 +42,9 @@
                         </div>
                         <?php
                         if (count($lang_all) > 1) {
-                            for ($x = 1; $x < count($lang_all); $x++) {
+                            for ($xl = 1; $xl < count($lang_all); $xl++) {
                                 ?>
-                                <div id="<?php echo $lang_all[$x] ?>" class="tab-pane fade">
+                                <div id="<?php echo $lang_all[$xl] ?>" class="tab-pane fade">
                                     <div class="form-group">
                                         <label><?php echo $lang['name'] ?>:</label><br>
                                         <input class="input-sm form-control" type="text" name="name" id="name" />
