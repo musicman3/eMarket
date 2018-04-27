@@ -15,12 +15,6 @@
             <form id="form_taxes" name="form_taxes" action="javascript:void(null);" onsubmit="call_taxes()" method="post" enctype="multipart/form-data">
                 <div class="panel-body">
 
-                    <!-- Содержимое панелей формы-->
-                    <div class="tab-content">
-
-                        <!-- Содержимое панели основное -->
-                        <div id="panel1" class="tab-pane fade in active">
-
                             <!-- Языковые панели -->
                             <ul class="nav nav-tabs">
                                 <li class="active"><a data-toggle="tab" href="#Russian"><img src="/view/default/admin/images/worldflags/ru.png" alt="Russian" title="Russian" width="16" height="10" /> Russian</a></li>
@@ -50,9 +44,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                    </div>
                 </div>
 
                 <div class="modal-footer">
