@@ -48,15 +48,15 @@ $files_patch = FilesPatch($VALID->inSERVER('DOCUMENT_ROOT') . '/language/' . $la
 $parse_temp = parse_ini_file($files_patch[0]);
 for ($i = 0; $i < count($files_patch); $i++) {
     $ini = parse_ini_file($files_patch[$i]);
-
     $lang = array_merge($parse_temp, $ini); // Установка языкового массива
 }
 
 // Получаем список языков в массиве (для использования в мультиязычных функциях и т.п.)
 $lang_all = array(); // массив с языками
 $lang_dir = scandir($_SERVER['DOCUMENT_ROOT'] . '/language/');
+array_push($lang_all, ucfirst($lang_default)); // первым в массиве идет язык по умолчанию
 foreach ($lang_dir as $lang_name) {
-    if (!in_array($lang_name, array('.', '..'))){
+    if (!in_array($lang_name, array('.', '..', $lang_default))){
         array_push($lang_all, ucfirst($lang_name));
     }
 }
