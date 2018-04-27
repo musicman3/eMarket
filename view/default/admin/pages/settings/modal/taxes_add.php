@@ -6,7 +6,7 @@
 
 ?>
 <!-- Модальное окно "Налог" -->
-<div id="taxes_add" class="products modal fade" tabindex="-1">
+<div id="taxes_add" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header"><button class="close" type="button" data-dismiss="modal">×</button>
