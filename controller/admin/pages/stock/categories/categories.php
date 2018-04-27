@@ -1,5 +1,4 @@
 <?php
-
 // ****** Copyright © 2018 eMarket *****//
 //   GNU GENERAL PUBLIC LICENSE v.3.0   //
 // https://github.com/musicman3/eMarket //
@@ -245,10 +244,20 @@ if ($VALID->inPOST('token_ajax') == $TOKEN && $VALID->inPOST('ids')) {
     }
 }
 
+// собираем данные для отображения в Редактировании категорий
+$name_category_edit = $PDO->selectPrepare("SELECT name FROM " . TABLE_CATEGORIES . " WHERE id=?", array($lines[$i][0]));
+$status_category_edit = $PDO->selectPrepare("SELECT status FROM " . TABLE_CATEGORIES . " WHERE id=?", array($lines[$i][0]));
+if ($status_category_edit == 1) {
+    $status_category_edit = 'checked';
+} else {
+    $status_category_edit = '';
+}
+
 // ********  CONNECT PAGE END  ******** //
 require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/connect_page_end.php');
 require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/html_end.php');
 // ************************************ //
 //подгрузка JS обработок
 require_once('js/js_categories.php');
+
 ?>
