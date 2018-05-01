@@ -85,7 +85,7 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/stock/categ
             url: '/controller/admin/pages/stock/categories/categories.php',
             data: msg,
             success: function (data) {
-                $('.modal').modal('hide');
+                $('#addCategory<?php echo $lines[$k][0] ?>').modal('hide');
                 $('#ajax').html(data);
             }
         });
