@@ -25,6 +25,7 @@ body {background:#e4e4da;font-family: 'Open Sans',sans-serif;background-image:ur
 .navbar-right {color:#ffffff;margin-right:5px;}
 .navbar {min-height: 30px;}
 .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {color:#ffffff;}
+@media (max-width:768px){.navbar-nav .open .dropdown-menu .link > li > a {padding: 5px 10px 5px 40px;}}
 .navbar-inverse .navbar-nav>li> a {color:#ffffff;}
 .dropdown-menu {background:#000000;min-width: 0px;}
 .dropdown-menu>ul {margin-top:5px;}

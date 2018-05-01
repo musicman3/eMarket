@@ -37,7 +37,7 @@
                                         ?>
                                         <li>
                                         <?php echo $menu[$i][$x]; ?>
-                                            <ul class="dropdown-menu">
+                                            <ul class="dropdown-menu link">
                                             <?php
                                             if (!isset($submenu[$i][$x])) {
                                                 $submenu[$i][$x] = array();
