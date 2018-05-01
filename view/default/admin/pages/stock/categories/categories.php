@@ -6,9 +6,19 @@
 
 ?>
 <!-- Модальное окно "Добавить категорию" -->
-<?php require_once('modal/categories_add.php');
-$k=$i;?>
+<?php require_once('modal/categories_add.php') ?>
 <!-- КОНЕЦ Модальное окно "Добавить категорию" -->
+
+<!-- Дублируем переменную для модальных окон Редактирования -->
+<?php $k = $i; ?>
+
+<?php for ($k; $k < $lines_p; $k++) { ?>
+
+    <!-- Модальное окно "Редактировать категорию" -->
+    <?php require('modal/categories_edit.php') ?>
+    <!-- КОНЕЦ Модальное окно "Редактировать категорию" -->
+
+<?php } ?>
 
 <div id="ajax">
 
@@ -138,7 +148,7 @@ $k=$i;?>
 
                                         </td>	 
                                     </tr>
-                                    
+
                                     <?php
                                 }
 
@@ -147,12 +157,6 @@ $k=$i;?>
                             </tbody>
                         </table>
                     </div>
-                <?php for ($k; $k < $lines_p; $k++) { ?>
-                <!-- Модальное окно "Редактировать категорию" -->
-                                    <?php require('modal/categories_edit.php') ?>
-                                    <!-- КОНЕЦ Модальное окно "Редактировать категорию" -->
-                
-                <?php } ?>
 
                     <?php
                 } elseif ($lines == FALSE && $VALID->inPOST('parent_down') > 0) {

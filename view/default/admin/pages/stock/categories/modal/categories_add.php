@@ -82,10 +82,7 @@
             url: '/controller/admin/pages/stock/categories/categories.php',
             data: msg,
             success: function (data) {
-                $('#addCategory').remove();
-                $('.modal-backdrop').remove();
-                $('body').removeClass('modal-open');
-                $('body').css('padding-right', '');
+                $('.modal').modal('hide');
                 $('#ajax').html(data);
             }
         });
