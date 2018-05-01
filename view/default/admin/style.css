@@ -26,12 +26,11 @@ body {background:#e4e4da;font-family: 'Open Sans',sans-serif;background-image:ur
 .navbar {min-height: 30px;}
 .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {color:#ffffff;}
 .navbar-inverse .navbar-nav>li> a {color:#ffffff;}
-.dropdown-menu {background:#000000;}
+.dropdown-menu {background:#000000;min-width: 0px;}
 .dropdown-menu>ul {margin-top:5px;}
 .dropdown-menu>li>a {color:#ffffff;padding: 3px 5px;}
 .dropdown-menu>li>a:focus, .dropdown-menu > li > a:hover {background:#505050;color:#ffffff;}
 .nav>li>a {padding: 5px;}
-.navbar-nav>li>.dropdown-menu {margin-top: -5px;}
 .nav .open>a, .nav .open>a:focus, .nav .open>a:hover {background:#505050;color:#ffffff;}
 ul.navbar-bottom {margin-bottom: 60px;}
 .table {margin-bottom:0px;}
