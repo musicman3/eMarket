@@ -3,6 +3,7 @@
 //   GNU GENERAL PUBLIC LICENSE v.3.0   //    
 // https://github.com/musicman3/eMarket //
 // *************************************//
+
 ?>
 <!-- Модальное окно "Добавить категорию" -->
 <?php require_once('modal/categories_add.php') ?>
@@ -108,7 +109,10 @@
 
                                             </td>
 
-                                        <?php } else { ?>
+                                            <?php
+                                        } else {
+
+                                            ?>
                                             <!-- Если категория АКТИВНА -->
                                             <td class="sortyes sortleft-m" align="left"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
                                             <td class="sortleft" align="left">
@@ -121,25 +125,34 @@
                                                 </form>
 
                                             </td>
-                                        <?php } ?>
+                                            <?php
+                                        }
+
+                                        ?>
 
                                         <!-- ВЫБРАННЫЕ СТРОКИ -->
                                         <td align="left" class="option" id="<?php echo $lines[$i][0] ?>"><span class="inactive" style="display: none;"></span>
                                             <div class="context-one" id="<?php echo $lines[$i][0] ?>"><?php echo $lines[$i][1] ?>
-
-                                                <!-- Модальное окно "Редактировать категорию" -->
-                                                <?php require('modal/categories_edit.php') ?>
-                                                <!-- КОНЕЦ Модальное окно "Редактировать категорию" -->
-
                                             </div>
+
                                         </td>	 
                                     </tr>
-                                <?php } ?>
+                                    <!-- Модальное окно "Редактировать категорию" -->
+                                    <?php require('modal/categories_edit.php') ?>
+                                    <!-- КОНЕЦ Модальное окно "Редактировать категорию" -->
+                                    <?php
+                                }
+
+                                ?>
+
                             </tbody>
                         </table>
                     </div>
 
-                <?php } elseif ($lines == FALSE && $VALID->inPOST('parent_down') > 0) { ?>
+                    <?php
+                } elseif ($lines == FALSE && $VALID->inPOST('parent_down') > 0) {
+
+                    ?>
 
                     <div class="panel-body">
                         <table class="table table-hover">
@@ -168,7 +181,10 @@
                             </tbody>
                         </table>
                     </div>
-                <?php } else { ?>
+                    <?php
+                } else {
+
+                    ?>
                     <div class="panel-body">
                         <table class="table table-hover">
                             <thead>

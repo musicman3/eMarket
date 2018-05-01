@@ -39,7 +39,6 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/stock/categ
                         <div id="<?php echo $lang_all[0] . $lines[$i][0] ?>" class="tab-pane fade in active">
                         <div class="form-group">
                             <label><?php echo $lang['name'] ?>:</label><br>
-                            <?php // вывод из массива: name="categories_name[1]" id="categories_name[1]   ?>
                             <input class="input-sm form-control" type="text" name="name_edit<?php echo $lang_all[0] ?>" id="name_edit<?php echo $lang_all[0] ?>" value="<?php echo $name_category_edit[0] ?>" />
                         </div>
 			</div>
