@@ -2,7 +2,9 @@
 *   GNU GENERAL PUBLIC LICENSE v.3.0   *    
 * https://github.com/musicman3/eMarket *
 ***************************************/
-body{padding-top:0px;}
+@font-face {font-family: 'Lato';src: url('fonts/Lato-Regular.ttf');}
+*, ::after, ::before {box-sizing: border-box;}
+body{padding-top:0px;font-family: 'Lato',sans-serif;}
 :focus {outline: 0;}
 #header{padding-top:10px;}
 #bodyContent {padding-bottom: 10px;}
@@ -18,3 +20,18 @@ h1 {font-size: 16px;color: #03539a;font-weight: bold;border-bottom: 1px solid #d
 .contentText .after {border: 1px solid #eaeaea;border-radius: 6px;background: linear-gradient(0deg, #f5f5f5, #FAFAFA);padding: 5px;margin-bottom: 5px;}
 .contentText .before {border: 1px solid #eaeaea;border-radius: 6px;background: linear-gradient(0deg, #f5f5f5, #FAFAFA);padding: 5px;margin-bottom: 5px;}
 #pageIcon {float: right;}
+.navbar {min-height: 30px;margin-bottom: 10px;border-radius:0;}
+.navbar-inverse .navbar-nav .open .dropdown-menu > li > a {color:#999999;}
+.navbar-inverse .navbar-nav>li> a {color:#999999;}
+.navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus {color:#ffffff;}
+.navbar-inverse .navbar-nav>li> a:hover, .navbar-inverse .navbar-nav>li> a:focus {color:#ffffff;}
+.dropdown-menu {background:#000000;min-width:0;}
+.dropdown-menu>ul {margin-top:5px;}
+.dropdown-menu>li>a {color:#999999;padding: 3px 10px;}
+.dropdown-menu>li>a:focus, .dropdown-menu > li > a:hover {background:#505050;color:#ffffff;}
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {background:#505050;color:#ffffff;}
+.navbar-brand {height: 30px;padding: 5px 10px;}
+.nav > li > a {padding: 5px 10px;}
+.navbar-toggle {margin-top: 0;margin-bottom: 0;}
+@media (max-width:767px){.navbar-nav .dropdown-menu .link > li > a {padding: 5px 10px 5px 40px;}}
+#columnLeft .panel-heading, #columnRight .panel-heading {font-size: 16px;}
