@@ -58,7 +58,7 @@ if ($VALID->inPOST('cat_edit')) {
         $view_cat = 0;
     }
 
-    $PDO->insertPrepare("UPDATE " . TABLE_CATEGORIES . " SET name=?, last_modified=?, status=? WHERE id=? AND language=?", [$VALID->inPOST('name_edit'), date("Y-m-d H:i:s"), $view_cat, $VALID->inPOST('cat_edit'), $lang_all[0]]);
+    $PDO->insertPrepare("UPDATE " . TABLE_CATEGORIES . " SET name=?, last_modified=?, status=? WHERE id=? AND language=?", [$VALID->inPOST('name_edit'.$lang_all[0]), date("Y-m-d H:i:s"), $view_cat, $VALID->inPOST('cat_edit'), $lang_all[0]]);
     
     if (count($lang_all) > 1) {
         for ($xl = 1; $xl < count($lang_all); $xl++) {
