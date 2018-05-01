@@ -16,7 +16,7 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS emkt_categories;
 CREATE TABLE emkt_categories (
-	id int NOT NULL auto_increment,
+	id int NOT NULL,
 	name varchar(256) NOT NULL,
 	language varchar(64),
 	parent_id int DEFAULT '0' NOT NULL,
@@ -25,7 +25,7 @@ CREATE TABLE emkt_categories (
 	last_modified datetime,
 	sort_category int DEFAULT '0' NOT NULL,
 	status int,
-	PRIMARY KEY (id))
+	PRIMARY KEY (id, language))
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS emkt_products;

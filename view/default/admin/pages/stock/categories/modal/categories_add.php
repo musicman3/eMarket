@@ -36,7 +36,7 @@
                         <div id="<?php echo $lang_all[0] ?>" class="tab-pane fade in active">
                         <div class="form-group">
                             <label><?php echo $lang['name'] ?>:</label><br>
-                            <input class="input-sm form-control" type="text" name="name" id="name" />
+                            <input class="input-sm form-control" type="text" name="<?php echo $lang_all[0] ?>" />
                         </div>
 			</div>
                         <?php
@@ -47,7 +47,7 @@
                                 <div id="<?php echo $lang_all[$xl] ?>" class="tab-pane fade">
                                     <div class="form-group">
                                         <label><?php echo $lang['name'] ?>:</label><br>
-					<input class="input-sm form-control" type="text" name="name" id="name" />
+					<input class="input-sm form-control" type="text" name="<?php echo $lang_all[$xl] ?>" />
                                     </div>
                                 </div>
 

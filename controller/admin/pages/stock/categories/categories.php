@@ -1,5 +1,4 @@
 <?php
-
 // ****** Copyright © 2018 eMarket *****//
 //   GNU GENERAL PUBLIC LICENSE v.3.0   //
 // https://github.com/musicman3/eMarket //
@@ -28,7 +27,7 @@ if ($VALID->inPOST('parent_down')) {
 }
 
 // Если нажали на кнопку Добавить
-if ($VALID->inPOST('name')) {
+if ($VALID->inPOST($lang_all[0])) {
 
     if ($VALID->inPOST('view_cat')) {
         $view_cat = 1;
@@ -38,8 +37,18 @@ if ($VALID->inPOST('name')) {
 
     $sort_category = 0;
 
+    // Получаем последний id
+    $id_max = $PDO->selectPrepare("SELECT id FROM " . TABLE_CATEGORIES . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);
+    $id = intval($id_max) + 1; // увеличиваем id на 1
+
     // добавляем запись
-    $PDO->insertPrepare("INSERT INTO " . TABLE_CATEGORIES . " SET name=?, sort_category=?, parent_id=?, date_added=?, status=?", [$VALID->inPOST('name'), $sort_category, $parent_id, date("Y-m-d H:i:s"), $view_cat]);
+    $PDO->insertPrepare("INSERT INTO " . TABLE_CATEGORIES . " SET id=?, name=?, sort_category=?, language=?, parent_id=?, date_added=?, status=?", [$id, $VALID->inPOST($lang_all[0]), $sort_category, $lang_all[0], $parent_id, date("Y-m-d H:i:s"), $view_cat]);
+
+    if (count($lang_all) > 1) {
+        for ($xl = 1; $xl < count($lang_all); $xl++) {
+            $PDO->insertPrepare("INSERT INTO " . TABLE_CATEGORIES . " SET id=?, name=?, sort_category=?, language=?, parent_id=?, date_added=?, status=?", [$id, $VALID->inPOST($lang_all[$xl]), $sort_category, $lang_all[$xl], $parent_id, date("Y-m-d H:i:s"), $view_cat]);
+        }
+    }
 }
 
 // Если нажали на кнопку Редактировать
@@ -197,8 +206,8 @@ if (is_array($parent_id) == TRUE) {
 if ($VALID->inPOST('parent_id_temp')) {
     $parent_id = $VALID->inPOST('parent_id_temp');
 }
-// получаем отсортированное по sort_category содержимое в виде массива
-$lines = $PDO->getColRow("SELECT * FROM " . TABLE_CATEGORIES . " WHERE parent_id=? ORDER BY sort_category DESC", [$parent_id]);
+// получаем отсортированное по sort_category содержимое в виде массива для отображения на странице
+$lines = $PDO->getColRow("SELECT * FROM " . TABLE_CATEGORIES . " WHERE parent_id=? AND language=? ORDER BY sort_category DESC", [$parent_id, $lang_all[0]]);
 $lines = array_reverse($lines); // сортируем в обратном порядке
 $counter = count($lines);  //считаем количество строк
 
@@ -251,4 +260,5 @@ require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/html_end.php');
 // ************************************ //
 //подгрузка JS обработок
 require_once('js/js_categories.php');
+
 ?>
