@@ -40,7 +40,6 @@ if ($VALID->inPOST($lang_all[0])) {
     // Получаем последний id
     $id_max = $PDO->selectPrepare("SELECT id FROM " . TABLE_CATEGORIES . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);
     $id = intval($id_max) + 1; // увеличиваем id на 1
-
     // добавляем запись
     $PDO->insertPrepare("INSERT INTO " . TABLE_CATEGORIES . " SET id=?, name=?, sort_category=?, language=?, parent_id=?, date_added=?, status=?", [$id, $VALID->inPOST($lang_all[0]), $sort_category, $lang_all[0], $parent_id, date("Y-m-d H:i:s"), $view_cat]);
 
@@ -251,6 +250,18 @@ if ($VALID->inPOST('token_ajax') == $TOKEN && $VALID->inPOST('ids')) {
     $sort_ajax = explode(',', $VALID->inPOST('ids'));
     for ($ajax_i = 0; $ajax_i < count($sort_ajax); $ajax_i++) {
         $PDO->insertPrepare("UPDATE " . TABLE_CATEGORIES . " SET sort_category=? WHERE id=?", [$ajax_i + $j2, $sort_ajax[$ajax_i]]);
+    }
+}
+
+// собираем данные для отображения в Редактировании категорий
+if (isset($lines[$i][0]) == TRUE) {
+    $name_category_edit = $PDO->selectPrepare("SELECT name FROM " . TABLE_CATEGORIES . " WHERE id=?", [$lines[$i][0]]);
+    $status_category_edit = $PDO->selectPrepare("SELECT status FROM " . TABLE_CATEGORIES . " WHERE id=?", [$lines[$i][0]]);
+
+    if ($status_category_edit == 1) {
+        $status_category_edit = 'checked';
+    } else {
+        $status_category_edit = '';
     }
 }
 
