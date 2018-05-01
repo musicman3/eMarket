@@ -37,14 +37,13 @@ if ($VALID->inPOST($lang_all[0])) {
 
     $sort_category = 0;
 
-    // Получаем последний id
+    // Получаем последний id и увеличиваем его на 1
     $id_max = $PDO->selectPrepare("SELECT id FROM " . TABLE_CATEGORIES . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);
-    $id = intval($id_max) + 1; // увеличиваем id на 1
-    // добавляем запись
-    $PDO->insertPrepare("INSERT INTO " . TABLE_CATEGORIES . " SET id=?, name=?, sort_category=?, language=?, parent_id=?, date_added=?, status=?", [$id, $VALID->inPOST($lang_all[0]), $sort_category, $lang_all[0], $parent_id, date("Y-m-d H:i:s"), $view_cat]);
+    $id = intval($id_max) + 1;
 
+    // добавляем запись для всех вкладок
     if (count($lang_all) > 1) {
-        for ($xl = 1; $xl < count($lang_all); $xl++) {
+        for ($xl = 0; $xl < count($lang_all); $xl++) {
             $PDO->insertPrepare("INSERT INTO " . TABLE_CATEGORIES . " SET id=?, name=?, sort_category=?, language=?, parent_id=?, date_added=?, status=?", [$id, $VALID->inPOST($lang_all[$xl]), $sort_category, $lang_all[$xl], $parent_id, date("Y-m-d H:i:s"), $view_cat]);
         }
     }
