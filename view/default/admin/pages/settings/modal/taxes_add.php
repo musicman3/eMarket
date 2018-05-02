@@ -83,7 +83,7 @@
         var msg = $('#form_taxes').serialize();
         $.ajax({
             type: 'POST',
-            url: '/controller/admin/pages/settings/settings.php',
+            url: '/controller/admin/pages/settings/taxes.php',
             data: msg,
             success: function (data) {
                 $('#taxes_add').modal('hide');

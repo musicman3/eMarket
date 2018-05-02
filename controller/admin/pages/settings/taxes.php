@@ -9,7 +9,19 @@ error_reporting(-1);
 // ********  CONNECT PAGE START  ******** //
 require_once($_SERVER['DOCUMENT_ROOT'] . '/model/connect_page_start.php');
 // ************************************** //
+// 
+// Если нажали на кнопку Добавить налог
+if ($VALID->inPOST('rate')) {
 
+    // Получаем последний id и увеличиваем его на 1
+    $id_tax_max = $PDO->selectPrepare("SELECT id FROM " . TABLE_TAXES . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);
+    $id = intval($id_tax_max) + 1;
+
+    // добавляем запись для всех вкладок
+    for ($xl = 0; $xl < count($lang_all); $xl++) {
+        $PDO->insertPrepare("INSERT INTO " . TABLE_TAXES . " SET id=?, name=?, language=?, rate=?", [$id, $VALID->inPOST($lang_all[$xl]), $lang_all[$xl], $VALID->inPOST('rate')]);
+    }
+}
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 // *********  CONNECT PAGE END  ********* //
