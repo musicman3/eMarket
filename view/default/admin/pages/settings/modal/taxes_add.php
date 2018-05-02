@@ -3,6 +3,7 @@
 //   GNU GENERAL PUBLIC LICENSE v.3.0   //    
 // https://github.com/musicman3/eMarket //
 // *************************************//
+
 ?>
 <!-- Модальное окно "Налог" -->
 <div id="taxes_add" class="modal fade" tabindex="-1">
@@ -21,6 +22,7 @@
                         <?php
                         if (count($lang_all) > 1) {
                             for ($xl = 1; $xl < count($lang_all); $xl++) {
+
                                 ?>
 
                                 <li><a data-toggle="tab" href="#<?php echo $lang_all[$xl] ?>"><img src="/view/default/admin/images/langflags/<?php echo $lang_all[$xl] ?>.png" alt="<?php echo $lang_all[$xl] ?>" title="<?php echo $lang_all[$xl] ?>" width="16" height="10" /> <?php echo $lang_all[$xl] ?></a></li>
@@ -28,6 +30,7 @@
                                 <?php
                             }
                         }
+
                         ?>
 
                     </ul>
@@ -37,35 +40,32 @@
                         <div id="<?php echo $lang_all[0] ?>" class="tab-pane fade in active">
                             <div class="form-group">
                                 <label><?php echo $lang['name'] ?>:</label><br>
-                                <input class="input-sm form-control" type="text" name="name" id="name" />
-                            </div>
-                            <div class="form-group">
-                                <label>Ставка налога (%):</label><br>
-                                <input class="input-sm form-control" type="text" name="rate" id="rate" />
+                                <input class="input-sm form-control" type="text" name="<?php echo $lang_all[0] ?>" />
                             </div>
                         </div>
 
                         <?php
                         if (count($lang_all) > 1) {
                             for ($xl = 1; $xl < count($lang_all); $xl++) {
+
                                 ?>
 
                                 <div id="<?php echo $lang_all[$xl] ?>" class="tab-pane fade">
                                     <div class="form-group">
                                         <label><?php echo $lang['name'] ?>:</label><br>
-                                        <input class="input-sm form-control" type="text" name="name" id="name" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Ставка налога (%):</label><br>
-                                        <input class="input-sm form-control" type="text" name="rate" id="rate" />
+                                        <input class="input-sm form-control" type="text" name="<?php echo $lang_all[$xl] ?>" />
                                     </div>
                                 </div>
 
                                 <?php
                             }
                         }
-                        ?>
 
+                        ?>
+                        <div class="form-group">
+                            <label>Ставка налога (%):</label><br>
+                            <input class="input-sm form-control" type="text" name="rate" id="rate" />
+                        </div>
                     </div>
                 </div>
 
@@ -86,11 +86,8 @@
             url: '/controller/admin/pages/settings/settings.php',
             data: msg,
             success: function (data) {
-                $('#taxes_add').remove();
-                $('.modal-backdrop').remove();
-                $('body').removeClass('modal-open');
-                $('body').css('padding-right', '');
-                $('#ajax').html(data);
+                $('#taxes_add').modal('hide');
+                document.location.reload(false);
             }
         });
     }

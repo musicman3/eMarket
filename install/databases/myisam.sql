@@ -73,6 +73,6 @@ CREATE TABLE emkt_taxes (
 	id int NOT NULL,
 	name varchar(256) NOT NULL,
 	language varchar(64),
-        tax decimal(12,2),
+        rate decimal(12,2),
 	PRIMARY KEY (id, language))
 ENGINE=MyISAM DEFAULT CHARSET=utf8;

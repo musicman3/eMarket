@@ -59,6 +59,7 @@
         $tabadm = $dbpref . 'administrators';
         $tab_cat = $dbpref . 'categories';
         $tab_products = $dbpref . 'products';
+        $tab_taxes = $dbpref . 'taxes';
         $hashmet = $_POST['hash_method'];
         $crypt = $_POST['crypt_method'];
 
@@ -80,6 +81,7 @@
                 '  define(\'TABLE_ADMINISTRATORS\', \'' . $tabadm . '\');' . "\n" .
                 '  define(\'TABLE_CATEGORIES\', \'' . $tab_cat . '\');' . "\n" .
                 '  define(\'TABLE_PRODUCTS\', \'' . $tab_products . '\');' . "\n" .
+                '  define(\'TABLE_TAXES\', \'' . $tab_taxes . '\');' . "\n" .
                 '?>';
 
         if (file_exists('../model/configure/configure.php') && !is_writeable('../model/configure/configure.php')) {

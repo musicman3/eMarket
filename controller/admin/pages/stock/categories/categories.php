@@ -42,10 +42,8 @@ if ($VALID->inPOST($lang_all[0])) {
     $id = intval($id_max) + 1;
 
     // добавляем запись для всех вкладок
-    if (count($lang_all) > 1) {
-        for ($xl = 0; $xl < count($lang_all); $xl++) {
-            $PDO->insertPrepare("INSERT INTO " . TABLE_CATEGORIES . " SET id=?, name=?, sort_category=?, language=?, parent_id=?, date_added=?, status=?", [$id, $VALID->inPOST($lang_all[$xl]), $sort_category, $lang_all[$xl], $parent_id, date("Y-m-d H:i:s"), $view_cat]);
-        }
+    for ($xl = 0; $xl < count($lang_all); $xl++) {
+        $PDO->insertPrepare("INSERT INTO " . TABLE_CATEGORIES . " SET id=?, name=?, sort_category=?, language=?, parent_id=?, date_added=?, status=?", [$id, $VALID->inPOST($lang_all[$xl]), $sort_category, $lang_all[$xl], $parent_id, date("Y-m-d H:i:s"), $view_cat]);
     }
 }
 
@@ -58,13 +56,9 @@ if ($VALID->inPOST('cat_edit')) {
         $view_cat = 0;
     }
 
-    $PDO->insertPrepare("UPDATE " . TABLE_CATEGORIES . " SET name=?, last_modified=?, status=? WHERE id=? AND language=?", [$VALID->inPOST('name_edit'.$lang_all[0]), date("Y-m-d H:i:s"), $view_cat, $VALID->inPOST('cat_edit'), $lang_all[0]]);
-    
-    if (count($lang_all) > 1) {
-        for ($xl = 1; $xl < count($lang_all); $xl++) {
-            // обновляем запись
-            $PDO->insertPrepare("UPDATE " . TABLE_CATEGORIES . " SET name=?, last_modified=?, status=? WHERE id=? AND language=?", [$VALID->inPOST('name_edit'.$lang_all[$xl]), date("Y-m-d H:i:s"), $view_cat, $VALID->inPOST('cat_edit'), $lang_all[$xl]]);
-        }
+    for ($xl = 0; $xl < count($lang_all); $xl++) {
+        // обновляем запись
+        $PDO->insertPrepare("UPDATE " . TABLE_CATEGORIES . " SET name=?, last_modified=?, status=? WHERE id=? AND language=?", [$VALID->inPOST('name_edit' . $lang_all[$xl]), date("Y-m-d H:i:s"), $view_cat, $VALID->inPOST('cat_edit'), $lang_all[$xl]]);
     }
 }
 
