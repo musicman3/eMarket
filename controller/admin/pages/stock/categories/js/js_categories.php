@@ -210,6 +210,7 @@
                                                     idsx_delete_key: itemKey},
                                                 AjaxSuccess);
                                     function AjaxSuccess(data) {
+                                        $('#ajax').html(data);
                                         window.location.reload();
                                     }
                                 });
