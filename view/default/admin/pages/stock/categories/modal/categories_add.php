@@ -83,7 +83,7 @@
             data: msg,
             success: function (data) {
                 $('#addCategory').modal('hide');
-                window.location.reload(false);
+                document.location.reload(false);
             }
         });
     }
