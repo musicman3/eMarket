@@ -67,3 +67,12 @@ CREATE TABLE emkt_products (
         status int,
 	PRIMARY KEY (id))
 ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS emkt_taxes;
+CREATE TABLE emkt_taxes (
+	id int NOT NULL,
+	name varchar(256) NOT NULL,
+	language varchar(64),
+        tax decimal(12,2),
+	PRIMARY KEY (id, language))
+ENGINE=MyISAM DEFAULT CHARSET=utf8;
