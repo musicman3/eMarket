@@ -4,7 +4,7 @@
 ***************************************/
 @font-face {font-family: 'Lato';src: url('fonts/Lato-Regular.ttf');}
 *, ::after, ::before {box-sizing: border-box;}
-body{padding-top:0px;font-family: 'Lato',sans-serif;}
+body{padding-top:40px;font-family: 'Lato',sans-serif;}
 :focus {outline: 0;}
 #header{padding-top:10px;}
 #bodyContent {padding-bottom: 10px;}
