@@ -63,7 +63,7 @@
 
                         ?>
                         <div class="form-group">
-                            <label>Ставка налога (%): <a href="#" data-toggle="tooltip" data-placement="top" title="Бла бла бла">(?)</a></label><br>
+                            <label>Ставка налога (%): <a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Бла бла бла">(?)</a></label><br>
                             <input class="input-sm form-control" type="text" name="rate" id="rate" />
                         </div>
                     </div>
