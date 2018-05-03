@@ -32,12 +32,21 @@
             <link rel="stylesheet" type="text/css" href="/ext/jquery/ui/jquery-ui.min.css" media="screen" />
             <script type="text/javascript" src="/ext/jquery/jquery.min.js"></script>
             <script type="text/javascript" src="/ext/jquery/ui/jquery-ui.min.js"></script>
-	    <?php if (file_exists('products.php')) { ?>
-	    <script type="text/javascript" src="/ext/tinymce/tinymce.min.js"></script>
-            <!-- Автовыбор языка Datepicker" -->
-            <script type="text/javascript" src="/ext/jquery/ui/i18n/datepicker-<?php echo $lang['meta-language'] ?>.js"></script>
 
-	    <?php }
+            <!-- Всплывающие подсказки" -->
+            <script type="text/javascript" language="javascript">
+                $(function () {
+                    $('[data-toggle="tooltip"]').tooltip();
+                })
+            </script>
+
+            <?php if (file_exists('products.php')) { ?>
+                <script type="text/javascript" src="/ext/tinymce/tinymce.min.js"></script>
+                <!-- Автовыбор языка Datepicker" -->
+                <script type="text/javascript" src="/ext/jquery/ui/i18n/datepicker-<?php echo $lang['meta-language'] ?>.js"></script>
+
+                <?php
+            }
             if (isset($_SESSION['login']) == TRUE && isset($_SESSION['pass']) == TRUE) {
 
                 ?>
