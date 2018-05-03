@@ -5,12 +5,11 @@
 // *************************************//
 
 ?>
-<div id="ajax">
-
     <!-- Модальное окно "Налог" -->
     <?php require_once('modal/taxes_add.php') ?>
     <!-- КОНЕЦ Модальное окно "Добавить категорию" -->
 
+<div id="ajax">
     <div id="settings" class="container">
         <div class="row">
             <div class="panel panel-default">
