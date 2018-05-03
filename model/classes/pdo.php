@@ -48,8 +48,7 @@ class PdoClass {
     function getColRow($sql, $a) {
         global $DB;
         $exec = FALSE;
-        if ($exec = $DB->prepare($sql) AND $exec->execute($a) AND $exec = $exec->fetchAll($DB :: FETCH_NUM))
-            ;
+        if ($exec = $DB->prepare($sql) AND $exec->execute($a) AND $exec = $exec->fetchAll($DB :: FETCH_NUM));
         return $exec;
     }
 

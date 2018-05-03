@@ -79,6 +79,7 @@ if ($counter >= $lines_page) {
     }
 }
 // КОНЕЦ-> КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
+// 
 // Формат даты после Datepicker
 if ($VALID->inPOST('date_available')) {
     $date_available = date('Y-m-d', strtotime($VALID->inPOST('date_available')));
@@ -86,6 +87,10 @@ if ($VALID->inPOST('date_available')) {
 
     $date_available = NULL;
 }
+
+// Формируем массив Налог для выпадающего списка
+$taxes_temp = $PDO->getColRow("SELECT name FROM " . TABLE_TAXES . " WHERE language=?", [$lang_all[0]]);
+$taxes_all = array_column($taxes_temp, 0);
 
 // Если нажали на кнопку Добавить
 if ($VALID->inPOST('name')) {

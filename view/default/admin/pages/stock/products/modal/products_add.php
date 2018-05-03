@@ -109,9 +109,16 @@
                                 <div class="col-right">
                                     <label>Налог:</label>
                                     <select name="tax" id="tax" class="input-sm form-control">
-                                        <option>НДС</option>
-                                        <option>18%</option>
-                                        <option>12%</option>
+                                        <option>Без налога</option>
+                                        <?php
+                                        for ($tx = 0; $tx < count($taxes_all); $tx++) {
+                                            ?>
+
+                                            <option><?php echo $taxes_all[$tx] ?></option>
+
+                                            <?php
+                                        }
+                                        ?>
                                     </select>
                                 </div>
                             </div>
