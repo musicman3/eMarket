@@ -9,7 +9,7 @@
 <div id="taxes_add" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header"><div class="tooltip-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Формат поля: 10.00" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
+            <div class="modal-header"><div class="tooltip-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Ставка указывается в формате: 10.00" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
                 <h4 class="modal-title">Налоги</h4>
             </div>
             <form id="form_taxes" name="form_taxes" action="javascript:void(null);" onsubmit="call_taxes()" method="post" enctype="multipart/form-data">
@@ -39,8 +39,11 @@
                     <div class="tab-content">
                         <div id="<?php echo $lang_all[0] ?>" class="tab-pane fade in active">
                             <div class="form-group">
-                                <label><?php echo $lang['name'] ?>:</label><br>
-                                <input class="input-sm form-control" type="text" name="<?php echo $lang_all[0] ?>" />
+                                <br>
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="name<?php echo $lang_all[0] ?>"><span class="glyphicon glyphicon-list-alt"></span></span>
+                                    <input class="input-sm form-control" placeholder="<?php echo $lang['name'] ?>" type="text" name="<?php echo $lang_all[0] ?>" />
+                                </div>
                             </div>
                         </div>
 
@@ -52,8 +55,11 @@
 
                                 <div id="<?php echo $lang_all[$xl] ?>" class="tab-pane fade">
                                     <div class="form-group">
-                                        <label><?php echo $lang['name'] ?>:</label><br>
-                                        <input class="input-sm form-control" type="text" name="<?php echo $lang_all[$xl] ?>" />
+                                        <br>
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="name<?php echo $lang_all[$xl] ?>"><span class="glyphicon glyphicon-list-alt"></span></span>
+                                            <input class="input-sm form-control" placeholder="<?php echo $lang['name'] ?>" aria-describedby="name<?php echo $lang_all[$xl] ?>" type="text" name="<?php echo $lang_all[$xl] ?>" />
+                                        </div>
                                     </div>
                                 </div>
 
@@ -63,12 +69,11 @@
 
                         ?>
                         <div class="form-group">
-                            <label>Ставка налога (%): </label><br>
                             <div class="input-group">
-                            <span class="input-group-addon" id="rate1">%</span>
-                            <input class="input-sm form-control" placeholder="Введите значение" aria-describedby="rate1" type="text" name="rate" id="rate" />
-                        </div>
+                                <span class="input-group-addon" id="rate1"><span class="glyphicon glyphicon-menu-right"></span></span>
+                                <input class="input-sm form-control" placeholder="Налоговая ставка (%)" aria-describedby="rate1" type="text" name="rate" id="rate" />
                             </div>
+                        </div>
                     </div>
                 </div>
 
