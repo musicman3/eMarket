@@ -70,3 +70,5 @@ div.context-one {padding:5px;}
 .settings-page {float: left;padding-left: 10px;}
 .settings-right {float: right;padding-right: 5px;}
 .tooltip-inner {font-family: 'Open Sans',sans-serif;}
+.tooltip-right {float: right;}
+.tooltip-right .glyphicon {color: #000000;opacity: 0.5}
