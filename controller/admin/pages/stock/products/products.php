@@ -89,8 +89,7 @@ if ($VALID->inPOST('date_available')) {
 }
 
 // Формируем массив Налог для выпадающего списка
-$taxes_temp = $PDO->getColRow("SELECT name FROM " . TABLE_TAXES . " WHERE language=?", [$lang_all[0]]);
-$taxes_all = array_column($taxes_temp, 0);
+$taxes_all = $PDO->getCol("SELECT name FROM " . TABLE_TAXES . " WHERE language=?", [$lang_all[0]]);
 
 // Если нажали на кнопку Добавить
 if ($VALID->inPOST('name')) {

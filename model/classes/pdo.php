@@ -1,4 +1,5 @@
 <?php
+
 // ****** Copyright © 2018 eMarket *****// 
 //   GNU GENERAL PUBLIC LICENSE v.3.0   //    
 // https://github.com/musicman3/eMarket //
@@ -48,7 +49,8 @@ class PdoClass {
     function getColRow($sql, $a) {
         global $DB;
         $exec = FALSE;
-        if ($exec = $DB->prepare($sql) AND $exec->execute($a) AND $exec = $exec->fetchAll($DB :: FETCH_NUM));
+        if ($exec = $DB->prepare($sql) AND $exec->execute($a) AND $exec = $exec->fetchAll($DB :: FETCH_NUM))
+            ;
         return $exec;
     }
 
@@ -100,6 +102,27 @@ class PdoClass {
       и language, удовлетворяющих требованию language='russian'.
 
       Если применить в запросе $PDO->getColRow("SELECT * FROM table", array()), то выдаст всю таблицу в массиве.
+     */
+
+    function getCol($sql, $a) {
+        global $DB;
+        $exec = FALSE;
+        if ($exec = $DB->prepare($sql) AND $exec->execute($a) AND $exec = $exec->fetchAll($DB :: FETCH_NUM))
+            ;
+        $exec = array_column($exec, 0);
+        return $exec;
+    }
+
+    /* getCol для запроса колонки в виде одномерного массива. Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах.
+      Если значение не найдено, то выдает пустой массив: Array()
+      Если применять в запросе $PDO->getColRow("SELECT name FROM table WHERE language=?", ['russian']) то выдаст все значения колонки id в виде одномерного массива,
+      удовлетворяющие условию language='russian'.
+
+      Array
+      (
+      [0] => Name1
+      [1] => Name2
+      )
      */
 
     function getCellFalse($sql, $a) {
