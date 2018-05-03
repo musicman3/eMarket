@@ -64,8 +64,11 @@
                         ?>
                         <div class="form-group">
                             <label>Ставка налога (%): <a href="#" ><span data-toggle="tooltip" data-placement="top" data-original-title="Формат поля: 10.00" class="glyphicon glyphicon-question-sign"></span></a></label><br>
-                            <input class="input-sm form-control" type="text" name="rate" id="rate" />
+                            <div class="input-group">
+                            <span class="input-group-addon" id="rate1">%</span>
+                            <input class="input-sm form-control" placeholder="Введите значение" aria-describedby="rate1" type="text" name="rate" id="rate" />
                         </div>
+                            </div>
                     </div>
                 </div>
 
