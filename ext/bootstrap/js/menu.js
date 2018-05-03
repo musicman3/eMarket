@@ -13,3 +13,20 @@ $(document).ready(function() {
         return false;
     });
 });
+
+$(function() {
+  var changeHeightNavbarCollapse = function() {
+    $('.navbar-collapse').css({ 
+      maxHeight: $(window).height() - $('.navbar-header').height() + 'px'
+    });
+  };
+
+  changeHeightNavbarCollapse();
+
+  $(window).resize(function() {
+    if (window.innerWidth <= 767) {
+      changeHeightNavbarCollapse();
+    }
+  });
+
+});
