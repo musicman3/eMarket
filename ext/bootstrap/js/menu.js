@@ -16,7 +16,7 @@ $(document).ready(function() {
 
 $(function() {
   var changeHeightNavbarCollapse = function() {
-    $('.navbar-collapse').css({ 
+    $('.navbar-collapse').css({
       maxHeight: $(window).height() - $('.navbar-header').height() + 'px'
     });
   };
