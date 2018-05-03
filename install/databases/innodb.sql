@@ -71,8 +71,8 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8;
 DROP TABLE IF EXISTS emkt_taxes;
 CREATE TABLE emkt_taxes (
 	id int NOT NULL,
-	name varchar(256) NOT NULL,
+	name varchar(256),
 	language varchar(64),
-        rate decimal(12,2),
+        rate decimal(2,2),
 	PRIMARY KEY (id, language))
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
