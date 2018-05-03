@@ -79,7 +79,7 @@
 </div>
 <script type="text/javascript" language="javascript">
 $(function () {
-  $('[data-toggle="tooltip"]').tooltip()
+  $('[data-toggle="tooltip"]').tooltip();
 })
 </script>
 <script type="text/javascript" language="javascript">
