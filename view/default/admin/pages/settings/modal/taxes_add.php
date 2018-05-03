@@ -63,7 +63,7 @@
 
                         ?>
                         <div class="form-group">
-                            <label>Ставка налога (%):</label><br>
+                            <label>Ставка налога (%): <a href="#" data-toggle="tooltip" data-placement="top" title="Бла бла бла">(?)</a></label><br>
                             <input class="input-sm form-control" type="text" name="rate" id="rate" />
                         </div>
                     </div>
@@ -77,7 +77,11 @@
         </div>
     </div>
 </div>
-
+<script type="text/javascript" language="javascript">
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
 <script type="text/javascript" language="javascript">
     function call_taxes() {
         var msg = $('#form_taxes').serialize();
