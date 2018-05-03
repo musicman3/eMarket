@@ -3,12 +3,13 @@
 //   GNU GENERAL PUBLIC LICENSE v.3.0   //    
 // https://github.com/musicman3/eMarket //
 // *************************************//
+
 ?>
 <!-- Модальное окно "Добавить товар" -->
 <div id="addProduct" class="products modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header"><button class="close" type="button" data-dismiss="modal">×</button>
+            <div class="modal-header"><div class="tooltip-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Заполните карточку товара" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
                 <h4 class="modal-title">Налоги</h4>
             </div>
             <form id="form_post" name="form_post" action="javascript:void(null);" onsubmit="call()" method="post" enctype="multipart/form-data">
@@ -35,6 +36,7 @@
                                 <?php
                                 if (count($lang_all) > 1) {
                                     for ($xl = 1; $xl < count($lang_all); $xl++) {
+
                                         ?>
 
                                         <li><a data-toggle="tab" href="#<?php echo $lang_all[$xl] ?>"><img src="/view/default/admin/images/langflags/<?php echo $lang_all[$xl] ?>.png" alt="<?php echo $lang_all[$xl] ?>" title="<?php echo $lang_all[$xl] ?>" width="16" height="10" /> <?php echo $lang_all[$xl] ?></a></li>
@@ -42,6 +44,7 @@
                                         <?php
                                     }
                                 }
+
                                 ?>
 
                             </ul>
@@ -49,51 +52,64 @@
                             <!-- Содержимое языковых панелей -->
                             <div class="tab-content">
                                 <div id="<?php echo $lang_all[0] ?>" class="tab-pane fade in active">
+                                    <br>
                                     <div class="form-group">
-                                        <label><?php echo $lang['name'] ?>:</label><br>
-                                        <input class="input-sm form-control" type="text" name="name" id="name" />
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+                                            <input class="input-sm form-control" placeholder="<?php echo $lang['name'] ?>" type="text" name="name" id="name" />
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <label><?php echo $lang['product_description'] ?>:</label><br>
                                         <textarea rows="3" class="input-sm form-control" name="description" id="description" /></textarea>
                                     </div>
-                                    <div class="col-left">
-                                        <label>Keyword:</label>
-                                        <input class="input-sm form-control" type="text" name="keyword" id="keyword" />
-                                    </div>
-                                    <div class="col-right">
-                                        <label>Tags:</label>
-                                        <input class="input-sm form-control" type="text" name="tags" id="tags" />
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+                                        <div class="col-left">
+                                            <input class="input-sm form-control" placeholder="Keyword" type="text" name="keyword" id="keyword" />
+                                        </div>
+
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+                                        <div class="col-right">
+                                            <input class="input-sm form-control" placeholder="Tags" type="text" name="tags" id="tags" />
+                                        </div>
                                     </div>
                                 </div>
 
                                 <?php
                                 if (count($lang_all) > 1) {
                                     for ($xl = 1; $xl < count($lang_all); $xl++) {
+
                                         ?>
 
                                         <div id="<?php echo $lang_all[$xl] ?>" class="tab-pane fade">
+                                            <br>
                                             <div class="form-group">
-                                                <label><?php echo $lang['name'] ?>:</label><br>
-                                                <input class="input-sm form-control" type="text" name="name1" id="name1" />
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+                                                    <input class="input-sm form-control" placeholder="<?php echo $lang['name'] ?>" type="text" name="name1" id="name1" />
+                                                </div>
                                             </div>
                                             <div class="form-group">
                                                 <label><?php echo $lang['product_description'] ?>:</label><br>
                                                 <textarea rows="3" class="input-sm form-control" name="description1" id="description1" /></textarea>
                                             </div>
-                                            <div class="col-left">
-                                                <label>Keyword:</label>
-                                                <input class="input-sm form-control" type="text" name="keyword1" id="keyword1" />
-                                            </div>
-                                            <div class="col-right">
-                                                <label>Tags:</label>
-                                                <input class="input-sm form-control" type="text" name="tags1" id="tags1" />
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+                                                <div class="col-left">
+                                                    <input class="input-sm form-control" placeholder="Keyword" type="text" name="keyword1" id="keyword1" />
+                                                </div>
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+                                                <div class="col-right">
+                                                    <input class="input-sm form-control" placeholder="Tags" type="text" name="tags1" id="tags1" />
+                                                </div>
                                             </div>
                                         </div>
 
                                         <?php
                                     }
                                 }
+
                                 ?>
 
                             </div>
@@ -112,12 +128,14 @@
                                         <option>Без налога</option>
                                         <?php
                                         for ($tx = 0; $tx < count($taxes_all); $tx++) {
+
                                             ?>
 
                                             <option><?php echo $taxes_all[$tx] ?></option>
 
                                             <?php
                                         }
+
                                         ?>
                                     </select>
                                 </div>

@@ -41,7 +41,7 @@
                             <div class="form-group">
                                 <br>
                                 <div class="input-group">
-                                    <span class="input-group-addon" id="name<?php echo $lang_all[0] ?>"><span class="glyphicon glyphicon-list-alt"></span></span>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
                                     <input class="input-sm form-control" placeholder="<?php echo $lang['name'] ?>" type="text" name="<?php echo $lang_all[0] ?>" />
                                 </div>
                             </div>
@@ -57,8 +57,8 @@
                                     <div class="form-group">
                                         <br>
                                         <div class="input-group">
-                                            <span class="input-group-addon" id="name<?php echo $lang_all[$xl] ?>"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo $lang['name'] ?>" aria-describedby="name<?php echo $lang_all[$xl] ?>" type="text" name="<?php echo $lang_all[$xl] ?>" />
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+                                            <input class="input-sm form-control" placeholder="<?php echo $lang['name'] ?>" type="text" name="<?php echo $lang_all[$xl] ?>" />
                                         </div>
                                     </div>
                                 </div>
@@ -70,8 +70,8 @@
                         ?>
                         <div class="form-group">
                             <div class="input-group">
-                                <span class="input-group-addon" id="rate1"><span class="glyphicon glyphicon-menu-right"></span></span>
-                                <input class="input-sm form-control" placeholder="Налоговая ставка (%)" aria-describedby="rate1" type="text" name="rate" id="rate" />
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-menu-right"></span></span>
+                                <input class="input-sm form-control" placeholder="Налоговая ставка (%)" type="text" name="rate" id="rate" />
                             </div>
                         </div>
                     </div>
