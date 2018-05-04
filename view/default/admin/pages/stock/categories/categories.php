@@ -178,7 +178,7 @@
                                         <!-- Категорий нет "ВВЕРХ" -->
                                         <form>
                                             <div>
-                                                <button name="parent_up" value="<?php echo $VALID->inPOST('parent_down') ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/stock/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-option-horizontal"></span></button>
+                                                <button name="parent_up" value="<?php echo $parent_id ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/stock/categories/categories.php" formmethod="post"><span class="glyphicon glyphicon-option-horizontal"></span></button>
                                             </div>
                                         </form>
 
