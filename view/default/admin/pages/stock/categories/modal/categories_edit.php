@@ -11,7 +11,7 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/stock/categ
 <div id="<?php echo 'addCategory' . $lines[$k][0] ?>" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header"><button class="close" type="button" data-dismiss="modal">×</button>
+            <div class="modal-header"><div class="tooltip-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Заполните карточку категорий" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
                 <h4 class="modal-title"><?php echo $lang['menu_categories'] ?></h4>
             </div>
             <form id="form_post<?php echo $lines[$k][0] ?>" action="javascript:void(null);" onsubmit="call<?php echo $lines[$k][0] ?>()" method="post" enctype="multipart/form-data">
@@ -38,8 +38,10 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/stock/categ
 		    <div class="tab-content">
                         <div id="<?php echo $lang_all[0] . $lines[$k][0] ?>" class="tab-pane fade in active">
                         <div class="form-group">
-                            <label><?php echo $lang['name'] ?>:</label><br>
-                            <input class="input-sm form-control" type="text" name="name_edit<?php echo $lang_all[0] ?>" id="name_edit<?php echo $lang_all[0] ?>" value="<?php echo $name_category_edit[0] ?>" />
+			    <div class="input-group">
+				<span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+                                <input class="input-sm form-control" type="text" name="name_edit<?php echo $lang_all[0] ?>" id="name_edit<?php echo $lang_all[0] ?>" value="<?php echo $name_category_edit[0] ?>" />
+			    </div>
                         </div>
 			</div>
                         <?php
@@ -49,8 +51,10 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/stock/categ
 
                                 <div id="<?php echo $lang_all[$xl] . $lines[$k][0] ?>" class="tab-pane fade">
                                     <div class="form-group">
-                                        <label><?php echo $lang['name'] ?>:</label><br>
-					<input class="input-sm form-control" type="text" name="name_edit<?php echo $lang_all[$xl] ?>" id="name_edit<?php echo $lang_all[$xl] ?>" value="<?php echo $name_category_edit[$xl] ?>" />
+					<div class="input-group">
+					    <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+					    <input class="input-sm form-control" type="text" name="name_edit<?php echo $lang_all[$xl] ?>" id="name_edit<?php echo $lang_all[$xl] ?>" value="<?php echo $name_category_edit[$xl] ?>" />
+					</div>
                                     </div>
                                 </div>
 
