@@ -63,14 +63,15 @@
                                         <label><?php echo $lang['product_description'] ?>:</label><br>
                                         <textarea rows="3" class="input-sm form-control" name="description" id="description" /></textarea>
                                     </div>
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                        <div class="col-left">
+                                    <div class="col-left">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
                                             <input class="input-sm form-control" placeholder="Keyword" type="text" name="keyword" id="keyword" />
                                         </div>
-
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                        <div class="col-right">
+                                    </div>
+                                    <div class="col-right">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
                                             <input class="input-sm form-control" placeholder="Tags" type="text" name="tags" id="tags" />
                                         </div>
                                     </div>
@@ -94,13 +95,15 @@
                                                 <label><?php echo $lang['product_description'] ?>:</label><br>
                                                 <textarea rows="3" class="input-sm form-control" name="description1" id="description1" /></textarea>
                                             </div>
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                                <div class="col-left">
+                                            <div class="col-left">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
                                                     <input class="input-sm form-control" placeholder="Keyword" type="text" name="keyword1" id="keyword1" />
                                                 </div>
-                                                <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                                <div class="col-right">
+                                            </div>
+                                            <div class="col-right">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
                                                     <input class="input-sm form-control" placeholder="Tags" type="text" name="tags1" id="tags1" />
                                                 </div>
                                             </div>
