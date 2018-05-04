@@ -157,7 +157,7 @@
                     </div>
 
                     <?php
-                } elseif ($lines == FALSE && $VALID->inPOST('parent_down') > 0) {
+                } elseif ($lines == FALSE && $parent_id > 0) {
 
                     ?>
 
