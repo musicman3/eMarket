@@ -87,7 +87,7 @@
             data: msg,
             success: function (data) {
                 $('#addCategory').modal('hide');
-                document.location.reload(false);
+                $('#ajax').html(data);
             }
         });
     }

@@ -211,7 +211,6 @@
                                                 AjaxSuccess);
                                     function AjaxSuccess(data) {
                                         $('#ajax').html(data);
-                                        document.location.reload(false);
                                     }
                                 });
                             }
