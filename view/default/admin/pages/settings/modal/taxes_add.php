@@ -39,7 +39,6 @@
                     <div class="tab-content">
                         <div id="<?php echo $lang_all[0] ?>" class="tab-pane fade in active">
                             <div class="form-group">
-                                <br>
                                 <div class="input-group">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
                                     <input class="input-sm form-control" placeholder="<?php echo $lang['name'] ?>" type="text" name="<?php echo $lang_all[0] ?>" />
@@ -55,7 +54,6 @@
 
                                 <div id="<?php echo $lang_all[$xl] ?>" class="tab-pane fade">
                                     <div class="form-group">
-                                        <br>
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
                                             <input class="input-sm form-control" placeholder="<?php echo $lang['name'] ?>" type="text" name="<?php echo $lang_all[$xl] ?>" />
