@@ -63,7 +63,6 @@ div.context-one {padding:5px;}
 .products .col-right {float: left;width: 250px;}
 .products .col-left-w {float: left;width: 150px;margin-right: 58px;}
 .products .col-right-w {float: left;width: 150px;}
-.products .tab-content {margin-top: 5px;}
 #products .table > thead > tr.border > th {border-bottom: 1px solid #ddd;}
 @media (min-width:768px){.products .modal-dialog{width:680px;margin:30px auto;}}
 .settings-left {float: left;padding-left: 5px;}
@@ -72,4 +71,4 @@ div.context-one {padding:5px;}
 .tooltip-inner {font-family: 'Open Sans',sans-serif;}
 .tooltip-right {float: right;}
 .tooltip-right .glyphicon {color: #000000;opacity: 0.5}
-.tab-pane {padding-top: 15px;}
+.tab-pane {padding-top: 10px;}

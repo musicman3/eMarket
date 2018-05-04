@@ -52,7 +52,6 @@
                             <!-- Содержимое языковых панелей -->
                             <div class="tab-content">
                                 <div id="<?php echo $lang_all[0] ?>" class="tab-pane fade in active">
-                                    <br>
                                     <div class="form-group">
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
@@ -84,7 +83,6 @@
                                         ?>
 
                                         <div id="<?php echo $lang_all[$xl] ?>" class="tab-pane fade">
-                                            <br>
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
