@@ -61,7 +61,7 @@ $menu[$menu_modules][0] = '<a href="#"><span><img src="/view/default/admin/image
 $menu[$menu_modules][1] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/shipping.png" /></span> Модули доставки </a>';
 
 //ИНСТРУМЕНТЫ
-$level[$menu_tools] = '<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span></span> ' . $lang['menu_tools'] . ' <b class="caret"></b></a>';
+$level[$menu_tools] = '<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span></span>' . $lang['menu_tools'] . '<b class="caret"></b></a>';
 
 $menu[$menu_tools][0] = '<a href="/controller/admin/pages/error_log/error_log.php"><span><img src="/view/default/admin/images/icons/16x16/error.png" /></span> ' . $lang['menu_error_log'] . ' </a>';
 $menu[$menu_tools][1] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/folder_explore.png" /></span> Файловый менеджер </a>';
@@ -70,7 +70,7 @@ $menu[$menu_tools][3] = '<a href="#"><span><img src="/view/default/admin/images/
 $menu[$menu_tools][4] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/online.png" /></span> Кто в онлайне </a>';
 
 //ПОМОЩЬ
-$level[$menu_help] = '<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span></span> ' . $lang['menu_help'] . ' <b class="caret"></b></a>';
+$level[$menu_help] = '<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span></span>' . $lang['menu_help'] . '<b class="caret"></b></a>';
 
 $menu[$menu_help][0] = '<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span><img src="/view/default/admin/images/icons/16x16/folder_wrench.png" /></span> ' . $lang['menu_extra'] . ' <b class="caret"></b></a>';
 $submenu[$menu_help][0][0] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/wrench_orange.png" /></span> ' . $lang['menu_support'] . '</a>';
@@ -79,7 +79,7 @@ $menu[$menu_help][1] = '<a href="#" class="dropdown-toggle" data-toggle="dropdow
 
 //Сделать парсер языков для вывода списка языков
 $submenu[$menu_help][1][0] = '<a href="#"><span><img src="/view/default/admin/images/worldflags/ru.png" /></span> ' . $lang['menu_language'] . ' </a>';
-$submenu[$menu_help][1][1] = '<a href="#"><span><img src="/view/default/admin/images/worldflags/gb.png" />Английский</span>  </a>';
+$submenu[$menu_help][1][1] = '<a href="#"><span><img src="/view/default/admin/images/worldflags/gb.png" /></span> Английский </a>';
 
 $menu[$menu_help][2] = '<a target="_blank" href="/controller/catalog/index.php"><span><img src="/view/default/admin/images/icons/16x16/home.png" /></span> ' . $lang['menu_catalog'] . '</a>';
 
