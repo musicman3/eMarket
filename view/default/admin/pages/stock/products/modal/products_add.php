@@ -119,51 +119,65 @@
                         <!-- Содержимое панели Данные -->
                         <div id="panel2" class="tab-pane fade">
                             <div class="row">
-                                <div class="col-left">
-                                    <label><?php echo $lang['product_price'] ?>:</label>
-                                    <input class="input-sm form-control" type="text" name="price" id="price" />
+                                <div class="col-left form-group">
+                                    <div class="input-group has-error">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+                                        <input class="input-sm form-control" placeholder="<?php echo $lang['product_price'] ?>" type="text" name="price" id="price" />
+                                    </div>
                                 </div>
-                                <div class="col-right">
-                                    <label>Налог:</label>
-                                    <select name="tax" id="tax" class="input-sm form-control">
-                                        <option>Без налога</option>
-                                        <?php
-                                        for ($tx = 0; $tx < count($taxes_all); $tx++) {
+                                <div class="col-right form-group">
+                                    <div class="input-group has-error">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
+                                        <select name="tax" id="tax" class="input-sm form-control">
+                                            <option selected hidden>-- Налог --</option>
+                                            <option>Без налога</option>
+                                            <?php
+                                            for ($tx = 0; $tx < count($taxes_all); $tx++) {
+
+                                                ?>
+
+                                                <option><?php echo $taxes_all[$tx] ?></option>
+
+                                                <?php
+                                            }
 
                                             ?>
-
-                                            <option><?php echo $taxes_all[$tx] ?></option>
-
-                                            <?php
-                                        }
-
-                                        ?>
-                                    </select>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-left">
-                                    <label><?php echo $lang['product_quantity'] ?>:</label>
-                                    <input class="input-sm form-control" type="text" name="quantity" id="quantity" />
+                                <div class="col-left form-group">
+                                    <div class="input-group has-error">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+                                    <input class="input-sm form-control" placeholder="<?php echo $lang['product_quantity'] ?>" type="text" name="quantity" id="quantity" />
                                 </div>
-                                <div class="col-right">
-                                    <label><?php echo $lang['product_unit'] ?>:</label>
+                                    </div>
+                                <div class="col-right form-group">
+                                    <div class="input-group has-error">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
                                     <select name="unit" id="unit" class="input-sm form-control">
+                                        <option disabled selected hidden>-- <?php echo $lang['product_unit'] ?> --</option>
                                         <option>шт.</option>
                                         <option>м.</option>
                                         <option>л.</option>
                                     </select>
                                 </div>
+                                    </div>
                             </div>
                             <div class="row">
                                 <div class="col-left">
-                                    <label>Модель:</label>
-                                    <input class="input-sm form-control" type="text" name="model" id="model" />
+                                    <div class="input-group has-error">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+                                    <input class="input-sm form-control" placeholder="Модель" type="text" name="model" id="model" />
                                 </div>
+                                    </div>
                                 <div class="col-right">
-                                    <label>Дата поступления:</label>
-                                    <input class="input-sm form-control" type="text" name="date_available" id="date_available" />
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                    <input class="input-sm" placeholder="Дата поступления" type="text" name="date_available" id="date_available" />
                                 </div>
+                                    </div>
                             </div>
                             <div class="row">
                                 <div class="col-left">
