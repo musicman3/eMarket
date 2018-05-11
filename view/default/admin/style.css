@@ -4,8 +4,12 @@
 ***************************************/
 @font-face {font-family: "Open Sans";src: url("fonts/OpenSans-Regular.ttf");}
 *, ::after, ::before {box-sizing: border-box;}
-:focus {outline: none;}
-.btn, .btn:hover {outline: none;}
+:focus {outline:none;}
+a:active, a:focus {outline: none;}
+button:active, button:focus {outline: none !important;}
+button::-moz-focus-inner {border: 0 !important;}
+input, textarea {outline: none;}
+input:active, textarea:active {outline: none;}
 html {position: relative;min-height: 100%;}
 body {background:#e4e4da;font-family: 'Open Sans',sans-serif;background-image:url('images/sep-half.png');margin-bottom: 70px;}
 .welcome {text-align: center;font-size: 40px;color: #c6c6c6;text-shadow: 0px 1px 1px #FFF;padding-top: 60px;}
