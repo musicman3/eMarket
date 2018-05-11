@@ -283,8 +283,11 @@
                         <!-- Содержимое панели Изображения -->
                         <div id="panel3" class="tab-pane fade">
                             <div class="form-group">
-                                <label for="image"><?php echo $lang['images'] ?>:</label>
-                                <input type="file" multiple="multiple" name="files[]" accept="image" /> <?php echo $lang['max'] ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>
+                                <label for="image"><?php echo $lang['images'] ?>:</label><br>
+                                <label class="btn btn-primary btn-xs" for="my-file-selector">
+                                    <input id="my-file-selector" multiple="multiple" name="files[]" accept="image" type="file" style="display:none;"><span class="glyphicon glyphicon-download-alt"></span> Загрузить
+                                </label><br>
+                                    <?php echo $lang['max'] ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>
                             </div>
                         </div>
 
