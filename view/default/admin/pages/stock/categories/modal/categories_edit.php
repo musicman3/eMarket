@@ -38,7 +38,7 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/stock/categ
 		    <div class="tab-content">
                         <div id="<?php echo $lang_all[0] . $lines[$k][0] ?>" class="tab-pane fade in active">
                         <div class="form-group">
-			    <div class="input-group">
+			    <div class="input-group has-error">
 				<span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
                                 <input class="input-sm form-control" type="text" name="name_edit<?php echo $lang_all[0] ?>" id="name_edit<?php echo $lang_all[0] ?>" value="<?php echo $name_category_edit[0] ?>" />
 			    </div>
@@ -51,7 +51,7 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/stock/categ
 
                                 <div id="<?php echo $lang_all[$xl] . $lines[$k][0] ?>" class="tab-pane fade">
                                     <div class="form-group">
-					<div class="input-group">
+					<div class="input-group has-error">
 					    <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
 					    <input class="input-sm form-control" type="text" name="name_edit<?php echo $lang_all[$xl] ?>" id="name_edit<?php echo $lang_all[$xl] ?>" value="<?php echo $name_category_edit[$xl] ?>" />
 					</div>
