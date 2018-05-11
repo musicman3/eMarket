@@ -173,9 +173,9 @@
                                 </div>
                                     </div>
                                 <div class="col-right">
-                                    <div class="input-group">
+                                    <div class="input-group  has-error">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                    <input class="input-sm" placeholder="Дата поступления" type="text" name="date_available" id="date_available" />
+                                    <input class="input-sm form-control data" placeholder="Дата поступления" type="text" name="date_available" id="date_available" />
                                 </div>
                                     </div>
                             </div>
