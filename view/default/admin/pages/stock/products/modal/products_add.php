@@ -116,7 +116,7 @@
                             <div class="row">
                                 <div class="col-left form-group">
                                     <div class="input-group has-error">
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
                                         <input class="input-sm form-control" placeholder="<?php echo $lang['product_price'] ?>" type="text" name="price" id="price" />
                                     </div>
                                 </div>
@@ -141,7 +141,7 @@
                             <div class="row">
                                 <div class="col-left form-group">
                                     <div class="input-group has-error">
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
                                         <input class="input-sm form-control" placeholder="<?php echo $lang['product_quantity'] ?>" type="text" name="quantity" id="quantity" />
                                     </div>
                                 </div>
@@ -233,7 +233,7 @@
                                 </div>
                                 <div class="col-right form-group">
                                     <div class="input-group has-success">
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
                                         <input class="input-sm form-control" placeholder="Значение веса" type="text" name="weight" id="weight" />
                                     </div>
                                 </div>
@@ -241,7 +241,7 @@
                             <div class="row">
                                 <div class="col-left form-group">
                                     <div class="input-group has-success">
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
                                         <input class="input-sm form-control" placeholder="Минимальное количество" type="text" name="min_quantity" id="min_quantity" />
                                     </div>
                                 </div>
@@ -260,19 +260,19 @@
                             <div class="row">
                                 <div class="col-left-w form-group">
                                     <div class="input-group has-success">
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
                                         <input class="input-sm form-control" placeholder="Длина" type="text" name="length" id="length" />
                                     </div>
                                 </div>
                                 <div class="col-left-w form-group">
                                     <div class="input-group has-success">
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
                                         <input class="input-sm form-control" placeholder="Ширина" type="text" name="width" id="width" />
                                     </div>
                                 </div>
                                 <div class="col-right-w form-group">
                                     <div class="input-group has-success">
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
                                         <input class="input-sm form-control" placeholder="Высота" type="text" name="height" id="height" />
                                     </div>
                                 </div>
