@@ -121,11 +121,10 @@
                                     </div>
                                 </div>
                                 <div class="col-right form-group">
-                                    <div class="input-group has-error">
+                                    <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
                                         <select name="tax" id="tax" class="input-sm form-control">
                                             <option selected hidden>-- Налог --</option>
-                                            <option>Без налога</option>
                                             <?php
                                             for ($tx = 0; $tx < count($taxes_all); $tx++) {
                                                 ?>
@@ -160,7 +159,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-left form-group">
-                                    <div class="input-group has-error">
+                                    <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
                                         <input class="input-sm form-control" placeholder="Модель" type="text" name="model" id="model" />
                                     </div>
@@ -174,7 +173,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-left form-group">
-                                    <div class="input-group has-error">
+                                    <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
                                         <select name="manufacturer" id="manufacturer" class="input-sm form-control">
                                             <option disabled selected hidden>-- Производитель --</option>
