@@ -14,7 +14,7 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/stock/categ
             <div class="modal-header"><div class="tooltip-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Заполните карточку категорий" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
                 <h4 class="modal-title"><?php echo $lang['menu_categories'] ?></h4>
             </div>
-            <form id="form_post<?php echo $lines[$k][0] ?>" action="javascript:void(null);" onsubmit="call<?php echo $lines[$k][0] ?>()" method="post" enctype="multipart/form-data">
+            <form id="form_get<?php echo $lines[$k][0] ?>" action="javascript:void(null);" onsubmit="call<?php echo $lines[$k][0] ?>()" method="get" enctype="multipart/form-data">
                 <div class="panel-body">
                         <input type="hidden" name="parent_id" value="<?php echo $parent_id ?>" />
                         <input type="hidden" name="cat_edit" value="<?php echo $lines[$k][0] ?>" />
@@ -83,9 +83,9 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/stock/categ
 
 <script type="text/javascript" language="javascript">
     function call<?php echo $lines[$k][0] ?>() {
-        var msg = $('#form_post<?php echo $lines[$k][0] ?>').serialize();
+        var msg = $('#form_get<?php echo $lines[$k][0] ?>').serialize();
         $.ajax({
-            type: 'POST',
+            type: 'GET',
             url: '/controller/admin/pages/stock/categories/categories.php',
             data: msg,
             success: function (data) {
