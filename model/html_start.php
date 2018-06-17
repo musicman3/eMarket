@@ -37,7 +37,7 @@
             <script type="text/javascript" language="javascript">
                 $(function () {
                     $('[data-toggle="tooltip"]').tooltip();
-                })
+                });
             </script>
 
             <?php if (file_exists('products.php')) { ?>
