@@ -13,6 +13,7 @@ title_admin = Панель администратора
 title_login = Страница авторизации
 title_error_log = Лог ошибок
 title_settings = Настройки
+title_taxes = Налоги
 title_stock = Склад
 title_categories = Категории
 title_products = Товары
