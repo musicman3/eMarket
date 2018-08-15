@@ -5,9 +5,9 @@
 // *************************************//
 
 ?>
-    <!-- Модальное окно "Налог" -->
-    <?php require_once('modal/taxes_add.php') ?>
-    <!-- КОНЕЦ Модальное окно "Добавить категорию" -->
+<!-- Модальное окно "Налог" -->
+<?php require_once('modal/taxes_add.php') ?>
+<!-- КОНЕЦ Модальное окно "Добавить категорию" -->
 
 <div id="ajax">
     <div id="settings" class="container">
@@ -36,8 +36,7 @@
                                 <td>
                                     <div class="settings-left"><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-briefcase"> </span></a></div>
                                     <div class="settings-page">Налоги</div>
-                                                                        <div class="settings-right"><a href="/controller/admin/pages/settings/taxes.php" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-eye-open"></span></a></div>
-                                    <div class="settings-right"><a href="#taxes_add" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-eye-open"></span></a></div>
+                                    <div class="settings-right"><a href="/controller/admin/pages/settings/taxes.php" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-eye-open"></span></a></div>
                                 </td>
                             </tr>
                             <tr>

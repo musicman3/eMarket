@@ -5,9 +5,9 @@
 // *************************************//
 
 ?>
-    <!-- Модальное окно "Налог" -->
-    <?php require_once('modal/taxes_add.php') ?>
-    <!-- КОНЕЦ Модальное окно "Добавить категорию" -->
+<!-- Модальное окно "Налог" -->
+<?php require_once('modal/taxes_add.php') ?>
+<!-- КОНЕЦ Модальное окно "Добавить категорию" -->
 
 <div id="ajax">
     <div id="settings" class="container">
@@ -21,7 +21,7 @@
                 </div>
                 <div class="panel-body">
                     Добавить налог:
-<div class="settings-right"><a href="#taxes_add" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
+                    <div class="settings-right"><a href="#taxes_add" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
                 </div>
             </div>
         </div>
