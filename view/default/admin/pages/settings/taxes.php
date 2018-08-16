@@ -33,7 +33,7 @@
                                             <input hidden name="i" value="<?php echo $i ?>">
                                             <input hidden name="lines_p" value="<?php echo $lines_p ?>">
                                         <?php } ?>
-                                        <div class="log-right"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/setting/taxes.php" formmethod="post"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
+                                        <div class="log-right"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/setting/taxes.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
                                     </form>
 
 
@@ -42,7 +42,7 @@
                                             <input hidden name="i2" value="<?php echo $i ?>">
                                             <input hidden name="lines_p2" value="<?php echo $lines_p ?>">
                                         <?php } ?>
-                                        <div class="log-left"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/setting/taxes.php" formmethod="post"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
+                                        <div class="log-left"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/setting/taxes.php" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
                                     </form>
 
                                     <form>

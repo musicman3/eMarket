@@ -24,7 +24,7 @@ if ($VALID->inPOST('rate')) {
 }
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
-$lines_page = 20; // задаем количество строк на странице вывода
+$lines_page = 2; // задаем количество строк на странице вывода
 $i = 0; // устанавливаем страницу в ноль при заходе
 $lines_p = $lines_page;
 
@@ -34,11 +34,11 @@ if ($counter <= $lines_page) {
     $lines_p = $counter;
 }
 // Если нажали на кнопку вперед
-if ($VALID->inPOST('lines_p')) {
-    $lines_p = $VALID->inPOST('lines_p') + $lines_page; // пересчитываем количество строк на странице
-    $i = $VALID->inPOST('i') + $lines_page; // задаем значение счетчика
+if ($VALID->inGET('lines_p')) {
+    $lines_p = $VALID->inGET('lines_p') + $lines_page; // пересчитываем количество строк на странице
+    $i = $VALID->inGET('i') + $lines_page; // задаем значение счетчика
     if ($i >= $counter) {
-        $i = $VALID->inPOST('i');
+        $i = $VALID->inGET('i');
     }
     if ($lines_p >= $counter) {
         $lines_p = $counter;
@@ -46,9 +46,9 @@ if ($VALID->inPOST('lines_p')) {
 }
 // Если нажали на кнопку назад
 if ($counter >= $lines_page) {
-    if ($VALID->inPOST('lines_p2')) {
-        $lines_p = $VALID->inPOST('i2'); // пересчитываем количество строк на странице
-        $i = $VALID->inPOST('i2') - $lines_page; // задаем значение счетчика
+    if ($VALID->inGET('lines_p2')) {
+        $lines_p = $VALID->inGET('i2'); // пересчитываем количество строк на странице
+        $i = $VALID->inGET('i2') - $lines_page; // задаем значение счетчика
         if ($i < 0) {
             $i = 0;
         }
