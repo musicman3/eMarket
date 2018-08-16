@@ -27,22 +27,24 @@
                                 </th>
 
                                 <th>
-
-                                    <?php if ($counter > $lines_page) { ?>
-
+                                    
                                         <form>
+                                            <?php if ($counter > $lines_page) { ?>
                                             <input hidden name="i" value="<?php echo $i ?>">
                                             <input hidden name="lines_p" value="<?php echo $lines_p ?>">
+                                            <?php } ?>
                                             <div class="log-right"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/error_log/error_log.php" formmethod="post"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
                                         </form>
 
                                         <form>
+                                            <?php if ($counter > $lines_page) { ?>
                                             <input hidden name="i2" value="<?php echo $i ?>">
                                             <input hidden name="lines_p2" value="<?php echo $lines_p ?>">
+                                            <?php } ?>
                                             <div class="log-left"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/error_log/error_log.php" formmethod="post"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
                                         </form>
 
-                                    <?php } ?>
+                                    
 
                                     <form>
                                         <input hidden name="log_delete" value="delete">
