@@ -20,25 +20,29 @@
                     </h3>
                 </div>
                 <div class="panel-body">
-		    <table class="table table-hover">
+                    <table class="table table-hover">
                         <thead>
                             <tr>
                                 <th colspan="2">
-                                    <div class="log-page"><?php echo $lang['s'] ?> <?php echo $i + 1 ?> <?php echo $lang['po'] ?> <?php echo $lines_p ?> ( <?php echo $lang['iz'] ?> <?php echo $counter; ?> )</div>
+                                    <div class="log-page"><?php echo $lang['s'] ?> <?php echo $i ?> <?php echo $lang['po'] ?> <?php echo $lines_p ?> ( <?php echo $lang['iz'] ?> <?php echo $counter ?> )</div>
                                 </th>
 
                                 <th>
                                     <form>
-                                        <input hidden name="i" value="<?php echo $i ?>">
-                                        <input hidden name="lines_p" value="<?php echo $lines_p ?>">
-                                        <div class="log-right"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/error_log/error_log.php" formmethod="post"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
+                                        <?php if ($counter > $lines_page) { ?>
+                                            <input hidden name="i" value="<?php echo $i ?>">
+                                            <input hidden name="lines_p" value="<?php echo $lines_p ?>">
+                                        <?php } ?>
+                                        <div class="log-right"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/setting/taxes.php" formmethod="post"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
                                     </form>
 
 
                                     <form>
-                                        <input hidden name="i2" value="<?php echo $i ?>">
-                                        <input hidden name="lines_p2" value="<?php echo $lines_p ?>">
-                                        <div class="log-left"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/error_log/error_log.php" formmethod="post"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
+                                        <?php if ($counter > $lines_page) { ?>
+                                            <input hidden name="i2" value="<?php echo $i ?>">
+                                            <input hidden name="lines_p2" value="<?php echo $lines_p ?>">
+                                        <?php } ?>
+                                        <div class="log-left"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/setting/taxes.php" formmethod="post"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
                                     </form>
 
                                     <form>
@@ -58,7 +62,7 @@
                                 <td class="al-text">...</td>
                                 <td class="al-text-w">...</td>
                             </tr>
-			    <tr>
+                            <tr>
                                 <td>...</td>
                                 <td class="al-text">...</td>
                                 <td class="al-text-w">...</td>
