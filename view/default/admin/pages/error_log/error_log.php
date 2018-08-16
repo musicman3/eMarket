@@ -16,7 +16,7 @@
                     <div class="clearfix"></div>
                 </h3>
             </div>
-<?php if (file_exists($VALID->inSERVER('DOCUMENT_ROOT') . '/model/work/errors.log') == true) { ?>
+            <?php if (file_exists($VALID->inSERVER('DOCUMENT_ROOT') . '/model/work/errors.log') == true) { ?>
                 <div class="panel-body">
                     <!--<div class="table-responsive">-->
                     <table class="table">
@@ -27,62 +27,72 @@
                                 </th>
 
                                 <th>
-                                    <form>
-                                        <input hidden name="i" value="<?php echo $i ?>">
-                                        <input hidden name="lines_p" value="<?php echo $lines_p ?>">
-                                        <div class="log-right"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/error_log/error_log.php" formmethod="post"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
-                                    </form>
 
+                                    <?php if ($counter > $lines_page) { ?>
 
-                                    <form>
-                                        <input hidden name="i2" value="<?php echo $i ?>">
-                                        <input hidden name="lines_p2" value="<?php echo $lines_p ?>">
-                                        <div class="log-left"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/error_log/error_log.php" formmethod="post"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
-                                    </form>
+                                        <form>
+                                            <input hidden name="i" value="<?php echo $i ?>">
+                                            <input hidden name="lines_p" value="<?php echo $lines_p ?>">
+                                            <div class="log-right"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/error_log/error_log.php" formmethod="post"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
+                                        </form>
+
+                                        <form>
+                                            <input hidden name="i2" value="<?php echo $i ?>">
+                                            <input hidden name="lines_p2" value="<?php echo $lines_p ?>">
+                                            <div class="log-left"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/error_log/error_log.php" formmethod="post"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
+                                        </form>
+
+                                    <?php } ?>
 
                                     <form>
                                         <input hidden name="log_delete" value="delete">
                                         <div class="log-left"><button type="submit" name="log_delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo $lang['confirm-yes'] ?>" data-btn-cancel-label="<?php echo $lang['confirm-no'] ?>" title="<?php echo $lang['confirm-del'] ?>" action="/controller/admin/pages/error_log/error_log.php" formmethod="post"><span class="glyphicon glyphicon-trash"> </span></button></div>
                                     </form>
+
                                 </th>
                             </tr>
                         </thead>
 
                         <tbody>
 
-                            <?php for ($i; $i < $lines_p; $i++) {
+                            <?php
+                            for ($i; $i < $lines_p; $i++) {
 
                                 if (strrpos($lines[$i], 'PHP Notice:') == true) {
 
-                                    ?><tr class="success"><td colspan="2"><?php echo $lines[$i] . '</td></tr>'; ?><?php } elseif
-                            (strrpos($lines[$i], 'PHP Warning:') == true) {
+                                    ?><tr class="success"><td colspan="2"><?php echo $lines[$i] . '</td></tr>'; ?><?php
+                                } elseif
+                                (strrpos($lines[$i], 'PHP Warning:') == true) {
 
-                                    ?><tr class="warning"><td colspan="2"><?php echo $lines[$i] . '</td></tr>'; ?><?php } elseif
-                            (strrpos($lines[$i], 'PHP Catchable fatal error:') == true) {
+                                    ?><tr class="warning"><td colspan="2"><?php echo $lines[$i] . '</td></tr>'; ?><?php
+                                        } elseif
+                                        (strrpos($lines[$i], 'PHP Catchable fatal error:') == true) {
 
-                                    ?><tr class="danger"><td colspan="2"><?php echo $lines[$i] . '</td></tr>'; ?><?php } elseif
-                            (strrpos($lines[$i], 'PHP Fatal error:') == true) {
+                                            ?><tr class="danger"><td colspan="2"><?php echo $lines[$i] . '</td></tr>'; ?><?php
+                                        } elseif
+                                        (strrpos($lines[$i], 'PHP Fatal error:') == true) {
 
-                                    ?><tr class="danger"><td colspan="2"><?php echo $lines[$i] . '</td></tr>'; ?><?php } elseif
-                                    (strrpos($lines[$i], 'PHP Parse error:') == true) {
+                                            ?><tr class="danger"><td colspan="2"><?php echo $lines[$i] . '</td></tr>'; ?><?php
+                                        } elseif
+                                        (strrpos($lines[$i], 'PHP Parse error:') == true) {
 
-                                        ?><tr class="info"><td colspan="2"><?php echo $lines[$i] . '</td></tr>'; ?><?php } else {
+                                            ?><tr class="info"><td colspan="2"><?php echo $lines[$i] . '</td></tr>'; ?><?php } else {
 
-                                        ?><tr><td colspan="2"><?php
-                                        echo $lines[$i] . '</td></tr>';
-                                    }
-                                }
+                                            ?><tr><td colspan="2"><?php
+                                                    echo $lines[$i] . '</td></tr>';
+                                                }
+                                            }
 
-                            ?>
+                                            ?>
 
                         </tbody>
 
                     </table>
                     <!--</div>-->
                 </div>
-<?php } else { ?>
+            <?php } else { ?>
                 <div class="panel-body"><?php echo $lang['no_log'] ?></div>
-<?php } ?>
+            <?php } ?>
         </div>
     </div>
 </div>
