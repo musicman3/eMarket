@@ -57,16 +57,13 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <?php for ($i; $i < $lines_p; $i++) { ?>
                             <tr>
-                                <td>...</td>
-                                <td class="al-text">...</td>
+                                <td><?php echo $lines[$i][1] ?></td>
+                                <td class="al-text"><?php echo $lines[$i][2] ?></td>
                                 <td class="al-text-w">...</td>
                             </tr>
-                            <tr>
-                                <td>...</td>
-                                <td class="al-text">...</td>
-                                <td class="al-text-w">...</td>
-                            </tr>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>

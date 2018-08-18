@@ -24,9 +24,11 @@ if ($VALID->inPOST('rate')) {
 }
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
-$lines_page = 20; // задаем количество строк на странице вывода
+$lines_page = 3; // задаем количество строк на странице вывода
 $i = 0; // устанавливаем страницу в ноль при заходе
 $lines_p = $lines_page;
+//Получаем массив таблицы налогов
+$lines = $PDO->getColRow("SELECT id, name, rate FROM " . TABLE_TAXES . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);
 
 $counter = $PDO->getRowCount("SELECT id FROM " . TABLE_TAXES . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]); // считаем количество записей налогов
 
