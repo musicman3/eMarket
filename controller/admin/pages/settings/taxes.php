@@ -31,42 +31,12 @@ if ($VALID->inPOST('tax_delete')) {
 }
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
-$lines_page = 20; // задаем количество строк на странице вывода
-$i = 0; // устанавливаем страницу в ноль при заходе
-$lines_p = $lines_page;
-//Получаем массив таблицы налогов
+// Получаем массив таблицы налогов
 $lines = $PDO->getColRow("SELECT id, name, rate FROM " . TABLE_TAXES . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);
-
-$counter = $PDO->getRowCount("SELECT id FROM " . TABLE_TAXES . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]); // считаем количество записей налогов
-
-if ($counter <= $lines_page) {
-    $lines_p = $counter;
-}
-// Если нажали на кнопку вперед
-if ($VALID->inGET('lines_p')) {
-    $lines_p = $VALID->inGET('lines_p') + $lines_page; // пересчитываем количество строк на странице
-    $i = $VALID->inGET('i') + $lines_page; // задаем значение счетчика
-    if ($i >= $counter) {
-        $i = $VALID->inGET('i');
-    }
-    if ($lines_p >= $counter) {
-        $lines_p = $counter;
-    }
-}
-// Если нажали на кнопку назад
-if ($counter >= $lines_page) {
-    if ($VALID->inGET('lines_p2')) {
-        $lines_p = $VALID->inGET('i2'); // пересчитываем количество строк на странице
-        $i = $VALID->inGET('i2') - $lines_page; // задаем значение счетчика
-        if ($i < 0) {
-            $i = 0;
-        }
-        if ($lines_p < $lines_page) {
-            $lines_p = $lines_page;
-        }
-    }
-}
-
+// Cчитаем количество записей налогов
+$counter = $PDO->getRowCount("SELECT id FROM " . TABLE_TAXES . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);
+// Подключаем файл навигации
+require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/includes/navigation.php');
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 //
 // *********  CONNECT PAGE END  ********* //
