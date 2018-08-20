@@ -11,7 +11,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/model/connect_page_start.php');
 // ************************************** //
 // 
 // Если нажали на кнопку Добавить налог
-if ($VALID->inPOST('rate')) {
+if ($VALID->inGET('rate')) {
 
     // Получаем последний id и увеличиваем его на 1
     $id_tax_max = $PDO->selectPrepare("SELECT id FROM " . TABLE_TAXES . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);
@@ -19,15 +19,15 @@ if ($VALID->inPOST('rate')) {
 
     // добавляем запись для всех вкладок
     for ($xl = 0; $xl < count($lang_all); $xl++) {
-        $PDO->insertPrepare("INSERT INTO " . TABLE_TAXES . " SET id=?, name=?, language=?, rate=?", [$id, $VALID->inPOST($lang_all[$xl]), $lang_all[$xl], $VALID->inPOST('rate')]);
+        $PDO->insertPrepare("INSERT INTO " . TABLE_TAXES . " SET id=?, name=?, language=?, rate=?", [$id, $VALID->inGET($lang_all[$xl]), $lang_all[$xl], $VALID->inGET('rate')]);
     }
 }
 
 // Если нажали на кнопку Удалить
-if ($VALID->inPOST('tax_delete')) {
+if ($VALID->inGET('tax_delete')) {
 
     // Удаляем налог
-    $PDO->insertPrepare("DELETE FROM " . TABLE_TAXES . " WHERE id=?", [$VALID->inPOST('tax_delete')]);
+    $PDO->insertPrepare("DELETE FROM " . TABLE_TAXES . " WHERE id=?", [$VALID->inGET('tax_delete')]);
 }
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ

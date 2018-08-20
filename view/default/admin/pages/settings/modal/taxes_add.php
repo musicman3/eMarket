@@ -12,7 +12,7 @@
             <div class="modal-header"><div class="tooltip-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Ставка указывается в формате: 10.00" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
                 <h4 class="modal-title">Налоги</h4>
             </div>
-            <form id="form_taxes" name="form_taxes" action="javascript:void(null);" onsubmit="call_taxes()" method="post" enctype="multipart/form-data">
+            <form id="form_taxes" name="form_taxes" action="javascript:void(null);" onsubmit="call_taxes()" method="get" enctype="multipart/form-data">
                 <div class="panel-body">
 
                     <!-- Языковые панели -->
@@ -87,7 +87,7 @@
     function call_taxes() {
         var msg = $('#form_taxes').serialize();
         $.ajax({
-            type: 'POST',
+            type: 'GET',
             url: '/controller/admin/pages/settings/taxes.php',
             data: msg,
             success: function (data) {
