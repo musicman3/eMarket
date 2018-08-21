@@ -92,7 +92,7 @@
             data: msg,
             success: function (data) {
                 $('#taxes_add').modal('hide');
-                document.location.reload(false);
+                location.href='/controller/admin/pages/settings/taxes.php';
             }
         });
     }
