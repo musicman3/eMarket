@@ -3,7 +3,7 @@
 //   GNU GENERAL PUBLIC LICENSE v.3.0   //    
 // https://github.com/musicman3/eMarket //
 // *************************************//
-
+require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/modal/taxes_edit.php');
 ?>
 
 <!-- Модальное окно "Налог" -->
@@ -13,12 +13,12 @@
             <div class="modal-header"><div class="tooltip-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Ставка указывается в формате: 10.00" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
                 <h4 class="modal-title">Налоги</h4>
             </div>
-            <form id="form_taxes<?php echo $lines[$i][0] ?>" name="form_taxes<?php echo $lines[$k][0] ?>" action="javascript:void(null);" onsubmit="call_taxes<?php echo $lines[$k][0] ?>()" method="get" enctype="multipart/form-data">
+            <form id="form_taxes<?php echo $lines[$k][0] ?>" name="form_taxes<?php echo $lines[$k][0] ?>" action="javascript:void(null);" onsubmit="call_taxes<?php echo $lines[$k][0] ?>()" method="get" enctype="multipart/form-data">
                 <div class="panel-body">
 
                     <!-- Языковые панели -->
                     <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#<?php echo $lang_all[0] ?>"><img src="/view/default/admin/images/langflags/<?php echo $lang_all[0] ?>.png" alt="<?php echo $lang_all[0] ?>" title="<?php echo $lang_all[0] ?>" width="16" height="10" /> <?php echo $lang['menu_language'] ?></a></li>
+                        <li class="active"><a data-toggle="tab" href="#<?php echo $lang_all[0] . $lines[$k][0] ?>"><img src="/view/default/admin/images/langflags/<?php echo $lang_all[0] ?>.png" alt="<?php echo $lang_all[0] ?>" title="<?php echo $lang_all[0] ?>" width="16" height="10" /> <?php echo $lang['menu_language'] ?></a></li>
 
                         <?php
                         if (count($lang_all) > 1) {
@@ -26,7 +26,7 @@
 
                                 ?>
 
-                                <li><a data-toggle="tab" href="#<?php echo $lang_all[$xl] ?>"><img src="/view/default/admin/images/langflags/<?php echo $lang_all[$xl] ?>.png" alt="<?php echo $lang_all[$xl] ?>" title="<?php echo $lang_all[$xl] ?>" width="16" height="10" /> <?php echo $lang_all[$xl] ?></a></li>
+                                <li><a data-toggle="tab" href="#<?php echo $lang_all[$xl] . $lines[$k][0] ?>"><img src="/view/default/admin/images/langflags/<?php echo $lang_all[$xl] ?>.png" alt="<?php echo $lang_all[$xl] ?>" title="<?php echo $lang_all[$xl] ?>" width="16" height="10" /> <?php echo $lang_all[$xl] ?></a></li>
 
                                 <?php
                             }
@@ -38,11 +38,11 @@
 
                     <!-- Содержимое языковых панелей -->
                     <div class="tab-content">
-                        <div id="<?php echo $lang_all[0] ?>" class="tab-pane fade in active">
+                        <div id="<?php echo $lang_all[0] . $lines[$k][0] ?>" class="tab-pane fade in active">
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="input-sm form-control" placeholder="<?php echo $lang['name'] ?>" type="text" name="<?php echo $lang_all[0] ?>" />
+                                    <input class="input-sm form-control" type="text" name="name_edit<?php echo $lang_all[0] ?>" id="name_edit<?php echo $lang_all[0] ?>" value="<?php echo $name_taxes_edit[0] ?>" />
                                 </div>
                             </div>
                         </div>
@@ -53,11 +53,11 @@
 
                                 ?>
 
-                                <div id="<?php echo $lang_all[$xl] ?>" class="tab-pane fade">
+                                <div id="<?php echo $lang_all[$xl] . $lines[$k][0] ?>" class="tab-pane fade">
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo $lang['name'] ?>" type="text" name="<?php echo $lang_all[$xl] ?>" />
+                                            <input class="input-sm form-control" type="text" name="name_edit<?php echo $lang_all[$xl] ?>" id="name_edit<?php echo $lang_all[$xl] ?>" value="<?php echo $name_taxes_edit[$xl] ?>" />
                                         </div>
                                     </div>
                                 </div>
@@ -71,7 +71,7 @@
                         <div class="form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                <input class="input-sm form-control" placeholder="Налоговая ставка (%)" type="text" name="rate" id="rate" />
+                                <input class="input-sm form-control" type="text" name="rate" id="rate" value="<?php echo $value_taxes_edit ?>" />
                             </div>
                         </div>
                     </div>
@@ -88,13 +88,13 @@
 </div>
 <script type="text/javascript" language="javascript">
     function call_taxes<?php echo $lines[$k][0] ?>() {
-        var msg = $('#form_taxes').serialize();
+        var msg = $('#form_taxes<?php echo $lines[$k][0] ?>').serialize();
         $.ajax({
             type: 'GET',
             url: '/controller/admin/pages/settings/taxes.php',
             data: msg,
             success: function (data) {
-                $('#taxes_add').modal('hide');
+                $('#taxes_add<?php echo $lines[$k][0] ?>').modal('hide');
                 location.href = '/controller/admin/pages/settings/taxes.php';
             }
         });

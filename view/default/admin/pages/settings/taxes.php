@@ -15,7 +15,7 @@
 <?php for ($k; $k < $lines_p; $k++) { // запускаем цикл формирования модальных окон Редактирования категорий ?>
 
     <!-- Вставляем модальное окно "Редактировать категорию" -->
-    <?php require('modal/taxes_edit.php') ?>
+    <?php require($VALID->inSERVER('DOCUMENT_ROOT') . '/view/default/admin/pages/settings/modal/taxes_edit.php') ?>
 
 <?php } ?>
 
