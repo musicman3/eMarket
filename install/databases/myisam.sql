@@ -76,3 +76,12 @@ CREATE TABLE emkt_taxes (
         rate decimal(4,2),
 	PRIMARY KEY (id, language))
 ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS emkt_units;
+CREATE TABLE emkt_units (
+	id int NOT NULL,
+	name varchar(256),
+	language varchar(64),
+        unit varchar(256),
+	PRIMARY KEY (id, language))
+ENGINE=MyISAM DEFAULT CHARSET=utf8;
