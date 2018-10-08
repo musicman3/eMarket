@@ -23,6 +23,15 @@ if ($VALID->inGET('rate')) {
     }
 }
 
+// Если нажали на кнопку Редактировать
+if ($VALID->inGET('tax_edit')) {
+
+    for ($xl = 0; $xl < count($lang_all); $xl++) {
+        // обновляем запись
+        $PDO->insertPrepare("UPDATE " . TABLE_TAXES . " SET name=?, rate=? WHERE id=? AND language=?", [$VALID->inGET('name_edit' . $lang_all[$xl]), $VALID->inGET('rate'), $VALID->inGET('tax_edit'), $lang_all[$xl]]);
+    }
+}
+
 // Если нажали на кнопку Удалить
 if ($VALID->inGET('tax_delete')) {
 
@@ -43,7 +52,6 @@ require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/includes/navigation.php
 require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/connect_page_end.php');
 require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/html_end.php');
 // ************************************** //
-
 ?>
 </body>
 </html>

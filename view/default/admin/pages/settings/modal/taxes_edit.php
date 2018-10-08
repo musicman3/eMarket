@@ -15,7 +15,7 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/mo
             </div>
             <form id="form_taxes<?php echo $lines[$k][0] ?>" name="form_taxes<?php echo $lines[$k][0] ?>" action="javascript:void(null);" onsubmit="call_taxes<?php echo $lines[$k][0] ?>()" method="get" enctype="multipart/form-data">
                 <div class="panel-body">
-
+                    <input type="hidden" name="tax_edit" value="<?php echo $lines[$k][0] ?>" />
                     <!-- Языковые панели -->
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#<?php echo $lang_all[0] . $lines[$k][0] ?>"><img src="/view/default/admin/images/langflags/<?php echo $lang_all[0] ?>.png" alt="<?php echo $lang_all[0] ?>" title="<?php echo $lang_all[0] ?>" width="16" height="10" /> <?php echo $lang['menu_language'] ?></a></li>
@@ -23,7 +23,6 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/mo
                         <?php
                         if (count($lang_all) > 1) {
                             for ($xl = 1; $xl < count($lang_all); $xl++) {
-
                                 ?>
 
                                 <li><a data-toggle="tab" href="#<?php echo $lang_all[$xl] . $lines[$k][0] ?>"><img src="/view/default/admin/images/langflags/<?php echo $lang_all[$xl] ?>.png" alt="<?php echo $lang_all[$xl] ?>" title="<?php echo $lang_all[$xl] ?>" width="16" height="10" /> <?php echo $lang_all[$xl] ?></a></li>
@@ -31,7 +30,6 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/mo
                                 <?php
                             }
                         }
-
                         ?>
 
                     </ul>
@@ -47,11 +45,10 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/mo
                             </div>
                         </div>
 
-                        <?php
-                        if (count($lang_all) > 1) {
-                            for ($xl = 1; $xl < count($lang_all); $xl++) {
-
-                                ?>
+<?php
+if (count($lang_all) > 1) {
+    for ($xl = 1; $xl < count($lang_all); $xl++) {
+        ?>
 
                                 <div id="<?php echo $lang_all[$xl] . $lines[$k][0] ?>" class="tab-pane fade">
                                     <div class="form-group">
@@ -62,11 +59,10 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/mo
                                     </div>
                                 </div>
 
-                                <?php
-                            }
-                        }
-
-                        ?>
+        <?php
+    }
+}
+?>
 
                         <div class="form-group">
                             <div class="input-group has-error">
