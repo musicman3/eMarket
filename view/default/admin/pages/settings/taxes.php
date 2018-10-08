@@ -3,15 +3,16 @@
 //   GNU GENERAL PUBLIC LICENSE v.3.0   //    
 // https://github.com/musicman3/eMarket //
 // *************************************//
+
 ?>
 <!-- Модальное окно "Добавить налог" -->
 <?php require_once('modal/taxes_add.php') ?>
 <!-- КОНЕЦ Модальное окно "Добавить категорию" -->
 
 <!-- Дублируем модальные окна Редактирования категорий -->
-<?php $k = $i; // дублируем переменную  ?>
+<?php $k = $i; // дублируем переменную   ?>
 
-<?php for ($k; $k < $lines_p; $k++) { // запускаем цикл формирования модальных окон Редактирования категорий  ?>
+<?php for ($k; $k < $lines_p; $k++) { // запускаем цикл формирования модальных окон Редактирования категорий   ?>
 
     <!-- Вставляем модальное окно "Редактировать категорию" -->
     <?php require($VALID->inSERVER('DOCUMENT_ROOT') . '/view/default/admin/pages/settings/modal/taxes_edit.php') ?>
@@ -33,7 +34,14 @@
                         <thead>
                             <tr>
                                 <th colspan="2">
-                                    <div class="log-page"><?php echo $lang['s'] ?> <?php echo $i + 1 ?> <?php echo $lang['po'] ?> <?php echo $lines_p ?> ( <?php echo $lang['iz'] ?> <?php echo $counter ?> )</div>
+                                    <?php if ($lines == TRUE) { ?>
+                                        <div class="log-page"><?php echo $lang['s'] ?> <?php echo $i + 1 ?> <?php echo $lang['po'] ?> <?php echo $lines_p ?> ( <?php echo $lang['iz'] ?> <?php echo $counter ?> )</div>
+                                        <?php
+                                    } else {
+
+                                        ?>
+                                        <div class="log-page"><?php echo $lang['no_taxes'] ?></div>
+                                    <?php } ?>
                                 </th>
 
                                 <th>

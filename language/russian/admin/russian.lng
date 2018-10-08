@@ -33,6 +33,7 @@ po = по
 iz = из
 no_log = Лог ошибок пустой
 no_cat = Категорий нет
+no_taxes = Налогов нет
 confirm-yes = Да
 confirm-no = Нет
 confirm-del = Удалить?
