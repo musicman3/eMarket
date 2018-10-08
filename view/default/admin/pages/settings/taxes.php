@@ -5,9 +5,19 @@
 // *************************************//
 
 ?>
-<!-- Модальное окно "Налог" -->
+<!-- Модальное окно "Добавить налог" -->
 <?php require_once('modal/taxes_add.php') ?>
 <!-- КОНЕЦ Модальное окно "Добавить категорию" -->
+
+<!-- Дублируем модальные окна Редактирования категорий -->
+<?php $k = $i; // дублируем переменную ?>
+
+<?php for ($k; $k < $lines_p; $k++) { // запускаем цикл формирования модальных окон Редактирования категорий ?>
+
+    <!-- Вставляем модальное окно "Редактировать категорию" -->
+    <?php require('modal/taxes_edit.php') ?>
+
+<?php } ?>
 
 <div id="ajax">
     <div id="settings" class="container">
@@ -45,9 +55,9 @@
                                         <div class="log-left"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/setting/taxes.php" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
                                     </form>
 
-                                    <form>
-                                        <div class="log-left"><a href="#taxes_add" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
-                                    </form>
+                                    <div class="log-left">
+                                        <a href="#taxes_add" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a>
+                                    </div>
                                 </th>
                             </tr>
                             <tr class="border">
@@ -65,6 +75,7 @@
                                         <form>
                                             <input hidden name="tax_delete" value="<?php echo $lines[$i][0] ?>">
                                             <div class="log-left">
+                                                <a href="#taxes_edit<?php echo $lines[$i][0] ?>" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span></a>
                                                 <button type="submit" name="tax_delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo $lang['confirm-yes'] ?>" data-btn-cancel-label="<?php echo $lang['confirm-no'] ?>" title="<?php echo $lang['confirm-del'] ?>" action="/controller/admin/pages/setting/taxes.php" formmethod="get"><span class="glyphicon glyphicon-trash"> </span></button>
                                             </div>
                                         </form>
