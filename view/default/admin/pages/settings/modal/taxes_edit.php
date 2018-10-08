@@ -67,7 +67,7 @@ if (count($lang_all) > 1) {
                         <div class="form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                <input class="input-sm form-control" type="text" name="rate" id="rate" value="<?php echo $value_taxes_edit ?>" />
+                                <input class="input-sm form-control" type="text" name="rate_edit" id="rate_edit" value="<?php echo $value_taxes_edit ?>" />
                             </div>
                         </div>
                     </div>
