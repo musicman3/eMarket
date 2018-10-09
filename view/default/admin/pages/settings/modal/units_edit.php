@@ -43,18 +43,18 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/mo
                                     <input class="input-sm form-control" type="text" name="name_edit<?php echo $lang_all[0] ?>" id="name_edit<?php echo $lang_all[0] ?>" value="<?php echo $name_units_edit[0] ?>" />
                                 </div>
                             </div>
-                                                    <div class="form-group">
-                            <div class="input-group has-error">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                <input class="input-sm form-control" type="text" name="unit_edit<?php echo $lang_all[0] ?>" id="unit_edit<?php echo $lang_all[0] ?>" value="<?php echo $value_units_edit[0] ?>" />
+                            <div class="form-group">
+                                <div class="input-group has-error">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
+                                    <input class="input-sm form-control" type="text" name="unit_edit<?php echo $lang_all[0] ?>" id="unit_edit<?php echo $lang_all[0] ?>" value="<?php echo $value_units_edit[0] ?>" />
+                                </div>
                             </div>
                         </div>
-                        </div>
 
-<?php
-if (count($lang_all) > 1) {
-    for ($xl = 1; $xl < count($lang_all); $xl++) {
-        ?>
+                        <?php
+                        if (count($lang_all) > 1) {
+                            for ($xl = 1; $xl < count($lang_all); $xl++) {
+                                ?>
 
                                 <div id="<?php echo $lang_all[$xl] . $lines[$k][0] ?>" class="tab-pane fade">
                                     <div class="form-group">
@@ -64,17 +64,15 @@ if (count($lang_all) > 1) {
                                         </div>
                                     </div>
                                     <div class="form-group">
-                            <div class="input-group has-error">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                <input class="input-sm form-control" type="text" name="unit_edit<?php echo $lang_all[$xl] ?>" id="unit_edit<?php echo $lang_all[$xl] ?>" value="<?php echo $value_units_edit[$xl] ?>" />
-                            </div>
-                        </div>
+                                        <div class="input-group has-error">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
+                                            <input class="input-sm form-control" type="text" name="unit_edit<?php echo $lang_all[$xl] ?>" id="unit_edit<?php echo $lang_all[$xl] ?>" value="<?php echo $value_units_edit[$xl] ?>" />
+                                        </div>
+                                    </div>
                                 </div>
 
-        <?php
-    }
-}
-?>
+                            <?php }
+                        } ?>
 
                     </div>
                 </div>
