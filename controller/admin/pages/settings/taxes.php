@@ -10,7 +10,7 @@ error_reporting(-1);
 require_once($_SERVER['DOCUMENT_ROOT'] . '/model/connect_page_start.php');
 // ************************************** //
 // 
-// Если нажали на кнопку Добавить налог
+// Если нажали на кнопку Добавить
 if ($VALID->inGET('rate')) {
 
     // Получаем последний id и увеличиваем его на 1

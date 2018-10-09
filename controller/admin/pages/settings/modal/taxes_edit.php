@@ -3,7 +3,7 @@
 //   GNU GENERAL PUBLIC LICENSE v.3.0   //
 // https://github.com/musicman3/eMarket //
 // *************************************//
-// собираем данные для отображения в Редактировании категорий
+// собираем данные для отображения в Редактировании
 if (isset($lines[$k][0]) == TRUE) {
     $name_taxes_edit = array();
     for ($xl = 0; $xl < count($lang_all); $xl++) {

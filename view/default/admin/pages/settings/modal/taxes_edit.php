@@ -6,7 +6,7 @@
 require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/modal/taxes_edit.php');
 ?>
 
-<!-- Модальное окно "Налог" -->
+<!-- Модальное окно "Изменить налог" -->
 <div id="taxes_edit<?php echo $lines[$k][0] ?>" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -97,4 +97,4 @@ if (count($lang_all) > 1) {
     }
 </script>
 
-<!-- КОНЕЦ Модальное окно "Добавить категорию" -->
+<!-- КОНЕЦ Модальное окно "Изменить налог" -->
