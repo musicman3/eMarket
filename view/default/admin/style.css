@@ -70,9 +70,8 @@ div.context-one {padding:5px;}
 .products .col-right-w {float: left;width: 150px;}
 #products .table > thead > tr.border > th {border-bottom: 1px solid #ddd;}
 @media (min-width:768px){.products .modal-dialog{width:680px;margin:30px auto;}}
-.settings-left {float: left;padding-left: 5px;}
-.settings-page {float: left;padding-left: 10px;}
-.settings-right {float: right;padding-right: 5px;}
+.settings {float: left;padding-left: 5px;}
+.settings .btn {margin-right: 10px;}
 .tooltip-inner {font-family: 'Open Sans',sans-serif;}
 .tooltip-right {float: right;}
 .tooltip-right .glyphicon {color: #000000;opacity: 0.5}

@@ -24,44 +24,35 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <div class="settings-left"><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-globe"> </span></a></div>
-                                    <div class="settings-page">Страны</div>
+                                    <div class="settings"><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-globe"> </span></a>Страны</div>
                                 </td>
                                 <td>
-                                    <div class="settings-left"><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-adjust"> </span></a></div>
-                                    <div class="settings-page">Зоны</div>
+                                    <div class="settings"><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-adjust"> </span></a>Зоны</div>
                                 </td>
                                 <td>
-                                    <div class="settings-left"><a href="/controller/admin/pages/settings/taxes.php" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-briefcase"> </span></a></div>
-                                    <div class="settings-page">Налоги</div>
+                                    <div class="settings"><a href="/controller/admin/pages/settings/taxes.php" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-briefcase"> </span></a>Налоги</div>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <div class="settings-left"><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-road"> </span></a></div>
-                                    <div class="settings-page">Размер</div>
+                                    <div class="settings"><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-road"> </span></a>Размер</div>
                                 </td>
                                 <td>
-                                    <div class="settings-left"><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-oil"> </span></a></div>
-                                    <div class="settings-page">Вес</div>
+                                    <div class="settings"><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-oil"> </span></a>Вес</div>
                                 </td>
                                 <td>
-                                    <div class="settings-left"><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-comment"> </span></a></div>
-                                    <div class="settings-page">Языки</div>
+                                    <div class="settings"><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-comment"> </span></a>Языки</div>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <div class="settings-left"><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-tag"> </span></a></div>
-                                    <div class="settings-page">Идентификатор товара</div>
+                                    <div class="settings"><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-tag"> </span></a>Идентификатор товара</div>
                                 </td>
                                 <td>
-                                    <div class="settings-left"><a href="/controller/admin/pages/settings/units.php" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-flag"> </span></a></div>
-                                    <div class="settings-page"><?php echo $lang['title_units'] ?></div>
+                                    <div class="settings"><a href="/controller/admin/pages/settings/units.php" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-flag"> </span></a><?php echo $lang['title_units'] ?></div>
                                 </td>
                                 <td>
-                                    <div class="settings-left"><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-barcode"> </span></a></div>
-                                    <div class="settings-page">Штриховые коды</div>
+                                    <div class="settings"><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-barcode"> </span></a>Штриховые коды</div>
                                 </td>
                             </tr>
                         </tbody>
