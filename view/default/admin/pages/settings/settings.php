@@ -57,7 +57,7 @@
                                 </td>
                                 <td>
                                     <div class="settings-left"><a href="/controller/admin/pages/settings/units.php" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-flag"> </span></a></div>
-                                    <div class="settings-page">Единица измерения</div>
+                                    <div class="settings-page"><?php echo $lang['title_units'] ?></div>
                                 </td>
                                 <td>
                                     <div class="settings-left"><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-barcode"> </span></a></div>
