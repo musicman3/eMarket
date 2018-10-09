@@ -150,9 +150,15 @@
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
                                         <select name="unit" id="unit" class="input-sm form-control">
                                             <option disabled selected hidden>-- <?php echo $lang['product_unit'] ?> --</option>
-                                            <option>шт.</option>
-                                            <option>м.</option>
-                                            <option>л.</option>
+                                            <?php
+                                            for ($un = 0; $un < count($units_all); $un++) {
+                                                ?>
+
+                                                <option><?php echo $units_all[$un] ?></option>
+
+                                                <?php
+                                            }
+                                            ?>
                                         </select>
                                     </div>
                                 </div>

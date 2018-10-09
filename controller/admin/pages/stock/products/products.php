@@ -91,6 +91,9 @@ if ($VALID->inPOST('date_available')) {
 // Формируем массив Налог для выпадающего списка
 $taxes_all = $PDO->getCol("SELECT name FROM " . TABLE_TAXES . " WHERE language=?", [$lang_all[0]]);
 
+// Формируем массив Единица измерения для выпадающего списка
+$units_all = $PDO->getCol("SELECT unit FROM " . TABLE_UNITS . " WHERE language=?", [$lang_all[0]]);
+
 // Если нажали на кнопку Добавить
 if ($VALID->inPOST('name')) {
 
