@@ -13,11 +13,11 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="noindex,nofollow" />
-        <meta name="generator" content="HippoEDIT, Notepad++" />
+        <meta name="generator" content="HippoEDIT, Netbeans, Notepad++" />
         <meta name="classification" content="software" />
         <meta name="author" content="eMarket" />
         <meta name="owner" content="eMarket" />
-        <meta name="copyright" content="Copyright©2018 by eMarket Team. All right reserved." />
+        <meta name="copyright" content="Copyright © 2018 by eMarket Team. All right reserved." />
         <?php $title_prefix = strtok(basename(($_SERVER['REQUEST_URI'])), '.'); // автогенерация префикса title по названию файла. Пример: для index.php = index  ?>
         <title><?php echo $lang['title_' . $title_prefix] ?></title>
         <?php
