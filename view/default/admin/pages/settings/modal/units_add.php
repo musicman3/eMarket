@@ -3,16 +3,15 @@
 //   GNU GENERAL PUBLIC LICENSE v.3.0   //    
 // https://github.com/musicman3/eMarket //
 // *************************************//
-
 ?>
 <!-- Модальное окно "Добавить" -->
-<div id="taxes_add" class="modal fade" tabindex="-1">
+<div id="units_add" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header"><div class="tooltip-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Ставка указывается в формате: 10.00" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
-                <h4 class="modal-title">Налоги</h4>
+            <div class="modal-header"><div class="tooltip-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Сокращенное наименование указывается любыми символами" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
+                <h4 class="modal-title"><?php echo $lang['product_unit'] ?></h4>
             </div>
-            <form id="form_taxes" name="form_taxes" action="javascript:void(null);" onsubmit="call_taxes()" method="get" enctype="multipart/form-data">
+            <form id="form_units" name="form_units" action="javascript:void(null);" onsubmit="call_units()" method="get" enctype="multipart/form-data">
                 <div class="panel-body">
 
                     <!-- Языковые панели -->
@@ -22,7 +21,6 @@
                         <?php
                         if (count($lang_all) > 1) {
                             for ($xl = 1; $xl < count($lang_all); $xl++) {
-
                                 ?>
 
                                 <li><a data-toggle="tab" href="#<?php echo $lang_all[$xl] ?>"><img src="/view/default/admin/images/langflags/<?php echo $lang_all[$xl] ?>.png" alt="<?php echo $lang_all[$xl] ?>" title="<?php echo $lang_all[$xl] ?>" width="16" height="10" /> <?php echo $lang_all[$xl] ?></a></li>
@@ -30,7 +28,6 @@
                                 <?php
                             }
                         }
-
                         ?>
 
                     </ul>
@@ -41,7 +38,13 @@
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="input-sm form-control" placeholder="<?php echo $lang['name'] ?>" type="text" name="<?php echo $lang_all[0] ?>" />
+                                    <input class="input-sm form-control" placeholder="<?php echo $lang['name_full'] ?>" type="text" name="<?php echo $lang_all[0] ?>" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group has-error">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                                    <input class="input-sm form-control" placeholder="<?php echo $lang['name_little'] ?>" type="text" name="unit<?php echo $lang_all[0] ?>" id="unit<?php echo $lang_all[0] ?>" />
                                 </div>
                             </div>
                         </div>
@@ -49,30 +52,25 @@
                         <?php
                         if (count($lang_all) > 1) {
                             for ($xl = 1; $xl < count($lang_all); $xl++) {
-
                                 ?>
 
                                 <div id="<?php echo $lang_all[$xl] ?>" class="tab-pane fade">
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo $lang['name'] ?>" type="text" name="<?php echo $lang_all[$xl] ?>" />
+                                            <input class="input-sm form-control" placeholder="<?php echo $lang['name_full'] ?>" type="text" name="<?php echo $lang_all[$xl] ?>" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group has-error">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                                            <input class="input-sm form-control" placeholder="<?php echo $lang['name_little'] ?>" type="text" name="unit<?php echo $lang_all[$xl] ?>" id="unit<?php echo $lang_all[$xl] ?>" />
                                         </div>
                                     </div>
                                 </div>
 
-                                <?php
-                            }
-                        }
-
-                        ?>
-
-                        <div class="form-group">
-                            <div class="input-group has-error">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                <input class="input-sm form-control" placeholder="Налоговая ставка (%)" type="text" name="rate" id="rate" />
-                            </div>
-                        </div>
+                            <?php }
+                        } ?>
                     </div>
                 </div>
 
@@ -86,17 +84,17 @@
     </div>
 </div>
 <script type="text/javascript" language="javascript">
-    function call_taxes() {
-        var msg = $('#form_taxes').serialize();
+    function call_units() {
+        var msg = $('#form_units').serialize();
         $.ajax({
             type: 'GET',
-            url: '/controller/admin/pages/settings/taxes.php',
+            url: '/controller/admin/pages/settings/units.php',
             data: msg,
             success: function (data) {
-                $('#taxes_add').modal('hide');
-                location.href = '/controller/admin/pages/settings/taxes.php';
+                $('#units_add').modal('hide');
+                location.href = '/controller/admin/pages/settings/units.php';
             }
         });
     }
 </script>
-<!-- КОНЕЦ Модальное окно "Добавить категорию" -->
+<!-- КОНЕЦ Модальное окно "Добавить" -->

@@ -25,7 +25,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">
-                        <div class="pull-left"><?php echo $lang['title_taxes'] ?></div>
+                        <div class="pull-left"><?php echo $lang['title_units'] ?></div>
                         <div class="clearfix"></div>
                     </h3>
                 </div>
@@ -40,7 +40,7 @@
                                     } else {
 
                                         ?>
-                                        <div class="log-page"><?php echo $lang['no_taxes'] ?></div>
+                                        <div class="log-page"><?php echo $lang['no_units'] ?></div>
                                     <?php } ?>
                                 </th>
 
@@ -50,7 +50,7 @@
                                             <input hidden name="i" value="<?php echo $i ?>">
                                             <input hidden name="lines_p" value="<?php echo $lines_p ?>">
                                         <?php } ?>
-                                        <div class="log-right"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/setting/taxes.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
+                                        <div class="log-right"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/setting/units.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
                                     </form>
 
 
@@ -59,7 +59,7 @@
                                             <input hidden name="i2" value="<?php echo $i ?>">
                                             <input hidden name="lines_p2" value="<?php echo $lines_p ?>">
                                         <?php } ?>
-                                        <div class="log-left"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/setting/taxes.php" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
+                                        <div class="log-left"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/setting/units.php" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
                                     </form>
 
                                     <div class="log-left">
@@ -69,8 +69,8 @@
                             </tr>
 			    <?php if ($lines == TRUE) { ?>
                             <tr class="border">
-                                <th>Налог</th>
-                                <th class="al-text">Ставка</th>
+                                <th><?php echo $lang['name_full'] ?></th>
+                                <th class="al-text"><?php echo $lang['name_little'] ?></th>
                                 <th class="al-text-w"></th>
                             </tr>
 			    <?php } ?>
@@ -82,9 +82,9 @@
                                     <td class="al-text"><?php echo $lines[$i][2] ?></td>
                                     <td class="al-text-w">
                                         <form>
-                                            <input hidden name="tax_delete" value="<?php echo $lines[$i][0] ?>">
+                                            <input hidden name="unit_delete" value="<?php echo $lines[$i][0] ?>">
                                             <div class="log-right">
-                                                <button type="submit" name="tax_delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo $lang['confirm-yes'] ?>" data-btn-cancel-label="<?php echo $lang['confirm-no'] ?>" title="<?php echo $lang['confirm-del'] ?>" action="/controller/admin/pages/setting/taxes.php" formmethod="get"><span class="glyphicon glyphicon-trash"> </span></button>
+                                                <button type="submit" name="unit_delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo $lang['confirm-yes'] ?>" data-btn-cancel-label="<?php echo $lang['confirm-no'] ?>" title="<?php echo $lang['confirm-del'] ?>" action="/controller/admin/pages/setting/units.php" formmethod="get"><span class="glyphicon glyphicon-trash"> </span></button>
                                             </div>
                                             <div class="log-left">
                                                 <a href="#units_edit<?php echo $lines[$i][0] ?>" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span></a>
