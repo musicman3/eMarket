@@ -35,14 +35,14 @@ if ($VALID->inGET('tax_edit')) {
 // Если нажали на кнопку Удалить
 if ($VALID->inGET('tax_delete')) {
 
-    // Удаляем налог
+    // Удаляем
     $PDO->insertPrepare("DELETE FROM " . TABLE_TAXES . " WHERE id=?", [$VALID->inGET('tax_delete')]);
 }
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
-// Получаем массив таблицы налогов
+// Получаем массив таблицы
 $lines = $PDO->getColRow("SELECT id, name, rate FROM " . TABLE_TAXES . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);
-// Cчитаем количество записей налогов
+// Cчитаем количество записей
 $counter = $PDO->getRowCount("SELECT id FROM " . TABLE_TAXES . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);
 // Подключаем файл навигации
 require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/includes/navigation.php');
