@@ -67,11 +67,13 @@
                                     </div>
                                 </th>
                             </tr>
+			    <?php if ($lines == TRUE) { ?>
                             <tr class="border">
                                 <th>Налог</th>
                                 <th class="al-text">Ставка</th>
                                 <th class="al-text-w"></th>
                             </tr>
+			    <?php } ?>
                         </thead>
                         <tbody>
                             <?php for ($i; $i < $lines_p; $i++) { ?>
