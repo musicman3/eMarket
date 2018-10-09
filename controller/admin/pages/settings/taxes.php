@@ -14,8 +14,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/model/connect_page_start.php');
 if ($VALID->inGET('rate')) {
 
     // Получаем последний id и увеличиваем его на 1
-    $id_tax_max = $PDO->selectPrepare("SELECT id FROM " . TABLE_TAXES . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);
-    $id = intval($id_tax_max) + 1;
+    $id_max = $PDO->selectPrepare("SELECT id FROM " . TABLE_TAXES . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);
+    $id = intval($id_max) + 1;
 
     // добавляем запись для всех вкладок
     for ($xl = 0; $xl < count($lang_all); $xl++) {

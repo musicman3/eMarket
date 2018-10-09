@@ -5,11 +5,11 @@
 // *************************************//
 // собираем данные для отображения в Редактировании
 if (isset($lines[$k][0]) == TRUE) {
-    $name_units_edit = array();
-    $value_units_edit = array();
+    $name_edit = array();
+    $value_edit = array();
     for ($xl = 0; $xl < count($lang_all); $xl++) {
-        array_push($name_units_edit, $PDO->selectPrepare("SELECT name FROM " . TABLE_UNITS . " WHERE id=? and language=?", [$lines[$k][0], $lang_all[$xl]]));
-        array_push($value_units_edit, $PDO->selectPrepare("SELECT unit FROM " . TABLE_UNITS . " WHERE id=? and language=?", [$lines[$k][0], $lang_all[$xl]]));
+        array_push($name_edit, $PDO->selectPrepare("SELECT name FROM " . TABLE_UNITS . " WHERE id=? and language=?", [$lines[$k][0], $lang_all[$xl]]));
+        array_push($value_edit, $PDO->selectPrepare("SELECT unit FROM " . TABLE_UNITS . " WHERE id=? and language=?", [$lines[$k][0], $lang_all[$xl]]));
     }
 
 }

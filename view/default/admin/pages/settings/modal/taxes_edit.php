@@ -40,34 +40,32 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/mo
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="input-sm form-control" type="text" name="name_edit<?php echo $lang_all[0] ?>" id="name_edit<?php echo $lang_all[0] ?>" value="<?php echo $name_taxes_edit[0] ?>" />
+                                    <input class="input-sm form-control" type="text" name="name_edit<?php echo $lang_all[0] ?>" id="name_edit<?php echo $lang_all[0] ?>" value="<?php echo $name_edit[0] ?>" />
                                 </div>
                             </div>
                         </div>
 
-<?php
-if (count($lang_all) > 1) {
-    for ($xl = 1; $xl < count($lang_all); $xl++) {
-        ?>
+                        <?php
+                        if (count($lang_all) > 1) {
+                            for ($xl = 1; $xl < count($lang_all); $xl++) {
+                                ?>
 
                                 <div id="<?php echo $lang_all[$xl] . $lines[$k][0] ?>" class="tab-pane fade">
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" type="text" name="name_edit<?php echo $lang_all[$xl] ?>" id="name_edit<?php echo $lang_all[$xl] ?>" value="<?php echo $name_taxes_edit[$xl] ?>" />
+                                            <input class="input-sm form-control" type="text" name="name_edit<?php echo $lang_all[$xl] ?>" id="name_edit<?php echo $lang_all[$xl] ?>" value="<?php echo $name_edit[$xl] ?>" />
                                         </div>
                                     </div>
                                 </div>
 
-        <?php
-    }
-}
-?>
+                            <?php }
+                        } ?>
 
                         <div class="form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                <input class="input-sm form-control" type="text" name="rate_edit" id="rate_edit" value="<?php echo $value_taxes_edit ?>" />
+                                <input class="input-sm form-control" type="text" name="rate_edit" id="rate_edit" value="<?php echo $value_edit ?>" />
                             </div>
                         </div>
                     </div>
