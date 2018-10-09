@@ -25,11 +25,11 @@
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta http-equiv="content-language" content="<?php echo $lang['meta-language'] ?>" />
         <meta name="robots" content="noindex,nofollow" />
-        <meta name="generator" content="HippoEDIT, Notepad++" />
+        <meta name="generator" content="HippoEDIT, Netbeans, Notepad++" />
         <meta name="classification" content="software" />
         <meta name="author" content="eMarket" />
         <meta name="owner" content="eMarket" />
-        <meta name="copyright" content="Copyright©2011 by eMarket Team. All right reserved." />
+        <meta name="copyright" content="Copyright © 2018 by eMarket Team. All right reserved." />
 
         <title><?php echo $lang['title_login'] ?></title>
         <link href="../ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
@@ -138,7 +138,7 @@
                     <div class="col-md-12">
                         <p><img src="images/emarket.png" width="80" alt="" class="img-responsive center-block"></p>
 
-                        <p>Copyright (c) 2018-<?php echo date('Y') ?>, <a href="#">eMarket Team</a>. All rights reserved.</p>
+                        <p>Copyright © 2018-<?php echo date('Y') ?> by <a href="#">eMarket Team</a>. All rights reserved.</p>
                     </div>
                 </div>
             </div>
