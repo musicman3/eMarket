@@ -24,11 +24,11 @@ if ($VALID->inGET('unit'.$lang_all[0])) {
 }
 
 // Если нажали на кнопку Редактировать
-if ($VALID->inGET('unit_edit'.$lang_all[0])) {
+if ($VALID->inGET('id_edit')) {
 
     for ($xl = 0; $xl < count($lang_all); $xl++) {
         // обновляем запись
-        $PDO->insertPrepare("UPDATE " . TABLE_UNITS . " SET name=?, unit=? WHERE id=? AND language=?", [$VALID->inGET('name_edit' . $lang_all[$xl]), $VALID->inGET('unit_edit' . $lang_all[$xl]), $VALID->inGET('unit_edit'), $lang_all[$xl]]);
+        $PDO->insertPrepare("UPDATE " . TABLE_UNITS . " SET name=?, unit=? WHERE id=? AND language=?", [$VALID->inGET('name_edit' . $lang_all[$xl]), $VALID->inGET('unit_edit' . $lang_all[$xl]), $VALID->inGET('id_edit'), $lang_all[$xl]]);
     }
 }
 

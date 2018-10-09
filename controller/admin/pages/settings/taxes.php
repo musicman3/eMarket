@@ -24,11 +24,11 @@ if ($VALID->inGET('rate')) {
 }
 
 // Если нажали на кнопку Редактировать
-if ($VALID->inGET('tax_edit')) {
+if ($VALID->inGET('id_edit')) {
 
     for ($xl = 0; $xl < count($lang_all); $xl++) {
         // обновляем запись
-        $PDO->insertPrepare("UPDATE " . TABLE_TAXES . " SET name=?, rate=? WHERE id=? AND language=?", [$VALID->inGET('name_edit' . $lang_all[$xl]), $VALID->inGET('rate_edit'), $VALID->inGET('tax_edit'), $lang_all[$xl]]);
+        $PDO->insertPrepare("UPDATE " . TABLE_TAXES . " SET name=?, rate=? WHERE id=? AND language=?", [$VALID->inGET('name_edit' . $lang_all[$xl]), $VALID->inGET('rate_edit'), $VALID->inGET('id_edit'), $lang_all[$xl]]);
     }
 }
 
