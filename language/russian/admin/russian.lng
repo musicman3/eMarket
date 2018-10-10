@@ -15,6 +15,7 @@ title_error_log = Лог ошибок
 title_settings = Настройки
 title_taxes = Налоги
 title_units = Единицы измерения
+title_articuls = Идентификаторы товара
 title_stock = Склад
 title_categories = Категории
 title_products = Товары
@@ -36,6 +37,7 @@ no_log = Лог ошибок пустой
 no_cat = Категорий нет
 no_taxes = Налогов нет
 no_units = Единиц измерения нет
+no_articuls = Нет идентификаторов товара
 confirm-yes = Да
 confirm-no = Нет
 confirm-del = Удалить?
@@ -54,9 +56,11 @@ rows_page = Строк на странице
 product_price = Цена
 product_quantity = Количество
 product_unit = Единица измерения
+product_articul = Идентификатор товара
 product_description = Описание
 name_little = Сокращенное наименование
 name_full = Полное наименование
+name_description = Описание
 
 ;кнопки меню
 menu_exit = Выход

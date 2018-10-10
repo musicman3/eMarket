@@ -14,8 +14,8 @@ CREATE TABLE emkt_administrators (
 PRIMARY KEY (login))
 ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS emkt_articul;
-CREATE TABLE emkt_articul (
+DROP TABLE IF EXISTS emkt_articuls;
+CREATE TABLE emkt_articuls (
 	id int NOT NULL,
 	name varchar(256),
 	language varchar(64),

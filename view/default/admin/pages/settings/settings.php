@@ -30,7 +30,7 @@
                                     <div class="settings"><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-adjust"> </span></a>Зоны</div>
                                 </td>
                                 <td>
-                                    <div class="settings"><a href="/controller/admin/pages/settings/taxes.php" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-briefcase"> </span></a>Налоги</div>
+                                    <div class="settings"><a href="/controller/admin/pages/settings/taxes.php" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-briefcase"> </span></a><?php echo $lang['title_taxes'] ?></div>
                                 </td>
                             </tr>
                             <tr>
@@ -46,7 +46,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <div class="settings"><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-tag"> </span></a>Идентификатор товара</div>
+                                    <div class="settings"><a href="/controller/admin/pages/settings/articuls.php" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-tag"> </span></a><?php echo $lang['title_articuls'] ?></div>
                                 </td>
                                 <td>
                                     <div class="settings"><a href="/controller/admin/pages/settings/units.php" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-flag"> </span></a><?php echo $lang['title_units'] ?></div>
