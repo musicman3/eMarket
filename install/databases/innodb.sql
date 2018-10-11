@@ -33,7 +33,6 @@ CREATE TABLE emkt_country (
 	id int NOT NULL,
 	name varchar(256),
 	language varchar(64),
-        country varchar(256),
         alpha_2 varchar(2),
         alpha_3 varchar(3),
         flag varchar(64),
