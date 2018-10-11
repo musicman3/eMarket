@@ -14,15 +14,6 @@ CREATE TABLE emkt_administrators (
 PRIMARY KEY (login))
 ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS emkt_vendor_codes;
-CREATE TABLE emkt_vendor_codes (
-	id int NOT NULL,
-	name varchar(256),
-	language varchar(64),
-        vendor_code varchar(256),
-	PRIMARY KEY (id, language))
-ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
 DROP TABLE IF EXISTS emkt_categories;
 CREATE TABLE emkt_categories (
 	id int NOT NULL,
@@ -34,6 +25,18 @@ CREATE TABLE emkt_categories (
 	last_modified datetime,
 	sort_category int DEFAULT '0' NOT NULL,
 	status int,
+	PRIMARY KEY (id, language))
+ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS emkt_country;
+CREATE TABLE emkt_country (
+	id int NOT NULL,
+	name varchar(256),
+	language varchar(64),
+        country varchar(256),
+        alpha_2 varchar(2),
+        alpha_3 varchar(3),
+        flag varchar(64),
 	PRIMARY KEY (id, language))
 ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -92,5 +95,14 @@ CREATE TABLE emkt_units (
 	name varchar(256),
 	language varchar(64),
         unit varchar(256),
+	PRIMARY KEY (id, language))
+ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS emkt_vendor_codes;
+CREATE TABLE emkt_vendor_codes (
+	id int NOT NULL,
+	name varchar(256),
+	language varchar(64),
+        vendor_code varchar(256),
 	PRIMARY KEY (id, language))
 ENGINE=MyISAM DEFAULT CHARSET=utf8;
