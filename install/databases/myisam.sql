@@ -35,6 +35,7 @@ CREATE TABLE emkt_country (
 	language varchar(64),
         alpha_2 varchar(2),
         alpha_3 varchar(3),
+        address_format varchar(256) NULL,
 	PRIMARY KEY (id, language))
 ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
