@@ -3,6 +3,8 @@
 * https://github.com/musicman3/eMarket *
 ***************************************/
 
+/* Создание таблиц */
+
 DROP TABLE IF EXISTS emkt_administrators;
 CREATE TABLE emkt_administrators (
 	login varchar(128) binary NOT NULL,
@@ -28,8 +30,8 @@ CREATE TABLE emkt_categories (
 	PRIMARY KEY (id, language))
 ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS emkt_country;
-CREATE TABLE emkt_country (
+DROP TABLE IF EXISTS emkt_countries;
+CREATE TABLE emkt_countries (
 	id int NOT NULL,
 	name varchar(256),
 	language varchar(64),
@@ -105,3 +107,8 @@ CREATE TABLE emkt_vendor_codes (
         vendor_code varchar(256),
 	PRIMARY KEY (id, language))
 ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+/* Загрузка первоначальных данных в таблицу стран */
+INSERT INTO emkt_countries VALUES (1,'Российская Федерация', 'Russian', 'RU','RUS','');
+INSERT INTO emkt_countries VALUES (1,'Russian Federation', 'English', 'RU','RUS','');
