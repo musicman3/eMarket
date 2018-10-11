@@ -46,7 +46,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <div class="settings"><a href="/controller/admin/pages/settings/articuls.php" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-tag"> </span></a><?php echo $lang['title_articuls'] ?></div>
+                                    <div class="settings"><a href="/controller/admin/pages/settings/vendor_codes.php" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-tag"> </span></a><?php echo $lang['title_vendor_codes'] ?></div>
                                 </td>
                                 <td>
                                     <div class="settings"><a href="/controller/admin/pages/settings/units.php" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-flag"> </span></a><?php echo $lang['title_units'] ?></div>

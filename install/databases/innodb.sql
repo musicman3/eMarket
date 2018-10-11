@@ -14,12 +14,12 @@ CREATE TABLE emkt_administrators (
 PRIMARY KEY (login))
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS emkt_articuls;
-CREATE TABLE emkt_articuls (
+DROP TABLE IF EXISTS emkt_vendor_codes;
+CREATE TABLE emkt_vendor_codes (
 	id int NOT NULL,
 	name varchar(256),
 	language varchar(64),
-        articul varchar(256),
+        vendor_code varchar(256),
 	PRIMARY KEY (id, language))
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -49,7 +49,7 @@ CREATE TABLE emkt_products (
         date_available date,
         model varchar(64), 
         type varchar(256),
-        articul varchar(64),
+        vendor_code varchar(64),
         code varchar(256),
         product_code varchar(256),
         product_code_value varchar(256),

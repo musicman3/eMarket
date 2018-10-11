@@ -8,8 +8,8 @@ if (isset($lines[$k][0]) == TRUE) {
     $name_edit = array();
     $value_edit = array();
     for ($xl = 0; $xl < count($lang_all); $xl++) {
-        array_push($name_edit, $PDO->selectPrepare("SELECT name FROM " . TABLE_ARTICULS . " WHERE id=? and language=?", [$lines[$k][0], $lang_all[$xl]]));
-        array_push($value_edit, $PDO->selectPrepare("SELECT articul FROM " . TABLE_ARTICULS . " WHERE id=? and language=?", [$lines[$k][0], $lang_all[$xl]]));
+        array_push($name_edit, $PDO->selectPrepare("SELECT name FROM " . TABLE_VENDOR_CODES . " WHERE id=? and language=?", [$lines[$k][0], $lang_all[$xl]]));
+        array_push($value_edit, $PDO->selectPrepare("SELECT vendor_code FROM " . TABLE_VENDOR_CODES . " WHERE id=? and language=?", [$lines[$k][0], $lang_all[$xl]]));
     }
 
 }

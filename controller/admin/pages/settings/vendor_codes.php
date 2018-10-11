@@ -11,15 +11,15 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/model/connect_page_start.php');
 // ************************************** //
 // 
 // Если нажали на кнопку Добавить
-if ($VALID->inGET('articul'.$lang_all[0])) {
+if ($VALID->inGET('vendor_code'.$lang_all[0])) {
 
     // Получаем последний id и увеличиваем его на 1
-    $id_max = $PDO->selectPrepare("SELECT id FROM " . TABLE_ARTICULS . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);
+    $id_max = $PDO->selectPrepare("SELECT id FROM " . TABLE_VENDOR_CODES . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);
     $id = intval($id_max) + 1;
 
     // добавляем запись для всех вкладок
     for ($xl = 0; $xl < count($lang_all); $xl++) {
-        $PDO->insertPrepare("INSERT INTO " . TABLE_ARTICULS . " SET id=?, name=?, language=?, articul=?", [$id, $VALID->inGET($lang_all[$xl]), $lang_all[$xl], $VALID->inGET('articul'.$lang_all[$xl])]);
+        $PDO->insertPrepare("INSERT INTO " . TABLE_VENDOR_CODES . " SET id=?, name=?, language=?, vendor_code=?", [$id, $VALID->inGET($lang_all[$xl]), $lang_all[$xl], $VALID->inGET('vendor_code'.$lang_all[$xl])]);
     }
 }
 
@@ -28,22 +28,22 @@ if ($VALID->inGET('id_edit')) {
 
     for ($xl = 0; $xl < count($lang_all); $xl++) {
         // обновляем запись
-        $PDO->insertPrepare("UPDATE " . TABLE_ARTICULS . " SET name=?, articul=? WHERE id=? AND language=?", [$VALID->inGET('name_edit' . $lang_all[$xl]), $VALID->inGET('articul_edit' . $lang_all[$xl]), $VALID->inGET('id_edit'), $lang_all[$xl]]);
+        $PDO->insertPrepare("UPDATE " . TABLE_VENDOR_CODES . " SET name=?, vendor_code=? WHERE id=? AND language=?", [$VALID->inGET('name_edit' . $lang_all[$xl]), $VALID->inGET('vendor_code_edit' . $lang_all[$xl]), $VALID->inGET('id_edit'), $lang_all[$xl]]);
     }
 }
 
 // Если нажали на кнопку Удалить
-if ($VALID->inGET('articul_delete')) {
+if ($VALID->inGET('vendor_code_delete')) {
 
     // Удаляем
-    $PDO->insertPrepare("DELETE FROM " . TABLE_ARTICULS . " WHERE id=?", [$VALID->inGET('articul_delete')]);
+    $PDO->insertPrepare("DELETE FROM " . TABLE_VENDOR_CODES . " WHERE id=?", [$VALID->inGET('vendor_code_delete')]);
 }
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 // Получаем массив таблицы
-$lines = $PDO->getColRow("SELECT id, name, articul FROM " . TABLE_ARTICULS . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);
+$lines = $PDO->getColRow("SELECT id, name, vendor_code FROM " . TABLE_VENDOR_CODES . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);
 // Cчитаем количество записей
-$counter = $PDO->getRowCount("SELECT id FROM " . TABLE_ARTICULS . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);
+$counter = $PDO->getRowCount("SELECT id FROM " . TABLE_VENDOR_CODES . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);
 // Подключаем файл навигации
 require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/includes/navigation.php');
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ

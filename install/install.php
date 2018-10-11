@@ -57,7 +57,7 @@
         $pasadm = $_POST['password_admin'];
         $lng = $_POST['language'];
         $tabadm = $dbpref . 'administrators';
-        $tab_articuls = $dbpref . 'articuls';
+        $tab_vendor_codes = $dbpref . 'vendor_codes';
         $tab_cat = $dbpref . 'categories';
         $tab_products = $dbpref . 'products';
         $tab_taxes = $dbpref . 'taxes';
@@ -81,7 +81,7 @@
                 '  define(\'CRYPT_METHOD\', \'' . $crypt . '\');' . "\n" .
                 '  define(\'DEFAULT_LANGUAGE\', \'' . $lng . '\');' . "\n" .
                 '  define(\'TABLE_ADMINISTRATORS\', \'' . $tabadm . '\');' . "\n" .
-                '  define(\'TABLE_ARTICULS\', \'' . $tab_articuls . '\');' . "\n" .
+                '  define(\'TABLE_VENDOR_CODES\', \'' . $tab_vendor_codes . '\');' . "\n" .
                 '  define(\'TABLE_CATEGORIES\', \'' . $tab_cat . '\');' . "\n" .
                 '  define(\'TABLE_PRODUCTS\', \'' . $tab_products . '\');' . "\n" .
                 '  define(\'TABLE_TAXES\', \'' . $tab_taxes . '\');' . "\n" .

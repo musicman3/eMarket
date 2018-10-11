@@ -3,29 +3,27 @@
 //   GNU GENERAL PUBLIC LICENSE v.3.0   //    
 // https://github.com/musicman3/eMarket //
 // *************************************//
-require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/modal/articuls_edit.php');
 ?>
-
-<!-- Модальное окно "Изменить" -->
-<div id="articuls_edit<?php echo $lines[$k][0] ?>" class="modal fade" tabindex="-1">
+<!-- Модальное окно "Добавить" -->
+<div id="vendor_codes_add" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header"><div class="tooltip-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Сокращенное наименование указывается любыми символами" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
-                <h4 class="modal-title">Налоги</h4>
+                <h4 class="modal-title"><?php echo $lang['product_vendor_code'] ?></h4>
             </div>
-            <form id="form_articuls<?php echo $lines[$k][0] ?>" name="form_articuls<?php echo $lines[$k][0] ?>" action="javascript:void(null);" onsubmit="call_articuls<?php echo $lines[$k][0] ?>()" method="get" enctype="multipart/form-data">
+            <form id="form_vendor_codes" name="form_vendor_codes" action="javascript:void(null);" onsubmit="call_vendor_codes()" method="get" enctype="multipart/form-data">
                 <div class="panel-body">
-                    <input type="hidden" name="id_edit" value="<?php echo $lines[$k][0] ?>" />
+
                     <!-- Языковые панели -->
                     <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#<?php echo $lang_all[0] . $lines[$k][0] ?>"><img src="/view/default/admin/images/langflags/<?php echo $lang_all[0] ?>.png" alt="<?php echo $lang_all[0] ?>" title="<?php echo $lang_all[0] ?>" width="16" height="10" /> <?php echo $lang['menu_language'] ?></a></li>
+                        <li class="active"><a data-toggle="tab" href="#<?php echo $lang_all[0] ?>"><img src="/view/default/admin/images/langflags/<?php echo $lang_all[0] ?>.png" alt="<?php echo $lang_all[0] ?>" title="<?php echo $lang_all[0] ?>" width="16" height="10" /> <?php echo $lang['menu_language'] ?></a></li>
 
                         <?php
                         if (count($lang_all) > 1) {
                             for ($xl = 1; $xl < count($lang_all); $xl++) {
                                 ?>
 
-                                <li><a data-toggle="tab" href="#<?php echo $lang_all[$xl] . $lines[$k][0] ?>"><img src="/view/default/admin/images/langflags/<?php echo $lang_all[$xl] ?>.png" alt="<?php echo $lang_all[$xl] ?>" title="<?php echo $lang_all[$xl] ?>" width="16" height="10" /> <?php echo $lang_all[$xl] ?></a></li>
+                                <li><a data-toggle="tab" href="#<?php echo $lang_all[$xl] ?>"><img src="/view/default/admin/images/langflags/<?php echo $lang_all[$xl] ?>.png" alt="<?php echo $lang_all[$xl] ?>" title="<?php echo $lang_all[$xl] ?>" width="16" height="10" /> <?php echo $lang_all[$xl] ?></a></li>
 
                                 <?php
                             }
@@ -36,17 +34,17 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/mo
 
                     <!-- Содержимое языковых панелей -->
                     <div class="tab-content">
-                        <div id="<?php echo $lang_all[0] . $lines[$k][0] ?>" class="tab-pane fade in active">
+                        <div id="<?php echo $lang_all[0] ?>" class="tab-pane fade in active">
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="input-sm form-control" type="text" name="name_edit<?php echo $lang_all[0] ?>" id="name_edit<?php echo $lang_all[0] ?>" value="<?php echo $name_edit[0] ?>" />
+                                    <input class="input-sm form-control" placeholder="<?php echo $lang['product_vendor_code'] ?>" type="text" name="<?php echo $lang_all[0] ?>" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-group has-error">
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                    <input class="input-sm form-control" type="text" name="articul_edit<?php echo $lang_all[0] ?>" id="articul_edit<?php echo $lang_all[0] ?>" value="<?php echo $value_edit[0] ?>" />
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                                    <input class="input-sm form-control" placeholder="<?php echo $lang['name_description'] ?>" type="text" name="vendor_code<?php echo $lang_all[0] ?>" id="vendor_code<?php echo $lang_all[0] ?>" />
                                 </div>
                             </div>
                         </div>
@@ -56,24 +54,23 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/mo
                             for ($xl = 1; $xl < count($lang_all); $xl++) {
                                 ?>
 
-                                <div id="<?php echo $lang_all[$xl] . $lines[$k][0] ?>" class="tab-pane fade">
+                                <div id="<?php echo $lang_all[$xl] ?>" class="tab-pane fade">
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" type="text" name="name_edit<?php echo $lang_all[$xl] ?>" id="name_edit<?php echo $lang_all[$xl] ?>" value="<?php echo $name_edit[$xl] ?>" />
+                                            <input class="input-sm form-control" placeholder="<?php echo $lang['product_vendor_code'] ?>" type="text" name="<?php echo $lang_all[$xl] ?>" />
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="input-group has-error">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                            <input class="input-sm form-control" type="text" name="articul_edit<?php echo $lang_all[$xl] ?>" id="articul_edit<?php echo $lang_all[$xl] ?>" value="<?php echo $value_edit[$xl] ?>" />
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                                            <input class="input-sm form-control" placeholder="<?php echo $lang['name_description'] ?>" type="text" name="vendor_code<?php echo $lang_all[$xl] ?>" id="vendor_code<?php echo $lang_all[$xl] ?>" />
                                         </div>
                                     </div>
                                 </div>
 
                             <?php }
                         } ?>
-
                     </div>
                 </div>
 
@@ -87,18 +84,17 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/mo
     </div>
 </div>
 <script type="text/javascript" language="javascript">
-    function call_articuls<?php echo $lines[$k][0] ?>() {
-        var msg = $('#form_articuls<?php echo $lines[$k][0] ?>').serialize();
+    function call_vendor_codes() {
+        var msg = $('#form_vendor_codes').serialize();
         $.ajax({
             type: 'GET',
-            url: '/controller/admin/pages/settings/articuls.php',
+            url: '/controller/admin/pages/settings/vendor_codes.php',
             data: msg,
             success: function (data) {
-                $('#articuls_add<?php echo $lines[$k][0] ?>').modal('hide');
-                location.href = '/controller/admin/pages/settings/articuls.php';
+                $('#vendor_codes_add').modal('hide');
+                location.href = '/controller/admin/pages/settings/vendor_codes.php';
             }
         });
     }
 </script>
-
-<!-- КОНЕЦ Модальное окно "Изменить" -->
+<!-- КОНЕЦ Модальное окно "Добавить" -->
