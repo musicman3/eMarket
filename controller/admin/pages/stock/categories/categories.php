@@ -179,7 +179,6 @@ if ($VALID->inGET('idsx_paste_key') == 'paste' && isset($_SESSION['buffer']) == 
 }
 
 // КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
-$lines = array();
 
 // задаем количество строк на странице вывода категорий
 if (isset($_SESSION['select_category']) == FALSE) {
@@ -204,9 +203,8 @@ if (is_array($parent_id) == TRUE) {
 if ($VALID->inGET('parent_id_temp')) {
     $parent_id = $VALID->inGET('parent_id_temp');
 }
-// получаем отсортированное по sort_category содержимое в виде массива для отображения на странице
-$lines = $PDO->getColRow("SELECT * FROM " . TABLE_CATEGORIES . " WHERE parent_id=? AND language=? ORDER BY sort_category DESC", [$parent_id, $lang_all[0]]);
-$lines = array_reverse($lines); // сортируем в обратном порядке
+// получаем отсортированное по sort_category содержимое в виде массива для отображения на странице и сортируем в обратном порядке
+$lines = array_reverse($PDO->getColRow("SELECT * FROM " . TABLE_CATEGORIES . " WHERE parent_id=? AND language=? ORDER BY sort_category DESC", [$parent_id, $lang_all[0]]));
 $counter = count($lines);  //считаем количество строк
 
 if ($counter <= $lines_page) {

@@ -16,11 +16,8 @@ if ($VALID->inPOST('log_delete') == 'delete') {
 }
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
-$lines = array();
-
 if (file_exists($VALID->inSERVER('DOCUMENT_ROOT') . '/model/work/errors.log')) { // Если файл существует, то
-    $lines = file($VALID->inSERVER('DOCUMENT_ROOT') . '/model/work/errors.log'); // получаем содержимое файла в виде массива
-    $lines = array_reverse($lines); // сортируем в обратном порядке
+    $lines = array_reverse(file($VALID->inSERVER('DOCUMENT_ROOT') . '/model/work/errors.log')); // получаем содержимое файла в виде массива и сортируем в обратном порядке
     $counter = count($lines); // считаем количество строк
 
 // Подключаем файл навигации
