@@ -65,6 +65,7 @@ name_description = Описание
 name_country = Название страны
 alpha_2 = Код ISO 3366-1 Alpha 2
 alpha_3 = Код ISO 3366-1 Alpha 3
+country_flag = Флаг страны
 
 ;кнопки меню
 menu_exit = Выход

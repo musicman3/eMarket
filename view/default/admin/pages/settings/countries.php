@@ -33,7 +33,7 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th colspan="3">
+                                <th colspan="4">
                                     <?php if ($lines == TRUE) { ?>
                                         <div class="log-page"><?php echo $lang['s'] ?> <?php echo $i + 1 ?> <?php echo $lang['po'] ?> <?php echo $lines_p ?> ( <?php echo $lang['iz'] ?> <?php echo $counter ?> )</div>
                                         <?php
@@ -72,6 +72,7 @@
                                 <th><?php echo $lang['name_country'] ?></th>
                                 <th class="al-text"><?php echo $lang['alpha_2'] ?></th>
                                 <th class="al-text"><?php echo $lang['alpha_3'] ?></th>
+                                <th class="al-text"><?php echo $lang['country_flag'] ?></th>
                                 <th class="al-text-w"></th>
                             </tr>
 			    <?php } ?>
@@ -82,6 +83,7 @@
                                     <td><?php echo $lines[$i][1] ?></td>
                                     <td class="al-text"><?php echo $lines[$i][2] ?></td>
                                     <td class="al-text"><?php echo $lines[$i][3] ?></td>
+                                    <td class="al-text"><img src='/view/<?php echo $TEMPLATE ?>/admin/images/worldflags/<?php echo strtolower($lines[$i][2]) ?>.png'></td>
                                     <td class="al-text-w">
                                         <form>
                                             <input hidden name="country_delete" value="<?php echo $lines[$i][0] ?>">

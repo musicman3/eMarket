@@ -6,13 +6,15 @@
 
 namespace Model\Classes\View;
 
+$TEMPLATE = 'default'; //название текущего шаблона
+
 class ViewClass {
 
     function Routing() {
 
-        $template = 'default';
+        global $TEMPLATE;
 
-        $str = str_replace('controller', 'view/' . $template, $_SERVER['SCRIPT_FILENAME']);
+        $str = str_replace('controller', 'view/' . $TEMPLATE, $_SERVER['SCRIPT_FILENAME']);
 
         return $str;
     }
