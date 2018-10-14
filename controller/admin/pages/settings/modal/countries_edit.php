@@ -11,6 +11,7 @@ if (isset($lines[$k][0]) == TRUE) {
     }
     $value_edit = $PDO->selectPrepare("SELECT alpha_2 FROM " . TABLE_COUNTRIES . " WHERE id=?", [$lines[$k][0]]);
     $value_edit_2 = $PDO->selectPrepare("SELECT alpha_3 FROM " . TABLE_COUNTRIES . " WHERE id=?", [$lines[$k][0]]);
+    $value_edit_3 = $PDO->selectPrepare("SELECT address_format FROM " . TABLE_COUNTRIES . " WHERE id=?", [$lines[$k][0]]);
 
 }
 

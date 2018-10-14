@@ -79,6 +79,10 @@
                                 <input class="input-sm form-control" placeholder="<?php echo $lang['alpha_3'] ?>" type="text" name="alpha_3" id="alpha_3" />
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label for="address_format"><?php echo $lang['address_format'] ?></label>
+                            <textarea class="form-control" rows="5" name="address_format" id="address_format"></textarea>
+                        </div> 
                     </div>
                 </div>
 
