@@ -24,7 +24,7 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <div class="settings"><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-globe"> </span></a>Страны</div>
+                                    <div class="settings"><a href="/controller/admin/pages/settings/countries.php" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-globe"> </span></a><?php echo $lang['title_countries'] ?></div>
                                 </td>
                                 <td>
                                     <div class="settings"><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-adjust"> </span></a>Зоны</div>

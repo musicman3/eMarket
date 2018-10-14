@@ -58,7 +58,7 @@
         $lng = $_POST['language'];
         $tabadm = $dbpref . 'administrators';
         $tab_cat = $dbpref . 'categories';
-        $tab_country = $dbpref . 'country';
+        $tab_countries = $dbpref . 'countries';
         $tab_products = $dbpref . 'products';
         $tab_taxes = $dbpref . 'taxes';
         $tab_units = $dbpref . 'units';
@@ -83,7 +83,7 @@
                 '  define(\'DEFAULT_LANGUAGE\', \'' . $lng . '\');' . "\n" .
                 '  define(\'TABLE_ADMINISTRATORS\', \'' . $tabadm . '\');' . "\n" .
                 '  define(\'TABLE_CATEGORIES\', \'' . $tab_cat . '\');' . "\n" .
-                '  define(\'TABLE_COUNTRY\', \'' . $tab_country . '\');' . "\n" .
+                '  define(\'TABLE_COUNTRIES\', \'' . $tab_countries . '\');' . "\n" .
                 '  define(\'TABLE_PRODUCTS\', \'' . $tab_products . '\');' . "\n" .
                 '  define(\'TABLE_TAXES\', \'' . $tab_taxes . '\');' . "\n" .
                 '  define(\'TABLE_UNITS\', \'' . $tab_units . '\');' . "\n" .

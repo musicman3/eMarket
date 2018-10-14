@@ -12,7 +12,7 @@
   define('DEFAULT_LANGUAGE', 'russian');
   define('TABLE_ADMINISTRATORS', 'emkt_administrators');
   define('TABLE_CATEGORIES', 'emkt_categories');
-  define('TABLE_COUNTRY', 'emkt_country');
+  define('TABLE_COUNTRIES', 'emkt_countries');
   define('TABLE_PRODUCTS', 'emkt_products');
   define('TABLE_TAXES', 'emkt_taxes');
   define('TABLE_UNITS', 'emkt_units');
