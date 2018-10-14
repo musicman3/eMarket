@@ -69,7 +69,7 @@
                             </tr>
 			    <?php if ($lines == TRUE) { ?>
                             <tr class="border">
-                                <th><?php echo $lang['name_country'] ?></th>
+                                <th><?php echo $lang['country'] ?></th>
                                 <th class="al-text"><?php echo $lang['alpha_2'] ?></th>
                                 <th class="al-text"><?php echo $lang['alpha_3'] ?></th>
                                 <th class="al-text"><?php echo $lang['country_flag'] ?></th>

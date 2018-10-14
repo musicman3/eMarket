@@ -63,6 +63,7 @@ name_little = Сокращенное наименование
 name_full = Полное наименование
 name_description = Описание
 name_country = Название страны
+country = Страна
 alpha_2 = Код ISO 3166-1 Alpha 2
 alpha_3 = Код ISO 3166-1 Alpha 3
 country_flag = Флаг страны

@@ -11,7 +11,7 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/mo
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header"><div class="tooltip-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Ставка указывается в формате: 10.00" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
-                <h4 class="modal-title">Налоги</h4>
+                <h4 class="modal-title"><?php echo $lang['country'] ?></h4>
             </div>
             <form id="form_countries<?php echo $lines[$k][0] ?>" name="form_countries<?php echo $lines[$k][0] ?>" action="javascript:void(null);" onsubmit="call_countries<?php echo $lines[$k][0] ?>()" method="get" enctype="multipart/form-data">
                 <div class="panel-body">
