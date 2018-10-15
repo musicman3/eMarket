@@ -14,7 +14,7 @@ CREATE TABLE emkt_administrators (
 	note varchar(256),
 	status int DEFAULT '0' NOT NULL,
 PRIMARY KEY (login))
-ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS emkt_categories;
 CREATE TABLE emkt_categories (
@@ -28,7 +28,7 @@ CREATE TABLE emkt_categories (
 	sort_category int DEFAULT '0' NOT NULL,
 	status int,
 	PRIMARY KEY (id, language))
-ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS emkt_countries;
 CREATE TABLE emkt_countries (
@@ -39,7 +39,7 @@ CREATE TABLE emkt_countries (
         alpha_3 varchar(3),
         address_format varchar(256) NULL,
 	PRIMARY KEY (id, language))
-ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS emkt_products;
 CREATE TABLE emkt_products (
@@ -79,7 +79,7 @@ CREATE TABLE emkt_products (
 	sort int DEFAULT '0',
         status int,
 	PRIMARY KEY (id))
-ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS emkt_taxes;
 CREATE TABLE emkt_taxes (
@@ -88,7 +88,7 @@ CREATE TABLE emkt_taxes (
 	language varchar(64),
         rate decimal(4,2),
 	PRIMARY KEY (id, language))
-ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS emkt_units;
 CREATE TABLE emkt_units (
@@ -97,7 +97,7 @@ CREATE TABLE emkt_units (
 	language varchar(64),
         unit varchar(256),
 	PRIMARY KEY (id, language))
-ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS emkt_vendor_codes;
 CREATE TABLE emkt_vendor_codes (
@@ -106,7 +106,7 @@ CREATE TABLE emkt_vendor_codes (
 	language varchar(64),
         vendor_code varchar(256),
 	PRIMARY KEY (id, language))
-ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
 /* Загрузка первоначальных данных в таблицу стран */
