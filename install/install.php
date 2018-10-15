@@ -236,7 +236,7 @@
 
         $buffer = implode(file($fname));
         $buffer = str_replace('emkt_', DB_PREFIX, $buffer); //REPLACE PREFIX
-
+        $DB->exec("set names utf8");
         $DB->exec($buffer);
 //END IMPORT DB
 //SAVE E-MAIL AND PASSWORD
