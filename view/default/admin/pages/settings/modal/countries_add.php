@@ -69,13 +69,13 @@
 
                         <div class="form-group">
                             <div class="input-group has-error">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
                                 <input class="input-sm form-control" placeholder="<?php echo $lang['alpha_2'] ?>" type="text" name="alpha_2" id="alpha_2" />
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="input-group has-error">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
                                 <input class="input-sm form-control" placeholder="<?php echo $lang['alpha_3'] ?>" type="text" name="alpha_3" id="alpha_3" />
                             </div>
                         </div>
