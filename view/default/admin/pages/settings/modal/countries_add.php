@@ -81,7 +81,7 @@
                         </div>
                         <div class="form-group">
                             <label for="address_format"><?php echo $lang['address_format'] ?></label>
-                            <textarea class="form-control" rows="5" name="address_format" id="address_format"></textarea>
+                            <textarea class="form-control" placeholder="<?php echo $lang['add_address_format'] ?>" rows="5" name="address_format" id="address_format"></textarea>
                         </div> 
                     </div>
                 </div>
