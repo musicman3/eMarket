@@ -34,9 +34,6 @@ $patch = $uri_explode[2];
 
 //Подключение и парсинг языкового файла
 $lang_default = DEFAULT_LANGUAGE; //Язык по умолчанию
-if (!empty($_SESSION['default_language'])) {
-    $lang_default = $_SESSION['default_language'];
-}
 
 $files_patch = FilesPatch($VALID->inSERVER('DOCUMENT_ROOT') . '/language/' . $lang_default . '/' . $patch);
 $parse_temp = parse_ini_file($files_patch[0]);
