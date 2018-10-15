@@ -33,7 +33,7 @@ $uri_explode = explode('/', ($VALID->inSERVER('REQUEST_URI')));
 $patch = $uri_explode[2];
 
 //Подключение и парсинг языкового файла
-$lang_default = DEFAULT_LANGUAGE;
+$lang_default = DEFAULT_LANGUAGE; //Язык по умолчанию
 if (!empty($_SESSION['default_language'])) {
     $lang_default = $_SESSION['default_language'];
 }
