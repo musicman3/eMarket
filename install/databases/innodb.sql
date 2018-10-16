@@ -81,6 +81,15 @@ CREATE TABLE emkt_products (
 	PRIMARY KEY (id))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+DROP TABLE IF EXISTS emkt_regions;
+CREATE TABLE emkt_regions (
+	id int NOT NULL,
+	name varchar(256),
+	language varchar(64),
+        region_code varchar(8),
+	PRIMARY KEY (id, language))
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 DROP TABLE IF EXISTS emkt_taxes;
 CREATE TABLE emkt_taxes (
 	id int NOT NULL,
