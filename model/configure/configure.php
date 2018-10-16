@@ -14,6 +14,7 @@
   define('TABLE_CATEGORIES', 'emkt_categories');
   define('TABLE_COUNTRIES', 'emkt_countries');
   define('TABLE_PRODUCTS', 'emkt_products');
+  define('TABLE_REGIONS', 'emkt_regions');
   define('TABLE_TAXES', 'emkt_taxes');
   define('TABLE_UNITS', 'emkt_units');
   define('TABLE_VENDOR_CODES', 'emkt_vendor_codes');

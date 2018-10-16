@@ -60,6 +60,7 @@
         $tab_cat = $dbpref . 'categories';
         $tab_countries = $dbpref . 'countries';
         $tab_products = $dbpref . 'products';
+        $tab_regions = $dbpref . 'regions';
         $tab_taxes = $dbpref . 'taxes';
         $tab_units = $dbpref . 'units';
         $tab_vendor_codes = $dbpref . 'vendor_codes';
@@ -85,13 +86,14 @@
                 '  define(\'TABLE_CATEGORIES\', \'' . $tab_cat . '\');' . "\n" .
                 '  define(\'TABLE_COUNTRIES\', \'' . $tab_countries . '\');' . "\n" .
                 '  define(\'TABLE_PRODUCTS\', \'' . $tab_products . '\');' . "\n" .
+                '  define(\'TABLE_REGIONS\', \'' . $tab_regions . '\');' . "\n" .
                 '  define(\'TABLE_TAXES\', \'' . $tab_taxes . '\');' . "\n" .
                 '  define(\'TABLE_UNITS\', \'' . $tab_units . '\');' . "\n" .
                 '  define(\'TABLE_VENDOR_CODES\', \'' . $tab_vendor_codes . '\');' . "\n" .
                 '?>';
 
         if (file_exists('../model/configure/configure.php') && !is_writeable('../model/configure/configure.php')) {
-            @chmod('../model/configure/configure.php', 0777);
+            chmod('../model/configure/configure.php', 0777);
         }
 
         if (file_exists('../model/configure/configure.php') && is_writeable('../model/configure/configure.php')) {
@@ -234,8 +236,7 @@
 			<script type="text/javascript" src="../ext/bootstrap/js/bootstrap.min.js"></script>
 ');
 
-        $buffer = implode(file($fname));
-        $buffer = str_replace('emkt_', DB_PREFIX, $buffer); //REPLACE PREFIX
+        $buffer = str_replace('emkt_', DB_PREFIX, implode(file($fname))); //REPLACE PREFIX
         $DB->exec("set names utf8mb4");
         $DB->exec($buffer);
 //END IMPORT DB
@@ -267,7 +268,7 @@ php_value error_log " . $_SERVER['DOCUMENT_ROOT'] . "/model/work/errors.log";
 
 //Если файл существует, то ставим права 777
         if (file_exists('../.htaccess') && !is_writeable('../.htaccess')) {
-            @chmod('../.htaccess', 0777);
+            chmod('../.htaccess', 0777);
         }
 // открываем файл, если файл не существует, то делается попытка создать его
         $fp = fopen($_SERVER['DOCUMENT_ROOT'] . '/.htaccess', "w");
