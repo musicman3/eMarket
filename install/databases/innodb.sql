@@ -121,3 +121,9 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /* Загрузка первоначальных данных в таблицу стран */
 INSERT INTO emkt_countries VALUES (1,'Российская Федерация', 'Russian', 'RU','RUS','');
 INSERT INTO emkt_countries VALUES (1,'Russian Federation', 'English', 'RU','RUS','');
+
+INSERT INTO emkt_regions VALUES (1,'Республика Адыгея','Russian', 'AD');
+INSERT INTO emkt_regions VALUES (1,'Республика Алтай','Russian', 'AL');
+
+INSERT INTO emkt_regions VALUES (1,'Республика Адыгея','English', 'AD');
+INSERT INTO emkt_regions VALUES (1,'Республика Алтай','English', 'AL');
