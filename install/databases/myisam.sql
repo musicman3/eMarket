@@ -84,9 +84,9 @@ ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 DROP TABLE IF EXISTS emkt_regions;
 CREATE TABLE emkt_regions (
 	id int NOT NULL,
+        region_code varchar(8),
 	name varchar(256),
 	language varchar(64),
-        region_code varchar(8),
 	PRIMARY KEY (id, language))
 ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
@@ -120,11 +120,11 @@ ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 /* Загрузка первоначальных данных в таблицу стран */
 /* Russian */
-INSERT INTO emkt_countries VALUES (1,'Российская Федерация', 'Russian', 'RU','RUS','');
-INSERT INTO emkt_regions VALUES (1,'Республика Адыгея','Russian', 'AD');
-INSERT INTO emkt_regions VALUES (1,'Республика Алтай','Russian', 'AL');
+INSERT INTO emkt_countries VALUES (1, 'Российская Федерация', 'Russian', 'RU', 'RUS', '');
+INSERT INTO emkt_regions VALUES (1, 'AD', 'Республика Адыгея', 'Russian');
+INSERT INTO emkt_regions VALUES (1, 'AL', 'Республика Алтай', 'Russian');
 
 /* English */
-INSERT INTO emkt_countries VALUES (1,'Russian Federation', 'English', 'RU','RUS','');
-INSERT INTO emkt_regions VALUES (1,'Республика Адыгея','English', 'AD');
-INSERT INTO emkt_regions VALUES (1,'Республика Алтай','English', 'AL');
+INSERT INTO emkt_countries VALUES (1, 'Russian Federation', 'English', 'RU', 'RUS', '');
+INSERT INTO emkt_regions VALUES (1, 'AD', 'Республика Адыгея', 'English');
+INSERT INTO emkt_regions VALUES (1, 'AL', 'Республика Алтай', 'English');
