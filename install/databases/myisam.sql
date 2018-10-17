@@ -87,7 +87,7 @@ CREATE TABLE emkt_regions (
         region_code varchar(8),
 	name varchar(256),
 	language varchar(64),
-	PRIMARY KEY (id, language))
+	PRIMARY KEY (id, language, name))
 ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS emkt_taxes;
