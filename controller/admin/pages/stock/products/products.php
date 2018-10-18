@@ -108,7 +108,7 @@ if ($VALID->inPOST('name')) {
     $prod_id = $prod_id_temp++;
 
     // добавляем запись
-    $PDO->insertPrepare("INSERT INTO " . TABLE_PRODUCTS .
+    $PDO->inPrepare("INSERT INTO " . TABLE_PRODUCTS .
             " SET id=?, name=?, parent_id=?, date_added=?, date_available=?, model=?, price=?, quantity=?, keyword=?, tags=?, description=?", [$prod_id, $VALID->inPOST('name'), $parent_id, date("Y-m-d H:i:s"), $date_available, $VALID->inPOST('model'), $VALID->inPOST('price'),
         $VALID->inPOST('quantity'), $VALID->inPOST('keyword'), $VALID->inPOST('tags'), $VALID->inPOST('description')]);
 }

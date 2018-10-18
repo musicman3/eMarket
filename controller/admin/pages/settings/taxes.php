@@ -19,7 +19,7 @@ if ($VALID->inGET('rate')) {
 
     // добавляем запись для всех вкладок
     for ($xl = 0; $xl < count($lang_all); $xl++) {
-        $PDO->insertPrepare("INSERT INTO " . TABLE_TAXES . " SET id=?, name=?, language=?, rate=?", [$id, $VALID->inGET($lang_all[$xl]), $lang_all[$xl], $VALID->inGET('rate')]);
+        $PDO->inPrepare("INSERT INTO " . TABLE_TAXES . " SET id=?, name=?, language=?, rate=?", [$id, $VALID->inGET($lang_all[$xl]), $lang_all[$xl], $VALID->inGET('rate')]);
     }
 }
 
@@ -28,7 +28,7 @@ if ($VALID->inGET('id_edit')) {
 
     for ($xl = 0; $xl < count($lang_all); $xl++) {
         // обновляем запись
-        $PDO->insertPrepare("UPDATE " . TABLE_TAXES . " SET name=?, rate=? WHERE id=? AND language=?", [$VALID->inGET('name_edit' . $lang_all[$xl]), $VALID->inGET('rate_edit'), $VALID->inGET('id_edit'), $lang_all[$xl]]);
+        $PDO->inPrepare("UPDATE " . TABLE_TAXES . " SET name=?, rate=? WHERE id=? AND language=?", [$VALID->inGET('name_edit' . $lang_all[$xl]), $VALID->inGET('rate_edit'), $VALID->inGET('id_edit'), $lang_all[$xl]]);
     }
 }
 
@@ -36,7 +36,7 @@ if ($VALID->inGET('id_edit')) {
 if ($VALID->inGET('tax_delete')) {
 
     // Удаляем
-    $PDO->insertPrepare("DELETE FROM " . TABLE_TAXES . " WHERE id=?", [$VALID->inGET('tax_delete')]);
+    $PDO->inPrepare("DELETE FROM " . TABLE_TAXES . " WHERE id=?", [$VALID->inGET('tax_delete')]);
 }
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ

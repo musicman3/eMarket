@@ -177,7 +177,7 @@ class PdoClass {
       Использовать так: $a = $PDO->selectPrepare("SELECT permission FROM users WHERE login=? AND password=?", [$_SESSION['login'],$_SESSION['password']]);
      */
 
-    function insertPrepare($sql, $a) {
+    function inPrepare($sql, $a) {
         global $DB;
         $exec = FALSE;
         if ($exec = $DB->prepare($sql) AND $exec->execute($a))
@@ -185,12 +185,12 @@ class PdoClass {
         return $exec;
     }
 
-    /* insertPrepare служит для INSERT INTO, DELETE и UPDATE. Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых записях.
+    /* inPrepare служит для INSERT INTO, DELETE и UPDATE. Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых записях.
       Если значения нет, то передает пустой массив: Array()
       Использовать так:
-      $PDO->insertPrepare("INSERT INTO emkt_table SET login=?, password=?", [$_SESSION['login'], $_SESSION['password']]); - создает новую строку
-      $PDO->insertPrepare("UPDATE emkt_table SET login=?, password=? WHERE id=?", [$_SESSION['login'], $_SESSION['password'], $id]); - обновляет строку с конкретным id
-      $PDO->insertPrepare("DELETE FROM emkt_table WHERE id=?", [$id]); - удаляет строку с конкретным id
+      $PDO->inPrepare("INSERT INTO emkt_table SET login=?, password=?", [$_SESSION['login'], $_SESSION['password']]); - создает новую строку
+      $PDO->inPrepare("UPDATE emkt_table SET login=?, password=? WHERE id=?", [$_SESSION['login'], $_SESSION['password'], $id]); - обновляет строку с конкретным id
+      $PDO->inPrepare("DELETE FROM emkt_table WHERE id=?", [$id]); - удаляет строку с конкретным id
       Также можно применять для SELECT.
      */
 }

@@ -19,7 +19,7 @@ if ($VALID->inGET('alpha_2')) {
 
     // добавляем запись для всех вкладок
     for ($xl = 0; $xl < count($lang_all); $xl++) {
-        $PDO->insertPrepare("INSERT INTO " . TABLE_COUNTRIES . " SET id=?, name=?, language=?, alpha_2=?, alpha_3=?, address_format=?", [$id, $VALID->inGET($lang_all[$xl]), $lang_all[$xl], $VALID->inGET('alpha_2'), $VALID->inGET('alpha_3'), $VALID->inGET('address_format')]);
+        $PDO->inPrepare("INSERT INTO " . TABLE_COUNTRIES . " SET id=?, name=?, language=?, alpha_2=?, alpha_3=?, address_format=?", [$id, $VALID->inGET($lang_all[$xl]), $lang_all[$xl], $VALID->inGET('alpha_2'), $VALID->inGET('alpha_3'), $VALID->inGET('address_format')]);
     }
 }
 
@@ -28,7 +28,7 @@ if ($VALID->inGET('id_edit')) {
 
     for ($xl = 0; $xl < count($lang_all); $xl++) {
         // обновляем запись
-        $PDO->insertPrepare("UPDATE " . TABLE_COUNTRIES . " SET name=?, alpha_2=?, alpha_3=?, address_format=? WHERE id=? AND language=?", [$VALID->inGET('name_edit' . $lang_all[$xl]), $VALID->inGET('alpha_2_edit'), $VALID->inGET('alpha_3_edit'), $VALID->inGET('address_format'), $VALID->inGET('id_edit'), $lang_all[$xl]]);
+        $PDO->inPrepare("UPDATE " . TABLE_COUNTRIES . " SET name=?, alpha_2=?, alpha_3=?, address_format=? WHERE id=? AND language=?", [$VALID->inGET('name_edit' . $lang_all[$xl]), $VALID->inGET('alpha_2_edit'), $VALID->inGET('alpha_3_edit'), $VALID->inGET('address_format'), $VALID->inGET('id_edit'), $lang_all[$xl]]);
     }
 }
 
@@ -36,7 +36,7 @@ if ($VALID->inGET('id_edit')) {
 if ($VALID->inGET('country_delete')) {
 
     // Удаляем
-    $PDO->insertPrepare("DELETE FROM " . TABLE_COUNTRIES . " WHERE id=?", [$VALID->inGET('country_delete')]);
+    $PDO->inPrepare("DELETE FROM " . TABLE_COUNTRIES . " WHERE id=?", [$VALID->inGET('country_delete')]);
 }
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ

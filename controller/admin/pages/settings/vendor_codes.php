@@ -19,7 +19,7 @@ if ($VALID->inGET('vendor_code'.$lang_all[0])) {
 
     // добавляем запись для всех вкладок
     for ($xl = 0; $xl < count($lang_all); $xl++) {
-        $PDO->insertPrepare("INSERT INTO " . TABLE_VENDOR_CODES . " SET id=?, name=?, language=?, vendor_code=?", [$id, $VALID->inGET($lang_all[$xl]), $lang_all[$xl], $VALID->inGET('vendor_code'.$lang_all[$xl])]);
+        $PDO->inPrepare("INSERT INTO " . TABLE_VENDOR_CODES . " SET id=?, name=?, language=?, vendor_code=?", [$id, $VALID->inGET($lang_all[$xl]), $lang_all[$xl], $VALID->inGET('vendor_code'.$lang_all[$xl])]);
     }
 }
 
@@ -28,7 +28,7 @@ if ($VALID->inGET('id_edit')) {
 
     for ($xl = 0; $xl < count($lang_all); $xl++) {
         // обновляем запись
-        $PDO->insertPrepare("UPDATE " . TABLE_VENDOR_CODES . " SET name=?, vendor_code=? WHERE id=? AND language=?", [$VALID->inGET('name_edit' . $lang_all[$xl]), $VALID->inGET('vendor_code_edit' . $lang_all[$xl]), $VALID->inGET('id_edit'), $lang_all[$xl]]);
+        $PDO->inPrepare("UPDATE " . TABLE_VENDOR_CODES . " SET name=?, vendor_code=? WHERE id=? AND language=?", [$VALID->inGET('name_edit' . $lang_all[$xl]), $VALID->inGET('vendor_code_edit' . $lang_all[$xl]), $VALID->inGET('id_edit'), $lang_all[$xl]]);
     }
 }
 
@@ -36,7 +36,7 @@ if ($VALID->inGET('id_edit')) {
 if ($VALID->inGET('vendor_code_delete')) {
 
     // Удаляем
-    $PDO->insertPrepare("DELETE FROM " . TABLE_VENDOR_CODES . " WHERE id=?", [$VALID->inGET('vendor_code_delete')]);
+    $PDO->inPrepare("DELETE FROM " . TABLE_VENDOR_CODES . " WHERE id=?", [$VALID->inGET('vendor_code_delete')]);
 }
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ

@@ -43,7 +43,7 @@ if ($VALID->inGET($lang_all[0])) {
 
     // добавляем запись для всех вкладок
     for ($xl = 0; $xl < count($lang_all); $xl++) {
-        $PDO->insertPrepare("INSERT INTO " . TABLE_CATEGORIES . " SET id=?, name=?, sort_category=?, language=?, parent_id=?, date_added=?, status=?", [$id, $VALID->inGET($lang_all[$xl]), $sort_category, $lang_all[$xl], $parent_id, date("Y-m-d H:i:s"), $view_cat]);
+        $PDO->inPrepare("INSERT INTO " . TABLE_CATEGORIES . " SET id=?, name=?, sort_category=?, language=?, parent_id=?, date_added=?, status=?", [$id, $VALID->inGET($lang_all[$xl]), $sort_category, $lang_all[$xl], $parent_id, date("Y-m-d H:i:s"), $view_cat]);
     }
 }
 
@@ -58,7 +58,7 @@ if ($VALID->inGET('cat_edit')) {
 
     for ($xl = 0; $xl < count($lang_all); $xl++) {
         // обновляем запись
-        $PDO->insertPrepare("UPDATE " . TABLE_CATEGORIES . " SET name=?, last_modified=?, status=? WHERE id=? AND language=?", [$VALID->inGET('name_edit' . $lang_all[$xl]), date("Y-m-d H:i:s"), $view_cat, $VALID->inGET('cat_edit'), $lang_all[$xl]]);
+        $PDO->inPrepare("UPDATE " . TABLE_CATEGORIES . " SET name=?, last_modified=?, status=? WHERE id=? AND language=?", [$VALID->inGET('name_edit' . $lang_all[$xl]), date("Y-m-d H:i:s"), $view_cat, $VALID->inGET('cat_edit'), $lang_all[$xl]]);
     }
 }
 
@@ -132,7 +132,7 @@ if (($VALID->inGET('idsx_statusOn_key') == 'statusOn')
         //Обновляем статус подкатегорий
         if (($VALID->inGET('idsx_statusOn_key') == 'statusOn')
                 or ( $VALID->inGET('idsx_statusOff_key') == 'statusOff')) {
-            $PDO->insertPrepare("UPDATE " . TABLE_CATEGORIES . " SET status=? WHERE id=?", [$status, $keys[$x]]);
+            $PDO->inPrepare("UPDATE " . TABLE_CATEGORIES . " SET status=? WHERE id=?", [$status, $keys[$x]]);
             if ($parent_id_real > 0) {
                 $parent_id = $parent_id_real; // Возвращаемся в свою директорию после "Вырезать"
             }
@@ -140,14 +140,14 @@ if (($VALID->inGET('idsx_statusOn_key') == 'statusOn')
 
         //Удаляем подкатегории
         if ($VALID->inGET('idsx_delete_key') == 'delete') {
-            $PDO->insertPrepare("DELETE FROM " . TABLE_CATEGORIES . " WHERE id=?", [$keys[$x]]);
+            $PDO->inPrepare("DELETE FROM " . TABLE_CATEGORIES . " WHERE id=?", [$keys[$x]]);
         }
     }
 
     //Обновляем статус основной категории
     if (($VALID->inGET('idsx_statusOn_key') == 'statusOn')
             or ( $VALID->inGET('idsx_statusOff_key') == 'statusOff')) {
-        $PDO->insertPrepare("UPDATE " . TABLE_CATEGORIES . " SET status=? WHERE id=?", [$status, $idx]);
+        $PDO->inPrepare("UPDATE " . TABLE_CATEGORIES . " SET status=? WHERE id=?", [$status, $idx]);
     }
 
     //Вырезаем основную родительскую категорию    
@@ -163,14 +163,14 @@ if (($VALID->inGET('idsx_statusOn_key') == 'statusOn')
 
     //Удаляем основную категорию    
     if ($VALID->inGET('idsx_delete_key') == 'delete') {
-        $PDO->insertPrepare("DELETE FROM " . TABLE_CATEGORIES . " WHERE id=?", [$idx]);
+        $PDO->inPrepare("DELETE FROM " . TABLE_CATEGORIES . " WHERE id=?", [$idx]);
     }
 }
 
 //Вставляем вырезанные категории    
 if ($VALID->inGET('idsx_paste_key') == 'paste' && isset($_SESSION['buffer']) == TRUE) {
     for ($buf = 0; $buf < count($_SESSION['buffer']); $buf++) {
-        $PDO->insertPrepare("UPDATE " . TABLE_CATEGORIES . " SET parent_id=? WHERE id=?", [$parent_id_real, $_SESSION['buffer'][$buf]]);
+        $PDO->inPrepare("UPDATE " . TABLE_CATEGORIES . " SET parent_id=? WHERE id=?", [$parent_id_real, $_SESSION['buffer'][$buf]]);
     }
     unset($_SESSION['buffer']); // очищаем буфер обмена
     if ($parent_id_real > 0) {
@@ -246,7 +246,7 @@ if ($VALID->inGET('token_ajax') == $TOKEN && $VALID->inGET('ids')) {
     $j2 = $VALID->inGET('j');
     $sort_ajax = explode(',', $VALID->inGET('ids'));
     for ($ajax_i = 0; $ajax_i < count($sort_ajax); $ajax_i++) {
-        $PDO->insertPrepare("UPDATE " . TABLE_CATEGORIES . " SET sort_category=? WHERE id=?", [$ajax_i + $j2, $sort_ajax[$ajax_i]]);
+        $PDO->inPrepare("UPDATE " . TABLE_CATEGORIES . " SET sort_category=? WHERE id=?", [$ajax_i + $j2, $sort_ajax[$ajax_i]]);
     }
 }
 
