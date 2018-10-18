@@ -126,6 +126,6 @@ INSERT INTO emkt_regions (country_id, region_code, name, language) VALUES (1, 'A
 INSERT INTO emkt_regions (country_id, region_code, name, language) VALUES (1, 'AL', 'Республика Алтай', 'Russian');
 
 /* English */
-INSERT INTO emkt_countries VALUES (1, 'Российская Федерация', 'English', 'RU', 'RUS', '');
+INSERT INTO emkt_countries VALUES (1, 'Russian Federation', 'English', 'RU', 'RUS', '');
 INSERT INTO emkt_regions (country_id, region_code, name, language) VALUES (1, 'AD', 'Республика Адыгея', 'English');
 INSERT INTO emkt_regions (country_id, region_code, name, language) VALUES (1, 'AL', 'Республика Алтай', 'English');
