@@ -1,0 +1,18 @@
+<?php
+// ****** Copyright © 2018 eMarket *****//
+//   GNU GENERAL PUBLIC LICENSE v.3.0   //
+// https://github.com/musicman3/eMarket //
+// *************************************//
+// собираем данные для отображения в Редактировании
+if (isset($lines[$k][0]) == TRUE) {
+    $name_edit = array();
+    for ($xl = 0; $xl < count($lang_all); $xl++) {
+        array_push($name_edit, $PDO->selectPrepare("SELECT name FROM " . TABLE_REGIONS . " WHERE id=? and language=?", [$lines[$k][0], $lang_all[$xl]]));
+    }
+    $value_edit = $PDO->selectPrepare("SELECT alpha_2 FROM " . TABLE_REGIONS . " WHERE id=?", [$lines[$k][0]]);
+    $value_edit_2 = $PDO->selectPrepare("SELECT alpha_3 FROM " . TABLE_REGIONS . " WHERE id=?", [$lines[$k][0]]);
+    $value_edit_3 = $PDO->selectPrepare("SELECT address_format FROM " . TABLE_REGIONS . " WHERE id=?", [$lines[$k][0]]);
+
+}
+
+?>
