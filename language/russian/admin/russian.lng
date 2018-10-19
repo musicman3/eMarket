@@ -39,6 +39,7 @@ no_log = Лог ошибок пустой
 no_cat = Категорий нет
 no_taxes = Налогов нет
 no_units = Единиц измерения нет
+no_regions = Регионов нет
 no_vendor_codes = Нет идентификаторов товара
 confirm-yes = Да
 confirm-no = Нет
