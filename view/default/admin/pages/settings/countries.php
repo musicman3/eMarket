@@ -33,7 +33,7 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th colspan="4">
+                                <th colspan="5">
                                     <?php if ($lines == TRUE) { ?>
                                         <div class="log-page"><?php echo $lang['s'] ?> <?php echo $i + 1 ?> <?php echo $lang['po'] ?> <?php echo $lines_p ?> ( <?php echo $lang['iz'] ?> <?php echo $counter ?> )</div>
                                         <?php
@@ -69,6 +69,7 @@
                             </tr>
 			    <?php if ($lines == TRUE) { ?>
                             <tr class="border">
+                                <th></th>
                                 <th><?php echo $lang['country'] ?></th>
                                 <th class="al-text"><?php echo $lang['alpha_2'] ?></th>
                                 <th class="al-text"><?php echo $lang['alpha_3'] ?></th>
@@ -80,6 +81,12 @@
                         <tbody>
                             <?php for ($i; $i < $lines_p; $i++) { ?>
                                 <tr>
+                                    <td>
+                                        <form action="/controller/admin/pages/settings/regions.php">
+                                            <input hidden name="country_id" value="<?php echo $lines[$i][0] ?>">
+                                            <button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-cog"></span></button>
+                                        </form>
+                                    </td>
                                     <td><?php echo $lines[$i][1] ?></td>
                                     <td class="al-text"><?php echo $lines[$i][2] ?></td>
                                     <td class="al-text"><?php echo $lines[$i][3] ?></td>
