@@ -25,7 +25,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">
-                        <div class="pull-left"><?php echo $lang['title_countries'] ?></div>
+                        <div class="pull-left"><?php echo $lang['title_regions'] ?></div>
                         <div class="clearfix"></div>
                     </h3>
                 </div>
@@ -33,7 +33,7 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th colspan="4">
+                                <th colspan="2">
                                     <?php if ($lines == TRUE) { ?>
                                         <div class="log-page"><?php echo $lang['s'] ?> <?php echo $i + 1 ?> <?php echo $lang['po'] ?> <?php echo $lines_p ?> ( <?php echo $lang['iz'] ?> <?php echo $counter ?> )</div>
                                         <?php
@@ -69,10 +69,8 @@
                             </tr>
 			    <?php if ($lines == TRUE) { ?>
                             <tr class="border">
-                                <th><?php echo $lang['country'] ?></th>
-                                <th class="al-text"><?php echo $lang['alpha_2'] ?></th>
-                                <th class="al-text"><?php echo $lang['alpha_3'] ?></th>
-                                <th class="al-text"><?php echo $lang['country_flag'] ?></th>
+                                <th><?php echo $lang['name_region'] ?></th>
+                                <th class="al-text"><?php echo $lang['region_code'] ?></th>
                                 <th class="al-text-w"></th>
                             </tr>
 			    <?php } ?>
@@ -80,10 +78,8 @@
                         <tbody>
                             <?php for ($i; $i < $lines_p; $i++) { ?>
                                 <tr>
-                                    <td><?php echo $lines[$i][1] ?></td>
-                                    <td class="al-text"><?php echo $lines[$i][2] ?></td>
-                                    <td class="al-text"><?php echo $lines[$i][3] ?></td>
-                                    <td class="al-text"><img src='/view/<?php echo $TEMPLATE ?>/admin/images/worldflags/<?php echo strtolower($lines[$i][2]) ?>.png'></td>
+                                    <td><?php echo $lines[$i][2] ?></td>
+                                    <td class="al-text"><?php echo $lines[$i][1] ?></td>
                                     <td class="al-text-w">
                                         <form>
                                             <input hidden name="country_delete" value="<?php echo $lines[$i][0] ?>">
