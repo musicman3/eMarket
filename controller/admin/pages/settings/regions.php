@@ -14,12 +14,12 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/model/connect_page_start.php');
 if ($VALID->inGET('alpha_2')) {
 
     // Получаем последний id и увеличиваем его на 1
-    $id_max = $PDO->selectPrepare("SELECT id FROM " . TABLE_REGIONS . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);
+    $id_max = $PDO->selectPrepare("SELECT country_id FROM " . TABLE_REGIONS . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);
     $id = intval($id_max) + 1;
 
     // добавляем запись для всех вкладок
     for ($xl = 0; $xl < count($lang_all); $xl++) {
-        $PDO->inPrepare("INSERT INTO " . TABLE_REGIONS . " SET id=?, name=?, language=?, alpha_2=?, alpha_3=?, address_format=?", [$id, $VALID->inGET($lang_all[$xl]), $lang_all[$xl], $VALID->inGET('alpha_2'), $VALID->inGET('alpha_3'), $VALID->inGET('address_format')]);
+        $PDO->inPrepare("INSERT INTO " . TABLE_REGIONS . " SET country_id=?, name=?, language=?, alpha_2=?, alpha_3=?, address_format=?", [$id, $VALID->inGET($lang_all[$xl]), $lang_all[$xl], $VALID->inGET('alpha_2'), $VALID->inGET('alpha_3'), $VALID->inGET('address_format')]);
     }
 }
 
@@ -28,7 +28,7 @@ if ($VALID->inGET('id_edit')) {
 
     for ($xl = 0; $xl < count($lang_all); $xl++) {
         // обновляем запись
-        $PDO->inPrepare("UPDATE " . TABLE_REGIONS . " SET name=?, alpha_2=?, alpha_3=?, address_format=? WHERE id=? AND language=?", [$VALID->inGET('name_edit' . $lang_all[$xl]), $VALID->inGET('alpha_2_edit'), $VALID->inGET('alpha_3_edit'), $VALID->inGET('address_format'), $VALID->inGET('id_edit'), $lang_all[$xl]]);
+        $PDO->inPrepare("UPDATE " . TABLE_REGIONS . " SET name=?, alpha_2=?, alpha_3=?, address_format=? WHERE country_id=? AND language=?", [$VALID->inGET('name_edit' . $lang_all[$xl]), $VALID->inGET('alpha_2_edit'), $VALID->inGET('alpha_3_edit'), $VALID->inGET('address_format'), $VALID->inGET('id_edit'), $lang_all[$xl]]);
     }
 }
 
@@ -41,9 +41,9 @@ if ($VALID->inGET('region_delete')) {
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 // Получаем массив таблицы
-$lines = $PDO->getColRow("SELECT id, name, alpha_2, alpha_3 FROM " . TABLE_REGIONS . " WHERE language=? ORDER BY name", [$lang_all[0]]);
+$lines = $PDO->getColRow("SELECT country_id, region_code, name FROM " . TABLE_REGIONS . " WHERE language=? ORDER BY name", [$lang_all[0]]);
 // Cчитаем количество записей
-$counter = $PDO->getRowCount("SELECT id FROM " . TABLE_REGIONS . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);
+$counter = $PDO->getRowCount("SELECT country_id FROM " . TABLE_REGIONS . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);
 // Подключаем файл навигации
 require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/includes/navigation.php');
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
