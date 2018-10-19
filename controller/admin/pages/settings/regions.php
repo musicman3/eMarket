@@ -36,7 +36,7 @@ if ($VALID->inGET('id_edit')) {
 if ($VALID->inGET('region_delete')) {
 
     // Удаляем
-    $PDO->inPrepare("DELETE FROM " . TABLE_REGIONS . " WHERE id=?", [$VALID->inGET('region_delete')]);
+    $PDO->inPrepare("DELETE FROM " . TABLE_REGIONS . " WHERE country_id=? AND region_code=?", [$VALID->inGET('country_id'), $VALID->inGET('region_delete')]);
 }
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
