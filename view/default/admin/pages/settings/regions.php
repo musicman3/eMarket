@@ -26,12 +26,6 @@
                 <div class="panel-heading">
                     <h3 class="panel-title">
                         <div class="pull-left"><?php echo $lang['title_regions'] ?></div>
-                                                                <form>
-                                            <div class="log-right">
-                                                тут кнопка и ее ссылка на предыдущую<br>
-<?php echo $_SERVER['HTTP_REFERER'] ?>
-                                            
-                                      
                         <div class="clearfix"></div>
                     </h3>
                 </div>
