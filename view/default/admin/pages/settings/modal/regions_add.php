@@ -95,7 +95,7 @@
             data: msg,
             success: function (data) {
                 $('#regions_add').modal('hide');
-                location.href = '/controller/admin/pages/settings/regions.php<?php echo '?country_id='.$VALID->inGET('country_id') ?>';
+                location.href = '<?php echo $_SERVER['REQUEST_URI'] ?>';
             }
         });
     }

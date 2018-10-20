@@ -33,10 +33,10 @@ if ($VALID->inGET('id_edit')) {
 }
 
 // Если нажали на кнопку Удалить
-if ($VALID->inGET('region_delete')) {
+if ($VALID->inPOST('region_delete')) {
 
     // Удаляем
-    $PDO->inPrepare("DELETE FROM " . TABLE_REGIONS . " WHERE country_id=? AND id=?", [$VALID->inGET('country_id'), $VALID->inGET('region_delete')]);
+    $PDO->inPrepare("DELETE FROM " . TABLE_REGIONS . " WHERE country_id=? AND id=?", [$VALID->inPOST('country_id'), $VALID->inPOST('region_delete')]);
 }
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
