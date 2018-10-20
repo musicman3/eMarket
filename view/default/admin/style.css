@@ -77,3 +77,4 @@ div.context-one {padding:5px;}
 .tooltip-right .glyphicon {color: #000000;opacity: 0.5}
 .tab-content {padding-top: 10px;}
 .input-group .data {position: static;}
+.back {transform: scale(-1, 1);}
