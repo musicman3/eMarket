@@ -83,12 +83,12 @@ ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS emkt_regions;
 CREATE TABLE emkt_regions (
-	id int NOT NULL auto_increment,
+	id int NOT NULL,
         country_id int NOT NULL,
         region_code varchar(8),
 	name varchar(256),
 	language varchar(64),
-	PRIMARY KEY (id))
+	PRIMARY KEY (id, language))
 ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS emkt_taxes;
