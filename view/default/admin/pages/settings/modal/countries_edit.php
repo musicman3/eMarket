@@ -105,7 +105,7 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/mo
             url: '/controller/admin/pages/settings/countries.php',
             data: msg,
             success: function (data) {
-                $('#countries_add<?php echo $lines[$k][0] ?>').modal('hide');
+                $('#countries_edit<?php echo $lines[$k][0] ?>').modal('hide');
                 location.href = '/controller/admin/pages/settings/countries.php';
             }
         });

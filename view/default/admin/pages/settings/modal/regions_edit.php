@@ -72,19 +72,9 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/mo
                         <div class="form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                <input class="input-sm form-control" type="text" name="alpha_2_edit" id="alpha_2_edit" value="<?php echo $value_edit ?>" />
+                                <input class="input-sm form-control" type="text" name="region_code_edit" id="region_code_edit" value="<?php echo $value_edit ?>" />
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="input-group has-error">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                <input class="input-sm form-control" type="text" name="alpha_3_edit" id="alpha_3_edit" value="<?php echo $value_edit_2 ?>" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="address_format"><?php echo $lang['address_format'] ?></label>
-                            <textarea class="form-control" rows="5" name="address_format" id="address_format"><?php echo $value_edit_3 ?></textarea>
-                        </div> 
                     </div>
                 </div>
 
@@ -105,8 +95,8 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/mo
             url: '/controller/admin/pages/settings/regions.php',
             data: msg,
             success: function (data) {
-                $('#regions_add<?php echo $lines[$k][0] ?>').modal('hide');
-                location.href = '/controller/admin/pages/settings/regions.php';
+                $('#regions_edit<?php echo $lines[$k][0] ?>').modal('hide');
+                location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
             }
         });
     }

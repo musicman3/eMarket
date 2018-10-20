@@ -94,7 +94,7 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/mo
             url: '/controller/admin/pages/settings/units.php',
             data: msg,
             success: function (data) {
-                $('#units_add<?php echo $lines[$k][0] ?>').modal('hide');
+                $('#units_edit<?php echo $lines[$k][0] ?>').modal('hide');
                 location.href = '/controller/admin/pages/settings/units.php';
             }
         });

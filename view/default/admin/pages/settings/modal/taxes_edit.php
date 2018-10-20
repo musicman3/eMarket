@@ -88,7 +88,7 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/mo
             url: '/controller/admin/pages/settings/taxes.php',
             data: msg,
             success: function (data) {
-                $('#taxes_add<?php echo $lines[$k][0] ?>').modal('hide');
+                $('#taxes_edit<?php echo $lines[$k][0] ?>').modal('hide');
                 location.href = '/controller/admin/pages/settings/taxes.php';
             }
         });
