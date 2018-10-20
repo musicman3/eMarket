@@ -25,7 +25,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">
-                        <div class="pull-left"><?php echo $lang['title_regions'] ?> - <a class="btn btn-primary btn-xs" href="<?php echo $_SERVER['HTTP_REFERER'] ?>"><span class="glyphicon glyphicon-plus"></span></a></div>
+                        <div class="pull-left"><?php echo $lang['title_regions'] ?> - <a class="btn btn-primary btn-xs" href="<?php echo $_SESSION['country_page'] ?>"><span class="glyphicon glyphicon-plus"></span></a></div>
                         <div class="clearfix"></div>
                     </h3>
                 </div>
@@ -69,13 +69,13 @@
                                     </div>
                                 </th>
                             </tr>
-			    <?php if ($lines == TRUE) { ?>
-                            <tr class="border">
-                                <th><?php echo $lang['name_region'] ?></th>
-                                <th class="al-text"><?php echo $lang['region_code'] ?></th>
-                                <th class="al-text-w"></th>
-                            </tr>
-			    <?php } ?>
+                            <?php if ($lines == TRUE) { ?>
+                                <tr class="border">
+                                    <th><?php echo $lang['name_region'] ?></th>
+                                    <th class="al-text"><?php echo $lang['region_code'] ?></th>
+                                    <th class="al-text-w"></th>
+                                </tr>
+                            <?php } ?>
                         </thead>
                         <tbody>
                             <?php for ($i; $i < $lines_p; $i++) { ?>

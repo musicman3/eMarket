@@ -95,7 +95,7 @@
             data: msg,
             success: function (data) {
                 $('#regions_add').modal('hide');
-                location.href = '<?php echo $_SERVER['REQUEST_URI'] ?>';
+                location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
             }
         });
     }

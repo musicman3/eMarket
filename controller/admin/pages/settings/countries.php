@@ -10,6 +10,9 @@ error_reporting(-1);
 require_once($_SERVER['DOCUMENT_ROOT'] . '/model/connect_page_start.php');
 // ************************************** //
 // 
+//Сохраняем сессию с URL текущей страницы
+$_SESSION['country_page'] = $VALID->inSERVER('REQUEST_URI');
+
 // Если нажали на кнопку Добавить
 if ($VALID->inGET('alpha_2')) {
 
@@ -52,6 +55,7 @@ require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/includes/navigation.php
 require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/connect_page_end.php');
 require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/html_end.php');
 // ************************************** //
+
 ?>
 </body>
 </html>
