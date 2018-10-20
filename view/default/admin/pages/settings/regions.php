@@ -25,7 +25,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">
-                        <div class="pull-left"><?php echo $lang['title_regions'] ?> - <a class="btn btn-primary btn-xs" href="<?php echo $_SESSION['country_page'] ?>"><span class="glyphicon glyphicon-plus"></span></a></div>
+                        <div class="pull-left"><a class="btn btn-primary btn-xs" href="<?php echo $_SESSION['country_page'] ?>"><span class="glyphicon glyphicon-arrow-left"></span> Страны</a> - <?php echo $lang['title_regions'] ?></div>
                         <div class="clearfix"></div>
                     </h3>
                 </div>
