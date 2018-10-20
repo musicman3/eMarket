@@ -71,6 +71,7 @@
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
                                 <input class="input-sm form-control" placeholder="<?php echo $lang['region_code'] ?>" type="text" name="region_code" id="region_code" />
+                                <input hidden name="country_id" value="<?php echo $VALID->inGET('country_id') ?>">
                             </div>
                         </div>
                     </div>
@@ -94,7 +95,7 @@
             data: msg,
             success: function (data) {
                 $('#regions_add').modal('hide');
-                location.href = '/controller/admin/pages/settings/regions.php';
+                location.href = '/controller/admin/pages/settings/regions.php<?php echo '?country_id='.$VALID->inGET('country_id') ?>';
             }
         });
     }

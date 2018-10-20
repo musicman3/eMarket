@@ -14,12 +14,12 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/model/connect_page_start.php');
 if ($VALID->inGET('region_code')) {
 
     // Получаем последний id и увеличиваем его на 1
-    $id_max = $PDO->selectPrepare("SELECT country_id FROM " . TABLE_REGIONS . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);
+    $id_max = $PDO->selectPrepare("SELECT id FROM " . TABLE_REGIONS . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);
     $id = intval($id_max) + 1;
 
     // добавляем запись для всех вкладок
     for ($xl = 0; $xl < count($lang_all); $xl++) {
-        $PDO->inPrepare("INSERT INTO " . TABLE_REGIONS . " SET country_id=?, name=?, language=?, alpha_2=?, alpha_3=?, address_format=?", [$id, $VALID->inGET($lang_all[$xl]), $lang_all[$xl], $VALID->inGET('alpha_2'), $VALID->inGET('alpha_3'), $VALID->inGET('address_format')]);
+        $PDO->inPrepare("INSERT INTO " . TABLE_REGIONS . " SET id=?, country_id=?, name=?, language=?, region_code=?", [$id, $VALID->inGET('country_id'), $VALID->inGET($lang_all[$xl]), $lang_all[$xl], $VALID->inGET('region_code')]);
     }
 }
 

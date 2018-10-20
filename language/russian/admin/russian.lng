@@ -73,6 +73,7 @@ address_format = Формат адреса:
 add_address_format = Укажите формат адреса
 name_region = Название региона
 region_code = Код региона
+region = Регион
 
 ;кнопки меню
 menu_exit = Выход
