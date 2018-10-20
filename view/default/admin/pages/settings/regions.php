@@ -80,8 +80,8 @@
                         <tbody>
                             <?php for ($i; $i < $lines_p; $i++) { ?>
                                 <tr>
-                                    <td><?php echo $lines[$i][1] ?></td>
-                                    <td class="al-text"><?php echo $lines[$i][0] ?></td>
+                                    <td><?php echo $lines[$i][2] ?></td>
+                                    <td class="al-text"><?php echo $lines[$i][1] ?></td>
                                     <td class="al-text-w">
                                         <form>
                                             <input hidden name="region_delete" value="<?php echo $lines[$i][0] ?>">
@@ -90,7 +90,7 @@
                                                 <button type="submit" name="region_delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo $lang['confirm-yes'] ?>" data-btn-cancel-label="<?php echo $lang['confirm-no'] ?>" title="<?php echo $lang['confirm-del'] ?>" action="/controller/admin/pages/settings/regions.php" formmethod="get"><span class="glyphicon glyphicon-trash"> </span></button>
                                             </div>
                                             <div class="log-left">
-                                                <a href="#regions_edit<?php echo $lines[$i][0] ?>" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span></a>
+                                                <a href="#regions_edit<?php echo $lines[$i][1] ?>" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span></a>
                                             </div>
                                         </form>
                                     </td>

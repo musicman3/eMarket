@@ -11,7 +11,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/model/connect_page_start.php');
 // ************************************** //
 // 
 // Если нажали на кнопку Добавить
-if ($VALID->inGET('alpha_2')) {
+if ($VALID->inGET('region_code')) {
 
     // Получаем последний id и увеличиваем его на 1
     $id_max = $PDO->selectPrepare("SELECT country_id FROM " . TABLE_REGIONS . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);
@@ -36,12 +36,12 @@ if ($VALID->inGET('id_edit')) {
 if ($VALID->inGET('region_delete')) {
 
     // Удаляем
-    $PDO->inPrepare("DELETE FROM " . TABLE_REGIONS . " WHERE country_id=? AND region_code=?", [$VALID->inGET('country_id'), $VALID->inGET('region_delete')]);
+    $PDO->inPrepare("DELETE FROM " . TABLE_REGIONS . " WHERE country_id=? AND id=?", [$VALID->inGET('country_id'), $VALID->inGET('region_delete')]);
 }
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 // Получаем массив таблицы
-$lines = $PDO->getColRow("SELECT region_code, name FROM " . TABLE_REGIONS . " WHERE country_id=? AND language=? ORDER BY name", [$VALID->inGET('country_id'), $lang_all[0]]);
+$lines = $PDO->getColRow("SELECT id, region_code, name FROM " . TABLE_REGIONS . " WHERE country_id=? AND language=? ORDER BY name", [$VALID->inGET('country_id'), $lang_all[0]]);
 // Cчитаем количество записей
 $counter = $PDO->getRowCount("SELECT region_code FROM " . TABLE_REGIONS . " WHERE country_id=? AND language=? ORDER BY country_id DESC", [$VALID->inGET('country_id'), $lang_all[0]]);
 // Подключаем файл навигации
