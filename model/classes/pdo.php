@@ -10,7 +10,7 @@ class PdoClass {
 
     function getQuery($sql) {
         global $DB;
-        
+
         $result = $DB->query($sql);
         return $result;
     }
@@ -21,7 +21,7 @@ class PdoClass {
 
     function getExec($sql) {
         global $DB;
-        
+
         $result = $DB->exec($sql);
         return $result;
     }
@@ -32,14 +32,14 @@ class PdoClass {
 
     function getCell($sql, $a) {
         global $DB;
-        
-        $exec = FALSE;
+
+        $result = FALSE;
         if ($exec = $DB->prepare($sql)
                 AND $exec->execute($a)
-                AND $exec = $exec->fetch($DB :: FETCH_NUM)) {
-            $exec = $exec[0];
+                AND $value = $exec->fetch($DB :: FETCH_NUM)) {
+            $result = $value[0];
         }
-        return $exec;
+        return $result;
     }
 
     /* getCell для запроса точного значения ячейки.
@@ -52,14 +52,14 @@ class PdoClass {
 
     function getColRow($sql, $a) {
         global $DB;
-        
-        $exec = FALSE;
+
+        $result = FALSE;
         if ($exec = $DB->prepare($sql)
                 AND $exec->execute($a)
-                AND $exec = $exec->fetchAll($DB :: FETCH_NUM)) {
+                AND $result = $exec->fetchAll($DB :: FETCH_NUM)) {
             
         }
-        return $exec;
+        return $result;
     }
 
     /* getColRow для запроса колонок, строк и участков из строк и колонок. Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах.
@@ -114,14 +114,14 @@ class PdoClass {
 
     function getCol($sql, $a) {
         global $DB;
-        
-        $exec = FALSE;
+
+        $result = FALSE;
         if ($exec = $DB->prepare($sql)
                 AND $exec->execute($a)
-                AND $exec = $exec->fetchAll($DB :: FETCH_NUM)) {
-            $exec = array_column($exec, 0);
+                AND $value = $exec->fetchAll($DB :: FETCH_NUM)) {
+            $result = array_column($value, 0);
         }
-        return $exec;
+        return $result;
     }
 
     /* getCol для запроса колонки в виде одномерного массива. Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах.
@@ -138,14 +138,14 @@ class PdoClass {
 
     function getCellFalse($sql, $a) {
         global $DB;
-        
-        $exec = FALSE;
+
+        $result = FALSE;
         if ($exec = $DB->prepare($sql)
                 AND $exec->execute($a)
-                AND $exec = $exec->fetchColumn()) {
+                AND $result = $exec->fetchColumn()) {
             
         }
-        return $exec;
+        return $result;
     }
 
     /* getCellFalse выдает значение ячейки. Если ячейка не найдена то возвращает FALSE
@@ -155,14 +155,14 @@ class PdoClass {
 
     function getColCount($sql, $a) {
         global $DB;
-        
-        $exec = FALSE;
+
+        $result = FALSE;
         if ($exec = $DB->prepare($sql)
                 AND $exec->execute($a)
-                AND $exec = $exec->ColumnCount()) {
+                AND $result = $exec->ColumnCount()) {
             
         }
-        return $exec;
+        return $result;
     }
 
     /* getColCount показывает количество столбцов в запросе. Результат выдается простым числовым значением.
@@ -172,14 +172,14 @@ class PdoClass {
 
     function getRowCount($sql, $a) {
         global $DB;
-        
-        $exec = FALSE;
+
+        $result = FALSE;
         if ($exec = $DB->prepare($sql)
                 AND $exec->execute($a)
-                AND $exec = $exec->RowCount()) {
+                AND $result = $exec->RowCount()) {
             
         }
-        return $exec;
+        return $result;
     }
 
     /* getRowCount показывает количество строк в запросе. Результат выдается простым числовым значением.
@@ -189,14 +189,14 @@ class PdoClass {
 
     function selectPrepare($sql, $a) {
         global $DB;
-        
-        $exec = FALSE;
+
+        $result = FALSE;
         if ($exec = $DB->prepare($sql)
                 AND $exec->execute($a)
-                AND $exec = $exec->fetchAll()) {
-            $exec = $exec[0][0];
+                AND $value = $exec->fetchAll()) {
+            $result = $value[0][0];
         }
-        return $exec;
+        return $result;
     }
 
     /* selectPrepare показывает значение ячейки (не массив). Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах.
@@ -206,13 +206,13 @@ class PdoClass {
 
     function inPrepare($sql, $a) {
         global $DB;
-        
-        $exec = FALSE;
-        if ($exec = $DB->prepare($sql) 
-                AND $exec->execute($a)) {
+
+        $result = FALSE;
+        if ($result = $DB->prepare($sql)
+                AND $result->execute($a)) {
             
         }
-        return $exec;
+        return $result;
     }
 
     /* inPrepare служит для INSERT INTO, DELETE и UPDATE. Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых записях.
