@@ -1,5 +1,4 @@
 <?php
-
 // ****** Copyright © 2018 eMarket *****// 
 //   GNU GENERAL PUBLIC LICENSE v.3.0   //    
 // https://github.com/musicman3/eMarket //
@@ -11,6 +10,7 @@ class PdoClass {
 
     function getQuery($sql) {
         global $DB;
+        
         $result = $DB->query($sql);
         return $result;
     }
@@ -21,6 +21,7 @@ class PdoClass {
 
     function getExec($sql) {
         global $DB;
+        
         $result = $DB->exec($sql);
         return $result;
     }
@@ -31,10 +32,13 @@ class PdoClass {
 
     function getCell($sql, $a) {
         global $DB;
+        
         $exec = FALSE;
-        if ($exec = $DB->prepare($sql) AND $exec->execute($a) AND $exec = $exec->fetch($DB :: FETCH_NUM))
-            ;
-        $exec = $cell[0];
+        if ($exec = $DB->prepare($sql)
+                AND $exec->execute($a)
+                AND $exec = $exec->fetch($DB :: FETCH_NUM)) {
+            $exec = $exec[0];
+        }
         return $exec;
     }
 
@@ -48,9 +52,13 @@ class PdoClass {
 
     function getColRow($sql, $a) {
         global $DB;
+        
         $exec = FALSE;
-        if ($exec = $DB->prepare($sql) AND $exec->execute($a) AND $exec = $exec->fetchAll($DB :: FETCH_NUM))
-            ;
+        if ($exec = $DB->prepare($sql)
+                AND $exec->execute($a)
+                AND $exec = $exec->fetchAll($DB :: FETCH_NUM)) {
+            
+        }
         return $exec;
     }
 
@@ -106,10 +114,13 @@ class PdoClass {
 
     function getCol($sql, $a) {
         global $DB;
+        
         $exec = FALSE;
-        if ($exec = $DB->prepare($sql) AND $exec->execute($a) AND $exec = $exec->fetchAll($DB :: FETCH_NUM))
-            ;
-        $exec = array_column($exec, 0);
+        if ($exec = $DB->prepare($sql)
+                AND $exec->execute($a)
+                AND $exec = $exec->fetchAll($DB :: FETCH_NUM)) {
+            $exec = array_column($exec, 0);
+        }
         return $exec;
     }
 
@@ -127,9 +138,13 @@ class PdoClass {
 
     function getCellFalse($sql, $a) {
         global $DB;
+        
         $exec = FALSE;
-        if ($exec = $DB->prepare($sql) AND $exec->execute($a) AND $exec = $exec->fetchColumn())
-            ;
+        if ($exec = $DB->prepare($sql)
+                AND $exec->execute($a)
+                AND $exec = $exec->fetchColumn()) {
+            
+        }
         return $exec;
     }
 
@@ -140,9 +155,13 @@ class PdoClass {
 
     function getColCount($sql, $a) {
         global $DB;
+        
         $exec = FALSE;
-        if ($exec = $DB->prepare($sql) AND $exec->execute($a) AND $exec = $exec->ColumnCount())
-            ;
+        if ($exec = $DB->prepare($sql)
+                AND $exec->execute($a)
+                AND $exec = $exec->ColumnCount()) {
+            
+        }
         return $exec;
     }
 
@@ -153,9 +172,13 @@ class PdoClass {
 
     function getRowCount($sql, $a) {
         global $DB;
+        
         $exec = FALSE;
-        if ($exec = $DB->prepare($sql) AND $exec->execute($a) AND $exec = $exec->RowCount())
-            ;
+        if ($exec = $DB->prepare($sql)
+                AND $exec->execute($a)
+                AND $exec = $exec->RowCount()) {
+            
+        }
         return $exec;
     }
 
@@ -166,9 +189,13 @@ class PdoClass {
 
     function selectPrepare($sql, $a) {
         global $DB;
+        
         $exec = FALSE;
-        if ($exec = $DB->prepare($sql) AND $exec->execute($a) AND $exec = $exec->fetchAll() AND $exec = $exec[0][0])
-            ;
+        if ($exec = $DB->prepare($sql)
+                AND $exec->execute($a)
+                AND $exec = $exec->fetchAll()) {
+            $exec = $exec[0][0];
+        }
         return $exec;
     }
 
@@ -179,9 +206,12 @@ class PdoClass {
 
     function inPrepare($sql, $a) {
         global $DB;
+        
         $exec = FALSE;
-        if ($exec = $DB->prepare($sql) AND $exec->execute($a))
-            ;
+        if ($exec = $DB->prepare($sql) 
+                AND $exec->execute($a)) {
+            
+        }
         return $exec;
     }
 
