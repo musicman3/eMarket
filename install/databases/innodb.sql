@@ -8592,7 +8592,7 @@ INSERT INTO emkt_regions VALUES(3009, 188, 'NJ', 'Nitrianský kraj', 'English');
 INSERT INTO emkt_regions VALUES(3010, 188, 'PV', 'Prešovský kraj', 'English');
 INSERT INTO emkt_regions VALUES(3011, 188, 'TA', 'Trnavský kraj', 'English');
 INSERT INTO emkt_regions VALUES(3012, 188, 'TC', 'Trenčianský kraj', 'English');
-INSERT INTO emkt_regions VALUES(3013, 188, 'ZI', 'Žilinský kraj', 'English');;
+INSERT INTO emkt_regions VALUES(3013, 188, 'ZI', 'Žilinský kraj', 'English');
 
 INSERT INTO emkt_countries VALUES (189,'Slovenia','English','SI','SVN','');
 

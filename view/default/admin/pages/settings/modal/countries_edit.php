@@ -58,7 +58,7 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/mo
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" type="text" name="name_edit<?php echo $lang_all[$xl] ?>" id="name_edit<?php echo $lang_all[$xl] ?>" value="<?php echo $lang_all[$xl] ?>" />
+                                            <input class="input-sm form-control" type="text" name="name_edit<?php echo $lang_all[$xl] ?>" id="name_edit<?php echo $lang_all[$xl] ?>" value="<?php echo $name_edit[$xl] ?>" />
                                         </div>
                                     </div>
                                 </div>
