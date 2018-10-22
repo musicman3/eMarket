@@ -118,6 +118,23 @@ CREATE TABLE emkt_vendor_codes (
 	PRIMARY KEY (id, language))
 ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
+DROP TABLE IF EXISTS emkt_zones;
+CREATE TABLE emkt_zones (
+	id int NOT NULL,
+	name varchar(256),
+	language varchar(64),
+	PRIMARY KEY (id, language))
+ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+
+DROP TABLE IF EXISTS emkt_value_zones;
+CREATE TABLE emkt_value_zones (
+	id int NOT NULL auto_increment,
+        country_id int NOT NULL,
+        region_id int NOT NULL,
+        zones_id int NOT NULL,
+	PRIMARY KEY (id))
+ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+
 
 /* Загрузка первоначальных данных в таблицу стран */
 /* Russian */
