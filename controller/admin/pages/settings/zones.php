@@ -14,7 +14,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/model/connect_page_start.php');
 $_SESSION['zone_page'] = $VALID->inSERVER('REQUEST_URI');
 
 // Если нажали на кнопку Добавить
-if ($VALID->inGET('alpha_2')) {
+if ($VALID->inGET($lang_all[0])) {
 
     // Получаем последний id и увеличиваем его на 1
     $id_max = $PDO->selectPrepare("SELECT id FROM " . TABLE_ZONES . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);
@@ -22,7 +22,7 @@ if ($VALID->inGET('alpha_2')) {
 
     // добавляем запись для всех вкладок
     for ($xl = 0; $xl < count($lang_all); $xl++) {
-        $PDO->inPrepare("INSERT INTO " . TABLE_ZONES . " SET id=?, name=?, language=?, alpha_2=?, alpha_3=?, address_format=?", [$id, $VALID->inGET($lang_all[$xl]), $lang_all[$xl], $VALID->inGET('alpha_2'), $VALID->inGET('alpha_3'), $VALID->inGET('address_format')]);
+        $PDO->inPrepare("INSERT INTO " . TABLE_ZONES . " SET id=?, name=?, note=?, language=?", [$id, $VALID->inGET($lang_all[$xl]), $VALID->inGET('note'), $lang_all[$xl]]);
     }
 }
 
@@ -44,7 +44,7 @@ if ($VALID->inGET('zone_delete')) {
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 // Получаем массив таблицы
-$lines = $PDO->getColRow("SELECT id, name, alpha_2, alpha_3 FROM " . TABLE_ZONES . " WHERE language=? ORDER BY name", [$lang_all[0]]);
+$lines = $PDO->getColRow("SELECT id, name, note FROM " . TABLE_ZONES . " WHERE language=? ORDER BY name", [$lang_all[0]]);
 // Cчитаем количество записей
 $counter = $PDO->getRowCount("SELECT id FROM " . TABLE_ZONES . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);
 // Подключаем файл навигации

@@ -66,22 +66,9 @@
                         }
 
                         ?>
-
-                        <div class="form-group">
-                            <div class="input-group has-error">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                <input class="input-sm form-control" placeholder="<?php echo $lang['alpha_2'] ?>" type="text" name="alpha_2" id="alpha_2" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="input-group has-error">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                <input class="input-sm form-control" placeholder="<?php echo $lang['alpha_3'] ?>" type="text" name="alpha_3" id="alpha_3" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="address_format"><?php echo $lang['address_format'] ?></label>
-                            <textarea class="form-control" placeholder="<?php echo $lang['add_address_format'] ?>" rows="5" name="address_format" id="address_format"></textarea>
+                                                <div class="form-group">
+                            <label for="note"><?php echo $lang['name_description'] ?></label>
+                            <textarea class="form-control" placeholder="<?php echo $lang['add_name_description'] ?>" rows="5" name="note" id="note"></textarea>
                         </div> 
                     </div>
                 </div>

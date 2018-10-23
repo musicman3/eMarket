@@ -33,7 +33,7 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th colspan="5">
+                                <th colspan="3">
                                     <?php if ($lines == TRUE) { ?>
                                         <div class="log-page"><?php echo $lang['s'] ?> <?php echo $i + 1 ?> <?php echo $lang['po'] ?> <?php echo $lines_p ?> ( <?php echo $lang['iz'] ?> <?php echo $counter ?> )</div>
                                         <?php
@@ -71,9 +71,7 @@
                             <tr class="border">
                                 <th></th>
                                 <th><?php echo $lang['zone'] ?></th>
-                                <th class="al-text"><?php echo $lang['alpha_2'] ?></th>
-                                <th class="al-text"><?php echo $lang['alpha_3'] ?></th>
-                                <th class="al-text"><?php echo $lang['zone_flag'] ?></th>
+                                <th><?php echo $lang['name_description'] ?></th>
                                 <th class="al-text-w"></th>
                             </tr>
 			    <?php } ?>
@@ -88,9 +86,7 @@
                                         </form>
                                     </td>
                                     <td><?php echo $lines[$i][1] ?></td>
-                                    <td class="al-text"><?php echo $lines[$i][2] ?></td>
-                                    <td class="al-text"><?php echo $lines[$i][3] ?></td>
-                                    <td class="al-text"><img src='/view/<?php echo $TEMPLATE ?>/admin/images/worldflags/<?php echo strtolower($lines[$i][2]) ?>.png'></td>
+                                    <td><?php echo $lines[$i][2] ?></td>
                                     <td class="al-text-w">
                                         <form>
                                             <input hidden name="zone_delete" value="<?php echo $lines[$i][0] ?>">

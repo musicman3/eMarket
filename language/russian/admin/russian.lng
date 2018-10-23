@@ -21,6 +21,7 @@ title_vendor_codes = Идентификаторы товара
 title_stock = Склад
 title_categories = Категории
 title_products = Товары
+title_zones = Зоны
 
 login_error = Введены неверные E-Mail или пароль
 login_name = ПАНЕЛЬ АДМИНИСТРАТОРА
@@ -40,6 +41,7 @@ no_cat = Категорий нет
 no_taxes = Налогов нет
 no_units = Единиц измерения нет
 no_regions = Регионов нет
+no_zones = Зон нет
 no_vendor_codes = Нет идентификаторов товара
 confirm-yes = Да
 confirm-no = Нет
@@ -64,6 +66,7 @@ product_description = Описание
 name_little = Сокращенное наименование
 name_full = Полное наименование
 name_description = Описание
+add_name_description = Добавить описание
 name_country = Название страны
 country = Страна
 alpha_2 = Код ISO 3166-1 Alpha 2
@@ -72,8 +75,10 @@ country_flag = Флаг страны
 address_format = Формат адреса:
 add_address_format = Укажите формат адреса
 name_region = Название региона
+name_zone = Название зоны
 region_code = Код региона
 region = Регион
+zone = Зона
 
 ;кнопки меню
 menu_exit = Выход

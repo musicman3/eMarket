@@ -122,6 +122,7 @@ DROP TABLE IF EXISTS emkt_zones;
 CREATE TABLE emkt_zones (
 	id int NOT NULL,
 	name varchar(256),
+        note varchar(256),
 	language varchar(64),
 	PRIMARY KEY (id, language))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
