@@ -65,7 +65,7 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/mo
                         ?>
                         <div class="form-group">
                             <label for="note"><?php echo $lang['name_description'] ?></label>
-                            <textarea class="form-control" rows="5" name="note" id="address_format"><?php echo $value_edit ?></textarea>
+                            <textarea class="form-control" rows="5" name="note" id="note"><?php echo $value_edit ?></textarea>
                         </div> 
                     </div>
                 </div>
