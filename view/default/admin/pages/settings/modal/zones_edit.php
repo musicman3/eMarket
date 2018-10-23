@@ -4,7 +4,6 @@
 // https://github.com/musicman3/eMarket //
 // *************************************//
 require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/modal/zones_edit.php');
-
 ?>
 
 <!-- Модальное окно "Изменить" -->
@@ -24,7 +23,6 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/mo
                         <?php
                         if (count($lang_all) > 1) {
                             for ($xl = 1; $xl < count($lang_all); $xl++) {
-
                                 ?>
 
                                 <li><a data-toggle="tab" href="#<?php echo $lang_all[$xl] . $lines[$k][0] ?>"><img src="/view/default/admin/images/langflags/<?php echo $lang_all[$xl] ?>.png" alt="<?php echo $lang_all[$xl] ?>" title="<?php echo $lang_all[$xl] ?>" width="16" height="10" /> <?php echo $lang_all[$xl] ?></a></li>
@@ -32,7 +30,6 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/mo
                                 <?php
                             }
                         }
-
                         ?>
 
                     </ul>
@@ -51,7 +48,6 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/mo
                         <?php
                         if (count($lang_all) > 1) {
                             for ($xl = 1; $xl < count($lang_all); $xl++) {
-
                                 ?>
 
                                 <div id="<?php echo $lang_all[$xl] . $lines[$k][0] ?>" class="tab-pane fade">
@@ -63,27 +59,13 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/mo
                                     </div>
                                 </div>
 
-                            <?php
+                                <?php
                             }
                         }
-
                         ?>
-
                         <div class="form-group">
-                            <div class="input-group has-error">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                <input class="input-sm form-control" type="text" name="alpha_2_edit" id="alpha_2_edit" value="<?php echo $value_edit ?>" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="input-group has-error">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                <input class="input-sm form-control" type="text" name="alpha_3_edit" id="alpha_3_edit" value="<?php echo $value_edit_2 ?>" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="address_format"><?php echo $lang['address_format'] ?></label>
-                            <textarea class="form-control" rows="5" name="address_format" id="address_format"><?php echo $value_edit_3 ?></textarea>
+                            <label for="note"><?php echo $lang['name_description'] ?></label>
+                            <textarea class="form-control" rows="5" name="note" id="address_format"><?php echo $value_edit ?></textarea>
                         </div> 
                     </div>
                 </div>

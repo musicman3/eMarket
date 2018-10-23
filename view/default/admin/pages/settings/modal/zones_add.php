@@ -3,7 +3,6 @@
 //   GNU GENERAL PUBLIC LICENSE v.3.0   //    
 // https://github.com/musicman3/eMarket //
 // *************************************//
-
 ?>
 <!-- Модальное окно "Добавить" -->
 <div id="zones_add" class="modal fade" tabindex="-1">
@@ -22,7 +21,6 @@
                         <?php
                         if (count($lang_all) > 1) {
                             for ($xl = 1; $xl < count($lang_all); $xl++) {
-
                                 ?>
 
                                 <li><a data-toggle="tab" href="#<?php echo $lang_all[$xl] ?>"><img src="/view/default/admin/images/langflags/<?php echo $lang_all[$xl] ?>.png" alt="<?php echo $lang_all[$xl] ?>" title="<?php echo $lang_all[$xl] ?>" width="16" height="10" /> <?php echo $lang_all[$xl] ?></a></li>
@@ -30,7 +28,6 @@
                                 <?php
                             }
                         }
-
                         ?>
 
                     </ul>
@@ -49,7 +46,6 @@
                         <?php
                         if (count($lang_all) > 1) {
                             for ($xl = 1; $xl < count($lang_all); $xl++) {
-
                                 ?>
 
                                 <div id="<?php echo $lang_all[$xl] ?>" class="tab-pane fade">
@@ -64,9 +60,8 @@
                                 <?php
                             }
                         }
-
                         ?>
-                                                <div class="form-group">
+                        <div class="form-group">
                             <label for="note"><?php echo $lang['name_description'] ?></label>
                             <textarea class="form-control" placeholder="<?php echo $lang['add_name_description'] ?>" rows="5" name="note" id="note"></textarea>
                         </div> 
