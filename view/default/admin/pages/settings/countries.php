@@ -69,7 +69,7 @@
                             </tr>
 			    <?php if ($lines == TRUE) { ?>
                             <tr class="border">
-                                <th></th>
+                                <th class="sortleft"></th>
                                 <th><?php echo $lang['country'] ?></th>
                                 <th class="al-text"><?php echo $lang['alpha_2'] ?></th>
                                 <th class="al-text"><?php echo $lang['alpha_3'] ?></th>
@@ -81,7 +81,7 @@
                         <tbody>
                             <?php for ($i; $i < $lines_p; $i++) { ?>
                                 <tr>
-                                    <td>
+                                    <td class="sortleft">
                                         <form action="/controller/admin/pages/settings/regions.php">
                                             <input hidden name="country_id" value="<?php echo $lines[$i][0] ?>">
                                             <button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-cog"></span></button>
