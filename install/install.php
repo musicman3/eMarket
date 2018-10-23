@@ -63,6 +63,8 @@
         $tab_regions = $dbpref . 'regions';
         $tab_taxes = $dbpref . 'taxes';
         $tab_units = $dbpref . 'units';
+        $tab_zones = $dbpref . 'zones';
+        $tab_value_zones = $dbpref . 'value_zones';
         $tab_vendor_codes = $dbpref . 'vendor_codes';
         $hashmet = $_POST['hash_method'];
         $crypt = $_POST['crypt_method'];
@@ -89,6 +91,8 @@
                 '  define(\'TABLE_REGIONS\', \'' . $tab_regions . '\');' . "\n" .
                 '  define(\'TABLE_TAXES\', \'' . $tab_taxes . '\');' . "\n" .
                 '  define(\'TABLE_UNITS\', \'' . $tab_units . '\');' . "\n" .
+                '  define(\'TABLE_ZONES\', \'' . $tab_zones . '\');' . "\n" .
+                '  define(\'TABLE_VALUE_ZONES\', \'' . $tab_value_zones . '\');' . "\n" .
                 '  define(\'TABLE_VENDOR_CODES\', \'' . $tab_vendor_codes . '\');' . "\n" .
                 '?>';
 
