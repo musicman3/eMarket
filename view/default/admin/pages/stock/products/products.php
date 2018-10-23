@@ -69,11 +69,11 @@
                             <tr class="border">
                                 <th align="left"><div style="width: 14px;"></div></th>
                                 <th align="left"><div style="width: 24px;"></div></th>
-                                <th class="left al-text" align="left">Название</th>
-                                <th class="right al-text" align="left">Модель</th>
-                                <th class="right al-text" align="left">Ед. изм.</th>
-                                <th class="right al-text" align="left">Кол-во</th>
-                                <th class="right al-text" align="left">Цена</th>
+                                <th class="pleft al-text" align="left">Название</th>
+                                <th class="pright al-text" align="left">Модель</th>
+                                <th class="pright al-text" align="left">Ед. изм.</th>
+                                <th class="pright al-text" align="left">Кол-во</th>
+                                <th class="pright al-text" align="left">Цена</th>
                             </tr>
                         </thead>
                     </table>
@@ -86,14 +86,14 @@
                             <tr class="sort-list">
                                 <td class="sortyes sortleft-m" align="left"><span class="glyphicon glyphicon-move"> </span></td>    
                                 <td class="sortleft" align="left"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-folder-open"> </span></button></td>
-                                <td class="left option" align="left">
+                                <td class="pleft option" align="left">
                                     <div class="context-one">Название товара пишем вот таким длинным для проверки длинны названия и колонок таблиц
                                     </div>
                                 </td>
-                                <td class="right al-text" align="left">MD34-50</td>
-                                <td class="right al-text" align="left">шт.</td>
-                                <td class="right al-text" align="left">5</td>
-                                <td class="right al-text" align="left">1200.00</td>
+                                <td class="pright al-text" align="left">MD34-50</td>
+                                <td class="pright al-text" align="left">шт.</td>
+                                <td class="pright al-text" align="left">5</td>
+                                <td class="pright al-text" align="left">1200.00</td>
                             </tr>
                         </tbody>
                     </table>

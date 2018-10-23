@@ -58,8 +58,8 @@ input[type="checkbox"], input[type="radio"] {vertical-align: text-bottom;}
 .table .sortno:hover {background: none;}
 .table > tbody > tr > td.active {background-color: #f0f0f0;}
 .table > tbody > tr > td.option, .table > tbody > tr > td.options {padding:0px;}
-.table .left {vertical-align: middle;width: 70%;}
-.table .right {vertical-align: middle;width: 7%;}
+.table .pleft {vertical-align: middle;width: 70%;}
+.table .pright {vertical-align: middle;width: 7%;}
 div.context-one {padding:5px;}
 .al-text {text-align: center;}
 .al-text-w {text-align: center;width: 150px;}
