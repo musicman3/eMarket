@@ -23,7 +23,7 @@
                         <thead>
                             <tr>
                                 <th>
-                                    <div class="log-page"><?php echo $lang['s'] ?> <?php echo $i + 1 ?> <?php echo $lang['po'] ?> <?php echo $lines_p ?> ( <?php echo $lang['iz'] ?> <?php echo $counter; ?> )</div>
+                                    <div class="page"><?php echo $lang['s'] ?> <?php echo $i + 1 ?> <?php echo $lang['po'] ?> <?php echo $lines_p ?> ( <?php echo $lang['iz'] ?> <?php echo $counter; ?> )</div>
                                 </th>
 
                                 <th>
@@ -33,7 +33,7 @@
                                             <input hidden name="i" value="<?php echo $i ?>">
                                             <input hidden name="lines_p" value="<?php echo $lines_p ?>">
                                         <?php } ?>
-                                        <div class="log-right"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/error_log/error_log.php" formmethod="post"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
+                                        <div class="right"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/error_log/error_log.php" formmethod="post"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
                                     </form>
 
                                     <form>
@@ -41,14 +41,14 @@
                                             <input hidden name="i2" value="<?php echo $i ?>">
                                             <input hidden name="lines_p2" value="<?php echo $lines_p ?>">
                                         <?php } ?>
-                                        <div class="log-left"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/error_log/error_log.php" formmethod="post"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
+                                        <div class="left"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/error_log/error_log.php" formmethod="post"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
                                     </form>
 
 
 
                                     <form>
                                         <input hidden name="log_delete" value="delete">
-                                        <div class="log-left"><button type="submit" name="log_delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo $lang['confirm-yes'] ?>" data-btn-cancel-label="<?php echo $lang['confirm-no'] ?>" title="<?php echo $lang['confirm-del'] ?>" action="/controller/admin/pages/error_log/error_log.php" formmethod="post"><span class="glyphicon glyphicon-trash"> </span></button></div>
+                                        <div class="left"><button type="submit" name="log_delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo $lang['confirm-yes'] ?>" data-btn-cancel-label="<?php echo $lang['confirm-no'] ?>" title="<?php echo $lang['confirm-del'] ?>" action="/controller/admin/pages/error_log/error_log.php" formmethod="post"><span class="glyphicon glyphicon-trash"> </span></button></div>
                                     </form>
 
                                 </th>
