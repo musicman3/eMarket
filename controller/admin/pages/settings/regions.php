@@ -46,11 +46,9 @@ $lines = $PDO->getColRow("SELECT id, region_code, name FROM " . TABLE_REGIONS . 
 $counter = $PDO->getRowCount("SELECT region_code FROM " . TABLE_REGIONS . " WHERE country_id=? AND language=? ORDER BY country_id DESC", [$VALID->inGET('country_id'), $lang_all[0]]);
 // Подключаем файл навигации
 require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/includes/navigation.php');
-//КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
-//
+
 // *********  CONNECT PAGE END  ********* //
 require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/connect_page_end.php');
-require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/html_end.php');
 // ************************************** //
 ?>
 </body>

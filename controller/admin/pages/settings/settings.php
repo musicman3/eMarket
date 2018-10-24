@@ -11,10 +11,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/model/connect_page_start.php');
 // ************************************** //
 
 
-//КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 // *********  CONNECT PAGE END  ********* //
 require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/connect_page_end.php');
-require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/html_end.php');
 // ************************************** //
 
 ?>

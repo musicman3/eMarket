@@ -115,7 +115,6 @@ if ($VALID->inPOST('name')) {
 
 // ********  CONNECT PAGE END  ******** //
 require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/connect_page_end.php');
-require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/html_end.php');
 // ************************************ //
 //подгрузка JS обработок
 require_once('js/js_products.php');

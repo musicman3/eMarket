@@ -13,7 +13,6 @@ require_once('categories/categories.php');
 
 // ********  CONNECT PAGE END  ******** //
 require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/connect_page_end.php');
-require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/html_end.php');
 // ************************************ //
 
 ?>
