@@ -19,10 +19,10 @@ if ($VALID->inPOST('log_delete') == 'delete') {
 if (file_exists($VALID->inSERVER('DOCUMENT_ROOT') . '/model/work/errors.log')) { // Если файл существует, то
     $lines = array_reverse(file($VALID->inSERVER('DOCUMENT_ROOT') . '/model/work/errors.log')); // получаем содержимое файла в виде массива и сортируем в обратном порядке
     $counter = count($lines); // считаем количество строк
+}
 
 // Подключаем файл навигации
 require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/includes/navigation.php');
-}
 
 // *********  CONNECT PAGE END  ********* //
 require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/connect_page_end.php');
