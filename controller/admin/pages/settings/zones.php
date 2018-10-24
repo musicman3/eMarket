@@ -55,5 +55,3 @@ require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/connect_page_end.php');
 // ************************************** //
 
 ?>
-</body>
-</html>

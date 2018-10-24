@@ -250,10 +250,11 @@ if ($VALID->inGET('token_ajax') == $TOKEN && $VALID->inGET('ids')) {
     }
 }
 
+//Создаем маркер JS для подгрузки JS/JS.PHP
+$JS_MARKER = dirname(__FILE__);
+
 // ********  CONNECT PAGE END  ******** //
 require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/connect_page_end.php');
 // ************************************ //
-//подгрузка JS обработок
-require_once('js/js_categories.php');
 
 ?>
