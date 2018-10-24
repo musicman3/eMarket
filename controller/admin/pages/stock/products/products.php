@@ -113,8 +113,8 @@ if ($VALID->inPOST('name')) {
         $VALID->inPOST('quantity'), $VALID->inPOST('keyword'), $VALID->inPOST('tags'), $VALID->inPOST('description')]);
 }
 
-//Создаем маркер JS для подгрузки JS/JS.PHP
-$JS_MARKER = dirname(__FILE__);
+//Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
+$JS_END = dirname(__FILE__);
 
 // ********  CONNECT PAGE END  ******** //
 require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/connect_page_end.php');

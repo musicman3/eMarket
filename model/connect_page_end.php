@@ -11,10 +11,10 @@ require_once($VIEW->Routing());
 require_once($_SERVER['DOCUMENT_ROOT'] . '/model/connect_end.php');
 require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/html_end.php');
 
-//Если существует $JS_MARKER и JS.PHP
-if (isset($JS_MARKER) && file_exists($JS_MARKER.'/js/js.php')) {
+//Если существует $JS_END и JS.PHP
+if (isset($JS_END) && file_exists($JS_END.'/js/js.php')) {
     //то подгружаем JS.PHP файл
-require_once($JS_MARKER.'/js/js.php');
+require_once($JS_END.'/js/js.php');
 }
 ?>
 </body>
