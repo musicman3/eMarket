@@ -179,7 +179,6 @@ if ($VALID->inGET('idsx_paste_key') == 'paste' && isset($_SESSION['buffer']) == 
 }
 
 // КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
-
 // задаем количество строк на странице вывода категорий
 if (isset($_SESSION['select_category']) == FALSE) {
     $lines_page = 20;
