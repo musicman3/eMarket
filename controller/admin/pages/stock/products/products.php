@@ -114,7 +114,7 @@ if ($VALID->inPOST('name')) {
 }
 
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
-$JS_END = dirname(__FILE__);
+$JS_END = __DIR__;
 
 // ********  CONNECT PAGE END  ******** //
 require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/connect_page_end.php');
