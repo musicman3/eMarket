@@ -22,7 +22,7 @@
         <title><?php echo $lang['title_' . $title_prefix] ?></title>
         <?php
         //вывод только в админке
-        if ($patch == 'admin') {
+        if ($PATCH == 'admin') {
 
             ?>
             <link href="/ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
@@ -60,7 +60,7 @@
         ?>
         <?php
         //вывод только в каталоге
-        if ($patch == 'catalog') {
+        if ($PATCH == 'catalog') {
 
             ?>
             <link href="/ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />

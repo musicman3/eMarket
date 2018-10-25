@@ -28,14 +28,13 @@ function FilesPatch($dir) {
     return $files;
 }
 
-//Текущий основной путь (admin или catalog)
 $uri_explode = explode('/', ($VALID->inSERVER('REQUEST_URI')));
-$patch = $uri_explode[2];
+$PATCH = $uri_explode[2]; //Текущий основной путь (admin или catalog)
 
 //Подключение и парсинг языкового файла
 $lang_default = DEFAULT_LANGUAGE; //Язык по умолчанию
 
-$files_patch = FilesPatch($VALID->inSERVER('DOCUMENT_ROOT') . '/language/' . $lang_default . '/' . $patch);
+$files_patch = FilesPatch($VALID->inSERVER('DOCUMENT_ROOT') . '/language/' . $lang_default . '/' . $PATCH);
 $parse_temp = parse_ini_file($files_patch[0]);
 for ($i = 0; $i < count($files_patch); $i++) {
     $ini = parse_ini_file($files_patch[$i]);

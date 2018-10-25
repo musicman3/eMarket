@@ -7,7 +7,7 @@
 ?>
 <?php
 //вывод только в админке
-if ($patch == 'admin') {
+if ($PATCH == 'admin') {
 
     ?>
     <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.min.js"></script>
@@ -22,7 +22,7 @@ if ($patch == 'admin') {
 
 ?>
 <?php //вывод только в каталоге
-if ($patch == 'catalog') {
+if ($PATCH == 'catalog') {
 
     ?>
     <script type="text/javascript" src="/ext/jquery/jquery.min.js"></script>

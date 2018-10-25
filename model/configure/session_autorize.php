@@ -10,7 +10,7 @@ error_reporting(-1);
 session_start();
 
 // ЕСЛИ В АДМИНИСТРАТИВНОЙ ПАНЕЛИ
-if ($patch == 'admin') {
+if ($PATCH == 'admin') {
     $login = null;
     $pass = null;
     if (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
@@ -27,7 +27,7 @@ if ($patch == 'admin') {
 }
 
 // ЕСЛИ В КАТАЛОГЕ
-if ($patch == 'catalog') {
+if ($PATCH == 'catalog') {
     $login = null;
     $pass = null;
     if (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
