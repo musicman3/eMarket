@@ -11,17 +11,17 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/model/router_class.php');
 //REQUIRE CONFIGURE.PHP
 require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/configure/configure.php');
 
-//SESSION = POST FORM
-session_start();
-
-$_SESSION['login'] = $VALID->inPOST('login');
-$_SESSION['pass'] = hash(HASH_METHOD, $VALID->inPOST('pass'));
-
 //REQUIRE CONNECT.PHP
 require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/configure/connect.php');
 
 //REQUIRE router_lang.PHP
 require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/router_lang.php');
+
+//SESSION = POST FORM
+session_start();
+
+$_SESSION['login'] = $VALID->inPOST('login');
+$_SESSION['pass'] = hash(HASH_METHOD, $VALID->inPOST('pass'));
 
 //VERIFY USER
 $verify = $PDO->getRowCount("SELECT * FROM " . TABLE_ADMINISTRATORS . " WHERE login=? AND password=?", [$_SESSION['login'], $_SESSION['pass']]);
