@@ -10,7 +10,7 @@ error_reporting(-1);
 session_start();
 
 // ЕСЛИ В АДМИНИСТРАТИВНОЙ ПАНЕЛИ
-if ($lang['PATCH'] == 'admin') {
+if ($patch == 'admin') {
     $login = null;
     $pass = null;
     if (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
@@ -27,7 +27,7 @@ if ($lang['PATCH'] == 'admin') {
 }
 
 // ЕСЛИ В КАТАЛОГЕ
-if ($lang['PATCH'] == 'catalog') {
+if ($patch == 'catalog') {
     $login = null;
     $pass = null;
     if (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
