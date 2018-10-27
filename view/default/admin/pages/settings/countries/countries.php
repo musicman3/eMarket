@@ -15,7 +15,7 @@
 <?php for ($k; $k < $lines_p; $k++) { // запускаем цикл формирования модальных окон  ?>
 
     <!-- Вставляем модальное окно "Редактировать" -->
-    <?php require($VALID->inSERVER('DOCUMENT_ROOT') . '/view/default/admin/pages/settings/modal/countries_edit.php') ?>
+    <?php require($VALID->inSERVER('DOCUMENT_ROOT') . '/view/default/admin/pages/settings/countries/modal/countries_edit.php') ?>
 
 <?php } ?>
 
@@ -50,7 +50,7 @@
                                             <input hidden name="i" value="<?php echo $i ?>">
                                             <input hidden name="lines_p" value="<?php echo $lines_p ?>">
                                         <?php } ?>
-                                        <div class="right"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/settings/countries.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
+                                        <div class="right"><button type="submit" class="btn btn-primary btn-xs" action="countries.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
                                     </form>
 
 
@@ -59,7 +59,7 @@
                                             <input hidden name="i2" value="<?php echo $i ?>">
                                             <input hidden name="lines_p2" value="<?php echo $lines_p ?>">
                                         <?php } ?>
-                                        <div class="left"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/settings/countries.php" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
+                                        <div class="left"><button type="submit" class="btn btn-primary btn-xs" action="countries.php" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
                                     </form>
 
                                     <div class="left">
@@ -82,7 +82,7 @@
                             <?php for ($i; $i < $lines_p; $i++) { ?>
                                 <tr>
                                     <td class="sortleft">
-                                        <form action="/controller/admin/pages/settings/regions.php">
+                                        <form action="regions/regions.php">
                                             <input hidden name="country_id" value="<?php echo $lines[$i][0] ?>">
                                             <button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-cog"></span></button>
                                         </form>
@@ -95,7 +95,7 @@
                                         <form>
                                             <input hidden name="country_delete" value="<?php echo $lines[$i][0] ?>">
                                             <div class="right">
-                                                <button type="submit" name="country_delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo $lang['confirm-yes'] ?>" data-btn-cancel-label="<?php echo $lang['confirm-no'] ?>" title="<?php echo $lang['confirm-del'] ?>" action="/controller/admin/pages/settings/countries.php" formmethod="get"><span class="glyphicon glyphicon-trash"> </span></button>
+                                                <button type="submit" name="country_delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo $lang['confirm-yes'] ?>" data-btn-cancel-label="<?php echo $lang['confirm-no'] ?>" title="<?php echo $lang['confirm-del'] ?>" action="countries.php" formmethod="get"><span class="glyphicon glyphicon-trash"> </span></button>
                                             </div>
                                             <div class="left">
                                                 <a href="#countries_edit<?php echo $lines[$i][0] ?>" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span></a>

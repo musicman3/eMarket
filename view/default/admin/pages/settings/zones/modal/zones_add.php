@@ -82,11 +82,11 @@
         var msg = $('#form_zones').serialize();
         $.ajax({
             type: 'GET',
-            url: '/controller/admin/pages/settings/zones.php',
+            url: 'zones.php',
             data: msg,
             success: function (data) {
                 $('#zones_add').modal('hide');
-                location.href = '/controller/admin/pages/settings/zones.php';
+                location.href = 'zones.php';
             }
         });
     }

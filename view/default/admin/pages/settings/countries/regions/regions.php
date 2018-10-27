@@ -15,7 +15,7 @@
 <?php for ($k; $k < $lines_p; $k++) { // запускаем цикл формирования модальных окон  ?>
 
     <!-- Вставляем модальное окно "Редактировать" -->
-    <?php require($VALID->inSERVER('DOCUMENT_ROOT') . '/view/default/admin/pages/settings/modal/regions_edit.php') ?>
+    <?php require($VALID->inSERVER('DOCUMENT_ROOT') . '/view/default/admin/pages/settings/countries/regions/modal/regions_edit.php') ?>
 
 <?php } ?>
 
@@ -51,7 +51,7 @@
                                             <input hidden name="lines_p" value="<?php echo $lines_p ?>">
                                             <input hidden name="country_id" value="<?php echo $VALID->inGET('country_id') ?>">
                                         <?php } ?>
-                                        <div class="right"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/settings/regions.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
+                                        <div class="right"><button type="submit" class="btn btn-primary btn-xs" action="regions.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
                                     </form>
 
 
@@ -61,7 +61,7 @@
                                             <input hidden name="lines_p2" value="<?php echo $lines_p ?>">
                                             <input hidden name="country_id" value="<?php echo $VALID->inGET('country_id') ?>">
                                         <?php } ?>
-                                        <div class="left"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/settings/regions.php" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
+                                        <div class="left"><button type="submit" class="btn btn-primary btn-xs" action="regions.php" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
                                     </form>
 
                                     <div class="left">
@@ -87,7 +87,7 @@
                                             <input hidden name="region_delete" value="<?php echo $lines[$i][0] ?>">
                                             <input hidden name="country_id" value="<?php echo $VALID->inGET('country_id') ?>">
                                             <div class="right">
-                                                <button type="submit" name="region_delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo $lang['confirm-yes'] ?>" data-btn-cancel-label="<?php echo $lang['confirm-no'] ?>" title="<?php echo $lang['confirm-del'] ?>" action="/controller/admin/pages/settings/regions.php" formmethod="post"><span class="glyphicon glyphicon-trash"> </span></button>
+                                                <button type="submit" name="region_delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo $lang['confirm-yes'] ?>" data-btn-cancel-label="<?php echo $lang['confirm-no'] ?>" title="<?php echo $lang['confirm-del'] ?>" action="regions.php" formmethod="post"><span class="glyphicon glyphicon-trash"> </span></button>
                                             </div>
                                             <div class="left">
                                                 <a href="#regions_edit<?php echo $lines[$i][0] ?>" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span></a>

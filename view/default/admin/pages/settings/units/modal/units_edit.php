@@ -3,18 +3,17 @@
 //   GNU GENERAL PUBLIC LICENSE v.3.0   //    
 // https://github.com/musicman3/eMarket //
 // *************************************//
-require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/modal/countries_edit.php');
-
+require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/units/modal/units_edit.php');
 ?>
 
 <!-- Модальное окно "Изменить" -->
-<div id="countries_edit<?php echo $lines[$k][0] ?>" class="modal fade" tabindex="-1">
+<div id="units_edit<?php echo $lines[$k][0] ?>" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header"><div class="tooltip-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Ставка указывается в формате: 10.00" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
-                <h4 class="modal-title"><?php echo $lang['country'] ?></h4>
+            <div class="modal-header"><div class="tooltip-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Сокращенное наименование указывается любыми символами" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
+                <h4 class="modal-title">Налоги</h4>
             </div>
-            <form id="form_countries<?php echo $lines[$k][0] ?>" name="form_countries<?php echo $lines[$k][0] ?>" action="javascript:void(null);" onsubmit="call_countries<?php echo $lines[$k][0] ?>()" method="get" enctype="multipart/form-data">
+            <form id="form_units<?php echo $lines[$k][0] ?>" name="form_units<?php echo $lines[$k][0] ?>" action="javascript:void(null);" onsubmit="call_units<?php echo $lines[$k][0] ?>()" method="get" enctype="multipart/form-data">
                 <div class="panel-body">
                     <input type="hidden" name="id_edit" value="<?php echo $lines[$k][0] ?>" />
                     <!-- Языковые панели -->
@@ -24,7 +23,6 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/mo
                         <?php
                         if (count($lang_all) > 1) {
                             for ($xl = 1; $xl < count($lang_all); $xl++) {
-
                                 ?>
 
                                 <li><a data-toggle="tab" href="#<?php echo $lang_all[$xl] . $lines[$k][0] ?>"><img src="/view/default/admin/images/langflags/<?php echo $lang_all[$xl] ?>.png" alt="<?php echo $lang_all[$xl] ?>" title="<?php echo $lang_all[$xl] ?>" width="16" height="10" /> <?php echo $lang_all[$xl] ?></a></li>
@@ -32,7 +30,6 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/mo
                                 <?php
                             }
                         }
-
                         ?>
 
                     </ul>
@@ -46,12 +43,17 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/mo
                                     <input class="input-sm form-control" type="text" name="name_edit<?php echo $lang_all[0] ?>" id="name_edit<?php echo $lang_all[0] ?>" value="<?php echo $name_edit[0] ?>" />
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <div class="input-group has-error">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
+                                    <input class="input-sm form-control" type="text" name="unit_edit<?php echo $lang_all[0] ?>" id="unit_edit<?php echo $lang_all[0] ?>" value="<?php echo $value_edit[0] ?>" />
+                                </div>
+                            </div>
                         </div>
 
                         <?php
                         if (count($lang_all) > 1) {
                             for ($xl = 1; $xl < count($lang_all); $xl++) {
-
                                 ?>
 
                                 <div id="<?php echo $lang_all[$xl] . $lines[$k][0] ?>" class="tab-pane fade">
@@ -61,30 +63,17 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/mo
                                             <input class="input-sm form-control" type="text" name="name_edit<?php echo $lang_all[$xl] ?>" id="name_edit<?php echo $lang_all[$xl] ?>" value="<?php echo $name_edit[$xl] ?>" />
                                         </div>
                                     </div>
+                                    <div class="form-group">
+                                        <div class="input-group has-error">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
+                                            <input class="input-sm form-control" type="text" name="unit_edit<?php echo $lang_all[$xl] ?>" id="unit_edit<?php echo $lang_all[$xl] ?>" value="<?php echo $value_edit[$xl] ?>" />
+                                        </div>
+                                    </div>
                                 </div>
 
-                            <?php
-                            }
-                        }
+                            <?php }
+                        } ?>
 
-                        ?>
-
-                        <div class="form-group">
-                            <div class="input-group has-error">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                <input class="input-sm form-control" type="text" name="alpha_2_edit" id="alpha_2_edit" value="<?php echo $value_edit ?>" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="input-group has-error">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                <input class="input-sm form-control" type="text" name="alpha_3_edit" id="alpha_3_edit" value="<?php echo $value_edit_2 ?>" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="address_format"><?php echo $lang['address_format'] ?></label>
-                            <textarea class="form-control" rows="5" name="address_format" id="address_format"><?php echo $value_edit_3 ?></textarea>
-                        </div> 
                     </div>
                 </div>
 
@@ -98,15 +87,15 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/mo
     </div>
 </div>
 <script type="text/javascript" language="javascript">
-    function call_countries<?php echo $lines[$k][0] ?>() {
-        var msg = $('#form_countries<?php echo $lines[$k][0] ?>').serialize();
+    function call_units<?php echo $lines[$k][0] ?>() {
+        var msg = $('#form_units<?php echo $lines[$k][0] ?>').serialize();
         $.ajax({
             type: 'GET',
-            url: '/controller/admin/pages/settings/countries.php',
+            url: 'units.php',
             data: msg,
             success: function (data) {
-                $('#countries_edit<?php echo $lines[$k][0] ?>').modal('hide');
-                location.href = '/controller/admin/pages/settings/countries.php';
+                $('#units_edit<?php echo $lines[$k][0] ?>').modal('hide');
+                location.href = 'units.php';
             }
         });
     }

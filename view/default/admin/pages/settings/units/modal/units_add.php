@@ -88,11 +88,11 @@
         var msg = $('#form_units').serialize();
         $.ajax({
             type: 'GET',
-            url: '/controller/admin/pages/settings/units.php',
+            url: 'units.php',
             data: msg,
             success: function (data) {
                 $('#units_add').modal('hide');
-                location.href = '/controller/admin/pages/settings/units.php';
+                location.href = 'units.php';
             }
         });
     }

@@ -6,7 +6,7 @@
 
 ?>
 <!-- Модальное окно "Добавить" -->
-<?php require_once('modal/units_add.php') ?>
+<?php require_once('modal/zones_add.php') ?>
 <!-- КОНЕЦ Модальное окно "Добавить" -->
 
 <!-- Дублируем модальные окна Редактирования -->
@@ -15,7 +15,7 @@
 <?php for ($k; $k < $lines_p; $k++) { // запускаем цикл формирования модальных окон  ?>
 
     <!-- Вставляем модальное окно "Редактировать" -->
-    <?php require($VALID->inSERVER('DOCUMENT_ROOT') . '/view/default/admin/pages/settings/modal/units_edit.php') ?>
+    <?php require($VALID->inSERVER('DOCUMENT_ROOT') . '/view/default/admin/pages/settings/zones/modal/zones_edit.php') ?>
 
 <?php } ?>
 
@@ -25,7 +25,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">
-                        <div class="pull-left"><?php echo $lang['title_units'] ?></div>
+                        <div class="pull-left"><?php echo $lang['title_zones'] ?></div>
                         <div class="clearfix"></div>
                     </h3>
                 </div>
@@ -33,14 +33,14 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th colspan="2">
+                                <th colspan="3">
                                     <?php if ($lines == TRUE) { ?>
                                         <div class="page"><?php echo $lang['s'] ?> <?php echo $i + 1 ?> <?php echo $lang['po'] ?> <?php echo $lines_p ?> ( <?php echo $lang['iz'] ?> <?php echo $counter ?> )</div>
                                         <?php
                                     } else {
 
                                         ?>
-                                        <div><?php echo $lang['no_units'] ?></div>
+                                        <div><?php echo $lang['no_zones'] ?></div>
                                     <?php } ?>
                                 </th>
 
@@ -50,7 +50,7 @@
                                             <input hidden name="i" value="<?php echo $i ?>">
                                             <input hidden name="lines_p" value="<?php echo $lines_p ?>">
                                         <?php } ?>
-                                        <div class="right"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/setting/units.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
+                                        <div class="right"><button type="submit" class="btn btn-primary btn-xs" action="zones.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
                                     </form>
 
 
@@ -59,18 +59,19 @@
                                             <input hidden name="i2" value="<?php echo $i ?>">
                                             <input hidden name="lines_p2" value="<?php echo $lines_p ?>">
                                         <?php } ?>
-                                        <div class="left"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/setting/units.php" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
+                                        <div class="left"><button type="submit" class="btn btn-primary btn-xs" action="zones.php" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
                                     </form>
 
                                     <div class="left">
-                                        <a href="#units_add" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a>
+                                        <a href="#zones_add" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a>
                                     </div>
                                 </th>
                             </tr>
 			    <?php if ($lines == TRUE) { ?>
                             <tr class="border">
-                                <th><?php echo $lang['name_full'] ?></th>
-                                <th class="al-text"><?php echo $lang['name_little'] ?></th>
+                                <th class="sortleft"></th>
+                                <th><?php echo $lang['zone'] ?></th>
+                                <th><?php echo $lang['name_description'] ?></th>
                                 <th class="al-text-w"></th>
                             </tr>
 			    <?php } ?>
@@ -78,16 +79,22 @@
                         <tbody>
                             <?php for ($i; $i < $lines_p; $i++) { ?>
                                 <tr>
+                                    <td class="sortleft">
+                                        <form action="/controller/admin/pages/settings/regions.php">
+                                            <input hidden name="zone_id" value="<?php echo $lines[$i][0] ?>">
+                                            <button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-cog"></span></button>
+                                        </form>
+                                    </td>
                                     <td><?php echo $lines[$i][1] ?></td>
-                                    <td class="al-text"><?php echo $lines[$i][2] ?></td>
+                                    <td><?php echo $lines[$i][2] ?></td>
                                     <td class="al-text-w">
                                         <form>
-                                            <input hidden name="unit_delete" value="<?php echo $lines[$i][0] ?>">
+                                            <input hidden name="zone_delete" value="<?php echo $lines[$i][0] ?>">
                                             <div class="right">
-                                                <button type="submit" name="unit_delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo $lang['confirm-yes'] ?>" data-btn-cancel-label="<?php echo $lang['confirm-no'] ?>" title="<?php echo $lang['confirm-del'] ?>" action="/controller/admin/pages/setting/units.php" formmethod="get"><span class="glyphicon glyphicon-trash"> </span></button>
+                                                <button type="submit" name="zone_delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo $lang['confirm-yes'] ?>" data-btn-cancel-label="<?php echo $lang['confirm-no'] ?>" title="<?php echo $lang['confirm-del'] ?>" action="zones.php" formmethod="get"><span class="glyphicon glyphicon-trash"> </span></button>
                                             </div>
                                             <div class="left">
-                                                <a href="#units_edit<?php echo $lines[$i][0] ?>" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span></a>
+                                                <a href="#zones_edit<?php echo $lines[$i][0] ?>" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span></a>
                                             </div>
                                         </form>
                                     </td>
