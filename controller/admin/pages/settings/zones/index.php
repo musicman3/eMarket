@@ -36,10 +36,10 @@ if ($VALID->inGET('id_edit')) {
 }
 
 // Если нажали на кнопку Удалить
-if ($VALID->inGET('zone_delete')) {
+if ($VALID->inPOST('delete')) {
 
     // Удаляем
-    $PDO->inPrepare("DELETE FROM " . TABLE_ZONES . " WHERE id=?", [$VALID->inGET('zone_delete')]);
+    $PDO->inPrepare("DELETE FROM " . TABLE_ZONES . " WHERE id=?", [$VALID->inPOST('delete')]);
 }
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ

@@ -5,13 +5,13 @@
 // *************************************//
 ?>
 <!-- Модальное окно "Добавить" -->
-<div id="units_add" class="modal fade" tabindex="-1">
+<div id="add" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header"><div class="tooltip-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Сокращенное наименование указывается любыми символами" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
                 <h4 class="modal-title"><?php echo $lang['product_unit'] ?></h4>
             </div>
-            <form id="form_units" name="form_units" action="javascript:void(null);" onsubmit="call_units()" method="get" enctype="multipart/form-data">
+            <form id="form" name="form" action="javascript:void(null);" onsubmit="call()" method="get" enctype="multipart/form-data">
                 <div class="panel-body">
 
                     <!-- Языковые панели -->
@@ -84,14 +84,14 @@
     </div>
 </div>
 <script type="text/javascript" language="javascript">
-    function call_units() {
-        var msg = $('#form_units').serialize();
+    function call() {
+        var msg = $('#form').serialize();
         $.ajax({
             type: 'GET',
             url: 'index.php',
             data: msg,
             success: function (data) {
-                $('#units_add').modal('hide');
+                $('#add').modal('hide');
                 location.href = 'index.php';
             }
         });

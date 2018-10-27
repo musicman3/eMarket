@@ -3,17 +3,17 @@
 //   GNU GENERAL PUBLIC LICENSE v.3.0   //    
 // https://github.com/musicman3/eMarket //
 // *************************************//
-require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/units/modal/units_edit.php');
+require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/taxes/modal/edit.php');
 ?>
 
 <!-- Модальное окно "Изменить" -->
-<div id="units_edit<?php echo $lines[$k][0] ?>" class="modal fade" tabindex="-1">
+<div id="edit<?php echo $lines[$k][0] ?>" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header"><div class="tooltip-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Сокращенное наименование указывается любыми символами" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
+            <div class="modal-header"><div class="tooltip-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Ставка указывается в формате: 10.00" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
                 <h4 class="modal-title">Налоги</h4>
             </div>
-            <form id="form_units<?php echo $lines[$k][0] ?>" name="form_units<?php echo $lines[$k][0] ?>" action="javascript:void(null);" onsubmit="call_units<?php echo $lines[$k][0] ?>()" method="get" enctype="multipart/form-data">
+            <form id="form<?php echo $lines[$k][0] ?>" name="form<?php echo $lines[$k][0] ?>" action="javascript:void(null);" onsubmit="call<?php echo $lines[$k][0] ?>()" method="get" enctype="multipart/form-data">
                 <div class="panel-body">
                     <input type="hidden" name="id_edit" value="<?php echo $lines[$k][0] ?>" />
                     <!-- Языковые панели -->
@@ -43,12 +43,6 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/un
                                     <input class="input-sm form-control" type="text" name="name_edit<?php echo $lang_all[0] ?>" id="name_edit<?php echo $lang_all[0] ?>" value="<?php echo $name_edit[0] ?>" />
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="input-group has-error">
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                    <input class="input-sm form-control" type="text" name="unit_edit<?php echo $lang_all[0] ?>" id="unit_edit<?php echo $lang_all[0] ?>" value="<?php echo $value_edit[0] ?>" />
-                                </div>
-                            </div>
                         </div>
 
                         <?php
@@ -63,17 +57,17 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/un
                                             <input class="input-sm form-control" type="text" name="name_edit<?php echo $lang_all[$xl] ?>" id="name_edit<?php echo $lang_all[$xl] ?>" value="<?php echo $name_edit[$xl] ?>" />
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <div class="input-group has-error">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                            <input class="input-sm form-control" type="text" name="unit_edit<?php echo $lang_all[$xl] ?>" id="unit_edit<?php echo $lang_all[$xl] ?>" value="<?php echo $value_edit[$xl] ?>" />
-                                        </div>
-                                    </div>
                                 </div>
 
                             <?php }
                         } ?>
 
+                        <div class="form-group">
+                            <div class="input-group has-error">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
+                                <input class="input-sm form-control" type="text" name="rate_edit" id="rate_edit" value="<?php echo $value_edit ?>" />
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -87,14 +81,14 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/un
     </div>
 </div>
 <script type="text/javascript" language="javascript">
-    function call_units<?php echo $lines[$k][0] ?>() {
-        var msg = $('#form_units<?php echo $lines[$k][0] ?>').serialize();
+    function call<?php echo $lines[$k][0] ?>() {
+        var msg = $('#form<?php echo $lines[$k][0] ?>').serialize();
         $.ajax({
             type: 'GET',
             url: 'index.php',
             data: msg,
             success: function (data) {
-                $('#units_edit<?php echo $lines[$k][0] ?>').modal('hide');
+                $('#edit<?php echo $lines[$k][0] ?>').modal('hide');
                 location.href = 'index.php';
             }
         });

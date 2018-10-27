@@ -3,17 +3,18 @@
 //   GNU GENERAL PUBLIC LICENSE v.3.0   //    
 // https://github.com/musicman3/eMarket //
 // *************************************//
-require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/zones/modal/zones_edit.php');
+require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/countries/regions/modal/edit.php');
+
 ?>
 
 <!-- Модальное окно "Изменить" -->
-<div id="zones_edit<?php echo $lines[$k][0] ?>" class="modal fade" tabindex="-1">
+<div id="edit<?php echo $lines[$k][0] ?>" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header"><div class="tooltip-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Ставка указывается в формате: 10.00" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
-                <h4 class="modal-title"><?php echo $lang['zone'] ?></h4>
+                <h4 class="modal-title"><?php echo $lang['region'] ?></h4>
             </div>
-            <form id="form_zones<?php echo $lines[$k][0] ?>" name="form_zones<?php echo $lines[$k][0] ?>" action="javascript:void(null);" onsubmit="call_zones<?php echo $lines[$k][0] ?>()" method="get" enctype="multipart/form-data">
+            <form id="form<?php echo $lines[$k][0] ?>" name="form<?php echo $lines[$k][0] ?>" action="javascript:void(null);" onsubmit="call<?php echo $lines[$k][0] ?>()" method="get" enctype="multipart/form-data">
                 <div class="panel-body">
                     <input type="hidden" name="id_edit" value="<?php echo $lines[$k][0] ?>" />
                     <!-- Языковые панели -->
@@ -23,6 +24,7 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/zo
                         <?php
                         if (count($lang_all) > 1) {
                             for ($xl = 1; $xl < count($lang_all); $xl++) {
+
                                 ?>
 
                                 <li><a data-toggle="tab" href="#<?php echo $lang_all[$xl] . $lines[$k][0] ?>"><img src="/view/default/admin/images/langflags/<?php echo $lang_all[$xl] ?>.png" alt="<?php echo $lang_all[$xl] ?>" title="<?php echo $lang_all[$xl] ?>" width="16" height="10" /> <?php echo $lang_all[$xl] ?></a></li>
@@ -30,6 +32,7 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/zo
                                 <?php
                             }
                         }
+
                         ?>
 
                     </ul>
@@ -48,6 +51,7 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/zo
                         <?php
                         if (count($lang_all) > 1) {
                             for ($xl = 1; $xl < count($lang_all); $xl++) {
+
                                 ?>
 
                                 <div id="<?php echo $lang_all[$xl] . $lines[$k][0] ?>" class="tab-pane fade">
@@ -59,14 +63,18 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/zo
                                     </div>
                                 </div>
 
-                                <?php
+                            <?php
                             }
                         }
+
                         ?>
+
                         <div class="form-group">
-                            <label for="note"><?php echo $lang['name_description'] ?></label>
-                            <textarea class="form-control" rows="5" name="note" id="note"><?php echo $value_edit ?></textarea>
-                        </div> 
+                            <div class="input-group has-error">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+                                <input class="input-sm form-control" type="text" name="region_code_edit" id="region_code_edit" value="<?php echo $value_edit ?>" />
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -80,15 +88,15 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/zo
     </div>
 </div>
 <script type="text/javascript" language="javascript">
-    function call_zones<?php echo $lines[$k][0] ?>() {
-        var msg = $('#form_zones<?php echo $lines[$k][0] ?>').serialize();
+    function call<?php echo $lines[$k][0] ?>() {
+        var msg = $('#form<?php echo $lines[$k][0] ?>').serialize();
         $.ajax({
             type: 'GET',
             url: 'index.php',
             data: msg,
             success: function (data) {
-                $('#zones_edit<?php echo $lines[$k][0] ?>').modal('hide');
-                location.href = 'index.php';
+                $('#edit<?php echo $lines[$k][0] ?>').modal('hide');
+                location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
             }
         });
     }

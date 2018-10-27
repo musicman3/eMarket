@@ -6,7 +6,7 @@
 
 ?>
 <!-- Модальное окно "Добавить" -->
-<?php require_once('modal/taxes_add.php') ?>
+<?php require_once('modal/add.php') ?>
 <!-- КОНЕЦ Модальное окно "Добавить" -->
 
 <!-- Дублируем модальные окна Редактирования -->
@@ -15,7 +15,7 @@
 <?php for ($k; $k < $lines_p; $k++) { // запускаем цикл формирования модальных окон  ?>
 
     <!-- Вставляем модальное окно "Редактировать" -->
-    <?php require($VALID->inSERVER('DOCUMENT_ROOT') . '/view/default/admin/pages/settings/taxes/modal/taxes_edit.php') ?>
+    <?php require($VALID->inSERVER('DOCUMENT_ROOT') . '/view/default/admin/pages/settings/taxes/modal/edit.php') ?>
 
 <?php } ?>
 
@@ -63,7 +63,7 @@
                                     </form>
 
                                     <div class="left">
-                                        <a href="#taxes_add" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a>
+                                        <a href="#add" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a>
                                     </div>
                                 </th>
                             </tr>
@@ -82,12 +82,12 @@
                                     <td class="al-text"><?php echo $lines[$i][2] ?></td>
                                     <td class="al-text-w">
                                         <form>
-                                            <input hidden name="tax_delete" value="<?php echo $lines[$i][0] ?>">
+                                            <input hidden name="delete" value="<?php echo $lines[$i][0] ?>">
                                             <div class="right">
-                                                <button type="submit" name="tax_delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo $lang['confirm-yes'] ?>" data-btn-cancel-label="<?php echo $lang['confirm-no'] ?>" title="<?php echo $lang['confirm-del'] ?>" action="index.php" formmethod="get"><span class="glyphicon glyphicon-trash"> </span></button>
+                                                <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo $lang['confirm-yes'] ?>" data-btn-cancel-label="<?php echo $lang['confirm-no'] ?>" title="<?php echo $lang['confirm-del'] ?>" action="index.php" formmethod="post"><span class="glyphicon glyphicon-trash"> </span></button>
                                             </div>
                                             <div class="left">
-                                                <a href="#taxes_edit<?php echo $lines[$i][0] ?>" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span></a>
+                                                <a href="#edit<?php echo $lines[$i][0] ?>" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span></a>
                                             </div>
                                         </form>
                                     </td>
