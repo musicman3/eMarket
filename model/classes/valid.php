@@ -4,7 +4,7 @@
 // https://github.com/musicman3/eMarket //
 // *************************************//
 
-namespace Model\Classes\Valid;
+namespace eMarket\Model\Valid;
 
 class ValidClass {
 

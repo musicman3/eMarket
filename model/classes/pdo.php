@@ -4,7 +4,7 @@
 // https://github.com/musicman3/eMarket //
 // *************************************//
 
-namespace Model\Classes\Pdo;
+namespace eMarket\Model\Pdo;
 
 class PdoClass {
 

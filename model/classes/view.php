@@ -4,7 +4,7 @@
 // https://github.com/musicman3/eMarket //
 // *************************************//
 
-namespace Model\Classes\View;
+namespace eMarket\Model\View;
 
 $TEMPLATE = 'default'; //название текущего шаблона
 
