@@ -90,11 +90,11 @@
         var msg = $('#form_taxes').serialize();
         $.ajax({
             type: 'GET',
-            url: 'taxes.php',
+            url: 'index.php',
             data: msg,
             success: function (data) {
                 $('#taxes_add').modal('hide');
-                location.href = 'taxes.php';
+                location.href = 'index.php';
             }
         });
     }

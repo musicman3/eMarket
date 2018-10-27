@@ -100,11 +100,11 @@
         var msg = $('#form_countries').serialize();
         $.ajax({
             type: 'GET',
-            url: 'countries.php',
+            url: 'index.php',
             data: msg,
             success: function (data) {
                 $('#countries_add').modal('hide');
-                location.href = 'countries.php';
+                location.href = 'index.php';
             }
         });
     }

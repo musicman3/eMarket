@@ -88,11 +88,11 @@
         var msg = $('#form_vendor_codes').serialize();
         $.ajax({
             type: 'GET',
-            url: 'vendor_codes.php',
+            url: 'index.php',
             data: msg,
             success: function (data) {
                 $('#vendor_codes_add').modal('hide');
-                location.href = 'vendor_codes.php';
+                location.href = 'index.php';
             }
         });
     }

@@ -85,11 +85,11 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/ta
         var msg = $('#form_taxes<?php echo $lines[$k][0] ?>').serialize();
         $.ajax({
             type: 'GET',
-            url: 'taxes.php',
+            url: 'index.php',
             data: msg,
             success: function (data) {
                 $('#taxes_edit<?php echo $lines[$k][0] ?>').modal('hide');
-                location.href = 'taxes.php';
+                location.href = 'index.php';
             }
         });
     }

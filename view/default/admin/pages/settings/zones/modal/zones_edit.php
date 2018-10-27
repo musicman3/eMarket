@@ -84,11 +84,11 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/zo
         var msg = $('#form_zones<?php echo $lines[$k][0] ?>').serialize();
         $.ajax({
             type: 'GET',
-            url: 'zones.php',
+            url: 'index.php',
             data: msg,
             success: function (data) {
                 $('#zones_edit<?php echo $lines[$k][0] ?>').modal('hide');
-                location.href = 'zones.php';
+                location.href = 'index.php';
             }
         });
     }

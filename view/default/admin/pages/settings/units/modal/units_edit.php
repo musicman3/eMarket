@@ -91,11 +91,11 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/un
         var msg = $('#form_units<?php echo $lines[$k][0] ?>').serialize();
         $.ajax({
             type: 'GET',
-            url: 'units.php',
+            url: 'index.php',
             data: msg,
             success: function (data) {
                 $('#units_edit<?php echo $lines[$k][0] ?>').modal('hide');
-                location.href = 'units.php';
+                location.href = 'index.php';
             }
         });
     }

@@ -91,11 +91,11 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/ve
         var msg = $('#form_vendor_codes<?php echo $lines[$k][0] ?>').serialize();
         $.ajax({
             type: 'GET',
-            url: 'vendor_codes.php',
+            url: 'index.php',
             data: msg,
             success: function (data) {
                 $('#vendor_codes_edit<?php echo $lines[$k][0] ?>').modal('hide');
-                location.href = 'vendor_codes.php';
+                location.href = 'index.php';
             }
         });
     }

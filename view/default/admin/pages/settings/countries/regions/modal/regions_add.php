@@ -91,7 +91,7 @@
         var msg = $('#form_regions').serialize();
         $.ajax({
             type: 'GET',
-            url: 'regions.php',
+            url: 'index.php',
             data: msg,
             success: function (data) {
                 $('#regions_add').modal('hide');

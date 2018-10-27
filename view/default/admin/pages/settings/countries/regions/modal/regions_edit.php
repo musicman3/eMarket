@@ -92,7 +92,7 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/co
         var msg = $('#form_regions<?php echo $lines[$k][0] ?>').serialize();
         $.ajax({
             type: 'GET',
-            url: 'regions.php',
+            url: 'index.php',
             data: msg,
             success: function (data) {
                 $('#regions_edit<?php echo $lines[$k][0] ?>').modal('hide');

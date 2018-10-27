@@ -102,11 +102,11 @@ require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/co
         var msg = $('#form_countries<?php echo $lines[$k][0] ?>').serialize();
         $.ajax({
             type: 'GET',
-            url: 'countries.php',
+            url: 'index.php',
             data: msg,
             success: function (data) {
                 $('#countries_edit<?php echo $lines[$k][0] ?>').modal('hide');
-                location.href = 'countries.php';
+                location.href = 'index.php';
             }
         });
     }

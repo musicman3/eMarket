@@ -6,7 +6,7 @@
 
 ?>
 <!-- Модальное окно "Добавить" -->
-<?php require_once('modal/taxes_add.php') ?>
+<?php require_once('modal/units_add.php') ?>
 <!-- КОНЕЦ Модальное окно "Добавить" -->
 
 <!-- Дублируем модальные окна Редактирования -->
@@ -15,7 +15,7 @@
 <?php for ($k; $k < $lines_p; $k++) { // запускаем цикл формирования модальных окон  ?>
 
     <!-- Вставляем модальное окно "Редактировать" -->
-    <?php require($VALID->inSERVER('DOCUMENT_ROOT') . '/view/default/admin/pages/settings/taxes/modal/taxes_edit.php') ?>
+    <?php require($VALID->inSERVER('DOCUMENT_ROOT') . '/view/default/admin/pages/settings/units/modal/units_edit.php') ?>
 
 <?php } ?>
 
@@ -25,7 +25,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">
-                        <div class="pull-left"><?php echo $lang['title_taxes'] ?></div>
+                        <div class="pull-left"><?php echo $lang['title_units'] ?></div>
                         <div class="clearfix"></div>
                     </h3>
                 </div>
@@ -40,7 +40,7 @@
                                     } else {
 
                                         ?>
-                                        <div><?php echo $lang['no_taxes'] ?></div>
+                                        <div><?php echo $lang['no_units'] ?></div>
                                     <?php } ?>
                                 </th>
 
@@ -50,7 +50,7 @@
                                             <input hidden name="i" value="<?php echo $i ?>">
                                             <input hidden name="lines_p" value="<?php echo $lines_p ?>">
                                         <?php } ?>
-                                        <div class="right"><button type="submit" class="btn btn-primary btn-xs" action="taxes.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
+                                        <div class="right"><button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
                                     </form>
 
 
@@ -59,18 +59,18 @@
                                             <input hidden name="i2" value="<?php echo $i ?>">
                                             <input hidden name="lines_p2" value="<?php echo $lines_p ?>">
                                         <?php } ?>
-                                        <div class="left"><button type="submit" class="btn btn-primary btn-xs" action="taxes.php" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
+                                        <div class="left"><button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
                                     </form>
 
                                     <div class="left">
-                                        <a href="#taxes_add" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a>
+                                        <a href="#units_add" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a>
                                     </div>
                                 </th>
                             </tr>
 			    <?php if ($lines == TRUE) { ?>
                             <tr class="border">
-                                <th>Налог</th>
-                                <th class="al-text">Ставка</th>
+                                <th><?php echo $lang['name_full'] ?></th>
+                                <th class="al-text"><?php echo $lang['name_little'] ?></th>
                                 <th class="al-text-w"></th>
                             </tr>
 			    <?php } ?>
@@ -82,12 +82,12 @@
                                     <td class="al-text"><?php echo $lines[$i][2] ?></td>
                                     <td class="al-text-w">
                                         <form>
-                                            <input hidden name="tax_delete" value="<?php echo $lines[$i][0] ?>">
+                                            <input hidden name="unit_delete" value="<?php echo $lines[$i][0] ?>">
                                             <div class="right">
-                                                <button type="submit" name="tax_delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo $lang['confirm-yes'] ?>" data-btn-cancel-label="<?php echo $lang['confirm-no'] ?>" title="<?php echo $lang['confirm-del'] ?>" action="taxes.php" formmethod="get"><span class="glyphicon glyphicon-trash"> </span></button>
+                                                <button type="submit" name="unit_delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo $lang['confirm-yes'] ?>" data-btn-cancel-label="<?php echo $lang['confirm-no'] ?>" title="<?php echo $lang['confirm-del'] ?>" action="index.php" formmethod="get"><span class="glyphicon glyphicon-trash"> </span></button>
                                             </div>
                                             <div class="left">
-                                                <a href="#taxes_edit<?php echo $lines[$i][0] ?>" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span></a>
+                                                <a href="#units_edit<?php echo $lines[$i][0] ?>" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span></a>
                                             </div>
                                         </form>
                                     </td>
