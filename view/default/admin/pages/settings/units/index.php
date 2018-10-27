@@ -15,7 +15,7 @@
 <?php for ($k; $k < $lines_p; $k++) { // запускаем цикл формирования модальных окон  ?>
 
     <!-- Вставляем модальное окно "Редактировать" -->
-    <?php require($VALID->inSERVER('DOCUMENT_ROOT') . '/view/default/admin/pages/settings/units/modal/edit.php') ?>
+    <?php require($VALID->inSERVER('DOCUMENT_ROOT') . '/view/'.$TEMPLATE.'/admin/pages/settings/units/modal/edit.php') ?>
 
 <?php } ?>
 
