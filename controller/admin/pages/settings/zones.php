@@ -45,8 +45,6 @@ if ($VALID->inGET('zone_delete')) {
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 // Получаем массив таблицы
 $lines = $PDO->getColRow("SELECT id, name, note FROM " . TABLE_ZONES . " WHERE language=? ORDER BY name", [$lang_all[0]]);
-// Cчитаем количество записей
-$counter = $PDO->getRowCount("SELECT id FROM " . TABLE_ZONES . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);
 // Подключаем файл навигации
 require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/includes/navigation.php');
 

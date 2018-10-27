@@ -42,8 +42,6 @@ if ($VALID->inPOST('region_delete')) {
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 // Получаем массив таблицы
 $lines = $PDO->getColRow("SELECT id, region_code, name FROM " . TABLE_REGIONS . " WHERE country_id=? AND language=? ORDER BY name", [$VALID->inGET('country_id'), $lang_all[0]]);
-// Cчитаем количество записей
-$counter = $PDO->getRowCount("SELECT region_code FROM " . TABLE_REGIONS . " WHERE country_id=? AND language=? ORDER BY country_id DESC", [$VALID->inGET('country_id'), $lang_all[0]]);
 // Подключаем файл навигации
 require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/includes/navigation.php');
 
