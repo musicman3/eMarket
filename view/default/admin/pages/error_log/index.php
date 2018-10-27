@@ -33,7 +33,7 @@
                                             <input hidden name="i" value="<?php echo $i ?>">
                                             <input hidden name="lines_p" value="<?php echo $lines_p ?>">
                                         <?php } ?>
-                                        <div class="right"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/error_log/error_log.php" formmethod="post"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
+                                        <div class="right"><button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="post"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
                                     </form>
 
                                     <form>
@@ -41,14 +41,14 @@
                                             <input hidden name="i2" value="<?php echo $i ?>">
                                             <input hidden name="lines_p2" value="<?php echo $lines_p ?>">
                                         <?php } ?>
-                                        <div class="left"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/error_log/error_log.php" formmethod="post"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
+                                        <div class="left"><button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="post"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
                                     </form>
 
 
 
                                     <form>
-                                        <input hidden name="log_delete" value="delete">
-                                        <div class="left"><button type="submit" name="log_delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo $lang['confirm-yes'] ?>" data-btn-cancel-label="<?php echo $lang['confirm-no'] ?>" title="<?php echo $lang['confirm-del'] ?>" action="/controller/admin/pages/error_log/error_log.php" formmethod="post"><span class="glyphicon glyphicon-trash"> </span></button></div>
+                                        <input hidden name="delete" value="delete">
+                                        <div class="left"><button type="submit" name="log_delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo $lang['confirm-yes'] ?>" data-btn-cancel-label="<?php echo $lang['confirm-no'] ?>" title="<?php echo $lang['confirm-del'] ?>" action="index.php" formmethod="post"><span class="glyphicon glyphicon-trash"> </span></button></div>
                                     </form>
 
                                 </th>

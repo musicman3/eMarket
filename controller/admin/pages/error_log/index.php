@@ -10,7 +10,7 @@ error_reporting(-1);
 require_once($_SERVER['DOCUMENT_ROOT'] . '/model/connect_page_start.php');
 // ************************************** //
 // Если нажали на кнопку Удалить
-if ($VALID->inPOST('log_delete') == 'delete') {
+if ($VALID->inPOST('delete') == 'delete') {
     // удаляем лог
     unlink($VALID->inSERVER('DOCUMENT_ROOT') . '/model/work/errors.log');
 }
