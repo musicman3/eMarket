@@ -6,9 +6,9 @@
 // 
 //Автозагрузчик классов
 spl_autoload_register(function ($class_name) {
-$class_path = strtolower(str_replace('\\', '/', $class_name));
-require_once 'vendor/' . $class_path . '.php';
-}); 
+    $class_path = strtolower(str_replace('\\', '/', $class_name));
+    require_once 'vendor/' . $class_path . '.php';
+});
 
 //LOAD CLASS Valid
 $VALID = new eMarket\Classes\Core\Valid;

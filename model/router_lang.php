@@ -29,15 +29,15 @@ function FilesPatch($dir) {
 }
 
 $uri_explode = explode('/', ($VALID->inSERVER('REQUEST_URI')));
-$PATCH = $uri_explode[2]; //Текущий основной путь (admin или catalog)
+$PATH = $uri_explode[2]; //Текущий основной путь (admin или catalog)
 
 //Подключение и парсинг языкового файла
 $lang_default = DEFAULT_LANGUAGE; //Язык по умолчанию
 
-$files_patch = FilesPatch($VALID->inSERVER('DOCUMENT_ROOT') . '/language/' . $lang_default . '/' . $PATCH);
-$parse_temp = parse_ini_file($files_patch[0]);
-for ($i = 0; $i < count($files_patch); $i++) {
-    $ini = parse_ini_file($files_patch[$i]);
+$files_path = FilesPatch($VALID->inSERVER('DOCUMENT_ROOT') . '/language/' . $lang_default . '/' . $PATH);
+$parse_temp = parse_ini_file($files_path[0]);
+for ($i = 0; $i < count($files_path); $i++) {
+    $ini = parse_ini_file($files_path[$i]);
     $lang = array_merge($parse_temp, $ini); // Установка языкового массива
 }
 
