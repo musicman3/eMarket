@@ -6,17 +6,18 @@
 // 
 //Автозагрузчик классов
 spl_autoload_register(function ($class_name) {
+    strtolower(str_replace('\\', DIRECTORY_SEPARATOR, $class_name));
     require_once 'vendor/' . $class_name . '.php';
 });
 
 //LOAD CLASS Valid
-$VALID = new eMarket\Classes\Core\Valid;
+$VALID = new emarket\classes\core\valid;
 
 //LOAD CLASS Pdo
-$PDO = new eMarket\Classes\Core\Pdo;
+$PDO = new emarket\classes\core\pdo;
 
 //LOAD CLASS View
 $TEMPLATE = 'default'; //название текущего шаблона
-$VIEW = new eMarket\Classes\Core\View;
+$VIEW = new emarket\classes\core\view;
 
 ?>
