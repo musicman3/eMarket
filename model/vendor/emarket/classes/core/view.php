@@ -4,9 +4,9 @@
 // https://github.com/musicman3/eMarket //
 // *************************************//
 
-namespace emarket\classes\core;
+namespace eMarket\Classes\Core;
 
-class view {
+class View {
 
     function Routing() {
 
