@@ -5,15 +5,15 @@
 // *************************************//
 // 
 //LOAD CLASS VALID
-require_once($_SERVER['DOCUMENT_ROOT'] . '/model/classes/valid.php');
+require_once('classes/valid.php');
 $VALID = new eMarket\Model\Valid\ValidClass;
 
 //LOAD CLASS PDO
-require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/classes/pdo.php');
+require_once('classes/pdo.php');
 $PDO = new eMarket\Model\Pdo\PdoClass;
 
 //LOAD CLASS VIEW
-require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/classes/view.php');
+require_once('classes/view.php');
 $VIEW = new eMarket\Model\View\ViewClass;
 
 ?>
