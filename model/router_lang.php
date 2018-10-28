@@ -28,9 +28,6 @@ function FilesPatch($dir) {
     return $files;
 }
 
-$uri_explode = explode('/', ($VALID->inSERVER('REQUEST_URI')));
-$PATH = $uri_explode[2]; //Текущий основной путь (admin или catalog)
-
 //Подключение и парсинг языкового файла
 $lang_default = DEFAULT_LANGUAGE; //Язык по умолчанию
 

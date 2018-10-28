@@ -9,15 +9,19 @@ spl_autoload_register(function ($class_name) {
     $class_path = strtolower(str_replace('\\', '/', $class_name));
     require_once 'vendor/' . $class_path . '.php';
 });
-
-//LOAD CLASS Valid
+//
+//ЗАГРУЖАЕМ CLASS Valid
 $VALID = new eMarket\Classes\Core\Valid;
-
-//LOAD CLASS Pdo
+//
+//ЗАГРУЖАЕМ CLASS Pdo
 $PDO = new eMarket\Classes\Core\Pdo;
-
-//LOAD CLASS View
+//
+//ЗАГРУЖАЕМ БАЗОВЫЕ ПЕРЕМЕННЫЕ
 $TEMPLATE = 'default'; //название текущего шаблона
+$PATH = explode('/', ($VALID->inSERVER('REQUEST_URI')))[2]; //Текущая ветка (admin или catalog)
+$THIS_DIR = basename(getcwd()); //Текущая директория
+//
+//ЗАГРУЖАЕМ CLASS View
 $VIEW = new eMarket\Classes\Core\View;
 
 ?>
