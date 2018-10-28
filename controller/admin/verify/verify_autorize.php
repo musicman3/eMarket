@@ -6,7 +6,7 @@
 
 error_reporting(-1);
 
-require_once($_SERVER['DOCUMENT_ROOT'] . '/model/router_class.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/model/autoloader_class.php');
 
 //REQUIRE CONFIGURE.PHP
 require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/configure/configure.php');

@@ -4,11 +4,9 @@
 // https://github.com/musicman3/eMarket //
 // *************************************//
 
-namespace eMarket\Model\View;
+namespace eMarket\Classes\Core;
 
-$TEMPLATE = 'default'; //название текущего шаблона
-
-class ViewClass {
+class View {
 
     function Routing() {
 

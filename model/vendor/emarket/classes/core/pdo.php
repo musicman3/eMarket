@@ -4,9 +4,9 @@
 // https://github.com/musicman3/eMarket //
 // *************************************//
 
-namespace eMarket\Model\Pdo;
+namespace eMarket\Classes\Core;
 
-class PdoClass {
+class Pdo {
 
     function getQuery($sql) {
         global $DB;

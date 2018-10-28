@@ -4,9 +4,9 @@
 // https://github.com/musicman3/eMarket //
 // *************************************//
 
-namespace eMarket\Model\Valid;
+namespace eMarket\Classes\Core;
 
-class ValidClass {
+class Valid {
 
     // Валидация глобальных переменных $_POST[]
     function inPOST($name) {
