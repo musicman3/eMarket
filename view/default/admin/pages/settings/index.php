@@ -51,6 +51,17 @@
                                     <div class="settings"><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-barcode"> </span></a>Штриховые коды</div>
                                 </td>
                             </tr>
+                                                        <tr>
+                                <td>
+                                    <div class="settings"><a href="#" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-cog"> </span></a>Базовые настройки</div>
+                                </td>
+                                <td>
+                                    <div class="settings"><a href="#" class="btn btn-default btn-xs disabled"><span class="glyphicon glyphicon-flag"> </span></a>#</div>
+                                </td>
+                                <td>
+                                    <div class="settings"><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-barcode"> </span></a>#</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
