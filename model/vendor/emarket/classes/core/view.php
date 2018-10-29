@@ -12,7 +12,7 @@ class View {
 
         global $TEMPLATE;
 
-        $str = str_replace('controller', 'view/' . $TEMPLATE, $_SERVER['SCRIPT_FILENAME']);
+        $str = str_replace('controller', 'view/' . $TEMPLATE, getenv('SCRIPT_FILENAME'));
 
         return $str;
     }
