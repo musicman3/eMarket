@@ -6,7 +6,7 @@
 // *************************************//
 //
 //ЗАГРУЖАЕМ БАЗОВЫЕ ПЕРЕМЕННЫЕ
-$TEMPLATE = 'default'; //название текущего шаблона
+$TEMPLATE = 'default'; //Название текущего шаблона
 $PATH = explode('/', ($VALID->inSERVER('REQUEST_URI')))[2]; //Текущая ветка (admin или catalog)
 $TITLE_DIR = basename(getcwd()); //Текущая директория
 ?>
