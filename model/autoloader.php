@@ -19,7 +19,7 @@ $PDO = new eMarket\Classes\Core\Pdo;
 //ЗАГРУЖАЕМ БАЗОВЫЕ ПЕРЕМЕННЫЕ
 $TEMPLATE = 'default'; //название текущего шаблона
 $PATH = explode('/', ($VALID->inSERVER('REQUEST_URI')))[2]; //Текущая ветка (admin или catalog)
-$THIS_DIR = basename(getcwd()); //Текущая директория
+$TITLE_DIR = basename(getcwd()); //Текущая директория
 //
 //ЗАГРУЖАЕМ CLASS View
 $VIEW = new eMarket\Classes\Core\View;
