@@ -4,9 +4,9 @@
 // https://github.com/musicman3/eMarket //
 // *************************************//
 
-require_once('autoloader.php');
-
 require_once('configure/configure.php');
+
+require_once('autoloader.php');
 
 require_once('configure/connect.php');
 

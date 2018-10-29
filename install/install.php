@@ -45,6 +45,7 @@
 
         //IMPORT CONFIGURE
         $http = substr($http, 0, strpos($http, 'install'));
+        $root = getenv('DOCUMENT_ROOT');
         $serv_db = $_POST['server_db'];
         $logindb = $_POST['login_db'];
         $passdb = $_POST['password_db'];
@@ -74,6 +75,7 @@
         //WRITE IN FILE CONFIGURE.PHP
         $datconf = '<?php' . "\n" .
                 '  define(\'HTTP_SERVER\', \'' . $http . '\');' . "\n" .
+                '  define(\'ROOT\', \'' . $root . '\');' . "\n" .
                 '  define(\'DB_SERVER\', \'' . $serv_db . '\');' . "\n" .
                 '  define(\'DB_USERNAME\', \'' . $logindb . '\');' . "\n" .
                 '  define(\'DB_PASSWORD\', \'' . $passdb . '\');' . "\n" .
@@ -267,7 +269,7 @@ php_flag display_startup_errors on
 php_flag log_errors on
 php_flag mysql.trace_mode on
 php_value error_reporting -1
-php_value error_log " . $_SERVER['DOCUMENT_ROOT'] . "/model/work/errors.log";
+php_value error_log " . ROOT . "/model/work/errors.log";
 
 
 //Если файл существует, то ставим права 777
@@ -275,7 +277,7 @@ php_value error_log " . $_SERVER['DOCUMENT_ROOT'] . "/model/work/errors.log";
             chmod('../.htaccess', 0777);
         }
 // открываем файл, если файл не существует, то делается попытка создать его
-        $fp = fopen($_SERVER['DOCUMENT_ROOT'] . '/.htaccess', "w");
+        $fp = fopen(ROOT . '/.htaccess', "w");
 
 // записываем в файл текст
         fwrite($fp, $text);

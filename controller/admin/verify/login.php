@@ -7,11 +7,17 @@
 error_reporting(-1);
 session_start();
 
-require_once($_SERVER['DOCUMENT_ROOT'] . '/model/autoloader.php');
-//LOAD CONFIGURE.PHP
-require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/configure/configure.php');
+//AUTOLOADER
+require_once(getenv('DOCUMENT_ROOT') . '/model/autoloader.php');
+
+//LOAD CONFIGURE
+require_once(getenv('DOCUMENT_ROOT') . '/model/configure/configure.php');
+
+//LOAD BASED_VARIABLES
+require_once(ROOT . '/model/configure/based_variables.php');
+
 //LOAD LANGUAGE
-require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/router_lang.php');
+require_once(ROOT . '/model/router_lang.php');
 
 // если авторизован, редирект в админку
 if (isset($_SESSION['login']) == TRUE) {    //if user true:
@@ -29,12 +35,12 @@ if (isset($_SESSION['login_error']) == TRUE) {
 // если форма не заполнена, то выводим ее
 if ($VALID->inPOST('ok') == FALSE) {
 
-    require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/html_start.php');
+    require_once(ROOT . '/model/html_start.php');
 
     //LOAD TEMPLATE
     require_once($VIEW->Routing());
 
-    require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/html_end.php');
+    require_once(ROOT . '/model/html_end.php');
 }
 
 ?>

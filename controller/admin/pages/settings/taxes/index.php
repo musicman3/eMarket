@@ -7,7 +7,7 @@
 error_reporting(-1);
 
 // ********  CONNECT PAGE START  ******** //
-require_once($_SERVER['DOCUMENT_ROOT'] . '/model/connect_page_start.php');
+require_once(getenv('DOCUMENT_ROOT') . '/model/connect_page_start.php');
 // ************************************** //
 // 
 // Если нажали на кнопку Добавить
@@ -43,9 +43,9 @@ if ($VALID->inPOST('delete')) {
 // Получаем массив таблицы
 $lines = $PDO->getColRow("SELECT id, name, rate FROM " . TABLE_TAXES . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);
 // Подключаем файл навигации
-require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/includes/navigation.php');
+require_once(ROOT . '/model/includes/navigation.php');
 
 // *********  CONNECT PAGE END  ********* //
-require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/connect_page_end.php');
+require_once(ROOT . '/model/connect_page_end.php');
 // ************************************** //
 ?>

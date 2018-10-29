@@ -8,8 +8,8 @@
 require_once($VIEW->Routing());
 
 //CONNECT END
-require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/connect_end.php');
-require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/html_end.php');
+require_once(ROOT . '/model/connect_end.php');
+require_once(ROOT . '/model/html_end.php');
 
 //Если существует $JS_END
 if (isset($JS_END)) {

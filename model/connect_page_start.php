@@ -6,6 +6,6 @@
 
 require_once('connect_start.php');
 
-require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/html_start.php');
+require_once(ROOT . '/model/html_start.php');
 
 ?>

@@ -6,16 +6,20 @@
 
 error_reporting(-1);
 
-require_once($_SERVER['DOCUMENT_ROOT'] . '/model/autoloader.php');
+//AUTOLOADER
+require_once(getenv('DOCUMENT_ROOT') . '/model/autoloader.php');
 
-//REQUIRE CONFIGURE.PHP
-require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/configure/configure.php');
+//LOAD CONFIGURE
+require_once(getenv('DOCUMENT_ROOT') . '/model/configure/configure.php');
 
-//REQUIRE CONNECT.PHP
-require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/configure/connect.php');
+//LOAD BASED_VARIABLES
+require_once(ROOT . '/model/configure/based_variables.php');
 
-//REQUIRE router_lang.PHP
-require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/router_lang.php');
+//LOAD CONNECT
+require_once(ROOT . '/model/configure/connect.php');
+
+//LOAD LANGUAGE
+require_once(ROOT . '/model/router_lang.php');
 
 //SESSION = POST FORM
 session_start();
@@ -42,6 +46,6 @@ if ($verify != 1) {    //if user failed:
 }
 
 //END CONNECT DATABASE
-require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/connect_end.php');
+require_once(ROOT . '/model/connect_end.php');
 
 ?>

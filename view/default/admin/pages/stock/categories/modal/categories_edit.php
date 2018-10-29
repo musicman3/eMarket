@@ -4,7 +4,7 @@
 // https://github.com/musicman3/eMarket //
 // *************************************//
 // 
-require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/stock/categories/modal/categories_edit.php');
+require(ROOT . '/controller/admin/pages/stock/categories/modal/categories_edit.php');
 ?>
 
 <!-- Модальное окно "Редактировать категорию" -->

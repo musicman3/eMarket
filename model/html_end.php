@@ -16,8 +16,8 @@ if ($PATH == 'admin') {
     <script type="text/javascript" src="/ext/bootstrap/js/menu.js"></script>
     <script type="text/javascript" src="/ext/contextmenu/js/contextmenu.js"></script>
     <?php
-    require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/footer.php');
-    require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/view/default/admin/footer.php');
+    require_once(ROOT . '/controller/admin/footer.php');
+    require_once(ROOT . '/view/default/admin/footer.php');
 } // конец вывода только в админке
 
 ?>

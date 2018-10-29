@@ -31,7 +31,7 @@ function FilesPath($dir) {
 //Подключение и парсинг языкового файла
 $lang_default = DEFAULT_LANGUAGE; //Язык по умолчанию
 
-$files_path = FilesPath($VALID->inSERVER('DOCUMENT_ROOT') . '/language/' . $lang_default . '/' . $PATH);
+$files_path = FilesPath(ROOT . '/language/' . $lang_default . '/' . $PATH);
 $parse_temp = parse_ini_file($files_path[0]);
 for ($i = 0; $i < count($files_path); $i++) {
     $ini = parse_ini_file($files_path[$i]);
@@ -40,7 +40,7 @@ for ($i = 0; $i < count($files_path); $i++) {
 
 // Получаем список языков в массиве (для использования в мультиязычных функциях и т.п.)
 $lang_all = array(); // массив с языками
-$lang_dir = scandir($VALID->inSERVER('DOCUMENT_ROOT') . '/language/');
+$lang_dir = scandir(ROOT . '/language/');
 array_push($lang_all, ucfirst($lang_default)); // первым в массиве идет язык по умолчанию
 foreach ($lang_dir as $lang_name) {
     if (!in_array($lang_name, array('.', '..', $lang_default))){

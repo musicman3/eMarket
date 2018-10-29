@@ -3,7 +3,7 @@
 //   GNU GENERAL PUBLIC LICENSE v.3.0   //    
 // https://github.com/musicman3/eMarket //
 // *************************************//
-require($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/pages/settings/zones/modal/edit.php');
+require(ROOT . '/controller/admin/pages/settings/zones/modal/edit.php');
 ?>
 
 <!-- Модальное окно "Изменить" -->
