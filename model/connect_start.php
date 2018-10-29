@@ -10,7 +10,7 @@ require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/configure/configure.php
 
 require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/configure/connect.php');
 
-require_once($_SERVER['DOCUMENT_ROOT'] . '/model/configure/based_variables.php');
+require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/configure/based_variables.php');
 
 require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/router_lang.php');
 
