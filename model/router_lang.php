@@ -6,7 +6,7 @@
 // *************************************//
 // 
 //ФУНКЦИЯ ПОЛУЧЕНИЯ ПОЛНОГО ПУТИ К ФАЙЛАМ С УЧЕТОМ ПОДКАТЕГОРИЙ (БЕЗ ПУСТЫХ ПАПОК)
-function FilesPatch($dir) {
+function FilesPath($dir) {
     $handle = opendir($dir) or die("Error: Can't open directory $dir");
     $files = Array();
     $subfiles = Array();
@@ -15,7 +15,7 @@ function FilesPatch($dir) {
             if (is_dir($dir . "/" . $file)) {
 
                 // Получим список файлов вложенной папки...  
-                $subfiles = FilesPatch($dir . "/" . $file);
+                $subfiles = FilesPath($dir . "/" . $file);
 
                 // ...и добавим их к общему списку  
                 $files = array_merge($files, $subfiles);
@@ -31,7 +31,7 @@ function FilesPatch($dir) {
 //Подключение и парсинг языкового файла
 $lang_default = DEFAULT_LANGUAGE; //Язык по умолчанию
 
-$files_path = FilesPatch($VALID->inSERVER('DOCUMENT_ROOT') . '/language/' . $lang_default . '/' . $PATH);
+$files_path = FilesPath($VALID->inSERVER('DOCUMENT_ROOT') . '/language/' . $lang_default . '/' . $PATH);
 $parse_temp = parse_ini_file($files_path[0]);
 for ($i = 0; $i < count($files_path); $i++) {
     $ini = parse_ini_file($files_path[$i]);
