@@ -6,14 +6,14 @@
 
 require_once('autoloader.php');
 
-require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/configure/configure.php');
+require_once('configure/configure.php');
 
-require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/configure/connect.php');
+require_once('configure/connect.php');
 
-require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/configure/based_variables.php');
+require_once('configure/based_variables.php');
 
-require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/router_lang.php');
+require_once('router_lang.php');
 
-require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/model/configure/session_autorize.php');
+require_once('configure/session_autorize.php');
 
 ?>
