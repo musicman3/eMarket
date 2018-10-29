@@ -10,7 +10,7 @@
 ;Title
 title_index = Панель администратора
 title_admin = Панель администратора
-title_login = Страница авторизации
+title_verify = Страница авторизации
 title_error_log = Лог ошибок
 title_settings = Настройки
 title_taxes = Налоги
