@@ -52,8 +52,8 @@
                 <style type="text/css">body {padding-top:40px;} @media screen and (max-height:420px) and (orientation:landscape) {body {padding-top:60px;}}</style>
                 <?php
             }
-            require_once($_SERVER['DOCUMENT_ROOT'] . '/controller/admin/header.php');
-            require_once($_SERVER['DOCUMENT_ROOT'] . '/view/default/admin/header.php');
+            require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/controller/admin/header.php');
+            require_once($VALID->inSERVER('DOCUMENT_ROOT') . '/view/default/admin/header.php');
         } // конец вывода только в админке
 
         ?>
