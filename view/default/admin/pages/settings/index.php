@@ -41,7 +41,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <div class="settings"><a href="vendor_codes/" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-tag"> </span></a><?php echo $lang['title_vendor_codes'] ?></div>
+                                    <div class="settings"><a href="vendor_codes/" class="btn btn-primary btn-xl"><span class="glyphicon glyphicon-tag"> </span></a><?php echo $lang['title_vendor_codes'] ?></div>
                                 </td>
                                 <td>
                                     <div class="settings"><a href="units/" class="btn btn-primary btn-xl"><span class="glyphicon glyphicon-flag"> </span></a><?php echo $lang['title_units'] ?></div>
