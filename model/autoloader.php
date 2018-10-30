@@ -21,5 +21,5 @@ $PDO = new eMarket\Classes\Core\Pdo;
 $VIEW = new eMarket\Classes\Core\View;
 
 //ЗАГРУЖАЕМ CLASS FilesPath
-$FILESPATH = new eMarket\Classes\Core\FilesPath;
+$FILETREE = new eMarket\Classes\Core\FileTree;
 ?>
