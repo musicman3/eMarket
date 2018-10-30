@@ -6,7 +6,7 @@
 
 namespace eMarket\Classes\Core;
 
-class FileTree {
+class FilesTree {
 
 //ФУНКЦИЯ ПОСТРОЕНИЯ ДЕРЕВА К ФАЙЛАМ С УЧЕТОМ ПОДКАТЕГОРИЙ (ПУСТЫЕ ПАПКИ НЕ ВКЛЮЧАЮТСЯ)
 function Tree($dir) {

@@ -6,7 +6,7 @@
 // 
 //Подключение и парсинг языкового файла
 $lang_default = DEFAULT_LANGUAGE; //Язык по умолчанию
-$files_path = $FILETREE->Tree(ROOT . '/language/' . $lang_default . '/' . $PATH);
+$files_path = $FILESTREE->Tree(ROOT . '/language/' . $lang_default . '/' . $PATH);
 
 $parse_temp = parse_ini_file($files_path[0]);
 for ($i = 0; $i < count($files_path); $i++) {
