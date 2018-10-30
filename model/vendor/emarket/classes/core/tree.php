@@ -6,10 +6,10 @@
 
 namespace eMarket\Classes\Core;
 
-class FilesTree {
+class Tree {
 
 //ФУНКЦИЯ ПОСТРОЕНИЯ ДЕРЕВА К ФАЙЛАМ С УЧЕТОМ ПОДКАТЕГОРИЙ (ПУСТЫЕ ПАПКИ НЕ ВКЛЮЧАЮТСЯ)
-function Tree($dir) {
+function filesTree($dir) {
     $handle = opendir($dir) or die("Error: Can't open directory $dir");
     $files = Array();
     $subfiles = Array();
@@ -18,7 +18,7 @@ function Tree($dir) {
             if (is_dir($dir . "/" . $file)) {
 
                 // Получим список файлов вложенной папки...  
-                $subfiles = $this->Tree($dir . "/" . $file);
+                $subfiles = $this->filesTree($dir . "/" . $file);
 
                 // ...и добавим их к общему списку  
                 $files = array_merge($files, $subfiles);
