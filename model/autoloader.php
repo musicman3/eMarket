@@ -19,4 +19,7 @@ $PDO = new eMarket\Classes\Core\Pdo;
 //
 //ЗАГРУЖАЕМ CLASS View
 $VIEW = new eMarket\Classes\Core\View;
+
+//ЗАГРУЖАЕМ CLASS FilesPath
+$FILESPATH = new eMarket\Classes\Core\FilesPath;
 ?>
