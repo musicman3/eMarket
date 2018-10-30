@@ -8,28 +8,28 @@ namespace eMarket\Classes\Core;
 
 class Tree {
 
-//ФУНКЦИЯ ПОСТРОЕНИЯ ДЕРЕВА К ФАЙЛАМ С УЧЕТОМ ПОДКАТЕГОРИЙ (ПУСТЫЕ ПАПКИ НЕ ВКЛЮЧАЮТСЯ)
-function filesTree($dir) {
-    $handle = opendir($dir) or die("Error: Can't open directory $dir");
-    $files = Array();
-    $subfiles = Array();
-    while (false !== ($file = readdir($handle))) {
-        if ($file != "." && $file != ".." && $file != '.gitkeep') { //Исключаемые данные
-            if (is_dir($dir . "/" . $file)) {
+//ФУНКЦИЯ ПОСТРОЕНИЯ ДЕРЕВА К ФАЙЛАМ (ПУСТЫЕ ПАПКИ ИГНОРИРУЮТСЯ)
+    function filesTree($dir) {
+        $handle = opendir($dir) or die("Error: Can't open directory $dir");
+        $files = Array();
+        $subfiles = Array();
+        while (false !== ($file = readdir($handle))) {
+            if ($file != '.' && $file != '..' && $file != '.gitkeep') { //Исключаемые данные
+                if (is_dir($dir . '/' . $file)) {
 
-                // Получим список файлов вложенной папки...  
-                $subfiles = $this->filesTree($dir . "/" . $file);
+                    // Получим список файлов вложенной папки...  
+                    $subfiles = $this->filesTree($dir . '/' . $file);
 
-                // ...и добавим их к общему списку  
-                $files = array_merge($files, $subfiles);
-            } else {
-                $files[] = $dir . "/" . $file;
+                    // ...и добавим их к общему списку  
+                    $files = array_merge($files, $subfiles);
+                } else {
+                    $files[] = $dir . '/' . $file;
+                }
             }
         }
+        closedir($handle);
+        return $files;
     }
-    closedir($handle);
-    return $files;
-}
 
 }
 
