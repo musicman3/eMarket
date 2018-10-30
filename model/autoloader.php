@@ -20,6 +20,6 @@ $PDO = new eMarket\Classes\Core\Pdo;
 //ЗАГРУЖАЕМ CLASS View
 $VIEW = new eMarket\Classes\Core\View;
 
-//ЗАГРУЖАЕМ CLASS FilesPath
+//ЗАГРУЖАЕМ CLASS FilesTree
 $FILESTREE = new eMarket\Classes\Core\FilesTree;
 ?>
