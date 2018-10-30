@@ -14,8 +14,13 @@
         <?php
         error_reporting(-1);
 
+        require_once '../model/vendor/emarket/classes/core/valid.php';
+
+        //ЗАГРУЖАЕМ CLASS Valid
+        $VALID = new eMarket\Classes\Core\Valid;
+
         //LOAD LANGUAGE
-        require_once 'language/' . $_POST['language'] . '.php';
+        require_once 'language/' . $VALID->inPOST('language') . '.php';
 
         ?>
 
@@ -35,28 +40,28 @@
     <body>
 
         <?php
-        $http = 'http://' . $_SERVER['HTTP_HOST'];
+        $http = 'http://' . $VALID->inSERVER('HTTP_HOST');
 
-        if (isset($_SERVER['REQUEST_URI']) && (empty($_SERVER['REQUEST_URI']) === false)) {
-            $http .= $_SERVER['REQUEST_URI'];
+        if ($VALID->inSERVER('REQUEST_URI') && (empty($VALID->inSERVER('REQUEST_URI')) === false)) {
+            $http .= $VALID->inSERVER('REQUEST_URI');
         } else {
-            $http .= $_SERVER['SCRIPT_FILENAME'];
+            $http .= $VALID->inSERVER('SCRIPT_FILENAME');
         }
 
         //IMPORT CONFIGURE
         $http = substr($http, 0, strpos($http, 'install'));
         $root = getenv('DOCUMENT_ROOT');
-        $serv_db = $_POST['server_db'];
-        $logindb = $_POST['login_db'];
-        $passdb = $_POST['password_db'];
-        $dbname = $_POST['database_name'];
-        $dbpref = $_POST['database_prefix'];
-        $dbport = $_POST['database_port'];
-        $dbtype = $_POST['database_type'];
-        $dbfamyl = $_POST['database_family'];
-        $logadm = $_POST['login_admin'];
-        $pasadm = $_POST['password_admin'];
-        $lng = $_POST['language'];
+        $serv_db = $VALID->inPOST('server_db');
+        $logindb = $VALID->inPOST('login_db');
+        $passdb = $VALID->inPOST('password_db');
+        $dbname = $VALID->inPOST('database_name');
+        $dbpref = $VALID->inPOST('database_prefix');
+        $dbport = $VALID->inPOST('database_port');
+        $dbtype = $VALID->inPOST('database_type');
+        $dbfamyl = $VALID->inPOST('database_family');
+        $logadm = $VALID->inPOST('login_admin');
+        $pasadm = $VALID->inPOST('password_admin');
+        $lng = $VALID->inPOST('language');
         $tabadm = $dbpref . 'administrators';
         $tab_cat = $dbpref . 'categories';
         $tab_countries = $dbpref . 'countries';
@@ -67,8 +72,8 @@
         $tab_zones = $dbpref . 'zones';
         $tab_value_zones = $dbpref . 'value_zones';
         $tab_vendor_codes = $dbpref . 'vendor_codes';
-        $hashmet = $_POST['hash_method'];
-        $crypt = $_POST['crypt_method'];
+        $hashmet = $VALID->inPOST('hash_method');
+        $crypt = $VALID->inPOST('crypt_method');
 
         $formhid = '<input type="hidden" name="language" value="' . $lng . '" />';
 
@@ -120,10 +125,10 @@
 				</h3>
 			</div>
 <div class="panel-body">
-<form style="display: inline;" action="index.php" method="post" accept-charset="utf-8">
-<div class="alert alert-warning">' . $lang['file_configure_not_found'] . '</div>
-<button class="btn btn-info btn-sm" type="submit" />' . $lang["button_go_login"] . '</button>
-</form>
+    <form style="display: inline;" action="index.php" method="post" accept-charset="utf-8">
+        <div class="alert alert-warning">' . $lang['file_configure_not_found'] . '</div>
+        <button class="btn btn-info btn-sm" type="submit" />' . $lang["button_go_login"] . '</button>
+    </form>
 </div>
 		  </div>
 	</div>
@@ -247,10 +252,10 @@
         $DB->exec($buffer);
 //END IMPORT DB
 //SAVE E-MAIL AND PASSWORD
-        $pasadm = hash(HASH_METHOD, $pasadm);
+        $pasadm2 = hash(HASH_METHOD, $pasadm);
 
-        if (isset($_POST['login_admin']) and isset($_POST['password_admin'])) {
-            $DB->exec("INSERT INTO " . TABLE_ADMINISTRATORS . " (login, password, permission, language) VALUES ('$logadm','$pasadm','admin','$lng')");
+        if ($VALID->inPOST('login_admin') and $VALID->inPOST('password_admin')) {
+            $DB->exec("INSERT INTO " . TABLE_ADMINISTRATORS . " (login, password, permission, language) VALUES ('$logadm','$pasadm2','admin','$lng')");
         }
 
         $DB = null;

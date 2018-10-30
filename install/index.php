@@ -120,7 +120,7 @@
                                     <option value='<?php echo $dirlist[0] ?>'><?php echo $lang['select_language'] ?></option>
                                     <?php foreach ($dirlist as $keys => $vol) { ?>
                                         <option value='<?php echo $vol ?>'><?php echo ucfirst($vol) ?></option>
-<?php } ?>
+                                    <?php } ?>
                                 </select></div>
                         </div>
                     </form>
