@@ -14,6 +14,6 @@ require_once('configure/based_variables.php');
 
 require_once('router_lang.php');
 
-require_once('configure/session_autorize.php');
+require_once('session_autorize.php');
 
 ?>
