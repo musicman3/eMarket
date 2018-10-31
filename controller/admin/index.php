@@ -7,10 +7,10 @@
 error_reporting(-1);
 
 // ********  CONNECT PAGE START  ******** //
-require_once(getenv('DOCUMENT_ROOT') . '/model/connect_start.php');
+require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 // ************************************** //
 // *********  CONNECT PAGE END  ********* //
-require_once(ROOT . '/model/connect_end.php');
+require_once(ROOT . '/model/end.php');
 // ************************************** //
 
 ?>

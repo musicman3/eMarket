@@ -5,7 +5,7 @@
 // *************************************//
 // 
 //LOAD TEMPLATE
-require_once(ROOT . '/model/html_start.php');
+require_once(ROOT . '/model/html.php');
 
 //CONNECT END
 $DB = null;

@@ -7,7 +7,7 @@
 error_reporting(-1);
 
 // ********  CONNECT PAGE START  ******** //
-require_once(getenv('DOCUMENT_ROOT') . '/model/connect_start.php');
+require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 // ************************************** //
 // Если нажали на кнопку Удалить
 if ($VALID->inPOST('delete') == 'delete') {
@@ -25,7 +25,7 @@ if (file_exists(ROOT . '/model/work/errors.log')) { // Если файл сущ�
 }
 
 // *********  CONNECT PAGE END  ********* //
-require_once(ROOT . '/model/connect_end.php');
+require_once(ROOT . '/model/end.php');
 // ************************************** //
 
 ?>
