@@ -7,10 +7,9 @@
 
 error_reporting(-1);
 
-session_start();
-
 // ЕСЛИ В АДМИНИСТРАТИВНОЙ ПАНЕЛИ
-if ($PATH == 'admin') {
+if ($PATH == 'admin' && $TITLE_DIR != 'verify') {
+    session_start();
     $login = null;
     $pass = null;
     if (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
@@ -27,7 +26,8 @@ if ($PATH == 'admin') {
 }
 
 // ЕСЛИ В КАТАЛОГЕ
-if ($PATH == 'catalog') {
+if ($PATH == 'catalog' && $TITLE_DIR != 'verify') {
+    session_start();
     $login = null;
     $pass = null;
     if (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
