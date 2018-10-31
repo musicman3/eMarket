@@ -46,16 +46,15 @@
 
                                 <th>
                                     <form>
-                                        <?php if (count($lines) > $count_lines) { ?>
+                                        <?php if (count($lines) > $lines_of_page) { ?>
                                             <input hidden name="start" value="<?php echo $start ?>">
                                             <input hidden name="finish" value="<?php echo $finish ?>">
                                         <?php } ?>
                                         <div class="right"><button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
                                     </form>
 
-
                                     <form>
-                                        <?php if (count($lines) > $count_lines) { ?>
+                                        <?php if (count($lines) > $lines_of_page) { ?>
                                             <input hidden name="start2" value="<?php echo $start ?>">
                                             <input hidden name="finish2" value="<?php echo $finish ?>">
                                         <?php } ?>

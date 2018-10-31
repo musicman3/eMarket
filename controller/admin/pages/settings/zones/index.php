@@ -44,7 +44,7 @@ if ($VALID->inPOST('delete')) {
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 $lines = $PDO->getColRow("SELECT id, name, note FROM " . TABLE_ZONES . " WHERE language=? ORDER BY name", [$lang_all[0]]);
-$navigate = $NAVIGATOR->getNavi(count($lines), $count_lines = 20);
+$navigate = $NAVIGATOR->getNavi(count($lines), $lines_of_page = 20);
 $finish = $navigate[0];
 $start = $navigate[1];
 

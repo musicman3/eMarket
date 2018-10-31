@@ -41,7 +41,7 @@ if ($VALID->inPOST('delete')) {
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 $lines = $PDO->getColRow("SELECT id, name, vendor_code FROM " . TABLE_VENDOR_CODES . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);
-$navigate = $NAVIGATOR->getNavi(count($lines), $count_lines = 20);
+$navigate = $NAVIGATOR->getNavi(count($lines), $lines_of_page = 20);
 $finish = $navigate[0];
 $start = $navigate[1];
 
