@@ -41,9 +41,9 @@ if ($VALID->inPOST('delete')) {
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 $lines = $PDO->getColRow("SELECT id, name, rate FROM " . TABLE_TAXES . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);
-$navigate = $NAVIGATOR->getNavi(count($lines), $lines_page = 20);
-$lines_p = $navigate[0];
-$i = $navigate[1];
+$navigate = $NAVIGATOR->getNavi(count($lines), $l_page = 20);
+$l_finish = $navigate[0];
+$l_start = $navigate[1];
 
 // *********  CONNECT PAGE END  ********* //
 require_once(ROOT . '/model/connect_page_end.php');

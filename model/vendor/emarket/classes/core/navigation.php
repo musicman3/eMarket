@@ -9,67 +9,67 @@ namespace eMarket\Classes\Core;
 class Navigation extends Valid {
 
     //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
-    function getNavi($counter, $lines_page) {
+    function getNavi($counter, $l_page) {
 
         //$counter - общее число строк
-        //$lines_page - число строк на странице
+        //$l_page - число строк на странице
 
-        $i = 0; // устанавливаем страницу в ноль при заходе
-        $lines_p = $lines_page;
+        $l_start = 0; // устанавливаем страницу в ноль при заходе
+        $l_finish = $l_page;
 
-        if ($counter <= $lines_page) {
-            $lines_p = $counter;
+        if ($counter <= $l_page) {
+            $l_finish = $counter;
         }
         // Если нажали на кнопку вперед GET
-        if ($this->inGET('lines_p')) {
-            $lines_p = $this->inGET('lines_p') + $lines_page; // пересчитываем количество строк на странице
-            $i = $this->inGET('i') + $lines_page; // задаем значение счетчика
-            if ($i >= $counter) {
-                $i = $this->inGET('i');
+        if ($this->inGET('l_finish')) {
+            $l_finish = $this->inGET('l_finish') + $l_page; // пересчитываем количество строк на странице
+            $l_start = $this->inGET('l_start') + $l_page; // задаем значение счетчика
+            if ($l_start >= $counter) {
+                $l_start = $this->inGET('l_start');
             }
-            if ($lines_p >= $counter) {
-                $lines_p = $counter;
+            if ($l_finish >= $counter) {
+                $l_finish = $counter;
             }
         }
         // Если нажали на кнопку назад GET
-        if ($counter >= $lines_page) {
-            if ($this->inGET('lines_p2')) {
-                $lines_p = $this->inGET('i2'); // пересчитываем количество строк на странице
-                $i = $this->inGET('i2') - $lines_page; // задаем значение счетчика
-                if ($i < 0) {
-                    $i = 0;
+        if ($counter >= $l_page) {
+            if ($this->inGET('l_finish2')) {
+                $l_finish = $this->inGET('i2'); // пересчитываем количество строк на странице
+                $l_start = $this->inGET('i2') - $l_page; // задаем значение счетчика
+                if ($l_start < 0) {
+                    $l_start = 0;
                 }
-                if ($lines_p < $lines_page) {
-                    $lines_p = $lines_page;
+                if ($l_finish < $l_page) {
+                    $l_finish = $l_page;
                 }
             }
         }
 
         // Если нажали на кнопку вперед POST
-        if ($this->inPOST('lines_p')) {
-            $lines_p = $this->inPOST('lines_p') + $lines_page; // пересчитываем количество строк на странице
-            $i = $this->inPOST('i') + $lines_page; // задаем значение счетчика
-            if ($i >= $counter) {
-                $i = $this->inPOST('i');
+        if ($this->inPOST('l_finish')) {
+            $l_finish = $this->inPOST('l_finish') + $l_page; // пересчитываем количество строк на странице
+            $l_start = $this->inPOST('l_start') + $l_page; // задаем значение счетчика
+            if ($l_start >= $counter) {
+                $l_start = $this->inPOST('l_start');
             }
-            if ($lines_p >= $counter) {
-                $lines_p = $counter;
+            if ($l_finish >= $counter) {
+                $l_finish = $counter;
             }
         }
         // Если нажали на кнопку назад POST
-        if ($counter >= $lines_page) {
-            if ($this->inPOST('lines_p2')) {
-                $lines_p = $this->inPOST('i2'); // пересчитываем количество строк на странице
-                $i = $this->inPOST('i2') - $lines_page; // задаем значение счетчика
-                if ($i < 0) {
-                    $i = 0;
+        if ($counter >= $l_page) {
+            if ($this->inPOST('l_finish2')) {
+                $l_finish = $this->inPOST('i2'); // пересчитываем количество строк на странице
+                $l_start = $this->inPOST('i2') - $l_page; // задаем значение счетчика
+                if ($l_start < 0) {
+                    $l_start = 0;
                 }
-                if ($lines_p < $lines_page) {
-                    $lines_p = $lines_page;
+                if ($l_finish < $l_page) {
+                    $l_finish = $l_page;
                 }
             }
         }
-        $return = array($lines_p, $i);
+        $return = array($l_finish, $l_start);
         return $return;
     }
 

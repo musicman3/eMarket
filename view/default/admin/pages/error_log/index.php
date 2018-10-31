@@ -23,23 +23,23 @@
                         <thead>
                             <tr>
                                 <th>
-                                    <div class="page"><?php echo $lang['s'] ?> <?php echo $i + 1 ?> <?php echo $lang['po'] ?> <?php echo $lines_p ?> ( <?php echo $lang['iz'] ?> <?php echo count($lines); ?> )</div>
+                                    <div class="page"><?php echo $lang['s'] ?> <?php echo $l_start + 1 ?> <?php echo $lang['po'] ?> <?php echo $l_finish ?> ( <?php echo $lang['iz'] ?> <?php echo count($lines); ?> )</div>
                                 </th>
 
                                 <th>
 
                                     <form>
-                                        <?php if (count($lines) > $lines_page) { ?>
-                                            <input hidden name="i" value="<?php echo $i ?>">
-                                            <input hidden name="lines_p" value="<?php echo $lines_p ?>">
+                                        <?php if (count($lines) > $l_page) { ?>
+                                            <input hidden name="l_start" value="<?php echo $l_start ?>">
+                                            <input hidden name="l_finish" value="<?php echo $l_finish ?>">
                                         <?php } ?>
                                         <div class="right"><button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="post"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
                                     </form>
 
                                     <form>
-                                        <?php if (count($lines) > $lines_page) { ?>
-                                            <input hidden name="i2" value="<?php echo $i ?>">
-                                            <input hidden name="lines_p2" value="<?php echo $lines_p ?>">
+                                        <?php if (count($lines) > $l_page) { ?>
+                                            <input hidden name="l_start2" value="<?php echo $l_start ?>">
+                                            <input hidden name="l_finish2" value="<?php echo $l_finish ?>">
                                         <?php } ?>
                                         <div class="left"><button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="post"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
                                     </form>
@@ -58,30 +58,30 @@
                         <tbody>
 
                             <?php
-                            for ($i; $i < $lines_p; $i++) {
+                            for ($l_start; $l_start < $l_finish; $l_start++) {
 
-                                if (strrpos($lines[$i], 'PHP Notice:') == true) {
+                                if (strrpos($lines[$l_start], 'PHP Notice:') == true) {
 
-                                    ?><tr class="success"><td colspan="2"><?php echo $lines[$i] . '</td></tr>'; ?><?php
+                                    ?><tr class="success"><td colspan="2"><?php echo $lines[$l_start] . '</td></tr>'; ?><?php
                                 } elseif
-                                (strrpos($lines[$i], 'PHP Warning:') == true) {
+                                (strrpos($lines[$l_start], 'PHP Warning:') == true) {
 
-                                    ?><tr class="warning"><td colspan="2"><?php echo $lines[$i] . '</td></tr>'; ?><?php
+                                    ?><tr class="warning"><td colspan="2"><?php echo $lines[$l_start] . '</td></tr>'; ?><?php
                                         } elseif
-                                        (strrpos($lines[$i], 'PHP Catchable fatal error:') == true) {
+                                        (strrpos($lines[$l_start], 'PHP Catchable fatal error:') == true) {
 
-                                            ?><tr class="danger"><td colspan="2"><?php echo $lines[$i] . '</td></tr>'; ?><?php
+                                            ?><tr class="danger"><td colspan="2"><?php echo $lines[$l_start] . '</td></tr>'; ?><?php
                                         } elseif
-                                        (strrpos($lines[$i], 'PHP Fatal error:') == true) {
+                                        (strrpos($lines[$l_start], 'PHP Fatal error:') == true) {
 
-                                            ?><tr class="danger"><td colspan="2"><?php echo $lines[$i] . '</td></tr>'; ?><?php
+                                            ?><tr class="danger"><td colspan="2"><?php echo $lines[$l_start] . '</td></tr>'; ?><?php
                                         } elseif
-                                        (strrpos($lines[$i], 'PHP Parse error:') == true) {
+                                        (strrpos($lines[$l_start], 'PHP Parse error:') == true) {
 
-                                            ?><tr class="info"><td colspan="2"><?php echo $lines[$i] . '</td></tr>'; ?><?php } else {
+                                            ?><tr class="info"><td colspan="2"><?php echo $lines[$l_start] . '</td></tr>'; ?><?php } else {
 
                                             ?><tr><td colspan="2"><?php
-                                                    echo $lines[$i] . '</td></tr>';
+                                                    echo $lines[$l_start] . '</td></tr>';
                                                 }
                                             }
 
