@@ -5,8 +5,8 @@
 // *************************************//
 // 
 // собираем данные для отображения в Редактировании категорий
-$name_category_edit = $PDO->selectPrepare("SELECT name FROM " . TABLE_CATEGORIES . " WHERE id=?", array($lines[$l_start][0]));
-$status_category_edit = $PDO->selectPrepare("SELECT status FROM " . TABLE_CATEGORIES . " WHERE id=?", array($lines[$l_start][0]));
+$name_category_edit = $PDO->selectPrepare("SELECT name FROM " . TABLE_CATEGORIES . " WHERE id=?", array($lines[$start][0]));
+$status_category_edit = $PDO->selectPrepare("SELECT status FROM " . TABLE_CATEGORIES . " WHERE id=?", array($lines[$start][0]));
 if ($status_category_edit == 1) {
     $status_category_edit = 'checked';
 } else {
@@ -16,16 +16,16 @@ if ($status_category_edit == 1) {
 ?>
 
 <!-- Модальное окно "Редактировать категорию" -->
-<div id="<?php echo 'addCategory' . $lines[$l_start][0] ?>" class="modal fade" tabindex="-1">
+<div id="<?php echo 'addCategory' . $lines[$start][0] ?>" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header"><button class="close" type="button" data-dismiss="modal">×</button>
                 <h4 class="modal-title"><?php echo $lang['menu_categories'] ?></h4>
             </div>
-            <form id="form_post<?php echo $lines[$l_start][0] ?>" action="javascript:void(null);" onsubmit="call<?php echo $lines[$l_start][0] ?>()" method="post" enctype="multipart/form-data">
+            <form id="form_post<?php echo $lines[$start][0] ?>" action="javascript:void(null);" onsubmit="call<?php echo $lines[$start][0] ?>()" method="post" enctype="multipart/form-data">
                 <div class="panel-body">
                         <input type="hidden" name="parent_id" value="<?php echo $parent_id ?>" />
-                        <input type="hidden" name="cat_edit" value="<?php echo $lines[$l_start][0] ?>" />
+                        <input type="hidden" name="cat_edit" value="<?php echo $lines[$start][0] ?>" />
                         <div class="form-group">
                             <label><?php echo $lang['name'] ?>:</label><br>
                             <img src="/view/default/admin/images/worldflags/ru.png" alt="Russian" title="Russian" width="16" height="10" />Russian<br>
@@ -52,8 +52,8 @@ if ($status_category_edit == 1) {
 </div>
 
 <script type="text/javascript" language="javascript">
-    function call<?php echo $lines[$l_start][0] ?>() {
-        var msg = $('#form_post<?php echo $lines[$l_start][0] ?>').serialize();
+    function call<?php echo $lines[$start][0] ?>() {
+        var msg = $('#form_post<?php echo $lines[$start][0] ?>').serialize();
         $.ajax({
             type: 'POST',
             url: '/controller/admin/pages/stock/products/products.php',

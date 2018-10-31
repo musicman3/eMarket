@@ -181,17 +181,17 @@ if ($VALID->inGET('idsx_paste_key') == 'paste' && isset($_SESSION['buffer']) == 
 // КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 // задаем количество строк на странице вывода категорий
 if (isset($_SESSION['select_category']) == FALSE) {
-    $l_page = 20;
-    $_SESSION['select_category'] = $l_page;
+    $count_lines = 20;
+    $_SESSION['select_category'] = $count_lines;
 } elseif (isset($_SESSION['select_category']) == TRUE && $VALID->inGET('select_row')) {
     $_SESSION['select_category'] = $VALID->inGET('select_row');
-    $l_page = $_SESSION['select_category'];
+    $count_lines = $_SESSION['select_category'];
 } else {
-    $l_page = $_SESSION['select_category'];
+    $count_lines = $_SESSION['select_category'];
 }
 
-$l_start = 0; // устанавливаем страницу в ноль при заходе
-$l_finish = $l_page;
+$start = 0; // устанавливаем страницу в ноль при заходе
+$finish = $count_lines;
 
 // Если parrent_id является массивом, то
 if (is_array($parent_id) == TRUE) {
@@ -206,41 +206,41 @@ if ($VALID->inGET('parent_id_temp')) {
 $lines = array_reverse($PDO->getColRow("SELECT * FROM " . TABLE_CATEGORIES . " WHERE parent_id=? AND language=? ORDER BY sort_category DESC", [$parent_id, $lang_all[0]]));
 $counter = count($lines);  //считаем количество строк
 
-if ($counter <= $l_page) {
-    $l_finish = $counter;
+if ($counter <= $count_lines) {
+    $finish = $counter;
 }
 // Если нажали на кнопку вперед
-if ($VALID->inGET('l_finish')) {
-    $l_finish = $VALID->inGET('l_finish') + $l_page; // пересчитываем количество строк на странице
-    if ($VALID->inGET('l_start') == FALSE) {
+if ($VALID->inGET('finish')) {
+    $finish = $VALID->inGET('finish') + $count_lines; // пересчитываем количество строк на странице
+    if ($VALID->inGET('start') == FALSE) {
         $vali = 0;
     } else {
-        $vali = $VALID->inGET('l_start');
+        $vali = $VALID->inGET('start');
     }
-    $l_start = $vali + $l_page; // задаем значение счетчика
-    if ($l_start >= $counter) {
-        $l_start = $vali;
+    $start = $vali + $count_lines; // задаем значение счетчика
+    if ($start >= $counter) {
+        $start = $vali;
     }
-    if ($l_finish >= $counter) {
-        $l_finish = $counter;
+    if ($finish >= $counter) {
+        $finish = $counter;
     }
 }
 // Если нажали на кнопку назад
-if ($counter >= $l_page) {
-    if ($VALID->inGET('l_finish2')) {
-        $l_finish = $VALID->inGET('l_start2'); // пересчитываем количество строк на странице
-        $l_start = $VALID->inGET('l_start2') - $l_page; // задаем значение счетчика
-        if ($l_start < 0) {
-            $l_start = 0;
+if ($counter >= $count_lines) {
+    if ($VALID->inGET('finish2')) {
+        $finish = $VALID->inGET('start2'); // пересчитываем количество строк на странице
+        $start = $VALID->inGET('start2') - $count_lines; // задаем значение счетчика
+        if ($start < 0) {
+            $start = 0;
         }
-        if ($l_finish < $l_page) {
-            $l_finish = $l_page;
+        if ($finish < $count_lines) {
+            $finish = $count_lines;
         }
     }
 }
 // КОНЕЦ-> КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 // если сортируем категории мышкой
-$j = $l_start; //  переменная для передачи GET в javascript сортировки
+$j = $start; //  переменная для передачи GET в javascript сортировки
 if ($VALID->inGET('token_ajax') == $TOKEN && $VALID->inGET('ids')) {
     $j2 = $VALID->inGET('j');
     $sort_ajax = explode(',', $VALID->inGET('ids'));

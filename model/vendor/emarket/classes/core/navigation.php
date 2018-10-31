@@ -9,67 +9,67 @@ namespace eMarket\Classes\Core;
 class Navigation extends Valid {
 
     //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
-    function getNavi($counter, $l_page) {
+    function getNavi($counter, $count_lines) {
 
         //$counter - общее число строк
-        //$l_page - число строк на странице
+        //$count_lines - число строк на странице
 
-        $l_start = 0; // устанавливаем страницу в ноль при заходе
-        $l_finish = $l_page;
+        $start = 0; // устанавливаем страницу в ноль при заходе
+        $finish = $count_lines;
 
-        if ($counter <= $l_page) {
-            $l_finish = $counter;
+        if ($counter <= $count_lines) {
+            $finish = $counter;
         }
         // Если нажали на кнопку вперед GET
-        if ($this->inGET('l_finish')) {
-            $l_finish = $this->inGET('l_finish') + $l_page; // пересчитываем количество строк на странице
-            $l_start = $this->inGET('l_start') + $l_page; // задаем значение счетчика
-            if ($l_start >= $counter) {
-                $l_start = $this->inGET('l_start');
+        if ($this->inGET('finish')) {
+            $finish = $this->inGET('finish') + $count_lines; // пересчитываем количество строк на странице
+            $start = $this->inGET('start') + $count_lines; // задаем значение счетчика
+            if ($start >= $counter) {
+                $start = $this->inGET('start');
             }
-            if ($l_finish >= $counter) {
-                $l_finish = $counter;
+            if ($finish >= $counter) {
+                $finish = $counter;
             }
         }
         // Если нажали на кнопку назад GET
-        if ($counter >= $l_page) {
-            if ($this->inGET('l_finish2')) {
-                $l_finish = $this->inGET('l_start2'); // пересчитываем количество строк на странице
-                $l_start = $this->inGET('l_start2') - $l_page; // задаем значение счетчика
-                if ($l_start < 0) {
-                    $l_start = 0;
+        if ($counter >= $count_lines) {
+            if ($this->inGET('finish2')) {
+                $finish = $this->inGET('start2'); // пересчитываем количество строк на странице
+                $start = $this->inGET('start2') - $count_lines; // задаем значение счетчика
+                if ($start < 0) {
+                    $start = 0;
                 }
-                if ($l_finish < $l_page) {
-                    $l_finish = $l_page;
+                if ($finish < $count_lines) {
+                    $finish = $count_lines;
                 }
             }
         }
 
         // Если нажали на кнопку вперед POST
-        if ($this->inPOST('l_finish')) {
-            $l_finish = $this->inPOST('l_finish') + $l_page; // пересчитываем количество строк на странице
-            $l_start = $this->inPOST('l_start') + $l_page; // задаем значение счетчика
-            if ($l_start >= $counter) {
-                $l_start = $this->inPOST('l_start');
+        if ($this->inPOST('finish')) {
+            $finish = $this->inPOST('finish') + $count_lines; // пересчитываем количество строк на странице
+            $start = $this->inPOST('start') + $count_lines; // задаем значение счетчика
+            if ($start >= $counter) {
+                $start = $this->inPOST('start');
             }
-            if ($l_finish >= $counter) {
-                $l_finish = $counter;
+            if ($finish >= $counter) {
+                $finish = $counter;
             }
         }
         // Если нажали на кнопку назад POST
-        if ($counter >= $l_page) {
-            if ($this->inPOST('l_finish2')) {
-                $l_finish = $this->inPOST('l_start2'); // пересчитываем количество строк на странице
-                $l_start = $this->inPOST('l_start2') - $l_page; // задаем значение счетчика
-                if ($l_start < 0) {
-                    $l_start = 0;
+        if ($counter >= $count_lines) {
+            if ($this->inPOST('finish2')) {
+                $finish = $this->inPOST('start2'); // пересчитываем количество строк на странице
+                $start = $this->inPOST('start2') - $count_lines; // задаем значение счетчика
+                if ($start < 0) {
+                    $start = 0;
                 }
-                if ($l_finish < $l_page) {
-                    $l_finish = $l_page;
+                if ($finish < $count_lines) {
+                    $finish = $count_lines;
                 }
             }
         }
-        $return = array($l_finish, $l_start);
+        $return = array($finish, $start);
         return $return;
     }
 

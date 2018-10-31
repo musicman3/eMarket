@@ -45,7 +45,7 @@
                         <div class="pull-left"><?php echo $lang['title_products'] ?></div>
                         <form action="/controller/admin/pages/stock/products/products.php" method="post" class="form-inline">
                             <div class="add-xs"><?php echo $lang['rows_page'] ?>: <select name="select_row" class="input-xs form-control" onchange="this.form.submit()">
-                                    <option>(<?php echo $l_page ?>)</option>
+                                    <option>(<?php echo $count_lines ?>)</option>
                                     <option>20</option>
                                     <option>35</option>
                                     <option>50</option>
@@ -62,7 +62,7 @@
                         <thead>
                             <tr>
                                 <th colspan="7">
-                                    <div class="page"><?php echo $lang['s'] ?> <?php echo $l_start + 1 ?> <?php echo $lang['po'] ?> <?php echo $l_finish ?> ( <?php echo $lang['iz'] ?> <?php echo $counter; ?> )</div>
+                                    <div class="page"><?php echo $lang['s'] ?> <?php echo $start + 1 ?> <?php echo $lang['po'] ?> <?php echo $finish ?> ( <?php echo $lang['iz'] ?> <?php echo $counter; ?> )</div>
                                     <div class="right"><button class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
                                     <div class="left"><button class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
                                 </th>

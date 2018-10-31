@@ -20,17 +20,17 @@ $lines = array();
 
 // задаем количество строк на странице вывода категорий
 if (isset($_SESSION['select_category']) == FALSE) {
-    $l_page = 20;
-    $_SESSION['select_category'] = $l_page;
+    $count_lines = 20;
+    $_SESSION['select_category'] = $count_lines;
 } elseif (isset($_SESSION['select_category']) == TRUE && $VALID->inPOST('select_row')) {
     $_SESSION['select_category'] = $VALID->inPOST('select_row');
-    $l_page = $_SESSION['select_category'];
+    $count_lines = $_SESSION['select_category'];
 } else {
-    $l_page = $_SESSION['select_category'];
+    $count_lines = $_SESSION['select_category'];
 }
 
-$l_start = 0; // устанавливаем страницу в ноль при заходе
-$l_finish = $l_page;
+$start = 0; // устанавливаем страницу в ноль при заходе
+$finish = $count_lines;
 
 // Если parrent_id является массивом, то
 if (is_array($parent_id) == TRUE) {
@@ -46,35 +46,35 @@ $lines = $PDO->getColRow("SELECT * FROM " . TABLE_CATEGORIES . " WHERE parent_id
 $lines = array_reverse($lines); // сортируем в обратном порядке
 $counter = count($lines);  //считаем количество строк
 
-if ($counter <= $l_page) {
-    $l_finish = $counter;
+if ($counter <= $count_lines) {
+    $finish = $counter;
 }
 // Если нажали на кнопку вперед
-if ($VALID->inPOST('l_finish')) {
-    $l_finish = $VALID->inPOST('l_finish') + $l_page; // пересчитываем количество строк на странице
-    if ($VALID->inPOST('l_start') == FALSE) {
+if ($VALID->inPOST('finish')) {
+    $finish = $VALID->inPOST('finish') + $count_lines; // пересчитываем количество строк на странице
+    if ($VALID->inPOST('start') == FALSE) {
         $vali = 0;
     } else {
-        $vali = $VALID->inPOST('l_start');
+        $vali = $VALID->inPOST('start');
     }
-    $l_start = $vali + $l_page; // задаем значение счетчика
-    if ($l_start >= $counter) {
-        $l_start = $vali;
+    $start = $vali + $count_lines; // задаем значение счетчика
+    if ($start >= $counter) {
+        $start = $vali;
     }
-    if ($l_finish >= $counter) {
-        $l_finish = $counter;
+    if ($finish >= $counter) {
+        $finish = $counter;
     }
 }
 // Если нажали на кнопку назад
-if ($counter >= $l_page) {
-    if ($VALID->inPOST('l_finish2')) {
-        $l_finish = $VALID->inPOST('l_start2'); // пересчитываем количество строк на странице
-        $l_start = $VALID->inPOST('l_start2') - $l_page; // задаем значение счетчика
-        if ($l_start < 0) {
-            $l_start = 0;
+if ($counter >= $count_lines) {
+    if ($VALID->inPOST('finish2')) {
+        $finish = $VALID->inPOST('start2'); // пересчитываем количество строк на странице
+        $start = $VALID->inPOST('start2') - $count_lines; // задаем значение счетчика
+        if ($start < 0) {
+            $start = 0;
         }
-        if ($l_finish < $l_page) {
-            $l_finish = $l_page;
+        if ($finish < $count_lines) {
+            $finish = $count_lines;
         }
     }
 }

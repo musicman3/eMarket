@@ -35,7 +35,7 @@ if (isset($_SESSION['login_error']) == TRUE) {
 // если форма не заполнена, то выводим ее
 if ($VALID->inPOST('ok') == FALSE) {
 
-    require_once(ROOT . '/model/html_start.php');
+    require_once(ROOT . '/model/htmstart.php');
 
     //LOAD TEMPLATE
     require_once($VIEW->Routing());

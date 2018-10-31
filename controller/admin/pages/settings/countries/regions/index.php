@@ -41,9 +41,9 @@ if ($VALID->inPOST('delete')) {
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 $lines = $PDO->getColRow("SELECT id, region_code, name FROM " . TABLE_REGIONS . " WHERE country_id=? AND language=? ORDER BY name", [$VALID->inGET('country_id'), $lang_all[0]]);
-$navigate = $NAVIGATOR->getNavi(count($lines), $l_page = 20);
-$l_finish = $navigate[0];
-$l_start = $navigate[1];
+$navigate = $NAVIGATOR->getNavi(count($lines), $count_lines = 20);
+$finish = $navigate[0];
+$start = $navigate[1];
 
 // *********  CONNECT PAGE END  ********* //
 require_once(ROOT . '/model/connect_page_end.php');

@@ -9,9 +9,9 @@
 <?php require_once('modal/categories_add.php') ?>
 
 <!-- Дублируем модальные окна Редактирования категорий -->
-<?php $k = $l_start; // дублируем переменную ?>
+<?php $k = $start; // дублируем переменную ?>
 
-<?php for ($k; $k < $l_finish; $k++) { // запускаем цикл формирования модальных окон Редактирования категорий ?>
+<?php for ($k; $k < $finish; $k++) { // запускаем цикл формирования модальных окон Редактирования категорий ?>
 
     <!-- Вставляем модальное окно "Редактировать категорию" -->
     <?php require('modal/categories_edit.php') ?>
@@ -31,7 +31,7 @@
                         <!-- Количество строк на странице -->
                         <form action="/controller/admin/pages/stock/categories/categories.php" method="get" class="form-inline">
                             <div class="add-xs"><?php echo $lang['rows_page'] ?>: <select name="select_row" class="input-xs form-control" onchange="this.form.submit()">
-                                    <option>(<?php echo $l_page ?>)</option>
+                                    <option>(<?php echo $count_lines ?>)</option>
                                     <option>20</option>
                                     <option>35</option>
                                     <option>50</option>
@@ -50,20 +50,20 @@
                             <thead>
                                 <tr>
                                     <th colspan="3">
-                                        <div class="page"><?php echo $lang['s'] ?> <?php echo $l_start + 1 ?> <?php echo $lang['po'] ?> <?php echo $l_finish ?> ( <?php echo $lang['iz'] ?> <?php echo $counter; ?> )</div>
+                                        <div class="page"><?php echo $lang['s'] ?> <?php echo $start + 1 ?> <?php echo $lang['po'] ?> <?php echo $finish ?> ( <?php echo $lang['iz'] ?> <?php echo $counter; ?> )</div>
 
                                         <!-- Переключаем страницу "ВПЕРЕД" -->
                                         <form>
-                                            <input hidden name="l_start" value="<?php echo $l_start ?>">
-                                            <input hidden name="l_finish" value="<?php echo $l_finish ?>">
+                                            <input hidden name="start" value="<?php echo $start ?>">
+                                            <input hidden name="finish" value="<?php echo $finish ?>">
                                             <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
                                             <div class="right"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/stock/categories/categories.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
                                         </form>
 
                                         <!-- Переключаем страницу "НАЗАД" -->
                                         <form>
-                                            <input hidden name="l_start2" value="<?php echo $l_start ?>">
-                                            <input hidden name="l_finish2" value="<?php echo $l_finish ?>">
+                                            <input hidden name="start2" value="<?php echo $start ?>">
+                                            <input hidden name="finish2" value="<?php echo $finish ?>">
                                             <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
                                             <div class="left"><button type="submit" class="btn btn-primary btn-xs"  action="/controller/admin/pages/stock/categories/categories.php" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
                                         </form>
@@ -90,29 +90,29 @@
                                         </td>
                                     </tr>
 
-                                <?php } for ($l_start; $l_start < $l_finish; $l_start++) { ?>
+                                <?php } for ($start; $start < $finish; $start++) { ?>
 
-                                    <tr class="sort-list" unitid="<?php echo $lines[$l_start][0] ?>">
+                                    <tr class="sort-list" unitid="<?php echo $lines[$start][0] ?>">
 
                                         <!-- Вырезанные категории "АКТИВНЫЕ" -->
-                                        <?php if (isset($_SESSION['buffer']) == true && in_array($lines[$l_start][0], $_SESSION['buffer']) == true && $lines[$l_start][8] == 1) { ?>
+                                        <?php if (isset($_SESSION['buffer']) == true && in_array($lines[$start][0], $_SESSION['buffer']) == true && $lines[$start][8] == 1) { ?>
                                             <td class="sortyes sortleft-m" align="left"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
                                             <td class="sortleft" align="left"><div><a href="#" class="btn btn-primary btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-folder-open"> </span></a></div></td>
 
                                             <!-- Вырезанные категории "НЕ АКТИВНЫЕ" -->
-                                        <?php } elseif (isset($_SESSION['buffer']) == true && in_array($lines[$l_start][0], $_SESSION['buffer']) == true && $lines[$l_start][8] == 0) { ?>
+                                        <?php } elseif (isset($_SESSION['buffer']) == true && in_array($lines[$start][0], $_SESSION['buffer']) == true && $lines[$start][8] == 0) { ?>
                                             <td class="sortyes sortleft-m" align="left"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
                                             <td class="sortleft" align="left"><div><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-folder-open"> </span></a></div></td>
 
                                             <!-- Если категория НЕ АКТИВНА -->
-                                        <?php } elseif ($lines[$l_start][8] == 0) { ?>
+                                        <?php } elseif ($lines[$start][8] == 0) { ?>
                                             <td class="sortyes sortleft-m" align="left"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
                                             <td class="sortleft" align="left">
 
                                                 <!-- Неактивная категория "ВНИЗ" -->
                                                 <form>
                                                     <div>
-                                                        <button name="parent_down" value="<?php echo $lines[$l_start][0] ?>" class="btn btn-default btn-xs" title="<?php echo $lines[$l_start][1] ?>" action="/controller/admin/pages/stock/categories/categories.php" formmethod="get"><span class="glyphicon glyphicon-folder-open"> </span></button>
+                                                        <button name="parent_down" value="<?php echo $lines[$start][0] ?>" class="btn btn-default btn-xs" title="<?php echo $lines[$start][1] ?>" action="/controller/admin/pages/stock/categories/categories.php" formmethod="get"><span class="glyphicon glyphicon-folder-open"> </span></button>
                                                     </div>
                                                 </form>
 
@@ -129,7 +129,7 @@
                                                 <!-- Активная категория "ВНИЗ" -->
                                                 <form>
                                                     <div>
-                                                        <button name="parent_down" value="<?php echo $lines[$l_start][0] ?>" class="btn btn-primary btn-xs" title="<?php echo $lines[$l_start][1] ?>" action="/controller/admin/pages/stock/categories/categories.php" formmethod="get"><span class="glyphicon glyphicon-folder-open"> </span></button>
+                                                        <button name="parent_down" value="<?php echo $lines[$start][0] ?>" class="btn btn-primary btn-xs" title="<?php echo $lines[$start][1] ?>" action="/controller/admin/pages/stock/categories/categories.php" formmethod="get"><span class="glyphicon glyphicon-folder-open"> </span></button>
                                                     </div>
                                                 </form>
 
@@ -140,8 +140,8 @@
                                         ?>
 
                                         <!-- ВЫБРАННЫЕ СТРОКИ -->
-                                        <td align="left" class="option" id="<?php echo $lines[$l_start][0] ?>"><span class="inactive" style="display: none;"></span>
-                                            <div class="context-one" id="<?php echo $lines[$l_start][0] ?>"><?php echo $lines[$l_start][1] ?>
+                                        <td align="left" class="option" id="<?php echo $lines[$start][0] ?>"><span class="inactive" style="display: none;"></span>
+                                            <div class="context-one" id="<?php echo $lines[$start][0] ?>"><?php echo $lines[$start][1] ?>
                                             </div>
 
                                         </td>	 

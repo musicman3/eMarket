@@ -10,9 +10,9 @@
 <!-- КОНЕЦ Модальное окно "Добавить" -->
 
 <!-- Дублируем модальные окна Редактирования -->
-<?php $k = $l_start; // дублируем переменную   ?>
+<?php $k = $start; // дублируем переменную   ?>
 
-<?php for ($k; $k < $l_finish; $k++) { // запускаем цикл формирования модальных окон  ?>
+<?php for ($k; $k < $finish; $k++) { // запускаем цикл формирования модальных окон  ?>
 
     <!-- Вставляем модальное окно "Редактировать" -->
     <?php require(ROOT . '/view/'.$TEMPLATE.'/admin/pages/settings/zones/modal/edit.php') ?>
@@ -35,7 +35,7 @@
                             <tr>
                                 <th colspan="3">
                                     <?php if ($lines == TRUE) { ?>
-                                        <div class="page"><?php echo $lang['s'] ?> <?php echo $l_start + 1 ?> <?php echo $lang['po'] ?> <?php echo $l_finish ?> ( <?php echo $lang['iz'] ?> <?php echo count($lines) ?> )</div>
+                                        <div class="page"><?php echo $lang['s'] ?> <?php echo $start + 1 ?> <?php echo $lang['po'] ?> <?php echo $finish ?> ( <?php echo $lang['iz'] ?> <?php echo count($lines) ?> )</div>
                                         <?php
                                     } else {
 
@@ -46,18 +46,18 @@
 
                                 <th>
                                     <form>
-                                        <?php if (count($lines) > $l_page) { ?>
-                                            <input hidden name="l_start" value="<?php echo $l_start ?>">
-                                            <input hidden name="l_finish" value="<?php echo $l_finish ?>">
+                                        <?php if (count($lines) > $count_lines) { ?>
+                                            <input hidden name="start" value="<?php echo $start ?>">
+                                            <input hidden name="finish" value="<?php echo $finish ?>">
                                         <?php } ?>
                                         <div class="right"><button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
                                     </form>
 
 
                                     <form>
-                                        <?php if (count($lines) > $l_page) { ?>
-                                            <input hidden name="l_start2" value="<?php echo $l_start ?>">
-                                            <input hidden name="l_finish2" value="<?php echo $l_finish ?>">
+                                        <?php if (count($lines) > $count_lines) { ?>
+                                            <input hidden name="start2" value="<?php echo $start ?>">
+                                            <input hidden name="finish2" value="<?php echo $finish ?>">
                                         <?php } ?>
                                         <div class="left"><button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
                                     </form>
@@ -77,24 +77,24 @@
 			    <?php } ?>
                         </thead>
                         <tbody>
-                            <?php for ($l_start; $l_start < $l_finish; $l_start++) { ?>
+                            <?php for ($start; $start < $finish; $start++) { ?>
                                 <tr>
                                     <td class="sortleft">
                                         <form action="/controller/admin/pages/settings/regions.php">
-                                            <input hidden name="zone_id" value="<?php echo $lines[$l_start][0] ?>">
+                                            <input hidden name="zone_id" value="<?php echo $lines[$start][0] ?>">
                                             <button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-cog"></span></button>
                                         </form>
                                     </td>
-                                    <td><?php echo $lines[$l_start][1] ?></td>
-                                    <td><?php echo $lines[$l_start][2] ?></td>
+                                    <td><?php echo $lines[$start][1] ?></td>
+                                    <td><?php echo $lines[$start][2] ?></td>
                                     <td class="al-text-w">
                                         <form>
-                                            <input hidden name="delete" value="<?php echo $lines[$l_start][0] ?>">
+                                            <input hidden name="delete" value="<?php echo $lines[$start][0] ?>">
                                             <div class="right">
                                                 <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo $lang['confirm-yes'] ?>" data-btn-cancel-label="<?php echo $lang['confirm-no'] ?>" title="<?php echo $lang['confirm-del'] ?>" action="index.php" formmethod="post"><span class="glyphicon glyphicon-trash"> </span></button>
                                             </div>
                                             <div class="left">
-                                                <a href="#edit<?php echo $lines[$l_start][0] ?>" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span></a>
+                                                <a href="#edit<?php echo $lines[$start][0] ?>" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span></a>
                                             </div>
                                         </form>
                                     </td>
