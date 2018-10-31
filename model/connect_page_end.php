@@ -5,11 +5,10 @@
 // *************************************//
 // 
 //LOAD TEMPLATE
-require_once($VIEW->Routing());
+require_once(ROOT . '/model/html_start.php');
 
 //CONNECT END
-require_once(ROOT . '/model/connect_end.php');
-require_once(ROOT . '/model/html_end.php');
+$DB = null;
 
 //Если существует $JS_END
 if (isset($JS_END)) {

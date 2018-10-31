@@ -4,8 +4,6 @@
 // https://github.com/musicman3/eMarket //
 // *************************************//
 // 
-//ИСПОЛЬЗУЕМ МАРКЕРЫ ОТКЛЮЧЕНИЯ НА СТРАНИЦЕ
-$HTML_START = 'FALSE'; // ОТКЛЮЧАЕМ ЗАГРУЗКУ HTML для использования редиректа header('Location: )
 // ********  CONNECT PAGE START  ******** //
 require_once(getenv('DOCUMENT_ROOT') . '/model/connect_page_start.php');
 // ************************************** //
@@ -42,9 +40,6 @@ if (isset($_SESSION['login_error']) == TRUE) {
 } else {
     $login_error = '';
 }
-
-// ВКЛЮЧАЕМ ЗАГРУЗКУ HTML
-require_once(ROOT . '/model/html_start.php');
 
 // *********  CONNECT PAGE END  ********* //
 require_once(ROOT . '/model/connect_page_end.php');

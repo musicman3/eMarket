@@ -4,11 +4,16 @@
 // https://github.com/musicman3/eMarket //
 // *************************************//
 
+require_once('configure/configure.php');
 
-require_once('connect_start.php');
+require_once('autoloader.php');
 
-if (!isset($HTML_START) == 'FALSE') {// МАРКЕР ОТКЛЮЧЕНИЯ НА СТРАНИЦЕ
-    require_once(ROOT . '/model/html_start.php');
-}
+require_once('configure/connect.php');
+
+require_once('configure/based_variables.php');
+
+require_once('router_lang.php');
+
+require_once('configure/session_autorize.php');
 
 ?>
