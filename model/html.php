@@ -18,7 +18,7 @@
         <meta name="author" content="eMarket" />
         <meta name="owner" content="eMarket" />
         <meta name="copyright" content="Copyright © 2018 by eMarket Team. All right reserved." />
-        <title><?php echo $lang['title_' . $TITLE_DIR] // автогенерация префикса title по названию дректории. Пример: для /countries/index.php = countries         ?></title>
+        <title><?php echo $lang['title_' . $TITLE_DIR] // автогенерация префикса title по названию директории. Пример: для /countries/index.php = countries  ?></title>
         <?php
         //вывод только в админке
         if ($PATH == 'admin') {
