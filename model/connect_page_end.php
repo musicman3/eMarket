@@ -10,12 +10,4 @@ require_once(ROOT . '/model/html_start.php');
 //CONNECT END
 $DB = null;
 
-//Если существует $JS_END
-if (isset($JS_END)) {
-    //то подгружаем JS.PHP файл
-    require_once($JS_END . '/js/js.php');
-}
-
 ?>
-</body>
-</html>
