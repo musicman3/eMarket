@@ -19,7 +19,9 @@
 
 <div class="login-box side-form">
     <form  action='login.php' method='post'>
+        
         <input hidden name="autorize" value="ok">
+        
         <div class="form-group">
             <input type="text" name="login" class="input-sm form-control" placeholder="<?php echo $lang['email'] ?>">
         </div>
