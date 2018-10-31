@@ -228,8 +228,8 @@ if ($VALID->inGET('l_finish')) {
 // Если нажали на кнопку назад
 if ($counter >= $l_page) {
     if ($VALID->inGET('l_finish2')) {
-        $l_finish = $VALID->inGET('i2'); // пересчитываем количество строк на странице
-        $l_start = $VALID->inGET('i2') - $l_page; // задаем значение счетчика
+        $l_finish = $VALID->inGET('l_start2'); // пересчитываем количество строк на странице
+        $l_start = $VALID->inGET('l_start2') - $l_page; // задаем значение счетчика
         if ($l_start < 0) {
             $l_start = 0;
         }

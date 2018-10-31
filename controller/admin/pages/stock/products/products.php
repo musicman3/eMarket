@@ -68,8 +68,8 @@ if ($VALID->inPOST('l_finish')) {
 // Если нажали на кнопку назад
 if ($counter >= $l_page) {
     if ($VALID->inPOST('l_finish2')) {
-        $l_finish = $VALID->inPOST('i2'); // пересчитываем количество строк на странице
-        $l_start = $VALID->inPOST('i2') - $l_page; // задаем значение счетчика
+        $l_finish = $VALID->inPOST('l_start2'); // пересчитываем количество строк на странице
+        $l_start = $VALID->inPOST('l_start2') - $l_page; // задаем значение счетчика
         if ($l_start < 0) {
             $l_start = 0;
         }

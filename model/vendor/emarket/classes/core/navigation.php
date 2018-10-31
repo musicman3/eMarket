@@ -34,8 +34,8 @@ class Navigation extends Valid {
         // Если нажали на кнопку назад GET
         if ($counter >= $l_page) {
             if ($this->inGET('l_finish2')) {
-                $l_finish = $this->inGET('i2'); // пересчитываем количество строк на странице
-                $l_start = $this->inGET('i2') - $l_page; // задаем значение счетчика
+                $l_finish = $this->inGET('l_start2'); // пересчитываем количество строк на странице
+                $l_start = $this->inGET('l_start2') - $l_page; // задаем значение счетчика
                 if ($l_start < 0) {
                     $l_start = 0;
                 }
@@ -59,8 +59,8 @@ class Navigation extends Valid {
         // Если нажали на кнопку назад POST
         if ($counter >= $l_page) {
             if ($this->inPOST('l_finish2')) {
-                $l_finish = $this->inPOST('i2'); // пересчитываем количество строк на странице
-                $l_start = $this->inPOST('i2') - $l_page; // задаем значение счетчика
+                $l_finish = $this->inPOST('l_start2'); // пересчитываем количество строк на странице
+                $l_start = $this->inPOST('l_start2') - $l_page; // задаем значение счетчика
                 if ($l_start < 0) {
                     $l_start = 0;
                 }
