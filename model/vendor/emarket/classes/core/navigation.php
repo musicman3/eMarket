@@ -12,7 +12,7 @@ class Navigation extends Valid {
     function getNavi($counter, $lines_page) {
 
         //$counter - общее число строк
-        //$lines_page - чисто строк на странице
+        //$lines_page - число строк на странице
 
         $i = 0; // устанавливаем страницу в ноль при заходе
         $lines_p = $lines_page;
