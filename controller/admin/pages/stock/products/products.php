@@ -44,10 +44,10 @@ if ($VALID->inPOST('parent_id_temp')) {
 // получаем отсортированное по sort_category содержимое в виде массива
 $lines = $PDO->getColRow("SELECT * FROM " . TABLE_CATEGORIES . " WHERE parent_id=? ORDER BY sort_category DESC", [$parent_id]);
 $lines = array_reverse($lines); // сортируем в обратном порядке
-$counter = count($lines);  //считаем количество строк
+$count_lines = count($lines);  //считаем количество строк
 
-if ($counter <= $lines_of_page) {
-    $finish = $counter;
+if ($count_lines <= $lines_of_page) {
+    $finish = $count_lines;
 }
 // Если нажали на кнопку вперед
 if ($VALID->inPOST('finish')) {
@@ -58,15 +58,15 @@ if ($VALID->inPOST('finish')) {
         $vali = $VALID->inPOST('start');
     }
     $start = $vali + $lines_of_page; // задаем значение счетчика
-    if ($start >= $counter) {
+    if ($start >= $count_lines) {
         $start = $vali;
     }
-    if ($finish >= $counter) {
-        $finish = $counter;
+    if ($finish >= $count_lines) {
+        $finish = $count_lines;
     }
 }
 // Если нажали на кнопку назад
-if ($counter >= $lines_of_page) {
+if ($count_lines >= $lines_of_page) {
     if ($VALID->inPOST('finish2')) {
         $finish = $VALID->inPOST('start2'); // пересчитываем количество строк на странице
         $start = $VALID->inPOST('start2') - $lines_of_page; // задаем значение счетчика

@@ -50,7 +50,7 @@
                             <thead>
                                 <tr>
                                     <th colspan="3">
-                                        <div class="page"><?php echo $lang['s'] ?> <?php echo $start + 1 ?> <?php echo $lang['po'] ?> <?php echo $finish ?> ( <?php echo $lang['iz'] ?> <?php echo $counter; ?> )</div>
+                                        <div class="page"><?php echo $lang['s'] ?> <?php echo $start + 1 ?> <?php echo $lang['po'] ?> <?php echo $finish ?> ( <?php echo $lang['iz'] ?> <?php echo $count_lines; ?> )</div>
 
                                         <!-- Переключаем страницу "ВПЕРЕД" -->
                                         <form>

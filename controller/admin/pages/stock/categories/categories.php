@@ -204,10 +204,10 @@ if ($VALID->inGET('parent_id_temp')) {
 }
 // получаем отсортированное по sort_category содержимое в виде массива для отображения на странице и сортируем в обратном порядке
 $lines = array_reverse($PDO->getColRow("SELECT * FROM " . TABLE_CATEGORIES . " WHERE parent_id=? AND language=? ORDER BY sort_category DESC", [$parent_id, $lang_all[0]]));
-$counter = count($lines);  //считаем количество строк
+$count_lines = count($lines);  //считаем количество строк
 
-if ($counter <= $lines_of_page) {
-    $finish = $counter;
+if ($count_lines <= $lines_of_page) {
+    $finish = $count_lines;
 }
 // Если нажали на кнопку вперед
 if ($VALID->inGET('finish')) {
@@ -218,15 +218,15 @@ if ($VALID->inGET('finish')) {
         $vali = $VALID->inGET('start');
     }
     $start = $vali + $lines_of_page; // задаем значение счетчика
-    if ($start >= $counter) {
+    if ($start >= $count_lines) {
         $start = $vali;
     }
-    if ($finish >= $counter) {
-        $finish = $counter;
+    if ($finish >= $count_lines) {
+        $finish = $count_lines;
     }
 }
 // Если нажали на кнопку назад
-if ($counter >= $lines_of_page) {
+if ($count_lines >= $lines_of_page) {
     if ($VALID->inGET('finish2')) {
         $finish = $VALID->inGET('start2'); // пересчитываем количество строк на странице
         $start = $VALID->inGET('start2') - $lines_of_page; // задаем значение счетчика

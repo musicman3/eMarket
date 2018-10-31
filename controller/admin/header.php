@@ -15,7 +15,7 @@ $submenu = array();
 $menu_market = '0'; //МАГАЗИН
 $menu_sales = '1'; // ПРОДАЖИ
 $menu_marketing = '2'; //МАРКЕТИНГ
-$menu_counterparty = '3'; //КОНТРАГЕНТЫ
+$menu_count_linesparty = '3'; //КОНТРАГЕНТЫ
 $menu_modules = '4'; //МОДУЛИ
 $menu_tools = '5'; //ИНСТРУМЕНТЫ
 $menu_help = '6'; //ПОМОЩЬ
@@ -49,10 +49,10 @@ $menu[$menu_marketing][6] = '<a href="#"><span><img src="/view/default/admin/ima
 $menu[$menu_marketing][7] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/chart.png" /></span> Отчеты </a>';
 
 //КОНТРАГЕНТЫ
-$level[$menu_counterparty] = '<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span></span>Контрагенты<b class="caret"></b></a>';
+$level[$menu_count_linesparty] = '<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span></span>Контрагенты<b class="caret"></b></a>';
 
-$menu[$menu_counterparty][0] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/building.png" /></span> Юридические лица </a>';
-$menu[$menu_counterparty][1] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/people.png" /></span> Физические лица </a>';
+$menu[$menu_count_linesparty][0] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/building.png" /></span> Юридические лица </a>';
+$menu[$menu_count_linesparty][1] = '<a href="#"><span><img src="/view/default/admin/images/icons/16x16/people.png" /></span> Физические лица </a>';
 
 //МОДУЛИ
 $level[$menu_modules] = '<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span></span>Модули<b class="caret"></b></a>';
