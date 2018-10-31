@@ -8,17 +8,18 @@
 
 <div class="lbox-horz"></div>
 <div id="login" class="lbox-vert">
-<?php if ($login_error == true) { ?>
+    <?php if ($login_error == true) { ?>
         <div class="alert alert-danger"><span class="glyphicon glyphicon-exclamation-sign"></span> <?php echo $login_error ?><button type="button" class="close" data-dismiss="alert">×</button>
         </div>
-<?php } ?>
+    <?php } ?>
 </div>
 
 <div class="login_logo">eMarket <span>v1</span></div>
 
 
 <div class="login-box side-form">
-    <form  action='verify_autorize.php' method='post'>
+    <form  action='login.php' method='post'>
+        <input hidden name="autorize" value="ok">
         <div class="form-group">
             <input type="text" name="login" class="input-sm form-control" placeholder="<?php echo $lang['email'] ?>">
         </div>

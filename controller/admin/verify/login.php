@@ -4,24 +4,35 @@
 // https://github.com/musicman3/eMarket //
 // *************************************//
 
-error_reporting(-1);
+$SESSION_AUTORIZE = 'FALSE';
+$HTML_START = 'FALSE';
+// ********  CONNECT PAGE START  ******** //
+require_once(getenv('DOCUMENT_ROOT') . '/model/connect_page_start.php');
+// ************************************** //
+
 session_start();
+if ($VALID->inPOST('autorize') == 'ok') {
+    $_SESSION['login'] = $VALID->inPOST('login');
+    $_SESSION['pass'] = hash(HASH_METHOD, $VALID->inPOST('pass'));
 
-//AUTOLOADER
-require_once(getenv('DOCUMENT_ROOT') . '/model/autoloader.php');
+//VERIFY USER
+    $verify = $PDO->getRowCount("SELECT * FROM " . TABLE_ADMINISTRATORS . " WHERE login=? AND password=?", [$_SESSION['login'], $_SESSION['pass']]);
 
-//LOAD CONFIGURE
-require_once(getenv('DOCUMENT_ROOT') . '/model/configure/configure.php');
+//DEFAULT LANGUAGE
+    $deflang = $PDO->selectPrepare("SELECT language FROM " . TABLE_ADMINISTRATORS . " WHERE login=? AND password=?", [$_SESSION['login'], $_SESSION['pass']]);
 
-//LOAD BASED_VARIABLES
-require_once(ROOT . '/model/configure/based_variables.php');
-
-//LOAD LANGUAGE
-require_once(ROOT . '/model/router_lang.php');
-
+    if ($verify != 1) {    //Если проверка не удалась:
+        session_destroy();
+        session_start();
+        $_SESSION['default_language'] = $deflang;
+        $_SESSION['login_error'] = $lang['login_error'];
+    } else {
+        header('Location: /controller/admin/index.php');    // else: редирект на index.php
+    }
+}
 // если авторизован, редирект в админку
-if (isset($_SESSION['login']) == TRUE) {    //if user true:
-    header('Location: /controller/admin/index.php');    // redirect to index.php
+if (isset($_SESSION['login']) == TRUE) {
+    header('Location: /controller/admin/index.php');
 }
 
 // если логин или пароль не верные, то готовим уведомление
@@ -32,17 +43,10 @@ if (isset($_SESSION['login_error']) == TRUE) {
     $login_error = '';
 }
 
-// если форма не заполнена, то выводим ее
-if ($VALID->inPOST('ok') == FALSE) {
+require_once(ROOT . '/model/html_start.php');
 
-    require_once(ROOT . '/model/html_start.php');
-
-    //LOAD TEMPLATE
-    require_once($VIEW->Routing());
-
-    require_once(ROOT . '/model/html_end.php');
-}
+// *********  CONNECT PAGE END  ********* //
+require_once(ROOT . '/model/connect_page_end.php');
+// ************************************** //
 
 ?>
-</body>
-</html>

@@ -9,7 +9,7 @@ namespace eMarket\Classes\Core;
 class Navigation extends Valid {
 
     //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
-    function getNavi($count_lines, $lines_of_page) {
+    function goNavi($count_lines, $lines_of_page) {
 
         //$count_lines - общее число строк
         //$lines_of_page - число строк на странице
