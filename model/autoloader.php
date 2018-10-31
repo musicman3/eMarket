@@ -22,4 +22,7 @@ $VIEW = new eMarket\Classes\Core\View;
 
 //ЗАГРУЖАЕМ CLASS Tree
 $TREE = new eMarket\Classes\Core\Tree;
+
+//ЗАГРУЖАЕМ CLASS Navigation
+$NAVIGATOR = new eMarket\Classes\Core\Navigation;
 ?>

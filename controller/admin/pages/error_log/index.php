@@ -17,10 +17,11 @@ if ($VALID->inPOST('delete') == 'delete') {
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 if (file_exists(ROOT . '/model/work/errors.log')) { // Если файл существует, то
+        //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
     $lines = array_reverse(file(ROOT . '/model/work/errors.log')); // получаем содержимое файла в виде массива и сортируем в обратном порядке
-
-// Подключаем файл навигации
-require_once(ROOT . '/model/includes/navigation.php');
+    $navigate = $NAVIGATOR->getNavi(count($lines), $lines_page = 20);
+    $lines_p = $navigate[0];
+    $i = $navigate[1];
 }
 
 // *********  CONNECT PAGE END  ********* //

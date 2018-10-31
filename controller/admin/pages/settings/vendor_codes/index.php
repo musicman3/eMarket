@@ -11,7 +11,7 @@ require_once(getenv('DOCUMENT_ROOT') . '/model/connect_page_start.php');
 // ************************************** //
 // 
 // Если нажали на кнопку Добавить
-if ($VALID->inGET('vendor_code'.$lang_all[0])) {
+if ($VALID->inGET('vendor_code' . $lang_all[0])) {
 
     // Получаем последний id и увеличиваем его на 1
     $id_max = $PDO->selectPrepare("SELECT id FROM " . TABLE_VENDOR_CODES . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);
@@ -19,7 +19,7 @@ if ($VALID->inGET('vendor_code'.$lang_all[0])) {
 
     // добавляем запись для всех вкладок
     for ($xl = 0; $xl < count($lang_all); $xl++) {
-        $PDO->inPrepare("INSERT INTO " . TABLE_VENDOR_CODES . " SET id=?, name=?, language=?, vendor_code=?", [$id, $VALID->inGET($lang_all[$xl]), $lang_all[$xl], $VALID->inGET('vendor_code'.$lang_all[$xl])]);
+        $PDO->inPrepare("INSERT INTO " . TABLE_VENDOR_CODES . " SET id=?, name=?, language=?, vendor_code=?", [$id, $VALID->inGET($lang_all[$xl]), $lang_all[$xl], $VALID->inGET('vendor_code' . $lang_all[$xl])]);
     }
 }
 
@@ -40,12 +40,13 @@ if ($VALID->inPOST('delete')) {
 }
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
-// Получаем массив таблицы
 $lines = $PDO->getColRow("SELECT id, name, vendor_code FROM " . TABLE_VENDOR_CODES . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);
-// Подключаем файл навигации
-require_once(ROOT . '/model/includes/navigation.php');
+$navigate = $NAVIGATOR->getNavi(count($lines), $lines_page = 20);
+$lines_p = $navigate[0];
+$i = $navigate[1];
 
 // *********  CONNECT PAGE END  ********* //
 require_once(ROOT . '/model/connect_page_end.php');
 // ************************************** //
+
 ?>

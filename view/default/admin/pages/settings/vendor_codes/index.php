@@ -35,7 +35,7 @@
                             <tr>
                                 <th colspan="2">
                                     <?php if ($lines == TRUE) { ?>
-                                        <div class="page"><?php echo $lang['s'] ?> <?php echo $i + 1 ?> <?php echo $lang['po'] ?> <?php echo $lines_p ?> ( <?php echo $lang['iz'] ?> <?php echo $counter ?> )</div>
+                                        <div class="page"><?php echo $lang['s'] ?> <?php echo $i + 1 ?> <?php echo $lang['po'] ?> <?php echo $lines_p ?> ( <?php echo $lang['iz'] ?> <?php echo count($lines) ?> )</div>
                                         <?php
                                     } else {
 
@@ -46,7 +46,7 @@
 
                                 <th>
                                     <form>
-                                        <?php if ($counter > $lines_page) { ?>
+                                        <?php if (count($lines) > $lines_page) { ?>
                                             <input hidden name="i" value="<?php echo $i ?>">
                                             <input hidden name="lines_p" value="<?php echo $lines_p ?>">
                                         <?php } ?>
@@ -55,7 +55,7 @@
 
 
                                     <form>
-                                        <?php if ($counter > $lines_page) { ?>
+                                        <?php if (count($lines) > $lines_page) { ?>
                                             <input hidden name="i2" value="<?php echo $i ?>">
                                             <input hidden name="lines_p2" value="<?php echo $lines_p ?>">
                                         <?php } ?>

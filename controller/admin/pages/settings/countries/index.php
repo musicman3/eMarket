@@ -43,10 +43,10 @@ if ($VALID->inPOST('delete')) {
 }
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
-// Получаем массив таблицы
 $lines = $PDO->getColRow("SELECT id, name, alpha_2, alpha_3 FROM " . TABLE_COUNTRIES . " WHERE language=? ORDER BY name", [$lang_all[0]]);
-// Подключаем файл навигации
-require_once(ROOT . '/model/includes/navigation.php');
+$navigate = $NAVIGATOR->getNavi(count($lines), $lines_page = 20);
+$lines_p = $navigate[0];
+$i = $navigate[1];
 
 // *********  CONNECT PAGE END  ********* //
 require_once(ROOT . '/model/connect_page_end.php');
