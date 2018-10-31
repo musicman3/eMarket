@@ -9,6 +9,7 @@ require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 // ************************************** //
 
 session_start();
+
 if ($VALID->inPOST('autorize') == 'ok') {
     $_SESSION['login'] = $VALID->inPOST('login');
     $_SESSION['pass'] = hash(HASH_METHOD, $VALID->inPOST('pass'));
