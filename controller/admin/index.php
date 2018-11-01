@@ -9,6 +9,10 @@ error_reporting(-1);
 // ********  CONNECT PAGE START  ******** //
 require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 // ************************************** //
+if ($VALID->inGET('language') == TRUE){
+    $PDO->inPrepare("UPDATE " . TABLE_ADMINISTRATORS . " SET language=? WHERE login=? AND password=?", [$VALID->inGET('language'), $login, $pass]);
+    header('Location: /controller/admin/'); // переадресация на LOGIN.PHP
+}
 // *********  CONNECT PAGE END  ********* //
 require_once(ROOT . '/model/end.php');
 // ************************************** //
