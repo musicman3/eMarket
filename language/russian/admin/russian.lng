@@ -87,6 +87,7 @@ menu_languages = Языки
 menu_catalog = Онлайн каталог
 menu_support = Поддержка
 menu_tools = Инструменты
+menu_language = Русский
 menu_error_log = Лог ошибок
 menu_categories = Категории
 
