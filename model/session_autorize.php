@@ -7,7 +7,7 @@
 error_reporting(-1);
 
 // ЕСЛИ В АДМИНИСТРАТИВНОЙ ПАНЕЛИ
-if ($PATH == 'admin' && $TITLE_DIR != 'verify') {
+if ($PATH == 'admin' && $TITLE_DIR != 'login') {
 
     session_start();
     $login = null;
@@ -21,7 +21,7 @@ if ($PATH == 'admin' && $TITLE_DIR != 'verify') {
     $verify = $PDO->getRowCount("SELECT * FROM " . TABLE_ADMINISTRATORS . " WHERE login=? AND password=?", [$login, $pass]);
 
     if ($verify != 1) { //NO USER
-        header('Location: /controller/admin/verify/login.php'); // переадресация на LOGIN.PHP
+        header('Location: /controller/admin/login/'); // переадресация на LOGIN.PHP
     } else {
         $TOKEN = hash(HASH_METHOD, $login . $pass); // создаем токен для ajax и пр.
         //Язык авторизованного администратора
@@ -30,7 +30,7 @@ if ($PATH == 'admin' && $TITLE_DIR != 'verify') {
 }
 
 // ЕСЛИ В КАТАЛОГЕ
-if ($PATH == 'catalog' && $TITLE_DIR != 'verify') {
+if ($PATH == 'catalog' && $TITLE_DIR != 'login') {
 
     session_start();
     $login = null;
@@ -44,7 +44,7 @@ if ($PATH == 'catalog' && $TITLE_DIR != 'verify') {
     $verify = $PDO->getRowCount("SELECT * FROM " . TABLE_ADMINISTRATORS . " WHERE login=? AND password=?", [$login, $pass]);
 
     if ($verify != 1) { //NO USER
-        header('Location: /controller/admin/verify/login.php'); // переадресация на LOGIN.PHP
+        header('Location: /controller/admin/login/'); // переадресация на LOGIN.PHP
     } else {
         $TOKEN = hash(HASH_METHOD, $login . $pass); // создаем токен для ajax и пр.
         //Язык авторизованного пользователя
