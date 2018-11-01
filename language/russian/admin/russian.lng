@@ -8,9 +8,8 @@
 [admin]
 
 ;Title
-title_index = Панель администратора
 title_admin = Панель администратора
-title_verify = Страница авторизации
+title_login = Страница авторизации
 title_error_log = Лог ошибок
 title_settings = Настройки
 title_taxes = Налоги
@@ -87,7 +86,6 @@ menu_extra = Дополнительно
 menu_languages = Языки
 menu_catalog = Онлайн каталог
 menu_support = Поддержка
-menu_language = Русский
 menu_tools = Инструменты
 menu_error_log = Лог ошибок
 menu_categories = Категории
