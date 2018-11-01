@@ -23,7 +23,9 @@ if ($PATH == 'admin' && $TITLE_DIR != 'verify') {
     if ($verify != 1) { //NO USER
         header('Location: /controller/admin/verify/login.php'); // переадресация на LOGIN.PHP
     } else {
-        $TOKEN = hash(HASH_METHOD, $_SESSION['login'] . $_SESSION['pass']); // создаем токен для ajax и пр.
+        $TOKEN = hash(HASH_METHOD, $login . $pass); // создаем токен для ajax и пр.
+        //Язык авторизованного администратора
+        $DEFAULT_LANGUAGE = $PDO->selectPrepare("SELECT language FROM " . TABLE_ADMINISTRATORS . " WHERE login=? AND password=?", [$login, $pass]);
     }
 }
 
@@ -44,7 +46,9 @@ if ($PATH == 'catalog' && $TITLE_DIR != 'verify') {
     if ($verify != 1) { //NO USER
         header('Location: /controller/admin/verify/login.php'); // переадресация на LOGIN.PHP
     } else {
-        $TOKEN = hash(HASH_METHOD, $_SESSION['login'] . $_SESSION['pass']); // создаем токен для ajax и пр.
+        $TOKEN = hash(HASH_METHOD, $login . $pass); // создаем токен для ajax и пр.
+        //Язык авторизованного пользователя
+        $DEFAULT_LANGUAGE = DEFAULT_LANGUAGE;
     }
 }
 

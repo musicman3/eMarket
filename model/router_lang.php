@@ -4,8 +4,13 @@
 // https://github.com/musicman3/eMarket //
 // *************************************//
 // 
+
+if (isset($DEFAULT_LANGUAGE)) {
+    $lang_default = $DEFAULT_LANGUAGE; //Язык авторизованного администратора/пользователя
+} else {
+    $lang_default = DEFAULT_LANGUAGE; //Язык по умолчанию базовый
+}
 //Подключение и парсинг языкового файла
-$lang_default = DEFAULT_LANGUAGE; //Язык по умолчанию
 $files_path = $TREE->filesTree(ROOT . '/language/' . $lang_default . '/' . $PATH);
 
 $parse_temp = parse_ini_file($files_path[0]);

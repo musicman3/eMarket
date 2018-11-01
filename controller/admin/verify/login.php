@@ -14,16 +14,13 @@ if ($VALID->inPOST('autorize') == 'ok') {
     $_SESSION['login'] = $VALID->inPOST('login');
     $_SESSION['pass'] = hash(HASH_METHOD, $VALID->inPOST('pass'));
 
-//VERIFY USER
+    //Ищем авторизованного администратора
     $verify = $PDO->getRowCount("SELECT * FROM " . TABLE_ADMINISTRATORS . " WHERE login=? AND password=?", [$_SESSION['login'], $_SESSION['pass']]);
-
-//DEFAULT LANGUAGE
-    $deflang = $PDO->selectPrepare("SELECT language FROM " . TABLE_ADMINISTRATORS . " WHERE login=? AND password=?", [$_SESSION['login'], $_SESSION['pass']]);
 
     if ($verify != 1) {    //Если проверка не удалась:
         session_destroy();
         session_start();
-        $_SESSION['default_language'] = $deflang;
+        $_SESSION['default_language'] = DEFAULT_LANGUAGE;
         $_SESSION['login_error'] = $lang['login_error'];
     } else {
         header('Location: /controller/admin/index.php');    // else: редирект на index.php
