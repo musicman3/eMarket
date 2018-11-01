@@ -86,5 +86,5 @@ for ($lng = 0; $lng < count($lang_all); $lng++) {
 $menu[$menu_help][2] = '<a target="_blank" href="/controller/catalog/index.php"><span><img src="/view/' . $TEMPLATE . '/admin/images/icons/16x16/home.png" /></span> ' . $lang['menu_catalog'] . '</a>';
 
 //ВЫХОД
-$level[$menu_exit] = '<span></span><a href="/controller/admin/verify/logout.php">' . $lang['menu_exit'] . '</a>';
+$level[$menu_exit] = '<span></span><a href="/controller/admin/verify/login.php?logout=ok">' . $lang['menu_exit'] . '</a>';
 ?>

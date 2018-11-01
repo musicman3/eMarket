@@ -9,6 +9,10 @@ require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 // ************************************** //
 
 session_start();
+if ($VALID->inGET('logout') == 'ok') {
+    session_destroy();    //удаляем текущую сессию
+    header('Location: /controller/admin/verify/login.php');    //перенаправляем на login.php
+}
 
 if ($VALID->inPOST('autorize') == 'ok') {
     $_SESSION['login'] = $VALID->inPOST('login');
