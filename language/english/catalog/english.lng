@@ -7,4 +7,6 @@
 
 [catalog]
 
-hello_world = Hello World English'!'
+title_index = Online store eMarket
+title_catalog = Online store eMarket
+meta-language = en
