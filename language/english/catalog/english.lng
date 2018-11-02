@@ -8,4 +8,5 @@
 
 [catalog]
 
-hello_world = Hello World English'!'
+title_catalog = Online store eMarket
+meta-language = en
