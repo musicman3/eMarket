@@ -14,7 +14,7 @@
     <?php } ?>
 </div>
 
-<div class="login_logo">eMarket <span>v1</span></div>
+<div class="login_logo">eMarket <span>v 0.1.0</span></div>
 
 
 <div class="login-box side-form">
