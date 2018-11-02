@@ -12,7 +12,7 @@
 
             <div class="panel-heading">
                 <h3 class="panel-title">
-                    <div class="pull-left"><?php echo $lang['title_error_log'] ?></div>
+                    <div class="pull-left"><?php echo lang('title_error_log') ?></div>
                     <div class="clearfix"></div>
                 </h3>
             </div>
@@ -23,7 +23,7 @@
                         <thead>
                             <tr>
                                 <th>
-                                    <div class="page"><?php echo $lang['s'] ?> <?php echo $start + 1 ?> <?php echo $lang['po'] ?> <?php echo $finish ?> ( <?php echo $lang['iz'] ?> <?php echo count($lines); ?> )</div>
+                                    <div class="page"><?php echo lang('s') ?> <?php echo $start + 1 ?> <?php echo lang('po') ?> <?php echo $finish ?> ( <?php echo lang('iz') ?> <?php echo count($lines); ?> )</div>
                                 </th>
 
                                 <th>
@@ -46,7 +46,7 @@
 
                                     <form>
                                         <input hidden name="delete" value="delete">
-                                        <div class="left"><button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo $lang['confirm-yes'] ?>" data-btn-cancel-label="<?php echo $lang['confirm-no'] ?>" title="<?php echo $lang['confirm-del'] ?>" action="index.php" formmethod="post"><span class="glyphicon glyphicon-trash"> </span></button></div>
+                                        <div class="left"><button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>" action="index.php" formmethod="post"><span class="glyphicon glyphicon-trash"> </span></button></div>
                                     </form>
 
                                 </th>
@@ -91,7 +91,7 @@
                     <!--</div>-->
                 </div>
             <?php } else { ?>
-                <div class="panel-body"><?php echo $lang['no_log'] ?></div>
+                <div class="panel-body"><?php echo lang('no_log') ?></div>
             <?php } ?>
         </div>
     </div>

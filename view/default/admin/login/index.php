@@ -23,12 +23,12 @@
         <input hidden name="autorize" value="ok">
         
         <div class="form-group">
-            <input type="text" name="login" class="input-sm form-control" placeholder="<?php echo $lang['email'] ?>">
+            <input type="text" name="login" class="input-sm form-control" placeholder="<?php echo lang('email') ?>">
         </div>
         <div class="form-group">
-            <input type="password" name="pass" class="input-sm form-control" placeholder="<?php echo $lang['password'] ?>">
+            <input type="password" name="pass" class="input-sm form-control" placeholder="<?php echo lang('password') ?>">
         </div>
 
-        <input type="submit" name='ok' class="btn btn-gr-gray btn-block btn-xs" value="<?php echo $lang['entrance'] ?>">
+        <input type="submit" name='ok' class="btn btn-gr-gray btn-block btn-xs" value="<?php echo lang('entrance') ?>">
     </form>
 </div>

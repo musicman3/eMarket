@@ -26,11 +26,11 @@
 
                 <div class="panel-heading">
                     <h3 class="panel-title">
-                        <div class="pull-left"><?php echo $lang['title_categories'] ?></div>
+                        <div class="pull-left"><?php echo lang('title_categories') ?></div>
 
                         <!-- Количество строк на странице -->
                         <form action="/controller/admin/pages/stock/categories/categories.php" method="get" class="form-inline">
-                            <div class="add-xs"><?php echo $lang['rows_page'] ?>: <select name="select_row" class="input-xs form-control" onchange="this.form.submit()">
+                            <div class="add-xs"><?php echo lang('rows_page') ?>: <select name="select_row" class="input-xs form-control" onchange="this.form.submit()">
                                     <option>(<?php echo $lines_of_page ?>)</option>
                                     <option>20</option>
                                     <option>35</option>
@@ -50,7 +50,7 @@
                             <thead>
                                 <tr>
                                     <th colspan="3">
-                                        <div class="page"><?php echo $lang['s'] ?> <?php echo $start + 1 ?> <?php echo $lang['po'] ?> <?php echo $finish ?> ( <?php echo $lang['iz'] ?> <?php echo $count_lines; ?> )</div>
+                                        <div class="page"><?php echo lang('s') ?> <?php echo $start + 1 ?> <?php echo lang('po') ?> <?php echo $finish ?> ( <?php echo lang('iz') ?> <?php echo $count_lines; ?> )</div>
 
                                         <!-- Переключаем страницу "ВПЕРЕД" -->
                                         <form>
@@ -166,7 +166,7 @@
                             <thead>
                                 <tr>
                                     <th colspan="3">
-                                        <div><?php echo $lang['no_cat'] ?></div>
+                                        <div><?php echo lang('no_cat') ?></div>
                                     </th>
                                 </tr>
                             </thead>
@@ -183,7 +183,7 @@
                                         </form>
 
                                     </td>
-                                    <td class="options" align="left"><div class="context-one"><?php echo $lang['no_cat'] ?></div></td>
+                                    <td class="options" align="left"><div class="context-one"><?php echo lang('no_cat') ?></div></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -197,7 +197,7 @@
                             <thead>
                                 <tr>
                                     <th colspan="3">
-                                        <div><?php echo $lang['no_cat'] ?></div>
+                                        <div><?php echo lang('no_cat') ?></div>
                                     </th>
                                 </tr>
                             </thead>
@@ -205,7 +205,7 @@
                                 <tr>
                                     <td  class="sortleft-m" align="left"></td>
                                     <td class="sortleft" align="left"></td>
-                                    <td class="options" align="left"><div class="context-one"><?php echo $lang['no_cat'] ?></div></td>
+                                    <td class="options" align="left"><div class="context-one"><?php echo lang('no_cat') ?></div></td>
                                 </tr>
                             </tbody>
                         </table>

@@ -10,7 +10,7 @@ if (isset($DEFAULT_LANGUAGE)) {
 } else {
     $lang_default = DEFAULT_LANGUAGE; //Язык по умолчанию базовый
 }
-//Подключение и парсинг языкового файла
+//Подключение и парсинг языковых файлов
 $files_path = $TREE->filesTree(ROOT . '/language/' . $lang_default . '/' . $PATH);
 
 $parse_temp = parse_ini_file($files_path[0]);
@@ -27,6 +27,12 @@ foreach ($lang_dir as $lang_name) {
     if (!in_array($lang_name, array('.', '..', $lang_default))) {
         array_push($lang_all, ucfirst($lang_name));
     }
+}
+
+//Функция для запроса вида: lang('pass');
+function lang($a) {
+    global $lang;
+    return $lang[$a];
 }
 
 ?>

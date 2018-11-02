@@ -25,7 +25,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">
-                        <div class="pull-left"><?php echo $lang['title_units'] ?></div>
+                        <div class="pull-left"><?php echo lang('title_units') ?></div>
                         <div class="clearfix"></div>
                     </h3>
                 </div>
@@ -35,12 +35,12 @@
                             <tr>
                                 <th colspan="2">
                                     <?php if ($lines == TRUE) { ?>
-                                        <div class="page"><?php echo $lang['s'] ?> <?php echo $start + 1 ?> <?php echo $lang['po'] ?> <?php echo $finish ?> ( <?php echo $lang['iz'] ?> <?php echo count($lines) ?> )</div>
+                                        <div class="page"><?php echo lang('s') ?> <?php echo $start + 1 ?> <?php echo lang('po') ?> <?php echo $finish ?> ( <?php echo lang('iz') ?> <?php echo count($lines); ?> )</div>
                                         <?php
                                     } else {
 
                                         ?>
-                                        <div><?php echo $lang['no_units'] ?></div>
+                                        <div><?php echo lang('no_units') ?></div>
                                     <?php } ?>
                                 </th>
 
@@ -68,8 +68,8 @@
                             </tr>
 			    <?php if ($lines == TRUE) { ?>
                             <tr class="border">
-                                <th><?php echo $lang['name_full'] ?></th>
-                                <th class="al-text"><?php echo $lang['name_little'] ?></th>
+                                <th><?php echo lang('name_full') ?></th>
+                                <th class="al-text"><?php echo lang('name_little') ?></th>
                                 <th class="al-text-w"></th>
                             </tr>
 			    <?php } ?>
@@ -83,7 +83,7 @@
                                         <form>
                                             <input hidden name="delete" value="<?php echo $lines[$start][0] ?>">
                                             <div class="right">
-                                                <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo $lang['confirm-yes'] ?>" data-btn-cancel-label="<?php echo $lang['confirm-no'] ?>" title="<?php echo $lang['confirm-del'] ?>" action="index.php" formmethod="post"><span class="glyphicon glyphicon-trash"> </span></button>
+                                                <div class="left"><button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>" action="index.php" formmethod="post"><span class="glyphicon glyphicon-trash"> </span></button></div>
                                             </div>
                                             <div class="left">
                                                 <a href="#edit<?php echo $lines[$start][0] ?>" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span></a>

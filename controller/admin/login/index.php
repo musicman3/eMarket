@@ -26,7 +26,7 @@ if ($VALID->inPOST('autorize') == 'ok') {
         session_destroy();
         session_start();
         $_SESSION['default_language'] = DEFAULT_LANGUAGE;
-        $_SESSION['login_error'] = $lang['login_error'];
+        $_SESSION['login_error'] = lang('login_error');
     } else {
         header('Location: /controller/admin/index.php');    // else: редирект на index.php
     }
