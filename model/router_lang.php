@@ -31,12 +31,12 @@ foreach ($lang_dir as $lang_name) {
 
 //Функция для вывода языковой переменной вида: lang('pass');
 function lang($a) {
-    global $lang, $lang_default, $PATH;
+    global $lang;
     
     if (isset($lang[$a]) == true) {
         return $lang[$a];
     } else {
-        return sprintf($lang['error-language_variable_not_found'], $a, 'language/' . $lang_default . '/' . $PATH);
+        return $a;
     }
 }
 
