@@ -301,7 +301,7 @@ php_value error_log " . ROOT . "/model/work/errors.log";
                         </h3>
                     </div>
                     <div class="panel-body">
-                        <form action='../controller/admin/login/login.php' method='post' accept-charset='utf-8' style='display: inline;'>
+                        <form action='../controller/admin/login/' method='post' accept-charset='utf-8' style='display: inline;'>
                             <div class="alert alert-success"><?php echo $lang['success'] ?></div>
                             <div class="alert alert-info"><?php echo $formhid ?></div>
                             <button class="btn btn-info btn-sm" type="submit" name="button_go_login" /><?php echo $lang['button_go_login'] ?></button>
