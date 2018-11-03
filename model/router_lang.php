@@ -32,11 +32,11 @@ foreach ($lang_dir as $lang_name) {
 //Функция для вывода языковой переменной вида: lang('pass');
 function lang($a) {
     global $lang;
-    
-    if (isset($lang[$a]) == true) {
-        return $lang[$a];
+
+    if (isset($lang[$a])) {
+        return $lang[$a]; // Если языковая переменная найдена, то выводим ее значение
     } else {
-        return $a;
+        return $a; // Если языковая переменная не найдена, то выводим ее название
     }
 }
 
