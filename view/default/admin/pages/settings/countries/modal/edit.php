@@ -17,6 +17,7 @@ require(ROOT . '/controller/admin/pages/settings/countries/modal/edit.php');
             <form id="form<?php echo $lines[$k][0] ?>" name="form<?php echo $lines[$k][0] ?>" action="javascript:void(null);" onsubmit="call<?php echo $lines[$k][0] ?>()" method="get" enctype="multipart/form-data">
                 <div class="panel-body">
                     <input type="hidden" name="id_edit" value="<?php echo $lines[$k][0] ?>" />
+                    
                     <!-- Языковые панели -->
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#<?php echo $lang_all[0] . $lines[$k][0] ?>"><img src="/view/<?php echo $TEMPLATE ?>/admin/images/langflags/<?php echo $lang_all[0] ?>.png" alt="<?php echo $lang_all[0] ?>" title="<?php echo $lang_all[0] ?>" width="16" height="10" /> <?php echo lang('menu_language') ?></a></li>

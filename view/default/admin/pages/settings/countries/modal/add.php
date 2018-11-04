@@ -14,6 +14,7 @@
             </div>
             <form id="form" name="form" action="javascript:void(null);" onsubmit="call()" method="get" enctype="multipart/form-data">
                 <div class="panel-body">
+                    <input type="hidden" name="add" value="ok" />
 
                     <!-- Языковые панели -->
                     <ul class="nav nav-tabs">

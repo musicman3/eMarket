@@ -14,7 +14,7 @@ require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 $_SESSION['country_page'] = $VALID->inSERVER('REQUEST_URI');
 
 // Если нажали на кнопку Добавить
-if ($VALID->inGET('alpha_2')) {
+if ($VALID->inGET('add')) {
 
     // Получаем последний id и увеличиваем его на 1
     $id_max = $PDO->selectPrepare("SELECT id FROM " . TABLE_COUNTRIES . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);

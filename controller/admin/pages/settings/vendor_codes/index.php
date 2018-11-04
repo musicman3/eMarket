@@ -11,7 +11,7 @@ require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 // ************************************** //
 // 
 // Если нажали на кнопку Добавить
-if ($VALID->inGET('vendor_code' . $lang_all[0])) {
+if ($VALID->inGET('add')) {
 
     // Получаем последний id и увеличиваем его на 1
     $id_max = $PDO->selectPrepare("SELECT id FROM " . TABLE_VENDOR_CODES . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);
