@@ -78,3 +78,7 @@ div.context-one {padding:5px;}
 .tab-content {padding-top: 10px;}
 .input-group .data {position: static;}
 .back {transform: scale(-1, 1);}
+.glyph-xs {font-size:1.5em;}
+.glyph-sm {font-size:2em;}
+.glyph-md {font-size:2.5em;}
+.glyph-lg {font-size:3em;}
