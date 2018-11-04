@@ -37,10 +37,6 @@ menu_language = Русский
 menu_error_log = Лог ошибок
 menu_categories = Категории
 
-;СООБЩЕНИЯ ОБ ОШИБКАХ
-error-language_variable_not_found = ОШИБКА: Языковая переменная %s из каталога %s отсутствует
-
-
 login_error = Введены неверные E-Mail или пароль
 login_name = ПАНЕЛЬ АДМИНИСТРАТОРА
 
