@@ -69,7 +69,7 @@ class Navigation extends Valid {
                 }
             }
         }
-        $return = array($finish, $start);
+        $return = array($start, $finish);
         return $return;
     }
 

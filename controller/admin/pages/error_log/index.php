@@ -20,8 +20,8 @@ if (file_exists(ROOT . '/model/work/errors.log')) { // Если файл сущ�
     //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
     $lines = array_reverse(file(ROOT . '/model/work/errors.log')); // получаем содержимое файла в виде массива и сортируем в обратном порядке
     $navigate = $NAVIGATION->goNavi(count($lines), $lines_of_page = 20);
-    $finish = $navigate[0];
-    $start = $navigate[1];
+    $start = $navigate[0];
+    $finish = $navigate[1];
 }
 
 // *********  CONNECT PAGE END  ********* //
