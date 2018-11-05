@@ -48,6 +48,9 @@ $navigate = $NAVIGATION->getLink(count($lines), $lines_of_page = 20);
 $start = $navigate[0];
 $finish = $navigate[1];
 
+//Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
+$JS_END = __DIR__;
+
 // *********  CONNECT PAGE END  ********* //
 require_once(ROOT . '/model/end.php');
 // ************************************** //

@@ -16,20 +16,7 @@
                 <div class="panel-body">
                     <input type="hidden" name="add" value="ok" />
 
-                    <!-- Build your select: -->
-                    <script type="text/javascript">
-                        $(document).ready(function () {
-                            $('#example-enableCollapsibleOptGroups-collapsedClickableOptGroups-enableFiltering-includeSelectAllOption').multiselect({
-                                enableClickableOptGroups: true,
-                                enableCollapsibleOptGroups: true,
-                                enableFiltering: true,
-                                buttonContainer: '<div id="example-enableCollapsibleOptGroups-collapsed-container" />',
-                                includeSelectAllOption: true
-                            });
-                            $('#example-enableCollapsibleOptGroups-collapsed-container .caret-container').click();
-                        });
-                    </script>
-
+                    <!--Мультиселект-->
                     <span class="multiselect-native-select">
                         <select id="example-enableCollapsibleOptGroups-collapsedClickableOptGroups-enableFiltering-includeSelectAllOption" multiple="multiple">
                             <optgroup label="Group 1">
@@ -44,6 +31,7 @@
                             </optgroup>
                         </select>
                     </span>
+                    <!--КОНЕЦ Мультиселект-->
 
                 </div>
 
@@ -71,12 +59,3 @@
     }
 </script>
 <!-- КОНЕЦ Модальное окно "Добавить" -->
-
-<!--Мультиселект-->
-<!-- Initialize the plugin: -->
-
-
-
-
-
-
