@@ -18,7 +18,7 @@
 
                     <!--Мультиселект-->
                     <span class="multiselect-native-select">
-                        <select id="example-enableCollapsibleOptGroups-collapsedClickableOptGroups-enableFiltering-includeSelectAllOption" multiple="multiple">
+                        <select id="example-buttonText-enableCollapsibleOptGroups-collapsedClickableOptGroups-enableFiltering-includeSelectAllOption" multiple="multiple">
                             <optgroup label="Group 1">
                                 <option value="1-1">Option 1.1</option>
                                 <option value="1-2">Option 1.2</option>
