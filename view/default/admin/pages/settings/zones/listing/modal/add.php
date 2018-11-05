@@ -19,21 +19,23 @@
                     <!-- Build your select: -->
                     <script type="text/javascript">
                         $(document).ready(function () {
-                            $('#example-enableCollapsibleOptGroups-enableClickableOptGroups-enableFiltering-includeSelectAllOption').multiselect({
+                            $('#example-enableCollapsibleOptGroups-collapsedClickableOptGroups-enableFiltering-includeSelectAllOption').multiselect({
                                 enableClickableOptGroups: true,
                                 enableCollapsibleOptGroups: true,
                                 enableFiltering: true,
+                                buttonContainer: '<div id="example-enableCollapsibleOptGroups-collapsed-container" />',
                                 includeSelectAllOption: true
                             });
+                            $('#example-enableCollapsibleOptGroups-collapsed-container .caret-container').click();
                         });
                     </script>
 
                     <span class="multiselect-native-select">
-                        <select id="example-enableCollapsibleOptGroups-enableClickableOptGroups-enableFiltering-includeSelectAllOption" multiple="multiple">
+                        <select id="example-enableCollapsibleOptGroups-collapsedClickableOptGroups-enableFiltering-includeSelectAllOption" multiple="multiple">
                             <optgroup label="Group 1">
-                                <option value="1-1" disabled="">Option 1.1</option>
-                                <option value="1-2" selected="selected">Option 1.2</option>
-                                <option value="1-3" selected="selected">Option 1.3</option>
+                                <option value="1-1">Option 1.1</option>
+                                <option value="1-2">Option 1.2</option>
+                                <option value="1-3">Option 1.3</option>
                             </optgroup>
                             <optgroup label="Group 2">
                                 <option value="2-1">Option 2.1</option>
@@ -42,7 +44,7 @@
                             </optgroup>
                         </select>
                     </span>
-                    
+
                 </div>
 
                 <div class="modal-footer">
