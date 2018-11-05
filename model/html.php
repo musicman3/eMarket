@@ -18,7 +18,7 @@
         <meta name="author" content="eMarket" />
         <meta name="owner" content="eMarket" />
         <meta name="copyright" content="Copyright © 2018 by eMarket Team. All right reserved." />
-        <title><?php echo lang('title_' . $TITLE_DIR) // автогенерация префикса title по названию директории. Пример: для /countries/index.php = countries  ?></title>
+        <title><?php echo lang('title_' . $TITLE_DIR) // автогенерация префикса title по названию директории. Пример: для /countries/index.php = countries   ?></title>
         <?php
         //вывод только в админке
         if ($PATH == 'admin') {
@@ -82,21 +82,7 @@
             <script type="text/javascript" src="/ext/bootstrap/js/menu.js"></script>
             <script type="text/javascript" src="/ext/contextmenu/js/contextmenu.js"></script>
             <script type="text/javascript" src="/ext/bootstrap/js/bootstrap-multiselect.js"></script>
-            
-            <!--Мультиселект-->
-	<script type="text/javascript">
-	    $(document).ready(function() {
-		$('#example-enableCollapsibleOptGroups-enableClickableOptGroups-enableFiltering-includeSelectAllOption').multiselect({
-		    enableClickableOptGroups: true,
-		    enableCollapsibleOptGroups: true,
-		    enableFiltering: true,
-		    includeSelectAllOption: true
-		});
-	    });
-	</script>
 
-
-            
             <?php
             require_once(ROOT . '/controller/admin/footer.php');
             require_once(ROOT . '/view/' . $TEMPLATE . '/admin/footer.php');

@@ -79,7 +79,7 @@
                             <?php for ($start; $start < $finish; $start++) { ?>
                                 <tr>
                                     <td class="sortleft">
-                                        <form action="listing/">
+                                        <form action="/controller/admin/pages/settings/regions.php">
                                             <input hidden name="zone_id" value="<?php echo $lines[$start][0] ?>">
                                             <button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-cog"></span></button>
                                         </form>
