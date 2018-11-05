@@ -14,7 +14,7 @@ require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 $_SESSION['zone_page'] = $VALID->inSERVER('REQUEST_URI');
 
 // Если нажали на кнопку Добавить
-if ($VALID->inGET($lang_all[0])) {
+if ($VALID->inGET('add')) {
 
     // Получаем последний id и увеличиваем его на 1
     $id_max = $PDO->selectPrepare("SELECT id FROM " . TABLE_ZONES . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);
@@ -44,9 +44,9 @@ if ($VALID->inPOST('delete')) {
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 $lines = $PDO->getColRow("SELECT id, name, note FROM " . TABLE_ZONES . " WHERE language=? ORDER BY name", [$lang_all[0]]);
-$navigate = $NAVIGATION->goNavi(count($lines), $lines_of_page = 20);
-$finish = $navigate[0];
-$start = $navigate[1];
+$navigate = $NAVIGATION->getLink(count($lines), $lines_of_page = 20);
+$start = $navigate[0];
+$finish = $navigate[1];
 
 // *********  CONNECT PAGE END  ********* //
 require_once(ROOT . '/model/end.php');

@@ -7,7 +7,7 @@
 ?>
 
 <!doctype html>
-<html dir="ltr" lang="<?php echo $lang['meta-language'] ?>">
+<html dir="ltr" lang="<?php echo lang('meta-language') ?>">
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,7 +18,7 @@
         <meta name="author" content="eMarket" />
         <meta name="owner" content="eMarket" />
         <meta name="copyright" content="Copyright © 2018 by eMarket Team. All right reserved." />
-        <title><?php echo $lang['title_' . $TITLE_DIR] // автогенерация префикса title по названию директории. Пример: для /countries/index.php = countries  ?></title>
+        <title><?php echo lang('title_' . $TITLE_DIR) // автогенерация префикса title по названию директории. Пример: для /countries/index.php = countries  ?></title>
         <?php
         //вывод только в админке
         if ($PATH == 'admin') {
@@ -42,7 +42,7 @@
             <?php if (file_exists('products.php')) { ?>
                 <script type="text/javascript" src="/ext/tinymce/tinymce.min.js"></script>
                 <!-- Автовыбор языка Datepicker" -->
-                <script type="text/javascript" src="/ext/jquery/ui/i18n/datepicker-<?php echo $lang['meta-language'] ?>.js"></script>
+                <script type="text/javascript" src="/ext/jquery/ui/i18n/datepicker-<?php echo lang('meta-language') ?>.js"></script>
 
                 <?php
             }

@@ -5,5 +5,5 @@
 // *************************************//
 
 
-require_once(ROOT . '/view/default/admin/pages/stock/categories/categories.php');
+require_once(ROOT . '/view/'.$TEMPLATE.'/admin/pages/stock/categories/categories.php');
 ?>

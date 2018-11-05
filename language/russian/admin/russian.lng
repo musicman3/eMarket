@@ -3,11 +3,14 @@
 * https://github.com/musicman3/eMarket *
 ***************************************/
 
-; Замечание: Если значение в lng-файле содержит прочие символы, оно должно заключаться в кавычки ''. Пример: Привет'!'
+; Замечание: Если значение в lng-файле содержит специальные символы, они должны экранироваться в одинарные кавычки '',
+;либо все значение строки должно экранироваться двойными кавычками. Пример: Привет Мир'!' или "Привет Мир!"
 
 [admin]
 
-;Title
+meta-language = ru
+
+;TITLE
 title_admin = Панель администратора
 title_login = Страница авторизации
 title_error_log = Лог ошибок
@@ -22,16 +25,36 @@ title_categories = Категории
 title_products = Товары
 title_zones = Зоны
 
+;кнопки меню
+menu_exit = Выход
+menu_help = Помощь
+menu_extra = Дополнительно
+menu_languages = Языки
+menu_catalog = Онлайн каталог
+menu_support = Поддержка
+menu_tools = Инструменты
+menu_language = Русский
+menu_error_log = Лог ошибок
+menu_categories = Категории
+
 login_error = Введены неверные E-Mail или пароль
 login_name = ПАНЕЛЬ АДМИНИСТРАТОРА
+
+;КНОПКИ
 button_add = Добавить
 button_cancel = Отмена
 button_edit = Изменить
 button_add = Добавить
-meta-language = ru
 button_delete = Удалить
 button_move = Переместить
 button_edit = Редактировать
+confirm-yes = Да
+confirm-no = Нет
+confirm-del = Удалить?
+save = Сохранить
+cancel = Отмена
+
+;РАЗНОЕ
 s = с
 po = по
 iz = из
@@ -42,11 +65,6 @@ no_units = Единиц измерения нет
 no_regions = Регионов нет
 no_zones = Зон нет
 no_vendor_codes = Нет идентификаторов товара
-confirm-yes = Да
-confirm-no = Нет
-confirm-del = Удалить?
-save = Сохранить
-cancel = Отмена
 index-title = Добро пожаловать в систему управления контентом
 index-text = Вы можете задать интересующие Вас вопросы по функционированию сайта, а также обсудить любую другую информацию относительно системы управления, по E-Mail
 name = Название
@@ -78,16 +96,4 @@ name_zone = Название зоны
 region_code = Код региона
 region = Регион
 zone = Зона
-
-;кнопки меню
-menu_exit = Выход
-menu_help = Помощь
-menu_extra = Дополнительно
-menu_languages = Языки
-menu_catalog = Онлайн каталог
-menu_support = Поддержка
-menu_tools = Инструменты
-menu_language = Русский
-menu_error_log = Лог ошибок
-menu_categories = Категории
 

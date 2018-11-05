@@ -13,7 +13,7 @@
         plugins: 'advlist autolink visualblocks visualchars fullscreen lists charmap imagetools hr textcolor table link image wordcount code media preview',
         toolbar1: 'undo redo | bold italic underline strikethrough backcolor forecolor | alignleft aligncenter alignright alignjustify | outdent indent bullist numlist hr | visualchars visualblocks ',
         toolbar2: 'fontselect fontsizeselect formatselect superscript removeformat | charmap link unlink image media table | code preview fullscreen',
-        language: '<?php echo $lang['meta-language'] ?>',
+        language: '<?php echo lang('meta-language') ?>',
         toolbar_items_size: 'small',
         menubar: false,
     });
@@ -42,9 +42,9 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">
-                        <div class="pull-left"><?php echo $lang['title_products'] ?></div>
+                        <div class="pull-left"><?php echo lang('title_products') ?></div>
                         <form action="/controller/admin/pages/stock/products/products.php" method="post" class="form-inline">
-                            <div class="add-xs"><?php echo $lang['rows_page'] ?>: <select name="select_row" class="input-xs form-control" onchange="this.form.submit()">
+                            <div class="add-xs"><?php echo lang('rows_page') ?>: <select name="select_row" class="input-xs form-control" onchange="this.form.submit()">
                                     <option>(<?php echo $lines_of_page ?>)</option>
                                     <option>20</option>
                                     <option>35</option>
@@ -62,7 +62,7 @@
                         <thead>
                             <tr>
                                 <th colspan="7">
-                                    <div class="page"><?php echo $lang['s'] ?> <?php echo $start + 1 ?> <?php echo $lang['po'] ?> <?php echo $finish ?> ( <?php echo $lang['iz'] ?> <?php echo $count_lines; ?> )</div>
+                                    <div class="page"><?php echo lang('s') ?> <?php echo $start + 1 ?> <?php echo lang('po') ?> <?php echo $finish ?> ( <?php echo lang('iz') ?> <?php echo $count_lines; ?> )</div>
                                     <div class="right"><button class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
                                     <div class="left"><button class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
                                 </th>

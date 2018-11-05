@@ -30,14 +30,14 @@
 
                             <!-- Языковые панели -->
                             <ul class="nav nav-tabs">
-                                <li class="active"><a data-toggle="tab" href="#<?php echo $lang_all[0] ?>"><img src="/view/default/admin/images/langflags/<?php echo $lang_all[0] ?>.png" alt="<?php echo $lang_all[0] ?>" title="<?php echo $lang_all[0] ?>" width="16" height="10" /> <?php echo $lang['menu_language'] ?></a></li>
+                                <li class="active"><a data-toggle="tab" href="#<?php echo $lang_all[0] ?>"><img src="/view/<?php echo $TEMPLATE ?>/admin/images/langflags/<?php echo $lang_all[0] ?>.png" alt="<?php echo $lang_all[0] ?>" title="<?php echo $lang_all[0] ?>" width="16" height="10" /> <?php echo lang('menu_language') ?></a></li>
 
                                 <?php
                                 if (count($lang_all) > 1) {
                                     for ($xl = 1; $xl < count($lang_all); $xl++) {
                                         ?>
 
-                                        <li><a data-toggle="tab" href="#<?php echo $lang_all[$xl] ?>"><img src="/view/default/admin/images/langflags/<?php echo $lang_all[$xl] ?>.png" alt="<?php echo $lang_all[$xl] ?>" title="<?php echo $lang_all[$xl] ?>" width="16" height="10" /> <?php echo $lang_all[$xl] ?></a></li>
+                                        <li><a data-toggle="tab" href="#<?php echo $lang_all[$xl] ?>"><img src="/view/<?php echo $TEMPLATE ?>/admin/images/langflags/<?php echo $lang_all[$xl] ?>.png" alt="<?php echo $lang_all[$xl] ?>" title="<?php echo $lang_all[$xl] ?>" width="16" height="10" /> <?php echo $lang_all[$xl] ?></a></li>
 
                                         <?php
                                     }
@@ -52,11 +52,11 @@
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo $lang['name'] ?>" type="text" name="name" id="name" />
+                                            <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="name" id="name" />
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label><?php echo $lang['product_description'] ?>:</label><br>
+                                        <label><?php echo lang('product_description') ?>:</label><br>
                                         <textarea rows="3" class="input-sm form-control" name="description" id="description" /></textarea>
                                     </div>
                                     <div class="col-left">
@@ -82,11 +82,11 @@
                                             <div class="form-group">
                                                 <div class="input-group has-error">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                                    <input class="input-sm form-control" placeholder="<?php echo $lang['name'] ?>" type="text" name="name1" id="name1" />
+                                                    <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="name1" id="name1" />
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label><?php echo $lang['product_description'] ?>:</label><br>
+                                                <label><?php echo lang('product_description') ?>:</label><br>
                                                 <textarea rows="3" class="input-sm form-control" name="description1" id="description1" /></textarea>
                                             </div>
                                             <div class="col-left">
@@ -117,7 +117,7 @@
                                 <div class="col-left form-group">
                                     <div class="input-group has-error">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                        <input class="input-sm form-control" placeholder="<?php echo $lang['product_price'] ?>" type="text" name="price" id="price" />
+                                        <input class="input-sm form-control" placeholder="<?php echo lang('product_price') ?>" type="text" name="price" id="price" />
                                     </div>
                                 </div>
                                 <div class="col-right form-group">
@@ -142,14 +142,14 @@
                                 <div class="col-left form-group">
                                     <div class="input-group has-error">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                        <input class="input-sm form-control" placeholder="<?php echo $lang['product_quantity'] ?>" type="text" name="quantity" id="quantity" />
+                                        <input class="input-sm form-control" placeholder="<?php echo lang('product_quantity') ?>" type="text" name="quantity" id="quantity" />
                                     </div>
                                 </div>
                                 <div class="col-right form-group">
                                     <div class="input-group has-error">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
                                         <select name="unit" id="unit" class="input-sm form-control">
-                                            <option disabled selected hidden>-- <?php echo $lang['product_unit'] ?> --</option>
+                                            <option disabled selected hidden>-- <?php echo lang('product_unit') ?> --</option>
                                             <?php
                                             for ($un = 0; $un < count($units_all); $un++) {
                                                 ?>
@@ -289,11 +289,11 @@
                         <!-- Содержимое панели Изображения -->
                         <div id="panel3" class="tab-pane fade">
                             <div class="form-group">
-                                <label for="image"><?php echo $lang['images'] ?>:</label><br>
+                                <label for="image"><?php echo lang('images') ?>:</label><br>
                                 <label class="btn btn-primary btn-xs" for="my-file-selector">
                                     <input id="my-file-selector" multiple="multiple" name="files[]" accept="image" type="file" style="display:none;"><span class="glyphicon glyphicon-download-alt"></span> Загрузить
                                 </label><br>
-                                    <?php echo $lang['max'] ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>
+                                    <?php echo lang('max') ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>
                             </div>
                         </div>
 
@@ -301,8 +301,8 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo $lang['save'] ?></button>
-                    <button class="btn btn-primary btn-xs" type="button" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-remove"></span> <?php echo $lang['cancel'] ?></button>
+                    <button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button>
+                    <button class="btn btn-primary btn-xs" type="button" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-remove"></span> <?php echo lang('cancel') ?></button>
                 </div>
             </form>
         </div>

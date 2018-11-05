@@ -14,7 +14,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <p><img src="/view/default/admin/images/emarket.png" width="80" alt="" class="img-responsive center-block"></p>
+                    <p><img src="/view/<?php echo $TEMPLATE ?>/admin/images/emarket.png" width="80" alt="" class="img-responsive center-block"></p>
 
                     <p>Copyright (c) 2018-<?php echo date('Y') ?>, <a href="#">eMarket Team</a>. All rights reserved.</p>
                 </div>

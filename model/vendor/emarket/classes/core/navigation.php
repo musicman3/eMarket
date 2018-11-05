@@ -9,7 +9,7 @@ namespace eMarket\Classes\Core;
 class Navigation extends Valid {
 
     //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
-    function goNavi($count_lines, $lines_of_page) {
+    function getLink($count_lines, $lines_of_page) {
 
         //$count_lines - общее число строк
         //$lines_of_page - число строк на странице
@@ -44,6 +44,17 @@ class Navigation extends Valid {
                 }
             }
         }
+        return array($start, $finish);
+    }
+
+    //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
+    function postLink($count_lines, $lines_of_page) {
+
+        //$count_lines - общее число строк
+        //$lines_of_page - число строк на странице
+
+        $start = 0; // устанавливаем страницу в ноль при заходе
+        $finish = $lines_of_page;
 
         // Если нажали на кнопку вперед POST
         if ($this->inPOST('finish')) {
@@ -69,8 +80,7 @@ class Navigation extends Valid {
                 }
             }
         }
-        $return = array($finish, $start);
-        return $return;
+        return array($start, $finish);
     }
 
 }
