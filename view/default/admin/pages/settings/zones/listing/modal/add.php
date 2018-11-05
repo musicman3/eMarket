@@ -18,7 +18,7 @@
 
                     <!--Мультиселект-->
                     <span class="multiselect-native-select">
-                        <select id="example-buttonText-selectAllText-filterPlaceholder-enableCollapsibleOptGroups-collapsedClickableOptGroups-enableFiltering-enableCaseInsensitiveFiltering-includeSelectAllOption" multiple="multiple">
+                        <select id="example-buttonText-selectAllText-filterPlaceholder-enableCollapsibleOptGroups-collapsedClickableOptGroups-enableFiltering-enableCaseInsensitiveFiltering-includeSelectAllOption" name="multiselect[]" multiple="multiple">
                             <optgroup label="Австрия">
                                 <option value="1-1">Burgenland</option>
                                 <option value="1-2">Kärnten</option>
