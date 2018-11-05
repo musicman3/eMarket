@@ -29,6 +29,7 @@
             <link rel="stylesheet" type="text/css" href="/view/<?php echo $TEMPLATE ?>/admin/style.css" media="screen" />
             <link rel="stylesheet" type="text/css" href="/ext/contextmenu/css/contextmenu.css" media="screen" />
             <link rel="stylesheet" type="text/css" href="/ext/jquery/ui/jquery-ui.min.css" media="screen" />
+            <link rel="stylesheet" href="/ext/bootstrap/css/bootstrap-multiselect.css" type="text/css"/>
             <script type="text/javascript" src="/ext/jquery/jquery.min.js"></script>
             <script type="text/javascript" src="/ext/jquery/ui/jquery-ui.min.js"></script>
 
@@ -80,6 +81,22 @@
             <script type="text/javascript" src="/ext/bootstrap/js/confirmation.js"></script>
             <script type="text/javascript" src="/ext/bootstrap/js/menu.js"></script>
             <script type="text/javascript" src="/ext/contextmenu/js/contextmenu.js"></script>
+            <script type="text/javascript" src="/ext/bootstrap/js/bootstrap-multiselect.js"></script>
+            
+            //Мультиселект
+	<script type="text/javascript">
+	    $(document).ready(function() {
+		$('#example-enableCollapsibleOptGroups-enableClickableOptGroups-enableFiltering-includeSelectAllOption').multiselect({
+		    enableClickableOptGroups: true,
+		    enableCollapsibleOptGroups: true,
+		    enableFiltering: true,
+		    includeSelectAllOption: true
+		});
+	    });
+	</script>
+
+
+            
             <?php
             require_once(ROOT . '/controller/admin/footer.php');
             require_once(ROOT . '/view/' . $TEMPLATE . '/admin/footer.php');
