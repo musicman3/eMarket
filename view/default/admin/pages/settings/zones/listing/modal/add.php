@@ -18,16 +18,16 @@
 
                     <!--Мультиселект-->
                     <span class="multiselect-native-select">
-                        <select id="example-buttonText-enableCollapsibleOptGroups-collapsedClickableOptGroups-enableFiltering-includeSelectAllOption" multiple="multiple">
-                            <optgroup label="Group 1">
-                                <option value="1-1">Option 1.1</option>
-                                <option value="1-2">Option 1.2</option>
-                                <option value="1-3">Option 1.3</option>
+                        <select id="example-buttonText-selectAllText-filterPlaceholder-enableCollapsibleOptGroups-collapsedClickableOptGroups-enableFiltering-enableCaseInsensitiveFiltering-includeSelectAllOption" multiple="multiple">
+                            <optgroup label="Австрия">
+                                <option value="1-1">Burgenland</option>
+                                <option value="1-2">Kärnten</option>
+                                <option value="1-3">Niederösterreich</option>
                             </optgroup>
-                            <optgroup label="Group 2">
-                                <option value="2-1">Option 2.1</option>
-                                <option value="2-2">Option 2.2</option>
-                                <option value="2-3">Option 2.3</option>
+                            <optgroup label="Австралия">
+                                <option value="2-1">Australian Capital Territory</option>
+                                <option value="2-2">New South Wales</option>
+                                <option value="2-3">Northern Territory</option>
                             </optgroup>
                         </select>
                     </span>

@@ -9,17 +9,25 @@
 <!--Мультиселект-->
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#example-buttonText-enableCollapsibleOptGroups-collapsedClickableOptGroups-enableFiltering-includeSelectAllOption').multiselect({
+        $('#example-buttonText-selectAllText-filterPlaceholder-enableCollapsibleOptGroups-collapsedClickableOptGroups-enableFiltering-enableCaseInsensitiveFiltering-includeSelectAllOption').multiselect({
             enableClickableOptGroups: true,
             enableCollapsibleOptGroups: true,
-            enableFiltering: true,
             buttonContainer: '<div id="example-enableCollapsibleOptGroups-collapsed-container" />',
+            //Включить живой поиск
+            enableFiltering: true,
+            //Регистронезависимый живой поиск
+            enableCaseInsensitiveFiltering: true,
+            //Надписи в живом поиске
+            filterPlaceholder: 'Искать...',
+            //Включить "Выбрать все"
             includeSelectAllOption: true,
+            //Надписи "Выбрать все"
+            selectAllText: 'Выбрать все',
             
             //Надписи на кнопке
             buttonText: function (options, select) {
                 if (options.length === 0) {
-                    return 'Выберите страну и регион ...';
+                    return 'Выберите страну и регион';
                 } else if (options.length > 0) {
                     return 'Выбрано позиций: '+options.length+' шт.';
                 } else {
