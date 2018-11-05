@@ -83,7 +83,7 @@
             <script type="text/javascript" src="/ext/contextmenu/js/contextmenu.js"></script>
             <script type="text/javascript" src="/ext/bootstrap/js/bootstrap-multiselect.js"></script>
             
-            //Мультиселект
+            <!--Мультиселект-->
 	<script type="text/javascript">
 	    $(document).ready(function() {
 		$('#example-enableCollapsibleOptGroups-enableClickableOptGroups-enableFiltering-includeSelectAllOption').multiselect({
