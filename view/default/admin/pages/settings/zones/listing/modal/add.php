@@ -30,8 +30,9 @@
                                 <optgroup label="<?php echo $v ?>">
 
                                     <?php for ($d = 0; $d < count(array_keys($regions_multiselect, $k)); $d++) { ?>
-
-                                        <option value="<?php echo $c ?>-<?php echo $d + 1 ?>"><?php echo array_keys($regions_multiselect, $k)[$d] ?></option>
+                                    
+                                    <!--Возвращаем массив формата country_id => id Региона -->
+                                    <option value="<?php echo $k ?>-<?php echo $regions_multiselect_code[array_keys($regions_multiselect, $k)[$d]] ?>"><?php echo array_keys($regions_multiselect, $k)[$d] ?></option>
 
                                     <?php } ?>
 

@@ -24,7 +24,7 @@ $regions_multiselect = array_column($regions_multiselect_temp, 1, 2);
 // Сортируем Регионы по возрастанию
 ksort($regions_multiselect);
 // Собираем масиив region_code=>Название региона
-$regions_multiselect_code = array_column($regions_multiselect_temp, 1, 3);
+$regions_multiselect_code = array_column($regions_multiselect_temp, 0, 2);
 
 // Если нажали на кнопку Добавить
 if ($VALID->inGET('add')) {
