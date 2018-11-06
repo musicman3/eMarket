@@ -23,7 +23,7 @@ $regions_multiselect_temp = $PDO->getColRow("SELECT id, country_id, name, region
 $regions_multiselect = array_column($regions_multiselect_temp, 1, 2);
 // Сортируем Регионы по возрастанию
 ksort($regions_multiselect);
-// Собираем одномерный массив region_code=>Название региона
+// Собираем одномерный массив id Региона =>country_id
 $regions_multiselect_code = array_column($regions_multiselect_temp, 0, 2);
 
 // Если нажали на кнопку Добавить
