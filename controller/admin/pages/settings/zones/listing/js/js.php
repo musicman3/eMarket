@@ -10,7 +10,8 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $('#example-buttonText-selectAllText-filterPlaceholder-enableCollapsibleOptGroups-collapsedClickableOptGroups-enableFiltering-enableCaseInsensitiveFiltering-includeSelectAllOption').multiselect({
-            enableClickableOptGroups: true,
+            //Выбирать пустые группы
+            enableClickableOptGroups: false,
             enableCollapsibleOptGroups: true,
             buttonContainer: '<div id="example-enableCollapsibleOptGroups-collapsed-container" />',
             //Включить живой поиск
