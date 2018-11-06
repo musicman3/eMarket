@@ -21,7 +21,7 @@
             //Надписи в живом поиске
             filterPlaceholder: 'Искать...',
             //Включить "Выбрать все"
-            includeSelectAllOption: true,
+            includeSelectAllOption: false,
             //Надписи "Выбрать все"
             selectAllText: 'Выбрать все',
             
