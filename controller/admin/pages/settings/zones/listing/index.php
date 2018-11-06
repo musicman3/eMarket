@@ -10,18 +10,22 @@ error_reporting(-1);
 require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 // ************************************** //
 // 
-//Собираем данные для массива Стран
+// Собираем данные для массива Стран
 $countries_multiselect_temp = $PDO->getColRow("SELECT name, id  FROM " . TABLE_COUNTRIES . " WHERE language=?", [$lang_all[0]]);
-//Делаем одномерный массив с указанными колонками
+// Собираем масиив id=>Страна
 $countries_multiselect = array_column($countries_multiselect_temp, 0, 1);
-asort ($countries_multiselect);// Сортируем страны по возрастанию
+// Сортируем Страны по возрастанию
+asort($countries_multiselect);
 
-//Собираем данные для массива Регионов
+// Собираем данные для массива Регионов
 $regions_multiselect_temp = $PDO->getColRow("SELECT id, country_id, name, region_code  FROM " . TABLE_REGIONS . " WHERE language=?", [$lang_all[0]]);
-//Делаем одномерный массив с указанными колонками
-$regions_multiselect = array_column($regions_multiselect_temp, 1, 2); //Название региона от id страны
-ksort ($regions_multiselect);// Сортируем регионы по возрастанию
-$regions_multiselect_code = array_column($regions_multiselect_temp, 1, 3); //Код региона от id страны
+// Собираем масиив country_id=>Название региона
+$regions_multiselect = array_column($regions_multiselect_temp, 1, 2);
+// Сортируем Регионы по возрастанию
+ksort($regions_multiselect);
+// Собираем масиив region_code=>Название региона
+$regions_multiselect_code = array_column($regions_multiselect_temp, 1, 3);
+
 // Если нажали на кнопку Добавить
 if ($VALID->inGET('add')) {
 
