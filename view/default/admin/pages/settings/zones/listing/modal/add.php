@@ -18,7 +18,7 @@
 
                     <!--Мультиселект-->
                     <span class="multiselect-native-select">
-                        <select id="example-buttonText-selectAllText-filterPlaceholder-enableCollapsibleOptGroups-collapsedClickableOptGroups-enableFiltering-enableCaseInsensitiveFiltering-includeSelectAllOption" name="multiselect[]" multiple="multiple">
+                        <select id="example-collapseOptGroupsByDefault-buttonText-selectAllText-filterPlaceholder-collapsedClickableOptGroups-enableFiltering-enableCaseInsensitiveFiltering-includeSelectAllOption" name="multiselect[]" multiple="multiple">
                             <?php for ($v1=1; $v1<count($countries_multiselect); $v1++){  ?>
                             <optgroup label="<?php echo $countries_multiselect[$v1-1][0] ?>">
                                 

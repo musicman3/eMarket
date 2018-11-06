@@ -9,11 +9,11 @@
 <!--Мультиселект-->
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#example-buttonText-selectAllText-filterPlaceholder-enableCollapsibleOptGroups-collapsedClickableOptGroups-enableFiltering-enableCaseInsensitiveFiltering-includeSelectAllOption').multiselect({
-            //Выбирать пустые группы
-            enableClickableOptGroups: false,
+        $('#example-collapseOptGroupsByDefault-buttonText-selectAllText-filterPlaceholder-collapsedClickableOptGroups-enableFiltering-enableCaseInsensitiveFiltering-includeSelectAllOption').multiselect({
+            //Выбирать группы
+            enableClickableOptGroups: true,
             enableCollapsibleOptGroups: true,
-            buttonContainer: '<div id="example-enableCollapsibleOptGroups-collapsed-container" />',
+            collapseOptGroupsByDefault: true,
             //Включить живой поиск
             enableFiltering: true,
             //Регистронезависимый живой поиск
@@ -45,8 +45,7 @@
             }
 
         });
-        $('#example-enableCollapsibleOptGroups-collapsed-container .caret-container').click();
-    });
+        });
 </script>
 
 
