@@ -19,16 +19,16 @@
                     <!--Мультиселект-->
                     <span class="multiselect-native-select">
                         <select id="example-buttonText-selectAllText-filterPlaceholder-enableCollapsibleOptGroups-collapsedClickableOptGroups-enableFiltering-enableCaseInsensitiveFiltering-includeSelectAllOption" name="multiselect[]" multiple="multiple">
-                            <optgroup label="Австрия">
-                                <option value="1-1">Burgenland</option>
-                                <option value="1-2">Kärnten</option>
-                                <option value="1-3">Niederösterreich</option>
+                            <?php for ($v1=1; $v1<count($countries_multiselect); $v1++){  ?>
+                            <optgroup label="<?php echo $countries_multiselect[$v1-1][0] ?>">
+                                
+                                <?php for ($v2=0; $v2<count(array_keys($regions_multiselect, $v1)); $v2++){  ?>
+                                <option value="<?php echo $v1-1 ?>-<?php echo $v2 ?>"><?php echo array_keys($regions_multiselect, $v1)[$v2] ?></option>
+                                <?php } ?>
+                                
                             </optgroup>
-                            <optgroup label="Австралия">
-                                <option value="2-1">Australian Capital Territory</option>
-                                <option value="2-2">New South Wales</option>
-                                <option value="2-3">Northern Territory</option>
-                            </optgroup>
+                            <?php } ?>
+                           
                         </select>
                     </span>
                     <!--КОНЕЦ Мультиселект-->

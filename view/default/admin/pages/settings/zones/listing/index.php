@@ -17,7 +17,9 @@
     <!-- Вставляем модальное окно "Редактировать" -->
     <?php require(ROOT . '/view/'.$TEMPLATE.'/admin/pages/settings/zones/modal/edit.php') ?>
 
-<?php } ?>
+<?php } 
+
+?>
 
 <div id="ajax">
     <div id="settings" class="container">

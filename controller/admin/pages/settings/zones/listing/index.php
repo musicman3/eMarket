@@ -10,8 +10,11 @@ error_reporting(-1);
 require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 // ************************************** //
 // 
-//Сохраняем сессию с URL текущей страницы
-$_SESSION['zone_page'] = $VALID->inSERVER('REQUEST_URI');
+//Собираем данные для массива Стран и регионов
+$countries_multiselect = $PDO->getColRow("SELECT name, id  FROM " . TABLE_COUNTRIES . " WHERE language=?", [$lang_all[0]]);
+$regions_multiselect_temp = $PDO->getColRow("SELECT id, country_id, name  FROM " . TABLE_REGIONS . " WHERE language=?", [$lang_all[0]]);
+
+$regions_multiselect = array_column($regions_multiselect_temp, 1, 2);
 
 // Если нажали на кнопку Добавить
 if ($VALID->inGET('add')) {
