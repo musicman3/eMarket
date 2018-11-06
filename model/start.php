@@ -3,7 +3,7 @@
 //   GNU GENERAL PUBLIC LICENSE v.3.0   //    
 // https://github.com/musicman3/eMarket //
 // *************************************//
-
+ $tstart=microtime(1); // Засекаем начальное время 
 require_once('configure/configure.php');
 
 require_once('autoloader.php');

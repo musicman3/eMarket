@@ -10,4 +10,9 @@ require_once(ROOT . '/model/html.php');
 //CONNECT END
 $DB = null;
 
+ $tend=microtime(1); // Засекаем конечное время
+// Округляем до двух знаков после запятой
+$totaltime=round(($tend-$tstart),2);
+// Результат на экран
+echo "Время генерации страницы: ".$totaltime." сек.<br><br>"; 
 ?>

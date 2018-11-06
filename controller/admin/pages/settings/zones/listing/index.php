@@ -12,10 +12,10 @@ require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 // 
 //Собираем данные для массива Стран и регионов
 $countries_multiselect = $PDO->getColRow("SELECT name, id  FROM " . TABLE_COUNTRIES . " WHERE language=?", [$lang_all[0]]);
-$regions_multiselect_temp = $PDO->getColRow("SELECT id, country_id, name  FROM " . TABLE_REGIONS . " WHERE language=?", [$lang_all[0]]);
+$regions_multiselect_temp = $PDO->getColRow("SELECT id, country_id, name, region_code  FROM " . TABLE_REGIONS . " WHERE language=?", [$lang_all[0]]);
 
-$regions_multiselect = array_column($regions_multiselect_temp, 1, 2);
-
+$regions_multiselect = array_column($regions_multiselect_temp, 1, 2); //Название региона от кода страны
+$regions_multiselect_code = array_column($regions_multiselect_temp, 1, 3); //Название региона от кода страны
 // Если нажали на кнопку Добавить
 if ($VALID->inGET('add')) {
 
