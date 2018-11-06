@@ -19,16 +19,16 @@
                     <!--Мультиселект-->
                     <span class="multiselect-native-select">
                         <select id="example-collapseOptGroupsByDefault-buttonText-selectAllText-filterPlaceholder-collapsedClickableOptGroups-enableFiltering-enableCaseInsensitiveFiltering-includeSelectAllOption" name="multiselect[]" multiple="multiple">
-                            <?php for ($v1=1; $v1<count($countries_multiselect)+1; $v1++){  ?>
-                            <optgroup label="<?php echo $countries_multiselect[$v1-1][0] ?>">
-                                
-                                <?php for ($v2=0; $v2<count(array_keys($regions_multiselect, $v1)); $v2++){  ?>
-                                <option value="<?php echo $v1-1 ?>-<?php echo $v2 ?>"><?php echo array_keys($regions_multiselect, $v1)[$v2] ?></option>
-                                <?php } ?>
-                                
-                            </optgroup>
+                            <?php for ($c = 1; $c < count($countries_multiselect) + 1; $c++) { ?>
+                                <optgroup label="<?php echo $countries_multiselect[$c] ?>">
+
+                                    <?php for ($d = 1; $d < count(array_keys($regions_multiselect, $c)); $d++) { ?>
+                                        <option value="<?php echo $c ?>-<?php echo $d ?>"><?php echo array_keys($regions_multiselect, $c)[$d] ?></option>
+                                    <?php } ?>
+
+                                </optgroup>
                             <?php } ?>
-                           
+
                         </select>
                     </span>
                     <!--КОНЕЦ Мультиселект-->
