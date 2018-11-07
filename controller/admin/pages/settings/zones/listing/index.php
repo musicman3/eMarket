@@ -18,13 +18,8 @@ $countries_multiselect = array_column($countries_multiselect_temp, 0, 1);
 asort($countries_multiselect);
 
 // Собираем данные для массива Регионов
-$regions_multiselect_temp = $PDO->getColRow("SELECT id, country_id, name, region_code  FROM " . TABLE_REGIONS . " WHERE language=?", [$lang_all[0]]);
-// Собираем одномерный массив Название региона=>country_id
-$regions_multiselect = array_column($regions_multiselect_temp, 1, 2);
-// Сортируем Регионы по возрастанию
-ksort($regions_multiselect);
-// Собираем одномерный массив Название региона =>id региона
-$regions_multiselect_name = array_column($regions_multiselect_temp, 0, 2);
+$regions_multiselect = $PDO->getColRow("SELECT id, country_id, name, region_code  FROM " . TABLE_REGIONS . " WHERE language=?", [$lang_all[0]]);
+
 
 // Если нажали на кнопку Добавить
 if ($VALID->inGET('add')) {
