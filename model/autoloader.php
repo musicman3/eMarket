@@ -25,4 +25,7 @@ $TREE = new eMarket\Classes\Core\Tree;
 
 //ЗАГРУЖАЕМ CLASS Navigation
 $NAVIGATION = new eMarket\Classes\Core\Navigation;
+
+//ЗАГРУЖАЕМ CLASS Debug
+$DEBUG = new eMarket\Classes\Core\Debug;
 ?>
