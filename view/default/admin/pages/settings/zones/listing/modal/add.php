@@ -25,19 +25,24 @@
                                 <optgroup label="<?php echo $v ?>">
 
                                     <?php
+                                    $mass = array();
+                                    $mass2 = array();
                                     foreach ($regions_multiselect as $v1) {
                                         if ($v1['1'] == $k) {
-
-                                            ?>
-
-                                            <!--Возвращаем массив формата country_id => id Региона -->
-                                            <option value="<?php echo $k ?>-<?php echo $v1[0] ?>"><?php echo $v1[2] ?></option>
-
-                                            <?php
+                                            array_push($mass, $v1[0]);
+                                            array_push($mass2, $v1[2]);
                                         }
                                     }
+                                    $mass3 = array_combine($mass, $mass2);
+                                    asort($mass3);
 
-                                    ?>
+                                    foreach ($mass3 as $k2 => $v2) {
+
+                                        ?>
+
+                                        <!--Возвращаем массив формата country_id => id Региона -->
+                                        <option value="<?php echo $k ?>-<?php echo $k2 ?>"><?php echo $v2 ?></option>
+                                    <?php } ?>
 
                                 </optgroup>
 
