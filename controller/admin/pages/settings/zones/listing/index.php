@@ -12,7 +12,7 @@ require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 // 
 // Собираем данные для массива Стран
 $countries_multiselect_temp = $PDO->getColRow("SELECT name, id  FROM " . TABLE_COUNTRIES . " WHERE language=?", [$lang_all[0]]);
-// Собираем одномерный массив id=>Страна
+// Собираем одномерный массив Страна=>id
 $countries_multiselect = array_column($countries_multiselect_temp, 0, 1);
 // Сортируем Страны по возрастанию
 asort($countries_multiselect);
