@@ -32,7 +32,7 @@
                                     <?php for ($d = 0; $d < count(array_keys($regions_multiselect, $k)); $d++) { ?>
                                     
                                     <!--Возвращаем массив формата country_id => id Региона -->
-                                    <option value="<?php echo $k ?>-<?php echo $regions_multiselect_code[array_keys($regions_multiselect, $k)[$d]] ?>"><?php echo array_keys($regions_multiselect, $k)[$d] ?></option>
+                                    <option value="<?php echo $k ?>-<?php echo $regions_multiselect_name[array_keys($regions_multiselect, $k)[$d]] ?>"><?php echo array_keys($regions_multiselect, $k)[$d] ?></option>
 
                                     <?php } ?>
 
