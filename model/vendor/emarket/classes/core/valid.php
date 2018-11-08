@@ -14,10 +14,24 @@ class Valid {
             return (isset($_POST[$name])) ? $_POST[$name] : null;
         }
     }
+    
+        // Валидация глобальных переменных $_POST[] с массивом
+    function inPostArray($name) {
+        if (filter_input(INPUT_POST, $name, FILTER_DEFAULT, FILTER_REQUIRE_ARRAY) == TRUE) {
+            return (isset($_POST[$name])) ? $_POST[$name] : null;
+        }
+    }
 
     // Валидация глобальных переменных $_GET[]
     function inGET($name) {
         if (filter_input(INPUT_GET, $name) == TRUE) {
+            return (isset($_GET[$name])) ? $_GET[$name] : null;
+        }
+    }
+    
+        // Валидация глобальных переменных $_GET[] с массивом
+    function inGetArray($name) {
+        if (filter_input(INPUT_GET, $name, FILTER_DEFAULT, FILTER_REQUIRE_ARRAY) == TRUE) {
             return (isset($_GET[$name])) ? $_GET[$name] : null;
         }
     }
