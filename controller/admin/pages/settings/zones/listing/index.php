@@ -20,8 +20,8 @@ asort($countries_multiselect);
 // Собираем данные для массива Регионов
 $regions_multiselect = $PDO->getColRow("SELECT id, country_id, name, region_code  FROM " . TABLE_REGIONS . " WHERE language=?", [$lang_all[0]]);
 
-//$aa = $VALID->inPostArray('multiselect');
-//$DEBUG->var_dump($aa);
+$aa = $VALID->inPostArray('multiselect');
+$DEBUG->var_dump($aa);
 // Если нажали на кнопку Добавить
 if ($VALID->inPOST('add')) {
 

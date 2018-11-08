@@ -12,7 +12,7 @@
             <div class="modal-header"><div class="tooltip-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Ставка указывается в формате: 10.00" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
                 <h4 class="modal-title"><?php echo lang('zone') ?></h4>
             </div>
-            <form id="form" name="form" action="javascript:void(null);" onsubmit="call()" method="get" enctype="multipart/form-data">
+            <form id="form" name="form" action="javascript:void(null);" onsubmit="call()" method="post" enctype="multipart/form-data">
                 <div class="panel-body">
                     <input type="hidden" name="add" value="ok" />
 
@@ -59,7 +59,7 @@
     function call() {
         var msg = $('#form').serialize();
         $.ajax({
-            type: 'GET',
+            type: 'POST',
             url: 'index.php',
             data: msg,
             success: function (data) {
