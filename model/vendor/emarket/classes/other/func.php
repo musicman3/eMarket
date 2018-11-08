@@ -8,10 +8,10 @@ namespace eMarket\Classes\Other;
 
 class Func {
 
-    // Функция выборки из двухмерного массива значений по имени ключа и его значению.
+    // Функция выборки (фильтрации) из двухмерного массива значений по имени ключа и его значению.
     // На выходе сортированный массив по возрастанию.
 
-    function sort_array_to_key($based_array, $name_key, $value_key, $val) {
+    function filter_array_to_key($based_array, $name_key, $value_key, $val) {
 
         $arr = array();
         foreach ($based_array as $value) {

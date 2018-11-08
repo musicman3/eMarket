@@ -26,7 +26,7 @@
 
                                     <?php
                                     
-                                    $regions = $FUNC->sort_array_to_key($regions_multiselect, 1, $k, 2);
+                                    $regions = $FUNC->filter_array_to_key($regions_multiselect, 1, $k, 2);
 
                                     foreach ($regions as $k2 => $v2) {
 
