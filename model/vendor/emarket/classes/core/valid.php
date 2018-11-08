@@ -10,7 +10,7 @@ class Valid {
 
     // Валидация глобальных переменных $_POST[]
     function inPOST($name) {
-        if (filter_input(INPUT_POST, $name, FILTER_DEFAULT) == TRUE) {
+        if (filter_input(INPUT_POST, $name) == TRUE) {
             return (isset($_POST[$name])) ? $_POST[$name] : null;
         }
     }
@@ -24,7 +24,7 @@ class Valid {
 
     // Валидация глобальных переменных $_GET[]
     function inGET($name) {
-        if (filter_input(INPUT_GET, $name, FILTER_DEFAULT) == TRUE) {
+        if (filter_input(INPUT_GET, $name) == TRUE) {
             return (isset($_GET[$name])) ? $_GET[$name] : null;
         }
     }
