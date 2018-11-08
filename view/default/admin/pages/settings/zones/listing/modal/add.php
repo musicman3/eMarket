@@ -25,18 +25,10 @@
                                 <optgroup label="<?php echo $v ?>">
 
                                     <?php
-                                    $mass = array();
-                                    $mass2 = array();
-                                    foreach ($regions_multiselect as $v1) {
-                                        if ($v1['1'] == $k) {
-                                            array_push($mass, $v1[0]);
-                                            array_push($mass2, $v1[2]);
-                                        }
-                                    }
-                                    $mass3 = array_combine($mass, $mass2);
-                                    asort($mass3);
+                                    
+                                    $regions = $FUNC->sort_array_to_key($regions_multiselect, 1, $k, 2);
 
-                                    foreach ($mass3 as $k2 => $v2) {
+                                    foreach ($regions as $k2 => $v2) {
 
                                         ?>
 
