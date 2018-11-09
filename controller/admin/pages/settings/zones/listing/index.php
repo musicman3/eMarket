@@ -21,19 +21,25 @@ asort($countries_multiselect);
 // Собираем данные для массива Регионов
 $regions_multiselect = $PDO->getColRow("SELECT id, country_id, name, region_code  FROM " . TABLE_REGIONS . " WHERE language=?", [$lang_all[0]]);
 
-//Создаем многомерный массив из одномерного, разбитого на части разделителем "-"
+
+// Если нажали на кнопку Добавить
+if ($VALID->inPOST('add')) {
+    
+    //Создаем многомерный массив из одномерного, разбитого на части разделителем "-"
 $multiselect = $FUNC->array_explode($VALID->inPOST('multiselect'), '-');
 
 
 $DEBUG->var_dump($multiselect);
-// Если нажали на кнопку Добавить
-
-if ($VALID->inPOST('add')) {
 
     // добавляем запись для всех выборок
-    //for ($x = 0; $x < count($multiselect[0]); $x++) {
-        //$PDO->inPrepare("INSERT INTO " . TABLE_COUNTRIES_ZONES . " SET id=?, zones_id=?", [$multiselect[$x], '1']);
-    //}
+    for ($x = 0; $x < count($multiselect); $x++) {
+        $PDO->inPrepare("INSERT INTO " . TABLE_COUNTRIES_ZONES . " SET country_id=?, zones_id=?", [$multiselect[$x][0], '1']);
+    }
+    
+        // добавляем запись для всех выборок
+    for ($x = 0; $x < count($multiselect); $x++) {
+        $PDO->inPrepare("INSERT INTO " . TABLE_REGIONS_ZONES . " SET country_id=?, regions_id=?", [$multiselect[$x][0], $multiselect[$x][1]]);
+    }
 }
 
 // Если нажали на кнопку Редактировать
