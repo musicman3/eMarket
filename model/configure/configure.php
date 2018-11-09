@@ -19,6 +19,7 @@
   define('TABLE_TAXES', 'emkt_taxes');
   define('TABLE_UNITS', 'emkt_units');
   define('TABLE_ZONES', 'emkt_zones');
-  define('TABLE_VALUE_ZONES', 'emkt_value_zones');
+  define('TABLE_COUNTRIES_ZONES', 'emkt_countries_zones');
+  define('TABLE_REGIONS_ZONES', 'emkt_regions_zones');
   define('TABLE_VENDOR_CODES', 'emkt_vendor_codes');
 ?>
