@@ -1,4 +1,5 @@
 <?php
+
 // ****** Copyright © 2018 eMarket *****// 
 //   GNU GENERAL PUBLIC LICENSE v.3.0   //    
 // https://github.com/musicman3/eMarket //
@@ -66,9 +67,47 @@ class Func {
      * 
      * на выходе получаем
      * 
-     *[0] => Владивосток
-     *[1] => Калининград
+     * [0] => Владивосток
+     * [1] => Калининград
      * 
+     */
+
+    //Функция создания многомерного массива из одномерного, в котором значения разделены маркером
+    function array_explode($array, $delimiter) {
+        $array_return = array();
+        foreach ($array as $v) {
+            $array_return = array_merge($array_return, array(explode($delimiter, $v)));
+        }
+        return $array_return;
+    }
+
+    // Пример:
+    //Исходный массив
+    /*
+      Array
+      (
+      [0] => 13-0
+      [1] => 13-1
+     * 
+     * 
+     * Массив на выходе
+      Array (
+      [0] => Array
+      (
+      [0] => 13
+      [1] => 0
+      )
+
+      [1] => Array
+      (
+      [0] => 13
+      [1] => 1
+      )
+     * 
+     * Использовать так: $multiselect = $FUNC->array_explode($array, '-');
+     * 
+     * $array - исходный одномерный массив с разделителем
+     * "-" - разделитель
      */
 }
 

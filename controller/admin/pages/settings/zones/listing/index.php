@@ -20,14 +20,20 @@ asort($countries_multiselect);
 // Собираем данные для массива Регионов
 $regions_multiselect = $PDO->getColRow("SELECT id, country_id, name, region_code  FROM " . TABLE_REGIONS . " WHERE language=?", [$lang_all[0]]);
 
-//$aa = $VALID->inPOST('multiselect');
-//$DEBUG->var_dump($aa);
+//Создаем многомерный массив из одномерного, разбитого на части разделителем "-"
+$multiselect = $FUNC->array_explode($VALID->inPOST('multiselect'), '-');
+
+
+$DEBUG->var_dump($multiselect);
 // Если нажали на кнопку Добавить
+
 if ($VALID->inPOST('add')) {
 
     // добавляем запись для всех вкладок
+    
+   // $rr = explode("-", $VALID->inPOST('multiselect'));
 
-        $PDO->inPrepare("INSERT INTO " . TABLE_COUNTRIES_ZONES . " SET id=?, zones_id", [$VALID->inPOST('multiselect')[0], '1']);
+        //$PDO->inPrepare("INSERT INTO " . TABLE_COUNTRIES_ZONES . " SET id=?, zones_id=?", [$VALID->inPOST('multiselect'), '1']);
     
 }
 
