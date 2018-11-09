@@ -33,7 +33,11 @@ $DEBUG->var_dump($multiselect);
 
     // добавляем запись для всех выборок
     for ($x = 0; $x < count($multiselect); $x++) {
+        if ($multiselect[$x][0] != $m OR isset($m) == FALSE ) {
         $PDO->inPrepare("INSERT INTO " . TABLE_COUNTRIES_ZONES . " SET country_id=?, zones_id=?", [$multiselect[$x][0], '1']);
+    }
+        $m = $multiselect[$x][0];
+    
     }
     
         // добавляем запись для всех выборок
