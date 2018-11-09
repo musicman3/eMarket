@@ -1,4 +1,5 @@
 <?php
+
 // ****** Copyright © 2018 eMarket *****// 
 //   GNU GENERAL PUBLIC LICENSE v.3.0   //    
 // https://github.com/musicman3/eMarket //
@@ -29,12 +30,10 @@ $DEBUG->var_dump($multiselect);
 
 if ($VALID->inPOST('add')) {
 
-    // добавляем запись для всех вкладок
-    
-   // $rr = explode("-", $VALID->inPOST('multiselect'));
-
-        //$PDO->inPrepare("INSERT INTO " . TABLE_COUNTRIES_ZONES . " SET id=?, zones_id=?", [$VALID->inPOST('multiselect'), '1']);
-    
+    // добавляем запись для всех выборок
+    //for ($x = 0; $x < count($multiselect[0]); $x++) {
+        //$PDO->inPrepare("INSERT INTO " . TABLE_COUNTRIES_ZONES . " SET id=?, zones_id=?", [$multiselect[$x], '1']);
+    //}
 }
 
 // Если нажали на кнопку Редактировать
@@ -65,5 +64,4 @@ $JS_END = __DIR__;
 // *********  CONNECT PAGE END  ********* //
 require_once(ROOT . '/model/end.php');
 // ************************************** //
-
 ?>
