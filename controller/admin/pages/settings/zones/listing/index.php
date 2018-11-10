@@ -75,7 +75,8 @@ if ($VALID->inPOST('delete')) {
 }
 echo $zones_id;
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
-$lines = $PDO->getColRow("SELECT id, country_id FROM " . TABLE_ZONES_VALUE . " WHERE zones_id=?", [$zones_id]);
+$lines_temp = $PDO->getColRow("SELECT id, country_id FROM " . TABLE_ZONES_VALUE . " WHERE zones_id=?", [$zones_id]);
+$lines = array_unique($lines_temp, SORT_NUMERIC);
 $navigate = $NAVIGATION->getLink(count($lines), $lines_of_page = 20);
 $start = $navigate[0];
 $finish = $navigate[1];
