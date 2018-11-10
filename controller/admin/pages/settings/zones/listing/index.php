@@ -74,8 +74,9 @@ if ($VALID->inPOST('delete')) {
     $PDO->inPrepare("DELETE FROM " . TABLE_ZONES_VALUE . " WHERE country_id=? AND zones_id=?", [$VALID->inPOST('delete'), $zones_id]);
 }
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
+$name_country = $PDO->getColRow("SELECT id, name FROM " . TABLE_COUNTRIES . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);
 $lines_temp = $PDO->getColRow("SELECT country_id FROM " . TABLE_ZONES_VALUE . " WHERE zones_id=?", [$zones_id]);
-$lines = array_values(array_unique($lines_temp, SORT_REGULAR));
+$lines = array_values(array_unique($lines_temp, SORT_REGULAR)); // Выбираем по 1 экземпляру стран и сбрасываем ключи массива
 
 $navigate = $NAVIGATION->getLink(count($lines), $lines_of_page = 20);
 $start = $navigate[0];

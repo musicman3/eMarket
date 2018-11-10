@@ -83,7 +83,7 @@
                                     <td class="sortleft">
                                        
                                     </td>
-                                    <td><?php echo $lines[$start][0] ?></td>
+                                    <td><?php echo $FUNC->filter_array_to_key($name_country, 0, $lines[$start][0], 1)[0] ?></td>
                                     <td></td>
                                     <td class="al-text-w">
                                         <form>
