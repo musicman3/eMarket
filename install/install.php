@@ -70,8 +70,7 @@
         $tab_taxes = $dbpref . 'taxes';
         $tab_units = $dbpref . 'units';
         $tab_zones = $dbpref . 'zones';
-        $tab_countries_zones = $dbpref . 'countries_zones';
-        $tab_regions_zones = $dbpref . 'regions_zones';
+        $tab_zones_value = $dbpref . 'zones_value';
         $tab_vendor_codes = $dbpref . 'vendor_codes';
         $hashmet = $VALID->inPOST('hash_method');
         $crypt = $VALID->inPOST('crypt_method');
@@ -99,10 +98,9 @@
                 '  define(\'TABLE_REGIONS\', \'' . $tab_regions . '\');' . "\n" .
                 '  define(\'TABLE_TAXES\', \'' . $tab_taxes . '\');' . "\n" .
                 '  define(\'TABLE_UNITS\', \'' . $tab_units . '\');' . "\n" .
-                '  define(\'TABLE_ZONES\', \'' . $tab_zones . '\');' . "\n" .
-                '  define(\'TABLE_COUNTRIES_ZONES\', \'' . $tab_countries_zones . '\');' . "\n" .
-                '  define(\'TABLE_REGIONS_ZONES\', \'' . $tab_regions_zones . '\');' . "\n" .
                 '  define(\'TABLE_VENDOR_CODES\', \'' . $tab_vendor_codes . '\');' . "\n" .
+                '  define(\'TABLE_ZONES\', \'' . $tab_zones . '\');' . "\n" .
+                '  define(\'TABLE_ZONES_VALUE\', \'' . $tab_zones_value . '\');' . "\n" .
                 '?>';
 
         if (file_exists('../model/configure/configure.php') && !is_writeable('../model/configure/configure.php')) {

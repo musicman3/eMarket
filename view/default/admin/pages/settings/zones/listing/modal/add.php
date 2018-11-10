@@ -15,6 +15,7 @@
             <form id="form" name="form" action="index.php" method="post" enctype="multipart/form-data">
                 <div class="panel-body">
                     <input type="hidden" name="add" value="ok" />
+                    <input hidden name="zone_id" value="<?php echo $zones_id ?>">
 
                     <!--Мультиселект-->
                     <span class="multiselect-native-select">

@@ -127,19 +127,12 @@ CREATE TABLE emkt_zones (
 	PRIMARY KEY (id, language))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-DROP TABLE IF EXISTS emkt_countries_zones;
-CREATE TABLE emkt_countries_zones (
-	id int NOT NULL auto_increment,
-        country_id int NOT NULL,
-        zones_id int NOT NULL,
-	PRIMARY KEY (id))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-DROP TABLE IF EXISTS emkt_regions_zones;
-CREATE TABLE emkt_regions_zones (
+DROP TABLE IF EXISTS emkt_zones_value;
+CREATE TABLE emkt_zones_value (
 	id int NOT NULL auto_increment,
         country_id int NOT NULL,
         regions_id int NOT NULL,
+        zones_id int NOT NULL,
 	PRIMARY KEY (id))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

@@ -81,16 +81,14 @@
                             <?php for ($start; $start < $finish; $start++) { ?>
                                 <tr>
                                     <td class="sortleft">
-                                        <form action="/controller/admin/pages/settings/regions.php">
-                                            <input hidden name="zone_id" value="<?php echo $lines[$start][0] ?>">
-                                            <button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-cog"></span></button>
-                                        </form>
+                                       
                                     </td>
                                     <td><?php echo $lines[$start][1] ?></td>
-                                    <td><?php echo $lines[$start][2] ?></td>
+                                    <td></td>
                                     <td class="al-text-w">
                                         <form>
-                                            <input hidden name="delete" value="<?php echo $lines[$start][0] ?>">
+                                            <input hidden name="delete" value="<?php echo $lines[$start][1] ?>">
+                                            <input hidden name="zone_id" value="<?php echo $zones_id ?>">
                                             <div class="right">
                                                 <div class="left"><button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>" action="index.php" formmethod="post"><span class="glyphicon glyphicon-trash"> </span></button></div>
                                             </div>

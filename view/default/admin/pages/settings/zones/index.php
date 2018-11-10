@@ -79,7 +79,7 @@
                             <?php for ($start; $start < $finish; $start++) { ?>
                                 <tr>
                                     <td class="sortleft">
-                                        <form action="listing/">
+                                        <form action="listing/index.php" method="post">
                                             <input hidden name="zone_id" value="<?php echo $lines[$start][0] ?>">
                                             <button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-cog"></span></button>
                                         </form>
