@@ -21,7 +21,13 @@ asort($countries_multiselect);
 $regions_multiselect = $PDO->getColRow("SELECT id, country_id, name, region_code  FROM " . TABLE_REGIONS . " WHERE language=?", [$lang_all[0]]);
 
 // Получаем zones_id
-$zones_id = (int) $VALID->inPOST('zone_id');
+if ($VALID->inPOST('zone_id')){
+    $zones_id = (int) $VALID->inPOST('zone_id');
+}
+
+if ($VALID->inGET('zone_id')){
+    $zones_id = (int) $VALID->inGET('zone_id');
+}
 
 // Если нажали на кнопку Добавить
 if ($VALID->inPOST('add') && empty($VALID->inPOST('multiselect')) == FALSE) {

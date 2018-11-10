@@ -29,7 +29,7 @@
                                 <th>
 
                                     <form>
-                                        <?php if (count($lines) > $lines_of_page) { ?>
+                                        <?php if (count($lines) > 0) { ?>
                                             <input hidden name="start" value="<?php echo $start ?>">
                                             <input hidden name="finish" value="<?php echo $finish ?>">
                                         <?php } ?>
@@ -37,7 +37,7 @@
                                     </form>
 
                                     <form>
-                                        <?php if (count($lines) > $lines_of_page) { ?>
+                                        <?php if (count($lines) > 0) { ?>
                                             <input hidden name="start2" value="<?php echo $start ?>">
                                             <input hidden name="finish2" value="<?php echo $finish ?>">
                                         <?php } ?>
