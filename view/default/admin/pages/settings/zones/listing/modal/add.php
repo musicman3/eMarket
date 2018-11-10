@@ -26,10 +26,8 @@
                                 <optgroup label="<?php echo $v ?>">
 
                                     <?php
-                                    
-                                    $regions = $FUNC->filter_array_to_key($regions_multiselect, 1, $k, 2);
 
-                                    foreach ($regions as $k2 => $v2) {
+                                    foreach ($FUNC->filter_array_to_key($regions_multiselect, 1, $k, 2) as $k2 => $v2) {
 
                                         ?>
 
