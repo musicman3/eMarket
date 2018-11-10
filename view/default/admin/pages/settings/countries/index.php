@@ -94,7 +94,7 @@
                                         <form>
                                             <input hidden name="delete" value="<?php echo $lines[$start][0] ?>">
                                             <div class="right">
-                                                <div class="left"><button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>" action="index.php" formmethod="post"><span class="glyphicon glyphicon-trash"> </span></button></div>
+						<button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>" action="index.php" formmethod="post"><span class="glyphicon glyphicon-trash"> </span></button>
                                             </div>
                                             <div class="left">
                                                 <a href="#edit<?php echo $lines[$start][0] ?>" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span></a>
