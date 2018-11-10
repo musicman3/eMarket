@@ -35,7 +35,7 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th colspan="3">
+                                <th>
                                     <?php if ($lines == TRUE) { ?>
                                         <div class="page"><?php echo lang('s') ?> <?php echo $start + 1 ?> <?php echo lang('po') ?> <?php echo $finish ?> ( <?php echo lang('iz') ?> <?php echo count($lines); ?> )</div>
                                         <?php
@@ -72,33 +72,14 @@
                             </tr>
                             <?php if ($lines == TRUE) { ?>
                                 <tr class="border">
-                                    <th class="sortleft"></th>
-                                    <th><?php echo lang('zone') ?></th>
-                                    <th><?php echo lang('name_description') ?></th>
-                                    <th class="al-text-w"></th>
+                                    <th  colspan="2"><?php echo lang('zone') ?></th>
                                 </tr>
                             <?php } ?>
                         </thead>
                         <tbody>
                             <?php for ($start; $start < $finish; $start++) { ?>
                                 <tr>
-                                    <td class="sortleft">
-
-                                    </td>
-                                    <td><?php echo $FUNC->filter_array_to_key($name_country, 0, $lines[$start][0], 1)[0] ?></td>
-                                    <td></td>
-                                    <td class="al-text-w">
-                                        <form>
-                                            <input hidden name="delete" value="<?php echo $lines[$start][0] ?>">
-                                            <input hidden name="zone_id" value="<?php echo $zones_id ?>">
-                                            <div class="right">
-                                                <div class="left"><button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>" action="index.php" formmethod="post"><span class="glyphicon glyphicon-trash"> </span></button></div>
-                                            </div>
-                                            <div class="left">
-                                                <a href="#edit<?php echo $lines[$start][0] ?>" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span></a>
-                                            </div>
-                                        </form>
-                                    </td>
+                                    <td colspan="2"><?php echo $FUNC->filter_array_to_key($name_country, 0, $lines[$start][0], 1)[0] ?></td>
                                 </tr>
                             <?php } ?>
                         </tbody>
