@@ -73,10 +73,10 @@ if ($VALID->inPOST('delete')) {
     // Удаляем
     $PDO->inPrepare("DELETE FROM " . TABLE_ZONES_VALUE . " WHERE country_id=? AND zones_id=?", [$VALID->inPOST('delete'), $zones_id]);
 }
-echo $zones_id;
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
-$lines_temp = $PDO->getColRow("SELECT id, country_id FROM " . TABLE_ZONES_VALUE . " WHERE zones_id=?", [$zones_id]);
-$lines = array_unique($lines_temp, SORT_NUMERIC);
+$lines_temp = $PDO->getColRow("SELECT country_id FROM " . TABLE_ZONES_VALUE . " WHERE zones_id=?", [$zones_id]);
+$lines = array_values(array_unique($lines_temp, SORT_REGULAR));
+
 $navigate = $NAVIGATION->getLink(count($lines), $lines_of_page = 20);
 $start = $navigate[0];
 $finish = $navigate[1];
