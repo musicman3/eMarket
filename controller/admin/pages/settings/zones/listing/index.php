@@ -71,7 +71,7 @@ if ($VALID->inGET('id_edit')) {
 if ($VALID->inPOST('delete')) {
 
     // Удаляем
-    $PDO->inPrepare("DELETE FROM " . TABLE_ZONES_VALUE . " WHERE country_id=?, zones_id=?", [$VALID->inPOST('delete'), $zones_id]);
+    $PDO->inPrepare("DELETE FROM " . TABLE_ZONES_VALUE . " WHERE country_id=? AND zones_id=?", [$VALID->inPOST('delete'), $zones_id]);
 }
 echo $zones_id;
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
