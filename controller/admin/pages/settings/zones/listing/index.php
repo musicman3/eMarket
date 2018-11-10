@@ -21,16 +21,19 @@ asort($countries_multiselect);
 $regions_multiselect = $PDO->getColRow("SELECT id, country_id, name, region_code  FROM " . TABLE_REGIONS . " WHERE language=?", [$lang_all[0]]);
 
 // Получаем zones_id
-if ($VALID->inPOST('zone_id')){
+if ($VALID->inPOST('zone_id')) {
     $zones_id = (int) $VALID->inPOST('zone_id');
 }
 
-if ($VALID->inGET('zone_id')){
+if ($VALID->inGET('zone_id')) {
     $zones_id = (int) $VALID->inGET('zone_id');
 }
 
 // Если нажали на кнопку Добавить
 if ($VALID->inPOST('add') && empty($VALID->inPOST('multiselect')) == FALSE) {
+    
+    //Очищаем страны и регионы от этой зоны
+    $PDO->inPrepare("DELETE FROM " . TABLE_ZONES_VALUE . " WHERE zones_id=?", [$zones_id]);
 
     //Создаем многомерный массив из одномерного, разбитого на части разделителем "-"
     $multiselect = $FUNC->array_explode($VALID->inPOST('multiselect'), '-');
@@ -50,8 +53,6 @@ if ($VALID->inPOST('add') && empty($VALID->inPOST('multiselect')) == FALSE) {
     if (empty($value_zones) == TRUE) {
         $value_zones = array('false');
     }
-
-    //$DEBUG->var_dump($multiselect);
 
     // Проверяем, были ли уже такие значения
     for ($x = 0; $x < count($multiselect); $x++) {
@@ -80,10 +81,12 @@ if ($VALID->inPOST('delete')) {
     $PDO->inPrepare("DELETE FROM " . TABLE_ZONES_VALUE . " WHERE country_id=? AND zones_id=?", [$VALID->inPOST('delete'), $zones_id]);
 }
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
+// Собираем название стран для вывода в View
 $name_country = $PDO->getColRow("SELECT id, name FROM " . TABLE_COUNTRIES . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);
+// Собираем данные для вывода списка стран
 $lines_temp = $PDO->getColRow("SELECT country_id FROM " . TABLE_ZONES_VALUE . " WHERE zones_id=?", [$zones_id]);
 $lines = array_values(array_unique($lines_temp, SORT_REGULAR)); // Выбираем по 1 экземпляру стран и сбрасываем ключи массива
-
+//$DEBUG->var_dump($lines);
 $navigate = $NAVIGATION->getLink(count($lines), $lines_of_page = 20);
 $start = $navigate[0];
 $finish = $navigate[1];
