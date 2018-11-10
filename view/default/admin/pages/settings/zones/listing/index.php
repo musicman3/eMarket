@@ -35,7 +35,7 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th>
+                                <th colspan="2">
                                     <?php if ($lines == TRUE) { ?>
                                         <div class="page"><?php echo lang('s') ?> <?php echo $start + 1 ?> <?php echo lang('po') ?> <?php echo $finish ?> ( <?php echo lang('iz') ?> <?php echo count($lines); ?> )</div>
                                         <?php
@@ -72,14 +72,18 @@
                             </tr>
                             <?php if ($lines == TRUE) { ?>
                                 <tr class="border">
-                                    <th  colspan="2"><?php echo lang('zone') ?></th>
+                                    <th> </th>
+                                    <th><?php echo lang('zone') ?></th>
+                                    <th> </th>
                                 </tr>
                             <?php } ?>
                         </thead>
                         <tbody>
                             <?php for ($start; $start < $finish; $start++) { ?>
                                 <tr>
-                                    <td colspan="2"><?php echo $FUNC->filter_array_to_key($name_country, 0, $lines[$start][0], 1)[0] ?></td>
+                                    <td class="sortleft"><a class="btn btn-primary btn-xs" href="#" ><span data-toggle="tooltip" data-placement="bottom" data-original-title="Бла, бла" class="glyphicon glyphicon-eye-open"></span></a></td>
+                                    <td><?php echo $FUNC->filter_array_to_key($name_country, 0, $lines[$start][0], 1)[0] ?></td>
+                                    <td> </td>
                                 </tr>
                             <?php } ?>
                         </tbody>
