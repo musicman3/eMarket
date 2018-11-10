@@ -15,7 +15,7 @@
 <?php for ($k; $k < $finish; $k++) { // запускаем цикл формирования модальных окон  ?>
 
     <!-- Вставляем модальное окно "Редактировать" -->
-    <?php require(ROOT . '/view/'.$TEMPLATE.'/admin/pages/settings/countries/modal/edit.php') ?>
+    <?php require(ROOT . '/view/' . $TEMPLATE . '/admin/pages/settings/countries/modal/edit.php') ?>
 
 <?php } ?>
 
@@ -49,16 +49,16 @@
                                         <?php if (count($lines) > 0) { ?>
                                             <input hidden name="start" value="<?php echo $start ?>">
                                             <input hidden name="finish" value="<?php echo $finish ?>">
+                                            <div class="right"><button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
                                         <?php } ?>
-                                        <div class="right"><button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
                                     </form>
 
                                     <form>
                                         <?php if (count($lines) > 0) { ?>
                                             <input hidden name="start2" value="<?php echo $start ?>">
                                             <input hidden name="finish2" value="<?php echo $finish ?>">
+                                            <div class="left"><button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
                                         <?php } ?>
-                                        <div class="left"><button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
                                     </form>
 
                                     <div class="left">
@@ -66,16 +66,16 @@
                                     </div>
                                 </th>
                             </tr>
-			    <?php if ($lines == TRUE) { ?>
-                            <tr class="border">
-                                <th class="sortleft"></th>
-                                <th><?php echo lang('country') ?></th>
-                                <th class="al-text"><?php echo lang('alpha_2') ?></th>
-                                <th class="al-text"><?php echo lang('alpha_3') ?></th>
-                                <th class="al-text"><?php echo lang('country_flag') ?></th>
-                                <th class="al-text-w"></th>
-                            </tr>
-			    <?php } ?>
+                            <?php if ($lines == TRUE) { ?>
+                                <tr class="border">
+                                    <th class="sortleft"></th>
+                                    <th><?php echo lang('country') ?></th>
+                                    <th class="al-text"><?php echo lang('alpha_2') ?></th>
+                                    <th class="al-text"><?php echo lang('alpha_3') ?></th>
+                                    <th class="al-text"><?php echo lang('country_flag') ?></th>
+                                    <th class="al-text-w"></th>
+                                </tr>
+                            <?php } ?>
                         </thead>
                         <tbody>
                             <?php for ($start; $start < $finish; $start++) { ?>

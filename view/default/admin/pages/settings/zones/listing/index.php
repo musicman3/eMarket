@@ -15,9 +15,9 @@
 <?php for ($k; $k < $finish; $k++) { // запускаем цикл формирования модальных окон  ?>
 
     <!-- Вставляем модальное окно "Редактировать" -->
-    <?php require(ROOT . '/view/'.$TEMPLATE.'/admin/pages/settings/zones/modal/edit.php') ?>
+    <?php require(ROOT . '/view/' . $TEMPLATE . '/admin/pages/settings/zones/modal/edit.php') ?>
 
-<?php } 
+<?php }
 
 ?>
 
@@ -52,7 +52,7 @@
                                             <input hidden name="start" value="<?php echo $start ?>">
                                             <input hidden name="finish" value="<?php echo $finish ?>">
                                             <input hidden name="zone_id" value="<?php echo $zones_id ?>">
-                                        <div class="right"><button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
+                                            <div class="right"><button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
                                         <?php } ?>
                                     </form>
 
@@ -61,7 +61,7 @@
                                             <input hidden name="start2" value="<?php echo $start ?>">
                                             <input hidden name="finish2" value="<?php echo $finish ?>">
                                             <input hidden name="zone_id" value="<?php echo $zones_id ?>">
-                                        <div class="left"><button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
+                                            <div class="left"><button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
                                         <?php } ?>
                                     </form>
 
@@ -70,20 +70,20 @@
                                     </div>
                                 </th>
                             </tr>
-			    <?php if ($lines == TRUE) { ?>
-                            <tr class="border">
-                                <th class="sortleft"></th>
-                                <th><?php echo lang('zone') ?></th>
-                                <th><?php echo lang('name_description') ?></th>
-                                <th class="al-text-w"></th>
-                            </tr>
-			    <?php } ?>
+                            <?php if ($lines == TRUE) { ?>
+                                <tr class="border">
+                                    <th class="sortleft"></th>
+                                    <th><?php echo lang('zone') ?></th>
+                                    <th><?php echo lang('name_description') ?></th>
+                                    <th class="al-text-w"></th>
+                                </tr>
+                            <?php } ?>
                         </thead>
                         <tbody>
                             <?php for ($start; $start < $finish; $start++) { ?>
                                 <tr>
                                     <td class="sortleft">
-                                       
+
                                     </td>
                                     <td><?php echo $FUNC->filter_array_to_key($name_country, 0, $lines[$start][0], 1)[0] ?></td>
                                     <td></td>

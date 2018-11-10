@@ -15,7 +15,7 @@
 <?php for ($k; $k < $finish; $k++) { // запускаем цикл формирования модальных окон  ?>
 
     <!-- Вставляем модальное окно "Редактировать" -->
-    <?php require(ROOT . '/view/'.$TEMPLATE.'/admin/pages/settings/countries/regions/modal/edit.php') ?>
+    <?php require(ROOT . '/view/' . $TEMPLATE . '/admin/pages/settings/countries/regions/modal/edit.php') ?>
 
 <?php } ?>
 
@@ -50,8 +50,8 @@
                                             <input hidden name="start" value="<?php echo $start ?>">
                                             <input hidden name="finish" value="<?php echo $finish ?>">
                                             <input hidden name="country_id" value="<?php echo $VALID->inGET('country_id') ?>">
+                                            <div class="right"><button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
                                         <?php } ?>
-                                        <div class="right"><button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
                                     </form>
 
                                     <form>
@@ -59,8 +59,8 @@
                                             <input hidden name="start2" value="<?php echo $start ?>">
                                             <input hidden name="finish2" value="<?php echo $finish ?>">
                                             <input hidden name="country_id" value="<?php echo $VALID->inGET('country_id') ?>">
+                                            <div class="left"><button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
                                         <?php } ?>
-                                        <div class="left"><button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
                                     </form>
 
                                     <div class="left">
