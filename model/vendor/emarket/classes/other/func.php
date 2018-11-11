@@ -20,7 +20,7 @@ class Func {
                 array_push($arr, $value[$val]);
             }
         }
-        //asort($arr); // Сортируем массив по возрастанию
+        array_multisort($arr); // Сортируем массив по возрастанию
         return $arr;
     }
 
@@ -63,7 +63,7 @@ class Func {
      * $value_key = 'Россия'; - Значение ключа (=> Россия), по которому делаем фильтрацию
      * $val = 2; - это ключ ячейки Город [2] из которого берется значение Города для нового одномерного массива
 
-     * $mass = $FUNC->sort_array_to_key($array, $value_key, $name_key, $id, $val);
+     * $mass = $FUNC->filter_array_to_key($array, $value_key, $name_key, $id, $val);
      * 
      * на выходе получаем
      * 

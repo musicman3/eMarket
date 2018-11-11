@@ -46,12 +46,6 @@ if ($VALID->inPOST('add')) {
     }
 }
 
-// Если нажали на кнопку Удалить
-if ($VALID->inPOST('delete')) {
-
-    // Удаляем
-    $PDO->inPrepare("DELETE FROM " . TABLE_ZONES_VALUE . " WHERE country_id=? AND zones_id=?", [$VALID->inPOST('delete'), $zones_id]);
-}
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 // Собираем название стран для вывода в View
 $name_country = $PDO->getColRow("SELECT id, name FROM " . TABLE_COUNTRIES . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);
