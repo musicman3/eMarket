@@ -80,8 +80,24 @@
                         </thead>
                         <tbody>
                             <?php for ($start; $start < $finish; $start++) { ?>
+                            
+                                <!--Формирование списка для всплывающих подсказок-->
+                                <?php
+                                $text = '';
+                                $y = 0;
+                                for ($x = 0; $x < count($FUNC->filter_array_to_key($name_regions, 0, $lines[$start][0], 1)); $x++) {
+                                    if (isset($regions[$x][0]) == TRUE && isset($lines[$start][0]) == TRUE && $regions[$x][0] == $lines[$start][0]) { // если регион есть
+                                        $text .= $FUNC->filter_array_to_key($name_regions, 0, $regions[$x][0], 1)[$y] . ', '; // то, добавляем название региона
+                                        $y++;
+                                    }
+                                }
+                                $y++;
+
+                                ?>
+                                <!--КОНЕЦ Формирование списка для всплывающих подсказок-->
+                                
                                 <tr>
-                                    <td class="sortleft"><a class="btn btn-primary btn-xs" href="#" ><span data-toggle="tooltip" data-placement="bottom" data-original-title="Бла, бла" class="glyphicon glyphicon-eye-open"></span></a></td>
+                                    <td class="sortleft"><a class="btn btn-primary btn-xs" href="#" ><span data-toggle="tooltip" data-html="true" data-placement="right" data-original-title="<?php echo $text ?>" class="glyphicon glyphicon-eye-open"></span></a></td>
                                     <td><?php echo $FUNC->filter_array_to_key($name_country, 0, $lines[$start][0], 1)[0] ?></td>
                                     <td> </td>
                                 </tr>

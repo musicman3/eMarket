@@ -47,21 +47,20 @@ if ($VALID->inPOST('add')) {
 }
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
-// Собираем название стран для вывода в View
-$name_country = $PDO->getColRow("SELECT id, name FROM " . TABLE_COUNTRIES . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);
 // Собираем данные для вывода списка стран
 $lines_temp = $PDO->getColRow("SELECT country_id FROM " . TABLE_ZONES_VALUE . " WHERE zones_id=?", [$zones_id]);
 $lines = array_values(array_unique($lines_temp, SORT_REGULAR)); // Выбираем по 1 экземпляру стран и сбрасываем ключи массива
-//
-//
 
 $navigate = $NAVIGATION->getLink(count($lines), $lines_of_page = 20);
 $start = $navigate[0];
 $finish = $navigate[1];
 
-$regions_temp = $PDO->getColRow("SELECT country_id, regions_id FROM " . TABLE_ZONES_VALUE . " WHERE zones_id=?", [$zones_id]);
-$regions = array_unique($regions_temp, SORT_REGULAR); // Выбираем по 1 экземпляру стран и сбрасываем ключи массива
-//$DEBUG->var_dump($VALID->inPOST('multiselect'));
+// Собираем название стран и регионов для вывода в View
+$name_country = $PDO->getColRow("SELECT id, name FROM " . TABLE_COUNTRIES . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);
+$name_regions = $PDO->getColRow("SELECT country_id, name FROM " . TABLE_REGIONS . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);
+
+$regions = $PDO->getColRow("SELECT country_id, regions_id FROM " . TABLE_ZONES_VALUE . " WHERE zones_id=?", [$zones_id]);
+//$DEBUG->var_dump($regions);
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
 $JS_END = __DIR__;
 
