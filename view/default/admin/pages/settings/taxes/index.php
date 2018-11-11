@@ -40,7 +40,7 @@
                                     } else {
 
                                         ?>
-                                        <div><?php echo lang('no_taxes') ?></div>
+                                        <div><?php echo lang('no_listing') ?></div>
                                     <?php } ?>
                                 </th>
 

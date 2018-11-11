@@ -91,7 +91,7 @@
                     <!--</div>-->
                 </div>
             <?php } else { ?>
-                <div class="panel-body"><?php echo lang('no_log') ?></div>
+                <div class="panel-body"><?php echo lang('no_listing') ?></div>
             <?php } ?>
         </div>
     </div>

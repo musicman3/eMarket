@@ -166,7 +166,7 @@
                             <thead>
                                 <tr>
                                     <th colspan="3">
-                                        <div><?php echo lang('no_cat') ?></div>
+                                        <div><?php echo lang('no_listing') ?></div>
                                     </th>
                                 </tr>
                             </thead>
