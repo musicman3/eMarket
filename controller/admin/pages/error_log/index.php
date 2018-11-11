@@ -19,10 +19,13 @@ if ($VALID->inPOST('delete') == 'delete') {
 if (file_exists(ROOT . '/model/work/errors.log')) { // Если файл существует, то
     //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
     $lines = array_reverse(file(ROOT . '/model/work/errors.log')); // получаем содержимое файла в виде массива и сортируем в обратном порядке
-    $navigate = $NAVIGATION->postLink(count($lines), $lines_of_page = 20);
-    $start = $navigate[0];
-    $finish = $navigate[1];
+} else { // если файла нет, то выводим пустой массив
+    $lines = array();
 }
+$navigate = $NAVIGATION->postLink(count($lines), $lines_of_page = 20);
+$start = $navigate[0];
+$finish = $navigate[1];
+
 
 // *********  CONNECT PAGE END  ********* //
 require_once(ROOT . '/model/end.php');
