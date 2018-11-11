@@ -33,6 +33,7 @@
         <meta name="owner" content="eMarket" />
         <meta name="copyright" content="Copyright © 2018 by eMarket Team. All right reserved." />
 
+        <title><?php echo $lang['title_login'] ?></title>
         <link href="../ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
         <link href="../ext/bootstrap/css/normalize.css" rel="stylesheet" media="screen" />
         <style type="text/css">body {padding-top:5px;}</style>
