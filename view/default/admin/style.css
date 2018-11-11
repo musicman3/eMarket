@@ -72,6 +72,7 @@ div.context-one {padding:5px;}
 @media (min-width:768px){.products .modal-dialog{width:680px;margin:30px auto;}}
 .settings {float: left;padding-left: 5px;}
 .settings .btn {margin-right: 10px;}
+#settings .tooltip-inner {max-width:550px;}
 .tooltip-inner {font-family: 'Open Sans',sans-serif;}
 .tooltip-right {float: right;}
 .tooltip-right .glyphicon {color: #000000;opacity: 0.5}
