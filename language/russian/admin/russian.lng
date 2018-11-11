@@ -24,6 +24,7 @@ title_stock = Склад
 title_categories = Категории
 title_products = Товары
 title_zones = Зоны
+title_listing = Страны и регионы
 
 ;кнопки меню
 menu_exit = Выход
@@ -90,4 +91,5 @@ name_zone = Название зоны
 region_code = Код региона
 region = Регион
 zone = Зона
+country = Страна
 

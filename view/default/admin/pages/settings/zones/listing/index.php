@@ -73,7 +73,7 @@
                             <?php if ($lines == TRUE) { ?>
                                 <tr class="border">
                                     <th> </th>
-                                    <th><?php echo lang('zone') ?></th>
+                                    <th><?php echo lang('country') ?></th>
                                     <th> </th>
                                 </tr>
                             <?php } ?>
