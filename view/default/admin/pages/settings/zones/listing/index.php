@@ -80,7 +80,7 @@
                         </thead>
                         <tbody>
                             <?php for ($start; $start < $finish; $start++) { ?>
-                            
+
                                 <!--Формирование списка для всплывающих подсказок-->
                                 <?php
                                 $text = '';
@@ -91,17 +91,16 @@
                                         $y++;
                                     }
                                 }
-                                $y++;
 
                                 ?>
                                 <!--КОНЕЦ Формирование списка для всплывающих подсказок-->
-                                
+
                                 <tr>
                                     <td class="sortleft"><a class="btn btn-primary btn-xs" href="#" ><span data-toggle="tooltip" data-html="true" data-placement="right" data-original-title="<?php echo $text ?>" class="glyphicon glyphicon-eye-open"></span></a></td>
                                     <td><?php echo $FUNC->filter_array_to_key($name_country, 0, $lines[$start][0], 1)[0] ?></td>
                                     <td> </td>
                                 </tr>
-                            <?php } ?>
+<?php } ?>
                         </tbody>
                     </table>
                 </div>
