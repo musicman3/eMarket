@@ -20,15 +20,12 @@
                     <!--Мультиселект-->
                     <span class="multiselect-native-select">
                         <select id="example-collapseOptGroupsByDefault-buttonText-selectAllText-filterPlaceholder-collapsedClickableOptGroups-enableFiltering-enableCaseInsensitiveFiltering-includeSelectAllOption" name="multiselect[]" multiple="multiple">
-
                             <?php
                             $z = 0;
                             foreach ($countries_multiselect as $k => $v) {
 
                                 ?>
-
                                 <optgroup label="<?php echo $v ?>">
-
                                     <?php
                                     foreach ($FUNC->filter_array_to_key($regions_multiselect, 1, $k, 2) as $k2 => $v2) {
                                         // Если Страна уже добавлена, то отмечаем галочкой в селекте
@@ -36,7 +33,6 @@
                                             $z++;
 
                                             ?>
-
                                             <!--Возвращаем массив формата country_id => id Региона -->
                                             <option value="<?php echo $k ?>-<?php echo $k2 ?>" selected="selected"><?php echo $v2 ?></option>
                                             <?php
@@ -50,11 +46,8 @@
                                     }
 
                                     ?>
-
                                 </optgroup>
-
                             <?php } ?>
-
                         </select>
                     </span>
                     <!--КОНЕЦ Мультиселект-->
