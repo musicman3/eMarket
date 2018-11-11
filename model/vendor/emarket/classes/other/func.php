@@ -20,7 +20,7 @@ class Func {
                 array_push($arr, $value[$val]);
             }
         }
-        asort($arr); // Сортируем массив по возрастанию
+        //asort($arr); // Сортируем массив по возрастанию
         return $arr;
     }
 
