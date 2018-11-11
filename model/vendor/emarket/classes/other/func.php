@@ -20,7 +20,9 @@ class Func {
                 array_push($arr, $value[$val]);
             }
         }
-        array_multisort($arr); // Сортируем массив по возрастанию
+        // Сортируем массив по возрастанию (регистронезависимо)
+        $array_lowercase = array_map('strtolower', $arr);
+        array_multisort($array_lowercase, SORT_ASC, SORT_STRING, $arr); 
         return $arr;
     }
 
