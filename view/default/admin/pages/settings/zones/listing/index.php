@@ -9,18 +9,6 @@
 <?php require_once('modal/add.php') ?>
 <!-- КОНЕЦ Модальное окно "Добавить" -->
 
-<!-- Дублируем модальные окна Редактирования -->
-<?php $k = $start; // дублируем переменную   ?>
-
-<?php for ($k; $k < $finish; $k++) { // запускаем цикл формирования модальных окон  ?>
-
-    <!-- Вставляем модальное окно "Редактировать" -->
-    <?php require(ROOT . '/view/' . $TEMPLATE . '/admin/pages/settings/zones/modal/edit.php') ?>
-
-<?php }
-
-?>
-
 <div id="ajax">
     <div id="settings" class="container">
         <div class="row">
