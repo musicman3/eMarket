@@ -72,11 +72,9 @@
                                 <!--Формирование списка для всплывающих подсказок-->
                                 <?php
                                 $text = '| ';
-                                $y = 0;
                                 for ($x = 0; $x < count($regions); $x++) {
                                     if (isset($regions[$x][0]) == TRUE && isset($lines[$start][0]) == TRUE && $regions[$x][0] == $lines[$start][0]) { // если регион есть
-                                        $text .= $FUNC->filter_array_to_key($name_regions, 0, $regions[$x][0], 1)[$y] . ' | '; // то, добавляем название региона
-                                        $y++;
+                                        $text .= $FUNC->filter_array_to_key($name_regions, 0, $regions[$x][0], 1)[$regions[$x][1]] . ' | '; // то, добавляем название региона
                                     }
                                 }
 
