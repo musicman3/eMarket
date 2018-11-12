@@ -1,4 +1,5 @@
 <?php
+
 // ****** Copyright © 2018 eMarket *****// 
 //   GNU GENERAL PUBLIC LICENSE v.3.0   //    
 // https://github.com/musicman3/eMarket //
@@ -38,8 +39,9 @@ if ($VALID->inGET('id_edit')) {
 // Если нажали на кнопку Удалить
 if ($VALID->inPOST('delete')) {
 
-    // Удаляем
+    // Удаляем Страну и Регионы
     $PDO->inPrepare("DELETE FROM " . TABLE_COUNTRIES . " WHERE id=?", [$VALID->inPOST('delete')]);
+    $PDO->inPrepare("DELETE FROM " . TABLE_REGIONS . " WHERE country_id=?", [$VALID->inPOST('delete')]);
 }
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
@@ -51,5 +53,4 @@ $finish = $navigate[1];
 // *********  CONNECT PAGE END  ********* //
 require_once(ROOT . '/model/end.php');
 // ************************************** //
-
 ?>
