@@ -23,29 +23,32 @@
                             <?php
                             $z = 0;
                             foreach ($countries_multiselect as $k => $v) {
+                                // Если в Стране уже есть выделенные ранее регионы
                                 if (in_array(array($k), $lines) == TRUE && count($regions[0][1]) > 0) {
 
                                     ?>
+                                    <!-- то выводим их с подсветкой -->
                                     <optgroup label="<span class='multiselect-add'><?php echo $v ?></span>">
                                     <?php } else {
 
                                         ?>
+                                        <!-- если их нет, то стандартный вывод -->
                                     <optgroup label="<?php echo $v ?>">
                                         <?php
                                     }
                                     foreach ($FUNC->filter_array_to_key($regions_multiselect, 1, $k, 2) as $k2 => $v2) {
-                                        // Если Страна уже добавлена, то отмечаем галочкой в селекте
+                                        // Если Страна уже добавлена
                                         if (in_array(array($k), $lines) == TRUE && $k2 == $regions[$z][1]) {
                                             $z++;
 
                                             ?>
-                                            <!--Возвращаем массив формата country_id => id Региона -->
+                                            <!--то отмечаем галочкой в селекте и возвращаем массив формата country_id => id Региона -->
                                             <option value="<?php echo $k ?>-<?php echo $k2 ?>" selected="selected"><?php echo $v2 ?></option>
                                             <?php
-                                            //Если Страна не была добавлена, то выводим стандартно
-                                        } else {
+                                        } else { //Если Страна не была добавлена
 
                                             ?>
+                                            <!--то выводим стандартно и возвращаем массив формата country_id => id Региона -->
                                             <option value="<?php echo $k ?>-<?php echo $k2 ?>"><?php echo $v2 ?></option>
                                             <?php
                                         }
