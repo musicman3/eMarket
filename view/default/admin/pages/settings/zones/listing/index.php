@@ -88,7 +88,7 @@
                                     <td><?php echo $FUNC->filter_array_to_key($name_country, 0, $lines[$start][0], 1)[0] ?></td>
                                     <td> </td>
                                 </tr>
-<?php } ?>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>
