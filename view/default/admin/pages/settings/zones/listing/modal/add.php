@@ -27,7 +27,7 @@
 
                                     ?>
                                     <optgroup label="<span class='multiselect-add'><?php echo $v ?></span>">
-                                        <?php } else {
+                                    <?php } else {
 
                                         ?>
                                     <optgroup label="<?php echo $v ?>">
@@ -53,7 +53,7 @@
 
                                     ?>
                                 </optgroup>
-<?php } ?>
+                            <?php } ?>
                         </select>
                     </span>
                     <!--КОНЕЦ Мультиселект-->
