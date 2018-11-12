@@ -22,15 +22,14 @@ if ($VALID->inGET('zone_id')) {
 // Если нажали на кнопку Добавить
 if ($VALID->inPOST('add')) {
 
-    //Очищаем страны и регионы от этой зоны
+    // Очищаем страны и регионы из этой зоны
     $PDO->inPrepare("DELETE FROM " . TABLE_ZONES_VALUE . " WHERE zones_id=?", [$zones_id]);
 
     if (empty($VALID->inPOST('multiselect')) == FALSE) {
-        //Создаем многомерный массив из одномерного, разбитого на части разделителем "-"
+        // Создаем многомерный массив из одномерного, разбитого на части разделителем "-"
         $multiselect = $FUNC->array_explode($VALID->inPOST('multiselect'), '-');
-
+        // Добавляем выбранные в мультиселекте данные
         for ($x = 0; $x < count($multiselect); $x++) {
-
             $PDO->inPrepare("INSERT INTO " . TABLE_ZONES_VALUE . " SET country_id=?, regions_id=?, zones_id=?", [$multiselect[$x][0], $multiselect[$x][1], $zones_id]);
         }
     }
