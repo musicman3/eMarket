@@ -9,7 +9,7 @@
 <!--Мультиселект-->
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#example-collapseOptGroupsByDefault-buttonText-selectAllText-filterPlaceholder-collapsedClickableOptGroups-enableFiltering-enableCaseInsensitiveFiltering-includeSelectAllOption').multiselect({
+        $('#example-xss-html-collapseOptGroupsByDefault-buttonText-selectAllText-filterPlaceholder-collapsedClickableOptGroups-enableFiltering-enableCaseInsensitiveFiltering-includeSelectAllOption').multiselect({
             //Выбирать группы
             enableClickableOptGroups: true,
             enableCollapsibleOptGroups: true,
@@ -24,6 +24,7 @@
             includeSelectAllOption: false,
             //Надписи "Выбрать все"
             selectAllText: 'Выбрать все',
+            enableHTML: true,
             
             //Надписи на кнопке
             buttonText: function (options, select) {
