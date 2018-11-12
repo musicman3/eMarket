@@ -9,7 +9,7 @@
 <!--Мультиселект-->
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#example-xss-html-collapseOptGroupsByDefault-buttonText-selectAllText-filterPlaceholder-collapsedClickableOptGroups-enableFiltering-enableCaseInsensitiveFiltering-includeSelectAllOption').multiselect({
+        $('#example-buttonTitle-xss-html-collapseOptGroupsByDefault-buttonText-selectAllText-filterPlaceholder-collapsedClickableOptGroups-enableFiltering-enableCaseInsensitiveFiltering-includeSelectAllOption').multiselect({
             //Выбирать группы
             enableClickableOptGroups: true,
             enableCollapsibleOptGroups: true,
@@ -24,14 +24,19 @@
             includeSelectAllOption: false,
             //Надписи "Выбрать все"
             selectAllText: 'Выбрать все',
+            //Включить поддержку HTML в названиях
             enableHTML: true,
-            
+            //Свой Title на кнопке
+            buttonTitle: function () {
+                return 'Выберите страну и регион';
+            },
+
             //Надписи на кнопке
             buttonText: function (options, select) {
                 if (options.length === 0) {
                     return 'Выберите страну и регион';
                 } else if (options.length > 0) {
-                    return 'Выбрано позиций: '+options.length+' шт.';
+                    return 'Выбрано позиций: ' + options.length + ' шт.';
                 } else {
                     var labels = [];
                     options.each(function () {
@@ -46,7 +51,7 @@
             }
 
         });
-        });
+    });
 </script>
 
 
