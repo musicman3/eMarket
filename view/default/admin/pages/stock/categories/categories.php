@@ -197,7 +197,7 @@
                             <thead>
                                 <tr>
                                     <th colspan="3">
-                                        <div><?php echo lang('no_cat') ?></div>
+                                        <div><?php echo lang('no_listing') ?></div>
                                     </th>
                                 </tr>
                             </thead>
@@ -205,7 +205,7 @@
                                 <tr>
                                     <td  class="sortleft-m" align="left"></td>
                                     <td class="sortleft" align="left"></td>
-                                    <td class="options" align="left"><div class="context-one"><?php echo lang('no_cat') ?></div></td>
+                                    <td class="options" align="left"><div class="context-one"><?php echo lang('no_listing') ?></div></td>
                                 </tr>
                             </tbody>
                         </table>

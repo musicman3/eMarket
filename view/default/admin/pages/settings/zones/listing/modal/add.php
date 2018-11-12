@@ -25,7 +25,7 @@
                             foreach ($countries_multiselect as $k => $v) {
                                 if (in_array(array($k), $lines) == TRUE && count($regions[0][1]) > 0){
                                 ?>
-                                <optgroup label="<span style='color:#337ab7'><?php echo $v ?></span>">
+                                <optgroup label="<span style='color:#4caf50'><?php echo $v ?></span>">
                                     <?php
                                 }else{ ?>
                                     <optgroup label="<?php echo $v ?>">
