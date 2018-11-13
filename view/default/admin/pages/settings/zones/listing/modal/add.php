@@ -29,7 +29,7 @@
                             $z = 0;
                             foreach ($countries_multiselect as $k => $v) {
                                 // Если в Стране уже есть выделенные ранее регионы
-                                if (in_array(array($k), $lines) == TRUE && count($regions[0][1]) > 0) {
+                                if (in_array(array($k), $lines) == TRUE && count($regions) != 0) {
 
                                     ?>
                                     <!-- то выводим их с подсветкой -->
@@ -43,7 +43,7 @@
                                     }
                                     foreach ($FUNC->filter_array_to_key($regions_multiselect, 1, $k, 2) as $k2 => $v2) {
                                         // Если Страна уже добавлена
-                                        if (in_array(array($k), $lines) == TRUE && $k2 == $regions[$z][1]) {
+                                        if (in_array(array($k), $lines) == TRUE && isset($regions[$z][1]) == TRUE && $k2 == $regions[$z][1]) {
                                             $z++;
 
                                             ?>
