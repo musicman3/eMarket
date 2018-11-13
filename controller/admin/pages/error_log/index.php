@@ -22,7 +22,7 @@ if (file_exists(ROOT . '/model/work/errors.log')) { // Если файл сущ�
 } else { // если файла нет, то выводим пустой массив
     $lines = array();
 }
-$navigate = $NAVIGATION->postLink(count($lines), $lines_of_page = 20);
+$navigate = $NAVIGATION->getLink(count($lines), $lines_of_page = 20);
 $start = $navigate[0];
 $finish = $navigate[1];
 
