@@ -11,21 +11,20 @@ spl_autoload_register(function ($class_name) {
         require_once $file;
     }
 });
-
 //
-//ЗАГРУЖАЕМ CLASS Valid
+//СОЗДАЕМ ОБЪЕКТ Valid
 $VALID = new eMarket\Classes\Core\Valid;
-//ЗАГРУЖАЕМ CLASS Pdo
+//СОЗДАЕМ ОБЪЕКТ Pdo
 $PDO = new eMarket\Classes\Core\Pdo;
-//ЗАГРУЖАЕМ CLASS View
+//СОЗДАЕМ ОБЪЕКТ View
 $VIEW = new eMarket\Classes\Core\View;
-//ЗАГРУЖАЕМ CLASS Tree
+//СОЗДАЕМ ОБЪЕКТ Tree
 $TREE = new eMarket\Classes\Core\Tree;
-//ЗАГРУЖАЕМ CLASS Navigation
+//СОЗДАЕМ ОБЪЕКТ Navigation
 $NAVIGATION = new eMarket\Classes\Core\Navigation;
-//ЗАГРУЖАЕМ CLASS Debug
+//СОЗДАЕМ ОБЪЕКТ Debug
 $DEBUG = new eMarket\Classes\Other\Debug;
-//ЗАГРУЖАЕМ CLASS Func
+//СОЗДАЕМ ОБЪЕКТ Func
 $FUNC = new eMarket\Classes\Other\Func;
 
 ?>
