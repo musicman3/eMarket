@@ -15,7 +15,7 @@ class Tree {
      * @param строка $dir
      * @return массив $files
      */
-    function filesTree($dir) { // $dir - путь к директории с файлами
+    public function filesTree($dir) { // $dir - путь к директории с файлами
         $handle = opendir($dir) or die("Error: Can't open directory $dir");
         $files = Array();
         $subfiles = Array();

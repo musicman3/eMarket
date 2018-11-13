@@ -14,7 +14,7 @@ class View {
      *
      * @return строка $str
      */
-    function Routing() {
+    public function Routing() {
 
         global $TEMPLATE;
 

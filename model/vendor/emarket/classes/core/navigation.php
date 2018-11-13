@@ -16,7 +16,7 @@ class Navigation extends Valid {
      * @param строка $lines_of_page
      * @return массив
      */
-    function getLink($count_lines, $lines_of_page) {
+    public function getLink($count_lines, $lines_of_page) {
 
         //$count_lines - общее число строк
         //$lines_of_page - число строк на странице
@@ -61,7 +61,7 @@ class Navigation extends Valid {
      * @param строка $lines_of_page
      * @return массив
      */
-    function postLink($count_lines, $lines_of_page) {
+    public function postLink($count_lines, $lines_of_page) {
 
         //$count_lines - общее число строк
         //$lines_of_page - число строк на странице

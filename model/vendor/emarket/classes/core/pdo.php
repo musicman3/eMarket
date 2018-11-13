@@ -15,7 +15,7 @@ class Pdo {
      * @param строка $sql
      * @return команда
      */
-    function getQuery($sql) {
+    public function getQuery($sql) {
         global $DB;
 
         $result = $DB->query($sql);
@@ -28,7 +28,7 @@ class Pdo {
      * @param строка $sql
      * @return команда
      */
-    function getExec($sql) {
+    public function getExec($sql) {
         global $DB;
 
         $result = $DB->exec($sql);
@@ -51,7 +51,7 @@ class Pdo {
      * @param массив $a
      * @return массив, строка
      */
-    function getCell($sql, $a) {
+    public function getCell($sql, $a) {
         global $DB;
 
         $result = FALSE;
@@ -122,7 +122,7 @@ class Pdo {
      * @param массив $a
      * @return массив
      */
-    function getColRow($sql, $a) {
+    public function getColRow($sql, $a) {
         global $DB;
 
         $result = FALSE;
@@ -154,7 +154,7 @@ class Pdo {
      * @param массив $a
      * @return массив
      */
-    function getCol($sql, $a) {
+    public function getCol($sql, $a) {
         global $DB;
 
         $result = FALSE;
@@ -179,8 +179,8 @@ class Pdo {
      * @param строка $sql
      * @param массив $a
      * @return массив
-     */    
-    function getCellFalse($sql, $a) {
+     */
+    public function getCellFalse($sql, $a) {
         global $DB;
 
         $result = FALSE;
@@ -204,8 +204,8 @@ class Pdo {
      * @param строка $sql
      * @param массив $a
      * @return массив, int
-     */     
-    function getColCount($sql, $a) {
+     */
+    public function getColCount($sql, $a) {
         global $DB;
 
         $result = FALSE;
@@ -229,8 +229,8 @@ class Pdo {
      * @param строка $sql
      * @param массив $a
      * @return массив, int
-     */     
-    function getRowCount($sql, $a) {
+     */
+    public function getRowCount($sql, $a) {
         global $DB;
 
         $result = FALSE;
@@ -254,8 +254,8 @@ class Pdo {
      * @param строка $sql
      * @param массив $a
      * @return массив, строка
-     */     
-    function selectPrepare($sql, $a) {
+     */
+    public function selectPrepare($sql, $a) {
         global $DB;
 
         $result = FALSE;
@@ -284,8 +284,8 @@ class Pdo {
      * @param строка $sql
      * @param массив $a
      * @return массив, команда
-     */     
-    function inPrepare($sql, $a) {
+     */
+    public function inPrepare($sql, $a) {
         global $DB;
 
         $result = FALSE;

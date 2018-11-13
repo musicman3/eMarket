@@ -1,4 +1,5 @@
 <?php
+
 // ****** Copyright © 2018 eMarket *****// 
 //   GNU GENERAL PUBLIC LICENSE v.3.0   //    
 // https://github.com/musicman3/eMarket //
@@ -29,7 +30,12 @@ foreach ($lang_dir as $lang_name) {
     }
 }
 
-//Функция для вывода языковой переменной вида: lang('pass');
+/**
+ * Функция для вывода языковой переменной вида: lang('pass');
+ *
+ * @param строка $a
+ * @return строка $str
+ */
 function lang($a) {
     global $lang;
 
