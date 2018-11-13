@@ -15,7 +15,7 @@ class Debug {
      * @param массив $var
      * @return null
      */
-    public function var_dump($var) {
+    public function trace($var) {
         static $int = 0;
         echo '<pre><b>' . $int . '</b> ';
         print_r($var);
