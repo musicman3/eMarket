@@ -68,7 +68,10 @@ class Navigation extends Valid {
 
         $start = 0; // устанавливаем страницу в ноль при заходе
         $finish = $lines_of_page;
-
+        
+        if ($count_lines <= $lines_of_page) {
+            $finish = $count_lines;
+        }
         // Если нажали на кнопку вперед POST
         if ($this->inPOST('finish')) {
             $finish = $this->inPOST('finish') + $lines_of_page; // пересчитываем количество строк на странице
