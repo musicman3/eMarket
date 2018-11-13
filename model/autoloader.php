@@ -1,5 +1,4 @@
 <?php
-
 // ****** Copyright © 2018 eMarket *****// 
 //   GNU GENERAL PUBLIC LICENSE v.3.0   //    
 // https://github.com/musicman3/eMarket //
@@ -7,9 +6,12 @@
 // 
 //Автозагрузчик классов
 spl_autoload_register(function ($class_name) {
-    $class_path = strtolower(str_replace('\\', '/', $class_name));
-    require_once 'vendor/' . $class_path . '.php';
+    $file = __DIR__ . '/vendor/' . strtolower(str_replace('\\', '/', $class_name)) . '.php';
+    if (file_exists($file)) {
+        require_once $file;
+    }
 });
+
 //
 //ЗАГРУЖАЕМ CLASS Valid
 $VALID = new eMarket\Classes\Core\Valid;
@@ -25,4 +27,5 @@ $NAVIGATION = new eMarket\Classes\Core\Navigation;
 $DEBUG = new eMarket\Classes\Other\Debug;
 //ЗАГРУЖАЕМ CLASS Func
 $FUNC = new eMarket\Classes\Other\Func;
+
 ?>
