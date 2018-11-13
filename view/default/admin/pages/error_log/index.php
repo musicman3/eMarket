@@ -58,28 +58,31 @@
                             <?php
                             for ($start; $start < $finish; $start++) {
 
-                                if (strrpos($lines[$start], 'PHP Notice:') == true) {
+                                if (isset($lines[$start]) == TRUE) {
 
-                                    ?><tr class="success"><td colspan="2"><?php echo $lines[$start] . '</td></tr>'; ?><?php
-                                } elseif
-                                (strrpos($lines[$start], 'PHP Warning:') == true) {
+                                    if (strrpos($lines[$start], 'PHP Notice:') === FALSE) {
 
-                                    ?><tr class="warning"><td colspan="2"><?php echo $lines[$start] . '</td></tr>'; ?><?php
-                                        } elseif
-                                        (strrpos($lines[$start], 'PHP Catchable fatal error:') == true) {
+                                        ?><tr class="success"><td colspan="2"><?php echo $lines[$start] . '</td></tr>'; ?><?php
+                                    } elseif
+                                    (strrpos($lines[$start], 'PHP Warning:') === FALSE) {
 
-                                            ?><tr class="danger"><td colspan="2"><?php echo $lines[$start] . '</td></tr>'; ?><?php
-                                        } elseif
-                                        (strrpos($lines[$start], 'PHP Fatal error:') == true) {
+                                        ?><tr class="warning"><td colspan="2"><?php echo $lines[$start] . '</td></tr>'; ?><?php
+                                            } elseif
+                                            (strrpos($lines[$start], 'PHP Catchable fatal error:') === FALSE) {
 
-                                            ?><tr class="danger"><td colspan="2"><?php echo $lines[$start] . '</td></tr>'; ?><?php
-                                        } elseif
-                                        (strrpos($lines[$start], 'PHP Parse error:') == true) {
+                                                ?><tr class="danger"><td colspan="2"><?php echo $lines[$start] . '</td></tr>'; ?><?php
+                                            } elseif
+                                            (strrpos($lines[$start], 'PHP Fatal error:') === FALSE) {
 
-                                            ?><tr class="info"><td colspan="2"><?php echo $lines[$start] . '</td></tr>'; ?><?php } else {
+                                                ?><tr class="danger"><td colspan="2"><?php echo $lines[$start] . '</td></tr>'; ?><?php
+                                            } elseif
+                                            (strrpos($lines[$start], 'PHP Parse error:') === FALSE) {
 
-                                            ?><tr><td colspan="2"><?php
-                                                    echo $lines[$start] . '</td></tr>';
+                                                ?><tr class="info"><td colspan="2"><?php echo $lines[$start] . '</td></tr>'; ?><?php } else {
+
+                                                ?><tr><td colspan="2"><?php
+                                                        echo $lines[$start] . '</td></tr>';
+                                                    }
                                                 }
                                             }
 

@@ -10,7 +10,7 @@ error_reporting(-1);
 require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 // ************************************** //
 // Если нажали на кнопку Удалить
-if ($VALID->inPOST('delete') == 'delete' && file_exists (ROOT . '/model/work/errors.log')) {
+if ($VALID->inPOST('delete') == 'delete' && file_exists(ROOT . '/model/work/errors.log')) {
     // удаляем лог
     unlink(ROOT . '/model/work/errors.log');
 }
