@@ -27,7 +27,7 @@
             //Включить поддержку HTML в названиях
             enableHTML: true,
             //Класс на кнопку
-            buttonClass: 'btn btn-primary btn-xl',
+            buttonClass: 'btn btn-primary btn-xs',
             
             //Свой Title на кнопке
             buttonTitle: function () {
