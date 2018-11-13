@@ -1,4 +1,5 @@
 <?php
+
 // ****** Copyright © 2018 eMarket *****// 
 //   GNU GENERAL PUBLIC LICENSE v.3.0   //    
 // https://github.com/musicman3/eMarket //
@@ -8,8 +9,13 @@ namespace eMarket\Classes\Core;
 
 class Tree {
 
-//ФУНКЦИЯ ПОСТРОЕНИЯ ДЕРЕВА К ФАЙЛАМ (ПУСТЫЕ ПАПКИ ИГНОРИРУЮТСЯ)
-    function filesTree($dir) {
+    /**
+     * ФУНКЦИЯ ПОСТРОЕНИЯ ДЕРЕВА К ФАЙЛАМ (ПУСТЫЕ ПАПКИ ИГНОРИРУЮТСЯ)
+     *
+     * @param строка $dir
+     * @return массив $files
+     */
+    function filesTree($dir) { // $dir - путь к директории с файлами
         $handle = opendir($dir) or die("Error: Can't open directory $dir");
         $files = Array();
         $subfiles = Array();

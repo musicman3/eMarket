@@ -1,4 +1,5 @@
 <?php
+
 // ****** Copyright © 2018 eMarket *****// 
 //   GNU GENERAL PUBLIC LICENSE v.3.0   //    
 // https://github.com/musicman3/eMarket //
@@ -8,6 +9,12 @@ namespace eMarket\Classes\Core;
 
 class Pdo {
 
+    /**
+     * getQuery вместо $DB->query()
+     *
+     * @param строка $sql
+     * @return команда
+     */
     function getQuery($sql) {
         global $DB;
 
@@ -15,10 +22,12 @@ class Pdo {
         return $result;
     }
 
-    // getQuery вместо $DB->query()
-
-
-
+    /**
+     * getExec вместо $DB->exec()
+     *
+     * @param строка $sql
+     * @return команда
+     */
     function getExec($sql) {
         global $DB;
 
@@ -26,10 +35,22 @@ class Pdo {
         return $result;
     }
 
-    // getExec вместо $DB->exec()
-
-
-
+    /**
+     * getCell для запроса точного значения ячейки.
+     * Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах.
+     * 
+     * ПРИМЕР
+     *
+      Если несколько вариантов, удовлетворяющих условию, то выдает только верхний.
+      Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах.
+      Если значение не найдено, то выдает пустой массив: Array()
+      Запрос вида $PDO->getCell("SELECT language FROM table WHERE id=?", ['1']); выдаст конкретное значение russian - НЕ МАССИВ!
+      Запрос вида $PDO->getCell("SELECT * FROM table WHERE language=?", ['russian']); выдаст значение первого поля, т.е. номер id.
+     * 
+     * @param строка $sql
+     * @param массив $a
+     * @return массив, строка
+     */
     function getCell($sql, $a) {
         global $DB;
 
@@ -43,27 +64,12 @@ class Pdo {
         return $result;
     }
 
-    /* getCell для запроса точного значения ячейки.
-      Если несколько вариантов, удовлетворяющих условию, то выдает только верхний.
-      Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах.
-      Если значение не найдено, то выдает пустой массив: Array()
-      Запрос вида $PDO->getCell("SELECT language FROM table WHERE id=?", ['1']); выдаст конкретное значение russian - НЕ МАССИВ!
-      Запрос вида $PDO->getCell("SELECT * FROM table WHERE language=?", ['russian']); выдаст значение первого поля, т.е. номер id.
-     */
-
-    function getColRow($sql, $a) {
-        global $DB;
-
-        $result = FALSE;
-        if ($exec = $DB->prepare($sql)
-                AND $exec->execute($a)
-                AND $result = $exec->fetchAll($DB :: FETCH_NUM)) {
-            
-        }
-        return $result;
-    }
-
-    /* getColRow для запроса колонок, строк и участков из строк и колонок. Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах.
+    /**
+     * getColRow для запроса колонок, строк и участков из строк и колонок.
+     * Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах.
+     * 
+     * ПРИМЕР
+     *
       Если значение не найдено, то выдает пустой массив: Array()
       Если применять в запросе $PDO->getColRow("SELECT id FROM table WHERE language=?", ['russian']) то выдаст все значения колонки id в виде массива,
       удовлетворяющие условию language='russian'.
@@ -111,8 +117,43 @@ class Pdo {
       и language, удовлетворяющих требованию language='russian'.
 
       Если применить в запросе $PDO->getColRow("SELECT * FROM table", array()), то выдаст всю таблицу в массиве.
+     * 
+     * @param строка $sql
+     * @param массив $a
+     * @return массив
      */
+    function getColRow($sql, $a) {
+        global $DB;
 
+        $result = FALSE;
+        if ($exec = $DB->prepare($sql)
+                AND $exec->execute($a)
+                AND $result = $exec->fetchAll($DB :: FETCH_NUM)) {
+            
+        }
+        return $result;
+    }
+
+    /**
+     * getCol для запроса колонки в виде одномерного массива.
+     * Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах.
+     * 
+     * ПРИМЕР
+     *
+      Если значение не найдено, то выдает пустой массив: Array()
+      Если применять в запросе $PDO->getColRow("SELECT name FROM table WHERE language=?", ['russian']) то выдаст все значения колонки id в виде одномерного массива,
+      удовлетворяющие условию language='russian'.
+
+      Array
+      (
+      [0] => Name1
+      [1] => Name2
+      )
+     * 
+     * @param строка $sql
+     * @param массив $a
+     * @return массив
+     */
     function getCol($sql, $a) {
         global $DB;
 
@@ -126,18 +167,19 @@ class Pdo {
         return $result;
     }
 
-    /* getCol для запроса колонки в виде одномерного массива. Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах.
+    /**
+     * getCellFalse выдает значение ячейки. Если ячейка не найдена то возвращает FALSE.
+     * Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах.
+     * 
+     * ПРИМЕР
+     *
       Если значение не найдено, то выдает пустой массив: Array()
-      Если применять в запросе $PDO->getColRow("SELECT name FROM table WHERE language=?", ['russian']) то выдаст все значения колонки id в виде одномерного массива,
-      удовлетворяющие условию language='russian'.
-
-      Array
-      (
-      [0] => Name1
-      [1] => Name2
-      )
-     */
-
+      Использовать так: $a = $PDO->getCellFalse("SELECT permission FROM users WHERE login=? AND password=?", [$_SESSION['login'],$_SESSION['password']]);
+     * 
+     * @param строка $sql
+     * @param массив $a
+     * @return массив
+     */    
     function getCellFalse($sql, $a) {
         global $DB;
 
@@ -150,11 +192,19 @@ class Pdo {
         return $result;
     }
 
-    /* getCellFalse выдает значение ячейки. Если ячейка не найдена то возвращает FALSE
-      Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах. Если значение не найдено, то выдает пустой массив: Array()
-      Использовать так: $a = $PDO->getCellFalse("SELECT permission FROM users WHERE login=? AND password=?", [$_SESSION['login'],$_SESSION['password']]);
-     */
-
+    /**
+     * getColCount показывает количество столбцов в запросе. Результат выдается простым числовым значением.
+     * Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах.
+     * 
+     * ПРИМЕР
+     *
+      Если значение не найдено, то выдает пустой массив: Array()
+      Использовать так: $a = $PDO->getColCount("SELECT permission FROM users WHERE login=? AND password=?", [$_SESSION['login'],$_SESSION['password']]);
+     * 
+     * @param строка $sql
+     * @param массив $a
+     * @return массив, int
+     */     
     function getColCount($sql, $a) {
         global $DB;
 
@@ -167,11 +217,19 @@ class Pdo {
         return $result;
     }
 
-    /* getColCount показывает количество столбцов в запросе. Результат выдается простым числовым значением.
+    /**
+     * getRowCount показывает количество строк в запросе. Результат выдается простым числовым значением.
+     * Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах.
+     * 
+     * ПРИМЕР
+     *
       Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах. Если значение не найдено, то выдает пустой массив: Array()
-      Использовать так: $a = $PDO->getColCount("SELECT permission FROM users WHERE login=? AND password=?", [$_SESSION['login'],$_SESSION['password']]);
-     */
-
+      Использовать так: $a = $PDO->getRowCount("SELECT permission FROM users WHERE login=? AND password=?", [$_SESSION['login'],$_SESSION['password']]);
+     * 
+     * @param строка $sql
+     * @param массив $a
+     * @return массив, int
+     */     
     function getRowCount($sql, $a) {
         global $DB;
 
@@ -184,11 +242,19 @@ class Pdo {
         return $result;
     }
 
-    /* getRowCount показывает количество строк в запросе. Результат выдается простым числовым значением.
-      Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах. Если значение не найдено, то выдает пустой массив: Array()
-      Использовать так: $a = $PDO->getRowCount("SELECT permission FROM users WHERE login=? AND password=?", [$_SESSION['login'],$_SESSION['password']]);
-     */
-
+    /**
+     * selectPrepare показывает значение ячейки (не массив).
+     * Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах.
+     * 
+     * ПРИМЕР
+     *
+      Если значение не найдено, то выдает пустой массив: Array()
+      Использовать так: $a = $PDO->selectPrepare("SELECT permission FROM users WHERE login=? AND password=?", [$_SESSION['login'],$_SESSION['password']]);
+     * 
+     * @param строка $sql
+     * @param массив $a
+     * @return массив, строка
+     */     
     function selectPrepare($sql, $a) {
         global $DB;
 
@@ -202,11 +268,23 @@ class Pdo {
         return $result;
     }
 
-    /* selectPrepare показывает значение ячейки (не массив). Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах.
-      Если значение не найдено, то выдает пустой массив: Array()
-      Использовать так: $a = $PDO->selectPrepare("SELECT permission FROM users WHERE login=? AND password=?", [$_SESSION['login'],$_SESSION['password']]);
-     */
-
+    /**
+     * inPrepare служит для INSERT INTO, DELETE и UPDATE. 
+     * Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах.
+     * 
+     * ПРИМЕР
+     *
+      Если значения нет, то передает пустой массив: Array()
+      Использовать так:
+      $PDO->inPrepare("INSERT INTO emkt_table SET login=?, password=?", [$_SESSION['login'], $_SESSION['password']]); - создает новую строку
+      $PDO->inPrepare("UPDATE emkt_table SET login=?, password=? WHERE id=?", [$_SESSION['login'], $_SESSION['password'], $id]); - обновляет строку с конкретным id
+      $PDO->inPrepare("DELETE FROM emkt_table WHERE id=?", [$id]); - удаляет строку с конкретным id
+      Также можно применять для SELECT.
+     * 
+     * @param строка $sql
+     * @param массив $a
+     * @return массив, команда
+     */     
     function inPrepare($sql, $a) {
         global $DB;
 
@@ -218,14 +296,6 @@ class Pdo {
         return $result;
     }
 
-    /* inPrepare служит для INSERT INTO, DELETE и UPDATE. Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых записях.
-      Если значения нет, то передает пустой массив: Array()
-      Использовать так:
-      $PDO->inPrepare("INSERT INTO emkt_table SET login=?, password=?", [$_SESSION['login'], $_SESSION['password']]); - создает новую строку
-      $PDO->inPrepare("UPDATE emkt_table SET login=?, password=? WHERE id=?", [$_SESSION['login'], $_SESSION['password'], $id]); - обновляет строку с конкретным id
-      $PDO->inPrepare("DELETE FROM emkt_table WHERE id=?", [$id]); - удаляет строку с конкретным id
-      Также можно применять для SELECT.
-     */
 }
 
 ?>
