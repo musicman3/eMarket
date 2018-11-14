@@ -9,7 +9,7 @@
 <!--Мультиселект-->
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#example-buttonClass-buttonTitle-xss-html-collapseOptGroupsByDefault-buttonText-selectAllText-filterPlaceholder-collapsedClickableOptGroups-enableFiltering-enableCaseInsensitiveFiltering-includeSelectAllOption').multiselect({
+        $('#example-selectAllJustVisible-buttonClass-buttonTitle-xss-html-collapseOptGroupsByDefault-buttonText-selectAllText-filterPlaceholder-collapsedClickableOptGroups-enableFiltering-enableCaseInsensitiveFiltering-includeSelectAllOption').multiselect({
             //Выбирать группы
             enableClickableOptGroups: true,
             enableCollapsibleOptGroups: true,
@@ -21,9 +21,11 @@
             //Надписи в живом поиске
             filterPlaceholder: 'Искать...',
             //Включить "Выбрать все"
-            includeSelectAllOption: false,
+            includeSelectAllOption: true,
             //Надписи "Выбрать все"
             selectAllText: 'Выбрать все',
+            //"Выбрать все" для раскрытых и не раскрытых стран
+            selectAllJustVisible: false,
             //Включить поддержку HTML в названиях
             enableHTML: true,
             //Класс на кнопку
