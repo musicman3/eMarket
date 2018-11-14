@@ -13,18 +13,18 @@ spl_autoload_register(function ($class_name) {
 });
 //
 //СОЗДАЕМ ОБЪЕКТ Valid
-$VALID = new eMarket\Classes\Core\Valid;
+$VALID = new eMarket\Core\Valid;
 //СОЗДАЕМ ОБЪЕКТ Pdo
-$PDO = new eMarket\Classes\Core\Pdo;
+$PDO = new eMarket\Core\Pdo;
 //СОЗДАЕМ ОБЪЕКТ View
-$VIEW = new eMarket\Classes\Core\View;
+$VIEW = new eMarket\Core\View;
 //СОЗДАЕМ ОБЪЕКТ Tree
-$TREE = new eMarket\Classes\Core\Tree;
+$TREE = new eMarket\Core\Tree;
 //СОЗДАЕМ ОБЪЕКТ Navigation
-$NAVIGATION = new eMarket\Classes\Core\Navigation;
+$NAVIGATION = new eMarket\Core\Navigation;
 //СОЗДАЕМ ОБЪЕКТ Debug
-$DEBUG = new eMarket\Classes\Other\Debug;
+$DEBUG = new eMarket\Other\Debug;
 //СОЗДАЕМ ОБЪЕКТ Func
-$FUNC = new eMarket\Classes\Other\Func;
+$FUNC = new eMarket\Other\Func;
 
 ?>

@@ -5,7 +5,7 @@
 // https://github.com/musicman3/eMarket //
 // *************************************//
 
-namespace eMarket\Classes\Other;
+namespace eMarket\Other;
 
 class Func {
 

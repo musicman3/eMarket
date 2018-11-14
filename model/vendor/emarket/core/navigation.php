@@ -5,7 +5,7 @@
 // https://github.com/musicman3/eMarket //
 // *************************************//
 
-namespace eMarket\Classes\Core;
+namespace eMarket\Core;
 
 class Navigation extends Valid {
 
