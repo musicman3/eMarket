@@ -67,26 +67,20 @@
                             <?php } ?>
                         </thead>
                         <tbody>
-                            <?php for ($start; $start < $finish; $start++) { ?>
-
-                                <!--Формирование списка для всплывающих подсказок-->
-                                <?php
-                                $text = '| ';
-                                for ($x = 0; $x < count($regions); $x++) {
-                                    if (isset($regions[$x][0]) == TRUE && isset($lines[$start][0]) == TRUE && $regions[$x][0] == $lines[$start][0]) { // если регион есть
-                                        $text .= $FUNC->filter_array_to_key($name_regions, 0, $regions[$x][0], 1)[$regions[$x][1]] . ' | '; // то, добавляем название региона
-                                    }
-                                }
+                            <?php
+                            $count = 0;
+                            for ($start; $start < $finish; $start++) {
 
                                 ?>
-                                <!--КОНЕЦ Формирование списка для всплывающих подсказок-->
-
                                 <tr>
-                                    <td class="sortleft"><a class="btn btn-primary btn-xs" href="#" ><span data-toggle="tooltip" data-html="true" data-placement="right" data-original-title="<?php echo $text ?>" class="glyphicon glyphicon-eye-open"></span></a></td>
+                                    <td class="sortleft"><a class="btn btn-primary btn-xs" href="#" ><span data-toggle="tooltip" data-html="true" data-placement="right" data-original-title="<?php echo $text_arr[$count] ?>" class="glyphicon glyphicon-eye-open"></span></a></td>
                                     <td><?php echo $FUNC->filter_array_to_key($name_country, 0, $lines[$start][0], 1)[0] ?></td>
                                     <td> </td>
                                 </tr>
-                            <?php } ?>
+                            <?php
+                            $count++;
+                            }
+                            ?>
                         </tbody>
                     </table>
                 </div>

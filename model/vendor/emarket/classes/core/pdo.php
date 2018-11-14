@@ -13,7 +13,7 @@ class Pdo {
      * getQuery вместо $DB->query()
      *
      * @param строка $sql
-     * @return команда
+     * @return команда MYSQL
      */
     public function getQuery($sql) {
         global $DB;
@@ -26,7 +26,7 @@ class Pdo {
      * getExec вместо $DB->exec()
      *
      * @param строка $sql
-     * @return команда
+     * @return команда MYSQL
      */
     public function getExec($sql) {
         global $DB;
@@ -283,7 +283,7 @@ class Pdo {
      * 
      * @param строка $sql
      * @param массив $a
-     * @return массив, команда
+     * @return команда MYSQL
      */
     public function inPrepare($sql, $a) {
         global $DB;

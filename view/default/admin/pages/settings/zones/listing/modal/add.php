@@ -13,10 +13,10 @@
                 <h4 class="modal-title"><?php echo lang('zone') ?></h4>
             </div>
             <form id="form" name="form" action="index.php" method="post" enctype="multipart/form-data">
-<!--                <div class="panel-body">
-
-
-                </div>-->
+                <!--<div class="panel-body">
+                
+                
+                    </div>-->
 
                 <div class="modal-footer">
                     <input type="hidden" name="add" value="ok" />
@@ -65,7 +65,7 @@
                         </select>
                     </span>
                     <!--КОНЕЦ Мультиселект-->
-                    
+
                     <button class="btn btn-primary btn-xs" type="button" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-remove"></span> <?php echo lang('cancel') ?></button>
                     <button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button>
                 </div>
