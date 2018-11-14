@@ -26,7 +26,7 @@
                     <span class="multiselect-native-select">
                         <select id="example-buttonClass-buttonTitle-xss-html-collapseOptGroupsByDefault-buttonText-selectAllText-filterPlaceholder-collapsedClickableOptGroups-enableFiltering-enableCaseInsensitiveFiltering-includeSelectAllOption" name="multiselect[]" multiple="multiple">
                             <?php
-                            $z = 0;
+                            $count = 0;
                             foreach ($countries_multiselect as $k => $v) {
                                 // Если в Стране уже есть выделенные ранее регионы
                                 if (in_array(array($k), $lines) == TRUE && count($regions) != 0) {
@@ -43,8 +43,8 @@
                                     }
                                     foreach ($FUNC->filter_array_to_key($regions_multiselect, 1, $k, 2) as $k2 => $v2) {
                                         // Если Страна уже добавлена
-                                        if (in_array(array($k), $lines) == TRUE && isset($regions[$z][1]) == TRUE && $k2 == $regions[$z][1]) {
-                                            $z++;
+                                        if (in_array(array($k), $lines) == TRUE && isset($regions[$count][1]) == TRUE && $k2 == $regions[$count][1]) {
+                                            $count++;
 
                                             ?>
                                             <!--то отмечаем галочкой в селекте и возвращаем массив формата country_id => id Региона -->
