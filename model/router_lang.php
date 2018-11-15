@@ -4,13 +4,15 @@
 // https://github.com/musicman3/eMarket //
 // *************************************//
 // 
-
-if (isset($DEFAULT_LANGUAGE) == FALSE && $PATH != 'install') {//Если пользователь не авторизован, то устанавливаем язык по умолчанию
+//Если пользователь не авторизован, то устанавливаем язык по умолчанию
+if (isset($DEFAULT_LANGUAGE) == FALSE && $PATH != 'install') {
     $DEFAULT_LANGUAGE = DEFAULT_LANGUAGE;
 }
+//Если первый раз в инсталляторе, то устанавливаем язык по умолчанию Russian
 if ($VALID->inPOST('language') == FALSE && $PATH == 'install') {
     $DEFAULT_LANGUAGE = 'Russian';
 }
+//Если переключили язык не авторизованно или в инсталляторе
 if ($VALID->inPOST('language') == TRUE) {
     $DEFAULT_LANGUAGE = $VALID->inPOST('language');
 }
