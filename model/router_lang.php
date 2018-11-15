@@ -1,18 +1,15 @@
 <?php
-
 // ****** Copyright © 2018 eMarket *****// 
 //   GNU GENERAL PUBLIC LICENSE v.3.0   //    
 // https://github.com/musicman3/eMarket //
 // *************************************//
 // 
 
-if (isset($DEFAULT_LANGUAGE)) {
-    $lang_default = $DEFAULT_LANGUAGE; //Язык авторизованного администратора/пользователя
-} else {
-    $lang_default = DEFAULT_LANGUAGE; //Язык по умолчанию базовый
+if (isset($DEFAULT_LANGUAGE) == FALSE) {//Если пользователь не авторизован, то устанавливаем язык по умолчанию
+    $DEFAULT_LANGUAGE = DEFAULT_LANGUAGE;
 }
 //Подключение и парсинг языковых файлов
-$files_path = $TREE->filesTree(ROOT . '/language/' . $lang_default . '/' . $PATH);
+$files_path = $TREE->filesTree(ROOT . '/language/' . $DEFAULT_LANGUAGE . '/' . $PATH);
 
 $parse_temp = parse_ini_file($files_path[0]);
 for ($i = 0; $i < count($files_path); $i++) {
@@ -23,9 +20,9 @@ for ($i = 0; $i < count($files_path); $i++) {
 // Получаем список языков в массиве (для использования в мультиязычных функциях и т.п.)
 $lang_all = array(); // массив с языками
 $lang_dir = scandir(ROOT . '/language/');
-array_push($lang_all, ucfirst($lang_default)); // первым в массиве идет язык по умолчанию
+array_push($lang_all, ucfirst($DEFAULT_LANGUAGE)); // первым в массиве идет язык по умолчанию
 foreach ($lang_dir as $lang_name) {
-    if (!in_array($lang_name, array('.', '..', $lang_default))) {
+    if (!in_array($lang_name, array('.', '..', $DEFAULT_LANGUAGE))) {
         array_push($lang_all, ucfirst($lang_name));
     }
 }
