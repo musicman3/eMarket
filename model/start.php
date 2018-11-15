@@ -10,9 +10,7 @@ require_once('autoloader.php');
 
 require_once('configure/based_variables.php');
 
-if ($PATH != 'install') {
 require_once('configure/connect.php');
-}
 
 require_once('session_autorize.php');
 
