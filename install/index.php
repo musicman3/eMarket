@@ -117,9 +117,9 @@
                     <form action="index.php" method="post" accept-charset="utf-8">
                         <div class="control-group">
                             <div style="margin-left: 15px;margin-bottom: 15px;" class="controls"><select name='language' onchange="submit();">
-                                    <option value='<?php echo $dirlist[0] ?>'><?php echo $lang['select_language'] ?></option>
-                                    <?php foreach ($dirlist as $keys => $vol) { ?>
-                                        <option value='<?php echo $vol ?>'><?php echo ucfirst($vol) ?></option>
+                                    <option value='<?php echo $dir_list[0] ?>'><?php echo $lang['select_language'] ?></option>
+                                    <?php foreach ($dir_list as $keys => $value) { ?>
+                                        <option value='<?php echo $value ?>'><?php echo ucfirst($value) ?></option>
                                     <?php } ?>
                                 </select></div>
                         </div>

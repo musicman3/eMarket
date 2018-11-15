@@ -7,20 +7,20 @@
 error_reporting(-1);
 
 //CREATE FILES LIST (LANGUAGES)
-$dirlist = array();
+$dir_list = array();
 $dir = 'language/';
 $Open = opendir($dir);
 while ($file = readdir($Open)) {
     $filenam = $dir . $file;
     if (is_file($filenam)) {
-        $dirlist[] = substr($file, 0, -4);
+        $dir_list[] = substr($file, 0, -4);
     }
 }
 closedir($Open);
-sort($dirlist);
+sort($dir_list);
 
 //LOAD LANGUAGE
-$deflang = $dirlist[0];
+$deflang = $dir_list[0];
 if (isset($_POST['language'])) {
     $deflang = $_POST['language'];
 }
