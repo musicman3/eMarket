@@ -14,10 +14,7 @@
         <?php
         error_reporting(-1);
 
-        require_once '../model/vendor/emarket/core/valid.php';
-
-        //ЗАГРУЖАЕМ CLASS Valid
-        $VALID = new eMarket\Core\Valid;
+        require_once '../model/autoloader.php';
 
         //LOAD LANGUAGE
         require_once 'language/' . $VALID->inPOST('language') . '.php';
@@ -278,14 +275,14 @@ php_value error_reporting -1
 php_value error_log " . ROOT . "/model/work/errors.log";
 
 
-//Если файл существует, то ставим права 777
+        //Если файл существует, то ставим права 777
         if (file_exists('../.htaccess') && !is_writeable('../.htaccess')) {
             chmod('../.htaccess', 0777);
         }
-// открываем файл, если файл не существует, то делается попытка создать его
+        // открываем файл, если файл не существует, то делается попытка создать его
         $fp = fopen(ROOT . '/.htaccess', "w");
 
-// записываем в файл текст
+        // записываем в файл текст
         fwrite($fp, $text);
         fclose($fp);
 
