@@ -59,9 +59,9 @@
         $db_famyly = $VALID->inPOST('database_family');
         $login_admin = $VALID->inPOST('login_admin');
         $password_admin = $VALID->inPOST('password_admin');
-        $lang = $VALID->inPOST('language');
+        $lng = $VALID->inPOST('language');
         $tab_admin = $db_pref . 'administrators';
-        $tab_cat = $db_pref . 'categories';
+        $tab_categories = $db_pref . 'categories';
         $tab_countries = $db_pref . 'countries';
         $tab_products = $db_pref . 'products';
         $tab_regions = $db_pref . 'regions';
@@ -73,10 +73,10 @@
         $hash_method = $VALID->inPOST('hash_method');
         $crypt_method = $VALID->inPOST('crypt_method');
 
-        $form_hidden = '<input type="hidden" name="language" value="' . $lang . '" />';
+        $form_hidden = '<input type="hidden" name="language" value="' . $lng . '" />';
 
         //WRITE IN FILE CONFIGURE.PHP
-        $configure = '<?php' . "\n" .
+        $config = '<?php' . "\n" .
                 '  define(\'HTTP_SERVER\', \'' . $http . '\');' . "\n" .
                 '  define(\'ROOT\', \'' . $root . '\');' . "\n" .
                 '  define(\'DB_SERVER\', \'' . $serv_db . '\');' . "\n" .
@@ -88,9 +88,9 @@
                 '  define(\'DB_TYPE\', \'' . $db_type . '\');' . "\n" .
                 '  define(\'HASH_METHOD\', \'' . $hash_method . '\');' . "\n" .
                 '  define(\'CRYPT_METHOD\', \'' . $crypt_method . '\');' . "\n" .
-                '  define(\'DEFAULT_LANGUAGE\', \'' . $lang . '\');' . "\n" .
+                '  define(\'DEFAULT_LANGUAGE\', \'' . $lng . '\');' . "\n" .
                 '  define(\'TABLE_ADMINISTRATORS\', \'' . $tab_admin . '\');' . "\n" .
-                '  define(\'TABLE_CATEGORIES\', \'' . $tab_cat . '\');' . "\n" .
+                '  define(\'TABLE_CATEGORIES\', \'' . $tab_categories . '\');' . "\n" .
                 '  define(\'TABLE_COUNTRIES\', \'' . $tab_countries . '\');' . "\n" .
                 '  define(\'TABLE_PRODUCTS\', \'' . $tab_products . '\');' . "\n" .
                 '  define(\'TABLE_REGIONS\', \'' . $tab_regions . '\');' . "\n" .
@@ -106,9 +106,9 @@
         }
 
         if (file_exists('../model/configure/configure.php') && is_writeable('../model/configure/configure.php')) {
-            $file_path = fopen('../model/configure/configure.php', 'w');
-            fputs($file_path, $configure);
-            fclose($file_path);
+            $fp = fopen('../model/configure/configure.php', 'w');
+            fputs($fp, $config);
+            fclose($fp);
         } else {
 
             echo '
@@ -253,7 +253,7 @@
         $pasadm2 = hash(HASH_METHOD, $password_admin);
 
         if ($VALID->inPOST('login_admin') and $VALID->inPOST('password_admin')) {
-            $DB->exec("INSERT INTO " . TABLE_ADMINISTRATORS . " (login, password, permission, language) VALUES ('$login_admin','$pasadm2','admin','$lang')");
+            $DB->exec("INSERT INTO " . TABLE_ADMINISTRATORS . " (login, password, permission, language) VALUES ('$login_admin','$pasadm2','admin','$lng')");
         }
 
         $DB = null;
@@ -280,11 +280,11 @@ php_value error_log " . ROOT . "/model/work/errors.log";
             chmod('../.htaccess', 0777);
         }
         // открываем файл, если файл не существует, то делается попытка создать его
-        $file_path = fopen(ROOT . '/.htaccess', "w");
+        $fp = fopen(ROOT . '/.htaccess', "w");
 
         // записываем в файл текст
-        fwrite($file_path, $text);
-        fclose($file_path);
+        fwrite($fp, $text);
+        fclose($fp);
 
         ?>
 
