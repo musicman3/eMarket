@@ -50,46 +50,46 @@
         $http = substr($http, 0, strpos($http, 'install'));
         $root = getenv('DOCUMENT_ROOT');
         $serv_db = $VALID->inPOST('server_db');
-        $logindb = $VALID->inPOST('login_db');
-        $passdb = $VALID->inPOST('password_db');
-        $dbname = $VALID->inPOST('database_name');
-        $dbpref = $VALID->inPOST('database_prefix');
-        $dbport = $VALID->inPOST('database_port');
-        $dbtype = $VALID->inPOST('database_type');
-        $dbfamyl = $VALID->inPOST('database_family');
-        $logadm = $VALID->inPOST('login_admin');
-        $pasadm = $VALID->inPOST('password_admin');
-        $lng = $VALID->inPOST('language');
-        $tabadm = $dbpref . 'administrators';
-        $tab_cat = $dbpref . 'categories';
-        $tab_countries = $dbpref . 'countries';
-        $tab_products = $dbpref . 'products';
-        $tab_regions = $dbpref . 'regions';
-        $tab_taxes = $dbpref . 'taxes';
-        $tab_units = $dbpref . 'units';
-        $tab_zones = $dbpref . 'zones';
-        $tab_zones_value = $dbpref . 'zones_value';
-        $tab_vendor_codes = $dbpref . 'vendor_codes';
-        $hashmet = $VALID->inPOST('hash_method');
-        $crypt = $VALID->inPOST('crypt_method');
+        $login_db = $VALID->inPOST('login_db');
+        $password_db = $VALID->inPOST('password_db');
+        $db_name = $VALID->inPOST('database_name');
+        $db_pref = $VALID->inPOST('database_prefix');
+        $db_port = $VALID->inPOST('database_port');
+        $db_type = $VALID->inPOST('database_type');
+        $db_famyly = $VALID->inPOST('database_family');
+        $login_admin = $VALID->inPOST('login_admin');
+        $password_admin = $VALID->inPOST('password_admin');
+        $lang = $VALID->inPOST('language');
+        $tab_admin = $db_pref . 'administrators';
+        $tab_cat = $db_pref . 'categories';
+        $tab_countries = $db_pref . 'countries';
+        $tab_products = $db_pref . 'products';
+        $tab_regions = $db_pref . 'regions';
+        $tab_taxes = $db_pref . 'taxes';
+        $tab_units = $db_pref . 'units';
+        $tab_zones = $db_pref . 'zones';
+        $tab_zones_value = $db_pref . 'zones_value';
+        $tab_vendor_codes = $db_pref . 'vendor_codes';
+        $hash_method = $VALID->inPOST('hash_method');
+        $crypt_method = $VALID->inPOST('crypt_method');
 
-        $formhid = '<input type="hidden" name="language" value="' . $lng . '" />';
+        $form_hidden = '<input type="hidden" name="language" value="' . $lang . '" />';
 
         //WRITE IN FILE CONFIGURE.PHP
-        $datconf = '<?php' . "\n" .
+        $configure = '<?php' . "\n" .
                 '  define(\'HTTP_SERVER\', \'' . $http . '\');' . "\n" .
                 '  define(\'ROOT\', \'' . $root . '\');' . "\n" .
                 '  define(\'DB_SERVER\', \'' . $serv_db . '\');' . "\n" .
-                '  define(\'DB_USERNAME\', \'' . $logindb . '\');' . "\n" .
-                '  define(\'DB_PASSWORD\', \'' . $passdb . '\');' . "\n" .
-                '  define(\'DB_NAME\', \'' . $dbname . '\');' . "\n" .
-                '  define(\'DB_PREFIX\', \'' . $dbpref . '\');' . "\n" .
-                '  define(\'DB_PORT\', \'' . $dbport . '\');' . "\n" .
-                '  define(\'DB_TYPE\', \'' . $dbtype . '\');' . "\n" .
-                '  define(\'HASH_METHOD\', \'' . $hashmet . '\');' . "\n" .
-                '  define(\'CRYPT_METHOD\', \'' . $crypt . '\');' . "\n" .
-                '  define(\'DEFAULT_LANGUAGE\', \'' . $lng . '\');' . "\n" .
-                '  define(\'TABLE_ADMINISTRATORS\', \'' . $tabadm . '\');' . "\n" .
+                '  define(\'DB_USERNAME\', \'' . $login_db . '\');' . "\n" .
+                '  define(\'DB_PASSWORD\', \'' . $password_db . '\');' . "\n" .
+                '  define(\'DB_NAME\', \'' . $db_name . '\');' . "\n" .
+                '  define(\'DB_PREFIX\', \'' . $db_pref . '\');' . "\n" .
+                '  define(\'DB_PORT\', \'' . $db_port . '\');' . "\n" .
+                '  define(\'DB_TYPE\', \'' . $db_type . '\');' . "\n" .
+                '  define(\'HASH_METHOD\', \'' . $hash_method . '\');' . "\n" .
+                '  define(\'CRYPT_METHOD\', \'' . $crypt_method . '\');' . "\n" .
+                '  define(\'DEFAULT_LANGUAGE\', \'' . $lang . '\');' . "\n" .
+                '  define(\'TABLE_ADMINISTRATORS\', \'' . $tab_admin . '\');' . "\n" .
                 '  define(\'TABLE_CATEGORIES\', \'' . $tab_cat . '\');' . "\n" .
                 '  define(\'TABLE_COUNTRIES\', \'' . $tab_countries . '\');' . "\n" .
                 '  define(\'TABLE_PRODUCTS\', \'' . $tab_products . '\');' . "\n" .
@@ -106,9 +106,9 @@
         }
 
         if (file_exists('../model/configure/configure.php') && is_writeable('../model/configure/configure.php')) {
-            $fp = fopen('../model/configure/configure.php', 'w');
-            fputs($fp, $datconf);
-            fclose($fp);
+            $file_path = fopen('../model/configure/configure.php', 'w');
+            fputs($file_path, $configure);
+            fclose($file_path);
         } else {
 
             echo '
@@ -199,14 +199,14 @@
             exit();
         }
 
-        if ($dbfamyl == 'myisam') {
-            $fname = "databases/" . $dbfamyl . ".sql";
+        if ($db_famyly == 'myisam') {
+            $file_name = "databases/" . $db_famyly . ".sql";
         }
-        if ($dbfamyl == 'innodb') {
-            $fname = "databases/" . $dbfamyl . ".sql";
+        if ($db_famyly == 'innodb') {
+            $file_name = "databases/" . $db_famyly . ".sql";
         }
 
-        if (!file_exists($fname))
+        if (!file_exists($file_name))
             die('
 <div class="container">
         <div class="row">
@@ -245,15 +245,15 @@
 			<script type="text/javascript" src="../ext/bootstrap/js/bootstrap.min.js"></script>
 ');
 
-        $buffer = str_replace('emkt_', DB_PREFIX, implode(file($fname))); //REPLACE PREFIX
+        $buffer = str_replace('emkt_', DB_PREFIX, implode(file($file_name))); //REPLACE PREFIX
         $DB->exec("set names utf8mb4");
         $DB->exec($buffer);
 //END IMPORT DB
 //SAVE E-MAIL AND PASSWORD
-        $pasadm2 = hash(HASH_METHOD, $pasadm);
+        $pasadm2 = hash(HASH_METHOD, $password_admin);
 
         if ($VALID->inPOST('login_admin') and $VALID->inPOST('password_admin')) {
-            $DB->exec("INSERT INTO " . TABLE_ADMINISTRATORS . " (login, password, permission, language) VALUES ('$logadm','$pasadm2','admin','$lng')");
+            $DB->exec("INSERT INTO " . TABLE_ADMINISTRATORS . " (login, password, permission, language) VALUES ('$login_admin','$pasadm2','admin','$lang')");
         }
 
         $DB = null;
@@ -280,11 +280,11 @@ php_value error_log " . ROOT . "/model/work/errors.log";
             chmod('../.htaccess', 0777);
         }
         // открываем файл, если файл не существует, то делается попытка создать его
-        $fp = fopen(ROOT . '/.htaccess', "w");
+        $file_path = fopen(ROOT . '/.htaccess', "w");
 
         // записываем в файл текст
-        fwrite($fp, $text);
-        fclose($fp);
+        fwrite($file_path, $text);
+        fclose($file_path);
 
         ?>
 
@@ -301,7 +301,7 @@ php_value error_log " . ROOT . "/model/work/errors.log";
                     <div class="panel-body">
                         <form action='../controller/admin/login/' method='post' accept-charset='utf-8' style='display: inline;'>
                             <div class="alert alert-success"><?php echo $lang['success'] ?></div>
-                            <div class="alert alert-info"><?php echo $formhid ?></div>
+                            <div class="alert alert-info"><?php echo $form_hidden ?></div>
                             <button class="btn btn-info btn-sm" type="submit" name="button_go_login" /><?php echo $lang['button_go_login'] ?></button>
                         </form>
                     </div>
