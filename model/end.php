@@ -5,7 +5,7 @@
 // *************************************//
 // 
 //LOAD TEMPLATE
-require_once(ROOT . '/model/html.php');
+require_once(getenv('DOCUMENT_ROOT') . '/model/html.php');
 
 //CONNECT END
 $DB = null;
