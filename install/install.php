@@ -14,10 +14,10 @@
         <?php
         error_reporting(-1);
 
-        require_once '../model/vendor/emarket/classes/core/valid.php';
+        require_once '../model/vendor/emarket/core/valid.php';
 
         //ЗАГРУЖАЕМ CLASS Valid
-        $VALID = new eMarket\Classes\Core\Valid;
+        $VALID = new eMarket\Core\Valid;
 
         //LOAD LANGUAGE
         require_once 'language/' . $VALID->inPOST('language') . '.php';
