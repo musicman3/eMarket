@@ -51,7 +51,7 @@
     <!--Лого и кнопки-->
     <div id="header">
         <div class="col-md-4">
-            <a href=""><img src="/view/<?php echo $TEMPLATE ?>/catalog/images/logo.jpg"></a>
+            <a href=""><img src="/view/<?php echo $TEMPLATE ?>/catalog/images/emarket.png"></a>
         </div>
         <div class="col-md-8 text-right headerlinks"><div class="btn-group">
 
