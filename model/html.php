@@ -18,7 +18,7 @@
         <meta name="author" content="eMarket" />
         <meta name="owner" content="eMarket" />
         <meta name="copyright" content="Copyright © 2018 by eMarket Team. All right reserved." />
-        <title><?php echo lang('title_' . $TITLE_DIR) // автогенерация префикса title по названию директории. Пример: для /countries/index.php = countries        ?></title>
+        <title><?php echo lang('title_' . $TITLE_DIR) // автогенерация префикса title по названию директории. Пример: для /countries/index.php = countries           ?></title>
         <?php
         //ВЫВОД ТОЛЬКО В АДМИНКЕ
         if ($PATH == 'admin') {
@@ -131,12 +131,18 @@
         <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.min.js"></script>
         <?php
     } //КОНЕЦ ВЫВОДА ТОЛЬКО В ИНСТАЛЛЯТОРЕ
-//
+    //
     //Если существует $JS_END
     if (isset($JS_END)) {
         //то подгружаем JS.PHP файл
         require_once($JS_END . '/js/js.php');
     }
+
+    $tend = microtime(1); // Засекаем конечное время
+    // Округляем до двух знаков после запятой
+    $totaltime = round(($tend - $tstart), 2);
+    // Результат на экран
+    echo "Время генерации страницы: " . $totaltime . " сек.<br><br>";
 
     ?>
 </body>
