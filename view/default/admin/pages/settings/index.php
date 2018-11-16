@@ -52,7 +52,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <div class="settings"><a href="#" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-cog glyph-xs"> </span></a>Базовые настройки</div>
+                                    <div class="settings"><a href="based_settings/" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-cog glyph-xs"> </span></a>Базовые настройки</div>
                                 </td>
                                 <td>
                                     <div class="settings"><a href="#" class="btn btn-default btn-xs disabled"><span class="glyphicon glyphicon-flag glyph-xs"> </span></a>#</div>
