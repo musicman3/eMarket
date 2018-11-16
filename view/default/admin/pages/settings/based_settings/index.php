@@ -41,9 +41,9 @@
 				</div>
 				
 				<div class="form-group">
-					<label class="col-sm-2">Опция 4</label>
-					<div class="col-sm-1">
-					<input type="radio">
+					<label class="col-sm-2"></label>
+					<div class="col-sm-5">
+					<button type="submit" class="btn btn-primary btn-sm">Сохранить</button>
 					</div>
 				</div>
 			</form>
