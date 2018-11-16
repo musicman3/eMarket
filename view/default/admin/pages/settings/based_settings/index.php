@@ -43,7 +43,7 @@
 				<div class="form-group">
 					<label class="col-sm-2"></label>
 					<div class="col-sm-5">
-					<button type="submit" class="btn btn-primary btn-sm">Сохранить</button>
+					<button type="submit" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-floppy-disk"></span> Сохранить</button>
 					</div>
 				</div>
 			</form>
