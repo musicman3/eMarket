@@ -22,6 +22,8 @@ title_stock_stock = Склад
 title_categories_index = Категории
 title_products_products = Товары
 title_zones_index = Зоны
+title_listing_index = Страны и регионы
+title_based_settings_index = Базовые настройки
 
 login_error = Введены неверные E-Mail или пароль
 login_name = ПАНЕЛЬ АДМИНИСТРАТОРА

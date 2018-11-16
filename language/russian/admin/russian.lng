@@ -25,6 +25,7 @@ title_categories_index = Категории
 title_products_products = Товары
 title_zones_index = Зоны
 title_listing_index = Страны и регионы
+title_based_settings_index = Базовые настройки
 
 ;кнопки меню
 menu_exit = Выход
