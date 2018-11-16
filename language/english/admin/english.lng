@@ -18,9 +18,9 @@ title_countries_index = Страны
 title_regions_index = Регионы
 title_units_index = Единицы измерения
 title_vendor_codes_index = Идентификаторы товара
-title_stock_index = Склад
+title_stock_stock = Склад
 title_categories_index = Категории
-title_products_index = Товары
+title_products_products = Товары
 title_zones_index = Зоны
 
 login_error = Введены неверные E-Mail или пароль
