@@ -44,5 +44,5 @@ server_db = Сервер базы данных
 server_db_error = "Соединение с базой данных отсутствует!"
 server_db_name_error = "База данных не существует!"
 success = "Инсталляция успешно завершена!"
-title_login = Инсталляция eMarket
-title_success = Инсталляция успешно завершена
+title_install_index = Инсталляция eMarket
+title_success_index = Инсталляция успешно завершена

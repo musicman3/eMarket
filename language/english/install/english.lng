@@ -44,5 +44,5 @@ server_db = Database Server
 server_db_error = "Connect to database server not found!"
 server_db_name_error = "Database not found!"
 success = "Install Successful!"
-title_login = Install eMarket
-title_success = Install Successful
+title_install_index = Install eMarket
+title_success_index = Install Successful
