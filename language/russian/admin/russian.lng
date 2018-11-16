@@ -12,32 +12,32 @@ meta-language = ru
 
 ;TITLE
 title_admin_index = Панель администратора
-title_login_index = Страница авторизации
-title_error_log_index = Лог ошибок
-title_settings_index = Настройки
-title_taxes_index = Налоги
+title_based_settings_index = Базовые настройки
+title_categories_index = Категории
 title_countries_index = Страны
+title_error_log_index = Лог ошибок
+title_listing_index = Страны и регионы
+title_login_index = Страница авторизации
+title_products_products = Товары
 title_regions_index = Регионы
+title_settings_index = Настройки
+title_stock_stock = Склад
+title_taxes_index = Налоги
 title_units_index = Единицы измерения
 title_vendor_codes_index = Идентификаторы товара
-title_stock_stock = Склад
-title_categories_index = Категории
-title_products_products = Товары
 title_zones_index = Зоны
-title_listing_index = Страны и регионы
-title_based_settings_index = Базовые настройки
 
 ;кнопки меню
-menu_exit = Выход
-menu_help = Помощь
-menu_extra = Дополнительно
-menu_languages = Языки
 menu_catalog = Онлайн каталог
+menu_categories = Категории
+menu_error_log = Лог ошибок
+menu_exit = Выход
+menu_extra = Дополнительно
+menu_help = Помощь
+menu_language = Русский
+menu_languages = Языки
 menu_support = Поддержка
 menu_tools = Инструменты
-menu_language = Русский
-menu_error_log = Лог ошибок
-menu_categories = Категории
 
 login_error = Введены неверные E-Mail или пароль
 login_name = ПАНЕЛЬ АДМИНИСТРАТОРА
@@ -45,16 +45,14 @@ login_name = ПАНЕЛЬ АДМИНИСТРАТОРА
 ;КНОПКИ
 button_add = Добавить
 button_cancel = Отмена
-button_edit = Изменить
-button_add = Добавить
 button_delete = Удалить
+button_edit = Изменить
 button_move = Переместить
-button_edit = Редактировать
-confirm-yes = Да
-confirm-no = Нет
-confirm-del = Удалить?
-save = Сохранить
 cancel = Отмена
+confirm-del = Удалить?
+confirm-no = Нет
+confirm-yes = Да
+save = Сохранить
 
 ;РАЗНОЕ
 s = с

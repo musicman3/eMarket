@@ -10,46 +10,53 @@
 
 ;Title
 title_admin_index = Administration Panel
-title_login_index = Страница авторизации
-title_error_log_index = Лог ошибок
-title_settings_index = Настройки
-title_taxes_index = Налоги
+title_based_settings_index = Базовые настройки
+title_categories_index = Категории
 title_countries_index = Страны
+title_error_log_index = Лог ошибок
+title_listing_index = Страны и регионы
+title_login_index = Страница авторизации
+title_products_products = Товары
 title_regions_index = Регионы
+title_settings_index = Настройки
+title_stock_stock = Склад
+title_taxes_index = Налоги
 title_units_index = Единицы измерения
 title_vendor_codes_index = Идентификаторы товара
-title_stock_stock = Склад
-title_categories_index = Категории
-title_products_products = Товары
 title_zones_index = Зоны
-title_listing_index = Страны и регионы
-title_based_settings_index = Базовые настройки
+
+;кнопки меню
+menu_catalog = Онлайн каталог
+menu_categories = Категории
+menu_error_log = Лог ошибок
+menu_exit = Выход
+menu_extra = Дополнительно
+menu_help = Помощь
+menu_language = Русский
+menu_languages = Языки
+menu_support = Поддержка
+menu_tools = Инструменты
 
 login_error = Введены неверные E-Mail или пароль
 login_name = ПАНЕЛЬ АДМИНИСТРАТОРА
+
+;КНОПКИ
 button_add = Добавить
 button_cancel = Отмена
-button_edit = Изменить
-button_add = Добавить
-meta-language = ru
 button_delete = Удалить
+button_edit = Изменить
 button_move = Переместить
-button_edit = Редактировать
+cancel = Отмена
+confirm-del = Удалить?
+confirm-no = Нет
+confirm-yes = Да
+save = Сохранить
+
+;РАЗНОЕ
 s = с
 po = по
 iz = из
-no_log = Лог ошибок пустой
-no_cat = Категорий нет
-no_taxes = Налогов нет
-no_units = Единиц измерения нет
-no_regions = Регионов нет
-no_zones = Зон нет
-no_vendor_codes = Нет идентификаторов товара
-confirm-yes = Да
-confirm-no = Нет
-confirm-del = Удалить?
-save = Сохранить
-cancel = Отмена
+no_listing = Нет записей
 index-title = Добро пожаловать в систему управления контентом
 index-text = Вы можете задать интересующие Вас вопросы по функционированию сайта, а также обсудить любую другую информацию относительно системы управления, по E-Mail
 name = Название
@@ -81,16 +88,4 @@ name_zone = Название зоны
 region_code = Код региона
 region = Регион
 zone = Зона
-
-;кнопки меню
-menu_exit = Выход
-menu_help = Помощь
-menu_extra = Дополнительно
-menu_languages = Языки
-menu_catalog = Онлайн каталог
-menu_support = Поддержка
-menu_tools = Инструменты
-menu_language = English
-menu_error_log = Лог ошибок
-menu_categories = Категории
-
+country = Страна
