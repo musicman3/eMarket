@@ -13,10 +13,6 @@
                 <h4 class="modal-title"><?php echo lang('zone') ?></h4>
             </div>
             <form id="form" name="form" action="index.php" method="post" enctype="multipart/form-data">
-                <!--<div class="panel-body">
-                
-                
-                    </div>-->
 
                 <div class="modal-footer">
                     <input type="hidden" name="add" value="ok" />
