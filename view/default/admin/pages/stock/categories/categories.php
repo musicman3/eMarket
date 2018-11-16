@@ -26,7 +26,7 @@
 
                 <div class="panel-heading">
                     <h3 class="panel-title">
-                        <div class="pull-left"><?php echo lang('title_categories') ?></div>
+                        <div class="pull-left"><?php echo lang('title_categories_index') ?></div>
 
                         <!-- Количество строк на странице -->
                         <form action="/controller/admin/pages/stock/categories/categories.php" method="get" class="form-inline">

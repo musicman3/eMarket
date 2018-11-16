@@ -25,7 +25,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">
-                        <div class="pull-left"><?php echo lang('title_countries') ?></div>
+                        <div class="pull-left"><?php echo lang('title_countries_index') ?></div>
                         <div class="clearfix"></div>
                     </h3>
                 </div>
