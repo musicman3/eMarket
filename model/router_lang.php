@@ -1,8 +1,8 @@
 <?php
-// ****** Copyright © 2018 eMarket *****// 
-//   GNU GENERAL PUBLIC LICENSE v.3.0   //    
-// https://github.com/musicman3/eMarket //
-// *************************************//
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+  |    GNU GENERAL PUBLIC LICENSE v.3.0    |    
+  |  https://github.com/musicman3/eMarket  |
+  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 // 
 //Если пользователь не авторизован, то устанавливаем язык по умолчанию
 if (isset($DEFAULT_LANGUAGE) == FALSE && $PATH != 'install') {

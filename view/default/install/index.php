@@ -1,8 +1,8 @@
 <?php
-// ****** Copyright © 2018 eMarket *****// 
-//   GNU GENERAL PUBLIC LICENSE v.3.0   //    
-// https://github.com/musicman3/eMarket //
-// *************************************//
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-= 
+  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
+  |  https://github.com/musicman3/eMarket  |
+  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 ?>
 
@@ -86,7 +86,7 @@
                 <div class="control-group">
                     <div style="margin-left: 15px;margin-bottom: 15px;" class="controls"><select name='language' onchange="submit();">
                             <option><?php echo lang('select_language') ?></option>
-                            <?php for ($x=1; $x<count($lang_all); $x++) { ?>
+                            <?php for ($x = 1; $x < count($lang_all); $x++) { ?>
                                 <option value='<?php echo $lang_all[$x] ?>'><?php echo ucfirst($lang_all[$x]) ?></option>
                             <?php } ?>
                         </select></div>

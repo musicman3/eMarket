@@ -1,8 +1,8 @@
 <?php
-// ****** Copyright © 2018 eMarket *****// 
-//   GNU GENERAL PUBLIC LICENSE v.3.0   //    
-// https://github.com/musicman3/eMarket //
-// *************************************//
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+  |    GNU GENERAL PUBLIC LICENSE v.3.0    |    
+  |  https://github.com/musicman3/eMarket  |
+  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 if (defined('DB_TYPE') && defined('DB_SERVER') && defined('DB_NAME') && defined('DB_USERNAME') && defined('DB_PASSWORD')) {
 $DB = new PDO(DB_TYPE . ':host=' . DB_SERVER . ';dbname=' . DB_NAME . '', DB_USERNAME, DB_PASSWORD);
