@@ -8,7 +8,7 @@ error_reporting(-1);
 
 /* >-->-->-->  CONNECT PAGE START  <--<--<--< */
 require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
-/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
+/* ------------------------------------------ */
 // Устанавливаем родительскую категорию
 $parent_id = $VALID->inPOST('parent_id');
 if ($parent_id == FALSE) {
@@ -118,5 +118,5 @@ $JS_END = __DIR__;
 
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
 require_once(ROOT . '/model/end.php');
-/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
+/* ------------------------------------------ */
 ?>

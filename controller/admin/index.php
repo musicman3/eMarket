@@ -8,7 +8,7 @@ error_reporting(-1);
 
 /* >-->-->-->  CONNECT PAGE START  <--<--<--< */
 require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
-/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
+/* ------------------------------------------ */
 //
 //Переключаем язык
 if ($VALID->inGET('language')){
@@ -17,6 +17,6 @@ if ($VALID->inGET('language')){
 }
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
 require_once(ROOT . '/model/end.php');
-/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
+/* ------------------------------------------ */
 
 ?>

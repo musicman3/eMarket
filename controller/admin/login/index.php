@@ -6,7 +6,7 @@
 // 
 /* >-->-->-->  CONNECT PAGE START  <--<--<--< */
 require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
-/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
+/* ------------------------------------------ */
 
 session_start();
 
@@ -46,6 +46,6 @@ if (isset($_SESSION['login_error']) == TRUE) {
 
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
 require_once(ROOT . '/model/end.php');
-/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
+/* ------------------------------------------ */
 
 ?>

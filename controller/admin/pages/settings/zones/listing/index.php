@@ -8,7 +8,7 @@ error_reporting(-1);
 
 /* >-->-->-->  CONNECT PAGE START  <--<--<--< */
 require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
-/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
+/* ------------------------------------------ */
 // 
 // Получаем zones_id
 if ($VALID->inPOST('zone_id')) {
@@ -73,6 +73,6 @@ $JS_END = __DIR__;
 
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
 require_once(ROOT . '/model/end.php');
-/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
+/* ------------------------------------------ */
 
 ?>

@@ -8,7 +8,7 @@ error_reporting(-1);
 
 /* >-->-->-->  CONNECT PAGE START  <--<--<--< */
 require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
-/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
+/* ------------------------------------------ */
 // 
 //Сохраняем сессию с URL текущей страницы
 $_SESSION['zone_page'] = $VALID->inSERVER('REQUEST_URI');
@@ -51,6 +51,6 @@ $finish = $navigate[1];
 
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
 require_once(ROOT . '/model/end.php');
-/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
+/* ------------------------------------------ */
 
 ?>
