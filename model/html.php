@@ -19,7 +19,7 @@
         <meta name="owner" content="eMarket" />
         <meta name="copyright" content="Copyright © 2018 by eMarket Team. All right reserved." />
         <!-- Автогенерация Title" -->
-        <title><?php echo lang('title_' . $TITLE_DIR . '_' . basename($_SERVER['PHP_SELF'], '.php')) ?></title>
+        <title><?php echo lang('title_' . $TITLE_DIR . '_' . basename($VALID->inSERVER('PHP_SELF'), '.php')) ?></title>
         <?php
         //ВЫВОД ТОЛЬКО В АДМИНКЕ
         if ($PATH == 'admin') {
