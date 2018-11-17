@@ -12,7 +12,7 @@
     <head>
 
         <?php
-        error_reporting(-1);
+        
 
         //LOAD LANGUAGES LISTING
         require_once 'includes/languages_listing.php';

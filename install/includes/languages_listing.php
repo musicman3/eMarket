@@ -4,7 +4,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-error_reporting(-1);
+
 
 //CREATE FILES LIST (LANGUAGES)
 $dir_list = array();

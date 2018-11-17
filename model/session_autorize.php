@@ -4,8 +4,6 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-error_reporting(-1);
-
 // ЕСЛИ В АДМИНИСТРАТИВНОЙ ПАНЕЛИ
 if ($PATH == 'admin' && $TITLE_DIR != 'login') {
 

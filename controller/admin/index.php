@@ -4,14 +4,12 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-error_reporting(-1);
-
 /* >-->-->-->  CONNECT PAGE START  <--<--<--< */
 require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 /* ------------------------------------------ */
 //
 //Переключаем язык
-if ($VALID->inGET('language')){
+if ($VALID->inGET('language')) {
     $PDO->inPrepare("UPDATE " . TABLE_ADMINISTRATORS . " SET language=? WHERE login=? AND password=?", [$VALID->inGET('language'), $login, $pass]);
     header('Location: /controller/admin/'); // переадресация
 }
