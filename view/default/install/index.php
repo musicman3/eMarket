@@ -41,10 +41,10 @@
                     <input type='hidden' name='language' value='<?php echo $DEFAULT_LANGUAGE ?>' />
                     
                     <!-- Значения по умолчанию, если не выбраны" -->
-                    <input type='hidden' name='database_family' value='<?php echo lang('database_innodb') ?>' />
-                    <input type='hidden' name='hash_method' value='<?php echo lang('hash_gost') ?>' />
-                    <input type='hidden' name='crypt_method' value='<?php echo lang('crypt_gost') ?>' />
-                    <input type='hidden' name='database_type' value='<?php echo lang('database_family_mysql') ?>' />
+                    <input type='hidden' name='database_family' value='innodb' />
+                    <input type='hidden' name='hash_method' value='gost' />
+                    <input type='hidden' name='crypt_method' value='gost' />
+                    <input type='hidden' name='database_type' value='mysql' />
                     
                     <div class="row">
                         <div class="col-left form-group">
