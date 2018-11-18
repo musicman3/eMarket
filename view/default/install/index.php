@@ -45,7 +45,11 @@
                         <div class="col-left form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
-                                <select name="database_family" class="input-sm form-control"><option value='innodb'><?php echo lang('database_innodb') ?></option><option value='myisam'><?php echo lang('database_myisam') ?></option></select>
+                                <select name="database_family" class="input-sm form-control">
+                                    <option>-- <?php echo lang('database_family') ?> --</option>
+                                    <option value='innodb'><?php echo lang('database_innodb') ?></option>
+                                    <option value='myisam'><?php echo lang('database_myisam') ?></option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -60,7 +64,11 @@
                         <div class="col-left form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
-                                <select name="hash_method" class="input-sm form-control"><option value='gost'><?php echo lang('hash_gost') ?></option><option value='sha256'><?php echo lang('hash_sha256') ?></option></select>
+                                <select name="hash_method" class="input-sm form-control">
+                                    <option>-- <?php echo lang('hash_method') ?> --</option>
+                                    <option value='gost'><?php echo lang('hash_gost') ?></option>
+                                    <option value='sha256'><?php echo lang('hash_sha256') ?></option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -75,7 +83,12 @@
                         <div class="col-left form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
-                                <select name="crypt_method" class="input-sm form-control"><option value='gost'><?php echo lang('crypt_gost') ?></option><option value='blowfish'><?php echo lang('crypt_blowfish') ?></option><option value='rijndael-256'><?php echo lang('crypt_rijndael-256') ?></option></select>
+                                <select name="crypt_method" class="input-sm form-control">
+                                    <option>-- <?php echo lang('crypt_method') ?> --</option>
+                                    <option value='gost'><?php echo lang('crypt_gost') ?></option>
+                                    <option value='blowfish'><?php echo lang('crypt_blowfish') ?></option>
+                                    <option value='rijndael-256'><?php echo lang('crypt_rijndael-256') ?></option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -129,7 +142,10 @@
                         <div class="col-left form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
-                                <select name="database_type" class="input-sm form-control"><option value='mysql'><?php echo lang('database_family_mysql') ?></option></select>
+                                <select name="database_type" class="input-sm form-control">
+                                    <option>-- <?php echo lang('database_type') ?> --</option>
+                                    <option value='mysql'><?php echo lang('database_family_mysql') ?></option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-left form-group">
