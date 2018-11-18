@@ -23,7 +23,7 @@
                     <div class="row">
                         <div class="col-left form-group">
                             <div class="input-group has-error">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
                                 <select name='language' class="input-sm form-control" onchange="submit();">
                                     <option><?php echo lang('select_language') ?></option>
                                     <?php for ($x = 1; $x < count($lang_all); $x++) { ?>
@@ -36,26 +36,26 @@
                 </form>
 
                 <form action="install.php" name="form" method="post" accept-charset="utf-8" style="display: inline;" onsubmit="return check(this.email.value);">
-                    
+
                     <!-- Выбранный язык" -->
                     <input type='hidden' name='language' value='<?php echo $DEFAULT_LANGUAGE ?>' />
-                    
+
                     <!-- Значения по умолчанию, если не выбраны" -->
                     <input type='hidden' name='database_family' value='innodb' />
                     <input type='hidden' name='hash_method' value='gost' />
                     <input type='hidden' name='crypt_method' value='gost' />
                     <input type='hidden' name='database_type' value='mysql' />
-                    
+
                     <div class="row">
                         <div class="col-left form-group">
                             <div class="input-group has-error">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-hdd"></span></span>
                                 <input class="input-sm form-control" placeholder="<?php echo lang('server_db') ?>" type="text" name="server_db" />
                             </div>
                         </div>
                         <div class="col-left form-group">
                             <div class="input-group has-error">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-hdd"></span></span>
                                 <select name="database_family" class="input-sm form-control">
                                     <option>-- <?php echo lang('database_family') ?> --</option>
                                     <option value='innodb'><?php echo lang('database_innodb') ?></option>
@@ -68,13 +68,13 @@
                     <div class="row">
                         <div class="col-left form-group">
                             <div class="input-group has-error">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-hdd"></span></span>
                                 <input class="input-sm form-control" placeholder="<?php echo lang('login_db') ?>" type="text" name="login_db" />
                             </div>
                         </div>
                         <div class="col-left form-group">
                             <div class="input-group has-error">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-tower"></span></span>
                                 <select name="hash_method" class="input-sm form-control">
                                     <option>-- <?php echo lang('hash_method') ?> --</option>
                                     <option value='gost'><?php echo lang('hash_gost') ?></option>
@@ -85,15 +85,17 @@
                     </div>
 
                     <div class="row">
+
                         <div class="col-left form-group">
                             <div class="input-group has-error">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
-                                <input class="input-sm form-control" placeholder="<?php echo lang('password_db') ?>" type="password" name="password_db" />
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-hdd"></span></span>
+                                <input class="input-sm form-control" placeholder="<?php echo lang('database_name') ?>" type="text" name="database_name" />
                             </div>
                         </div>
+
                         <div class="col-left form-group">
                             <div class="input-group has-error">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-tower"></span></span>
                                 <select name="crypt_method" class="input-sm form-control">
                                     <option>-- <?php echo lang('crypt_method') ?> --</option>
                                     <option value='gost'><?php echo lang('crypt_gost') ?></option>
@@ -107,8 +109,8 @@
                     <div class="row">
                         <div class="col-left form-group">
                             <div class="input-group has-error">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
-                                <input class="input-sm form-control" placeholder="<?php echo lang('database_name') ?>" type="text" name="database_name" />
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-hdd"></span></span>
+                                <input class="input-sm form-control" placeholder="<?php echo lang('password_db') ?>" type="password" name="password_db" />
                             </div>
                         </div>
                         <div class="col-left form-group">
@@ -122,7 +124,7 @@
                     <div class="row">
                         <div class="col-left form-group">
                             <div class="input-group has-success">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-hdd"></span></span>
                                 <input class="input-sm form-control" placeholder="<?php echo lang('database_prefix') ?>" type="text" name="database_prefix" />
                             </div>
                         </div>
@@ -137,7 +139,7 @@
                     <div class="row">
                         <div class="col-left form-group">
                             <div class="input-group has-success">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-hdd"></span></span>
                                 <input class="input-sm form-control" placeholder="<?php echo lang('database_port') ?>" type="text" name="database_port" />
                             </div>
                         </div>
@@ -152,7 +154,7 @@
                     <div class="row">
                         <div class="col-left form-group">
                             <div class="input-group has-error">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-hdd"></span></span>
                                 <select name="database_type" class="input-sm form-control">
                                     <option>-- <?php echo lang('database_type') ?> --</option>
                                     <option value='mysql'><?php echo lang('database_family_mysql') ?></option>
