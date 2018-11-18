@@ -52,7 +52,7 @@
 
 <!-- Конец для смартфонов -->
 
-<div id="bodyWrapper" class="container">
+<div id="bodyWrapper" class="container-fluid">
 
     <!--Лого и кнопки-->
     <div id="header">
