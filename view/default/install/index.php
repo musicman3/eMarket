@@ -16,6 +16,7 @@
                     <div class="clearfix"></div>
                 </h3>
             </div>
+
             <div id="install" class="panel-body">
 
                 <form action="index.php" method="post" accept-charset="utf-8">
@@ -35,6 +36,16 @@
                 </form>
 
                 <form action="install.php" name="form" method="post" accept-charset="utf-8" style="display: inline;" onsubmit="return check(this.email.value);">
+                    
+                    <!-- Выбранный язык" -->
+                    <input type='hidden' name='language' value='<?php echo $DEFAULT_LANGUAGE ?>' />
+                    
+                    <!-- Значения по умолчанию, если не выбраны" -->
+                    <input type='hidden' name='database_family' value='<?php echo lang('database_innodb') ?>' />
+                    <input type='hidden' name='hash_method' value='<?php echo lang('hash_gost') ?>' />
+                    <input type='hidden' name='crypt_method' value='<?php echo lang('crypt_gost') ?>' />
+                    <input type='hidden' name='database_type' value='<?php echo lang('database_family_mysql') ?>' />
+                    
                     <div class="row">
                         <div class="col-left form-group">
                             <div class="input-group has-error">
@@ -150,7 +161,6 @@
                         </div>
                         <div class="col-left form-group">
                             <div class="input-group has-error">
-                                <input type='hidden' name='language' value='<?php echo $DEFAULT_LANGUAGE ?>' />
                                 <button class="btn btn-info btn-sm" type="submit" name="install_button" onclick="return pass_check();" /><?php echo lang('install_button') ?></button>
                             </div>
                         </div>
