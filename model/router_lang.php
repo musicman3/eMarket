@@ -18,7 +18,7 @@ if ($VALID->inPOST('language') == TRUE) {
 }
 
 //Подключение и парсинг языковых файлов
-$files_path = $TREE->filesTree(getenv('DOCUMENT_ROOT') . '/language/' . $DEFAULT_LANGUAGE . '/' . $PATH);
+$files_path = $TREE->filesTree(getenv('DOCUMENT_ROOT') . '/language/' . strtolower($DEFAULT_LANGUAGE) . '/' . $PATH);
 
 $parse_temp = parse_ini_file($files_path[0]);
 for ($i = 0; $i < count($files_path); $i++) {
