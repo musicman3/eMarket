@@ -26,7 +26,7 @@
                                 <select name='language' class="input-sm form-control" onchange="submit();">
                                     <option><?php echo lang('select_language') ?></option>
                                     <?php for ($x = 1; $x < count($lang_all); $x++) { ?>
-                                        <option value='<?php echo $lang_all[$x] ?>'><?php echo ucfirst($lang_all[$x]) ?></option>
+                                        <option value='<?php echo $lang_all[$x] ?>'><?php echo $lang_all[$x] ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
