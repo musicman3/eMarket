@@ -19,7 +19,7 @@
             <div class="panel-body">
                 <form action='../admin/login/' method='post' accept-charset='utf-8'>
                     <div class="alert alert-success"><?php echo lang('success') ?></div>
-                    <div class="alert alert-info"><?php echo $form_hidden ?></div>
+                    <div class="alert alert-info"><input type="hidden" name="language" value="<?php echo $lng ?>" /></div>
                     <button class="btn btn-info btn-sm" type="submit" name="button_go_login" /><?php echo lang('button_go_login') ?></button>
                 </form>
             </div>

@@ -8,16 +8,8 @@
 require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 /* ------------------------------------------ */
 
-$http = 'http://' . $VALID->inSERVER('HTTP_HOST');
-
-if ($VALID->inSERVER('REQUEST_URI') && (empty($VALID->inSERVER('REQUEST_URI')) === false)) {
-    $http .= $VALID->inSERVER('REQUEST_URI');
-} else {
-    $http .= $VALID->inSERVER('SCRIPT_FILENAME');
-}
-
-//IMPORT CONFIGURE
-$http = substr($http, 0, strpos($http, 'install'));
+// Получаем данные для файла конфигурации
+$http = 'http://' . $VALID->inSERVER('HTTP_HOST') . '/';
 $ROOT = getenv('DOCUMENT_ROOT');
 $serv_db = $VALID->inPOST('server_db');
 $login_db = $VALID->inPOST('login_db');
@@ -43,9 +35,7 @@ $tab_vendor_codes = $db_pref . 'vendor_codes';
 $hash_method = $VALID->inPOST('hash_method');
 $crypt_method = $VALID->inPOST('crypt_method');
 
-$form_hidden = '<input type="hidden" name="language" value="' . $lng . '" />';
-
-//WRITE IN FILE CONFIGURE.PHP
+//Записываем данные в файл CONFIGURE.PHP
 $config = '<?php' . "\n" .
         '  define(\'HTTP_SERVER\', \'' . $http . '\');' . "\n" .
         '  define(\'ROOT\', \'' . $ROOT . '\');' . "\n" .
@@ -84,9 +74,10 @@ if (file_exists($ROOT . '/model/configure/configure.php') && is_writeable($ROOT 
     //Файла конфигурации нет  file_configure_not_found
 }
 
-//REQUIRE CONFIGURE.PHP
+//Подключаем CONFIGURE.PHP
 require_once($ROOT . '/model/configure/configure.php');
 
+// Подключаем соединение к БД
 $DB = new PDO(DB_TYPE . ':host=' . DB_SERVER . ';dbname=' . DB_NAME, DB_USERNAME, DB_PASSWORD);
 
 if (!$DB) {
@@ -106,12 +97,13 @@ if (!file_exists($file_name)) {
     // Отсутствует файл БД file_not_found
 }
 
-$buffer = str_replace('emkt_', DB_PREFIX, implode(file($file_name))); //REPLACE PREFIX
+//Импортируем данные из файла БД
+$buffer = str_replace('emkt_', DB_PREFIX, implode(file($file_name))); //меняем префикс, если он другой
 $DB->exec("set names utf8mb4");
 $DB->exec($buffer);
-//END IMPORT DB
-//SAVE E-MAIL AND PASSWORD
-$password_admin_hash = hash(HASH_METHOD, $password_admin);
+
+//Сохраняем e-mail и пароль
+$password_admin_hash = hash(HASH_METHOD, $password_admin); //Хэшируем пароль
 
 if ($VALID->inPOST('login_admin') and $VALID->inPOST('password_admin')) {
     $DB->exec("INSERT INTO " . TABLE_ADMINISTRATORS . " (login, password, permission, language) VALUES ('$login_admin','$password_admin_hash','admin','$lng')");
@@ -145,8 +137,6 @@ $fp = fopen(ROOT . '/.htaccess', "w");
 // записываем в файл текст
 fwrite($fp, $text);
 fclose($fp);
-
-// ПОДГРУЖАЕМ СТРАНИЦУ
 
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
 require_once(getenv('DOCUMENT_ROOT') . '/model/end.php');
