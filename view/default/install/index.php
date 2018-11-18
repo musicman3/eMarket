@@ -22,7 +22,7 @@
                 <form action="index.php" method="post" accept-charset="utf-8">
                     <div class="row">
                         <div class="col-left form-group">
-                            <div class="input-group has-error">
+                            <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
                                 <select name='language' class="input-sm form-control" onchange="submit();">
                                     <option><?php echo lang('select_language') ?></option>
@@ -54,7 +54,7 @@
                             </div>
                         </div>
                         <div class="col-left form-group">
-                            <div class="input-group has-error">
+                            <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-hdd"></span></span>
                                 <select name="database_family" class="input-sm form-control">
                                     <option>-- <?php echo lang('database_family') ?> --</option>
@@ -73,7 +73,7 @@
                             </div>
                         </div>
                         <div class="col-left form-group">
-                            <div class="input-group has-error">
+                            <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-tower"></span></span>
                                 <select name="hash_method" class="input-sm form-control">
                                     <option>-- <?php echo lang('hash_method') ?> --</option>
@@ -94,7 +94,7 @@
                         </div>
 
                         <div class="col-left form-group">
-                            <div class="input-group has-error">
+                            <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-tower"></span></span>
                                 <select name="crypt_method" class="input-sm form-control">
                                     <option>-- <?php echo lang('crypt_method') ?> --</option>
@@ -153,7 +153,7 @@
 
                     <div class="row">
                         <div class="col-left form-group">
-                            <div class="input-group has-error">
+                            <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-hdd"></span></span>
                                 <select name="database_type" class="input-sm form-control">
                                     <option>-- <?php echo lang('database_type') ?> --</option>
