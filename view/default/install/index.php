@@ -6,39 +6,6 @@
 
 ?>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-
-        <?php
-        
-
-        //LOAD LANGUAGES LISTING
-        require_once 'includes/languages_listing.php';
-
-        //CHECK FORM
-        require_once 'includes/check_form.js.php';
-
-        ?>
-
-        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <meta http-equiv="content-language" content="<?php echo $lang['meta-language'] ?>" />
-        <meta name="robots" content="noindex,nofollow" />
-        <meta name="generator" content="HippoEDIT, Netbeans, Notepad++" />
-        <meta name="classification" content="software" />
-        <meta name="author" content="eMarket" />
-        <meta name="owner" content="eMarket" />
-        <meta name="copyright" content="Copyright © 2018 by eMarket Team. All right reserved." />
-
-        <title><?php echo $lang['title_login'] ?></title>
-        <link href="../ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
-        <link href="../ext/bootstrap/css/normalize.css" rel="stylesheet" media="screen" />
-        <style type="text/css">body {padding-top:5px;}</style>
-        
-    </head>
-    <body>
-
         <div class="container">
             <div class="row">
                 <div class="panel panel-default">
@@ -178,24 +145,3 @@
                 </div>
             </div>
         </div>
-
-        <div id="footerwrap">
-            <footer class="clearfix"></footer>
-
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <p><img src="images/emarket.png" width="80" alt="" class="img-responsive center-block"></p>
-
-                        <p>Copyright © 2018-<?php echo date('Y') ?> by <a href="#">eMarket Team</a>. All rights reserved.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
-        <script type="text/javascript" src="../ext/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="../ext/bootstrap/js/bootstrap.min.js"></script>
-
-    </body>
-</html>
