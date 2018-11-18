@@ -1,5 +1,5 @@
 <?php
-  define('HTTP_SERVER', 'http://localhost/');
+  define('HTTP_SERVER', 'http://localhost/controller/');
   define('ROOT', 'C:/OSPanel/domains/localhost');
   define('DB_SERVER', 'localhost');
   define('DB_USERNAME', 'root');

@@ -35,16 +35,10 @@
                     </div>
                 </form>
 
-                <form action="install.php" name="form" method="post" accept-charset="utf-8" style="display: inline;" onsubmit="return check(this.email.value);">
+                <form action="success.php" name="form" method="post" accept-charset="utf-8" style="display: inline;" onsubmit="return check(this.email.value);">
 
                     <!-- Выбранный язык" -->
                     <input type='hidden' name='language' value='<?php echo $DEFAULT_LANGUAGE ?>' />
-
-                    <!-- Значения по умолчанию, если не выбраны" -->
-                    <input type='hidden' name='database_family' value='innodb' />
-                    <input type='hidden' name='hash_method' value='gost' />
-                    <input type='hidden' name='crypt_method' value='gost' />
-                    <input type='hidden' name='database_type' value='mysql' />
 
                     <div class="row">
                         <div class="col-left form-group">
@@ -57,7 +51,7 @@
                             <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-hdd"></span></span>
                                 <select name="database_family" class="input-sm form-control">
-                                    <option>-- <?php echo lang('database_family') ?> --</option>
+                                    <option value='innodb'>-- <?php echo lang('database_family') ?> --</option>
                                     <option value='innodb'><?php echo lang('database_innodb') ?></option>
                                     <option value='myisam'><?php echo lang('database_myisam') ?></option>
                                 </select>
@@ -76,7 +70,7 @@
                             <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-tower"></span></span>
                                 <select name="hash_method" class="input-sm form-control">
-                                    <option>-- <?php echo lang('hash_method') ?> --</option>
+                                    <option value='gost'>-- <?php echo lang('hash_method') ?> --</option>
                                     <option value='gost'><?php echo lang('hash_gost') ?></option>
                                     <option value='sha256'><?php echo lang('hash_sha256') ?></option>
                                 </select>
@@ -97,7 +91,7 @@
                             <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-tower"></span></span>
                                 <select name="crypt_method" class="input-sm form-control">
-                                    <option>-- <?php echo lang('crypt_method') ?> --</option>
+                                    <option value='gost'>-- <?php echo lang('crypt_method') ?> --</option>
                                     <option value='gost'><?php echo lang('crypt_gost') ?></option>
                                     <option value='blowfish'><?php echo lang('crypt_blowfish') ?></option>
                                     <option value='rijndael-256'><?php echo lang('crypt_rijndael-256') ?></option>
@@ -125,7 +119,7 @@
                         <div class="col-left form-group">
                             <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-hdd"></span></span>
-                                <input class="input-sm form-control" placeholder="<?php echo lang('database_prefix') ?>" type="text" name="database_prefix" />
+                                <input class="input-sm form-control" placeholder="<?php echo lang('database_prefix') ?>" type="text" name="database_prefix"  value='emkt_' />
                             </div>
                         </div>
                         <div class="col-left form-group">
@@ -140,7 +134,7 @@
                         <div class="col-left form-group">
                             <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-hdd"></span></span>
-                                <input class="input-sm form-control" placeholder="<?php echo lang('database_port') ?>" type="text" name="database_port" />
+                                <input class="input-sm form-control" placeholder="<?php echo lang('database_port') ?>" type="text" name="database_port" value='3306' />
                             </div>
                         </div>
                         <div class="col-left form-group">
@@ -156,7 +150,7 @@
                             <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-hdd"></span></span>
                                 <select name="database_type" class="input-sm form-control">
-                                    <option>-- <?php echo lang('database_type') ?> --</option>
+                                    <option value='mysql'>-- <?php echo lang('database_type') ?> --</option>
                                     <option value='mysql'><?php echo lang('database_family_mysql') ?></option>
                                 </select>
                             </div>
