@@ -7,40 +7,46 @@
 ?>
 <!-- Для смартфонов -->
 
-<nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">Bootstrap 3 Demo</a>
-    </div>
+<nav class="navbar navbar-inverse navbar-no-corners navbar-no-margin" role="navigation">
+    <div class="container-fluid">
+	<div class="navbar-header">
+	    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse-core-nav">
+		<span class="sr-only">Toggle Navigation</span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+	    </button>
+	</div>
 
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-            <li><a class="dropdown-toggle" data-toggle="dropdown" href="#">Hardware <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-toggle" data-toggle="dropdown" href="#">Graphics <b class="caret"></b></a>
-                        <ul class="dropdown-menu link">
-                            <li><a href="#">Radeon R7</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">Printers</a></li>
-                    <li><a href="#">Monitors</a></li>
-                    <li><a href="#">Speakers</a></li>
-                </ul>
-            </li>
-            <li><a class="dropdown-toggle" data-toggle="dropdown" href="#">Software <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Simulation</a></li>
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Strategy</a></li>
-                </ul>
-            </li>
-            <li><a href="#">Gadgets</a></li>
-        </ul>
+	<div class="collapse navbar-collapse" id="bs-navbar-collapse-core-nav">
+	    <ul class="nav navbar-nav">
+		<li><a class="store-brand" href="#"><i class="glyphicon glyphicon-home"></i><span class="hidden-sm"> Home</span></a></li>
+		<li><a href="#"><i class="glyphicon glyphicon-certificate"></i><span class="hidden-sm">  New Products</span></a></li>
+		<li><a href="#"><i class="glyphicon glyphicon-fire"></i><span class="hidden-sm"> Special Offers</span></a></li>
+		<li><a href="#"><i class="glyphicon glyphicon-comment"></i><span class="hidden-sm"> Reviews</span></a></li>
+	    </ul>
+	    <ul class="nav navbar-nav navbar-right">
+		<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-cog"></i><span class="hidden-sm"> Site Settings</span> <span class="caret"></span></a>
+		    <ul class="dropdown-menu">
+			<li><a href="#">U.S. Dollar</a></li>
+			<li><a href="#">Euro</a></li>
+		    </ul>
+		</li>
+	    <li class="dropdown">
+		<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-user"></i><span class="hidden-sm"> My Account</span> <span class="caret"></span></a>
+		    <ul class="dropdown-menu">
+			<li><a href="#"><i class="glyphicon glyphicon-log-in"></i> Log In</a></li>
+			<li><a href="#"><i class="glyphicon glyphicon-pencil"></i> Register</a></li>
+			<li class="divider"></li>
+			<li><a href="#">My Account</a></li>
+			<li><a href="#">My Orders</a></li>
+			<li><a href="#">My Address Book</a></li>
+			<li><a href="#">My Password</a></li>
+		    </ul>
+	    </li>
+		<li class="nav navbar-text"><i class="glyphicon glyphicon-shopping-cart"></i> 0 items</li>
+	    </ul>
+	</div>
     </div>
 </nav>
 
@@ -50,21 +56,27 @@
 
     <!--Лого и кнопки-->
     <div id="header">
-        <div class="col-md-4">
+        <div class="col-sm-4">
             <a href=""><img src="/view/<?php echo $TEMPLATE ?>/catalog/images/emarket.png"></a>
         </div>
-        <div class="col-md-8 text-right headerlinks"><div class="btn-group">
-
-                <a id="btn1" href="#" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-shopping-cart"></span> Корзина</a>
-                <a id="btn2" href="#" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-play"></span> Оплата</a>
-                <a id="btn3" href="#" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-user"></span> Аккаунт</a>
-
-            </div>
-        </div>
+        <div class="col-sm-8">
+	    <div class="searchbox-margin">
+		<form name="quick_find" action="#" method="get" class="form-horizontal">
+		    <div class="input-group">
+			<input type="search" name="keywords" required="" placeholder="Search" class="form-control">
+			    <span class="input-group-btn">
+				<button type="submit" class="btn btn-info">
+				    <i class="glyphicon glyphicon-search"></i>
+				</button>
+			    </span>
+		     </div>
+		</form>
+	    </div>
+	 </div>
     </div>
     <!--Конец лого и кнопок-->
 
-    <div class="row"> </div>
+    <!--<div class="row"> </div>-->
 
     <!-- Breadcrumb -->
     <div>&nbsp;&nbsp;
