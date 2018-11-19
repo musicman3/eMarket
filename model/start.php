@@ -7,9 +7,11 @@ error_reporting(-1);
 
 $tstart = microtime(1); // Засекаем начальное время 
 
+//Если это инсталлятор, то не грузим файл
 if (explode('/', ($_SERVER['REQUEST_URI']))[2] != 'install'){
 require_once('configure/configure.php');
 }
+
 require_once('autoloader.php');
 
 require_once('configure/based_variables.php');
