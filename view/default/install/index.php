@@ -119,7 +119,7 @@
                         <div class="col-left form-group">
                             <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-hdd"></span></span>
-                                <input class="input-sm form-control" placeholder="<?php echo lang('database_prefix') ?>" type="text" name="database_prefix"  value='emkt_' />
+                                <input class="input-sm form-control" placeholder="<?php echo lang('database_prefix') ?>" type="text" name="database_prefix" />
                             </div>
                         </div>
                         <div class="col-left form-group">
@@ -134,7 +134,7 @@
                         <div class="col-left form-group">
                             <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-hdd"></span></span>
-                                <input class="input-sm form-control" placeholder="<?php echo lang('database_port') ?>" type="text" name="database_port" value='3306' />
+                                <input class="input-sm form-control" placeholder="<?php echo lang('database_port') ?>" type="text" name="database_port" />
                             </div>
                         </div>
                         <div class="col-left form-group">
