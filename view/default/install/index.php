@@ -35,7 +35,7 @@
                     </div>
                 </form>
 
-                <form action="success.php" name="form" method="post" accept-charset="utf-8" style="display: inline;" onsubmit="return check(this.email.value);">
+                <form action="success.php" method="post" accept-charset="utf-8" style="display: inline;" onsubmit="return check(this.email.value);">
 
                     <!-- Выбранный язык" -->
                     <input type='hidden' name='language' value='<?php echo $DEFAULT_LANGUAGE ?>' />
@@ -44,7 +44,7 @@
                         <div class="col-left form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-hdd"></span></span>
-                                <input class="input-sm form-control" placeholder="<?php echo lang('server_db') ?>" type="text" name="server_db" />
+                                <input class="input-sm form-control" id="server_db" placeholder="<?php echo lang('server_db') ?>" type="text" name="server_db" />
                             </div>
                         </div>
                         <div class="col-left form-group">
@@ -63,7 +63,7 @@
                         <div class="col-left form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-hdd"></span></span>
-                                <input class="input-sm form-control" placeholder="<?php echo lang('login_db') ?>" type="text" name="login_db" />
+                                <input class="input-sm form-control" id="login_db" placeholder="<?php echo lang('login_db') ?>" type="text" name="login_db" />
                             </div>
                         </div>
                         <div class="col-left form-group">
@@ -83,7 +83,7 @@
                         <div class="col-left form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-hdd"></span></span>
-                                <input class="input-sm form-control" placeholder="<?php echo lang('database_name') ?>" type="text" name="database_name" />
+                                <input class="input-sm form-control" id="database_name" placeholder="<?php echo lang('database_name') ?>" type="text" name="database_name" />
                             </div>
                         </div>
 
@@ -110,7 +110,7 @@
                         <div class="col-left form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
-                                <input class="input-sm form-control" placeholder="<?php echo lang('login_admin') ?>" type="text" name="login_admin" />
+                                <input class="input-sm form-control" id="email" placeholder="<?php echo lang('login_admin') ?>" type="text" name="login_admin" />
                             </div>
                         </div>
                     </div>
@@ -125,7 +125,7 @@
                         <div class="col-left form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
-                                <input class="input-sm form-control" placeholder="<?php echo lang('password_admin') ?>" type="password" name="password_admin" />
+                                <input class="input-sm form-control" id="password_admin" placeholder="<?php echo lang('password_admin') ?>" type="password" name="password_admin" />
                             </div>
                         </div>
                     </div>
@@ -140,7 +140,7 @@
                         <div class="col-left form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
-                                <input class="input-sm form-control" placeholder="<?php echo lang('password_admin_confirm') ?>" type="password" name="password_admin_confirm" />
+                                <input class="input-sm form-control" id="password_admin_confirm" placeholder="<?php echo lang('password_admin_confirm') ?>" type="password" name="password_admin_confirm" />
                             </div>
                         </div>
                     </div>

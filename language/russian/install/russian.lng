@@ -46,3 +46,6 @@ server_db_name_error = "База данных не существует!"
 success = "Инсталляция успешно завершена!"
 title_install_index = Инсталляция eMarket
 title_success_index = Инсталляция успешно завершена
+db_host_check = Не заполнено поле Сервер базы данных
+db_user_check = Не заполнено поле Пользователь базы данных
+db_name_check = Не заполнено поле Имя базы данных

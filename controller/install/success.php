@@ -61,17 +61,19 @@ $config = '<?php' . "\n" .
         '  define(\'TABLE_ZONES_VALUE\', \'' . $tab_zones_value . '\');' . "\n" .
         '?>';
 
+// Если есть файл конфигурации, то ставим на него права 777
 if (file_exists($ROOT . '/model/configure/configure.php') && !is_writeable($ROOT . '/model/configure/configure.php')) {
     chmod('../../model/configure/configure.php', 0777);
 }
-
+// и записываем в него данные
 if (file_exists($ROOT . '/model/configure/configure.php') && is_writeable($ROOT . '/model/configure/configure.php')) {
     $fp = fopen($ROOT . '/model/configure/configure.php', 'w');
     fputs($fp, $config);
     fclose($fp);
 } else {
 
-    //Файла конфигурации нет  file_configure_not_found
+    //Файла конфигурации нет
+    header('Location: /controller/install/error.php?file_configure_not_found=true'); // переадресация
 }
 
 //Подключаем CONFIGURE.PHP
@@ -82,9 +84,11 @@ $DB = new PDO(DB_TYPE . ':host=' . DB_SERVER . ';dbname=' . DB_NAME, DB_USERNAME
 
 if (!$DB) {
 
-    //Ошибка БД server_db_error
+    //Ошибка соединения с БД
+    header('Location: /controller/install/error.php?server_db_error=true'); // переадресация
 }
 
+// Подключаем файл БД
 if ($db_famyly == 'myisam') {
     $file_name = ROOT . '/model/databases/' . $db_famyly . '.sql';
 }
@@ -92,9 +96,11 @@ if ($db_famyly == 'innodb') {
     $file_name = ROOT . '/model/databases/' . $db_famyly . '.sql';
 }
 
+//Если файла нет, то
 if (!file_exists($file_name)) {
 
-    // Отсутствует файл БД file_not_found
+    // Отсутствует файл БД
+    header('Location: /controller/install/error.php?file_not_found=true'); // переадресация
 }
 
 //Импортируем данные из файла БД
