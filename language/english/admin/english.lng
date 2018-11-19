@@ -7,6 +7,8 @@
 ;либо все значение строки должно экранироваться двойными кавычками. Пример: Привет Мир'!' или "Привет Мир!"
 
 [admin]
+general_language = English
+meta-language = en
 
 ;Title
 title_admin_index = Administration Panel
@@ -32,7 +34,6 @@ menu_error_log = Лог ошибок
 menu_exit = Выход
 menu_extra = Дополнительно
 menu_help = Помощь
-menu_language = Русский
 menu_languages = Языки
 menu_support = Поддержка
 menu_tools = Инструменты
