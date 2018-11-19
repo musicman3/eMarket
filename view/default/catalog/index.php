@@ -54,7 +54,7 @@
 
 <div id="bodyWrapper" class="container-fluid">
 
-    <!--Лого и кнопки-->
+    <!--Лого и поиск-->
     <div id="header">
         <div class="col-sm-4">
             <a href=""><img src="/view/<?php echo $TEMPLATE ?>/catalog/images/emarket.png"></a>
@@ -74,9 +74,7 @@
 	    </div>
 	 </div>
     </div>
-    <!--Конец лого и кнопок-->
-
-    <!--<div class="row"> </div>-->
+    <!--Конец лого и поиск-->
 
     <!-- Breadcrumb -->
     <div>&nbsp;&nbsp;
