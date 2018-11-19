@@ -8,7 +8,7 @@
 require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 /* ------------------------------------------ */
 
-// Получаем данные для файла конфигурации
+// Формируем данные для файла конфигурации
 $http = 'http://' . $VALID->inSERVER('HTTP_HOST') . '/';
 $ROOT = getenv('DOCUMENT_ROOT');
 $serv_db = $VALID->inPOST('server_db');
@@ -35,7 +35,7 @@ $tab_vendor_codes = $db_pref . 'vendor_codes';
 $hash_method = $VALID->inPOST('hash_method');
 $crypt_method = $VALID->inPOST('crypt_method');
 
-//Записываем данные в файл CONFIGURE.PHP
+// Подготавливаем данные для файла конфигурации
 $config = '<?php' . "\n" .
         '  define(\'HTTP_SERVER\', \'' . $http . '\');' . "\n" .
         '  define(\'ROOT\', \'' . $ROOT . '\');' . "\n" .
@@ -72,11 +72,11 @@ if (file_exists($ROOT . '/model/configure/configure.php') && is_writeable($ROOT 
     fclose($fp);
 } else {
 
-    //Файла конфигурации нет
-    header('Location: /controller/install/error.php?file_configure_not_found=true'); // переадресация
+    // Если файла конфигурации нет, то переадресуем на страницу ошибки
+    header('Location: /controller/install/error.php?file_configure_not_found=true');
 }
 
-//Подключаем CONFIGURE.PHP
+// Подключаем CONFIGURE.PHP
 require_once($ROOT . '/model/configure/configure.php');
 
 // Подключаем соединение к БД
@@ -84,8 +84,8 @@ $DB = new PDO(DB_TYPE . ':host=' . DB_SERVER . ';dbname=' . DB_NAME, DB_USERNAME
 
 if (!$DB) {
 
-    //Ошибка соединения с БД
-    header('Location: /controller/install/error.php?server_db_error=true'); // переадресация
+    // Если ошибка соединения с БД, то переадресуем на страницу ошибки
+    header('Location: /controller/install/error.php?server_db_error=true');
 }
 
 // Подключаем файл БД
@@ -96,20 +96,20 @@ if ($db_famyly == 'innodb') {
     $file_name = ROOT . '/model/databases/' . $db_famyly . '.sql';
 }
 
-//Если файла нет, то
+// Если файла нет, то
 if (!file_exists($file_name)) {
 
-    // Отсутствует файл БД
-    header('Location: /controller/install/error.php?file_not_found=true'); // переадресация
+    // Если отсутствует файл БД, то переадресуем на страницу ошибки
+    header('Location: /controller/install/error.php?file_not_found=true');
 }
 
-//Импортируем данные из файла БД
-$buffer = str_replace('emkt_', DB_PREFIX, implode(file($file_name))); //меняем префикс, если он другой
+// Импортируем данные из файла БД
+$buffer = str_replace('emkt_', DB_PREFIX, implode(file($file_name))); // Меняем префикс, если он другой
 $DB->exec("set names utf8mb4");
 $DB->exec($buffer);
 
-//Сохраняем e-mail и пароль
-$password_admin_hash = hash(HASH_METHOD, $password_admin); //Хэшируем пароль
+// Сохраняем e-mail и пароль
+$password_admin_hash = hash(HASH_METHOD, $password_admin); // Хэшируем пароль
 
 if ($VALID->inPOST('login_admin') and $VALID->inPOST('password_admin')) {
     $DB->exec("INSERT INTO " . TABLE_ADMINISTRATORS . " (login, password, permission, language) VALUES ('$login_admin','$password_admin_hash','admin','$lng')");
@@ -134,7 +134,7 @@ php_value error_reporting -1
 php_value error_log " . ROOT . "/model/work/errors.log";
 
 
-//Если файл существует, то ставим права 777
+// Если файл существует, то ставим права 777
 if (file_exists(ROOT . '/.htaccess') && !is_writeable(ROOT . '/.htaccess')) {
     chmod(ROOT . '/.htaccess', 0777);
 }
