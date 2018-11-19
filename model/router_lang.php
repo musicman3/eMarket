@@ -31,7 +31,7 @@ $lang_all = array(); // массив с языками
 $lang_dir = scandir(getenv('DOCUMENT_ROOT') . '/language/');
 array_push($lang_all, ucfirst($DEFAULT_LANGUAGE)); // первым в массиве идет язык по умолчанию
 foreach ($lang_dir as $lang_name) {
-    if (!in_array($lang_name, array('.', '..', ucfirst($DEFAULT_LANGUAGE)))) {
+    if (!in_array($lang_name, array('.', '..', $DEFAULT_LANGUAGE))) {
         array_push($lang_all, ucfirst($lang_name));
     }
 }
