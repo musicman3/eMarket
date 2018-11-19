@@ -7,7 +7,7 @@
 ;либо все значение строки должно экранироваться двойными кавычками. Пример: Привет Мир'!' или "Привет Мир!"
 
 [admin]
-general_language = English
+language_name = English
 meta-language = en
 
 ;Title

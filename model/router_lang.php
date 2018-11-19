@@ -1,6 +1,6 @@
 <?php
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
-  |    GNU GENERAL PUBLIC LICENSE v.3.0    |    
+  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 // 
@@ -17,15 +17,6 @@ if ($VALID->inPOST('language') == TRUE) {
     $DEFAULT_LANGUAGE = $VALID->inPOST('language');
 }
 
-//Подключение и парсинг языковых файлов
-$files_path = $TREE->filesTree(getenv('DOCUMENT_ROOT') . '/language/' . strtolower($DEFAULT_LANGUAGE) . '/' . $PATH);
-
-$parse_temp = parse_ini_file($files_path[0]);
-for ($i = 0; $i < count($files_path); $i++) {
-    $ini = parse_ini_file($files_path[$i]);
-    $lang = array_merge($parse_temp, $ini); // Установка языкового массива
-}
-
 // Получаем список языков в массиве (для использования в мультиязычных функциях и т.п.)
 $lang_all = array(); // массив с языками
 $lang_dir = scandir(getenv('DOCUMENT_ROOT') . '/language/');
@@ -36,14 +27,37 @@ foreach ($lang_dir as $lang_name) {
     }
 }
 
+//Подключение и парсинг языковых файлов
+$files_path = $TREE->filesTree(getenv('DOCUMENT_ROOT') . '/language/' . strtolower($DEFAULT_LANGUAGE) . '/' . $PATH);
+
 /**
- * Функция для вывода языковой переменной вида: lang('pass');
+ * Функция для вывода языковой переменной вида: lang('name') или lang('name', 'english')
  *
  * @param строка $a
+ * @param строка $b
  * @return строка $a
  */
-function lang($a) {
-    global $lang;
+function lang($a, $b = null) {
+    global $DEFAULT_LANGUAGE, $TREE, $PATH, $files_path;
+
+    // Если указан дополнительный параметр $b (название другого языка, напр. english)
+    if ($b != null) {
+        // То подключаем файл другого языка, чтобы оттуда взять нужную языковую переменную
+        $files_path2 = $TREE->filesTree(getenv('DOCUMENT_ROOT') . '/language/' . strtolower($b) . '/' . $PATH);
+
+        $parse_temp = parse_ini_file($files_path2[0]);
+        for ($i = 0; $i < count($files_path2); $i++) {
+            $ini = parse_ini_file($files_path2[$i]);
+            $lang = array_merge($parse_temp, $ini); // Установка языкового массива
+        }
+    } else {
+        // Если дополнительного параметра нет, то выводим стандартно
+        $parse_temp = parse_ini_file($files_path[0]);
+        for ($i = 0; $i < count($files_path); $i++) {
+            $ini = parse_ini_file($files_path[$i]);
+            $lang = array_merge($parse_temp, $ini); // Установка языкового массива
+        }
+    }
 
     if (isset($lang[$a])) {
         return $lang[$a]; // Если языковая переменная найдена, то выводим ее значение
