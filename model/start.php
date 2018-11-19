@@ -9,12 +9,12 @@ $tstart = microtime(1); // Засекаем начальное время
 
 require_once('autoloader.php');
 
+require_once('configure/based_variables.php');
+
 //Если это инсталлятор, то не грузим файл
-if (explode('/', ($VALID->inSERVER('REQUEST_URI')))[2] != 'install'){
+if ($PATH != 'install'){
 require_once('configure/configure.php');
 }
-
-require_once('configure/based_variables.php');
 
 require_once('configure/connect.php');
 
