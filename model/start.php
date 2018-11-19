@@ -6,7 +6,9 @@
 error_reporting(-1);
 
 $tstart = microtime(1); // Засекаем начальное время 
+
 require_once('autoloader.php');
+
 //Если это инсталлятор, то не грузим файл
 if (explode('/', ($VALID->inSERVER('REQUEST_URI')))[2] != 'install'){
 require_once('configure/configure.php');
