@@ -80,12 +80,12 @@ if (file_exists($ROOT . '/model/configure/configure.php') && is_writeable($ROOT 
 require_once($ROOT . '/model/configure/configure.php');
 
 // Подключаем соединение к БД
-$DB = new PDO(DB_TYPE . ':host=' . DB_SERVER . ';dbname=' . DB_NAME, DB_USERNAME, DB_PASSWORD);
+try {
+$DB = new PDO(DB_TYPE . ':host=' . DB_SERVER . ';dbname=' . DB_NAME, DB_USERNAME, DB_PASSWORD, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
 
-if (!$DB) {
-
+} catch (PDOException $error) {
     // Если ошибка соединения с БД, то переадресуем на страницу ошибки
-    header('Location: /controller/install/error.php?server_db_error=true');
+    header('Location: /controller/install/error.php?server_db_error=true&error_message=' . $error->getMessage());
 }
 
 // Подключаем файл БД

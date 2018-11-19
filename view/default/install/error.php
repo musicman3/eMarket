@@ -18,7 +18,8 @@
             </div>
             <div class="panel-body">
                 <form action='index.php' method='post' accept-charset='utf-8'>
-                    <div class="alert alert-success"><?php echo lang($message) ?></div>
+                    <div class="alert alert-danger"><?php echo lang($message) ?></div>
+                    <div class="alert alert-warning"><?php echo lang($error_message) ?></div>
                     <button class="btn btn-info btn-sm" type="submit" name="button_go_login" /><?php echo lang('button_go_login') ?></button>
                 </form>
             </div>

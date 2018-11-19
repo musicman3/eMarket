@@ -8,14 +8,17 @@
 require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 /* ------------------------------------------ */
 
-if ($VALID->inGET('file_configure_not_found') == TRUE) {
+if ($VALID->inGET('file_configure_not_found')) {
     $message = 'file_configure_not_found';
 }
-if ($VALID->inGET('server_db_error') == TRUE) {
+if ($VALID->inGET('server_db_error')) {
     $message = 'server_db_error';
 }
-if ($VALID->inGET('file_not_found') == TRUE) {
+if ($VALID->inGET('file_not_found')) {
     $message = 'file_not_found';
+}
+if ($VALID->inGET('error_message')) {
+    $error_message = $VALID->inGET('error_message');
 }
 
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
