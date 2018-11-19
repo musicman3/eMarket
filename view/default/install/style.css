@@ -9,8 +9,8 @@ html {position: relative;min-height: 100%;}
 body {background:#e4e4da;font-family: 'Open Sans',sans-serif;background-image:url('images/sep-half.png');margin-bottom: 70px;}
 #footerwrap {width: 100%;background: #4c453d;background-image: none;border-top-style: solid;border-top-width: 8px;border-top-color: #312d27;background-image: url('images/sep-half.png');text-align: center;position: absolute;bottom: 0;height: 80px;}
 #footerwrap p {color: white;font-size: 12px;}
-.panel-heading {font-weight:bold;}
-#install .row {margin-left: 0;margin-right: 0;}
-#install .col-left {float: left;width: 270px;margin-right: 50px;}
-#install input, #install select {font-size: 14px;}
+.row {margin-left: 0;margin-right: 0;}
+.col-left {float: left;width: 250px;margin-right: 50px;}
+.input-sm {font-size: 14px;}
 .panel-title {font-size: 18px;}
+.add-xs {font-size:14px;display: inline-block;float: right; padding-right:5px;padding-left:5px;}

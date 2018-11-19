@@ -13,15 +13,10 @@
             <div class="panel-heading">
                 <h3 class="panel-title">
                     <div class="pull-left"><?php echo lang('install_panel') ?></div>
-                    <div class="clearfix"></div>
-                </h3>
-            </div>
-
-            <div id="install" class="panel-body">
-
+                    
                 <form action="index.php" method="post" accept-charset="utf-8">
                     <div class="row">
-                        <div class="col-left form-group">
+                        <div class="add-xs">
                             <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
                                 <select name='language' class="input-sm form-control" onchange="submit();">
@@ -34,6 +29,12 @@
                         </div>
                     </div>
                 </form>
+                    
+                    <div class="clearfix"></div>
+                </h3>
+            </div>
+
+            <div class="panel-body">
 
                 <form action="success.php" method="post" accept-charset="utf-8" style="display: inline;" onsubmit="return check(this.email.value);">
 
