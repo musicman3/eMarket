@@ -19,6 +19,15 @@ if ($VALID->inGET('file_not_found')) {
 }
 if ($VALID->inGET('error_message')) {
     $error_message = $VALID->inGET('error_message');
+    if (strrpos($error_message, 'php_network_getaddresses') == TRUE) {
+        $error_message = lang('database_server_error');
+    }
+    if (strrpos($error_message, 'Access denied for user') == TRUE) {
+        $error_message = lang('database_login_error');
+    }
+    if (strrpos($error_message, 'Unknown database') == TRUE) {
+        $error_message = lang('database_table_error');
+    }
 }
 
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
