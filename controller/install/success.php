@@ -7,7 +7,7 @@
 /* >-->-->-->  CONNECT PAGE START  <--<--<--< */
 require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 /* ------------------------------------------ */
-$DEBUG->trace($_POST);
+
 // Формируем данные для файла конфигурации
 $http = 'http://' . $VALID->inSERVER('HTTP_HOST') . '/';
 $ROOT = getenv('DOCUMENT_ROOT');
