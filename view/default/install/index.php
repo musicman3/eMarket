@@ -157,7 +157,7 @@
                         </div>
                         <div class="col-left form-group">
                             <div class="input-group has-error">
-                                <button class="btn btn-info btn-sm" type="submit" name="install_button" onclick="return pass_check();" /><?php echo lang('install_button') ?></button>
+                                <button class="btn btn-primary btn-sm" type="submit" name="install_button" onclick="return pass_check();" /><?php echo lang('install_button') ?></button>
                             </div>
                         </div>
                     </div>
