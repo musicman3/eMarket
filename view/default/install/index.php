@@ -12,7 +12,7 @@
 
             <div class="panel-heading">
                 <h3 class="panel-title">
-                    <div class="pull-left"><b><?php echo lang('install_panel') ?></b></div>
+                    <div class="pull-left"><?php echo lang('install_panel') ?></div>
                     <div class="clearfix"></div>
                 </h3>
             </div>
@@ -79,7 +79,6 @@
                     </div>
 
                     <div class="row">
-
                         <div class="col-left form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-hdd"></span></span>
