@@ -7,7 +7,7 @@
 /* >-->-->-->  CONNECT PAGE START  <--<--<--< */
 require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 /* ------------------------------------------ */
-
+$DEBUG->trace($_POST);
 // Формируем данные для файла конфигурации
 $http = 'http://' . $VALID->inSERVER('HTTP_HOST') . '/';
 $ROOT = getenv('DOCUMENT_ROOT');
@@ -63,7 +63,7 @@ $config = '<?php' . "\n" .
 
 // Если есть файл конфигурации, то ставим на него права 777
 if (file_exists($ROOT . '/model/configure/configure.php') && !is_writeable($ROOT . '/model/configure/configure.php')) {
-    chmod('../../model/configure/configure.php', 0777);
+    chmod($ROOT . 'model/configure/configure.php', 0777);
 }
 // и записываем в него данные
 if (file_exists($ROOT . '/model/configure/configure.php') && is_writeable($ROOT . '/model/configure/configure.php')) {
