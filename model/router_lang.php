@@ -38,7 +38,7 @@ $files_path = $TREE->filesTree(getenv('DOCUMENT_ROOT') . '/language/' . strtolow
  * @return строка $a
  */
 function lang($a, $b = null) {
-    global $DEFAULT_LANGUAGE, $TREE, $PATH, $files_path;
+    global $TREE, $PATH, $files_path;
 
     // Если указан дополнительный параметр $b (название другого языка, напр. english)
     if ($b != null) {
