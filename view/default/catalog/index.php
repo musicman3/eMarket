@@ -65,7 +65,7 @@
 		    <div class="input-group">
 			<input type="search" name="keywords" required="" placeholder="Search" class="form-control">
 			    <span class="input-group-btn">
-				<button type="submit" class="btn btn-info">
+				<button type="submit" class="btn btn-primary">
 				    <i class="glyphicon glyphicon-search"></i>
 				</button>
 			    </span>
