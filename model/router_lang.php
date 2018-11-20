@@ -41,7 +41,7 @@ function lang($a, $b = null) {
     // Если указан дополнительный параметр $b (название другого языка, напр. english)
     if ($b != null) {
         // То подключаем файл другого языка, чтобы оттуда взять нужную языковую переменную
-        if (!isset($_SESSION['files_path2']) OR isset($_SESSION['files_path_temp2']) == TRUE && $_SESSION['files_path_temp2'] != $b) {
+        if (!isset($_SESSION['files_path2']) OR isset($_SESSION['files_path_temp2']) == TRUE && $_SESSION['files_path_temp2'] != strtolower($b) . '/' . $PATH) {
             $_SESSION['files_path2'] = $TREE->filesTree(getenv('DOCUMENT_ROOT') . '/language/' . strtolower($b) . '/' . $PATH);
             $_SESSION['files_path_temp2'] = $b;
         
@@ -58,7 +58,7 @@ function lang($a, $b = null) {
         }
     } else {
         // Если дополнительного параметра нет, то выводим стандартно
-        if (!isset($_SESSION['files_path']) OR isset($_SESSION['files_path_temp']) == TRUE && $_SESSION['files_path_temp'] != $DEFAULT_LANGUAGE) {
+        if (!isset($_SESSION['files_path']) OR isset($_SESSION['files_path_temp']) == TRUE && $_SESSION['files_path_temp'] != strtolower($DEFAULT_LANGUAGE) . '/' . $PATH) {
             $_SESSION['files_path'] = $TREE->filesTree(getenv('DOCUMENT_ROOT') . '/language/' . strtolower($DEFAULT_LANGUAGE) . '/' . $PATH);
             $_SESSION['files_path_temp'] = $DEFAULT_LANGUAGE;
         
