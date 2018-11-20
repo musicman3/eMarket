@@ -43,11 +43,13 @@ function lang($a, $b = null) {
     // Если указан дополнительный параметр $b (название другого языка, напр. english)
     if ($b != null) {
         // То подключаем файл другого языка, чтобы оттуда взять нужную языковую переменную
-        $files_path2 = $TREE->filesTree(getenv('DOCUMENT_ROOT') . '/language/' . strtolower($b) . '/' . $PATH);
-
-        $parse_temp = parse_ini_file($files_path2[0]);
-        for ($i = 0; $i < count($files_path2); $i++) {
-            $ini = parse_ini_file($files_path2[$i]);
+        if(!isset($_SESSION['files_path2']) OR $_SESSION['files_path_temp'] != $b){
+        $_SESSION['files_path2'] = $TREE->filesTree(getenv('DOCUMENT_ROOT') . '/language/' . strtolower($b) . '/' . $PATH);
+        $_SESSION['files_path_temp'] = $b;
+        }
+        $parse_temp = parse_ini_file($_SESSION['files_path2'][0]);
+        for ($i = 0; $i < count($_SESSION['files_path2']); $i++) {
+            $ini = parse_ini_file($_SESSION['files_path2'][$i]);
             $lang = array_merge($parse_temp, $ini); // Установка языкового массива
         }
     } else {
