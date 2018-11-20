@@ -77,8 +77,9 @@ $submenu[$menu_help][0][0] = '<a href="#"><span><img src="/view/' . $TEMPLATE . 
 $menu[$menu_help][1] = '<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span><img src="/view/' . $TEMPLATE . '/admin/images/icons/16x16/locale.png" /></span> ' . lang('menu_languages') . ' <b class="caret"></b></a>';
 
 //Вывод языков
-for ($lng = 0; $lng < count($lang_all); $lng++) {
-    $submenu[$menu_help][1][$lng] = '<a href="/controller/admin/?language=' . strtolower($lang_all[$lng]) . '"><span><img src="/view/' . $TEMPLATE . '/admin/images/langflags/' . $lang_all[$lng] . '.png" /></span> ' . lang('language_name', $lang_all[$lng]) . ' </a>';
+    $submenu[$menu_help][1][0] = '<a href="/controller/admin/?language=' . strtolower($lang_all[0]) . '"><span><img src="/view/' . $TEMPLATE . '/admin/images/langflags/' . $lang_all[0] . '.png" /></span> ' . lang('language_name') . ' </a>';
+for ($lng = 1; $lng < count($lang_all); $lng++) {
+    $submenu[$menu_help][1][$lng] = '<a href="/controller/admin/?language=' . strtolower($lang_all[$lng]) . '"><span><img src="/view/' . $TEMPLATE . '/admin/images/langflags/' . $lang_all[$lng] . '.png" /></span> ' . $lang_all[$lng] . ' </a>';
 }
 
 $menu[$menu_help][2] = '<a target="_blank" href="/controller/catalog/index.php"><span><img src="/view/' . $TEMPLATE . '/admin/images/icons/16x16/home.png" /></span> ' . lang('menu_catalog') . '</a>';
