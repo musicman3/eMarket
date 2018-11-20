@@ -183,7 +183,7 @@
                                         </form>
 
                                     </td>
-                                    <td class="options" align="left"><div class="context-one"><?php echo lang('no_cat') ?></div></td>
+                                    <td class="options" align="left"><div class="context-one"><?php echo lang('no_listing') ?></div></td>
                                 </tr>
                             </tbody>
                         </table>
