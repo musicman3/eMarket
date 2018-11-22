@@ -6,7 +6,6 @@
 
 ?>
 <!-- Для смартфонов -->
-
 <nav class="navbar navbar-inverse navbar-no-corners navbar-no-margin" role="navigation">
     <div class="container-fluid">
 	<div class="navbar-header">
@@ -49,7 +48,6 @@
 	</div>
     </div>
 </nav>
-
 <!-- Конец для смартфонов -->
 
 <div id="bodyWrapper" class="container-fluid">
@@ -86,7 +84,6 @@
     <!-- Конец breadcrumb -->
 
     <!-- Начало слайдер -->
-
     <style type="text/css">
         .carousel {overflow: hidden;background: none;height: 210px !important;margin-bottom: 10px;}
         .carousel-inner {overflow: visible;}
@@ -111,49 +108,42 @@
             <span class="glyphicon glyphicon-chevron-right"></span>
         </a>
     </div>
-
     <!-- Конец слайдер -->
 
     <!-- Начало Контент -->
-
     <div class="row">
-
         <div id="bodyContent" class="col-md-8 col-md-push-2">
-
             <!-- Начало центр -->
-
             <img src="" height="30px;" id="pageIcon">
+		<h1>Welcome Bootstrap 3 Demo</h1>
+		    <div class="contentContainer">
+		    
+			<div class="contentText">
+			    <h6>Welcome Guest!</h6>
+			</div>
+			<div class="contentText after">
+			    The default shopping cart comes with Jquery UI, Grid960, Fancybox and BxGallery, in this demo those have been replaced by Boostrap and Bootstrap 3 Lightbox making it lighter, faster and responsive.
+			</div>		
 
-            <h1>Welcome Bootstrap 3 Demo</h1>
+		    <div class="clearfix"></div>
 
-            <div class="contentContainer">
-                <div class="contentText">
-                    <h6>Welcome Guest!</h6>
-                </div>
-
-                <div class="contentText after">
-                    <br><strong>Demonstration of Twitter Bootstrap 3 Framework.</strong><br><br>The default shopping cart comes with Jquery UI, Grid960, Fancybox and BxGallery, in this demo those have been replaced by Boostrap and Bootstrap 3 Lightbox making it lighter, faster and responsive.<br><br>This demo is based of the with default demo content, but with higher resolution product images and an automatic thumbnail generator added.<br><br><strong>NOTE:</strong> This demo is a plain "boilerplate" version without extra styling.
-                </div>		
-
-                <div class="clearfix"></div>
-
-                <div class="contentText before">
-                    <br><strong>Demonstration of Twitter Bootstrap 3 Framework.</strong><br><br>The default shopping cart comes with Jquery UI, Grid960, Fancybox and BxGallery, in this demo those have been replaced by Boostrap and Bootstrap 3 Lightbox making it lighter, faster and responsive.<br><br>This demo is based of the with default demo content, but with higher resolution product images and an automatic thumbnail generator added.<br><br><strong>NOTE:</strong> This demo is a plain "boilerplate" version without extra styling.
-                </div>
-
-            </div>
+			<div class="contentText">
+			    <h6>Welcome Guest!</h6>
+			</div>
+			<div class="contentText before">
+			    The default shopping cart comes with Jquery UI, Grid960, Fancybox and BxGallery, in this demo those have been replaced by Boostrap and Bootstrap 3 Lightbox making it lighter, faster and responsive.
+			</div>
+		     </div>
             <!-- Конец центр -->
         </div> 
+
         <!-- Начало левая-->
         <div id="columnLeft" class="col-lg-2 col-md-2 col-sm-6 col-xs-12 col-md-pull-8">
-
             <div class="panel panel-default">
                 <div class="panel-heading">Categories</div>
                 <div class="panel-body">
                     <a href="#">Hardware-&gt;</a><br>
                     <a href="#">Software-&gt;</a><br>
-                    <a href="#">DVD Movies-&gt;</a><br>
-                    <a href="#">Gadgets</a><br>
                 </div>
             </div>
         </div>
@@ -161,29 +151,20 @@
 
         <!-- Начало правая -->
         <div id="columnRight" class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
-
             <div class="panel panel-default">
-                <div class="panel-heading">Categories</div>
+                <div class="panel-heading">Shopping Cart</div>
                 <div class="panel-body">
-                    <a href="#">Hardware-&gt;</a><br>
-                    <a href="#">Software-&gt;</a><br>
-                    <a href="#">DVD Movies-&gt;</a><br>
-                    <a href="#">Gadgets</a><br>
+		    <p class="nav text-center"><i class="glyphicon glyphicon-shopping-cart"></i> 0 items</p>
                 </div>
             </div>
         </div>
-
         <!-- Конец правая -->
-
     </div>
-
     <!-- Конец контент -->
 </div>
 
 <!-- Начало футер -->
-
 <div class="footer">
     <p align="center"><?php echo date('Y'); ?> | eMarket Design by Prizraki</p>
 </div>
-
 <!-- Конец футер -->
