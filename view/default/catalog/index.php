@@ -114,8 +114,8 @@
     <div class="row">
         <div id="bodyContent" class="col-md-8 col-md-push-2">
             <!-- Начало центр -->
-            <img src="" height="30px;" id="pageIcon">
-		<h1>Welcome Bootstrap 3 Demo</h1>
+            <div><img src="/view/<?php echo $TEMPLATE ?>/catalog/images/home.png" id="pageIcon">
+		<h1>Welcome Bootstrap 3 Demo</h1></div><hr>
 		    <div class="contentContainer">
 		    
 			<div class="contentText">
