@@ -21,8 +21,8 @@
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
                                 <select name='language' class="input-sm form-control" onchange="submit();">
                                     <option><?php echo lang('select_language') ?></option>
-                                    <?php for ($x = 1; $x < count($lang_all); $x++) { ?>
-                                        <option value='<?php echo $lang_all[$x] ?>'><?php echo $lang_all[$x] ?></option>
+                                    <?php for ($x = 0; $x < count($lang_all); $x++) { ?>
+                                        <option value='<?php echo $lang_all[$x] ?>'><?php echo $general[strtolower($lang_all[$x])]['language_name'] ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
