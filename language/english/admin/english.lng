@@ -7,8 +7,6 @@
 ;либо все значение строки должно экранироваться двойными кавычками. Пример: Привет Мир'!' или "Привет Мир!"
 
 [admin]
-language_name = English
-meta-language = en
 
 ;Title
 title_admin_index = Administration Panel
