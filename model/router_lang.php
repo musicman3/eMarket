@@ -44,7 +44,7 @@ foreach ($_lang_dir as $_lang_name) {
 }
 
 /**
- * Функция для вывода языковой переменной вида: lang('pass');
+ * Функция для вывода языковой переменной вида: lang('pass') или lang('pass', 'english');
  *
  * @param строка $a
  * @param строка $b
