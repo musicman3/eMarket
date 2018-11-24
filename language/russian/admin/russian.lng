@@ -8,7 +8,7 @@
 
 [admin]
 
-;TITLE
+;Title
 title_admin_index = Панель администратора
 title_based_settings_index = Базовые настройки
 title_categories_index = Категории
@@ -88,4 +88,3 @@ region_code = Код региона
 region = Регион
 zone = Зона
 country = Страна
-
