@@ -58,8 +58,11 @@ function lang($a, $b = null) {
         } else {
             return $a; // Если языковая переменная не найдена, то выводим ее название
         }
-    } else {
+    }
+    if (isset($lang[$b][$a])) {
         return $lang[$b][$a];
+    } else {
+        return $a;
     }
 }
 
