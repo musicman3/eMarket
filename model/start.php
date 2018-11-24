@@ -12,8 +12,8 @@ require_once('autoloader.php');
 require_once('configure/based_variables.php');
 
 //Если это инсталлятор, то не грузим файл
-if ($PATH != 'install'){
-require_once('configure/configure.php');
+if ($PATH != 'install') {
+    require_once('configure/configure.php');
 }
 
 require_once('configure/connect.php');

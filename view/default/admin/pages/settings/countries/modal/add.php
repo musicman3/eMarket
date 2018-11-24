@@ -18,7 +18,7 @@
 
                     <!-- Языковые панели -->
                     <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#<?php echo $lang_all[0] ?>"><img src="/view/<?php echo $TEMPLATE ?>/admin/images/langflags/<?php echo $lang_all[0] ?>.png" alt="<?php echo $lang_all[0] ?>" title="<?php echo $lang_all[0] ?>" width="16" height="10" /> <?php echo $general[$lang_all[0]]['language_name'] ?></a></li>
+                        <li class="active"><a data-toggle="tab" href="#<?php echo $lang_all[0] ?>"><img src="/view/<?php echo $TEMPLATE ?>/admin/images/langflags/<?php echo $lang_all[0] ?>.png" alt="<?php echo $lang_all[0] ?>" title="<?php echo $lang_all[0] ?>" width="16" height="10" /> <?php echo $_lang[$lang_all[0]]['language_name'] ?></a></li>
 
                         <?php
                         if (count($lang_all) > 1) {
@@ -26,7 +26,7 @@
 
                                 ?>
 
-                                <li><a data-toggle="tab" href="#<?php echo $lang_all[$xl] ?>"><img src="/view/<?php echo $TEMPLATE ?>/admin/images/langflags/<?php echo $lang_all[$xl] ?>.png" alt="<?php echo $lang_all[$xl] ?>" title="<?php echo $lang_all[$xl] ?>" width="16" height="10" /> <?php echo $general[$lang_all[$xl]]['language_name'] ?></a></li>
+                                <li><a data-toggle="tab" href="#<?php echo $lang_all[$xl] ?>"><img src="/view/<?php echo $TEMPLATE ?>/admin/images/langflags/<?php echo $lang_all[$xl] ?>.png" alt="<?php echo $lang_all[$xl] ?>" title="<?php echo $lang_all[$xl] ?>" width="16" height="10" /> <?php echo $_lang[$lang_all[$xl]]['language_name'] ?></a></li>
 
                                 <?php
                             }
