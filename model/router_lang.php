@@ -51,7 +51,7 @@ foreach ($lang_dir as $lang_name) {
  */
 function lang($a, $b = null) {
     global $_lang, $lang;
-
+    // Вывод для основных языковых переменных
     if ($b == null) {
         if (isset($_lang[$a])) {
             return $_lang[$a]; // Если языковая переменная найдена, то выводим ее значение
@@ -59,10 +59,11 @@ function lang($a, $b = null) {
             return $a; // Если языковая переменная не найдена, то выводим ее название
         }
     }
+    // Вывод для языковых переменных из lang.lng
     if (isset($lang[$b][$a])) {
-        return $lang[$b][$a];
+        return $lang[$b][$a]; // Если языковая переменная найдена, то выводим ее значение
     } else {
-        return $a;
+        return $a; // Если языковая переменная не найдена, то выводим ее название
     }
 }
 
