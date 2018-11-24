@@ -24,13 +24,13 @@ $files_path = $TREE->filesTree(getenv('DOCUMENT_ROOT') . '/language/' . $DEFAULT
 $parse_temp = parse_ini_file($files_path[0]);
 for ($i = 0; $i < count($files_path); $i++) {
     $ini = parse_ini_file($files_path[$i]);
-    $lang = array_merge($parse_temp, $ini); // Установка языкового массива
+    $_lang = array_merge($parse_temp, $ini); // Установка языкового массива
 }
 
 // Получаем список языков в массиве (для использования в мультиязычных функциях и т.п.)
 $lang_all = array(); // массив с языками
 $lang_dir = scandir(getenv('DOCUMENT_ROOT') . '/language/');
-$_lang_temp = parse_ini_file(getenv('DOCUMENT_ROOT') . '/language/' . $DEFAULT_LANGUAGE . '/admin/lang.lng', TRUE);
+$lang_temp = parse_ini_file(getenv('DOCUMENT_ROOT') . '/language/' . $DEFAULT_LANGUAGE . '/admin/lang.lng', TRUE);
 array_push($lang_all, $DEFAULT_LANGUAGE); // первым в массиве идет язык по умолчанию
 foreach ($lang_dir as $lang_name) {
     
@@ -40,7 +40,7 @@ foreach ($lang_dir as $lang_name) {
         
         // Собираем данные из всех general.lng
         $ini_lang = parse_ini_file(getenv('DOCUMENT_ROOT') . '/language/' . $lang_name . '/admin/lang.lng', TRUE);
-        $_lang = array_merge($_lang_temp, $ini_lang);
+        $lang = array_merge($lang_temp, $ini_lang);
     }
 }
 
@@ -51,10 +51,10 @@ foreach ($lang_dir as $lang_name) {
  * @return строка $a
  */
 function lang($a) {
-    global $lang;
+    global $_lang;
 
-    if (isset($lang[$a])) {
-        return $lang[$a]; // Если языковая переменная найдена, то выводим ее значение
+    if (isset($_lang[$a])) {
+        return $_lang[$a]; // Если языковая переменная найдена, то выводим ее значение
     } else {
         return $a; // Если языковая переменная не найдена, то выводим ее название
     }

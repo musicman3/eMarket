@@ -78,7 +78,7 @@ $menu[$menu_help][1] = '<a href="#" class="dropdown-toggle" data-toggle="dropdow
 
 //Вывод языков
 for ($lng = 0; $lng < count($lang_all); $lng++) {
-    $submenu[$menu_help][1][$lng] = '<a href="/controller/admin/?language=' . $lang_all[$lng] . '"><span><img src="/view/' . $TEMPLATE . '/admin/images/langflags/' . $lang_all[$lng] . '.png" /></span> ' . $_lang[$lang_all[$lng]]['language_name'] . ' </a>';
+    $submenu[$menu_help][1][$lng] = '<a href="/controller/admin/?language=' . $lang_all[$lng] . '"><span><img src="/view/' . $TEMPLATE . '/admin/images/langflags/' . $lang_all[$lng] . '.png" /></span> ' . $lang[$lang_all[$lng]]['language_name'] . ' </a>';
 }
 
 $menu[$menu_help][2] = '<a target="_blank" href="/controller/catalog/index.php"><span><img src="/view/' . $TEMPLATE . '/admin/images/icons/16x16/home.png" /></span> ' . lang('menu_catalog') . '</a>';
