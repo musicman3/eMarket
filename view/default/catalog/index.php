@@ -25,7 +25,7 @@
 		<li><a href="#"><i class="glyphicon glyphicon-comment"></i><span class="hidden-sm"> Reviews</span></a></li>
 	    </ul>
 	    <ul class="nav navbar-nav navbar-right">
-		<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-cog"></i><span class="hidden-sm"> Site Settings</span> <span class="caret"></span></a>
+		<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-credit-card"></i><span class="hidden-sm"> Currencies</span> <span class="caret"></span></a>
 		    <ul class="dropdown-menu">
 			<li><a href="#">U.S. Dollar</a></li>
 			<li><a href="#">Euro</a></li>
