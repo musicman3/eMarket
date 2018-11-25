@@ -7,7 +7,7 @@
 ?>
 
 <!doctype html>
-<html dir="ltr" lang="<?php echo lang('meta-language', $DEFAULT_LANGUAGE) ?>">
+<html dir="ltr" lang="<?php echo lang('meta-language') ?>">
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -45,7 +45,7 @@
             <?php if (file_exists('products.php')) { ?>
                 <script type="text/javascript" src="/ext/tinymce/tinymce.min.js"></script>
                 <!-- Автовыбор языка Datepicker" -->
-                <script type="text/javascript" src="/ext/jquery/ui/i18n/datepicker-<?php echo lang('meta-language', $DEFAULT_LANGUAGE) ?>.js"></script>
+                <script type="text/javascript" src="/ext/jquery/ui/i18n/datepicker-<?php echo lang('meta-language') ?>.js"></script>
 
                 <?php
             }

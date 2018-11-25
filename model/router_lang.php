@@ -20,10 +20,10 @@ if ($VALID->inPOST('language') == TRUE) {
 //Подключение и парсинг языковых файлов
 $files_path = $TREE->filesTree(getenv('DOCUMENT_ROOT') . '/language/' . $DEFAULT_LANGUAGE . '/' . $PATH);
 
-$parse_temp = parse_ini_file($files_path[0]);
+$lang = parse_ini_file($files_path[0]);
 for ($i = 0; $i < count($files_path); $i++) {
     $ini = parse_ini_file($files_path[$i]);
-    $lang = array_merge($parse_temp, $ini); // Установка языкового массива
+    $lang = array_merge($lang, $ini); // Установка языкового массива
 }
 
 // Получаем список языков в массиве (для использования в мультиязычных функциях и т.п.)
