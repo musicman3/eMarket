@@ -49,7 +49,7 @@
 
                 <?php
             }
-            if (isset($_SESSION['login']) == TRUE && isset($_SESSION['pass']) == TRUE) {
+            if (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
 
                 ?>
                 <style type="text/css">body {padding-top:40px;} @media screen and (max-height:420px) and (orientation:landscape) {body {padding-top:60px;}}</style>
