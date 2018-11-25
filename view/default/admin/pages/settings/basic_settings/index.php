@@ -5,12 +5,12 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
 
-<div id="based" class="container">
+<div id="basic" class="container">
     <div class="row">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">
-                    <div class="pull-left"><?php echo lang('title_based_settings_index') ?></div>
+                    <div class="pull-left"><?php echo lang('title_basic_settings_index') ?></div>
                     <div class="clearfix"></div>
                 </h3>
             </div>

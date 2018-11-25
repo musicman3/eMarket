@@ -58,16 +58,16 @@ class Func {
      * [0] => Владивосток
      * [1] => Калининград
      * 
-     * @param массив $based_array
+     * @param массив $basic_array
      * @param строка $name_key
      * @param строка $value_key
      * @param строка $val
      * @return массив $arr
      */
-    public function filter_array_to_key($based_array, $name_key, $value_key, $val) {
+    public function filter_array_to_key($basic_array, $name_key, $value_key, $val) {
 
         $arr = array();
-        foreach ($based_array as $value) {
+        foreach ($basic_array as $value) {
             if ($value[$name_key] == $value_key) {
                 array_push($arr, $value[$val]);
             }

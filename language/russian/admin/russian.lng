@@ -10,7 +10,7 @@
 
 ;Title
 title_admin_index = Панель администратора
-title_based_settings_index = Базовые настройки
+title_basic_settings_index = Базовые настройки
 title_categories_index = Категории
 title_countries_index = Страны
 title_error_log_index = Лог ошибок
