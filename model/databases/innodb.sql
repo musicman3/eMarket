@@ -16,6 +16,13 @@ CREATE TABLE emkt_administrators (
 PRIMARY KEY (login))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+DROP TABLE IF EXISTS emkt_basic_settings;
+CREATE TABLE emkt_basic_settings (
+	id int NOT NULL auto_increment,
+	lines_on_page int DEFAULT '20' NOT NULL,
+PRIMARY KEY (id))
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 DROP TABLE IF EXISTS emkt_categories;
 CREATE TABLE emkt_categories (
 	id int NOT NULL,
