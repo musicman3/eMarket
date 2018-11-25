@@ -49,9 +49,11 @@
 
                 <?php
             }
-            if (isset($_SESSION['login']) && isset($_SESSION['pass'])) { ?>
-            <link rel="stylesheet" type="text/css" href="/view/<?php echo $TEMPLATE ?>/admin/nav.css" media="screen" />
-		<?php } ?>
+            if (isset($_SESSION['login']) && isset($_SESSION['pass']) && file_exists(ROOT . '/view/' . $TEMPLATE . '/admin/nav.css')) {
+
+                ?>
+                <link rel="stylesheet" type="text/css" href="/view/<?php echo $TEMPLATE ?>/admin/nav.css" media="screen" />
+            <?php } ?>
         </head>
         <body>
             <?php

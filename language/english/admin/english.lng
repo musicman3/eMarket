@@ -88,3 +88,6 @@ region_code = Код региона
 region = Регион
 zone = Зона
 country = Страна
+
+;BASIC SETTINGS
+lines_on_page = Lines on page

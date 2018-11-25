@@ -17,7 +17,7 @@
             <div class="panel-body">
                 <form class="form-horizontal">
                     <div class="form-group">
-                        <label class="col-sm-2">Опция 1</label>
+                        <label class="col-sm-2"><?php echo lang('lines_on_page') ?></label>
                         <div class="col-sm-10">
                             <input type="" class="form-control">
                         </div>
