@@ -5,15 +5,15 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 // 
 //Если пользователь не авторизован, то устанавливаем язык по умолчанию
-if (isset($DEFAULT_LANGUAGE) == FALSE && $PATH != 'install') {
+if (!isset($DEFAULT_LANGUAGE) && $PATH != 'install') {
     $DEFAULT_LANGUAGE = DEFAULT_LANGUAGE;
 }
 //Если первый раз в инсталляторе, то устанавливаем язык по умолчанию Russian
-if ($VALID->inPOST('language') == FALSE && $PATH == 'install') {
+if (!$VALID->inPOST('language') && $PATH == 'install') {
     $DEFAULT_LANGUAGE = 'russian';
 }
 //Если переключили язык не авторизованно или в инсталляторе
-if ($VALID->inPOST('language') == TRUE) {
+if ($VALID->inPOST('language')) {
     $DEFAULT_LANGUAGE = $VALID->inPOST('language');
 }
 
