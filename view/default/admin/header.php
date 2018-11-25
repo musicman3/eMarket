@@ -6,6 +6,7 @@
 
 ?>
 <?php if (isset($_SESSION['login']) && isset($_SESSION['pass'])) { // Выводим если авторизованы     ?>
+<style type="text/css">body {padding-top:40px;} @media screen and (max-height:420px) and (orientation:landscape) {body {padding-top:60px;}}</style>
 
     <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
         <div class="container-fluid">
