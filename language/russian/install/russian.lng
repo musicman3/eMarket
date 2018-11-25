@@ -3,52 +3,49 @@
 ;   https://github.com/musicman3/eMarket   ;
 ;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
 
-; Замечание: Если значение в lng-файле содержит специальные символы, они должны экранироваться в одинарные кавычки ,
-;либо все значение строки должно экранироваться двойными кавычками. Пример: Привет Мир! или "Привет Мир!"
-
 [install]
 
-button_go_login = "Далее"
-confirm_install = "Инсталлировать ПО на сервер?"
-crypt_blowfish = "BLOWFISH"
-crypt_gost = "ГОСТ 28147-89"
-crypt_method = "Метод шифрования"
-crypt_rijndael-256 = "AES (RIJNDAEL-256)"
-database_family = "Семейство БД"
-database_family_mysql = "MySQL"
-database_innodb = "InnoDB (защищ.)"
-database_myisam = "MyISAM (станд.)"
-database_name = "Имя базы данных"
-database_port = "Порт базы данных"
-database_prefix = "Префикс базы данных"
-database_type = "Тип БД"
-email_check = "Пожалуйста, введите корректный E-Mail"
-file_configure_not_found = "Файл конфигурации includes/configure.php не доступен!"
-file_not_found = "SQL-файл базы данных отсутствует на сервере!"
-hash_gost = "ГОСТ Р 34.11-94"
-hash_method = "Метод хэширования"
-hash_sha256 = "SHA2 (SHA256)"
-install_button = "УСТАНОВИТЬ"
-install_panel = "Мастер установки eMarket"
-login_admin = "E-Mail администратора"
-login_db = "Пользователь базы данных"
-password_admin = "Пароль администратора"
-password_admin_confirm = "Подтвердить пароль"
-password_check = "Пароль и подтверждение пароля не совпадают"
-password_db = "Пароль базы данных"
-password_lenght_max = "Длина пароля не может быть больше 40 символов"
-password_lenght_min = "Длина пароля не может быть меньше 5 символов"
-select_language = "-- Выберите язык --"
-server_db = "Сервер базы данных"
-server_db_error = "Соединение с базой данных отсутствует!"
-server_db_name_error = "База данных не существует!"
-success = "Инсталляция успешно завершена!"
-title_install_index = "Инсталляция eMarket"
-title_install_success = "Инсталляция успешно завершена"
-title_install_error = "Ошибка при инсталляции"
-db_host_check = "Не заполнено поле Сервер базы данных"
-db_user_check = "Не заполнено поле Пользователь базы данных"
-db_name_check = "Не заполнено поле Имя базы данных"
-database_server_error = "Ошибка при указании сервера БД"
-database_login_error = "Ошибочный логин или пароль пользователя БД"
-database_table_error = "Ошибка при указании названия таблицы в БД"
+button_go_login = Далее
+confirm_install = Инсталлировать ПО на сервер?
+crypt_blowfish = BLOWFISH
+crypt_gost = ГОСТ 28147-89
+crypt_method = Метод шифрования
+crypt_rijndael-256 = AES (RIJNDAEL-256)
+database_family = Семейство БД
+database_family_mysql = MySQL
+database_innodb = InnoDB (защищ.)
+database_myisam = MyISAM (станд.)
+database_name = Имя базы данных
+database_port = Порт базы данных
+database_prefix = Префикс базы данных
+database_type = Тип БД
+email_check = Пожалуйста, введите корректный E-Mail
+file_configure_not_found = Файл конфигурации includes/configure.php не доступен!
+file_not_found = SQL-файл базы данных отсутствует на сервере!
+hash_gost = ГОСТ Р 34.11-94
+hash_method = Метод хэширования
+hash_sha256 = SHA2 (SHA256)
+install_button = УСТАНОВИТЬ
+install_panel = Мастер установки eMarket
+login_admin = E-Mail администратора
+login_db = Пользователь базы данных
+password_admin = Пароль администратора
+password_admin_confirm = Подтвердить пароль
+password_check = Пароль и подтверждение пароля не совпадают
+password_db = Пароль базы данных
+password_lenght_max = Длина пароля не может быть больше 40 символов
+password_lenght_min = Длина пароля не может быть меньше 5 символов
+select_language = -- Выберите язык --
+server_db = Сервер базы данных
+server_db_error = Соединение с базой данных отсутствует!
+server_db_name_error = База данных не существует!
+success = Инсталляция успешно завершена!
+title_install_index = Инсталляция eMarket
+title_install_success = Инсталляция успешно завершена
+title_install_error = Ошибка при инсталляции
+db_host_check = Не заполнено поле Сервер базы данных
+db_user_check = Не заполнено поле Пользователь базы данных
+db_name_check = Не заполнено поле Имя базы данных
+database_server_error = Ошибка при указании сервера БД
+database_login_error = Ошибочный логин или пароль пользователя БД
+database_table_error = Ошибка при указании названия таблицы в БД

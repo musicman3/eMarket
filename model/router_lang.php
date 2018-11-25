@@ -20,16 +20,16 @@ if ($VALID->inPOST('language')) {
 //Подключение и парсинг языковых файлов
 $files_path = $TREE->filesTree(getenv('DOCUMENT_ROOT') . '/language/' . $DEFAULT_LANGUAGE . '/' . $PATH);
 
-$lang = parse_ini_file($files_path[0]);
+$lang = parse_ini_file($files_path[0], FALSE, INI_SCANNER_RAW);
 for ($i = 0; $i < count($files_path); $i++) {
-    $ini = parse_ini_file($files_path[$i]);
+    $ini = parse_ini_file($files_path[$i], FALSE, INI_SCANNER_RAW);
     $lang = array_merge($lang, $ini); // Установка языкового массива
 }
 
 // Получаем список языков в массиве (для использования в мультиязычных функциях и т.п.)
 $lang_all = array(); // массив с языками
 $lang_dir = scandir(getenv('DOCUMENT_ROOT') . '/language/');
-$_lang = parse_ini_file(getenv('DOCUMENT_ROOT') . '/language/' . $DEFAULT_LANGUAGE . '/admin/lang.lng', TRUE);
+$_lang = parse_ini_file(getenv('DOCUMENT_ROOT') . '/language/' . $DEFAULT_LANGUAGE . '/admin/lang.lng', TRUE, INI_SCANNER_RAW);
 array_push($lang_all, $DEFAULT_LANGUAGE); // первым в массиве идет язык по умолчанию
 
 foreach ($lang_dir as $lang_name) {
@@ -38,7 +38,7 @@ foreach ($lang_dir as $lang_name) {
         array_push($lang_all, $lang_name);
 
         // Собираем данные из всех general.lng
-        $ini_lang = parse_ini_file(getenv('DOCUMENT_ROOT') . '/language/' . $lang_name . '/admin/lang.lng', TRUE);
+        $ini_lang = parse_ini_file(getenv('DOCUMENT_ROOT') . '/language/' . $lang_name . '/admin/lang.lng', TRUE, INI_SCANNER_RAW);
         $_lang = array_merge($_lang, $ini_lang);
     }
 }
