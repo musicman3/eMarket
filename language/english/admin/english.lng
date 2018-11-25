@@ -1,4 +1,4 @@
-;=-=-=-= Copyright © 2018 eMarket =-=-=-=-=;
+;=-=-=-= "Copyright © 2018 eMarket =-=-=-=-=;
 ;     GNU GENERAL PUBLIC LICENSE v.3.0     ;
 ;   https://github.com/musicman3/eMarket   ;
 ;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
@@ -9,85 +9,85 @@
 [admin]
 
 ;Title
-title_admin_index = Administration Panel
-title_basic_settings_index = Базовые настройки
-title_categories_index = Категории
-title_countries_index = Страны
-title_error_log_index = Лог ошибок
-title_listing_index = Страны и регионы
-title_login_index = Страница авторизации
-title_products_products = Товары
-title_regions_index = Регионы
-title_settings_index = Настройки
-title_stock_stock = Склад
-title_taxes_index = Налоги
-title_units_index = Единицы измерения
-title_vendor_codes_index = Идентификаторы товара
-title_zones_index = Зоны
+title_admin_index = "Administration Panel"
+title_basic_settings_index = "Basic settings"
+title_categories_index = "Categories"
+title_countries_index = "Countries"
+title_error_log_index = "Error log"
+title_listing_index = "Countries and regions"
+title_login_index = "Login page"
+title_products_products = "Products"
+title_regions_index = "Regions"
+title_settings_index = "Settings"
+title_stock_stock = "Stock"
+title_taxes_index = "Taxes"
+title_units_index = "Units"
+title_vendor_codes_index = "Vendor codes"
+title_zones_index = "Zones"
 
 ;кнопки меню
-menu_catalog = Онлайн каталог
-menu_categories = Категории
-menu_error_log = Лог ошибок
-menu_exit = Выход
-menu_extra = Дополнительно
-menu_help = Помощь
-menu_languages = Языки
-menu_support = Поддержка
-menu_tools = Инструменты
+menu_catalog = "Catalog"
+menu_categories = "Categories"
+menu_error_log = "Error log"
+menu_exit = "Exit"
+menu_extra = "Extra"
+menu_help = "Help"
+menu_languages = "Languages"
+menu_support = "Support"
+menu_tools = "Tools"
 
-login_error = Введены неверные E-Mail или пароль
-login_name = ПАНЕЛЬ АДМИНИСТРАТОРА
+login_error = "Введены неверные E-Mail или пароль"
+login_name = "ПАНЕЛЬ АДМИНИСТРАТОРА"
 
 ;КНОПКИ
-button_add = Добавить
-button_cancel = Отмена
-button_delete = Удалить
-button_edit = Изменить
-button_move = Переместить
-cancel = Отмена
-confirm-del = Удалить?
-confirm-no = Нет
-confirm-yes = Да
-save = Сохранить
+button_add = "Добавить"
+button_cancel = "Отмена"
+button_delete = "Удалить"
+button_edit = "Изменить"
+button_move = "Переместить"
+cancel = "Отмена"
+confirm-del = "Удалить?"
+confirm-no = "Нет"
+confirm-yes = "Да"
+save = "Сохранить"
 
 ;РАЗНОЕ
-s = с
-po = по
-iz = из
-no_listing = Нет записей
-index-title = Добро пожаловать в систему управления контентом
-index-text = Вы можете задать интересующие Вас вопросы по функционированию сайта, а также обсудить любую другую информацию относительно системы управления, по E-Mail: ***@gmail.com
-name = Название
-images = Изображение
-display = Отображать
-max = Макс.
-password = Пароль
-email = E-Mail
-entrance = Вход
-rows_page = Строк на странице
-product_price = Цена
-product_quantity = Количество
-product_unit = Единица измерения
-product_vendor_code = Идентификатор товара
-product_description = Описание
-name_little = Сокращенное наименование
-name_full = Полное наименование
-name_description = Описание
-add_name_description = Добавить описание
-name_country = Название страны
-country = Страна
-alpha_2 = Код ISO 3166-1 Alpha 2
-alpha_3 = Код ISO 3166-1 Alpha 3
-country_flag = Флаг страны
-address_format = Формат адреса:
-add_address_format = Укажите формат адреса
-name_region = Название региона
-name_zone = Название зоны
-region_code = Код региона
-region = Регион
-zone = Зона
-country = Страна
+s = "с"
+po = "по"
+iz = "из"
+no_listing = "Нет записей"
+index-title = "Добро пожаловать в систему управления контентом"
+index-text = "Вы можете задать интересующие Вас вопросы по функционированию сайта, а также обсудить любую другую информацию относительно системы управления, по E-Mail: ***@gmail.com"
+name = "Название"
+images = "Изображение"
+display = "Отображать"
+max = "Макс."
+password = "Пароль"
+email = "E-Mail"
+entrance = "Вход"
+rows_page = "Строк на странице"
+product_price = "Цена"
+product_quantity = "Количество"
+product_unit = "Единица измерения"
+product_vendor_code = "Идентификатор товара"
+product_description = "Описание"
+name_little = "Сокращенное наименование"
+name_full = "Полное наименование"
+name_description = "Описание"
+add_name_description = "Добавить описание"
+name_country = "Название страны"
+country = "Страна"
+alpha_2 = "Код ISO 3166-1 Alpha 2"
+alpha_3 = "Код ISO 3166-1 Alpha 3"
+country_flag = "Флаг страны"
+address_format = "Формат адреса:"
+add_address_format = "Укажите формат адреса"
+name_region = "Название региона"
+name_zone = "Название зоны"
+region_code = "Код региона"
+region = "Регион"
+zone = "Зона"
+country = "Страна"
 
 ;BASIC SETTINGS
-lines_on_page = Lines on page
+lines_on_page = "Lines on page"
