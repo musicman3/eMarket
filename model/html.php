@@ -49,6 +49,9 @@
 
                 <?php
             }
+            if (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
+                Инклюд
+            }
             ?>
         </head>
         <body>
