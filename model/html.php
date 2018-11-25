@@ -49,10 +49,9 @@
 
                 <?php
             }
-            if (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
-                Инклюд
-            }
-            ?>
+            if (isset($_SESSION['login']) && isset($_SESSION['pass'])) { ?>
+            <link rel="stylesheet" type="text/css" href="/view/<?php echo $TEMPLATE ?>/admin/nav.css" media="screen" />
+		<?php } ?>
         </head>
         <body>
             <?php
