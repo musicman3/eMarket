@@ -1,6 +1,6 @@
 <?php
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
-  |    GNU GENERAL PUBLIC LICENSE v.3.0    |    
+  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
@@ -60,8 +60,8 @@
         </head>
         <body>
             <?php
-            require_once(getenv('DOCUMENT_ROOT') . '/controller/admin/header.php');
-            require_once(getenv('DOCUMENT_ROOT') . '/view/' . $TEMPLATE . '/admin/header.php');
+            require_once(ROOT . '/controller/admin/header.php');
+            require_once(ROOT . '/view/' . $TEMPLATE . '/admin/header.php');
         } //КОНЕЦ ВЫВОДА ТОЛЬКО В АДМИНКЕ
         //
         //ВЫВОД ТОЛЬКО В КАТАЛОГЕ
@@ -77,7 +77,7 @@
         <?php
     } //КОНЕЦ ВЫВОДА ТОЛЬКО В КАТАЛОГЕ
     //
-        //ВЫВОД ТОЛЬКО В ИНСТАЛЛЯТОРЕ
+    //ВЫВОД ТОЛЬКО В ИНСТАЛЛЯТОРЕ
     if ($PATH == 'install') {
 
         ?>
@@ -90,7 +90,7 @@
         <?php
     } //КОНЕЦ ВЫВОДА ТОЛЬКО В ИНСТАЛЛЯТОРЕ
     //
-        // ЗАГРУЖАЕМ ТЕЛО HTML СТРАНИЦЫ
+    // ЗАГРУЖАЕМ ТЕЛО HTML СТРАНИЦЫ
     require_once($VIEW->Routing());
     //
     //ВЫВОД ТОЛЬКО В АДМИНКЕ
@@ -106,8 +106,8 @@
         <script type="text/javascript" src="/ext/bootstrap/js/bootstrap-multiselect.js"></script>
 
         <?php
-        require_once(getenv('DOCUMENT_ROOT') . '/controller/admin/footer.php');
-        require_once(getenv('DOCUMENT_ROOT') . '/view/' . $TEMPLATE . '/admin/footer.php');
+        require_once(ROOT . '/controller/admin/footer.php');
+        require_once(ROOT . '/view/' . $TEMPLATE . '/admin/footer.php');
     } //КОНЕЦ ВЫВОДА ТОЛЬКО В АДМИНКЕ
 //
     //ВЫВОД ТОЛЬКО В КАТАЛОГЕ
@@ -121,7 +121,7 @@
         <?php
     } //КОНЕЦ ВЫВОДА ТОЛЬКО В КАТАЛОГЕ
     //
-        //ВЫВОД ТОЛЬКО В ИНСТАЛЛЯТОРЕ
+    //ВЫВОД ТОЛЬКО В ИНСТАЛЛЯТОРЕ
     if ($PATH == 'install') {
         require_once(getenv('DOCUMENT_ROOT') . '/controller/install/footer.php');
         require_once(getenv('DOCUMENT_ROOT') . '/view/' . $TEMPLATE . '/install/footer.php');
