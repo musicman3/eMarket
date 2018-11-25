@@ -6,7 +6,7 @@
 *, ::after, ::before {box-sizing: border-box;}
 :focus {outline: 0;}
 html {position: relative;min-height: 100%;}
-body {background:#e4e4da;font-family: 'Open Sans',sans-serif;background-image:url('images/sep-half.png');margin-bottom: 70px;}
+body {background:#e4e4da;font-family: 'Open Sans',sans-serif;background-image:url('images/sep-half.png');margin-bottom: 70px;padding-top:5px;}
 #footerwrap {width: 100%;background: #4c453d;background-image: none;border-top-style: solid;border-top-width: 8px;border-top-color: #312d27;background-image: url('images/sep-half.png');text-align: center;position: absolute;bottom: 0;height: 80px;}
 #footerwrap p {color: white;font-size: 12px;}
 .row {margin-left: 0;margin-right: 0;}
