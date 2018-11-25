@@ -22,12 +22,12 @@ $menu_exit = '7'; //ВЫХОД
 //МАГАЗИН
 $level[$menu_market] = '<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span></span>Магазин<b class="caret"></b></a>';
 
-$menu[$menu_market][0] = '<a href="/controller/admin/pages/stock/stock.php"><span><img src="/view/' . $TEMPLATE . '/admin/images/icons/16x16/products.png" /></span> Склад </a>';
-$menu[$menu_market][1] = '<a href="/controller/admin/pages/stock/products/products.php"><span><img src="/view/' . $TEMPLATE . '/admin/images/icons/16x16/products.png" /></span> Товары (врем.) </a>';
+$menu[$menu_market][0] = '<a href="/controller/admin/pages/stock/stock.php"><span><img src="/view/' . $TEMPLATE . '/admin/images/icons/16x16/products.png" /></span> ' . lang('title_stock_stock') . ' </a>';
+$menu[$menu_market][1] = '<a href="/controller/admin/pages/stock/products/products.php"><span><img src="/view/' . $TEMPLATE . '/admin/images/icons/16x16/products.png" /></span> ' . lang('title_products_products') . ' </a>';
 $menu[$menu_market][2] = '<a href="#"><span><img src="/view/' . $TEMPLATE . '/admin/images/icons/16x16/manufacturers.png" /></span> Производители </a>';
 $menu[$menu_market][3] = '<a href="#"><span><img src="/view/' . $TEMPLATE . '/admin/images/icons/16x16/attributes.png" /></span> Атрибуты </a>';
 $menu[$menu_market][4] = '<a href="#"><span><img src="/view/' . $TEMPLATE . '/admin/images/icons/16x16/date.png" /></span> Ожидаемые </a>';
-$menu[$menu_market][5] = '<a href="/controller/admin/pages/settings/"><span><img src="/view/' . $TEMPLATE . '/admin/images/icons/16x16/configure.png" /></span> Настройки </a>';
+$menu[$menu_market][5] = '<a href="/controller/admin/pages/settings/"><span><img src="/view/' . $TEMPLATE . '/admin/images/icons/16x16/configure.png" /></span> ' . lang('title_settings_index') . ' </a>';
 
 //ПРОДАЖИ
 $level[$menu_sales] = '<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span></span>Продажи<b class="caret"></b></a>';
