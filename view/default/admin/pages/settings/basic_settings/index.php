@@ -15,29 +15,13 @@
                 </h3>
             </div>
 
-            <form class="form-horizontal" id="form" name="form" action="index.php" method="get" enctype="multipart/form-data">
+            <form class="form-horizontal" id="form" name="form" action="index.php" method="post" enctype="multipart/form-data">
                 <div class="panel-body">
-                    <input type="hidden" name="add" value="ok" />
+
                     <div class="form-group">
                         <label class="col-sm-2"><?php echo lang('lines_on_page') ?></label>
                         <div class="col-sm-10">
                             <input type="text" name="lines_on_page" class="form-control" value="<?php echo $lines_on_page ?>">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-sm-2">Опция 2</label>
-                        <div class="col-sm-5">
-                            <select class="form-control">
-                                <option>Выбор</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-sm-2">Опция 3</label>
-                        <div class="col-sm-1">
-                            <input type="checkbox">
                         </div>
                     </div>
 
