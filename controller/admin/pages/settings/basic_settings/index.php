@@ -9,6 +9,7 @@
 require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 /* ------------------------------------------ */
 // 
+// КОЛИЧЕСТВО СТРОК НА СТРАНИЦЕ
 if ($VALID->inGET('lines_on_page')) {
 
     // Считаем количество строк
