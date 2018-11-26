@@ -1,4 +1,5 @@
 <?php
+
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -23,7 +24,6 @@ require_once('session_autorize.php');
 require_once('router_lang.php');
 
 if ($PATH != 'install') {
-require_once('settings.php');
+    require_once('settings.php');
 }
-
 ?>
