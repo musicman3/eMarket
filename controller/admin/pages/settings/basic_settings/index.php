@@ -20,9 +20,9 @@ if ($VALID->inGET('lines_on_page')) {
     } elseif ($lines_on_page_count == 1) {
         $PDO->inPrepare("UPDATE " . TABLE_BASIC_SETTINGS . " SET lines_on_page=?", [$VALID->inGET('lines_on_page')]);
     }
+    // Считываем значение
+    $lines_on_page = $PDO->selectPrepare("SELECT lines_on_page FROM " . TABLE_BASIC_SETTINGS, []);
 }
-// Считываем значение
-$lines_on_page = $PDO->selectPrepare("SELECT lines_on_page FROM " . TABLE_BASIC_SETTINGS, []);
 
 
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
