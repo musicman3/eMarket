@@ -18,6 +18,14 @@ if ($VALID->inPOST('lines_on_page')) {
     $lines_on_page = $PDO->selectPrepare("SELECT lines_on_page FROM " . TABLE_BASIC_SETTINGS, []);
 }
 
+// ВРЕМЯ СЕССИИ АДМИНИСТРАТОРА
+if ($VALID->inPOST('session_expr_time')) {
+
+    $PDO->inPrepare("UPDATE " . TABLE_BASIC_SETTINGS . " SET session_expr_time=?", [$VALID->inPOST('session_expr_time')]);
+
+    // Считываем значение
+    $session_expr_time = $PDO->selectPrepare("SELECT session_expr_time FROM " . TABLE_BASIC_SETTINGS, []);
+}
 
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
 require_once(ROOT . '/model/end.php');

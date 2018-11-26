@@ -12,6 +12,7 @@
   define('CRYPT_METHOD', 'gost');
   define('DEFAULT_LANGUAGE', 'russian');
   define('TABLE_ADMINISTRATORS', 'emkt_administrators');
+  define('TABLE_BASIC_SETTINGS', 'emkt_basic_settings');
   define('TABLE_CATEGORIES', 'emkt_categories');
   define('TABLE_COUNTRIES', 'emkt_countries');
   define('TABLE_PRODUCTS', 'emkt_products');

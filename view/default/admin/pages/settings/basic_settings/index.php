@@ -3,6 +3,7 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+
 ?>
 
 <div id="basic" class="container">
@@ -10,7 +11,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">
-                    <div class="pull-left"><a class="btn btn-primary btn-xs" href="../"><span class="back glyphicon glyphicon-share-alt"></span></a> <?php echo lang('title_'. $TITLE_DIR .'_index') ?></div>
+                    <div class="pull-left"><a class="btn btn-primary btn-xs" href="../"><span class="back glyphicon glyphicon-share-alt"></span></a> <?php echo lang('title_' . $TITLE_DIR . '_index') ?></div>
                     <div class="clearfix"></div>
                 </h3>
             </div>
@@ -22,6 +23,13 @@
                         <label class="col-sm-2"><?php echo lang('lines_on_page') ?></label>
                         <div class="col-sm-10">
                             <input type="text" name="lines_on_page" class="form-control" value="<?php echo $lines_on_page ?>">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2"><?php echo lang('session_expr_time') ?></label>
+                        <div class="col-sm-10">
+                            <input type="text" name="session_expr_time" class="form-control" value="<?php echo $session_expr_time ?>">
                         </div>
                     </div>
 

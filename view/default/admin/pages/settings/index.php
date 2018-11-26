@@ -55,7 +55,7 @@
                                     <div class="settings"><a href="basic_settings/" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-cog glyph-xs"> </span></a><?php echo lang('title_basic_settings_index') ?></div>
                                 </td>
                                 <td>
-                                    <div class="settings"><a href="#" class="btn btn-default btn-xs disabled"><span class="glyphicon glyphicon-flag glyph-xs"> </span></a>#</div>
+                                    <div class="settings"><a href="#" class="btn btn-default btn-xs disabled"><span class="glyphicon glyphicon-euro glyph-xs"> </span></a>Валюта</div>
                                 </td>
                                 <td>
                                     <div class="settings"><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-barcode glyph-xs"> </span></a>#</div>

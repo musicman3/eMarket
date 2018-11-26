@@ -86,3 +86,4 @@ zone = Zone
 
 ;BASIC SETTINGS
 lines_on_page = Lines on page
+session_expr_time = Session time (min.)

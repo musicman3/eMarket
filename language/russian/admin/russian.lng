@@ -87,3 +87,4 @@ country = Страна
 
 ;BASIC SETTINGS
 lines_on_page = Строк на странице
+session_expr_time = Время сессии (мин.)
