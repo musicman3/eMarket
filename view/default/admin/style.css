@@ -73,7 +73,7 @@ div.context-one {padding:5px;}
 .settings {float: left;padding-left: 5px;}
 .settings .btn {margin-right: 10px;}
 #settings .tooltip-inner {max-width:550px;}
-#based .form-group {line-height: 40px;}
+#basic .form-group {line-height: 35px;}
 .tooltip-inner {font-family: 'Open Sans',sans-serif;}
 .tooltip-right {float: right;}
 .tooltip-right .glyphicon {color: #000000;opacity: 0.5}
@@ -86,4 +86,3 @@ div.context-one {padding:5px;}
 .glyph-lg {font-size:3em;}
 .multiselect-add {color:#ffa500;}
 .multiselect-native-select {float:left;}
-.btn-sm {padding: 3px 6px;font-size: 14px;}
