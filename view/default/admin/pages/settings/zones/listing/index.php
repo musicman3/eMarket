@@ -15,7 +15,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">
-                        <div class="pull-left"><a class="btn btn-primary btn-xs" href="<?php echo $_SESSION['zone_page'] ?>"><span class="back glyphicon glyphicon-share-alt"></span></a> <?php echo lang('title_zones_index') ?></div>
+                        <div class="pull-left"><a class="btn btn-primary btn-xs" href="<?php echo $_SESSION['zone_page'] ?>"><span class="back glyphicon glyphicon-share-alt"></span></a> <?php echo lang('title_'. $TITLE_DIR .'_index') ?></div>
                         <div class="clearfix"></div>
                     </h3>
                 </div>
