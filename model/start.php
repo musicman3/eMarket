@@ -22,6 +22,8 @@ require_once('session_autorize.php');
 
 require_once('router_lang.php');
 
+if ($PATH != 'install') {
 require_once('settings.php');
+}
 
 ?>
