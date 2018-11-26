@@ -23,6 +23,7 @@ require_once('session_autorize.php');
 
 require_once('router_lang.php');
 
+//Если это инсталлятор, то не грузим файл
 if ($PATH != 'install') {
     require_once('settings.php');
 }
