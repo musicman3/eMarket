@@ -1,6 +1,6 @@
 <?php
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
-  |    GNU GENERAL PUBLIC LICENSE v.3.0    |    
+  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
@@ -14,8 +14,10 @@
                     <div class="clearfix"></div>
                 </h3>
             </div>
-            <div class="panel-body">
-                <form class="form-horizontal">
+
+            <form class="form-horizontal" id="form" name="form" action="index.php" method="get" enctype="multipart/form-data">
+                <div class="panel-body">
+                    <input type="hidden" name="add" value="ok" />
                     <div class="form-group">
                         <label class="col-sm-2"><?php echo lang('lines_on_page') ?></label>
                         <div class="col-sm-10">
@@ -42,11 +44,13 @@
                     <div class="form-group">
                         <label class="col-sm-2"></label>
                         <div class="col-sm-5">
-                            <button type="submit" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-floppy-disk"></span> Сохранить</button>
+                            <button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button>
                         </div>
                     </div>
-                </form>
-            </div>
+
+                </div>
+            </form>
+
         </div>
     </div>
 </div>

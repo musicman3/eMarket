@@ -23,6 +23,7 @@ $login_admin = $VALID->inPOST('login_admin');
 $password_admin = $VALID->inPOST('password_admin');
 $lng = strtolower($VALID->inPOST('language'));
 $tab_admin = $db_pref . 'administrators';
+$tab_basic_settings = $db_pref . 'basic_settings';
 $tab_categories = $db_pref . 'categories';
 $tab_countries = $db_pref . 'countries';
 $tab_products = $db_pref . 'products';
@@ -50,6 +51,7 @@ $config = '<?php' . "\n" .
         '  define(\'CRYPT_METHOD\', \'' . $crypt_method . '\');' . "\n" .
         '  define(\'DEFAULT_LANGUAGE\', \'' . $lng . '\');' . "\n" .
         '  define(\'TABLE_ADMINISTRATORS\', \'' . $tab_admin . '\');' . "\n" .
+        '  define(\'TABLE_BASIC_SETTINGS\', \'' . $tab_basic_settings . '\');' . "\n" .
         '  define(\'TABLE_CATEGORIES\', \'' . $tab_categories . '\');' . "\n" .
         '  define(\'TABLE_COUNTRIES\', \'' . $tab_countries . '\');' . "\n" .
         '  define(\'TABLE_PRODUCTS\', \'' . $tab_products . '\');' . "\n" .
