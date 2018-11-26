@@ -12,15 +12,8 @@ require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 // КОЛИЧЕСТВО СТРОК НА СТРАНИЦЕ
 if ($VALID->inGET('lines_on_page')) {
 
-    // Считаем количество строк
-    $lines_on_page_count = $PDO->getRowCount("SELECT lines_on_page FROM " . TABLE_BASIC_SETTINGS, []);
+    $PDO->inPrepare("UPDATE " . TABLE_BASIC_SETTINGS . " SET lines_on_page=?", [$VALID->inGET('lines_on_page')]);
 
-    if ($lines_on_page_count == false) {
-
-        $PDO->inPrepare("INSERT INTO " . TABLE_BASIC_SETTINGS . " SET lines_on_page=?", [$VALID->inGET('lines_on_page')]);
-    } elseif ($lines_on_page_count == 1) {
-        $PDO->inPrepare("UPDATE " . TABLE_BASIC_SETTINGS . " SET lines_on_page=?", [$VALID->inGET('lines_on_page')]);
-    }
     // Считываем значение
     $lines_on_page = $PDO->selectPrepare("SELECT lines_on_page FROM " . TABLE_BASIC_SETTINGS, []);
 }
