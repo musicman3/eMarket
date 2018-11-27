@@ -1,6 +1,6 @@
 <?php
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
-  |    GNU GENERAL PUBLIC LICENSE v.3.0    |    
+  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
@@ -9,6 +9,9 @@
 <div id="log" class="container">
     <div class="row">
         <div class="panel panel-default">
+            
+            <!--Выводим уведомление об успешном действии-->
+            <?php $MESSAGES->alert('success', lang('action_completed_successfully')); ?>
 
             <div class="panel-heading">
                 <h3 class="panel-title">
@@ -44,9 +47,9 @@
                                         <?php } ?>
                                     </form>
 
-                                    <form>
+                                    <form action="index.php" method="post">
                                         <input hidden name="delete" value="delete">
-                                        <div class="left"><button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>" action="index.php" formmethod="post"><span class="glyphicon glyphicon-trash"> </span></button></div>
+                                        <div class="left"><button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button></div>
                                     </form>
 
                                 </th>
