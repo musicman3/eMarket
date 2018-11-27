@@ -21,9 +21,9 @@ class Messages {
         if ($VALID->inPOST('add') OR $VALID->inGET('add') OR $VALID->inPOST('id_edit') OR $VALID->inGET('id_edit') OR $VALID->inPOST('delete') OR $VALID->inGET('delete')) {
 
             ?>
-            <div id="alert" class="alert alert-<?php echo $a ?> alert-dismissible fade in" role="alert">
+            <div align="center" id="alert" class="alert alert-<?php echo $a ?> alert-dismissible fade in" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <?php echo $b ?>
+                <span class="back glyphicon glyphicon-alert"></span> <?php echo $b ?>
             </div>
             <?php
         }
