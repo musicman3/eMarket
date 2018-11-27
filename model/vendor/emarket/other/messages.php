@@ -34,7 +34,7 @@ class Messages {
             $(function () {
                 window.setTimeout(function () {
                     $('#alert').alert('close');
-                }, 3000);
+                }, 30000);
             });
         </script>
         <?php
