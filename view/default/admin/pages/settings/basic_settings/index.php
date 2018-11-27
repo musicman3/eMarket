@@ -27,7 +27,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2"><?php echo lang('session_expr_time') ?></label>
+                        <label class="col-sm-2"><?php echo lang('session_expr_time') ?></label><span data-toggle="tooltip" data-placement="left" data-original-title="<?php echo lang('session_expr_time_help') ?>" class="glyphicon glyphicon-question-sign"></span>
                         <div class="col-sm-10">
                             <input type="text" name="session_expr_time" class="form-control" value="<?php echo $session_expr_time ?>">
                         </div>

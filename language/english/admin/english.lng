@@ -86,4 +86,5 @@ zone = Zone
 
 ;BASIC SETTINGS
 lines_on_page = Lines on page
-session_expr_time = Session time (min.)
+session_expr_time = Session downtime (min.)
+session_expr_time_help = The session will be active for set time after the last refresh of the browser page.

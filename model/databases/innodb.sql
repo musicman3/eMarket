@@ -20,7 +20,7 @@ DROP TABLE IF EXISTS emkt_basic_settings;
 CREATE TABLE emkt_basic_settings (
 	id int NOT NULL auto_increment,
 	lines_on_page int DEFAULT '20' NOT NULL,
-        session_expr_time int DEFAULT '60' NOT NULL,
+        session_expr_time int DEFAULT '15' NOT NULL,
 PRIMARY KEY (id))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -10143,4 +10143,4 @@ INSERT INTO emkt_regions VALUES(4248, 238, 'MV', 'Masvingo', 'english');
 INSERT INTO emkt_regions VALUES(4249, 238, 'MW', 'Mashonaland West', 'english');
 
 /* ЗАГРУЗКА НАСТРОЕК */
-INSERT INTO emkt_basic_settings VALUES (1, 20, 60);
+INSERT INTO emkt_basic_settings VALUES (1, 20, 15);

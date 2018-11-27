@@ -8,11 +8,13 @@
 if ($PATH == 'admin' && $TITLE_DIR != 'login') {
 
     session_start();
-    //Если сессия счетчика времени сеанса отсутствует
-    if (!isset($_SESSION['session_start'])) {
-        // то создаем ее
-        $_SESSION['session_start'] = time();
+    
+    if (isset($_SESSION['session_start']) && (time() - $_SESSION['session_start']) / 60 > $session_expr_time) { // Нет пользователя или истекло время сеанса
+        session_destroy();
+        header('Location: /controller/admin/login/'); // переадресация на LOGIN
     }
+        $_SESSION['session_start'] = time();
+
 
     $login = null;
     $pass = null;
@@ -24,7 +26,7 @@ if ($PATH == 'admin' && $TITLE_DIR != 'login') {
 
     $verify = $PDO->getRowCount("SELECT * FROM " . TABLE_ADMINISTRATORS . " WHERE login=? AND password=?", [$login, $pass]);
 
-    if ($verify != 1 OR (time() - $_SESSION['session_start']) / 60 > $session_expr_time) { // Нет пользователя или истекло время сеанса
+    if ($verify != 1) { // Нет пользователя или истекло время сеанса
         session_destroy();
         header('Location: /controller/admin/login/'); // переадресация на LOGIN
     } else {
