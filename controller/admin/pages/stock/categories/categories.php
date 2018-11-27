@@ -41,7 +41,7 @@ if ($VALID->inGET($lang_all[0])) {
 
     // добавляем запись для всех вкладок
     for ($xl = 0; $xl < count($lang_all); $xl++) {
-        $PDO->inPrepare("INSERT INTO " . TABLE_CATEGORIES . " SET id=?, name=?, sort_category=?, language=?, parent_id=?, date_added=?, status=?", [$id, $VALID->inGET($lang_all[$xl]), $sort_category, $lang_all[$xl], $parent_id, date("Y-m-d H:i:s"), $view_cat]);
+        $PDO->inPrepare("INSERT INTO " . TABLE_CATEGORIES . " SET id=?, name=?, sort_category=?, language=?, parent_id=?, date_added=?, status=?", [$id, $VALID->inGET($TITLE_DIR . '_' .$lang_all[$xl]), $sort_category, $lang_all[$xl], $parent_id, date("Y-m-d H:i:s"), $view_cat]);
     }
 }
 
@@ -56,7 +56,7 @@ if ($VALID->inGET('cat_edit')) {
 
     for ($xl = 0; $xl < count($lang_all); $xl++) {
         // обновляем запись
-        $PDO->inPrepare("UPDATE " . TABLE_CATEGORIES . " SET name=?, last_modified=?, status=? WHERE id=? AND language=?", [$VALID->inGET('name_edit' . $lang_all[$xl]), date("Y-m-d H:i:s"), $view_cat, $VALID->inGET('cat_edit'), $lang_all[$xl]]);
+        $PDO->inPrepare("UPDATE " . TABLE_CATEGORIES . " SET name=?, last_modified=?, status=? WHERE id=? AND language=?", [$VALID->inGET('name_edit_' . $TITLE_DIR . '_' .$lang_all[$xl]), date("Y-m-d H:i:s"), $view_cat, $VALID->inGET('cat_edit'), $lang_all[$xl]]);
     }
 }
 

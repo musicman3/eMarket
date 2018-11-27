@@ -39,7 +39,7 @@
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="input-sm form-control" placeholder="<?php echo lang('name_full') ?>" type="text" name="<?php echo $lang_all[0] ?>" />
+                                    <input class="input-sm form-control" placeholder="<?php echo lang('name_full') ?>" type="text" name="<?php echo $TITLE_DIR . '_' .$lang_all[0] ?>" />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -59,7 +59,7 @@
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo lang('name_full') ?>" type="text" name="<?php echo $lang_all[$xl] ?>" />
+                                            <input class="input-sm form-control" placeholder="<?php echo lang('name_full') ?>" type="text" name="<?php echo $TITLE_DIR . '_' .$lang_all[$xl] ?>" />
                                         </div>
                                     </div>
                                     <div class="form-group">
