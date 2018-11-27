@@ -34,7 +34,6 @@ menu_support = Поддержка
 menu_tools = Инструменты
 
 login_error = Введены неверные E-Mail или пароль
-login_name = ПАНЕЛЬ АДМИНИСТРАТОРА
 
 ;КНОПКИ
 button_add = Добавить

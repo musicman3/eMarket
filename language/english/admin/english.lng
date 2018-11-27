@@ -34,7 +34,6 @@ menu_support = Support
 menu_tools = Tools
 
 login_error = E-Mail or password error
-login_name = ADMINISTRATION PANEL
 
 ;КНОПКИ
 button_add = Add
