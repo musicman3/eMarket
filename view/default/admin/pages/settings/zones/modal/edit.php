@@ -17,7 +17,6 @@ require(ROOT . '/controller/admin/pages/settings/zones/modal/edit.php');
             <form id="form<?php echo $lines[$k][0] ?>" name="form<?php echo $lines[$k][0] ?>" action="index.php" method="get" enctype="multipart/form-data">
                 <div class="panel-body">
                     <input type="hidden" name="id_edit" value="<?php echo $lines[$k][0] ?>" />
-                    <input type="hidden" name="edit" value="ok" />
 
                     <!-- Языковые панели -->
                     <ul class="nav nav-tabs">
@@ -86,5 +85,4 @@ require(ROOT . '/controller/admin/pages/settings/zones/modal/edit.php');
         </div>
     </div>
 </div>
-
 <!-- КОНЕЦ Модальное окно "Изменить" -->
