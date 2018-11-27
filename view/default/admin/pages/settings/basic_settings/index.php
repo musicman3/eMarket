@@ -16,28 +16,21 @@
                 </h3>
             </div>
 
-            <form class="form-horizontal" id="form" name="form" action="index.php" method="post" enctype="multipart/form-data">
+            <form id="form" name="form" action="index.php" method="post" enctype="multipart/form-data">
                 <div class="panel-body">
 
-                    <div class="form-group">
-                        <label class="col-sm-2"><?php echo lang('lines_on_page') ?></label>
-                        <div class="col-sm-10">
-                            <input type="text" name="lines_on_page" class="form-control" value="<?php echo $lines_on_page ?>">
-                        </div>
+                    <div class="input-group">
+                        <span class="input-group-addon"><?php echo lang('lines_on_page') ?></span>
+                        <input type="text" name="lines_on_page" class="form-control" value="<?php echo $lines_on_page ?>">
                     </div>
-
-                    <div class="form-group">
-                        <label class="col-sm-2"><?php echo lang('session_expr_time') ?></label><span data-toggle="tooltip" data-placement="left" data-original-title="<?php echo lang('session_expr_time_help') ?>" class="glyphicon glyphicon-question-sign"></span>
-                        <div class="col-sm-10">
-                            <input type="text" name="session_expr_time" class="form-control" value="<?php echo $session_expr_time ?>">
-                        </div>
+                    </br>
+                    <div class="input-group">
+                        <span class="input-group-addon"><?php echo lang('session_expr_time') ?> <span data-toggle="tooltip" data-placement="left" data-original-title="<?php echo lang('session_expr_time_help') ?>" class="glyphicon glyphicon-question-sign"></span></span>
+                        <input type="text" name="session_expr_time" class="form-control" value="<?php echo $session_expr_time ?>">
                     </div>
-
-                    <div class="form-group">
-                        <label class="col-sm-2"></label>
-                        <div class="col-sm-5">
-                            <button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button>
-                        </div>
+                    </br>
+                    <div class="input-group">
+                        <button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button>
                     </div>
 
                 </div>
