@@ -9,7 +9,7 @@ if ($PATH == 'admin' && $TITLE_DIR != 'login') {
 
     session_start();
     
-    if (isset($_SESSION['session_start']) && (time() - $_SESSION['session_start']) / 60 > $session_expr_time) { // Нет пользователя или истекло время сеанса
+    if (isset($_SESSION['session_start']) && (time() - $_SESSION['session_start']) / 60 > $session_expr_time) { // Если истекло время сеанса
         session_destroy();
         header('Location: /controller/admin/login/'); // переадресация на LOGIN
     }
@@ -26,7 +26,7 @@ if ($PATH == 'admin' && $TITLE_DIR != 'login') {
 
     $verify = $PDO->getRowCount("SELECT * FROM " . TABLE_ADMINISTRATORS . " WHERE login=? AND password=?", [$login, $pass]);
 
-    if ($verify != 1) { // Нет пользователя или истекло время сеанса
+    if ($verify != 1) { // Если нет пользователя
         session_destroy();
         header('Location: /controller/admin/login/'); // переадресация на LOGIN
     } else {
