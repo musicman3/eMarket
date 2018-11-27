@@ -11,12 +11,7 @@
         <div class="panel panel-default">
             
             <!--Выводим уведомление об успешном действии-->
-            <?php if ($VALID->inPOST('success') == 'ok') { ?>
-                <div id="my-alert" class="alert alert-success alert-dismissible fade in" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <?php echo lang('action_completed_successfully') ?>
-                </div>
-            <?php } ?>
+            <?php $MESSAGES->alert('success', lang('action_completed_successfully')) ?>
             
             <div class="panel-heading">
                 <h3 class="panel-title">

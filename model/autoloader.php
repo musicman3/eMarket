@@ -26,5 +26,6 @@ $NAVIGATION = new eMarket\Core\Navigation;
 $DEBUG = new eMarket\Other\Debug;
 //СОЗДАЕМ ОБЪЕКТ Func
 $FUNC = new eMarket\Other\Func;
-
+//СОЗДАЕМ ОБЪЕКТ Messages
+$MESSAGES = new eMarket\Other\Messages;
 ?>
