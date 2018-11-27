@@ -25,19 +25,17 @@ class Messages {
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <span class="back glyphicon glyphicon-alert"></span> <?php echo $b ?>
             </div>
+
+            <!--Автозакрытие уведомлений-->
+            <script>
+                $(function () {
+                    window.setTimeout(function () {
+                        $('#alert').alert('close');
+                    }, 30000);
+                });
+            </script>
             <?php
         }
-
-        ?>
-        <!--Автозакрытие уведомлений-->
-        <script>
-            $(function () {
-                window.setTimeout(function () {
-                    $('#alert').alert('close');
-                }, 30000);
-            });
-        </script>
-        <?php
     }
 
 }
