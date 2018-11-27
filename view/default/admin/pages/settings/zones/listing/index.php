@@ -1,6 +1,6 @@
 <?php
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
-  |    GNU GENERAL PUBLIC LICENSE v.3.0    |    
+  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
@@ -13,9 +13,11 @@
     <div id="settings" class="container">
         <div class="row">
             <div class="panel panel-default">
+                <!--Выводим уведомление об успешном действии-->
+                <?php $MESSAGES->alert('success', lang('action_completed_successfully')); ?>
                 <div class="panel-heading">
                     <h3 class="panel-title">
-                        <div class="pull-left"><a class="btn btn-primary btn-xs" href="<?php echo $_SESSION['zone_page'] ?>"><span class="back glyphicon glyphicon-share-alt"></span></a> <?php echo lang('title_'. $TITLE_DIR .'_index') ?></div>
+                        <div class="pull-left"><a class="btn btn-primary btn-xs" href="<?php echo $_SESSION['zone_page'] ?>"><span class="back glyphicon glyphicon-share-alt"></span></a> <?php echo lang('title_' . $TITLE_DIR . '_index') ?></div>
                         <div class="clearfix"></div>
                     </h3>
                 </div>
@@ -77,9 +79,10 @@
                                     <td><?php echo $FUNC->filter_array_to_key($name_country, 0, $lines[$start][0], 1)[0] ?></td>
                                     <td> </td>
                                 </tr>
-                            <?php
-                            $count++;
+                                <?php
+                                $count++;
                             }
+
                             ?>
                         </tbody>
                     </table>

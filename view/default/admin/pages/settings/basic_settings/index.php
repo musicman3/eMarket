@@ -22,7 +22,7 @@
 
             <form class="form-horizontal" id="form" name="form" action="index.php" method="post" enctype="multipart/form-data">
                 <div class="panel-body">
-                    <input hidden name="success" value="ok">
+                    <input hidden name="add" value="ok">
 
                     <div class="form-group">
                         <label class="col-sm-3"><?php echo lang('lines_on_page') ?></label>

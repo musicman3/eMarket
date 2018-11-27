@@ -11,7 +11,7 @@
             <div class="modal-header"><div class="tooltip-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Сокращенное наименование указывается любыми символами" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
                 <h4 class="modal-title"><?php echo lang('product_vendor_code') ?></h4>
             </div>
-            <form id="form" name="form" action="javascript:void(null);" onsubmit="call()" method="get" enctype="multipart/form-data">
+            <form id="form" name="form" action="index.php" method="get" enctype="multipart/form-data">
                 <div class="panel-body">
                     <input type="hidden" name="add" value="ok" />
 
@@ -39,7 +39,7 @@
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="input-sm form-control" placeholder="<?php echo lang('product_vendor_code') ?>" type="text" name="<?php echo $TITLE_DIR . '_' .$lang_all[0] ?>" />
+                                    <input class="input-sm form-control" placeholder="<?php echo lang('product_vendor_code') ?>" type="text" name="<?php echo $TITLE_DIR . '_' . $lang_all[0] ?>" />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -84,18 +84,4 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" language="javascript">
-    function call() {
-        var msg = $('#form').serialize();
-        $.ajax({
-            type: 'GET',
-            url: 'index.php',
-            data: msg,
-            success: function (data) {
-                $('#add').modal('hide');
-                location.href = 'index.php';
-            }
-        });
-    }
-</script>
 <!-- КОНЕЦ Модальное окно "Добавить" -->

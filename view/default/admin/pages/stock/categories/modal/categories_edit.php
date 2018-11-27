@@ -40,7 +40,7 @@ require(ROOT . '/controller/admin/pages/stock/categories/modal/categories_edit.p
                         <div class="form-group">
 			    <div class="input-group has-error">
 				<span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                <input class="input-sm form-control" type="text" name="name_edit_<?php echo $TITLE_DIR . '_' .$lang_all[0] ?>" id="name_edit<?php echo $lang_all[0] ?>" value="<?php echo $name_category_edit[0] ?>" />
+                                <input class="input-sm form-control" type="text" name="name_edit<?php echo $lang_all[0] ?>" id="name_edit<?php echo $lang_all[0] ?>" value="<?php echo $name_category_edit[0] ?>" />
 			    </div>
                         </div>
 			</div>
@@ -53,7 +53,7 @@ require(ROOT . '/controller/admin/pages/stock/categories/modal/categories_edit.p
                                     <div class="form-group">
 					<div class="input-group has-error">
 					    <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-					    <input class="input-sm form-control" type="text" name="name_edit_<?php echo $TITLE_DIR . '_' .$lang_all[$xl] ?>" id="name_edit<?php echo $lang_all[$xl] ?>" value="<?php echo $name_category_edit[$xl] ?>" />
+					    <input class="input-sm form-control" type="text" name="name_edit<?php echo $lang_all[$xl] ?>" id="name_edit<?php echo $lang_all[$xl] ?>" value="<?php echo $name_category_edit[$xl] ?>" />
 					</div>
                                     </div>
                                 </div>

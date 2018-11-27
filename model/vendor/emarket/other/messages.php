@@ -18,7 +18,7 @@ class Messages {
     public function alert($a, $b) {
         global $VALID;
         //Выводим уведомление об успешном действии
-        if ($VALID->inPOST('success') == 'ok') {
+        if ($VALID->inPOST('add') == 'ok' OR $VALID->inGET('add') == 'ok' OR $VALID->inPOST('edit') == 'ok' OR $VALID->inGET('edit') == 'ok') {
 
             ?>
             <div id="alert" class="alert alert-<?php echo $a ?> alert-dismissible fade in" role="alert">
