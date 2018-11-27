@@ -83,6 +83,7 @@ region_code = Код региона
 region = Регион
 zone = Зона
 country = Страна
+action_completed_successfully = Действие успешно выполнено!
 
 ;BASIC SETTINGS
 lines_on_page = Строк на странице

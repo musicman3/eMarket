@@ -9,6 +9,15 @@
 <div id="basic" class="container">
     <div class="row">
         <div class="panel panel-default">
+            
+            <!--Выводим уведомление об успешном действии-->
+            <?php if ($VALID->inPOST('success') == 'ok') { ?>
+                <div id="my-alert" class="alert alert-success alert-dismissible fade in" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <?php echo lang('action_completed_successfully') ?>
+                </div>
+            <?php } ?>
+            
             <div class="panel-heading">
                 <h3 class="panel-title">
                     <div class="pull-left"><a class="btn btn-primary btn-xs" href="../"><span class="back glyphicon glyphicon-share-alt"></span></a> <?php echo lang('title_' . $TITLE_DIR . '_index') ?></div>
@@ -18,6 +27,7 @@
 
             <form class="form-horizontal" id="form" name="form" action="index.php" method="post" enctype="multipart/form-data">
                 <div class="panel-body">
+                    <input hidden name="success" value="ok">
 
                     <div class="form-group">
                         <label class="col-sm-3"><?php echo lang('lines_on_page') ?></label>

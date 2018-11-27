@@ -82,6 +82,7 @@ name_zone = Zone name
 region_code = Region code
 region = Region
 zone = Zone
+action_completed_successfully = Action completed successfully!
 
 ;BASIC SETTINGS
 lines_on_page = Lines on page
