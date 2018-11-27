@@ -20,17 +20,17 @@
                 <div class="panel-body">
 
                     <div class="form-group">
-                        <label class="col-sm-4 control-label"><?php echo lang('lines_on_page') ?></label>
-                        <div class="col-sm-8"><input type="text" name="lines_on_page" class="form-control" value="<?php echo $lines_on_page ?>"></div>
+                        <label class="col-sm-3"><?php echo lang('lines_on_page') ?></label>
+                        <div class="col-sm-9"><input type="text" name="lines_on_page" class="form-control" value="<?php echo $lines_on_page ?>"></div>
                     </div>
                     </br>
                     <div class="form-group">
-                        <label class="col-sm-4 control-label"><?php echo lang('session_expr_time') ?> <span data-toggle="tooltip" data-placement="left" data-original-title="<?php echo lang('session_expr_time_help') ?>" class="glyphicon glyphicon-question-sign"></span></label>
-                        <div class="col-sm-8"><input type="text" name="session_expr_time" class="form-control" value="<?php echo $session_expr_time ?>"></div>
+                        <label class="col-sm-3"><?php echo lang('session_expr_time') ?> <span data-toggle="tooltip" data-placement="right" data-original-title="<?php echo lang('session_expr_time_help') ?>" class="glyphicon glyphicon-question-sign"></span></label>
+                        <div class="col-sm-9"><input type="text" name="session_expr_time" class="form-control" value="<?php echo $session_expr_time ?>"></div>
                     </div>
                     </br>
                     <div class="form-group">
-                        <label class="col-sm-4 control-label"><button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button></label>
+                        <label class="col-sm-3"><button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button></label>
                     </div>
 
                 </div>
