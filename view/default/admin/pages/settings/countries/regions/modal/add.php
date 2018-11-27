@@ -87,18 +87,4 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" language="javascript">
-    function call() {
-        var msg = $('#form').serialize();
-        $.ajax({
-            type: 'GET',
-            url: 'index.php',
-            data: msg,
-            success: function (data) {
-                $('#add').modal('hide');
-                location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
-            }
-        });
-    }
-</script>
 <!-- КОНЕЦ Модальное окно "Добавить" -->

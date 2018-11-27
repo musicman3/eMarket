@@ -89,9 +89,8 @@
                                     <td><?php echo $lines[$start][1] ?></td>
                                     <td><?php echo $lines[$start][2] ?></td>
                                     <td class="al-text-w">
-                                        <form id="delete" name="delete" action="index.php" method="post" enctype="multipart/form-data">
+                                        <form action="index.php" method="post">
                                             <input hidden name="delete" value="<?php echo $lines[$start][0] ?>">
-                                            <input type="hidden" name="add" value="ok" />
                                             <div class="right">
                                                 <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button>
                                             </div>

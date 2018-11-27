@@ -88,19 +88,4 @@ require(ROOT . '/controller/admin/pages/settings/countries/regions/modal/edit.ph
         </div>
     </div>
 </div>
-<script type="text/javascript" language="javascript">
-    function call<?php echo $lines[$k][0] ?>() {
-        var msg = $('#form<?php echo $lines[$k][0] ?>').serialize();
-        $.ajax({
-            type: 'GET',
-            url: 'index.php',
-            data: msg,
-            success: function (data) {
-                $('#edit<?php echo $lines[$k][0] ?>').modal('hide');
-                location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
-            }
-        });
-    }
-</script>
-
 <!-- КОНЕЦ Модальное окно "Изменить" -->
