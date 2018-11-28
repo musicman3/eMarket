@@ -10,7 +10,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header"><div class="tooltip-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Ставка указывается в формате: 10.00" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
-                <h4 class="modal-title"><?php echo lang('region') ?></h4>
+                <h4 class="modal-title"><?php echo lang('title_'. $TITLE_DIR .'_index') ?></h4>
             </div>
             <form id="form" name="form" action="index.php" onsubmit="$('.modal').modal('hide')" method="get" enctype="multipart/form-data">
                 <div class="panel-body">
