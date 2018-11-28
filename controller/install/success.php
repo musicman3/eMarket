@@ -124,7 +124,8 @@ $text = "#****** Copyright © 2018 eMarket ******#
 #   GNU GENERAL PUBLIC LICENSE v.3.0   #
 # https://github.com/musicman3/eMarket #
 #**************************************#
-		
+
+Options -Indexes
 php_flag ignore_repeated_errors off
 php_flag ignore_repeated_source off
 php_flag track_errors on
