@@ -15,6 +15,6 @@
     $(function () {
         window.setTimeout(function () {
             $('#alert').alert('close');
-        }, 300000);
+        }, 3000);
     });
 </script>
