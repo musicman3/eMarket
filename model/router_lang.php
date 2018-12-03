@@ -26,8 +26,6 @@ $LANG_VAR = $LANG->lang($DEFAULT_LANGUAGE);
  *
  * @param строка $a
  * @param строка $b
- * @return строка [$a]
- * @return строка [$b][$a]
  * @return строка $a
  */
 function lang($a, $b = null) {
