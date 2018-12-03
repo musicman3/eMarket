@@ -12,32 +12,26 @@ class Lang {
      * Подключение и парсинг языковых файлов
      *
      * @param строка $default_language
+     * @param строка $a (маркер)
      * @return массив $lang
+     * @return массив $lang_all
+     * @return массив $lang_trans
      */
-    function lang($default_language) {
+    function lang($default_language, $marker = null) {
 
         $TREE = new \eMarket\Core\Tree;
         $SET = new \eMarket\Core\Set;
-
+        
+        //Получаем список путей к языковым файлам
         $files_path = $TREE->filesTree(getenv('DOCUMENT_ROOT') . '/language/' . $default_language . '/' . $SET->path());
-
+        //Парсинг языковых файлов
         $lang = parse_ini_file($files_path[0], FALSE, INI_SCANNER_RAW);
         for ($i = 0; $i < count($files_path); $i++) {
             $ini = parse_ini_file($files_path[$i], FALSE, INI_SCANNER_RAW);
             $lang = array_merge($lang, $ini); // Установка языкового массива
         }
-        return $lang;
-    }
 
-    /**
-     * Получение списка языков
-     *
-     * @param строка $default_language
-     * @param строка $a (маркер)
-     * @return массив $lang_all
-     * @return массив $lang_trans
-     */
-    function langAllTrans($default_language, $marker) {
+        //Получение списка языков
         $lang_all = array(); // массив с языками
         array_push($lang_all, $default_language); // первым в массиве идет язык по умолчанию
 
@@ -58,6 +52,8 @@ class Lang {
         if ($marker == 'translate') {
             return $lang_trans;
         }
+
+        return $lang;
     }
 
 }

@@ -17,8 +17,8 @@ if ($VALID->inPOST('language')) {
     $DEFAULT_LANGUAGE = $VALID->inPOST('language');
 }
 
-$LANG_ALL = $LANG->langAllTrans($DEFAULT_LANGUAGE, 'all');
-$LANG_TRANS = $LANG->langAllTrans($DEFAULT_LANGUAGE, 'translate');
+$LANG_ALL = $LANG->lang($DEFAULT_LANGUAGE, 'all');
+$LANG_TRANS = $LANG->lang($DEFAULT_LANGUAGE, 'translate');
 $LANG_VAR = $LANG->lang($DEFAULT_LANGUAGE);
 
 /**
