@@ -12,24 +12,18 @@ spl_autoload_register(function ($class_name) {
     }
 });
 //
-//СОЗДАЕМ ОБЪЕКТ Valid
-$VALID = new eMarket\Core\Valid;
-//СОЗДАЕМ ОБЪЕКТ Pdo
-$PDO = new eMarket\Core\Pdo;
-//СОЗДАЕМ ОБЪЕКТ View
-$VIEW = new eMarket\Core\View;
-//СОЗДАЕМ ОБЪЕКТ Tree
-$TREE = new eMarket\Core\Tree;
-//СОЗДАЕМ ОБЪЕКТ Navigation
-$NAVIGATION = new eMarket\Core\Navigation;
-//СОЗДАЕМ ОБЪЕКТ Debug
-$DEBUG = new eMarket\Other\Debug;
-//СОЗДАЕМ ОБЪЕКТ Func
-$FUNC = new eMarket\Other\Func;
-//СОЗДАЕМ ОБЪЕКТ Messages
-$MESSAGES = new eMarket\Other\Messages;
-//СОЗДАЕМ ОБЪЕКТ Messages
-$SET = new eMarket\Core\Set;
-//СОЗДАЕМ ОБЪЕКТ Lang
+//СОЗДАЕМ ОБЪЕКТЫ CORE
 $LANG = new eMarket\Core\Lang;
+$NAVIGATION = new eMarket\Core\Navigation;
+$PDO = new eMarket\Core\Pdo;
+$SET = new eMarket\Core\Set;
+$TREE = new eMarket\Core\Tree;
+$VALID = new eMarket\Core\Valid;
+$VIEW = new eMarket\Core\View;
+
+//СОЗДАЕМ ОБЪЕКТЫ OTHER
+$DEBUG = new eMarket\Other\Debug;
+$FUNC = new eMarket\Other\Func;
+$MESSAGES = new eMarket\Other\Messages;
+
 ?>
