@@ -17,6 +17,7 @@ require(ROOT . '/controller/admin/pages/settings/countries/regions/modal/edit.ph
             <form id="form<?php echo $lines[$k][0] ?>" name="form<?php echo $lines[$k][0] ?>" action="index.php" onsubmit="$('.modal').modal('hide')" method="get" enctype="multipart/form-data">
                 <div class="panel-body">
                     <input type="hidden" name="id_edit" value="<?php echo $lines[$k][0] ?>" />
+                    <input type="hidden" name="country_id" value="<?php echo $VALID->inGET('country_id') ?>" />
                     
                     <!-- Языковые панели -->
                     <ul class="nav nav-tabs">
