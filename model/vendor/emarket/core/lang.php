@@ -11,15 +11,15 @@ class Lang {
     /**
      * Подключение и парсинг языковых файлов
      *
-     * @param строка $DEFAULT_LANGUAGE
+     * @param строка $default_language
      * @return массив $lang
      */
-    function lang($DEFAULT_LANGUAGE) {
+    function lang($default_language) {
 
         $TREE = new \eMarket\Core\Tree;
         $SET = new \eMarket\Core\Set;
 
-        $files_path = $TREE->filesTree(getenv('DOCUMENT_ROOT') . '/language/' . $DEFAULT_LANGUAGE . '/' . $SET->path());
+        $files_path = $TREE->filesTree(getenv('DOCUMENT_ROOT') . '/language/' . $default_language . '/' . $SET->path());
 
         $lang = parse_ini_file($files_path[0], FALSE, INI_SCANNER_RAW);
         for ($i = 0; $i < count($files_path); $i++) {
@@ -32,20 +32,20 @@ class Lang {
     /**
      * Получение списка языков
      *
-     * @param строка $DEFAULT_LANGUAGE
+     * @param строка $default_language
      * @param строка $a (маркер)
      * @return массив $lang_all
      * @return массив $lang_trans
      */
-    function langAllTrans($DEFAULT_LANGUAGE, $marker) {
+    function langAllTrans($default_language, $marker) {
         $lang_all = array(); // массив с языками
-        array_push($lang_all, $DEFAULT_LANGUAGE); // первым в массиве идет язык по умолчанию
+        array_push($lang_all, $default_language); // первым в массиве идет язык по умолчанию
 
-        $lang_trans = parse_ini_file(getenv('DOCUMENT_ROOT') . '/language/' . $DEFAULT_LANGUAGE . '/admin/lang.lng', TRUE, INI_SCANNER_RAW);
+        $lang_trans = parse_ini_file(getenv('DOCUMENT_ROOT') . '/language/' . $default_language . '/admin/lang.lng', TRUE, INI_SCANNER_RAW);
         $lang_dir = scandir(getenv('DOCUMENT_ROOT') . '/language/');
         foreach ($lang_dir as $lang_name) {
             // Собираем данные для списка языков
-            if (!in_array($lang_name, array('.', '..', $DEFAULT_LANGUAGE))) {
+            if (!in_array($lang_name, array('.', '..', $default_language))) {
                 array_push($lang_all, $lang_name);
                 // Собираем данные из всех general.lng
                 $ini_lang = parse_ini_file(getenv('DOCUMENT_ROOT') . '/language/' . $lang_name . '/admin/lang.lng', TRUE, INI_SCANNER_RAW);
