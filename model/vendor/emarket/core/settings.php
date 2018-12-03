@@ -14,7 +14,7 @@ class Settings {
      *
      * @return строка
      */
-    public function Template() {
+    public function template() {
         $TEMPLATE = 'default';
         return $TEMPLATE;
     }
@@ -24,7 +24,7 @@ class Settings {
      *
      * @return строка
      */
-    public function Path() {
+    public function path() {
         $VALID = new \eMarket\Core\Valid;
         $PATH = explode('/', ($VALID->inSERVER('REQUEST_URI')))[2];
         return $PATH;
@@ -35,7 +35,7 @@ class Settings {
      *
      * @return строка
      */
-    public function TitleDir() {
+    public function titleDir() {
         $TITLE_DIR = basename(getcwd()); //Текущая директория
         return $TITLE_DIR;
     }

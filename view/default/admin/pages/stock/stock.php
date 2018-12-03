@@ -5,5 +5,5 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 
-require_once(ROOT . '/view/'.$SETTINGS->Template().'/admin/pages/stock/categories/categories.php');
+require_once(ROOT . '/view/'.$SETTINGS->template().'/admin/pages/stock/categories/categories.php');
 ?>

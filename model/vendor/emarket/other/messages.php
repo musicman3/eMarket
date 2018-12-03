@@ -20,7 +20,7 @@ class Messages {
         $VALID = new \eMarket\Core\Valid;
         
         if ($VALID->inPOST('add') OR $VALID->inGET('add') OR $VALID->inPOST('id_edit') OR $VALID->inGET('id_edit') OR $VALID->inPOST('delete') OR $VALID->inGET('delete')) {
-            require_once (ROOT . '/view/' . $SETTINGS->Template() . '/layouts/alert.php');
+            require_once (ROOT . '/view/' . $SETTINGS->template() . '/layouts/alert.php');
         }
     }
 

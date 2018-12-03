@@ -28,7 +28,7 @@ if ($status_category_edit == 1) {
                         <input type="hidden" name="cat_edit" value="<?php echo $lines[$start][0] ?>" />
                         <div class="form-group">
                             <label><?php echo lang('name') ?>:</label><br>
-                            <img src="/view/<?php echo $SETTINGS->Template() ?>/admin/images/worldflags/ru.png" alt="Russian" title="Russian" width="16" height="10" />Russian<br>
+                            <img src="/view/<?php echo $SETTINGS->template() ?>/admin/images/worldflags/ru.png" alt="Russian" title="Russian" width="16" height="10" />Russian<br>
                             <?php // вывод из массива: name="categories_name[1]" id="categories_name[1]   ?>
                             <input class="input-sm form-control" type="text" name="name_edit" id="name" value="<?php echo $name_category_edit ?>" />
                         </div>

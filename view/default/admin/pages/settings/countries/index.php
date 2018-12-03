@@ -15,7 +15,7 @@
 <?php for ($k; $k < $finish; $k++) { // запускаем цикл формирования модальных окон  ?>
 
     <!-- Вставляем модальное окно "Редактировать" -->
-    <?php require(ROOT . '/view/' . $SETTINGS->Template() . '/admin/pages/settings/countries/modal/edit.php') ?>
+    <?php require(ROOT . '/view/' . $SETTINGS->template() . '/admin/pages/settings/countries/modal/edit.php') ?>
 
 <?php } ?>
 
@@ -27,7 +27,7 @@
                     <!--Выводим уведомление об успешном действии-->
                     <?php $MESSAGES->alert('success', lang('action_completed_successfully')); ?>
                     <h3 class="panel-title">
-                        <div class="pull-left"><a class="btn btn-primary btn-xs" href="../"><span class="back glyphicon glyphicon-share-alt"></span></a> <?php echo lang('title_'. $SETTINGS->TitleDir() .'_index') ?></div>
+                        <div class="pull-left"><a class="btn btn-primary btn-xs" href="../"><span class="back glyphicon glyphicon-share-alt"></span></a> <?php echo lang('title_'. $SETTINGS->titleDir() .'_index') ?></div>
                         <div class="clearfix"></div>
                     </h3>
                 </div>
@@ -91,7 +91,7 @@
                                     <td><?php echo $lines[$start][1] ?></td>
                                     <td class="al-text"><?php echo $lines[$start][2] ?></td>
                                     <td class="al-text"><?php echo $lines[$start][3] ?></td>
-                                    <td class="al-text"><img src='/view/<?php echo $SETTINGS->Template() ?>/admin/images/worldflags/<?php echo strtolower($lines[$start][2]) ?>.png'></td>
+                                    <td class="al-text"><img src='/view/<?php echo $SETTINGS->template() ?>/admin/images/worldflags/<?php echo strtolower($lines[$start][2]) ?>.png'></td>
                                     <td class="al-text-w">
                                         <form action="index.php" method="post">
                                             <input hidden name="delete" value="<?php echo $lines[$start][0] ?>">

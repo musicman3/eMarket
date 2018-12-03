@@ -18,7 +18,7 @@ class View {
 
         $SETTINGS = new \eMarket\Core\Settings;
 
-        $str = str_replace('controller', 'view/' . $SETTINGS->Template(), getenv('SCRIPT_FILENAME'));
+        $str = str_replace('controller', 'view/' . $SETTINGS->template(), getenv('SCRIPT_FILENAME'));
 
         return $str;
     }

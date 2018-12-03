@@ -5,7 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 // ЕСЛИ В АДМИНИСТРАТИВНОЙ ПАНЕЛИ
-if ($SETTINGS->Path() == 'admin' && $SETTINGS->TitleDir() != 'login') {
+if ($SETTINGS->path() == 'admin' && $SETTINGS->titleDir() != 'login') {
 
     session_start();
     
@@ -37,7 +37,7 @@ if ($SETTINGS->Path() == 'admin' && $SETTINGS->TitleDir() != 'login') {
 }
 
 // ЕСЛИ В КАТАЛОГЕ
-if ($SETTINGS->Path() == 'catalog' && $SETTINGS->TitleDir() != 'login') {
+if ($SETTINGS->path() == 'catalog' && $SETTINGS->titleDir() != 'login') {
 
     session_start();
     $login = null;

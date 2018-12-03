@@ -17,7 +17,7 @@
                     <!--Выводим уведомление об успешном действии-->
                     <?php $MESSAGES->alert('success', lang('action_completed_successfully')); ?>
                     <h3 class="panel-title">
-                        <div class="pull-left"><a class="btn btn-primary btn-xs" href="<?php echo $_SESSION['zone_page'] ?>"><span class="back glyphicon glyphicon-share-alt"></span></a> <?php echo lang('title_' . $SETTINGS->TitleDir() . '_index') ?></div>
+                        <div class="pull-left"><a class="btn btn-primary btn-xs" href="<?php echo $_SESSION['zone_page'] ?>"><span class="back glyphicon glyphicon-share-alt"></span></a> <?php echo lang('title_' . $SETTINGS->titleDir() . '_index') ?></div>
                         <div class="clearfix"></div>
                     </h3>
                 </div>
