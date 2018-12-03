@@ -30,4 +30,6 @@ $FUNC = new eMarket\Other\Func;
 $MESSAGES = new eMarket\Other\Messages;
 //СОЗДАЕМ ОБЪЕКТ Messages
 $SET = new eMarket\Core\Set;
+//СОЗДАЕМ ОБЪЕКТ Lang
+$LANG = new eMarket\Core\Lang;
 ?>
