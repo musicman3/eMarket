@@ -6,7 +6,7 @@
 
 ?>
 <!--Выводим уведомление об успешном действии-->
-<div style="text-align:center;padding-top:0px;padding-bottom:0px;margin-bottom:0;float:right;" id="alert" class="alert alert-<?php echo $a ?> alert-dismissible fade in" role="alert">
+<div style="text-align:center;padding-top:0px;padding-bottom:0px;margin-bottom:0;float:right;" id="alert" class="alert alert-<?php echo $a ?> fade in" role="alert">
     <span class="glyphicon glyphicon-alert"></span> <?php echo $b ?>
 </div>
 
@@ -15,6 +15,6 @@
     $(function () {
         window.setTimeout(function () {
             $('#alert').alert('close');
-        }, 3000);
+        }, 300000);
     });
 </script>
