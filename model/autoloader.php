@@ -28,4 +28,6 @@ $DEBUG = new eMarket\Other\Debug;
 $FUNC = new eMarket\Other\Func;
 //СОЗДАЕМ ОБЪЕКТ Messages
 $MESSAGES = new eMarket\Other\Messages;
+//СОЗДАЕМ ОБЪЕКТ Messages
+$SETTINGS = new eMarket\Core\Settings;
 ?>

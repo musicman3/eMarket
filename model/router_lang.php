@@ -5,11 +5,11 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 // 
 //Если пользователь не авторизован, то устанавливаем язык по умолчанию
-if (!isset($DEFAULT_LANGUAGE) && $PATH != 'install') {
+if (!isset($DEFAULT_LANGUAGE) && $SETTINGS->Path() != 'install') {
     $DEFAULT_LANGUAGE = DEFAULT_LANGUAGE;
 }
 //Если первый раз в инсталляторе, то устанавливаем язык по умолчанию Russian
-if (!$VALID->inPOST('language') && $PATH == 'install') {
+if (!$VALID->inPOST('language') && $SETTINGS->Path() == 'install') {
     $DEFAULT_LANGUAGE = 'russian';
 }
 //Если переключили язык не авторизованно или в инсталляторе
@@ -18,7 +18,7 @@ if ($VALID->inPOST('language')) {
 }
 
 //Подключение и парсинг языковых файлов
-$files_path = $TREE->filesTree(getenv('DOCUMENT_ROOT') . '/language/' . $DEFAULT_LANGUAGE . '/' . $PATH);
+$files_path = $TREE->filesTree(getenv('DOCUMENT_ROOT') . '/language/' . $DEFAULT_LANGUAGE . '/' . $SETTINGS->Path());
 
 $lang = parse_ini_file($files_path[0], FALSE, INI_SCANNER_RAW);
 for ($i = 0; $i < count($files_path); $i++) {

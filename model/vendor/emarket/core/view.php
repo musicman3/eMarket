@@ -16,9 +16,9 @@ class View {
      */
     public function Routing() {
 
-        global $TEMPLATE;
+        $SETTINGS = new \eMarket\Core\Settings;
 
-        $str = str_replace('controller', 'view/' . $TEMPLATE, getenv('SCRIPT_FILENAME'));
+        $str = str_replace('controller', 'view/' . $SETTINGS->Template(), getenv('SCRIPT_FILENAME'));
 
         return $str;
     }
