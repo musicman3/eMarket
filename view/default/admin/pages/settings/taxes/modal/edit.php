@@ -19,14 +19,14 @@ require(ROOT . '/controller/admin/pages/settings/taxes/modal/edit.php');
                     
                     <!-- Языковые панели -->
                     <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#<?php echo $lang_all[0] . $lines[$k][0] ?>"><img src="/view/<?php echo $SET->template() ?>/admin/images/langflags/<?php echo $lang_all[0] ?>.png" alt="<?php echo $lang_all[0] ?>" title="<?php echo $lang_all[0] ?>" width="16" height="10" /> <?php echo lang('language_name', $lang_all[0]) ?></a></li>
+                        <li class="active"><a data-toggle="tab" href="#<?php echo $LANG_ALL[0] . $lines[$k][0] ?>"><img src="/view/<?php echo $SET->template() ?>/admin/images/langflags/<?php echo $LANG_ALL[0] ?>.png" alt="<?php echo $LANG_ALL[0] ?>" title="<?php echo $LANG_ALL[0] ?>" width="16" height="10" /> <?php echo lang('language_name', $LANG_ALL[0]) ?></a></li>
 
                         <?php
-                        if (count($lang_all) > 1) {
-                            for ($xl = 1; $xl < count($lang_all); $xl++) {
+                        if (count($LANG_ALL) > 1) {
+                            for ($xl = 1; $xl < count($LANG_ALL); $xl++) {
                                 ?>
 
-                                <li><a data-toggle="tab" href="#<?php echo $lang_all[$xl] . $lines[$k][0] ?>"><img src="/view/<?php echo $SET->template() ?>/admin/images/langflags/<?php echo $lang_all[$xl] ?>.png" alt="<?php echo $lang_all[$xl] ?>" title="<?php echo $lang_all[$xl] ?>" width="16" height="10" /> <?php echo lang('language_name', $lang_all[$xl]) ?></a></li>
+                                <li><a data-toggle="tab" href="#<?php echo $LANG_ALL[$xl] . $lines[$k][0] ?>"><img src="/view/<?php echo $SET->template() ?>/admin/images/langflags/<?php echo $LANG_ALL[$xl] ?>.png" alt="<?php echo $LANG_ALL[$xl] ?>" title="<?php echo $LANG_ALL[$xl] ?>" width="16" height="10" /> <?php echo lang('language_name', $LANG_ALL[$xl]) ?></a></li>
 
                                 <?php
                             }
@@ -37,25 +37,25 @@ require(ROOT . '/controller/admin/pages/settings/taxes/modal/edit.php');
 
                     <!-- Содержимое языковых панелей -->
                     <div class="tab-content">
-                        <div id="<?php echo $lang_all[0] . $lines[$k][0] ?>" class="tab-pane fade in active">
+                        <div id="<?php echo $LANG_ALL[0] . $lines[$k][0] ?>" class="tab-pane fade in active">
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="input-sm form-control" type="text" name="name_edit_<?php echo $SET->titleDir() . '_' . $lang_all[0] ?>" id="name_edit<?php echo $lang_all[0] ?>" value="<?php echo $name_edit[0] ?>" />
+                                    <input class="input-sm form-control" type="text" name="name_edit_<?php echo $SET->titleDir() . '_' . $LANG_ALL[0] ?>" id="name_edit<?php echo $LANG_ALL[0] ?>" value="<?php echo $name_edit[0] ?>" />
                                 </div>
                             </div>
                         </div>
 
                         <?php
-                        if (count($lang_all) > 1) {
-                            for ($xl = 1; $xl < count($lang_all); $xl++) {
+                        if (count($LANG_ALL) > 1) {
+                            for ($xl = 1; $xl < count($LANG_ALL); $xl++) {
                                 ?>
 
-                                <div id="<?php echo $lang_all[$xl] . $lines[$k][0] ?>" class="tab-pane fade">
+                                <div id="<?php echo $LANG_ALL[$xl] . $lines[$k][0] ?>" class="tab-pane fade">
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" type="text" name="name_edit_<?php echo $SET->titleDir() . '_' . $lang_all[$xl] ?>" id="name_edit<?php echo $lang_all[$xl] ?>" value="<?php echo $name_edit[$xl] ?>" />
+                                            <input class="input-sm form-control" type="text" name="name_edit_<?php echo $SET->titleDir() . '_' . $LANG_ALL[$xl] ?>" id="name_edit<?php echo $LANG_ALL[$xl] ?>" value="<?php echo $name_edit[$xl] ?>" />
                                         </div>
                                     </div>
                                 </div>

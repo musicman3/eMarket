@@ -12,21 +12,21 @@ require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 if ($VALID->inGET('add')) {
 
     // Получаем последний id и увеличиваем его на 1
-    $id_max = $PDO->selectPrepare("SELECT id FROM " . TABLE_UNITS . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);
+    $id_max = $PDO->selectPrepare("SELECT id FROM " . TABLE_UNITS . " WHERE language=? ORDER BY id DESC", [$LANG_ALL[0]]);
     $id = intval($id_max) + 1;
 
     // добавляем запись для всех вкладок
-    for ($xl = 0; $xl < count($lang_all); $xl++) {
-        $PDO->inPrepare("INSERT INTO " . TABLE_UNITS . " SET id=?, name=?, language=?, unit=?", [$id, $VALID->inGET($SET->titleDir() . '_' . $lang_all[$xl]), $lang_all[$xl], $VALID->inGET('unit' . $lang_all[$xl])]);
+    for ($xl = 0; $xl < count($LANG_ALL); $xl++) {
+        $PDO->inPrepare("INSERT INTO " . TABLE_UNITS . " SET id=?, name=?, language=?, unit=?", [$id, $VALID->inGET($SET->titleDir() . '_' . $LANG_ALL[$xl]), $LANG_ALL[$xl], $VALID->inGET('unit' . $LANG_ALL[$xl])]);
     }
 }
 
 // Если нажали на кнопку Редактировать
 if ($VALID->inGET('id_edit')) {
 
-    for ($xl = 0; $xl < count($lang_all); $xl++) {
+    for ($xl = 0; $xl < count($LANG_ALL); $xl++) {
         // обновляем запись
-        $PDO->inPrepare("UPDATE " . TABLE_UNITS . " SET name=?, unit=? WHERE id=? AND language=?", [$VALID->inGET('name_edit_' . $SET->titleDir() . '_' . $lang_all[$xl]), $VALID->inGET('unit_edit' . $lang_all[$xl]), $VALID->inGET('id_edit'), $lang_all[$xl]]);
+        $PDO->inPrepare("UPDATE " . TABLE_UNITS . " SET name=?, unit=? WHERE id=? AND language=?", [$VALID->inGET('name_edit_' . $SET->titleDir() . '_' . $LANG_ALL[$xl]), $VALID->inGET('unit_edit' . $LANG_ALL[$xl]), $VALID->inGET('id_edit'), $LANG_ALL[$xl]]);
     }
 }
 
@@ -38,7 +38,7 @@ if ($VALID->inPOST('delete')) {
 }
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
-$lines = $PDO->getColRow("SELECT id, name, unit FROM " . TABLE_UNITS . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);
+$lines = $PDO->getColRow("SELECT id, name, unit FROM " . TABLE_UNITS . " WHERE language=? ORDER BY id DESC", [$LANG_ALL[0]]);
 $navigate = $NAVIGATION->getLink(count($lines), $SET->linesOnPage());
 $start = $navigate[0];
 $finish = $navigate[1];

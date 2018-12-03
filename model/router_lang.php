@@ -17,9 +17,9 @@ if ($VALID->inPOST('language')) {
     $DEFAULT_LANGUAGE = $VALID->inPOST('language');
 }
 
-$lang_all = $LANG->langAllTrans($DEFAULT_LANGUAGE, 'all');
-$lang = $LANG->lang($DEFAULT_LANGUAGE);
-$lang_trans = $LANG->langAllTrans($DEFAULT_LANGUAGE, 'translate');
+$LANG_ALL = $LANG->langAllTrans($DEFAULT_LANGUAGE, 'all');
+$LANG_TRANS = $LANG->langAllTrans($DEFAULT_LANGUAGE, 'translate');
+$LANG_VAR = $LANG->lang($DEFAULT_LANGUAGE);
 
 /**
  * Функция для вывода языковой переменной вида: lang('pass') или lang('pass', 'english');
@@ -31,19 +31,19 @@ $lang_trans = $LANG->langAllTrans($DEFAULT_LANGUAGE, 'translate');
  * @return строка $a
  */
 function lang($a, $b = null) {
-    global $lang, $lang_trans;
+    global $LANG_VAR, $LANG_TRANS;
     // Вывод для основных языковых переменных
     if ($b == null) {
-        if (isset($lang[$a])) {
-            return $lang[$a]; // Если языковая переменная найдена, то выводим ее значение
+        if (isset($LANG_VAR[$a])) {
+            return $LANG_VAR[$a]; // Если языковая переменная найдена, то выводим ее значение
         } else {
             return $a; // Если языковая переменная не найдена, то выводим ее название
         }
     }
     // Вывод для языковых переменных из lang.lng
     if ($b != null) {
-        if (isset($lang_trans[$b][$a])) {
-            return $lang_trans[$b][$a]; // Если языковая переменная найдена, то выводим ее значение
+        if (isset($LANG_TRANS[$b][$a])) {
+            return $LANG_TRANS[$b][$a]; // Если языковая переменная найдена, то выводим ее значение
         } else {
             return $a; // Если языковая переменная не найдена, то выводим ее название
         }

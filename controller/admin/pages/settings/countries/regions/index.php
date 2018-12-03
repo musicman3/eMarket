@@ -12,21 +12,21 @@ require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 if ($VALID->inGET('add')) {
 
     // Получаем последний id и увеличиваем его на 1
-    $id_max = $PDO->selectPrepare("SELECT id FROM " . TABLE_REGIONS . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);
+    $id_max = $PDO->selectPrepare("SELECT id FROM " . TABLE_REGIONS . " WHERE language=? ORDER BY id DESC", [$LANG_ALL[0]]);
     $id = intval($id_max) + 1;
 
     // добавляем запись для всех вкладок
-    for ($xl = 0; $xl < count($lang_all); $xl++) {
-        $PDO->inPrepare("INSERT INTO " . TABLE_REGIONS . " SET id=?, country_id=?, name=?, language=?, region_code=?", [$id, $VALID->inGET('country_id'), $VALID->inGET($SET->titleDir() . '_' . $lang_all[$xl]), $lang_all[$xl], $VALID->inGET('region_code')]);
+    for ($xl = 0; $xl < count($LANG_ALL); $xl++) {
+        $PDO->inPrepare("INSERT INTO " . TABLE_REGIONS . " SET id=?, country_id=?, name=?, language=?, region_code=?", [$id, $VALID->inGET('country_id'), $VALID->inGET($SET->titleDir() . '_' . $LANG_ALL[$xl]), $LANG_ALL[$xl], $VALID->inGET('region_code')]);
     }
 }
 
 // Если нажали на кнопку Редактировать
 if ($VALID->inGET('id_edit')) {
 
-    for ($xl = 0; $xl < count($lang_all); $xl++) {
+    for ($xl = 0; $xl < count($LANG_ALL); $xl++) {
         // обновляем запись
-        $PDO->inPrepare("UPDATE " . TABLE_REGIONS . " SET name=?, region_code=? WHERE id=? AND language=?", [$VALID->inGET('name_edit_' . $SET->titleDir() . '_' . $lang_all[$xl]), $VALID->inGET('region_code_edit'), $VALID->inGET('id_edit'), $lang_all[$xl]]);
+        $PDO->inPrepare("UPDATE " . TABLE_REGIONS . " SET name=?, region_code=? WHERE id=? AND language=?", [$VALID->inGET('name_edit_' . $SET->titleDir() . '_' . $LANG_ALL[$xl]), $VALID->inGET('region_code_edit'), $VALID->inGET('id_edit'), $LANG_ALL[$xl]]);
     }
 }
 
@@ -44,7 +44,7 @@ if ($VALID->inGET('country_id')) {
 if ($VALID->inPOST('country_id')) {
     $country_id = $VALID->inPOST('country_id');
 }
-$lines = $PDO->getColRow("SELECT id, region_code, name FROM " . TABLE_REGIONS . " WHERE country_id=? AND language=? ORDER BY name", [$country_id, $lang_all[0]]);
+$lines = $PDO->getColRow("SELECT id, region_code, name FROM " . TABLE_REGIONS . " WHERE country_id=? AND language=? ORDER BY name", [$country_id, $LANG_ALL[0]]);
 $navigate = $NAVIGATION->getLink(count($lines), $SET->linesOnPage());
 $start = $navigate[0];
 $finish = $navigate[1];
