@@ -1,13 +1,12 @@
 <?php
-
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
-  |    GNU GENERAL PUBLIC LICENSE v.3.0    |    
+  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 namespace eMarket\Core;
 
-class Navigation extends Valid {
+class Navigation {
 
     /**
      * КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ ДЛЯ GET
@@ -21,6 +20,8 @@ class Navigation extends Valid {
         //$count_lines - общее число строк
         //$lines_on_page - число строк на странице
 
+        $VALID = new \eMarket\Core\Valid;
+
         $start = 0; // устанавливаем страницу в ноль при заходе
         $finish = $lines_on_page;
 
@@ -28,11 +29,11 @@ class Navigation extends Valid {
             $finish = $count_lines;
         }
         // Если нажали на кнопку вперед GET
-        if ($this->inGET('finish')) {
-            $finish = $this->inGET('finish') + $lines_on_page; // пересчитываем количество строк на странице
-            $start = $this->inGET('start') + $lines_on_page; // задаем значение счетчика
+        if ($VALID->inGET('finish')) {
+            $finish = $VALID->inGET('finish') + $lines_on_page; // пересчитываем количество строк на странице
+            $start = $VALID->inGET('start') + $lines_on_page; // задаем значение счетчика
             if ($start >= $count_lines) {
-                $start = $this->inGET('start');
+                $start = $VALID->inGET('start');
             }
             if ($finish >= $count_lines) {
                 $finish = $count_lines;
@@ -40,9 +41,9 @@ class Navigation extends Valid {
         }
         // Если нажали на кнопку назад GET
         if ($count_lines >= $lines_on_page) {
-            if ($this->inGET('finish2')) {
-                $finish = $this->inGET('start2'); // пересчитываем количество строк на странице
-                $start = $this->inGET('start2') - $lines_on_page; // задаем значение счетчика
+            if ($VALID->inGET('finish2')) {
+                $finish = $VALID->inGET('start2'); // пересчитываем количество строк на странице
+                $start = $VALID->inGET('start2') - $lines_on_page; // задаем значение счетчика
                 if ($start < 0) {
                     $start = 0;
                 }
@@ -66,18 +67,20 @@ class Navigation extends Valid {
         //$count_lines - общее число строк
         //$lines_on_page - число строк на странице
 
+        $VALID = new \eMarket\Core\Valid;
+
         $start = 0; // устанавливаем страницу в ноль при заходе
         $finish = $lines_on_page;
-        
+
         if ($count_lines <= $lines_on_page) {
             $finish = $count_lines;
         }
         // Если нажали на кнопку вперед POST
-        if ($this->inPOST('finish')) {
-            $finish = $this->inPOST('finish') + $lines_on_page; // пересчитываем количество строк на странице
-            $start = $this->inPOST('start') + $lines_on_page; // задаем значение счетчика
+        if ($VALID->inPOST('finish')) {
+            $finish = $VALID->inPOST('finish') + $lines_on_page; // пересчитываем количество строк на странице
+            $start = $VALID->inPOST('start') + $lines_on_page; // задаем значение счетчика
             if ($start >= $count_lines) {
-                $start = $this->inPOST('start');
+                $start = $VALID->inPOST('start');
             }
             if ($finish >= $count_lines) {
                 $finish = $count_lines;
@@ -85,9 +88,9 @@ class Navigation extends Valid {
         }
         // Если нажали на кнопку назад POST
         if ($count_lines >= $lines_on_page) {
-            if ($this->inPOST('finish2')) {
-                $finish = $this->inPOST('start2'); // пересчитываем количество строк на странице
-                $start = $this->inPOST('start2') - $lines_on_page; // задаем значение счетчика
+            if ($VALID->inPOST('finish2')) {
+                $finish = $VALID->inPOST('start2'); // пересчитываем количество строк на странице
+                $start = $VALID->inPOST('start2') - $lines_on_page; // задаем значение счетчика
                 if ($start < 0) {
                     $start = 0;
                 }
