@@ -8,20 +8,23 @@
 require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 /* ------------------------------------------ */
 
-// Формируем данные для файла конфигурации
-$http = 'http://' . $VALID->inSERVER('HTTP_HOST') . '/';
+// ФОРМИРУЕМ ДАННЫЕ ДЛЯ ФАЙЛА КОНФИГУРАЦИИ
 $ROOT = getenv('DOCUMENT_ROOT');
-$serv_db = $VALID->inPOST('server_db');
-$login_db = $VALID->inPOST('login_db');
-$password_db = $VALID->inPOST('password_db');
-$db_name = $VALID->inPOST('database_name');
-$db_pref = $VALID->inPOST('database_prefix');
-$db_port = $VALID->inPOST('database_port');
-$db_type = $VALID->inPOST('database_type');
+$crypt_method = $VALID->inPOST('crypt_method');
 $db_famyly = $VALID->inPOST('database_family');
-$login_admin = $VALID->inPOST('login_admin');
-$password_admin = $VALID->inPOST('password_admin');
+$db_name = $VALID->inPOST('database_name');
+$db_port = $VALID->inPOST('database_port');
+$db_pref = $VALID->inPOST('database_prefix');
+$db_type = $VALID->inPOST('database_type');
+$hash_method = $VALID->inPOST('hash_method');
+$http = 'http://' . $VALID->inSERVER('HTTP_HOST') . '/';
 $lng = strtolower($VALID->inPOST('language'));
+$login_admin = $VALID->inPOST('login_admin');
+$login_db = $VALID->inPOST('login_db');
+$password_admin = $VALID->inPOST('password_admin');
+$password_db = $VALID->inPOST('password_db');
+$serv_db = $VALID->inPOST('server_db');
+// Данные по таблицам
 $tab_admin = $db_pref . 'administrators';
 $tab_basic_settings = $db_pref . 'basic_settings';
 $tab_categories = $db_pref . 'categories';
@@ -30,11 +33,9 @@ $tab_products = $db_pref . 'products';
 $tab_regions = $db_pref . 'regions';
 $tab_taxes = $db_pref . 'taxes';
 $tab_units = $db_pref . 'units';
+$tab_vendor_codes = $db_pref . 'vendor_codes';
 $tab_zones = $db_pref . 'zones';
 $tab_zones_value = $db_pref . 'zones_value';
-$tab_vendor_codes = $db_pref . 'vendor_codes';
-$hash_method = $VALID->inPOST('hash_method');
-$crypt_method = $VALID->inPOST('crypt_method');
 
 // Подготавливаем данные для файла конфигурации
 $config = '<?php' . "\n" .
