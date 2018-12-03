@@ -19,16 +19,16 @@
         <meta name="owner" content="eMarket" />
         <meta name="copyright" content="Copyright © 2018 by eMarket Team. All right reserved." />
         <!-- Автогенерация Title" -->
-        <title><?php echo lang('title_' . $SETTINGS->titleDir() . '_' . basename($VALID->inSERVER('PHP_SELF'), '.php')) ?></title>
+        <title><?php echo lang('title_' . $SET->titleDir() . '_' . basename($VALID->inSERVER('PHP_SELF'), '.php')) ?></title>
         <?php
         //ВЫВОД ТОЛЬКО В АДМИНКЕ
-        if ($SETTINGS->path() == 'admin') {
+        if ($SET->path() == 'admin') {
 
             ?>
 
             <link href="/ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
             <link href="/ext/bootstrap/css/normalize.css" rel="stylesheet" media="screen" />
-            <link rel="stylesheet" type="text/css" href="/view/<?php echo $SETTINGS->template() ?>/admin/style.css" media="screen" />
+            <link rel="stylesheet" type="text/css" href="/view/<?php echo $SET->template() ?>/admin/style.css" media="screen" />
             <link rel="stylesheet" type="text/css" href="/ext/contextmenu/css/contextmenu.css" media="screen" />
             <link rel="stylesheet" type="text/css" href="/ext/jquery/ui/jquery-ui.min.css" media="screen" />
             <link rel="stylesheet" href="/ext/bootstrap/css/bootstrap-multiselect.css" type="text/css"/>
@@ -49,33 +49,33 @@
 
                 <?php
             }
-            if (isset($_SESSION['login']) && isset($_SESSION['pass']) && file_exists(ROOT . '/view/' . $SETTINGS->template() . '/admin/nav.css')) {
+            if (isset($_SESSION['login']) && isset($_SESSION['pass']) && file_exists(ROOT . '/view/' . $SET->template() . '/admin/nav.css')) {
 
                 ?>
-                <link rel="stylesheet" type="text/css" href="/view/<?php echo $SETTINGS->template() ?>/admin/nav.css" media="screen" />
+                <link rel="stylesheet" type="text/css" href="/view/<?php echo $SET->template() ?>/admin/nav.css" media="screen" />
             <?php } ?>
         </head>
         <body>
             <?php
             require_once(ROOT . '/controller/admin/header.php');
-            require_once(ROOT . '/view/' . $SETTINGS->template() . '/admin/header.php');
+            require_once(ROOT . '/view/' . $SET->template() . '/admin/header.php');
         } //КОНЕЦ ВЫВОДА ТОЛЬКО В АДМИНКЕ
         //
         //ВЫВОД ТОЛЬКО В КАТАЛОГЕ
-        if ($SETTINGS->path() == 'catalog') {
+        if ($SET->path() == 'catalog') {
 
             ?>
 
             <link href="/ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
             <link href="/ext/bootstrap/css/normalize.css" rel="stylesheet" media="screen" />
-            <link rel="stylesheet" type="text/css" href="/view/<?php echo $SETTINGS->template() ?>/catalog/style.css" media="screen" />
+            <link rel="stylesheet" type="text/css" href="/view/<?php echo $SET->template() ?>/catalog/style.css" media="screen" />
         </head>
     <body>
         <?php
     } //КОНЕЦ ВЫВОДА ТОЛЬКО В КАТАЛОГЕ
     //
     //ВЫВОД ТОЛЬКО В ИНСТАЛЛЯТОРЕ
-    if ($SETTINGS->path() == 'install') {
+    if ($SET->path() == 'install') {
 
         ?>
 
@@ -90,7 +90,7 @@
     require_once($VIEW->Routing());
     //
     //ВЫВОД ТОЛЬКО В АДМИНКЕ
-    if ($SETTINGS->path() == 'admin') {
+    if ($SET->path() == 'admin') {
 
         ?>
 
@@ -103,11 +103,11 @@
 
         <?php
         require_once(ROOT . '/controller/admin/footer.php');
-        require_once(ROOT . '/view/' . $SETTINGS->template() . '/admin/footer.php');
+        require_once(ROOT . '/view/' . $SET->template() . '/admin/footer.php');
     } //КОНЕЦ ВЫВОДА ТОЛЬКО В АДМИНКЕ
 //
     //ВЫВОД ТОЛЬКО В КАТАЛОГЕ
-    if ($SETTINGS->path() == 'catalog') {
+    if ($SET->path() == 'catalog') {
 
         ?>
 
@@ -118,12 +118,12 @@
     } //КОНЕЦ ВЫВОДА ТОЛЬКО В КАТАЛОГЕ
     //
     //ВЫВОД ТОЛЬКО В ИНСТАЛЛЯТОРЕ
-    if ($SETTINGS->path() == 'install') {
+    if ($SET->path() == 'install') {
         require_once(getenv('DOCUMENT_ROOT') . '/controller/install/footer.php');
-        require_once(getenv('DOCUMENT_ROOT') . '/view/' . $SETTINGS->template() . '/install/footer.php');
+        require_once(getenv('DOCUMENT_ROOT') . '/view/' . $SET->template() . '/install/footer.php');
 
         ?>
-        <link rel="stylesheet" type="text/css" href="/view/<?php echo $SETTINGS->template() ?>/install/style.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="/view/<?php echo $SET->template() ?>/install/style.css" media="screen" />
         <script type="text/javascript" src="/ext/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.min.js"></script>
         <?php

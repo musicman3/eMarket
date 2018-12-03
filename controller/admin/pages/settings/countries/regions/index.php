@@ -17,7 +17,7 @@ if ($VALID->inGET('add')) {
 
     // добавляем запись для всех вкладок
     for ($xl = 0; $xl < count($lang_all); $xl++) {
-        $PDO->inPrepare("INSERT INTO " . TABLE_REGIONS . " SET id=?, country_id=?, name=?, language=?, region_code=?", [$id, $VALID->inGET('country_id'), $VALID->inGET($SETTINGS->titleDir() . '_' . $lang_all[$xl]), $lang_all[$xl], $VALID->inGET('region_code')]);
+        $PDO->inPrepare("INSERT INTO " . TABLE_REGIONS . " SET id=?, country_id=?, name=?, language=?, region_code=?", [$id, $VALID->inGET('country_id'), $VALID->inGET($SET->titleDir() . '_' . $lang_all[$xl]), $lang_all[$xl], $VALID->inGET('region_code')]);
     }
 }
 
@@ -26,7 +26,7 @@ if ($VALID->inGET('id_edit')) {
 
     for ($xl = 0; $xl < count($lang_all); $xl++) {
         // обновляем запись
-        $PDO->inPrepare("UPDATE " . TABLE_REGIONS . " SET name=?, region_code=? WHERE id=? AND language=?", [$VALID->inGET('name_edit_' . $SETTINGS->titleDir() . '_' . $lang_all[$xl]), $VALID->inGET('region_code_edit'), $VALID->inGET('id_edit'), $lang_all[$xl]]);
+        $PDO->inPrepare("UPDATE " . TABLE_REGIONS . " SET name=?, region_code=? WHERE id=? AND language=?", [$VALID->inGET('name_edit_' . $SET->titleDir() . '_' . $lang_all[$xl]), $VALID->inGET('region_code_edit'), $VALID->inGET('id_edit'), $lang_all[$xl]]);
     }
 }
 

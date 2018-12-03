@@ -14,7 +14,7 @@
                 <!--Выводим уведомление об успешном действии-->
                 <?php $MESSAGES->alert('success', lang('action_completed_successfully')); ?>
                 <h3 class="panel-title">
-                    <div class="pull-left"><?php echo lang('title_'. $SETTINGS->titleDir() .'_index') ?></div>
+                    <div class="pull-left"><?php echo lang('title_'. $SET->titleDir() .'_index') ?></div>
                     <div class="clearfix"></div>
                 </h3>
             </div>

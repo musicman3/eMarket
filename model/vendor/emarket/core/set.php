@@ -7,7 +7,7 @@
 
 namespace eMarket\Core;
 
-class Settings {
+class Set {
 
     /**
      * Название текущего шаблона

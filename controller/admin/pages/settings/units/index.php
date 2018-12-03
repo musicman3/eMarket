@@ -17,7 +17,7 @@ if ($VALID->inGET('add')) {
 
     // добавляем запись для всех вкладок
     for ($xl = 0; $xl < count($lang_all); $xl++) {
-        $PDO->inPrepare("INSERT INTO " . TABLE_UNITS . " SET id=?, name=?, language=?, unit=?", [$id, $VALID->inGET($SETTINGS->titleDir() . '_' . $lang_all[$xl]), $lang_all[$xl], $VALID->inGET('unit' . $lang_all[$xl])]);
+        $PDO->inPrepare("INSERT INTO " . TABLE_UNITS . " SET id=?, name=?, language=?, unit=?", [$id, $VALID->inGET($SET->titleDir() . '_' . $lang_all[$xl]), $lang_all[$xl], $VALID->inGET('unit' . $lang_all[$xl])]);
     }
 }
 
@@ -26,7 +26,7 @@ if ($VALID->inGET('id_edit')) {
 
     for ($xl = 0; $xl < count($lang_all); $xl++) {
         // обновляем запись
-        $PDO->inPrepare("UPDATE " . TABLE_UNITS . " SET name=?, unit=? WHERE id=? AND language=?", [$VALID->inGET('name_edit_' . $SETTINGS->titleDir() . '_' . $lang_all[$xl]), $VALID->inGET('unit_edit' . $lang_all[$xl]), $VALID->inGET('id_edit'), $lang_all[$xl]]);
+        $PDO->inPrepare("UPDATE " . TABLE_UNITS . " SET name=?, unit=? WHERE id=? AND language=?", [$VALID->inGET('name_edit_' . $SET->titleDir() . '_' . $lang_all[$xl]), $VALID->inGET('unit_edit' . $lang_all[$xl]), $VALID->inGET('id_edit'), $lang_all[$xl]]);
     }
 }
 

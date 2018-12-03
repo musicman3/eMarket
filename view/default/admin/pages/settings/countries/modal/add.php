@@ -10,7 +10,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header"><div class="tooltip-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Ставка указывается в формате: 10.00" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
-                <h4 class="modal-title"><?php echo lang('title_'. $SETTINGS->titleDir() .'_index') ?></h4>
+                <h4 class="modal-title"><?php echo lang('title_'. $SET->titleDir() .'_index') ?></h4>
             </div>
             <form id="form" name="form" action="index.php" onsubmit="$('.modal').modal('hide')" method="get" enctype="multipart/form-data">
                 <div class="panel-body">
@@ -18,7 +18,7 @@
 
                     <!-- Языковые панели -->
                     <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#<?php echo $lang_all[0] ?>"><img src="/view/<?php echo $SETTINGS->template() ?>/admin/images/langflags/<?php echo $lang_all[0] ?>.png" alt="<?php echo $lang_all[0] ?>" title="<?php echo $lang_all[0] ?>" width="16" height="10" /> <?php echo lang('language_name', $lang_all[0]) ?></a></li>
+                        <li class="active"><a data-toggle="tab" href="#<?php echo $lang_all[0] ?>"><img src="/view/<?php echo $SET->template() ?>/admin/images/langflags/<?php echo $lang_all[0] ?>.png" alt="<?php echo $lang_all[0] ?>" title="<?php echo $lang_all[0] ?>" width="16" height="10" /> <?php echo lang('language_name', $lang_all[0]) ?></a></li>
 
                         <?php
                         if (count($lang_all) > 1) {
@@ -26,7 +26,7 @@
 
                                 ?>
 
-                                <li><a data-toggle="tab" href="#<?php echo $lang_all[$xl] ?>"><img src="/view/<?php echo $SETTINGS->template() ?>/admin/images/langflags/<?php echo $lang_all[$xl] ?>.png" alt="<?php echo $lang_all[$xl] ?>" title="<?php echo $lang_all[$xl] ?>" width="16" height="10" /> <?php echo lang('language_name', $lang_all[$xl]) ?></a></li>
+                                <li><a data-toggle="tab" href="#<?php echo $lang_all[$xl] ?>"><img src="/view/<?php echo $SET->template() ?>/admin/images/langflags/<?php echo $lang_all[$xl] ?>.png" alt="<?php echo $lang_all[$xl] ?>" title="<?php echo $lang_all[$xl] ?>" width="16" height="10" /> <?php echo lang('language_name', $lang_all[$xl]) ?></a></li>
 
                                 <?php
                             }
@@ -42,7 +42,7 @@
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="input-sm form-control" placeholder="<?php echo lang('name_country') ?>" type="text" name="<?php echo $SETTINGS->titleDir() . '_' . $lang_all[0] ?>" />
+                                    <input class="input-sm form-control" placeholder="<?php echo lang('name_country') ?>" type="text" name="<?php echo $SET->titleDir() . '_' . $lang_all[0] ?>" />
                                 </div>
                             </div>
                         </div>
@@ -57,7 +57,7 @@
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo lang('name_country') ?>" type="text" name="<?php echo $SETTINGS->titleDir() . '_' . $lang_all[$xl] ?>" />
+                                            <input class="input-sm form-control" placeholder="<?php echo lang('name_country') ?>" type="text" name="<?php echo $SET->titleDir() . '_' . $lang_all[$xl] ?>" />
                                         </div>
                                     </div>
                                 </div>

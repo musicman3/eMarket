@@ -55,7 +55,7 @@
     <!--Лого и поиск-->
     <div id="header">
         <div class="col-sm-4">
-            <a href=""><img src="/view/<?php echo $SETTINGS->template() ?>/catalog/images/emarket.png"></a>
+            <a href=""><img src="/view/<?php echo $SET->template() ?>/catalog/images/emarket.png"></a>
         </div>
         <div class="col-sm-8">
 	    <div class="searchbox-margin">
@@ -114,7 +114,7 @@
     <div class="row">
         <div id="bodyContent" class="col-md-8 col-md-push-2">
             <!-- Начало центр -->
-            <div><img src="/view/<?php echo $SETTINGS->template() ?>/catalog/images/home.png" id="pageIcon">
+            <div><img src="/view/<?php echo $SET->template() ?>/catalog/images/home.png" id="pageIcon">
 		<h1>Welcome Bootstrap 3 Demo</h1></div><hr>
 		    <div class="contentContainer">
 		    

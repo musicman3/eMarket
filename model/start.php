@@ -10,14 +10,14 @@ $tstart = microtime(1); // Засекаем начальное время
 require_once('autoloader.php');
 
 //Если это инсталлятор, то не грузим файл
-if ($SETTINGS->path() != 'install') {
+if ($SET->path() != 'install') {
     require_once('configure/configure.php');
 }
 
 require_once('configure/connect.php');
 
 //Если это инсталлятор, то не грузим файл
-if ($SETTINGS->path() != 'install') {
+if ($SET->path() != 'install') {
     require_once('settings.php');
 
     require_once('session_autorize.php');
