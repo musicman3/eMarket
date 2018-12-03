@@ -51,7 +51,7 @@ $regions = $PDO->getColRow("SELECT country_id, regions_id FROM " . TABLE_ZONES_V
 // Собираем данные для вывода списка стран
 $lines_temp = $PDO->getColRow("SELECT country_id FROM " . TABLE_ZONES_VALUE . " WHERE zones_id=?", [$zones_id]);
 $lines = array_values(array_unique($lines_temp, SORT_REGULAR)); // Выбираем по 1 экземпляру стран и сбрасываем ключи массива
-$navigate = $NAVIGATION->getLink(count($lines), $lines_on_page);
+$navigate = $NAVIGATION->getLink(count($lines), $SET->linesOnPage());
 $start = $navigate[0];
 $finish = $navigate[1];
 

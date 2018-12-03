@@ -25,11 +25,11 @@
 
                     <div class="form-group">
                         <label class="col-sm-3"><?php echo lang('lines_on_page') ?></label>
-                        <div class="col-sm-9"><input type="text" name="lines_on_page" class="form-control" value="<?php echo $lines_on_page ?>"></div>
+                        <div class="col-sm-9"><input type="text" name="lines_on_page" class="form-control" value="<?php echo $SET->linesOnPage() ?>"></div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3"><?php echo lang('session_expr_time') ?> <span data-toggle="tooltip" data-placement="right" data-original-title="<?php echo lang('session_expr_time_help') ?>" class="glyphicon glyphicon-question-sign"></span></label>
-                        <div class="col-sm-9"><input type="text" name="session_expr_time" class="form-control" value="<?php echo $session_expr_time ?>"></div>
+                        <div class="col-sm-9"><input type="text" name="session_expr_time" class="form-control" value="<?php echo $SET->sessionExprTime() ?>"></div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3"><button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button></label>

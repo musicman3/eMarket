@@ -39,7 +39,7 @@ if ($VALID->inPOST('delete')) {
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 $lines = $PDO->getColRow("SELECT id, name, unit FROM " . TABLE_UNITS . " WHERE language=? ORDER BY id DESC", [$lang_all[0]]);
-$navigate = $NAVIGATION->getLink(count($lines), $lines_on_page);
+$navigate = $NAVIGATION->getLink(count($lines), $SET->linesOnPage());
 $start = $navigate[0];
 $finish = $navigate[1];
 

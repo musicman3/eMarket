@@ -15,7 +15,7 @@ if ($VALID->inPOST('lines_on_page')) {
     $PDO->inPrepare("UPDATE " . TABLE_BASIC_SETTINGS . " SET lines_on_page=?", [$VALID->inPOST('lines_on_page')]);
 
     // Считываем значение
-    $lines_on_page = $PDO->selectPrepare("SELECT lines_on_page FROM " . TABLE_BASIC_SETTINGS, []);
+    $lines_on_page = $SET->linesOnPage();
 }
 
 // ВРЕМЯ СЕССИИ АДМИНИСТРАТОРА
@@ -24,7 +24,7 @@ if ($VALID->inPOST('session_expr_time')) {
     $PDO->inPrepare("UPDATE " . TABLE_BASIC_SETTINGS . " SET session_expr_time=?", [$VALID->inPOST('session_expr_time')]);
 
     // Считываем значение
-    $session_expr_time = $PDO->selectPrepare("SELECT session_expr_time FROM " . TABLE_BASIC_SETTINGS, []);
+    $session_expr_time = $SET->sessionExprTime();
 }
 
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */

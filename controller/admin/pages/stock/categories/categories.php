@@ -179,16 +179,16 @@ if ($VALID->inGET('idsx_paste_key') == 'paste' && isset($_SESSION['buffer']) == 
 // КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 // задаем количество строк на странице вывода категорий
 if (isset($_SESSION['select_category']) == FALSE) {
-    $_SESSION['select_category'] = $lines_on_page;
+    $_SESSION['select_category'] = $SET->linesOnPage();
 } elseif (isset($_SESSION['select_category']) == TRUE && $VALID->inGET('select_row')) {
     $_SESSION['select_category'] = $VALID->inGET('select_row');
-    $lines_on_page = $_SESSION['select_category'];
+    $SET->linesOnPage() = $_SESSION['select_category'];
 } else {
-    $lines_on_page = $_SESSION['select_category'];
+    $SET->linesOnPage() = $_SESSION['select_category'];
 }
 
 $start = 0; // устанавливаем страницу в ноль при заходе
-$finish = $lines_on_page;
+$finish = $SET->linesOnPage();
 
 // Если parrent_id является массивом, то
 if (is_array($parent_id) == TRUE) {
@@ -203,18 +203,18 @@ if ($VALID->inGET('parent_id_temp')) {
 $lines = array_reverse($PDO->getColRow("SELECT * FROM " . TABLE_CATEGORIES . " WHERE parent_id=? AND language=? ORDER BY sort_category DESC", [$parent_id, $lang_all[0]]));
 $count_lines = count($lines);  //считаем количество строк
 
-if ($count_lines <= $lines_on_page) {
+if ($count_lines <= $SET->linesOnPage()) {
     $finish = $count_lines;
 }
 // Если нажали на кнопку вперед
 if ($VALID->inGET('finish')) {
-    $finish = $VALID->inGET('finish') + $lines_on_page; // пересчитываем количество строк на странице
+    $finish = $VALID->inGET('finish') + $SET->linesOnPage(); // пересчитываем количество строк на странице
     if ($VALID->inGET('start') == FALSE) {
         $vali = 0;
     } else {
         $vali = $VALID->inGET('start');
     }
-    $start = $vali + $lines_on_page; // задаем значение счетчика
+    $start = $vali + $SET->linesOnPage(); // задаем значение счетчика
     if ($start >= $count_lines) {
         $start = $vali;
     }
@@ -223,15 +223,15 @@ if ($VALID->inGET('finish')) {
     }
 }
 // Если нажали на кнопку назад
-if ($count_lines >= $lines_on_page) {
+if ($count_lines >= $SET->linesOnPage()) {
     if ($VALID->inGET('finish2')) {
         $finish = $VALID->inGET('start2'); // пересчитываем количество строк на странице
-        $start = $VALID->inGET('start2') - $lines_on_page; // задаем значение счетчика
+        $start = $VALID->inGET('start2') - $SET->linesOnPage(); // задаем значение счетчика
         if ($start < 0) {
             $start = 0;
         }
-        if ($finish < $lines_on_page) {
-            $finish = $lines_on_page;
+        if ($finish < $SET->linesOnPage()) {
+            $finish = $SET->linesOnPage();
         }
     }
 }

@@ -45,7 +45,7 @@ if ($VALID->inPOST('country_id')) {
     $country_id = $VALID->inPOST('country_id');
 }
 $lines = $PDO->getColRow("SELECT id, region_code, name FROM " . TABLE_REGIONS . " WHERE country_id=? AND language=? ORDER BY name", [$country_id, $lang_all[0]]);
-$navigate = $NAVIGATION->getLink(count($lines), $lines_on_page);
+$navigate = $NAVIGATION->getLink(count($lines), $SET->linesOnPage());
 $start = $navigate[0];
 $finish = $navigate[1];
 

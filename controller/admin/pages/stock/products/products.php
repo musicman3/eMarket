@@ -18,17 +18,17 @@ $lines = array();
 
 // задаем количество строк на странице вывода категорий
 if (isset($_SESSION['select_category']) == FALSE) {
-    $lines_on_page;
-    $_SESSION['select_category'] = $lines_on_page;
+    $SET->linesOnPage();
+    $_SESSION['select_category'] = $SET->linesOnPage();
 } elseif (isset($_SESSION['select_category']) == TRUE && $VALID->inPOST('select_row')) {
     $_SESSION['select_category'] = $VALID->inPOST('select_row');
-    $lines_on_page = $_SESSION['select_category'];
+    $SET->linesOnPage() = $_SESSION['select_category'];
 } else {
-    $lines_on_page = $_SESSION['select_category'];
+    $SET->linesOnPage() = $_SESSION['select_category'];
 }
 
 $start = 0; // устанавливаем страницу в ноль при заходе
-$finish = $lines_on_page;
+$finish = $SET->linesOnPage();
 
 // Если parrent_id является массивом, то
 if (is_array($parent_id) == TRUE) {
@@ -44,18 +44,18 @@ $lines = $PDO->getColRow("SELECT * FROM " . TABLE_CATEGORIES . " WHERE parent_id
 $lines = array_reverse($lines); // сортируем в обратном порядке
 $count_lines = count($lines);  //считаем количество строк
 
-if ($count_lines <= $lines_on_page) {
+if ($count_lines <= $SET->linesOnPage()) {
     $finish = $count_lines;
 }
 // Если нажали на кнопку вперед
 if ($VALID->inPOST('finish')) {
-    $finish = $VALID->inPOST('finish') + $lines_on_page; // пересчитываем количество строк на странице
+    $finish = $VALID->inPOST('finish') + $SET->linesOnPage(); // пересчитываем количество строк на странице
     if ($VALID->inPOST('start') == FALSE) {
         $vali = 0;
     } else {
         $vali = $VALID->inPOST('start');
     }
-    $start = $vali + $lines_on_page; // задаем значение счетчика
+    $start = $vali + $SET->linesOnPage(); // задаем значение счетчика
     if ($start >= $count_lines) {
         $start = $vali;
     }
@@ -64,15 +64,15 @@ if ($VALID->inPOST('finish')) {
     }
 }
 // Если нажали на кнопку назад
-if ($count_lines >= $lines_on_page) {
+if ($count_lines >= $SET->linesOnPage()) {
     if ($VALID->inPOST('finish2')) {
         $finish = $VALID->inPOST('start2'); // пересчитываем количество строк на странице
-        $start = $VALID->inPOST('start2') - $lines_on_page; // задаем значение счетчика
+        $start = $VALID->inPOST('start2') - $SET->linesOnPage(); // задаем значение счетчика
         if ($start < 0) {
             $start = 0;
         }
-        if ($finish < $lines_on_page) {
-            $finish = $lines_on_page;
+        if ($finish < $SET->linesOnPage()) {
+            $finish = $SET->linesOnPage();
         }
     }
 }

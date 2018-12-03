@@ -9,7 +9,7 @@ if ($SET->path() == 'admin' && $SET->titleDir() != 'login') {
 
     session_start();
     
-    if (isset($_SESSION['session_start']) && (time() - $_SESSION['session_start']) / 60 > $session_expr_time) { // Если истекло время сеанса
+    if (isset($_SESSION['session_start']) && (time() - $_SESSION['session_start']) / 60 > $SET->sessionExprTime()) { // Если истекло время сеанса
         session_destroy();
         header('Location: /controller/admin/login/'); // переадресация на LOGIN
     }
