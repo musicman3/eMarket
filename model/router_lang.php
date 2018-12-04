@@ -4,22 +4,6 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 // 
-//Если пользователь не авторизован, то устанавливаем язык по умолчанию
-if (!isset($DEFAULT_LANGUAGE) && $SET->path() != 'install') {
-    $DEFAULT_LANGUAGE = DEFAULT_LANGUAGE;
-}
-//Если первый раз в инсталляторе, то устанавливаем язык по умолчанию Russian
-if (!$VALID->inPOST('language') && $SET->path() == 'install') {
-    $DEFAULT_LANGUAGE = 'russian';
-}
-//Если переключили язык не авторизованно или в инсталляторе
-if ($VALID->inPOST('language')) {
-    $DEFAULT_LANGUAGE = $VALID->inPOST('language');
-}
-
-$LANG_ALL = $LANG->lang($DEFAULT_LANGUAGE, 'all');
-$LANG_TRANS = $LANG->lang($DEFAULT_LANGUAGE, 'translate');
-$LANG_VAR = $LANG->lang($DEFAULT_LANGUAGE);
 
 /**
  * Функция для вывода языковой переменной вида: lang('pass') или lang('pass', 'english');
@@ -28,8 +12,45 @@ $LANG_VAR = $LANG->lang($DEFAULT_LANGUAGE);
  * @param строка $b
  * @return строка $a
  */
-function lang($a, $b = null) {
-    global $LANG_VAR, $LANG_TRANS;
+function lang($a = null, $b = null) {
+    static $LANG_VAR = null, $LANG_TRANS = null, $LANG_ALL = null;
+
+    $LANG = new \eMarket\Core\Lang;
+    $SET = new \eMarket\Core\Set;
+    $VALID = new \eMarket\Core\Valid;
+
+    //Если пользователь не авторизован, то устанавливаем язык по умолчанию
+    if (!isset($_SESSION['DEFAULT_LANGUAGE']) && $SET->path() != 'install') {
+        $_SESSION['DEFAULT_LANGUAGE'] = DEFAULT_LANGUAGE;
+    }
+
+    //Если первый раз в инсталляторе, то устанавливаем язык по умолчанию Russian
+    if (!$VALID->inPOST('language') && $SET->path() == 'install') {
+        $_SESSION['DEFAULT_LANGUAGE'] = 'russian';
+    }
+
+    //Если переключили язык не авторизованно или в инсталляторе
+    if ($VALID->inPOST('language')) {
+        $_SESSION['DEFAULT_LANGUAGE'] = $VALID->inPOST('language');
+    }
+
+    if (!isset($LANG_ALL)) {
+        $LANG_ALL = $LANG->lang($_SESSION['DEFAULT_LANGUAGE'], 'all');
+    }
+
+    if (!isset($LANG_TRANS)) {
+        $LANG_TRANS = $LANG->lang($_SESSION['DEFAULT_LANGUAGE'], 'translate');
+    }
+
+    if (!isset($LANG_VAR)) {
+        $LANG_VAR = $LANG->lang($_SESSION['DEFAULT_LANGUAGE']);
+    }
+
+    if ($a == '#lang_all') {
+
+        return $LANG_ALL;
+    }
+
     // Вывод для основных языковых переменных
     if ($b == null) {
         if (isset($LANG_VAR[$a])) {

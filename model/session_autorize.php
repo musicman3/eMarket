@@ -25,7 +25,7 @@ if ($SET->path() == 'admin' && $SET->titleDir() != 'login') {
     } else {
         $TOKEN = hash(HASH_METHOD, $_SESSION['login'] . $_SESSION['pass']); // создаем токен для ajax и пр.
         //Язык авторизованного администратора
-        $DEFAULT_LANGUAGE = $PDO->selectPrepare("SELECT language FROM " . TABLE_ADMINISTRATORS . " WHERE login=? AND password=?", [$_SESSION['login'], $_SESSION['pass']]);
+        $_SESSION['DEFAULT_LANGUAGE'] = $PDO->selectPrepare("SELECT language FROM " . TABLE_ADMINISTRATORS . " WHERE login=? AND password=?", [$_SESSION['login'], $_SESSION['pass']]);
     }
 }
 

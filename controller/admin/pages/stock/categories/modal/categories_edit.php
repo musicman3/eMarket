@@ -7,8 +7,8 @@
 // собираем данные для отображения в Редактировании категорий
 if (isset($lines[$k][0]) == TRUE) {
     $name_category_edit = array();
-    for ($xl = 0; $xl < count($LANG_ALL); $xl++) {
-        array_push($name_category_edit, $PDO->selectPrepare("SELECT name FROM " . TABLE_CATEGORIES . " WHERE id=? and language=?", [$lines[$k][0], $LANG_ALL[$xl]]));
+    for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
+        array_push($name_category_edit, $PDO->selectPrepare("SELECT name FROM " . TABLE_CATEGORIES . " WHERE id=? and language=?", [$lines[$k][0], lang('#lang_all')[$xl]]));
     }
 
     $status_category_edit = $PDO->selectPrepare("SELECT status FROM " . TABLE_CATEGORIES . " WHERE id=?", [$lines[$k][0]]);

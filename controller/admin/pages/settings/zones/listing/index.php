@@ -34,16 +34,16 @@ if ($VALID->inPOST('add')) {
 }
 
 // Собираем данные для массива Стран в мультиселекте
-$countries_multiselect_temp = $PDO->getColRow("SELECT name, id  FROM " . TABLE_COUNTRIES . " WHERE language=?", [$LANG_ALL[0]]);
+$countries_multiselect_temp = $PDO->getColRow("SELECT name, id  FROM " . TABLE_COUNTRIES . " WHERE language=?", [lang('#lang_all')[0]]);
 // Собираем одномерный массив id=>Страна
 $countries_multiselect = array_column($countries_multiselect_temp, 0, 1);
 // Сортируем Страны по возрастанию
 asort($countries_multiselect);
 // Собираем данные для массива Регионов в мультиселекте
-$regions_multiselect = $PDO->getColRow("SELECT id, country_id, name, region_code  FROM " . TABLE_REGIONS . " WHERE language=?", [$LANG_ALL[0]]);
+$regions_multiselect = $PDO->getColRow("SELECT id, country_id, name, region_code  FROM " . TABLE_REGIONS . " WHERE language=?", [lang('#lang_all')[0]]);
 // Собираем название стран и регионов для вывода в View
-$name_country = $PDO->getColRow("SELECT id, name FROM " . TABLE_COUNTRIES . " WHERE language=? ORDER BY id DESC", [$LANG_ALL[0]]);
-$name_regions = $PDO->getColRow("SELECT country_id, name FROM " . TABLE_REGIONS . " WHERE language=? ORDER BY id DESC", [$LANG_ALL[0]]);
+$name_country = $PDO->getColRow("SELECT id, name FROM " . TABLE_COUNTRIES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+$name_regions = $PDO->getColRow("SELECT country_id, name FROM " . TABLE_REGIONS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
 // Собираем данные по сопоставлению Страна->Регионы для конкретной зоны
 $regions = $PDO->getColRow("SELECT country_id, regions_id FROM " . TABLE_ZONES_VALUE . " WHERE zones_id=?", [$zones_id]);
 

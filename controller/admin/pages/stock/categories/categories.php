@@ -25,7 +25,7 @@ if ($VALID->inGET('parent_down')) {
 }
 
 // Если нажали на кнопку Добавить
-if ($VALID->inGET($LANG_ALL[0])) {
+if ($VALID->inGET(lang('#lang_all')[0])) {
 
     if ($VALID->inGET('view_cat')) {
         $view_cat = 1;
@@ -36,12 +36,12 @@ if ($VALID->inGET($LANG_ALL[0])) {
     $sort_category = 0;
 
     // Получаем последний id и увеличиваем его на 1
-    $id_max = $PDO->selectPrepare("SELECT id FROM " . TABLE_CATEGORIES . " WHERE language=? ORDER BY id DESC", [$LANG_ALL[0]]);
+    $id_max = $PDO->selectPrepare("SELECT id FROM " . TABLE_CATEGORIES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
     $id = intval($id_max) + 1;
 
     // добавляем запись для всех вкладок
-    for ($xl = 0; $xl < count($LANG_ALL); $xl++) {
-        $PDO->inPrepare("INSERT INTO " . TABLE_CATEGORIES . " SET id=?, name=?, sort_category=?, language=?, parent_id=?, date_added=?, status=?", [$id, $VALID->inGET($LANG_ALL[$xl]), $sort_category, $LANG_ALL[$xl], $parent_id, date("Y-m-d H:i:s"), $view_cat]);
+    for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
+        $PDO->inPrepare("INSERT INTO " . TABLE_CATEGORIES . " SET id=?, name=?, sort_category=?, language=?, parent_id=?, date_added=?, status=?", [$id, $VALID->inGET(lang('#lang_all')[$xl]), $sort_category, lang('#lang_all')[$xl], $parent_id, date("Y-m-d H:i:s"), $view_cat]);
     }
 }
 
@@ -54,9 +54,9 @@ if ($VALID->inGET('cat_edit')) {
         $view_cat = 0;
     }
 
-    for ($xl = 0; $xl < count($LANG_ALL); $xl++) {
+    for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
         // обновляем запись
-        $PDO->inPrepare("UPDATE " . TABLE_CATEGORIES . " SET name=?, last_modified=?, status=? WHERE id=? AND language=?", [$VALID->inGET('name_edit' . $LANG_ALL[$xl]), date("Y-m-d H:i:s"), $view_cat, $VALID->inGET('cat_edit'), $LANG_ALL[$xl]]);
+        $PDO->inPrepare("UPDATE " . TABLE_CATEGORIES . " SET name=?, last_modified=?, status=? WHERE id=? AND language=?", [$VALID->inGET('name_edit' . lang('#lang_all')[$xl]), date("Y-m-d H:i:s"), $view_cat, $VALID->inGET('cat_edit'), lang('#lang_all')[$xl]]);
     }
 }
 
@@ -201,7 +201,7 @@ if ($VALID->inGET('parent_id_temp')) {
     $parent_id = $VALID->inGET('parent_id_temp');
 }
 // получаем отсортированное по sort_category содержимое в виде массива для отображения на странице и сортируем в обратном порядке
-$lines = array_reverse($PDO->getColRow("SELECT * FROM " . TABLE_CATEGORIES . " WHERE parent_id=? AND language=? ORDER BY sort_category DESC", [$parent_id, $LANG_ALL[0]]));
+$lines = array_reverse($PDO->getColRow("SELECT * FROM " . TABLE_CATEGORIES . " WHERE parent_id=? AND language=? ORDER BY sort_category DESC", [$parent_id, lang('#lang_all')[0]]));
 $count_lines = count($lines);  //считаем количество строк
 
 if ($count_lines <= $lines_on_page) {

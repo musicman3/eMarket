@@ -15,21 +15,21 @@ $_SESSION['zone_page'] = $VALID->inSERVER('REQUEST_URI');
 if ($VALID->inGET('add')) {
 
     // Получаем последний id и увеличиваем его на 1
-    $id_max = $PDO->selectPrepare("SELECT id FROM " . TABLE_ZONES . " WHERE language=? ORDER BY id DESC", [$LANG_ALL[0]]);
+    $id_max = $PDO->selectPrepare("SELECT id FROM " . TABLE_ZONES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
     $id = intval($id_max) + 1;
 
     // добавляем запись для всех вкладок
-    for ($xl = 0; $xl < count($LANG_ALL); $xl++) {
-        $PDO->inPrepare("INSERT INTO " . TABLE_ZONES . " SET id=?, name=?, note=?, language=?", [$id, $VALID->inGET($SET->titleDir() . '_' . $LANG_ALL[$xl]), $VALID->inGET('note'), $LANG_ALL[$xl]]);
+    for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
+        $PDO->inPrepare("INSERT INTO " . TABLE_ZONES . " SET id=?, name=?, note=?, language=?", [$id, $VALID->inGET($SET->titleDir() . '_' . lang('#lang_all')[$xl]), $VALID->inGET('note'), lang('#lang_all')[$xl]]);
     }
 }
 
 // Если нажали на кнопку Редактировать
 if ($VALID->inGET('id_edit')) {
 
-    for ($xl = 0; $xl < count($LANG_ALL); $xl++) {
+    for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
         // обновляем запись
-        $PDO->inPrepare("UPDATE " . TABLE_ZONES . " SET name=?, note=? WHERE id=? AND language=?", [$VALID->inGET('name_edit_' . $SET->titleDir() . '_' . $LANG_ALL[$xl]), $VALID->inGET('note'), $VALID->inGET('id_edit'), $LANG_ALL[$xl]]);
+        $PDO->inPrepare("UPDATE " . TABLE_ZONES . " SET name=?, note=? WHERE id=? AND language=?", [$VALID->inGET('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$xl]), $VALID->inGET('note'), $VALID->inGET('id_edit'), lang('#lang_all')[$xl]]);
     }
 }
 
@@ -42,7 +42,7 @@ if ($VALID->inPOST('delete')) {
 }
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
-$lines = $PDO->getColRow("SELECT id, name, note FROM " . TABLE_ZONES . " WHERE language=? ORDER BY name", [$LANG_ALL[0]]);
+$lines = $PDO->getColRow("SELECT id, name, note FROM " . TABLE_ZONES . " WHERE language=? ORDER BY name", [lang('#lang_all')[0]]);
 $navigate = $NAVIGATION->getLink(count($lines), $SET->linesOnPage());
 $start = $navigate[0];
 $finish = $navigate[1];
