@@ -1,7 +1,6 @@
 <?php
-
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
-  |    GNU GENERAL PUBLIC LICENSE v.3.0    |    
+  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
@@ -42,7 +41,6 @@ class Pdo {
      * ПРИМЕР
      *
       Если несколько вариантов, удовлетворяющих условию, то выдает только верхний.
-      Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах.
       Если значение не найдено, то выдает пустой массив: Array()
       Запрос вида $PDO->getCell("SELECT language FROM table WHERE id=?", ['1']); выдаст конкретное значение russian - НЕ МАССИВ!
       Запрос вида $PDO->getCell("SELECT * FROM table WHERE language=?", ['russian']); выдаст значение первого поля, т.е. номер id.
@@ -54,13 +52,11 @@ class Pdo {
     public function getCell($sql, $a) {
         global $DB;
 
-        $result = FALSE;
-        if ($exec = $DB->prepare($sql)
-                AND $exec->execute($a)
-                AND $value = $exec->fetch($DB :: FETCH_NUM)
-                AND $result = $value[0]) {
-            
-        }
+        $exec = $DB->prepare($sql);
+        $exec->execute($a);
+        $value = $exec->fetch($DB :: FETCH_NUM);
+        $result = $value[0];
+
         return $result;
     }
 
@@ -125,12 +121,10 @@ class Pdo {
     public function getColRow($sql, $a) {
         global $DB;
 
-        $result = FALSE;
-        if ($exec = $DB->prepare($sql)
-                AND $exec->execute($a)
-                AND $result = $exec->fetchAll($DB :: FETCH_NUM)) {
-            
-        }
+        $exec = $DB->prepare($sql);
+        $exec->execute($a);
+        $result = $exec->fetchAll($DB :: FETCH_NUM);
+
         return $result;
     }
 
@@ -157,13 +151,11 @@ class Pdo {
     public function getCol($sql, $a) {
         global $DB;
 
-        $result = FALSE;
-        if ($exec = $DB->prepare($sql)
-                AND $exec->execute($a)
-                AND $value = $exec->fetchAll($DB :: FETCH_NUM)
-                AND $result = array_column($value, 0)) {
-            
-        }
+        $exec = $DB->prepare($sql);
+        $exec->execute($a);
+        $value = $exec->fetchAll($DB :: FETCH_NUM);
+        $result = array_column($value, 0);
+
         return $result;
     }
 
@@ -183,12 +175,10 @@ class Pdo {
     public function getCellFalse($sql, $a) {
         global $DB;
 
-        $result = FALSE;
-        if ($exec = $DB->prepare($sql)
-                AND $exec->execute($a)
-                AND $result = $exec->fetchColumn()) {
-            
-        }
+        $exec = $DB->prepare($sql);
+        $exec->execute($a);
+        $result = $exec->fetchColumn();
+
         return $result;
     }
 
@@ -208,12 +198,10 @@ class Pdo {
     public function getColCount($sql, $a) {
         global $DB;
 
-        $result = FALSE;
-        if ($exec = $DB->prepare($sql)
-                AND $exec->execute($a)
-                AND $result = $exec->ColumnCount()) {
-            
-        }
+        $exec = $DB->prepare($sql);
+        $exec->execute($a);
+        $result = $exec->ColumnCount();
+
         return $result;
     }
 
@@ -223,7 +211,7 @@ class Pdo {
      * 
      * ПРИМЕР
      *
-      Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах. Если значение не найдено, то выдает пустой массив: Array()
+      Если значение не найдено, то выдает пустой массив: Array()
       Использовать так: $a = $PDO->getRowCount("SELECT permission FROM users WHERE login=? AND password=?", [$_SESSION['login'],$_SESSION['password']]);
      * 
      * @param строка $sql
@@ -233,12 +221,10 @@ class Pdo {
     public function getRowCount($sql, $a) {
         global $DB;
 
-        $result = FALSE;
-        if ($exec = $DB->prepare($sql)
-                AND $exec->execute($a)
-                AND $result = $exec->RowCount()) {
-            
-        }
+        $exec = $DB->prepare($sql);
+        $exec->execute($a);
+        $result = $exec->RowCount();
+
         return $result;
     }
 
@@ -258,13 +244,11 @@ class Pdo {
     public function selectPrepare($sql, $a) {
         global $DB;
 
-        $result = FALSE;
-        if ($exec = $DB->prepare($sql)
-                AND $exec->execute($a)
-                AND $value = $exec->fetchAll()
-                AND $result = $value[0][0]) {
-            
-        }
+        $exec = $DB->prepare($sql);
+        $exec->execute($a);
+        $value = $exec->fetchAll();
+        $result = $value[0][0];
+
         return $result;
     }
 
@@ -288,11 +272,9 @@ class Pdo {
     public function inPrepare($sql, $a) {
         global $DB;
 
-        $result = FALSE;
-        if ($result = $DB->prepare($sql)
-                AND $result->execute($a)) {
-            
-        }
+        $result = $DB->prepare($sql);
+        $result->execute($a);
+
         return $result;
     }
 
