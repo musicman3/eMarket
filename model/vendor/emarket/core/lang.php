@@ -12,7 +12,7 @@ class Lang {
      * Подключение и парсинг языковых файлов
      *
      * @param строка $default_language
-     * @param строка $a (маркер)
+     * @param строка $marker (маркер)
      * @return массив $lang
      * @return массив $lang_all
      * @return массив $lang_trans

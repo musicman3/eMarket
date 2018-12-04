@@ -14,8 +14,8 @@ class Set {
      * @return строка
      */
     public function template() {
-        $TEMPLATE = 'default';
-        return $TEMPLATE;
+        $template = 'default';
+        return $template;
     }
 
     /**
@@ -25,8 +25,8 @@ class Set {
      */
     public function path() {
         $VALID = new \eMarket\Core\Valid;
-        $PATH = explode('/', ($VALID->inSERVER('REQUEST_URI')))[2];
-        return $PATH;
+        $path = explode('/', ($VALID->inSERVER('REQUEST_URI')))[2];
+        return $path;
     }
 
     /**
@@ -35,12 +35,12 @@ class Set {
      * @return строка
      */
     public function titleDir() {
-        $TITLE_DIR = basename(getcwd());
-        return $TITLE_DIR;
+        $title_dir = basename(getcwd());
+        return $title_dir;
     }
 
     /**
-     * Считываем значение Строк на странице
+     * Считываем значение строк на странице
      *
      * @return строка
      */
@@ -51,7 +51,7 @@ class Set {
     }
 
     /**
-     * Считываем значение Времени сессии администратора
+     * Считываем значение времени сессии администратора
      *
      * @return строка
      */
