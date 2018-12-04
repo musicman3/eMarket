@@ -1,4 +1,5 @@
 <?php
+
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -21,13 +22,13 @@ class Lang {
 
         $TREE = new \eMarket\Core\Tree;
         $SET = new \eMarket\Core\Set;
-        
+
         //Получаем список путей к языковым файлам
         $files_path = $TREE->filesTree(getenv('DOCUMENT_ROOT') . '/language/' . $default_language . '/' . $SET->path());
         //Парсинг языковых файлов
         $lang = parse_ini_file($files_path[0], FALSE, INI_SCANNER_RAW);
-        for ($i = 0; $i < count($files_path); $i++) {
-            $ini = parse_ini_file($files_path[$i], FALSE, INI_SCANNER_RAW);
+        foreach ($files_path as $files) {
+            $ini = parse_ini_file($files, FALSE, INI_SCANNER_RAW);
             $lang = array_merge($lang, $ini); // Установка языкового массива
         }
 
