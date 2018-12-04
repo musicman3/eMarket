@@ -35,18 +35,22 @@ function lang($a = null, $b = null) {
         $_SESSION['DEFAULT_LANGUAGE'] = $VALID->inPOST('language');
     }
 
+    //Устанавливаем $LANG_ALL
     if (!isset($LANG_ALL)) {
         $LANG_ALL = $LANG->lang($_SESSION['DEFAULT_LANGUAGE'], 'all');
     }
 
+    //Устанавливаем $LANG_TRANS
     if (!isset($LANG_TRANS)) {
         $LANG_TRANS = $LANG->lang($_SESSION['DEFAULT_LANGUAGE'], 'translate');
     }
 
+    //Устанавливаем $LANG_VAR
     if (!isset($LANG_VAR)) {
         $LANG_VAR = $LANG->lang($_SESSION['DEFAULT_LANGUAGE']);
     }
 
+    //Если присутствует маркер #lang_all, то выводим $LANG_ALL
     if ($a == '#lang_all') {
 
         return $LANG_ALL;
