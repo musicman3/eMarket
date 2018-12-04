@@ -6,15 +6,15 @@
 // 
 
 /**
- * Функция для вывода языковой переменной вида: lang('pass') или lang('pass', 'english');
+ * Функция для вывода языковой переменной вида: lang('name'), lang('name', 'english') или lang('#lang_all')
  *
  * @param строка $a
  * @param строка $b
  * @return строка
- * @return массив $LANG_ALL
+ * @return массив $lang_all
  */
 function lang($a = null, $b = null) {
-    static $LANG_VAR = null, $LANG_TRANS = null, $LANG_ALL = null;
+    static $lang_var = null, $lang_trans = null, $lang_all = null;
 
     $LANG = new \eMarket\Core\Lang;
     $SET = new \eMarket\Core\Set;
@@ -35,38 +35,38 @@ function lang($a = null, $b = null) {
         $_SESSION['DEFAULT_LANGUAGE'] = $VALID->inPOST('language');
     }
 
-    //Устанавливаем $LANG_ALL
-    if (!isset($LANG_ALL)) {
-        $LANG_ALL = $LANG->lang($_SESSION['DEFAULT_LANGUAGE'], 'all');
+    //Устанавливаем $lang_all
+    if (!isset($lang_all)) {
+        $lang_all = $LANG->lang($_SESSION['DEFAULT_LANGUAGE'], 'all');
     }
 
-    //Устанавливаем $LANG_TRANS
-    if (!isset($LANG_TRANS)) {
-        $LANG_TRANS = $LANG->lang($_SESSION['DEFAULT_LANGUAGE'], 'translate');
+    //Устанавливаем $lang_trans
+    if (!isset($lang_trans)) {
+        $lang_trans = $LANG->lang($_SESSION['DEFAULT_LANGUAGE'], 'translate');
     }
 
-    //Устанавливаем $LANG_VAR
-    if (!isset($LANG_VAR)) {
-        $LANG_VAR = $LANG->lang($_SESSION['DEFAULT_LANGUAGE']);
+    //Устанавливаем $lang_var
+    if (!isset($lang_var)) {
+        $lang_var = $LANG->lang($_SESSION['DEFAULT_LANGUAGE']);
     }
 
-    //Если присутствует маркер #lang_all, то выводим $LANG_ALL
+    //Если присутствует маркер #lang_all, то выводим $lang_all
     if ($a == '#lang_all') {
-        return $LANG_ALL;
+        return $lang_all;
     }
 
     // Вывод для основных языковых переменных
     if ($b == null) {
-        if (isset($LANG_VAR[$a])) {
-            return $LANG_VAR[$a]; // Если языковая переменная найдена, то выводим ее значение
+        if (isset($lang_var[$a])) {
+            return $lang_var[$a]; // Если языковая переменная найдена, то выводим ее значение
         } else {
             return $a; // Если языковая переменная не найдена, то выводим ее название
         }
     }
     // Вывод для языковых переменных из lang.lng
     if ($b != null) {
-        if (isset($LANG_TRANS[$b][$a])) {
-            return $LANG_TRANS[$b][$a]; // Если языковая переменная найдена, то выводим ее значение
+        if (isset($lang_trans[$b][$a])) {
+            return $lang_trans[$b][$a]; // Если языковая переменная найдена, то выводим ее значение
         } else {
             return $a; // Если языковая переменная не найдена, то выводим ее название
         }
