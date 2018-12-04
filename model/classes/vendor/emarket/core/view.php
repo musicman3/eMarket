@@ -14,7 +14,7 @@ class View {
      *
      * @return строка $str
      */
-    public function Routing() {
+    public function routing() {
 
         $SET = new \eMarket\Core\Set;
 

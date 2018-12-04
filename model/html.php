@@ -87,7 +87,7 @@
     } //КОНЕЦ ВЫВОДА ТОЛЬКО В ИНСТАЛЛЯТОРЕ
     //
     // ЗАГРУЖАЕМ ТЕЛО HTML СТРАНИЦЫ
-    require_once($VIEW->Routing());
+    require_once($VIEW->routing());
     //
     //ВЫВОД ТОЛЬКО В АДМИНКЕ
     if ($SET->path() == 'admin') {
