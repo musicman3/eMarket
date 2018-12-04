@@ -10,8 +10,8 @@
  *
  * @param строка $a
  * @param строка $b
- * @return строка $a
- * @return строка $LANG_ALL
+ * @return строка
+ * @return массив $LANG_ALL
  */
 function lang($a = null, $b = null) {
     static $LANG_VAR = null, $LANG_TRANS = null, $LANG_ALL = null;
@@ -52,7 +52,6 @@ function lang($a = null, $b = null) {
 
     //Если присутствует маркер #lang_all, то выводим $LANG_ALL
     if ($a == '#lang_all') {
-
         return $LANG_ALL;
     }
 
