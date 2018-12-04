@@ -1,10 +1,11 @@
 <?php
+
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
-  |    GNU GENERAL PUBLIC LICENSE v.3.0    |    
+  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 // 
-//Автозагрузчик классов
+//АВТОЗАГРУЗЧИК КЛАССОВ
 spl_autoload_register(function ($class_name) {
     $file = __DIR__ . '/classes/vendor/' . strtolower(str_replace('\\', '/', $class_name)) . '.php';
     if (file_exists($file)) {
@@ -26,4 +27,10 @@ $DEBUG = new eMarket\Other\Debug;
 $FUNC = new eMarket\Other\Func;
 $MESSAGES = new eMarket\Other\Messages;
 
+//АВТОЗАГРУЗЧИК ФУНКЦИЙ
+//Получаем список путей к файлам функций
+$files_path = $TREE->filesTree(getenv('DOCUMENT_ROOT') . '/model/functions/');
+for ($i = 0; $i < count($files_path); $i++) {
+    require_once($files_path[$i]);
+}
 ?>
