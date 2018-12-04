@@ -29,7 +29,7 @@ $MESSAGES = new eMarket\Other\Messages;
 
 //АВТОЗАГРУЗЧИК ФУНКЦИЙ
 //Получаем список путей к файлам функций
-for ($i = 0; $i < count($TREE->filesTree(getenv('DOCUMENT_ROOT') . '/model/functions/')); $i++) {
-    require_once($TREE->filesTree(getenv('DOCUMENT_ROOT') . '/model/functions/')[$i]);
+foreach ($TREE->filesTree(getenv('DOCUMENT_ROOT') . '/model/functions/') as $i) {
+    require_once($i);
 }
 ?>
