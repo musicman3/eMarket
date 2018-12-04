@@ -77,8 +77,8 @@
     <!-- Breadcrumb -->
     <div>&nbsp;&nbsp;
         <ul class="breadcrumb">
-            <li class="selected"><a href="#">Начало</a></li>
-            <li class="selected"><a href="#">Категории</a></li>
+            <li class="selected"><a href="#">Home</a></li>
+            <li class="selected"><a href="#">Categories</a></li>
         </ul>
     </div>
     <!-- Конец breadcrumb -->
