@@ -22,7 +22,7 @@ function connect($a = null) {
     if (!isset($connect) && defined('DB_TYPE') && defined('DB_SERVER') && defined('DB_NAME') && defined('DB_USERNAME') && defined('DB_PASSWORD')) {
 
         try {
-            $connect = new PDO(DB_TYPE . ':host=' . DB_SERVER . ';dbname=' . DB_NAME, DB_USERNAME, DB_PASSWORD, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
+            $connect = new PDO(DB_TYPE . ':host=' . DB_SERVER . ';dbname=' . DB_NAME, DB_USERNAME, DB_PASSWORD, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING, PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4"));
         } catch (PDOException $error) {
             // Если ошибка соединения с БД в инсталляторе, то переадресуем на страницу ошибки
             if ($SET->path() == 'install') {
@@ -32,7 +32,6 @@ function connect($a = null) {
                 print_r($error->getMessage());
             }
         }
-        $connect->exec("set names utf8mb4");
     }
 
     return $connect;
