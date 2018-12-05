@@ -14,7 +14,7 @@ class Pdo {
      * @param строка $a маркер
      * @return объект
      */
-    function connect($a = null) {
+    public function connect($a = null) {
         static $connect = null;
 
         $SET = new \eMarket\Core\Set;
