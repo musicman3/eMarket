@@ -82,15 +82,6 @@ if (file_exists($ROOT . '/model/configure/configure.php') && is_writeable($ROOT 
 // Подключаем CONFIGURE.PHP
 require_once($ROOT . '/model/configure/configure.php');
 
-// Подключаем соединение к БД
-try {
-$DB = new PDO(DB_TYPE . ':host=' . DB_SERVER . ';dbname=' . DB_NAME, DB_USERNAME, DB_PASSWORD, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
-
-} catch (PDOException $error) {
-    // Если ошибка соединения с БД, то переадресуем на страницу ошибки
-    header('Location: /controller/install/error.php?server_db_error=true&error_message=' . $error->getMessage());
-}
-
 // Подключаем файл БД
 if ($db_famyly == 'myisam') {
     $file_name = ROOT . '/model/databases/' . $db_famyly . '.sql';
@@ -108,17 +99,14 @@ if (!file_exists($file_name)) {
 
 // Импортируем данные из файла БД
 $buffer = str_replace('emkt_', DB_PREFIX, implode(file($file_name))); // Меняем префикс, если он другой
-$DB->exec("set names utf8mb4");
-$DB->exec($buffer);
+$PDO->getExec($buffer);
 
 // Сохраняем e-mail и пароль
 $password_admin_hash = hash(HASH_METHOD, $password_admin); // Хэшируем пароль
 
 if ($VALID->inPOST('login_admin') and $VALID->inPOST('password_admin')) {
-    $DB->exec("INSERT INTO " . TABLE_ADMINISTRATORS . " (login, password, permission, language) VALUES ('$login_admin','$password_admin_hash','admin','$lng')");
+    $PDO->inPrepare("INSERT INTO " . TABLE_ADMINISTRATORS . "  SET login=?, password=?, permission=?, language=?", [$login_admin, $password_admin_hash, 'admin', $lng]);
 }
-
-$DB = null;
 
 // СОЗДАЕМ .HTACCESS
 $text = "#****** Copyright © 2018 eMarket ******#

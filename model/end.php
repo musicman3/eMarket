@@ -8,5 +8,5 @@
 require_once(getenv('DOCUMENT_ROOT') . '/model/html.php');
 
 //CONNECT END
-$DB = null; 
+connect('end'); 
 ?>

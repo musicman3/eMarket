@@ -9,28 +9,26 @@ namespace eMarket\Core;
 class Pdo {
 
     /**
-     * getQuery вместо $DB->query()
+     * getQuery вместо connect()->query()
      *
      * @param строка $sql
      * @return команда MYSQL
      */
     public function getQuery($sql) {
-        global $DB;
 
-        $result = $DB->query($sql);
+        $result = connect()->query($sql);
         return $result;
     }
 
     /**
-     * getExec вместо $DB->exec()
+     * getExec вместо connect()->exec()
      *
      * @param строка $sql
      * @return команда MYSQL
      */
     public function getExec($sql) {
-        global $DB;
 
-        $result = $DB->exec($sql);
+        $result = connect()->exec($sql);
         return $result;
     }
 
@@ -50,11 +48,10 @@ class Pdo {
      * @return массив, строка
      */
     public function getCell($sql, $a) {
-        global $DB;
 
-        $exec = $DB->prepare($sql);
+        $exec = connect()->prepare($sql);
         $exec->execute($a);
-        $value = $exec->fetch($DB :: FETCH_NUM);
+        $value = $exec->fetch(connect() :: FETCH_NUM);
         $result = $value[0];
 
         return $result;
@@ -119,11 +116,10 @@ class Pdo {
      * @return массив
      */
     public function getColRow($sql, $a) {
-        global $DB;
 
-        $exec = $DB->prepare($sql);
+        $exec = connect()->prepare($sql);
         $exec->execute($a);
-        $result = $exec->fetchAll($DB :: FETCH_NUM);
+        $result = $exec->fetchAll(connect() :: FETCH_NUM);
 
         return $result;
     }
@@ -149,11 +145,10 @@ class Pdo {
      * @return массив
      */
     public function getCol($sql, $a) {
-        global $DB;
 
-        $exec = $DB->prepare($sql);
+        $exec = connect()->prepare($sql);
         $exec->execute($a);
-        $value = $exec->fetchAll($DB :: FETCH_NUM);
+        $value = $exec->fetchAll(connect() :: FETCH_NUM);
         $result = array_column($value, 0);
 
         return $result;
@@ -173,9 +168,8 @@ class Pdo {
      * @return массив
      */
     public function getCellFalse($sql, $a) {
-        global $DB;
 
-        $exec = $DB->prepare($sql);
+        $exec = connect()->prepare($sql);
         $exec->execute($a);
         $result = $exec->fetchColumn();
 
@@ -196,9 +190,8 @@ class Pdo {
      * @return массив, int
      */
     public function getColCount($sql, $a) {
-        global $DB;
 
-        $exec = $DB->prepare($sql);
+        $exec = connect()->prepare($sql);
         $exec->execute($a);
         $result = $exec->ColumnCount();
 
@@ -219,9 +212,8 @@ class Pdo {
      * @return массив, int
      */
     public function getRowCount($sql, $a) {
-        global $DB;
 
-        $exec = $DB->prepare($sql);
+        $exec = connect()->prepare($sql);
         $exec->execute($a);
         $result = $exec->RowCount();
 
@@ -242,9 +234,8 @@ class Pdo {
      * @return массив, строка
      */
     public function selectPrepare($sql, $a) {
-        global $DB;
 
-        $exec = $DB->prepare($sql);
+        $exec = connect()->prepare($sql);
         $exec->execute($a);
         $value = $exec->fetchAll();
         $result = $value[0][0];
@@ -270,9 +261,8 @@ class Pdo {
      * @return команда MYSQL
      */
     public function inPrepare($sql, $a) {
-        global $DB;
-
-        $result = $DB->prepare($sql);
+        
+        $result = connect()->prepare($sql);
         $result->execute($a);
 
         return $result;
