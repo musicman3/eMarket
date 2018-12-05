@@ -4,9 +4,9 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 // 
-//LOAD TEMPLATE
+//Загружаем HTML
 require_once(getenv('DOCUMENT_ROOT') . '/model/html.php');
 
-//CONNECT END
+//Закрываем соединение с БД
 connect('end'); 
 ?>
