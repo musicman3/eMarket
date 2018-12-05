@@ -40,16 +40,14 @@ class Navigation {
             }
         }
         // Если нажали на кнопку назад GET
-        if ($count_lines >= $lines_on_page) {
-            if ($VALID->inGET('finish2')) {
-                $finish = $VALID->inGET('start2'); // пересчитываем количество строк на странице
-                $start = $VALID->inGET('start2') - $lines_on_page; // задаем значение счетчика
-                if ($start < 0) {
-                    $start = 0;
-                }
-                if ($finish < $lines_on_page) {
-                    $finish = $lines_on_page;
-                }
+        if ($count_lines >= $lines_on_page && $VALID->inGET('finish2')) {
+            $finish = $VALID->inGET('start2'); // пересчитываем количество строк на странице
+            $start = $VALID->inGET('start2') - $lines_on_page; // задаем значение счетчика
+            if ($start < 0) {
+                $start = 0;
+            }
+            if ($finish < $lines_on_page) {
+                $finish = $lines_on_page;
             }
         }
         return array($start, $finish);
@@ -87,16 +85,14 @@ class Navigation {
             }
         }
         // Если нажали на кнопку назад POST
-        if ($count_lines >= $lines_on_page) {
-            if ($VALID->inPOST('finish2')) {
-                $finish = $VALID->inPOST('start2'); // пересчитываем количество строк на странице
-                $start = $VALID->inPOST('start2') - $lines_on_page; // задаем значение счетчика
-                if ($start < 0) {
-                    $start = 0;
-                }
-                if ($finish < $lines_on_page) {
-                    $finish = $lines_on_page;
-                }
+        if ($count_lines >= $lines_on_page && $VALID->inPOST('finish2')) {
+            $finish = $VALID->inPOST('start2'); // пересчитываем количество строк на странице
+            $start = $VALID->inPOST('start2') - $lines_on_page; // задаем значение счетчика
+            if ($start < 0) {
+                $start = 0;
+            }
+            if ($finish < $lines_on_page) {
+                $finish = $lines_on_page;
             }
         }
         return array($start, $finish);

@@ -6,19 +6,20 @@
 error_reporting(-1);
 
 $tstart = microtime(1); // Засекаем начальное время 
-
+// Автозагрузка
 require_once('autoloader.php');
 
-//Если это инсталлятор, то не грузим файл
+// Если это инсталлятор, то не грузим файл конфигурации
 if ($SET->path() != 'install') {
     require_once('configure/configure.php');
 }
-
-//Если это инсталлятор, то не грузим файл
-if ($SET->path() != 'install') {
-    require_once('session_autorize.php');
-}
-
+// Загружаем языковой роутер
 require_once('router_lang.php');
+
+// Загружаем авторизацию Административной части
+$TOKEN = $AUTORIZE->sessionAdmin();
+
+// Загружаем авторизацию Каталога
+$AUTORIZE->sessionCatalog();
 
 ?>

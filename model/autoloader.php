@@ -14,6 +14,7 @@ spl_autoload_register(function ($class_name) {
 });
 //
 //СОЗДАЕМ ОБЪЕКТЫ CORE
+$AUTORIZE = new eMarket\Core\Autorize;
 $LANG = new eMarket\Core\Lang;
 $NAVIGATION = new eMarket\Core\Navigation;
 $PDO = new eMarket\Core\Pdo;
