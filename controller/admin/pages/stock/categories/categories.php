@@ -109,8 +109,7 @@ if (($VALID->inGET('idsx_statusOn_key') == 'statusOn')
     }
 
     //Выбираем данные из БД
-    $data_cat = $DB->prepare("SELECT id, parent_id FROM " . TABLE_CATEGORIES);
-    $data_cat->execute();
+    $data_cat = $PDO->inPrepare("SELECT id, parent_id FROM " . TABLE_CATEGORIES);
 
     $category = $idx; // id родителя
     $categories = array();

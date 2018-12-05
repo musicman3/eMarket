@@ -82,11 +82,13 @@ class Pdo {
      */
     public function getCell($sql, $a) {
 
-        $exec = self::connect()->prepare($sql);
-        $exec->execute($a);
-        $value = $exec->fetch(self::connect() :: FETCH_NUM);
-        $result = $value[0];
-
+        $result = FALSE;
+        if ($exec = self::connect()->prepare($sql)
+                AND $exec->execute($a)
+                AND $value = $exec->fetch(self::connect() :: FETCH_NUM)
+                AND $result = $value[0]) {
+            
+        }
         return $result;
     }
 
@@ -150,10 +152,12 @@ class Pdo {
      */
     public function getColRow($sql, $a) {
 
-        $exec = self::connect()->prepare($sql);
-        $exec->execute($a);
-        $result = $exec->fetchAll(self::connect() :: FETCH_NUM);
-
+        $result = FALSE;
+        if ($exec = self::connect()->prepare($sql)
+                AND $exec->execute($a)
+                AND $result = $exec->fetchAll(self::connect() :: FETCH_NUM)) {
+            
+        }
         return $result;
     }
 
@@ -179,11 +183,13 @@ class Pdo {
      */
     public function getCol($sql, $a) {
 
-        $exec = self::connect()->prepare($sql);
-        $exec->execute($a);
-        $value = $exec->fetchAll(self::connect() :: FETCH_NUM);
-        $result = array_column($value, 0);
-
+        $result = FALSE;
+        if ($exec = self::connect()->prepare($sql)
+                AND $exec->execute($a)
+                AND $value = $exec->fetchAll(self::connect() :: FETCH_NUM)
+                AND $result = array_column($value, 0)) {
+            
+        }
         return $result;
     }
 
@@ -202,10 +208,12 @@ class Pdo {
      */
     public function getCellFalse($sql, $a) {
 
-        $exec = self::connect()->prepare($sql);
-        $exec->execute($a);
-        $result = $exec->fetchColumn();
-
+        $result = FALSE;
+        if ($exec = self::connect()->prepare($sql)
+                AND $exec->execute($a)
+                AND $result = $exec->fetchColumn()) {
+            
+        }
         return $result;
     }
 
@@ -224,10 +232,12 @@ class Pdo {
      */
     public function getColCount($sql, $a) {
 
-        $exec = self::connect()->prepare($sql);
-        $exec->execute($a);
-        $result = $exec->ColumnCount();
-
+        $result = FALSE;
+        if ($exec = self::connect()->prepare($sql)
+                AND $exec->execute($a)
+                AND $result = $exec->ColumnCount()) {
+            
+        }
         return $result;
     }
 
@@ -246,10 +256,12 @@ class Pdo {
      */
     public function getRowCount($sql, $a) {
 
-        $exec = self::connect()->prepare($sql);
-        $exec->execute($a);
-        $result = $exec->RowCount();
-
+        $result = FALSE;
+        if ($exec = self::connect()->prepare($sql)
+                AND $exec->execute($a)
+                AND $result = $exec->RowCount()) {
+            
+        }
         return $result;
     }
 
@@ -268,11 +280,13 @@ class Pdo {
      */
     public function selectPrepare($sql, $a) {
 
-        $exec = self::connect()->prepare($sql);
-        $exec->execute($a);
-        $value = $exec->fetchAll();
-        $result = $value[0][0];
-
+        $result = FALSE;
+        if ($exec = self::connect()->prepare($sql)
+                AND $exec->execute($a)
+                AND $value = $exec->fetchAll()
+                AND $result = $value[0][0]) {
+            
+        }
         return $result;
     }
 
@@ -293,11 +307,13 @@ class Pdo {
      * @param массив $a
      * @return команда MYSQL
      */
-    public function inPrepare($sql, $a) {
+    public function inPrepare($sql, $a = null) {
 
-        $result = self::connect()->prepare($sql);
-        $result->execute($a);
-
+        $result = FALSE;
+        if ($result = self::connect()->prepare($sql)
+                AND $result->execute($a)) {
+            
+        }
         return $result;
     }
 
