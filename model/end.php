@@ -8,5 +8,5 @@
 require_once(getenv('DOCUMENT_ROOT') . '/model/html.php');
 
 //Закрываем соединение с БД
-connect('end'); 
+$PDO->connect('end'); 
 ?>

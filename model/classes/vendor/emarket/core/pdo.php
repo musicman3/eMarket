@@ -1,4 +1,5 @@
 <?php
+
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -9,26 +10,58 @@ namespace eMarket\Core;
 class Pdo {
 
     /**
-     * getQuery вместо connect()->query()
+     * Функция для соединения с БД
+     * @param строка $a маркер
+     * @return объект
+     */
+    function connect($a = null) {
+        static $connect = null;
+
+        $SET = new \eMarket\Core\Set;
+
+        if (isset($a) && $a == 'end') {
+            return $connect;
+        }
+
+        if (!isset($connect) && defined('DB_TYPE') && defined('DB_SERVER') && defined('DB_NAME') && defined('DB_USERNAME') && defined('DB_PASSWORD')) {
+
+            try {
+                $connect = new \PDO(DB_TYPE . ':host=' . DB_SERVER . ';dbname=' . DB_NAME, DB_USERNAME, DB_PASSWORD, array(\PDO::ATTR_ERRMODE => \PDO::ERRMODE_WARNING, \PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4"));
+            } catch (PDOException $error) {
+                // Если ошибка соединения с БД в инсталляторе, то переадресуем на страницу ошибки
+                if ($SET->path() == 'install') {
+                    header('Location: /controller/install/error.php?server_db_error=true&error_message=' . $error->getMessage());
+                } else {
+                    //Выводим на экран, если не в инсталляторе
+                    print_r($error->getMessage());
+                }
+            }
+        }
+
+        return $connect;
+    }
+
+    /**
+     * getQuery вместо self::connect()->query()
      *
      * @param строка $sql
      * @return команда MYSQL
      */
     public function getQuery($sql) {
 
-        $result = connect()->query($sql);
+        $result = self::connect()->query($sql);
         return $result;
     }
 
     /**
-     * getExec вместо connect()->exec()
+     * getExec вместо self::connect()->exec()
      *
      * @param строка $sql
      * @return команда MYSQL
      */
     public function getExec($sql) {
 
-        $result = connect()->exec($sql);
+        $result = self::connect()->exec($sql);
         return $result;
     }
 
@@ -49,9 +82,9 @@ class Pdo {
      */
     public function getCell($sql, $a) {
 
-        $exec = connect()->prepare($sql);
+        $exec = self::connect()->prepare($sql);
         $exec->execute($a);
-        $value = $exec->fetch(connect() :: FETCH_NUM);
+        $value = $exec->fetch(self::connect() :: FETCH_NUM);
         $result = $value[0];
 
         return $result;
@@ -117,9 +150,9 @@ class Pdo {
      */
     public function getColRow($sql, $a) {
 
-        $exec = connect()->prepare($sql);
+        $exec = self::connect()->prepare($sql);
         $exec->execute($a);
-        $result = $exec->fetchAll(connect() :: FETCH_NUM);
+        $result = $exec->fetchAll(self::connect() :: FETCH_NUM);
 
         return $result;
     }
@@ -146,9 +179,9 @@ class Pdo {
      */
     public function getCol($sql, $a) {
 
-        $exec = connect()->prepare($sql);
+        $exec = self::connect()->prepare($sql);
         $exec->execute($a);
-        $value = $exec->fetchAll(connect() :: FETCH_NUM);
+        $value = $exec->fetchAll(self::connect() :: FETCH_NUM);
         $result = array_column($value, 0);
 
         return $result;
@@ -169,7 +202,7 @@ class Pdo {
      */
     public function getCellFalse($sql, $a) {
 
-        $exec = connect()->prepare($sql);
+        $exec = self::connect()->prepare($sql);
         $exec->execute($a);
         $result = $exec->fetchColumn();
 
@@ -191,7 +224,7 @@ class Pdo {
      */
     public function getColCount($sql, $a) {
 
-        $exec = connect()->prepare($sql);
+        $exec = self::connect()->prepare($sql);
         $exec->execute($a);
         $result = $exec->ColumnCount();
 
@@ -213,7 +246,7 @@ class Pdo {
      */
     public function getRowCount($sql, $a) {
 
-        $exec = connect()->prepare($sql);
+        $exec = self::connect()->prepare($sql);
         $exec->execute($a);
         $result = $exec->RowCount();
 
@@ -235,7 +268,7 @@ class Pdo {
      */
     public function selectPrepare($sql, $a) {
 
-        $exec = connect()->prepare($sql);
+        $exec = self::connect()->prepare($sql);
         $exec->execute($a);
         $value = $exec->fetchAll();
         $result = $value[0][0];
@@ -261,8 +294,8 @@ class Pdo {
      * @return команда MYSQL
      */
     public function inPrepare($sql, $a) {
-        
-        $result = connect()->prepare($sql);
+
+        $result = self::connect()->prepare($sql);
         $result->execute($a);
 
         return $result;
