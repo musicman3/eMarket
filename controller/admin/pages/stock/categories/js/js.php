@@ -36,7 +36,7 @@
         $.ajax({
             method: 'GET',
             dataType: 'text',
-            url: '<?php echo $VALID->inSERVER('REQUEST_URI') ?>p',
+            url: '<?php echo $VALID->inSERVER('REQUEST_URI') ?>',
             data: ({
                 token_ajax: token,
                 j: j,
