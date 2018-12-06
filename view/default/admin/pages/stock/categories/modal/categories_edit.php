@@ -8,7 +8,7 @@ require(ROOT . '/controller/admin/pages/stock/categories/modal/categories_edit.p
 ?>
 
 <!-- Модальное окно "Редактировать категорию" -->
-<div id="<?php echo 'addCategory' . $lines[$k][0] ?>" class="modal fade" tabindex="-1">
+<div id="<?php echo 'editCategory' . $lines[$k][0] ?>" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header"><div class="tooltip-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Заполните карточку категорий" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
@@ -89,7 +89,7 @@ require(ROOT . '/controller/admin/pages/stock/categories/modal/categories_edit.p
             url: '/controller/admin/pages/stock/categories/categories.php',
             data: msg,
             success: function (data) {
-                $('#addCategory<?php echo $lines[$k][0] ?>').modal('hide');
+                $('#editCategory<?php echo $lines[$k][0] ?>').modal('hide');
                 $('#ajax').html(data);
             }
         });

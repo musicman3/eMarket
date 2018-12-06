@@ -96,7 +96,7 @@
                         return 'context-menu-icon glyphicon-edit';
                     },
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
-                        $('#addCategory' + opt.$trigger.attr("id")).modal('show');
+                        $('#editCategory' + opt.$trigger.attr("id")).modal('show');
                     }
                 },
 
