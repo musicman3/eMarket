@@ -28,7 +28,7 @@
 
     function sortList() {
         var ids = [];
-        var j = '<?php echo $j ?>';
+        var j = '<?php echo $start ?>';
         var token = '<?php echo $TOKEN ?>';
         $("#sort-list tr").each(function () {
             ids[ids.length] = $(this).attr('unitid');

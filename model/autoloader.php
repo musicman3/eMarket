@@ -24,6 +24,7 @@ $VALID = new eMarket\Core\Valid;
 $VIEW = new eMarket\Core\View;
 
 //СОЗДАЕМ ОБЪЕКТЫ OTHER
+$EAC = new eMarket\Other\Eac;
 $DEBUG = new eMarket\Other\Debug;
 $FUNC = new eMarket\Other\Func;
 $MESSAGES = new eMarket\Other\Messages;
