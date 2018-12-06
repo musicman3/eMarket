@@ -30,7 +30,7 @@
                         <form action="/controller/admin/pages/stock/categories/categories.php" method="get" class="form-inline">
                             <div class="add-xs"><?php echo lang('lines_on_page') ?>: <select name="select_row" class="input-xs form-control" onchange="this.form.submit()">
                                     <option>(<?php echo $lines_on_page ?>)</option>
-                                    <option>5</option>
+                                    <option>20</option>
                                     <option>35</option>
                                     <option>50</option>
                                     <option>75</option>
