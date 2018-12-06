@@ -19,7 +19,7 @@ class Messages {
         $SET = new \eMarket\Core\Set;
         $VALID = new \eMarket\Core\Valid;
         
-        if ($VALID->inPOST('add') OR $VALID->inGET('add') OR $VALID->inPOST('edit') OR $VALID->inGET('edit') OR $VALID->inPOST('delete') OR $VALID->inGET('delete')) {
+        if ($VALID->inPOST('add') OR $VALID->inGET('add') OR $VALID->inPOST('edit') OR $VALID->inGET('edit') OR $VALID->inPOST('delete') OR $VALID->inGET('delete') OR $VALID->inPOST('modify') OR $VALID->inGET('modify')) {
             require_once (ROOT . '/view/' . $SET->template() . '/layouts/alert.php');
         }
     }

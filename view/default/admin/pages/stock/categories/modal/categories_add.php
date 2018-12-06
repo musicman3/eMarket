@@ -15,6 +15,7 @@
             <form id="form_get" name="form_get" action="javascript:void(null);" onsubmit="call()" method="get" enctype="multipart/form-data">
                 <div class="panel-body">
                         <input type="hidden" name="parent_id" value="<?php echo $parent_id ?>" />
+                        <input type="hidden" name="add" value="ok" />
                     <!-- Языковые панели -->
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#<?php echo lang('#lang_all')[0] ?>"><img src="/view/<?php echo $SET->template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[0] ?>.png" alt="<?php echo lang('#lang_all')[0] ?>" title="<?php echo lang('#lang_all')[0] ?>" width="16" height="10" /> <?php echo lang('language_name', lang('#lang_all')[0]) ?></a></li>
