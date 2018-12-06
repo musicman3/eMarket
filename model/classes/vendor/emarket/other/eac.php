@@ -176,7 +176,7 @@ class Eac {
      * @param строка $TABLE_CATEGORIES (название таблицы категорий)
      * @param строка $parent_id
      */
-    public function addCategory($TABLE_CATEGORIES, $parent_id) {
+    private function addCategory($TABLE_CATEGORIES, $parent_id) {
 
         $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
@@ -206,7 +206,7 @@ class Eac {
      * Редактировать категорию в EAC
      * @param строка $TABLE_CATEGORIES (название таблицы категорий)
      */
-    public function editCategory($TABLE_CATEGORIES) {
+    private function editCategory($TABLE_CATEGORIES) {
 
         $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
@@ -231,7 +231,7 @@ class Eac {
      * @param строка $TABLE_CATEGORIES (название таблицы категорий)
      * @return строка $parent_id
      */
-    public function parentIdStart($TABLE_CATEGORIES) {
+    private function parentIdStart($TABLE_CATEGORIES) {
 
         $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
