@@ -19,64 +19,21 @@ class Eac {
         $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
 
-        // Устанавливаем родительскую категорию
-        $parent_id = $VALID->inGET('parent_id');
-        if ($parent_id == FALSE) {
-            $parent_id = 0;
-        }
-
-        // Устанавливаем родительскую категорию при переходе на уровень выше
-        if ($VALID->inGET('parent_up')) {
-            $parent_id = $PDO->selectPrepare("SELECT parent_id FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$VALID->inGET('parent_up')]);
-        }
-
-        // Устанавливаем родительскую категорию при переходе на уровень ниже
-        if ($VALID->inGET('parent_down')) {
-            $parent_id = $VALID->inGET('parent_down');
-        }
+        // Устанавливаем parent_id родительской категории
+        $parent_id = self::parentIdStart($TABLE_CATEGORIES);
 
         // Если нажали на кнопку Добавить
-        if ($VALID->inGET(lang('#lang_all')[0])) {
-
-            if ($VALID->inGET('view_cat')) {
-                $view_cat = 1;
-            } else {
-                $view_cat = 0;
-            }
-
-            $sort_category = 0;
-
-            // Получаем последний id и увеличиваем его на 1
-            $id_max = $PDO->selectPrepare("SELECT id FROM " . $TABLE_CATEGORIES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
-            $id = intval($id_max) + 1;
-
-            // добавляем запись для всех вкладок
-            for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
-                $PDO->inPrepare("INSERT INTO " . $TABLE_CATEGORIES . " SET id=?, name=?, sort_category=?, language=?, parent_id=?, date_added=?, status=?", [$id, $VALID->inGET(lang('#lang_all')[$xl]), $sort_category, lang('#lang_all')[$xl], $parent_id, date("Y-m-d H:i:s"), $view_cat]);
-            }
-        }
+        self::addCategory($TABLE_CATEGORIES, $parent_id);
 
         // Если нажали на кнопку Редактировать
-        if ($VALID->inGET('cat_edit')) {
+        self::editCategory($TABLE_CATEGORIES);
 
-            if ($VALID->inGET('view_cat')) {
-                $view_cat = 1;
-            } else {
-                $view_cat = 0;
-            }
-
-            for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
-                // обновляем запись
-                $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET name=?, last_modified=?, status=? WHERE id=? AND language=?", [$VALID->inGET('name_edit' . lang('#lang_all')[$xl]), date("Y-m-d H:i:s"), $view_cat, $VALID->inGET('cat_edit'), lang('#lang_all')[$xl]]);
-            }
-        }
-
+        $idsx_real_parent_id = $parent_id; //для отправки в JS
+        //
         // ГРУППОВЫЕ ДЕЙСТВИЯ: Если нажали на кнопки: Отображать, Скрыть, Удалить, Вырезать, Вставить + выделение
         if ($VALID->inGET('idsx_cut_marker') == 'cut') { // очищаем буфер обмена, если он был заполнен, при нажатии Вырезать
             unset($_SESSION['buffer']);
         }
-
-        $idsx_real_parent_id = $parent_id; //для отправки в JS
 
         if (($VALID->inGET('idsx_paste_key') == 'paste')
                 or ( $VALID->inGET('idsx_statusOn_key') == 'statusOn')
@@ -200,10 +157,10 @@ class Eac {
      * @param строка $TOKEN
      */
     public function sortMouse($TABLE_CATEGORIES, $TOKEN) {
-        
+
         $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
-        
+
         // если сортируем категории мышкой
         if ($VALID->inGET('token_ajax') == $TOKEN && $VALID->inGET('ids')) {
             $j2 = $VALID->inGET('j');
@@ -212,6 +169,89 @@ class Eac {
                 $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET sort_category=? WHERE id=?", [$ajax_i + $j2, $sort_ajax[$ajax_i]]);
             }
         }
+    }
+
+    /**
+     * Добавить категорию в EAC
+     * @param строка $TABLE_CATEGORIES (название таблицы категорий)
+     * @param строка $parent_id
+     */
+    public function addCategory($TABLE_CATEGORIES, $parent_id) {
+
+        $PDO = new \eMarket\Core\Pdo;
+        $VALID = new \eMarket\Core\Valid;
+
+        if ($VALID->inGET(lang('#lang_all')[0])) {
+
+            if ($VALID->inGET('view_cat')) {
+                $view_cat = 1;
+            } else {
+                $view_cat = 0;
+            }
+
+            $sort_category = 0;
+
+            // Получаем последний id и увеличиваем его на 1
+            $id_max = $PDO->selectPrepare("SELECT id FROM " . $TABLE_CATEGORIES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+            $id = intval($id_max) + 1;
+
+            // добавляем запись для всех вкладок
+            for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
+                $PDO->inPrepare("INSERT INTO " . $TABLE_CATEGORIES . " SET id=?, name=?, sort_category=?, language=?, parent_id=?, date_added=?, status=?", [$id, $VALID->inGET(lang('#lang_all')[$xl]), $sort_category, lang('#lang_all')[$xl], $parent_id, date("Y-m-d H:i:s"), $view_cat]);
+            }
+        }
+    }
+
+    /**
+     * Редактировать категорию в EAC
+     * @param строка $TABLE_CATEGORIES (название таблицы категорий)
+     */
+    public function editCategory($TABLE_CATEGORIES) {
+
+        $PDO = new \eMarket\Core\Pdo;
+        $VALID = new \eMarket\Core\Valid;
+
+        if ($VALID->inGET('cat_edit')) {
+
+            if ($VALID->inGET('view_cat')) {
+                $view_cat = 1;
+            } else {
+                $view_cat = 0;
+            }
+
+            for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
+                // обновляем запись
+                $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET name=?, last_modified=?, status=? WHERE id=? AND language=?", [$VALID->inGET('name_edit' . lang('#lang_all')[$xl]), date("Y-m-d H:i:s"), $view_cat, $VALID->inGET('cat_edit'), lang('#lang_all')[$xl]]);
+            }
+        }
+    }
+
+    /**
+     * Установить parent_id родительской категории
+     * @param строка $TABLE_CATEGORIES (название таблицы категорий)
+     * @return строка $parent_id
+     */
+    public function parentIdStart($TABLE_CATEGORIES) {
+
+        $PDO = new \eMarket\Core\Pdo;
+        $VALID = new \eMarket\Core\Valid;
+
+        // Устанавливаем родительскую категорию
+        $parent_id = $VALID->inGET('parent_id');
+        if ($parent_id == FALSE) {
+            $parent_id = 0;
+        }
+
+        // Устанавливаем родительскую категорию при переходе на уровень выше
+        if ($VALID->inGET('parent_up')) {
+            $parent_id = $PDO->selectPrepare("SELECT parent_id FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$VALID->inGET('parent_up')]);
+        }
+
+        // Устанавливаем родительскую категорию при переходе на уровень ниже
+        if ($VALID->inGET('parent_down')) {
+            $parent_id = $VALID->inGET('parent_down');
+        }
+        return $parent_id;
     }
 
 }
