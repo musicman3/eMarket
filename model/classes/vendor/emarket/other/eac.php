@@ -10,7 +10,7 @@ namespace eMarket\Other;
 class Eac {
 
     /**
-     * Движок EAC (Engine Ajax Categories) v.1.0
+     * Движок EAC (Engine Ajax Catalog) v.1.0
      * @param строка $TABLE_CATEGORIES (название таблицы категорий)
      * @return массив
      */
