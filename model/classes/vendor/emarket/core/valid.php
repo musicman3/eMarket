@@ -40,7 +40,7 @@ class Valid {
      * @return строка $name
      */
     public function inSERVER($name) {
-        if (filter_input(INPUT_SERVER, $name) == TRUE) {
+        if (filter_input(INPUT_SERVER, $name, FILTER_DEFAULT, FILTER_FORCE_ARRAY) == TRUE) {
             return (isset($_SERVER[$name])) ? $_SERVER[$name] : null;
         }
     }
