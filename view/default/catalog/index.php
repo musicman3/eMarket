@@ -48,11 +48,12 @@
 	</div>
     </div>
 </nav>
-<!-- Конец для смартфонов -->
+<!-- Для смартфонов -->
 
+<!-- Wrapper -->
 <div id="bodyWrapper" class="container-fluid">
 
-    <!--Лого и поиск-->
+    <!-- Лого и поиск -->
     <div id="header">
         <div class="col-sm-4">
             <a href=""><img src="/view/<?php echo $SET->template() ?>/catalog/images/emarket.png"></a>
@@ -72,7 +73,7 @@
 	    </div>
 	 </div>
     </div>
-    <!--Конец лого и поиск-->
+    <!-- Лого и поиск -->
 
     <!-- Breadcrumb -->
     <div>&nbsp;&nbsp;
@@ -81,9 +82,9 @@
             <li class="selected"><a href="#">Categories</a></li>
         </ul>
     </div>
-    <!-- Конец breadcrumb -->
+    <!-- Breadcrumb -->
 
-    <!-- Начало слайдер -->
+    <!-- Слайдер -->
     <style type="text/css">
         .carousel {overflow: hidden;background: none;height: 210px !important;margin-bottom: 10px;}
         .carousel-inner {overflow: visible;}
@@ -108,36 +109,39 @@
             <span class="glyphicon glyphicon-chevron-right"></span>
         </a>
     </div>
-    <!-- Конец слайдер -->
+    <!-- Слайдер -->
 
-    <!-- Начало Контент -->
+    <!-- Контент -->
     <div class="row">
+        
+        <!-- Центр -->
         <div id="bodyContent" class="col-md-8 col-md-push-2">
-            <!-- Начало центр -->
             <div><img src="/view/<?php echo $SET->template() ?>/catalog/images/home.png" id="pageIcon">
-		<h1>Welcome Bootstrap 3 Demo</h1></div><hr>
-		    <div class="contentContainer">
+		<h1>Welcome Bootstrap 3 Demo</h1>
+	    </div>
+	    <hr>
+	    <div class="contentContainer">
 		    
-			<div class="contentText">
-			    <h6>Welcome Guest!</h6>
-			</div>
-			<div class="contentText after">
-			    The default shopping cart comes with Jquery UI, Grid960, Fancybox and BxGallery, in this demo those have been replaced by Boostrap and Bootstrap 3 Lightbox making it lighter, faster and responsive.
-			</div>		
+		<div class="contentText">
+		    <h6>Welcome Guest!</h6>
+		</div>
+		<div class="contentText after">
+		    The default shopping cart comes with Jquery UI, Grid960, Fancybox and BxGallery, in this demo those have been replaced by Boostrap and Bootstrap 3 Lightbox making it lighter, faster and responsive.
+		</div>		
 
-		    <div class="clearfix"></div>
+		<div class="clearfix"></div>
 
-			<div class="contentText">
-			    <h6>Welcome Guest!</h6>
-			</div>
-			<div class="contentText before">
-			    The default shopping cart comes with Jquery UI, Grid960, Fancybox and BxGallery, in this demo those have been replaced by Boostrap and Bootstrap 3 Lightbox making it lighter, faster and responsive.
-			</div>
-		     </div>
-            <!-- Конец центр -->
-        </div> 
+		<div class="contentText">
+		    <h6>Welcome Guest!</h6>
+		</div>
+		<div class="contentText before">
+		    The default shopping cart comes with Jquery UI, Grid960, Fancybox and BxGallery, in this demo those have been replaced by Boostrap and Bootstrap 3 Lightbox making it lighter, faster and responsive.
+		</div>
+	    </div>
+        </div>
+        <!-- Центр -->
 
-        <!-- Начало левая-->
+        <!-- Левая-->
         <div id="columnLeft" class="col-lg-2 col-md-2 col-sm-6 col-xs-12 col-md-pull-8">
             <div class="panel panel-default">
                 <div class="panel-heading">Categories</div>
@@ -147,9 +151,9 @@
                 </div>
             </div>
         </div>
-        <!--  Конец левая -->
+        <!-- Левая -->
 
-        <!-- Начало правая -->
+        <!-- Правая -->
         <div id="columnRight" class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
             <div class="panel panel-default">
                 <div class="panel-heading">Shopping Cart</div>
@@ -158,13 +162,16 @@
                 </div>
             </div>
         </div>
-        <!-- Конец правая -->
-    </div>
-    <!-- Конец контент -->
-</div>
+        <!-- Правая -->
 
-<!-- Начало футер -->
+    </div>
+    <!-- Контент -->
+
+</div>
+<!-- Wrapper -->
+
+<!-- Подвал -->
 <div class="footer">
     <p align="center"><?php echo date('Y'); ?> | eMarket Design by Prizraki</p>
 </div>
-<!-- Конец футер -->
+<!-- Подвал -->
