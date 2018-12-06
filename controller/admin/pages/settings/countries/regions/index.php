@@ -22,11 +22,11 @@ if ($VALID->inGET('add')) {
 }
 
 // Если нажали на кнопку Редактировать
-if ($VALID->inGET('id_edit')) {
+if ($VALID->inGET('edit')) {
 
     for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
         // обновляем запись
-        $PDO->inPrepare("UPDATE " . TABLE_REGIONS . " SET name=?, region_code=? WHERE id=? AND language=?", [$VALID->inGET('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$xl]), $VALID->inGET('region_code_edit'), $VALID->inGET('id_edit'), lang('#lang_all')[$xl]]);
+        $PDO->inPrepare("UPDATE " . TABLE_REGIONS . " SET name=?, region_code=? WHERE id=? AND language=?", [$VALID->inGET('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$xl]), $VALID->inGET('region_code_edit'), $VALID->inGET('edit'), lang('#lang_all')[$xl]]);
     }
 }
 

@@ -211,7 +211,7 @@ class Eac {
         $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
 
-        if ($VALID->inGET('cat_edit')) {
+        if ($VALID->inGET('edit')) {
 
             if ($VALID->inGET('view_cat')) {
                 $view_cat = 1;
@@ -221,7 +221,7 @@ class Eac {
 
             for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
                 // обновляем запись
-                $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET name=?, last_modified=?, status=? WHERE id=? AND language=?", [$VALID->inGET('name_edit' . lang('#lang_all')[$xl]), date("Y-m-d H:i:s"), $view_cat, $VALID->inGET('cat_edit'), lang('#lang_all')[$xl]]);
+                $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET name=?, last_modified=?, status=? WHERE id=? AND language=?", [$VALID->inGET('name_edit' . lang('#lang_all')[$xl]), date("Y-m-d H:i:s"), $view_cat, $VALID->inGET('edit'), lang('#lang_all')[$xl]]);
             }
         }
     }

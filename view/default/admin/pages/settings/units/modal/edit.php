@@ -15,7 +15,7 @@ require(ROOT . '/controller/admin/pages/settings/units/modal/edit.php');
             </div>
             <form id="form<?php echo $lines[$k][0] ?>" name="form<?php echo $lines[$k][0] ?>" action="index.php" onsubmit="$('.modal').modal('hide')" method="get" enctype="multipart/form-data">
                 <div class="panel-body">
-                    <input type="hidden" name="id_edit" value="<?php echo $lines[$k][0] ?>" />
+                    <input type="hidden" name="edit" value="<?php echo $lines[$k][0] ?>" />
                     
                     <!-- Языковые панели -->
                     <ul class="nav nav-tabs">

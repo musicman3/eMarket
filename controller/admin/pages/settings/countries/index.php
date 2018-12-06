@@ -25,11 +25,11 @@ if ($VALID->inGET('add')) {
 }
 
 // Если нажали на кнопку Редактировать
-if ($VALID->inGET('id_edit')) {
+if ($VALID->inGET('edit')) {
 
     for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
         // обновляем запись
-        $PDO->inPrepare("UPDATE " . TABLE_COUNTRIES . " SET name=?, alpha_2=?, alpha_3=?, address_format=? WHERE id=? AND language=?", [$VALID->inGET('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$xl]), $VALID->inGET('alpha_2_edit'), $VALID->inGET('alpha_3_edit'), $VALID->inGET('address_format'), $VALID->inGET('id_edit'), lang('#lang_all')[$xl]]);
+        $PDO->inPrepare("UPDATE " . TABLE_COUNTRIES . " SET name=?, alpha_2=?, alpha_3=?, address_format=? WHERE id=? AND language=?", [$VALID->inGET('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$xl]), $VALID->inGET('alpha_2_edit'), $VALID->inGET('alpha_3_edit'), $VALID->inGET('address_format'), $VALID->inGET('edit'), lang('#lang_all')[$xl]]);
     }
 }
 
