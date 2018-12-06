@@ -13,13 +13,14 @@ require_once('autoloader.php');
 if ($SET->path() != 'install') {
     require_once('configure/configure.php');
 }
-// Загружаем языковой роутер
-require_once('router_lang.php');
 
 // Загружаем авторизацию Административной части
 $TOKEN = $AUTORIZE->sessionAdmin();
 
 // Загружаем авторизацию Каталога
 $AUTORIZE->sessionCatalog();
+
+// Загружаем языковой роутер
+require_once('router_lang.php');
 
 ?>
