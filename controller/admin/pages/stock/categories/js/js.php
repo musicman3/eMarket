@@ -36,7 +36,7 @@
         $.ajax({
             method: 'GET',
             dataType: 'text',
-            url: '/controller/admin/pages/stock/categories/categories.php',
+            url: '<?php echo $_SERVER['REQUEST_URI'] ?>p',
             data: ({
                 token_ajax: token,
                 j: j,
@@ -64,7 +64,7 @@
                     $.ajax({
                         method: 'GET',
                         dataType: 'text',
-                        url: '/controller/admin/pages/stock/categories/categories.php',
+                        url: '<?php echo $_SERVER['REQUEST_URI'] ?>',
                         data: ({
                             itemName: itemKey, //название ключа из меню (edit, delete, copy и т.п.)
                             ids2: opt.$trigger.attr("id")}), //id строки
@@ -118,7 +118,7 @@
 
                                 $(".option").each(function () { // выделенное мышкой
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
-                                        $.get('/controller/admin/pages/stock/categories/categories.php', // отправка данных GET
+                                        $.get('<?php echo $_SERVER['REQUEST_URI'] ?>', // отправка данных GET
                                                 {idsx_statusOn_id: this.id,
                                                     modify: 'ok',
                                                     idsx_real_parent_id: '<?php if (isset($idsx_real_parent_id) == TRUE){ echo $idsx_real_parent_id;} ?>',
@@ -140,7 +140,7 @@
 
                                 $(".option").each(function () { // выделенное мышкой
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
-                                        $.get('/controller/admin/pages/stock/categories/categories.php', // отправка данных GET
+                                        $.get('<?php echo $_SERVER['REQUEST_URI'] ?>', // отправка данных GET
                                                 {idsx_statusOff_id: this.id,
                                                     modify: 'ok',
                                                     idsx_real_parent_id: '<?php if (isset($idsx_real_parent_id) == TRUE){ echo $idsx_real_parent_id;} ?>',
@@ -167,7 +167,7 @@
 
                                 $(".option").each(function () { // выделенное мышкой
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
-                                        $.get('/controller/admin/pages/stock/categories/categories.php', // отправка данных GET
+                                        $.get('<?php echo $_SERVER['REQUEST_URI'] ?>', // отправка данных GET
                                                 {idsx_real_parent_id: '<?php if (isset($idsx_real_parent_id) == TRUE){ echo $idsx_real_parent_id;} ?>',
                                                     modify: 'ok',
                                                     idsx_cut_id: this.id,
@@ -187,7 +187,7 @@
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
 
-                                $.get('/controller/admin/pages/stock/categories/categories.php', // отправка данных GET
+                                $.get('<?php echo $_SERVER['REQUEST_URI'] ?>', // отправка данных GET
                                         {idsx_real_parent_id: '<?php if (isset($idsx_real_parent_id) == TRUE){ echo $idsx_real_parent_id;} ?>',
                                             modify: 'ok',
                                             idsx_paste_key: itemKey},
@@ -209,7 +209,7 @@
 
                                 $(".option").each(function () { // выделенное мышкой
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
-                                        $.get('/controller/admin/pages/stock/categories/categories.php', // отправка данных GET
+                                        $.get('<?php echo $_SERVER['REQUEST_URI'] ?>', // отправка данных GET
                                                 {idsx_delete_id: this.id,
                                                     modify: 'ok',
                                                     idsx_delete_key: itemKey},
