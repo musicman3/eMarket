@@ -84,7 +84,7 @@
         var msg = $('#form_get').serialize();
         $.ajax({
             type: 'GET',
-            url: '<?php echo $_SERVER['REQUEST_URI'] ?>',
+            url: '<?php echo $VALID->inSERVER('REQUEST_URI') ?>',
             data: msg,
             success: function (data) {
                 $('#addCategory').modal('hide');
