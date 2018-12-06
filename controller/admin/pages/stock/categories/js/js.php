@@ -1,9 +1,8 @@
-<?php
+    <?php
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-= 
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-
 ?>
 
 <!-- /Сортировка мышкой -->
@@ -80,7 +79,7 @@
                 return send();
             },
             items: {
-
+                
                 "addCategory": {
                     name: "Добавить категорию",
                     icon: function () {
@@ -90,7 +89,7 @@
                         $('#addCategory').modal('show');
                     }
                 },
-
+                
                 "edit": {
                     name: "Редактировать",
                     icon: function () {
@@ -122,9 +121,7 @@
                                         $.get('/controller/admin/pages/stock/categories/categories.php', // отправка данных GET
                                                 {idsx_statusOn_id: this.id,
                                                     modify: 'ok',
-                                                    idsx_real_parent_id: '<?php if (isset($idsx_real_parent_id) == TRUE) {
-    echo $idsx_real_parent_id;
-} ?>',
+                                                    idsx_real_parent_id: '<?php if (isset($idsx_real_parent_id) == TRUE){ echo $idsx_real_parent_id;} ?>',
                                                     idsx_statusOn_key: itemKey},
                                                 AjaxSuccess);
                                     function AjaxSuccess(data) {
@@ -146,9 +143,7 @@
                                         $.get('/controller/admin/pages/stock/categories/categories.php', // отправка данных GET
                                                 {idsx_statusOff_id: this.id,
                                                     modify: 'ok',
-                                                    idsx_real_parent_id: '<?php if (isset($idsx_real_parent_id) == TRUE) {
-    echo $idsx_real_parent_id;
-} ?>',
+                                                    idsx_real_parent_id: '<?php if (isset($idsx_real_parent_id) == TRUE){ echo $idsx_real_parent_id;} ?>',
                                                     idsx_statusOff_key: itemKey},
                                                 AjaxSuccess);
                                     function AjaxSuccess(data) {
@@ -157,7 +152,7 @@
                                 });
                             }
                         },
-
+                        
                         "sep2": "---------",
 
                         "cut": {
@@ -173,16 +168,14 @@
                                 $(".option").each(function () { // выделенное мышкой
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                         $.get('/controller/admin/pages/stock/categories/categories.php', // отправка данных GET
-                                                {idsx_real_parent_id: '<?php if (isset($idsx_real_parent_id) == TRUE) {
-    echo $idsx_real_parent_id;
-} ?>',
+                                                {idsx_real_parent_id: '<?php if (isset($idsx_real_parent_id) == TRUE){ echo $idsx_real_parent_id;} ?>',
                                                     modify: 'ok',
                                                     idsx_cut_id: this.id,
                                                     idsx_cut_key: itemKey},
-                                                AjaxSuccess);
-                                    function AjaxSuccess(data) {
-                                        $('#ajax').html(data);
-                                    }
+                                        AjaxSuccess);
+                                        function AjaxSuccess(data) {
+                                    $('#ajax').html(data);
+                                }
                                 });
                             }
                         },
@@ -195,9 +188,7 @@
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
 
                                 $.get('/controller/admin/pages/stock/categories/categories.php', // отправка данных GET
-                                        {idsx_real_parent_id: '<?php if (isset($idsx_real_parent_id) == TRUE) {
-    echo $idsx_real_parent_id;
-} ?>',
+                                        {idsx_real_parent_id: '<?php if (isset($idsx_real_parent_id) == TRUE){ echo $idsx_real_parent_id;} ?>',
                                             modify: 'ok',
                                             idsx_paste_key: itemKey},
                                         AjaxSuccess);
@@ -206,7 +197,7 @@
                                 }
                             }
                         },
-
+                        
                         "sep3": "---------",
 
                         "delete": {
@@ -224,8 +215,8 @@
                                                     idsx_delete_key: itemKey},
                                                 AjaxSuccess);
                                     function AjaxSuccess(data) {
-                                        $('#ajax').html(data);
-                                    }
+                                    $('#ajax').html(data);
+                                }
                                 });
                             }
                         }
