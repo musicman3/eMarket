@@ -160,7 +160,7 @@
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
 
-                                $.get('/controller/admin/pages/stock/categories/categories.php', // отправка данных GET
+                                $.get('/controller/admin/pages/stock/stock.php', // отправка данных GET
                                         {idsx_cut_marker: 'cut'});
 
                                 $(".option").each(function () { // выделенное мышкой

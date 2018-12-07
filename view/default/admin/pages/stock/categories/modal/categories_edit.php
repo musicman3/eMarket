@@ -86,7 +86,7 @@ require(ROOT . '/controller/admin/pages/stock/categories/modal/categories_edit.p
         var msg = $('#form_get<?php echo $lines[$k][0] ?>').serialize();
         $.ajax({
             type: 'GET',
-            url: '/controller/admin/pages/stock/categories/categories.php',
+            url: '/controller/admin/pages/stock/stock.php',
             data: msg,
             success: function (data) {
                 $('#editCategory<?php echo $lines[$k][0] ?>').modal('hide');

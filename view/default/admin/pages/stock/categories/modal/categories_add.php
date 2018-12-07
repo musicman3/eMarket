@@ -84,7 +84,7 @@
         var msg = $('#form_get').serialize();
         $.ajax({
             type: 'GET',
-            url: '/controller/admin/pages/stock/categories/categories.php',
+            url: '/controller/admin/pages/stock/stock.php',
             data: msg,
             success: function (data) {
                 $('#addCategory').modal('hide');
