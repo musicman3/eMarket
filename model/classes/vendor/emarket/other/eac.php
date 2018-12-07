@@ -163,10 +163,23 @@ class Eac {
 
         // если сортируем категории мышкой
         if ($VALID->inGET('token_ajax') == $TOKEN && $VALID->inGET('ids')) {
-            $j2 = $VALID->inGET('j');
             $sort_ajax = explode(',', $VALID->inGET('ids'));
-            for ($ajax_i = 0; $ajax_i < count($sort_ajax); $ajax_i++) {
-                $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET sort_category=? WHERE id=?", [$ajax_i + $j2, $sort_ajax[$ajax_i]]);
+
+            $sort_array = array();
+            $sort_array2 = array();
+
+            for ($i = 0; $i < count($sort_ajax); $i++) {
+
+                $b = $PDO->selectPrepare("SELECT sort_category FROM " . $TABLE_CATEGORIES . " WHERE id=? AND language=? ORDER BY id DESC", [$sort_ajax[$i], lang('#lang_all')[0]]);
+                array_push($sort_array, $sort_ajax[$i]);
+                array_push($sort_array2, $b);
+                asort($sort_array2);
+            }
+            $sort_array3 = array_combine($sort_array, $sort_array2);
+
+            for ($i = 0; $i < count($sort_array); $i++) {
+
+                $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET sort_category=? WHERE id=?", [(int) $sort_array3[$sort_ajax[$i]], (int) $sort_ajax[$i]]);
             }
         }
     }
@@ -181,7 +194,7 @@ class Eac {
         $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
 
-        if ($VALID->inGET(lang('#lang_all')[0])) {
+        if ($VALID->inGET('add') == 'ok') {
 
             if ($VALID->inGET('view_cat')) {
                 $view_cat = 1;
@@ -189,7 +202,9 @@ class Eac {
                 $view_cat = 0;
             }
 
-            $sort_category = 0;
+            // Получаем последний id и увеличиваем его на 1
+            $sort_max = $PDO->selectPrepare("SELECT sort_category FROM " . $TABLE_CATEGORIES . " WHERE language=? ORDER BY sort_category DESC", [lang('#lang_all')[0]]);
+            $sort_category = intval($sort_max) + 1;
 
             // Получаем последний id и увеличиваем его на 1
             $id_max = $PDO->selectPrepare("SELECT id FROM " . $TABLE_CATEGORIES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);

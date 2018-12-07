@@ -84,11 +84,11 @@
         var msg = $('#form_get').serialize();
         $.ajax({
             type: 'GET',
-            url: '<?php echo $VALID->inSERVER('REQUEST_URI') ?>',
+            url: '/controller/admin/pages/stock/categories/categories.php',
             data: msg,
             success: function (data) {
                 $('#addCategory').modal('hide');
-                $('#ajax').html(data);
+                window.location.href="/controller/admin/pages/stock/categories/categories.php?modify=ok"
             }
         });
     }

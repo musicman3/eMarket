@@ -28,7 +28,6 @@
 
     function sortList() {
         var ids = [];
-        var j = '<?php echo $start ?>';
         var token = '<?php echo $TOKEN ?>';
         $("#sort-list tr").each(function () {
             ids[ids.length] = $(this).attr('unitid');
@@ -36,10 +35,9 @@
         $.ajax({
             method: 'GET',
             dataType: 'text',
-            url: '<?php echo $VALID->inSERVER('REQUEST_URI') ?>',
+            url: '/controller/admin/pages/stock/categories/categories.php',
             data: ({
                 token_ajax: token,
-                j: j,
                 ids: ids.join()})
         });
     }
