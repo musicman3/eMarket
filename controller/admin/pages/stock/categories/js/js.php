@@ -191,7 +191,7 @@
                                             idsx_paste_key: itemKey},
                                         AjaxSuccess);
                                 function AjaxSuccess(data) {
-                                    window.location.href="/controller/admin/pages/stock/categories/categories.php?modify=ok"
+                                    window.location.href="<?php echo $VALID->inSERVER('REQUEST_URI') ?>?modify=ok"
                                 }
                             }
                         },
@@ -213,7 +213,7 @@
                                                     idsx_delete_key: itemKey},
                                                 AjaxSuccess);
                                     function AjaxSuccess(data) {
-                                    window.location.href="/controller/admin/pages/stock/categories/categories.php?modify=ok"
+                                    window.location.href="<?php echo $VALID->inSERVER('REQUEST_URI') ?>?modify=ok"
                                 }
                                 });
                             }
