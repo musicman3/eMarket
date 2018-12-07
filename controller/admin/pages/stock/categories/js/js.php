@@ -193,7 +193,7 @@
                                             idsx_paste_key: itemKey},
                                         AjaxSuccess);
                                 function AjaxSuccess(data) {
-                                    $('#ajax').html(data);
+                                    window.location.href="/controller/admin/pages/stock/categories/categories.php?modify=ok"
                                 }
                             }
                         },
@@ -215,7 +215,7 @@
                                                     idsx_delete_key: itemKey},
                                                 AjaxSuccess);
                                     function AjaxSuccess(data) {
-                                    $('#ajax').html(data);
+                                    window.location.href="/controller/admin/pages/stock/categories/categories.php?modify=ok"
                                 }
                                 });
                             }
