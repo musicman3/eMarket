@@ -88,7 +88,7 @@
             data: msg,
             success: function (data) {
                 $('#addCategory').modal('hide');
-                window.location.href="<?php echo $VALID->inSERVER('REQUEST_URI') ?>?modify=ok"
+                window.location.href="<?php echo $VALID->inSERVER('REQUEST_URI') ?>"
             }
         });
     }
