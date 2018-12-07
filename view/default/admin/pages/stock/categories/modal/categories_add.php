@@ -88,7 +88,7 @@
             data: msg,
             success: function (data) {
                 $('#addCategory').modal('hide');
-                window.location.href="/controller/admin/pages/stock/categories/categories.php?modify=ok"
+                window.location.href="<?php echo $VALID->inSERVER('REQUEST_URI') ?>?modify=ok"
             }
         });
     }
