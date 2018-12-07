@@ -163,23 +163,21 @@ class Eac {
 
         // если сортируем категории мышкой
         if ($VALID->inGET('token_ajax') == $TOKEN && $VALID->inGET('ids')) {
-            $sort_ajax = explode(',', $VALID->inGET('ids'));
+            $sort_array_id = explode(',', $VALID->inGET('ids')); // Массив со списком id под сортировку
 
-            $sort_array = array();
-            $sort_array2 = array();
+            $sort_array_category = array(); // Массив со списком sort_category под сортировку
 
-            for ($i = 0; $i < count($sort_ajax); $i++) {
-
-                $b = $PDO->selectPrepare("SELECT sort_category FROM " . $TABLE_CATEGORIES . " WHERE id=? AND language=? ORDER BY id DESC", [$sort_ajax[$i], lang('#lang_all')[0]]);
-                array_push($sort_array, $sort_ajax[$i]);
-                array_push($sort_array2, $b);
-                asort($sort_array2);
+            for ($i = 0; $i < count($sort_array_id); $i++) {
+                $sort_category = $PDO->selectPrepare("SELECT sort_category FROM " . $TABLE_CATEGORIES . " WHERE id=? AND language=? ORDER BY id DESC", [$sort_array_id[$i], lang('#lang_all')[0]]);
+                array_push($sort_array_category, $sort_category); // Добавляем данные в массив sort_category
+                asort($sort_array_category); // Сортируем массив со списком sort_category
             }
-            $sort_array3 = array_combine($sort_array, $sort_array2);
+            // Создаем финальный массив из двух массивов
+            $sort_array_final = array_combine($sort_array_id, $sort_array_category);
 
-            for ($i = 0; $i < count($sort_array); $i++) {
+            for ($i = 0; $i < count($sort_array_id); $i++) {
 
-                $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET sort_category=? WHERE id=?", [(int) $sort_array3[$sort_ajax[$i]], (int) $sort_ajax[$i]]);
+                $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET sort_category=? WHERE id=?", [(int) $sort_array_final[$sort_array_id[$i]], (int) $sort_array_id[$i]]);
             }
         }
     }
