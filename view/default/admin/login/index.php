@@ -37,6 +37,6 @@
     $(function () {
         window.setTimeout(function () {
             $('#alert').alert('close');
-        }, 3500);
+        }, 3000);
     });
 </script>
