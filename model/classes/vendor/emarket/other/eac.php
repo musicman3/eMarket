@@ -200,7 +200,7 @@ class Eac {
                 $view_cat = 0;
             }
 
-            // Получаем последний id и увеличиваем его на 1
+            // Получаем последний sort_category в текущем parent_id и увеличиваем его на 1
             $sort_max = $PDO->selectPrepare("SELECT sort_category FROM " . $TABLE_CATEGORIES . " WHERE language=? AND parent_id=? ORDER BY sort_category DESC", [lang('#lang_all')[0], $parent_id]);
             $sort_category = intval($sort_max) + 1;
 
