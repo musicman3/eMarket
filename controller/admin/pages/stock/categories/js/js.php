@@ -212,7 +212,7 @@
                                                     idsx_delete_key: itemKey},
                                                 AjaxSuccess);
                                     function AjaxSuccess(data) {
-                                   window.location.href="<?php echo $VALID->inSERVER('REQUEST_URI') ?>";
+                                   document.location.reload(false);
                                 }
                                 });
                             }
