@@ -24,24 +24,37 @@ class Eac {
         // Если нажали на кнопку Редактировать
         self::editCategory($TABLE_CATEGORIES);
         
-        // Если нажали на кнопку Удалить
-        $idsx_real_parent_id = self::deleteCategory($TABLE_CATEGORIES, $parent_id)[0];
-        $parent_id = self::deleteCategory($TABLE_CATEGORIES, $parent_id)[1];
+        $idsx_real_parent_id = $parent_id; //для отправки в JS
         
+        // Если нажали на кнопку Удалить
+        $parent_id_delete = self::deleteCategory($TABLE_CATEGORIES, $parent_id);
+
         // Если нажали на кнопку Вырезать
-        $idsx_real_parent_id = self::cutCategory($TABLE_CATEGORIES, $parent_id)[0];
-        $parent_id = self::cutCategory($TABLE_CATEGORIES, $parent_id)[1];
+        $parent_id_cut = self::cutCategory($TABLE_CATEGORIES, $parent_id);
         
         // Если нажали на кнопку Вставить
-        $idsx_real_parent_id = self::pasteCategory($TABLE_CATEGORIES, $parent_id)[0];
-        $parent_id = self::pasteCategory($TABLE_CATEGORIES, $parent_id)[1];
+        $parent_id_paste = self::pasteCategory($TABLE_CATEGORIES, $parent_id);
         
         // Если нажали на кнопку Скрыть/Отобразить
-        $idsx_real_parent_id = self::statusCategory($TABLE_CATEGORIES, $parent_id)[0];
-        $parent_id = self::statusCategory($TABLE_CATEGORIES, $parent_id)[1];
+        $parent_id_status = self::statusCategory($TABLE_CATEGORIES, $parent_id);
+        
+        if ($parent_id_delete != $parent_id){
+            $parent_id = $parent_id_delete;
+        }
+        
+        if ($parent_id_cut != $parent_id){
+            $parent_id = $parent_id_cut;
+        }
+        
+        if ($parent_id_paste != $parent_id){
+            $parent_id = $parent_id_paste;
+        }
+        
+        if ($parent_id_status != $parent_id){
+            $parent_id = $parent_id_status;
+        }
         
         return array($idsx_real_parent_id, $parent_id);
-
     }
 
     /**
@@ -165,14 +178,12 @@ class Eac {
      * Удаляем категорию в EAC
      * @param строка $TABLE_CATEGORIES (название таблицы категорий)
      * @param строка $parent_id
-     * @return массив
+     * @return строка
      */
     private function deleteCategory($TABLE_CATEGORIES, $parent_id) {
 
         $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
-
-        $idsx_real_parent_id = $parent_id; //для отправки в JS
 
         if (($VALID->inGET('idsx_delete_key') == 'delete')) {
 
@@ -223,21 +234,19 @@ class Eac {
             $parent_id = 0;
         }
 
-        return array($idsx_real_parent_id, $parent_id);
+        return $parent_id;
     }
 
     /**
      * Вырезаем категорию в EAC
      * @param строка $TABLE_CATEGORIES (название таблицы категорий)
      * @param строка $parent_id
-     * @return массив
+     * @return строка
      */
     private function cutCategory($TABLE_CATEGORIES, $parent_id) {
 
         $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
-
-        $idsx_real_parent_id = $parent_id; //для отправки в JS
 
         if ($VALID->inGET('idsx_cut_marker') == 'cut') { // очищаем буфер обмена, если он был заполнен, при нажатии Вырезать
             unset($_SESSION['buffer']);
@@ -292,21 +301,19 @@ class Eac {
             $parent_id = 0;
         }
 
-        return array($idsx_real_parent_id, $parent_id);
+        return $parent_id;
     }
 
     /**
      * Вставляем категорию в EAC
      * @param строка $TABLE_CATEGORIES (название таблицы категорий)
      * @param строка $parent_id
-     * @return массив
+     * @return строка
      */
     private function pasteCategory($TABLE_CATEGORIES, $parent_id) {
 
         $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
-
-        $idsx_real_parent_id = $parent_id; //для отправки в JS
 
         if (($VALID->inGET('idsx_paste_key') == 'paste')) {
             $parent_id_real = (int) $VALID->inGET('idsx_real_parent_id'); // получить значение из JS
@@ -327,21 +334,19 @@ class Eac {
             $parent_id = 0;
         }
 
-        return array($idsx_real_parent_id, $parent_id);
+        return $parent_id;
     }
 
     /**
-     * Вставляем категорию в EAC
+     * Статус категорий в EAC
      * @param строка $TABLE_CATEGORIES (название таблицы категорий)
      * @param строка $parent_id
-     * @return массив
+     * @return строка
      */
     private function statusCategory($TABLE_CATEGORIES, $parent_id) {
 
         $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
-
-        $idsx_real_parent_id = $parent_id; //для отправки в JS
 
         if (($VALID->inGET('idsx_statusOn_key') == 'statusOn')
                 or ( $VALID->inGET('idsx_statusOff_key') == 'statusOff')) {
@@ -409,7 +414,7 @@ class Eac {
             $parent_id = 0;
         }
 
-        return array($idsx_real_parent_id, $parent_id);
+        return $parent_id;
     }
 
 }
