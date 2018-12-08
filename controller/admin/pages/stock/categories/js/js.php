@@ -62,7 +62,7 @@
                     $.ajax({
                         method: 'GET',
                         dataType: 'text',
-                        url: '<?php echo $VALID->inSERVER('REQUEST_URI') ?>',
+                        url: '/controller/admin/pages/stock/stock.php',
                         data: ({
                             itemName: itemKey, //название ключа из меню (edit, delete, copy и т.п.)
                             ids2: opt.$trigger.attr("id")}), //id строки
@@ -116,7 +116,7 @@
 
                                 $(".option").each(function () { // выделенное мышкой
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
-                                        $.get('<?php echo $VALID->inSERVER('REQUEST_URI') ?>', // отправка данных GET
+                                        $.get('/controller/admin/pages/stock/stock.php', // отправка данных GET
                                                 {idsx_statusOn_id: this.id,
                                                     idsx_real_parent_id: '<?php if (isset($idsx_real_parent_id) == TRUE){ echo $idsx_real_parent_id;} ?>',
                                                     idsx_statusOn_key: itemKey},
@@ -137,7 +137,7 @@
 
                                 $(".option").each(function () { // выделенное мышкой
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
-                                        $.get('<?php echo $VALID->inSERVER('REQUEST_URI') ?>', // отправка данных GET
+                                        $.get('/controller/admin/pages/stock/stock.php', // отправка данных GET
                                                 {idsx_statusOff_id: this.id,
                                                     idsx_real_parent_id: '<?php if (isset($idsx_real_parent_id) == TRUE){ echo $idsx_real_parent_id;} ?>',
                                                     idsx_statusOff_key: itemKey},
@@ -163,7 +163,7 @@
 
                                 $(".option").each(function () { // выделенное мышкой
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
-                                        $.get('<?php echo $VALID->inSERVER('REQUEST_URI') ?>', // отправка данных GET
+                                        $.get('/controller/admin/pages/stock/stock.php', // отправка данных GET
                                                 {idsx_real_parent_id: '<?php if (isset($idsx_real_parent_id) == TRUE){ echo $idsx_real_parent_id;} ?>',
                                                     idsx_cut_id: this.id,
                                                     idsx_cut_key: itemKey},
@@ -182,7 +182,7 @@
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
 
-                                $.get('<?php echo $VALID->inSERVER('REQUEST_URI') ?>', // отправка данных GET
+                                $.get('/controller/admin/pages/stock/stock.php', // отправка данных GET
                                         {idsx_real_parent_id: '<?php if (isset($idsx_real_parent_id) == TRUE){ echo $idsx_real_parent_id;} ?>',
                                             modify: 'ok',
                                             idsx_paste_key: itemKey},
@@ -204,7 +204,7 @@
 
                                 $(".option").each(function () { // выделенное мышкой
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
-                                        $.get('<?php echo $VALID->inSERVER('REQUEST_URI') ?>', // отправка данных GET
+                                        $.get('/controller/admin/pages/stock/stock.php', // отправка данных GET
                                                 {idsx_delete_id: this.id,
                                                     idsx_delete_key: itemKey},
                                                 AjaxSuccess);
