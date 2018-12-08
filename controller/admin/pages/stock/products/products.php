@@ -16,17 +16,6 @@ if ($parent_id == FALSE) {
 // КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 $lines = array();
 
-// задаем количество строк на странице вывода категорий
-if (isset($_SESSION['select_category']) == FALSE) {
-    $SET->linesOnPage();
-    $_SESSION['select_category'] = $SET->linesOnPage();
-} elseif (isset($_SESSION['select_category']) == TRUE && $VALID->inPOST('select_row')) {
-    $_SESSION['select_category'] = $VALID->inPOST('select_row');
-    $SET->linesOnPage() = $_SESSION['select_category'];
-} else {
-    $SET->linesOnPage() = $_SESSION['select_category'];
-}
-
 $start = 0; // устанавливаем страницу в ноль при заходе
 $finish = $SET->linesOnPage();
 
