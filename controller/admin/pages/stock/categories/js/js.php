@@ -38,7 +38,10 @@
             url: '/controller/admin/pages/stock/stock.php',
             data: ({
                 token_ajax: token,
-                ids: ids.join()})
+                ids: ids.join()}), //id строки
+            success: function (data) {
+                 window.location.href="/controller/admin/pages/stock/stock.php";
+            }
         });
     }
 </script>
