@@ -1,5 +1,4 @@
 <?php
-
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -16,9 +15,6 @@ class Eac {
      */
     public function start($TABLE_CATEGORIES) {
 
-        $PDO = new \eMarket\Core\Pdo;
-        $VALID = new \eMarket\Core\Valid;
-
         // Устанавливаем parent_id родительской категории
         $parent_id = self::parentIdStart($TABLE_CATEGORIES);
 
@@ -27,127 +23,53 @@ class Eac {
 
         // Если нажали на кнопку Редактировать
         self::editCategory($TABLE_CATEGORIES);
+        
+        // Если нажали на кнопку Удалить
+        $idsx_real_parent_id = self::deleteCategory($TABLE_CATEGORIES, $parent_id)[0];
+        $parent_id = self::deleteCategory($TABLE_CATEGORIES, $parent_id)[1];
+        
+        // Если нажали на кнопку Вырезать
+        $idsx_real_parent_id = self::cutCategory($TABLE_CATEGORIES, $parent_id)[0];
+        $parent_id = self::cutCategory($TABLE_CATEGORIES, $parent_id)[1];
+        
+        // Если нажали на кнопку Вставить
+        $idsx_real_parent_id = self::pasteCategory($TABLE_CATEGORIES, $parent_id)[0];
+        $parent_id = self::pasteCategory($TABLE_CATEGORIES, $parent_id)[1];
+        
+        // Если нажали на кнопку Скрыть/Отобразить
+        $idsx_real_parent_id = self::statusCategory($TABLE_CATEGORIES, $parent_id)[0];
+        $parent_id = self::statusCategory($TABLE_CATEGORIES, $parent_id)[1];
+        
+        return array($idsx_real_parent_id, $parent_id);
 
-        $idsx_real_parent_id = $parent_id; //для отправки в JS
-        //
-        // ГРУППОВЫЕ ДЕЙСТВИЯ: Если нажали на кнопки: Отображать, Скрыть, Удалить, Вырезать, Вставить + выделение
-        if ($VALID->inGET('idsx_cut_marker') == 'cut') { // очищаем буфер обмена, если он был заполнен, при нажатии Вырезать
-            unset($_SESSION['buffer']);
-        }
+    }
 
-        if (($VALID->inGET('idsx_paste_key') == 'paste')
-                or ( $VALID->inGET('idsx_statusOn_key') == 'statusOn')
-                or ( $VALID->inGET('idsx_statusOff_key') == 'statusOff')) {
-            $parent_id_real = (int) $VALID->inGET('idsx_real_parent_id'); // получить значение из JS
-        }
+    /**
+     * Установить parent_id родительской категории
+     * @param строка $TABLE_CATEGORIES (название таблицы категорий)
+     * @return строка $parent_id
+     */
+    private function parentIdStart($TABLE_CATEGORIES) {
 
-        if (($VALID->inGET('idsx_statusOn_key') == 'statusOn')
-                or ( $VALID->inGET('idsx_statusOff_key') == 'statusOff')
-                or ( $VALID->inGET('idsx_cut_key') == 'cut')
-                or ( $VALID->inGET('idsx_delete_key') == 'delete')) {
+        $PDO = new \eMarket\Core\Pdo;
+        $VALID = new \eMarket\Core\Valid;
 
-            if ($VALID->inGET('idsx_statusOn_key') == 'statusOn') {
-                $idx = $VALID->inGET('idsx_statusOn_id');
-                $status = 1;
-            }
-
-            if ($VALID->inGET('idsx_statusOff_key') == 'statusOff') {
-                $idx = $VALID->inGET('idsx_statusOff_id');
-                $status = 0;
-            }
-
-            if ($VALID->inGET('idsx_cut_key') == 'cut') {
-                $idx = $VALID->inGET('idsx_cut_id');
-                $parent_id_real = (int) $VALID->inGET('idsx_real_parent_id'); // получить значение из JS
-            }
-
-            if ($VALID->inGET('idsx_delete_key') == 'delete') {
-                $idx = $VALID->inGET('idsx_delete_id');
-            }
-
-            // Устанавливаем родительскую категорию
-            $parent_id = $PDO->selectPrepare("SELECT parent_id FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$idx]);
-            // Устанавливаем родительскую категорию родительской категории
-            $parent_id_up = $PDO->selectPrepare("SELECT parent_id FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$parent_id]);
-            // считаем одинаковые parent_id
-            $parent_id_num = $PDO->getColRow("SELECT id FROM " . $TABLE_CATEGORIES . " WHERE parent_id=?", [$parent_id]);
-            // если меньше 2-х значений, то устанавливаем parent_id как родительский родительского
-            if (count($parent_id_num) < 2) {
-                $parent_id = $parent_id_up;
-            }
-
-            //Выбираем данные из БД
-            $data_cat = $PDO->inPrepare("SELECT id, parent_id FROM " . $TABLE_CATEGORIES);
-
-            $category = $idx; // id родителя
-            $categories = array();
-            $keys = array(); // массив ключей
-            $keys[] = $category; // добавляем первый ключ в массив
-            // В цикле формируем ассоциативный массив разделов
-            while ($category = $data_cat->fetch(\PDO::FETCH_ASSOC)) {
-                // Проверяем наличие id категории в массиве ключей
-                if (in_array($category['parent_id'], $keys)) {
-                    $categories[$category['parent_id']][] = $category['id'];
-                    $keys[] = $category['id']; // расширяем массив
-                }
-            }
-
-            for ($x = 0; $x < count($keys); $x++) {
-
-                //Обновляем статус подкатегорий
-                if (($VALID->inGET('idsx_statusOn_key') == 'statusOn')
-                        or ( $VALID->inGET('idsx_statusOff_key') == 'statusOff')) {
-                    $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET status=? WHERE id=?", [$status, $keys[$x]]);
-                    if ($parent_id_real > 0) {
-                        $parent_id = $parent_id_real; // Возвращаемся в свою директорию после "Вырезать"
-                    }
-                }
-
-                //Удаляем подкатегории
-                if ($VALID->inGET('idsx_delete_key') == 'delete') {
-                    $PDO->inPrepare("DELETE FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$keys[$x]]);
-                }
-            }
-
-            //Обновляем статус основной категории
-            if (($VALID->inGET('idsx_statusOn_key') == 'statusOn')
-                    or ( $VALID->inGET('idsx_statusOff_key') == 'statusOff')) {
-                $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET status=? WHERE id=?", [$status, $idx]);
-            }
-
-            //Вырезаем основную родительскую категорию    
-            if ($VALID->inGET('idsx_cut_key') == 'cut') {
-                if (!isset($_SESSION['buffer'])) {
-                    $_SESSION['buffer'] = array();
-                }
-                array_push($_SESSION['buffer'], $idx);
-                if ($parent_id_real > 0) {
-                    $parent_id = $parent_id_real; // Возвращаемся в свою директорию после обновления
-                }
-            }
-
-            //Удаляем основную категорию    
-            if ($VALID->inGET('idsx_delete_key') == 'delete') {
-                $PDO->inPrepare("DELETE FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$idx]);
-            }
-        }
-
-        //Вставляем вырезанные категории    
-        if ($VALID->inGET('idsx_paste_key') == 'paste' && isset($_SESSION['buffer']) == TRUE) {
-            for ($buf = 0; $buf < count($_SESSION['buffer']); $buf++) {
-                $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET parent_id=? WHERE id=?", [$parent_id_real, $_SESSION['buffer'][$buf]]);
-            }
-            unset($_SESSION['buffer']); // очищаем буфер обмена
-            if ($parent_id_real > 0) {
-                $parent_id = $parent_id_real; // Возвращаемся в свою директорию после вставки
-            }
-        }
-        // Если parrent_id является массивом, то
-        if (is_array($parent_id) == TRUE) {
+        // Устанавливаем родительскую категорию
+        $parent_id = $VALID->inGET('parent_id');
+        if ($parent_id == FALSE) {
             $parent_id = 0;
         }
 
-        return array($idsx_real_parent_id, $parent_id);
+        // Устанавливаем родительскую категорию при переходе на уровень выше
+        if ($VALID->inGET('parent_up')) {
+            $parent_id = $PDO->selectPrepare("SELECT parent_id FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$VALID->inGET('parent_up')]);
+        }
+
+        // Устанавливаем родительскую категорию при переходе на уровень ниже
+        if ($VALID->inGET('parent_down')) {
+            $parent_id = $VALID->inGET('parent_down');
+        }
+        return $parent_id;
     }
 
     /**
@@ -240,31 +162,254 @@ class Eac {
     }
 
     /**
-     * Установить parent_id родительской категории
+     * Удаляем категорию в EAC
      * @param строка $TABLE_CATEGORIES (название таблицы категорий)
-     * @return строка $parent_id
+     * @param строка $parent_id
+     * @return массив
      */
-    private function parentIdStart($TABLE_CATEGORIES) {
+    private function deleteCategory($TABLE_CATEGORIES, $parent_id) {
 
         $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
 
-        // Устанавливаем родительскую категорию
-        $parent_id = $VALID->inGET('parent_id');
-        if ($parent_id == FALSE) {
+        $idsx_real_parent_id = $parent_id; //для отправки в JS
+
+        if (($VALID->inGET('idsx_delete_key') == 'delete')) {
+
+            $idx = $VALID->inGET('idsx_delete_id');
+
+            // Устанавливаем родительскую категорию
+            $parent_id = $PDO->selectPrepare("SELECT parent_id FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$idx]);
+            // Устанавливаем родительскую категорию родительской категории
+            $parent_id_up = $PDO->selectPrepare("SELECT parent_id FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$parent_id]);
+            // считаем одинаковые parent_id
+            $parent_id_num = $PDO->getColRow("SELECT id FROM " . $TABLE_CATEGORIES . " WHERE parent_id=?", [$parent_id]);
+            // если меньше 2-х значений, то устанавливаем parent_id как родительский родительского
+            if (count($parent_id_num) < 2) {
+                $parent_id = $parent_id_up;
+            }
+
+            //Выбираем данные из БД
+            $data_cat = $PDO->inPrepare("SELECT id, parent_id FROM " . $TABLE_CATEGORIES);
+
+            $category = $idx; // id родителя
+            $categories = array();
+            $keys = array(); // массив ключей
+            $keys[] = $category; // добавляем первый ключ в массив
+            // В цикле формируем ассоциативный массив разделов
+            while ($category = $data_cat->fetch(\PDO::FETCH_ASSOC)) {
+                // Проверяем наличие id категории в массиве ключей
+                if (in_array($category['parent_id'], $keys)) {
+                    $categories[$category['parent_id']][] = $category['id'];
+                    $keys[] = $category['id']; // расширяем массив
+                }
+            }
+
+            for ($x = 0; $x < count($keys); $x++) {
+                //Удаляем подкатегории
+                if ($VALID->inGET('idsx_delete_key') == 'delete') {
+                    $PDO->inPrepare("DELETE FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$keys[$x]]);
+                }
+            }
+
+            //Удаляем основную категорию    
+            if ($VALID->inGET('idsx_delete_key') == 'delete') {
+                $PDO->inPrepare("DELETE FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$idx]);
+            }
+        }
+
+        // Если parrent_id является массивом, то
+        if (is_array($parent_id) == TRUE) {
             $parent_id = 0;
         }
 
-        // Устанавливаем родительскую категорию при переходе на уровень выше
-        if ($VALID->inGET('parent_up')) {
-            $parent_id = $PDO->selectPrepare("SELECT parent_id FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$VALID->inGET('parent_up')]);
+        return array($idsx_real_parent_id, $parent_id);
+    }
+
+    /**
+     * Вырезаем категорию в EAC
+     * @param строка $TABLE_CATEGORIES (название таблицы категорий)
+     * @param строка $parent_id
+     * @return массив
+     */
+    private function cutCategory($TABLE_CATEGORIES, $parent_id) {
+
+        $PDO = new \eMarket\Core\Pdo;
+        $VALID = new \eMarket\Core\Valid;
+
+        $idsx_real_parent_id = $parent_id; //для отправки в JS
+
+        if ($VALID->inGET('idsx_cut_marker') == 'cut') { // очищаем буфер обмена, если он был заполнен, при нажатии Вырезать
+            unset($_SESSION['buffer']);
         }
 
-        // Устанавливаем родительскую категорию при переходе на уровень ниже
-        if ($VALID->inGET('parent_down')) {
-            $parent_id = $VALID->inGET('parent_down');
+        if (($VALID->inGET('idsx_cut_key') == 'cut')) {
+
+            $idx = $VALID->inGET('idsx_cut_id');
+            $parent_id_real = (int) $VALID->inGET('idsx_real_parent_id'); // получить значение из JS
+            //
+            // Устанавливаем родительскую категорию
+            $parent_id = $PDO->selectPrepare("SELECT parent_id FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$idx]);
+            // Устанавливаем родительскую категорию родительской категории
+            $parent_id_up = $PDO->selectPrepare("SELECT parent_id FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$parent_id]);
+            // считаем одинаковые parent_id
+            $parent_id_num = $PDO->getColRow("SELECT id FROM " . $TABLE_CATEGORIES . " WHERE parent_id=?", [$parent_id]);
+            // если меньше 2-х значений, то устанавливаем parent_id как родительский родительского
+            if (count($parent_id_num) < 2) {
+                $parent_id = $parent_id_up;
+            }
+
+            //Выбираем данные из БД
+            $data_cat = $PDO->inPrepare("SELECT id, parent_id FROM " . $TABLE_CATEGORIES);
+
+            $category = $idx; // id родителя
+            $categories = array();
+            $keys = array(); // массив ключей
+            $keys[] = $category; // добавляем первый ключ в массив
+            // В цикле формируем ассоциативный массив разделов
+            while ($category = $data_cat->fetch(\PDO::FETCH_ASSOC)) {
+                // Проверяем наличие id категории в массиве ключей
+                if (in_array($category['parent_id'], $keys)) {
+                    $categories[$category['parent_id']][] = $category['id'];
+                    $keys[] = $category['id']; // расширяем массив
+                }
+            }
+
+            //Вырезаем основную родительскую категорию    
+            if ($VALID->inGET('idsx_cut_key') == 'cut') {
+                if (!isset($_SESSION['buffer'])) {
+                    $_SESSION['buffer'] = array();
+                }
+                array_push($_SESSION['buffer'], $idx);
+                if ($parent_id_real > 0) {
+                    $parent_id = $parent_id_real; // Возвращаемся в свою директорию после обновления
+                }
+            }
         }
-        return $parent_id;
+
+        // Если parrent_id является массивом, то
+        if (is_array($parent_id) == TRUE) {
+            $parent_id = 0;
+        }
+
+        return array($idsx_real_parent_id, $parent_id);
+    }
+
+    /**
+     * Вставляем категорию в EAC
+     * @param строка $TABLE_CATEGORIES (название таблицы категорий)
+     * @param строка $parent_id
+     * @return массив
+     */
+    private function pasteCategory($TABLE_CATEGORIES, $parent_id) {
+
+        $PDO = new \eMarket\Core\Pdo;
+        $VALID = new \eMarket\Core\Valid;
+
+        $idsx_real_parent_id = $parent_id; //для отправки в JS
+
+        if (($VALID->inGET('idsx_paste_key') == 'paste')) {
+            $parent_id_real = (int) $VALID->inGET('idsx_real_parent_id'); // получить значение из JS
+        }
+
+        //Вставляем вырезанные категории    
+        if ($VALID->inGET('idsx_paste_key') == 'paste' && isset($_SESSION['buffer']) == TRUE) {
+            for ($buf = 0; $buf < count($_SESSION['buffer']); $buf++) {
+                $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET parent_id=? WHERE id=?", [$parent_id_real, $_SESSION['buffer'][$buf]]);
+            }
+            unset($_SESSION['buffer']); // очищаем буфер обмена
+            if ($parent_id_real > 0) {
+                $parent_id = $parent_id_real; // Возвращаемся в свою директорию после вставки
+            }
+        }
+        // Если parrent_id является массивом, то
+        if (is_array($parent_id) == TRUE) {
+            $parent_id = 0;
+        }
+
+        return array($idsx_real_parent_id, $parent_id);
+    }
+
+    /**
+     * Вставляем категорию в EAC
+     * @param строка $TABLE_CATEGORIES (название таблицы категорий)
+     * @param строка $parent_id
+     * @return массив
+     */
+    private function statusCategory($TABLE_CATEGORIES, $parent_id) {
+
+        $PDO = new \eMarket\Core\Pdo;
+        $VALID = new \eMarket\Core\Valid;
+
+        $idsx_real_parent_id = $parent_id; //для отправки в JS
+
+        if (($VALID->inGET('idsx_statusOn_key') == 'statusOn')
+                or ( $VALID->inGET('idsx_statusOff_key') == 'statusOff')) {
+
+            $parent_id_real = (int) $VALID->inGET('idsx_real_parent_id'); // получить значение из JS
+
+            if ($VALID->inGET('idsx_statusOn_key') == 'statusOn') {
+                $idx = $VALID->inGET('idsx_statusOn_id');
+                $status = 1;
+            }
+
+            if ($VALID->inGET('idsx_statusOff_key') == 'statusOff') {
+                $idx = $VALID->inGET('idsx_statusOff_id');
+                $status = 0;
+            }
+
+            // Устанавливаем родительскую категорию
+            $parent_id = $PDO->selectPrepare("SELECT parent_id FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$idx]);
+            // Устанавливаем родительскую категорию родительской категории
+            $parent_id_up = $PDO->selectPrepare("SELECT parent_id FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$parent_id]);
+            // считаем одинаковые parent_id
+            $parent_id_num = $PDO->getColRow("SELECT id FROM " . $TABLE_CATEGORIES . " WHERE parent_id=?", [$parent_id]);
+            // если меньше 2-х значений, то устанавливаем parent_id как родительский родительского
+            if (count($parent_id_num) < 2) {
+                $parent_id = $parent_id_up;
+            }
+
+            //Выбираем данные из БД
+            $data_cat = $PDO->inPrepare("SELECT id, parent_id FROM " . $TABLE_CATEGORIES);
+
+            $category = $idx; // id родителя
+            $categories = array();
+            $keys = array(); // массив ключей
+            $keys[] = $category; // добавляем первый ключ в массив
+            // В цикле формируем ассоциативный массив разделов
+            while ($category = $data_cat->fetch(\PDO::FETCH_ASSOC)) {
+                // Проверяем наличие id категории в массиве ключей
+                if (in_array($category['parent_id'], $keys)) {
+                    $categories[$category['parent_id']][] = $category['id'];
+                    $keys[] = $category['id']; // расширяем массив
+                }
+            }
+
+            for ($x = 0; $x < count($keys); $x++) {
+                
+                //Обновляем статус подкатегорий
+                if (($VALID->inGET('idsx_statusOn_key') == 'statusOn')
+                        or ( $VALID->inGET('idsx_statusOff_key') == 'statusOff')) {
+                    $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET status=? WHERE id=?", [$status, $keys[$x]]);
+                    if ($parent_id_real > 0) {
+                        $parent_id = $parent_id_real; // Возвращаемся в свою директорию после "Вырезать"
+                    }
+                }
+            }
+
+            //Обновляем статус основной категории
+            if (($VALID->inGET('idsx_statusOn_key') == 'statusOn')
+                    or ( $VALID->inGET('idsx_statusOff_key') == 'statusOff')) {
+                $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET status=? WHERE id=?", [$status, $idx]);
+            }
+        }
+
+        // Если parrent_id является массивом, то
+        if (is_array($parent_id) == TRUE) {
+            $parent_id = 0;
+        }
+
+        return array($idsx_real_parent_id, $parent_id);
     }
 
 }

@@ -191,7 +191,7 @@
                                             idsx_paste_key: itemKey},
                                         AjaxSuccess);
                                 function AjaxSuccess(data) {
-                                    $('#ajax').html(data);
+                                    document.location.reload(false);
                                 }
                             }
                         },
