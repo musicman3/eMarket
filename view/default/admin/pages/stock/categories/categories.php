@@ -58,10 +58,6 @@
                                             <div class="left"><button type="submit" class="btn btn-primary btn-xs"  action="/controller/admin/pages/stock/categories/categories.php" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
                                         </form>
 
-                                        <div class="left">
-                                            <a href="#" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a>
-                                        </div>
-
                                     </th>
                                 </tr>
                             </thead>
@@ -106,7 +102,7 @@
                                             <!-- Категория для трансфера -->
                                         <?php } elseif ($transfer == $lines_on_page + 1) { ?>
                                             <td class="sortyes sortleft-m" align="left"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
-                                            <td class="sortleft" align="left"><div><a href="#" class="btn btn-primary btn-xs" role="button" aria-disabled="true"><span class="glyphicon glyphicon-transfer"> </span></a></div></td>
+                                            <td class="sortleft" align="left"><div><a href="#" class="btn btn-primary btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-transfer"> </span></a></div></td>
 
                                             <!-- Если категория НЕ АКТИВНА -->
                                         <?php } elseif ($lines[$start][8] == 0) { ?>
