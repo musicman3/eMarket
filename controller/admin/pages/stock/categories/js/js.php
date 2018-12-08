@@ -121,7 +121,6 @@
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                         $.get('<?php echo $VALID->inSERVER('REQUEST_URI') ?>', // отправка данных GET
                                                 {idsx_statusOn_id: this.id,
-                                                    modify: 'ok',
                                                     idsx_real_parent_id: '<?php if (isset($idsx_real_parent_id) == TRUE){ echo $idsx_real_parent_id;} ?>',
                                                     idsx_statusOn_key: itemKey},
                                                 AjaxSuccess);
@@ -143,7 +142,6 @@
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                         $.get('<?php echo $VALID->inSERVER('REQUEST_URI') ?>', // отправка данных GET
                                                 {idsx_statusOff_id: this.id,
-                                                    modify: 'ok',
                                                     idsx_real_parent_id: '<?php if (isset($idsx_real_parent_id) == TRUE){ echo $idsx_real_parent_id;} ?>',
                                                     idsx_statusOff_key: itemKey},
                                                 AjaxSuccess);
@@ -170,12 +168,11 @@
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                         $.get('<?php echo $VALID->inSERVER('REQUEST_URI') ?>', // отправка данных GET
                                                 {idsx_real_parent_id: '<?php if (isset($idsx_real_parent_id) == TRUE){ echo $idsx_real_parent_id;} ?>',
-                                                    modify: 'ok',
                                                     idsx_cut_id: this.id,
                                                     idsx_cut_key: itemKey},
                                         AjaxSuccess);
                                         function AjaxSuccess(data) {
-                                    $('#ajax').html(data);
+                                    window.location.href="<?php echo $VALID->inSERVER('REQUEST_URI') ?>";
                                 }
                                 });
                             }
