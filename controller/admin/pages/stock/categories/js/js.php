@@ -166,7 +166,7 @@
 
                                 $(".option").each(function () { // выделенное мышкой
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
-                                        $.get('/controller/admin/pages/stock/stock.php', // отправка данных GET
+                                        $.get('<?php echo $VALID->inSERVER('REQUEST_URI') ?>', // отправка данных GET
                                                 {idsx_real_parent_id: '<?php if (isset($idsx_real_parent_id) == TRUE){ echo $idsx_real_parent_id;} ?>',
                                                     idsx_cut_id: this.id,
                                                     idsx_cut_key: itemKey},
