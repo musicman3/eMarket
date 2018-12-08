@@ -4,8 +4,11 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-?>
+if (!isset($idsx_real_parent_id)) {
+    $idsx_real_parent_id = '';
+}
 
+?>
 <!-- /Сортировка мышкой -->
 <script type="text/javascript">
     $(document).ready(function () {
@@ -55,13 +58,6 @@
     });
 </script>
 <!-- /Выбор мышкой -->
-
-<?php
-if (!isset($idsx_real_parent_id)) {
-    $idsx_real_parent_id = '';
-}
-
-?>
 
 <!-- /Контекстное меню -->
 <script type="text/javascript">
