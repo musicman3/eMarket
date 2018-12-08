@@ -30,8 +30,12 @@ class Navigation {
             $finish = $count_lines;
         }
 
-        if ($start == 0 && $count_lines >= $lines_on_page + $transfer && $transfer != null) {
+        if ($start == 0 && $finish >= $lines_on_page + $transfer && $transfer != null) {
             return array($start, $finish + $transfer);
+        }
+        
+        if ($start == 0 && $count_lines >= $lines_on_page + $transfer && $transfer != null) {
+            $finish = $finish + $transfer;
         }
 
         // Если нажали на кнопку вперед GET
@@ -84,8 +88,12 @@ class Navigation {
             $finish = $count_lines;
         }
 
-        if ($start == 0 && $count_lines >= $lines_on_page + $transfer && $transfer != null) {
+        if ($start == 0 && $finish >= $lines_on_page + $transfer && $transfer != null) {
             return array($start, $finish + $transfer);
+        }
+        
+        if ($start == 0 && $count_lines >= $lines_on_page + $transfer && $transfer != null) {
+            $finish = $finish + $transfer;
         }
 
         // Если нажали на кнопку вперед POST
