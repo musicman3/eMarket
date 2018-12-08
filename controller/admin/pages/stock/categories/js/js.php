@@ -40,7 +40,7 @@
                 token_ajax: token,
                 ids: ids.join()}), //id строки
             success: function (data) {
-                 window.location.href="/controller/admin/pages/stock/stock.php";
+                document.location.reload(false);
             }
         });
     }
