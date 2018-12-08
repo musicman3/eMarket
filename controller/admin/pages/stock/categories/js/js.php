@@ -35,13 +35,10 @@
         $.ajax({
             method: 'GET',
             dataType: 'text',
-            url: '<?php echo $VALID->inSERVER('REQUEST_URI') ?>',
+            url: '/controller/admin/pages/stock/stock.php',
             data: ({
                 token_ajax: token,
-                ids: ids.join()}), //id строки
-            success: function (data) {
-                window.location.href = "<?php echo $VALID->inSERVER('REQUEST_URI') ?>";
-            }
+                ids: ids.join()})
         });
     }
 </script>

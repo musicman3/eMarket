@@ -29,6 +29,15 @@ class Navigation {
         if ($count_lines <= $lines_on_page) {
             $finish = $count_lines;
         }
+
+        if ($start == 0 && $finish == $lines_on_page + $transfer && $transfer != null) {
+            return array($start, $finish + $transfer);
+        }
+
+        if ($start == 0 && $count_lines == $lines_on_page + $transfer && $transfer != null) {
+            $finish = $finish + $transfer;
+        }
+
         // Если нажали на кнопку вперед GET
         if ($VALID->inGET('finish')) {
             $finish = $VALID->inGET('finish') + $lines_on_page; // пересчитываем количество строк на странице
@@ -42,7 +51,7 @@ class Navigation {
             return array($start, $finish);
         }
         // Если нажали на кнопку назад GET
-        if ($count_lines >= $lines_on_page && $VALID->inGET('finish2')) {
+        if ($count_lines > $lines_on_page && $VALID->inGET('finish2')) {
             $finish = $VALID->inGET('start2'); // пересчитываем количество строк на странице
             $start = $VALID->inGET('start2') - $lines_on_page; // задаем значение счетчика
             if ($start < 0) {
@@ -51,10 +60,6 @@ class Navigation {
             if ($finish < $lines_on_page) {
                 $finish = $lines_on_page;
             }
-            return array($start, $finish + $transfer);
-        }
-
-        if ($start == 0 && $finish == $lines_on_page) {
             return array($start, $finish + $transfer);
         }
 
@@ -82,6 +87,15 @@ class Navigation {
         if ($count_lines <= $lines_on_page) {
             $finish = $count_lines;
         }
+
+        if ($start == 0 && $finish == $lines_on_page + $transfer && $transfer != null) {
+            return array($start, $finish + $transfer);
+        }
+
+        if ($start == 0 && $count_lines == $lines_on_page + $transfer && $transfer != null) {
+            $finish = $finish + $transfer;
+        }
+
         // Если нажали на кнопку вперед POST
         if ($VALID->inPOST('finish')) {
             $finish = $VALID->inPOST('finish') + $lines_on_page; // пересчитываем количество строк на странице
@@ -95,7 +109,7 @@ class Navigation {
             return array($start, $finish);
         }
         // Если нажали на кнопку назад POST
-        if ($count_lines >= $lines_on_page && $VALID->inPOST('finish2')) {
+        if ($count_lines > $lines_on_page && $VALID->inPOST('finish2')) {
             $finish = $VALID->inPOST('start2'); // пересчитываем количество строк на странице
             $start = $VALID->inPOST('start2') - $lines_on_page; // задаем значение счетчика
             if ($start < 0) {
@@ -104,10 +118,6 @@ class Navigation {
             if ($finish < $lines_on_page) {
                 $finish = $lines_on_page;
             }
-            return array($start, $finish + $transfer);
-        }
-
-        if ($start == 0 && $finish == $lines_on_page) {
             return array($start, $finish + $transfer);
         }
 
