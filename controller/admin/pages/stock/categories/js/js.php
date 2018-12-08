@@ -129,7 +129,7 @@ if (!isset($idsx_real_parent_id)) {
                                                     idsx_statusOn_key: itemKey},
                                                 AjaxSuccess);
                                     function AjaxSuccess(data) {
-                                        $('#ajax').html(data);
+                                        document.location.reload(false);
                                     }
                                 });
                             }
@@ -150,7 +150,7 @@ if (!isset($idsx_real_parent_id)) {
                                                     idsx_statusOff_key: itemKey},
                                                 AjaxSuccess);
                                     function AjaxSuccess(data) {
-                                        $('#ajax').html(data);
+                                        document.location.reload(false);
                                     }
                                 });
                             }
@@ -176,7 +176,7 @@ if (!isset($idsx_real_parent_id)) {
                                                     idsx_cut_key: itemKey},
                                                 AjaxSuccess);
                                     function AjaxSuccess(data) {
-                                        $('#ajax').html(data);
+                                        document.location.reload(false);
                                     }
                                 });
                             }

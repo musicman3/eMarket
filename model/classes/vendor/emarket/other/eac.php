@@ -23,37 +23,36 @@ class Eac {
 
         // Если нажали на кнопку Редактировать
         self::editCategory($TABLE_CATEGORIES);
-        
+
         $idsx_real_parent_id = $parent_id; //для отправки в JS
-        
         // Если нажали на кнопку Удалить
         $parent_id_delete = self::deleteCategory($TABLE_CATEGORIES, $parent_id);
 
         // Если нажали на кнопку Вырезать
         $parent_id_cut = self::cutCategory($TABLE_CATEGORIES, $parent_id);
-        
+
         // Если нажали на кнопку Вставить
         $parent_id_paste = self::pasteCategory($TABLE_CATEGORIES, $parent_id);
-        
+
         // Если нажали на кнопку Скрыть/Отобразить
         $parent_id_status = self::statusCategory($TABLE_CATEGORIES, $parent_id);
-        
-        if ($parent_id_delete != $parent_id){
+
+        if ($parent_id_delete != $parent_id) {
             $parent_id = $parent_id_delete;
         }
-        
-        if ($parent_id_cut != $parent_id){
+
+        if ($parent_id_cut != $parent_id) {
             $parent_id = $parent_id_cut;
         }
-        
-        if ($parent_id_paste != $parent_id){
+
+        if ($parent_id_paste != $parent_id) {
             $parent_id = $parent_id_paste;
         }
-        
-        if ($parent_id_status != $parent_id){
+
+        if ($parent_id_status != $parent_id) {
             $parent_id = $parent_id_status;
         }
-        
+
         return array($idsx_real_parent_id, $parent_id);
     }
 
@@ -91,7 +90,7 @@ class Eac {
      * @param строка $TOKEN (токен)
      * @param строка $TOKEN
      */
-    public function sortMouse($TABLE_CATEGORIES, $TOKEN) {
+    public function sortList($TABLE_CATEGORIES, $TOKEN) {
 
         $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
@@ -189,32 +188,8 @@ class Eac {
 
             $idx = $VALID->inGET('idsx_delete_id');
 
-            // Устанавливаем родительскую категорию
-            $parent_id = $PDO->selectPrepare("SELECT parent_id FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$idx]);
-            // Устанавливаем родительскую категорию родительской категории
-            $parent_id_up = $PDO->selectPrepare("SELECT parent_id FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$parent_id]);
-            // считаем одинаковые parent_id
-            $parent_id_num = $PDO->getColRow("SELECT id FROM " . $TABLE_CATEGORIES . " WHERE parent_id=?", [$parent_id]);
-            // если меньше 2-х значений, то устанавливаем parent_id как родительский родительского
-            if (count($parent_id_num) < 2) {
-                $parent_id = $parent_id_up;
-            }
-
-            //Выбираем данные из БД
-            $data_cat = $PDO->inPrepare("SELECT id, parent_id FROM " . $TABLE_CATEGORIES);
-
-            $category = $idx; // id родителя
-            $categories = array();
-            $keys = array(); // массив ключей
-            $keys[] = $category; // добавляем первый ключ в массив
-            // В цикле формируем ассоциативный массив разделов
-            while ($category = $data_cat->fetch(\PDO::FETCH_ASSOC)) {
-                // Проверяем наличие id категории в массиве ключей
-                if (in_array($category['parent_id'], $keys)) {
-                    $categories[$category['parent_id']][] = $category['id'];
-                    $keys[] = $category['id']; // расширяем массив
-                }
-            }
+            $parent_id = self::dataParentIdCategory($TABLE_CATEGORIES, $idx);
+            $keys = self::dataKeysCategory($TABLE_CATEGORIES, $idx);
 
             for ($x = 0; $x < count($keys); $x++) {
                 //Удаляем подкатегории
@@ -257,32 +232,7 @@ class Eac {
             $idx = $VALID->inGET('idsx_cut_id');
             $parent_id_real = (int) $VALID->inGET('idsx_real_parent_id'); // получить значение из JS
             //
-            // Устанавливаем родительскую категорию
-            $parent_id = $PDO->selectPrepare("SELECT parent_id FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$idx]);
-            // Устанавливаем родительскую категорию родительской категории
-            $parent_id_up = $PDO->selectPrepare("SELECT parent_id FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$parent_id]);
-            // считаем одинаковые parent_id
-            $parent_id_num = $PDO->getColRow("SELECT id FROM " . $TABLE_CATEGORIES . " WHERE parent_id=?", [$parent_id]);
-            // если меньше 2-х значений, то устанавливаем parent_id как родительский родительского
-            if (count($parent_id_num) < 2) {
-                $parent_id = $parent_id_up;
-            }
-
-            //Выбираем данные из БД
-            $data_cat = $PDO->inPrepare("SELECT id, parent_id FROM " . $TABLE_CATEGORIES);
-
-            $category = $idx; // id родителя
-            $categories = array();
-            $keys = array(); // массив ключей
-            $keys[] = $category; // добавляем первый ключ в массив
-            // В цикле формируем ассоциативный массив разделов
-            while ($category = $data_cat->fetch(\PDO::FETCH_ASSOC)) {
-                // Проверяем наличие id категории в массиве ключей
-                if (in_array($category['parent_id'], $keys)) {
-                    $categories[$category['parent_id']][] = $category['id'];
-                    $keys[] = $category['id']; // расширяем массив
-                }
-            }
+            $parent_id = self::dataParentIdCategory($TABLE_CATEGORIES, $idx);
 
             //Вырезаем основную родительскую категорию    
             if ($VALID->inGET('idsx_cut_key') == 'cut') {
@@ -363,35 +313,11 @@ class Eac {
                 $status = 0;
             }
 
-            // Устанавливаем родительскую категорию
-            $parent_id = $PDO->selectPrepare("SELECT parent_id FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$idx]);
-            // Устанавливаем родительскую категорию родительской категории
-            $parent_id_up = $PDO->selectPrepare("SELECT parent_id FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$parent_id]);
-            // считаем одинаковые parent_id
-            $parent_id_num = $PDO->getColRow("SELECT id FROM " . $TABLE_CATEGORIES . " WHERE parent_id=?", [$parent_id]);
-            // если меньше 2-х значений, то устанавливаем parent_id как родительский родительского
-            if (count($parent_id_num) < 2) {
-                $parent_id = $parent_id_up;
-            }
-
-            //Выбираем данные из БД
-            $data_cat = $PDO->inPrepare("SELECT id, parent_id FROM " . $TABLE_CATEGORIES);
-
-            $category = $idx; // id родителя
-            $categories = array();
-            $keys = array(); // массив ключей
-            $keys[] = $category; // добавляем первый ключ в массив
-            // В цикле формируем ассоциативный массив разделов
-            while ($category = $data_cat->fetch(\PDO::FETCH_ASSOC)) {
-                // Проверяем наличие id категории в массиве ключей
-                if (in_array($category['parent_id'], $keys)) {
-                    $categories[$category['parent_id']][] = $category['id'];
-                    $keys[] = $category['id']; // расширяем массив
-                }
-            }
+            $parent_id = self::dataParentIdCategory($TABLE_CATEGORIES, $idx);
+            $keys = self::dataKeysCategory($TABLE_CATEGORIES, $idx);
 
             for ($x = 0; $x < count($keys); $x++) {
-                
+
                 //Обновляем статус подкатегорий
                 if (($VALID->inGET('idsx_statusOn_key') == 'statusOn')
                         or ( $VALID->inGET('idsx_statusOff_key') == 'statusOff')) {
@@ -416,6 +342,59 @@ class Eac {
 
         return $parent_id;
     }
+
+    /**
+     * Статус категорий в EAC
+     * @param строка $TABLE_CATEGORIES (название таблицы категорий)
+     * @param строка $idx
+     * @return строка
+     */
+    private function dataParentIdCategory($TABLE_CATEGORIES, $idx) {
+
+        $PDO = new \eMarket\Core\Pdo;
+
+        // Устанавливаем родительскую категорию
+        $parent_id = $PDO->selectPrepare("SELECT parent_id FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$idx]);
+        // Устанавливаем родительскую категорию родительской категории
+        $parent_id_up = $PDO->selectPrepare("SELECT parent_id FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$parent_id]);
+        // считаем одинаковые parent_id
+        $parent_id_num = $PDO->getColRow("SELECT id FROM " . $TABLE_CATEGORIES . " WHERE parent_id=?", [$parent_id]);
+        // если меньше 2-х значений, то устанавливаем parent_id как родительский родительского
+        if (count($parent_id_num) < 2) {
+            $parent_id = $parent_id_up;
+        }
+
+        return $parent_id;
+    }
+    
+    /**
+     * Статус категорий в EAC
+     * @param строка $TABLE_CATEGORIES (название таблицы категорий)
+     * @param строка $idx
+     * @return строка
+     */
+    private function dataKeysCategory($TABLE_CATEGORIES, $idx) {
+
+        $PDO = new \eMarket\Core\Pdo;
+
+        //Выбираем данные из БД
+        $data_cat = $PDO->inPrepare("SELECT id, parent_id FROM " . $TABLE_CATEGORIES);
+
+        $category = $idx; // id родителя
+        $categories = array();
+        $keys = array(); // массив ключей
+        $keys[] = $category; // добавляем первый ключ в массив
+        // В цикле формируем ассоциативный массив разделов
+        while ($category = $data_cat->fetch(\PDO::FETCH_ASSOC)) {
+            // Проверяем наличие id категории в массиве ключей
+            if (in_array($category['parent_id'], $keys)) {
+                $categories[$category['parent_id']][] = $category['id'];
+                $keys[] = $category['id']; // расширяем массив
+            }
+        }
+
+        return $keys;
+    }    
 
 }
 

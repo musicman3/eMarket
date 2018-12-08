@@ -44,18 +44,22 @@
 
                                         <!-- Переключаем страницу "ВПЕРЕД" -->
                                         <form>
+                                            <?php if (count($lines) > $lines_on_page) { ?>
                                             <input hidden name="start" value="<?php echo $start ?>">
                                             <input hidden name="finish" value="<?php echo $finish ?>">
                                             <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
                                             <div class="right"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/stock/categories/categories.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
+                                            <?php } ?>
                                         </form>
 
                                         <!-- Переключаем страницу "НАЗАД" -->
                                         <form>
+                                            <?php if (count($lines) > $lines_on_page) { ?>
                                             <input hidden name="start2" value="<?php echo $start ?>">
                                             <input hidden name="finish2" value="<?php echo $finish ?>">
                                             <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
                                             <div class="left"><button type="submit" class="btn btn-primary btn-xs"  action="/controller/admin/pages/stock/categories/categories.php" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
+                                            <?php } ?>
                                         </form>
 
                                     </th>
