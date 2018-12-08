@@ -12,7 +12,7 @@
             <div class="modal-header"><div class="tooltip-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Заполните карточку категорий" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
                 <h4 class="modal-title"><?php echo lang('menu_categories') ?></h4>
             </div>
-            <form id="form_get" name="form_get" action="javascript:void(null);" onsubmit="call()" method="get" enctype="multipart/form-data">
+            <form id="form_get" name="form_get" action="/controller/admin/pages/stock/stock.php" onsubmit="$('.modal').modal('hide')" method="get" enctype="multipart/form-data">
                 <div class="panel-body">
                         <input type="hidden" name="parent_id" value="<?php echo $parent_id ?>" />
                         <input type="hidden" name="add" value="ok" />
@@ -79,18 +79,4 @@
     </div>
 </div>
 
-<script type="text/javascript" language="javascript">
-    function call() {
-        var msg = $('#form_get').serialize();
-        $.ajax({
-            type: 'GET',
-            url: '/controller/admin/pages/stock/stock.php',
-            data: msg,
-            success: function (data) {
-                $('#addCategory').modal('hide');
-                window.location.href="<?php echo $VALID->inSERVER('REQUEST_URI') ?>"
-            }
-        });
-    }
-</script>
 <!-- КОНЕЦ Модальное окно "Добавить категорию" -->

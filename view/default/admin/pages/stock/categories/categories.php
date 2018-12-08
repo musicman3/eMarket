@@ -1,6 +1,6 @@
 <?php
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
-  |    GNU GENERAL PUBLIC LICENSE v.3.0    |    
+  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
@@ -26,21 +26,8 @@
 
                 <div class="panel-heading">
 
-                        <!-- Количество строк на странице -->
-                        <form action="/controller/admin/pages/stock/categories/categories.php" method="get" class="form-inline">
-                            <div class="add-xs"><?php echo lang('lines_on_page') ?>: <select name="select_row" class="input-xs form-control" onchange="this.form.submit()">
-                                    <option>(<?php echo $lines_on_page ?>)</option>
-                                    <option>5</option>
-                                    <option>35</option>
-                                    <option>50</option>
-                                    <option>75</option>
-                                    <option>100</option>
-                                </select>
-                            </div>
-                        </form>
-                        
-                        <!--Выводим уведомление об успешном действии-->
-                        <?php $MESSAGES->alert('success', lang('action_completed_successfully')) ?>
+                    <!--Выводим уведомление об успешном действии-->
+                    <?php $MESSAGES->alert('success', lang('action_completed_successfully')) ?>
 
                     <h3 class="panel-title">
                         <div class="pull-left"><?php echo lang('title_categories_index') ?></div>
@@ -70,7 +57,7 @@
                                             <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
                                             <div class="left"><button type="submit" class="btn btn-primary btn-xs"  action="/controller/admin/pages/stock/categories/categories.php" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
                                         </form>
-                                        
+
                                         <div class="left">
                                             <a href="#" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a>
                                         </div>
@@ -97,7 +84,12 @@
                                         </td>
                                     </tr>
 
-                                <?php } for ($start; $start < $finish; $start++) { ?>
+                                    <?php
+                                } $transfer = 0;
+                                for ($start; $start < $finish; $start++) {
+                                    $transfer++;
+
+                                    ?>
 
                                     <tr class="sort-list" unitid="<?php echo $lines[$start][0] ?>">
 
@@ -110,6 +102,11 @@
                                         <?php } elseif (isset($_SESSION['buffer']) == true && in_array($lines[$start][0], $_SESSION['buffer']) == true && $lines[$start][8] == 0) { ?>
                                             <td class="sortyes sortleft-m" align="left"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
                                             <td class="sortleft" align="left"><div><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-folder-open"> </span></a></div></td>
+
+                                            <!-- Категория для трансфера -->
+                                        <?php } elseif ($transfer == $lines_on_page + 1) { ?>
+                                            <td class="sortyes sortleft-m" align="left"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
+                                            <td class="sortleft" align="left"><div><a href="#" class="btn btn-primary btn-xs" role="button" aria-disabled="true"><span class="glyphicon glyphicon-transfer"> </span></a></div></td>
 
                                             <!-- Если категория НЕ АКТИВНА -->
                                         <?php } elseif ($lines[$start][8] == 0) { ?>

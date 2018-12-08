@@ -13,9 +13,10 @@ class Navigation {
      *
      * @param строка $count_lines
      * @param строка $lines_on_page
+     * @param строка integer $transfer
      * @return массив
      */
-    public function getLink($count_lines, $lines_on_page) {
+    public function getLink($count_lines, $lines_on_page, int $transfer = null) {
 
         //$count_lines - общее число строк
         //$lines_on_page - число строк на странице
@@ -38,6 +39,7 @@ class Navigation {
             if ($finish >= $count_lines) {
                 $finish = $count_lines;
             }
+            return array($start, $finish);
         }
         // Если нажали на кнопку назад GET
         if ($count_lines >= $lines_on_page && $VALID->inGET('finish2')) {
@@ -49,7 +51,13 @@ class Navigation {
             if ($finish < $lines_on_page) {
                 $finish = $lines_on_page;
             }
+            return array($start, $finish + $transfer);
         }
+
+        if ($start == 0 && $finish == $lines_on_page) {
+            return array($start, $finish + $transfer);
+        }
+
         return array($start, $finish);
     }
 
@@ -58,9 +66,10 @@ class Navigation {
      *
      * @param строка $count_lines
      * @param строка $lines_on_page
+     * @param строка integer $transfer
      * @return массив
      */
-    public function postLink($count_lines, $lines_on_page) {
+    public function postLink($count_lines, $lines_on_page, int $transfer = null) {
 
         //$count_lines - общее число строк
         //$lines_on_page - число строк на странице
@@ -83,6 +92,7 @@ class Navigation {
             if ($finish >= $count_lines) {
                 $finish = $count_lines;
             }
+            return array($start, $finish);
         }
         // Если нажали на кнопку назад POST
         if ($count_lines >= $lines_on_page && $VALID->inPOST('finish2')) {
@@ -94,7 +104,13 @@ class Navigation {
             if ($finish < $lines_on_page) {
                 $finish = $lines_on_page;
             }
+            return array($start, $finish + $transfer);
         }
+
+        if ($start == 0 && $finish == $lines_on_page) {
+            return array($start, $finish + $transfer);
+        }
+
         return array($start, $finish);
     }
 

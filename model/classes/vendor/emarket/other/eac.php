@@ -168,9 +168,9 @@ class Eac {
             $sort_array_category = array(); // Массив со списком sort_category под сортировку
 
             for ($i = 0; $i < count($sort_array_id); $i++) {
-                $sort_category = $PDO->selectPrepare("SELECT sort_category FROM " . $TABLE_CATEGORIES . " WHERE id=? AND language=? ORDER BY id DESC", [$sort_array_id[$i], lang('#lang_all')[0]]);
+                $sort_category = $PDO->selectPrepare("SELECT sort_category FROM " . $TABLE_CATEGORIES . " WHERE id=? AND language=? ORDER BY id ASC", [$sort_array_id[$i], lang('#lang_all')[0]]);
                 array_push($sort_array_category, $sort_category); // Добавляем данные в массив sort_category
-                asort($sort_array_category); // Сортируем массив со списком sort_category
+                arsort($sort_array_category); // Сортируем массив со списком sort_category
             }
             // Создаем финальный массив из двух массивов
             $sort_array_final = array_combine($sort_array_id, $sort_array_category);

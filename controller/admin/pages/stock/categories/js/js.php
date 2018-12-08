@@ -35,10 +35,13 @@
         $.ajax({
             method: 'GET',
             dataType: 'text',
-            url: '/controller/admin/pages/stock/categories/categories.php',
+            url: '<?php echo $VALID->inSERVER('REQUEST_URI') ?>',
             data: ({
                 token_ajax: token,
-                ids: ids.join()})
+                ids: ids.join()}), //id строки
+            success: function (data) {
+                window.location.href = "<?php echo $VALID->inSERVER('REQUEST_URI') ?>";
+            }
         });
     }
 </script>
@@ -123,7 +126,7 @@
                                                     idsx_statusOn_key: itemKey},
                                                 AjaxSuccess);
                                     function AjaxSuccess(data) {
-                                        $('#ajax').html(data);
+                                        window.location.href="<?php echo $VALID->inSERVER('REQUEST_URI') ?>";
                                     }
                                 });
                             }
@@ -145,7 +148,7 @@
                                                     idsx_statusOff_key: itemKey},
                                                 AjaxSuccess);
                                     function AjaxSuccess(data) {
-                                        $('#ajax').html(data);
+                                        window.location.href="<?php echo $VALID->inSERVER('REQUEST_URI') ?>";
                                     }
                                 });
                             }
@@ -191,7 +194,7 @@
                                             idsx_paste_key: itemKey},
                                         AjaxSuccess);
                                 function AjaxSuccess(data) {
-                                    window.location.href="<?php echo $VALID->inSERVER('REQUEST_URI') ?>?modify=ok"
+                                    $('#ajax').html(data);
                                 }
                             }
                         },
@@ -209,11 +212,10 @@
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                         $.get('<?php echo $VALID->inSERVER('REQUEST_URI') ?>', // отправка данных GET
                                                 {idsx_delete_id: this.id,
-                                                    modify: 'ok',
                                                     idsx_delete_key: itemKey},
                                                 AjaxSuccess);
                                     function AjaxSuccess(data) {
-                                    window.location.href="<?php echo $VALID->inSERVER('REQUEST_URI') ?>?modify=ok"
+                                   window.location.href="<?php echo $VALID->inSERVER('REQUEST_URI') ?>";
                                 }
                                 });
                             }
