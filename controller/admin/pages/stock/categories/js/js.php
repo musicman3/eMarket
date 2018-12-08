@@ -122,7 +122,7 @@
                                                     idsx_statusOn_key: itemKey},
                                                 AjaxSuccess);
                                     function AjaxSuccess(data) {
-                                        window.location.href="<?php echo $VALID->inSERVER('REQUEST_URI') ?>";
+                                        $('#ajax').html(data);
                                     }
                                 });
                             }
@@ -143,7 +143,7 @@
                                                     idsx_statusOff_key: itemKey},
                                                 AjaxSuccess);
                                     function AjaxSuccess(data) {
-                                        window.location.href="<?php echo $VALID->inSERVER('REQUEST_URI') ?>";
+                                        $('#ajax').html(data);
                                     }
                                 });
                             }
@@ -169,7 +169,7 @@
                                                     idsx_cut_key: itemKey},
                                         AjaxSuccess);
                                         function AjaxSuccess(data) {
-                                    window.location.href="<?php echo $VALID->inSERVER('REQUEST_URI') ?>";
+                                    $('#ajax').html(data);
                                 }
                                 });
                             }
