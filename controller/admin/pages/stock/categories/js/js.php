@@ -136,6 +136,7 @@ if (!isset($idsx_real_parent_id)) {
                                                     idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
                                                     idsx_statusOn_key: itemKey},
                                                 AjaxSuccess);
+                                        
                                     function AjaxSuccess(data) {
                                         setTimeout(function () {
                                             $('#ajax').html(data);
@@ -161,6 +162,7 @@ if (!isset($idsx_real_parent_id)) {
                                                     idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
                                                     idsx_statusOff_key: itemKey},
                                                 AjaxSuccess);
+                                        
                                     function AjaxSuccess(data) {
                                         setTimeout(function () {
                                             $('#ajax').html(data);
@@ -190,6 +192,7 @@ if (!isset($idsx_real_parent_id)) {
                                                     idsx_cut_id: this.id,
                                                     idsx_cut_key: itemKey},
                                                 AjaxSuccess);
+                                        
                                     function AjaxSuccess(data) {
                                         setTimeout(function () {
                                             $('#ajax').html(data);
@@ -212,6 +215,7 @@ if (!isset($idsx_real_parent_id)) {
                                             modify: 'ok',
                                             idsx_paste_key: itemKey},
                                         AjaxSuccess);
+                                
                                 function AjaxSuccess(data) {
                                     setTimeout(function () {
                                         $('#ajax').html(data);
@@ -237,6 +241,7 @@ if (!isset($idsx_real_parent_id)) {
                                                     modify: 'ok',
                                                     idsx_delete_key: itemKey},
                                                 AjaxSuccess);
+                                                
                                     function AjaxSuccess(data) {
                                         setTimeout(function () {
                                             $('#ajax').html(data);
