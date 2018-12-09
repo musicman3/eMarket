@@ -103,8 +103,10 @@ class Eac {
             $sort_array_id = array_values(array_filter($sort_array_id_ajax));
             
             $sort_array_category = array(); // Массив со списком sort_category под сортировку
-
-            for ($i = 0; $i < count($sort_array_id); $i++) {
+            
+            $count_sort_array_id = count($sort_array_id); // Получаем количество значений в массиве
+            
+            for ($i = 0; $i < $count_sort_array_id; $i++) {
                 $sort_category = $PDO->selectPrepare("SELECT sort_category FROM " . $TABLE_CATEGORIES . " WHERE id=? AND language=? ORDER BY id ASC", [$sort_array_id[$i], lang('#lang_all')[0]]);
                 array_push($sort_array_category, $sort_category); // Добавляем данные в массив sort_category
                 arsort($sort_array_category); // Сортируем массив со списком sort_category
@@ -112,7 +114,7 @@ class Eac {
             // Создаем финальный массив из двух массивов
             $sort_array_final = array_combine($sort_array_id, $sort_array_category);
 
-            for ($i = 0; $i < count($sort_array_id); $i++) {
+            for ($i = 0; $i < $count_sort_array_id; $i++) {
 
                 $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET sort_category=? WHERE id=?", [(int) $sort_array_final[$sort_array_id[$i]], (int) $sort_array_id[$i]]);
             }
@@ -193,8 +195,9 @@ class Eac {
 
             $parent_id = self::dataParentIdCategory($TABLE_CATEGORIES, $idx);
             $keys = self::dataKeysCategory($TABLE_CATEGORIES, $idx);
-
-            for ($x = 0; $x < count($keys); $x++) {
+            
+            $count_keys = count($keys); // Получаем количество значений в массиве
+            for ($x = 0; $x < $count_keys; $x++) {
                 //Удаляем подкатегории
                 if ($VALID->inGET('idsx_delete_key') == 'delete') {
                     $PDO->inPrepare("DELETE FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$keys[$x]]);
@@ -274,7 +277,8 @@ class Eac {
 
         //Вставляем вырезанные категории    
         if ($VALID->inGET('idsx_paste_key') == 'paste' && isset($_SESSION['buffer']) == TRUE) {
-            for ($buf = 0; $buf < count($_SESSION['buffer']); $buf++) {
+            $count_session_buffer = count($_SESSION['buffer']); // Получаем количество значений в массиве
+            for ($buf = 0; $buf < $count_session_buffer; $buf++) {
                 $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET parent_id=? WHERE id=?", [$parent_id_real, $_SESSION['buffer'][$buf]]);
             }
             unset($_SESSION['buffer']); // очищаем буфер обмена
@@ -318,8 +322,9 @@ class Eac {
 
             $parent_id = self::dataParentIdCategory($TABLE_CATEGORIES, $idx);
             $keys = self::dataKeysCategory($TABLE_CATEGORIES, $idx);
-
-            for ($x = 0; $x < count($keys); $x++) {
+            
+            $count_keys = count($keys); // Получаем количество значений в массиве
+            for ($x = 0; $x < $count_keys; $x++) {
 
                 //Обновляем статус подкатегорий
                 if (($VALID->inGET('idsx_statusOn_key') == 'statusOn')
