@@ -1,10 +1,11 @@
 <?php
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
-  |    GNU GENERAL PUBLIC LICENSE v.3.0    |    
+  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 // 
 require(ROOT . '/controller/admin/pages/stock/categories/modal/categories_edit.php');
+
 ?>
 
 <!-- Модальное окно "Редактировать категорию" -->
@@ -16,8 +17,8 @@ require(ROOT . '/controller/admin/pages/stock/categories/modal/categories_edit.p
             </div>
             <form id="form_get<?php echo $lines[$k][0] ?>" action="javascript:void(null);" onsubmit="call<?php echo $lines[$k][0] ?>()" method="get" enctype="multipart/form-data">
                 <div class="panel-body">
-                        <input type="hidden" name="parent_id" value="<?php echo $parent_id ?>" />
-                        <input type="hidden" name="edit" value="<?php echo $lines[$k][0] ?>" />
+                    <input type="hidden" name="parent_id" value="<?php echo $parent_id ?>" />
+                    <input type="hidden" name="edit" value="<?php echo $lines[$k][0] ?>" />
                     <!-- Языковые панели -->
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#<?php echo lang('#lang_all')[0] . $lines[$k][0] ?>"><img src="/view/<?php echo $SET->template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[0] ?>.png" alt="<?php echo lang('#lang_all')[0] ?>" title="<?php echo lang('#lang_all')[0] ?>" width="16" height="10" /> <?php echo lang('language_name', lang('#lang_all')[0]) ?></a></li>
@@ -25,6 +26,7 @@ require(ROOT . '/controller/admin/pages/stock/categories/modal/categories_edit.p
                         <?php
                         if (count(lang('#lang_all')) > 1) {
                             for ($xl = 1; $xl < count(lang('#lang_all')); $xl++) {
+
                                 ?>
 
                                 <li><a data-toggle="tab" href="#<?php echo lang('#lang_all')[$xl] . $lines[$k][0] ?>"><img src="/view/<?php echo $SET->template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[$xl] ?>.png" alt="<?php echo lang('#lang_all')[$xl] ?>" title="<?php echo lang('#lang_all')[$xl] ?>" width="16" height="10" /> <?php echo lang('language_name', lang('#lang_all')[$xl]) ?></a></li>
@@ -32,45 +34,48 @@ require(ROOT . '/controller/admin/pages/stock/categories/modal/categories_edit.p
                                 <?php
                             }
                         }
+
                         ?>
 
                     </ul>
-		    <div class="tab-content">
+                    <div class="tab-content">
                         <div id="<?php echo lang('#lang_all')[0] . $lines[$k][0] ?>" class="tab-pane fade in active">
-                        <div class="form-group">
-			    <div class="input-group has-error">
-				<span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                <input class="input-sm form-control" type="text" name="name_edit<?php echo lang('#lang_all')[0] ?>" id="name_edit<?php echo lang('#lang_all')[0] ?>" value="<?php echo $name_category_edit[0] ?>" />
-			    </div>
+                            <div class="form-group">
+                                <div class="input-group has-error">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+                                    <input class="input-sm form-control" type="text" name="name_edit<?php echo lang('#lang_all')[0] ?>" id="name_edit<?php echo lang('#lang_all')[0] ?>" value="<?php echo $name_category_edit[0] ?>" />
+                                </div>
+                            </div>
                         </div>
-			</div>
                         <?php
                         if (count(lang('#lang_all')) > 1) {
                             for ($xl = 1; $xl < count(lang('#lang_all')); $xl++) {
+
                                 ?>
 
                                 <div id="<?php echo lang('#lang_all')[$xl] . $lines[$k][0] ?>" class="tab-pane fade">
                                     <div class="form-group">
-					<div class="input-group has-error">
-					    <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-					    <input class="input-sm form-control" type="text" name="name_edit<?php echo lang('#lang_all')[$xl] ?>" id="name_edit<?php echo lang('#lang_all')[$xl] ?>" value="<?php echo $name_category_edit[$xl] ?>" />
-					</div>
+                                        <div class="input-group has-error">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+                                            <input class="input-sm form-control" type="text" name="name_edit<?php echo lang('#lang_all')[$xl] ?>" id="name_edit<?php echo lang('#lang_all')[$xl] ?>" value="<?php echo $name_category_edit[$xl] ?>" />
+                                        </div>
                                     </div>
                                 </div>
 
-                                <?php
-                            }
-                        }
-                        ?>
-		    </div>
-                        <div class="form-group">
-                            <label for="image"><?php echo lang('images') ?>:</label><br>
-                            <input type="file" name="image" id="image" /> <?php echo lang('max') ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>
-                        </div>
-                        <div class="form-group">
-                            <label for="view_category"><?php echo lang('display') ?> </label>
-                            <input class="check-box" type="checkbox" name="view_cat" <?php echo $status_category_edit ?>>
-                        </div>
+        <?php
+    }
+}
+
+?>
+                    </div>
+                    <div class="form-group">
+                        <label for="image"><?php echo lang('images') ?>:</label><br>
+                        <input type="file" name="image" id="image" /> <?php echo lang('max') ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>
+                    </div>
+                    <div class="form-group">
+                        <label for="view_category"><?php echo lang('display') ?> </label>
+                        <input class="check-box" type="checkbox" name="view_cat" <?php echo $status_category_edit ?>>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-primary btn-xs" type="button" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-remove"></span> <?php echo lang('cancel') ?></button>
@@ -90,7 +95,10 @@ require(ROOT . '/controller/admin/pages/stock/categories/modal/categories_edit.p
             data: msg,
             success: function (data) {
                 $('#editCategory<?php echo $lines[$k][0] ?>').modal('hide');
-                $('#ajax').html(data);
+                setTimeout(function () {
+                    $('#ajax').html(data);
+                }, 100);
+                $("#sort-list").sortable();
             }
         });
     }
