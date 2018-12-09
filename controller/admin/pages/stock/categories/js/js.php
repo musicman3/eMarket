@@ -42,10 +42,11 @@ if (!isset($idsx_real_parent_id)) {
                     ids: ids.join()},
                 AjaxSuccess);
         function AjaxSuccess(data) {
-                // Повторный вызов функции для нормалного обновления страницы
-                $.get('/controller/admin/pages/stock/stock.php', // отправка данных GET
-                {}, // Пустой запрос
-                AjaxSuccess);
+
+            // Повторный вызов функции для нормалного обновления страницы
+            $.get('/controller/admin/pages/stock/stock.php', // отправка данных GET
+                    {}, // Пустой запрос
+                    AjaxSuccess);
             function AjaxSuccess(data) {
                 setTimeout(function () {
                     $('#ajax').html(data);
@@ -53,7 +54,6 @@ if (!isset($idsx_real_parent_id)) {
             }
 
         }
-
     }
 </script>
 
