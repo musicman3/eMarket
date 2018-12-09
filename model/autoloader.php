@@ -15,6 +15,7 @@ spl_autoload_register(function ($class_name) {
 //
 //СОЗДАЕМ ОБЪЕКТЫ CORE
 $AUTORIZE = new eMarket\Core\Autorize;
+$EAC = new eMarket\Core\Eac;
 $LANG = new eMarket\Core\Lang;
 $NAVIGATION = new eMarket\Core\Navigation;
 $PDO = new eMarket\Core\Pdo;
@@ -24,7 +25,6 @@ $VALID = new eMarket\Core\Valid;
 $VIEW = new eMarket\Core\View;
 
 //СОЗДАЕМ ОБЪЕКТЫ OTHER
-$EAC = new eMarket\Other\Eac;
 $DEBUG = new eMarket\Other\Debug;
 $FUNC = new eMarket\Other\Func;
 $MESSAGES = new eMarket\Other\Messages;
