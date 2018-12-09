@@ -9,7 +9,7 @@ require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 /* ------------------------------------------ */
 //
 // Загружаем движок EAC
-$EAC_ENGINE = $EAC->start(TABLE_CATEGORIES);
+$EAC_ENGINE = $EAC->start(TABLE_CATEGORIES, $TOKEN);
 $idsx_real_parent_id = $EAC_ENGINE[0];
 $parent_id = $EAC_ENGINE[1];
 
@@ -29,9 +29,6 @@ $start = $navigate[0];
 $finish = $navigate[1];
 
 // КОНЕЦ-> КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
-// 
-// Сортировка мышкой EAC
-$EAC->sortList(TABLE_CATEGORIES, $TOKEN);
 
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
 $JS_END = __DIR__;

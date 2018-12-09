@@ -43,6 +43,9 @@ if (!isset($idsx_real_parent_id)) {
                 AjaxSuccess);
         function AjaxSuccess(data) {
                 // Повторный вызов функции для нормалного обновления страницы
+                $.get('/controller/admin/pages/stock/stock.php', // отправка данных GET
+                {}, // Пустой запрос
+                AjaxSuccess);
             function AjaxSuccess(data) {
                 setTimeout(function () {
                     $('#ajax').html(data);

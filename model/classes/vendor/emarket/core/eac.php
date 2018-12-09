@@ -13,7 +13,7 @@ class Eac {
      * @param строка $TABLE_CATEGORIES (название таблицы категорий)
      * @return массив
      */
-    public function start($TABLE_CATEGORIES) {
+    public function start($TABLE_CATEGORIES, $TOKEN) {
 
         // Устанавливаем parent_id родительской категории
         $parent_id = self::parentIdStart($TABLE_CATEGORIES);
@@ -36,6 +36,9 @@ class Eac {
 
         // Если нажали на кнопку Скрыть/Отобразить
         $parent_id_status = self::statusCategory($TABLE_CATEGORIES, $parent_id);
+        
+        // Сортировка мышкой EAC
+        self::sortList(TABLE_CATEGORIES, $TOKEN);
 
         if ($parent_id_delete != $parent_id) {
             $parent_id = $parent_id_delete;
