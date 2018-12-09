@@ -226,7 +226,6 @@ class Eac {
      */
     private function cutCategory($TABLE_CATEGORIES, $parent_id) {
 
-        $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
 
         if ($VALID->inGET('idsx_cut_marker') == 'cut') { // очищаем буфер обмена, если он был заполнен, при нажатии Вырезать
