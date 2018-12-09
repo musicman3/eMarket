@@ -36,17 +36,21 @@ if (!isset($idsx_real_parent_id)) {
         $("#sort-list tr").each(function () {
             ids[ids.length] = $(this).attr('unitid');
         });
-        $.ajax({
-            method: 'GET',
-            dataType: 'text',
-            url: '/controller/admin/pages/stock/stock.php',
-            data: ({
-                token_ajax: token,
-                ids: ids.join()}), //id строки
-            success: function (data) {
-                document.location.reload(false);
+
+        $.get('/controller/admin/pages/stock/stock.php', // отправка данных GET
+                {token_ajax: token,
+                    ids: ids.join()},
+                AjaxSuccess);
+        function AjaxSuccess(data) {
+                // Повторный вызов функции для нормалного обновления страницы
+            function AjaxSuccess(data) {
+                setTimeout(function () {
+                    $('#ajax').html(data);
+                }, 100);
             }
-        });
+
+        }
+
     }
 </script>
 
@@ -131,7 +135,7 @@ if (!isset($idsx_real_parent_id)) {
                                                 AjaxSuccess);
                                     function AjaxSuccess(data) {
                                         setTimeout(function () {
-                                        $('#ajax').html(data);
+                                            $('#ajax').html(data);
                                         }, 100);
                                         $("#sort-list").sortable();
                                     }
@@ -156,7 +160,7 @@ if (!isset($idsx_real_parent_id)) {
                                                 AjaxSuccess);
                                     function AjaxSuccess(data) {
                                         setTimeout(function () {
-                                        $('#ajax').html(data);
+                                            $('#ajax').html(data);
                                         }, 100);
                                         $("#sort-list").sortable();
                                     }
@@ -185,7 +189,7 @@ if (!isset($idsx_real_parent_id)) {
                                                 AjaxSuccess);
                                     function AjaxSuccess(data) {
                                         setTimeout(function () {
-                                        $('#ajax').html(data);
+                                            $('#ajax').html(data);
                                         }, 100);
                                         $("#sort-list").sortable();
                                     }
@@ -206,10 +210,10 @@ if (!isset($idsx_real_parent_id)) {
                                             idsx_paste_key: itemKey},
                                         AjaxSuccess);
                                 function AjaxSuccess(data) {
-                                   setTimeout(function () {
+                                    setTimeout(function () {
                                         $('#ajax').html(data);
-                                        }, 100);
-                                        $("#sort-list").sortable();
+                                    }, 100);
+                                    $("#sort-list").sortable();
                                 }
                             }
                         },
@@ -232,7 +236,7 @@ if (!isset($idsx_real_parent_id)) {
                                                 AjaxSuccess);
                                     function AjaxSuccess(data) {
                                         setTimeout(function () {
-                                        $('#ajax').html(data);
+                                            $('#ajax').html(data);
                                         }, 100);
                                         $("#sort-list").sortable();
                                     }

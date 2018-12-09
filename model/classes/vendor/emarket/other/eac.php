@@ -97,8 +97,11 @@ class Eac {
 
         // если сортируем категории мышкой
         if ($VALID->inGET('token_ajax') == $TOKEN && $VALID->inGET('ids')) {
-            $sort_array_id = explode(',', $VALID->inGET('ids')); // Массив со списком id под сортировку
-
+            $sort_array_id_ajax = explode(',', $VALID->inGET('ids')); // Массив со списком id под сортировку
+            
+            // Если в массиве пустое значение, то собираем новый массив без этого значения со сбросом ключей
+            $sort_array_id = array_values(array_filter($sort_array_id_ajax));
+            
             $sort_array_category = array(); // Массив со списком sort_category под сортировку
 
             for ($i = 0; $i < count($sort_array_id); $i++) {
