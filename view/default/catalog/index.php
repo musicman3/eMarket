@@ -32,7 +32,7 @@
 		    </ul>
 		</li>
 	    <li class="dropdown">
-		<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="far fa-user"></i><span class="hidden-sm"> My Account</span> <span class="caret"></span></a>
+		<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fas fa-user"></i><span class="hidden-sm"> My Account</span> <span class="caret"></span></a>
 		    <ul class="dropdown-menu">
 			<li><a href="#"><i class="fas fa-sign-in-alt"></i> Log In</a></li>
 			<li><a href="#"><i class="fas fa-pencil-alt"></i> Register</a></li>
