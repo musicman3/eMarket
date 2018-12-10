@@ -84,6 +84,7 @@ region = Регион
 zone = Зона
 country = Страна
 action_completed_successfully = Действие успешно выполнено!
+categories_transfer = Трансфер со следующей страницей
 
 ;BASIC SETTINGS
 lines_on_page = Строк на странице

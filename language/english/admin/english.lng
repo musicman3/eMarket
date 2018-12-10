@@ -83,6 +83,7 @@ region_code = Region code
 region = Region
 zone = Zone
 action_completed_successfully = Action completed successfully!
+categories_transfer = Transfer with the next page
 
 ;BASIC SETTINGS
 lines_on_page = Lines on page

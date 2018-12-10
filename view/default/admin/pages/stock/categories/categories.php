@@ -40,26 +40,37 @@
                             <thead>
                                 <tr>
                                     <th colspan="3">
-                                        <div class="page"><?php echo lang('s') ?> <?php echo $start + 1 ?> <?php echo lang('po') ?> <?php echo $finish ?> ( <?php echo lang('iz') ?> <?php echo $count_lines; ?> )</div>
+                                        <?php
+                                        // Счетчик в навигации
+                                        if ($finish == $count_lines && ($finish - $start) < $lines_on_page OR $finish == $lines_on_page) {
+                                            $finish_out = $finish;
+                                        } else {
+                                            $finish_out = $finish - 1;
+                                        }
+
+                                        ?>
+
+
+                                        <div class="page"><?php echo lang('s') ?> <?php echo $start + 1 ?> <?php echo lang('po') ?> <?php echo $finish_out ?> ( <?php echo lang('iz') ?> <?php echo $count_lines; ?> )</div>
 
                                         <!-- Переключаем страницу "ВПЕРЕД" -->
                                         <form>
-                                            <?php if (count($lines) > $lines_on_page) { ?>
-                                            <input hidden name="start" value="<?php echo $start ?>">
-                                            <input hidden name="finish" value="<?php echo $finish ?>">
-                                            <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
-                                            <div class="right"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/stock/categories/categories.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
-                                            <?php } ?>
+    <?php if (count($lines) > $lines_on_page) { ?>
+                                                <input hidden name="start" value="<?php echo $start ?>">
+                                                <input hidden name="finish" value="<?php echo $finish ?>">
+                                                <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
+                                                <div class="right"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/stock/categories/categories.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
+    <?php } ?>
                                         </form>
 
                                         <!-- Переключаем страницу "НАЗАД" -->
                                         <form>
-                                            <?php if (count($lines) > $lines_on_page) { ?>
-                                            <input hidden name="start2" value="<?php echo $start ?>">
-                                            <input hidden name="finish2" value="<?php echo $finish ?>">
-                                            <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
-                                            <div class="left"><button type="submit" class="btn btn-primary btn-xs"  action="/controller/admin/pages/stock/categories/categories.php" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
-                                            <?php } ?>
+    <?php if (count($lines) > $lines_on_page) { ?>
+                                                <input hidden name="start2" value="<?php echo $start ?>">
+                                                <input hidden name="finish2" value="<?php echo $finish ?>">
+                                                <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
+                                                <div class="left"><button type="submit" class="btn btn-primary btn-xs"  action="/controller/admin/pages/stock/categories/categories.php" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
+    <?php } ?>
                                         </form>
 
                                     </th>
@@ -68,7 +79,7 @@
                             <tbody id="sort-list">
 
                                 <?php $parent_up = $lines[0][3]; ?>
-                                <?php if ($parent_up > 0) { ?>
+    <?php if ($parent_up > 0) { ?>
 
                                     <tr class="sortno">
                                         <td  class="sortleft-m" align="left"><div></div></td>
@@ -85,7 +96,8 @@
                                     </tr>
 
                                     <?php
-                                } $transfer = 0;
+                                }
+                                $transfer = 0;
                                 for ($start; $start < $finish; $start++) {
                                     $transfer++;
 
@@ -94,22 +106,22 @@
                                     <tr class="sort-list" unitid="<?php echo $lines[$start][0] ?>">
 
                                         <!-- Вырезанные категории "АКТИВНЫЕ" -->
-                                        <?php if (isset($_SESSION['buffer']) == true && in_array($lines[$start][0], $_SESSION['buffer']) == true && $lines[$start][8] == 1) { ?>
+        <?php if (isset($_SESSION['buffer']) == true && in_array($lines[$start][0], $_SESSION['buffer']) == true && $lines[$start][8] == 1) { ?>
                                             <td class="sortyes sortleft-m" align="left"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
                                             <td class="sortleft" align="left"><div><a href="#" class="btn btn-primary btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-folder-open"> </span></a></div></td>
 
                                             <!-- Вырезанные категории "НЕ АКТИВНЫЕ" -->
-                                        <?php } elseif (isset($_SESSION['buffer']) == true && in_array($lines[$start][0], $_SESSION['buffer']) == true && $lines[$start][8] == 0) { ?>
+        <?php } elseif (isset($_SESSION['buffer']) == true && in_array($lines[$start][0], $_SESSION['buffer']) == true && $lines[$start][8] == 0) { ?>
                                             <td class="sortyes sortleft-m" align="left"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
                                             <td class="sortleft" align="left"><div><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-folder-open"> </span></a></div></td>
 
                                             <!-- Категория для трансфера -->
-                                        <?php } elseif ($transfer == $lines_on_page + 1) { ?>
+        <?php } elseif ($transfer == $lines_on_page + 1) { ?>
                                             <td class="sortyes sortleft-m" align="left"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
                                             <td class="sortleft" align="left"><div><a href="#" class="btn btn-primary btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-transfer"> </span></a></div></td>
 
                                             <!-- Если категория НЕ АКТИВНА -->
-                                        <?php } elseif ($lines[$start][8] == 0) { ?>
+        <?php } elseif ($lines[$start][8] == 0) { ?>
                                             <td class="sortyes sortleft-m" align="left"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
                                             <td class="sortleft" align="left">
 
@@ -145,8 +157,12 @@
 
                                         <!-- ВЫБРАННЫЕ СТРОКИ -->
                                         <td align="left" class="option" id="<?php echo $lines[$start][0] ?>"><span class="inactive" style="display: none;"></span>
-                                            <div class="context-one" id="<?php echo $lines[$start][0] ?>"><?php echo $lines[$start][1] ?>
-                                            </div>
+                                            <?php if ($transfer == $lines_on_page + 1) { ?>
+                                                <div class="context-one" id="<?php echo $lines[$start][0] ?>"><?php echo lang('categories_transfer') ?></div>
+                                            <?php } else { ?>
+                                                <div class="context-one" id="<?php echo $lines[$start][0] ?>"><?php echo $lines[$start][1] ?></div>
+        <?php } ?>
+
 
                                         </td>	 
                                     </tr>
@@ -214,7 +230,7 @@
                             </tbody>
                         </table>
                     </div>
-                <?php } ?>
+<?php } ?>
             </div>
         </div>
     </div>
