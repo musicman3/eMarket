@@ -28,7 +28,6 @@
 
             <link href="/ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
             <link href="/ext/bootstrap/css/normalize.css" rel="stylesheet" media="screen" />
-            <link href="/ext/fontawesome/css/all.min.css" rel="stylesheet" media="screen" />
             <link rel="stylesheet" type="text/css" href="/view/<?php echo $SET->template() ?>/admin/style.css" media="screen" />
             <link rel="stylesheet" type="text/css" href="/ext/contextmenu/css/contextmenu.css" media="screen" />
             <link rel="stylesheet" type="text/css" href="/ext/jquery/ui/jquery-ui.min.css" media="screen" />
@@ -69,7 +68,6 @@
 
             <link href="/ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
             <link href="/ext/bootstrap/css/normalize.css" rel="stylesheet" media="screen" />
-            <link href="/ext/fontawesome/css/all.min.css" rel="stylesheet" media="screen" />
             <link rel="stylesheet" type="text/css" href="/view/<?php echo $SET->template() ?>/catalog/style.css" media="screen" />
         </head>
     <body>
@@ -83,7 +81,6 @@
 
         <link href="/ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
         <link href="/ext/bootstrap/css/normalize.css" rel="stylesheet" media="screen" />
-        <link href="/ext/fontawesome/css/all.min.css" rel="stylesheet" media="screen" />
     </head>
     <body>
         <?php
