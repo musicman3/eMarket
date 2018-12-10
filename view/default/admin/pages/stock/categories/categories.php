@@ -158,7 +158,7 @@
                                         <!-- ВЫБРАННЫЕ СТРОКИ -->
                                         <td align="left" class="option" id="<?php echo $lines[$start][0] ?>"><span class="inactive" style="display: none;"></span>
                                             <?php if ($transfer == $lines_on_page + 1) { ?>
-                                                <div class="context-one" id="<?php echo $lines[$start][0] ?>"><?php echo lang('categories_transfer') ?></div>
+                                                <div class="context-one transfer" id="<?php echo $lines[$start][0] ?>"><?php echo lang('categories_transfer') ?></div>
                                             <?php } else { ?>
                                                 <div class="context-one" id="<?php echo $lines[$start][0] ?>"><?php echo $lines[$start][1] ?></div>
                                             <?php } ?>
