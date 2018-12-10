@@ -55,22 +55,22 @@
 
                                         <!-- Переключаем страницу "ВПЕРЕД" -->
                                         <form>
-    <?php if (count($lines) > $lines_on_page) { ?>
+                                            <?php if (count($lines) > $lines_on_page) { ?>
                                                 <input hidden name="start" value="<?php echo $start ?>">
                                                 <input hidden name="finish" value="<?php echo $finish ?>">
                                                 <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
                                                 <div class="right"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/stock/categories/categories.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
-    <?php } ?>
+                                            <?php } ?>
                                         </form>
 
                                         <!-- Переключаем страницу "НАЗАД" -->
                                         <form>
-    <?php if (count($lines) > $lines_on_page) { ?>
+                                            <?php if (count($lines) > $lines_on_page) { ?>
                                                 <input hidden name="start2" value="<?php echo $start ?>">
                                                 <input hidden name="finish2" value="<?php echo $finish ?>">
                                                 <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
                                                 <div class="left"><button type="submit" class="btn btn-primary btn-xs"  action="/controller/admin/pages/stock/categories/categories.php" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
-    <?php } ?>
+                                            <?php } ?>
                                         </form>
 
                                     </th>
@@ -79,7 +79,7 @@
                             <tbody id="sort-list">
 
                                 <?php $parent_up = $lines[0][3]; ?>
-    <?php if ($parent_up > 0) { ?>
+                                <?php if ($parent_up > 0) { ?>
 
                                     <tr class="sortno">
                                         <td  class="sortleft-m" align="left"><div></div></td>
@@ -106,22 +106,22 @@
                                     <tr class="sort-list" unitid="<?php echo $lines[$start][0] ?>">
 
                                         <!-- Вырезанные категории "АКТИВНЫЕ" -->
-        <?php if (isset($_SESSION['buffer']) == true && in_array($lines[$start][0], $_SESSION['buffer']) == true && $lines[$start][8] == 1) { ?>
+                                        <?php if (isset($_SESSION['buffer']) == true && in_array($lines[$start][0], $_SESSION['buffer']) == true && $lines[$start][8] == 1) { ?>
                                             <td class="sortyes sortleft-m" align="left"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
                                             <td class="sortleft" align="left"><div><a href="#" class="btn btn-primary btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-folder-open"> </span></a></div></td>
 
                                             <!-- Вырезанные категории "НЕ АКТИВНЫЕ" -->
-        <?php } elseif (isset($_SESSION['buffer']) == true && in_array($lines[$start][0], $_SESSION['buffer']) == true && $lines[$start][8] == 0) { ?>
+                                        <?php } elseif (isset($_SESSION['buffer']) == true && in_array($lines[$start][0], $_SESSION['buffer']) == true && $lines[$start][8] == 0) { ?>
                                             <td class="sortyes sortleft-m" align="left"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
                                             <td class="sortleft" align="left"><div><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-folder-open"> </span></a></div></td>
 
                                             <!-- Категория для трансфера -->
-        <?php } elseif ($transfer == $lines_on_page + 1) { ?>
+                                        <?php } elseif ($transfer == $lines_on_page + 1) { ?>
                                             <td class="sortyes sortleft-m" align="left"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
                                             <td class="sortleft" align="left"><div><a href="#" class="btn btn-primary btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-transfer"> </span></a></div></td>
 
                                             <!-- Если категория НЕ АКТИВНА -->
-        <?php } elseif ($lines[$start][8] == 0) { ?>
+                                        <?php } elseif ($lines[$start][8] == 0) { ?>
                                             <td class="sortyes sortleft-m" align="left"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
                                             <td class="sortleft" align="left">
 
@@ -161,7 +161,7 @@
                                                 <div class="context-one" id="<?php echo $lines[$start][0] ?>"><?php echo lang('categories_transfer') ?></div>
                                             <?php } else { ?>
                                                 <div class="context-one" id="<?php echo $lines[$start][0] ?>"><?php echo $lines[$start][1] ?></div>
-        <?php } ?>
+                                            <?php } ?>
 
 
                                         </td>	 
@@ -230,7 +230,7 @@
                             </tbody>
                         </table>
                     </div>
-<?php } ?>
+                <?php } ?>
             </div>
         </div>
     </div>
