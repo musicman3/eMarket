@@ -34,8 +34,8 @@
 	    <li class="dropdown">
 		<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fas fa-user"></i><span class="hidden-sm"> My Account</span> <span class="caret"></span></a>
 		    <ul class="dropdown-menu">
-			<li><a href="#"><i class="fas fa-sign-in-alt"></i> Log In</a></li>
-			<li><a href="#"><i class="fas fa-pencil-alt"></i> Register</a></li>
+			<li><a href="#">Log In</a></li>
+			<li><a href="#">Register</a></li>
 			<li class="divider"></li>
 			<li><a href="#">My Account</a></li>
 			<li><a href="#">My Orders</a></li>
