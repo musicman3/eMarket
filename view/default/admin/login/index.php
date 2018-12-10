@@ -9,7 +9,7 @@
 <div class="lbox-horz"></div>
 <div id="login" class="lbox-vert">
     <?php if ($login_error == TRUE) { ?>
-        <div id="alert" class="alert alert-danger"><span class="glyphicon glyphicon-exclamation-sign"></span> <?php echo $login_error ?><button type="button" class="close" data-dismiss="alert">×</button>
+        <div id="alert" class="alert alert-danger"><span class="fas fa-exclamation-circle"></span> <?php echo $login_error ?><button type="button" class="close" data-dismiss="alert">×</button>
         </div>
     <?php } ?>
 </div>
