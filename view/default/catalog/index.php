@@ -19,20 +19,20 @@
 
 	<div class="collapse navbar-collapse" id="bs-navbar-collapse-core-nav">
 	    <ul class="nav navbar-nav">
-		<li><a class="store-brand" href="#"><i class="fas fa-home"></i><span class="hidden-sm"> Home</span></a></li>
-		<li><a href="#"><i class="fas fa-certificate"></i><span class="hidden-sm">  New Products</span></a></li>
-		<li><a href="#"><i class="fab fa-gripfire"></i><span class="hidden-sm"> Special Offers</span></a></li>
-		<li><a href="#"><i class="fas fa-comment-alt"></i><span class="hidden-sm"> Reviews</span></a></li>
+		<li><a href="#"><i class="glyphicon glyphicon-home"></i><span class="hidden-sm"> Home</span></a></li>
+		<li><a href="#"><i class="glyphicon glyphicon-certificate"></i><span class="hidden-sm">  New Products</span></a></li>
+		<li><a href="#"><i class="glyphicon glyphicon-fire"></i><span class="hidden-sm"> Special Offers</span></a></li>
+		<li><a href="#"><i class="glyphicon glyphicon-comment"></i><span class="hidden-sm"> Reviews</span></a></li>
 	    </ul>
 	    <ul class="nav navbar-nav navbar-right">
-		<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fas fa-credit-card"></i><span class="hidden-sm"> Currencies</span> <span class="caret"></span></a>
+		<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-credit-card"></i><span class="hidden-sm"> Currencies</span> <span class="caret"></span></a>
 		    <ul class="dropdown-menu">
 			<li><a href="#">U.S. Dollar</a></li>
 			<li><a href="#">Euro</a></li>
 		    </ul>
 		</li>
 	    <li class="dropdown">
-		<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fas fa-user"></i><span class="hidden-sm"> My Account</span> <span class="caret"></span></a>
+		<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-user"></i><span class="hidden-sm"> My Account</span> <span class="caret"></span></a>
 		    <ul class="dropdown-menu">
 			<li><a href="#">Log In</a></li>
 			<li><a href="#">Register</a></li>
@@ -43,7 +43,7 @@
 			<li><a href="#">My Password</a></li>
 		    </ul>
 	    </li>
-		<li class="nav navbar-text"><i class="fas fa-shopping-cart"></i> 0 items</li>
+		<li class="nav navbar-text"><i class="glyphicon glyphicon-shopping-cart"></i> 0 items</li>
 	    </ul>
 	</div>
     </div>
@@ -65,7 +65,7 @@
 			<input type="search" name="keywords" required="" placeholder="Search" class="form-control">
 			    <span class="input-group-btn">
 				<button type="submit" class="btn btn-primary">
-				    <i class="fas fa-search"></i>
+				    <i class="glyphicon glyphicon-search"></i>
 				</button>
 			    </span>
 		     </div>
@@ -103,10 +103,10 @@
             <div class="item"><a href="#"><img class="img-responsive" src="/images/slideshow/hp.png" alt=""></a></div>
         </div>
         <a class="carousel-control left" href="#Carousel" data-slide="prev">
-            <span class="fas fa-chevron-left"></span>
+            <span class="glyphicon glyphicon-chevron-left"></span>
         </a>
         <a class="carousel-control right" href="#Carousel" data-slide="next">
-            <span class="fas fa-chevron-right"></span>
+            <span class="glyphicon glyphicon-chevron-right"></span>
         </a>
     </div>
     <!-- Слайдер -->
@@ -158,7 +158,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Shopping Cart</div>
                 <div class="panel-body">
-		    <p class="nav text-center"><i class="fas fa-shopping-cart"></i> 0 items</p>
+		    <p class="nav text-center"><i class="glyphicon glyphicon-shopping-cart"></i> 0 items</p>
                 </div>
             </div>
         </div>
