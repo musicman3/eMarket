@@ -116,11 +116,11 @@ require(ROOT . '/controller/admin/pages/settings/countries/modal/edit.php');
         // Если несколько языков
         if (name_edit.length >= 1) {
             for (x = 1; x < name_edit.length; x++) {
-                // Меняем данные
+                // Ищем класс и меняем данные
                 modal.find('.name_edit' + x).val(name_edit[1][modal_id]);
             }
         }
-        // Меняем данные
+        // Ищем классы и меняем данные
         modal.find('.name_edit').val(name_edit[0][modal_id]);
         modal.find('.alpha_2').val(alpha_2[modal_id]);
         modal.find('.alpha_3').val(alpha_3[modal_id]);
