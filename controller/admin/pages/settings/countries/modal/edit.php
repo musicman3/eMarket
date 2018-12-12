@@ -7,12 +7,12 @@
 // собираем данные для отображения в Редактировании
 for ($i = $start; $i < $finish; $i++) {
     if (isset($lines[$i][0]) == TRUE) {
-
+        
         $modal_id = $lines[$i][0]; // ID
-
-        if (count(lang('#lang_all')) >= 1) {
-            for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
-
+        $count_lang = count(lang('#lang_all'));
+        
+        if ($count_lang >= 1) {
+            for ($xl = 0; $xl < $count_lang; $xl++) {
                 $name_edit_temp[$xl][$modal_id] = $PDO->selectPrepare("SELECT name FROM " . TABLE_COUNTRIES . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$xl]]);
             }
         }
