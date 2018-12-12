@@ -58,6 +58,7 @@
                                     </form>
 
                                     <?php if (count($lines) > $lines_on_page) { ?> <div class="left"> <?php } else { ?> <div class="right"> <?php } ?>
+                                            <!--Вызов модального окна для добавления-->
                                             <a href="#add" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
                                 </th>
                             </tr>
@@ -92,11 +93,10 @@
                                                 <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button>
                                             </div>
                                         </form>
-
+                                        <!--Вызов модального окна для редактирования-->
                                         <div class="left">
                                             <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#edit" data-edit="<?php echo $lines[$start][0] ?>"><span class="glyphicon glyphicon-edit"></span></button>
                                         </div>
-
                                     </td>
                                 </tr>
                             <?php } ?>
