@@ -1,26 +1,27 @@
 <?php
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
-  |    GNU GENERAL PUBLIC LICENSE v.3.0    |    
+  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+
 require(ROOT . '/controller/admin/pages/settings/countries/modal/edit.php');
 
 ?>
 
 <!-- Модальное окно "Изменить" -->
-<div id="edit<?php echo $lines[$k][0] ?>" class="modal fade" tabindex="-1">
+<div id="edit" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header"><div class="tooltip-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Ставка указывается в формате: 10.00" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
-                <h4 class="modal-title"><?php echo lang('title_'. $SET->titleDir() .'_index') ?></h4>
+                <h4 class="modal-title"><?php echo lang('title_' . $SET->titleDir() . '_index') ?></h4>
             </div>
-            <form id="form<?php echo $lines[$k][0] ?>" name="form<?php echo $lines[$k][0] ?>" action="index.php" onsubmit="$('.modal').modal('hide')" method="get" enctype="multipart/form-data">
+            <form id="form_edit" name="form_edit" action="index.php" onsubmit="$('.modal').modal('hide')" method="get" enctype="multipart/form-data">
                 <div class="panel-body">
-                    <input type="hidden" name="edit" value="<?php echo $lines[$k][0] ?>" />
-                    
+                    <input class="js_edit" type="hidden" name="edit" value="" />
+
                     <!-- Языковые панели -->
                     <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#<?php echo lang('#lang_all')[0] . $lines[$k][0] ?>"><img src="/view/<?php echo $SET->template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[0] ?>.png" alt="<?php echo lang('#lang_all')[0] ?>" title="<?php echo lang('#lang_all')[0] ?>" width="16" height="10" /> <?php echo lang('language_name', lang('#lang_all')[0]) ?></a></li>
+                        <li class="active"><a data-toggle="tab" href="#<?php echo lang('#lang_all')[0] . $modal_id ?>"><img src="/view/<?php echo $SET->template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[0] ?>.png" alt="<?php echo lang('#lang_all')[0] ?>" title="<?php echo lang('#lang_all')[0] ?>" width="16" height="10" /> <?php echo lang('language_name', lang('#lang_all')[0]) ?></a></li>
 
                         <?php
                         if (count(lang('#lang_all')) > 1) {
@@ -28,7 +29,7 @@ require(ROOT . '/controller/admin/pages/settings/countries/modal/edit.php');
 
                                 ?>
 
-                                <li><a data-toggle="tab" href="#<?php echo lang('#lang_all')[$xl] . $lines[$k][0] ?>"><img src="/view/<?php echo $SET->template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[$xl] ?>.png" alt="<?php echo lang('#lang_all')[$xl] ?>" title="<?php echo lang('#lang_all')[$xl] ?>" width="16" height="10" /> <?php echo lang('language_name', lang('#lang_all')[$xl]) ?></a></li>
+                                <li><a data-toggle="tab" href="#<?php echo lang('#lang_all')[$xl] . $modal_id ?>"><img src="/view/<?php echo $SET->template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[$xl] ?>.png" alt="<?php echo lang('#lang_all')[$xl] ?>" title="<?php echo lang('#lang_all')[$xl] ?>" width="16" height="10" /> <?php echo lang('language_name', lang('#lang_all')[$xl]) ?></a></li>
 
                                 <?php
                             }
@@ -40,11 +41,11 @@ require(ROOT . '/controller/admin/pages/settings/countries/modal/edit.php');
 
                     <!-- Содержимое языковых панелей -->
                     <div class="tab-content">
-                        <div id="<?php echo lang('#lang_all')[0] . $lines[$k][0] ?>" class="tab-pane fade in active">
+                        <div id="<?php echo lang('#lang_all')[0] . $modal_id ?>" class="tab-pane fade in active">
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="input-sm form-control" type="text" name="name_edit_<?php echo $SET->titleDir() . '_' . lang('#lang_all')[0] ?>" id="name_edit<?php echo lang('#lang_all')[0] ?>" value="<?php echo $name_edit[0] ?>" />
+                                    <input class="js_value_edit input-sm form-control" type="text" name="name_edit_<?php echo $SET->titleDir() . '_' . lang('#lang_all')[0] ?>" id="name_edit<?php echo lang('#lang_all')[0] ?>" />
                                 </div>
                             </div>
                         </div>
@@ -55,16 +56,16 @@ require(ROOT . '/controller/admin/pages/settings/countries/modal/edit.php');
 
                                 ?>
 
-                                <div id="<?php echo lang('#lang_all')[$xl] . $lines[$k][0] ?>" class="tab-pane fade">
+                                <div id="<?php echo lang('#lang_all')[$xl] . $modal_id ?>" class="tab-pane fade">
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" type="text" name="name_edit_<?php echo $SET->titleDir() . '_' . lang('#lang_all')[$xl] ?>" id="name_edit<?php echo lang('#lang_all')[$xl] ?>" value="<?php echo $name_edit[$xl] ?>" />
+                                            <input class="js_value_edit<?php echo $xl ?> input-sm form-control" type="text" name="name_edit_<?php echo $SET->titleDir() . '_' . lang('#lang_all')[$xl] ?>" id="name_edit<?php echo lang('#lang_all')[$xl] ?>" />
                                         </div>
                                     </div>
                                 </div>
 
-                            <?php
+                                <?php
                             }
                         }
 
@@ -73,18 +74,18 @@ require(ROOT . '/controller/admin/pages/settings/countries/modal/edit.php');
                         <div class="form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                <input class="input-sm form-control" type="text" name="alpha_2_edit" id="alpha_2_edit" value="<?php echo $value_edit ?>" />
+                                <input class="alpha_2 input-sm form-control" type="text" name="alpha_2_edit" id="alpha_2_edit" />
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                <input class="input-sm form-control" type="text" name="alpha_3_edit" id="alpha_3_edit" value="<?php echo $value_edit_2 ?>" />
+                                <input class="alpha_3 input-sm form-control" type="text" name="alpha_3_edit" id="alpha_3_edit" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="address_format"><?php echo lang('address_format') ?></label>
-                            <textarea class="form-control" rows="5" name="address_format" id="address_format"><?php echo $value_edit_3 ?></textarea>
+                            <textarea class="address_format form-control" rows="5" name="address_format" id="address_format"></textarea>
                         </div> 
                     </div>
                 </div>
@@ -99,3 +100,31 @@ require(ROOT . '/controller/admin/pages/settings/countries/modal/edit.php');
     </div>
 </div>
 <!-- КОНЕЦ Модальное окно "Изменить" -->
+
+<!-- Загрузка данных в модальное окно -->
+<script type="text/javascript" language="javascript">
+    $('#edit').on('show.bs.modal', function (event) {
+        var modal = $(this);
+        var button = $(event.relatedTarget);
+        var modal_id = button.data('edit'); // Получаем ID из data-edit при клике на кнопку редактирования
+        // Получаем массивы данных
+        var name_edit = <?php echo $name_edit ?>;
+        var alpha_2 = <?php echo $alpha_2 ?>;
+        var alpha_3 = <?php echo $alpha_3 ?>;
+        var address_format = <?php echo $address_format ?>;
+
+        // Если несколько языков
+        if (name_edit.length >= 1) {
+            for (x = 1; x < name_edit.length; x++) {
+                // Меняем данные
+                modal.find('.js_value_edit' + x).val(name_edit[1][modal_id]);
+            }
+        }
+        // Меняем данные
+        modal.find('.js_value_edit').val(name_edit[0][modal_id]);
+        modal.find('.alpha_2').val(alpha_2[modal_id]);
+        modal.find('.alpha_3').val(alpha_3[modal_id]);
+        modal.find('.address_format').val(address_format[modal_id]);
+        modal.find('.js_edit').val(modal_id);
+    });
+</script>
