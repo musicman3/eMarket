@@ -6,8 +6,8 @@
 
 ?>
 
-<div class="container">
-    <div class="row">
+<div class="container-fluid">
+    <div class="row-fluid">
         <div class="panel panel-default">
 
             <div class="panel-heading">
@@ -15,7 +15,6 @@
                     <div class="pull-left"><?php echo lang('install_panel') ?></div>
                     
                 <form action="index.php" method="post" accept-charset="utf-8">
-                    <div class="row">
                         <div class="add-xs">
                             <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
@@ -27,7 +26,6 @@
                                 </select>
                             </div>
                         </div>
-                    </div>
                 </form>
                     
                     <div class="clearfix"></div>
