@@ -20,8 +20,8 @@
 
 <div id="ajax">
 
-    <div id="category" class="container">
-        <div class="row">
+    <div id="category" class="container-fluid">
+        <div class="row-fluid">
             <div class="panel panel-default">
 
                 <div class="panel-heading">

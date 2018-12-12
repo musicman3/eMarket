@@ -6,8 +6,8 @@
 
 ?>
 
-<div id="basic" class="container">
-    <div class="row">
+<div id="basic" class="container-fluid">
+    <div class="row-fluid">
         <div class="panel panel-default">
             
             <div class="panel-heading">

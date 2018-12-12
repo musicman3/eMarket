@@ -37,8 +37,8 @@
 <!-- КОНЕЦ Модальное окно "Добавить товар" -->
 
 <div id="ajax">
-    <div id="products" class="container">
-        <div class="row">
+    <div id="products" class="container-fluid">
+        <div class="row-fluid">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <form action="/controller/admin/pages/stock/products/products.php" method="post" class="form-inline">

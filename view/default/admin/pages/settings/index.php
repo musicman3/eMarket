@@ -5,8 +5,8 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
 <div id="ajax">
-    <div id="settings" class="container">
-        <div class="row">
+    <div id="settings" class="container-fluid">
+        <div class="row-fluid">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">

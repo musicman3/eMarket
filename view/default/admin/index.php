@@ -7,10 +7,10 @@
 ?>
 
 <?php if (isset($_SESSION['login']) && isset($_SESSION['pass'])) { // Выводим если авторизованы  ?>
-    <div class="container">
+    <div class="container-fluid">
         <!-- Example row of columns -->
 
-        <div class="row">
+        <div class="row-fluid">
             <div class="col-md-12">
                 <div class="welcome text-center">
                     <?php echo lang('index-title') ?>
