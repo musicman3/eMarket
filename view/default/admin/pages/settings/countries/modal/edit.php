@@ -5,7 +5,6 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 require(ROOT . '/controller/admin/pages/settings/countries/modal/edit.php');
-
 ?>
 
 <!-- Модальное окно "Изменить" -->
@@ -26,7 +25,6 @@ require(ROOT . '/controller/admin/pages/settings/countries/modal/edit.php');
                         <?php
                         if (count(lang('#lang_all')) > 1) {
                             for ($xl = 1; $xl < count(lang('#lang_all')); $xl++) {
-
                                 ?>
 
                                 <li><a data-toggle="tab" href="#<?php echo lang('#lang_all')[$xl] . $modal_id ?>"><img src="/view/<?php echo $SET->template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[$xl] ?>.png" alt="<?php echo lang('#lang_all')[$xl] ?>" title="<?php echo lang('#lang_all')[$xl] ?>" width="16" height="10" /> <?php echo lang('language_name', lang('#lang_all')[$xl]) ?></a></li>
@@ -34,7 +32,6 @@ require(ROOT . '/controller/admin/pages/settings/countries/modal/edit.php');
                                 <?php
                             }
                         }
-
                         ?>
 
                     </ul>
@@ -45,7 +42,7 @@ require(ROOT . '/controller/admin/pages/settings/countries/modal/edit.php');
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="name_edit input-sm form-control" type="text" name="name_edit_<?php echo $SET->titleDir() . '_' . lang('#lang_all')[0] ?>" id="name_edit<?php echo lang('#lang_all')[0] ?>" />
+                                    <input class="name_edit0 input-sm form-control" type="text" name="name_edit_<?php echo $SET->titleDir() . '_' . lang('#lang_all')[0] ?>" id="name_edit<?php echo lang('#lang_all')[0] ?>" />
                                 </div>
                             </div>
                         </div>
@@ -53,7 +50,6 @@ require(ROOT . '/controller/admin/pages/settings/countries/modal/edit.php');
                         <?php
                         if (count(lang('#lang_all')) > 1) {
                             for ($xl = 1; $xl < count(lang('#lang_all')); $xl++) {
-
                                 ?>
 
                                 <div id="<?php echo lang('#lang_all')[$xl] . $modal_id ?>" class="tab-pane fade">
@@ -68,7 +64,6 @@ require(ROOT . '/controller/admin/pages/settings/countries/modal/edit.php');
                                 <?php
                             }
                         }
-
                         ?>
 
                         <div class="form-group">
@@ -113,15 +108,11 @@ require(ROOT . '/controller/admin/pages/settings/countries/modal/edit.php');
         var alpha_3 = <?php echo $alpha_3 ?>;
         var address_format = <?php echo $address_format ?>;
 
-        // Если несколько языков
-        if (name_edit.length >= 1) {
-            for (x = 1; x < name_edit.length; x++) {
-                // Ищем класс и меняем данные
-                modal.find('.name_edit' + x).val(name_edit[1][modal_id]);
-            }
-        }
         // Ищем классы и меняем данные
-        modal.find('.name_edit').val(name_edit[0][modal_id]);
+        for (x = 0; x < name_edit.length; x++) {
+            modal.find('.name_edit' + x).val(name_edit[x][modal_id]);
+        }
+
         modal.find('.alpha_2').val(alpha_2[modal_id]);
         modal.find('.alpha_3').val(alpha_3[modal_id]);
         modal.find('.address_format').val(address_format[modal_id]);

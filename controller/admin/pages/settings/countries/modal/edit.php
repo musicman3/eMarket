@@ -1,4 +1,5 @@
 <?php
+
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-= 
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -7,14 +8,12 @@
 // собираем данные для отображения в Редактировании
 for ($i = $start; $i < $finish; $i++) {
     if (isset($lines[$i][0]) == TRUE) {
-        
+
         $modal_id = $lines[$i][0]; // ID
         $count_lang = count(lang('#lang_all'));
-        
-        if ($count_lang >= 1) {
-            for ($xl = 0; $xl < $count_lang; $xl++) {
-                $name_edit_temp[$xl][$modal_id] = $PDO->selectPrepare("SELECT name FROM " . TABLE_COUNTRIES . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$xl]]);
-            }
+
+        for ($xl = 0; $xl < $count_lang; $xl++) {
+            $name_edit_temp[$xl][$modal_id] = $PDO->selectPrepare("SELECT name FROM " . TABLE_COUNTRIES . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$xl]]);
         }
 
         $alpha_2_temp[$modal_id] = $PDO->selectPrepare("SELECT alpha_2 FROM " . TABLE_COUNTRIES . " WHERE id=?", [$modal_id]);
@@ -28,5 +27,4 @@ for ($i = $start; $i < $finish; $i++) {
         $address_format = json_encode($address_format_temp); // Формат адреса
     }
 }
-
 ?>
