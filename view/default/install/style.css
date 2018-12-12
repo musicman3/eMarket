@@ -15,3 +15,4 @@ body {background:#e4e4da;font-family: 'Open Sans',sans-serif;background-image:ur
 .panel-title {font-size: 18px;}
 .add-xs {font-size:14px;display: inline-block;float: right; padding-right:5px;padding-left:5px;}
 .btn-sm {padding: 3px 6px;font-size: 14px;}
+.container-fluid {padding-left:30px;padding-right:30px;}
