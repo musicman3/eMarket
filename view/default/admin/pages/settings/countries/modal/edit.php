@@ -45,7 +45,7 @@ require(ROOT . '/controller/admin/pages/settings/countries/modal/edit.php');
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="js_value_edit input-sm form-control" type="text" name="name_edit_<?php echo $SET->titleDir() . '_' . lang('#lang_all')[0] ?>" id="name_edit<?php echo lang('#lang_all')[0] ?>" />
+                                    <input class="name_edit input-sm form-control" type="text" name="name_edit_<?php echo $SET->titleDir() . '_' . lang('#lang_all')[0] ?>" id="name_edit<?php echo lang('#lang_all')[0] ?>" />
                                 </div>
                             </div>
                         </div>
@@ -60,7 +60,7 @@ require(ROOT . '/controller/admin/pages/settings/countries/modal/edit.php');
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="js_value_edit<?php echo $xl ?> input-sm form-control" type="text" name="name_edit_<?php echo $SET->titleDir() . '_' . lang('#lang_all')[$xl] ?>" id="name_edit<?php echo lang('#lang_all')[$xl] ?>" />
+                                            <input class="name_edit<?php echo $xl ?> input-sm form-control" type="text" name="name_edit_<?php echo $SET->titleDir() . '_' . lang('#lang_all')[$xl] ?>" id="name_edit<?php echo lang('#lang_all')[$xl] ?>" />
                                         </div>
                                     </div>
                                 </div>
@@ -117,11 +117,11 @@ require(ROOT . '/controller/admin/pages/settings/countries/modal/edit.php');
         if (name_edit.length >= 1) {
             for (x = 1; x < name_edit.length; x++) {
                 // Меняем данные
-                modal.find('.js_value_edit' + x).val(name_edit[1][modal_id]);
+                modal.find('.name_edit' + x).val(name_edit[1][modal_id]);
             }
         }
         // Меняем данные
-        modal.find('.js_value_edit').val(name_edit[0][modal_id]);
+        modal.find('.name_edit').val(name_edit[0][modal_id]);
         modal.find('.alpha_2').val(alpha_2[modal_id]);
         modal.find('.alpha_3').val(alpha_3[modal_id]);
         modal.find('.address_format').val(address_format[modal_id]);
