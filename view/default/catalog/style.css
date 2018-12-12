@@ -8,7 +8,6 @@ body{font-family: 'Lato',sans-serif;}
 :focus {outline: 0;}
 #header{padding-top:10px;}
 #bodyContent {padding-bottom: 10px;}
-/*.container {background-color:#ffffff;border:1px solid #dedede;border-radius:6px;margin-top:10px;}*/
 .breadcrumb{margin-bottom:10px;margin-top:10px;}
 #Carousel {border: 1px solid #ddd;border-radius: 6px;}
 .footer{color:#000000;width:100%;margin-top:10px;padding:10px;}
@@ -21,6 +20,7 @@ h1 {font-size: 16px;color: #03539a;font-weight: bold;padding-top: 5px;}
 .contentText .before {border: 1px solid #eaeaea;border-radius: 6px;background: linear-gradient(0deg, #f5f5f5, #FAFAFA);padding: 5px;margin-bottom: 5px;}
 #pageIcon {float: right;height:25px;}
 .navbar {min-height: 30px;margin-bottom: 10px;border-radius:0;}
+.navbar-left {margin-left:-15px}
 .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {color:#999999;}
 .navbar-inverse .navbar-nav > li > a {color:#999999;}
 .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus {color:#ffffff;}

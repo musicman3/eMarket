@@ -18,7 +18,7 @@
 	</div>
 
 	<div class="collapse navbar-collapse" id="bs-navbar-collapse-core-nav">
-	    <ul class="nav navbar-nav">
+	    <ul class="nav navbar-nav navbar-left">
 		<li><a href="#"><i class="glyphicon glyphicon-home"></i><span class="hidden-sm"> Home</span></a></li>
 		<li><a href="#"><i class="glyphicon glyphicon-certificate"></i><span class="hidden-sm">  New Products</span></a></li>
 		<li><a href="#"><i class="glyphicon glyphicon-fire"></i><span class="hidden-sm"> Special Offers</span></a></li>
