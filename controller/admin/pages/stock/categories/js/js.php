@@ -96,7 +96,7 @@ if (!isset($idsx_real_parent_id)) {
                     icon: function () {
                         return 'context-menu-icon glyphicon-plus';
                     },
-                    callback: function (itemKey, opt, rootMenu, originalEvent) {
+                    callback: function () {
                         $('#add').modal('show');
                     }
                 },
@@ -106,7 +106,7 @@ if (!isset($idsx_real_parent_id)) {
                     icon: function () {
                         return 'context-menu-icon glyphicon-edit';
                     },
-                    callback: function (itemKey, opt, rootMenu, originalEvent) {
+                    callback: function (opt) {
                         
                         //Собираем данные для модального окна
                         <?php if (isset ($name_edit)){ ?>
@@ -146,7 +146,7 @@ if (!isset($idsx_real_parent_id)) {
                             icon: function () {
                                 return 'context-menu-icon glyphicon-eye-open';
                             },
-                            callback: function (itemKey, opt, rootMenu, originalEvent) {
+                            callback: function (itemKey) {
 
                                 $(".option").each(function () { // выделенное мышкой
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
@@ -173,7 +173,7 @@ if (!isset($idsx_real_parent_id)) {
                             icon: function () {
                                 return 'context-menu-icon glyphicon-eye-close';
                             },
-                            callback: function (itemKey, opt, rootMenu, originalEvent) {
+                            callback: function (itemKey) {
 
                                 $(".option").each(function () { // выделенное мышкой
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
@@ -202,7 +202,7 @@ if (!isset($idsx_real_parent_id)) {
                             icon: function () {
                                 return 'context-menu-icon glyphicon-scissors';
                             },
-                            callback: function (itemKey, opt, rootMenu, originalEvent) {
+                            callback: function (itemKey) {
 
                                 $.get('/controller/admin/pages/stock/index.php', // отправка данных GET
                                         {idsx_cut_marker: 'cut'});
@@ -231,7 +231,7 @@ if (!isset($idsx_real_parent_id)) {
                             icon: function () {
                                 return 'context-menu-icon glyphicon-paste';
                             },
-                            callback: function (itemKey, opt, rootMenu, originalEvent) {
+                            callback: function (itemKey) {
 
                                 $.get('/controller/admin/pages/stock/index.php', // отправка данных GET
                                         {idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
@@ -256,7 +256,7 @@ if (!isset($idsx_real_parent_id)) {
                             icon: function () {
                                 return 'context-menu-icon glyphicon-trash';
                             },
-                            callback: function (itemKey, opt, rootMenu, originalEvent) {
+                            callback: function (itemKey) {
 
                                 $(".option").each(function () { // выделенное мышкой
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
