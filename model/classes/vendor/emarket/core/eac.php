@@ -166,7 +166,7 @@ class Eac {
         $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
 
-        if ($VALID->inGET('edit')) {
+        if ($VALID->inGET('edit') && $VALID->inGET('name_edit' . lang('#lang_all')[0])) {
 
 
             for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
