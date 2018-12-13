@@ -24,7 +24,6 @@ title_zones_index = Зоны
 
 ;кнопки меню
 menu_catalog = Каталог товаров
-menu_categories = Категории
 menu_error_log = Лог ошибок
 menu_exit = Выход
 menu_extra = Дополнительно
