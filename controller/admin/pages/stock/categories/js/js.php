@@ -153,6 +153,7 @@ if (!isset($idsx_real_parent_id)) {
                                         $.get('/controller/admin/pages/stock/index.php', // отправка данных GET
                                                 {idsx_statusOn_id: this.id,
                                                     modify: 'ok',
+                                                    parent_down: <?php echo $parent_id ?>,
                                                     idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
                                                     idsx_statusOn_key: itemKey},
                                                 AjaxSuccess);
@@ -179,6 +180,7 @@ if (!isset($idsx_real_parent_id)) {
                                         $.get('/controller/admin/pages/stock/index.php', // отправка данных GET
                                                 {idsx_statusOff_id: this.id,
                                                     modify: 'ok',
+                                                    parent_down: <?php echo $parent_id ?>,
                                                     idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
                                                     idsx_statusOff_key: itemKey},
                                                 AjaxSuccess);
