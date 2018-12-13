@@ -107,8 +107,10 @@ if (!isset($idsx_real_parent_id)) {
                         return 'context-menu-icon glyphicon-edit';
                     },
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
+                        
                         //Собираем данные для модального окна
                         <?php if (isset ($name_edit)){ ?>
+                                
                         $('#edit').on('show.bs.modal', function (event) {
                             var modal = $(this);
                             var button = $(event.relatedTarget);
@@ -123,6 +125,7 @@ if (!isset($idsx_real_parent_id)) {
 
                             modal.find('.js_edit').val(modal_id);
                         });
+                        
                         <?php } ?>
 
                         $('#edit').modal('show'); // Открываем модальное окно
