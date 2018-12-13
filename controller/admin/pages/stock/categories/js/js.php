@@ -7,7 +7,6 @@
 if (!isset($idsx_real_parent_id)) {
     $idsx_real_parent_id = '';
 }
-
 ?>
 <!-- /Сортировка мышкой -->
 <script type="text/javascript">
@@ -37,15 +36,15 @@ if (!isset($idsx_real_parent_id)) {
             ids[ids.length] = $(this).attr('unitid');
         });
 
-        $.get('/controller/admin/pages/stock/stock.php', // отправка данных GET
+        $.get('/controller/admin/pages/stock/index.php', // отправка данных GET
                 {token_ajax: token,
                     ids: ids.join()},
                 AjaxSuccess);
         function AjaxSuccess(data) {
 
             // Повторный вызов функции для нормального обновления страницы
-            $.get('/controller/admin/pages/stock/stock.php', // отправка данных GET
-                    {}, // Пустой запрос
+            $.get('/controller/admin/pages/stock/index.php', // отправка данных GET
+                    {parent_down: <?php echo $parent_id ?>}, // id родительской категории
                     AjaxSuccess);
             function AjaxSuccess(data) {
                 setTimeout(function () {
@@ -76,7 +75,7 @@ if (!isset($idsx_real_parent_id)) {
                     $.ajax({
                         method: 'GET',
                         dataType: 'text',
-                        url: '/controller/admin/pages/stock/stock.php',
+                        url: '/controller/admin/pages/stock/index.php',
                         data: ({
                             itemName: itemKey, //название ключа из меню (edit, delete, copy и т.п.)
                             ids2: opt.$trigger.attr("id")}), //id строки
@@ -92,13 +91,13 @@ if (!isset($idsx_real_parent_id)) {
             },
             items: {
 
-                "addCategory": {
+                "add": {
                     name: "Добавить категорию",
                     icon: function () {
                         return 'context-menu-icon glyphicon-plus';
                     },
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
-                        $('#addCategory').modal('show');
+                        $('#add').modal('show');
                     }
                 },
 
@@ -108,7 +107,25 @@ if (!isset($idsx_real_parent_id)) {
                         return 'context-menu-icon glyphicon-edit';
                     },
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
-                        $('#editCategory' + opt.$trigger.attr("id")).modal('show');
+                        //Собираем данные для модального окна
+                        <?php if (isset ($name_edit)){ ?>
+                        $('#edit').on('show.bs.modal', function (event) {
+                            var modal = $(this);
+                            var button = $(event.relatedTarget);
+                            var modal_id = opt.$trigger.attr("id"); // Получаем ID при клике на кнопку редактирования
+                            // Получаем массивы данных
+                            var name_edit = <?php echo $name_edit ?>;
+
+                            // Ищем классы и меняем данные
+                            for (x = 0; x < name_edit.length; x++) {
+                                modal.find('.name_edit' + x).val(name_edit[x][modal_id]);
+                            }
+
+                            modal.find('.js_edit').val(modal_id);
+                        });
+                        <?php } ?>
+
+                        $('#edit').modal('show'); // Открываем модальное окно
                     }
                 },
 
@@ -130,13 +147,13 @@ if (!isset($idsx_real_parent_id)) {
 
                                 $(".option").each(function () { // выделенное мышкой
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
-                                        $.get('/controller/admin/pages/stock/stock.php', // отправка данных GET
+                                        $.get('/controller/admin/pages/stock/index.php', // отправка данных GET
                                                 {idsx_statusOn_id: this.id,
                                                     modify: 'ok',
                                                     idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
                                                     idsx_statusOn_key: itemKey},
                                                 AjaxSuccess);
-                                        
+
                                     function AjaxSuccess(data) {
                                         setTimeout(function () {
                                             $('#ajax').html(data);
@@ -156,13 +173,13 @@ if (!isset($idsx_real_parent_id)) {
 
                                 $(".option").each(function () { // выделенное мышкой
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
-                                        $.get('/controller/admin/pages/stock/stock.php', // отправка данных GET
+                                        $.get('/controller/admin/pages/stock/index.php', // отправка данных GET
                                                 {idsx_statusOff_id: this.id,
                                                     modify: 'ok',
                                                     idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
                                                     idsx_statusOff_key: itemKey},
                                                 AjaxSuccess);
-                                        
+
                                     function AjaxSuccess(data) {
                                         setTimeout(function () {
                                             $('#ajax').html(data);
@@ -182,7 +199,7 @@ if (!isset($idsx_real_parent_id)) {
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
 
-                                $.get('/controller/admin/pages/stock/stock.php', // отправка данных GET
+                                $.get('/controller/admin/pages/stock/index.php', // отправка данных GET
                                         {idsx_cut_marker: 'cut'});
 
                                 $(".option").each(function () { // выделенное мышкой
@@ -192,7 +209,7 @@ if (!isset($idsx_real_parent_id)) {
                                                     idsx_cut_id: this.id,
                                                     idsx_cut_key: itemKey},
                                                 AjaxSuccess);
-                                        
+
                                     function AjaxSuccess(data) {
                                         setTimeout(function () {
                                             $('#ajax').html(data);
@@ -215,7 +232,7 @@ if (!isset($idsx_real_parent_id)) {
                                             modify: 'ok',
                                             idsx_paste_key: itemKey},
                                         AjaxSuccess);
-                                
+
                                 function AjaxSuccess(data) {
                                     setTimeout(function () {
                                         $('#ajax').html(data);
@@ -241,7 +258,7 @@ if (!isset($idsx_real_parent_id)) {
                                                     modify: 'ok',
                                                     idsx_delete_key: itemKey},
                                                 AjaxSuccess);
-                                                
+
                                     function AjaxSuccess(data) {
                                         setTimeout(function () {
                                             $('#ajax').html(data);

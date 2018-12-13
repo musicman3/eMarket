@@ -3,25 +3,22 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-// 
-require(ROOT . '/controller/admin/pages/stock/categories/modal/categories_edit.php');
 
 ?>
-
-<!-- Модальное окно "Редактировать категорию" -->
-<div id="<?php echo 'editCategory' . $lines[$k][0] ?>" class="modal fade" tabindex="-1">
+<!-- Модальное окно "Добавить категорию" -->
+<div id="add" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header"><div class="tooltip-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Заполните карточку категорий" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
                 <h4 class="modal-title"><?php echo lang('menu_categories') ?></h4>
             </div>
-            <form id="form_get<?php echo $lines[$k][0] ?>" action="javascript:void(null);" onsubmit="call<?php echo $lines[$k][0] ?>()" method="get" enctype="multipart/form-data">
+            <form id="form_get" name="form_get" action="javascript:void(null);" onsubmit="call()" method="get" enctype="multipart/form-data">
                 <div class="panel-body">
                     <input type="hidden" name="parent_id" value="<?php echo $parent_id ?>" />
-                    <input type="hidden" name="edit" value="<?php echo $lines[$k][0] ?>" />
+                    <input type="hidden" name="add" value="ok" />
                     <!-- Языковые панели -->
                     <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#<?php echo lang('#lang_all')[0] . $lines[$k][0] ?>"><img src="/view/<?php echo $SET->template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[0] ?>.png" alt="<?php echo lang('#lang_all')[0] ?>" title="<?php echo lang('#lang_all')[0] ?>" width="16" height="10" /> <?php echo lang('language_name', lang('#lang_all')[0]) ?></a></li>
+                        <li class="active"><a data-toggle="tab" href="#<?php echo lang('#lang_all')[0] ?>"><img src="/view/<?php echo $SET->template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[0] ?>.png" alt="<?php echo lang('#lang_all')[0] ?>" title="<?php echo lang('#lang_all')[0] ?>" width="16" height="10" /> <?php echo lang('language_name', lang('#lang_all')[0]) ?></a></li>
 
                         <?php
                         if (count(lang('#lang_all')) > 1) {
@@ -29,7 +26,7 @@ require(ROOT . '/controller/admin/pages/stock/categories/modal/categories_edit.p
 
                                 ?>
 
-                                <li><a data-toggle="tab" href="#<?php echo lang('#lang_all')[$xl] . $lines[$k][0] ?>"><img src="/view/<?php echo $SET->template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[$xl] ?>.png" alt="<?php echo lang('#lang_all')[$xl] ?>" title="<?php echo lang('#lang_all')[$xl] ?>" width="16" height="10" /> <?php echo lang('language_name', lang('#lang_all')[$xl]) ?></a></li>
+                                <li><a data-toggle="tab" href="#<?php echo lang('#lang_all')[$xl] ?>"><img src="/view/<?php echo $SET->template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[$xl] ?>.png" alt="<?php echo lang('#lang_all')[$xl] ?>" title="<?php echo lang('#lang_all')[$xl] ?>" width="16" height="10" /> <?php echo lang('language_name', lang('#lang_all')[$xl]) ?></a></li>
 
                                 <?php
                             }
@@ -39,11 +36,11 @@ require(ROOT . '/controller/admin/pages/stock/categories/modal/categories_edit.p
 
                     </ul>
                     <div class="tab-content">
-                        <div id="<?php echo lang('#lang_all')[0] . $lines[$k][0] ?>" class="tab-pane fade in active">
+                        <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade in active">
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="input-sm form-control" type="text" name="name_edit<?php echo lang('#lang_all')[0] ?>" id="name_edit<?php echo lang('#lang_all')[0] ?>" value="<?php echo $name_category_edit[0] ?>" />
+                                    <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="<?php echo lang('#lang_all')[0] ?>" />
                                 </div>
                             </div>
                         </div>
@@ -53,20 +50,20 @@ require(ROOT . '/controller/admin/pages/stock/categories/modal/categories_edit.p
 
                                 ?>
 
-                                <div id="<?php echo lang('#lang_all')[$xl] . $lines[$k][0] ?>" class="tab-pane fade">
+                                <div id="<?php echo lang('#lang_all')[$xl] ?>" class="tab-pane fade">
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" type="text" name="name_edit<?php echo lang('#lang_all')[$xl] ?>" id="name_edit<?php echo lang('#lang_all')[$xl] ?>" value="<?php echo $name_category_edit[$xl] ?>" />
+                                            <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="<?php echo lang('#lang_all')[$xl] ?>" />
                                         </div>
                                     </div>
                                 </div>
 
-        <?php
-    }
-}
+                                <?php
+                            }
+                        }
 
-?>
+                        ?>
                     </div>
                     <div class="form-group">
                         <label for="image"><?php echo lang('images') ?>:</label><br>
@@ -74,7 +71,7 @@ require(ROOT . '/controller/admin/pages/stock/categories/modal/categories_edit.p
                     </div>
                     <div class="form-group">
                         <label for="view_category"><?php echo lang('display') ?> </label>
-                        <input class="check-box" type="checkbox" name="view_cat" <?php echo $status_category_edit ?>>
+                        <input class="check-box" type="checkbox" name="view_cat" checked>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -87,14 +84,14 @@ require(ROOT . '/controller/admin/pages/stock/categories/modal/categories_edit.p
 </div>
 
 <script type="text/javascript" language="javascript">
-    function call<?php echo $lines[$k][0] ?>() {
-        var msg = $('#form_get<?php echo $lines[$k][0] ?>').serialize();
+    function call() {
+        var msg = $('#form_get').serialize();
         $.ajax({
             type: 'GET',
-            url: '/controller/admin/pages/stock/stock.php',
+            url: '/controller/admin/pages/stock/index.php',
             data: msg,
             success: function (data) {
-                $('#editCategory<?php echo $lines[$k][0] ?>').modal('hide');
+                $('#add').modal('hide');
                 setTimeout(function () {
                     $('#ajax').html(data);
                 }, 100);
@@ -103,4 +100,4 @@ require(ROOT . '/controller/admin/pages/stock/categories/modal/categories_edit.p
         });
     }
 </script>
-<!-- КОНЕЦ Модальное окно "Редактировать категорию" -->
+<!-- КОНЕЦ Модальное окно "Добавить категорию" -->

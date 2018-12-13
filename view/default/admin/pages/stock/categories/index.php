@@ -3,20 +3,13 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-
 ?>
 <!-- Вставляем модальное окно "Добавить категорию" -->
-<?php require_once('modal/categories_add.php') ?>
+<?php require_once('modal/add.php') ?>
 
-<!-- Дублируем модальные окна Редактирования категорий -->
-<?php $k = $start; // дублируем переменную ?>
-
-<?php for ($k; $k < $finish; $k++) { // запускаем цикл формирования модальных окон Редактирования категорий ?>
-
-    <!-- Вставляем модальное окно "Редактировать категорию" -->
-    <?php require('modal/categories_edit.php') ?>
-
-<?php } ?>
+<!-- Модальное окно "Редактировать" -->
+<?php require_once(ROOT . '/view/' . $SET->template() . '/admin/pages/stock/categories/modal/edit.php') ?>
+<!-- КОНЕЦ Модальное окно "Редактировать" -->
 
 <div id="ajax">
 
@@ -47,7 +40,6 @@
                                         } else {
                                             $finish_out = $finish - 1;
                                         }
-
                                         ?>
 
 
@@ -59,7 +51,7 @@
                                                 <input hidden name="start" value="<?php echo $start ?>">
                                                 <input hidden name="finish" value="<?php echo $finish ?>">
                                                 <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
-                                                <div class="right"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/stock/categories/categories.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
+                                                <div class="right"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/stock/categories/index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
                                             <?php } ?>
                                         </form>
 
@@ -69,7 +61,7 @@
                                                 <input hidden name="start2" value="<?php echo $start ?>">
                                                 <input hidden name="finish2" value="<?php echo $finish ?>">
                                                 <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
-                                                <div class="left"><button type="submit" class="btn btn-primary btn-xs"  action="/controller/admin/pages/stock/categories/categories.php" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
+                                                <div class="left"><button type="submit" class="btn btn-primary btn-xs"  action="/controller/admin/pages/stock/categories/index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
                                             <?php } ?>
                                         </form>
 
@@ -88,7 +80,7 @@
                                             <!-- Категории "ВВЕРХ" -->
                                             <form>
                                                 <div>
-                                                    <button name="parent_up" value="<?php echo $parent_up ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/stock/categories/categories.php" formmethod="get"><span class="glyphicon glyphicon-option-horizontal"></span></button>
+                                                    <button name="parent_up" value="<?php echo $parent_up ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/stock/categories/index.php" formmethod="get"><span class="glyphicon glyphicon-option-horizontal"></span></button>
                                                 </div>
                                             </form>
 
@@ -100,7 +92,6 @@
                                 $transfer = 0;
                                 for ($start; $start < $finish; $start++) {
                                     $transfer++;
-
                                     ?>
 
                                     <tr class="sort-list" unitid="<?php echo $lines[$start][0] ?>">
@@ -128,7 +119,7 @@
                                                 <!-- Неактивная категория "ВНИЗ" -->
                                                 <form>
                                                     <div>
-                                                        <button name="parent_down" value="<?php echo $lines[$start][0] ?>" class="btn btn-default btn-xs" title="<?php echo $lines[$start][1] ?>" action="/controller/admin/pages/stock/categories/categories.php" formmethod="get"><span class="glyphicon glyphicon-folder-open"> </span></button>
+                                                        <button name="parent_down" value="<?php echo $lines[$start][0] ?>" class="btn btn-default btn-xs" title="<?php echo $lines[$start][1] ?>" action="/controller/admin/pages/stock/categories/index.php" formmethod="get"><span class="glyphicon glyphicon-folder-open"> </span></button>
                                                     </div>
                                                 </form>
 
@@ -136,7 +127,6 @@
 
                                             <?php
                                         } else {
-
                                             ?>
                                             <!-- Если категория АКТИВНА -->
                                             <td class="sortyes sortleft-m" align="left"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
@@ -145,14 +135,13 @@
                                                 <!-- Активная категория "ВНИЗ" -->
                                                 <form>
                                                     <div>
-                                                        <button name="parent_down" value="<?php echo $lines[$start][0] ?>" class="btn btn-primary btn-xs" title="<?php echo $lines[$start][1] ?>" action="/controller/admin/pages/stock/categories/categories.php" formmethod="get"><span class="glyphicon glyphicon-folder-open"> </span></button>
+                                                        <button name="parent_down" value="<?php echo $lines[$start][0] ?>" class="btn btn-primary btn-xs" title="<?php echo $lines[$start][1] ?>" action="/controller/admin/pages/stock/categories/index.php" formmethod="get"><span class="glyphicon glyphicon-folder-open"> </span></button>
                                                     </div>
                                                 </form>
 
                                             </td>
                                             <?php
                                         }
-
                                         ?>
 
                                         <!-- ВЫБРАННЫЕ СТРОКИ -->
@@ -169,7 +158,6 @@
 
                                     <?php
                                 }
-
                                 ?>
 
                             </tbody>
@@ -178,7 +166,6 @@
 
                     <?php
                 } elseif ($lines == FALSE && $parent_id > 0) {
-
                     ?>
 
                     <div class="panel-body">
@@ -198,7 +185,7 @@
                                         <!-- Категорий нет "ВВЕРХ" -->
                                         <form>
                                             <div>
-                                                <button name="parent_up" value="<?php echo $parent_id ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/stock/categories/categories.php" formmethod="get"><span class="glyphicon glyphicon-option-horizontal"></span></button>
+                                                <button name="parent_up" value="<?php echo $parent_id ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/stock/categories/index.php" formmethod="get"><span class="glyphicon glyphicon-option-horizontal"></span></button>
                                             </div>
                                         </form>
 
@@ -210,7 +197,6 @@
                     </div>
                     <?php
                 } else {
-
                     ?>
                     <div class="panel-body">
                         <table class="table table-hover">
