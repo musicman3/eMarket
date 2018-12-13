@@ -20,4 +20,7 @@ for ($i = $start; $i < $finish; $i++) {
         $name_edit = json_encode($name_edit_temp); // Имя
     }
 }
+if (!isset($modal_id)){
+    $modal_id = 'false';
+}
 ?>
