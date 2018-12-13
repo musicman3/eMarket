@@ -134,7 +134,7 @@ class Eac {
         $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
 
-        if ($VALID->inGET('add') == 'ok') {
+        if ($VALID->inGET('add') == 'ok' && $VALID->inGET(lang('#lang_all')[0])) {
 
             if ($VALID->inGET('view_cat')) {
                 $view_cat = 1;
