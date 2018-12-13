@@ -207,9 +207,10 @@ if (!isset($idsx_real_parent_id)) {
 
                                 $(".option").each(function () { // выделенное мышкой
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
-                                        $.get('<?php echo $VALID->inSERVER('REQUEST_URI') ?>', // отправка данных GET
+                                        $.get('/controller/admin/pages/stock/index.php', // отправка данных GET
                                                 {idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
                                                     idsx_cut_id: this.id,
+                                                    parent_down: <?php echo $parent_id ?>,
                                                     idsx_cut_key: itemKey},
                                                 AjaxSuccess);
 
@@ -230,9 +231,10 @@ if (!isset($idsx_real_parent_id)) {
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
 
-                                $.get('<?php echo $VALID->inSERVER('REQUEST_URI') ?>', // отправка данных GET
+                                $.get('/controller/admin/pages/stock/index.php', // отправка данных GET
                                         {idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
                                             modify: 'ok',
+                                            parent_down: <?php echo $parent_id ?>,
                                             idsx_paste_key: itemKey},
                                         AjaxSuccess);
 
@@ -256,9 +258,10 @@ if (!isset($idsx_real_parent_id)) {
 
                                 $(".option").each(function () { // выделенное мышкой
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
-                                        $.get('<?php echo $VALID->inSERVER('REQUEST_URI') ?>', // отправка данных GET
+                                        $.get('/controller/admin/pages/stock/index.php', // отправка данных GET
                                                 {idsx_delete_id: this.id,
                                                     modify: 'ok',
+                                                    parent_down: <?php echo $parent_id ?>,
                                                     idsx_delete_key: itemKey},
                                                 AjaxSuccess);
 
