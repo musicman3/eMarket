@@ -6,7 +6,7 @@
 
 ?>
 <!--Выводим уведомление об успешном действии-->
-<div style="text-align:center;padding-top:0px;padding-bottom:0px;margin-bottom:0;float:right;" id="alert" class="alert alert-<?php echo $a ?> fade in" role="alert">
+<div style="text-align:center;padding:0;margin:0;float:right;line-height:1;" id="alert" class="alert text-<?php echo $a ?> fade in"  role="alert">
     <span class="glyphicon glyphicon-alert"></span> <?php echo $b ?>
 </div>
 
