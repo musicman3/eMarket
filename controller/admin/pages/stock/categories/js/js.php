@@ -36,7 +36,7 @@ if (!isset($idsx_real_parent_id)) {
         $("#sort-list tr").each(function () {
             ids[ids.length] = $(this).attr('unitid');
         });
-        // Установка на синхронный запрос через jQuery.ajax
+        // Установка синхронного запроса для jQuery.ajax
         jQuery.ajaxSetup({async: false});
         jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных GET
                 {token_ajax: token,
@@ -144,7 +144,7 @@ if (!isset($idsx_real_parent_id)) {
                                 return 'context-menu-icon glyphicon-eye-open';
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
-                                // Установка на синхронный запрос через jQuery.ajax
+                                // Установка синхронного запроса для jQuery.ajax
                                 jQuery.ajaxSetup({async: false});
                                 // Отправка данных по каждой выделенной строке
                                 $(".option").each(function () { // выделенное мышкой
@@ -155,7 +155,7 @@ if (!isset($idsx_real_parent_id)) {
                                                     idsx_statusOn_key: itemKey});
 
                                 });
-                                // Отправка пустого запроса для обновления страницы
+                                // Отправка запроса для обновления страницы
                                 jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных GET
                                         {parent_down: <?php echo $parent_id ?>,
                                         modify: 'ok'},
@@ -176,7 +176,7 @@ if (!isset($idsx_real_parent_id)) {
                                 return 'context-menu-icon glyphicon-eye-close';
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
-                                // Установка на синхронный запрос через jQuery.ajax
+                                // Установка синхронного запроса для jQuery.ajax
                                 jQuery.ajaxSetup({async: false});
                                 // Отправка данных по каждой выделенной строке
                                 $(".option").each(function () { // выделенное мышкой
@@ -186,7 +186,7 @@ if (!isset($idsx_real_parent_id)) {
                                                     idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
                                                     idsx_statusOff_key: itemKey});
                                 });
-                                // Отправка пустого запроса для обновления страницы
+                                // Отправка запроса для обновления страницы
                                 jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных GET
                                         {parent_down: <?php echo $parent_id ?>,
                                         modify: 'ok'},
@@ -209,7 +209,7 @@ if (!isset($idsx_real_parent_id)) {
                                 return 'context-menu-icon glyphicon-scissors';
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
-                                // Установка на синхронный запрос через jQuery.ajax
+                                // Установка синхронного запроса для jQuery.ajax
                                 jQuery.ajaxSetup({async: false});
                                 // Отправка маркера на очитку буффера
                                 jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных GET
@@ -224,7 +224,7 @@ if (!isset($idsx_real_parent_id)) {
                                                     parent_down: <?php echo $parent_id ?>,
                                                     idsx_cut_key: itemKey});
                                 });
-                                // Отправка пустого запроса для обновления страницы
+                                // Отправка запроса для обновления страницы
                                 jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных GET
                                         {parent_down: <?php echo $parent_id ?>},
                                         AjaxSuccess);
@@ -244,14 +244,14 @@ if (!isset($idsx_real_parent_id)) {
                                 return 'context-menu-icon glyphicon-paste';
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
-                                // Установка на синхронный запрос через jQuery.ajax
+                                // Установка синхронного запроса для jQuery.ajax
                                 jQuery.ajaxSetup({async: false});
                                 jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных GET
                                         {idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
                                             parent_down: <?php echo $parent_id ?>,
                                             idsx_paste_key: itemKey});
 
-                                // Отправка пустого запроса для обновления страницы
+                                // Отправка запроса для обновления страницы
                                 jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных GET
                                         {parent_down: <?php echo $parent_id ?>,
                                         modify: 'ok'},
@@ -274,7 +274,7 @@ if (!isset($idsx_real_parent_id)) {
                                 return 'context-menu-icon glyphicon-trash';
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
-                                // Установка на синхронный запрос через jQuery.ajax
+                                // Установка синхронного запроса для jQuery.ajax
                                 jQuery.ajaxSetup({async: false});
                                 // Отправка данных по каждой выделенной строке
                                 $(".option").each(function () { // выделенное мышкой
@@ -284,7 +284,7 @@ if (!isset($idsx_real_parent_id)) {
                                                     parent_down: <?php echo $parent_id ?>,
                                                     idsx_delete_key: itemKey});
                                 });
-                                // Отправка пустого запроса для обновления страницы
+                                // Отправка запроса для обновления страницы
                                 jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных GET
                                         {parent_down: <?php echo $parent_id ?>,
                                         modify: 'ok'},
