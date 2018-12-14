@@ -74,7 +74,7 @@
                                 <?php if ($parent_up > 0) { ?>
 
                                     <tr class="sortno">
-                                        <td  class="sortleft-m" align="left"><div></div></td>
+                                        <td  class="sortleft-m"><div></div></td>
                                         <td colspan="2" align="left">
 
                                             <!-- Категории "ВВЕРХ" -->
@@ -98,23 +98,23 @@
 
                                         <!-- Вырезанные категории "АКТИВНЫЕ" -->
                                         <?php if (isset($_SESSION['buffer']) == true && in_array($lines[$start][0], $_SESSION['buffer']) == true && $lines[$start][8] == 1) { ?>
-                                            <td class="sortyes sortleft-m" align="left"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
-                                            <td class="sortleft" align="left"><div><a href="#" class="btn btn-primary btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-folder-open"> </span></a></div></td>
+                                            <td class="sortyes sortleft-m"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
+                                            <td class="sortleft"><div><a href="#" class="btn btn-primary btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-folder-open"> </span></a></div></td>
 
                                             <!-- Вырезанные категории "НЕ АКТИВНЫЕ" -->
                                         <?php } elseif (isset($_SESSION['buffer']) == true && in_array($lines[$start][0], $_SESSION['buffer']) == true && $lines[$start][8] == 0) { ?>
-                                            <td class="sortyes sortleft-m" align="left"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
-                                            <td class="sortleft" align="left"><div><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-folder-open"> </span></a></div></td>
+                                            <td class="sortyes sortleft-m"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
+                                            <td class="sortleft"><div><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-folder-open"> </span></a></div></td>
 
                                             <!-- Категория для трансфера -->
                                         <?php } elseif ($transfer == $lines_on_page + 1) { ?>
-                                            <td class="sortyes sortleft-m" align="left"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
-                                            <td class="sortleft" align="left"><div><a href="#" class="btn btn-primary btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-transfer"> </span></a></div></td>
+                                            <td class="sortyes sortleft-m"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
+                                            <td class="sortleft"><div><a href="#" class="btn btn-primary btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-transfer"> </span></a></div></td>
 
                                             <!-- Если категория НЕ АКТИВНА -->
                                         <?php } elseif ($lines[$start][8] == 0) { ?>
-                                            <td class="sortyes sortleft-m" align="left"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
-                                            <td class="sortleft" align="left">
+                                            <td class="sortyes sortleft-m"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
+                                            <td class="sortleft">
 
                                                 <!-- Неактивная категория "ВНИЗ" -->
                                                 <form>
@@ -129,8 +129,8 @@
                                         } else {
                                             ?>
                                             <!-- Если категория АКТИВНА -->
-                                            <td class="sortyes sortleft-m" align="left"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
-                                            <td class="sortleft" align="left">
+                                            <td class="sortyes sortleft-m"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
+                                            <td class="sortleft">
 
                                                 <!-- Активная категория "ВНИЗ" -->
                                                 <form>
@@ -145,7 +145,7 @@
                                         ?>
 
                                         <!-- ВЫБРАННЫЕ СТРОКИ -->
-                                        <td align="left" class="option" id="<?php echo $lines[$start][0] ?>"><span class="inactive" style="display: none;"></span>
+                                        <td class="option" id="<?php echo $lines[$start][0] ?>"><span class="inactive" style="display: none;"></span>
                                             <?php if ($transfer == $lines_on_page + 1) { ?>
                                                 <div class="context-one transfer" id="<?php echo $lines[$start][0] ?>"><?php echo lang('categories_transfer') ?></div>
                                             <?php } else { ?>
@@ -179,8 +179,8 @@
                             </thead>
                             <tbody>
                                 <tr class="sortno">
-                                    <td  class="sortleft-m" align="left"></td>
-                                    <td class="sortleft" align="left">
+                                    <td  class="sortleft-m"></td>
+                                    <td class="sortleft">
 
                                         <!-- Категорий нет "ВВЕРХ" -->
                                         <form>
@@ -190,7 +190,7 @@
                                         </form>
 
                                     </td>
-                                    <td class="options" align="left"><div class="context-one"><?php echo lang('no_listing') ?></div></td>
+                                    <td class="options"><div class="context-one"><?php echo lang('no_listing') ?></div></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -209,9 +209,9 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td  class="sortleft-m" align="left"></td>
-                                    <td class="sortleft" align="left"></td>
-                                    <td class="options" align="left"><div class="context-one"><?php echo lang('no_listing') ?></div></td>
+                                    <td  class="sortleft-m"></td>
+                                    <td class="sortleft"></td>
+                                    <td class="options"><div class="context-one"><?php echo lang('no_listing') ?></div></td>
                                 </tr>
                             </tbody>
                         </table>

@@ -67,33 +67,33 @@
                                     <div class="left"><button class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
                                 </th>
                             <tr class="border">
-                                <th align="left"><div style="width: 14px;"></div></th>
-                                <th align="left"><div style="width: 24px;"></div></th>
-                                <th class="pleft al-text" align="left">Название</th>
-                                <th class="pright al-text" align="left">Модель</th>
-                                <th class="pright al-text" align="left">Ед. изм.</th>
-                                <th class="pright al-text" align="left">Кол-во</th>
-                                <th class="pright al-text" align="left">Цена</th>
+                                <th><div style="width: 14px;"></div></th>
+                                <th><div style="width: 24px;"></div></th>
+                                <th class="pleft al-text">Название</th>
+                                <th class="pright al-text">Модель</th>
+                                <th class="pright al-text">Ед. изм.</th>
+                                <th class="pright al-text">Кол-во</th>
+                                <th class="pright al-text">Цена</th>
                             </tr>
                         </thead>
                     </table>
                     <table class="table table-hover">
                         <tbody id="sort-list">
                             <tr class="sortno">
-                                <td class="sortleft-mp" align="left"><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true">.</a></td>
-                                <td colspan="6" align="left"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-option-horizontal"></span></button></td>
+                                <td class="sortleft-mp"><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true">.</a></td>
+                                <td colspan="6"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-option-horizontal"></span></button></td>
                             </tr>
                             <tr class="sort-list">
-                                <td class="sortyes sortleft-m" align="left"><span class="glyphicon glyphicon-move"> </span></td>    
-                                <td class="sortleft" align="left"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-folder-open"> </span></button></td>
-                                <td class="pleft option" align="left">
+                                <td class="sortyes sortleft-m"><span class="glyphicon glyphicon-move"> </span></td>    
+                                <td class="sortleft"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-folder-open"> </span></button></td>
+                                <td class="pleft option">
                                     <div class="context-one">Название товара пишем вот таким длинным для проверки длинны названия и колонок таблиц
                                     </div>
                                 </td>
-                                <td class="pright al-text" align="left">MD34-50</td>
-                                <td class="pright al-text" align="left">шт.</td>
-                                <td class="pright al-text" align="left">5</td>
-                                <td class="pright al-text" align="left">1200.00</td>
+                                <td class="pright al-text">MD34-50</td>
+                                <td class="pright al-text">шт.</td>
+                                <td class="pright al-text">5</td>
+                                <td class="pright al-text">1200.00</td>
                             </tr>
                         </tbody>
                     </table>
