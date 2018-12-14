@@ -201,7 +201,7 @@ if (!isset($idsx_real_parent_id)) {
                                 return 'context-menu-icon glyphicon-scissors';
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
-                                jQuery.ajaxSetup({async:false});
+                                jQuery.ajaxSetup({async:false}); // Установка на синхронный запрос через jQuery.ajax
                                 jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных GET
                                         {idsx_cut_marker: 'cut'});
 
