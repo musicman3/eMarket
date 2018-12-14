@@ -110,7 +110,8 @@ if (!isset($idsx_real_parent_id)) {
                             $('#edit').on('show.bs.modal', function (event) {
                                 var modal = $(this);
                                 var button = $(event.relatedTarget);
-                                var modal_id = opt.$trigger.attr("id"); // Получаем ID при клике на кнопку редактирования
+                                // Получаем ID при клике на кнопку редактирования
+                                var modal_id = opt.$trigger.attr("id");
                                 // Получаем массивы данных
                                 var name_edit = <?php echo $name_edit ?>;
 
@@ -123,8 +124,8 @@ if (!isset($idsx_real_parent_id)) {
                             });
 
                         <?php } ?>
-
-                        $('#edit').modal('show'); // Открываем модальное окно
+                         // Открываем модальное окно
+                        $('#edit').modal('show');
                     }
                 },
 
@@ -145,6 +146,7 @@ if (!isset($idsx_real_parent_id)) {
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
                                 // Установка на синхронный запрос через jQuery.ajax
                                 jQuery.ajaxSetup({async: false});
+                                // Отправка данных по каждой выделенной строке
                                 $(".option").each(function () { // выделенное мышкой
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                         jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных GET
@@ -176,6 +178,7 @@ if (!isset($idsx_real_parent_id)) {
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
                                 // Установка на синхронный запрос через jQuery.ajax
                                 jQuery.ajaxSetup({async: false});
+                                // Отправка данных по каждой выделенной строке
                                 $(".option").each(function () { // выделенное мышкой
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                         jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных GET
@@ -273,6 +276,7 @@ if (!isset($idsx_real_parent_id)) {
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
                                 // Установка на синхронный запрос через jQuery.ajax
                                 jQuery.ajaxSetup({async: false});
+                                // Отправка данных по каждой выделенной строке
                                 $(".option").each(function () { // выделенное мышкой
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                         jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных GET

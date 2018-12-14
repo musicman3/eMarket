@@ -278,6 +278,7 @@ class Eac {
                 // Получаем последний sort_category в текущем parent_id и увеличиваем его на 1
                 $sort_max = $PDO->selectPrepare("SELECT sort_category FROM " . $TABLE_CATEGORIES . " WHERE language=? AND parent_id=? ORDER BY sort_category DESC", [lang('#lang_all')[0], $parent_id]);
                 $sort_category = intval($sort_max) + 1;
+                // Обновляем данные
                 $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET parent_id=?, sort_category=? WHERE id=?", [$parent_id_real, $sort_category, $_SESSION['buffer'][$buf]]);
             }
             unset($_SESSION['buffer']); // очищаем буфер обмена
