@@ -308,3 +308,61 @@ if (!isset($idsx_real_parent_id)) {
         });
     });
 </script>
+
+<!-- Модальное окно "Добавить категорию" -->
+<script type="text/javascript" language="javascript">
+    function call_add() {
+        var msg = $('#form_add').serialize();
+        // Установка синхронного запроса для jQuery.ajax
+        jQuery.ajaxSetup({async: false});
+        jQuery.ajax({
+            type: 'GET',
+            url: '/controller/admin/pages/stock/index.php',
+            data: msg,
+            success: function (data) {
+                $('#add').modal('hide');
+            }
+        });
+        // Отправка запроса для обновления страницы
+        jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных GET
+                {parent_down: <?php echo $parent_id ?>,
+                    modify: 'ok'},
+                AjaxSuccess);
+        // Обновление страницы
+        function AjaxSuccess(data) {
+            setTimeout(function () {
+                $('#ajax').html(data);
+            }, 100);
+            $("#sort-list").sortable();
+        }
+    }
+</script>
+
+<!-- Модальное окно "Редактировать категорию" -->
+<script type="text/javascript" language="javascript">
+    function call_edit() {
+        var msg = $('#form_edit').serialize();
+        // Установка синхронного запроса для jQuery.ajax
+        jQuery.ajaxSetup({async: false});
+        jQuery.ajax({
+            type: 'GET',
+            url: '/controller/admin/pages/stock/index.php',
+            data: msg,
+            success: function (data) {
+                $('#edit').modal('hide');
+            }
+        });
+        // Отправка запроса для обновления страницы
+        jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных GET
+                {parent_down: <?php echo $parent_id ?>,
+                    modify: 'ok'},
+                AjaxSuccess);
+        // Обновление страницы
+        function AjaxSuccess(data) {
+            setTimeout(function () {
+                $('#ajax').html(data);
+            }, 100);
+            $("#sort-list").sortable();
+        }
+    }
+</script>
