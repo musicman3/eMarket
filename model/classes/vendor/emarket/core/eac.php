@@ -36,7 +36,7 @@ class Eac {
 
         // Если нажали на кнопку Скрыть/Отобразить
         $parent_id_status = self::statusCategory($TABLE_CATEGORIES, $parent_id);
-        
+
         // Сортировка мышкой EAC
         self::sortList(TABLE_CATEGORIES, $TOKEN);
 
@@ -101,14 +101,13 @@ class Eac {
         // если сортируем категории мышкой
         if ($VALID->inGET('token_ajax') == $TOKEN && $VALID->inGET('ids')) {
             $sort_array_id_ajax = explode(',', $VALID->inGET('ids')); // Массив со списком id под сортировку
-            
             // Если в массиве пустое значение, то собираем новый массив без этого значения со сбросом ключей
             $sort_array_id = array_values(array_filter($sort_array_id_ajax));
-            
+
             $sort_array_category = array(); // Массив со списком sort_category под сортировку
-            
+
             $count_sort_array_id = count($sort_array_id); // Получаем количество значений в массиве
-            
+
             for ($i = 0; $i < $count_sort_array_id; $i++) {
                 $sort_category = $PDO->selectPrepare("SELECT sort_category FROM " . $TABLE_CATEGORIES . " WHERE id=? AND language=? ORDER BY id ASC", [$sort_array_id[$i], lang('#lang_all')[0]]);
                 array_push($sort_array_category, $sort_category); // Добавляем данные в массив sort_category
@@ -193,7 +192,7 @@ class Eac {
 
             $parent_id = self::dataParentIdCategory($TABLE_CATEGORIES, $idx);
             $keys = self::dataKeysCategory($TABLE_CATEGORIES, $idx);
-            
+
             $count_keys = count($keys); // Получаем количество значений в массиве
             for ($x = 0; $x < $count_keys; $x++) {
                 //Удаляем подкатегории
@@ -276,7 +275,10 @@ class Eac {
         if ($VALID->inGET('idsx_paste_key') == 'paste' && isset($_SESSION['buffer']) == TRUE) {
             $count_session_buffer = count($_SESSION['buffer']); // Получаем количество значений в массиве
             for ($buf = 0; $buf < $count_session_buffer; $buf++) {
-                $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET parent_id=? WHERE id=?", [$parent_id_real, $_SESSION['buffer'][$buf]]);
+                // Получаем последний sort_category в текущем parent_id и увеличиваем его на 1
+                $sort_max = $PDO->selectPrepare("SELECT sort_category FROM " . $TABLE_CATEGORIES . " WHERE language=? AND parent_id=? ORDER BY sort_category DESC", [lang('#lang_all')[0], $parent_id]);
+                $sort_category = intval($sort_max) + 1;
+                $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET parent_id=?, sort_category=? WHERE id=?", [$parent_id_real, $sort_category, $_SESSION['buffer'][$buf]]);
             }
             unset($_SESSION['buffer']); // очищаем буфер обмена
             if ($parent_id_real > 0) {
@@ -319,7 +321,7 @@ class Eac {
 
             $parent_id = self::dataParentIdCategory($TABLE_CATEGORIES, $idx);
             $keys = self::dataKeysCategory($TABLE_CATEGORIES, $idx);
-            
+
             $count_keys = count($keys); // Получаем количество значений в массиве
             for ($x = 0; $x < $count_keys; $x++) {
 
@@ -371,7 +373,7 @@ class Eac {
 
         return $parent_id;
     }
-    
+
     /**
      * Статус категорий в EAC
      * @param строка $TABLE_CATEGORIES (название таблицы категорий)
@@ -399,7 +401,7 @@ class Eac {
         }
 
         return $keys;
-    }    
+    }
 
 }
 
