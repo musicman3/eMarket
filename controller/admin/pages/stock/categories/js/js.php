@@ -151,14 +151,14 @@ if (!isset($idsx_real_parent_id)) {
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                         jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных GET
                                                 {idsx_statusOn_id: this.id,
-                                                    modify: 'ok',
                                                     idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
                                                     idsx_statusOn_key: itemKey});
 
                                 });
                                 // Отправка пустого запроса для обновления страницы
                                 jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных GET
-                                        {parent_down: <?php echo $parent_id ?>},
+                                        {parent_down: <?php echo $parent_id ?>,
+                                        modify: 'ok'},
                                         AjaxSuccess);
                                 // Обновление страницы
                                 function AjaxSuccess(data) {
@@ -183,13 +183,13 @@ if (!isset($idsx_real_parent_id)) {
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                         jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных GET
                                                 {idsx_statusOff_id: this.id,
-                                                    modify: 'ok',
                                                     idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
                                                     idsx_statusOff_key: itemKey});
                                 });
                                 // Отправка пустого запроса для обновления страницы
                                 jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных GET
-                                        {parent_down: <?php echo $parent_id ?>},
+                                        {parent_down: <?php echo $parent_id ?>,
+                                        modify: 'ok'},
                                         AjaxSuccess);
                                 // Обновление страницы
                                 function AjaxSuccess(data) {
@@ -248,13 +248,13 @@ if (!isset($idsx_real_parent_id)) {
                                 jQuery.ajaxSetup({async: false});
                                 jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных GET
                                         {idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
-                                            modify: 'ok',
                                             parent_down: <?php echo $parent_id ?>,
                                             idsx_paste_key: itemKey});
 
                                 // Отправка пустого запроса для обновления страницы
                                 jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных GET
-                                        {parent_down: <?php echo $parent_id ?>},
+                                        {parent_down: <?php echo $parent_id ?>,
+                                        modify: 'ok'},
                                         AjaxSuccess);
                                 // Обновление страницы
                                 function AjaxSuccess(data) {
@@ -281,13 +281,13 @@ if (!isset($idsx_real_parent_id)) {
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                         jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных GET
                                                 {idsx_delete_id: this.id,
-                                                    modify: 'ok',
                                                     parent_down: <?php echo $parent_id ?>,
                                                     idsx_delete_key: itemKey});
                                 });
                                 // Отправка пустого запроса для обновления страницы
                                 jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных GET
-                                        {parent_down: <?php echo $parent_id ?>},
+                                        {parent_down: <?php echo $parent_id ?>,
+                                        modify: 'ok'},
                                         AjaxSuccess);
                                 // Обновление страницы
                                 function AjaxSuccess(data) {
