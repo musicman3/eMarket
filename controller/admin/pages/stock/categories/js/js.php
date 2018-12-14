@@ -201,13 +201,13 @@ if (!isset($idsx_real_parent_id)) {
                                 return 'context-menu-icon glyphicon-scissors';
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
-
-                                $.get('/controller/admin/pages/stock/index.php', // отправка данных GET
+                                jQuery.ajaxSetup({async:false});
+                                jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных GET
                                         {idsx_cut_marker: 'cut'});
 
                                 $(".option").each(function () { // выделенное мышкой
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
-                                        $.get('/controller/admin/pages/stock/index.php', // отправка данных GET
+                                        jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных GET
                                                 {idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
                                                     idsx_cut_id: this.id,
                                                     parent_down: <?php echo $parent_id ?>,
