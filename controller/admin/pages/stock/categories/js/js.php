@@ -7,6 +7,7 @@
 if (!isset($idsx_real_parent_id)) {
     $idsx_real_parent_id = '';
 }
+
 ?>
 <!-- /Сортировка мышкой -->
 <script type="text/javascript">
@@ -35,23 +36,18 @@ if (!isset($idsx_real_parent_id)) {
         $("#sort-list tr").each(function () {
             ids[ids.length] = $(this).attr('unitid');
         });
-
+        // Установка на синхронный запрос через jQuery.ajax
+        jQuery.ajaxSetup({async: false});
         jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных GET
                 {token_ajax: token,
-                    ids: ids.join()},
+                    ids: ids.join()});
+
+        // Повторный вызов функции для нормального обновления страницы
+        jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных GET
+                {parent_down: <?php echo $parent_id ?>}, // id родительской категории
                 AjaxSuccess);
         function AjaxSuccess(data) {
-
-            // Повторный вызов функции для нормального обновления страницы
-            jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных GET
-                    {parent_down: <?php echo $parent_id ?>}, // id родительской категории
-                    AjaxSuccess);
-            function AjaxSuccess(data) {
-                setTimeout(function () {
-                    $('#ajax').html(data);
-                }, 100);
-            }
-
+            $('#ajax').html(data);
         }
     }
 </script>
@@ -109,7 +105,7 @@ if (!isset($idsx_real_parent_id)) {
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
 
                         //Собираем данные для модального окна
-                            <?php if (isset($name_edit)) { ?>
+                        <?php if (isset($name_edit)) { ?>
 
                             $('#edit').on('show.bs.modal', function (event) {
                                 var modal = $(this);
@@ -126,7 +122,7 @@ if (!isset($idsx_real_parent_id)) {
                                 modal.find('.js_edit').val(modal_id);
                             });
 
-                            <?php } ?>
+                        <?php } ?>
 
                         $('#edit').modal('show'); // Открываем модальное окно
                     }
@@ -147,23 +143,28 @@ if (!isset($idsx_real_parent_id)) {
                                 return 'context-menu-icon glyphicon-eye-open';
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
-
+                                // Установка на синхронный запрос через jQuery.ajax
+                                jQuery.ajaxSetup({async: false});
                                 $(".option").each(function () { // выделенное мышкой
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                         jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных GET
                                                 {idsx_statusOn_id: this.id,
                                                     modify: 'ok',
                                                     idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
-                                                    idsx_statusOn_key: itemKey},
-                                                AjaxSuccess);
+                                                    idsx_statusOn_key: itemKey});
 
-                                    function AjaxSuccess(data) {
-                                        setTimeout(function () {
-                                            $('#ajax').html(data);
-                                        }, 100);
-                                        $("#sort-list").sortable();
-                                    }
                                 });
+                                // Отправка пустого запроса для обновления страницы
+                                jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных GET
+                                        {parent_down: <?php echo $parent_id ?>},
+                                        AjaxSuccess);
+                                // Обновление страницы
+                                function AjaxSuccess(data) {
+                                    setTimeout(function () {
+                                        $('#ajax').html(data);
+                                    }, 100);
+                                    $("#sort-list").sortable();
+                                }
                             }
                         },
 
@@ -173,23 +174,27 @@ if (!isset($idsx_real_parent_id)) {
                                 return 'context-menu-icon glyphicon-eye-close';
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
-
+                                // Установка на синхронный запрос через jQuery.ajax
+                                jQuery.ajaxSetup({async: false});
                                 $(".option").each(function () { // выделенное мышкой
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                         jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных GET
                                                 {idsx_statusOff_id: this.id,
                                                     modify: 'ok',
                                                     idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
-                                                    idsx_statusOff_key: itemKey},
-                                                AjaxSuccess);
-
-                                    function AjaxSuccess(data) {
-                                        setTimeout(function () {
-                                            $('#ajax').html(data);
-                                        }, 100);
-                                        $("#sort-list").sortable();
-                                    }
+                                                    idsx_statusOff_key: itemKey});
                                 });
+                                // Отправка пустого запроса для обновления страницы
+                                jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных GET
+                                        {parent_down: <?php echo $parent_id ?>},
+                                        AjaxSuccess);
+                                // Обновление страницы
+                                function AjaxSuccess(data) {
+                                    setTimeout(function () {
+                                        $('#ajax').html(data);
+                                    }, 100);
+                                    $("#sort-list").sortable();
+                                }
                             }
                         },
 
@@ -206,7 +211,7 @@ if (!isset($idsx_real_parent_id)) {
                                 // Отправка маркера на очитку буффера
                                 jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных GET
                                         {idsx_cut_marker: 'cut'});
-                                        
+
                                 // Отправка данных по каждой выделенной строке
                                 $(".option").each(function () { // выделенное мышкой
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
@@ -236,14 +241,19 @@ if (!isset($idsx_real_parent_id)) {
                                 return 'context-menu-icon glyphicon-paste';
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
-
+                                // Установка на синхронный запрос через jQuery.ajax
+                                jQuery.ajaxSetup({async: false});
                                 jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных GET
                                         {idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
                                             modify: 'ok',
                                             parent_down: <?php echo $parent_id ?>,
-                                            idsx_paste_key: itemKey},
-                                        AjaxSuccess);
+                                            idsx_paste_key: itemKey});
 
+                                // Отправка пустого запроса для обновления страницы
+                                jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных GET
+                                        {parent_down: <?php echo $parent_id ?>},
+                                        AjaxSuccess);
+                                // Обновление страницы
                                 function AjaxSuccess(data) {
                                     setTimeout(function () {
                                         $('#ajax').html(data);
@@ -261,23 +271,27 @@ if (!isset($idsx_real_parent_id)) {
                                 return 'context-menu-icon glyphicon-trash';
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
-
+                                // Установка на синхронный запрос через jQuery.ajax
+                                jQuery.ajaxSetup({async: false});
                                 $(".option").each(function () { // выделенное мышкой
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                         jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных GET
                                                 {idsx_delete_id: this.id,
                                                     modify: 'ok',
                                                     parent_down: <?php echo $parent_id ?>,
-                                                    idsx_delete_key: itemKey},
-                                                AjaxSuccess);
-
-                                    function AjaxSuccess(data) {
-                                        setTimeout(function () {
-                                            $('#ajax').html(data);
-                                        }, 100);
-                                        $("#sort-list").sortable();
-                                    }
+                                                    idsx_delete_key: itemKey});
                                 });
+                                // Отправка пустого запроса для обновления страницы
+                                jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных GET
+                                        {parent_down: <?php echo $parent_id ?>},
+                                        AjaxSuccess);
+                                // Обновление страницы
+                                function AjaxSuccess(data) {
+                                    setTimeout(function () {
+                                        $('#ajax').html(data);
+                                    }, 100);
+                                    $("#sort-list").sortable();
+                                }
                             }
                         }
                     }
