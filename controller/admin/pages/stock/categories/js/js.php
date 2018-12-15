@@ -105,7 +105,7 @@ if (!isset($idsx_real_parent_id)) {
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
 
                         //Собираем данные для модального окна
-                        <?php if (isset($name_edit)) { ?>
+<?php if (isset($name_edit)) { ?>
 
                             $('#edit').on('show.bs.modal', function (event) {
                                 var modal = $(this);
@@ -123,8 +123,8 @@ if (!isset($idsx_real_parent_id)) {
                                 modal.find('.js_edit').val(modal_id);
                             });
 
-                        <?php } ?>
-                         // Открываем модальное окно
+<?php } ?>
+                        // Открываем модальное окно
                         $('#edit').modal('show');
                     }
                 },
@@ -158,7 +158,7 @@ if (!isset($idsx_real_parent_id)) {
                                 // Отправка запроса для обновления страницы
                                 jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных GET
                                         {parent_down: <?php echo $parent_id ?>,
-                                        modify: 'ok'},
+                                            modify: 'ok'},
                                         AjaxSuccess);
                                 // Обновление страницы
                                 function AjaxSuccess(data) {
@@ -189,7 +189,7 @@ if (!isset($idsx_real_parent_id)) {
                                 // Отправка запроса для обновления страницы
                                 jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных GET
                                         {parent_down: <?php echo $parent_id ?>,
-                                        modify: 'ok'},
+                                            modify: 'ok'},
                                         AjaxSuccess);
                                 // Обновление страницы
                                 function AjaxSuccess(data) {
@@ -243,6 +243,13 @@ if (!isset($idsx_real_parent_id)) {
                             icon: function () {
                                 return 'context-menu-icon glyphicon-paste';
                             },
+                            disabled: function (key, opt) {
+                                // Делаем не активным пункт меню, если буффер пуст
+                                <?php if (!isset($_SESSION['buffer']) == TRUE) { ?>
+                                    return true;
+                                <?php } ?>
+                            },
+
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
                                 // Установка синхронного запроса для jQuery.ajax
                                 jQuery.ajaxSetup({async: false});
@@ -286,7 +293,7 @@ if (!isset($idsx_real_parent_id)) {
                                 // Отправка запроса для обновления страницы
                                 jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных GET
                                         {parent_down: <?php echo $parent_id ?>,
-                                        modify: 'ok'},
+                                            modify: 'ok'},
                                         AjaxSuccess);
                                 // Обновление страницы
                                 function AjaxSuccess(data) {
