@@ -105,7 +105,7 @@ if (!isset($idsx_real_parent_id)) {
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
 
                         //Собираем данные для модального окна
-<?php if (isset($name_edit)) { ?>
+                        <?php if (isset($name_edit)) { ?>
 
                             $('#edit').on('show.bs.modal', function (event) {
                                 var modal = $(this);
@@ -123,7 +123,7 @@ if (!isset($idsx_real_parent_id)) {
                                 modal.find('.js_edit').val(modal_id);
                             });
 
-<?php } ?>
+                        <?php } ?>
                         // Открываем модальное окно
                         $('#edit').modal('show');
                     }
@@ -243,7 +243,7 @@ if (!isset($idsx_real_parent_id)) {
                             icon: function () {
                                 return 'context-menu-icon glyphicon-paste';
                             },
-                            disabled: function (key, opt) {
+                            disabled: function () {
                                 // Делаем не активным пункт меню, если буффер пуст
                                 <?php if (!isset($_SESSION['buffer']) == TRUE) { ?>
                                     return true;
