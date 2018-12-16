@@ -126,6 +126,16 @@ CREATE TABLE emkt_vendor_codes (
 	PRIMARY KEY (id, language))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+DROP TABLE IF EXISTS emkt_weight;
+CREATE TABLE emkt_weight (
+	id int NOT NULL,
+	name varchar(256),
+	language varchar(64),
+        value decimal(1,4),
+        default varchar(8),
+	PRIMARY KEY (id, language))
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 DROP TABLE IF EXISTS emkt_zones;
 CREATE TABLE emkt_zones (
 	id int NOT NULL,
