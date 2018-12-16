@@ -130,7 +130,7 @@ DROP TABLE IF EXISTS emkt_weight;
 CREATE TABLE emkt_weight (
 	id int NOT NULL,
 	name varchar(64),
-        name_small varchar(8),
+        code varchar(8),
 	language varchar(64),
         value decimal(1,4),
         default varchar(8),
