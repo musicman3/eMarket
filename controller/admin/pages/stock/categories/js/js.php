@@ -43,8 +43,8 @@ if (!isset($idsx_real_parent_id)) {
                     ids: ids.join()});
 
         // Повторный вызов функции для нормального обновления страницы
-        jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных GET
-                {parent_down: <?php echo $parent_id ?>}, // id родительской категории
+        jQuery.get('<?php echo $VALID->inSERVER('REQUEST_URI') ?>', // отправка данных GET
+                {}, // id родительской категории
                 AjaxSuccess);
         function AjaxSuccess(data) {
             $('#ajax').html(data);
@@ -365,7 +365,7 @@ if (!isset($idsx_real_parent_id)) {
         // Обновление страницы
         function AjaxSuccess(data) {
             setTimeout(function () {
-                document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>?modify=ok';
+                $('#ajax').html(data);
             }, 100);
             $("#sort-list").sortable();
         }
