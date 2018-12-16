@@ -169,8 +169,7 @@ if (!isset($idsx_real_parent_id)) {
                                 });
                                 // Отправка запроса для обновления страницы
                                 jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных GET
-                                        {parent_down: <?php echo $parent_id ?>,
-                                            modify: 'ok'},
+                                        {parent_down: <?php echo $parent_id ?>},
                                         AjaxSuccess);
                                 // Обновление страницы
                                 function AjaxSuccess(data) {
@@ -206,8 +205,7 @@ if (!isset($idsx_real_parent_id)) {
                                 });
                                 // Отправка запроса для обновления страницы
                                 jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных GET
-                                        {parent_down: <?php echo $parent_id ?>,
-                                            modify: 'ok'},
+                                        {parent_down: <?php echo $parent_id ?>},
                                         AjaxSuccess);
                                 // Обновление страницы
                                 function AjaxSuccess(data) {
