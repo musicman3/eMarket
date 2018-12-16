@@ -103,7 +103,7 @@ if (!isset($idsx_real_parent_id)) {
                         return 'context-menu-icon glyphicon-edit';
                     },
                     disabled: function () {
-                                // Делаем не активным пункт меню, если буффер пуст
+                                // Делаем не активным пункт меню, если нет строк
                                 <?php if (!isset($name_edit)) { ?>
                                     return true;
                                 <?php } ?>
@@ -149,6 +149,12 @@ if (!isset($idsx_real_parent_id)) {
                             icon: function () {
                                 return 'context-menu-icon glyphicon-eye-open';
                             },
+                            disabled: function () {
+                                // Делаем не активным пункт меню, если нет строк
+                                <?php if (!isset($name_edit)) { ?>
+                                    return true;
+                                <?php } ?>
+                            },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
                                 // Установка синхронного запроса для jQuery.ajax
                                 jQuery.ajaxSetup({async: false});
@@ -180,6 +186,12 @@ if (!isset($idsx_real_parent_id)) {
                             name: "Скрыть",
                             icon: function () {
                                 return 'context-menu-icon glyphicon-eye-close';
+                            },
+                            disabled: function () {
+                                // Делаем не активным пункт меню, если нет строк
+                                <?php if (!isset($name_edit)) { ?>
+                                    return true;
+                                <?php } ?>
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
                                 // Установка синхронного запроса для jQuery.ajax
@@ -213,6 +225,12 @@ if (!isset($idsx_real_parent_id)) {
                             name: "Вырезать",
                             icon: function () {
                                 return 'context-menu-icon glyphicon-scissors';
+                            },
+                            disabled: function () {
+                                // Делаем не активным пункт меню, если нет строк
+                                <?php if (!isset($name_edit)) { ?>
+                                    return true;
+                                <?php } ?>
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
                                 // Установка синхронного запроса для jQuery.ajax
@@ -284,6 +302,12 @@ if (!isset($idsx_real_parent_id)) {
                             name: "Удалить",
                             icon: function () {
                                 return 'context-menu-icon glyphicon-trash';
+                            },
+                            disabled: function () {
+                                // Делаем не активным пункт меню, если нет строк
+                                <?php if (!isset($name_edit)) { ?>
+                                    return true;
+                                <?php } ?>
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
                                 // Установка синхронного запроса для jQuery.ajax
