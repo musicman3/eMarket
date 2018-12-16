@@ -30,7 +30,7 @@ class Messages {
             unset($_SESSION['message']);
         }
         // При POST и GET по ajax + обновление страницы
-        if ($VALID->inPOST('modify') == 'ajax_ok' OR $VALID->inGET('modify') == 'ajax_ok') {
+        if ($VALID->inPOST('modify') == 'update_ok' OR $VALID->inGET('modify') == 'update_ok') {
             require_once (ROOT . '/view/' . $SET->template() . '/layouts/alert.php');
             $_SESSION['message'] = 'ok';
         }
