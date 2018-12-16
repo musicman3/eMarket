@@ -102,6 +102,12 @@ if (!isset($idsx_real_parent_id)) {
                     icon: function () {
                         return 'context-menu-icon glyphicon-edit';
                     },
+                    disabled: function () {
+                                // Делаем не активным пункт меню, если буффер пуст
+                                <?php if (!isset($name_edit)) { ?>
+                                    return true;
+                                <?php } ?>
+                            },
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
 
                         //Собираем данные для модального окна
@@ -245,7 +251,7 @@ if (!isset($idsx_real_parent_id)) {
                             },
                             disabled: function () {
                                 // Делаем не активным пункт меню, если буффер пуст
-                                <?php if (!isset($_SESSION['buffer']) == TRUE) { ?>
+                                <?php if (!isset($_SESSION['buffer'])) { ?>
                                     return true;
                                 <?php } ?>
                             },
@@ -337,7 +343,7 @@ if (!isset($idsx_real_parent_id)) {
         // Обновление страницы
         function AjaxSuccess(data) {
             setTimeout(function () {
-                $('#ajax').html(data);
+                document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>&modify=ok';
             }, 100);
             $("#sort-list").sortable();
         }
