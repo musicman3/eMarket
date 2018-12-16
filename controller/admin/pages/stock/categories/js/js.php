@@ -289,7 +289,7 @@ if (!isset($idsx_real_parent_id)) {
                                 // Обновление страницы
                                 function AjaxSuccess(data) {
                                     setTimeout(function () {
-                                        document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>&modify=ok';
+                                        document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>?modify=ok';
                                     }, 100);
                                     $("#sort-list").sortable();
                                 }
@@ -367,7 +367,7 @@ if (!isset($idsx_real_parent_id)) {
         // Обновление страницы
         function AjaxSuccess(data) {
             setTimeout(function () {
-                document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>&modify=ok';
+                document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>?modify=ok';
             }, 100);
             $("#sort-list").sortable();
         }
