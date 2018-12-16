@@ -19,8 +19,20 @@ class Messages {
         $SET = new \eMarket\Core\Set;
         $VALID = new \eMarket\Core\Valid;
         
-        if ($VALID->inPOST('add') OR $VALID->inGET('add') OR $VALID->inPOST('edit') OR $VALID->inGET('edit') OR $VALID->inPOST('delete') OR $VALID->inGET('delete') OR $VALID->inPOST('modify') OR $VALID->inGET('modify')) {
+        // При обычном POST или GET
+        if ($VALID->inPOST('add') OR $VALID->inGET('add') OR $VALID->inPOST('edit') OR $VALID->inGET('edit') OR $VALID->inPOST('delete') OR $VALID->inGET('delete') OR $VALID->inPOST('modify') == 'ok' OR $VALID->inGET('modify') == 'ok') {
             require_once (ROOT . '/view/' . $SET->template() . '/layouts/alert.php');
+        }
+        
+        // При POST и GET по ajax + обновление страницы
+        if (isset($_SESSION['message']) && $_SESSION['message'] == 'ok') {
+            require_once (ROOT . '/view/' . $SET->template() . '/layouts/alert.php');
+            unset($_SESSION['message']);
+        }
+        // При POST и GET по ajax + обновление страницы
+        if ($VALID->inPOST('modify') == 'ajax_ok' OR $VALID->inGET('modify') == 'ajax_ok') {
+            require_once (ROOT . '/view/' . $SET->template() . '/layouts/alert.php');
+            $_SESSION['message'] = 'ok';
         }
     }
 
