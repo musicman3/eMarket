@@ -1,4 +1,5 @@
 <?php
+
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -167,10 +168,15 @@ class Eac {
 
         if ($VALID->inGET('edit') && $VALID->inGET('name_edit' . lang('#lang_all')[0])) {
 
+            if ($VALID->inGET('view_cat')) {
+                $view_cat = 1;
+            } else {
+                $view_cat = 0;
+            }
 
             for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
                 // обновляем запись
-                $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET name=?, last_modified=? WHERE id=? AND language=?", [$VALID->inGET('name_edit' . lang('#lang_all')[$xl]), date("Y-m-d H:i:s"), $VALID->inGET('edit'), lang('#lang_all')[$xl]]);
+                $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET name=?, last_modified=?, status=? WHERE id=? AND language=?", [$VALID->inGET('name_edit' . lang('#lang_all')[$xl]), date("Y-m-d H:i:s"), $view_cat, $VALID->inGET('edit'), lang('#lang_all')[$xl]]);
             }
         }
     }

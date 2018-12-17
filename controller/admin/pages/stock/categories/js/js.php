@@ -111,11 +111,12 @@ if (!isset($idsx_real_parent_id)) {
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
 
                         //Собираем данные для модального окна
-                        <?php if (isset($name_edit)) { ?>
+                        <?php if (isset($name_edit) && isset($status_category_edit)) { ?>
 
                             $('#edit').on('show.bs.modal', function (event) {
                                 var modal = $(this);
                                 var button = $(event.relatedTarget);
+                                var status = <?php echo $status_category_edit ?>;
                                 // Получаем ID при клике на кнопку редактирования
                                 var modal_id = opt.$trigger.attr("id");
                                 // Получаем массивы данных
@@ -125,8 +126,10 @@ if (!isset($idsx_real_parent_id)) {
                                 for (x = 0; x < name_edit.length; x++) {
                                     modal.find('.name_edit' + x).val(name_edit[x][modal_id]);
                                 }
-
                                 modal.find('.js_edit').val(modal_id);
+                                // Меняем значение чекбокса
+                                $('#view_cat').prop('checked', status[modal_id]);
+                                
                             });
 
                         <?php } ?>
@@ -390,12 +393,12 @@ if (!isset($idsx_real_parent_id)) {
         // Отправка запроса для обновления страницы
         jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных GET
                 {parent_down: <?php echo $parent_id ?>,
-                    modify: 'ok'},
+                    modify: 'update_ok'},
                 AjaxSuccess);
         // Обновление страницы
         function AjaxSuccess(data) {
             setTimeout(function () {
-                $('#ajax').html(data);
+                document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
             }, 100);
             $("#sort-list").sortable();
         }

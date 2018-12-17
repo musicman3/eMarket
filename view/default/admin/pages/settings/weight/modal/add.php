@@ -72,6 +72,13 @@
 
                             <?php }
                         } ?>
+                        
+                        <div class="form-group">
+                            <div class="input-group has-error">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
+                                <input class="input-sm form-control" placeholder="Значение" type="text" name="value" id="rate" />
+                            </div>
+                        </div>
                     </div>
                 </div>
 
