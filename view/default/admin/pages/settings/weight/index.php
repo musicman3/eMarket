@@ -15,7 +15,7 @@
 <?php for ($k; $k < $finish; $k++) { // запускаем цикл формирования модальных окон  ?>
 
     <!-- Вставляем модальное окно "Редактировать" -->
-    <?php require(ROOT . '/view/' . $SET->template() . '/admin/pages/settings/units/modal/edit.php') ?>
+    <?php require(ROOT . '/view/' . $SET->template() . '/admin/pages/settings/weight/modal/edit.php') ?>
 
 <?php } ?>
 

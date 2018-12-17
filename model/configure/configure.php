@@ -20,6 +20,7 @@
   define('TABLE_TAXES', 'emkt_taxes');
   define('TABLE_UNITS', 'emkt_units');
   define('TABLE_VENDOR_CODES', 'emkt_vendor_codes');
+  define('TABLE_WEIGHT', 'emkt_weight');
   define('TABLE_ZONES', 'emkt_zones');
   define('TABLE_ZONES_VALUE', 'emkt_zones_value');
 ?>

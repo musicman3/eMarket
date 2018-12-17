@@ -3,7 +3,7 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |    
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-require(ROOT . '/controller/admin/pages/settings/units/modal/edit.php');
+require(ROOT . '/controller/admin/pages/settings/weight/modal/edit.php');
 ?>
 
 <!-- Модальное окно "Изменить" -->
@@ -47,7 +47,7 @@ require(ROOT . '/controller/admin/pages/settings/units/modal/edit.php');
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                    <input class="input-sm form-control" type="text" name="unit_edit<?php echo lang('#lang_all')[0] ?>" id="unit_edit<?php echo lang('#lang_all')[0] ?>" value="<?php echo $value_edit[0] ?>" />
+                                    <input class="input-sm form-control" type="text" name="code_edit<?php echo lang('#lang_all')[0] ?>" id="code_edit<?php echo lang('#lang_all')[0] ?>" value="<?php echo $value_edit[0] ?>" />
                                 </div>
                             </div>
                         </div>
@@ -67,7 +67,7 @@ require(ROOT . '/controller/admin/pages/settings/units/modal/edit.php');
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                            <input class="input-sm form-control" type="text" name="unit_edit<?php echo lang('#lang_all')[$xl] ?>" id="unit_edit<?php echo lang('#lang_all')[$xl] ?>" value="<?php echo $value_edit[$xl] ?>" />
+                                            <input class="input-sm form-control" type="text" name="code_edit<?php echo lang('#lang_all')[$xl] ?>" id="code_edit<?php echo lang('#lang_all')[$xl] ?>" value="<?php echo $value_edit[$xl] ?>" />
                                         </div>
                                     </div>
                                 </div>

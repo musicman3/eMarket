@@ -45,7 +45,7 @@
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                                    <input class="input-sm form-control" placeholder="<?php echo lang('name_little') ?>" type="text" name="unit<?php echo lang('#lang_all')[0] ?>" id="unit<?php echo lang('#lang_all')[0] ?>" />
+                                    <input class="input-sm form-control" placeholder="<?php echo lang('name_little') ?>" type="text" name="code<?php echo lang('#lang_all')[0] ?>" id="code<?php echo lang('#lang_all')[0] ?>" />
                                 </div>
                             </div>
                         </div>
@@ -65,7 +65,7 @@
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo lang('name_little') ?>" type="text" name="unit<?php echo lang('#lang_all')[$xl] ?>" id="unit<?php echo lang('#lang_all')[$xl] ?>" />
+                                            <input class="input-sm form-control" placeholder="<?php echo lang('name_little') ?>" type="text" name="code<?php echo lang('#lang_all')[$xl] ?>" id="code<?php echo lang('#lang_all')[$xl] ?>" />
                                         </div>
                                     </div>
                                 </div>
@@ -77,12 +77,12 @@
                         <div class="form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                <input class="input-sm form-control" placeholder="Значение" type="text" name="value" id="rate" />
+                                <input class="input-sm form-control" placeholder="Значение" type="text" name="value_weight" id="value_weight" />
                             </div>
                         </div>
                             <div class="form-group">
-                                <label for="view_category">Установить как основной? </label>
-                                <input class="check-box" id="view_cat" type="checkbox" name="view_cat">
+                                <label for="default_weight">Установить как основной? </label>
+                                <input class="check-box" name="default_weight" type="checkbox" checked>
                             </div>
                     </div>
                 </div>
