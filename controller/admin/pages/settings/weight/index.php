@@ -21,6 +21,11 @@ if ($VALID->inGET('add')) {
     $id_max = $PDO->selectPrepare("SELECT id FROM " . TABLE_WEIGHT . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
     $id = intval($id_max) + 1;
 
+    // Оставляем один экземпляр основного значения
+    if ($id > 1 && $default_weight != 0) {
+        $PDO->inPrepare("UPDATE " . TABLE_WEIGHT . " SET default_weight=?", [0]);
+    }
+
     // добавляем запись для всех вкладок
     for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
         $PDO->inPrepare("INSERT INTO " . TABLE_WEIGHT . " SET id=?, name=?, language=?, code=?, value_weight=?, default_weight=?", [$id, $VALID->inGET($SET->titleDir() . '_' . lang('#lang_all')[$xl]), lang('#lang_all')[$xl], $VALID->inGET('code' . lang('#lang_all')[$xl]), $VALID->inGET('value_weight'), $default_weight]);
