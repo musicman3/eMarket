@@ -132,8 +132,8 @@ CREATE TABLE emkt_weight (
 	name varchar(64),
         code varchar(8),
 	language varchar(64),
-        value_weight decimal(8,4),
-        default_weight varchar(8),
+        value_weight decimal(4,4),
+        default_weight int NOT NULL,
 	PRIMARY KEY (id, language))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
