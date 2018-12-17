@@ -393,12 +393,12 @@ if (!isset($idsx_real_parent_id)) {
         // Отправка запроса для обновления страницы
         jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных GET
                 {parent_down: <?php echo $parent_id ?>,
-                    modify: 'update_ok'},
+                    modify: 'ok'},
                 AjaxSuccess);
         // Обновление страницы
         function AjaxSuccess(data) {
             setTimeout(function () {
-                document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
+                $('#ajax').html(data);
             }, 100);
             $("#sort-list").sortable();
         }
