@@ -34,6 +34,7 @@ $tab_regions = $db_pref . 'regions';
 $tab_taxes = $db_pref . 'taxes';
 $tab_units = $db_pref . 'units';
 $tab_vendor_codes = $db_pref . 'vendor_codes';
+$tab_weight = $db_pref . 'weight';
 $tab_zones = $db_pref . 'zones';
 $tab_zones_value = $db_pref . 'zones_value';
 
@@ -60,6 +61,7 @@ $config = '<?php' . "\n" .
         '  define(\'TABLE_TAXES\', \'' . $tab_taxes . '\');' . "\n" .
         '  define(\'TABLE_UNITS\', \'' . $tab_units . '\');' . "\n" .
         '  define(\'TABLE_VENDOR_CODES\', \'' . $tab_vendor_codes . '\');' . "\n" .
+        '  define(\'TABLE_WEIGHT\', \'' . $tab_weight . '\');' . "\n" .
         '  define(\'TABLE_ZONES\', \'' . $tab_zones . '\');' . "\n" .
         '  define(\'TABLE_ZONES_VALUE\', \'' . $tab_zones_value . '\');' . "\n" .
         '?>';
