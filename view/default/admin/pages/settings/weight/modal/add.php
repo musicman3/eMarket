@@ -79,11 +79,11 @@
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
                                 <input class="input-sm form-control" placeholder="Значение" type="text" name="value" id="rate" />
                             </div>
+                        </div>
                             <div class="form-group">
                                 <label for="view_category">Установить как основной? </label>
                                 <input class="check-box" id="view_cat" type="checkbox" name="view_cat">
                             </div>
-                        </div>
                     </div>
                 </div>
 
