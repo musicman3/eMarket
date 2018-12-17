@@ -51,7 +51,7 @@
                                                 <input hidden name="start" value="<?php echo $start ?>">
                                                 <input hidden name="finish" value="<?php echo $finish ?>">
                                                 <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
-                                                <div class="right"><button type="submit" class="btn btn-primary btn-xs" action="/controller/admin/pages/stock/categories/index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
+                                                <div class="right"><button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
                                             <?php } ?>
                                         </form>
 
@@ -61,7 +61,7 @@
                                                 <input hidden name="start2" value="<?php echo $start ?>">
                                                 <input hidden name="finish2" value="<?php echo $finish ?>">
                                                 <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
-                                                <div class="left"><button type="submit" class="btn btn-primary btn-xs"  action="/controller/admin/pages/stock/categories/index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
+                                                <div class="left"><button type="submit" class="btn btn-primary btn-xs"  action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
                                             <?php } ?>
                                         </form>
 
@@ -80,7 +80,7 @@
                                             <!-- Категории "ВВЕРХ" -->
                                             <form>
                                                 <div>
-                                                    <button name="parent_up" value="<?php echo $parent_up ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/stock/categories/index.php" formmethod="get"><span class="glyphicon glyphicon-option-horizontal"></span></button>
+                                                    <button name="parent_up" value="<?php echo $parent_up ?>" class="btn btn-default btn-xs" title="" action="index.php" formmethod="get"><span class="glyphicon glyphicon-option-horizontal"></span></button>
                                                 </div>
                                             </form>
 
@@ -119,7 +119,7 @@
                                                 <!-- Неактивная категория "ВНИЗ" -->
                                                 <form>
                                                     <div>
-                                                        <button name="parent_down" value="<?php echo $lines[$start][0] ?>" class="btn btn-default btn-xs" title="<?php echo $lines[$start][1] ?>" action="/controller/admin/pages/stock/categories/index.php" formmethod="get"><span class="glyphicon glyphicon-folder-open"> </span></button>
+                                                        <button name="parent_down" value="<?php echo $lines[$start][0] ?>" class="btn btn-default btn-xs" title="<?php echo $lines[$start][1] ?>" action="index.php" formmethod="get"><span class="glyphicon glyphicon-folder-open"> </span></button>
                                                     </div>
                                                 </form>
 
@@ -135,7 +135,7 @@
                                                 <!-- Активная категория "ВНИЗ" -->
                                                 <form>
                                                     <div>
-                                                        <button name="parent_down" value="<?php echo $lines[$start][0] ?>" class="btn btn-primary btn-xs" title="<?php echo $lines[$start][1] ?>" action="/controller/admin/pages/stock/categories/index.php" formmethod="get"><span class="glyphicon glyphicon-folder-open"> </span></button>
+                                                        <button name="parent_down" value="<?php echo $lines[$start][0] ?>" class="btn btn-primary btn-xs" title="<?php echo $lines[$start][1] ?>" action="index.php" formmethod="get"><span class="glyphicon glyphicon-folder-open"> </span></button>
                                                     </div>
                                                 </form>
 
@@ -185,7 +185,7 @@
                                         <!-- Категорий нет "ВВЕРХ" -->
                                         <form>
                                             <div>
-                                                <button name="parent_up" value="<?php echo $parent_id ?>" class="btn btn-default btn-xs" title="" action="/controller/admin/pages/stock/categories/index.php" formmethod="get"><span class="glyphicon glyphicon-option-horizontal"></span></button>
+                                                <button name="parent_up" value="<?php echo $parent_id ?>" class="btn btn-default btn-xs" title="" action="index.php" formmethod="get"><span class="glyphicon glyphicon-option-horizontal"></span></button>
                                             </div>
                                         </form>
 
