@@ -81,6 +81,7 @@ name_region = Name region
 name_zone = Zone name
 region_code = Region code
 region = Region
+value = Value
 zone = Zone
 action_completed_successfully = Action completed successfully!
 categories_transfer = Transfer with the next page

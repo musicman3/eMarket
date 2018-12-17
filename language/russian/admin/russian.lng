@@ -81,6 +81,7 @@ name_region = Название региона
 name_zone = Название зоны
 region_code = Код региона
 region = Регион
+value = Значение
 zone = Зона
 country = Страна
 action_completed_successfully = Действие успешно выполнено!

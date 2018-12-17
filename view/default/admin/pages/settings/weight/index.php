@@ -35,7 +35,7 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th colspan="2">
+                                <th colspan="3">
                                     <?php if ($lines == TRUE) { ?>
                                         <div class="page"><?php echo lang('s') ?> <?php echo $start + 1 ?> <?php echo lang('po') ?> <?php echo $finish ?> ( <?php echo lang('iz') ?> <?php echo count($lines); ?> )</div>
                                         <?php
@@ -71,6 +71,7 @@
                                 <tr class="border">
                                     <th><?php echo lang('name_full') ?></th>
                                     <th class="al-text"><?php echo lang('name_little') ?></th>
+                                    <th class="al-text"><?php echo lang('value') ?></th>
                                     <th class="al-text-w"></th>
                                 </tr>
                             <?php } ?>
@@ -80,6 +81,7 @@
                                 <tr>
                                     <td><?php echo $lines[$start][1] ?></td>
                                     <td class="al-text"><?php echo $lines[$start][2] ?></td>
+                                    <td class="al-text"><?php echo $lines[$start][3] ?></td>
                                     <td class="al-text-w">
                                         <form action="index.php" method="post">
                                             <input hidden name="delete" value="<?php echo $lines[$start][0] ?>">
