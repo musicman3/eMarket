@@ -81,7 +81,7 @@
                             </div>
                         </div>
                             <div class="form-group">
-                                <label for="default_weight">Установить как основной? </label>
+                                <label for="default_weight"><?php echo lang('default_set') ?> </label>
                                 <input class="check-box" name="default_weight" type="checkbox" checked>
                             </div>
                     </div>
