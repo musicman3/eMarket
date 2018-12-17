@@ -85,7 +85,7 @@ class Pdo {
         $result = FALSE;
         if ($exec = self::connect()->prepare($sql)
                 AND $exec->execute($a)
-                AND $value = $exec->fetch(self::connect() :: FETCH_NUM)
+                AND $value = $exec->fetch(\PDO :: FETCH_NUM)
                 AND $result = $value[0]) {
             
         }
@@ -155,7 +155,7 @@ class Pdo {
         $result = FALSE;
         if ($exec = self::connect()->prepare($sql)
                 AND $exec->execute($a)
-                AND $result = $exec->fetchAll(self::connect() :: FETCH_NUM)) {
+                AND $result = $exec->fetchAll(\PDO :: FETCH_NUM)) {
             
         }
         return $result;
@@ -186,9 +186,7 @@ class Pdo {
         $result = FALSE;
         if ($exec = self::connect()->prepare($sql)
                 AND $exec->execute($a)
-                AND $value = $exec->fetchAll(self::connect() :: FETCH_NUM)
-                AND $result = array_column($value, 0)) {
-            
+                AND $result = $exec->fetchAll(\PDO :: FETCH_COLUMN)) {
         }
         return $result;
     }
