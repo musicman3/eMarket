@@ -9,7 +9,7 @@ require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 /* ------------------------------------------ */
 // 
 //Сохраняем сессию с URL текущей страницы
-$_SESSION['country_page'] = $VALID->inSERVER('REQUEST_URI');
+$_SESSION['country_page'] = '/controller/admin/pages/settings/countries/index.php';
 
 // Если нажали на кнопку Добавить
 if ($VALID->inGET('add')) {
