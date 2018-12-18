@@ -366,7 +366,7 @@ if (!isset($idsx_real_parent_id)) {
         // Обновление страницы
         function AjaxSuccess(data) {
             setTimeout(function () {
-                $('#ajax').html(data);
+                document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
             }, 100);
             $("#sort-list").sortable();
         }
