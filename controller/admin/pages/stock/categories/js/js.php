@@ -111,7 +111,7 @@ if (!isset($idsx_real_parent_id)) {
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
 
                         //Собираем данные для модального окна
-                        <?php if (isset($name_edit) && isset($status_category_edit)) { ?>
+                        <?php if (isset($name_edit)) { ?>
 
                             $('#edit').on('show.bs.modal', function (event) {
                                 var modal = $(this);

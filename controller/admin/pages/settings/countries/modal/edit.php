@@ -27,4 +27,7 @@ for ($i = $start; $i < $finish; $i++) {
         $address_format = json_encode($address_format_temp); // Формат адреса
     }
 }
+if (!isset($modal_id)) {
+    $modal_id = 'false';
+}
 ?>

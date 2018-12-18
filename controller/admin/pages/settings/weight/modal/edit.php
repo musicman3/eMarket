@@ -25,4 +25,7 @@ for ($i = $start; $i < $finish; $i++) {
         $status_weight_edit = json_encode($status_weight_edit_temp); // Статус
     }
 }
+if (!isset($modal_id)) {
+    $modal_id = 'false';
+}
 ?>

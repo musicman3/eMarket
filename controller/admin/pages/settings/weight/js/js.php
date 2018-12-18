@@ -5,7 +5,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
-
+<?php if (isset($name_edit)) { ?>
 <!-- Загрузка данных в модальное окно -->
 <script type="text/javascript" language="javascript">
     $('#edit').on('show.bs.modal', function (event) {
@@ -30,3 +30,4 @@
         $('#status_weight_edit').prop('checked', status[modal_id]);
     });
 </script>
+<?php } ?>
