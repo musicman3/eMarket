@@ -53,7 +53,7 @@
         // Обновление страницы
         function AjaxSuccess(data) {
             setTimeout(function () {
-                $('#ajax').html(data);
+                document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
             }, 100);
         }
     }
@@ -80,7 +80,7 @@
         // Обновление страницы
         function AjaxSuccess(data) {
             setTimeout(function () {
-                $('#ajax').html(data);
+                document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
             }, 100);
         }
     }

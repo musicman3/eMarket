@@ -30,3 +30,57 @@
     });
 </script>
 <?php } ?>
+
+<!-- Модальное окно "Добавить" -->
+<script type="text/javascript" language="javascript">
+    function call_add() {
+        var msg = $('#form_add').serialize();
+        // Установка синхронного запроса для jQuery.ajax
+        jQuery.ajaxSetup({async: false});
+        jQuery.ajax({
+            type: 'GET',
+            url: '/controller/admin/pages/settings/countries/index.php',
+            data: msg,
+            success: function (data) {
+                $('#add').modal('hide');
+            }
+        });
+        // Отправка запроса для обновления страницы
+        jQuery.get('/controller/admin/pages/settings/countries/index.php', // отправка данных GET
+                {modify: 'update_ok'},
+                AjaxSuccess);
+        // Обновление страницы
+        function AjaxSuccess(data) {
+            setTimeout(function () {
+                document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
+            }, 100);
+        }
+    }
+</script>
+
+<!-- Модальное окно "Редактировать" -->
+<script type="text/javascript" language="javascript">
+    function call_edit() {
+        var msg = $('#form_edit').serialize();
+        // Установка синхронного запроса для jQuery.ajax
+        jQuery.ajaxSetup({async: false});
+        jQuery.ajax({
+            type: 'GET',
+            url: '/controller/admin/pages/settings/countries/index.php',
+            data: msg,
+            success: function (data) {
+                $('#edit').modal('hide');
+            }
+        });
+        // Отправка запроса для обновления страницы
+        jQuery.get('/controller/admin/pages/settings/countries/index.php', // отправка данных GET
+                {modify: 'ok'},
+                AjaxSuccess);
+        // Обновление страницы
+        function AjaxSuccess(data) {
+            setTimeout(function () {
+                document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
+            }, 100);
+        }
+    }
+</script>
