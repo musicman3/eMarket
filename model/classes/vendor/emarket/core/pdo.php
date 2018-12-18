@@ -187,6 +187,7 @@ class Pdo {
         if ($exec = self::connect()->prepare($sql)
                 AND $exec->execute($a)
                 AND $result = $exec->fetchAll(\PDO :: FETCH_COLUMN)) {
+            
         }
         return $result;
     }
@@ -310,6 +311,30 @@ class Pdo {
         $result = FALSE;
         if ($result = self::connect()->prepare($sql)
                 AND $result->execute($a)) {
+            
+        }
+        return $result;
+    }
+
+    /**
+     * getColAssoc для запроса колонки в виде одномерного массива.
+     * Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах.
+     * 
+     * ПРИМЕР
+     *
+      Возвращаем следующую строку в виде массива, индексированного именами столбцов
+      Array
+      (
+      [name] => apple
+      [colour] => red
+      )
+     */
+    public function getColAssoc($sql, $a) {
+
+        $result = FALSE;
+        if ($exec = self::connect()->prepare($sql)
+                AND $exec->execute($a)
+                AND $result = $exec->fetch(\PDO :: FETCH_ASSOC)) {
             
         }
         return $result;
