@@ -62,6 +62,8 @@ if ($VALID->inPOST('delete')) {
     $PDO->inPrepare("DELETE FROM " . TABLE_WEIGHT . " WHERE id=?", [$VALID->inPOST('delete')]);
 }
 
+//$DEBUG->trace($PDO->getColAssoc("SELECT id, value_weight FROM " . TABLE_WEIGHT ." WHERE language=?", [lang('#lang_all')[0]]));
+
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 $lines = $PDO->getColRow("SELECT id, name, code, value_weight, default_weight FROM " . TABLE_WEIGHT . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
 $lines_on_page = $SET->linesOnPage();

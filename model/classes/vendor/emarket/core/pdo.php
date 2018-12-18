@@ -322,6 +322,8 @@ class Pdo {
      * 
      * ПРИМЕР
      *
+     * Использовать так: $a = $PDO->getColAssoc("SELECT value, name FROM categories", []);
+     * 
       Возвращаем следующую строку в виде массива, индексированного именами столбцов
       Array
       (
@@ -334,7 +336,7 @@ class Pdo {
         $result = FALSE;
         if ($exec = self::connect()->prepare($sql)
                 AND $exec->execute($a)
-                AND $result = $exec->fetch(\PDO :: FETCH_ASSOC)) {
+                AND $result = $exec->fetchAll(\PDO :: FETCH_ASSOC)) {
             
         }
         return $result;
