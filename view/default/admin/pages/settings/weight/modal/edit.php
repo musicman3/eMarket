@@ -85,7 +85,7 @@ require(ROOT . '/controller/admin/pages/settings/weight/modal/edit.php');
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="status_weight_edit"><?php echo lang('display') ?> </label>
+                            <label for="status_weight_edit"><?php echo lang('default_set') ?> </label>
                             <input class="check-box" id="status_weight_edit" type="checkbox" name="status_weight_edit">
                         </div>
                     </div>
