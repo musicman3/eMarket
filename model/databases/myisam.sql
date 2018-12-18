@@ -132,7 +132,7 @@ CREATE TABLE emkt_weight (
 	name varchar(64),
         code varchar(8),
 	language varchar(64),
-        value_weight decimal(12,6),
+        value_weight decimal(14,7),
         default_weight int NOT NULL,
 	PRIMARY KEY (id, language))
 ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
