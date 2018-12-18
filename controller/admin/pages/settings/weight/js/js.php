@@ -85,3 +85,30 @@
         }
     }
 </script>
+
+<!-- Модальное окно "Удалить" -->
+<script type="text/javascript" language="javascript">
+    function call_delete() {
+        var msg = $('#form_delete').serialize();
+        // Установка синхронного запроса для jQuery.ajax
+        jQuery.ajaxSetup({async: false});
+        jQuery.ajax({
+            type: 'POST',
+            url: '/controller/admin/pages/settings/weight/index.php',
+            data: msg,
+            success: function (data) {
+                // Пустой запрос
+            }
+        });
+        // Отправка запроса для обновления страницы
+        jQuery.get('/controller/admin/pages/settings/weight/index.php', // отправка данных GET
+                {modify: 'ok'},
+                AjaxSuccess);
+        // Обновление страницы
+        function AjaxSuccess(data) {
+            setTimeout(function () {
+                document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
+            }, 100);
+        }
+    }
+</script>
