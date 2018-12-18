@@ -16,10 +16,7 @@ for ($i = $start; $i < $finish; $i++) {
             $name_edit_temp[$xl][$modal_id] = $PDO->selectPrepare("SELECT name FROM " . TABLE_CATEGORIES . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$xl]]);
         }
 
-        $status_category_edit_temp[$modal_id] = (int) $PDO->selectPrepare("SELECT status FROM " . TABLE_CATEGORIES . " WHERE id=?", [$modal_id]);
-
         // ПАРАМЕТРЫ ДЛЯ ПЕРЕДАЧИ В МОДАЛ
-        $status_category_edit = json_encode($status_category_edit_temp); // Статус
         $name_edit = json_encode($name_edit_temp); // Имя
     }
 }

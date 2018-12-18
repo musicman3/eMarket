@@ -116,7 +116,6 @@ if (!isset($idsx_real_parent_id)) {
                             $('#edit').on('show.bs.modal', function (event) {
                                 var modal = $(this);
                                 var button = $(event.relatedTarget);
-                                var status = <?php echo $status_category_edit ?>;
                                 // Получаем ID при клике на кнопку редактирования
                                 var modal_id = opt.$trigger.attr("id");
                                 // Получаем массивы данных
@@ -127,8 +126,6 @@ if (!isset($idsx_real_parent_id)) {
                                     modal.find('.name_edit' + x).val(name_edit[x][modal_id]);
                                 }
                                 modal.find('.js_edit').val(modal_id);
-                                // Меняем значение чекбокса
-                                $('#view_cat').prop('checked', status[modal_id]);
                                 
                             });
 

@@ -22,7 +22,7 @@ if ($VALID->inGET('add')) {
     $id_max = $PDO->selectPrepare("SELECT id FROM " . TABLE_WEIGHT . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
     $id = intval($id_max) + 1;
 
-    // Оставляем один экземпляр основного значения
+    // Оставляем один экземпляр значения по-умолчанию
     if ($id > 1 && $status != 0) {
         $PDO->inPrepare("UPDATE " . TABLE_WEIGHT . " SET default_weight=?", [0]);
     }
@@ -42,7 +42,7 @@ if ($VALID->inGET('edit')) {
         $status = 0;
     }
 
-    // Оставляем один экземпляр основного значения
+    // Оставляем один экземпляр значения по-умолчанию
     if ($status != 0) {
         $PDO->inPrepare("UPDATE " . TABLE_WEIGHT . " SET default_weight=?", [0]);
     }

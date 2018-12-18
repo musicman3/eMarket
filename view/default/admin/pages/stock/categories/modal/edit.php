@@ -73,10 +73,6 @@ require(ROOT . '/controller/admin/pages/stock/categories/modal/edit.php');
                         <label for="image"><?php echo lang('images') ?>:</label><br>
                         <input type="file" name="image" id="image" /> <?php echo lang('max') ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>
                     </div>
-                    <div class="form-group">
-                        <label for="view_category"><?php echo lang('display') ?> </label>
-                        <input class="check-box" id="view_cat" type="checkbox" name="view_cat">
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-primary btn-xs" type="button" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-remove"></span> <?php echo lang('cancel') ?></button>
