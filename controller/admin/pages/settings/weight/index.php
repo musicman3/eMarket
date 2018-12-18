@@ -12,9 +12,9 @@ require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 if ($VALID->inGET('add')) {
 
     if ($VALID->inGET('default_weight')) {
-        $default_weight = 1;
+        $status = 1;
     } else {
-        $default_weight = 0;
+        $status = 0;
     }
 
     // Получаем последний id и увеличиваем его на 1
@@ -22,7 +22,7 @@ if ($VALID->inGET('add')) {
     $id = intval($id_max) + 1;
 
     // Оставляем один экземпляр основного значения
-    if ($id > 1 && $default_weight != 0) {
+    if ($id > 1 && $status != 0) {
         $PDO->inPrepare("UPDATE " . TABLE_WEIGHT . " SET default_weight=?", [0]);
     }
 
@@ -34,10 +34,21 @@ if ($VALID->inGET('add')) {
 
 // Если нажали на кнопку Редактировать
 if ($VALID->inGET('edit')) {
+    
+    if ($VALID->inGET('status_weight_edit')) {
+                $status = 1;
+            } else {
+                $status = 0;
+            }
+            
+    // Оставляем один экземпляр основного значения
+    if ($status != 0) {
+        $PDO->inPrepare("UPDATE " . TABLE_WEIGHT . " SET default_weight=?", [0]);
+    }
 
     for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
         // обновляем запись
-        $PDO->inPrepare("UPDATE " . TABLE_WEIGHT . " SET name=?, code=? WHERE id=? AND language=?", [$VALID->inGET('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$xl]), $VALID->inGET('code_edit' . lang('#lang_all')[$xl]), $VALID->inGET('edit'), lang('#lang_all')[$xl]]);
+        $PDO->inPrepare("UPDATE " . TABLE_WEIGHT . " SET name=?, code=?, value_weight=?, default_weight=? WHERE id=? AND language=?", [$VALID->inGET('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$xl]), $VALID->inGET('code_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$xl]), $VALID->inGET('value_weight_edit'), $status, $VALID->inGET('edit'), lang('#lang_all')[$xl]]);
     }
 }
 
