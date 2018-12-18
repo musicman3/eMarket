@@ -11,11 +11,12 @@ require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 // 
 // Если нажали на кнопку Добавить
 if ($VALID->inGET('add')) {
-
+    
+    // Если есть установка по-умолчанию
     if ($VALID->inGET('default_weight')) {
-        $status = 1;
+        $default_weight = 1;
     } else {
-        $status = 0;
+        $default_weight = 0;
     }
 
     // Получаем последний id и увеличиваем его на 1
@@ -23,33 +24,34 @@ if ($VALID->inGET('add')) {
     $id = intval($id_max) + 1;
 
     // Оставляем один экземпляр значения по-умолчанию
-    if ($id > 1 && $status != 0) {
+    if ($id > 1 && $default_weight != 0) {
         $PDO->inPrepare("UPDATE " . TABLE_WEIGHT . " SET default_weight=?", [0]);
     }
 
     // добавляем запись для всех вкладок
     for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
-        $PDO->inPrepare("INSERT INTO " . TABLE_WEIGHT . " SET id=?, name=?, language=?, code=?, value_weight=?, default_weight=?", [$id, $VALID->inGET($SET->titleDir() . '_' . lang('#lang_all')[$xl]), lang('#lang_all')[$xl], $VALID->inGET('code' . lang('#lang_all')[$xl]), $VALID->inGET('value_weight'), $status]);
+        $PDO->inPrepare("INSERT INTO " . TABLE_WEIGHT . " SET id=?, name=?, language=?, code=?, value_weight=?, default_weight=?", [$id, $VALID->inGET($SET->titleDir() . '_' . lang('#lang_all')[$xl]), lang('#lang_all')[$xl], $VALID->inGET('code' . lang('#lang_all')[$xl]), $VALID->inGET('value_weight'), $default_weight]);
     }
 }
 
 // Если нажали на кнопку Редактировать
 if ($VALID->inGET('edit')) {
-
+    
+    // Если есть установка по-умолчанию
     if ($VALID->inGET('status_weight_edit')) {
-        $status = 1;
+        $default_weight = 1;
     } else {
-        $status = 0;
+        $default_weight = 0;
     }
 
     // Оставляем один экземпляр значения по-умолчанию
-    if ($status != 0) {
+    if ($default_weight != 0) {
         $PDO->inPrepare("UPDATE " . TABLE_WEIGHT . " SET default_weight=?", [0]);
     }
 
     for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
         // обновляем запись
-        $PDO->inPrepare("UPDATE " . TABLE_WEIGHT . " SET name=?, code=?, value_weight=?, default_weight=? WHERE id=? AND language=?", [$VALID->inGET('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$xl]), $VALID->inGET('code_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$xl]), $VALID->inGET('value_weight_edit'), $status, $VALID->inGET('edit'), lang('#lang_all')[$xl]]);
+        $PDO->inPrepare("UPDATE " . TABLE_WEIGHT . " SET name=?, code=?, value_weight=?, default_weight=? WHERE id=? AND language=?", [$VALID->inGET('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$xl]), $VALID->inGET('code_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$xl]), $VALID->inGET('value_weight_edit'), $default_weight, $VALID->inGET('edit'), lang('#lang_all')[$xl]]);
     }
 }
 
