@@ -1,4 +1,5 @@
 <?php
+
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -34,13 +35,13 @@ if ($VALID->inGET('add')) {
 
 // Если нажали на кнопку Редактировать
 if ($VALID->inGET('edit')) {
-    
+
     if ($VALID->inGET('status_weight_edit')) {
-                $status = 1;
-            } else {
-                $status = 0;
-            }
-            
+        $status = 1;
+    } else {
+        $status = 0;
+    }
+
     // Оставляем один экземпляр основного значения
     if ($status != 0) {
         $PDO->inPrepare("UPDATE " . TABLE_WEIGHT . " SET default_weight=?", [0]);
@@ -72,5 +73,4 @@ $JS_END = __DIR__;
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
 require_once(ROOT . '/model/end.php');
 /* ------------------------------------------ */
-
 ?>
