@@ -344,7 +344,7 @@ if (!isset($idsx_real_parent_id)) {
     });
 </script>
 
-<!-- Модальное окно "Добавить категорию" -->
+<!-- Модальное окно "Добавить" -->
 <script type="text/javascript" language="javascript">
     function call_add() {
         var msg = $('#form_add').serialize();
@@ -366,14 +366,14 @@ if (!isset($idsx_real_parent_id)) {
         // Обновление страницы
         function AjaxSuccess(data) {
             setTimeout(function () {
-                document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
+                $('#ajax').html(data);
             }, 100);
             $("#sort-list").sortable();
         }
     }
 </script>
 
-<!-- Модальное окно "Редактировать категорию" -->
+<!-- Модальное окно "Редактировать" -->
 <script type="text/javascript" language="javascript">
     function call_edit() {
         var msg = $('#form_edit').serialize();
