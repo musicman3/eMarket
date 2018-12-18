@@ -29,7 +29,7 @@ if ($VALID->inGET('add')) {
 
     // добавляем запись для всех вкладок
     for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
-        $PDO->inPrepare("INSERT INTO " . TABLE_WEIGHT . " SET id=?, name=?, language=?, code=?, value_weight=?, default_weight=?", [$id, $VALID->inGET($SET->titleDir() . '_' . lang('#lang_all')[$xl]), lang('#lang_all')[$xl], $VALID->inGET('code' . lang('#lang_all')[$xl]), $VALID->inGET('value_weight'), $default_weight]);
+        $PDO->inPrepare("INSERT INTO " . TABLE_WEIGHT . " SET id=?, name=?, language=?, code=?, value_weight=?, default_weight=?", [$id, $VALID->inGET($SET->titleDir() . '_' . lang('#lang_all')[$xl]), lang('#lang_all')[$xl], $VALID->inGET('code' . lang('#lang_all')[$xl]), $VALID->inGET('value_weight'), $status]);
     }
 }
 
