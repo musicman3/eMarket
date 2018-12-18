@@ -88,6 +88,7 @@ zone = Зона
 country = Страна
 action_completed_successfully = Действие успешно выполнено!
 categories_transfer = Трансфер со следующей страницей
+value_relative_to = Значение относительно
 
 ;BASIC SETTINGS
 lines_on_page = Строк на странице

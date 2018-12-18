@@ -77,7 +77,7 @@
                         <div class="form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                <input class="input-sm form-control" placeholder="Значение" type="text" name="value_weight" id="value_weight" />
+                                <input class="input-sm form-control" placeholder="<?php echo lang('value_relative_to') . ' ' . $lines[$start][1] ?>" type="text" name="value_weight" id="value_weight" />
                             </div>
                         </div>
                             <div class="form-group">

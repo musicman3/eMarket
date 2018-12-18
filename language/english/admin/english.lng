@@ -87,6 +87,7 @@ default_set = Default set
 zone = Zone
 action_completed_successfully = Action completed successfully!
 categories_transfer = Transfer with the next page
+value_relative_to = Value relative to
 
 ;BASIC SETTINGS
 lines_on_page = Lines on page
