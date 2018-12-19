@@ -22,6 +22,7 @@ title_units_index = Единицы измерения
 title_vendor_codes_index = Идентификаторы товара
 title_zones_index = Зоны
 title_weight_index = Вес
+title_length_index = Длина
 
 ;кнопки меню
 menu_catalog = Каталог товаров
