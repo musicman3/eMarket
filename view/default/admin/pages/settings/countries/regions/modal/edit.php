@@ -17,7 +17,6 @@ require(ROOT . '/controller/admin/pages/settings/countries/regions/modal/edit.ph
             <form id="form_edit" name="form_edit" action="javascript:void(null);" onsubmit="call_edit()">
                 <div class="panel-body">
                     <input class="js_edit" type="hidden" name="edit" value="" />
-                    <input type="hidden" name="country_id" value="<?php echo $VALID->inPOST('country_id') ?>" />
                     
                     <!-- Языковые панели -->
                     <ul class="nav nav-tabs">
