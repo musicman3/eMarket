@@ -49,6 +49,17 @@ CREATE TABLE emkt_countries (
 	PRIMARY KEY (id, language))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+DROP TABLE IF EXISTS emkt_length;
+CREATE TABLE emkt_length (
+	id int NOT NULL,
+	name varchar(64),
+        code varchar(8),
+	language varchar(64),
+        value_length decimal(14,7),
+        default_length int NOT NULL,
+	PRIMARY KEY (id, language))
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 DROP TABLE IF EXISTS emkt_products;
 CREATE TABLE emkt_products (
 	id int DEFAULT '0' NOT NULL,

@@ -30,7 +30,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <div class="settings"><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-road glyph-xs"> </span></a>Размер</div>
+                                    <div class="settings"><a href="length/" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-road glyph-xs"> </span></a>Длина</div>
                                 </td>
                                 <td>
                                     <div class="settings"><a href="weight/" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-oil glyph-xs"> </span></a><?php echo lang('title_weight_index') ?></div>
