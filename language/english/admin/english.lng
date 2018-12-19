@@ -22,6 +22,7 @@ title_units_index = Units
 title_vendor_codes_index = Vendor codes
 title_zones_index = Zones
 title_weight_index = Weight
+title_length_index = Length
 
 ;кнопки меню
 menu_catalog = Catalog
