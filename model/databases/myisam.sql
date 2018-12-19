@@ -10165,4 +10165,4 @@ INSERT INTO emkt_regions VALUES(4248, 238, 'MV', 'Masvingo', 'English');
 INSERT INTO emkt_regions VALUES(4249, 238, 'MW', 'Mashonaland West', 'English');
 
 /* ЗАГРУЗКА НАСТРОЕК */
-INSERT INTO emkt_basic_settings VALUES (1, 20, 15);
+INSERT INTO emkt_basic_settings VALUES (1, 20, 60);
