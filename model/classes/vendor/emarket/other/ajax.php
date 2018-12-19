@@ -9,10 +9,10 @@ namespace eMarket\Other;
 class Ajax {
 
     /**
-     * Удобное отображение массива при отладке
+     * Ajax обработка для Добавить, Редактировать, Удалить
      *
-     * @param массив $var
-     * @return null
+     * @param строка $url
+     * @return javascript
      */
     public function action($url) {
         $VALID = new \eMarket\Core\Valid;
