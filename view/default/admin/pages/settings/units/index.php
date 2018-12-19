@@ -9,15 +9,9 @@
 <?php require_once('modal/add.php') ?>
 <!-- КОНЕЦ Модальное окно "Добавить" -->
 
-<!-- Дублируем модальные окна Редактирования -->
-<?php $k = $start; // дублируем переменную   ?>
-
-<?php for ($k; $k < $finish; $k++) { // запускаем цикл формирования модальных окон  ?>
-
-    <!-- Вставляем модальное окно "Редактировать" -->
-    <?php require(ROOT . '/view/' . $SET->template() . '/admin/pages/settings/units/modal/edit.php') ?>
-
-<?php } ?>
+<!-- Модальное окно "Редактировать" -->
+<?php require(ROOT . '/view/' . $SET->template() . '/admin/pages/settings/units/modal/edit.php') ?>
+<!-- КОНЕЦ Модальное окно "Редактировать" -->
 
 <div id="ajax">
     <div id="settings" class="container-fluid">
@@ -81,15 +75,16 @@
                                     <td><?php echo $lines[$start][1] ?></td>
                                     <td class="al-text"><?php echo $lines[$start][2] ?></td>
                                     <td class="al-text-w">
-                                        <form action="index.php" method="post">
+                                        <form id="form_delete" name="form_delete" action="javascript:void(null);" onsubmit="call_delete()">
                                             <input hidden name="delete" value="<?php echo $lines[$start][0] ?>">
                                             <div class="right">
                                                 <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button>
                                             </div>
-                                            <div class="left">
-                                                <a href="#edit<?php echo $lines[$start][0] ?>" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span></a>
-                                            </div>
                                         </form>
+                                        <!--Вызов модального окна для редактирования-->
+                                        <div class="left">
+                                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#edit" data-edit="<?php echo $lines[$start][0] ?>"><span class="glyphicon glyphicon-edit"></span></button>
+                                        </div>
                                     </td>
                                 </tr>
                             <?php } ?>
