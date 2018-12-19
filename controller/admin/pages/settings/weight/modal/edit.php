@@ -16,7 +16,7 @@ for ($i = $start; $i < $finish; $i++) {
             $code_edit_temp[$xl][$modal_id] = $PDO->selectPrepare("SELECT code FROM " . TABLE_WEIGHT . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$xl]]);
         }
         
-        $value_weight_edit_temp[$modal_id] = $PDO->selectPrepare("SELECT value_weight FROM " . TABLE_WEIGHT . " WHERE id=?", [$modal_id]);
+        $value_weight_edit_temp[$modal_id] = (float)$PDO->selectPrepare("SELECT value_weight FROM " . TABLE_WEIGHT . " WHERE id=?", [$modal_id]);
         $status_weight_edit_temp[$modal_id] = (int) $PDO->selectPrepare("SELECT default_weight FROM " . TABLE_WEIGHT . " WHERE id=?", [$modal_id]);
         // ПАРАМЕТРЫ ДЛЯ ПЕРЕДАЧИ В МОДАЛ
         $name_edit = json_encode($name_edit_temp); // Имя

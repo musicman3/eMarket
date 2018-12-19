@@ -16,7 +16,7 @@ for ($i = $start; $i < $finish; $i++) {
             $code_edit_temp[$xl][$modal_id] = $PDO->selectPrepare("SELECT code FROM " . TABLE_LENGTH . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$xl]]);
         }
         
-        $value_length_edit_temp[$modal_id] = $PDO->selectPrepare("SELECT value_length FROM " . TABLE_LENGTH . " WHERE id=?", [$modal_id]);
+        $value_length_edit_temp[$modal_id] = (float)$PDO->selectPrepare("SELECT value_length FROM " . TABLE_LENGTH . " WHERE id=?", [$modal_id]);
         $status_length_edit_temp[$modal_id] = (int) $PDO->selectPrepare("SELECT default_length FROM " . TABLE_LENGTH . " WHERE id=?", [$modal_id]);
         // ПАРАМЕТРЫ ДЛЯ ПЕРЕДАЧИ В МОДАЛ
         $name_edit = json_encode($name_edit_temp); // Имя

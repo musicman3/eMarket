@@ -74,7 +74,7 @@
                                 <tr>
                                     <td><?php echo $lines[$start][1] ?></td>
                                     <td class="al-text"><?php echo $lines[$start][2] ?></td>
-                                    <td class="al-text"><?php echo $lines[$start][3] ?></td>
+                                    <td class="al-text"><?php echo (float)$lines[$start][3] ?></td>
                                     <?php if ($lines[$start][4] == 1) { ?>
                                         <td class="al-text"><?php echo lang('confirm-yes') ?></td>
                                     <?php } else { ?>
