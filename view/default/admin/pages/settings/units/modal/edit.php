@@ -41,13 +41,13 @@ require(ROOT . '/controller/admin/pages/settings/units/modal/edit.php');
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="name_edit0 input-sm form-control" type="text" name="name_edit_<?php echo $SET->titleDir() . '_' . lang('#lang_all')[0] ?>" id="name_edit<?php echo lang('#lang_all')[0] ?>" value="<?php echo $name_edit[0] ?>" />
+                                    <input class="name_edit0 input-sm form-control" type="text" name="name_edit_<?php echo $SET->titleDir() . '_' . lang('#lang_all')[0] ?>" id="name_edit<?php echo lang('#lang_all')[0] ?>" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                    <input class="code_edit0 input-sm form-control" type="text" name="unit_edit<?php echo lang('#lang_all')[0] ?>" id="unit_edit<?php echo lang('#lang_all')[0] ?>" value="<?php echo $value_edit[0] ?>" />
+                                    <input class="code_edit0 input-sm form-control" type="text" name="unit_edit<?php echo lang('#lang_all')[0] ?>" id="unit_edit<?php echo lang('#lang_all')[0] ?>" />
                                 </div>
                             </div>
                         </div>
