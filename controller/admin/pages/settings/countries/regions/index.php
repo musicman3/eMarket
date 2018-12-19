@@ -1,4 +1,5 @@
 <?php
+
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -15,7 +16,7 @@ if ($VALID->inGET('country_id')) {
 if ($VALID->inPOST('country_id')) {
     $country_id = $VALID->inPOST('country_id');
 }
-if (!isset($country_id)){
+if (!isset($country_id)) {
     $country_id = 0;
 }
 
@@ -62,5 +63,4 @@ $JS_END = __DIR__;
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
 require_once(ROOT . '/model/end.php');
 /* ------------------------------------------ */
-
 ?>
