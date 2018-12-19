@@ -39,7 +39,7 @@
         // Установка синхронного запроса для jQuery.ajax
         jQuery.ajaxSetup({async: false});
         jQuery.ajax({
-            type: 'GET',
+            type: 'POST',
             url: '/controller/admin/pages/settings/weight/index.php',
             data: msg,
             success: function (data) {
@@ -66,7 +66,7 @@
         // Установка синхронного запроса для jQuery.ajax
         jQuery.ajaxSetup({async: false});
         jQuery.ajax({
-            type: 'GET',
+            type: 'POST',
             url: '/controller/admin/pages/settings/weight/index.php',
             data: msg,
             success: function (data) {
