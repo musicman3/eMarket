@@ -29,6 +29,7 @@ $tab_admin = $db_pref . 'administrators';
 $tab_basic_settings = $db_pref . 'basic_settings';
 $tab_categories = $db_pref . 'categories';
 $tab_countries = $db_pref . 'countries';
+$tab_length = $db_pref . 'length';
 $tab_products = $db_pref . 'products';
 $tab_regions = $db_pref . 'regions';
 $tab_taxes = $db_pref . 'taxes';
@@ -56,6 +57,7 @@ $config = '<?php' . "\n" .
         '  define(\'TABLE_BASIC_SETTINGS\', \'' . $tab_basic_settings . '\');' . "\n" .
         '  define(\'TABLE_CATEGORIES\', \'' . $tab_categories . '\');' . "\n" .
         '  define(\'TABLE_COUNTRIES\', \'' . $tab_countries . '\');' . "\n" .
+        '  define(\'TABLE_LENGTH\', \'' . $tab_length . '\');' . "\n" .
         '  define(\'TABLE_PRODUCTS\', \'' . $tab_products . '\');' . "\n" .
         '  define(\'TABLE_REGIONS\', \'' . $tab_regions . '\');' . "\n" .
         '  define(\'TABLE_TAXES\', \'' . $tab_taxes . '\');' . "\n" .
