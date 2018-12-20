@@ -5,11 +5,6 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-// Структура меню
-$level = array();
-$menu = array();
-$submenu = array();
-
 //СОРТИРОВКА
 $menu_market = '0'; //МАГАЗИН
 $menu_sales = '1'; // ПРОДАЖИ
