@@ -58,9 +58,20 @@
                                     <div class="settings"><a href="#" class="btn btn-default btn-xs disabled"><span class="glyphicon glyphicon-euro glyph-xs"> </span></a>Валюта</div>
                                 </td>
                                 <td>
-                                    <div class="settings"><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-barcode glyph-xs"> </span></a>#</div>
+                                    <div class="settings"><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-pushpin glyph-xs"> </span></a>Состояние заказа</div>
                                 </td>
                             </tr>
+                            <tr>
+                                <td>
+                                    <div class="settings"><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-pushpin glyph-xs"> </span></a>Состояние наличия товара</div>
+                                </td>
+                                <td>
+                                    <div class="settings"><a href="#" class="btn btn-default btn-xs disabled"><span class="glyphicon glyphicon-th-large glyph-xs"> </span></a>Разное</div>
+                                </td>
+                                <td>
+                                    <div class="settings"><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-th-large glyph-xs"> </span></a>Разное</div>
+                                </td>
+                            </tr>                            
                         </tbody>
                     </table>
                 </div>
