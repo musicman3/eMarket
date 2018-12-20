@@ -10,7 +10,7 @@
 <!-- КОНЕЦ Модальное окно "Добавить" -->
 
 <!-- Модальное окно "Редактировать" -->
-<?php require(ROOT . '/view/' . $SET->template() . '/admin/pages/settings/taxes/modal/edit.php') ?>
+<?php require(ROOT . '/view/' . $SET->template() . '/admin/pages/manufacturers/modal/edit.php') ?>
 <!-- КОНЕЦ Модальное окно "Редактировать" -->
 
 <div id="ajax">
@@ -21,7 +21,7 @@
                     <!--Выводим уведомление об успешном действии-->
                     <?php $MESSAGES->alert('success', lang('action_completed_successfully')); ?>
                     <h3 class="panel-title">
-                        <div class="pull-left"><a class="btn btn-primary btn-xs" href="../../"><span class="back glyphicon glyphicon-share-alt"></span></a> <?php echo lang('title_' . $SET->titleDir() . '_index') ?></div>
+                        <div class="pull-left"><?php echo lang('title_' . $SET->titleDir() . '_index') ?></div>
                         <div class="clearfix"></div>
                     </h3>
                 </div>
@@ -63,8 +63,8 @@
                             </tr>
                             <?php if ($lines == TRUE) { ?>
                                 <tr class="border">
-                                    <th>Налог</th>
-                                    <th class="al-text">Ставка</th>
+                                    <th><?php echo lang('manufacturer') ?></th>
+                                    <th class="al-text"><?php echo lang('site') ?></th>
                                     <th class="al-text-w"></th>
                                 </tr>
                             <?php } ?>
@@ -73,7 +73,7 @@
                             <?php for ($start; $start < $finish; $start++) { ?>
                                 <tr>
                                     <td><?php echo $lines[$start][1] ?></td>
-                                    <td class="al-text"><?php echo $lines[$start][2] ?></td>
+                                    <td class="al-text"><?php echo $lines[$start][3] ?></td>
                                     <td class="al-text-w">
                                         <form id="form_delete" name="form_delete" action="javascript:void(null);" onsubmit="call_delete()">
                                             <input hidden name="delete" value="<?php echo $lines[$start][0] ?>">

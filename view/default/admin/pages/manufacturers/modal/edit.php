@@ -3,7 +3,7 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |    
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-require(ROOT . '/controller/admin/pages/settings/taxes/modal/edit.php');
+require(ROOT . '/controller/admin/pages/manufacturers/modal/edit.php');
 ?>
 
 <!-- Модальное окно "Изменить" -->
@@ -64,9 +64,9 @@ require(ROOT . '/controller/admin/pages/settings/taxes/modal/edit.php');
                         } ?>
 
                         <div class="form-group">
-                            <div class="input-group has-error">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                <input class="code_edit input-sm form-control" type="text" name="rate_edit" id="rate_edit" />
+                            <div class="input-group has-success">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
+                                <input class="site_edit input-sm form-control" type="text" name="site_edit" id="site_edit" />
                             </div>
                         </div>
                     </div>

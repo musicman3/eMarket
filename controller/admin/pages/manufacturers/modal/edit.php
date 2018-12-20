@@ -13,12 +13,12 @@ for ($i = $start; $i < $finish; $i++) {
         $count_lang = count(lang('#lang_all'));
 
         for ($xl = 0; $xl < $count_lang; $xl++) {
-            $name_edit_temp[$xl][$modal_id] = $PDO->selectPrepare("SELECT name FROM " . TABLE_TAXES . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$xl]]);
+            $name_edit_temp[$xl][$modal_id] = $PDO->selectPrepare("SELECT name FROM " . TABLE_MANUFACTURERS . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$xl]]);
         }
-        $code_edit_temp[$modal_id] = $PDO->selectPrepare("SELECT rate FROM " . TABLE_TAXES . " WHERE id=?", [$modal_id]);
+        $site_edit_temp[$modal_id] = $PDO->selectPrepare("SELECT site FROM " . TABLE_MANUFACTURERS . " WHERE id=?", [$modal_id]);
         // ПАРАМЕТРЫ ДЛЯ ПЕРЕДАЧИ В МОДАЛ
         $name_edit = json_encode($name_edit_temp); // Имя
-        $code_edit = json_encode($code_edit_temp); // Короткое имя
+        $site_edit = json_encode($site_edit_temp); // Короткое имя
     }
 }
 if (!isset($modal_id)) {

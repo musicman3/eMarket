@@ -67,9 +67,9 @@
                         ?>
 
                         <div class="form-group">
-                            <div class="input-group has-error">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                <input class="input-sm form-control" placeholder="Налоговая ставка (%)" type="text" name="rate" id="rate" />
+                            <div class="input-group has-success">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
+                                <input class="input-sm form-control" placeholder="<?php echo lang('site') ?>" type="text" name="site" id="site" />
                             </div>
                         </div>
                     </div>

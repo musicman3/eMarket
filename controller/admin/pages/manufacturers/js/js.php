@@ -13,19 +13,19 @@
             var modal_id = button.data('edit'); // Получаем ID из data-edit при клике на кнопку редактирования
             // Получаем массивы данных
             var name_edit = <?php echo $name_edit ?>;
-            var code_edit = <?php echo $code_edit ?>;
+            var site_edit = <?php echo $site_edit ?>;
 
             // Ищем классы и меняем данные
             for (x = 0; x < name_edit.length; x++) {
                 modal.find('.name_edit' + x).val(name_edit[x][modal_id]);
             }
-            modal.find('.code_edit').val(code_edit[modal_id]);
+            modal.find('.site_edit').val(site_edit[modal_id]);
             modal.find('.js_edit').val(modal_id);
         });
     </script>
 <?php
 }
 // Подгружаем Ajax Добавить, Редактировать, Удалить
-$AJAX->action('/controller/admin/pages/settings/taxes/index.php');
+$AJAX->action('/controller/admin/pages/manufacturers/index.php');
 ?>
 
