@@ -24,7 +24,7 @@ $level[$menu_market] = '<a href="#" class="dropdown-toggle" data-toggle="dropdow
 
 $menu[$menu_market][0] = '<a href="/controller/admin/pages/stock/index.php"><span><img src="/view/' . $SET->template() . '/admin/images/icons/16x16/products.png" /></span> ' . lang('title_stock_index') . ' </a>';
 $menu[$menu_market][1] = '<a href="/controller/admin/pages/stock/products/products.php"><span><img src="/view/' . $SET->template() . '/admin/images/icons/16x16/products.png" /></span> ' . lang('title_products_products') . ' </a>';
-$menu[$menu_market][2] = '<a href="#"><span><img src="/view/' . $SET->template() . '/admin/images/icons/16x16/manufacturers.png" /></span> Производители </a>';
+$menu[$menu_market][2] = '<a href="/controller/admin/pages/manufacturers/index.php"><span><img src="/view/' . $SET->template() . '/admin/images/icons/16x16/manufacturers.png" /></span> Производители </a>';
 $menu[$menu_market][3] = '<a href="#"><span><img src="/view/' . $SET->template() . '/admin/images/icons/16x16/attributes.png" /></span> Атрибуты </a>';
 $menu[$menu_market][4] = '<a href="#"><span><img src="/view/' . $SET->template() . '/admin/images/icons/16x16/date.png" /></span> Ожидаемые </a>';
 $menu[$menu_market][5] = '<a href="/controller/admin/pages/settings/"><span><img src="/view/' . $SET->template() . '/admin/images/icons/16x16/configure.png" /></span> ' . lang('title_settings_index') . ' </a>';
