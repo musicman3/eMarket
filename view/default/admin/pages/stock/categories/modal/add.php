@@ -70,7 +70,7 @@
                         <input type="file" name="image" id="image" /> <?php echo lang('max') ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>
                     </div>
                     <div class="form-group">
-                        <label for="view_category"><?php echo lang('display') ?> </label>
+                        <label for="view_cat"><?php echo lang('display') ?> </label>
                         <input class="check-box" type="checkbox" name="view_cat" checked>
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 <?php
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
-  |    GNU GENERAL PUBLIC LICENSE v.3.0    |    
+  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
@@ -23,6 +23,7 @@
                         <?php
                         if (count(lang('#lang_all')) > 1) {
                             for ($xl = 1; $xl < count(lang('#lang_all')); $xl++) {
+
                                 ?>
 
                                 <li><a data-toggle="tab" href="#<?php echo lang('#lang_all')[$xl] ?>"><img src="/view/<?php echo $SET->template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[$xl] ?>.png" alt="<?php echo lang('#lang_all')[$xl] ?>" title="<?php echo lang('#lang_all')[$xl] ?>" width="16" height="10" /> <?php echo lang('language_name', lang('#lang_all')[$xl]) ?></a></li>
@@ -30,6 +31,7 @@
                                 <?php
                             }
                         }
+
                         ?>
 
                     </ul>
@@ -71,6 +73,10 @@
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
                                 <input class="input-sm form-control" placeholder="<?php echo lang('site') ?>" type="text" name="site" id="site" />
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="image"><?php echo lang('images') ?>:</label><br>
+                            <input type="file" name="image" id="image" /> <?php echo lang('max') ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>
                         </div>
                     </div>
                 </div>

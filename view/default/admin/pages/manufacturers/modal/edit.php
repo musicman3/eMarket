@@ -1,9 +1,10 @@
 <?php
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
-  |    GNU GENERAL PUBLIC LICENSE v.3.0    |    
+  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 require(ROOT . '/controller/admin/pages/manufacturers/modal/edit.php');
+
 ?>
 
 <!-- Модальное окно "Изменить" -->
@@ -16,7 +17,7 @@ require(ROOT . '/controller/admin/pages/manufacturers/modal/edit.php');
             <form id="form_edit" name="form_edit" action="javascript:void(null);" onsubmit="call_edit()">
                 <div class="panel-body">
                     <input class="js_edit" type="hidden" name="edit" value="" />
-                    
+
                     <!-- Языковые панели -->
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#<?php echo lang('#lang_all')[0] . $modal_id ?>"><img src="/view/<?php echo $SET->template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[0] ?>.png" alt="<?php echo lang('#lang_all')[0] ?>" title="<?php echo lang('#lang_all')[0] ?>" width="16" height="10" /> <?php echo lang('language_name', lang('#lang_all')[0]) ?></a></li>
@@ -24,6 +25,7 @@ require(ROOT . '/controller/admin/pages/manufacturers/modal/edit.php');
                         <?php
                         if (count(lang('#lang_all')) > 1) {
                             for ($xl = 1; $xl < count(lang('#lang_all')); $xl++) {
+
                                 ?>
 
                                 <li><a data-toggle="tab" href="#<?php echo lang('#lang_all')[$xl] . $modal_id ?>"><img src="/view/<?php echo $SET->template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[$xl] ?>.png" alt="<?php echo lang('#lang_all')[$xl] ?>" title="<?php echo lang('#lang_all')[$xl] ?>" width="16" height="10" /> <?php echo lang('language_name', lang('#lang_all')[$xl]) ?></a></li>
@@ -31,6 +33,7 @@ require(ROOT . '/controller/admin/pages/manufacturers/modal/edit.php');
                                 <?php
                             }
                         }
+
                         ?>
 
                     </ul>
@@ -49,6 +52,7 @@ require(ROOT . '/controller/admin/pages/manufacturers/modal/edit.php');
                         <?php
                         if (count(lang('#lang_all')) > 1) {
                             for ($xl = 1; $xl < count(lang('#lang_all')); $xl++) {
+
                                 ?>
 
                                 <div id="<?php echo lang('#lang_all')[$xl] . $modal_id ?>" class="tab-pane fade">
@@ -60,14 +64,21 @@ require(ROOT . '/controller/admin/pages/manufacturers/modal/edit.php');
                                     </div>
                                 </div>
 
-                            <?php }
-                        } ?>
+                            <?php
+                            }
+                        }
+
+                        ?>
 
                         <div class="form-group">
                             <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
                                 <input class="site_edit input-sm form-control" type="text" name="site_edit" id="site_edit" />
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="image"><?php echo lang('images') ?>:</label><br>
+                            <input type="file" name="image" id="image" /> <?php echo lang('max') ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>
                         </div>
                     </div>
                 </div>
