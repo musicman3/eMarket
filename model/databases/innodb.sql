@@ -64,8 +64,9 @@ DROP TABLE IF EXISTS emkt_manufacturers;
 CREATE TABLE emkt_manufacturers (
 	id int NOT NULL,
 	name varchar(256),
-	language varchar(128),
-        logo varchar(64),
+	language varchar(64),
+        logo varchar(128),
+        site varchar(256),
 	PRIMARY KEY (id, language))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
