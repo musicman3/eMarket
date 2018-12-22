@@ -36,7 +36,7 @@
                                     <div class="settings"><a href="weight/" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-scale glyph-xs"> </span></a><?php echo lang('title_weight_index') ?></div>
                                 </td>
                                 <td>
-                                    <div class="settings"><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-comment glyph-xs"> </span></a>Языки</div>
+                                    <div class="settings"><a href="#" class="btn btn-default btn-xs disabled"><span class="glyphicon glyphicon-comment glyph-xs"> </span></a>Языки</div>
                                 </td>
                             </tr>
                             <tr>
@@ -47,7 +47,7 @@
                                     <div class="settings"><a href="units/" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-flag glyph-xs"> </span></a><?php echo lang('title_units_index') ?></div>
                                 </td>
                                 <td>
-                                    <div class="settings"><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-barcode glyph-xs"> </span></a>Штриховые коды</div>
+                                    <div class="settings"><a href="#" class="btn btn-default btn-xs disabled"><span class="glyphicon glyphicon-barcode glyph-xs"> </span></a>Штриховые коды</div>
                                 </td>
                             </tr>
                             <tr>
@@ -58,18 +58,18 @@
                                     <div class="settings"><a href="#" class="btn btn-default btn-xs disabled"><span class="glyphicon glyphicon-euro glyph-xs"> </span></a>Валюта</div>
                                 </td>
                                 <td>
-                                    <div class="settings"><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-pushpin glyph-xs"> </span></a>Состояние заказа</div>
+                                    <div class="settings"><a href="#" class="btn btn-default btn-xs disabled"><span class="glyphicon glyphicon-pushpin glyph-xs"> </span></a>Состояние заказа</div>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <div class="settings"><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-pushpin glyph-xs"> </span></a>Состояние наличия товара</div>
+                                    <div class="settings"><a href="#" class="btn btn-default btn-xs disabled"><span class="glyphicon glyphicon-pushpin glyph-xs"> </span></a>Состояние наличия товара</div>
+                                </td>
+                                <td>
+                                    <div class="settings"><a href="#" class="btn btn-default btn-xs disabled"><span class="glyphicon glyphicon-picture glyph-xs"> </span></a>Изображения</div>
                                 </td>
                                 <td>
                                     <div class="settings"><a href="#" class="btn btn-default btn-xs disabled"><span class="glyphicon glyphicon-th-large glyph-xs"> </span></a>Разное</div>
-                                </td>
-                                <td>
-                                    <div class="settings"><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-th-large glyph-xs"> </span></a>Разное</div>
                                 </td>
                             </tr>                            
                         </tbody>
