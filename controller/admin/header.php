@@ -63,7 +63,7 @@ $level[$menu_tools] = array('#', lang('menu_tools'), 'true');
 $menu[$menu_tools][0] = array('/controller/admin/pages/error_log/', 'error.png', lang('menu_error_log'), '', 'false');
 $menu[$menu_tools][1] = array('#', 'folder_explore.png', 'Файловый менеджер', '', 'false');
 $menu[$menu_tools][2] = array('#', 'backup.png', 'Бэкап', '', 'false');
-$menu[$menu_tools][3] = array('#', 'server_info.png', 'Информация о сервер', '', 'false');
+$menu[$menu_tools][3] = array('#', 'server_info.png', 'Информация о сервере', '', 'false');
 $menu[$menu_tools][4] = array('#', 'online.png', 'Кто в онлайне', '', 'false');
 
 //ПОМОЩЬ
