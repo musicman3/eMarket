@@ -68,6 +68,7 @@ $menu[$menu_tools][4] = array('#', 'online.png', 'Кто в онлайне', '',
 $level[$menu_help] = array('#', lang('menu_help'), 'true');
 
 $menu[$menu_help][0] = array('#', 'folder_wrench.png', lang('menu_extra'), '', 'true');
+// параметры: [0] - url, [1] - картинка, [2] - Название
 $submenu[$menu_help][0][0] = array('#', '/admin/images/icons/16x16/wrench_orange.png', lang('menu_support'));
 
 $menu[$menu_help][1] = array('#', 'locale.png', lang('menu_languages'), '', 'true');
