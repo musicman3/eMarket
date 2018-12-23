@@ -35,14 +35,14 @@ if (isset($_SESSION['login']) && isset($_SESSION['pass'])) { // Выводим �
                         }
 
                         ?>
+                    
                         <li>
-                            <!-- выводим данные -->
+                            <!-- выводим данные 1 уровня меню -->
                             <a href="<?php echo $level[$i][0] ?>" <?php echo $param_1 ?>><?php echo $level[$i][1] . $param_2 ?></a>
-
-                            <!-- 2 УРОВЕНЬ МЕНЮ -->
-                            <ul class="dropdown-menu">
-                                <?php
-                                if (isset($menu[$i])) {
+                            <?php if (isset($menu[$i])) { ?>
+                                <!-- 2 УРОВЕНЬ МЕНЮ -->
+                                <ul class="dropdown-menu">
+                                    <?php
                                     for ($x = 0; $x < count($menu[$i]); $x++) {
                                         // если нет подуровней,то не отображаем их
                                         if ($menu[$i][$x][4] == 'false') {
@@ -51,38 +51,29 @@ if (isset($_SESSION['login']) && isset($_SESSION['pass'])) { // Выводим �
                                         }
 
                                         ?>
+                                    
                                         <li>
-                                            <!-- выводим данные -->
+                                            <!-- выводим данные 2 уровня меню -->
                                             <a <?php echo $menu[$i][$x][3]; ?> href="<?php echo $menu[$i][$x][0] ?>" <?php echo $param_1 ?>><img src="/view/<?php echo $SET->template() ?>/admin/images/icons/16x16/<?php echo $menu[$i][$x][1]; ?>" /> <?php echo $menu[$i][$x][2] . ' ' . $param_2 ?></a>
-
-                                            <!-- 3 УРОВЕНЬ МЕНЮ -->
-                                            <ul class="dropdown-menu link">
-                                                <?php
-                                                if (isset($submenu[$i][$x])) {
+                                            <?php if (isset($submenu[$i][$x])) { ?>
+                                                <!-- 3 УРОВЕНЬ МЕНЮ -->
+                                                <ul class="dropdown-menu link">
+                                                    <?php
                                                     for ($y = 0; $y < count($submenu[$i][$x]); $y++) {
 
                                                         ?>
                                                         <li>
-                                                            <!-- выводим данные -->
+                                                            <!-- выводим данные 3 уровня меню -->
                                                             <a href="<?php echo $submenu[$i][$x][$y][0]; ?>"><img src="/view/<?php echo $SET->template() ?><?php echo $submenu[$i][$x][$y][1]; ?>" /> <?php echo $submenu[$i][$x][$y][2]; ?> </a>
-                                                        </li>
-                                                        <?php
-                                                    }
-                                                }
-
-                                                ?>
-                                            </ul>
-                                        </li>
-                                        <?php
-                                    }
-                                }
-
-                                ?>
-                            </ul>
-                        </li>
-
-                    <?php } ?>
-
+                                                        </li><?php } ?>
+                                                </ul><?php } ?>
+                                                
+                                        </li><?php } ?>
+                                        
+                                </ul><?php } ?>
+                                
+                        </li><?php } ?>
+                        
                 </ul>
             </div>
         </div>
