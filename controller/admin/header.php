@@ -15,69 +15,69 @@ $menu_tools = '5'; //ИНСТРУМЕНТЫ
 $menu_help = '6'; //ПОМОЩЬ
 $menu_exit = '7'; //ВЫХОД
 //МАГАЗИН
-$level[$menu_market] = '<a href="#" class="dropdown-toggle" data-toggle="dropdown">Магазин<b class="caret"></b></a>';
+$level[$menu_market] = array('#', 'Магазин');
 
-$menu[$menu_market][0] = '<a href="/controller/admin/pages/stock/index.php"><img src="/view/' . $SET->template() . '/admin/images/icons/16x16/products.png" /> ' . lang('title_stock_index') . ' </a>';
-$menu[$menu_market][1] = '<a href="/controller/admin/pages/stock/products/products.php"><img src="/view/' . $SET->template() . '/admin/images/icons/16x16/products.png" /> ' . lang('title_products_products') . ' </a>';
-$menu[$menu_market][2] = '<a href="/controller/admin/pages/manufacturers/index.php"><img src="/view/' . $SET->template() . '/admin/images/icons/16x16/manufacturers.png" /> ' . lang('title_manufacturers_index') . ' </a>';
-$menu[$menu_market][3] = '<a href="#"><img src="/view/' . $SET->template() . '/admin/images/icons/16x16/attributes.png" /> Атрибуты </a>';
-$menu[$menu_market][4] = '<a href="#"><img src="/view/' . $SET->template() . '/admin/images/icons/16x16/date.png" /> Ожидаемые </a>';
-$menu[$menu_market][5] = '<a href="/controller/admin/pages/settings/"><img src="/view/' . $SET->template() . '/admin/images/icons/16x16/configure.png" /> ' . lang('title_settings_index') . ' </a>';
+$menu[$menu_market][0] = array('/controller/admin/pages/stock/index.php', 'products.png', lang('title_stock_index'), '');
+$menu[$menu_market][1] = array('/controller/admin/pages/stock/products/products.php', 'products.png', lang('title_products_products'), '');
+$menu[$menu_market][2] = array('/controller/admin/pages/manufacturers/index.php', 'manufacturers.png', lang('title_manufacturers_index'), '');
+$menu[$menu_market][3] = array('#', 'attributes.png', 'Атрибуты', '');
+$menu[$menu_market][4] = array('#', 'date.png', 'Ожидаемые', '');
+$menu[$menu_market][5] = array('/controller/admin/pages/settings/', 'configure.png', lang('title_settings_index'), '');
 
 //ПРОДАЖИ
-$level[$menu_sales] = '<a href="#" class="dropdown-toggle" data-toggle="dropdown">Продажи<b class="caret"></b></a>';
+$level[$menu_sales] = array('#', 'Продажи');
 
-$menu[$menu_sales][0] = '<a href="#"><img src="/view/' . $SET->template() . '/admin/images/icons/16x16/orders.png" /> Заказы </a>';
-$menu[$menu_sales][1] = '<a href="#"><img src="/view/' . $SET->template() . '/admin/images/icons/16x16/return.png" /> Возвраты </a>';
+$menu[$menu_sales][0] = array('#', 'orders.png', 'Заказы', '');
+$menu[$menu_sales][1] = array('#', 'return.png', 'Возвраты', '');
 
 //МАРКЕТИНГ
-$level[$menu_marketing] = '<a href="#" class="dropdown-toggle" data-toggle="dropdown">Маркетинг<b class="caret"></b></a>';
+$level[$menu_marketing] = array('#', 'Маркетинг');
 
-$menu[$menu_marketing][0] = '<a href="#"><img src="/view/' . $SET->template() . '/admin/images/icons/16x16/specials.png" /> Распродажи </a>';
-$menu[$menu_marketing][1] = '<a href="#"><img src="/view/' . $SET->template() . '/admin/images/icons/16x16/feature.png" /> Рекомендуемые </a>';
-$menu[$menu_marketing][2] = '<a href="#"><img src="/view/' . $SET->template() . '/admin/images/icons/16x16/coupons.png" /> Купоны </a>';
-$menu[$menu_marketing][3] = '<a href="#"><img src="/view/' . $SET->template() . '/admin/images/icons/16x16/banners.png" /> Баннеры </a>';
-$menu[$menu_marketing][4] = '<a href="#"><img src="/view/' . $SET->template() . '/admin/images/icons/16x16/email_send.png" /> Рассылки </a>';
-$menu[$menu_marketing][5] = '<a href="#"><img src="/view/' . $SET->template() . '/admin/images/icons/16x16/article.png" /> Статьи </a>';
-$menu[$menu_marketing][6] = '<a href="#"><img src="/view/' . $SET->template() . '/admin/images/icons/16x16/reviews.png" /> Отзывы </a>';
-$menu[$menu_marketing][7] = '<a href="#"><img src="/view/' . $SET->template() . '/admin/images/icons/16x16/chart.png" /> Отчеты </a>';
+$menu[$menu_marketing][0] = array('#', 'specials.png', 'Распродажи', '');
+$menu[$menu_marketing][1] = array('#', 'feature.png', 'Рекомендуемые', '');
+$menu[$menu_marketing][2] = array('#', 'coupons.png', 'Купоны', '');
+$menu[$menu_marketing][3] = array('#', 'banners.png', 'Баннеры', '');
+$menu[$menu_marketing][4] = array('#', 'email_send.png', 'Рассылки', '');
+$menu[$menu_marketing][5] = array('#', 'article.png', 'Статьи', '');
+$menu[$menu_marketing][6] = array('#', 'reviews.png', 'Отзывы', '');
+$menu[$menu_marketing][7] = array('#', 'chart.png', 'Отчеты', '');
 
 //КОНТРАГЕНТЫ
-$level[$menu_count_linesparty] = '<a href="#" class="dropdown-toggle" data-toggle="dropdown">Контрагенты<b class="caret"></b></a>';
+$level[$menu_count_linesparty] = array('#', 'Контрагенты');
 
-$menu[$menu_count_linesparty][0] = '<a href="#"><img src="/view/' . $SET->template() . '/admin/images/icons/16x16/building.png" /> Юридические лица </a>';
-$menu[$menu_count_linesparty][1] = '<a href="#"><img src="/view/' . $SET->template() . '/admin/images/icons/16x16/people.png" /> Физические лица </a>';
+$menu[$menu_count_linesparty][0] = array('#', 'building.png', 'Юридические лица', '');
+$menu[$menu_count_linesparty][1] = array('#', 'people.png', 'Физические лица', '');
 
 //МОДУЛИ
-$level[$menu_modules] = '<a href="#" class="dropdown-toggle" data-toggle="dropdown">Модули<b class="caret"></b></a>';
+$level[$menu_modules] = array('#', 'Модули');
 
-$menu[$menu_modules][0] = '<a href="#"><img src="/view/' . $SET->template() . '/admin/images/icons/16x16/payment.png" /> Модули оплаты </a>';
-$menu[$menu_modules][1] = '<a href="#"><img src="/view/' . $SET->template() . '/admin/images/icons/16x16/shipping.png" /> Модули доставки </a>';
+$menu[$menu_modules][0] = array('#', 'payment.png', 'Модули оплаты', '');
+$menu[$menu_modules][1] = array('#', 'shipping.png', 'Модули доставки', '');
 
 //ИНСТРУМЕНТЫ
-$level[$menu_tools] = '<a href="#" class="dropdown-toggle" data-toggle="dropdown">' . lang('menu_tools') . '<b class="caret"></b></a>';
+$level[$menu_tools] = array('#', lang('menu_tools'));
 
-$menu[$menu_tools][0] = '<a href="/controller/admin/pages/error_log/"><img src="/view/' . $SET->template() . '/admin/images/icons/16x16/error.png" /> ' . lang('menu_error_log') . ' </a>';
-$menu[$menu_tools][1] = '<a href="#"><img src="/view/' . $SET->template() . '/admin/images/icons/16x16/folder_explore.png" /> Файловый менеджер </a>';
-$menu[$menu_tools][2] = '<a href="#"><img src="/view/' . $SET->template() . '/admin/images/icons/16x16/backup.png" /> Бэкап </a>';
-$menu[$menu_tools][3] = '<a href="#"><img src="/view/' . $SET->template() . '/admin/images/icons/16x16/server_info.png" /> Информация о сервере </a>';
-$menu[$menu_tools][4] = '<a href="#"><img src="/view/' . $SET->template() . '/admin/images/icons/16x16/online.png" /> Кто в онлайне </a>';
+$menu[$menu_tools][0] = array('/controller/admin/pages/error_log/', 'error.png', lang('menu_error_log'), '');
+$menu[$menu_tools][1] = array('#', 'folder_explore.png', 'Файловый менеджер', '');
+$menu[$menu_tools][2] = array('#', 'backup.png', 'Бэкап', '');
+$menu[$menu_tools][3] = array('#', 'server_info.png', 'Информация о сервер', '');
+$menu[$menu_tools][4] = array('#', 'online.png', 'Кто в онлайне', '');
 
 //ПОМОЩЬ
-$level[$menu_help] = '<a href="#" class="dropdown-toggle" data-toggle="dropdown">' . lang('menu_help') . '<b class="caret"></b></a>';
+$level[$menu_help] = array('#', lang('menu_help'));
 
-$menu[$menu_help][0] = '<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/view/' . $SET->template() . '/admin/images/icons/16x16/folder_wrench.png" /> ' . lang('menu_extra') . ' <b class="caret"></b></a>';
-$submenu[$menu_help][0][0] = '<a href="#"><img src="/view/' . $SET->template() . '/admin/images/icons/16x16/wrench_orange.png" /> ' . lang('menu_support') . '</a>';
+$menu[$menu_help][0] = array('#', 'folder_wrench.png', lang('menu_extra'), '');
+$submenu[$menu_help][0][0] = array('#', '/admin/images/icons/16x16/wrench_orange.png', lang('menu_support'));
 
-$menu[$menu_help][1] = '<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/view/' . $SET->template() . '/admin/images/icons/16x16/locale.png" /> ' . lang('menu_languages') . ' <b class="caret"></b></a>';
+$menu[$menu_help][1] = array('#', 'locale.png', lang('menu_languages'), '');
 
 //Вывод языков
 for ($lng = 0; $lng < count(lang('#lang_all')); $lng++) {
-    $submenu[$menu_help][1][$lng] = '<a href="/controller/admin/?language=' . lang('#lang_all')[$lng] . '"><img src="/view/' . $SET->template() . '/admin/images/langflags/' . lang('#lang_all')[$lng] . '.png" /> ' . lang('language_name', lang('#lang_all')[$lng]) . ' </a>';
+    $submenu[$menu_help][1][$lng] = array('/controller/admin/?language=' . lang('#lang_all')[$lng], '/admin/images/langflags/' . lang('#lang_all')[$lng] . '.png', lang('language_name', lang('#lang_all')[$lng]));
 }
 
-$menu[$menu_help][2] = '<a target="_blank" href="/controller/catalog/index.php"><img src="/view/' . $SET->template() . '/admin/images/icons/16x16/home.png" /> ' . lang('menu_catalog') . '</a>';
+$menu[$menu_help][2] = array('/controller/catalog/index.php', 'home.png', lang('menu_catalog'), 'target="_blank"'); // В отдельном окне
 
 //ВЫХОД
-$level[$menu_exit] = '<a href="/controller/admin/login/?logout=ok">' . lang('menu_exit') . '</a>';
+$level[$menu_exit] = array('/controller/admin/login/?logout=ok', lang('menu_exit'));
 ?>
