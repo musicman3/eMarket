@@ -24,8 +24,7 @@ if (isset($_SESSION['login']) && isset($_SESSION['pass'])) { // Выводим �
                 <!-- 1 УРОВЕНЬ МЕНЮ -->
                 <ul class="nav navbar-nav">
                     <?php
-                    $level_count = count($level);
-                    for ($i = 0; $i < $level_count; $i++) {
+                    for ($i = 0; $i < count($level); $i++) {
                         // Параметры для меню с подуровнями
                         $param_1 = 'class="dropdown-toggle" data-toggle="dropdown"';
                         $param_2 = '<b class="caret"></b>';
