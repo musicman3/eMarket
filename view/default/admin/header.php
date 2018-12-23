@@ -29,7 +29,7 @@ if (isset($_SESSION['login']) && isset($_SESSION['pass'])) { // Выводим �
 
                         ?>
                         <li>
-                            <?php if ($i != $level_count - 1) { ?>
+                            <?php if ($level[$i][2] == 'true') { ?>
                                 <!-- если есть вкладки на следующий уровень -->
                                 <a href="<?php echo $level[$i][0]; ?>" class="dropdown-toggle" data-toggle="dropdown"><?php echo $level[$i][1]; ?><b class="caret"></b></a>
                             <?php } else { ?>
@@ -48,7 +48,7 @@ if (isset($_SESSION['login']) && isset($_SESSION['pass'])) { // Выводим �
 
                                     ?>
                                     <li>
-                                        <?php if ($i == $level_count - 2 && $x < 2) { ?>
+                                        <?php if ($menu[$i][$x][4] == 'true') { ?>
                                             <!-- если есть вкладки на следующий уровень -->
                                             <a href="<?php echo $menu[$i][$x][0]; ?>" class="dropdown-toggle" data-toggle="dropdown"><img src="/view/<?php echo $SET->template() ?>/admin/images/icons/16x16/<?php echo $menu[$i][$x][1]; ?>" /> <?php echo $menu[$i][$x][2]; ?> <b class="caret"></b></a>
 
