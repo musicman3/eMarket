@@ -4,8 +4,9 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-?>
-<?php if (isset($_SESSION['login']) && isset($_SESSION['pass'])) { // Выводим если авторизованы                 ?>
+if (isset($_SESSION['login']) && isset($_SESSION['pass'])) { // Выводим если авторизованы 
+
+    ?>
 
     <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
         <div class="container-fluid">
