@@ -15,9 +15,11 @@ $menu_tools = '5'; //ИНСТРУМЕНТЫ
 $menu_help = '6'; //ПОМОЩЬ
 $menu_exit = '7'; //ВЫХОД
 //МАГАЗИН
-// параметры: [0] - url, [1] - картинка, [2] - Название, [3] - есть подменю
+// параметры 1 уровня: [0] - url, [1] - картинка, [2] - Название, [3] - есть подменю
+// параметры 2 уровня: [0] - url, [1] - картинка, [2] - Название, [3] - есть target="_blank", [4] - есть подменю
+// параметры 3 уровня: [0] - url, [1] - картинка, [2] - Название
 $level[$menu_market] = array('#', 'Магазин', 'true');
-// параметры: [0] - url, [1] - картинка, [2] - Название, [3] - есть target="_blank", [4] - есть подменю
+
 $menu[$menu_market][0] = array('/controller/admin/pages/stock/index.php', 'products.png', lang('title_stock_index'), '', 'false');
 $menu[$menu_market][1] = array('/controller/admin/pages/stock/products/products.php', 'products.png', lang('title_products_products'), '', 'false');
 $menu[$menu_market][2] = array('/controller/admin/pages/manufacturers/index.php', 'manufacturers.png', lang('title_manufacturers_index'), '', 'false');
@@ -68,7 +70,6 @@ $menu[$menu_tools][4] = array('#', 'online.png', 'Кто в онлайне', '',
 $level[$menu_help] = array('#', lang('menu_help'), 'true');
 
 $menu[$menu_help][0] = array('#', 'folder_wrench.png', lang('menu_extra'), '', 'true');
-// параметры: [0] - url, [1] - картинка, [2] - Название
 $submenu[$menu_help][0][0] = array('#', '/admin/images/icons/16x16/wrench_orange.png', lang('menu_support'));
 
 $menu[$menu_help][1] = array('#', 'locale.png', lang('menu_languages'), '', 'true');
