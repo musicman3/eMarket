@@ -26,7 +26,7 @@ if (isset($_SESSION['login']) && isset($_SESSION['pass'])) { // Выводим �
                     <?php
                     $level_count = count($level);
                     for ($i = 0; $i < $level_count; $i++) {
-                        $param_1 = ' class="dropdown-toggle" data-toggle="dropdown"';
+                        $param_1 = 'class="dropdown-toggle" data-toggle="dropdown"';
                         $param_2 = '<b class="caret"></b>';
 
                         ?>
@@ -40,7 +40,7 @@ if (isset($_SESSION['login']) && isset($_SESSION['pass'])) { // Выводим �
 
                             ?>
                             <!-- выводим данные -->
-                            <a href="<?php echo $level[$i][0] ?>"<?php echo $param_1 ?>><?php echo $level[$i][1] . $param_2 ?></a>
+                            <a href="<?php echo $level[$i][0] ?>" <?php echo $param_1 ?>><?php echo $level[$i][1] . $param_2 ?></a>
 
                             <!-- 2 УРОВЕНЬ МЕНЮ -->
                             <ul class="dropdown-menu">
@@ -62,7 +62,7 @@ if (isset($_SESSION['login']) && isset($_SESSION['pass'])) { // Выводим �
 
                                         ?>
                                         <!-- выводим данные -->
-                                        <a <?php echo $menu[$i][$x][3]; ?> href="<?php echo $menu[$i][$x][0] ?>"<?php echo $param_1 ?>><img src="/view/<?php echo $SET->template() ?>/admin/images/icons/16x16/<?php echo $menu[$i][$x][1]; ?>" /> <?php echo $menu[$i][$x][2] . ' ' . $param_2 ?></a>
+                                        <a <?php echo $menu[$i][$x][3]; ?> href="<?php echo $menu[$i][$x][0] ?>" <?php echo $param_1 ?>><img src="/view/<?php echo $SET->template() ?>/admin/images/icons/16x16/<?php echo $menu[$i][$x][1]; ?>" /> <?php echo $menu[$i][$x][2] . ' ' . $param_2 ?></a>
 
                                         <!-- 3 УРОВЕНЬ МЕНЮ -->
                                         <ul class="dropdown-menu link">
