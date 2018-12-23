@@ -26,16 +26,21 @@ if (isset($_SESSION['login']) && isset($_SESSION['pass'])) { // Выводим �
                     <?php
                     $level_count = count($level);
                     for ($i = 0; $i < $level_count; $i++) {
+                        $param_1 = ' class="dropdown-toggle" data-toggle="dropdown"';
+                        $param_2 = '<b class="caret"></b>';
 
                         ?>
                         <li>
-                            <?php if ($level[$i][2] == 'true') { ?>
-                                <!-- если есть вкладки на следующий уровень -->
-                                <a href="<?php echo $level[$i][0]; ?>" class="dropdown-toggle" data-toggle="dropdown"><?php echo $level[$i][1]; ?><b class="caret"></b></a>
-                            <?php } else { ?>
-                                <!-- без вкладок на уровень -->
-                                <a href="<?php echo $level[$i][0]; ?>"><?php echo $level[$i][1]; ?></a>
-                            <?php } ?>
+                            <?php
+                            // если нет вкладок на следующий уровень
+                            if ($level[$i][2] == 'false') {
+                                $param_1 = '';
+                                $param_2 = '';
+                            }
+
+                            ?>
+                            <!-- выводим данные -->
+                            <a href="<?php echo $level[$i][0] ?>"<?php echo $param_1 ?>><?php echo $level[$i][1] . $param_2 ?></a>
 
                             <!-- 2 УРОВЕНЬ МЕНЮ -->
                             <ul class="dropdown-menu">
@@ -48,14 +53,16 @@ if (isset($_SESSION['login']) && isset($_SESSION['pass'])) { // Выводим �
 
                                     ?>
                                     <li>
-                                        <?php if ($menu[$i][$x][4] == 'true') { ?>
-                                            <!-- если есть вкладки на следующий уровень -->
-                                            <a href="<?php echo $menu[$i][$x][0]; ?>" class="dropdown-toggle" data-toggle="dropdown"><img src="/view/<?php echo $SET->template() ?>/admin/images/icons/16x16/<?php echo $menu[$i][$x][1]; ?>" /> <?php echo $menu[$i][$x][2]; ?> <b class="caret"></b></a>
+                                        <?php
+                                        // если нет вкладок на следующий уровень
+                                        if ($menu[$i][$x][4] == 'false') {
+                                            $param_1 = '';
+                                            $param_2 = '';
+                                        }
 
-                                        <?php } else { ?>
-                                            <!-- без вкладок на уровень -->
-                                            <a <?php echo $menu[$i][$x][3]; ?> href="<?php echo $menu[$i][$x][0]; ?>"><img src="/view/<?php echo $SET->template() ?>/admin/images/icons/16x16/<?php echo $menu[$i][$x][1]; ?>" /> <?php echo $menu[$i][$x][2]; ?> </a>
-                                        <?php } ?>
+                                        ?>
+                                        <!-- выводим данные -->
+                                        <a <?php echo $menu[$i][$x][3]; ?> href="<?php echo $menu[$i][$x][0] ?>"<?php echo $param_1 ?>><img src="/view/<?php echo $SET->template() ?>/admin/images/icons/16x16/<?php echo $menu[$i][$x][1]; ?>" /> <?php echo $menu[$i][$x][2] . ' ' . $param_2 ?></a>
 
                                         <!-- 3 УРОВЕНЬ МЕНЮ -->
                                         <ul class="dropdown-menu link">
@@ -68,6 +75,7 @@ if (isset($_SESSION['login']) && isset($_SESSION['pass'])) { // Выводим �
 
                                                 ?>
                                                 <li>
+                                                    <!-- выводим данные -->
                                                     <a href="<?php echo $submenu[$i][$x][$y][0]; ?>"><img src="/view/<?php echo $SET->template() ?><?php echo $submenu[$i][$x][$y][1]; ?>" /> <?php echo $submenu[$i][$x][$y][2]; ?> </a>
                                                 </li>
                                             <?php } ?>
