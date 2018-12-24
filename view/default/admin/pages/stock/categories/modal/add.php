@@ -18,7 +18,7 @@
                     <input type="hidden" name="add" value="ok" />
                     
                     <!-- Языковые панели -->
-                    <?php require(ROOT . '/view/' . $SET->template() . '/layouts/lang_tabs_add.php') ?>
+                    <?php require_once(ROOT . '/view/' . $SET->template() . '/layouts/lang_tabs_add.php') ?>
                     
                     <div class="tab-content">
                         <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade in active">

@@ -22,7 +22,7 @@ require(ROOT . '/controller/admin/pages/stock/categories/modal/edit.php');
                     <input class="js_edit" type="hidden" name="edit" value="" />
 
                     <!-- Языковые панели -->
-                    <?php require(ROOT . '/view/' . $SET->template() . '/layouts/lang_tabs_edit.php') ?>
+                    <?php require_once(ROOT . '/view/' . $SET->template() . '/layouts/lang_tabs_edit.php') ?>
 
                     <!-- Содержимое языковых панелей -->
                     <div class="tab-content">

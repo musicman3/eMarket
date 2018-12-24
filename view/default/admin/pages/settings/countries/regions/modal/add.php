@@ -18,7 +18,7 @@
                     <input hidden name="country_id" value="<?php echo $VALID->inGET('country_id') ?>">
 
                     <!-- Языковые панели -->
-                    <?php require(ROOT . '/view/' . $SET->template() . '/layouts/lang_tabs_add.php') ?>
+                    <?php require_once(ROOT . '/view/' . $SET->template() . '/layouts/lang_tabs_add.php') ?>
 
                     <!-- Содержимое языковых панелей -->
                     <div class="tab-content">

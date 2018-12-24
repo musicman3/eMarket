@@ -16,7 +16,7 @@
                     <input type="hidden" name="add" value="ok" />
 
                     <!-- Языковые панели -->
-                    <?php require(ROOT . '/view/' . $SET->template() . '/layouts/lang_tabs_add.php') ?>
+                    <?php require_once(ROOT . '/view/' . $SET->template() . '/layouts/lang_tabs_add.php') ?>
 
                     <!-- Содержимое языковых панелей -->
                     <div class="tab-content">
