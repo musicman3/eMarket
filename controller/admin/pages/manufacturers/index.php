@@ -19,6 +19,10 @@ if ($VALID->inPOST('add')) {
     for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
         $PDO->inPrepare("INSERT INTO " . TABLE_MANUFACTURERS . " SET id=?, name=?, language=?, site=?", [$id, $VALID->inPOST($SET->titleDir() . '_' . lang('#lang_all')[$xl]), lang('#lang_all')[$xl], $VALID->inPOST('site')]);
     }
+    // Копируем прикрепленный файл
+    $uploaddir = ROOT . '/downloads/images/manufacturers/originals/';
+    $uploadfile = $uploaddir.basename($_FILES['image']['name']);
+    @copy($_FILES['image']['tmp_name'], $uploadfile);
 }
 
 // Если нажали на кнопку Редактировать
