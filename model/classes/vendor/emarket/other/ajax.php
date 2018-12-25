@@ -24,7 +24,6 @@ class Ajax {
                 // Установка синхронного запроса для jQuery.ajax
                 jQuery.ajaxSetup({async: false});
                 jQuery.ajax({
-                    type: 'POST',
                     url: '<?php echo $url ?>',
                     data: msg,
                     success: function (data) {
@@ -51,7 +50,6 @@ class Ajax {
                 // Установка синхронного запроса для jQuery.ajax
                 jQuery.ajaxSetup({async: false});
                 jQuery.ajax({
-                    type: 'POST',
                     url: '<?php echo $url ?>',
                     data: msg,
                     success: function (data) {
@@ -78,7 +76,6 @@ class Ajax {
                 // Установка синхронного запроса для jQuery.ajax
                 jQuery.ajaxSetup({async: false});
                 jQuery.ajax({
-                    type: 'POST',
                     url: '<?php echo $url ?>',
                     data: msg,
                     success: function (data) {

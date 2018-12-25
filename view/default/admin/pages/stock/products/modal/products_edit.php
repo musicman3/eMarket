@@ -22,7 +22,7 @@ if ($status_category_edit == 1) {
             <div class="modal-header"><button class="close" type="button" data-dismiss="modal">×</button>
                 <h4 class="modal-title"><?php echo lang('menu_categories') ?></h4>
             </div>
-            <form id="form_post<?php echo $lines[$start][0] ?>" action="javascript:void(null);" onsubmit="call<?php echo $lines[$start][0] ?>()" method="post" enctype="multipart/form-data">
+            <form id="form_post<?php echo $lines[$start][0] ?>" method="POST" onsubmit="call<?php echo $lines[$start][0] ?>()" method="post" enctype="multipart/form-data">
                 <div class="panel-body">
                         <input type="hidden" name="parent_id" value="<?php echo $parent_id ?>" />
                         <input type="hidden" name="cat_edit" value="<?php echo $lines[$start][0] ?>" />
