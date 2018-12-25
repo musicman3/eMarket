@@ -128,7 +128,7 @@
 		<div class="contentText after">
 		    <div id="products" class="row list-group">
 
-			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 grid-group-item">
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item">
 			    <div class="productHolder">
 				<a href="#"><img src="/view/<?php echo $SET->template() ?>/catalog/images/1.png" class="img-responsive img-rounded center-block"></a>
 				<div>
@@ -146,7 +146,7 @@
 			    </div>
 			</div>
 			
-			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 grid-group-item">
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item">
 			    <div class="productHolder">
 				<a href="#"><img src="/view/<?php echo $SET->template() ?>/catalog/images/2.png" class="img-responsive img-rounded center-block"></a>
 				<div>
@@ -164,9 +164,27 @@
 			    </div>
 			</div>
 			
-			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 grid-group-item">
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item">
 			    <div class="productHolder">
 				<a href="#"><img src="/view/<?php echo $SET->template() ?>/catalog/images/3.png" class="img-responsive img-rounded center-block"></a>
+				<div>
+				    <h6 class="text-center list-group-item-heading"><a href="#">Unreal Tournament</a></h6>
+				    <div class="clearfix"></div>
+				    <div class="row">
+					<div class="col-xs-6">
+					    <div class="btn-group" role="group"><button type="button" class="btn btn-default">$89.99</button></div>
+					</div>
+					<div class="col-xs-6 text-right">
+					    <a id="btn1" href="#" class="btn btn-success btn-sm"><span class="cart"></span> Buy Now</a>
+					</div>
+				    </div>
+				</div>
+			    </div>
+			</div>
+			
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item">
+			    <div class="productHolder">
+				<a href="#"><img src="/view/<?php echo $SET->template() ?>/catalog/images/4.png" class="img-responsive img-rounded center-block"></a>
 				<div>
 				    <h6 class="text-center list-group-item-heading"><a href="#">Unreal Tournament</a></h6>
 				    <div class="clearfix"></div>
