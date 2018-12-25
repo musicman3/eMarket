@@ -86,9 +86,9 @@
 
     <!-- Слайдер -->
     <style type="text/css">
-        .carousel {overflow: hidden;background: none;height: 210px !important;margin-bottom: 10px;}
+        .carousel {overflow: hidden;background: none;height: 300px !important;margin-bottom: 10px;}
         .carousel-inner {overflow: visible;}
-        .carousel-inner img {left: 50%;max-width: none !important;min-width: 100%;min-height: 210px;top: 105px;position: absolute;transform: translate(-50%,-50%);}
+        .carousel-inner img {left: 50%;max-width: none !important;min-width: 100%;min-height: 300px;top: 105px;position: absolute;transform: translate(-50%,-50%);}
     </style>
 
     <div id="Carousel" class="carousel slide hidden-xs hidden-sm" data-interval="5000" data-pause="hover" data-ride="carousel">
@@ -126,7 +126,63 @@
 		    <h6>Welcome Guest!</h6>
 		</div>
 		<div class="contentText after">
-		    The default shopping cart comes with Jquery UI, Grid960, Fancybox and BxGallery, in this demo those have been replaced by Boostrap and Bootstrap 3 Lightbox making it lighter, faster and responsive.
+		    <div id="products" class="row list-group">
+
+			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 grid-group-item">
+			    <div class="productHolder">
+				<a href="#"><img src="/view/<?php echo $SET->template() ?>/catalog/images/1.png" class="img-responsive img-rounded center-block"></a>
+				<div>
+				    <h6 class="text-center list-group-item-heading"><a href="#">Unreal Tournament</a></h6>
+				    <div class="clearfix"></div>
+				    <div class="row">
+					<div class="col-xs-6">
+					    <div class="btn-group" role="group"><button type="button" class="btn btn-default">$89.99</button></div>
+					</div>
+					<div class="col-xs-6 text-right">
+					    <a id="btn1" href="#" class="btn btn-success btn-sm"><span class="cart"></span> Buy Now</a>
+					</div>
+				    </div>
+				</div>
+			    </div>
+			</div>
+			
+			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 grid-group-item">
+			    <div class="productHolder">
+				<a href="#"><img src="/view/<?php echo $SET->template() ?>/catalog/images/2.png" class="img-responsive img-rounded center-block"></a>
+				<div>
+				    <h6 class="text-center list-group-item-heading"><a href="#">Unreal Tournament</a></h6>
+				    <div class="clearfix"></div>
+				    <div class="row">
+					<div class="col-xs-6">
+					    <div class="btn-group" role="group"><button type="button" class="btn btn-default">$89.99</button></div>
+					</div>
+					<div class="col-xs-6 text-right">
+					    <a id="btn1" href="#" class="btn btn-success btn-sm"><span class="cart"></span> Buy Now</a>
+					</div>
+				    </div>
+				</div>
+			    </div>
+			</div>
+			
+			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 grid-group-item">
+			    <div class="productHolder">
+				<a href="#"><img src="/view/<?php echo $SET->template() ?>/catalog/images/3.png" class="img-responsive img-rounded center-block"></a>
+				<div>
+				    <h6 class="text-center list-group-item-heading"><a href="#">Unreal Tournament</a></h6>
+				    <div class="clearfix"></div>
+				    <div class="row">
+					<div class="col-xs-6">
+					    <div class="btn-group" role="group"><button type="button" class="btn btn-default">$89.99</button></div>
+					</div>
+					<div class="col-xs-6 text-right">
+					    <a id="btn1" href="#" class="btn btn-success btn-sm"><span class="cart"></span> Buy Now</a>
+					</div>
+				    </div>
+				</div>
+			    </div>
+			</div>
+
+		    </div>
 		</div>		
 
 		<div class="clearfix"></div>
