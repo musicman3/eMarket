@@ -136,10 +136,10 @@
 				    <div class="clearfix"></div>
 				    <div class="row">
 					<div class="col-xs-6">
-					    <div class="btn-group" role="group"><button type="button" class="btn btn-default">$89.99</button></div>
+					    <button type="button" class="btn btn-default btn-sm">$189.99</button>
 					</div>
 					<div class="col-xs-6 text-right">
-					    <a id="btn1" href="#" class="btn btn-success btn-sm"><span class="cart"></span> Buy Now</a>
+					    <a id="btn1" href="#" class="btn btn-success btn-sm">Buy Now</a>
 					</div>
 				    </div>
 				</div>
@@ -154,10 +154,10 @@
 				    <div class="clearfix"></div>
 				    <div class="row">
 					<div class="col-xs-6">
-					    <div class="btn-group" role="group"><button type="button" class="btn btn-default">$89.99</button></div>
+					    <button type="button" class="btn btn-default btn-sm">$229.99</button>
 					</div>
 					<div class="col-xs-6 text-right">
-					    <a id="btn1" href="#" class="btn btn-success btn-sm"><span class="cart"></span> Buy Now</a>
+					    <a id="btn2" href="#" class="btn btn-success btn-sm">Buy Now</a>
 					</div>
 				    </div>
 				</div>
@@ -172,10 +172,10 @@
 				    <div class="clearfix"></div>
 				    <div class="row">
 					<div class="col-xs-6">
-					    <div class="btn-group" role="group"><button type="button" class="btn btn-default">$89.99</button></div>
+					    <button type="button" class="btn btn-default btn-sm">$219.99</button>
 					</div>
 					<div class="col-xs-6 text-right">
-					    <a id="btn1" href="#" class="btn btn-success btn-sm"><span class="cart"></span> Buy Now</a>
+					    <a id="btn3" href="#" class="btn btn-success btn-sm">Buy Now</a>
 					</div>
 				    </div>
 				</div>
@@ -190,10 +190,10 @@
 				    <div class="clearfix"></div>
 				    <div class="row">
 					<div class="col-xs-6">
-					    <div class="btn-group" role="group"><button type="button" class="btn btn-default">$89.99</button></div>
+					    <button type="button" class="btn btn-default btn-sm">$302.99</button>
 					</div>
 					<div class="col-xs-6 text-right">
-					    <a id="btn1" href="#" class="btn btn-success btn-sm"><span class="cart"></span> Buy Now</a>
+					    <a id="btn4" href="#" class="btn btn-success btn-sm">Buy Now</a>
 					</div>
 				    </div>
 				</div>
