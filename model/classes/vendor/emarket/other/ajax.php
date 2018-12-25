@@ -27,7 +27,7 @@ class Ajax {
                     type: 'POST',
                     url: '<?php echo $url ?>',
                     data: msg,
-                    success: function (data) {
+                    beforeSend: function (data) {
                         $('#add').modal('hide');
                     }
                 });
@@ -54,7 +54,7 @@ class Ajax {
                     type: 'POST',
                     url: '<?php echo $url ?>',
                     data: msg,
-                    success: function (data) {
+                    beforeSend: function (data) {
                         $('#edit').modal('hide');
                     }
                 });
