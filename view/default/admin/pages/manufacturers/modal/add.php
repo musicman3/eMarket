@@ -3,7 +3,6 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-
 ?>
 <!-- Модальное окно "Добавить" -->
 <div id="add" class="modal fade" tabindex="-1">
@@ -12,7 +11,7 @@
             <div class="modal-header"><div class="tooltip-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Сокращенное наименование указывается любыми символами" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
                 <h4 class="modal-title"><?php echo lang('title_' . $SET->titleDir() . '_index') ?></h4>
             </div>
-            <form id="form_add" name="form_add" method="POST" onsubmit="call_add()" enctype="multipart/form-data">
+            <form id="form_add" name="form_add" action="javascript:void(null);" onsubmit="call_add()">
                 <div class="panel-body">
                     <input type="hidden" name="add" value="ok" />
 
@@ -33,7 +32,6 @@
                         <?php
                         if (count(lang('#lang_all')) > 1) {
                             for ($xl = 1; $xl < count(lang('#lang_all')); $xl++) {
-
                                 ?>
 
                                 <div id="<?php echo lang('#lang_all')[$xl] ?>" class="tab-pane fade">
@@ -48,7 +46,6 @@
                                 <?php
                             }
                         }
-
                         ?>
 
                         <div class="form-group">
@@ -57,10 +54,26 @@
                                 <input class="input-sm form-control" placeholder="<?php echo lang('site') ?>" type="text" name="site" id="site" />
                             </div>
                         </div>
+
+                        <!-- ЗАГРУЗКА jQuery-File-Upload -->
                         <div class="form-group">
-                            <label for="image"><?php echo lang('images') ?>:</label><br>
-                            <input type="file" name="image" id="image" /> <?php echo lang('max') ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>
+                            <!-- The fileinput-button span is used to style the file input field as button -->
+                            <span class="btn btn-success fileinput-button">
+                                <i class="glyphicon glyphicon-plus"></i>
+                                <span>Select files...</span>
+                                <!-- The file input field used as target for the file upload widget -->
+                                <input id="fileupload" type="file" name="files[]" multiple>
+                            </span>
+                            <br>
+                            <br>
+                            <!-- The global progress bar -->
+                            <div id="progress" class="progress">
+                                <div class="progress-bar progress-bar-success"></div>
+                            </div>
+                            <!-- The container for the uploaded files -->
+                            <div id="files" class="files"></div>
                         </div>
+
                     </div>
                 </div>
 
