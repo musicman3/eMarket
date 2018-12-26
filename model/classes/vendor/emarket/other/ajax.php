@@ -16,6 +16,7 @@ class Ajax {
      */
     public function action($url) {
         $VALID = new \eMarket\Core\Valid;
+
         ?>
         <!-- Модальное окно "Добавить" -->
         <script type="text/javascript" language="javascript">
@@ -100,5 +101,45 @@ class Ajax {
         <?php
     }
 
+    /**
+     * jQuery File Upload
+     *
+     * @return javascript
+     */
+    public function file_upload() {
+
+        ?>
+        <!--Подгружаем jQuery File Upload -->
+        <script src = "/ext/jquery_file_upload/js/vendor/jquery.ui.widget.js"></script>
+        <script src="/ext/jquery_file_upload/js/jquery.iframe-transport.js"></script>
+        <script src="/ext/jquery_file_upload/js/jquery.fileupload.js"></script>
+        <script>
+            $(function () {
+                'use strict';
+                var url = '/downloads/upload_handler/';
+                $('#fileupload').fileupload({
+                    url: url,
+                    dataType: 'json',
+                    done: function (e, data) {
+                        $.each(data.result.files, function (index, file) {
+                            $('<p/>').text(file.name).appendTo('#files');
+                        });
+                    },
+                    progressall: function (e, data) {
+                        var progress = parseInt(data.loaded / data.total * 100, 10);
+                        $('#progress .progress-bar').css(
+                                'width',
+                                progress + '%'
+                                );
+                    }
+                }).prop('disabled', !$.support.fileInput)
+                        .parent().addClass($.support.fileInput ? undefined : 'disabled');
+            });
+        </script>
+
+        <?php
+    }
+
 }
+
 ?>
