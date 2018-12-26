@@ -57,19 +57,15 @@
 
                         <!-- ЗАГРУЗКА jQuery-File-Upload -->
                         <div class="form-group">
-                            <!-- The fileinput-button span is used to style the file input field as button -->
                             <span class="btn btn-primary btn-sm fileinput-button">
-                                <i class="glyphicon glyphicon-plus"></i><span> Select files...</span>
-                                <!-- The file input field used as target for the file upload widget -->
+                                <i class="glyphicon glyphicon-picture"></i><span> Добавить изображение...</span>
                                 <input class="input-sm form-control" id="fileupload" type="file" name="files[]" multiple>
                             </span>
                             <br>
                             <br>
-                            <!-- The global progress bar -->
                             <div id="progress" class="progress">
                                 <div class="progress-bar progress-bar-success"></div>
                             </div>
-                            <!-- The container for the uploaded files -->
                             <div id="files" class="files"></div>
                         </div>
 

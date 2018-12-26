@@ -29,18 +29,13 @@
 $AJAX->action('/controller/admin/pages/manufacturers/index.php');
 ?>
 
-<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+<!-- Подгружаем jQuery File Upload -->
 <script src="/ext/jquery_file_upload/js/vendor/jquery.ui.widget.js"></script>
-<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
 <script src="/ext/jquery_file_upload/js/jquery.iframe-transport.js"></script>
-<!-- The basic File Upload plugin -->
 <script src="/ext/jquery_file_upload/js/jquery.fileupload.js"></script>
 <script>
-    /*jslint unparam: true */
-    /*global window, $ */
     $(function () {
         'use strict';
-        // Change this to the location of your server-side upload handler:
         var url = '/downloads/upload_handler/';
         $('#fileupload').fileupload({
             url: url,
