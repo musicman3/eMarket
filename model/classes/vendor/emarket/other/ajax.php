@@ -19,15 +19,15 @@ class Ajax {
         ?>
         <!-- Модальное окно "Добавить" -->
         <script type="text/javascript" language="javascript">
-            function call_add() {
+            function call_add(type) {
                 var msg = $('#form_add').serialize();
                 // Установка синхронного запроса для jQuery.ajax
                 jQuery.ajaxSetup({async: false});
                 jQuery.ajax({
-                    type: 'POST',
+                    type: type,
                     url: '<?php echo $url ?>',
                     data: msg,
-                    beforeSend: function (data) {
+                    beforeSend: function () {
                         $('#add').modal('hide');
                     }
                 });
@@ -36,7 +36,7 @@ class Ajax {
                         {modify: 'update_ok'},
                         AjaxSuccess);
                 // Обновление страницы
-                function AjaxSuccess(data) {
+                function AjaxSuccess() {
                     setTimeout(function () {
                         document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
                     }, 100);
@@ -46,24 +46,24 @@ class Ajax {
 
         <!-- Модальное окно "Редактировать" -->
         <script type="text/javascript" language="javascript">
-            function call_edit() {
+            function call_edit(type) {
                 var msg = $('#form_edit').serialize();
                 // Установка синхронного запроса для jQuery.ajax
                 jQuery.ajaxSetup({async: false});
                 jQuery.ajax({
-                    type: 'POST',
+                    type: type,
                     url: '<?php echo $url ?>',
                     data: msg,
-                    beforeSend: function (data) {
+                    beforeSend: function () {
                         $('#edit').modal('hide');
                     }
                 });
                 // Отправка запроса для обновления страницы
                 jQuery.get('<?php echo $url ?>', // отправка данных GET
-                        {modify: 'ok'},
+                        {modify: 'update_ok'},
                         AjaxSuccess);
                 // Обновление страницы
-                function AjaxSuccess(data) {
+                function AjaxSuccess() {
                     setTimeout(function () {
                         document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
                     }, 100);
@@ -73,24 +73,24 @@ class Ajax {
 
         <!-- Модальное окно "Удалить" -->
         <script type="text/javascript" language="javascript">
-            function call_delete() {
+            function call_delete(type) {
                 var msg = $('#form_delete').serialize();
                 // Установка синхронного запроса для jQuery.ajax
                 jQuery.ajaxSetup({async: false});
                 jQuery.ajax({
-                    type: 'POST',
+                    type: type,
                     url: '<?php echo $url ?>',
                     data: msg,
-                    success: function (data) {
+                    success: function () {
                         // Пустой запрос
                     }
                 });
                 // Отправка запроса для обновления страницы
                 jQuery.get('<?php echo $url ?>', // отправка данных GET
-                        {modify: 'ok'},
+                        {modify: 'update_ok'},
                         AjaxSuccess);
                 // Обновление страницы
-                function AjaxSuccess(data) {
+                function AjaxSuccess() {
                     setTimeout(function () {
                         document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
                     }, 100);
