@@ -32,8 +32,6 @@
             <link rel="stylesheet" type="text/css" href="/ext/contextmenu/css/contextmenu.css" media="screen" />
             <link rel="stylesheet" type="text/css" href="/ext/jquery/ui/jquery-ui.min.css" media="screen" />
             <link rel="stylesheet" href="/ext/bootstrap/css/bootstrap-multiselect.css" type="text/css"/>
-            <!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
-            <link rel="stylesheet" href="/ext/jquery_file_upload/css/jquery.fileupload.css" type="text/css"/>
             <script type="text/javascript" src="/ext/jquery/jquery.min.js"></script>
             <script type="text/javascript" src="/ext/jquery/ui/jquery-ui.min.js"></script>
 

@@ -86,3 +86,7 @@ div.context-one {padding:5px;}
 .multiselect-native-select {float:left;}
 .transfer {color: #777;padding:5px;}
 .container-fluid {padding-left:30px;padding-right:30px;}
+.fileinput-button {position: relative;overflow: hidden;display: inline-block;}
+.fileinput-button input {position: absolute;top: 0;right: 0;margin: 0;opacity: 0;-ms-filter: 'alpha(opacity=0)';direction: ltr;cursor: pointer;}
+/* Fixes for IE < 8 */
+@media screen\9 {.fileinput-button input {filter: alpha(opacity=0);font-size: 100%;height: 100%;}}
