@@ -128,72 +128,54 @@
 		<div class="contentText after">
 		    <div id="products" class="row list-group">
 
-			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item">
+			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 grid-group-item">
 			    <div class="productHolder">
 				<a href="#"><img src="/view/<?php echo $SET->template() ?>/catalog/images/1.png" class="img-responsive img-rounded center-block"></a>
 				<div>
-				    <h6 class="text-center list-group-item-heading"><a href="#">Unreal Tournament</a></h6>
+				    <h6 class="text-center list-group-item-heading"><a href="#">Unreal Tournament Primary Holder</a></h6>
 				    <div class="clearfix"></div>
-				    <div class="row">
+				    <div class="row button">
 					<div class="col-xs-6">
-					    <button type="button" class="btn btn-default btn-sm">$189.99</button>
+					    <button type="button" class="btn btn-default btn-sm">$241 189.99</button>
 					</div>
 					<div class="col-xs-6 text-right">
-					    <a id="btn1" href="#" class="btn btn-success btn-sm">Buy Now</a>
+					    <a id="btn1" href="#" class="btn btn-primary btn-sm">Buy Now</a>
 					</div>
 				    </div>
 				</div>
 			    </div>
 			</div>
 			
-			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item">
+			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 grid-group-item">
 			    <div class="productHolder">
 				<a href="#"><img src="/view/<?php echo $SET->template() ?>/catalog/images/2.png" class="img-responsive img-rounded center-block"></a>
 				<div>
 				    <h6 class="text-center list-group-item-heading"><a href="#">Unreal Tournament</a></h6>
 				    <div class="clearfix"></div>
-				    <div class="row">
+				    <div class="row button">
 					<div class="col-xs-6">
-					    <button type="button" class="btn btn-default btn-sm">$229.99</button>
+					    <button type="button" class="btn btn-default btn-sm">$423 229.99</button>
 					</div>
 					<div class="col-xs-6 text-right">
-					    <a id="btn2" href="#" class="btn btn-success btn-sm">Buy Now</a>
+					    <a id="btn2" href="#" class="btn btn-primary btn-sm">Buy Now</a>
 					</div>
 				    </div>
 				</div>
 			    </div>
 			</div>
 			
-			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item">
+			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 grid-group-item">
 			    <div class="productHolder">
 				<a href="#"><img src="/view/<?php echo $SET->template() ?>/catalog/images/3.png" class="img-responsive img-rounded center-block"></a>
 				<div>
 				    <h6 class="text-center list-group-item-heading"><a href="#">Unreal Tournament</a></h6>
 				    <div class="clearfix"></div>
-				    <div class="row">
+				    <div class="row button">
 					<div class="col-xs-6">
-					    <button type="button" class="btn btn-default btn-sm">$219.99</button>
+					    <button type="button" class="btn btn-default btn-sm">$123 219.99</button>
 					</div>
 					<div class="col-xs-6 text-right">
-					    <a id="btn3" href="#" class="btn btn-success btn-sm">Buy Now</a>
-					</div>
-				    </div>
-				</div>
-			    </div>
-			</div>
-			
-			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item">
-			    <div class="productHolder">
-				<a href="#"><img src="/view/<?php echo $SET->template() ?>/catalog/images/4.png" class="img-responsive img-rounded center-block"></a>
-				<div>
-				    <h6 class="text-center list-group-item-heading"><a href="#">Unreal Tournament</a></h6>
-				    <div class="clearfix"></div>
-				    <div class="row">
-					<div class="col-xs-6">
-					    <button type="button" class="btn btn-default btn-sm">$302.99</button>
-					</div>
-					<div class="col-xs-6 text-right">
-					    <a id="btn4" href="#" class="btn btn-success btn-sm">Buy Now</a>
+					    <a id="btn3" href="#" class="btn btn-primary btn-sm">Buy Now</a>
 					</div>
 				    </div>
 				</div>
