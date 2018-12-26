@@ -38,5 +38,3 @@ h1 {font-size: 16px;color: #03539a;font-weight: bold;padding-top: 5px;}
 @media (max-width:767px){.navbar-nav .dropdown-menu .link > li > a {padding: 5px 10px 5px 40px;}}
 #columnLeft .panel-heading, #columnRight .panel-heading {font-size: 16px;}
 .searchbox-margin {margin-top: 15px;}
-.grid-group-item {margin-bottom: 20px;}
-.productHolder {border: 1px solid #eee;padding: 10px;border-radius: 4px;}

@@ -114,37 +114,6 @@
         <script type="text/javascript" src="/ext/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/ext/bootstrap/js/menu.js"></script>
-<script type="text/javascript" language="javascript">
-$(document).ready(function(){
-        $('#products').each(function(){
-            var highestBox = 0;
-            $('.list-group-item-heading ', this).each(function(){
-                if($(this).height() > highestBox) {
-                    highestBox = $(this).height();
-                }
-            });
-            $('.list-group-item-heading ',this).height(highestBox);
-        });
-        $('#products').each(function(){
-            var highestBox = 0;
-            $('.img-responsive ', this).each(function(){
-                if($(this).height() > highestBox) {
-                    highestBox = $(this).height();
-                }
-            });
-            $('.img-responsive ',this).height(highestBox);
-        });
-        $('#products').each(function(){
-            var highestBox = 0;
-            $('.button ', this).each(function(){
-                if($(this).height() > highestBox) {
-                    highestBox = $(this).height();
-                }
-            });
-            $('.button ',this).height(highestBox);
-        });
-});
-</script>
         <?php
     } //КОНЕЦ ВЫВОДА ТОЛЬКО В КАТАЛОГЕ
     //
