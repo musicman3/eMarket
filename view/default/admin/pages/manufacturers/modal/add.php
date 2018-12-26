@@ -58,7 +58,7 @@
                         <!-- ЗАГРУЗКА jQuery-File-Upload -->
                         <div class="form-group">
                             <!-- The fileinput-button span is used to style the file input field as button -->
-                            <span class="btn btn-success fileinput-button">
+                            <span class="btn btn-primary btn-sm fileinput-button">
                                 <i class="glyphicon glyphicon-plus"></i><span> Select files...</span>
                                 <!-- The file input field used as target for the file upload widget -->
                                 <input class="input-sm form-control" id="fileupload" type="file" name="files[]" multiple>
