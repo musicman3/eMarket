@@ -41,7 +41,7 @@ $AJAX->action('/controller/admin/pages/manufacturers/index.php');
     $(function () {
         'use strict';
         // Change this to the location of your server-side upload handler:
-        var url = '/ext/jquery_file_upload/server/php/';
+        var url = '/downloads/upload_handler/';
         $('#fileupload').fileupload({
             url: url,
             dataType: 'json',
