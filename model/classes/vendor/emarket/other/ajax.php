@@ -122,7 +122,7 @@ class Ajax {
                     dataType: 'json',
                     done: function (e, data) {
                         $.each(data.result.files, function (index, file) {
-                            $('<p/>').text(file.name).appendTo('#files');
+                            $('<p/>').html('<div style="float:left"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" /></div>').appendTo('#files');
                         });
                     },
                     progressall: function (e, data) {
