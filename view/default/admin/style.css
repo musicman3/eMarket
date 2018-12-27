@@ -91,3 +91,4 @@ div.context-one {padding:5px;}
 /* Fixes for IE < 8 */
 @media screen\9 {.fileinput-button input {filter: alpha(opacity=0);font-size: 100%;height: 100%;}}
 .files {float:left;}
+.file-upload {padding-right:5px;}
