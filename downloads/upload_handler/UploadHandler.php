@@ -165,7 +165,7 @@ class UploadHandler
                     'max_width' => 800,
                     'max_height' => 600
                 ),
-		        
+		        */
                 'thumbnail' => array(
                     // Uncomment the following to use a defined directory for the thumbnails
                     // instead of a subdirectory based on the version identifier.
@@ -183,27 +183,7 @@ class UploadHandler
                     // 'strip' => true, (this strips EXIF tags, such as geolocation)
                     'max_width' => 80, // either specify width, or set to 0. Then width is automatically adjusted - keeping aspect ratio to a specified max_height.
                     'max_height' => 80 // either specify height, or set to 0. Then height is automatically adjusted - keeping aspect ratio to a specified max_width.
-                ),*/
-                'size_1' => array(
-                    'max_width' => 125,
-                    'max_height' => 125
-                ),
-                'size_2' => array(
-                    'max_width' => 200,
-                    'max_height' => 200
-                ),
-                'size_3' => array(
-                    'max_width' => 325,
-                    'max_height' => 325
-                ),
-                'size_4' => array(
-                    'max_width' => 525,
-                    'max_height' => 525
-                ),
-                'size_5' => array(
-                    'max_width' => 850,
-                    'max_height' => 850
-                ),
+                )
             ),
             'print_response' => true
         );
