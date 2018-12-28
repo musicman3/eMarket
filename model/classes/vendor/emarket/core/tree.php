@@ -40,13 +40,14 @@ class Tree {
      * ФУНКЦИЯ ПЕРЕМЕЩЕНИЯ ИЛИ УДАЛЕНИЯ ФАЙЛОВ
      *
      * @param строка $dir
-     * @return массив $return
+     * @param строка $new_dir = null (директория для перемещения)
+     * @param строка $rename = null (префикс к имени файла)
      */
-    public function filesDirAction($dir, $new_dir = null, $rename = null, $action = null) { // $dir - путь к директории с файлами
+    public function filesDirAction($dir, $new_dir = null, $rename = null) { // $dir - путь к директории с файлами
         $files = glob($dir . '*');
         foreach ($files as $file) {
             if (is_file($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
-                if (isset($action) && $action == 'move'){
+                if (isset($new_dir)){
                 copy($file, $new_dir . $rename . basename($file)); // Переименовываем и копируем файлы в новое место
                 }
                 chmod($file, 0777);
