@@ -44,8 +44,9 @@ class Tree {
     public function filesDirDelete($dir) { // $dir - путь к директории с файлами
         $files = glob($dir . '*');
         foreach ($files as $file) {
-            if (is_file($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') // Исключаемые данные
+            if (is_file($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
                 unlink($file);
+            }
         }
     }
 
