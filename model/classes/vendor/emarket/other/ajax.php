@@ -111,7 +111,7 @@ class Ajax {
         <script src = "/ext/jquery_file_upload/js/vendor/jquery.ui.widget.js"></script>
         <script src="/ext/jquery_file_upload/js/jquery.iframe-transport.js"></script>
         <script src="/ext/jquery_file_upload/js/jquery.fileupload.js"></script>
-        <script>
+        <script type="text/javascript" language="javascript">
             $(function () {
                 'use strict';
                 var url = '/downloads/upload_handler/';
