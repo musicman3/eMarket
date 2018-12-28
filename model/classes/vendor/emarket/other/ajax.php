@@ -16,6 +16,7 @@ class Ajax {
      */
     public function action($url) {
         $VALID = new \eMarket\Core\Valid;
+
         ?>
         <!-- Модальное окно "Добавить" -->
         <script type="text/javascript" language="javascript">
@@ -106,6 +107,7 @@ class Ajax {
      * @return javascript
      */
     public function fileUpload() {
+
         ?>
         <!--Подгружаем jQuery File Upload -->
         <script src = "/ext/jquery_file_upload/js/vendor/jquery.ui.widget.js"></script>
@@ -142,21 +144,23 @@ class Ajax {
      * Отправляем POST на удаление временных
      * файлов при открытии модального окна
      *
+     * 
      * @return javascript
      */
     public function fileUploadEmpty($url) {
+
         ?>
         <script type="text/javascript" language="javascript">
             $(this).on('show.bs.modal', function (event) {
                 // Отправка запроса для очистки временных файлов
                 jQuery.post('<?php echo $url ?>', // отправка данных POST
                         {file_upload: 'empty'});
-
             });
+
             // Очищаем модал
             $('#add').on('hidden.bs.modal', function () {
-                $(this).find('.file-upload').html('').appendTo('#files');
-                $(this).find('.progress').html('').appendTo('#progress');
+                $('#progress .progress-bar').css('width', 0 + '%');
+                $('.file-upload').html('');
                 //$(this).find('form').trigger('reset'); // Очищаем формы
             });
         </script>
@@ -164,4 +168,5 @@ class Ajax {
     }
 
 }
+
 ?>
