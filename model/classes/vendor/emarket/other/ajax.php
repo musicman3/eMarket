@@ -37,7 +37,7 @@ class Ajax {
                         {modify: 'update_ok'},
                         AjaxSuccess);
                 // Обновление страницы
-                function AjaxSuccess() {
+                function AjaxSuccess(data) {
                     setTimeout(function () {
                         document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
                     }, 100);
@@ -64,7 +64,7 @@ class Ajax {
                         {modify: 'update_ok'},
                         AjaxSuccess);
                 // Обновление страницы
-                function AjaxSuccess() {
+                function AjaxSuccess(data) {
                     setTimeout(function () {
                         document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
                     }, 100);
@@ -91,7 +91,7 @@ class Ajax {
                         {modify: 'update_ok'},
                         AjaxSuccess);
                 // Обновление страницы
-                function AjaxSuccess() {
+                function AjaxSuccess(data) {
                     setTimeout(function () {
                         document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
                     }, 100);
@@ -106,7 +106,7 @@ class Ajax {
      *
      * @return javascript
      */
-    public function file_upload() {
+    public function fileUpload() {
 
         ?>
         <!--Подгружаем jQuery File Upload -->
@@ -137,6 +137,26 @@ class Ajax {
             });
         </script>
 
+        <?php
+    }
+
+    /**
+     * Отправляем POST на удаление временных
+     * файлов при открытии модального окна
+     *
+     * @return javascript
+     */
+    public function fileUploadEmpty($url) {
+
+        ?>
+        <script type="text/javascript" language="javascript">
+            $(this).on('show.bs.modal', function (event) {
+                // Отправка запроса для очистки временных файлов
+                jQuery.post('<?php echo $url ?>', // отправка данных POST
+                        {file_upload: 'empty'});
+
+            });
+        </script>
         <?php
     }
 

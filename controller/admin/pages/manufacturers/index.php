@@ -1,13 +1,18 @@
 <?php
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
-  |    GNU GENERAL PUBLIC LICENSE v.3.0    |    
+  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 /* >-->-->-->  CONNECT PAGE START  <--<--<--< */
 require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 /* ------------------------------------------ */
-// 
+
+//Если открываем модальное окно, то очищаются папки временных файлов изображений
+if ($VALID->inPOST('file_upload') == 'empty') {
+    $TREE->filesDirDelete(ROOT . '/downloads/upload_handler/files/');
+    $TREE->filesDirDelete(ROOT . '/downloads/upload_handler/files/thumbnail/');
+}
 // Если нажали на кнопку Добавить
 if ($VALID->inPOST('add')) {
 
@@ -19,10 +24,22 @@ if ($VALID->inPOST('add')) {
     for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
         $PDO->inPrepare("INSERT INTO " . TABLE_MANUFACTURERS . " SET id=?, name=?, language=?, site=?", [$id, $VALID->inPOST($SET->titleDir() . '_' . lang('#lang_all')[$xl]), lang('#lang_all')[$xl], $VALID->inPOST('site')]);
     }
-    // Копируем прикрепленный файл
-    $uploaddir = ROOT . '/downloads/images/manufacturers/originals/';
-    $uploadfile = $uploaddir.basename($_FILES['image']['name']);
-    @copy($_FILES['image']['tmp_name'], $uploadfile);
+    // Новый уникальный префикс для файлов
+    $prefix = time() . '_';
+    // Пишем названия файлов изображений в БД
+    $files = glob(ROOT . '/downloads/upload_handler/files/thumbnail/*');
+    foreach ($files as $file) {
+        if (is_file($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
+            for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
+                // обновляем запись
+                $PDO->inPrepare("UPDATE " . TABLE_MANUFACTURERS . " SET logo=? WHERE id=? AND language=?", [$prefix . basename($file), $id, lang('#lang_all')[$xl]]);
+            }
+        }
+    }
+
+    // Перемещаем файлы
+    $TREE->filesDirMove(ROOT . '/downloads/upload_handler/files/thumbnail/', ROOT . '/downloads/images/manufacturers/resize/', $prefix);
+    $TREE->filesDirMove(ROOT . '/downloads/upload_handler/files/', ROOT . '/downloads/images/manufacturers/originals/', $prefix);
 }
 
 // Если нажали на кнопку Редактировать
