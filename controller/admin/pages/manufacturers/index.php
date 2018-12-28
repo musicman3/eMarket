@@ -20,19 +20,15 @@ if ($VALID->inPOST('add')) {
     $id_max = $PDO->selectPrepare("SELECT id FROM " . TABLE_MANUFACTURERS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
     $id = intval($id_max) + 1;
 
-    // добавляем запись для всех вкладок
-    for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
-        $PDO->inPrepare("INSERT INTO " . TABLE_MANUFACTURERS . " SET id=?, name=?, language=?, site=?", [$id, $VALID->inPOST($SET->titleDir() . '_' . lang('#lang_all')[$xl]), lang('#lang_all')[$xl], $VALID->inPOST('site')]);
-    }
     // Новый уникальный префикс для файлов
     $prefix = time() . '_';
     // Пишем названия файлов изображений в БД
     $files = glob(ROOT . '/downloads/upload_handler/files/thumbnail/*');
     foreach ($files as $file) {
         if (is_file($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
+            // добавляем запись для всех вкладок
             for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
-                // обновляем запись
-                $PDO->inPrepare("UPDATE " . TABLE_MANUFACTURERS . " SET logo=? WHERE id=? AND language=?", [$prefix . basename($file), $id, lang('#lang_all')[$xl]]);
+                $PDO->inPrepare("INSERT INTO " . TABLE_MANUFACTURERS . " SET id=?, name=?, language=?, logo=?, site=?", [$id, $VALID->inPOST($SET->titleDir() . '_' . lang('#lang_all')[$xl]), lang('#lang_all')[$xl], $prefix . basename($file), $VALID->inPOST('site')]);
             }
         }
     }
