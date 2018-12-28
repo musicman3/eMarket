@@ -61,12 +61,7 @@ class Tree {
         $files = glob($dir . '*');
         foreach ($files as $file) {
             if (is_file($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
-                if (isset($rename)) {
-                    copy($file, $new_dir . basename($file)); // Переименовываем и копируем файлы в новое место
-                    rename($new_dir . basename($file), $new_dir . $rename . basename($file));
-                } else {
-                    copy($file, $new_dir . basename($file)); // Копируем файлы в новое место
-                }
+                copy($file, $new_dir . $rename . basename($file)); // Переименовываем и копируем файлы в новое место
                 chmod($file, 0777);
                 unlink($file); // Удаляем старые файлы
             }
