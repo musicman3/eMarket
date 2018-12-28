@@ -60,8 +60,10 @@ require(ROOT . '/controller/admin/pages/manufacturers/modal/edit.php');
                             </div>
                         </div>
                         <div class="form-group">
+                            <div class="files">По центру</div>
                             <label for="image"><?php echo lang('images') ?>:</label><br>
                             <input type="file" name="image" id="image" /> <?php echo lang('max') ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>
+                            <div class="files">По центру</div>
                         </div>
                     </div>
                 </div>
