@@ -3,6 +3,7 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+
 ?>
 <?php if (isset($name_edit)) { ?>
     <!-- Загрузка данных в модальное окно -->
@@ -14,13 +15,21 @@
             // Получаем массивы данных
             var name_edit = <?php echo $name_edit ?>;
             var site_edit = <?php echo $site_edit ?>;
+            var logo_edit = <?php echo $logo_edit ?>;
 
-            // Ищем классы и меняем данные
+            // Ищем классы и добавляем данные
             for (x = 0; x < name_edit.length; x++) {
                 modal.find('.name_edit' + x).val(name_edit[x][modal_id]);
             }
             modal.find('.site_edit').val(site_edit[modal_id]);
             modal.find('.js_edit').val(modal_id);
+
+            // Ищем классы и добавляем данные
+            for (x = 1; x < logo_edit[modal_id].length; x++) {
+                var b = '/downloads/images/manufacturers/resize/' + logo_edit[modal_id][x];
+                $('#logo').prepend('<img src="' + b + '" /> '); // Вставляем лого
+            }
+
         });
     </script>
     <?php
@@ -31,4 +40,5 @@ $AJAX->action('/controller/admin/pages/manufacturers/index.php');
 $AJAX->fileUpload();
 // Отправляем POST на удаление временных файлов при открытии модального окна
 $AJAX->fileUploadEmpty('/controller/admin/pages/manufacturers/index.php');
+
 ?>

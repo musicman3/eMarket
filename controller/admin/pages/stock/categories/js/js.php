@@ -121,7 +121,7 @@ if (!isset($idsx_real_parent_id)) {
                                 // Получаем массивы данных
                                 var name_edit = <?php echo $name_edit ?>;
 
-                                // Ищем классы и меняем данные
+                                // Ищем классы и добавляем данные
                                 for (x = 0; x < name_edit.length; x++) {
                                     modal.find('.name_edit' + x).val(name_edit[x][modal_id]);
                                 }
