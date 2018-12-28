@@ -39,6 +39,7 @@ login_error = Введены неверные E-Mail или пароль
 
 ;КНОПКИ
 button_add = Добавить
+button_add_image = Добавить изображение...
 button_cancel = Отмена
 button_delete = Удалить
 button_edit = Изменить

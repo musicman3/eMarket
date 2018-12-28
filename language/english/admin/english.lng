@@ -39,6 +39,7 @@ login_error = E-Mail or password error
 
 ;КНОПКИ
 button_add = Add
+button_add_image = Add image...
 button_cancel = Cancel
 button_delete = Delete
 button_edit = Edit

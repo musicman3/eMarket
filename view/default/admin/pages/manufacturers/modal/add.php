@@ -58,7 +58,7 @@
                         <!-- ЗАГРУЗКА jQuery-File-Upload -->
                         <div class="form-group">
                             <span class="btn btn-primary btn-sm fileinput-button">
-                                <i class="glyphicon glyphicon-picture"></i><span> Добавить изображение...</span>
+                                <i class="glyphicon glyphicon-picture"></i><span> <?php echo lang('button_add_image') ?></span>
                                 <input class="input-sm form-control" id="fileupload" type="file" name="files[]" accept="image/jpeg,image/png,image/gif" multiple> <?php echo lang('max') ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>
                             </span>
                             <br>
