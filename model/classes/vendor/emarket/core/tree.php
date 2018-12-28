@@ -45,6 +45,7 @@ class Tree {
         $files = glob($dir . '*');
         foreach ($files as $file) {
             if (is_file($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
+                chmod($file, 0777);
                 unlink($file);
             }
         }
@@ -66,6 +67,7 @@ class Tree {
                 } else {
                     copy($file, $new_dir . basename($file)); // Копируем файлы в новое место
                 }
+                chmod($file, 0777);
                 unlink($file); // Удаляем старые файлы
             }
         }
