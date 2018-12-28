@@ -37,31 +37,18 @@ class Tree {
     }
 
     /**
-     * ФУНКЦИЯ УДАЛЕНИЯ ФАЙЛОВ В ПАПКЕ
-     *
-     * @param строка $dir
-     */
-    public function filesDirDelete($dir) { // $dir - путь к директории с файлами
-        $files = glob($dir . '*');
-        foreach ($files as $file) {
-            if (is_file($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
-                chmod($file, 0777);
-                unlink($file);
-            }
-        }
-    }
-
-    /**
-     * ФУНКЦИЯ ПЕРЕМЕЩЕНИЯ ФАЙЛОВ
+     * ФУНКЦИЯ ПЕРЕМЕЩЕНИЯ ИЛИ УДАЛЕНИЯ ФАЙЛОВ
      *
      * @param строка $dir
      * @return массив $return
      */
-    public function filesDirMove($dir, $new_dir, $rename = null) { // $dir - путь к директории с файлами
+    public function filesDirAction($dir, $new_dir = null, $rename = null, $action = null) { // $dir - путь к директории с файлами
         $files = glob($dir . '*');
         foreach ($files as $file) {
             if (is_file($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
+                if (isset($action) && $action == 'move'){
                 copy($file, $new_dir . $rename . basename($file)); // Переименовываем и копируем файлы в новое место
+                }
                 chmod($file, 0777);
                 unlink($file); // Удаляем старые файлы
             }

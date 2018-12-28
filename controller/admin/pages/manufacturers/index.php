@@ -10,8 +10,8 @@ require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 
 //Если открываем модальное окно, то очищаются папки временных файлов изображений
 if ($VALID->inPOST('file_upload') == 'empty') {
-    $TREE->filesDirDelete(ROOT . '/downloads/upload_handler/files/');
-    $TREE->filesDirDelete(ROOT . '/downloads/upload_handler/files/thumbnail/');
+    $TREE->filesDirAction(ROOT . '/downloads/upload_handler/files/');
+    $TREE->filesDirAction(ROOT . '/downloads/upload_handler/files/thumbnail/');
 }
 // Если нажали на кнопку Добавить
 if ($VALID->inPOST('add')) {
@@ -34,8 +34,8 @@ if ($VALID->inPOST('add')) {
     }
 
     // Перемещаем файлы
-    $TREE->filesDirMove(ROOT . '/downloads/upload_handler/files/thumbnail/', ROOT . '/downloads/images/manufacturers/resize/', $prefix);
-    $TREE->filesDirMove(ROOT . '/downloads/upload_handler/files/', ROOT . '/downloads/images/manufacturers/originals/', $prefix);
+    $TREE->filesDirAction(ROOT . '/downloads/upload_handler/files/thumbnail/', ROOT . '/downloads/images/manufacturers/resize/', $prefix, 'move');
+    $TREE->filesDirAction(ROOT . '/downloads/upload_handler/files/', ROOT . '/downloads/images/manufacturers/originals/', $prefix, 'move');
 }
 
 // Если нажали на кнопку Редактировать
