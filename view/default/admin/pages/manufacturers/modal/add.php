@@ -59,7 +59,7 @@
                         <div class="form-group">
                             <span class="btn btn-primary btn-sm fileinput-button">
                                 <i class="glyphicon glyphicon-picture"></i><span> Добавить изображение...</span>
-                                <input class="input-sm form-control" id="fileupload" type="file" name="files[]" multiple>
+                                <input class="input-sm form-control" id="fileupload" type="file" name="files[]" accept="image/jpeg, image/png, image/gif" multiple>
                             </span>
                             <br>
                             <br>
