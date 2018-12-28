@@ -16,7 +16,6 @@ class Ajax {
      */
     public function action($url) {
         $VALID = new \eMarket\Core\Valid;
-
         ?>
         <!-- Модальное окно "Добавить" -->
         <script type="text/javascript" language="javascript">
@@ -107,7 +106,6 @@ class Ajax {
      * @return javascript
      */
     public function fileUpload() {
-
         ?>
         <!--Подгружаем jQuery File Upload -->
         <script src = "/ext/jquery_file_upload/js/vendor/jquery.ui.widget.js"></script>
@@ -147,7 +145,6 @@ class Ajax {
      * @return javascript
      */
     public function fileUploadEmpty($url) {
-
         ?>
         <script type="text/javascript" language="javascript">
             $(this).on('show.bs.modal', function (event) {
@@ -156,10 +153,15 @@ class Ajax {
                         {file_upload: 'empty'});
 
             });
+            // Очищаем модал
+            $('#add').on('hidden.bs.modal', function () {
+                $(this).find('.file-upload').html('').appendTo('#files');
+                $(this).find('.progress').html('').appendTo('#progress');
+                //$(this).find('form').trigger('reset'); // Очищаем формы
+            });
         </script>
         <?php
     }
 
 }
-
 ?>
