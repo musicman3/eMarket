@@ -156,16 +156,9 @@ class Ajax {
                 jQuery.post('<?php echo $url ?>', // отправка данных POST
                         {file_upload: 'empty'});
             });
-
-            // Очищаем модал
-            $('#add').on('hidden.bs.modal', function () {
-                $('#progress .progress-bar').css('width', 0 + '%');
-                $('.file-upload').empty();
-                //$(this).find('form').trigger('reset'); // Очищаем формы
-            });
             
             // Очищаем модал
-            $('#edit').on('hidden.bs.modal', function () {
+            $(this).on('hidden.bs.modal', function () {
                 $('#progress .progress-bar').css('width', 0 + '%');
                 $('.file-upload').empty();
                 $('.logo').empty();
