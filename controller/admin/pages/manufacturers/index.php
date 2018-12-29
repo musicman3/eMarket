@@ -22,6 +22,7 @@ if ($VALID->inPOST('add')) {
 
     // Новый уникальный префикс для файлов
     $prefix = time() . '_';
+    $image_list = '';
     // Составляем список файлов изображений
     $files = glob(ROOT . '/downloads/upload_handler/files/thumbnail/*');
     foreach ($files as $file) {
