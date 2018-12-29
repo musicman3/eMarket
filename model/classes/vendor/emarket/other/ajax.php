@@ -123,8 +123,8 @@ class Ajax {
                     dataType: 'json',
                     done: function (e, data) {
                         $.each(data.result.files, function (index, file) {
-                            $('<span/>').html('<span class="file-upload-add"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" height="60px;" /> </span>').appendTo('#logo-add');
-                            $('<span/>').html('<span class="file-upload-edit"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" height="60px;" /> </span>').appendTo('#logo-edit');
+                            $('<span/>').html('<span class="file-upload"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" height="60px;" /> </span>').appendTo('#logo-add');
+                            $('<span/>').html('<span class="file-upload"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" height="60px;" /> </span>').appendTo('#logo-edit');
                         });
                     },
                     progressall: function (e, data) {

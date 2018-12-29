@@ -26,7 +26,7 @@
 
             // Ищем классы и добавляем данные
             for (x = 0; x < logo_edit[modal_id].length; x++) {
-                $('#logo-edit').append('<span class="file-upload-edit"><img src="/downloads/images/manufacturers/resize/' + logo_edit[modal_id][x] + '" /> </span>'); // Вставляем лого
+                $('<span/>').html('<span class="file-upload"><img src="/downloads/images/manufacturers/resize/' + logo_edit[modal_id][x] + '" /> </span>').appendTo('#logo-edit'); // Вставляем лого
             }
 
         });
