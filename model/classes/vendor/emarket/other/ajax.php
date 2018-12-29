@@ -160,15 +160,15 @@ class Ajax {
             // Очищаем модал
             $('#add').on('hidden.bs.modal', function () {
                 $('#progress .progress-bar').css('width', 0 + '%');
-                $('.file-upload').html('');
+                $('.file-upload').empty();
                 //$(this).find('form').trigger('reset'); // Очищаем формы
             });
             
             // Очищаем модал
             $('#edit').on('hidden.bs.modal', function () {
                 $('#progress .progress-bar').css('width', 0 + '%');
-                $('.file-upload').html('');
-                $('.logo').html('');
+                $('.file-upload').empty();
+                $('.logo').empty();
                 //$(this).find('form').trigger('reset'); // Очищаем формы
             });
         </script>
