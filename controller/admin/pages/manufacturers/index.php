@@ -26,14 +26,13 @@ if ($VALID->inPOST('add')) {
     $files = glob(ROOT . '/downloads/upload_handler/files/thumbnail/*');
     foreach ($files as $file) {
         if (is_file($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
-            $image_list .=  $prefix . basename($file) . ',';
+            $image_list .= $prefix . basename($file) . ',';
         }
     }
     // добавляем запись для всех вкладок
     for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
         $PDO->inPrepare("INSERT INTO " . TABLE_MANUFACTURERS . " SET id=?, name=?, language=?, logo=?, site=?", [$id, $VALID->inPOST($SET->titleDir() . '_' . lang('#lang_all')[$xl]), lang('#lang_all')[$xl], $image_list, $VALID->inPOST('site')]);
     }
-
 
     // Перемещаем файлы
     $TREE->filesDirAction(ROOT . '/downloads/upload_handler/files/thumbnail/', ROOT . '/downloads/images/manufacturers/resize/', $prefix);
