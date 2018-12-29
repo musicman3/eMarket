@@ -179,7 +179,7 @@ class Ajax {
 
             // Очищаем модал
             $(this).on('hidden.bs.modal', function () {
-                $('#progress .progress-bar').css('width', 0 + '%');
+                $('.progress-bar').css('width', 0 + '%');
                 $('.file-upload').empty();
                 $('.logo').empty();
                 //$(this).find('form').trigger('reset'); // Очищаем формы
