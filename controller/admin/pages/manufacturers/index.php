@@ -35,7 +35,7 @@ if ($VALID->inPOST('add')) {
         $PDO->inPrepare("INSERT INTO " . TABLE_MANUFACTURERS . " SET id=?, name=?, language=?, logo=?, site=?", [$id, $VALID->inPOST($SET->titleDir() . '_' . lang('#lang_all')[$xl]), lang('#lang_all')[$xl], $image_list, $VALID->inPOST('site')]);
     }
 
-    // Перемещаем файлы
+    // Перемещаем файлы из временной папки в постоянную
     $TREE->filesDirAction(ROOT . '/downloads/upload_handler/files/thumbnail/', ROOT . '/downloads/images/manufacturers/resize/', $prefix);
     $TREE->filesDirAction(ROOT . '/downloads/upload_handler/files/', ROOT . '/downloads/images/manufacturers/originals/', $prefix);
 }
@@ -51,8 +51,15 @@ if ($VALID->inPOST('edit')) {
 
 // Если нажали на кнопку Удалить
 if ($VALID->inPOST('delete')) {
-
-    // Удаляем
+    
+    $logo_delete = explode(',', $PDO->selectPrepare("SELECT logo FROM " . TABLE_MANUFACTURERS . " WHERE id=?", [$VALID->inPOST('delete')]), -1);
+    foreach ($logo_delete as $file) {
+        chmod(ROOT . '/downloads/images/manufacturers/resize/' . $file, 0777);
+        chmod(ROOT . '/downloads/images/manufacturers/originals/' . $file, 0777);
+        unlink(ROOT . '/downloads/images/manufacturers/resize/' . $file); // Удаляем файлы
+        unlink(ROOT . '/downloads/images/manufacturers/originals/' . $file); // Удаляем файлы
+    }
+    // Удаляем запись
     $PDO->inPrepare("DELETE FROM " . TABLE_MANUFACTURERS . " WHERE id=?", [$VALID->inPOST('delete')]);
 }
 
