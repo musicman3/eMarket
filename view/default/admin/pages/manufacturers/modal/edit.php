@@ -61,7 +61,7 @@ require(ROOT . '/controller/admin/pages/manufacturers/modal/edit.php');
                         </div>
                         <!-- ЗАГРУЗКА jQuery-File-Upload -->
                         <div class="form-group">
-                            <div id="logo" class="files"></div>
+                            <div class="files logo"></div>
                             <br>
                             <span class="btn btn-primary btn-sm fileinput-button">
                                 <i class="glyphicon glyphicon-picture"></i><span> <?php echo lang('button_add_image') ?></span>

@@ -163,6 +163,14 @@ class Ajax {
                 $('.file-upload').html('');
                 //$(this).find('form').trigger('reset'); // Очищаем формы
             });
+            
+            // Очищаем модал
+            $('#edit').on('hidden.bs.modal', function () {
+                $('#progress .progress-bar').css('width', 0 + '%');
+                $('.file-upload').html('');
+                $('.logo').html('');
+                //$(this).find('form').trigger('reset'); // Очищаем формы
+            });
         </script>
         <?php
     }
