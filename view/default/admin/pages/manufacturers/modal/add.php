@@ -61,7 +61,7 @@
                                 <i class="glyphicon glyphicon-picture"></i><span> <?php echo lang('button_add_image') ?></span>
                                 <input class="input-sm form-control" id="fileupload" type="file" name="files[]" accept="image/jpeg,image/png,image/gif" multiple>
                             </span>
-                            <?php echo get_cfg_var('max_file_uploads'); ?>, <?php echo lang('max') ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>
+                            <?php echo lang('max') ?>: <?php echo get_cfg_var('max_file_uploads'); ?>  <?php echo lang('po') ?> <?php echo get_cfg_var('upload_max_filesize'); ?>
                             <br>
                             <br>
                             <div id="progress" class="progress">
