@@ -16,7 +16,7 @@ for ($i = $start; $i < $finish; $i++) {
             $name_edit_temp[$xl][$modal_id] = $PDO->selectPrepare("SELECT name FROM " . TABLE_MANUFACTURERS . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$xl]]);
         }
         $site_edit_temp[$modal_id] = $PDO->selectPrepare("SELECT site FROM " . TABLE_MANUFACTURERS . " WHERE id=?", [$modal_id]);
-        $logo_edit_temp[$modal_id] = explode(',', $PDO->selectPrepare("SELECT logo FROM " . TABLE_MANUFACTURERS . " WHERE id=?", [$modal_id]));
+        $logo_edit_temp[$modal_id] = explode(',', $PDO->selectPrepare("SELECT logo FROM " . TABLE_MANUFACTURERS . " WHERE id=?", [$modal_id]), -1);
         // ПАРАМЕТРЫ ДЛЯ ПЕРЕДАЧИ В МОДАЛ
         $name_edit = json_encode($name_edit_temp); // Имя
         $site_edit = json_encode($site_edit_temp); // Короткое имя

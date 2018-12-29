@@ -22,12 +22,11 @@ if ($VALID->inPOST('add')) {
 
     // Новый уникальный префикс для файлов
     $prefix = time() . '_';
-    $image_list = 'images'; // Список названий изображений
     // Составляем список файлов изображений
     $files = glob(ROOT . '/downloads/upload_handler/files/thumbnail/*');
     foreach ($files as $file) {
         if (is_file($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
-            $image_list .= ',' . $prefix . basename($file);
+            $image_list .=  $prefix . basename($file) . ',';
         }
     }
     // добавляем запись для всех вкладок
