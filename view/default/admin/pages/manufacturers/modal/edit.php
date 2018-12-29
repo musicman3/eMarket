@@ -59,21 +59,22 @@ require(ROOT . '/controller/admin/pages/manufacturers/modal/edit.php');
                                 <input class="site_edit input-sm form-control" type="text" name="site_edit" id="site_edit" />
                             </div>
                         </div>
+                        
                         <!-- ЗАГРУЗКА jQuery-File-Upload -->
                         <div class="form-group">
                             <div class="files logo"></div>
                             <br>
                             <span class="btn btn-primary btn-sm fileinput-button">
                                 <i class="glyphicon glyphicon-picture"></i><span> <?php echo lang('button_add_image') ?></span>
-                                <input class="input-sm form-control" id="fileupload" type="file" name="files[]" accept="image/jpeg,image/png,image/gif" multiple>
+                                <input class="input-sm form-control" id="fileupload-edit" type="file" name="files[]" accept="image/jpeg,image/png,image/gif" multiple>
                             </span>
                             <?php echo lang('max') ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>
                             <br>
                             <br>
-                            <div id="progress" class="progress">
-                                <div class="progress-bar progress-bar-success"></div>
+                            <div id="progress-edit" class="progress">
+                                <div id="progress-bar-edit" class="progress-bar progress-bar-success"></div>
                             </div>
-                            <div id="files" class="files"></div>
+                            <div id="files-edit" class="files"></div>
                         </div>
                     </div>
                 </div>

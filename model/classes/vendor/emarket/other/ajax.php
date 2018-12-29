@@ -117,23 +117,43 @@ class Ajax {
             $(function () {
                 'use strict';
                 var url = '/downloads/upload_handler/';
-                $('#fileupload').fileupload({
+                // Для окна добавления
+                $('#fileupload-add').fileupload({
                     url: url,
                     dataType: 'json',
                     done: function (e, data) {
                         $.each(data.result.files, function (index, file) {
-                            $('<span/>').html('<span class="file-upload"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" height="60px;" /></span>').appendTo('#files');
+                            $('<span/>').html('<span class="file-upload"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" height="60px;" /></span>').appendTo('#files-add');
                         });
                     },
                     progressall: function (e, data) {
                         var progress = parseInt(data.loaded / data.total * 100, 10);
-                        $('#progress .progress-bar').css(
+                        $('#progress-add .progress-bar').css(
                                 'width',
                                 progress + '%'
                                 );
                     }
                 }).prop('disabled', !$.support.fileInput)
                         .parent().addClass($.support.fileInput ? undefined : 'disabled');
+                // Для окна редактирования        
+                $('#fileupload-edit').fileupload({
+                    url: url,
+                    dataType: 'json',
+                    done: function (e, data) {
+                        $.each(data.result.files, function (index, file) {
+                            $('<span/>').html('<span class="file-upload"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" height="60px;" /></span>').appendTo('#files-edit');
+                        });
+                    },
+                    progressall: function (e, data) {
+                        var progress = parseInt(data.loaded / data.total * 100, 10);
+                        $('#progress-edit .progress-bar').css(
+                                'width',
+                                progress + '%'
+                                );
+                    }
+                }).prop('disabled', !$.support.fileInput)
+                        .parent().addClass($.support.fileInput ? undefined : 'disabled');
+
             });
         </script>
 
@@ -156,7 +176,7 @@ class Ajax {
                 jQuery.post('<?php echo $url ?>', // отправка данных POST
                         {file_upload: 'empty'});
             });
-            
+
             // Очищаем модал
             $(this).on('hidden.bs.modal', function () {
                 $('#progress .progress-bar').css('width', 0 + '%');

@@ -59,15 +59,15 @@
                         <div class="form-group">
                             <span class="btn btn-primary btn-sm fileinput-button">
                                 <i class="glyphicon glyphicon-picture"></i><span> <?php echo lang('button_add_image') ?></span>
-                                <input class="input-sm form-control" id="fileupload" type="file" name="files[]" accept="image/jpeg,image/png,image/gif" multiple>
+                                <input class="input-sm form-control" id="fileupload-add" type="file" name="files[]" accept="image/jpeg,image/png,image/gif" multiple>
                             </span>
                             <?php echo lang('max') ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>
                             <br>
                             <br>
-                            <div id="progress" class="progress">
-                                <div class="progress-bar progress-bar-success"></div>
+                            <div id="progress-add" class="progress">
+                                <div id="progress-bar-add" class="progress-bar progress-bar-success"></div>
                             </div>
-                            <div id="files" class="files"></div>
+                            <div id="files-add" class="files"></div>
                         </div>
 
                     </div>
