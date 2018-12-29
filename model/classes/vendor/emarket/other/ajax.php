@@ -117,42 +117,27 @@ class Ajax {
             $(function () {
                 'use strict';
                 var url = '/downloads/upload_handler/';
-                // Для окна добавления
-                $('#fileupload-add').fileupload({
+                
+                $('#fileupload-add, #fileupload-edit').fileupload({
                     url: url,
                     dataType: 'json',
                     done: function (e, data) {
                         $.each(data.result.files, function (index, file) {
-                            $('<span/>').html('<span class="file-upload"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" height="60px;" /></span>').appendTo('#files-add');
+                            $('<span/>').html('<span class="file-upload-add"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" height="60px;" /> </span>').appendTo('#logo-add');
+                            $('<span/>').html('<span class="file-upload-edit"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" height="60px;" /> </span>').appendTo('#logo-edit');
                         });
                     },
                     progressall: function (e, data) {
                         var progress = parseInt(data.loaded / data.total * 100, 10);
-                        $('#progress-add .progress-bar').css(
+                        $('.progress-bar').css(
                                 'width',
                                 progress + '%'
                                 );
                     }
                 }).prop('disabled', !$.support.fileInput)
                         .parent().addClass($.support.fileInput ? undefined : 'disabled');
-                // Для окна редактирования        
-                $('#fileupload-edit').fileupload({
-                    url: url,
-                    dataType: 'json',
-                    done: function (e, data) {
-                        $.each(data.result.files, function (index, file) {
-                            $('<span/>').html('<span class="file-upload"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" height="60px;" /></span>').appendTo('#files-edit');
-                        });
-                    },
-                    progressall: function (e, data) {
-                        var progress = parseInt(data.loaded / data.total * 100, 10);
-                        $('#progress-edit .progress-bar').css(
-                                'width',
-                                progress + '%'
-                                );
-                    }
-                }).prop('disabled', !$.support.fileInput)
-                        .parent().addClass($.support.fileInput ? undefined : 'disabled');
+                
+
 
             });
         </script>
@@ -181,7 +166,7 @@ class Ajax {
             $(this).on('hidden.bs.modal', function () {
                 $('.progress-bar').css('width', 0 + '%');
                 $('.file-upload').empty();
-                $('.logo').empty();
+                $('.files').empty();
                 //$(this).find('form').trigger('reset'); // Очищаем формы
             });
         </script>

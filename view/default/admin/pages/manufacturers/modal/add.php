@@ -64,10 +64,10 @@
                             <?php echo lang('max') ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>
                             <br>
                             <br>
-                            <div id="progress-add" class="progress">
-                                <div id="progress-bar-add" class="progress-bar progress-bar-success"></div>
+                            <div id="progress" class="progress">
+                                <div class="progress-bar progress-bar-success"></div>
                             </div>
-                            <div id="files-add" class="files"></div>
+                            <div id="logo-add" class="files"></div>
                         </div>
 
                     </div>
