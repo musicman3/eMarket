@@ -26,8 +26,7 @@
 
             // Ищем классы и добавляем данные
             for (x = 0; x < logo_edit[modal_id].length; x++) {
-                var b = '/downloads/images/manufacturers/resize/' + logo_edit[modal_id][x];
-                $('.logo').append('<img src="' + b + '" /> '); // Вставляем лого
+                $('.logo').append('<img src="/downloads/images/manufacturers/resize/' + logo_edit[modal_id][x] + '" /> '); // Вставляем лого
             }
 
         });
