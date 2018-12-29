@@ -117,7 +117,7 @@ class Ajax {
             $(function () {
                 'use strict';
                 var url = '/downloads/upload_handler/';
-                
+
                 $('#fileupload-add, #fileupload-edit').fileupload({
                     url: url,
                     dataType: 'json',
@@ -136,9 +136,6 @@ class Ajax {
                     }
                 }).prop('disabled', !$.support.fileInput)
                         .parent().addClass($.support.fileInput ? undefined : 'disabled');
-                
-
-
             });
         </script>
 
