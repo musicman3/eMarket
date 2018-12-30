@@ -135,7 +135,7 @@ class Ajax {
                                 progress + '%'
                                 );
                         // Разные стили для прогресс-бара и надпись об успехе загрузки
-                        $('.progress-bar').html('');
+                        $('.progress-bar').empty();
                         $('.progress-bar').removeClass('progress-bar progress-bar-success').addClass('progress-bar progress-bar-warning progress-bar-striped active');
                         if (progress === 100) {
                             setTimeout(function () {
