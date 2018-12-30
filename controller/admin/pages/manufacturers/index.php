@@ -78,6 +78,31 @@ if ($VALID->inPOST('delete')) {
     $PDO->inPrepare("DELETE FROM " . TABLE_MANUFACTURERS . " WHERE id=?", [$VALID->inPOST('delete')]);
 }
 
+// Выборочное удаление изображений
+if ($VALID->inPOST('delete_image') && $VALID->inPOST('delete_image_id')) {
+
+    // Новый уникальный префикс для файлов
+    $prefix = time() . '_';
+    // Получаем массив изображений
+    $image_list_arr = explode(',', $PDO->selectPrepare("SELECT logo FROM " . TABLE_MANUFACTURERS . " WHERE id=?", [$VALID->inPOST('delete_image_id')]), -1);
+    $image_list_new = '';
+    foreach ($image_list_arr as $key => $file) {
+        if ($file != $VALID->inPOST('delete_image')) {
+            $image_list_new .= $file . ',';
+        } else {
+            chmod(ROOT . '/downloads/images/manufacturers/resize/' . $file, 0777);
+            chmod(ROOT . '/downloads/images/manufacturers/originals/' . $file, 0777);
+            unlink(ROOT . '/downloads/images/manufacturers/resize/' . $file); // Удаляем файлы
+            unlink(ROOT . '/downloads/images/manufacturers/originals/' . $file); // Удаляем файлы
+        }
+    }
+
+    for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
+        // обновляем запись
+        $PDO->inPrepare("UPDATE " . TABLE_MANUFACTURERS . " SET logo=? WHERE id=? AND language=?", [$image_list_new, $VALID->inPOST('delete_image_id'), lang('#lang_all')[$xl]]);
+    }
+}
+
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 $lines = $PDO->getColRow("SELECT id, name, logo, site FROM " . TABLE_MANUFACTURERS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
 $lines_on_page = $SET->linesOnPage();

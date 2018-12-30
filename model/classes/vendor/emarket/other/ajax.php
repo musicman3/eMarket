@@ -98,6 +98,7 @@ class Ajax {
                 }
             }
         </script>
+
         <?php
     }
 
@@ -124,8 +125,8 @@ class Ajax {
                     done: function (e, data) {
 
                         $.each(data.result.files, function (index, file) {
-                            $('<span/>').html('<span class="file-upload"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" class="img-thumbnail" /> </span>').appendTo('#logo-add');
-                            $('<span/>').html('<span class="file-upload"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" class="img-thumbnail" /> </span>').appendTo('#logo-edit');
+                            $('<span/>').html('<span class="file-upload"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" height="60px;" class="img-thumbnail" /> </span>').appendTo('#logo-add');
+                            $('<span/>').html('<span class="file-upload"><div class="holder"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" height="60px;" class="img-thumbnail" /><div class="block"><button class="btn btn-primary btn-xs" type="button"><span class="glyphicon glyphicon-trash"></span></button></div></div> </span>').appendTo('#logo-edit');
                         });
                     },
                     progressall: function (e, data) {
@@ -155,8 +156,9 @@ class Ajax {
     /**
      * Отправляем POST на удаление временных
      * файлов при открытии модального окна
+     * и выборочно удаляем изображения
      *
-     * 
+     * @param $url
      * @return javascript
      */
     public function fileUploadEmpty($url) {
@@ -176,6 +178,20 @@ class Ajax {
                 $('.files').empty();
                 //$(this).find('form').trigger('reset'); // Очищаем формы
             });
+
+            // Выборочное удаление изображений
+            function delete_image(image, id, num) {
+                // Отправка запроса для обновления страницы
+                jQuery.post('<?php echo $url ?>', // отправка данных POST
+                        {delete_image: image,
+                            delete_image_id: id},
+                        AjaxSuccess);
+                // Обновление страницы
+                function AjaxSuccess(data) {
+                    $('#image_' + num).empty();
+                }
+            }
+
         </script>
         <?php
     }

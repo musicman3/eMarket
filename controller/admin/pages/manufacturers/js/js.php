@@ -9,7 +9,7 @@
     <!-- Загрузка данных в модальное окно -->
     <script type="text/javascript" language="javascript">
         $('#edit').on('show.bs.modal', function (event) {
-            
+
             var button = $(event.relatedTarget);
             var modal_id = button.data('edit'); // Получаем ID из data-edit при клике на кнопку редактирования
             // Получаем массивы данных
@@ -26,7 +26,8 @@
 
             // Ищем классы и добавляем данные
             for (x = 0; x < logo_edit[modal_id].length; x++) {
-                $('<span/>').html('<span class="file-upload"><img src="/downloads/images/manufacturers/resize/' + logo_edit[modal_id][x] + '" class="img-thumbnail" /> </span>').appendTo('#logo-edit'); // Вставляем лого
+                var image = logo_edit[modal_id][x];
+                $('<span/>').html('<span class="file-upload"><div class="holder"><div id="image_' + x + '"><img src="/downloads/images/manufacturers/resize/' + image + '" class="img-thumbnail" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="delete_image_' + x + '" onclick="delete_image(\'' + image + '\', \'' + modal_id + '\', \'' + x + '\')"><span class="glyphicon glyphicon-trash"></span></button></div></div></div> </span>').appendTo('#logo-edit'); // Вставляем лого
             }
 
         });
