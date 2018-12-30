@@ -90,6 +90,7 @@ default_set = Default set
 zone = Zone
 action_completed_successfully = Action completed successfully!
 categories_transfer = Transfer with the next page
+download_complete = Download complete!
 
 ;BASIC SETTINGS
 lines_on_page = Lines on page

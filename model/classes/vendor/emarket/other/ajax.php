@@ -126,7 +126,6 @@ class Ajax {
                         $.each(data.result.files, function (index, file) {
                             $('<span/>').html('<span class="file-upload"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" height="60px;" /> </span>').appendTo('#logo-add');
                             $('<span/>').html('<span class="file-upload"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" height="60px;" /> </span>').appendTo('#logo-edit');
-                            //$('.progress-bar').removeClass('progress-bar progress-bar-info').addClass('progress-bar progress-bar-success');
                         });
                     },
                     progressall: function (e, data) {
@@ -135,15 +134,14 @@ class Ajax {
                                 'width',
                                 progress + '%'
                                 );
+                        // Разные стили для прогресс-бара и надпись об успехе загрузки
                         $('.progress-bar').html('');
                         $('.progress-bar').removeClass('progress-bar progress-bar-success').addClass('progress-bar progress-bar-warning progress-bar-striped active');
                         if (progress === 100) {
                             setTimeout(function () {
-                                $('.progress-bar').html('Загрузка завершена');
+                                $('.progress-bar').html('<?php echo lang('download_complete') ?>');
                                 $('.progress-bar').removeClass('progress-bar progress-bar-warning progress-bar-striped active').addClass('progress-bar progress-bar-success');
                             }, 1000);
-
-
                         }
                     }
                 }).prop('disabled', !$.support.fileInput)
