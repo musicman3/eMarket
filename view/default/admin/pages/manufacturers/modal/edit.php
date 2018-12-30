@@ -70,7 +70,7 @@ require(ROOT . '/controller/admin/pages/manufacturers/modal/edit.php');
                             <br>
                             <br>
                             <div id="progress" class="progress">
-                                <div class="progress-bar progress-bar-success"></div>
+                                <div class="progress-bar progress-bar-warning progress-bar-striped active"></div>
                             </div>
                             <div id="logo-edit" class="files"></div>
                         </div>

@@ -122,9 +122,11 @@ class Ajax {
                     url: url,
                     dataType: 'json',
                     done: function (e, data) {
+
                         $.each(data.result.files, function (index, file) {
                             $('<span/>').html('<span class="file-upload"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" height="60px;" /> </span>').appendTo('#logo-add');
                             $('<span/>').html('<span class="file-upload"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" height="60px;" /> </span>').appendTo('#logo-edit');
+                            //$('.progress-bar').removeClass('progress-bar progress-bar-info').addClass('progress-bar progress-bar-success');
                         });
                     },
                     progressall: function (e, data) {
@@ -133,6 +135,16 @@ class Ajax {
                                 'width',
                                 progress + '%'
                                 );
+                        $('.progress-bar').html('');
+                        $('.progress-bar').removeClass('progress-bar progress-bar-success').addClass('progress-bar progress-bar-warning progress-bar-striped active');
+                        if (progress === 100) {
+                            setTimeout(function () {
+                                $('.progress-bar').html('Загрузка завершена');
+                                $('.progress-bar').removeClass('progress-bar progress-bar-warning progress-bar-striped active').addClass('progress-bar progress-bar-success');
+                            }, 1000);
+
+
+                        }
                     }
                 }).prop('disabled', !$.support.fileInput)
                         .parent().addClass($.support.fileInput ? undefined : 'disabled');

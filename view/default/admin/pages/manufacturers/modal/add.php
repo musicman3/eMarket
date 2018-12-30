@@ -65,7 +65,7 @@
                             <br>
                             <br>
                             <div id="progress" class="progress">
-                                <div class="progress-bar progress-bar-success"></div>
+                                <div class="progress-bar progress-bar-warning progress-bar-striped active"></div>
                             </div>
                             <div id="logo-add" class="files"></div>
                         </div>
