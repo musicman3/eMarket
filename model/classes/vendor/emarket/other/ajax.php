@@ -177,6 +177,7 @@ class Ajax {
                 $('.file-upload').empty();
                 $('.files').empty();
                 //$(this).find('form').trigger('reset'); // Очищаем формы
+                //window.location.reload();
             });
 
             // Выборочное удаление изображений

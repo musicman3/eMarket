@@ -65,7 +65,7 @@ CREATE TABLE emkt_manufacturers (
 	id int NOT NULL,
 	name varchar(256),
 	language varchar(64),
-        logo varchar(128),
+        logo varchar(1024),
         site varchar(256),
 	PRIMARY KEY (id, language))
 ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;

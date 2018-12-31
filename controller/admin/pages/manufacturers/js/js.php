@@ -13,9 +13,9 @@
             var button = $(event.relatedTarget);
             var modal_id = button.data('edit'); // Получаем ID из data-edit при клике на кнопку редактирования
             // Получаем массивы данных
-            var name_edit = <?php echo $name_edit ?>;
-            var site_edit = <?php echo $site_edit ?>;
-            var logo_edit = <?php echo $logo_edit ?>;
+            var name_edit = $('div#ajax_data').data('name_edit');
+            var site_edit = $('div#ajax_data').data('site_edit');
+            var logo_edit = $('div#ajax_data').data('logo_edit');
 
             // Ищем классы и добавляем данные
             for (x = 0; x < name_edit.length; x++) {
@@ -27,7 +27,7 @@
             // Ищем классы и добавляем данные
             for (x = 0; x < logo_edit[modal_id].length; x++) {
                 var image = logo_edit[modal_id][x];
-                $('<span/>').html('<span class="file-upload"><div class="holder"><div id="image_' + x + '"><img src="/downloads/images/manufacturers/resize/' + image + '" class="img-thumbnail" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="delete_image_' + x + '" onclick="delete_image(\'' + image + '\', \'' + modal_id + '\', \'' + x + '\')"><span class="glyphicon glyphicon-trash"></span></button></div></div></div> </span>').appendTo('#logo-edit'); // Вставляем лого
+                $('<span/>').html('<span class="file-upload" id="image_' + x + '"><div class="holder"><img src="/downloads/images/manufacturers/resize/' + image + '" class="img-thumbnail" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="delete_image_' + x + '" onclick="delete_image(\'' + image + '\', \'' + modal_id + '\', \'' + x + '\')"><span class="glyphicon glyphicon-trash"></span></button></div></div> </span>').appendTo('#logo-edit'); // Вставляем лого
             }
 
         });
