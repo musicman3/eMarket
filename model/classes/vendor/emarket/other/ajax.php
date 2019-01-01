@@ -125,7 +125,10 @@ class Ajax {
                     done: function (e, data) {
 
                         $.each(data.result.files, function (index, file) {
-                            $('<span/>').html('<span class="file-upload"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" class="thumbnail" height="60" /> </span>').appendTo('#logo-add');
+                            var basename = file.name.split('.').slice(0, -1).join('.');
+                            $('<span/>').html('<span class="file-upload" id="image_' + basename + '"><div class="holder"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" class="thumbnail" height="60" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="delete_image_' + basename + '" onclick="delete_image_add(\'' + file.name + '\', \'' + basename + '\')"><span class="glyphicon glyphicon-trash"></span></button></div></div> </span>').appendTo('#logo-add'); // Вставляем лого
+
+
                             $('<span/>').html('<span class="file-upload"><div class="holder"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" class="thumbnail" height="60" /><div class="block"><button class="btn btn-primary btn-xs" type="button"><span class="glyphicon glyphicon-trash"></span></button></div></div></span>').appendTo('#logo-edit');
                         });
                     },
@@ -179,8 +182,8 @@ class Ajax {
                 //$(this).find('form').trigger('reset'); // Очищаем формы
             });
 
-            // Выборочное удаление изображений
-            function delete_image(image, id, num) {
+            // Выборочное удаление изображений в модальном окне "Редактировать"
+            function delete_image_edit(image, id, num) {
                 // Отправка запроса для обновления страницы
                 jQuery.post('<?php echo $url ?>', // отправка данных POST
                         {delete_image: image,
@@ -206,6 +209,20 @@ class Ajax {
                     var new_images = removeValue(images_arr[1], image);
                     // Меняем данные в div data-logo
                     $("#ajax_data").data.text("logo", '{"1":' + JSON.stringify(new_images) + '}');
+                }
+            }
+
+            // Выборочное удаление изображений в модальном окне "Добавить"
+            function delete_image_add(image, num) {
+                // Отправка запроса для обновления страницы
+                jQuery.post('<?php echo $url ?>', // отправка данных POST
+                        {delete_image: image,
+                            delete_add: 'ok'},
+                        AjaxSuccess);
+                // Обновление страницы
+                function AjaxSuccess(data) {
+                    //Удаляем изображение
+                    $('#image_' + num).empty();
                 }
             }
         </script>

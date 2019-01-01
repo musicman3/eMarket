@@ -78,7 +78,7 @@ if ($VALID->inPOST('delete')) {
     $PDO->inPrepare("DELETE FROM " . TABLE_MANUFACTURERS . " WHERE id=?", [$VALID->inPOST('delete')]);
 }
 
-// Выборочное удаление изображений
+// Выборочное удаление изображений в модальном окне "Редактировать"
 if ($VALID->inPOST('delete_image') && $VALID->inPOST('delete_image_id')) {
 
     // Новый уникальный префикс для файлов
@@ -101,6 +101,14 @@ if ($VALID->inPOST('delete_image') && $VALID->inPOST('delete_image_id')) {
         // обновляем запись
         $PDO->inPrepare("UPDATE " . TABLE_MANUFACTURERS . " SET logo=? WHERE id=? AND language=?", [$image_list_new, $VALID->inPOST('delete_image_id'), lang('#lang_all')[$xl]]);
     }
+}
+
+// Выборочное удаление изображений в модальном окне "Добавить"
+if ($VALID->inPOST('delete_add') == 'ok') {
+    chmod(ROOT . '/downloads/upload_handler/files/' . $VALID->inPOST('delete_image'), 0777);
+    chmod(ROOT . '/downloads/upload_handler/files/thumbnail/' . $VALID->inPOST('delete_image'), 0777);
+    unlink(ROOT . '/downloads/upload_handler/files/' . $VALID->inPOST('delete_image')); // Удаляем файлы
+    unlink(ROOT . '/downloads/upload_handler/files/thumbnail/' . $VALID->inPOST('delete_image')); // Удаляем файлы
 }
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
