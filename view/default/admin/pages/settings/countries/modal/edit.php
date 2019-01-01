@@ -16,7 +16,7 @@ require(ROOT . '/controller/admin/pages/settings/countries/modal/edit.php');
             </div>
             <form id="form_edit" name="form_edit" action="javascript:void(null);" onsubmit="call_edit()">
                 <div class="panel-body">
-                    <input class="js_edit" type="hidden" name="edit" value="" />
+                    <input id="js_edit" type="hidden" name="edit" value="" />
 
                     <!-- Языковые панели -->
                     <?php require_once(ROOT . '/view/' . $SET->template() . '/layouts/lang_tabs_edit.php') ?>
@@ -27,7 +27,7 @@ require(ROOT . '/controller/admin/pages/settings/countries/modal/edit.php');
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="name_edit0 input-sm form-control" type="text" name="name_edit_<?php echo $SET->titleDir() . '_' . lang('#lang_all')[0] ?>" id="name_edit<?php echo lang('#lang_all')[0] ?>" />
+                                    <input class="input-sm form-control" type="text" name="name_edit_<?php echo $SET->titleDir() . '_' . lang('#lang_all')[0] ?>" id="name_edit0" />
                                 </div>
                             </div>
                         </div>
@@ -41,7 +41,7 @@ require(ROOT . '/controller/admin/pages/settings/countries/modal/edit.php');
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="name_edit<?php echo $xl ?> input-sm form-control" type="text" name="name_edit_<?php echo $SET->titleDir() . '_' . lang('#lang_all')[$xl] ?>" id="name_edit<?php echo lang('#lang_all')[$xl] ?>" />
+                                            <input class="input-sm form-control" type="text" name="name_edit_<?php echo $SET->titleDir() . '_' . lang('#lang_all')[$xl] ?>" id="name_edit<?php echo $xl ?>" />
                                         </div>
                                     </div>
                                 </div>
@@ -54,18 +54,18 @@ require(ROOT . '/controller/admin/pages/settings/countries/modal/edit.php');
                         <div class="form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                <input class="alpha_2 input-sm form-control" type="text" name="alpha_2_edit" id="alpha_2_edit" />
+                                <input class="form-control" type="text" name="alpha_2_edit" id="alpha_2_edit" />
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                <input class="alpha_3 input-sm form-control" type="text" name="alpha_3_edit" id="alpha_3_edit" />
+                                <input class="form-control" type="text" name="alpha_3_edit" id="alpha_3_edit" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="address_format"><?php echo lang('address_format') ?></label>
-                            <textarea class="address_format form-control" rows="5" name="address_format" id="address_format"></textarea>
+                            <textarea class="form-control" rows="5" name="address_format" id="address_format_edit"></textarea>
                         </div> 
                     </div>
                 </div>

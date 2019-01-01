@@ -16,7 +16,7 @@ require(ROOT . '/controller/admin/pages/settings/vendor_codes/modal/edit.php');
             </div>
             <form id="form_edit" name="form_edit" action="javascript:void(null);" onsubmit="call_edit()">
                 <div class="panel-body">
-                    <input class="js_edit" type="hidden" name="edit" value="" />
+                    <input id="js_edit" type="hidden" name="edit" value="" />
                     
                     <!-- Языковые панели -->
                     <?php require_once(ROOT . '/view/' . $SET->template() . '/layouts/lang_tabs_edit.php') ?>
@@ -27,13 +27,13 @@ require(ROOT . '/controller/admin/pages/settings/vendor_codes/modal/edit.php');
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="name_edit0 input-sm form-control" type="text" name="name_edit_<?php echo $SET->titleDir() . '_' . lang('#lang_all')[0] ?>" id="name_edit<?php echo lang('#lang_all')[0] ?>" />
+                                    <input class="input-sm form-control" type="text" name="name_edit_<?php echo $SET->titleDir() . '_' . lang('#lang_all')[0] ?>" id="name_edit0" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                    <input class="code_edit0 input-sm form-control" type="text" name="vendor_code_edit<?php echo lang('#lang_all')[0] ?>" id="vendor_code_edit<?php echo lang('#lang_all')[0] ?>" />
+                                    <input class="input-sm form-control" type="text" name="vendor_code_edit<?php echo lang('#lang_all')[0] ?>" id="vendor_code_edit0" />
                                 </div>
                             </div>
                         </div>
@@ -47,13 +47,13 @@ require(ROOT . '/controller/admin/pages/settings/vendor_codes/modal/edit.php');
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="name_edit<?php echo $xl ?> input-sm form-control" type="text" name="name_edit_<?php echo $SET->titleDir() . '_' . lang('#lang_all')[$xl] ?>" id="name_edit<?php echo lang('#lang_all')[$xl] ?>" />
+                                            <input class="input-sm form-control" type="text" name="name_edit_<?php echo $SET->titleDir() . '_' . lang('#lang_all')[$xl] ?>" id="name_edit<?php echo $xl ?>" />
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                            <input class="code_edit<?php echo $xl ?> input-sm form-control" type="text" name="vendor_code_edit<?php echo lang('#lang_all')[$xl] ?>" id="vendor_code_edit<?php echo lang('#lang_all')[$xl] ?>" />
+                                            <input class="input-sm form-control" type="text" name="vendor_code_edit<?php echo lang('#lang_all')[$xl] ?>" id="vendor_code_edit<?php echo $xl ?>" />
                                         </div>
                                     </div>
                                 </div>

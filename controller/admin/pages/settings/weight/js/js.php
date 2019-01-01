@@ -19,12 +19,12 @@
 
             // Ищем классы и добавляем данные
             for (x = 0; x < name_edit.length; x++) {
-                $('.name_edit' + x).val(name_edit[x][modal_id]);
-                $('.code_edit' + x).val(code_edit[x][modal_id]);
+                $('#name_edit' + x).val(name_edit[x][modal_id]);
+                $('#weight_edit' + x).val(code_edit[x][modal_id]);
             }
 
-            $('.value_weight_edit').val(value_weight_edit[modal_id]);
-            $('.js_edit').val(modal_id);
+            $('#value_weight_edit').val(value_weight_edit[modal_id]);
+            $('#js_edit').val(modal_id);
             // Меняем значение чекбокса
             $('#status_weight_edit').prop('checked', status[modal_id]);
         });

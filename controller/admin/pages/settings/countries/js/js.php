@@ -19,13 +19,13 @@
 
             // Ищем классы и добавляем данные
             for (x = 0; x < name_edit.length; x++) {
-                $('.name_edit' + x).val(name_edit[x][modal_id]);
+                $('#name_edit' + x).val(name_edit[x][modal_id]);
             }
 
-            $('.alpha_2').val(alpha_2[modal_id]);
-            $('.alpha_3').val(alpha_3[modal_id]);
-            $('.address_format').val(address_format[modal_id]);
-            $('.js_edit').val(modal_id);
+            $('#alpha_2_edit').val(alpha_2[modal_id]);
+            $('#alpha_3_edit').val(alpha_3[modal_id]);
+            $('#address_format_edit').val(address_format[modal_id]);
+            $('#js_edit').val(modal_id);
         });
     </script>
 <?php

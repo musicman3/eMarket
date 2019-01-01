@@ -19,10 +19,10 @@
 
         // Ищем классы и добавляем данные
         for (x = 0; x < name_edit.length; x++) {
-            $('.name_edit' + x).val(name_edit[x][modal_id]);
+            $('#name_edit' + x).val(name_edit[x][modal_id]);
         }
-        $('.site_edit').val(site_edit[modal_id]);
-        $('.js_edit').val(modal_id);
+        $('#site_edit').val(site_edit[modal_id]);
+        $('#js_edit').val(modal_id);
 
         // Ищем классы и добавляем данные
         for (x = 0; x < logo_edit[modal_id].length; x++) {
