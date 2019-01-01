@@ -125,8 +125,8 @@ class Ajax {
                     done: function (e, data) {
 
                         $.each(data.result.files, function (index, file) {
-                            $('<span/>').html('<span class="file-upload"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" class="img-thumbnail" /> </span>').appendTo('#logo-add');
-                            $('<span/>').html('<span class="file-upload"><div class="holder"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" class="img-thumbnail" /><div class="block"><button class="btn btn-primary btn-xs" type="button"><span class="glyphicon glyphicon-trash"></span></button></div></div></span>').appendTo('#logo-edit');
+                            $('<span/>').html('<span class="file-upload"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" class="thumbnail" /> </span>').appendTo('#logo-add');
+                            $('<span/>').html('<span class="file-upload"><div class="holder"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" class="thumbnail" /><div class="block"><button class="btn btn-primary btn-xs" type="button"><span class="glyphicon glyphicon-trash"></span></button></div></div></span>').appendTo('#logo-edit');
                         });
                     },
                     progressall: function (e, data) {
