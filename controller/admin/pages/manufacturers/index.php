@@ -104,7 +104,7 @@ if ($VALID->inPOST('delete_image') && $VALID->inPOST('delete_image_id')) {
 }
 
 // Выборочное удаление изображений в модальном окне "Добавить"
-if ($VALID->inPOST('delete_new_image') == 'ok') {
+if ($VALID->inPOST('delete_new_image') == 'ok' && $VALID->inPOST('delete_image')) {
     chmod(ROOT . '/downloads/upload_handler/files/' . $VALID->inPOST('delete_image'), 0777);
     chmod(ROOT . '/downloads/upload_handler/files/thumbnail/' . $VALID->inPOST('delete_image'), 0777);
     @unlink(ROOT . '/downloads/upload_handler/files/' . $VALID->inPOST('delete_image')); // Удаляем файлы
