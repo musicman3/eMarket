@@ -105,9 +105,10 @@ class Ajax {
     /**
      * jQuery File Upload
      *
+     * @param $url
      * @return javascript
      */
-    public function fileUpload() {
+    public function fileUpload($url) {
 
         ?>
         <!--Подгружаем jQuery File Upload -->
@@ -150,21 +151,8 @@ class Ajax {
                         .parent().addClass($.support.fileInput ? undefined : 'disabled');
             });
         </script>
-
-        <?php
-    }
-
-    /**
-     * Отправляем POST на удаление временных
-     * файлов при открытии модального окна
-     * и выборочно удаляем изображения
-     *
-     * @param $url
-     * @return javascript
-     */
-    public function fileUploadEmpty($url) {
-
-        ?>
+        
+        <!--Удаление изображений-->
         <script type="text/javascript" language="javascript">
             $(this).on('show.bs.modal', function (event) {
                 // Отправка запроса для очистки временных файлов

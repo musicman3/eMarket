@@ -36,8 +36,6 @@
 // Подгружаем Ajax Добавить, Редактировать, Удалить
 $AJAX->action('/controller/admin/pages/manufacturers/index.php');
 // Подгружаем jQuery File Upload
-$AJAX->fileUpload();
-// Отправляем POST на удаление временных файлов при открытии модального окна
-$AJAX->fileUploadEmpty('/controller/admin/pages/manufacturers/index.php');
+$AJAX->fileUpload('/controller/admin/pages/manufacturers/index.php');
 
 ?>
