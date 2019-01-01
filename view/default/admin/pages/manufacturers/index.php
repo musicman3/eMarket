@@ -27,11 +27,13 @@
                 </div>
                 <div class="panel-body">
                     <!--Скрытый div для передачи данных-->
+                    <?php if (isset($name_edit)) { ?>
                     <div id="ajax_data" class='hidden'
                          data-name='<?php echo $name_edit ?>'
                          data-site='<?php echo $site_edit ?>'
                          data-logo='<?php echo $logo_edit ?>'
                          ></div>
+                    <?php } ?>
                     <table class="table table-hover">
                         <thead>
                             <tr>
