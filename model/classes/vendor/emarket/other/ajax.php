@@ -215,7 +215,7 @@ class Ajax {
                 // Отправка запроса для обновления страницы
                 jQuery.post('<?php echo $url ?>', // отправка данных POST
                         {delete_image: image,
-                            delete_add: 'ok'},
+                            delete_new_image: 'ok'},
                         AjaxSuccess);
                 // Обновление страницы
                 function AjaxSuccess(data) {
@@ -229,7 +229,7 @@ class Ajax {
                 // Отправка запроса для обновления страницы
                 jQuery.post('<?php echo $url ?>', // отправка данных POST
                         {delete_image: image,
-                            delete_add: 'ok'},
+                            delete_new_image: 'ok'},
                         AjaxSuccess);
                 // Обновление страницы
                 function AjaxSuccess(data) {
