@@ -17,6 +17,8 @@ require(ROOT . '/controller/admin/pages/manufacturers/modal/edit.php');
             <form id="form_edit" name="form_edit" action="javascript:void(null);" onsubmit="call_edit()">
                 <div class="panel-body">
                     <input class="js_edit" type="hidden" name="edit" value="" />
+                    <input id="delete_image" hidden name="delete_image" value="">
+                    <input id="delete_image_id" hidden name="delete_image_id" value="">
 
                     <!-- Языковые панели -->
                     <?php require_once(ROOT . '/view/' . $SET->template() . '/layouts/lang_tabs_edit.php') ?>

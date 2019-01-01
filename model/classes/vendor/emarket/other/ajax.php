@@ -170,30 +170,11 @@ class Ajax {
 
             // Выборочное удаление изображений в модальном окне "Редактировать"
             function delete_image_edit(image, id, num) {
-                jQuery.post('<?php echo $url ?>', // отправка данных POST
-                        {delete_image: image,
-                            delete_image_id: id},
-                        AjaxSuccess);
-                // Обновление страницы
-                function AjaxSuccess(data) {
-                    //Удаляем изображение
-                    $('#image_edit_' + num).empty();
-
-                    //Функция удаления указанных данных из массива
-                    function removeValue(arr, value) {
-                        for (var i = 0; i < arr.length; i++) {
-                            if (arr[i] === value) {
-                                arr.splice(i, 1);
-                                break;
-                            }
-                        }
-                        return arr;
-                    }
-
-                    var new_images = removeValue($('div#ajax_data').data('logo')[1], image);
-                    // Меняем данные в div data-logo
-                    $("#ajax_data").data.text("logo", '{"1":' + JSON.stringify(new_images) + '}');
-                }
+                // Удаляем изображение
+                $('#image_edit_' + num).empty();
+                // Меняем значение в hidden input
+                $('#delete_image').val($('#delete_image').val() + image + ',');
+                $('#delete_image_id').val(id);
             }
 
             // Выборочное удаление новых не сохранненных изображений в модальном окне "Добавить"
@@ -203,7 +184,7 @@ class Ajax {
                             delete_new_image: 'ok'},
                         AjaxSuccess);
                 function AjaxSuccess(data) {
-                    //Удаляем изображение
+                    // Удаляем изображение
                     $('#image_add_new_' + num).empty();
                 }
             }
@@ -215,7 +196,7 @@ class Ajax {
                             delete_new_image: 'ok'},
                         AjaxSuccess);
                 function AjaxSuccess(data) {
-                    //Удаляем изображение
+                    // Удаляем изображение
                     $('#image_edit_new_' + num).empty();
                 }
             }

@@ -1,6 +1,6 @@
 <?php
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
-  |    GNU GENERAL PUBLIC LICENSE v.3.0    |    
+  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
@@ -28,11 +28,12 @@
                 <div class="panel-body">
                     <!--Скрытый div для передачи данных-->
                     <?php if (isset($name_edit)) { ?>
-                    <div id="ajax_data" class='hidden'
-                         data-name='<?php echo $name_edit ?>'
-                         data-site='<?php echo $site_edit ?>'
-                         data-logo='<?php echo $logo_edit ?>'
-                         ></div>
+                        <div id="ajax_data" class='hidden'
+                             data-name='<?php echo $name_edit ?>'
+                             data-site='<?php echo $site_edit ?>'
+                             data-logo='<?php echo $logo_edit ?>'
+                             ></div>
+                        
                     <?php } ?>
                     <table class="table table-hover">
                         <thead>
@@ -66,7 +67,7 @@
                                     </form>
 
                                     <?php if (count($lines) > $lines_on_page) { ?> <div class="left"> <?php } else { ?> <div class="right"> <?php } ?>
-                                    <a href="#add" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
+                                            <a href="#add" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
                                 </th>
                             </tr>
                             <?php if ($lines == TRUE) { ?>

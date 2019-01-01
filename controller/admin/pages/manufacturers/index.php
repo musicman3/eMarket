@@ -80,14 +80,13 @@ if ($VALID->inPOST('delete')) {
 
 // Выборочное удаление изображений в модальном окне "Редактировать"
 if ($VALID->inPOST('delete_image') && $VALID->inPOST('delete_image_id')) {
-
-    // Новый уникальный префикс для файлов
-    $prefix = time() . '_';
-    // Получаем массив изображений
+    // Получаем массив удаляемых изображений
+    $delete_image_arr = explode(',', $VALID->inPOST('delete_image'), -1);
+    // Получаем массив изображений из БД
     $image_list_arr = explode(',', $PDO->selectPrepare("SELECT logo FROM " . TABLE_MANUFACTURERS . " WHERE id=?", [$VALID->inPOST('delete_image_id')]), -1);
     $image_list_new = '';
     foreach ($image_list_arr as $key => $file) {
-        if ($file != $VALID->inPOST('delete_image')) {
+        if (!in_array($file, $delete_image_arr)) {
             $image_list_new .= $file . ',';
         } else {
             chmod(ROOT . '/downloads/images/manufacturers/resize/' . $file, 0777);
