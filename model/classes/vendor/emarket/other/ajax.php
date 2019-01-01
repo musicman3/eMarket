@@ -171,13 +171,12 @@ class Ajax {
                         {file_upload: 'empty'});
             });
 
-            // Очищаем модал
+            // Очищаем модальное окно при закрытии
             $(this).on('hidden.bs.modal', function () {
                 $('.progress-bar').css('width', 0 + '%');
                 $('.file-upload').empty();
                 $('.files').empty();
                 //$(this).find('form').trigger('reset'); // Очищаем формы
-                //window.location.reload();
             });
 
             // Выборочное удаление изображений
@@ -189,10 +188,26 @@ class Ajax {
                         AjaxSuccess);
                 // Обновление страницы
                 function AjaxSuccess(data) {
+                    //Удаляем изображение
                     $('#image_' + num).empty();
+
+                    //Функция удаления указанных данных из массива
+                    function removeValue(arr, value) {
+                        for (var i = 0; i < arr.length; i++) {
+                            if (arr[i] === value) {
+                                arr.splice(i, 1);
+                                break;
+                            }
+                        }
+                        return arr;
+                    }
+
+                    var images_arr = $('div#ajax_data').data('logo');
+                    var new_images = removeValue(images_arr[1], image);
+                    // Меняем данные в div data-logo
+                    $("#ajax_data").data.text("logo", '{"1":' + JSON.stringify(new_images) + '}');
                 }
             }
-
         </script>
         <?php
     }

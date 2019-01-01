@@ -12,10 +12,11 @@
 
             var button = $(event.relatedTarget);
             var modal_id = button.data('edit'); // Получаем ID из data-edit при клике на кнопку редактирования
-            // Получаем массивы данных
-            var name_edit = $('div#ajax_data').data('name_edit');
-            var site_edit = $('div#ajax_data').data('site_edit');
-            var logo_edit = $('div#ajax_data').data('logo_edit');
+            
+            // Получаем данные из data div
+            var name_edit = $('div#ajax_data').data('name');
+            var site_edit = $('div#ajax_data').data('site');
+            var logo_edit = $('div#ajax_data').data('logo');
 
             // Ищем классы и добавляем данные
             for (x = 0; x < name_edit.length; x++) {
