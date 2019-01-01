@@ -125,11 +125,9 @@ class Ajax {
                     done: function (e, data) {
 
                         $.each(data.result.files, function (index, file) {
-                            var basename = file.name.split('.').slice(0, -1).join('.');
-                            $('<span/>').html('<span class="file-upload" id="image_' + basename + '"><div class="holder"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" class="thumbnail" height="60" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="delete_image_' + basename + '" onclick="delete_image_add(\'' + file.name + '\', \'' + basename + '\')"><span class="glyphicon glyphicon-trash"></span></button></div></div> </span>').appendTo('#logo-add'); // Вставляем лого
-
-
-                            $('<span/>').html('<span class="file-upload"><div class="holder"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" class="thumbnail" height="60" /><div class="block"><button class="btn btn-primary btn-xs" type="button"><span class="glyphicon glyphicon-trash"></span></button></div></div></span>').appendTo('#logo-edit');
+                            var basename = file.name.split('.').slice(0, -1).join('.'); //Обрезаем расширение файла
+                            $('<span/>').html('<span class="file-upload" id="image_add_new_' + basename + '"><div class="holder"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" class="thumbnail" height="60" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="delete_image_add_new_' + basename + '" onclick="delete_image_add_new(\'' + file.name + '\', \'' + basename + '\')"><span class="glyphicon glyphicon-trash"></span></button></div></div> </span>').appendTo('#logo-add'); // Вставляем лого
+                            $('<span/>').html('<span class="file-upload" id="image_edit_new_' + basename + '"><div class="holder"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" class="thumbnail" height="60" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="delete_image_edit_new_' + basename + '" onclick="delete_image_edit_new(\'' + file.name + '\', \'' + basename + '\')"><span class="glyphicon glyphicon-trash"></span></button></div></div> </span>').appendTo('#logo-edit'); // Вставляем лого
                         });
                     },
                     progressall: function (e, data) {
@@ -192,7 +190,7 @@ class Ajax {
                 // Обновление страницы
                 function AjaxSuccess(data) {
                     //Удаляем изображение
-                    $('#image_' + num).empty();
+                    $('#image_edit_' + num).empty();
 
                     //Функция удаления указанных данных из массива
                     function removeValue(arr, value) {
@@ -213,7 +211,7 @@ class Ajax {
             }
 
             // Выборочное удаление изображений в модальном окне "Добавить"
-            function delete_image_add(image, num) {
+            function delete_image_add_new(image, num) {
                 // Отправка запроса для обновления страницы
                 jQuery.post('<?php echo $url ?>', // отправка данных POST
                         {delete_image: image,
@@ -222,7 +220,21 @@ class Ajax {
                 // Обновление страницы
                 function AjaxSuccess(data) {
                     //Удаляем изображение
-                    $('#image_' + num).empty();
+                    $('#image_add_new_' + num).empty();
+                }
+            }
+
+            // Выборочное удаление новых не сохранненных изображений в модальном окне "Редактировать"
+            function delete_image_edit_new(image, num) {
+                // Отправка запроса для обновления страницы
+                jQuery.post('<?php echo $url ?>', // отправка данных POST
+                        {delete_image: image,
+                            delete_add: 'ok'},
+                        AjaxSuccess);
+                // Обновление страницы
+                function AjaxSuccess(data) {
+                    //Удаляем изображение
+                    $('#image_edit_new_' + num).empty();
                 }
             }
         </script>

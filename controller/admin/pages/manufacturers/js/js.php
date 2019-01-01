@@ -27,7 +27,7 @@
         // Ищем классы и добавляем данные
         for (x = 0; x < logo_edit[modal_id].length; x++) {
             var image = logo_edit[modal_id][x];
-            $('<span/>').html('<span class="file-upload" id="image_' + x + '"><div class="holder"><img src="/downloads/images/manufacturers/resize/' + image + '" class="thumbnail" height="60" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="delete_image_' + x + '" onclick="delete_image_edit(\'' + image + '\', \'' + modal_id + '\', \'' + x + '\')"><span class="glyphicon glyphicon-trash"></span></button></div></div> </span>').appendTo('#logo-edit'); // Вставляем лого
+            $('<span/>').html('<span class="file-upload" id="image_edit_' + x + '"><div class="holder"><img src="/downloads/images/manufacturers/resize/' + image + '" class="thumbnail" height="60" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="delete_image_' + x + '" onclick="delete_image_edit(\'' + image + '\', \'' + modal_id + '\', \'' + x + '\')"><span class="glyphicon glyphicon-trash"></span></button></div></div> </span>').appendTo('#logo-edit'); // Вставляем лого
         }
 
     });

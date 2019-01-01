@@ -71,8 +71,8 @@ if ($VALID->inPOST('delete')) {
     foreach ($logo_delete as $file) {
         chmod(ROOT . '/downloads/images/manufacturers/resize/' . $file, 0777);
         chmod(ROOT . '/downloads/images/manufacturers/originals/' . $file, 0777);
-        unlink(ROOT . '/downloads/images/manufacturers/resize/' . $file); // Удаляем файлы
-        unlink(ROOT . '/downloads/images/manufacturers/originals/' . $file); // Удаляем файлы
+        @unlink(ROOT . '/downloads/images/manufacturers/resize/' . $file); // Удаляем файлы
+        @unlink(ROOT . '/downloads/images/manufacturers/originals/' . $file); // Удаляем файлы
     }
     // Удаляем запись
     $PDO->inPrepare("DELETE FROM " . TABLE_MANUFACTURERS . " WHERE id=?", [$VALID->inPOST('delete')]);
@@ -92,8 +92,8 @@ if ($VALID->inPOST('delete_image') && $VALID->inPOST('delete_image_id')) {
         } else {
             chmod(ROOT . '/downloads/images/manufacturers/resize/' . $file, 0777);
             chmod(ROOT . '/downloads/images/manufacturers/originals/' . $file, 0777);
-            unlink(ROOT . '/downloads/images/manufacturers/resize/' . $file); // Удаляем файлы
-            unlink(ROOT . '/downloads/images/manufacturers/originals/' . $file); // Удаляем файлы
+            @unlink(ROOT . '/downloads/images/manufacturers/resize/' . $file); // Удаляем файлы
+            @unlink(ROOT . '/downloads/images/manufacturers/originals/' . $file); // Удаляем файлы
         }
     }
 
@@ -107,8 +107,8 @@ if ($VALID->inPOST('delete_image') && $VALID->inPOST('delete_image_id')) {
 if ($VALID->inPOST('delete_add') == 'ok') {
     chmod(ROOT . '/downloads/upload_handler/files/' . $VALID->inPOST('delete_image'), 0777);
     chmod(ROOT . '/downloads/upload_handler/files/thumbnail/' . $VALID->inPOST('delete_image'), 0777);
-    unlink(ROOT . '/downloads/upload_handler/files/' . $VALID->inPOST('delete_image')); // Удаляем файлы
-    unlink(ROOT . '/downloads/upload_handler/files/thumbnail/' . $VALID->inPOST('delete_image')); // Удаляем файлы
+    @unlink(ROOT . '/downloads/upload_handler/files/' . $VALID->inPOST('delete_image')); // Удаляем файлы
+    @unlink(ROOT . '/downloads/upload_handler/files/thumbnail/' . $VALID->inPOST('delete_image')); // Удаляем файлы
 }
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
