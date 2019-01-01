@@ -93,5 +93,5 @@ div.context-one {padding:5px;}
 .files {text-align:center;}
 .file-upload {display: table-cell;padding:3px;}
 .holder {position:relative;}
-.block {position:absolute;left:5px;bottom:20px;right:5px;background:rgba(255,255,0, 0.7);display:none;}
+.block {position:absolute;left:0;bottom:0;right:0;width:100%;height:100%;padding-top:20px;background:rgba(255,255,0, 0.7);display:none;}
 .holder:hover .block {display:block;}
