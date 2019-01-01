@@ -151,7 +151,7 @@ class Ajax {
                         .parent().addClass($.support.fileInput ? undefined : 'disabled');
             });
         </script>
-        
+
         <!--Удаление изображений-->
         <script type="text/javascript" language="javascript">
             $(this).on('show.bs.modal', function (event) {
@@ -170,7 +170,6 @@ class Ajax {
 
             // Выборочное удаление изображений в модальном окне "Редактировать"
             function delete_image_edit(image, id, num) {
-                // Отправка запроса для обновления страницы
                 jQuery.post('<?php echo $url ?>', // отправка данных POST
                         {delete_image: image,
                             delete_image_id: id},
@@ -191,8 +190,7 @@ class Ajax {
                         return arr;
                     }
 
-                    var images_arr = $('div#ajax_data').data('logo');
-                    var new_images = removeValue(images_arr[1], image);
+                    var new_images = removeValue($('div#ajax_data').data('logo')[1], image);
                     // Меняем данные в div data-logo
                     $("#ajax_data").data.text("logo", '{"1":' + JSON.stringify(new_images) + '}');
                 }
@@ -200,12 +198,10 @@ class Ajax {
 
             // Выборочное удаление новых не сохранненных изображений в модальном окне "Добавить"
             function delete_image_add_new(image, num) {
-                // Отправка запроса для обновления страницы
                 jQuery.post('<?php echo $url ?>', // отправка данных POST
                         {delete_image: image,
                             delete_new_image: 'ok'},
                         AjaxSuccess);
-                // Обновление страницы
                 function AjaxSuccess(data) {
                     //Удаляем изображение
                     $('#image_add_new_' + num).empty();
@@ -214,12 +210,10 @@ class Ajax {
 
             // Выборочное удаление новых не сохранненных изображений в модальном окне "Редактировать"
             function delete_image_edit_new(image, num) {
-                // Отправка запроса для обновления страницы
                 jQuery.post('<?php echo $url ?>', // отправка данных POST
                         {delete_image: image,
                             delete_new_image: 'ok'},
                         AjaxSuccess);
-                // Обновление страницы
                 function AjaxSuccess(data) {
                     //Удаляем изображение
                     $('#image_edit_new_' + num).empty();
