@@ -87,7 +87,7 @@
                                     <td class="al-text"><?php echo $lines[$start][3] ?></td>
                                     <td class="al-text"><img src='/view/<?php echo $SET->template() ?>/admin/images/worldflags/<?php echo strtolower($lines[$start][2]) ?>.png'></td>
                                     <td class="al-text-w">
-                                        <form id="form_delete<?php echo $lines[$start][0] ?>" name="form_delete" action="javascript:void(null);" onsubmit="callDelete(<?php echo $lines[$start][0] ?>)" enctype="multipart/form-data">
+                                        <form id="form_delete<?php echo $lines[$start][0] ?>" name="form_delete" action="javascript:void(null);" onsubmit="callDelete('<?php echo $lines[$start][0] ?>')" enctype="multipart/form-data">
                                             <input hidden name="delete" value="<?php echo $lines[$start][0] ?>">
                                             <div class="right">
                                                 <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button>

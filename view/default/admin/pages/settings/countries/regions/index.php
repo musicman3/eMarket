@@ -77,7 +77,7 @@
                                     <td><?php echo $lines[$start][2] ?></td>
                                     <td class="al-text"><?php echo $lines[$start][1] ?></td>
                                     <td class="al-text-w">
-                                        <form id="form_delete<?php echo $lines[$start][0] ?>" name="form_delete" action="javascript:void(null);" onsubmit="callDelete(<?php echo $lines[$start][0] ?>)" enctype="multipart/form-data">
+                                        <form id="form_delete<?php echo $lines[$start][0] ?>" name="form_delete" action="javascript:void(null);" onsubmit="callDelete('<?php echo $lines[$start][0] ?>')" enctype="multipart/form-data">
                                             <input hidden name="delete" value="<?php echo $lines[$start][0] ?>">
                                             <input hidden name="country_id" value="<?php echo $VALID->inGET('country_id') ?>">
                                             <div class="right">
