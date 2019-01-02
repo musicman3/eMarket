@@ -1,7 +1,6 @@
 <?php
-
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
-  |    GNU GENERAL PUBLIC LICENSE v.3.0    |    
+  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
@@ -51,7 +50,7 @@ class Func {
      * $value_key = 'Россия'; - Значение ключа (=> Россия), по которому делаем фильтрацию
      * $val = 2; - это ключ ячейки Город [2] из которого берется значение Города для нового одномерного массива
      *
-     * $mass = $FUNC->filter_array_to_key($array, $value_key, $name_key, $id, $val);
+     * $mass = $FUNC->filterArrayToKey($array, $value_key, $name_key, $id, $val);
      * 
      * на выходе получаем сортированный массив
      * 
@@ -64,7 +63,7 @@ class Func {
      * @param строка $val
      * @return массив $arr
      */
-    public function filter_array_to_key($basic_array, $name_key, $value_key, $val) {
+    public function filterArrayToKey($basic_array, $name_key, $value_key, $val) {
 
         $arr = array();
         foreach ($basic_array as $value) {
@@ -103,7 +102,7 @@ class Func {
       [1] => 1
       )
      * 
-     * Использовать так: $multiselect = $FUNC->array_explode($array, '-');
+     * Использовать так: $multiselect = $FUNC->arrayExplode($array, '-');
      * 
      * $array - исходный одномерный массив с разделителем
      * "-" - разделитель
@@ -112,12 +111,25 @@ class Func {
      * @param строка $delimiter
      * @return массив $array_return
      */
-    public function array_explode($array, $delimiter) {
+    public function arrayExplode($array, $delimiter) {
         $array_return = array();
         foreach ($array as $v) {
             $array_return = array_merge($array_return, array(explode($delimiter, $v)));
         }
         return $array_return;
+    }
+
+    /**
+     * Функция удаления файлов
+
+     * @param строка $file
+     */
+    public function deleteFile($file) {
+
+        if (file_exists($file)) {
+            chmod($file, 0777);
+            unlink($file); // Удаляем файлы
+        }
     }
 
 }

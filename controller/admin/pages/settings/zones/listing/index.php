@@ -25,7 +25,7 @@ if ($VALID->inPOST('add')) {
 
     if (empty($VALID->inPOST('multiselect')) == FALSE) {
         // Создаем многомерный массив из одномерного, разбитого на части разделителем "-"
-        $multiselect = $FUNC->array_explode($VALID->inPOST('multiselect'), '-');
+        $multiselect = $FUNC->arrayExplode($VALID->inPOST('multiselect'), '-');
         // Добавляем выбранные в мультиселекте данные
         for ($x = 0; $x < count($multiselect); $x++) {
             $PDO->inPrepare("INSERT INTO " . TABLE_ZONES_VALUE . " SET country_id=?, regions_id=?, zones_id=?", [$multiselect[$x][0], $multiselect[$x][1], $zones_id]);
@@ -62,7 +62,7 @@ for ($y = $start; $y < $finish; $y++) {
     $text = '| ';
     for ($x = 0; $x < count($regions); $x++) {
         if (isset($regions[$x][0]) == TRUE && isset($lines[$y][0]) == TRUE && $regions[$x][0] == $lines[$y][0]) { // если регион есть
-            $text .= $FUNC->filter_array_to_key($name_regions, 0, $regions[$x][0], 1)[$regions[$x][1]] . ' | '; // то, добавляем название региона
+            $text .= $FUNC->filterArrayToKey($name_regions, 0, $regions[$x][0], 1)[$regions[$x][1]] . ' | '; // то, добавляем название региона
         }
     }
     array_push($text_arr, $text);

@@ -75,7 +75,7 @@
                                 ?>
                                 <tr>
                                     <td class="sortleft"><a class="btn btn-primary btn-xs" href="#" ><span data-toggle="tooltip" data-html="true" data-placement="right" data-original-title="<?php echo $text_arr[$count] ?>" class="glyphicon glyphicon-eye-open"></span></a></td>
-                                    <td><?php echo $FUNC->filter_array_to_key($name_country, 0, $lines[$start][0], 1)[0] ?></td>
+                                    <td><?php echo $FUNC->filterArrayToKey($name_country, 0, $lines[$start][0], 1)[0] ?></td>
                                     <td> </td>
                                 </tr>
                                 <?php

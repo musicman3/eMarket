@@ -69,10 +69,9 @@ if ($VALID->inPOST('delete')) {
 
     $logo_delete = explode(',', $PDO->selectPrepare("SELECT logo FROM " . TABLE_MANUFACTURERS . " WHERE id=?", [$VALID->inPOST('delete')]), -1);
     foreach ($logo_delete as $file) {
-        chmod(ROOT . '/downloads/images/manufacturers/resize/' . $file, 0777);
-        chmod(ROOT . '/downloads/images/manufacturers/originals/' . $file, 0777);
-        @unlink(ROOT . '/downloads/images/manufacturers/resize/' . $file); // Удаляем файлы
-        @unlink(ROOT . '/downloads/images/manufacturers/originals/' . $file); // Удаляем файлы
+        // Удаляем файлы
+        $FUNC->deleteFile(ROOT . '/downloads/images/manufacturers/resize/' . $file);
+        $FUNC->deleteFile(ROOT . '/downloads/images/manufacturers/originals/' . $file);
     }
     // Удаляем запись
     $PDO->inPrepare("DELETE FROM " . TABLE_MANUFACTURERS . " WHERE id=?", [$VALID->inPOST('delete')]);
@@ -89,10 +88,9 @@ if ($VALID->inPOST('delete_image') && $VALID->inPOST('delete_image_id')) {
         if (!in_array($file, $delete_image_arr)) {
             $image_list_new .= $file . ',';
         } else {
-            chmod(ROOT . '/downloads/images/manufacturers/resize/' . $file, 0777);
-            chmod(ROOT . '/downloads/images/manufacturers/originals/' . $file, 0777);
-            @unlink(ROOT . '/downloads/images/manufacturers/resize/' . $file); // Удаляем файлы
-            @unlink(ROOT . '/downloads/images/manufacturers/originals/' . $file); // Удаляем файлы
+            // Удаляем файлы
+            $FUNC->deleteFile(ROOT . '/downloads/images/manufacturers/resize/' . $file);
+            $FUNC->deleteFile(ROOT . '/downloads/images/manufacturers/originals/' . $file);
         }
     }
 
@@ -104,10 +102,9 @@ if ($VALID->inPOST('delete_image') && $VALID->inPOST('delete_image_id')) {
 
 // Выборочное удаление изображений в модальном окне "Добавить"
 if ($VALID->inPOST('delete_new_image') == 'ok' && $VALID->inPOST('delete_image')) {
-    chmod(ROOT . '/downloads/upload_handler/files/' . $VALID->inPOST('delete_image'), 0777);
-    chmod(ROOT . '/downloads/upload_handler/files/thumbnail/' . $VALID->inPOST('delete_image'), 0777);
-    @unlink(ROOT . '/downloads/upload_handler/files/' . $VALID->inPOST('delete_image')); // Удаляем файлы
-    @unlink(ROOT . '/downloads/upload_handler/files/thumbnail/' . $VALID->inPOST('delete_image')); // Удаляем файлы
+    // Удаляем файлы
+    $FUNC->deleteFile(ROOT . '/downloads/upload_handler/files/' . $VALID->inPOST('delete_image'));
+    $FUNC->deleteFile(ROOT . '/downloads/upload_handler/files/thumbnail/' . $VALID->inPOST('delete_image'));
 }
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
