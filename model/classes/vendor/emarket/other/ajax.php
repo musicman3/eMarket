@@ -173,7 +173,7 @@ class Ajax {
             // Выборочное удаление изображений в модальном окне "Редактировать"
             function deleteImageEdit(image, id, num) {
                 // Удаляем изображение
-                $('#image_edit_' + num).empty();
+                $('#image_edit_' + num).detach();
                 // Меняем значение в hidden input
                 $('#delete_image').val($('#delete_image').val() + image + ',');
                 $('#delete_image_id').val(id);
@@ -187,7 +187,7 @@ class Ajax {
                         AjaxSuccess);
                 function AjaxSuccess(data) {
                     // Удаляем изображение
-                    $('#image_add_new_' + num).empty();
+                    $('#image_add_new_' + num).detach();
                 }
             }
 
@@ -199,7 +199,7 @@ class Ajax {
                         AjaxSuccess);
                 function AjaxSuccess(data) {
                     // Удаляем изображение
-                    $('#image_edit_new_' + num).empty();
+                    $('#image_edit_new_' + num).detach();
                 }
             }
         </script>
