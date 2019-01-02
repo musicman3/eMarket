@@ -160,11 +160,13 @@ class Ajax {
                         {file_upload: 'empty'});
             });
 
-            // Очищаем модальное окно при закрытии
+            // Очищаем модальное окно и hidden input при закрытии
             $(this).on('hidden.bs.modal', function () {
                 $('.progress-bar').css('width', 0 + '%');
                 $('.file-upload').empty();
                 $('.files').empty();
+                $('#delete_image').val('');
+                $('#delete_image_id').val('');
                 //$(this).find('form').trigger('reset'); // Очищаем формы
             });
 
