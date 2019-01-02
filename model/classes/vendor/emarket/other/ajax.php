@@ -74,8 +74,8 @@ class Ajax {
 
         <!-- Модальное окно "Удалить" -->
         <script type="text/javascript" language="javascript">
-            function callDelete() {
-                var msg = $('#form_delete').serialize();
+            function callDelete(id) {
+                var msg = $('#form_delete' + id).serialize();
                 // Установка синхронного запроса для jQuery.ajax
                 jQuery.ajaxSetup({async: false});
                 jQuery.ajax({
