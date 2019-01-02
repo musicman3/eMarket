@@ -29,7 +29,7 @@ if ($VALID->inPOST('edit')) {
 
     for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
         // обновляем запись
-        $PDO->inPrepare("UPDATE " . TABLE_COUNTRIES . " SET name=?, alpha_2=?, alpha_3=?, address_format=? WHERE id=? AND language=?", [$VALID->inPOST('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$xl]), $VALID->inPOST('alpha_2_edit'), $VALID->inPOST('alpha_3_edit'), $VALID->inPOST('address_format'), $VALID->inPOST('edit'), lang('#lang_all')[$xl]]);
+        $PDO->inPrepare("UPDATE " . TABLE_COUNTRIES . " SET name=?, alpha_2=?, alpha_3=?, address_format=? WHERE id=? AND language=?", [$VALID->inPOST('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$xl]), $VALID->inPOST('alpha_2_edit'), $VALID->inPOST('alpha_3_edit'), $VALID->inPOST('address_format_edit'), $VALID->inPOST('edit'), lang('#lang_all')[$xl]]);
     }
 }
 

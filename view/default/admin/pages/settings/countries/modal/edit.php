@@ -64,8 +64,8 @@ require(ROOT . '/controller/admin/pages/settings/countries/modal/edit.php');
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="address_format"><?php echo lang('address_format') ?></label>
-                            <textarea class="form-control" rows="5" name="address_format" id="address_format_edit"></textarea>
+                            <label for="address_format_edit"><?php echo lang('address_format') ?></label>
+                            <textarea class="form-control" rows="5" name="address_format_edit" id="address_format_edit"></textarea>
                         </div> 
                     </div>
                 </div>
