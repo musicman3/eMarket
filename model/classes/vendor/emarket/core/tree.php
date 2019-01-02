@@ -46,12 +46,12 @@ class Tree {
     public function filesDirAction($dir, $new_dir = null, $rename = null) { // $dir - путь к директории с файлами
         $files = glob($dir . '*');
         foreach ($files as $file) {
-            if (is_file($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
-                if (isset($new_dir) && file_exists($file)) {
+            if (is_file($file) && file_exists($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
+                if (isset($new_dir)) {
                     copy($file, $new_dir . $rename . basename($file)); // Переименовываем и копируем файлы в новое место
-                    chmod($file, 0777);
-                    unlink($file); // Удаляем старые файлы
                 }
+                chmod($file, 0777);
+                unlink($file); // Удаляем старые файлы
             }
         }
     }
