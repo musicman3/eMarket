@@ -20,7 +20,7 @@ class Ajax {
         ?>
         <!-- Модальное окно "Добавить" -->
         <script type="text/javascript" language="javascript">
-            function call_add() {
+            function callAdd() {
                 var msg = $('#form_add').serialize();
                 // Установка синхронного запроса для jQuery.ajax
                 jQuery.ajaxSetup({async: false});
@@ -47,7 +47,7 @@ class Ajax {
 
         <!-- Модальное окно "Редактировать" -->
         <script type="text/javascript" language="javascript">
-            function call_edit() {
+            function callEdit() {
                 var msg = $('#form_edit').serialize();
                 // Установка синхронного запроса для jQuery.ajax
                 jQuery.ajaxSetup({async: false});
@@ -74,7 +74,7 @@ class Ajax {
 
         <!-- Модальное окно "Удалить" -->
         <script type="text/javascript" language="javascript">
-            function call_delete() {
+            function callDelete() {
                 var msg = $('#form_delete').serialize();
                 // Установка синхронного запроса для jQuery.ajax
                 jQuery.ajaxSetup({async: false});
@@ -127,8 +127,8 @@ class Ajax {
 
                         $.each(data.result.files, function (index, file) {
                             var basename = file.name.split('.').slice(0, -1).join('.'); //Обрезаем расширение файла
-                            $('<span/>').html('<span class="file-upload" id="image_add_new_' + basename + '"><div class="holder"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" class="thumbnail" height="60" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="delete_image_add_new_' + basename + '" onclick="delete_image_add_new(\'' + file.name + '\', \'' + basename + '\')"><span class="glyphicon glyphicon-trash"></span></button></div></div> </span>').appendTo('#logo-add'); // Вставляем лого
-                            $('<span/>').html('<span class="file-upload" id="image_edit_new_' + basename + '"><div class="holder"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" class="thumbnail" height="60" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="delete_image_edit_new_' + basename + '" onclick="delete_image_edit_new(\'' + file.name + '\', \'' + basename + '\')"><span class="glyphicon glyphicon-trash"></span></button></div></div> </span>').appendTo('#logo-edit'); // Вставляем лого
+                            $('<span/>').html('<span class="file-upload" id="image_add_new_' + basename + '"><div class="holder"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" class="thumbnail" height="60" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="deleteImageAddNew_' + basename + '" onclick="deleteImageAddNew(\'' + file.name + '\', \'' + basename + '\')"><span class="glyphicon glyphicon-trash"></span></button></div></div> </span>').appendTo('#logo-add'); // Вставляем лого
+                            $('<span/>').html('<span class="file-upload" id="image_edit_new_' + basename + '"><div class="holder"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" class="thumbnail" height="60" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="deleteImageEditNew_' + basename + '" onclick="deleteImageEditNew(\'' + file.name + '\', \'' + basename + '\')"><span class="glyphicon glyphicon-trash"></span></button></div></div> </span>').appendTo('#logo-edit'); // Вставляем лого
                         });
                     },
                     progressall: function (e, data) {
@@ -169,7 +169,7 @@ class Ajax {
             });
 
             // Выборочное удаление изображений в модальном окне "Редактировать"
-            function delete_image_edit(image, id, num) {
+            function deleteImageEdit(image, id, num) {
                 // Удаляем изображение
                 $('#image_edit_' + num).empty();
                 // Меняем значение в hidden input
@@ -178,7 +178,7 @@ class Ajax {
             }
 
             // Выборочное удаление новых не сохранненных изображений в модальном окне "Добавить"
-            function delete_image_add_new(image, num) {
+            function deleteImageAddNew(image, num) {
                 jQuery.post('<?php echo $url ?>', // отправка данных POST
                         {delete_image: image,
                             delete_new_image: 'ok'},
@@ -190,7 +190,7 @@ class Ajax {
             }
 
             // Выборочное удаление новых не сохранненных изображений в модальном окне "Редактировать"
-            function delete_image_edit_new(image, num) {
+            function deleteImageEditNew(image, num) {
                 jQuery.post('<?php echo $url ?>', // отправка данных POST
                         {delete_image: image,
                             delete_new_image: 'ok'},

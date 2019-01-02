@@ -70,13 +70,13 @@ if ($VALID->inPOST('edit')) {
 
         for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
             // обновляем запись
-            $PDO->inPrepare("UPDATE " . TABLE_WEIGHT . " SET name=?, code=?, value_weight=?, default_weight=? WHERE id=? AND language=?", [$VALID->inPOST('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$xl]), $VALID->inPOST('code_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$xl]), 1, $default_weight, $VALID->inPOST('edit'), lang('#lang_all')[$xl]]);
+            $PDO->inPrepare("UPDATE " . TABLE_WEIGHT . " SET name=?, code=?, value_weight=?, default_weight=? WHERE id=? AND language=?", [$VALID->inPOST('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$xl]), $VALID->inPOST('weight_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$xl]), 1, $default_weight, $VALID->inPOST('edit'), lang('#lang_all')[$xl]]);
         }
     } else {
 
         for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
             // обновляем запись
-            $PDO->inPrepare("UPDATE " . TABLE_WEIGHT . " SET name=?, code=?, value_weight=?, default_weight=? WHERE id=? AND language=?", [$VALID->inPOST('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$xl]), $VALID->inPOST('code_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$xl]), $VALID->inPOST('value_weight_edit'), $default_weight, $VALID->inPOST('edit'), lang('#lang_all')[$xl]]);
+            $PDO->inPrepare("UPDATE " . TABLE_WEIGHT . " SET name=?, code=?, value_weight=?, default_weight=? WHERE id=? AND language=?", [$VALID->inPOST('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$xl]), $VALID->inPOST('weight_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$xl]), $VALID->inPOST('value_weight_edit'), $default_weight, $VALID->inPOST('edit'), lang('#lang_all')[$xl]]);
         }
     }
 }
