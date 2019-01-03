@@ -106,7 +106,7 @@ if ($VALID->inPOST('edit')) {
         for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
             if (isset($logo_general_update)) {
                 // Если удаляемая картинка является главной, то устанавливаем новую первую картинку по списку главной
-                $PDO->inPrepare("UPDATE " . TABLE_MANUFACTURERS . " SET logo_general=? WHERE id=?", [explode(',', $image_list_new, -1)[0], $VALID->inPOST('edit')]);
+                $PDO->inPrepare("UPDATE " . TABLE_MANUFACTURERS . " SET logo=?, logo_general=? WHERE id=?", [$image_list_new, explode(',', $image_list_new, -1)[0], $VALID->inPOST('edit')]);
             } else {
                 $PDO->inPrepare("UPDATE " . TABLE_MANUFACTURERS . " SET logo=? WHERE id=? AND language=?", [$image_list_new, $VALID->inPOST('edit'), lang('#lang_all')[$xl]]);
             }
