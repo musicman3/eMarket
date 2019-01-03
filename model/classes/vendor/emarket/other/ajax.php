@@ -162,7 +162,7 @@ class Ajax {
             // Очищаем модальное окно и hidden input при закрытии
             $(this).on('hidden.bs.modal', function () {
                 $('.progress-bar').css('width', 0 + '%');
-                $('.file-upload').empty();
+                $('.file-upload').detach();
                 $('.files').empty();
                 $('#delete_image').val('');
                 $('#general_image_edit').val('');

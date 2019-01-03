@@ -37,20 +37,20 @@
 
                         <?php
                         if ($LANG_COUNT > 1) {
-                            for ($xl = 1; $xl < $LANG_COUNT; $xl++) {
+                            for ($x = 1; $x < $LANG_COUNT; $x++) {
                                 ?>
 
-                                <div id="<?php echo lang('#lang_all')[$xl] ?>" class="tab-pane fade">
+                                <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo lang('name_full') ?>" type="text" name="<?php echo $SET->titleDir() . '_' . lang('#lang_all')[$xl] ?>" />
+                                            <input class="input-sm form-control" placeholder="<?php echo lang('name_full') ?>" type="text" name="<?php echo $SET->titleDir() . '_' . lang('#lang_all')[$x] ?>" />
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo lang('name_little') ?>" type="text" name="code<?php echo lang('#lang_all')[$xl] ?>" id="code<?php echo lang('#lang_all')[$xl] ?>" />
+                                            <input class="input-sm form-control" placeholder="<?php echo lang('name_little') ?>" type="text" name="code<?php echo lang('#lang_all')[$x] ?>" id="code<?php echo lang('#lang_all')[$x] ?>" />
                                         </div>
                                     </div>
                                 </div>

@@ -10,10 +10,10 @@
 
     <?php
     if ($LANG_COUNT > 1) {
-        for ($xl = 1; $xl < $LANG_COUNT; $xl++) {
+        for ($x = 1; $x < $LANG_COUNT; $x++) {
             ?>
 
-            <li><a data-toggle="tab" href="#<?php echo lang('#lang_all')[$xl] . $modal_id ?>"><img src="/view/<?php echo $SET->template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[$xl] ?>.png" alt="<?php echo lang('#lang_all')[$xl] ?>" title="<?php echo lang('#lang_all')[$xl] ?>" width="16" height="10" /> <?php echo lang('language_name', lang('#lang_all')[$xl]) ?></a></li>
+            <li><a data-toggle="tab" href="#<?php echo lang('#lang_all')[$x] . $modal_id ?>"><img src="/view/<?php echo $SET->template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[$x] ?>.png" alt="<?php echo lang('#lang_all')[$x] ?>" title="<?php echo lang('#lang_all')[$x] ?>" width="16" height="10" /> <?php echo lang('language_name', lang('#lang_all')[$x]) ?></a></li>
 
         <?php
     }

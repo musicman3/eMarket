@@ -11,9 +11,9 @@ for ($i = $start; $i < $finish; $i++) {
         $modal_id = $lines[$i][0]; // ID
         $count_lang = $LANG_COUNT;
 
-        for ($xl = 0; $xl < $count_lang; $xl++) {
-            $name_edit_temp[$xl][$modal_id] = $PDO->selectPrepare("SELECT name FROM " . TABLE_LENGTH . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$xl]]);
-            $code_edit_temp[$xl][$modal_id] = $PDO->selectPrepare("SELECT code FROM " . TABLE_LENGTH . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$xl]]);
+        for ($x = 0; $x < $count_lang; $x++) {
+            $name_edit_temp[$x][$modal_id] = $PDO->selectPrepare("SELECT name FROM " . TABLE_LENGTH . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]]);
+            $code_edit_temp[$x][$modal_id] = $PDO->selectPrepare("SELECT code FROM " . TABLE_LENGTH . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]]);
         }
         
         $value_length_edit_temp[$modal_id] = (float)$PDO->selectPrepare("SELECT value_length FROM " . TABLE_LENGTH . " WHERE id=?", [$modal_id]);

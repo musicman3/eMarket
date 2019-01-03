@@ -151,8 +151,8 @@ class Eac {
             $id = intval($id_max) + 1;
 
             // добавляем запись для всех вкладок
-            for ($xl = 0; $xl < $LANG_COUNT; $xl++) {
-                $PDO->inPrepare("INSERT INTO " . $TABLE_CATEGORIES . " SET id=?, name=?, sort_category=?, language=?, parent_id=?, date_added=?, status=?", [$id, $VALID->inGET(lang('#lang_all')[$xl]), $sort_category, lang('#lang_all')[$xl], $parent_id, date("Y-m-d H:i:s"), $view_cat]);
+            for ($x = 0; $x < $LANG_COUNT; $x++) {
+                $PDO->inPrepare("INSERT INTO " . $TABLE_CATEGORIES . " SET id=?, name=?, sort_category=?, language=?, parent_id=?, date_added=?, status=?", [$id, $VALID->inGET(lang('#lang_all')[$x]), $sort_category, lang('#lang_all')[$x], $parent_id, date("Y-m-d H:i:s"), $view_cat]);
             }
         }
     }
@@ -168,9 +168,9 @@ class Eac {
 
         if ($VALID->inGET('edit') && $VALID->inGET('name_edit' . lang('#lang_all')[0])) {
 
-            for ($xl = 0; $xl < $LANG_COUNT; $xl++) {
+            for ($x = 0; $x < $LANG_COUNT; $x++) {
                 // обновляем запись
-                $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET name=?, last_modified=? WHERE id=? AND language=?", [$VALID->inGET('name_edit' . lang('#lang_all')[$xl]), date("Y-m-d H:i:s"), $VALID->inGET('edit'), lang('#lang_all')[$xl]]);
+                $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET name=?, last_modified=? WHERE id=? AND language=?", [$VALID->inGET('name_edit' . lang('#lang_all')[$x]), date("Y-m-d H:i:s"), $VALID->inGET('edit'), lang('#lang_all')[$x]]);
             }
         }
     }

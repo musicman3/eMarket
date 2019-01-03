@@ -28,17 +28,17 @@ if ($VALID->inPOST('add')) {
     $id = intval($id_max) + 1;
 
     // добавляем запись для всех вкладок
-    for ($xl = 0; $xl < $LANG_COUNT; $xl++) {
-        $PDO->inPrepare("INSERT INTO " . TABLE_REGIONS . " SET id=?, country_id=?, name=?, language=?, region_code=?", [$id, $country_id, $VALID->inPOST($SET->titleDir() . '_' . lang('#lang_all')[$xl]), lang('#lang_all')[$xl], $VALID->inPOST('region_code')]);
+    for ($x = 0; $x < $LANG_COUNT; $x++) {
+        $PDO->inPrepare("INSERT INTO " . TABLE_REGIONS . " SET id=?, country_id=?, name=?, language=?, region_code=?", [$id, $country_id, $VALID->inPOST($SET->titleDir() . '_' . lang('#lang_all')[$x]), lang('#lang_all')[$x], $VALID->inPOST('region_code')]);
     }
 }
 
 // Если нажали на кнопку Редактировать
 if ($VALID->inPOST('edit')) {
 
-    for ($xl = 0; $xl < $LANG_COUNT; $xl++) {
+    for ($x = 0; $x < $LANG_COUNT; $x++) {
         // обновляем запись
-        $PDO->inPrepare("UPDATE " . TABLE_REGIONS . " SET name=?, region_code=? WHERE id=? AND language=?", [$VALID->inPOST('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$xl]), $VALID->inPOST('region_code_edit'), $VALID->inPOST('edit'), lang('#lang_all')[$xl]]);
+        $PDO->inPrepare("UPDATE " . TABLE_REGIONS . " SET name=?, region_code=? WHERE id=? AND language=?", [$VALID->inPOST('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$x]), $VALID->inPOST('region_code_edit'), $VALID->inPOST('edit'), lang('#lang_all')[$x]]);
     }
 }
 

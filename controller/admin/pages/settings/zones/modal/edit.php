@@ -11,8 +11,8 @@ for ($i = $start; $i < $finish; $i++) {
         $modal_id = $lines[$i][0]; // ID
         $count_lang = $LANG_COUNT;
 
-        for ($xl = 0; $xl < $count_lang; $xl++) {
-            $name_edit_temp[$xl][$modal_id] = $PDO->selectPrepare("SELECT name FROM " . TABLE_ZONES . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$xl]]);
+        for ($x = 0; $x < $count_lang; $x++) {
+            $name_edit_temp[$x][$modal_id] = $PDO->selectPrepare("SELECT name FROM " . TABLE_ZONES . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]]);
         }
         $code_edit_temp[$modal_id] = $PDO->selectPrepare("SELECT note FROM " . TABLE_ZONES . " WHERE id=?", [$modal_id]);
         // ПАРАМЕТРЫ ДЛЯ ПЕРЕДАЧИ В МОДАЛ

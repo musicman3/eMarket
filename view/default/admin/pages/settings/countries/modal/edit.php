@@ -34,14 +34,14 @@ require(ROOT . '/controller/admin/pages/settings/countries/modal/edit.php');
 
                         <?php
                         if ($LANG_COUNT > 1) {
-                            for ($xl = 1; $xl < $LANG_COUNT; $xl++) {
+                            for ($x = 1; $x < $LANG_COUNT; $x++) {
                                 ?>
 
-                                <div id="<?php echo lang('#lang_all')[$xl] . $modal_id ?>" class="tab-pane fade">
+                                <div id="<?php echo lang('#lang_all')[$x] . $modal_id ?>" class="tab-pane fade">
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" type="text" name="name_edit_<?php echo $SET->titleDir() . '_' . lang('#lang_all')[$xl] ?>" id="name_edit<?php echo $xl ?>" />
+                                            <input class="input-sm form-control" type="text" name="name_edit_<?php echo $SET->titleDir() . '_' . lang('#lang_all')[$x] ?>" id="name_edit<?php echo $x ?>" />
                                         </div>
                                     </div>
                                 </div>
