@@ -24,7 +24,7 @@ class Files {
         // Новый уникальный префикс для файлов
         $prefix = time() . '_';
 
-        //Если открываем модальное окно, то очищаются папки временных файлов изображений
+        // Если открываем модальное окно, то очищаются папки временных файлов изображений
         if ($VALID->inPOST('file_upload') == 'empty') {
             $TREE->filesDirAction(ROOT . '/downloads/upload_handler/files/');
             $TREE->filesDirAction(ROOT . '/downloads/upload_handler/files/thumbnail/');
@@ -52,9 +52,7 @@ class Files {
             }
 
             // Обновляем запись для всех вкладок
-            for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
-                $PDO->inPrepare("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [$image_list, $general_image_add, $id]);
-            }
+            $PDO->inPrepare("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [$image_list, $general_image_add, $id]);
 
             // Перемещаем файлы из временной папки в постоянную
             $TREE->filesDirAction(ROOT . '/downloads/upload_handler/files/thumbnail/', ROOT . '/downloads/images/' . $dir . '/resize/', $prefix);
@@ -77,18 +75,16 @@ class Files {
             if ($VALID->inPOST('general_image_edit')) {
                 $general_image_edit = $VALID->inPOST('general_image_edit');
             }
-            //Назначаем "Главное изображение" для нового не сохраненного изображения в модальном окне "Редактировать"
+            // Назначаем "Главное изображение" для нового не сохраненного изображения в модальном окне "Редактировать"
             if ($VALID->inPOST('general_image_edit_new')) {
                 $general_image_edit = $prefix . $VALID->inPOST('general_image_edit_new');
             }
 
-            for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
-                // обновляем запись
-                if (isset($general_image_edit)) {
-                    $PDO->inPrepare("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=? AND language=?", [$image_list, $general_image_edit, $VALID->inPOST('edit'), lang('#lang_all')[$xl]]);
-                } else {
-                    $PDO->inPrepare("UPDATE " . $TABLE . " SET logo=? WHERE id=? AND language=?", [$image_list, $VALID->inPOST('edit'), lang('#lang_all')[$xl]]);
-                }
+            // Обновляем запись
+            if (isset($general_image_edit)) {
+                $PDO->inPrepare("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [$image_list, $general_image_edit, $VALID->inPOST('edit')]);
+            } else {
+                $PDO->inPrepare("UPDATE " . $TABLE . " SET logo=? WHERE id=?", [$image_list, $VALID->inPOST('edit')]);
             }
 
             // Перемещаем файлы из временной папки в постоянную
@@ -115,21 +111,17 @@ class Files {
                         }
                     }
                 }
-
-                for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
-                    if (isset($logo_general_update)) {
-                        // Если удаляемая картинка является главной, то устанавливаем новую первую картинку по списку главной
-                        $PDO->inPrepare("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [$image_list_new, explode(',', $image_list_new, -1)[0], $VALID->inPOST('edit')]);
-                    } else {
-                        $PDO->inPrepare("UPDATE " . $TABLE . " SET logo=? WHERE id=? AND language=?", [$image_list_new, $VALID->inPOST('edit'), lang('#lang_all')[$xl]]);
-                    }
+                if (isset($logo_general_update)) {
+                    // Если есть маркер, то устанавливаем новую первую картинку по списку главной
+                    $PDO->inPrepare("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [$image_list_new, explode(',', $image_list_new, -1)[0], $VALID->inPOST('edit')]);
+                } else {
+                    $PDO->inPrepare("UPDATE " . $TABLE . " SET logo=? WHERE id=?", [$image_list_new, $VALID->inPOST('edit')]);
                 }
             }
         }
 
         // Если нажали на кнопку Удалить
         if ($VALID->inPOST('delete')) {
-
             $logo_delete = explode(',', $PDO->selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$VALID->inPOST('delete')]), -1);
             foreach ($logo_delete as $file) {
                 // Удаляем файлы
