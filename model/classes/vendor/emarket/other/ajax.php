@@ -19,7 +19,7 @@ class Ajax {
 
         ?>
         <!-- Модальное окно "Добавить" -->
-        <script type="text/javascript" language="javascript">
+        <script type="text/javascript">
             function callAdd() {
                 var msg = $('#form_add').serialize();
                 // Установка синхронного запроса для jQuery.ajax
@@ -46,7 +46,7 @@ class Ajax {
         </script>
 
         <!-- Модальное окно "Редактировать" -->
-        <script type="text/javascript" language="javascript">
+        <script type="text/javascript">
             function callEdit() {
                 var msg = $('#form_edit').serialize();
                 // Установка синхронного запроса для jQuery.ajax
@@ -73,7 +73,7 @@ class Ajax {
         </script>
 
         <!-- Функция "Удалить" -->
-        <script type="text/javascript" language="javascript">
+        <script type="text/javascript">
             function callDelete(id) {
                 var msg = $('#form_delete' + id).serialize();
                 // Установка синхронного запроса для jQuery.ajax
@@ -115,7 +115,7 @@ class Ajax {
         <script src = "/ext/jquery_file_upload/js/vendor/jquery.ui.widget.js"></script>
         <script src="/ext/jquery_file_upload/js/jquery.iframe-transport.js"></script>
         <script src="/ext/jquery_file_upload/js/jquery.fileupload.js"></script>
-        <script type="text/javascript" language="javascript">
+        <script type="text/javascript">
             // Загрузка новых изображений в модальное окно "Редактировать и Добавить"
             $(function () {
                 'use strict';

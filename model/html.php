@@ -36,7 +36,7 @@
             <script type="text/javascript" src="/ext/jquery/ui/jquery-ui.min.js"></script>
 
             <!-- Всплывающие подсказки" -->
-            <script type="text/javascript" language="javascript">
+            <script type="text/javascript">
                 $(function () {
                     $('[data-toggle="tooltip"]').tooltip();
                 });

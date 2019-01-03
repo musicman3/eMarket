@@ -345,7 +345,7 @@ if (!isset($idsx_real_parent_id)) {
 </script>
 
 <!-- Модальное окно "Добавить" -->
-<script type="text/javascript" language="javascript">
+<script type="text/javascript">
     function callAdd() {
         var msg = $('#form_add').serialize();
         // Установка синхронного запроса для jQuery.ajax
@@ -374,7 +374,7 @@ if (!isset($idsx_real_parent_id)) {
 </script>
 
 <!-- Модальное окно "Редактировать" -->
-<script type="text/javascript" language="javascript">
+<script type="text/javascript">
     function callEdit() {
         var msg = $('#form_edit').serialize();
         // Установка синхронного запроса для jQuery.ajax

@@ -7,7 +7,7 @@
 ?>
 
 <!-- Настройка TinyMCE" -->
-<script type="text/javascript" language="javascript">
+<script type="text/javascript">
     tinymce.init({
         selector: 'textarea',
         plugins: 'advlist autolink visualblocks visualchars fullscreen lists charmap imagetools hr textcolor table link image wordcount code media preview',
@@ -20,7 +20,7 @@
 </script>
 
 <!-- Настройка Datepicker" -->
-<script type="text/javascript" language="javascript">
+<script type="text/javascript">
     $(function () {
     $( "#date_available" ).datepicker({
       showOtherMonths: true,

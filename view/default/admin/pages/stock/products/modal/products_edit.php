@@ -51,7 +51,7 @@ if ($status_category_edit == 1) {
     </div>
 </div>
 
-<script type="text/javascript" language="javascript">
+<script type="text/javascript">
     function call<?php echo $lines[$start][0] ?>() {
         var msg = $('#form_post<?php echo $lines[$start][0] ?>').serialize();
         $.ajax({

@@ -6,7 +6,7 @@
 ?>
 <?php if (isset($name_edit)) { ?>
     <!-- Загрузка данных в модальное окно -->
-    <script type="text/javascript" language="javascript">
+    <script type="text/javascript">
         $('#edit').on('show.bs.modal', function (event) {
             
             var button = $(event.relatedTarget);

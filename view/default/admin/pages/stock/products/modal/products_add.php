@@ -294,7 +294,7 @@
     </div>
 </div>
 
-<script type="text/javascript" language="javascript">
+<script type="text/javascript">
     function call() {
         tinyMCE.triggerSave();
         var msg = $('#form_post').serialize();
