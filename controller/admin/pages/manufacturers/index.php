@@ -30,9 +30,16 @@ if ($VALID->inPOST('add')) {
             $image_list .= $prefix . basename($file) . ',';
         }
     }
+    // Назначаем "Главное изображение" в модальном окне "Добавить"
+    if ($VALID->inPOST('general_image_add')) {
+        $general_image_add = $prefix . $VALID->inPOST('general_image_add');
+    }else{
+        $general_image_add = '';
+    }
+    
     // добавляем запись для всех вкладок
     for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
-        $PDO->inPrepare("INSERT INTO " . TABLE_MANUFACTURERS . " SET id=?, name=?, language=?, logo=?, site=?", [$id, $VALID->inPOST($SET->titleDir() . '_' . lang('#lang_all')[$xl]), lang('#lang_all')[$xl], $image_list, $VALID->inPOST('site')]);
+        $PDO->inPrepare("INSERT INTO " . TABLE_MANUFACTURERS . " SET id=?, name=?, language=?, logo=?, site=?, logo_general=?", [$id, $VALID->inPOST($SET->titleDir() . '_' . lang('#lang_all')[$xl]), lang('#lang_all')[$xl], $image_list, $VALID->inPOST('site'), $general_image_add]);
     }
 
     // Перемещаем файлы из временной папки в постоянную
@@ -107,13 +114,15 @@ if ($VALID->inPOST('delete_new_image') == 'ok' && $VALID->inPOST('delete_image')
     $FUNC->deleteFile(ROOT . '/downloads/upload_handler/files/thumbnail/' . $VALID->inPOST('delete_image'));
 }
 
-// Назначаем "Главное изображение"
+// Назначаем "Главное изображение" в модальном окне "Редактировать"
 if ($VALID->inPOST('general_image') && $VALID->inPOST('image_id')) {
     for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
         // обновляем запись
         $PDO->inPrepare("UPDATE " . TABLE_MANUFACTURERS . " SET logo_general=? WHERE id=? AND language=?", [$VALID->inPOST('general_image'), $VALID->inPOST('image_id'), lang('#lang_all')[$xl]]);
     }
 }
+
+
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 $lines = $PDO->getColRow("SELECT id, name, logo, site FROM " . TABLE_MANUFACTURERS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);

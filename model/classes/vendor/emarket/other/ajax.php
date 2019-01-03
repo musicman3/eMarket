@@ -127,8 +127,8 @@ class Ajax {
 
                         $.each(data.result.files, function (index, file) {
                             var basename = file.name.split('.').slice(0, -1).join('.'); //Обрезаем расширение файла
-                            $('<span class="file-upload" id="image_add_new_' + basename + '"/>').html('<div class="holder"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" class="thumbnail img-active" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="deleteImageAddNew_' + basename + '" onclick="deleteImageAddNew(\'' + file.name + '\', \'' + basename + '\')"><span class="glyphicon glyphicon-trash"></span></button></div></div>').appendTo('#logo-add'); // Вставляем лого
-                            $('<span class="file-upload" id="image_edit_new_' + basename + '"/>').html('<div class="holder"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" class="thumbnail img-active" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="deleteImageEditNew_' + basename + '" onclick="deleteImageEditNew(\'' + file.name + '\', \'' + basename + '\')"><span class="glyphicon glyphicon-trash"></span></button></div></div>').appendTo('#logo-edit'); // Вставляем лого
+                            $('<span class="file-upload" id="image_add_new_' + basename + '"/>').html('<div class="holder"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" class="thumbnail" id="general_' + basename + '" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="deleteImageAddNew_' + basename + '" onclick="deleteImageAddNew(\'' + file.name + '\', \'' + basename + '\')"><span class="glyphicon glyphicon-trash"></span></button> <button class="btn btn-primary btn-xs" type="button" name="imageGeneralAddNew_' + basename + '" onclick="imageGeneralAddNew(\'' + file.name + '\', \'' + basename + '\')"><span class="glyphicon glyphicon-star"></span></button></div></div>').appendTo('#logo-add'); // Вставляем лого
+                            $('<span class="file-upload" id="image_edit_new_' + basename + '"/>').html('<div class="holder"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" class="thumbnail" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="deleteImageEditNew_' + basename + '" onclick="deleteImageEditNew(\'' + file.name + '\', \'' + basename + '\')"><span class="glyphicon glyphicon-trash"></span></button></div></div>').appendTo('#logo-edit'); // Вставляем лого
                         });
                     },
                     progressall: function (e, data) {
@@ -211,6 +211,14 @@ class Ajax {
                     // Меняем значение в hidden input
                     $('#general_image').val(image);
                     $('#image_id').val(id);
+            }
+            
+            // Главное изображение в модальном окне "Добавить"
+            function imageGeneralAddNew(image, num) {
+                    $('img').removeClass('img-active');
+                    $('#general_' + num).addClass('img-active');
+                    // Меняем значение в hidden input
+                    $('#general_image_add').val(image);
             }
         </script>
         

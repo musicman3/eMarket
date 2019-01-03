@@ -14,6 +14,7 @@
             <form id="form_add" name="form_add" action="javascript:void(null);" onsubmit="callAdd()">
                 <div class="panel-body">
                     <input type="hidden" name="add" value="ok" />
+                    <input id="general_image_add" hidden name="general_image_add" value="">
 
                     <!-- Языковые панели -->
                     <?php require_once(ROOT . '/view/' . $SET->template() . '/layouts/lang_tabs_add.php') ?>
