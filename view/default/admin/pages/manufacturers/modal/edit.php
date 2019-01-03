@@ -18,7 +18,7 @@ require(ROOT . '/controller/admin/pages/manufacturers/modal/edit.php');
                 <div class="panel-body">
                     <input id="js_edit" type="hidden" name="edit" value="" />
                     <input id="delete_image" hidden name="delete_image" value="">
-                    <input id="general_image" hidden name="general_image" value="">
+                    <input id="general_image_edit" hidden name="general_image_edit" value="">
                     <input id="general_image_edit_new" hidden name="general_image_edit_new" value="">
 
                     <!-- Языковые панели -->

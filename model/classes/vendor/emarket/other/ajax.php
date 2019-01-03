@@ -166,7 +166,7 @@ class Ajax {
                 $('.file-upload').empty();
                 $('.files').empty();
                 $('#delete_image').val('');
-                $('#general_image').val('');
+                $('#general_image_edit').val('');
                 $('#general_image_add').val('');
                 //$(this).find('form').trigger('reset'); // Очищаем формы
             });
@@ -208,7 +208,7 @@ class Ajax {
                 $('img').removeClass('img-active');
                 $('#general_' + num).addClass('img-active');
                 // Меняем значение в hidden input
-                $('#general_image').val(image);
+                $('#general_image_edit').val(image);
             }
 
             // Главное изображение в модальном окне "Добавить"

@@ -115,10 +115,10 @@ if ($VALID->inPOST('delete_new_image') == 'ok' && $VALID->inPOST('delete_image')
 }
 
 // Назначаем "Главное изображение" в модальном окне "Редактировать"
-if ($VALID->inPOST('general_image') && $VALID->inPOST('edit')) {
+if ($VALID->inPOST('general_image_edit') && $VALID->inPOST('edit')) {
     for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
         // обновляем запись
-        $PDO->inPrepare("UPDATE " . TABLE_MANUFACTURERS . " SET logo_general=? WHERE id=? AND language=?", [$VALID->inPOST('general_image'), $VALID->inPOST('edit'), lang('#lang_all')[$xl]]);
+        $PDO->inPrepare("UPDATE " . TABLE_MANUFACTURERS . " SET logo_general=? WHERE id=? AND language=?", [$VALID->inPOST('general_image_edit'), $VALID->inPOST('edit'), lang('#lang_all')[$xl]]);
     }
 }
 
