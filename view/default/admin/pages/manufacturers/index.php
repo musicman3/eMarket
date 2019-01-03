@@ -32,6 +32,7 @@
                              data-name='<?php echo $name_edit ?>'
                              data-site='<?php echo $site_edit ?>'
                              data-logo='<?php echo $logo_edit ?>'
+                             data-general='<?php echo $logo_general ?>'
                              ></div>
                         
                     <?php } ?>

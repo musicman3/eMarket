@@ -72,7 +72,7 @@ class Ajax {
             }
         </script>
 
-        <!-- Модальное окно "Удалить" -->
+        <!-- Функция "Удалить" -->
         <script type="text/javascript" language="javascript">
             function callDelete(id) {
                 var msg = $('#form_delete' + id).serialize();
@@ -166,7 +166,8 @@ class Ajax {
                 $('.file-upload').empty();
                 $('.files').empty();
                 $('#delete_image').val('');
-                $('#delete_image_id').val('');
+                $('#image_id').val('');
+                $('#general_image').val('');
                 //$(this).find('form').trigger('reset'); // Очищаем формы
             });
 
@@ -176,7 +177,7 @@ class Ajax {
                 $('#image_edit_' + num).detach();
                 // Меняем значение в hidden input
                 $('#delete_image').val($('#delete_image').val() + image + ',');
-                $('#delete_image_id').val(id);
+                $('#image_id').val(id);
             }
 
             // Выборочное удаление новых не сохранненных изображений в модальном окне "Добавить"
@@ -202,7 +203,17 @@ class Ajax {
                     $('#image_edit_new_' + num).detach();
                 }
             }
+            
+            // Главное изображение в модальном окне "Редактировать"
+            function imageGeneralEdit(image, id, num) {
+                    $('img').removeClass('img-active');
+                    $('#general_' + num).addClass('img-active');
+                    // Меняем значение в hidden input
+                    $('#general_image').val(image);
+                    $('#image_id').val(id);
+            }
         </script>
+        
         <?php
     }
 

@@ -78,11 +78,11 @@ if ($VALID->inPOST('delete')) {
 }
 
 // Выборочное удаление изображений в модальном окне "Редактировать"
-if ($VALID->inPOST('delete_image') && $VALID->inPOST('delete_image_id')) {
+if ($VALID->inPOST('delete_image') && $VALID->inPOST('image_id')) {
     // Получаем массив удаляемых изображений
     $delete_image_arr = explode(',', $VALID->inPOST('delete_image'), -1);
     // Получаем массив изображений из БД
-    $image_list_arr = explode(',', $PDO->selectPrepare("SELECT logo FROM " . TABLE_MANUFACTURERS . " WHERE id=?", [$VALID->inPOST('delete_image_id')]), -1);
+    $image_list_arr = explode(',', $PDO->selectPrepare("SELECT logo FROM " . TABLE_MANUFACTURERS . " WHERE id=?", [$VALID->inPOST('image_id')]), -1);
     $image_list_new = '';
     foreach ($image_list_arr as $key => $file) {
         if (!in_array($file, $delete_image_arr)) {
@@ -96,7 +96,7 @@ if ($VALID->inPOST('delete_image') && $VALID->inPOST('delete_image_id')) {
 
     for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
         // обновляем запись
-        $PDO->inPrepare("UPDATE " . TABLE_MANUFACTURERS . " SET logo=? WHERE id=? AND language=?", [$image_list_new, $VALID->inPOST('delete_image_id'), lang('#lang_all')[$xl]]);
+        $PDO->inPrepare("UPDATE " . TABLE_MANUFACTURERS . " SET logo=? WHERE id=? AND language=?", [$image_list_new, $VALID->inPOST('image_id'), lang('#lang_all')[$xl]]);
     }
 }
 
@@ -105,6 +105,14 @@ if ($VALID->inPOST('delete_new_image') == 'ok' && $VALID->inPOST('delete_image')
     // Удаляем файлы
     $FUNC->deleteFile(ROOT . '/downloads/upload_handler/files/' . $VALID->inPOST('delete_image'));
     $FUNC->deleteFile(ROOT . '/downloads/upload_handler/files/thumbnail/' . $VALID->inPOST('delete_image'));
+}
+
+// Назначаем "Главное изображение"
+if ($VALID->inPOST('general_image') && $VALID->inPOST('image_id')) {
+    for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
+        // обновляем запись
+        $PDO->inPrepare("UPDATE " . TABLE_MANUFACTURERS . " SET logo_general=? WHERE id=? AND language=?", [$VALID->inPOST('general_image'), $VALID->inPOST('image_id'), lang('#lang_all')[$xl]]);
+    }
 }
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ

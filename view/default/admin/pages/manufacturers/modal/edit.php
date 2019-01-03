@@ -18,7 +18,8 @@ require(ROOT . '/controller/admin/pages/manufacturers/modal/edit.php');
                 <div class="panel-body">
                     <input id="js_edit" type="hidden" name="edit" value="" />
                     <input id="delete_image" hidden name="delete_image" value="">
-                    <input id="delete_image_id" hidden name="delete_image_id" value="">
+                    <input id="image_id" hidden name="image_id" value="">
+                    <input id="general_image" hidden name="general_image" value="">
 
                     <!-- Языковые панели -->
                     <?php require_once(ROOT . '/view/' . $SET->template() . '/layouts/lang_tabs_edit.php') ?>

@@ -66,6 +66,7 @@ CREATE TABLE emkt_manufacturers (
 	name varchar(256),
 	language varchar(64),
         logo varchar(1024),
+        logo_general varchar(128),
         site varchar(256),
 	PRIMARY KEY (id, language))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
