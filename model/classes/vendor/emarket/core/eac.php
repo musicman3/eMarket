@@ -151,7 +151,7 @@ class Eac {
             $id = intval($id_max) + 1;
 
             // добавляем запись для всех вкладок
-            for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
+            for ($xl = 0; $xl < $LANG_COUNT; $xl++) {
                 $PDO->inPrepare("INSERT INTO " . $TABLE_CATEGORIES . " SET id=?, name=?, sort_category=?, language=?, parent_id=?, date_added=?, status=?", [$id, $VALID->inGET(lang('#lang_all')[$xl]), $sort_category, lang('#lang_all')[$xl], $parent_id, date("Y-m-d H:i:s"), $view_cat]);
             }
         }
@@ -168,7 +168,7 @@ class Eac {
 
         if ($VALID->inGET('edit') && $VALID->inGET('name_edit' . lang('#lang_all')[0])) {
 
-            for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
+            for ($xl = 0; $xl < $LANG_COUNT; $xl++) {
                 // обновляем запись
                 $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET name=?, last_modified=? WHERE id=? AND language=?", [$VALID->inGET('name_edit' . lang('#lang_all')[$xl]), date("Y-m-d H:i:s"), $VALID->inGET('edit'), lang('#lang_all')[$xl]]);
             }

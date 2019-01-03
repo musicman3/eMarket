@@ -16,14 +16,14 @@ if ($VALID->inPOST('add')) {
     $id = intval($id_max) + 1;
 
     // добавляем запись для всех вкладок
-    for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
+    for ($xl = 0; $xl < $LANG_COUNT; $xl++) {
         $PDO->inPrepare("INSERT INTO " . TABLE_MANUFACTURERS . " SET id=?, name=?, language=?, site=?", [$id, $VALID->inPOST($SET->titleDir() . '_' . lang('#lang_all')[$xl]), lang('#lang_all')[$xl], $VALID->inPOST('site')]);
     }
 }
 
 // Если нажали на кнопку Редактировать
 if ($VALID->inPOST('edit')) {
-    for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
+    for ($xl = 0; $xl < $LANG_COUNT; $xl++) {
         $PDO->inPrepare("UPDATE " . TABLE_MANUFACTURERS . " SET name=?, site=? WHERE id=? AND language=?", [$VALID->inPOST('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$xl]), $VALID->inPOST('site_edit'), $VALID->inPOST('edit'), lang('#lang_all')[$xl]]);
     }
 }

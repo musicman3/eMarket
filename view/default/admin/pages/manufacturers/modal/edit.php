@@ -36,8 +36,8 @@ require(ROOT . '/controller/admin/pages/manufacturers/modal/edit.php');
                         </div>
 
                         <?php
-                        if (count(lang('#lang_all')) > 1) {
-                            for ($xl = 1; $xl < count(lang('#lang_all')); $xl++) {
+                        if ($LANG_COUNT > 1) {
+                            for ($xl = 1; $xl < $LANG_COUNT; $xl++) {
 
                                 ?>
 

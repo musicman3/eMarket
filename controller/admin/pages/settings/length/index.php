@@ -35,13 +35,13 @@ if ($VALID->inPOST('add')) {
         }
         
         // добавляем запись для всех вкладок
-        for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
+        for ($xl = 0; $xl < $LANG_COUNT; $xl++) {
             $PDO->inPrepare("INSERT INTO " . TABLE_LENGTH . " SET id=?, name=?, language=?, code=?, value_length=?, default_length=?", [$id, $VALID->inPOST($SET->titleDir() . '_' . lang('#lang_all')[$xl]), lang('#lang_all')[$xl], $VALID->inPOST('code' . lang('#lang_all')[$xl]), 1, $default_length]);
         }
     } else {
 
         // добавляем запись для всех вкладок
-        for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
+        for ($xl = 0; $xl < $LANG_COUNT; $xl++) {
             $PDO->inPrepare("INSERT INTO " . TABLE_LENGTH . " SET id=?, name=?, language=?, code=?, value_length=?, default_length=?", [$id, $VALID->inPOST($SET->titleDir() . '_' . lang('#lang_all')[$xl]), lang('#lang_all')[$xl], $VALID->inPOST('code' . lang('#lang_all')[$xl]), $VALID->inPOST('value_length'), $default_length]);
         }
     }
@@ -68,13 +68,13 @@ if ($VALID->inPOST('edit')) {
             $PDO->inPrepare("UPDATE " . TABLE_LENGTH . " SET value_length=? WHERE id=? AND language=?", [($value_length_all[$xl]['value_length'] / $VALID->inPOST('value_length_edit')), $value_length_all[$xl]['id'], $value_length_all[$xl]['language']]);
         }
 
-        for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
+        for ($xl = 0; $xl < $LANG_COUNT; $xl++) {
             // обновляем запись
             $PDO->inPrepare("UPDATE " . TABLE_LENGTH . " SET name=?, code=?, value_length=?, default_length=? WHERE id=? AND language=?", [$VALID->inPOST('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$xl]), $VALID->inPOST('code_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$xl]), 1, $default_length, $VALID->inPOST('edit'), lang('#lang_all')[$xl]]);
         }
     } else {
 
-        for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
+        for ($xl = 0; $xl < $LANG_COUNT; $xl++) {
             // обновляем запись
             $PDO->inPrepare("UPDATE " . TABLE_LENGTH . " SET name=?, code=?, value_length=?, default_length=? WHERE id=? AND language=?", [$VALID->inPOST('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$xl]), $VALID->inPOST('code_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$xl]), $VALID->inPOST('value_length_edit'), $default_length, $VALID->inPOST('edit'), lang('#lang_all')[$xl]]);
         }

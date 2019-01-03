@@ -16,7 +16,7 @@ if ($VALID->inPOST('add')) {
     $id = intval($id_max) + 1;
 
     // добавляем запись для всех вкладок
-    for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
+    for ($xl = 0; $xl < $LANG_COUNT; $xl++) {
         $PDO->inPrepare("INSERT INTO " . TABLE_UNITS . " SET id=?, name=?, language=?, unit=?", [$id, $VALID->inPOST($SET->titleDir() . '_' . lang('#lang_all')[$xl]), lang('#lang_all')[$xl], $VALID->inPOST('unit' . lang('#lang_all')[$xl])]);
     }
 }
@@ -24,7 +24,7 @@ if ($VALID->inPOST('add')) {
 // Если нажали на кнопку Редактировать
 if ($VALID->inPOST('edit')) {
 
-    for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
+    for ($xl = 0; $xl < $LANG_COUNT; $xl++) {
         // обновляем запись
         $PDO->inPrepare("UPDATE " . TABLE_UNITS . " SET name=?, unit=? WHERE id=? AND language=?", [$VALID->inPOST('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$xl]), $VALID->inPOST('unit_edit' . lang('#lang_all')[$xl]), $VALID->inPOST('edit'), lang('#lang_all')[$xl]]);
     }

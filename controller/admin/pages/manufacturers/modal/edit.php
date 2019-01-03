@@ -10,7 +10,7 @@ for ($i = $start; $i < $finish; $i++) {
     if (isset($lines[$i][0]) == TRUE) {
 
         $modal_id = $lines[$i][0]; // ID
-        $count_lang = count(lang('#lang_all'));
+        $count_lang = $LANG_COUNT;
 
         for ($xl = 0; $xl < $count_lang; $xl++) {
             $name_edit_temp[$xl][$modal_id] = $PDO->selectPrepare("SELECT name FROM " . TABLE_MANUFACTURERS . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$xl]]);
