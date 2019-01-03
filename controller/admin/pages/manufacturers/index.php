@@ -8,8 +8,8 @@
 require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 /* ------------------------------------------ */
 
-    // Новый уникальный префикс для файлов
-    $prefix = time() . '_';
+// Новый уникальный префикс для файлов
+$prefix = time() . '_';
 //Если открываем модальное окно, то очищаются папки временных файлов изображений
 if ($VALID->inPOST('file_upload') == 'empty') {
     $TREE->filesDirAction(ROOT . '/downloads/upload_handler/files/');
@@ -33,10 +33,10 @@ if ($VALID->inPOST('add')) {
     // Назначаем "Главное изображение" в модальном окне "Добавить"
     if ($VALID->inPOST('general_image_add')) {
         $general_image_add = $prefix . $VALID->inPOST('general_image_add');
-    }else{
+    } else {
         $general_image_add = '';
     }
-    
+
     // добавляем запись для всех вкладок
     for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
         $PDO->inPrepare("INSERT INTO " . TABLE_MANUFACTURERS . " SET id=?, name=?, language=?, logo=?, site=?, logo_general=?", [$id, $VALID->inPOST($SET->titleDir() . '_' . lang('#lang_all')[$xl]), lang('#lang_all')[$xl], $image_list, $VALID->inPOST('site'), $general_image_add]);
@@ -61,9 +61,19 @@ if ($VALID->inPOST('edit')) {
         }
     }
 
+    $general_image_edit = '';
+    // Назначаем "Главное изображение" в модальном окне "Редактировать"
+    if ($VALID->inPOST('general_image_edit')) {
+        $general_image_edit = $VALID->inPOST('general_image_edit');
+    }
+    //Назначаем "Главное изображение" для нового не сохраненного изображения в модальном окне "Редактировать"
+    if ($VALID->inPOST('general_image_edit_new')) {
+        $general_image_edit = $prefix . $VALID->inPOST('general_image_edit_new');
+    }
+
     for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
         // обновляем запись
-        $PDO->inPrepare("UPDATE " . TABLE_MANUFACTURERS . " SET name=?, site=?, logo=? WHERE id=? AND language=?", [$VALID->inPOST('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$xl]), $VALID->inPOST('site_edit'), $image_list, $VALID->inPOST('edit'), lang('#lang_all')[$xl]]);
+        $PDO->inPrepare("UPDATE " . TABLE_MANUFACTURERS . " SET name=?, site=?, logo=?, logo_general=? WHERE id=? AND language=?", [$VALID->inPOST('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$xl]), $VALID->inPOST('site_edit'), $image_list, $general_image_edit, $VALID->inPOST('edit'), lang('#lang_all')[$xl]]);
     }
 
     // Перемещаем файлы из временной папки в постоянную
@@ -113,23 +123,6 @@ if ($VALID->inPOST('delete_new_image') == 'ok' && $VALID->inPOST('delete_image')
     $FUNC->deleteFile(ROOT . '/downloads/upload_handler/files/' . $VALID->inPOST('delete_image'));
     $FUNC->deleteFile(ROOT . '/downloads/upload_handler/files/thumbnail/' . $VALID->inPOST('delete_image'));
 }
-
-// Назначаем "Главное изображение" в модальном окне "Редактировать"
-if ($VALID->inPOST('general_image_edit') && $VALID->inPOST('edit')) {
-    for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
-        // обновляем запись
-        $PDO->inPrepare("UPDATE " . TABLE_MANUFACTURERS . " SET logo_general=? WHERE id=? AND language=?", [$VALID->inPOST('general_image_edit'), $VALID->inPOST('edit'), lang('#lang_all')[$xl]]);
-    }
-}
-
-// Назначаем "Главное изображение" для нового не сохраненного изображения в модальном окне "Редактировать"
-if ($VALID->inPOST('general_image_edit_new') && $VALID->inPOST('edit')) {
-    for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
-        // обновляем запись
-        $PDO->inPrepare("UPDATE " . TABLE_MANUFACTURERS . " SET logo_general=? WHERE id=? AND language=?", [$prefix . $VALID->inPOST('general_image_edit_new'), $VALID->inPOST('edit'), lang('#lang_all')[$xl]]);
-    }
-}
-
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 $lines = $PDO->getColRow("SELECT id, name, logo, site FROM " . TABLE_MANUFACTURERS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
