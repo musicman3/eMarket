@@ -127,13 +127,13 @@ class Ajax {
                     done: function (e, data) {
 
                         $.each(data.result.files, function (index, file) {
-                            var basename = file.name.split('.').slice(0, -1).join('.'); //Обрезаем расширение файла
+                            var hash_name = hash(file.name); // Хэшируем
 
-                            if($('#add').hasClass('in') === true) {
-                                $('<span class="file-upload" id="image_add_new_' + basename + '"/>').html('<div class="holder"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" class="thumbnail" id="general_' + basename + '" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="deleteImageAddNew_' + basename + '" onclick="deleteImageAddNew(\'' + file.name + '\', \'' + basename + '\')"><span class="glyphicon glyphicon-trash"></span></button> <button class="btn btn-primary btn-xs" type="button" name="imageGeneralAddNew_' + basename + '" onclick="imageGeneralAddNew(\'' + file.name + '\', \'' + basename + '\')"><span class="glyphicon glyphicon-star"></span></button></div></div>').appendTo('#logo-add'); // Вставляем лого
+                            if ($('#add').hasClass('in') === true) {
+                                $('<span class="file-upload" id="image_add_new_' + hash_name + '"/>').html('<div class="holder"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" class="thumbnail" id="general_' + hash_name + '" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="deleteImageAddNew_' + hash_name + '" onclick="deleteImageAddNew(\'' + file.name + '\', \'' + hash_name + '\')"><span class="glyphicon glyphicon-trash"></span></button> <button class="btn btn-primary btn-xs" type="button" name="imageGeneralAddNew_' + hash_name + '" onclick="imageGeneralAddNew(\'' + file.name + '\', \'' + hash_name + '\')"><span class="glyphicon glyphicon-star"></span></button></div></div>').appendTo('#logo-add'); // Вставляем лого
                             }
-                            if($('#edit').hasClass('in') === true) {
-                                $('<span class="file-upload" id="image_edit_new_' + basename + '"/>').html('<div class="holder"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" class="thumbnail" id="general_edit_' + basename + '" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="deleteImageEditNew_' + basename + '" onclick="deleteImageEditNew(\'' + file.name + '\', \'' + basename + '\')"><span class="glyphicon glyphicon-trash"></span></button> <button class="btn btn-primary btn-xs" type="button" name="imageGeneralEditNew_' + basename + '" onclick="imageGeneralEditNew(\'' + file.name + '\', \'' + basename + '\')"><span class="glyphicon glyphicon-star"></span></button></div></div>').appendTo('#logo-edit'); // Вставляем лого
+                            if ($('#edit').hasClass('in') === true) {
+                                $('<span class="file-upload" id="image_edit_new_' + hash_name + '"/>').html('<div class="holder"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" class="thumbnail" id="general_edit_' + hash_name + '" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="deleteImageEditNew_' + hash_name + '" onclick="deleteImageEditNew(\'' + file.name + '\', \'' + hash_name + '\')"><span class="glyphicon glyphicon-trash"></span></button> <button class="btn btn-primary btn-xs" type="button" name="imageGeneralEditNew_' + hash_name + '" onclick="imageGeneralEditNew(\'' + file.name + '\', \'' + hash_name + '\')"><span class="glyphicon glyphicon-star"></span></button></div></div>').appendTo('#logo-edit'); // Вставляем лого
                             }
                         });
                     },
@@ -242,6 +242,16 @@ class Ajax {
                 $('#general_edit_' + num).addClass('img-active');
                 // Меняем значение в hidden input
                 $('#general_image_edit_new').val(image);
+            }
+
+            // Функция хэширования 32-bit (отображение целыми числами)
+            function hash(str) {
+                var hash = 5381,
+                        i = str.length;
+                while (i) {
+                    hash = (hash * 33) ^ str.charCodeAt(--i);
+                }
+                return hash >>> 0;
             }
         </script>
 
