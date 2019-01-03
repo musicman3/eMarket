@@ -168,7 +168,6 @@ class Ajax {
             $(this).on('hidden.bs.modal', function () {
                 $('.progress-bar').css('width', 0 + '%');
                 $('.file-upload').detach();
-                $('.files').empty();
                 $('#delete_image').val('');
                 $('#general_image_edit').val('');
                 $('#general_image_add').val('');
