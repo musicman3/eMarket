@@ -219,7 +219,7 @@ class Ajax {
                 $('#general_image_add').val(image);
             }
 
-            // Главное изображение в модальном окне "Редактировать"
+            // Главное изображение для нового не сохраненного изображения в модальном окне "Редактировать"
             function imageGeneralEditNew(image, num) {
                 $('img').removeClass('img-active');
                 $('#general_edit_' + num).addClass('img-active');
