@@ -24,17 +24,9 @@
         }
         $('#site_edit').val(site_edit[modal_id]);
         $('#js_edit').val(modal_id);
-
-        // Добавляем данные
-        for (x = 0; x < logo_edit[modal_id].length; x++) {
-            var image = logo_edit[modal_id][x];
-
-            $('<span class="file-upload" id="image_edit_' + x + '"/>').html('<div class="holder"><img src="/downloads/images/manufacturers/resize/' + image + '" class="thumbnail" id="general_' + x + '" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="delete_image_' + x + '" onclick="deleteImageEdit(\'' + image + '\', \'' + x + '\')"><span class="glyphicon glyphicon-trash"></span></button> <button class="btn btn-primary btn-xs" type="button" name="image_general_edit' + x + '" onclick="imageGeneralEdit(\'' + image + '\', \'' + x + '\')"><span class="glyphicon glyphicon-star"></span></button></div></div>').appendTo('#logo-edit'); // Вставляем лого
-            // Если это главное изображение, то выделяем его
-            if (logo_general_edit[modal_id] === image) {
-                $('#general_' + x).addClass('img-active');
-            }
-        }
+        
+        // Подгружаем изображения
+        getImageToEdit(logo_general_edit, logo_edit, modal_id);
 
     });
 </script>

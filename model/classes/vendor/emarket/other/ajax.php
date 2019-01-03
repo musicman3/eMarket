@@ -116,6 +116,7 @@ class Ajax {
         <script src="/ext/jquery_file_upload/js/jquery.iframe-transport.js"></script>
         <script src="/ext/jquery_file_upload/js/jquery.fileupload.js"></script>
         <script type="text/javascript" language="javascript">
+            // Загрузка новых изображений в модальное окно "Редактировать и Добавить"
             $(function () {
                 'use strict';
                 var url = '/downloads/upload_handler/';
@@ -150,13 +151,11 @@ class Ajax {
                 }).prop('disabled', !$.support.fileInput)
                         .parent().addClass($.support.fileInput ? undefined : 'disabled');
             });
-        </script>
 
-        <!--Удаление изображений-->
-        <script type="text/javascript" language="javascript">
+            //Если открыли модальное окно
             $(this).on('show.bs.modal', function (event) {
                 // Отправка запроса для очистки временных файлов
-                jQuery.post('<?php echo $url ?>', // отправка данных POST
+                jQuery.post('<?php echo $url ?>',
                         {file_upload: 'empty'});
             });
 
@@ -170,6 +169,20 @@ class Ajax {
                 $('#general_image_add').val('');
                 //$(this).find('form').trigger('reset'); // Очищаем формы
             });
+
+            // Загрузка изображений в модальное окно "Редактировать"
+            function getImageToEdit(logo_general_edit, logo_edit, modal_id) {
+                // Добавляем данные
+                for (x = 0; x < logo_edit[modal_id].length; x++) {
+                    var image = logo_edit[modal_id][x];
+
+                    $('<span class="file-upload" id="image_edit_' + x + '"/>').html('<div class="holder"><img src="/downloads/images/manufacturers/resize/' + image + '" class="thumbnail" id="general_' + x + '" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="delete_image_' + x + '" onclick="deleteImageEdit(\'' + image + '\', \'' + x + '\')"><span class="glyphicon glyphicon-trash"></span></button> <button class="btn btn-primary btn-xs" type="button" name="image_general_edit' + x + '" onclick="imageGeneralEdit(\'' + image + '\', \'' + x + '\')"><span class="glyphicon glyphicon-star"></span></button></div></div>').appendTo('#logo-edit'); // Вставляем лого
+                    // Если это главное изображение, то выделяем его
+                    if (logo_general_edit[modal_id] === image) {
+                        $('#general_' + x).addClass('img-active');
+                    }
+                }
+            }
 
             // Выборочное удаление изображений в модальном окне "Редактировать"
             function deleteImageEdit(image, num) {
