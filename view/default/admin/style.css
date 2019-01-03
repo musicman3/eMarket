@@ -90,7 +90,6 @@ div.context-one {padding:5px;}
 .fileinput-button input {position: absolute;top: 0;right: 0;margin: 0;opacity: 0;-ms-filter: 'alpha(opacity=0)';direction: ltr;cursor: pointer;font-size: 1px !important;}
 /* Fixes for IE < 8 */
 @media screen\9 {.fileinput-button input {filter: alpha(opacity=0);font-size: 100%;height: 100%;}}
-.files {text-align:center;}
 .file-upload {display: inline-block;padding:0 3px 0 3px;}
 #logo-add .thumbnail, #logo-edit .thumbnail {height: 80px;margin-bottom:0px;}
 .holder {position:relative;}
