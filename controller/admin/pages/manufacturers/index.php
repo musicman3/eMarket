@@ -29,7 +29,7 @@ if ($VALID->inPOST('edit')) {
 }
 
 // Загручик изображений (ВСТАВЛЯТЬ ПЕРЕД УДАЛЕНИЕМ)
-$FILES->imgUpload(TABLE_MANUFACTURERS);
+$FILES->imgUpload(TABLE_MANUFACTURERS, 'manufacturers');
 
 // Если нажали на кнопку Удалить
 if ($VALID->inPOST('delete')) {

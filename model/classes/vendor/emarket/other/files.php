@@ -12,8 +12,9 @@ class Files {
      * Загрузчик изображений
      *
      * @param строка $TABLE
+     * @param строка $dir
      */
-    public function imgUpload($TABLE) {
+    public function imgUpload($TABLE, $dir) {
 
         $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
@@ -56,8 +57,8 @@ class Files {
             }
 
             // Перемещаем файлы из временной папки в постоянную
-            $TREE->filesDirAction(ROOT . '/downloads/upload_handler/files/thumbnail/', ROOT . '/downloads/images/manufacturers/resize/', $prefix);
-            $TREE->filesDirAction(ROOT . '/downloads/upload_handler/files/', ROOT . '/downloads/images/manufacturers/originals/', $prefix);
+            $TREE->filesDirAction(ROOT . '/downloads/upload_handler/files/thumbnail/', ROOT . '/downloads/images/' . $dir . '/resize/', $prefix);
+            $TREE->filesDirAction(ROOT . '/downloads/upload_handler/files/', ROOT . '/downloads/images/' . $dir . '/originals/', $prefix);
         }
 
         // Если нажали на кнопку Редактировать
@@ -91,8 +92,8 @@ class Files {
             }
 
             // Перемещаем файлы из временной папки в постоянную
-            $TREE->filesDirAction(ROOT . '/downloads/upload_handler/files/thumbnail/', ROOT . '/downloads/images/manufacturers/resize/', $prefix);
-            $TREE->filesDirAction(ROOT . '/downloads/upload_handler/files/', ROOT . '/downloads/images/manufacturers/originals/', $prefix);
+            $TREE->filesDirAction(ROOT . '/downloads/upload_handler/files/thumbnail/', ROOT . '/downloads/images/' . $dir . '/resize/', $prefix);
+            $TREE->filesDirAction(ROOT . '/downloads/upload_handler/files/', ROOT . '/downloads/images/' . $dir . '/originals/', $prefix);
 
             // Выборочное удаление изображений в модальном окне "Редактировать"
             if ($VALID->inPOST('delete_image')) {
@@ -106,8 +107,8 @@ class Files {
                         $image_list_new .= $file . ',';
                     } else {
                         // Удаляем файлы
-                        $FUNC->deleteFile(ROOT . '/downloads/images/manufacturers/resize/' . $file);
-                        $FUNC->deleteFile(ROOT . '/downloads/images/manufacturers/originals/' . $file);
+                        $FUNC->deleteFile(ROOT . '/downloads/images/' . $dir . '/resize/' . $file);
+                        $FUNC->deleteFile(ROOT . '/downloads/images/' . $dir . '/originals/' . $file);
                         // Если удаляемая картинка является главной, то устанавливаем маркер
                         if ($file == $PDO->selectPrepare("SELECT logo_general FROM " . $TABLE . " WHERE id=?", [$VALID->inPOST('edit')])) {
                             $logo_general_update = 'ok';
@@ -132,8 +133,8 @@ class Files {
             $logo_delete = explode(',', $PDO->selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$VALID->inPOST('delete')]), -1);
             foreach ($logo_delete as $file) {
                 // Удаляем файлы
-                $FUNC->deleteFile(ROOT . '/downloads/images/manufacturers/resize/' . $file);
-                $FUNC->deleteFile(ROOT . '/downloads/images/manufacturers/originals/' . $file);
+                $FUNC->deleteFile(ROOT . '/downloads/images/' . $dir . '/resize/' . $file);
+                $FUNC->deleteFile(ROOT . '/downloads/images/' . $dir . '/originals/' . $file);
             }
         }
 
