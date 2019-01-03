@@ -128,7 +128,7 @@ class Ajax {
                         $.each(data.result.files, function (index, file) {
                             var basename = file.name.split('.').slice(0, -1).join('.'); //Обрезаем расширение файла
                             $('<span class="file-upload" id="image_add_new_' + basename + '"/>').html('<div class="holder"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" class="thumbnail" id="general_' + basename + '" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="deleteImageAddNew_' + basename + '" onclick="deleteImageAddNew(\'' + file.name + '\', \'' + basename + '\')"><span class="glyphicon glyphicon-trash"></span></button> <button class="btn btn-primary btn-xs" type="button" name="imageGeneralAddNew_' + basename + '" onclick="imageGeneralAddNew(\'' + file.name + '\', \'' + basename + '\')"><span class="glyphicon glyphicon-star"></span></button></div></div>').appendTo('#logo-add'); // Вставляем лого
-                            $('<span class="file-upload" id="image_edit_new_' + basename + '"/>').html('<div class="holder"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" class="thumbnail" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="deleteImageEditNew_' + basename + '" onclick="deleteImageEditNew(\'' + file.name + '\', \'' + basename + '\')"><span class="glyphicon glyphicon-trash"></span></button></div></div>').appendTo('#logo-edit'); // Вставляем лого
+                            $('<span class="file-upload" id="image_edit_new_' + basename + '"/>').html('<div class="holder"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" class="thumbnail" id="general_edit_' + basename + '" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="deleteImageEditNew_' + basename + '" onclick="deleteImageEditNew(\'' + file.name + '\', \'' + basename + '\')"><span class="glyphicon glyphicon-trash"></span></button> <button class="btn btn-primary btn-xs" type="button" name="imageGeneralEditNew_' + basename + '" onclick="imageGeneralEditNew(\'' + file.name + '\', \'' + basename + '\')"><span class="glyphicon glyphicon-star"></span></button></div></div>').appendTo('#logo-edit'); // Вставляем лого
                         });
                     },
                     progressall: function (e, data) {
@@ -166,18 +166,17 @@ class Ajax {
                 $('.file-upload').empty();
                 $('.files').empty();
                 $('#delete_image').val('');
-                $('#image_id').val('');
                 $('#general_image').val('');
+                $('#general_image_add').val('');
                 //$(this).find('form').trigger('reset'); // Очищаем формы
             });
 
             // Выборочное удаление изображений в модальном окне "Редактировать"
-            function deleteImageEdit(image, id, num) {
+            function deleteImageEdit(image, num) {
                 // Удаляем изображение
                 $('#image_edit_' + num).detach();
                 // Меняем значение в hidden input
                 $('#delete_image').val($('#delete_image').val() + image + ',');
-                $('#image_id').val(id);
             }
 
             // Выборочное удаление новых не сохранненных изображений в модальном окне "Добавить"
@@ -203,25 +202,32 @@ class Ajax {
                     $('#image_edit_new_' + num).detach();
                 }
             }
-            
+
             // Главное изображение в модальном окне "Редактировать"
-            function imageGeneralEdit(image, id, num) {
-                    $('img').removeClass('img-active');
-                    $('#general_' + num).addClass('img-active');
-                    // Меняем значение в hidden input
-                    $('#general_image').val(image);
-                    $('#image_id').val(id);
+            function imageGeneralEdit(image, num) {
+                $('img').removeClass('img-active');
+                $('#general_' + num).addClass('img-active');
+                // Меняем значение в hidden input
+                $('#general_image').val(image);
             }
-            
+
             // Главное изображение в модальном окне "Добавить"
             function imageGeneralAddNew(image, num) {
-                    $('img').removeClass('img-active');
-                    $('#general_' + num).addClass('img-active');
-                    // Меняем значение в hidden input
-                    $('#general_image_add').val(image);
+                $('img').removeClass('img-active');
+                $('#general_' + num).addClass('img-active');
+                // Меняем значение в hidden input
+                $('#general_image_add').val(image);
+            }
+
+            // Главное изображение в модальном окне "Редактировать"
+            function imageGeneralEditNew(image, num) {
+                $('img').removeClass('img-active');
+                $('#general_edit_' + num).addClass('img-active');
+                // Меняем значение в hidden input
+                $('#general_image_edit_new').val(image);
             }
         </script>
-        
+
         <?php
     }
 

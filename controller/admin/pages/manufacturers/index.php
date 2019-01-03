@@ -8,6 +8,8 @@
 require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 /* ------------------------------------------ */
 
+    // Новый уникальный префикс для файлов
+    $prefix = time() . '_';
 //Если открываем модальное окно, то очищаются папки временных файлов изображений
 if ($VALID->inPOST('file_upload') == 'empty') {
     $TREE->filesDirAction(ROOT . '/downloads/upload_handler/files/');
@@ -20,8 +22,6 @@ if ($VALID->inPOST('add')) {
     $id_max = $PDO->selectPrepare("SELECT id FROM " . TABLE_MANUFACTURERS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
     $id = intval($id_max) + 1;
 
-    // Новый уникальный префикс для файлов
-    $prefix = time() . '_';
     $image_list = '';
     // Составляем список файлов изображений
     $files = glob(ROOT . '/downloads/upload_handler/files/thumbnail/*');
@@ -85,11 +85,11 @@ if ($VALID->inPOST('delete')) {
 }
 
 // Выборочное удаление изображений в модальном окне "Редактировать"
-if ($VALID->inPOST('delete_image') && $VALID->inPOST('image_id')) {
+if ($VALID->inPOST('delete_image') && $VALID->inPOST('edit')) {
     // Получаем массив удаляемых изображений
     $delete_image_arr = explode(',', $VALID->inPOST('delete_image'), -1);
     // Получаем массив изображений из БД
-    $image_list_arr = explode(',', $PDO->selectPrepare("SELECT logo FROM " . TABLE_MANUFACTURERS . " WHERE id=?", [$VALID->inPOST('image_id')]), -1);
+    $image_list_arr = explode(',', $PDO->selectPrepare("SELECT logo FROM " . TABLE_MANUFACTURERS . " WHERE id=?", [$VALID->inPOST('edit')]), -1);
     $image_list_new = '';
     foreach ($image_list_arr as $key => $file) {
         if (!in_array($file, $delete_image_arr)) {
@@ -103,7 +103,7 @@ if ($VALID->inPOST('delete_image') && $VALID->inPOST('image_id')) {
 
     for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
         // обновляем запись
-        $PDO->inPrepare("UPDATE " . TABLE_MANUFACTURERS . " SET logo=? WHERE id=? AND language=?", [$image_list_new, $VALID->inPOST('image_id'), lang('#lang_all')[$xl]]);
+        $PDO->inPrepare("UPDATE " . TABLE_MANUFACTURERS . " SET logo=? WHERE id=? AND language=?", [$image_list_new, $VALID->inPOST('edit'), lang('#lang_all')[$xl]]);
     }
 }
 
@@ -115,13 +115,20 @@ if ($VALID->inPOST('delete_new_image') == 'ok' && $VALID->inPOST('delete_image')
 }
 
 // Назначаем "Главное изображение" в модальном окне "Редактировать"
-if ($VALID->inPOST('general_image') && $VALID->inPOST('image_id')) {
+if ($VALID->inPOST('general_image') && $VALID->inPOST('edit')) {
     for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
         // обновляем запись
-        $PDO->inPrepare("UPDATE " . TABLE_MANUFACTURERS . " SET logo_general=? WHERE id=? AND language=?", [$VALID->inPOST('general_image'), $VALID->inPOST('image_id'), lang('#lang_all')[$xl]]);
+        $PDO->inPrepare("UPDATE " . TABLE_MANUFACTURERS . " SET logo_general=? WHERE id=? AND language=?", [$VALID->inPOST('general_image'), $VALID->inPOST('edit'), lang('#lang_all')[$xl]]);
     }
 }
 
+// Назначаем "Главное изображение" для нового не сохраненного изображения в модальном окне "Редактировать"
+if ($VALID->inPOST('general_image_edit_new') && $VALID->inPOST('edit')) {
+    for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
+        // обновляем запись
+        $PDO->inPrepare("UPDATE " . TABLE_MANUFACTURERS . " SET logo_general=? WHERE id=? AND language=?", [$prefix . $VALID->inPOST('general_image_edit_new'), $VALID->inPOST('edit'), lang('#lang_all')[$xl]]);
+    }
+}
 
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
