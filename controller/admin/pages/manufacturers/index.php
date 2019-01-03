@@ -35,7 +35,7 @@ if ($VALID->inPOST('add')) {
     if ($VALID->inPOST('general_image_add')) {
         $general_image_add = $prefix . $VALID->inPOST('general_image_add');
     } else {
-        $general_image_add = '';
+        $general_image_add = explode(',', $image_list, -1)[0];
     }
 
     // добавляем запись для всех вкладок
