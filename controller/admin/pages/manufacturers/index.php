@@ -10,6 +10,7 @@ require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 
 // Новый уникальный префикс для файлов
 $prefix = time() . '_';
+
 //Если открываем модальное окно, то очищаются папки временных файлов изображений
 if ($VALID->inPOST('file_upload') == 'empty') {
     $TREE->filesDirAction(ROOT . '/downloads/upload_handler/files/');
@@ -50,8 +51,6 @@ if ($VALID->inPOST('add')) {
 // Если нажали на кнопку Редактировать
 if ($VALID->inPOST('edit')) {
 
-    // Новый уникальный префикс для файлов
-    $prefix = time() . '_';
     $image_list = $PDO->selectPrepare("SELECT logo FROM " . TABLE_MANUFACTURERS . " WHERE id=?", [$VALID->inPOST('edit')]);
     // Составляем список файлов изображений
     $files = glob(ROOT . '/downloads/upload_handler/files/thumbnail/*');
@@ -79,6 +78,36 @@ if ($VALID->inPOST('edit')) {
     // Перемещаем файлы из временной папки в постоянную
     $TREE->filesDirAction(ROOT . '/downloads/upload_handler/files/thumbnail/', ROOT . '/downloads/images/manufacturers/resize/', $prefix);
     $TREE->filesDirAction(ROOT . '/downloads/upload_handler/files/', ROOT . '/downloads/images/manufacturers/originals/', $prefix);
+
+    // Выборочное удаление изображений в модальном окне "Редактировать"
+    if ($VALID->inPOST('delete_image')) {
+        // Получаем массив удаляемых изображений
+        $delete_image_arr = explode(',', $VALID->inPOST('delete_image'), -1);
+        // Получаем массив изображений из БД
+        $image_list_arr = explode(',', $PDO->selectPrepare("SELECT logo FROM " . TABLE_MANUFACTURERS . " WHERE id=?", [$VALID->inPOST('edit')]), -1);
+        $image_list_new = '';
+        foreach ($image_list_arr as $key => $file) {
+            if (!in_array($file, $delete_image_arr)) {
+                $image_list_new .= $file . ',';
+            } else {
+                // Удаляем файлы
+                $FUNC->deleteFile(ROOT . '/downloads/images/manufacturers/resize/' . $file);
+                $FUNC->deleteFile(ROOT . '/downloads/images/manufacturers/originals/' . $file);
+                // Если удаляемая картинка является главной, то очищаем запись в БД на главную
+                if ($file == $PDO->selectPrepare("SELECT logo_general FROM " . TABLE_MANUFACTURERS . " WHERE id=?", [$VALID->inPOST('edit')])) {
+                    for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
+                        // обновляем запись
+                        $PDO->inPrepare("UPDATE " . TABLE_MANUFACTURERS . " SET logo_general=? WHERE id=? AND language=?", ['', $VALID->inPOST('edit'), lang('#lang_all')[$xl]]);
+                    }
+                }
+            }
+        }
+
+        for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
+            // обновляем запись
+            $PDO->inPrepare("UPDATE " . TABLE_MANUFACTURERS . " SET logo=? WHERE id=? AND language=?", [$image_list_new, $VALID->inPOST('edit'), lang('#lang_all')[$xl]]);
+        }
+    }
 }
 
 // Если нажали на кнопку Удалить
@@ -92,29 +121,6 @@ if ($VALID->inPOST('delete')) {
     }
     // Удаляем запись
     $PDO->inPrepare("DELETE FROM " . TABLE_MANUFACTURERS . " WHERE id=?", [$VALID->inPOST('delete')]);
-}
-
-// Выборочное удаление изображений в модальном окне "Редактировать"
-if ($VALID->inPOST('delete_image') && $VALID->inPOST('edit')) {
-    // Получаем массив удаляемых изображений
-    $delete_image_arr = explode(',', $VALID->inPOST('delete_image'), -1);
-    // Получаем массив изображений из БД
-    $image_list_arr = explode(',', $PDO->selectPrepare("SELECT logo FROM " . TABLE_MANUFACTURERS . " WHERE id=?", [$VALID->inPOST('edit')]), -1);
-    $image_list_new = '';
-    foreach ($image_list_arr as $key => $file) {
-        if (!in_array($file, $delete_image_arr)) {
-            $image_list_new .= $file . ',';
-        } else {
-            // Удаляем файлы
-            $FUNC->deleteFile(ROOT . '/downloads/images/manufacturers/resize/' . $file);
-            $FUNC->deleteFile(ROOT . '/downloads/images/manufacturers/originals/' . $file);
-        }
-    }
-
-    for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
-        // обновляем запись
-        $PDO->inPrepare("UPDATE " . TABLE_MANUFACTURERS . " SET logo=? WHERE id=? AND language=?", [$image_list_new, $VALID->inPOST('edit'), lang('#lang_all')[$xl]]);
-    }
 }
 
 // Выборочное удаление изображений в модальном окне "Добавить"
