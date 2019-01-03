@@ -60,7 +60,6 @@ if ($VALID->inPOST('edit')) {
         }
     }
 
-    $general_image_edit = '';
     // Назначаем "Главное изображение" в модальном окне "Редактировать"
     if ($VALID->inPOST('general_image_edit')) {
         $general_image_edit = $VALID->inPOST('general_image_edit');
@@ -72,7 +71,11 @@ if ($VALID->inPOST('edit')) {
 
     for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
         // обновляем запись
-        $PDO->inPrepare("UPDATE " . TABLE_MANUFACTURERS . " SET name=?, site=?, logo=?, logo_general=? WHERE id=? AND language=?", [$VALID->inPOST('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$xl]), $VALID->inPOST('site_edit'), $image_list, $general_image_edit, $VALID->inPOST('edit'), lang('#lang_all')[$xl]]);
+        if (isset($general_image_edit)) {
+            $PDO->inPrepare("UPDATE " . TABLE_MANUFACTURERS . " SET name=?, site=?, logo=?, logo_general=? WHERE id=? AND language=?", [$VALID->inPOST('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$xl]), $VALID->inPOST('site_edit'), $image_list, $general_image_edit, $VALID->inPOST('edit'), lang('#lang_all')[$xl]]);
+        } else {
+            $PDO->inPrepare("UPDATE " . TABLE_MANUFACTURERS . " SET name=?, site=?, logo=? WHERE id=? AND language=?", [$VALID->inPOST('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$xl]), $VALID->inPOST('site_edit'), $image_list, $VALID->inPOST('edit'), lang('#lang_all')[$xl]]);
+        }
     }
 
     // Перемещаем файлы из временной папки в постоянную
@@ -93,19 +96,20 @@ if ($VALID->inPOST('edit')) {
                 // Удаляем файлы
                 $FUNC->deleteFile(ROOT . '/downloads/images/manufacturers/resize/' . $file);
                 $FUNC->deleteFile(ROOT . '/downloads/images/manufacturers/originals/' . $file);
-                // Если удаляемая картинка является главной, то очищаем запись в БД на главную
+                // Если удаляемая картинка является главной, то устанавливаем маркер
                 if ($file == $PDO->selectPrepare("SELECT logo_general FROM " . TABLE_MANUFACTURERS . " WHERE id=?", [$VALID->inPOST('edit')])) {
-                    for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
-                        // обновляем запись
-                        $PDO->inPrepare("UPDATE " . TABLE_MANUFACTURERS . " SET logo_general=? WHERE id=? AND language=?", ['', $VALID->inPOST('edit'), lang('#lang_all')[$xl]]);
-                    }
+                    $logo_general_update = 'ok';
                 }
             }
         }
 
         for ($xl = 0; $xl < count(lang('#lang_all')); $xl++) {
-            // обновляем запись
-            $PDO->inPrepare("UPDATE " . TABLE_MANUFACTURERS . " SET logo=? WHERE id=? AND language=?", [$image_list_new, $VALID->inPOST('edit'), lang('#lang_all')[$xl]]);
+            if (isset($logo_general_update)) {
+                // Если удаляемая картинка является главной, то устанавливаем новую первую картинку по списку главной
+                $PDO->inPrepare("UPDATE " . TABLE_MANUFACTURERS . " SET logo_general=? WHERE id=?", [explode(',', $image_list_new, -1)[0], $VALID->inPOST('edit')]);
+            } else {
+                $PDO->inPrepare("UPDATE " . TABLE_MANUFACTURERS . " SET logo=? WHERE id=? AND language=?", [$image_list_new, $VALID->inPOST('edit'), lang('#lang_all')[$xl]]);
+            }
         }
     }
 }
