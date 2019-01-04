@@ -244,14 +244,13 @@ class Ajax {
                 $('#general_image_edit_new').val(image);
             }
 
-            // Функция хэширования 32-bit (отображение целыми числами)
+            // Функция хэширования 53-bit
             function hash(str) {
-                var hash = 5381,
-                        i = str.length;
-                while (i) {
-                    hash = (hash * 33) ^ str.charCodeAt(--i);
-                }
-                return hash >>> 0;
+                var p1 = 2654435761, p2 = 1597334677, h1 = 0xdeadbeef | 0, h2 = 0x41c6ce57 | 0;
+                for (var i = 0; i < str.length; i++)
+                    ch = str.charCodeAt(i), h1 = Math.imul(h1 + ch, p1), h2 = Math.imul(h2 + ch, p2);
+                h1 = Math.imul(h1 ^ h1 >>> 16, p2), h2 = Math.imul(h2 ^ h2 >>> 15, p1);
+                return (h2 & 2097151) * 4294967296 + h1;
             }
         </script>
 
