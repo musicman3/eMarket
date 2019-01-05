@@ -38,7 +38,7 @@ class Autorize {
             } else {
                 $TOKEN = $_SESSION['hash']; // создаем токен для ajax и пр.
                 //Язык авторизованного администратора
-                $_SESSION['DEFAULT_LANGUAGE'] = $PDO->selectPrepare("SELECT language FROM " . TABLE_ADMINISTRATORS . " WHERE login=? AND password=?", [$_SESSION['login'], $_SESSION['hash']]);
+                $_SESSION['DEFAULT_LANGUAGE'] = $PDO->selectPrepare("SELECT language FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [$_SESSION['login']]);
 
                 return $TOKEN;
             }

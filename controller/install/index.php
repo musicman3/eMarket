@@ -8,16 +8,6 @@
 require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 /* ------------------------------------------ */
 
-//Если не переключали язык
-if (!$VALID->inPOST('language') && $SET->path() == 'install') {
-    $DEFAULT_LANGUAGE = 'russian';
-}
-
-//Если переключили язык
-if ($VALID->inPOST('language')) {
-    $DEFAULT_LANGUAGE = $VALID->inPOST('language');
-}
-
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
 $JS_END = __DIR__;
 
