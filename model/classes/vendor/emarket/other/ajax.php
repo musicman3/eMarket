@@ -115,6 +115,7 @@ class Ajax {
         <script src = "/ext/jquery_file_upload/js/vendor/jquery.ui.widget.js"></script>
         <script src="/ext/jquery_file_upload/js/jquery.iframe-transport.js"></script>
         <script src="/ext/jquery_file_upload/js/jquery.fileupload.js"></script>
+        <script src="/ext/fastmd5/md5.js"></script>
         <script type="text/javascript">
             // Загрузка новых изображений в модальное окно "Редактировать и Добавить"
             $(function () {
@@ -127,7 +128,7 @@ class Ajax {
                     done: function (e, data) {
 
                         $.each(data.result.files, function (index, file) {
-                            var hash_name = hash(file.name); // Хэшируем
+                            var hash_name = md5(file.name); // Хэшируем
 
                             if ($('#add').hasClass('in') === true) {
                                 $('<span class="file-upload" id="image_add_new_' + hash_name + '"/>').html('<div class="holder"><img src="/downloads/upload_handler/files/thumbnail/' + file.name + '" class="thumbnail" id="general_' + hash_name + '" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="deleteImageAddNew_' + hash_name + '" onclick="deleteImageAddNew(\'' + file.name + '\', \'' + hash_name + '\')"><span class="glyphicon glyphicon-trash"></span></button> <button class="btn btn-primary btn-xs" type="button" name="imageGeneralAddNew_' + hash_name + '" onclick="imageGeneralAddNew(\'' + file.name + '\', \'' + hash_name + '\')"><span class="glyphicon glyphicon-star"></span></button></div></div>').appendTo('#logo-add'); // Вставляем лого
@@ -244,14 +245,6 @@ class Ajax {
                 $('#general_image_edit_new').val(image);
             }
 
-            // Функция хэширования 53-bit
-            function hash(str) {
-                var p1 = 2654435761, p2 = 1597334677, h1 = 0xdeadbeef | 0, h2 = 0x41c6ce57 | 0;
-                for (var i = 0; i < str.length; i++)
-                    ch = str.charCodeAt(i), h1 = Math.imul(h1 + ch, p1), h2 = Math.imul(h2 + ch, p2);
-                h1 = Math.imul(h1 ^ h1 >>> 16, p2), h2 = Math.imul(h2 ^ h2 >>> 15, p1);
-                return (h2 & 2097151) * 4294967296 + h1;
-            }
         </script>
 
         <?php
