@@ -27,14 +27,14 @@ class Autorize {
                 header('Location: /controller/admin/login/'); // переадресация на LOGIN
             }
             $_SESSION['session_start'] = time();
-
+            
             if (!isset($_SESSION['hash'])) { // Если нет пользователя
                 session_destroy();
                 header('Location: /controller/admin/login/'); // переадресация на LOGIN
             } else {
                 $TOKEN = $_SESSION['hash']; // создаем токен для ajax и пр.
                 //Язык авторизованного администратора
-                $_SESSION['DEFAULT_LANGUAGE'] = $PDO->selectPrepare("SELECT language FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [$_SESSION['login']]);
+                $_SESSION['DEFAULT_LANGUAGE'] = $PDO->selectPrepare("SELECT language FROM " . TABLE_ADMINISTRATORS . " WHERE login=? AND password=?", [$_SESSION['login'], $_SESSION['hash']]);
 
                 return $TOKEN;
             }
