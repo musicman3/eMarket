@@ -28,7 +28,7 @@ class Autorize {
             }
             $_SESSION['session_start'] = time();
 
-            if (isset($_SESSION['pass']) && isset($_SESSION['hash'])) {
+            if (isset($_SESSION['pass']) && isset($_SESSION['login'])) {
                 $verify = password_verify($_SESSION['pass'], $_SESSION['hash']);
             }
 

@@ -16,22 +16,18 @@ if ($VALID->inGET('logout') == 'ok') {
 }
 
 if ($VALID->inPOST('autorize') == 'ok') {
-    $_SESSION['login'] = $VALID->inPOST('login');
-    $_SESSION['pass'] = $VALID->inPOST('pass');
     //Ищем авторизованного администратора
-    $_SESSION['hash'] = $PDO->selectPrepare("SELECT password FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [$_SESSION['login']]);
-    if (!password_verify($VALID->inPOST('pass'), $_SESSION['hash'])) {    //Если проверка не удалась:
+    if (!password_verify($VALID->inPOST('pass'), $PDO->selectPrepare("SELECT password FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [$VALID->inPOST('login')]))) {    //Если проверка не удалась:
         session_destroy();
         session_start();
         $_SESSION['default_language'] = DEFAULT_LANGUAGE;
         $_SESSION['login_error'] = lang('login_error');
     } else {
+        $_SESSION['login'] = $VALID->inPOST('login');
+        $_SESSION['pass'] = $VALID->inPOST('pass');
+        $_SESSION['hash'] = $PDO->selectPrepare("SELECT password FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [$_SESSION['login']]);
         header('Location: /controller/admin/index.php');    // else: редирект на index.php
     }
-}
-// если авторизован, редирект в админку
-if (isset($_SESSION['login']) == TRUE) {
-    header('Location: /controller/admin/index.php');
 }
 
 // если логин или пароль не верные, то готовим уведомление
