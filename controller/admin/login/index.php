@@ -17,7 +17,8 @@ if ($VALID->inGET('logout') == 'ok') {
 
 if ($VALID->inPOST('autorize') == 'ok') {
     //Ищем авторизованного администратора
-    if (!password_verify($VALID->inPOST('pass'), $PDO->selectPrepare("SELECT password FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [$VALID->inPOST('login')]))) {    //Если проверка не удалась:
+    $HASH = $PDO->selectPrepare("SELECT password FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [$VALID->inPOST('login')]);
+    if (!password_verify($VALID->inPOST('pass'), $HASH)) {    //Если проверка не удалась:
         session_destroy();
         session_start();
         $_SESSION['default_language'] = DEFAULT_LANGUAGE;
@@ -25,7 +26,7 @@ if ($VALID->inPOST('autorize') == 'ok') {
     } else {
         $_SESSION['login'] = $VALID->inPOST('login');
         $_SESSION['pass'] = $VALID->inPOST('pass');
-        $_SESSION['hash'] = $PDO->selectPrepare("SELECT password FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [$_SESSION['login']]);
+        $_SESSION['hash'] = $HASH;
         header('Location: /controller/admin/index.php');    // else: редирект на index.php
     }
 }
