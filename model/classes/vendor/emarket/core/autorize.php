@@ -28,13 +28,13 @@ class Autorize {
             }
             $_SESSION['session_start'] = time();
             
-            if (!isset($_SESSION['hash'])) { // Если нет пользователя
+            if (!isset($_SESSION['login'])) { // Если нет пользователя
                 session_destroy();
                 header('Location: /controller/admin/login/'); // переадресация на LOGIN
             } else {
-                $TOKEN = $_SESSION['hash']; // создаем токен для ajax и пр.
+                $TOKEN = $_SESSION['pass']; // создаем токен для ajax и пр.
                 //Язык авторизованного администратора
-                $_SESSION['DEFAULT_LANGUAGE'] = $PDO->selectPrepare("SELECT language FROM " . TABLE_ADMINISTRATORS . " WHERE login=? AND password=?", [$_SESSION['login'], $_SESSION['hash']]);
+                $_SESSION['DEFAULT_LANGUAGE'] = $PDO->selectPrepare("SELECT language FROM " . TABLE_ADMINISTRATORS . " WHERE login=? AND password=?", [$_SESSION['login'], $_SESSION['pass']]);
 
                 return $TOKEN;
             }
@@ -54,11 +54,11 @@ class Autorize {
 
             session_start();
 
-            if (!isset($_SESSION['hash'])) { // Если нет пользователя
+            if (!isset($_SESSION['login'])) { // Если нет пользователя
                 session_destroy();
                 header('Location: /controller/admin/login/'); // переадресация на LOGIN
             } else {
-                $TOKEN_CATALOG = $_SESSION['hash']; // создаем токен для ajax и пр.
+                $TOKEN_CATALOG = $_SESSION['pass']; // создаем токен для ajax и пр.
                 //Язык авторизованного пользователя
                 $_SESSION['DEFAULT_LANGUAGE'] = DEFAULT_LANGUAGE;
 

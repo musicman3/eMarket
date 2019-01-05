@@ -25,8 +25,7 @@ if ($VALID->inPOST('autorize') == 'ok') {
         $_SESSION['login_error'] = lang('login_error');
     } else {
         $_SESSION['login'] = $VALID->inPOST('login');
-        $_SESSION['pass'] = $VALID->inPOST('pass');
-        $_SESSION['hash'] = $HASH;
+        $_SESSION['pass'] = $HASH;
         header('Location: /controller/admin/index.php');    // else: редирект на index.php
     }
 }
