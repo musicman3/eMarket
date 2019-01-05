@@ -28,11 +28,7 @@ class Autorize {
             }
             $_SESSION['session_start'] = time();
 
-            if (isset($_SESSION['pass']) && isset($_SESSION['hash'])) {
-                $verify = password_verify($_SESSION['pass'], $_SESSION['hash']);
-            }
-
-            if (!isset($verify) OR $verify == FALSE) { // Если нет пользователя
+            if (!isset($_SESSION['hash'])) { // Если нет пользователя
                 session_destroy();
                 header('Location: /controller/admin/login/'); // переадресация на LOGIN
             } else {
@@ -58,11 +54,7 @@ class Autorize {
 
             session_start();
 
-            if (isset($_SESSION['pass']) && isset($_SESSION['hash'])) {
-                $verify = password_verify($_SESSION['pass'], $_SESSION['hash']);
-            }
-
-            if (!isset($verify) OR $verify == FALSE) { // Если нет пользователя
+            if (!isset($_SESSION['hash'])) { // Если нет пользователя
                 session_destroy();
                 header('Location: /controller/admin/login/'); // переадресация на LOGIN
             } else {
