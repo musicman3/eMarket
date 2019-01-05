@@ -8,6 +8,7 @@
 button_go_login = Далее
 confirm_install = Инсталлировать ПО на сервер?
 crypt_blowfish = BLOWFISH
+crypt_argon2i = ARGON2I
 crypt_gost = ГОСТ 28147-89
 crypt_method = Метод шифрования
 crypt_rijndael-256 = AES (RIJNDAEL-256)

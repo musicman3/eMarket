@@ -69,9 +69,9 @@
                             <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-tower"></span></span>
                                 <select name="hash_method" class="input-sm form-control">
-                                    <option value='gost'>-- <?php echo lang('hash_method') ?> --</option>
-                                    <option value='gost'><?php echo lang('hash_gost') ?></option>
-                                    <option value='sha256'><?php echo lang('hash_sha256') ?></option>
+                                    <option value='PASSWORD_DEFAULT'>-- <?php echo lang('hash_method') ?> --</option>
+                                    <option value='PASSWORD_BCRYPT'><?php echo lang('crypt_blowfish') ?></option>
+                                    <option value='PASSWORD_ARGON2I'><?php echo lang('crypt_argon2i') ?></option>
                                 </select>
                             </div>
                         </div>

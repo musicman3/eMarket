@@ -28,17 +28,17 @@ class Autorize {
             }
             $_SESSION['session_start'] = time();
 
-            if (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
-                $verify = $PDO->getRowCount("SELECT * FROM " . TABLE_ADMINISTRATORS . " WHERE login=? AND password=?", [$_SESSION['login'], $_SESSION['pass']]);
+            if (isset($_SESSION['login']) && isset($_SESSION['hash'])) {
+                $verify = password_verify($_SESSION['pass'], $_SESSION['hash']);
             }
 
-            if (!isset($verify) OR $verify != 1) { // Если нет пользователя
+            if (!isset($verify) OR $verify == FALSE) { // Если нет пользователя
                 session_destroy();
                 header('Location: /controller/admin/login/'); // переадресация на LOGIN
             } else {
-                $TOKEN = hash(HASH_METHOD, $_SESSION['login'] . $_SESSION['pass']); // создаем токен для ajax и пр.
+                $TOKEN = $_SESSION['hash']; // создаем токен для ajax и пр.
                 //Язык авторизованного администратора
-                $_SESSION['DEFAULT_LANGUAGE'] = $PDO->selectPrepare("SELECT language FROM " . TABLE_ADMINISTRATORS . " WHERE login=? AND password=?", [$_SESSION['login'], $_SESSION['pass']]);
+                $_SESSION['DEFAULT_LANGUAGE'] = $PDO->selectPrepare("SELECT language FROM " . TABLE_ADMINISTRATORS . " WHERE login=? AND password=?", [$_SESSION['login'], $_SESSION['hash']]);
 
                 return $TOKEN;
             }

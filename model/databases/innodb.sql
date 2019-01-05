@@ -8,7 +8,7 @@
 DROP TABLE IF EXISTS emkt_administrators;
 CREATE TABLE emkt_administrators (
 	login varchar(128) binary NOT NULL,
-	password varchar(64) NOT NULL,
+	password varchar(256) NOT NULL,
 	language varchar(64) NOT NULL,
 	permission varchar(20) NOT NULL,
 	note varchar(256),

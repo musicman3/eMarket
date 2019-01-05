@@ -1,6 +1,6 @@
 <?php
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
-  |    GNU GENERAL PUBLIC LICENSE v.3.0    |    
+  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
@@ -17,12 +17,10 @@ if ($VALID->inGET('logout') == 'ok') {
 
 if ($VALID->inPOST('autorize') == 'ok') {
     $_SESSION['login'] = $VALID->inPOST('login');
-    $_SESSION['pass'] = hash(HASH_METHOD, $VALID->inPOST('pass'));
-
+    $_SESSION['pass'] = $VALID->inPOST('pass');
     //Ищем авторизованного администратора
-    $verify = $PDO->getRowCount("SELECT * FROM " . TABLE_ADMINISTRATORS . " WHERE login=? AND password=?", [$_SESSION['login'], $_SESSION['pass']]);
-
-    if ($verify != 1) {    //Если проверка не удалась:
+    $_SESSION['hash'] = $PDO->selectPrepare("SELECT password FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [$_SESSION['login']]);
+    if (!password_verify($VALID->inPOST('pass'), $_SESSION['hash'])) {    //Если проверка не удалась:
         session_destroy();
         session_start();
         $_SESSION['default_language'] = DEFAULT_LANGUAGE;

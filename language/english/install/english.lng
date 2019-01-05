@@ -8,6 +8,7 @@
 button_go_login = Next
 confirm_install = Install Software?
 crypt_blowfish = BLOWFISH
+crypt_argon2i = ARGON2I
 crypt_gost = GOST 28147-89
 crypt_method = Encryption Method
 crypt_rijndael-256 = AES (RIJNDAEL-256)
