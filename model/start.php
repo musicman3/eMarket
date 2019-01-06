@@ -23,6 +23,6 @@ $AUTORIZE->sessionCatalog();
 // Загружаем языковой роутер
 require_once('router_lang.php');
 // Считаем количество языков
-$_SESSION['lang_count'] = count(lang('#lang_all'));
+$LANG_COUNT = count(lang('#lang_all'));
 
 ?>

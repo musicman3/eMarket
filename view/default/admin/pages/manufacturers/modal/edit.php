@@ -36,8 +36,8 @@ require(ROOT . '/controller/admin/pages/manufacturers/modal/edit.php');
                         </div>
 
                         <?php
-                        if ($_SESSION['lang_count'] > 1) {
-                            for ($x = 1; $x < $_SESSION['lang_count']; $x++) {
+                        if ($LANG_COUNT > 1) {
+                            for ($x = 1; $x < $LANG_COUNT; $x++) {
 
                                 ?>
 

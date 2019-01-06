@@ -39,8 +39,8 @@ require(ROOT . '/controller/admin/pages/settings/length/modal/edit.php');
                         </div>
 
                         <?php
-                        if ($_SESSION['lang_count'] > 1) {
-                            for ($x = 1; $x < $_SESSION['lang_count']; $x++) {
+                        if ($LANG_COUNT > 1) {
+                            for ($x = 1; $x < $LANG_COUNT; $x++) {
                                 ?>
 
                                 <div id="<?php echo lang('#lang_all')[$x] . $modal_id ?>" class="tab-pane fade">
