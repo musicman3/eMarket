@@ -10,7 +10,7 @@ for ($i = $start; $i < $finish; $i++) {
     if (isset($lines[$i][0]) == TRUE) {
 
         $modal_id = $lines[$i][0]; // ID
-        $count_lang = $LANG_COUNT;
+        $count_lang = $_SESSION['lang_count'];
 
         for ($x = 0; $x < $count_lang; $x++) {
             $name_edit_temp[$x][$modal_id] = $PDO->selectPrepare("SELECT name FROM " . TABLE_TAXES . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]]);

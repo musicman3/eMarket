@@ -75,7 +75,7 @@ $submenu[$menu_help][0][0] = array('#', '/admin/images/icons/16x16/wrench_orange
 $menu[$menu_help][1] = array('#', 'locale.png', lang('menu_languages'), '', 'true');
 
 //Вывод языков
-for ($lng = 0; $lng < $LANG_COUNT; $lng++) {
+for ($lng = 0; $lng < $_SESSION['lang_count']; $lng++) {
     $submenu[$menu_help][1][$lng] = array('/controller/admin/?language=' . lang('#lang_all')[$lng], '/admin/images/langflags/' . lang('#lang_all')[$lng] . '.png', lang('language_name', lang('#lang_all')[$lng]));
 }
 

@@ -19,7 +19,7 @@ if ($VALID->inPOST('add')) {
     $id = intval($id_max) + 1;
 
     // добавляем запись для всех вкладок
-    for ($x = 0; $x < $LANG_COUNT; $x++) {
+    for ($x = 0; $x < $_SESSION['lang_count']; $x++) {
         $PDO->inPrepare("INSERT INTO " . TABLE_COUNTRIES . " SET id=?, name=?, language=?, alpha_2=?, alpha_3=?, address_format=?", [$id, $VALID->inPOST($SET->titleDir() . '_' . lang('#lang_all')[$x]), lang('#lang_all')[$x], $VALID->inPOST('alpha_2'), $VALID->inPOST('alpha_3'), $VALID->inPOST('address_format')]);
     }
 }
@@ -27,7 +27,7 @@ if ($VALID->inPOST('add')) {
 // Если нажали на кнопку Редактировать
 if ($VALID->inPOST('edit')) {
 
-    for ($x = 0; $x < $LANG_COUNT; $x++) {
+    for ($x = 0; $x < $_SESSION['lang_count']; $x++) {
         // обновляем запись
         $PDO->inPrepare("UPDATE " . TABLE_COUNTRIES . " SET name=?, alpha_2=?, alpha_3=?, address_format=? WHERE id=? AND language=?", [$VALID->inPOST('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$x]), $VALID->inPOST('alpha_2_edit'), $VALID->inPOST('alpha_3_edit'), $VALID->inPOST('address_format_edit'), $VALID->inPOST('edit'), lang('#lang_all')[$x]]);
     }
