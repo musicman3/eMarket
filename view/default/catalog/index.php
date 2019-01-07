@@ -74,14 +74,14 @@
 	 </div>
     </div>
     <!-- Лого и поиск -->
+    
+    <div class="clearfix"></div>
 
     <!-- Breadcrumb -->
-    <div>&nbsp;&nbsp;
-        <ul class="breadcrumb">
-            <li class="selected"><a href="#">Home</a></li>
-            <li class="selected"><a href="#">Categories</a></li>
-        </ul>
-    </div>
+    <ul class="breadcrumb">
+	<li class="selected"><a href="#">Home</a></li>
+        <li class="selected"><a href="#">Categories</a></li>
+    </ul>
     <!-- Breadcrumb -->
 
     <!-- Слайдер -->
