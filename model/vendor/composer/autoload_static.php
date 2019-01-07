@@ -28,17 +28,11 @@ class ComposerStaticInit6d2863d5173dcc67b5162a89b66e5743
         ),
     );
 
-    public static $classMap = array (
-        'DG\\ComposerCleaner\\Cleaner' => __DIR__ . '/..' . '/dg/composer-cleaner/src/ComposerCleaner/Cleaner.php',
-        'DG\\ComposerCleaner\\Plugin' => __DIR__ . '/..' . '/dg/composer-cleaner/src/ComposerCleaner/Plugin.php',
-    );
-
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit6d2863d5173dcc67b5162a89b66e5743::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit6d2863d5173dcc67b5162a89b66e5743::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit6d2863d5173dcc67b5162a89b66e5743::$classMap;
 
         }, null, ClassLoader::class);
     }

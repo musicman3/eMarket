@@ -7,16 +7,6 @@
         }
     },
     "require": {
-        "gumlet/php-image-resize": "1.9.2",
-        "dg/composer-cleaner": "^2.0"
-    },
-    "extra": {
-		"cleaner-ignore": {
-			"gumlet/php-image-resize": [
-				"lib*"
-			],
-
-			"vendor/emarket/": true
-		}
-	}
+        "gumlet/php-image-resize": "1.9.2"
+    }
 }
