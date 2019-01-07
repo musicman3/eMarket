@@ -6,12 +6,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 // 
 //АВТОЗАГРУЗЧИК КЛАССОВ
-spl_autoload_register(function ($class_name) {
-    $file = __DIR__ . '/classes/vendor/' . strtolower(str_replace('\\', '/', $class_name)) . '.php';
-    if (file_exists($file)) {
-        require_once $file;
-    }
-});
+require_once('vendor/autoload.php');
 //
 //СОЗДАЕМ ОБЪЕКТЫ CORE
 $AUTORIZE = new eMarket\Core\Autorize;

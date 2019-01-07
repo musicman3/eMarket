@@ -1,0 +1,12 @@
+{
+    "name": "eMarket",
+    "description": "eMarket Online Store",
+    "autoload": {
+        "psr-4": {
+            "eMarket\\": "vendor/emarket/"
+        }
+    },
+    "require": {
+        "gumlet/php-image-resize": "1.9.2"
+    }
+}

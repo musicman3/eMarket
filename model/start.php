@@ -7,7 +7,7 @@ error_reporting(-1);
 
 $tstart = microtime(1); // Засекаем начальное время 
 // Автозагрузка
-require_once('autoloader.php');
+require_once('cluster.php');
 
 // Если это инсталлятор, то не грузим файл конфигурации
 if ($SET->path() != 'install') {
