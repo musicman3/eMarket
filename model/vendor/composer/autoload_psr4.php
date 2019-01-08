@@ -6,5 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'eMarket\\' => array($vendorDir . '/eMarket'),
     '' => array($vendorDir . '/league/color-extractor/src'),
 );

@@ -6,18 +6,4 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'eMarket\\Core\\Autorize' => $vendorDir . '/emarket/core/autorize.php',
-    'eMarket\\Core\\Eac' => $vendorDir . '/emarket/core/eac.php',
-    'eMarket\\Core\\Lang' => $vendorDir . '/emarket/core/lang.php',
-    'eMarket\\Core\\Navigation' => $vendorDir . '/emarket/core/navigation.php',
-    'eMarket\\Core\\Pdo' => $vendorDir . '/emarket/core/pdo.php',
-    'eMarket\\Core\\Set' => $vendorDir . '/emarket/core/set.php',
-    'eMarket\\Core\\Tree' => $vendorDir . '/emarket/core/tree.php',
-    'eMarket\\Core\\Valid' => $vendorDir . '/emarket/core/valid.php',
-    'eMarket\\Core\\View' => $vendorDir . '/emarket/core/view.php',
-    'eMarket\\Other\\Ajax' => $vendorDir . '/emarket/other/ajax.php',
-    'eMarket\\Other\\Debug' => $vendorDir . '/emarket/other/debug.php',
-    'eMarket\\Other\\Files' => $vendorDir . '/emarket/other/files.php',
-    'eMarket\\Other\\Func' => $vendorDir . '/emarket/other/func.php',
-    'eMarket\\Other\\Messages' => $vendorDir . '/emarket/other/messages.php',
 );

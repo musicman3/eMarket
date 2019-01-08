@@ -6,6 +6,20 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit6d2863d5173dcc67b5162a89b66e5743
 {
+    public static $prefixLengthsPsr4 = array (
+        'e' => 
+        array (
+            'eMarket\\' => 8,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'eMarket\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/eMarket',
+        ),
+    );
+
     public static $fallbackDirsPsr4 = array (
         0 => __DIR__ . '/..' . '/league/color-extractor/src',
     );
@@ -20,29 +34,13 @@ class ComposerStaticInit6d2863d5173dcc67b5162a89b66e5743
         ),
     );
 
-    public static $classMap = array (
-        'eMarket\\Core\\Autorize' => __DIR__ . '/..' . '/emarket/core/autorize.php',
-        'eMarket\\Core\\Eac' => __DIR__ . '/..' . '/emarket/core/eac.php',
-        'eMarket\\Core\\Lang' => __DIR__ . '/..' . '/emarket/core/lang.php',
-        'eMarket\\Core\\Navigation' => __DIR__ . '/..' . '/emarket/core/navigation.php',
-        'eMarket\\Core\\Pdo' => __DIR__ . '/..' . '/emarket/core/pdo.php',
-        'eMarket\\Core\\Set' => __DIR__ . '/..' . '/emarket/core/set.php',
-        'eMarket\\Core\\Tree' => __DIR__ . '/..' . '/emarket/core/tree.php',
-        'eMarket\\Core\\Valid' => __DIR__ . '/..' . '/emarket/core/valid.php',
-        'eMarket\\Core\\View' => __DIR__ . '/..' . '/emarket/core/view.php',
-        'eMarket\\Other\\Ajax' => __DIR__ . '/..' . '/emarket/other/ajax.php',
-        'eMarket\\Other\\Debug' => __DIR__ . '/..' . '/emarket/other/debug.php',
-        'eMarket\\Other\\Files' => __DIR__ . '/..' . '/emarket/other/files.php',
-        'eMarket\\Other\\Func' => __DIR__ . '/..' . '/emarket/other/func.php',
-        'eMarket\\Other\\Messages' => __DIR__ . '/..' . '/emarket/other/messages.php',
-    );
-
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->prefixLengthsPsr4 = ComposerStaticInit6d2863d5173dcc67b5162a89b66e5743::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit6d2863d5173dcc67b5162a89b66e5743::$prefixDirsPsr4;
             $loader->fallbackDirsPsr4 = ComposerStaticInit6d2863d5173dcc67b5162a89b66e5743::$fallbackDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInit6d2863d5173dcc67b5162a89b66e5743::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit6d2863d5173dcc67b5162a89b66e5743::$classMap;
 
         }, null, ClassLoader::class);
     }
