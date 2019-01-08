@@ -1,5 +1,4 @@
 <?php
-
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -7,6 +6,12 @@
 // 
 //АВТОЗАГРУЗЧИК КЛАССОВ
 require_once('vendor/autoload.php');
+//
+//АВТОЗАГРУЗЧИК ФУНКЦИЙ
+//Получаем список путей к файлам функций
+foreach ($TREE->filesTree(getenv('DOCUMENT_ROOT') . '/model/functions/') as $path) {
+    require_once($path);
+}
 //
 //СОЗДАЕМ ОБЪЕКТЫ CORE
 $AUTORIZE = new eMarket\Core\Autorize;
@@ -26,9 +31,4 @@ $FILES = new eMarket\Other\Files;
 $FUNC = new eMarket\Other\Func;
 $MESSAGES = new eMarket\Other\Messages;
 
-//АВТОЗАГРУЗЧИК ФУНКЦИЙ
-//Получаем список путей к файлам функций
-foreach ($TREE->filesTree(getenv('DOCUMENT_ROOT') . '/model/functions/') as $path) {
-    require_once($path);
-}
 ?>
