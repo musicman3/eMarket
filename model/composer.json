@@ -2,9 +2,8 @@
     "name": "eMarket",
     "description": "eMarket Online Store",
     "autoload": {
-        "psr-4": {
-            "eMarket\\": "vendor/emarket/"
-        }
+        "classmap": 
+                ["vendor/emarket/"]
     },
     "require": {
         "claviska/simpleimage": "^3.3"
