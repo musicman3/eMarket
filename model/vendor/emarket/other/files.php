@@ -59,7 +59,7 @@ class Files {
             foreach ($files as $file) {
                 if (is_file($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
                     $IMAGE->fromFile(ROOT . '/downloads/upload_handler/files/' . basename($file))
-                            ->resize(320)
+                            ->resize(125)
                             ->toFile(ROOT . '/downloads/images/' . $dir . '/resize/' . $prefix . basename($file))
                             ->toScreen();
                 }
