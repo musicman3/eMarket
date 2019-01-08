@@ -7,6 +7,6 @@
         }
     },
     "require": {
-        "gumlet/php-image-resize": "1.9.2"
+        "claviska/simpleimage": "^3.3"
     }
 }

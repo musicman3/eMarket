@@ -7,5 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'eMarket\\' => array($vendorDir . '/emarket'),
-    'Gumlet\\' => array($vendorDir . '/gumlet/php-image-resize/lib'),
+    '' => array($vendorDir . '/league/color-extractor/src'),
 );

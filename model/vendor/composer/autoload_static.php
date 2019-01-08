@@ -11,10 +11,6 @@ class ComposerStaticInit6d2863d5173dcc67b5162a89b66e5743
         array (
             'eMarket\\' => 8,
         ),
-        'G' => 
-        array (
-            'Gumlet\\' => 7,
-        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -22,9 +18,19 @@ class ComposerStaticInit6d2863d5173dcc67b5162a89b66e5743
         array (
             0 => __DIR__ . '/..' . '/emarket',
         ),
-        'Gumlet\\' => 
+    );
+
+    public static $fallbackDirsPsr4 = array (
+        0 => __DIR__ . '/..' . '/league/color-extractor/src',
+    );
+
+    public static $prefixesPsr0 = array (
+        'c' => 
         array (
-            0 => __DIR__ . '/..' . '/gumlet/php-image-resize/lib',
+            'claviska' => 
+            array (
+                0 => __DIR__ . '/..' . '/claviska/simpleimage/src',
+            ),
         ),
     );
 
@@ -33,6 +39,8 @@ class ComposerStaticInit6d2863d5173dcc67b5162a89b66e5743
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit6d2863d5173dcc67b5162a89b66e5743::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit6d2863d5173dcc67b5162a89b66e5743::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInit6d2863d5173dcc67b5162a89b66e5743::$fallbackDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit6d2863d5173dcc67b5162a89b66e5743::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }

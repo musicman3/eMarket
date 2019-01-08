@@ -20,6 +20,7 @@ class Files {
         $VALID = new \eMarket\Core\Valid;
         $TREE = new \eMarket\Core\Tree;
         $FUNC = new \eMarket\Other\Func;
+        $IMAGE = new \claviska\SimpleImage;
 
         // Новый уникальный префикс для файлов
         $prefix = time() . '_';
@@ -38,7 +39,7 @@ class Files {
 
             $image_list = '';
             // Составляем список файлов изображений
-            $files = glob(ROOT . '/downloads/upload_handler/files/thumbnail/*');
+            $files = glob(ROOT . '/downloads/upload_handler/files/*');
             foreach ($files as $file) {
                 if (is_file($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
                     $image_list .= $prefix . basename($file) . ',';
@@ -54,8 +55,17 @@ class Files {
             // Обновляем запись для всех вкладок
             $PDO->inPrepare("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [$image_list, $general_image_add, $id]);
 
-            // Перемещаем файлы из временной папки в постоянную
-            $TREE->filesDirAction(ROOT . '/downloads/upload_handler/files/thumbnail/', ROOT . '/downloads/images/' . $dir . '/resize/', $prefix);
+            // Делаем ресайз
+            foreach ($files as $file) {
+                if (is_file($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
+                    $IMAGE->fromFile(ROOT . '/downloads/upload_handler/files/' . basename($file))
+                            ->resize(320)
+                            ->toFile(ROOT . '/downloads/images/' . $dir . '/resize/' . $prefix . basename($file))
+                            ->toScreen();
+                }
+            }
+
+            // Перемещаем оригинальные файлы из временной папки в постоянную
             $TREE->filesDirAction(ROOT . '/downloads/upload_handler/files/', ROOT . '/downloads/images/' . $dir . '/originals/', $prefix);
         }
 
