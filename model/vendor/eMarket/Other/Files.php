@@ -13,9 +13,9 @@ class Files {
      *
      * @param строка $TABLE
      * @param строка $dir
-     * @param строка $image_max_y = ['94', '150', '244', '394', '638']; пропорционально X= 125, 200, 325, 525, 850
+     * @param строка $image_max = ['94', '150', '244', '394', '638']; пропорционально X= 125, 200, 325, 525, 850
      */
-    public function imgUpload($TABLE, $dir, $image_max_y) {
+    public function imgUpload($TABLE, $dir, $image_max) {
 
         $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
@@ -56,7 +56,7 @@ class Files {
             $PDO->inPrepare("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [$image_list, $general_image_add, $id]);
 
             // Делаем ресайз
-            self::imgResize($dir, $files, $prefix, $image_max_y);
+            self::imgResize($dir, $files, $prefix, $image_max);
         }
 
         // Если нажали на кнопку Редактировать
@@ -86,7 +86,7 @@ class Files {
             }
 
             // Делаем ресайз
-            self::imgResize($dir, $files, $prefix, $image_max_y);
+            self::imgResize($dir, $files, $prefix, $image_max);
 
             // Выборочное удаление изображений в модальном окне "Редактировать"
             if ($VALID->inPOST('delete_image')) {
@@ -100,7 +100,7 @@ class Files {
                         $image_list_new .= $file . ',';
                     } else {
                         // Удаляем файлы
-                        foreach ($image_max_y as $key => $value) {
+                        foreach ($image_max as $key => $value) {
                             $FUNC->deleteFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $file);
                         }
                         $FUNC->deleteFile(ROOT . '/uploads/images/' . $dir . '/originals/' . $file);
@@ -124,7 +124,7 @@ class Files {
             $logo_delete = explode(',', $PDO->selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$VALID->inPOST('delete')]), -1);
             foreach ($logo_delete as $file) {
                 // Удаляем файлы
-                foreach ($image_max_y as $key => $value) {
+                foreach ($image_max as $key => $value) {
                     $FUNC->deleteFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $file);
                 }
                 $FUNC->deleteFile(ROOT . '/uploads/images/' . $dir . '/originals/' . $file);
@@ -139,7 +139,7 @@ class Files {
         }
     }
 
-    public function imgResize($dir, $files, $prefix, $image_max_y) {
+    public function imgResize($dir, $files, $prefix, $image_max) {
 
         // Делаем ресайз
         $IMAGE = new \claviska\SimpleImage;
@@ -148,10 +148,11 @@ class Files {
 
         foreach ($files as $file) {
             if (is_file($file) && file_exists($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
-                foreach ($image_max_y as $key => $value) {
+                foreach ($image_max as $key => $value) {
                     $IMAGE->fromFile(ROOT . '/uploads/upload_handler/files/' . basename($file))
-                            ->resize(null, $value) // ширина, высота
-                            ->toFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $prefix . basename($file));
+                            ->autoOrient()
+                            ->resize($value[0], $value[1]) // ширина, высота
+                            ->toFile(ROOT . '/uploads/images/' . $dir . '/resize_' .  $key . '/' . $prefix . basename($file));
                 }
                 // Удаляем временные файлы в thumbnail
                 $FUNC->deleteFile(ROOT . '/uploads/upload_handler/files/thumbnail/' . basename($file));

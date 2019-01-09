@@ -29,8 +29,11 @@ if ($VALID->inPOST('edit')) {
 }
 
 // Загручик изображений (ВСТАВЛЯТЬ ПЕРЕД УДАЛЕНИЕМ)
-$image_max_y = ['94']; // Прописываем используемые размеры по высоте ['94', '150', '244', '394', '638']
-$FILES->imgUpload(TABLE_MANUFACTURERS, 'manufacturers', $image_max_y);
+$image_max = [];// Прописываем используемые размеры по высоте ['94', '150', '244', '394', '638']
+array_push($image_max, [null,'94']);
+//array_push($image_max, ['150','150']);
+
+$FILES->imgUpload(TABLE_MANUFACTURERS, 'manufacturers', $image_max);
 
 // Если нажали на кнопку Удалить
 if ($VALID->inPOST('delete')) {
