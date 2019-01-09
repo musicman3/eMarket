@@ -21,10 +21,12 @@ class Files {
         $VALID = new \eMarket\Core\Valid;
         $TREE = new \eMarket\Core\Tree;
         $FUNC = new \eMarket\Other\Func;
-        $IMAGE = new \claviska\SimpleImage;
 
         // Новый уникальный префикс для файлов
         $prefix = time() . '_';
+        // Составляем список файлов изображений
+        $files = glob(ROOT . '/uploads/upload_handler/files/*');
+
         // Если открываем модальное окно, то очищаются папки временных файлов изображений
         if ($VALID->inPOST('file_upload') == 'empty') {
             $TREE->filesDirAction(ROOT . '/uploads/upload_handler/files/');
@@ -38,8 +40,6 @@ class Files {
             $id = intval($id_max);
 
             $image_list = '';
-            // Составляем список файлов изображений
-            $files = glob(ROOT . '/uploads/upload_handler/files/*');
             foreach ($files as $file) {
                 if (is_file($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
                     $image_list .= $prefix . basename($file) . ',';
@@ -56,27 +56,13 @@ class Files {
             $PDO->inPrepare("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [$image_list, $general_image_add, $id]);
 
             // Делаем ресайз
-            foreach ($files as $file) {
-                if (is_file($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
-                    foreach ($image_max_y as $key => $value) {
-                        $IMAGE->fromFile(ROOT . '/uploads/upload_handler/files/' . basename($file))
-                                ->resize(null, $value)
-                                ->toFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $prefix . basename($file));
-                    }
-                    // Удаляем временные файлы в thumbnail
-                    $FUNC->deleteFile(ROOT . '/uploads/upload_handler/files/thumbnail/' . basename($file));
-                    // Перемещаем оригинальные файлы из временной папки в постоянную
-                    $TREE->filesDirAction(ROOT . '/uploads/upload_handler/files/', ROOT . '/uploads/images/' . $dir . '/originals/', $prefix);
-                }
-            }
+            self::imgResize($dir, $files, $prefix, $image_max_y);
         }
 
         // Если нажали на кнопку Редактировать
         if ($VALID->inPOST('edit')) {
 
             $image_list = $PDO->selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$VALID->inPOST('edit')]);
-            // Составляем список файлов изображений
-            $files = glob(ROOT . '/uploads/upload_handler/files/thumbnail/*');
             foreach ($files as $file) {
                 if (is_file($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
                     $image_list .= $prefix . basename($file) . ',';
@@ -100,19 +86,7 @@ class Files {
             }
 
             // Делаем ресайз
-            foreach ($files as $file) {
-                if (is_file($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
-                    foreach ($image_max_y as $key => $value) {
-                        $IMAGE->fromFile(ROOT . '/uploads/upload_handler/files/' . basename($file))
-                                ->resize(null, $value)
-                                ->toFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $prefix . basename($file));
-                    }
-                    // Удаляем временные файлы в thumbnail
-                    $FUNC->deleteFile(ROOT . '/uploads/upload_handler/files/thumbnail/' . basename($file));
-                    // Перемещаем оригинальные файлы из временной папки в постоянную
-                    $TREE->filesDirAction(ROOT . '/uploads/upload_handler/files/', ROOT . '/uploads/images/' . $dir . '/originals/', $prefix);
-                }
-            }
+            self::imgResize($dir, $files, $prefix, $image_max_y);
 
             // Выборочное удаление изображений в модальном окне "Редактировать"
             if ($VALID->inPOST('delete_image')) {
@@ -163,6 +137,28 @@ class Files {
             $FUNC->deleteFile(ROOT . '/uploads/upload_handler/files/' . $VALID->inPOST('delete_image'));
             $FUNC->deleteFile(ROOT . '/uploads/upload_handler/files/thumbnail/' . $VALID->inPOST('delete_image'));
         }
+    }
+
+    public function imgResize($dir, $files, $prefix, $image_max_y) {
+
+        // Делаем ресайз
+        $IMAGE = new \claviska\SimpleImage;
+        $FUNC = new \eMarket\Other\Func;
+        $TREE = new \eMarket\Core\Tree;
+
+        foreach ($files as $file) {
+            if (is_file($file) && file_exists($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
+                foreach ($image_max_y as $key => $value) {
+                    $IMAGE->fromFile(ROOT . '/uploads/upload_handler/files/' . basename($file))
+                            ->resize(null, $value) // ширина, высота
+                            ->toFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $prefix . basename($file));
+                }
+                // Удаляем временные файлы в thumbnail
+                $FUNC->deleteFile(ROOT . '/uploads/upload_handler/files/thumbnail/' . basename($file));
+            }
+        }
+        // Перемещаем оригинальные файлы из временной папки в постоянную
+        $TREE->filesDirAction(ROOT . '/uploads/upload_handler/files/', ROOT . '/uploads/images/' . $dir . '/originals/', $prefix);
     }
 
 }
