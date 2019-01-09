@@ -13,7 +13,7 @@ class Files {
      *
      * @param строка $TABLE
      * @param строка $dir
-     * @param строка $image_max = ['94', '150', '244', '394', '638']; пропорционально X= 125, 200, 325, 525, 850
+     * @param массив $image_max
      */
     public function imgUpload($TABLE, $dir, $image_max) {
 
