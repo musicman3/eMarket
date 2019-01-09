@@ -1,4 +1,5 @@
 <?php
+
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -29,9 +30,13 @@ if ($VALID->inPOST('edit')) {
 }
 
 // Загручик изображений (ВСТАВЛЯТЬ ПЕРЕД УДАЛЕНИЕМ)
-$image_max = [];// Размеры по Y ['94', '150', '244', '394', '638'] пропорционально X= 125, 200, 325, 525, 850 при 4:3
-array_push($image_max, [null,'94']); // X, Y
+$image_max = []; // Размеры по Y ['94', '150', '244', '394', '638'] пропорционально X= 125, 200, 325, 525, 850 при 4:3
+array_push($image_max, [null, '94']); // X, Y
 //array_push($image_max, ['150','150']);
+
+if ($VALID->inPOST('thumb')) {
+    $FILES->imgThumb($image_max);
+}
 
 $FILES->imgUpload(TABLE_MANUFACTURERS, 'manufacturers', $image_max);
 
@@ -54,5 +59,4 @@ $JS_END = __DIR__;
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
 require_once(ROOT . '/model/end.php');
 /* ------------------------------------------ */
-
 ?>
