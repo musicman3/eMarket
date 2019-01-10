@@ -150,10 +150,17 @@ class Files {
         foreach ($files as $file) {
             if (is_file($file) && file_exists($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
                 foreach ($image_max as $key => $value) {
-                    $IMAGE->fromFile(ROOT . '/uploads/upload_handler/files/' . basename($file))
-                            ->autoOrient()
-                            ->resize($value[0], $value[1]) // ширина, высота
-                            ->toFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $prefix . basename($file));
+
+                    $width = $IMAGE->fromFile(ROOT . '/uploads/upload_handler/files/' . basename($file))->getWidth();
+                    if ($width > $value[1]) {
+                        $IMAGE->fromFile(ROOT . '/uploads/upload_handler/files/' . basename($file))
+                                ->resize($value[1], $value[0]) // ширина, высота
+                                ->toFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $prefix . basename($file));
+                    } else {
+                        $IMAGE->fromFile(ROOT . '/uploads/upload_handler/files/' . basename($file))
+                                ->resize($value[0], $value[1]) // ширина, высота
+                                ->toFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $prefix . basename($file));
+                    }
                 }
                 // Удаляем временные файлы в thumbnail
                 $FUNC->deleteFile(ROOT . '/uploads/upload_handler/files/thumbnail/' . basename($file));
@@ -161,25 +168,6 @@ class Files {
         }
         // Перемещаем оригинальные файлы из временной папки в постоянную
         $TREE->filesDirAction(ROOT . '/uploads/upload_handler/files/', ROOT . '/uploads/images/' . $dir . '/originals/', $prefix);
-    }
-
-    public function imgThumb($image_max) {
-
-        // Делаем ресайз
-        $IMAGE = new \claviska\SimpleImage;
-
-        $files = glob(ROOT . '/uploads/upload_handler/files/*');
-
-        foreach ($files as $file) {
-            if (is_file($file) && file_exists($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
-                foreach ($image_max[0] as $key => $value) {
-                    $IMAGE->fromFile(ROOT . '/uploads/upload_handler/files/' . basename($file))
-                            ->autoOrient()
-                            ->resize($key, $value) // ширина, высота
-                            ->toFile(ROOT . '/uploads/upload_handler/files/thumbnail/' . basename($file));
-                }
-            }
-        }
     }
 
 }
