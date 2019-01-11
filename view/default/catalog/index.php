@@ -99,7 +99,7 @@
             <li data-target="#Carousel" data-slide-to="2"></li>
         </ol>
         <div class="carousel-inner" role="listbox">
-            <div class="item active"><a href="#"><img src="/images/slideshow/dell.png" alt=""></a><div class="carousel-caption"><h3>Los Angeles</h3><p>LA is always so much fun!</p></div></div>
+            <div class="item active"><a href="#"><img class="img-responsive" src="/images/slideshow/dell.png" alt=""></a><div class="carousel-caption"><h3>Los Angeles</h3><p>LA is always so much fun!</p></div></div>
             <div class="item"><a href="#"><img class="img-responsive" src="/images/slideshow/apple.png" alt=""></a><div class="carousel-caption"><h3>Chicago</h3><p>Thank you, Chicago!</p></div></div>
             <div class="item"><a href="#"><img class="img-responsive" src="/images/slideshow/hp.png" alt=""></a><div class="carousel-caption"><h3>New York</h3><p>We love the Big Apple!</p></div></div>
         </div>
