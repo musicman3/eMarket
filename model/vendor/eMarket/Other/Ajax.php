@@ -145,7 +145,7 @@ class Ajax {
                                 var resize_max_height = <?php echo $resize_max[0][1] ?>;
 
                                 if (this.height <= resize_max_height - 1 && this.width <= resize_max_width - 1) {
-                                    $('#alert_messages').html('<div class="alert alert-danger">ВНИМАНИЕ: Некоторые изображения не добавлены, так как не соответствуют минимальному формату:' + resize_max_width + 'x' + resize_max_height + '</div>');
+                                    $('#alert_messages').html('<div class="alert alert-danger">ВНИМАНИЕ: Некоторые изображения не добавлены, так как не соответствуют минимальному формату. Как минимум одна из сторон должна соответствовать формату: ' + resize_max_width + 'x' + resize_max_height + '</div>');
                                 } else {
 
                                     if (this.height < real_width) {
