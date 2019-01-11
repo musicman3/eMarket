@@ -140,15 +140,17 @@ class Ajax {
                             }
 
                             function imgTesting_onload() {
-                                var real_width = '<?php echo $image_max[0][1] ?>';
+                                var basic_height = '<?php echo $image_max[0][1] ?>';
                                 var resize_max_width = <?php echo $resize_max[0][0] ?>;
                                 var resize_max_height = <?php echo $resize_max[0][1] ?>;
-                                
+
                                 if (this.height <= resize_max_height - 1 && this.width <= resize_max_width - 1) {
+                                    // Если изображение не соответствует минимальным размерам то выводим сообщение
                                     $('#alert_messages').html('<div class="alert alert-danger"><?php echo lang('image_resize_error') ?> ' + resize_max_width + 'x' + resize_max_height + '</div>');
                                 } else {
+                                    // Если все ок, то выводим изображение
                                     $('#alert_messages').empty();
-                                    if (this.height < real_width) {
+                                    if (this.height < basic_height) {
                                         if ($('#add').hasClass('in') === true) {
                                             $('<span class="file-upload" id="image_add_new_' + hash_name + '"/>').html('<div class="holder"><img src="/uploads/upload_handler/files/thumbnail/' + file.name + '" class="thumbnail" width="125" id="general_' + hash_name + '" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="deleteImageAddNew_' + hash_name + '" onclick="deleteImageAddNew(\'' + file.name + '\', \'' + hash_name + '\')"><span class="glyphicon glyphicon-trash"></span></button> <button class="btn btn-primary btn-xs" type="button" name="imageGeneralAddNew_' + hash_name + '" onclick="imageGeneralAddNew(\'' + file.name + '\', \'' + hash_name + '\')"><span class="glyphicon glyphicon-star"></span></button></div></div>').appendTo('#logo-add'); // Вставляем лого
                                         }
