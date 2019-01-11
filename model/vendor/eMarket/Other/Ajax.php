@@ -144,7 +144,7 @@ class Ajax {
                                 var resize_max_width = <?php echo $resize_max[0][0] ?>;
                                 var resize_max_height = <?php echo $resize_max[0][1] ?>;
 
-                                if (this.height <= resize_max_height - 1 && this.width <= resize_max_width - 1) {
+                                if (this.height < resize_max_height && this.width < resize_max_width) {
                                     // Если изображение не соответствует минимальным размерам то выводим сообщение
                                     $('#alert_messages').html('<div class="alert alert-danger"><?php echo lang('image_resize_error') ?> ' + resize_max_width + 'x' + resize_max_height + '</div>');
                                 } else {
