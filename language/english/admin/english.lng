@@ -91,7 +91,7 @@ zone = Zone
 action_completed_successfully = Action completed successfully!
 categories_transfer = Transfer with the next page
 download_complete = Download complete!
-image_resize_error = ATTENTION: Some images not added. One of the sides of the image must be at least in the format:
+image_resize_error = ATTENTION: Some images not added. One of the sides of the image must be at least:
 
 ;BASIC SETTINGS
 lines_on_page = Lines on page

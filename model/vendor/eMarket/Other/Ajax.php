@@ -203,6 +203,7 @@ class Ajax {
                 $('#delete_image').val('');
                 $('#general_image_edit').val('');
                 $('#general_image_add').val('');
+                $('#alert_messages').empty();
                 //$(this).find('form').trigger('reset'); // Очищаем формы
             });
 
