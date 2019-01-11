@@ -34,7 +34,7 @@ $image_max = []; // Размеры по Y ['94', '150', '244', '394', '638'] п�
 array_push($image_max, [null, '93']); // X, Y
 //array_push($image_max, ['150','150']);
 $resize_max = [];
-array_push($resize_max, ['124', '93']); // X, Y
+array_push($resize_max, ['125', '94']); // X, Y
 
 $FILES->imgUpload(TABLE_MANUFACTURERS, 'manufacturers', $image_max);
 

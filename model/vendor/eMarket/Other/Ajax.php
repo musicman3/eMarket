@@ -144,7 +144,7 @@ class Ajax {
                                 var resize_max_width = <?php echo $resize_max[0][0] ?>;
                                 var resize_max_height = <?php echo $resize_max[0][1] ?>;
 
-                                if (this.height < resize_max_width && this.width < resize_max_height) {
+                                if (this.height <= resize_max_height - 1 && this.width <= resize_max_width - 1) {
                                     alert('ВНИМАНИЕ: Некоторые изображения не добавлены, так как не соответствуют минимальному формату:' + resize_max_width + 'x' + resize_max_height);
                                 } else {
 
