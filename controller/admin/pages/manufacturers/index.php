@@ -31,7 +31,7 @@ if ($VALID->inPOST('edit')) {
 
 // Загручик изображений (ВСТАВЛЯТЬ ПЕРЕД УДАЛЕНИЕМ)
 $image_max = []; // Размеры по Y ['94', '150', '244', '394', '638'] пропорционально X= 125, 200, 325, 525, 850 при 4:3
-array_push($image_max, [null, '93']); // X, Y
+array_push($image_max, ['125', '94']); // X, Y
 //array_push($image_max, ['150','150']);
 $resize_max = [];
 array_push($resize_max, ['125', '94']); // X, Y

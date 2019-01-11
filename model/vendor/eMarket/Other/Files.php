@@ -1,5 +1,4 @@
 <?php
-
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -36,6 +35,12 @@ class Files {
         // Если нажали на кнопку Добавить
         if ($VALID->inPOST('add')) {
 
+            // Делаем ресайз
+            self::imgResize($dir, $files, $prefix, $image_max);
+
+            // Составляем новый список файлов изображений
+            $files = glob(ROOT . '/uploads/images/temp/*');
+
             // Получаем последний id и увеличиваем его на 1
             $id_max = $PDO->selectPrepare("SELECT id FROM " . $TABLE . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max);
@@ -43,7 +48,7 @@ class Files {
             $image_list = '';
             foreach ($files as $file) {
                 if (is_file($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
-                    $image_list .= $prefix . basename($file) . ',';
+                    $image_list .= basename($file) . ',';
                 }
             }
             // Назначаем "Главное изображение" в модальном окне "Добавить"
@@ -53,20 +58,26 @@ class Files {
                 $general_image_add = explode(',', $image_list, -1)[0];
             }
 
+            // Перемещаем оригинальные файлы из временной папки в постоянную
+            $TREE->filesDirAction(ROOT . '/uploads/images/temp/', ROOT . '/uploads/images/' . $dir . '/originals/');
+
             // Обновляем запись для всех вкладок
             $PDO->inPrepare("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [$image_list, $general_image_add, $id]);
-
-            // Делаем ресайз
-            self::imgResize($dir, $files, $prefix, $image_max);
         }
 
         // Если нажали на кнопку Редактировать
         if ($VALID->inPOST('edit')) {
 
+            // Делаем ресайз
+            self::imgResize($dir, $files, $prefix, $image_max);
+
+            // Составляем новый список файлов изображений
+            $files = glob(ROOT . '/uploads/images/temp/*');
+
             $image_list = $PDO->selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$VALID->inPOST('edit')]);
             foreach ($files as $file) {
                 if (is_file($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
-                    $image_list .= $prefix . basename($file) . ',';
+                    $image_list .= basename($file) . ',';
                 }
             }
 
@@ -79,15 +90,15 @@ class Files {
                 $general_image_edit = $prefix . $VALID->inPOST('general_image_edit_new');
             }
 
+            // Перемещаем оригинальные файлы из временной папки в постоянную
+            $TREE->filesDirAction(ROOT . '/uploads/images/temp/', ROOT . '/uploads/images/' . $dir . '/originals/');
+
             // Обновляем запись
             if (isset($general_image_edit)) {
                 $PDO->inPrepare("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [$image_list, $general_image_edit, $VALID->inPOST('edit')]);
             } else {
                 $PDO->inPrepare("UPDATE " . $TABLE . " SET logo=? WHERE id=?", [$image_list, $VALID->inPOST('edit')]);
             }
-
-            // Делаем ресайз
-            self::imgResize($dir, $files, $prefix, $image_max);
 
             // Выборочное удаление изображений в модальном окне "Редактировать"
             if ($VALID->inPOST('delete_image')) {
@@ -153,22 +164,31 @@ class Files {
 
                     $width = $IMAGE->fromFile(ROOT . '/uploads/upload_handler/files/' . basename($file))->getWidth();
                     $height = $IMAGE->fromFile(ROOT . '/uploads/upload_handler/files/' . basename($file))->getHeight();
-                    if ($width > $value[1] && $width > $height) {
+
+                    if ($width >= $value[1] && $width > $height) {
+                        //Копируем выбранный оригинал во временную папку
+                        if (!file_exists(ROOT . '/uploads/images/temp/' . $prefix . basename($file))) {
+                            copy(ROOT . '/uploads/upload_handler/files/' . basename($file), ROOT . '/uploads/images/temp/' . $prefix . basename($file));
+                        }
                         $IMAGE->fromFile(ROOT . '/uploads/upload_handler/files/' . basename($file))
-                                ->resize(125, $value[0]) // ширина, высота
+                                ->resize($value[0], null) // ширина, высота
                                 ->toFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $prefix . basename($file));
-                    } else {
+                    } elseif ($width >= $value[1] OR $height >= $value[0]) {
+                        //Копируем выбранный оригинал во временную папку
+                        if (!file_exists(ROOT . '/uploads/images/temp/' . $prefix . basename($file))) {
+                            copy(ROOT . '/uploads/upload_handler/files/' . basename($file), ROOT . '/uploads/images/temp/' . $prefix . basename($file));
+                        }
                         $IMAGE->fromFile(ROOT . '/uploads/upload_handler/files/' . basename($file))
-                                ->resize($value[0], 94) // ширина, высота
+                                ->resize(null, $value[1]) // ширина, высота
                                 ->toFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $prefix . basename($file));
                     }
                 }
                 // Удаляем временные файлы в thumbnail
                 $FUNC->deleteFile(ROOT . '/uploads/upload_handler/files/thumbnail/' . basename($file));
+                // Удаляем временные файлы в files
+                $FUNC->deleteFile(ROOT . '/uploads/upload_handler/files/' . basename($file));
             }
         }
-        // Перемещаем оригинальные файлы из временной папки в постоянную
-        $TREE->filesDirAction(ROOT . '/uploads/upload_handler/files/', ROOT . '/uploads/images/' . $dir . '/originals/', $prefix);
     }
 
 }

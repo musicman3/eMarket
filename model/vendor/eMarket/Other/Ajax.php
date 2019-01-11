@@ -16,6 +16,7 @@ class Ajax {
      */
     public function action($url) {
         $VALID = new \eMarket\Core\Valid;
+
         ?>
         <!-- Модальное окно "Добавить" -->
         <script type="text/javascript">
@@ -108,6 +109,7 @@ class Ajax {
      * @return javascript
      */
     public function fileUpload($url, $image_max, $resize_max) {
+
         ?>
         <!--Подгружаем jQuery File Upload -->
         <script src = "/ext/jquery_file_upload/js/vendor/jquery.ui.widget.js"></script>
@@ -123,6 +125,9 @@ class Ajax {
                 $('#fileupload-add, #fileupload-edit').fileupload({
                     url: url,
                     dataType: 'json',
+                    submit: function (e, data) {
+                        $('#alert_messages').empty();
+                    },
                     done: function (e, data) {
 
                         $.each(data.result.files, function (index, file) {
@@ -149,7 +154,6 @@ class Ajax {
                                     $('#alert_messages').html('<div class="alert alert-danger"><?php echo lang('image_resize_error') ?> ' + resize_max_width + 'x' + resize_max_height + '</div>');
                                 } else {
                                     // Если все ок, то выводим изображение
-                                    $('#alert_messages').empty();
                                     if (this.height < basic_height) {
                                         if ($('#add').hasClass('in') === true) {
                                             $('<span class="file-upload" id="image_add_new_' + hash_name + '"/>').html('<div class="holder"><img src="/uploads/upload_handler/files/thumbnail/' + file.name + '" class="thumbnail" width="135" id="general_' + hash_name + '" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="deleteImageAddNew_' + hash_name + '" onclick="deleteImageAddNew(\'' + file.name + '\', \'' + hash_name + '\')"><span class="glyphicon glyphicon-trash"></span></button> <button class="btn btn-primary btn-xs" type="button" name="imageGeneralAddNew_' + hash_name + '" onclick="imageGeneralAddNew(\'' + file.name + '\', \'' + hash_name + '\')"><span class="glyphicon glyphicon-star"></span></button></div></div>').appendTo('#logo-add'); // Вставляем лого
@@ -278,4 +282,5 @@ class Ajax {
     }
 
 }
+
 ?>
