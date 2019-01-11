@@ -88,7 +88,8 @@
     <style type="text/css">
         .carousel {overflow: hidden;background: none;height: 300px !important;margin-bottom: 10px;}
         .carousel-inner {overflow: visible;}
-        .carousel-inner img {left: 50%;max-width: none !important;min-width: 100%;min-height: 300px;top: 105px;position: absolute;transform: translate(-50%,-50%);}
+        .carousel-inner img {left: 50%;max-width: none !important;min-width: 100%;min-height: 300px; /* = height*/top: 150px /* del height na 2*/;position: absolute;transform: translate(-50%,-50%);}
+        .carousel-caption {position: static;padding-top:100px /* del height na 3*/;}
     </style>
 
     <div id="Carousel" class="carousel slide hidden-xs hidden-sm" data-interval="5000" data-pause="hover" data-ride="carousel">
@@ -98,9 +99,9 @@
             <li data-target="#Carousel" data-slide-to="2"></li>
         </ol>
         <div class="carousel-inner" role="listbox">
-            <div class="item active"><a href="#"><img class="img-responsive" src="/images/slideshow/dell.png" alt=""></a></div>
-            <div class="item"><a href="#"><img class="img-responsive" src="/images/slideshow/apple.png" alt=""></a></div>
-            <div class="item"><a href="#"><img class="img-responsive" src="/images/slideshow/hp.png" alt=""></a></div>
+            <div class="item active"><a href="#"><img src="/images/slideshow/dell.png" alt=""></a><div class="carousel-caption"><h3>Los Angeles</h3><p>LA is always so much fun!</p></div></div>
+            <div class="item"><a href="#"><img class="img-responsive" src="/images/slideshow/apple.png" alt=""></a><div class="carousel-caption"><h3>Chicago</h3><p>Thank you, Chicago!</p></div></div>
+            <div class="item"><a href="#"><img class="img-responsive" src="/images/slideshow/hp.png" alt=""></a><div class="carousel-caption"><h3>New York</h3><p>We love the Big Apple!</p></div></div>
         </div>
         <a class="carousel-control left" href="#Carousel" data-slide="prev">
             <span class="glyphicon glyphicon-chevron-left"></span>
