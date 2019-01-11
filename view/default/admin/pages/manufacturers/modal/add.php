@@ -55,6 +55,9 @@
                                 <input class="input-sm form-control" placeholder="<?php echo lang('site') ?>" type="text" name="site" id="site" />
                             </div>
                         </div>
+                        
+                        <!-- Выводим сообщения -->
+                        <div id="alert_messages"></div>
 
                         <!-- ЗАГРУЗКА jQuery-File-Upload -->
                         <div class="form-group">
