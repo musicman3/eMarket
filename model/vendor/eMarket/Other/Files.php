@@ -153,7 +153,7 @@ class Files {
 
                     $width = $IMAGE->fromFile(ROOT . '/uploads/upload_handler/files/' . basename($file))->getWidth();
                     $height = $IMAGE->fromFile(ROOT . '/uploads/upload_handler/files/' . basename($file))->getHeight();
-                    if ($width >= $value[1] && $width > $height) {
+                    if ($width > $value[1] && $width > $height) {
                         $IMAGE->fromFile(ROOT . '/uploads/upload_handler/files/' . basename($file))
                                 ->resize(125, $value[0]) // ширина, высота
                                 ->toFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $prefix . basename($file));
