@@ -141,8 +141,8 @@ class Ajax {
 
                             function imgTesting_onload() {
                                 var basic_height = '<?php echo $image_max[0][1] ?>';
-                                var resize_max_width = <?php echo $resize_max[0][0] ?>;
-                                var resize_max_height = <?php echo $resize_max[0][1] ?>;
+                                var resize_max_width = <?php echo $resize_max[0][1] ?>;
+                                var resize_max_height = <?php echo $resize_max[0][0] ?>;
 
                                 if (this.height < resize_max_height && this.width < resize_max_width) {
                                     // Если изображение не соответствует минимальным размерам то выводим сообщение
