@@ -90,7 +90,7 @@ div.context-one {padding:5px;}
 .fileinput-button input {position: absolute;top: 0;right: 0;margin: 0;opacity: 0;-ms-filter: 'alpha(opacity=0)';direction: ltr;cursor: pointer;font-size: 1px !important;}
 /* Fixes for IE < 8 */
 @media screen\9 {.fileinput-button input {filter: alpha(opacity=0);font-size: 100%;height: 100%;}}
-.file-upload {display: inline-block;padding:0 3px 0 3px;}
+.file-upload {display: inline-block;padding:0 3px 0 3px;vertical-align:middle;}
 .holder {position:relative;}
 .block {position:absolute;bottom:0;width:100%;height:100%;padding-top:30px;background:rgba(255,255,255, 0.5);display:none;}
 .holder:hover .block {display:block;}
