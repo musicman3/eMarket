@@ -152,13 +152,14 @@ class Files {
                 foreach ($image_max as $key => $value) {
 
                     $width = $IMAGE->fromFile(ROOT . '/uploads/upload_handler/files/' . basename($file))->getWidth();
-                    if ($width > $value[1]) {
+                    $height = $IMAGE->fromFile(ROOT . '/uploads/upload_handler/files/' . basename($file))->getHeight();
+                    if ($width >= $value[1] && $width > $height) {
                         $IMAGE->fromFile(ROOT . '/uploads/upload_handler/files/' . basename($file))
-                                ->resize($value[1], $value[0]) // ширина, высота
+                                ->resize(125, $value[0]) // ширина, высота
                                 ->toFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $prefix . basename($file));
                     } else {
                         $IMAGE->fromFile(ROOT . '/uploads/upload_handler/files/' . basename($file))
-                                ->resize($value[0], $value[1]) // ширина, высота
+                                ->resize($value[0], 94) // ширина, высота
                                 ->toFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $prefix . basename($file));
                     }
                 }

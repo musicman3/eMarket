@@ -34,6 +34,6 @@
 // Подгружаем Ajax Добавить, Редактировать, Удалить
 $AJAX->action('/controller/admin/pages/manufacturers/index.php');
 // Подгружаем jQuery File Upload
-$AJAX->fileUpload('/controller/admin/pages/manufacturers/index.php');
+$AJAX->fileUpload('/controller/admin/pages/manufacturers/index.php', $image_max);
 
 ?>
