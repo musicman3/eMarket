@@ -63,6 +63,9 @@ require(ROOT . '/controller/admin/pages/manufacturers/modal/edit.php');
                             </div>
                         </div>
                         
+                        <!-- Выводим сообщения -->
+                        <div id="alert_messages_edit"></div>
+                        
                         <!-- ЗАГРУЗКА jQuery-File-Upload -->
                         <div class="form-group">
                             <span class="btn btn-primary btn-sm fileinput-button">

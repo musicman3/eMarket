@@ -57,7 +57,7 @@
                         </div>
                         
                         <!-- Выводим сообщения -->
-                        <div id="alert_messages"></div>
+                        <div id="alert_messages_add"></div>
 
                         <!-- ЗАГРУЗКА jQuery-File-Upload -->
                         <div class="form-group">

@@ -126,7 +126,8 @@ class Ajax {
                     url: url,
                     dataType: 'json',
                     submit: function (e, data) {
-                        $('#alert_messages').empty();
+                        $('#alert_messages_add').empty();
+                        $('#alert_messages_edit').empty();
                     },
                     done: function (e, data) {
 
@@ -151,7 +152,12 @@ class Ajax {
 
                                 if (this.height < resize_max_height && this.width < resize_max_width) {
                                     // Если изображение не соответствует минимальным размерам то выводим сообщение
-                                    $('#alert_messages').html('<div class="alert alert-danger"><?php echo lang('image_resize_error') ?> ' + resize_max_width + 'x' + resize_max_height + '</div>');
+                                    if ($('#add').hasClass('in') === true) {
+                                        $('#alert_messages_add').html('<div class="alert alert-danger"><?php echo lang('image_resize_error') ?> ' + resize_max_width + 'x' + resize_max_height + '</div>');
+                                    }
+                                    if ($('#edit').hasClass('in') === true) {
+                                        $('#alert_messages_edit').html('<div class="alert alert-danger"><?php echo lang('image_resize_error') ?> ' + resize_max_width + 'x' + resize_max_height + '</div>');
+                                    }
                                 } else {
                                     // Если все ок, то выводим изображение
                                     if (this.height < basic_height) {
@@ -203,7 +209,8 @@ class Ajax {
                 $('#delete_image').val('');
                 $('#general_image_edit').val('');
                 $('#general_image_add').val('');
-                $('#alert_messages').empty();
+                $('#alert_messages_add').empty();
+                $('#alert_messages_edit').empty();
                 //$(this).find('form').trigger('reset'); // Очищаем формы
             });
 
