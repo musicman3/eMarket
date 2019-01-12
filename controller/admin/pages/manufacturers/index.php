@@ -30,9 +30,12 @@ if ($VALID->inPOST('edit')) {
 }
 
 // Загручик изображений (ВСТАВЛЯТЬ ПЕРЕД УДАЛЕНИЕМ)
-$image_max = []; // Размеры по Y ['94', '150', '244', '394', '638'] пропорционально X= 125, 200, 325, 525, 850 при 4:3
-array_push($image_max, ['125', '94']); // X, Y
-//array_push($image_max, ['150','150']);
+$image_max = [];
+array_push($image_max, ['125', '94']); // ширина, высота
+//array_push($image_max, ['200','150']);
+//array_push($image_max, ['325','244']);
+//array_push($image_max, ['525','394']);
+//array_push($image_max, ['850','638']);
 
 $count_image_max = count($image_max);
 $resize_max = [];
