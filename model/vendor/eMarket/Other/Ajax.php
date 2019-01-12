@@ -108,11 +108,7 @@ class Ajax {
      * @param $url
      * @return javascript
      */
-    public function fileUpload($url, $image_max) {
-        
-        $FILES = new \eMarket\Other\Files;
-        
-        $resize_max = $FILES->imgResizeMax($image_max);
+    public function fileUpload($url, $resize_param) {
 
         ?>
         <!--Подгружаем jQuery File Upload -->
@@ -150,17 +146,16 @@ class Ajax {
                             }
 
                             function imgTesting_onload() {
-                                var basic_height = '<?php echo $image_max[0][1] ?>';
-                                var resize_max_width = <?php echo $resize_max[0][1] ?>;
-                                var resize_max_height = <?php echo $resize_max[0][0] ?>;
+                                var basic_height = <?php echo $resize_param[0][1] ?>;
+                                var basic_width = <?php echo $resize_param[0][0] ?>;
 
-                                if (this.height < resize_max_height && this.width < resize_max_width) {
+                                if (this.height < basic_height - 1 && this.width < basic_width - 1) {
                                     // Если изображение не соответствует минимальным размерам то выводим сообщение
                                     if ($('#add').hasClass('in') === true) {
-                                        $('#alert_messages_add').html('<div class="alert alert-danger"><?php echo lang('image_resize_error') ?> ' + resize_max_width + 'x' + resize_max_height + '</div>');
+                                        $('#alert_messages_add').html('<div class="alert alert-danger"><?php echo lang('image_resize_error') ?> ' + basic_width + 'x' + basic_height + '</div>');
                                     }
                                     if ($('#edit').hasClass('in') === true) {
-                                        $('#alert_messages_edit').html('<div class="alert alert-danger"><?php echo lang('image_resize_error') ?> ' + resize_max_width + 'x' + resize_max_height + '</div>');
+                                        $('#alert_messages_edit').html('<div class="alert alert-danger"><?php echo lang('image_resize_error') ?> ' + basic_width + 'x' + basic_height + '</div>');
                                     }
                                 } else {
                                     // Если все ок, то выводим изображение

@@ -30,14 +30,14 @@ if ($VALID->inPOST('edit')) {
 }
 
 // Загручик изображений (ВСТАВЛЯТЬ ПЕРЕД УДАЛЕНИЕМ)
-$image_max = [];
-array_push($image_max, ['125', '94']); // ширина, высота
-//array_push($image_max, ['200','150']);
-//array_push($image_max, ['325','244']);
-//array_push($image_max, ['525','394']);
-//array_push($image_max, ['850','638']);
+$resize_param = [];
+array_push($resize_param, ['125', '94']); // ширина, высота
+//array_push($resize_param, ['200','150']);
+//array_push($resize_param, ['325','244']);
+//array_push($resize_param, ['525','394']);
+//array_push($resize_param, ['850','638']);
 
-$FILES->imgUpload(TABLE_MANUFACTURERS, 'manufacturers', $image_max);
+$FILES->imgUpload(TABLE_MANUFACTURERS, 'manufacturers', $resize_param);
 
 // Если нажали на кнопку Удалить
 if ($VALID->inPOST('delete')) {
