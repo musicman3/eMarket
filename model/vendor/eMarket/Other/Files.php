@@ -156,7 +156,6 @@ class Files {
         // Делаем ресайз
         $IMAGE = new \claviska\SimpleImage;
         $FUNC = new \eMarket\Other\Func;
-        $TREE = new \eMarket\Core\Tree;
 
         foreach ($files as $file) {
             if (is_file($file) && file_exists($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
