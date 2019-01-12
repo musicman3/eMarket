@@ -197,6 +197,20 @@ class Files {
             }
         }
     }
+    
+     /**
+     * Массив максимальных размеров изображения после ресайза
+     *
+     * @param массив $resize_param
+     * @return массив $resize_max
+     */
+    public function imgResizeMax($resize_param) {
+        
+        $count_image_max = count($resize_param);
+        $resize_max = [];
+        array_push($resize_max, [$resize_param[$count_image_max - 1][0], $resize_param[$count_image_max - 1][1]]);
+        return $resize_max;
+    }
 
 }
 

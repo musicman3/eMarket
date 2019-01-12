@@ -109,6 +109,10 @@ class Ajax {
      * @return javascript
      */
     public function fileUpload($url, $resize_param) {
+        
+        $FILES = new \eMarket\Other\Files;
+        
+        $resize_max = $FILES->imgResizeMax($resize_param);
 
         ?>
         <!--Подгружаем jQuery File Upload -->
@@ -146,20 +150,20 @@ class Ajax {
                             }
 
                             function imgTesting_onload() {
-                                var basic_height = <?php echo $resize_param[0][1] ?>;
-                                var basic_width = <?php echo $resize_param[0][0] ?>;
+                                var quality_height = <?php echo $resize_max[0][1] ?>;
+                                var quality_width = <?php echo $resize_max[0][0] ?>;
 
-                                if (this.height < basic_height - 1 && this.width < basic_width - 1) {
+                                if (this.height < quality_height - 1 && this.width < quality_width - 1) {
                                     // Если изображение не соответствует минимальным размерам то выводим сообщение
                                     if ($('#add').hasClass('in') === true) {
-                                        $('#alert_messages_add').html('<div class="alert alert-danger"><?php echo lang('image_resize_error') ?> ' + basic_width + 'x' + basic_height + '</div>');
+                                        $('#alert_messages_add').html('<div class="alert alert-danger"><?php echo lang('image_resize_error') ?> ' + quality_width + 'x' + quality_height + '</div>');
                                     }
                                     if ($('#edit').hasClass('in') === true) {
-                                        $('#alert_messages_edit').html('<div class="alert alert-danger"><?php echo lang('image_resize_error') ?> ' + basic_width + 'x' + basic_height + '</div>');
+                                        $('#alert_messages_edit').html('<div class="alert alert-danger"><?php echo lang('image_resize_error') ?> ' + quality_width + 'x' + quality_height + '</div>');
                                     }
                                 } else {
                                     // Если все ок, то выводим изображение
-                                    if (this.height < basic_height) {
+                                    if (this.height < quality_height) {
                                         if ($('#add').hasClass('in') === true) {
                                             $('<span class="file-upload" id="image_add_new_' + hash_name + '"/>').html('<div class="holder"><img src="/uploads/upload_handler/files/thumbnail/' + file.name + '" class="thumbnail" width="135" id="general_' + hash_name + '" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="deleteImageAddNew_' + hash_name + '" onclick="deleteImageAddNew(\'' + file.name + '\', \'' + hash_name + '\')"><span class="glyphicon glyphicon-trash"></span></button> <button class="btn btn-primary btn-xs" type="button" name="imageGeneralAddNew_' + hash_name + '" onclick="imageGeneralAddNew(\'' + file.name + '\', \'' + hash_name + '\')"><span class="glyphicon glyphicon-star"></span></button></div></div>').appendTo('#logo-add'); // Вставляем лого
                                         }
