@@ -37,10 +37,6 @@ array_push($image_max, ['125', '94']); // ширина, высота
 //array_push($image_max, ['525','394']);
 //array_push($image_max, ['850','638']);
 
-$count_image_max = count($image_max);
-$resize_max = [];
-array_push($resize_max, [$image_max[$count_image_max-1][0], $image_max[$count_image_max-1][1]]);
-
 $FILES->imgUpload(TABLE_MANUFACTURERS, 'manufacturers', $image_max);
 
 // Если нажали на кнопку Удалить

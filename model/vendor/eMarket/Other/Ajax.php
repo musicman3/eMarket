@@ -108,7 +108,11 @@ class Ajax {
      * @param $url
      * @return javascript
      */
-    public function fileUpload($url, $image_max, $resize_max) {
+    public function fileUpload($url, $image_max) {
+        
+        $FILES = new \eMarket\Other\Files;
+        
+        $resize_max = $FILES->imgResizeMax($image_max);
 
         ?>
         <!--Подгружаем jQuery File Upload -->

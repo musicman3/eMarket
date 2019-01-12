@@ -151,6 +151,14 @@ class Files {
         }
     }
 
+    /**
+     * Ресайз изображений
+     *
+     * @param массив $files
+     * @param строка $dir
+     * @param строка $prefix
+     * @param массив $image_max
+     */
     public function imgResize($dir, $files, $prefix, $image_max) {
 
         // Делаем ресайз
@@ -188,6 +196,20 @@ class Files {
                 $FUNC->deleteFile(ROOT . '/uploads/upload_handler/files/' . basename($file));
             }
         }
+    }
+
+    /**
+     * Массив максимальных размеров изображения после ресайза
+     *
+     * @param массив $image_max
+     * @return массив $resize_max
+     */
+    public function imgResizeMax($image_max) {
+        
+        $count_image_max = count($image_max);
+        $resize_max = [];
+        array_push($resize_max, [$image_max[$count_image_max - 1][0], $image_max[$count_image_max - 1][1]]);
+        return $resize_max;
     }
 
 }
