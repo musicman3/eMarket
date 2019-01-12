@@ -141,7 +141,7 @@ class Ajax {
                             // Вычисляем размеры изображения
                             var imgTesting = new Image();
                             imgTesting.onload = CreateDelegate(imgTesting, imgTesting_onload);
-                            imgTesting.src = '/uploads/upload_handler/files/thumbnail/' + file.name;
+                            imgTesting.src = '/uploads/upload_handler/files/' + file.name;
 
                             function CreateDelegate(contextObject, delegateMethod) {
                                 return function () {
@@ -153,7 +153,7 @@ class Ajax {
                                 var quality_height = <?php echo $resize_max[0][1] ?>;
                                 var quality_width = <?php echo $resize_max[0][0] ?>;
 
-                                if (this.height < quality_height - 1 && this.width < quality_width - 1) {
+                                if (this.height < quality_height && this.width < quality_width) {
                                     // Если изображение не соответствует минимальным размерам то выводим сообщение
                                     if ($('#add').hasClass('in') === true) {
                                         $('#alert_messages_add').html('<div class="alert alert-danger"><?php echo lang('image_resize_error') ?> ' + quality_width + 'x' + quality_height + '</div>');
