@@ -180,7 +180,7 @@ class Files {
                     $quality_width = $resize_max[0][0];
                     $quality_height = $resize_max[0][1];
 
-                    if ($width >= $quality_width && $height < $quality_height) {
+                    if ($width >= $quality_width && $width > $height) {
                         //Копируем выбранный оригинал во временную папку
                         if (!file_exists(ROOT . '/uploads/images/temp/' . $prefix . basename($file))) {
                             copy(ROOT . '/uploads/upload_handler/files/' . basename($file), ROOT . '/uploads/images/temp/' . $prefix . basename($file));
@@ -188,7 +188,7 @@ class Files {
                         $IMAGE->fromFile(ROOT . '/uploads/upload_handler/files/' . basename($file))
                                 ->resize($value[0], null) // ширина, высота
                                 ->toFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $prefix . basename($file));
-                    } elseif (($width >= $quality_width && $height >= $quality_height) OR ($width < $quality_width && $height >= $quality_height)){
+                    } elseif ($height >= $quality_height && $height >= $width){
                         //Копируем выбранный оригинал во временную папку
                         if (!file_exists(ROOT . '/uploads/images/temp/' . $prefix . basename($file))) {
                             copy(ROOT . '/uploads/upload_handler/files/' . basename($file), ROOT . '/uploads/images/temp/' . $prefix . basename($file));
@@ -245,11 +245,11 @@ class Files {
             $quality_height = $resize_max[0][1];
 
             // Делаем ресайз временной картинки thumbnail
-            if ($width >= $quality_width && $height < $quality_height) {
+            if ($width >= $quality_width && $width > $height) {
                 $IMAGE->fromFile(ROOT . '/uploads/upload_handler/files/' . $file)
                         ->resize($resize_param[0][0], null) // ширина, высота
                         ->toFile(ROOT . '/uploads/images/temp/thumbnail/' . $file);
-             } elseif (($width >= $quality_width && $height >= $quality_height) OR ($width < $quality_width && $height >= $quality_height)){
+             } elseif ($height >= $quality_height && $height >= $width){
                 $IMAGE->fromFile(ROOT . '/uploads/upload_handler/files/' . $file)
                         ->resize(null, $resize_param[0][1]) // ширина, высота
                         ->toFile(ROOT . '/uploads/images/temp/thumbnail/' . $file);
