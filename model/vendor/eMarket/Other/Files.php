@@ -23,7 +23,7 @@ class Files {
         $FUNC = new \eMarket\Other\Func;
 
         // Если получили запрос на получение данных по изображению
-        self::imgSizeAjax();
+        self::imgThumbAndSize($resize_param);
 
         // Новый уникальный префикс для файлов
         $prefix = time() . '_';
@@ -34,6 +34,7 @@ class Files {
         if ($VALID->inPOST('file_upload') == 'empty') {
             $TREE->filesDirAction(ROOT . '/uploads/upload_handler/files/');
             $TREE->filesDirAction(ROOT . '/uploads/upload_handler/files/thumbnail/');
+            $TREE->filesDirAction(ROOT . '/uploads/images/temp/thumbnail/');
         }
         // Если нажали на кнопку Добавить
         if ($VALID->inPOST('add')) {
@@ -216,17 +217,38 @@ class Files {
     }
 
     /**
-     * Функция получения размера изображения по запросу Ajax
+     * Функция нарезки thumbnail и получения размера изображения по запросу Ajax
      *
+     * @param массив $resize_param
      * @echo массив $image_data
      */
-    public function imgSizeAjax() {
+    public function imgThumbAndSize($resize_param) {
 
         $VALID = new \eMarket\Core\Valid;
+        $IMAGE = new \claviska\SimpleImage;
 
         // Если получили запрос на получение данных по изображению
         if ($VALID->inPOST('image_data')) {
-            $image_data = getimagesize(ROOT . '/uploads/upload_handler/files/' . $VALID->inPOST('image_data'));
+
+            foreach ($resize_param as $value) {
+
+                $file = $VALID->inPOST('image_data');
+                $image_data = getimagesize(ROOT . '/uploads/upload_handler/files/' . $file);
+
+                $width = $image_data[0];
+                $height = $image_data[1];
+
+                if ($width >= $value[1] && $width > $height) {
+                    $IMAGE->fromFile(ROOT . '/uploads/upload_handler/files/' . $file)
+                            ->resize($value[0], null) // ширина, высота
+                            ->toFile(ROOT . '/uploads/images/temp/thumbnail/' . $file);
+                } elseif ($width >= $value[1] OR $height >= $value[0]) {
+                    $IMAGE->fromFile(ROOT . '/uploads/upload_handler/files/' . $file)
+                            ->resize(null, $value[1]) // ширина, высота
+                            ->toFile(ROOT . '/uploads/images/temp/thumbnail/' . $file);
+                }
+            }
+
             echo json_encode($image_data);
             exit();
         }

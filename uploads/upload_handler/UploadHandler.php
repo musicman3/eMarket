@@ -166,7 +166,7 @@ class UploadHandler
                     'max_height' => 600
                 ),
 		        */
-                'thumbnail' => array(
+                //'thumbnail' => array(
                     // Uncomment the following to use a defined directory for the thumbnails
                     // instead of a subdirectory based on the version identifier.
                     // Make sure that this directory doesn't allow execution of files if you
@@ -178,12 +178,12 @@ class UploadHandler
                     // dimensions and e.g. create square thumbnails:
                     // 'auto_orient' => true,
                     // 'crop' => true,
-                     'jpeg_quality' => 100,
+                    //'jpeg_quality' => 100,
                     // 'no_cache' => true, (there's a caching option, but this remembers thumbnail sizes from a previous action!)
                     // 'strip' => true, (this strips EXIF tags, such as geolocation)
-                    'max_width' => 125, // either specify width, or set to 0. Then width is automatically adjusted - keeping aspect ratio to a specified max_height.
-                    'max_height' => 94 // either specify height, or set to 0. Then height is automatically adjusted - keeping aspect ratio to a specified max_width.
-                )
+                    //'max_width' => 125, // either specify width, or set to 0. Then width is automatically adjusted - keeping aspect ratio to a specified max_height.
+                    //'max_height' => 94 // either specify height, or set to 0. Then height is automatically adjusted - keeping aspect ratio to a specified max_width.
+                //)
             ),
             'print_response' => true
         );
