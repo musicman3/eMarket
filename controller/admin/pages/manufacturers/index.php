@@ -28,13 +28,6 @@ if ($VALID->inPOST('edit')) {
     }
 }
 
-// Если получили запрос на получение данных по изображению
-if ($VALID->inPOST('image_data')) {
-    $image_data = getimagesize(ROOT . '/uploads/upload_handler/files/' . $VALID->inPOST('image_data'));
-    echo json_encode($image_data);
-    exit();
-}
-
 // Загручик изображений (ВСТАВЛЯТЬ ПЕРЕД УДАЛЕНИЕМ)
 $resize_param = [];
 array_push($resize_param, ['125', '94']); // ширина, высота

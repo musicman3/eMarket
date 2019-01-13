@@ -22,6 +22,9 @@ class Files {
         $TREE = new \eMarket\Core\Tree;
         $FUNC = new \eMarket\Other\Func;
 
+        // Если получили запрос на получение данных по изображению
+        self::imgSizeAjax();
+
         // Новый уникальный префикс для файлов
         $prefix = time() . '_';
         // Составляем список файлов изображений
@@ -197,19 +200,36 @@ class Files {
             }
         }
     }
-    
-     /**
+
+    /**
      * Массив максимальных размеров изображения после ресайза
      *
      * @param массив $resize_param
      * @return массив $resize_max
      */
     public function imgResizeMax($resize_param) {
-        
+
         $count_image_max = count($resize_param);
         $resize_max = [];
         array_push($resize_max, [$resize_param[$count_image_max - 1][0], $resize_param[$count_image_max - 1][1]]);
         return $resize_max;
+    }
+
+    /**
+     * Функция получения размера изображения по запросу Ajax
+     *
+     * @echo массив $image_data
+     */
+    public function imgSizeAjax() {
+
+        $VALID = new \eMarket\Core\Valid;
+
+        // Если получили запрос на получение данных по изображению
+        if ($VALID->inPOST('image_data')) {
+            $image_data = getimagesize(ROOT . '/uploads/upload_handler/files/' . $VALID->inPOST('image_data'));
+            echo json_encode($image_data);
+            exit();
+        }
     }
 
 }
