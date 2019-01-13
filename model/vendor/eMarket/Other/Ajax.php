@@ -147,9 +147,9 @@ class Ajax {
                                     // Вычисляем размеры изображения
                                     var this_width = image_size[0];
                                     var this_height = image_size[1];
-                                    var quality_height = <?php echo $resize_max[0][1] ?>;
                                     var quality_width = <?php echo $resize_max[0][0] ?>;
-
+                                    var quality_height = <?php echo $resize_max[0][1] ?>;
+                                    
                                     if (this_height < quality_height && this_width < quality_width) {
                                         // Если изображение не соответствует минимальным размерам то выводим сообщение
                                         if ($('#add').hasClass('in') === true) {

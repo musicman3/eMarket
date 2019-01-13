@@ -158,8 +158,8 @@ class Files {
     /**
      * Ресайз изображений
      *
-     * @param массив $files
-     * @param строка $dir
+     * @param массив $dir
+     * @param строка $files
      * @param строка $prefix
      * @param массив $resize_param
      */
@@ -194,8 +194,6 @@ class Files {
                                 ->toFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $prefix . basename($file));
                     }
                 }
-                // Удаляем временные файлы в thumbnail
-                $FUNC->deleteFile(ROOT . '/uploads/upload_handler/files/thumbnail/' . basename($file));
                 // Удаляем временные файлы в files
                 $FUNC->deleteFile(ROOT . '/uploads/upload_handler/files/' . basename($file));
             }
@@ -230,25 +228,25 @@ class Files {
         // Если получили запрос на получение данных по изображению
         if ($VALID->inPOST('image_data')) {
 
-            foreach ($resize_param as $value) {
+            $file = $VALID->inPOST('image_data');
 
-                $file = $VALID->inPOST('image_data');
-                $image_data = getimagesize(ROOT . '/uploads/upload_handler/files/' . $file);
+            // Массив с данными по оригинальному изображению
+            $image_data = getimagesize(ROOT . '/uploads/upload_handler/files/' . $file);
+            // Получаем ширину и высоту изображения
+            $width = $image_data[0];
+            $height = $image_data[1];
 
-                $width = $image_data[0];
-                $height = $image_data[1];
-
-                if ($width >= $value[1] && $width > $height) {
-                    $IMAGE->fromFile(ROOT . '/uploads/upload_handler/files/' . $file)
-                            ->resize($value[0], null) // ширина, высота
-                            ->toFile(ROOT . '/uploads/images/temp/thumbnail/' . $file);
-                } elseif ($width >= $value[1] OR $height >= $value[0]) {
-                    $IMAGE->fromFile(ROOT . '/uploads/upload_handler/files/' . $file)
-                            ->resize(null, $value[1]) // ширина, высота
-                            ->toFile(ROOT . '/uploads/images/temp/thumbnail/' . $file);
-                }
+            // Делаем ресайз временной картинки thumbnail
+            if ($width >= $resize_param[0][1] && $width > $height) {
+                $IMAGE->fromFile(ROOT . '/uploads/upload_handler/files/' . $file)
+                        ->resize($resize_param[0][0], null) // ширина, высота
+                        ->toFile(ROOT . '/uploads/images/temp/thumbnail/' . $file);
+            } elseif ($width >= $resize_param[0][1] OR $height >= $resize_param[0][0]) {
+                $IMAGE->fromFile(ROOT . '/uploads/upload_handler/files/' . $file)
+                        ->resize(null, $resize_param[0][1]) // ширина, высота
+                        ->toFile(ROOT . '/uploads/images/temp/thumbnail/' . $file);
             }
-
+            // Отправяем данные по изображению в ответ на запрос Ajax
             echo json_encode($image_data);
             exit();
         }
