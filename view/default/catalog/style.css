@@ -10,6 +10,9 @@ body{font-family: 'Lato',sans-serif;}
 #bodyContent {padding-bottom: 10px;}
 .breadcrumb{margin-bottom:10px;margin-top:10px;}
 #Carousel {margin-bottom:10px;}
+#Carousel .left {border-left: 0px solid #ddd;border-radius: 6px;}
+#Carousel .right {border-right: 0px solid #ddd;border-radius: 6px;}
+.carousel-inner {border: 1px solid #ddd;border-radius: 6px;}
 .carousel-inner h3 {padding: 20px;animation: anime-H3 1.3s ease-out;}
 .carousel-inner p {font-size: 18px;padding: 20px;animation: anime-P 1.6s ease-out;}
 @keyframes anime-H3 { from { opacity: 0; transform: translateX(-2000px); } to { opacity: 1; transform: translateX(0); } }
