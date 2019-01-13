@@ -33,7 +33,6 @@ class Files {
         // Если открываем модальное окно, то очищаются папки временных файлов изображений
         if ($VALID->inPOST('file_upload') == 'empty') {
             $TREE->filesDirAction(ROOT . '/uploads/upload_handler/files/');
-            $TREE->filesDirAction(ROOT . '/uploads/upload_handler/files/thumbnail/'); // Для совместимости
             $TREE->filesDirAction(ROOT . '/uploads/images/temp/thumbnail/');
         }
         // Если нажали на кнопку Добавить
