@@ -1,5 +1,4 @@
 <?php
-
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -27,6 +26,13 @@ if ($VALID->inPOST('edit')) {
     for ($x = 0; $x < $LANG_COUNT; $x++) {
         $PDO->inPrepare("UPDATE " . TABLE_MANUFACTURERS . " SET name=?, site=? WHERE id=? AND language=?", [$VALID->inPOST('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$x]), $VALID->inPOST('site_edit'), $VALID->inPOST('edit'), lang('#lang_all')[$x]]);
     }
+}
+
+// Если получили запрос на получение данных по изображению
+if ($VALID->inPOST('image_data')) {
+    $image_data = getimagesize(ROOT . '/uploads/upload_handler/files/' . $VALID->inPOST('image_data'));
+    echo json_encode($image_data);
+    exit();
 }
 
 // Загручик изображений (ВСТАВЛЯТЬ ПЕРЕД УДАЛЕНИЕМ)
@@ -58,4 +64,5 @@ $JS_END = __DIR__;
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
 require_once(ROOT . '/model/end.php');
 /* ------------------------------------------ */
+
 ?>
