@@ -147,8 +147,8 @@ class Ajax {
                                     // Вычисляем размеры изображения
                                     var this_width = image_size[0]; // Ширина оригинала
                                     var this_height = image_size[1]; // Высота оригинала
-                                    var quality_width = <?php echo $resize_max[0][0] ?>; // Минимальный размер ширины для качественного ресайза
-                                    var quality_height = <?php echo $resize_max[0][1] ?>; // Минимальный размер высоты для качественного ресайза
+                                    var quality_width = <?php echo $resize_max[0] ?>; // Минимальный размер ширины для качественного ресайза
+                                    var quality_height = <?php echo $resize_max[1] ?>; // Минимальный размер высоты для качественного ресайза
 
                                     if (this_height < quality_height && this_width < quality_width) {
                                         // Если изображение не соответствует минимальным размерам то выводим сообщение

@@ -177,8 +177,8 @@ class Files {
                     $width = $IMAGE->fromFile(ROOT . '/uploads/upload_handler/files/' . basename($file))->getWidth();
                     $height = $IMAGE->fromFile(ROOT . '/uploads/upload_handler/files/' . basename($file))->getHeight();
 
-                    $quality_width = $resize_max[0][0];
-                    $quality_height = $resize_max[0][1];
+                    $quality_width = $resize_max[0];
+                    $quality_height = $resize_max[1];
 
                     if ($width >= $quality_width && $width > $height) {
                         //Копируем выбранный оригинал во временную папку
@@ -200,6 +200,7 @@ class Files {
                 }
                 // Удаляем временные файлы
                 $FUNC->deleteFile(ROOT . '/uploads/images/temp/thumbnail/' . basename($file));
+                $FUNC->deleteFile(ROOT . '/uploads/upload_handler/files/' . basename($file));
             }
         }
     }
@@ -215,7 +216,7 @@ class Files {
         $count_image_max = count($resize_param);
         $resize_max = [];
         array_push($resize_max, [$resize_param[$count_image_max - 1][0], $resize_param[$count_image_max - 1][1]]);
-        return $resize_max;
+        return $resize_max[0];
     }
 
     /**
@@ -241,8 +242,8 @@ class Files {
             $width = $image_data[0];
             $height = $image_data[1];
 
-            $quality_width = $resize_max[0][0];
-            $quality_height = $resize_max[0][1];
+            $quality_width = $resize_max[0];
+            $quality_height = $resize_max[1];
 
             // Делаем ресайз временной картинки thumbnail
             if ($width >= $quality_width && $width > $height) {
