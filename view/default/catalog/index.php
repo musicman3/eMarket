@@ -92,23 +92,32 @@
             <li data-target="#Carousel" data-slide-to="2"></li>
         </ol>
         <div class="carousel-inner" role="listbox" >
-            <div class="item active"><img class="center-block" src="/uploads/images/slideshow/originals/slider-1.jpg" alt="">
-		<div class="carousel-caption">
+            <div class="item active">
+		<a href="#">
+		    <img class="center-block" src="/uploads/images/slideshow/originals/slider-1.jpg" alt="">
+		    <div class="carousel-caption">
 		    <h3>Los Angeles</h3>
 		    <p>LA is always so much fun!</p>
-		</div>
+		    </div>
+		</a>
 	    </div>
-            <div class="item"><img class="center-block" src="/uploads/images/slideshow/originals/slider-2.jpg" alt="">
-		<div class="carousel-caption">
+            <div class="item">
+		<a href="#">
+		    <img class="center-block" src="/uploads/images/slideshow/originals/slider-2.jpg" alt="">
+		    <div class="carousel-caption">
 		    <h3>Chicago</h3>
 		    <p>Thank you, Chicago!</p>
-		</div>
+		    </div>
+		</a>
 	    </div>
-            <div class="item"><img class="center-block" src="/uploads/images/slideshow/originals/slider-3.jpg" alt="">
-		<div class="carousel-caption">
+            <div class="item">
+		<a href="#">
+		    <img class="center-block" src="/uploads/images/slideshow/originals/slider-3.jpg" alt="">
+		    <div class="carousel-caption">
 		    <h3>New York</h3>
 		    <p>We love the Big Apple!</p>
-		</div>
+		    </div>
+		</a>
 	    </div>
         </div>
         <a class="carousel-control left" href="#Carousel" data-slide="prev">
