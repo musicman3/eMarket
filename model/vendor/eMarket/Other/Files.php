@@ -168,6 +168,7 @@ class Files {
         // Делаем ресайз
         $IMAGE = new \claviska\SimpleImage;
         $FUNC = new \eMarket\Other\Func;
+        $resize_max = self::imgResizeMax($resize_param);
 
         foreach ($files as $file) {
             if (is_file($file) && file_exists($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
@@ -175,8 +176,11 @@ class Files {
 
                     $width = $IMAGE->fromFile(ROOT . '/uploads/upload_handler/files/' . basename($file))->getWidth();
                     $height = $IMAGE->fromFile(ROOT . '/uploads/upload_handler/files/' . basename($file))->getHeight();
+                    
+                    $quality_width = $resize_max[0][0];
+                    $quality_height = $resize_max[0][1];
 
-                    if ($width >= $value[1] && $width > $height) {
+                    if ($width >= $quality_width && $height < $quality_height) {
                         //Копируем выбранный оригинал во временную папку
                         if (!file_exists(ROOT . '/uploads/images/temp/' . $prefix . basename($file))) {
                             copy(ROOT . '/uploads/upload_handler/files/' . basename($file), ROOT . '/uploads/images/temp/' . $prefix . basename($file));
@@ -184,7 +188,7 @@ class Files {
                         $IMAGE->fromFile(ROOT . '/uploads/upload_handler/files/' . basename($file))
                                 ->resize($value[0], null) // ширина, высота
                                 ->toFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $prefix . basename($file));
-                    } elseif ($width >= $value[1] OR $height >= $value[0]) {
+                    } else{
                         //Копируем выбранный оригинал во временную папку
                         if (!file_exists(ROOT . '/uploads/images/temp/' . $prefix . basename($file))) {
                             copy(ROOT . '/uploads/upload_handler/files/' . basename($file), ROOT . '/uploads/images/temp/' . $prefix . basename($file));
@@ -224,6 +228,7 @@ class Files {
 
         $VALID = new \eMarket\Core\Valid;
         $IMAGE = new \claviska\SimpleImage;
+        $resize_max = self::imgResizeMax($resize_param);
 
         // Если получили запрос на получение данных по изображению
         if ($VALID->inPOST('image_data')) {
@@ -235,13 +240,16 @@ class Files {
             // Получаем ширину и высоту изображения
             $width = $image_data[0];
             $height = $image_data[1];
+            
+            $quality_width = $resize_max[0][0];
+            $quality_height = $resize_max[0][1];
 
             // Делаем ресайз временной картинки thumbnail
-            if ($width >= $resize_param[0][1] && $width > $height) {
+            if ($width >= $quality_width && $height < $quality_height) {
                 $IMAGE->fromFile(ROOT . '/uploads/upload_handler/files/' . $file)
                         ->resize($resize_param[0][0], null) // ширина, высота
                         ->toFile(ROOT . '/uploads/images/temp/thumbnail/' . $file);
-            } elseif ($width >= $resize_param[0][1] OR $height >= $resize_param[0][0]) {
+             } else{
                 $IMAGE->fromFile(ROOT . '/uploads/upload_handler/files/' . $file)
                         ->resize(null, $resize_param[0][1]) // ширина, высота
                         ->toFile(ROOT . '/uploads/images/temp/thumbnail/' . $file);
