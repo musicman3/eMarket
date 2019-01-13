@@ -109,9 +109,9 @@ class Ajax {
      * @return javascript
      */
     public function fileUpload($url, $resize_param) {
-        
+
         $FILES = new \eMarket\Other\Files;
-        
+
         $resize_max = $FILES->imgResizeMax($resize_param);
 
         ?>
@@ -139,17 +139,10 @@ class Ajax {
                             var hash_name = md5(file.name); // Хэшируем
 
                             // Вычисляем размеры изображения
-                            var imgTesting = new Image();
-                            imgTesting.onload = CreateDelegate(imgTesting, imgTesting_onload);
-                            imgTesting.src = '/uploads/upload_handler/files/' + file.name;
-
-                            function CreateDelegate(contextObject, delegateMethod) {
-                                return function () {
-                                    return delegateMethod.apply(contextObject, arguments);
-                                };
-                            }
-
-                            function imgTesting_onload() {
+                            var img = new Image();
+                            img.src = '/uploads/upload_handler/files/' + file.name;
+                            
+                            img.onload = function () {
                                 var quality_height = <?php echo $resize_max[0][1] ?>;
                                 var quality_width = <?php echo $resize_max[0][0] ?>;
 
