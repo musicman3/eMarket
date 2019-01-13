@@ -188,7 +188,7 @@ class Files {
                         $IMAGE->fromFile(ROOT . '/uploads/upload_handler/files/' . basename($file))
                                 ->resize($value[0], null) // ширина, высота
                                 ->toFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $prefix . basename($file));
-                    } else{
+                    } elseif ($width >= $quality_width && $height >= $quality_height){
                         //Копируем выбранный оригинал во временную папку
                         if (!file_exists(ROOT . '/uploads/images/temp/' . $prefix . basename($file))) {
                             copy(ROOT . '/uploads/upload_handler/files/' . basename($file), ROOT . '/uploads/images/temp/' . $prefix . basename($file));
@@ -249,7 +249,7 @@ class Files {
                 $IMAGE->fromFile(ROOT . '/uploads/upload_handler/files/' . $file)
                         ->resize($resize_param[0][0], null) // ширина, высота
                         ->toFile(ROOT . '/uploads/images/temp/thumbnail/' . $file);
-             } else{
+             } elseif ($width >= $quality_width && $height >= $quality_height){
                 $IMAGE->fromFile(ROOT . '/uploads/upload_handler/files/' . $file)
                         ->resize(null, $resize_param[0][1]) // ширина, высота
                         ->toFile(ROOT . '/uploads/images/temp/thumbnail/' . $file);
