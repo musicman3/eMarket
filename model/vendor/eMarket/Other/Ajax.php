@@ -139,7 +139,6 @@ class Ajax {
                             var hash_name = md5(file.name); // Хэшируем
 
                             // Установка синхронного запроса jQuery.ajax для получения размеров изображения
-                            jQuery.ajaxSetup({async: false});
                             jQuery.ajax({
                                 type: 'POST',
                                 dataType: 'json',
