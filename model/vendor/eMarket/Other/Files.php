@@ -33,7 +33,7 @@ class Files {
         // Если открываем модальное окно, то очищаются папки временных файлов изображений
         if ($VALID->inPOST('file_upload') == 'empty') {
             $TREE->filesDirAction(ROOT . '/uploads/upload_handler/files/');
-            $TREE->filesDirAction(ROOT . '/uploads/upload_handler/files/thumbnail/');
+            $TREE->filesDirAction(ROOT . '/uploads/upload_handler/files/thumbnail/'); // Для совместимости
             $TREE->filesDirAction(ROOT . '/uploads/images/temp/thumbnail/');
         }
         // Если нажали на кнопку Добавить
@@ -151,7 +151,7 @@ class Files {
         if ($VALID->inPOST('delete_new_image') == 'ok' && $VALID->inPOST('delete_image')) {
             // Удаляем файлы
             $FUNC->deleteFile(ROOT . '/uploads/upload_handler/files/' . $VALID->inPOST('delete_image'));
-            $FUNC->deleteFile(ROOT . '/uploads/upload_handler/files/thumbnail/' . $VALID->inPOST('delete_image'));
+            $FUNC->deleteFile(ROOT . '/uploads/images/temp/thumbnail/' . $VALID->inPOST('delete_image'));
         }
     }
 
@@ -176,7 +176,7 @@ class Files {
 
                     $width = $IMAGE->fromFile(ROOT . '/uploads/upload_handler/files/' . basename($file))->getWidth();
                     $height = $IMAGE->fromFile(ROOT . '/uploads/upload_handler/files/' . basename($file))->getHeight();
-                    
+
                     $quality_width = $resize_max[0][0];
                     $quality_height = $resize_max[0][1];
 
@@ -188,7 +188,7 @@ class Files {
                         $IMAGE->fromFile(ROOT . '/uploads/upload_handler/files/' . basename($file))
                                 ->resize($value[0], null) // ширина, высота
                                 ->toFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $prefix . basename($file));
-                    } elseif ($height >= $quality_height && $height >= $width){
+                    } elseif ($height >= $quality_height && $height >= $width) {
                         //Копируем выбранный оригинал во временную папку
                         if (!file_exists(ROOT . '/uploads/images/temp/' . $prefix . basename($file))) {
                             copy(ROOT . '/uploads/upload_handler/files/' . basename($file), ROOT . '/uploads/images/temp/' . $prefix . basename($file));
@@ -198,8 +198,8 @@ class Files {
                                 ->toFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $prefix . basename($file));
                     }
                 }
-                // Удаляем временные файлы в files
-                $FUNC->deleteFile(ROOT . '/uploads/upload_handler/files/' . basename($file));
+                // Удаляем временные файлы
+                $FUNC->deleteFile(ROOT . '/uploads/images/temp/thumbnail/' . basename($file));
             }
         }
     }
@@ -240,7 +240,7 @@ class Files {
             // Получаем ширину и высоту изображения
             $width = $image_data[0];
             $height = $image_data[1];
-            
+
             $quality_width = $resize_max[0][0];
             $quality_height = $resize_max[0][1];
 
@@ -249,7 +249,7 @@ class Files {
                 $IMAGE->fromFile(ROOT . '/uploads/upload_handler/files/' . $file)
                         ->resize($resize_param[0][0], null) // ширина, высота
                         ->toFile(ROOT . '/uploads/images/temp/thumbnail/' . $file);
-             } elseif ($height >= $quality_height && $height >= $width){
+            } elseif ($height >= $quality_height && $height >= $width) {
                 $IMAGE->fromFile(ROOT . '/uploads/upload_handler/files/' . $file)
                         ->resize(null, $resize_param[0][1]) // ширина, высота
                         ->toFile(ROOT . '/uploads/images/temp/thumbnail/' . $file);
