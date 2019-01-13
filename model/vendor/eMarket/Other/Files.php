@@ -241,7 +241,7 @@ class Files {
             // Получаем ширину и высоту изображения
             $width = $image_data[0];
             $height = $image_data[1];
-
+            //Минимальный размер ширины и высоты для качественного ресайза
             $quality_width = $resize_max[0];
             $quality_height = $resize_max[1];
 
