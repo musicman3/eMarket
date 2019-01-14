@@ -124,7 +124,7 @@ class Ajax {
             // Загрузка новых изображений в модальное окно "Редактировать и Добавить"
             $(function () {
                 'use strict';
-                var url = '/uploads/upload_handler/';
+                var url = '/uploads/images/temp/';
 
                 $('#fileupload-add, #fileupload-edit').fileupload({
                     url: url,
