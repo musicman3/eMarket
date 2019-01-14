@@ -105,10 +105,12 @@ class Ajax {
     /**
      * jQuery File Upload
      *
-     * @param $url
+     * @param строка $url
+     * @param строка $dir
+     * @param массив $resize_param
      * @return javascript
      */
-    public function fileUpload($url, $resize_param) {
+    public function fileUpload($url, $dir, $resize_param) {
 
         $FILES = new \eMarket\Other\Files;
 
@@ -217,7 +219,7 @@ class Ajax {
                 for (x = 0; x < logo_edit[modal_id].length; x++) {
                     var image = logo_edit[modal_id][x];
 
-                    $('<span class="file-upload" id="image_edit_' + x + '"/>').html('<div class="holder"><img src="/uploads/images/manufacturers/resize_0/' + image + '" class="thumbnail" id="general_' + x + '" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="delete_image_' + x + '" onclick="deleteImageEdit(\'' + image + '\', \'' + x + '\')"><span class="glyphicon glyphicon-trash"></span></button> <button class="btn btn-primary btn-xs" type="button" name="image_general_edit' + x + '" onclick="imageGeneralEdit(\'' + image + '\', \'' + x + '\')"><span class="glyphicon glyphicon-star"></span></button></div></div>').appendTo('#logo-edit'); // Вставляем лого
+                    $('<span class="file-upload" id="image_edit_' + x + '"/>').html('<div class="holder"><img src="/uploads/images/<?php echo $dir ?>/resize_0/' + image + '" class="thumbnail" id="general_' + x + '" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="delete_image_' + x + '" onclick="deleteImageEdit(\'' + image + '\', \'' + x + '\')"><span class="glyphicon glyphicon-trash"></span></button> <button class="btn btn-primary btn-xs" type="button" name="image_general_edit' + x + '" onclick="imageGeneralEdit(\'' + image + '\', \'' + x + '\')"><span class="glyphicon glyphicon-star"></span></button></div></div>').appendTo('#logo-edit'); // Вставляем лого
                     // Если это главное изображение, то выделяем его
                     if (logo_general_edit[modal_id] === image) {
                         $('#general_' + x).addClass('img-active');

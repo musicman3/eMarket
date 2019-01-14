@@ -32,8 +32,8 @@
 </script>
 <?php
 // Подгружаем Ajax Добавить, Редактировать, Удалить
-$AJAX->action('/controller/admin/pages/manufacturers/index.php');
+$AJAX->action('index.php');
 // Подгружаем jQuery File Upload
-$AJAX->fileUpload('/controller/admin/pages/manufacturers/index.php', $resize_param);
+$AJAX->fileUpload('index.php', 'manufacturers', $resize_param);
 
 ?>
