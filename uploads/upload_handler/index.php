@@ -11,7 +11,7 @@
  */
 
 error_reporting(E_ALL | E_STRICT);
-require('UploadHandler.php');
+require_once('../../model/vendor/autoload.php');
 
 $options = array(
     'image_versions' => array(
@@ -51,6 +51,5 @@ $options = array(
     //)
     )
 );
-
 
 $upload_handler = new UploadHandler($options);

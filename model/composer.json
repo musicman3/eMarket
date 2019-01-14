@@ -4,7 +4,8 @@
     "autoload": {
         "psr-4": {
             "eMarket\\": "vendor/eMarket/"
-        }
+        },
+        "classmap": ["vendor/blueimp/"]
     },
     "require": {
         "claviska/simpleimage": "^3.3"

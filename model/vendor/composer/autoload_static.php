@@ -34,6 +34,10 @@ class ComposerStaticInit6d2863d5173dcc67b5162a89b66e5743
         ),
     );
 
+    public static $classMap = array (
+        'UploadHandler' => __DIR__ . '/..' . '/blueimp/fileupload/UploadHandler.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
@@ -41,6 +45,7 @@ class ComposerStaticInit6d2863d5173dcc67b5162a89b66e5743
             $loader->prefixDirsPsr4 = ComposerStaticInit6d2863d5173dcc67b5162a89b66e5743::$prefixDirsPsr4;
             $loader->fallbackDirsPsr4 = ComposerStaticInit6d2863d5173dcc67b5162a89b66e5743::$fallbackDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInit6d2863d5173dcc67b5162a89b66e5743::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit6d2863d5173dcc67b5162a89b66e5743::$classMap;
 
         }, null, ClassLoader::class);
     }
