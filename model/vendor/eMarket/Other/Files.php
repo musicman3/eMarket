@@ -28,12 +28,12 @@ class Files {
         // Новый уникальный префикс для файлов
         $prefix = time() . '_';
         // Составляем список файлов изображений
-        $files = glob(ROOT . '/uploads/images/temp/files/*');
+        $files = glob(ROOT . '/uploads/temp/files/*');
 
         // Если открываем модальное окно, то очищаются папки временных файлов изображений
         if ($VALID->inPOST('file_upload') == 'empty') {
-            $TREE->filesDirAction(ROOT . '/uploads/images/temp/originals/');
-            $TREE->filesDirAction(ROOT . '/uploads/images/temp/thumbnail/');
+            $TREE->filesDirAction(ROOT . '/uploads/temp/originals/');
+            $TREE->filesDirAction(ROOT . '/uploads/temp/thumbnail/');
         }
         // Если нажали на кнопку Добавить
         if ($VALID->inPOST('add')) {
@@ -42,7 +42,7 @@ class Files {
             self::imgResize($dir, $files, $prefix, $resize_param);
 
             // Составляем новый список файлов изображений
-            $files = glob(ROOT . '/uploads/images/temp/originals/*');
+            $files = glob(ROOT . '/uploads/temp/originals/*');
 
             // Получаем последний id и увеличиваем его на 1
             $id_max = $PDO->selectPrepare("SELECT id FROM " . $TABLE . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
@@ -62,7 +62,7 @@ class Files {
             }
 
             // Перемещаем оригинальные файлы из временной папки в постоянную
-            $TREE->filesDirAction(ROOT . '/uploads/images/temp/originals/', ROOT . '/uploads/images/' . $dir . '/originals/');
+            $TREE->filesDirAction(ROOT . '/uploads/temp/originals/', ROOT . '/uploads/images/' . $dir . '/originals/');
 
             // Обновляем запись для всех вкладок
             $PDO->inPrepare("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [$image_list, $general_image_add, $id]);
@@ -75,7 +75,7 @@ class Files {
             self::imgResize($dir, $files, $prefix, $resize_param);
 
             // Составляем новый список файлов изображений
-            $files = glob(ROOT . '/uploads/images/temp/originals/*');
+            $files = glob(ROOT . '/uploads/temp/originals/*');
 
             $image_list = $PDO->selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$VALID->inPOST('edit')]);
             foreach ($files as $file) {
@@ -94,7 +94,7 @@ class Files {
             }
 
             // Перемещаем оригинальные файлы из временной папки в постоянную
-            $TREE->filesDirAction(ROOT . '/uploads/images/temp/originals/', ROOT . '/uploads/images/' . $dir . '/originals/');
+            $TREE->filesDirAction(ROOT . '/uploads/temp/originals/', ROOT . '/uploads/images/' . $dir . '/originals/');
 
             // Обновляем запись
             if (isset($general_image_edit)) {
@@ -149,8 +149,8 @@ class Files {
         // Выборочное удаление изображений в модальном окне "Добавить"
         if ($VALID->inPOST('delete_new_image') == 'ok' && $VALID->inPOST('delete_image')) {
             // Удаляем файлы
-            $FUNC->deleteFile(ROOT . '/uploads/images/temp/files/' . $VALID->inPOST('delete_image'));
-            $FUNC->deleteFile(ROOT . '/uploads/images/temp/thumbnail/' . $VALID->inPOST('delete_image'));
+            $FUNC->deleteFile(ROOT . '/uploads/temp/files/' . $VALID->inPOST('delete_image'));
+            $FUNC->deleteFile(ROOT . '/uploads/temp/thumbnail/' . $VALID->inPOST('delete_image'));
         }
     }
 
@@ -173,33 +173,33 @@ class Files {
             if (is_file($file) && file_exists($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
                 foreach ($resize_param as $key => $value) {
 
-                    $width = $IMAGE->fromFile(ROOT . '/uploads/images/temp/files/' . basename($file))->getWidth();
-                    $height = $IMAGE->fromFile(ROOT . '/uploads/images/temp/files/' . basename($file))->getHeight();
+                    $width = $IMAGE->fromFile(ROOT . '/uploads/temp/files/' . basename($file))->getWidth();
+                    $height = $IMAGE->fromFile(ROOT . '/uploads/temp/files/' . basename($file))->getHeight();
 
                     $quality_width = $resize_max[0];
                     $quality_height = $resize_max[1];
 
                     if ($width >= $quality_width && $width > $height) {
                         //Копируем выбранный оригинал во временную папку
-                        if (!file_exists(ROOT . '/uploads/images/temp/originals/' . $prefix . basename($file))) {
-                            copy(ROOT . '/uploads/images/temp/files/' . basename($file), ROOT . '/uploads/images/temp/originals/' . $prefix . basename($file));
+                        if (!file_exists(ROOT . '/uploads/temp/originals/' . $prefix . basename($file))) {
+                            copy(ROOT . '/uploads/temp/files/' . basename($file), ROOT . '/uploads/temp/originals/' . $prefix . basename($file));
                         }
-                        $IMAGE->fromFile(ROOT . '/uploads/images/temp/files/' . basename($file))
+                        $IMAGE->fromFile(ROOT . '/uploads/temp/files/' . basename($file))
                                 ->resize($value[0], null) // ширина, высота
                                 ->toFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $prefix . basename($file));
                     } elseif ($height >= $quality_height && $height >= $width) {
                         //Копируем выбранный оригинал во временную папку
-                        if (!file_exists(ROOT . '/uploads/images/temp/originals/' . $prefix . basename($file))) {
-                            copy(ROOT . '/uploads/images/temp/files/' . basename($file), ROOT . '/uploads/images/temp/originals/' . $prefix . basename($file));
+                        if (!file_exists(ROOT . '/uploads/temp/originals/' . $prefix . basename($file))) {
+                            copy(ROOT . '/uploads/temp/files/' . basename($file), ROOT . '/uploads/temp/originals/' . $prefix . basename($file));
                         }
-                        $IMAGE->fromFile(ROOT . '/uploads/images/temp/files/' . basename($file))
+                        $IMAGE->fromFile(ROOT . '/uploads/temp/files/' . basename($file))
                                 ->resize(null, $value[1]) // ширина, высота
                                 ->toFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $prefix . basename($file));
                     }
                 }
                 // Удаляем временные файлы
-                $FUNC->deleteFile(ROOT . '/uploads/images/temp/thumbnail/' . basename($file));
-                $FUNC->deleteFile(ROOT . '/uploads/images/temp/files/' . basename($file));
+                $FUNC->deleteFile(ROOT . '/uploads/temp/thumbnail/' . basename($file));
+                $FUNC->deleteFile(ROOT . '/uploads/temp/files/' . basename($file));
             }
         }
     }
@@ -236,7 +236,7 @@ class Files {
             $file = $VALID->inPOST('image_data');
 
             // Массив с данными по оригинальному изображению
-            $image_data = getimagesize(ROOT . '/uploads/images/temp/files/' . $file);
+            $image_data = getimagesize(ROOT . '/uploads/temp/files/' . $file);
             // Получаем ширину и высоту изображения
             $width = $image_data[0];
             $height = $image_data[1];
@@ -246,13 +246,13 @@ class Files {
 
             // Делаем ресайз временной картинки thumbnail
             if ($width >= $quality_width && $width > $height) {
-                $IMAGE->fromFile(ROOT . '/uploads/images/temp/files/' . $file)
+                $IMAGE->fromFile(ROOT . '/uploads/temp/files/' . $file)
                         ->resize($resize_param[0][0], null) // ширина, высота
-                        ->toFile(ROOT . '/uploads/images/temp/thumbnail/' . $file);
+                        ->toFile(ROOT . '/uploads/temp/thumbnail/' . $file);
             } elseif ($height >= $quality_height && $height >= $width) {
-                $IMAGE->fromFile(ROOT . '/uploads/images/temp/files/' . $file)
+                $IMAGE->fromFile(ROOT . '/uploads/temp/files/' . $file)
                         ->resize(null, $resize_param[0][1]) // ширина, высота
-                        ->toFile(ROOT . '/uploads/images/temp/thumbnail/' . $file);
+                        ->toFile(ROOT . '/uploads/temp/thumbnail/' . $file);
             }
             // Отправяем данные по изображению в ответ на запрос Ajax
             echo json_encode($image_data);
