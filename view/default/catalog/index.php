@@ -136,14 +136,14 @@
         <div id="bodyContent" class="col-md-8 col-md-push-2">
 	    <h3>Welcome Bootstrap 3 Demo</h3>
 	    <div class="contentContainer">
-		<h4>Welcome Guest!</h4>
 		<div class="contentText after">
-		    The default shopping cart comes with Jquery UI, Grid960, Fancybox and BxGallery, in this demo those have been replaced by Boostrap and Bootstrap 3 Lightbox making it lighter, faster and responsive.
+		    <h4>Welcome Guest!</h4>
+		    <p>The default shopping cart comes with Jquery UI, Grid960, Fancybox and BxGallery, in this demo those have been replaced by Boostrap and Bootstrap 3 Lightbox making it lighter, faster and responsive.</p>
 		</div>		
 		<div class="clearfix"></div>
-		<h4>Welcome Guest!</h4>
 		<div class="contentText before">
-		    The default shopping cart comes with Jquery UI, Grid960, Fancybox and BxGallery, in this demo those have been replaced by Boostrap and Bootstrap 3 Lightbox making it lighter, faster and responsive.
+		    <h4>Welcome Guest!</h4>
+		    <p>The default shopping cart comes with Jquery UI, Grid960, Fancybox and BxGallery, in this demo those have been replaced by Boostrap and Bootstrap 3 Lightbox making it lighter, faster and responsive.</p>
 		</div>
 	    </div>
         </div>
