@@ -134,12 +134,8 @@
         
         <!-- Центр -->
         <div id="bodyContent" class="col-md-8 col-md-push-2">
-            <div><img src="/view/<?php echo $SET->template() ?>/catalog/images/home.png" id="pageIcon">
-		<h1>Welcome Bootstrap 3 Demo</h1>
-	    </div>
-	    <hr>
+	    <h1>Welcome Bootstrap 3 Demo</h1>
 	    <div class="contentContainer">
-		    
 		<div class="contentText">
 		    <h6>Welcome Guest!</h6>
 		</div>
