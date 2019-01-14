@@ -16,10 +16,11 @@
                 <div class="panel-body">
                     <input type="hidden" name="parent_id" value="<?php echo $parent_id ?>" />
                     <input type="hidden" name="add" value="ok" />
-                    
+                    <input id="general_image_add" type="hidden" name="general_image_add" value="">
+
                     <!-- Языковые панели -->
                     <?php require_once(ROOT . '/view/' . $SET->template() . '/layouts/lang_tabs_add.php') ?>
-                    
+
                     <div class="tab-content">
                         <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade in active">
                             <div class="form-group">
@@ -50,9 +51,23 @@
 
                         ?>
                     </div>
+                    
+                    <!-- Выводим сообщения -->
+                    <div id="alert_messages_add"></div>
+
+                    <!-- ЗАГРУЗКА jQuery-File-Upload -->
                     <div class="form-group">
-                        <label for="image"><?php echo lang('images') ?>:</label><br>
-                        <input type="file" name="image" id="image" /> <?php echo lang('max') ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>
+                        <span class="btn btn-primary btn-sm fileinput-button">
+                            <i class="glyphicon glyphicon-picture"></i><span> <?php echo lang('button_add_image') ?></span>
+                            <input class="input-sm form-control" id="fileupload-add" type="file" name="files[]" accept="image/jpeg,image/png,image/gif" multiple>
+                        </span>
+                        <?php echo lang('max') ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>
+                        <br>
+                        <br>
+                        <div id="progress" class="progress">
+                            <div class="progress-bar progress-bar-warning progress-bar-striped active"></div>
+                        </div>
+                        <div id="logo-add" class="text-center"></div>
                     </div>
                     <div class="form-group">
                         <label for="view_cat"><?php echo lang('display') ?> </label>

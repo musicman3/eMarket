@@ -127,6 +127,9 @@ if (!isset($idsx_real_parent_id)) {
                                 }
                                 $('#js_edit').val(modal_id);
                                 
+                                // Подгружаем изображения
+                                getImageToEdit(logo_general_edit, logo_edit, modal_id);
+                                
                             });
 
                         // Открываем модальное окно
@@ -400,3 +403,8 @@ if (!isset($idsx_real_parent_id)) {
         }
     }
 </script>
+<?php
+// Подгружаем jQuery File Upload
+$AJAX->fileUpload('index.php', 'categories', $resize_param);
+
+?>

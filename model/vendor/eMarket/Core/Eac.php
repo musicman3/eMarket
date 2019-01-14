@@ -1,5 +1,4 @@
 <?php
-
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -14,7 +13,9 @@ class Eac {
      * @param строка $TABLE_CATEGORIES (название таблицы категорий)
      * @return массив
      */
-    public function start($TABLE_CATEGORIES, $TOKEN) {
+    public function start($TABLE_CATEGORIES, $TOKEN, $resize_param) {
+        
+        $FILES = new \eMarket\Other\Files;
 
         // Устанавливаем parent_id родительской категории
         $parent_id = self::parentIdStart($TABLE_CATEGORIES);
@@ -24,6 +25,9 @@ class Eac {
 
         // Если нажали на кнопку Редактировать
         self::editCategory($TABLE_CATEGORIES);
+        
+        // Загручик изображений (ВСТАВЛЯТЬ ПЕРЕД УДАЛЕНИЕМ)
+        $FILES->imgUpload($TABLE_CATEGORIES, 'categories', $resize_param);
 
         $idsx_real_parent_id = $parent_id; //для отправки в JS
         // Если нажали на кнопку Удалить

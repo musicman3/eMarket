@@ -8,8 +8,11 @@
 require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 /* ------------------------------------------ */
 //
+$resize_param = [];
+array_push($resize_param, ['125', '94']); // ширина, высота
+//
 // Загружаем движок EAC
-$EAC_ENGINE = $EAC->start(TABLE_CATEGORIES, $TOKEN);
+$EAC_ENGINE = $EAC->start(TABLE_CATEGORIES, $TOKEN, $resize_param);
 $idsx_real_parent_id = $EAC_ENGINE[0];
 $parent_id = $EAC_ENGINE[1];
 
@@ -29,7 +32,6 @@ $start = $navigate[0];
 $finish = $navigate[1];
 
 // КОНЕЦ-> КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
-
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
 $JS_END = __DIR__;
 
