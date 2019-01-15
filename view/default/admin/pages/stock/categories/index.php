@@ -29,15 +29,6 @@
                 </div>
                 <?php if ($lines == TRUE) { ?>
                     <div class="panel-body">
-                        <!--Скрытый div для передачи данных-->
-                    <?php if (isset($name_edit)) { ?>
-                        <div id="ajax_data" class='hidden'
-                             data-name='<?php echo $name_edit ?>'
-                             data-logo='<?php echo $logo_edit ?>'
-                             data-general='<?php echo $logo_general ?>'
-                             ></div>
-                        
-                    <?php } ?>
                         <table class="table table-hover">
                             <thead>
                                 <tr>
