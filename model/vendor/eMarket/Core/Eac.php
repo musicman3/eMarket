@@ -69,7 +69,7 @@ class Eac {
     /**
      * Установить parent_id родительской категории
      * @param строка $TABLE_CATEGORIES (название таблицы категорий)
-     * @return строка $parent_id
+     * @return строка $parent_id (идентификатор родительской категории)
      */
     private function parentIdStart($TABLE_CATEGORIES) {
 
@@ -98,7 +98,6 @@ class Eac {
      * Сортировка мышкой в EAC
      * @param строка $TABLE_CATEGORIES (название таблицы категорий)
      * @param строка $TOKEN (токен)
-     * @param строка $TOKEN
      */
     public function sortList($TABLE_CATEGORIES, $TOKEN) {
 
@@ -133,7 +132,7 @@ class Eac {
     /**
      * Добавить категорию в EAC
      * @param строка $TABLE_CATEGORIES (название таблицы категорий)
-     * @param строка $parent_id
+     * @param строка $parent_id (идентификатор родительской категории)
      */
     private function addCategory($TABLE_CATEGORIES, $parent_id) {
 
@@ -186,8 +185,8 @@ class Eac {
     /**
      * Удаляем категорию в EAC
      * @param строка $TABLE_CATEGORIES (название таблицы категорий)
-     * @param строка $parent_id
-     * @return строка
+     * @param строка $parent_id (идентификатор родительской категории)
+     * @return строка $parent_id (идентификатор родительской категории)
      */
     private function deleteCategory($TABLE_CATEGORIES, $parent_id) {
 
@@ -222,8 +221,8 @@ class Eac {
     /**
      * Вырезаем категорию в EAC
      * @param строка $TABLE_CATEGORIES (название таблицы категорий)
-     * @param строка $parent_id
-     * @return строка
+     * @param строка $parent_id (идентификатор родительской категории)
+     * @return строка $parent_id (идентификатор родительской категории)
      */
     private function cutCategory($TABLE_CATEGORIES, $parent_id) {
 
@@ -263,8 +262,8 @@ class Eac {
     /**
      * Вставляем категорию в EAC
      * @param строка $TABLE_CATEGORIES (название таблицы категорий)
-     * @param строка $parent_id
-     * @return строка
+     * @param строка $parent_id (идентификатор родительской категории)
+     * @return строка $parent_id (идентификатор родительской категории)
      */
     private function pasteCategory($TABLE_CATEGORIES, $parent_id) {
 
@@ -301,8 +300,8 @@ class Eac {
     /**
      * Статус категорий в EAC
      * @param строка $TABLE_CATEGORIES (название таблицы категорий)
-     * @param строка $parent_id
-     * @return строка
+     * @param строка $parent_id (идентификатор родительской категории)
+     * @return строка $parent_id (идентификатор родительской категории)
      */
     private function statusCategory($TABLE_CATEGORIES, $parent_id) {
 
@@ -358,8 +357,8 @@ class Eac {
     /**
      * Статус категорий в EAC
      * @param строка $TABLE_CATEGORIES (название таблицы категорий)
-     * @param строка $idx
-     * @return строка
+     * @param строка $idx (идентификатор)
+     * @return строка $parent_id (идентификатор родительской категории)
      */
     private function dataParentIdCategory($TABLE_CATEGORIES, $idx) {
 
@@ -382,8 +381,8 @@ class Eac {
     /**
      * Статус категорий в EAC
      * @param строка $TABLE_CATEGORIES (название таблицы категорий)
-     * @param строка $idx
-     * @return строка
+     * @param строка $idx (идентификатор)
+     * @return массив $keys
      */
     private function dataKeysCategory($TABLE_CATEGORIES, $idx) {
 
