@@ -111,15 +111,15 @@ if (!isset($idsx_real_parent_id)) {
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
 
                         //Собираем данные для модального окна
-                        <?php if (isset($name_edit)) { ?>
-
                             $('#edit').on('show.bs.modal', function (event) {
                                 
                                 var button = $(event.relatedTarget);
                                 // Получаем ID при клике на кнопку редактирования
                                 var modal_id = opt.$trigger.attr("id");
                                 // Получаем массивы данных
-                                var name_edit = <?php echo $name_edit ?>;
+                                var name_edit = $('div#ajax_data').data('name');
+                                var logo_edit = $('div#ajax_data').data('logo');
+                                var logo_general_edit = $('div#ajax_data').data('general');
 
                                 // Ищем классы и добавляем данные
                                 for (x = 0; x < name_edit.length; x++) {
@@ -132,7 +132,6 @@ if (!isset($idsx_real_parent_id)) {
                                 
                             });
 
-                        <?php } ?>
                         // Открываем модальное окно
                         $('#edit').modal('show');
                     }
