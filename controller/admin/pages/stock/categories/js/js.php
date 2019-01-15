@@ -47,6 +47,7 @@ if (!isset($idsx_real_parent_id)) {
                 {}, // id родительской категории
                 AjaxSuccess);
         function AjaxSuccess(data) {
+            $('#fileupload-edit').fileupload('destroy');
             $('#ajax').html(data);
         }
     }
@@ -77,6 +78,7 @@ if (!isset($idsx_real_parent_id)) {
                             ids2: opt.$trigger.attr("id")}), //id строки
                         success: function (data) {
                             setTimeout(function () {
+                                $('#fileupload-edit').fileupload('destroy');
                                 $('#ajax').html(data);
                             }, 1000);
                         }
@@ -109,17 +111,16 @@ if (!isset($idsx_real_parent_id)) {
                     <?php } ?>
                     },
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
-
-                        //Собираем данные для модального окна
+                        
                             $('#edit').on('show.bs.modal', function (event) {
-                                                $('.progress-bar').css('width', 0 + '%');
-                $('.progress-bar').css('width', 0 + '%');
-                $('.file-upload').detach();
-                $('#delete_image').val('');
-                $('#general_image_edit').val('');
-                $('#general_image_add').val('');
-                $('#alert_messages_add').empty();
-                $('#alert_messages_edit').empty();
+                                $('.progress-bar').css('width', 0 + '%');
+                                $('.progress-bar').css('width', 0 + '%');
+                                $('.file-upload').detach();
+                                $('#delete_image').val('');
+                                $('#general_image_edit').val('');
+                                $('#general_image_add').val('');
+                                $('#alert_messages_add').empty();
+                                $('#alert_messages_edit').empty();
 
                                 var button = $(event.relatedTarget);
                                 // Получаем ID при клике на кнопку редактирования
@@ -184,10 +185,10 @@ if (!isset($idsx_real_parent_id)) {
                                 // Обновление страницы
                                 function AjaxSuccess(data) {
                                     setTimeout(function () {
+                                        $('#fileupload-edit').fileupload('destroy');
                                         $('#ajax').html(data);
                                     }, 100);
                                     $("#sort-list").sortable();
-                                    $('#fileupload-edit').fileupload('destroy');
                                 }
                             }
                         },
@@ -221,10 +222,10 @@ if (!isset($idsx_real_parent_id)) {
                                 // Обновление страницы
                                 function AjaxSuccess(data) {
                                     setTimeout(function () {
+                                        $('#fileupload-edit').fileupload('destroy');
                                         $('#ajax').html(data);
                                     }, 100);
                                     $("#sort-list").sortable();
-                                    $('#fileupload-edit').fileupload('destroy');
                                 }
                             }
                         },
@@ -265,10 +266,10 @@ if (!isset($idsx_real_parent_id)) {
                                 // Обновление страницы
                                 function AjaxSuccess(data) {
                                     setTimeout(function () {
+                                        $('#fileupload-edit').fileupload('destroy');
                                         $('#ajax').html(data);
                                     }, 100);
                                     $("#sort-list").sortable();
-                                    $('#fileupload-edit').fileupload('destroy');
                                 }
                             }
                         },
@@ -304,7 +305,6 @@ if (!isset($idsx_real_parent_id)) {
                                         document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
                                     }, 100);
                                     $("#sort-list").sortable();
-                                    $('#fileupload-edit').fileupload('destroy');
                                 }
                             }
                         },
@@ -341,10 +341,10 @@ if (!isset($idsx_real_parent_id)) {
                                 // Обновление страницы
                                 function AjaxSuccess(data) {
                                     setTimeout(function () {
+                                        $('#fileupload-edit').fileupload('destroy');
                                         $('#ajax').html(data);
                                     }, 100);
                                     $("#sort-list").sortable();
-                                    $('#fileupload-edit').fileupload('destroy');
                                 }
                             }
                         }
@@ -384,7 +384,6 @@ if (!isset($idsx_real_parent_id)) {
                 document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
             }, 100);
             $("#sort-list").sortable();
-            $('#fileupload-edit').fileupload('destroy');
         }
     }
 </script>
@@ -411,10 +410,10 @@ if (!isset($idsx_real_parent_id)) {
         // Обновление страницы
         function AjaxSuccess(data) {
             setTimeout(function () {
+                $('#fileupload-edit').fileupload('destroy');
                 $('#ajax').html(data);
             }, 100);
             $("#sort-list").sortable();
-            $('#fileupload-edit').fileupload('destroy');
         }
     }
 </script>

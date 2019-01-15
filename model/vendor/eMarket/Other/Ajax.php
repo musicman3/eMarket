@@ -210,7 +210,6 @@ class Ajax {
                 $('#general_image_add').val('');
                 $('#alert_messages_add').empty();
                 $('#alert_messages_edit').empty();
-                $('#fileupload-edit').fileupload('destroy');
                 //$(this).find('form').trigger('reset'); // Очищаем формы
             });
 
