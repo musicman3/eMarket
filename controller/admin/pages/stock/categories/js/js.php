@@ -97,17 +97,6 @@ if (!isset($idsx_real_parent_id)) {
                         return 'context-menu-icon glyphicon-plus';
                     },
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
-                            $('#add').on('show.bs.modal', function (event) {
-                                $('.progress-bar').css('width', 0 + '%');
-                                $('.progress-bar').css('width', 0 + '%');
-                                $('.file-upload').detach();
-                                $('#delete_image').val('');
-                                $('#general_image_edit').val('');
-                                $('#general_image_add').val('');
-                                $('#alert_messages_add').empty();
-                                $('#alert_messages_edit').empty();
-                            });
-                        
                         $('#add').modal('show');
                     }
                 },
@@ -127,12 +116,9 @@ if (!isset($idsx_real_parent_id)) {
 
                             $('#edit').on('show.bs.modal', function (event) {
                                 $('.progress-bar').css('width', 0 + '%');
-                                $('.progress-bar').css('width', 0 + '%');
                                 $('.file-upload').detach();
                                 $('#delete_image').val('');
                                 $('#general_image_edit').val('');
-                                $('#general_image_add').val('');
-                                $('#alert_messages_add').empty();
                                 $('#alert_messages_edit').empty();
 
                                 var button = $(event.relatedTarget);
