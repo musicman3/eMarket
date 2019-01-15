@@ -48,6 +48,7 @@ if (!isset($idsx_real_parent_id)) {
                 AjaxSuccess);
         function AjaxSuccess(data) {
             $('#fileupload-edit').fileupload('destroy');
+            $('#fileupload-add').fileupload('destroy');
             $('#ajax').html(data);
         }
     }
@@ -79,6 +80,7 @@ if (!isset($idsx_real_parent_id)) {
                         success: function (data) {
                             setTimeout(function () {
                                 $('#fileupload-edit').fileupload('destroy');
+                                $('#fileupload-add').fileupload('destroy');
                                 $('#ajax').html(data);
                             }, 1000);
                         }
@@ -95,6 +97,17 @@ if (!isset($idsx_real_parent_id)) {
                         return 'context-menu-icon glyphicon-plus';
                     },
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
+                            $('#add').on('show.bs.modal', function (event) {
+                                $('.progress-bar').css('width', 0 + '%');
+                                $('.progress-bar').css('width', 0 + '%');
+                                $('.file-upload').detach();
+                                $('#delete_image').val('');
+                                $('#general_image_edit').val('');
+                                $('#general_image_add').val('');
+                                $('#alert_messages_add').empty();
+                                $('#alert_messages_edit').empty();
+                            });
+                        
                         $('#add').modal('show');
                     }
                 },
@@ -111,7 +124,7 @@ if (!isset($idsx_real_parent_id)) {
                     <?php } ?>
                     },
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
-                        
+
                             $('#edit').on('show.bs.modal', function (event) {
                                 $('.progress-bar').css('width', 0 + '%');
                                 $('.progress-bar').css('width', 0 + '%');
@@ -186,6 +199,7 @@ if (!isset($idsx_real_parent_id)) {
                                 function AjaxSuccess(data) {
                                     setTimeout(function () {
                                         $('#fileupload-edit').fileupload('destroy');
+                                        $('#fileupload-add').fileupload('destroy');
                                         $('#ajax').html(data);
                                     }, 100);
                                     $("#sort-list").sortable();
@@ -223,6 +237,7 @@ if (!isset($idsx_real_parent_id)) {
                                 function AjaxSuccess(data) {
                                     setTimeout(function () {
                                         $('#fileupload-edit').fileupload('destroy');
+                                        $('#fileupload-add').fileupload('destroy');
                                         $('#ajax').html(data);
                                     }, 100);
                                     $("#sort-list").sortable();
@@ -267,6 +282,7 @@ if (!isset($idsx_real_parent_id)) {
                                 function AjaxSuccess(data) {
                                     setTimeout(function () {
                                         $('#fileupload-edit').fileupload('destroy');
+                                        $('#fileupload-add').fileupload('destroy');
                                         $('#ajax').html(data);
                                     }, 100);
                                     $("#sort-list").sortable();
@@ -342,6 +358,7 @@ if (!isset($idsx_real_parent_id)) {
                                 function AjaxSuccess(data) {
                                     setTimeout(function () {
                                         $('#fileupload-edit').fileupload('destroy');
+                                        $('#fileupload-add').fileupload('destroy');
                                         $('#ajax').html(data);
                                     }, 100);
                                     $("#sort-list").sortable();
@@ -411,6 +428,7 @@ if (!isset($idsx_real_parent_id)) {
         function AjaxSuccess(data) {
             setTimeout(function () {
                 $('#fileupload-edit').fileupload('destroy');
+                $('#fileupload-add').fileupload('destroy');
                 $('#ajax').html(data);
             }, 100);
             $("#sort-list").sortable();
