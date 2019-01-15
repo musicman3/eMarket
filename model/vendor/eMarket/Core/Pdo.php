@@ -44,8 +44,8 @@ class Pdo {
     /**
      * getQuery вместо self::connect()->query()
      *
-     * @param строка $sql
-     * @return команда MYSQL
+     * @param строка $sql (запрос из БД MYSQL)
+     * @return (запрос MYSQL)
      */
     public function getQuery($sql) {
 
@@ -56,8 +56,8 @@ class Pdo {
     /**
      * getExec вместо self::connect()->exec()
      *
-     * @param строка $sql
-     * @return команда MYSQL
+     * @param строка $sql (запрос из БД MYSQL)
+     * @return запрос (запрос MYSQL)
      */
     public function getExec($sql) {
 
@@ -76,9 +76,9 @@ class Pdo {
       Запрос вида $PDO->getCell("SELECT language FROM table WHERE id=?", ['1']); выдаст конкретное значение russian - НЕ МАССИВ!
       Запрос вида $PDO->getCell("SELECT * FROM table WHERE language=?", ['russian']); выдаст значение первого поля, т.е. номер id.
      * 
-     * @param строка $sql
-     * @param массив $a
-     * @return массив, строка
+     * @param строка $sql (запрос из БД MYSQL)
+     * @param массив $a (параметр для execute($a)
+     * @return массив (возвращает массив, строку или FALSE)
      */
     public function getCell($sql, $a) {
 
@@ -146,9 +146,9 @@ class Pdo {
 
       Если применить в запросе $PDO->getColRow("SELECT * FROM table", array()), то выдаст всю таблицу в массиве.
      * 
-     * @param строка $sql
-     * @param массив $a
-     * @return массив
+     * @param строка $sql (запрос из БД MYSQL)
+     * @param массив $a (параметр для execute($a)
+     * @return массив (возвращает массив или FALSE)
      */
     public function getColRow($sql, $a) {
 
@@ -177,9 +177,9 @@ class Pdo {
       [1] => Name2
       )
      * 
-     * @param строка $sql
-     * @param массив $a
-     * @return массив
+     * @param строка $sql (запрос из БД MYSQL)
+     * @param массив $a (параметр для execute($a)
+     * @return массив (возвращает массив или FALSE)
      */
     public function getCol($sql, $a) {
 
@@ -201,9 +201,9 @@ class Pdo {
       Если значение не найдено, то выдает пустой массив: Array()
       Использовать так: $a = $PDO->getCellFalse("SELECT permission FROM users WHERE login=? AND password=?", [$_SESSION['login'],$_SESSION['password']]);
      * 
-     * @param строка $sql
-     * @param массив $a
-     * @return массив
+     * @param строка $sql (запрос из БД MYSQL)
+     * @param массив $a (параметр для execute($a)
+     * @return массив (возвращает массив или FALSE)
      */
     public function getCellFalse($sql, $a) {
 
@@ -225,9 +225,9 @@ class Pdo {
       Если значение не найдено, то выдает пустой массив: Array()
       Использовать так: $a = $PDO->getColCount("SELECT permission FROM users WHERE login=? AND password=?", [$_SESSION['login'],$_SESSION['password']]);
      * 
-     * @param строка $sql
-     * @param массив $a
-     * @return массив, int
+     * @param строка $sql (запрос из БД MYSQL)
+     * @param массив $a (параметр для execute($a)
+     * @return массив (возвращает массив, integer или FALSE)
      */
     public function getColCount($sql, $a) {
 
@@ -249,9 +249,9 @@ class Pdo {
       Если значение не найдено, то выдает пустой массив: Array()
       Использовать так: $a = $PDO->getRowCount("SELECT permission FROM users WHERE login=? AND password=?", [$_SESSION['login'],$_SESSION['password']]);
      * 
-     * @param строка $sql
-     * @param массив $a
-     * @return массив, int
+     * @param строка $sql (запрос из БД MYSQL)
+     * @param массив $a (параметр для execute($a)
+     * @return массив (возвращает массив, integer или FALSE)
      */
     public function getRowCount($sql, $a) {
 
@@ -273,9 +273,9 @@ class Pdo {
       Если значение не найдено, то выдает пустой массив: Array()
       Использовать так: $a = $PDO->selectPrepare("SELECT permission FROM users WHERE login=? AND password=?", [$_SESSION['login'],$_SESSION['password']]);
      * 
-     * @param строка $sql
-     * @param массив $a
-     * @return массив, строка
+     * @param строка $sql (запрос из БД MYSQL)
+     * @param массив $a (параметр для execute($a)
+     * @return массив (возвращает массив, строку или FALSE)
      */
     public function selectPrepare($sql, $a) {
 
@@ -302,9 +302,9 @@ class Pdo {
       $PDO->inPrepare("DELETE FROM emkt_table WHERE id=?", [$id]); - удаляет строку с конкретным id
       Также можно применять для SELECT.
      * 
-     * @param строка $sql
-     * @param массив $a
-     * @return команда MYSQL
+     * @param строка $sql (запрос из БД MYSQL)
+     * @param массив $a (параметр для execute($a)
+     * @return массив (возвращает данные или FALSE)
      */
     public function inPrepare($sql, $a = null) {
 
@@ -330,6 +330,10 @@ class Pdo {
       [name] => apple
       [colour] => red
       )
+     * 
+     * @param строка $sql (запрос из БД MYSQL)
+     * @param массив $a (параметр для execute($a)
+     * @return массив (возвращает массив или FALSE)
      */
     public function getColAssoc($sql, $a) {
 

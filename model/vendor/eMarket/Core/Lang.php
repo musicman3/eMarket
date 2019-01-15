@@ -12,11 +12,9 @@ class Lang {
     /**
      * Подключение и парсинг языковых файлов
      *
-     * @param строка $default_language
+     * @param строка $default_language (язык по умолчанию)
      * @param строка $marker (маркер)
-     * @return массив $lang
-     * @return массив $lang_all
-     * @return массив $lang_trans
+     * @return массивы $lang, $lang_all, $lang_trans
      */
     function lang($default_language, $marker = null) {
 
