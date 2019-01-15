@@ -154,12 +154,12 @@ class Files {
         }
 
         // Если нажали на кнопку Удалить
-        if ($VALID->inPOST('delete') OR $VALID->inGET('idsx_delete_id')) {
+        if ($VALID->inPOST('delete') OR $VALID->inGET('delete')) {
             if ($VALID->inPOST('delete')) {
                 $id = $VALID->inPOST('delete');
             }
-            if ($VALID->inGET('idsx_delete_id')) {
-                $id = $VALID->inGET('idsx_delete_id');
+            if ($VALID->inGET('delete')) {
+                $id = $VALID->inGET('delete');
             }
             $logo_delete = explode(',', $PDO->selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), -1);
             foreach ($logo_delete as $file) {

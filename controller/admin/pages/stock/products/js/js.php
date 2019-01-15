@@ -209,7 +209,7 @@
                                 $(".option").each(function () { // выделенное мышкой
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                         $.post('/controller/admin/pages/stock/products/products.php', // отправка данных POST
-                                                {idsx_delete_id: this.id,
+                                                {delete: this.id,
                                                     idsx_delete_key: itemKey},
                                                 AjaxSuccess);
                                     function AjaxSuccess(data) {

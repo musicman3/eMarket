@@ -14,7 +14,7 @@ class Eac {
      * @return массив
      */
     public function start($TABLE_CATEGORIES, $TOKEN, $resize_param) {
-        
+
         $FILES = new \eMarket\Other\Files;
 
         // Устанавливаем parent_id родительской категории
@@ -25,7 +25,7 @@ class Eac {
 
         // Если нажали на кнопку Редактировать
         self::editCategory($TABLE_CATEGORIES);
-        
+
         // Загручик изображений (ВСТАВЛЯТЬ ПЕРЕД УДАЛЕНИЕМ)
         $FILES->imgUpload($TABLE_CATEGORIES, 'categories', $resize_param);
 
@@ -139,7 +139,7 @@ class Eac {
         $VALID = new \eMarket\Core\Valid;
         $LANG_COUNT = count(lang('#lang_all'));
 
-        if ($VALID->inGET('add') == 'ok' && $VALID->inGET(lang('#lang_all')[0])) {
+        if ($VALID->inGET('add')) {
 
             if ($VALID->inGET('view_cat')) {
                 $view_cat = 1;
@@ -172,7 +172,7 @@ class Eac {
         $VALID = new \eMarket\Core\Valid;
         $LANG_COUNT = count(lang('#lang_all'));
 
-        if ($VALID->inGET('edit') && $VALID->inGET('name_edit' . lang('#lang_all')[0])) {
+        if ($VALID->inGET('edit')) {
 
             for ($x = 0; $x < $LANG_COUNT; $x++) {
                 // обновляем запись
@@ -192,9 +192,9 @@ class Eac {
         $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
 
-        if (($VALID->inGET('idsx_delete_key') == 'delete')) {
+        if ($VALID->inGET('delete')) {
 
-            $idx = $VALID->inGET('idsx_delete_id');
+            $idx = $VALID->inGET('delete');
 
             $parent_id = self::dataParentIdCategory($TABLE_CATEGORIES, $idx);
             $keys = self::dataKeysCategory($TABLE_CATEGORIES, $idx);
@@ -202,15 +202,11 @@ class Eac {
             $count_keys = count($keys); // Получаем количество значений в массиве
             for ($x = 0; $x < $count_keys; $x++) {
                 //Удаляем подкатегории
-                if ($VALID->inGET('idsx_delete_key') == 'delete') {
-                    $PDO->inPrepare("DELETE FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$keys[$x]]);
-                }
+                $PDO->inPrepare("DELETE FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$keys[$x]]);
             }
 
             //Удаляем основную категорию    
-            if ($VALID->inGET('idsx_delete_key') == 'delete') {
-                $PDO->inPrepare("DELETE FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$idx]);
-            }
+            $PDO->inPrepare("DELETE FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$idx]);
         }
 
         // Если parrent_id является массивом, то
