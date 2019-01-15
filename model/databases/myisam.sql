@@ -31,11 +31,11 @@ CREATE TABLE emkt_categories (
 	language varchar(64),
 	parent_id int DEFAULT '0' NOT NULL,
         logo varchar(1024),
-        logo_general varchar(128),
 	date_added datetime,
 	last_modified datetime,
 	sort_category int DEFAULT '0' NOT NULL,
 	status int,
+        logo_general varchar(128),
 	PRIMARY KEY (id, language))
 ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
