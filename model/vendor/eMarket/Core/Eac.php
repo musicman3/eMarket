@@ -11,7 +11,9 @@ class Eac {
     /**
      * Движок EAC (Engine Ajax Catalog) v.1.0
      * @param строка $TABLE_CATEGORIES (название таблицы категорий)
-     * @return массив
+     * @param строка $TOKEN (токен)
+     * @param массив $resize_param (параметры ресайза)
+     * @return массив array($idsx_real_parent_id, $parent_id)
      */
     public function start($TABLE_CATEGORIES, $TOKEN, $resize_param) {
 
