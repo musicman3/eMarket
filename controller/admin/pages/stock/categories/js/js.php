@@ -112,7 +112,15 @@ if (!isset($idsx_real_parent_id)) {
 
                         //Собираем данные для модального окна
                             $('#edit').on('show.bs.modal', function (event) {
-                                
+                                                $('.progress-bar').css('width', 0 + '%');
+                $('.progress-bar').css('width', 0 + '%');
+                $('.file-upload').detach();
+                $('#delete_image').val('');
+                $('#general_image_edit').val('');
+                $('#general_image_add').val('');
+                $('#alert_messages_add').empty();
+                $('#alert_messages_edit').empty();
+
                                 var button = $(event.relatedTarget);
                                 // Получаем ID при клике на кнопку редактирования
                                 var modal_id = opt.$trigger.attr("id");
@@ -179,6 +187,7 @@ if (!isset($idsx_real_parent_id)) {
                                         $('#ajax').html(data);
                                     }, 100);
                                     $("#sort-list").sortable();
+                                    $('#fileupload-edit').fileupload('destroy');
                                 }
                             }
                         },
@@ -215,6 +224,7 @@ if (!isset($idsx_real_parent_id)) {
                                         $('#ajax').html(data);
                                     }, 100);
                                     $("#sort-list").sortable();
+                                    $('#fileupload-edit').fileupload('destroy');
                                 }
                             }
                         },
@@ -258,6 +268,7 @@ if (!isset($idsx_real_parent_id)) {
                                         $('#ajax').html(data);
                                     }, 100);
                                     $("#sort-list").sortable();
+                                    $('#fileupload-edit').fileupload('destroy');
                                 }
                             }
                         },
@@ -293,6 +304,7 @@ if (!isset($idsx_real_parent_id)) {
                                         document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
                                     }, 100);
                                     $("#sort-list").sortable();
+                                    $('#fileupload-edit').fileupload('destroy');
                                 }
                             }
                         },
@@ -332,6 +344,7 @@ if (!isset($idsx_real_parent_id)) {
                                         $('#ajax').html(data);
                                     }, 100);
                                     $("#sort-list").sortable();
+                                    $('#fileupload-edit').fileupload('destroy');
                                 }
                             }
                         }
@@ -371,6 +384,7 @@ if (!isset($idsx_real_parent_id)) {
                 document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
             }, 100);
             $("#sort-list").sortable();
+            $('#fileupload-edit').fileupload('destroy');
         }
     }
 </script>
@@ -400,6 +414,7 @@ if (!isset($idsx_real_parent_id)) {
                 $('#ajax').html(data);
             }, 100);
             $("#sort-list").sortable();
+            $('#fileupload-edit').fileupload('destroy');
         }
     }
 </script>
