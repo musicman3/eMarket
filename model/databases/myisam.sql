@@ -27,7 +27,7 @@ ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 DROP TABLE IF EXISTS emkt_categories;
 CREATE TABLE emkt_categories (
 	id int NOT NULL,
-	name varchar(256) NOT NULL,
+	name varchar(256),
 	language varchar(64),
 	parent_id int DEFAULT '0' NOT NULL,
         logo varchar(1024),
@@ -75,7 +75,7 @@ ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 DROP TABLE IF EXISTS emkt_products;
 CREATE TABLE emkt_products (
 	id int DEFAULT '0' NOT NULL,
-        name varchar(256) NOT NULL,
+        name varchar(256),
         language varchar(64),
 	parent_id int DEFAULT '0' NOT NULL,
 	images varchar(1024),
