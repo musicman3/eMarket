@@ -9,11 +9,10 @@ namespace eMarket\Other;
 class Messages {
 
     /**
-     * Удобное отображение массива при отладке
+     * Уведомления об ошибках, успехе и т.п.
      *
-     * @param строка $a
-     * @param строка $b
-     * @return <div>сообщение</div>
+     * @param строка $a (стиль сообщения alert Bootstrap: success, danger и т.п.)
+     * @param строка $b (текст сообщения)
      */
     public function alert($a, $b) {
         $SET = new \eMarket\Core\Set;

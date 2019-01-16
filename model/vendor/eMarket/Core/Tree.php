@@ -11,10 +11,10 @@ class Tree {
     /**
      * ФУНКЦИЯ ПОСТРОЕНИЯ ДЕРЕВА К ФАЙЛАМ (ПУСТЫЕ ПАПКИ ИГНОРИРУЮТСЯ)
      *
-     * @param строка $dir
-     * @return массив $files
+     * @param строка $dir (путь к директории с файлами)
+     * @return массив $files (список файлов)
      */
-    public function filesTree($dir) { // $dir - путь к директории с файлами
+    public function filesTree($dir) {
         $handle = opendir($dir) or die("Error: Can't open directory $dir");
         $files = Array();
         $subfiles = Array();
@@ -39,9 +39,9 @@ class Tree {
     /**
      * ФУНКЦИЯ ПЕРЕМЕЩЕНИЯ ИЛИ УДАЛЕНИЯ ФАЙЛОВ
      *
-     * @param строка $dir
-     * @param строка $new_dir = null (директория для перемещения)
-     * @param строка $rename = null (префикс к имени файла)
+     * @param строка $dir (путь к директории с файлами)
+     * @param строка $new_dir опционально (директория для перемещения)
+     * @param строка $rename опционально (префикс к имени файла)
      */
     public function filesDirAction($dir, $new_dir = null, $rename = null) { // $dir - путь к директории с файлами
         $files = glob($dir . '*');

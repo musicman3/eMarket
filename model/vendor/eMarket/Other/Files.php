@@ -11,9 +11,9 @@ class Files {
     /**
      * Загрузчик изображений
      *
-     * @param строка $TABLE
-     * @param строка $dir
-     * @param массив $resize_param
+     * @param строка $TABLE (таблица в БД)
+     * @param строка $dir (директория для загружаемых изображений)
+     * @param массив $resize_param (параметры ресайза)
      */
     public function imgUpload($TABLE, $dir, $resize_param) {
 
@@ -188,10 +188,10 @@ class Files {
     /**
      * Ресайз изображений
      *
-     * @param массив $dir
-     * @param строка $files
-     * @param строка $prefix
-     * @param массив $resize_param
+     * @param строка $dir директория для загружаемых изображений)
+     * @param массив $files (массив с загружаемыми файлами)
+     * @param строка $prefix (префикс к названию файлов)
+     * @param массив $resize_param (параметры ресайза)
      */
     public function imgResize($dir, $files, $prefix, $resize_param) {
 
@@ -238,8 +238,8 @@ class Files {
     /**
      * Массив максимальных размеров изображения после ресайза
      *
-     * @param массив $resize_param
-     * @return массив $resize_max
+     * @param массив $resize_param (параметры ресайза)
+     * @return массив $resize_max (параметры ресайза для максимального качества)
      */
     public function imgResizeMax($resize_param) {
 
@@ -252,8 +252,7 @@ class Files {
     /**
      * Функция нарезки thumbnail и получения размера изображения по запросу Ajax
      *
-     * @param массив $resize_param
-     * @echo массив $image_data
+     * @param массив $resize_param (параметры ресайза)
      */
     public function imgThumbAndSize($resize_param) {
 

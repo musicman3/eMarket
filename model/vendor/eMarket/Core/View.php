@@ -12,7 +12,7 @@ class View {
     /**
      * Роутинг данных из View
      *
-     * @return строка $str
+     * @return строка $str (роутинг на view)
      */
     public function routing() {
 

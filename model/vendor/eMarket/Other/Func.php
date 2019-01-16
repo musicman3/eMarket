@@ -57,11 +57,12 @@ class Func {
      * [0] => Владивосток
      * [1] => Калининград
      * 
-     * @param массив $basic_array
-     * @param строка $name_key
-     * @param строка $value_key
-     * @param строка $val
-     * @return массив $arr
+     * @param массив $basic_array (базовый массив)
+     * @param строка $name_key (ключ  значения [1], по которому делаем фильтрацию)
+     * @param строка $value_key (значение ключа (=> 'Value'), по которому делаем фильтрацию)
+     * @param строка $val (это ключ ячейки [2] из которого берется значение для нового одномерного массива)
+     * @return массив $arr (новый массив)
+     * 
      */
     public function filterArrayToKey($basic_array, $name_key, $value_key, $val) {
 
@@ -104,12 +105,9 @@ class Func {
      * 
      * Использовать так: $multiselect = $FUNC->arrayExplode($array, '-');
      * 
-     * $array - исходный одномерный массив с разделителем
-     * "-" - разделитель
-     * 
-     * @param массив $array
-     * @param строка $delimiter
-     * @return массив $array_return
+     * @param массив $array (исходный одномерный массив с разделителем)
+     * @param строка $delimiter (разделитель)
+     * @return массив $array_return (новый массив)
      */
     public function arrayExplode($array, $delimiter) {
         $array_return = array();
@@ -122,7 +120,7 @@ class Func {
     /**
      * Функция удаления файлов
 
-     * @param строка $file
+     * @param строка $file (путь к файлу)
      */
     public function deleteFile($file) {
 
