@@ -59,7 +59,7 @@ class Files {
 
             $image_list = '';
             foreach ($files as $file) {
-                if (is_file($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
+                if (is_file($file) && file_exists($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
                     $image_list .= basename($file) . ',';
                 }
             }
@@ -95,7 +95,7 @@ class Files {
 
             $image_list = $PDO->selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]);
             foreach ($files as $file) {
-                if (is_file($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
+                if (is_file($file) && file_exists($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
                     $image_list .= basename($file) . ',';
                 }
             }
