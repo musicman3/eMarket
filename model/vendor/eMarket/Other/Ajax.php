@@ -6,6 +6,13 @@
 
 namespace eMarket\Other;
 
+/**
+ * Класс для Ajax методов
+ *
+ * @package Ajax
+ * @author eMarket
+ * 
+ */
 class Ajax {
 
     /**
@@ -15,7 +22,6 @@ class Ajax {
      */
     public function action($url) {
         $VALID = new \eMarket\Core\Valid;
-
         ?>
         <!-- Модальное окно "Добавить" -->
         <script type="text/javascript">
@@ -113,7 +119,6 @@ class Ajax {
         $FILES = new \eMarket\Other\Files;
 
         $resize_max = $FILES->imgResizeMax($resize_param);
-
         ?>
         <!--Подгружаем jQuery File Upload -->
         <script src = "/ext/jquery_file_upload/js/vendor/jquery.ui.widget.js"></script>
@@ -287,5 +292,4 @@ class Ajax {
     }
 
 }
-
 ?>

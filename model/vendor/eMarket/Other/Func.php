@@ -1,4 +1,5 @@
 <?php
+
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -6,6 +7,13 @@
 
 namespace eMarket\Other;
 
+/**
+ * Класс для вспомогательных функций
+ *
+ * @package Func
+ * @author eMarket
+ * 
+ */
 class Func {
 
     /**
@@ -46,8 +54,11 @@ class Func {
      * и отсортировать по названию города (на увеличение).
      * 
      * $array - исходный двухмерный массив
+     * 
      * $name_key = 1; - ключ  значения [1], по которому делаем фильтрацию
+     * 
      * $value_key = 'Россия'; - Значение ключа (=> Россия), по которому делаем фильтрацию
+     * 
      * $val = 2; - это ключ ячейки Город [2] из которого берется значение Города для нового одномерного массива
      *
      * $mass = $FUNC->filterArrayToKey($array, $value_key, $name_key, $id, $val);

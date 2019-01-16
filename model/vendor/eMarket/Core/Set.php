@@ -1,4 +1,5 @@
 <?php
+
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -6,6 +7,13 @@
 
 namespace eMarket\Core;
 
+/**
+ * Класс для получения установок, настроек и др.
+ *
+ * @package Set
+ * @author eMarket
+ * 
+ */
 class Set {
 
     /**

@@ -7,6 +7,13 @@
 
 namespace eMarket\Core;
 
+/**
+ * Языковой класс
+ *
+ * @package Lang
+ * @author eMarket
+ * 
+ */
 class Lang {
 
     /**
