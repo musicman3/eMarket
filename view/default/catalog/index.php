@@ -94,7 +94,7 @@
         <div class="carousel-inner" role="listbox" >
             <div class="item active">
 		<a href="#">
-		    <img class="center-block" src="/uploads/images/slideshow/originals/slider-1.jpg" alt="">
+		    <img class="center-block" src="/uploads/images/slideshow/resize_0/slider-1.jpg" alt="">
 		    <div class="carousel-caption">
 		    <h3>Los Angeles</h3>
 		    <p>LA is always so much fun!</p>
@@ -103,7 +103,7 @@
 	    </div>
             <div class="item">
 		<a href="#">
-		    <img class="center-block" src="/uploads/images/slideshow/originals/slider-2.jpg" alt="">
+		    <img class="center-block" src="/uploads/images/slideshow/resize_0/slider-2.jpg" alt="">
 		    <div class="carousel-caption">
 		    <h3>Chicago</h3>
 		    <p>Thank you, Chicago!</p>
@@ -112,7 +112,7 @@
 	    </div>
             <div class="item">
 		<a href="#">
-		    <img class="center-block" src="/uploads/images/slideshow/originals/slider-3.jpg" alt="">
+		    <img class="center-block" src="/uploads/images/slideshow/resize_0/slider-3.jpg" alt="">
 		    <div class="carousel-caption">
 		    <h3>New York</h3>
 		    <p>We love the Big Apple!</p>
@@ -128,7 +128,19 @@
         </a>
     </div>
     <!-- Слайдер -->
-
+<script type="text/javascript" language="javascript">
+$(document).ready(function(){
+        $('#products').each(function(){
+            var highestBox = 0;
+            $('.list-group-item-heading ', this).each(function(){
+                if($(this).height() > highestBox) {
+                    highestBox = $(this).height();
+                }
+            });
+            $('.list-group-item-heading ',this).height(highestBox);
+        });
+});
+</script>
     <!-- Контент -->
     <div class="row">
         
@@ -142,8 +154,62 @@
 		</div>		
 		<div class="clearfix"></div>
 		<div class="contentText-after">
-		    <h4>Welcome Guest!</h4>
-		    <p>The default shopping cart comes with Jquery UI, Grid960, Fancybox and BxGallery, in this demo those have been replaced by Boostrap and Bootstrap 3 Lightbox making it lighter, faster and responsive.</p>
+		    <h4>New Products!</h4>
+		    <div id="products" class="row list-group">
+
+			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 grid-group-item">
+			    <div class="productHolder">
+				<div class="list-item"><a href="#"><img src="/uploads/images/products/resize_4/2.png" class="img-responsive img-rounded center-block"><button class="hidden-xs hidden-sm" data-toggle="modal" data-target="#Modal1">Быстрый просмотр</button></a></div>
+				<div>
+				    <h5 class="text-center list-group-item-heading"><a href="#">Unreal Tournament Primary Holder Primary Holder</a></h5>
+				    <div class="clearfix"></div>
+				    <div class="row button">
+					<div class="col-xs-6">
+					    <button type="button" class="btn btn-default btn-sm">$241 189.99</button>
+					</div>
+					<div class="col-xs-6 text-right">
+					    <a id="btn1" href="#" class="btn btn-primary btn-sm">Buy Now</a>
+					</div>
+				    </div>
+				</div>
+			    </div>
+			</div>
+			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 grid-group-item">
+			    <div class="productHolder">
+				<div class="list-item"><a href="#"><img src="/uploads/images/products/resize_4/2.png" class="img-responsive img-rounded center-block"><button class="hidden-xs hidden-sm" data-toggle="modal" data-target="#Modal2">Быстрый просмотр</button></a></div>
+				<div>
+				    <h5 class="text-center list-group-item-heading"><a href="#">Unreal Tournament Primary Holder</a></h5>
+				    <div class="clearfix"></div>
+				    <div class="row button">
+					<div class="col-xs-6">
+					    <button type="button" class="btn btn-default btn-sm">$241 189.99</button>
+					</div>
+					<div class="col-xs-6 text-right">
+					    <a id="btn1" href="#" class="btn btn-primary btn-sm">Buy Now</a>
+					</div>
+				    </div>
+				</div>
+			    </div>
+			</div>
+			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 grid-group-item">
+			    <div class="productHolder">
+				<div class="list-item"><a href="#"><img src="/uploads/images/products/resize_4/3.png" class="img-responsive img-rounded center-block"><button class="hidden-xs hidden-sm" data-toggle="modal" data-target="#Modal3">Быстрый просмотр</button></a></div>
+				<div>
+				    <h5 class="text-center list-group-item-heading"><a href="#">Unreal Tournament Primary Holder</a></h5>
+				    <div class="clearfix"></div>
+				    <div class="row button">
+					<div class="col-xs-6">
+					    <button type="button" class="btn btn-default btn-sm">$241 189.99</button>
+					</div>
+					<div class="col-xs-6 text-right">
+					    <a id="btn1" href="#" class="btn btn-primary btn-sm">Buy Now</a>
+					</div>
+				    </div>
+				</div>
+			    </div>
+			</div>
+
+		    </div>
 		</div>
 	    </div>
         </div>
