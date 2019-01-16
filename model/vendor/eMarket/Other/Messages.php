@@ -19,8 +19,8 @@ class Messages {
     /**
      * Уведомления об ошибках, успехе и т.п.
      *
-     * @param строка $a (стиль сообщения alert Bootstrap: success, danger и т.п.)
-     * @param строка $b (текст сообщения)
+     * @param string $a (стиль сообщения alert Bootstrap: success, danger и т.п.)
+     * @param string $b (текст сообщения)
      */
     public function alert($a, $b) {
         $SET = new \eMarket\Core\Set;

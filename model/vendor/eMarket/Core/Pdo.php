@@ -18,8 +18,8 @@ class Pdo {
 
     /**
      * Функция для соединения с БД
-     * @param строка $a (маркер)
-     * @return объект
+     * @param string $a (маркер)
+     * @return object $connect (объект БД)
      */
     public function connect($a = null) {
         static $connect = null;
@@ -51,8 +51,8 @@ class Pdo {
     /**
      * getQuery вместо self::connect()->query()
      *
-     * @param строка $sql (запрос из БД MYSQL)
-     * @return (запрос MYSQL)
+     * @param string $sql (запрос из БД MYSQL)
+     * @return $result (запрос MYSQL)
      */
     public function getQuery($sql) {
 
@@ -63,8 +63,8 @@ class Pdo {
     /**
      * getExec вместо self::connect()->exec()
      *
-     * @param строка $sql (запрос из БД MYSQL)
-     * @return запрос (запрос MYSQL)
+     * @param string $sql (запрос из БД MYSQL)
+     * @return $result (запрос MYSQL)
      */
     public function getExec($sql) {
 
@@ -87,9 +87,9 @@ class Pdo {
      * Запрос вида: $PDO->getCell("SELECT * FROM table WHERE language=?", ['russian']);
      * выдаст значение первого поля, т.е. номер id.
      * 
-     * @param строка $sql (запрос из БД MYSQL)
-     * @param массив $a (параметр для execute($a))
-     * @return массив (возвращает массив, строку или FALSE)
+     * @param string $sql (запрос из БД MYSQL)
+     * @param array $a (параметр для execute($a))
+     * @return bool|string|array $result (возвращает массив, строку или FALSE)
      */
     public function getCell($sql, $a) {
 
@@ -158,9 +158,9 @@ class Pdo {
      *
      * Если применить в запросе $PDO->getColRow("SELECT * FROM table", array()), то выдаст всю таблицу в массиве.
      * 
-     * @param строка $sql (запрос из БД MYSQL)
-     * @param массив $a (параметр для execute($a))
-     * @return массив (возвращает массив или FALSE)
+     * @param string $sql (запрос из БД MYSQL)
+     * @param array $a (параметр для execute($a))
+     * @return bool|array $result (возвращает массив или FALSE)
      */
     public function getColRow($sql, $a) {
 
@@ -190,9 +190,9 @@ class Pdo {
      * [1] => Name2
      * )
      * 
-     * @param строка $sql (запрос из БД MYSQL)
-     * @param массив $a (параметр для execute($a))
-     * @return массив (возвращает массив или FALSE)
+     * @param string $sql (запрос из БД MYSQL)
+     * @param array $a (параметр для execute($a))
+     * @return bool|array $result (возвращает массив или FALSE)
      */
     public function getCol($sql, $a) {
 
@@ -215,9 +215,9 @@ class Pdo {
      * 
      * Использовать так: $a = $PDO->getCellFalse("SELECT permission FROM users WHERE login=? AND password=?", [$_SESSION['login'],$_SESSION['password']]);
      * 
-     * @param строка $sql (запрос из БД MYSQL)
-     * @param массив $a (параметр для execute($a))
-     * @return массив (возвращает массив или FALSE)
+     * @param string $sql (запрос из БД MYSQL)
+     * @param array $a (параметр для execute($a))
+     * @return bool|array $result (возвращает массив или FALSE)
      */
     public function getCellFalse($sql, $a) {
 
@@ -240,9 +240,9 @@ class Pdo {
      * 
      * Использовать так: $a = $PDO->getColCount("SELECT permission FROM users WHERE login=? AND password=?", [$_SESSION['login'],$_SESSION['password']]);
      * 
-     * @param строка $sql (запрос из БД MYSQL)
-     * @param массив $a (параметр для execute($a))
-     * @return массив (возвращает массив, integer или FALSE)
+     * @param string $sql (запрос из БД MYSQL)
+     * @param array $a (параметр для execute($a))
+     * @return bool|int|array $result (возвращает массив, целое число или FALSE)
      */
     public function getColCount($sql, $a) {
 
@@ -265,9 +265,9 @@ class Pdo {
      * 
      * Использовать так: $a = $PDO->getRowCount("SELECT permission FROM users WHERE login=? AND password=?", [$_SESSION['login'],$_SESSION['password']]);
      * 
-     * @param строка $sql (запрос из БД MYSQL)
-     * @param массив $a (параметр для execute($a))
-     * @return массив (возвращает массив, integer или FALSE)
+     * @param string $sql (запрос из БД MYSQL)
+     * @param array $a (параметр для execute($a))
+     * @return bool|int|array $result (возвращает массив, целое число или FALSE)
      */
     public function getRowCount($sql, $a) {
 
@@ -290,9 +290,9 @@ class Pdo {
      * 
      * Использовать так: $a = $PDO->selectPrepare("SELECT permission FROM users WHERE login=? AND password=?", [$_SESSION['login'],$_SESSION['password']]);
      * 
-     * @param строка $sql (запрос из БД MYSQL)
-     * @param массив $a (параметр для execute($a))
-     * @return массив (возвращает массив, строку или FALSE)
+     * @param string $sql (запрос из БД MYSQL)
+     * @param array $a (параметр для execute($a))
+     * @return bool|string|array $result (возвращает массив, строку или FALSE)
      */
     public function selectPrepare($sql, $a) {
 
@@ -324,9 +324,9 @@ class Pdo {
      * Также можно применять для SELECT.
      * 
      * 
-     * @param строка $sql (запрос из БД MYSQL)
-     * @param массив $a (параметр для execute($a))
-     * @return массив (возвращает данные или FALSE)
+     * @param string $sql (запрос из БД MYSQL)
+     * @param array $a (параметр для execute($a))
+     * @return bool|array $result (возвращает данные или FALSE)
      */
     public function inPrepare($sql, $a = null) {
 
@@ -353,9 +353,9 @@ class Pdo {
       [colour] => red
       )
      * 
-     * @param строка $sql (запрос из БД MYSQL)
-     * @param массив $a (параметр для execute($a))
-     * @return массив (возвращает массив или FALSE)
+     * @param string $sql (запрос из БД MYSQL)
+     * @param array $a (параметр для execute($a))
+     * @return bool|array $result (возвращает данные или FALSE)
      */
     public function getColAssoc($sql, $a) {
 

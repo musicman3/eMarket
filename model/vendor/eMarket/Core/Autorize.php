@@ -19,7 +19,7 @@ class Autorize {
     /**
      * Авторизация сессиями для Административной панели
      *
-     * @return строка $str ($TOKEN)
+     * @return string $str ($TOKEN)
      */
     public function sessionAdmin() {
 
@@ -52,7 +52,7 @@ class Autorize {
     /**
      * Авторизация сессиями для Каталога
      *
-     * @return строка $str ($TOKEN)
+     * @return string $str ($TOKEN)
      */
     public function sessionCatalog() {
 

@@ -68,11 +68,11 @@ class Func {
      * [0] => Владивосток
      * [1] => Калининград
      * 
-     * @param массив $basic_array (базовый массив)
-     * @param строка $name_key (ключ  значения [1], по которому делаем фильтрацию)
-     * @param строка $value_key (значение ключа (=> 'Value'), по которому делаем фильтрацию)
-     * @param строка $val (это ключ ячейки [2] из которого берется значение для нового одномерного массива)
-     * @return массив $arr (новый массив)
+     * @param array $basic_array (базовый массив)
+     * @param string $name_key (ключ  значения [1], по которому делаем фильтрацию)
+     * @param string $value_key (значение ключа (=> 'Value'), по которому делаем фильтрацию)
+     * @param string $val (это ключ ячейки [2] из которого берется значение для нового одномерного массива)
+     * @return array $arr (новый массив)
      * 
      */
     public function filterArrayToKey($basic_array, $name_key, $value_key, $val) {
@@ -116,9 +116,9 @@ class Func {
      * 
      * Использовать так: $multiselect = $FUNC->arrayExplode($array, '-');
      * 
-     * @param массив $array (исходный одномерный массив с разделителем)
-     * @param строка $delimiter (разделитель)
-     * @return массив $array_return (новый массив)
+     * @param array $array (исходный одномерный массив с разделителем)
+     * @param string $delimiter (разделитель)
+     * @return array $array_return (новый массив)
      */
     public function arrayExplode($array, $delimiter) {
         $array_return = array();
@@ -131,7 +131,7 @@ class Func {
     /**
      * Функция удаления файлов
 
-     * @param строка $file (путь к файлу)
+     * @param string $file (путь к файлу)
      */
     public function deleteFile($file) {
 

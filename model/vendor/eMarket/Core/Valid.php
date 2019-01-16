@@ -19,8 +19,8 @@ class Valid {
     /**
      * Валидация глобальных переменных $_POST[]
      *
-     * @param массив $name (массив или строка $name)
-     * @return массив $name (массив или строка $name)
+     * @param array|string $name (массив или строка $name)
+     * @return array|string $name (массив или строка $name)
      */
     public function inPOST($name) {
         if (filter_input(INPUT_POST, $name, FILTER_DEFAULT, FILTER_FORCE_ARRAY) == TRUE) {
@@ -31,8 +31,8 @@ class Valid {
     /**
      * Валидация глобальных переменных $_GET[]
      *
-     * @param массив $name (массив или строка $name)
-     * @return массив $name (массив или строка $name)
+     * @param array|string $name (массив или строка $name)
+     * @return array|string $name (массив или строка $name)
      */
     public function inGET($name) {
         if (filter_input(INPUT_GET, $name, FILTER_DEFAULT, FILTER_FORCE_ARRAY) == TRUE) {
@@ -43,8 +43,8 @@ class Valid {
     /**
      * Валидация глобальных переменных $_SERVER[]
      *
-     * @param строка $name (строка $name)
-     * @return строка $name (строка $name)
+     * @param string $name (строка $name)
+     * @return string $name (строка $name)
      */
     public function inSERVER($name) {
         if (filter_input(INPUT_SERVER, $name, FILTER_DEFAULT, FILTER_FORCE_ARRAY) == TRUE) {
@@ -55,8 +55,8 @@ class Valid {
     /**
      * Валидация глобальных переменных $_COOKIE[]
      *
-     * @param строка $name (строка $name)
-     * @return строка $name (строка $name)
+     * @param string $name (строка $name)
+     * @return string $name (строка $name)
      */
     public function inCOOKIE($name) {
         if (filter_input(INPUT_COOKIE, $name) == TRUE) {

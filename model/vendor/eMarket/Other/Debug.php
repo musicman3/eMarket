@@ -19,7 +19,7 @@ class Debug {
     /**
      * Удобное отображение массива при отладке
      *
-     * @param массив $var (массив для отображения)
+     * @param array $var (массив для отображения)
      */
     public function trace($var) {
         static $int = 0;

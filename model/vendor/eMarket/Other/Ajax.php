@@ -18,7 +18,7 @@ class Ajax {
     /**
      * Ajax обработка для Добавить, Редактировать, Удалить
      *
-     * @param строка $url (url страницы обработки)
+     * @param string $url (url страницы обработки)
      */
     public function action($url) {
         $VALID = new \eMarket\Core\Valid;
@@ -110,9 +110,9 @@ class Ajax {
     /**
      * jQuery File Upload (загрузка изображений)
      *
-     * @param строка $url (url страницы обработки)
-     * @param строка $dir (директория страницы обработки)
-     * @param массив $resize_param (параметры ресайза)
+     * @param string $url (url страницы обработки)
+     * @param string $dir (директория страницы обработки)
+     * @param array $resize_param (параметры ресайза)
      */
     public function fileUpload($url, $dir, $resize_param) {
 

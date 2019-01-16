@@ -19,10 +19,10 @@ class Navigation {
     /**
      * КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ ДЛЯ GET
      *
-     * @param строка $count_lines (количество строк на странице)
-     * @param строка $lines_on_page (максимум строк на странице)
-     * @param строка $transfer (используется трансфер)
-     * @return массив array($start, $finish)
+     * @param string $count_lines (количество строк на странице)
+     * @param string $lines_on_page (максимум строк на странице)
+     * @param string $transfer (используется трансфер)
+     * @return array array($start, $finish)
      */
     public function getLink($count_lines, $lines_on_page, int $transfer = null) {
 
@@ -77,10 +77,10 @@ class Navigation {
     /**
      * КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ ДЛЯ POST
      *
-     * @param строка $count_lines (количество строк на странице)
-     * @param строка $lines_on_page (максимум строк на странице)
-     * @param строка $transfer (используется трансфер)
-     * @return массив array($start, $finish)
+     * @param string $count_lines (количество строк на странице)
+     * @param string $lines_on_page (максимум строк на странице)
+     * @param string $transfer (используется трансфер)
+     * @return array array($start, $finish)
      */
     public function postLink($count_lines, $lines_on_page, int $transfer = null) {
 

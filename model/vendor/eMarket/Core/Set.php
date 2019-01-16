@@ -19,7 +19,7 @@ class Set {
     /**
      * Название текущего шаблона
      *
-     * @return строка
+     * @return string
      */
     public function template() {
         $template = 'default';
@@ -29,7 +29,7 @@ class Set {
     /**
      * Текущая ветка (admin или catalog)
      *
-     * @return строка
+     * @return string
      */
     public function path() {
         $VALID = new \eMarket\Core\Valid;
@@ -40,7 +40,7 @@ class Set {
     /**
      * Текущая директория
      *
-     * @return строка
+     * @return string
      */
     public function titleDir() {
         $title_dir = basename(getcwd());
@@ -50,7 +50,7 @@ class Set {
     /**
      * Считываем значение строк на странице
      *
-     * @return строка
+     * @return string
      */
     public function linesOnPage() {
         $PDO = new \eMarket\Core\Pdo;
@@ -61,7 +61,7 @@ class Set {
     /**
      * Считываем значение времени сессии администратора
      *
-     * @return строка
+     * @return string
      */
     public function sessionExprTime() {
         $PDO = new \eMarket\Core\Pdo;

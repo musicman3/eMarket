@@ -8,10 +8,10 @@
 /**
  * Функция для вывода языковой переменной вида: lang('name'), lang('name', 'english') или lang('#lang_all')
  *
- * @param строка $a
- * @param строка $b
- * @return строка
- * @return массив $lang_all
+ * @param string $a
+ * @param string $b
+ * @return string
+ * @return array $lang_all
  */
 function lang($a = null, $b = null) {
     static $lang_var = null, $lang_trans = null, $lang_all = null;
