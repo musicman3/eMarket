@@ -134,14 +134,14 @@
         
         <!-- Центр -->
         <div id="bodyContent" class="col-md-8 col-md-push-2">
-	    <h3>Welcome Bootstrap 3 Demo</h3>
+	    <h3>eMarket Bootstrap 3 Demo</h3>
 	    <div class="contentContainer">
-		<div class="contentText after">
+		<div class="contentText-before">
 		    <h4>Welcome Guest!</h4>
 		    <p>The default shopping cart comes with Jquery UI, Grid960, Fancybox and BxGallery, in this demo those have been replaced by Boostrap and Bootstrap 3 Lightbox making it lighter, faster and responsive.</p>
 		</div>		
 		<div class="clearfix"></div>
-		<div class="contentText before">
+		<div class="contentText-after">
 		    <h4>Welcome Guest!</h4>
 		    <p>The default shopping cart comes with Jquery UI, Grid960, Fancybox and BxGallery, in this demo those have been replaced by Boostrap and Bootstrap 3 Lightbox making it lighter, faster and responsive.</p>
 		</div>
@@ -154,8 +154,10 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Categories</div>
                 <div class="panel-body">
-                    <a href="#">Hardware-&gt;</a><br>
-                    <a href="#">Software-&gt;</a><br>
+		    <ul class="list-unstyled">
+			<li><a href="#">Hardware</a></li>
+			<li><a href="#">Software</a></li>
+		    </ul>
                 </div>
             </div>
         </div>
@@ -166,7 +168,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Shopping Cart</div>
                 <div class="panel-body">
-		    <p class="nav text-center"><i class="glyphicon glyphicon-shopping-cart"></i> 0 items</p>
+		    <p class="text-center"><i class="glyphicon glyphicon-shopping-cart"></i> 0 items</p>
                 </div>
             </div>
         </div>
