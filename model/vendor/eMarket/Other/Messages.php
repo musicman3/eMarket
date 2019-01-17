@@ -24,7 +24,7 @@ class Messages {
         $SET = new \eMarket\Core\Set;
         $VALID = new \eMarket\Core\Valid;
 
-        if ($VALID->inPOST('add') OR $VALID->inGET('add') OR $VALID->inPOST('edit') OR $VALID->inGET('edit') OR $VALID->inPOST('delete') OR $VALID->inGET('delete') OR $VALID->inGET('idsx_paste_key')) {
+        if ($VALID->inPOST('add') OR $VALID->inPOST('edit')OR $VALID->inPOST('delete') OR $VALID->inPOST('idsx_paste_key')) {
             $_SESSION['message_marker'] = 'ok';
         }
 
