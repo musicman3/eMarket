@@ -73,6 +73,7 @@ $FILES->imgUpload(TABLE_MANUFACTURERS, 'manufacturers', $resize_param);
 if ($VALID->inPOST('delete')) {
     // Удаляем запись
     $PDO->inPrepare("DELETE FROM " . TABLE_MANUFACTURERS . " WHERE id=?", [$VALID->inPOST('delete')]);
+    // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
 }
 

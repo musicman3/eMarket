@@ -1,4 +1,5 @@
 <?php
+
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -14,6 +15,15 @@ $_SESSION['country_page'] = '/controller/admin/pages/settings/countries/index.ph
 // Если нажали на кнопку Добавить
 if ($VALID->inPOST('add')) {
 
+    // Вывод и обработка сообщений
+    for ($x = 0; $x < $LANG_COUNT; $x++) {
+        if ($VALID->inPOST($SET->titleDir() . '_' . lang('#lang_all')[$x]) == NULL OR $VALID->inPOST('alpha_2') == NULL OR $VALID->inPOST('alpha_3') == NULL) {
+            // Выводим сообщение об ошибке
+            $_SESSION['message'] = ['danger', lang('action_failed')];
+            goto end_add;
+        }
+    }
+
     // Получаем последний id и увеличиваем его на 1
     $id_max = $PDO->selectPrepare("SELECT id FROM " . TABLE_COUNTRIES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
     $id = intval($id_max) + 1;
@@ -22,15 +32,32 @@ if ($VALID->inPOST('add')) {
     for ($x = 0; $x < $LANG_COUNT; $x++) {
         $PDO->inPrepare("INSERT INTO " . TABLE_COUNTRIES . " SET id=?, name=?, language=?, alpha_2=?, alpha_3=?, address_format=?", [$id, $VALID->inPOST($SET->titleDir() . '_' . lang('#lang_all')[$x]), lang('#lang_all')[$x], $VALID->inPOST('alpha_2'), $VALID->inPOST('alpha_3'), $VALID->inPOST('address_format')]);
     }
+
+    // Выводим сообщение об успехе
+    $_SESSION['message'] = ['success', lang('action_completed_successfully')];
+    end_add:
 }
 
 // Если нажали на кнопку Редактировать
 if ($VALID->inPOST('edit')) {
 
+    // Вывод и обработка сообщений
+    for ($x = 0; $x < $LANG_COUNT; $x++) {
+        if ($VALID->inPOST('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$x]) == NULL OR $VALID->inPOST('alpha_2_edit') == NULL OR $VALID->inPOST('alpha_3_edit') == NULL) {
+            // Выводим сообщение об ошибке
+            $_SESSION['message'] = ['danger', lang('action_failed')];
+            goto end_edit;
+        }
+    }
+
     for ($x = 0; $x < $LANG_COUNT; $x++) {
         // обновляем запись
         $PDO->inPrepare("UPDATE " . TABLE_COUNTRIES . " SET name=?, alpha_2=?, alpha_3=?, address_format=? WHERE id=? AND language=?", [$VALID->inPOST('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$x]), $VALID->inPOST('alpha_2_edit'), $VALID->inPOST('alpha_3_edit'), $VALID->inPOST('address_format_edit'), $VALID->inPOST('edit'), lang('#lang_all')[$x]]);
     }
+
+    // Выводим сообщение об успехе
+    $_SESSION['message'] = ['success', lang('action_completed_successfully')];
+    end_edit:
 }
 
 // Если нажали на кнопку Удалить
@@ -39,6 +66,8 @@ if ($VALID->inPOST('delete')) {
     // Удаляем Страну и Регионы
     $PDO->inPrepare("DELETE FROM " . TABLE_COUNTRIES . " WHERE id=?", [$VALID->inPOST('delete')]);
     $PDO->inPrepare("DELETE FROM " . TABLE_REGIONS . " WHERE country_id=?", [$VALID->inPOST('delete')]);
+    // Выводим сообщение об успехе
+    $_SESSION['message'] = ['success', lang('action_completed_successfully')];
 }
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
@@ -54,5 +83,4 @@ $JS_END = __DIR__;
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
 require_once(ROOT . '/model/end.php');
 /* ------------------------------------------ */
-
 ?>
