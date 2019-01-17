@@ -53,8 +53,7 @@ class Files {
 
             // Составляем новый список файлов изображений
             $files = glob(ROOT . '/uploads/temp/originals/*');
-            $count_files = count($files);
-            if ($count_files > 0) {
+            if (count($files) > 0) {
 
                 // Получаем последний id и увеличиваем его на 1
                 $id_max = $PDO->selectPrepare("SELECT id FROM " . $TABLE . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
@@ -91,8 +90,7 @@ class Files {
 
             // Составляем новый список файлов изображений
             $files = glob(ROOT . '/uploads/temp/originals/*');
-            $count_files = count($files);
-            if ($count_files > 0) {
+            if (count($files) > 0) {
 
                 $image_list = $PDO->selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]);
                 foreach ($files as $file) {
