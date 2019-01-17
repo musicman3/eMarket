@@ -28,7 +28,7 @@ class Messages {
             $_SESSION['message_marker'] = 'ok';
         }
 
-        // При POST и GET по ajax + обновление страницы ШАГ 3
+        // При POST и GET по ajax + обновление страницы ШАГ 3 (обновление редиректом)
         if (isset($_SESSION['message_marker']) && $_SESSION['message_marker'] == 'ok_3') {
             if (isset($_SESSION['message'])) {
                 require_once (ROOT . '/view/' . $SET->template() . '/layouts/alert.php');
@@ -43,7 +43,7 @@ class Messages {
                 unset($_SESSION['edit_image']);
             }
         }
-        // При POST и GET по ajax + обновление страницы ШАГ 4 (для категорий)
+        // При POST и GET по ajax + обновление страницы ШАГ 4 (обновление по ajax)
         if ($VALID->inGET('modify')) {
             if (isset($_SESSION['message'])) {
                 require_once (ROOT . '/view/' . $SET->template() . '/layouts/alert.php');
