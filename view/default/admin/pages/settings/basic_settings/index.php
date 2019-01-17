@@ -12,7 +12,7 @@
             
             <div class="panel-heading">
                 <!--Выводим уведомление об успешном действии-->
-		<?php $MESSAGES->alert('success', lang('action_completed_successfully')) ?>
+		<?php $MESSAGES->alert(); ?>
                 <h3 class="panel-title">
                     <div class="pull-left"><a class="btn btn-primary btn-xs" href="../"><span class="back glyphicon glyphicon-share-alt"></span></a> <?php echo lang('title_' . $SET->titleDir() . '_index') ?></div>
                     <div class="clearfix"></div>
