@@ -108,9 +108,9 @@ if (!isset($idsx_real_parent_id)) {
                     },
                     disabled: function () {
                         // Делаем не активным пункт меню, если нет строк
-<?php if (!isset($name_edit)) { ?>
+                    <?php if (!isset($name_edit)) { ?>
                             return true;
-<?php } ?>
+                    <?php } ?>
                     },
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
 
@@ -161,9 +161,9 @@ if (!isset($idsx_real_parent_id)) {
                             },
                             disabled: function () {
                                 // Делаем не активным пункт меню, если нет строк
-<?php if (!isset($name_edit)) { ?>
+                            <?php if (!isset($name_edit)) { ?>
                                     return true;
-<?php } ?>
+                            <?php } ?>
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
                                 // Установка синхронного запроса для jQuery.ajax
@@ -200,9 +200,9 @@ if (!isset($idsx_real_parent_id)) {
                             },
                             disabled: function () {
                                 // Делаем не активным пункт меню, если нет строк
-<?php if (!isset($name_edit)) { ?>
+                            <?php if (!isset($name_edit)) { ?>
                                     return true;
-<?php } ?>
+                            <?php } ?>
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
                                 // Установка синхронного запроса для jQuery.ajax
@@ -240,9 +240,9 @@ if (!isset($idsx_real_parent_id)) {
                             },
                             disabled: function () {
                                 // Делаем не активным пункт меню, если нет строк
-<?php if (!isset($name_edit)) { ?>
+                            <?php if (!isset($name_edit)) { ?>
                                     return true;
-<?php } ?>
+                            <?php } ?>
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
                                 // Установка синхронного запроса для jQuery.ajax
@@ -283,9 +283,9 @@ if (!isset($idsx_real_parent_id)) {
                             },
                             disabled: function () {
                                 // Делаем не активным пункт меню, если буффер пуст
-<?php if (!isset($_SESSION['buffer'])) { ?>
+                            <?php if (!isset($_SESSION['buffer'])) { ?>
                                     return true;
-<?php } ?>
+                            <?php } ?>
                             },
 
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
@@ -320,9 +320,9 @@ if (!isset($idsx_real_parent_id)) {
                             },
                             disabled: function () {
                                 // Делаем не активным пункт меню, если нет строк
-<?php if (!isset($name_edit)) { ?>
+                            <?php if (!isset($name_edit)) { ?>
                                     return true;
-<?php } ?>
+                            <?php } ?>
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
                                 // Установка синхронного запроса для jQuery.ajax
