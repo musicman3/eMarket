@@ -39,7 +39,7 @@ class Files {
         $count_files = count($files);
 
         // Если открываем модальное окно, то очищаются папки временных файлов изображений
-        if ($VALID->inPOST('file_upload') == 'empty' OR $VALID->inGET('file_upload') == 'empty') {
+        if ($VALID->inPOST('file_upload') == 'empty') {
             $TREE->filesDirAction(ROOT . '/uploads/temp/originals/');
             $TREE->filesDirAction(ROOT . '/uploads/temp/thumbnail/');
             $TREE->filesDirAction(ROOT . '/uploads/temp/files/');
@@ -65,8 +65,6 @@ class Files {
             // Назначаем "Главное изображение" в модальном окне "Добавить"
             if ($VALID->inPOST('general_image_add')) {
                 $general_image_add = $prefix . $VALID->inPOST('general_image_add');
-            } elseif ($VALID->inGET('general_image_add')) {
-                $general_image_add = $prefix . $VALID->inGET('general_image_add');
             } else {
                 $general_image_add = explode(',', $image_list, -1)[0];
             }
@@ -82,9 +80,6 @@ class Files {
 
             if ($VALID->inPOST('edit')) {
                 $id = $VALID->inPOST('edit');
-            }
-            if ($VALID->inGET('edit')) {
-                $id = $VALID->inGET('edit');
             }
             // Делаем ресайз
             self::imgResize($dir, $files, $prefix, $resize_param);
@@ -103,15 +98,9 @@ class Files {
             if ($VALID->inPOST('general_image_edit')) {
                 $general_image_edit = $VALID->inPOST('general_image_edit');
             }
-            if ($VALID->inGET('general_image_edit')) {
-                $general_image_edit = $VALID->inGET('general_image_edit');
-            }
             // Назначаем "Главное изображение" для нового не сохраненного изображения в модальном окне "Редактировать"
             if ($VALID->inPOST('general_image_edit_new')) {
                 $general_image_edit = $prefix . $VALID->inPOST('general_image_edit_new');
-            }
-            if ($VALID->inGET('general_image_edit_new')) {
-                $general_image_edit = $prefix . $VALID->inGET('general_image_edit_new');
             }
 
             // Перемещаем оригинальные файлы из временной папки в постоянную
@@ -125,13 +114,10 @@ class Files {
             }
 
             // Выборочное удаление изображений в модальном окне "Редактировать"
-            if ($VALID->inPOST('delete_image') OR $VALID->inGET('delete_image')) {
+            if ($VALID->inPOST('delete_image')) {
                 // Получаем массив удаляемых изображений
                 if ($VALID->inPOST('delete_image')) {
                     $delete_image_arr = explode(',', $VALID->inPOST('delete_image'), -1);
-                }
-                if ($VALID->inGET('delete_image')) {
-                    $delete_image_arr = explode(',', $VALID->inGET('delete_image'), -1);
                 }
                 // Получаем массив изображений из БД
                 $image_list_arr = explode(',', $PDO->selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), -1);
@@ -161,32 +147,26 @@ class Files {
         }
 
         // Если нажали на кнопку Удалить
-        if ($VALID->inPOST('delete') OR $VALID->inGET('delete')) {
+        if ($VALID->inPOST('delete')) {
             if ($VALID->inPOST('delete')) {
                 $id = $VALID->inPOST('delete');
             }
-            if ($VALID->inGET('delete')) {
-                $id = $VALID->inGET('delete');
-            }
             $logo_delete = explode(',', $PDO->selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), -1);
-            if(count($logo_delete) > 0){
-            foreach ($logo_delete as $file) {
-                // Удаляем файлы
-                foreach ($resize_param as $key => $value) {
-                    $FUNC->deleteFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $file);
+            if (count($logo_delete) > 0) {
+                foreach ($logo_delete as $file) {
+                    // Удаляем файлы
+                    foreach ($resize_param as $key => $value) {
+                        $FUNC->deleteFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $file);
+                    }
+                    $FUNC->deleteFile(ROOT . '/uploads/images/' . $dir . '/originals/' . $file);
                 }
-                $FUNC->deleteFile(ROOT . '/uploads/images/' . $dir . '/originals/' . $file);
-            }
             }
         }
 
         // Выборочное удаление изображений в модальном окне "Добавить"
-        if (($VALID->inPOST('delete_new_image') == 'ok' && $VALID->inPOST('delete_image')) OR ( $VALID->inGET('delete_new_image') == 'ok' && $VALID->inGET('delete_image'))) {
+        if ($VALID->inPOST('delete_new_image') == 'ok' && $VALID->inPOST('delete_image')) {
             if ($VALID->inPOST('delete_image')) {
                 $id = $VALID->inPOST('delete_image');
-            }
-            if ($VALID->inGET('delete_image')) {
-                $id = $VALID->inGET('delete_image');
             }
             // Удаляем файлы
             $FUNC->deleteFile(ROOT . '/uploads/temp/files/' . $id);
@@ -270,12 +250,9 @@ class Files {
         $resize_max = self::imgResizeMax($resize_param);
 
         // Если получили запрос на получение данных по изображению
-        if ($VALID->inPOST('image_data') OR $VALID->inGET('image_data')) {
+        if ($VALID->inPOST('image_data')) {
             if ($VALID->inPOST('image_data')) {
                 $file = $VALID->inPOST('image_data');
-            }
-            if ($VALID->inGET('image_data')) {
-                $file = $VALID->inGET('image_data');
             }
             // Массив с данными по оригинальному изображению
             $image_data = getimagesize(ROOT . '/uploads/temp/files/' . $file);

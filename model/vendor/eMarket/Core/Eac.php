@@ -1,5 +1,4 @@
 <?php
-
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -85,20 +84,24 @@ class Eac {
         $VALID = new \eMarket\Core\Valid;
 
         // Устанавливаем родительскую категорию
-        $parent_id = $VALID->inGET('parent_id');
+        $parent_id = $VALID->inPOST('parent_id');
         if ($parent_id == FALSE) {
             $parent_id = 0;
         }
 
         // Устанавливаем родительскую категорию при переходе на уровень выше
-        if ($VALID->inGET('parent_up')) {
-            $parent_id = $PDO->selectPrepare("SELECT parent_id FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$VALID->inGET('parent_up')]);
+        if ($VALID->inPOST('parent_up')) {
+            $parent_id = $PDO->selectPrepare("SELECT parent_id FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$VALID->inPOST('parent_up')]);
         }
 
         // Устанавливаем родительскую категорию при переходе на уровень ниже
-        if ($VALID->inGET('parent_down')) {
+        if ($VALID->inPOST('parent_down')) {
+            $parent_id = $VALID->inPOST('parent_down');
+        } elseif
+        ($VALID->inGET('parent_down')) {
             $parent_id = $VALID->inGET('parent_down');
         }
+
         return $parent_id;
     }
 
@@ -113,8 +116,8 @@ class Eac {
         $VALID = new \eMarket\Core\Valid;
 
         // если сортируем категории мышкой
-        if ($VALID->inGET('token_ajax') == $TOKEN && $VALID->inGET('ids')) {
-            $sort_array_id_ajax = explode(',', $VALID->inGET('ids')); // Массив со списком id под сортировку
+        if ($VALID->inPOST('token_ajax') == $TOKEN && $VALID->inPOST('ids')) {
+            $sort_array_id_ajax = explode(',', $VALID->inPOST('ids')); // Массив со списком id под сортировку
             // Если в массиве пустое значение, то собираем новый массив без этого значения со сбросом ключей
             $sort_array_id = array_values(array_filter($sort_array_id_ajax));
 
@@ -148,9 +151,9 @@ class Eac {
         $VALID = new \eMarket\Core\Valid;
         $LANG_COUNT = count(lang('#lang_all'));
 
-        if ($VALID->inGET('add')) {
+        if ($VALID->inPOST('add')) {
 
-            if ($VALID->inGET('view_cat')) {
+            if ($VALID->inPOST('view_cat')) {
                 $view_cat = 1;
             } else {
                 $view_cat = 0;
@@ -166,7 +169,7 @@ class Eac {
 
             // добавляем запись для всех вкладок
             for ($x = 0; $x < $LANG_COUNT; $x++) {
-                $PDO->inPrepare("INSERT INTO " . $TABLE_CATEGORIES . " SET id=?, name=?, sort_category=?, language=?, parent_id=?, date_added=?, status=?", [$id, $VALID->inGET(lang('#lang_all')[$x]), $sort_category, lang('#lang_all')[$x], $parent_id, date("Y-m-d H:i:s"), $view_cat]);
+                $PDO->inPrepare("INSERT INTO " . $TABLE_CATEGORIES . " SET id=?, name=?, sort_category=?, language=?, parent_id=?, date_added=?, status=?", [$id, $VALID->inPOST(lang('#lang_all')[$x]), $sort_category, lang('#lang_all')[$x], $parent_id, date("Y-m-d H:i:s"), $view_cat]);
             }
             // Выводим сообщение об успехе
             $_SESSION['message'] = ['success', lang('action_completed_successfully')];
@@ -185,11 +188,11 @@ class Eac {
         $VALID = new \eMarket\Core\Valid;
         $LANG_COUNT = count(lang('#lang_all'));
 
-        if ($VALID->inGET('edit')) {
+        if ($VALID->inPOST('edit')) {
 
             for ($x = 0; $x < $LANG_COUNT; $x++) {
                 // обновляем запись
-                $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET name=?, last_modified=? WHERE id=? AND language=?", [$VALID->inGET('name_edit' . lang('#lang_all')[$x]), date("Y-m-d H:i:s"), $VALID->inGET('edit'), lang('#lang_all')[$x]]);
+                $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET name=?, last_modified=? WHERE id=? AND language=?", [$VALID->inPOST('name_edit' . lang('#lang_all')[$x]), date("Y-m-d H:i:s"), $VALID->inPOST('edit'), lang('#lang_all')[$x]]);
             }
             // Выводим сообщение об успехе
             $_SESSION['message'] = ['success', lang('action_completed_successfully')];
@@ -209,9 +212,9 @@ class Eac {
         $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
 
-        if ($VALID->inGET('delete')) {
+        if ($VALID->inPOST('delete')) {
 
-            $idx = $VALID->inGET('delete');
+            $idx = $VALID->inPOST('delete');
 
             $parent_id = self::dataParentIdCategory($TABLE_CATEGORIES, $idx);
             $keys = self::dataKeysCategory($TABLE_CATEGORIES, $idx);
@@ -246,19 +249,19 @@ class Eac {
 
         $VALID = new \eMarket\Core\Valid;
 
-        if ($VALID->inGET('idsx_cut_marker') == 'cut') { // очищаем буфер обмена, если он был заполнен, при нажатии Вырезать
+        if ($VALID->inPOST('idsx_cut_marker') == 'cut') { // очищаем буфер обмена, если он был заполнен, при нажатии Вырезать
             unset($_SESSION['buffer']);
         }
 
-        if (($VALID->inGET('idsx_cut_key') == 'cut')) {
+        if (($VALID->inPOST('idsx_cut_key') == 'cut')) {
 
-            $idx = $VALID->inGET('idsx_cut_id');
-            $parent_id_real = (int) $VALID->inGET('idsx_real_parent_id'); // получить значение из JS
+            $idx = $VALID->inPOST('idsx_cut_id');
+            $parent_id_real = (int) $VALID->inPOST('idsx_real_parent_id'); // получить значение из JS
             //
             $parent_id = self::dataParentIdCategory($TABLE_CATEGORIES, $idx);
 
             //Вырезаем основную родительскую категорию    
-            if ($VALID->inGET('idsx_cut_key') == 'cut') {
+            if ($VALID->inPOST('idsx_cut_key') == 'cut') {
                 if (!isset($_SESSION['buffer'])) {
                     $_SESSION['buffer'] = array();
                 }
@@ -288,12 +291,12 @@ class Eac {
         $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
 
-        if (($VALID->inGET('idsx_paste_key') == 'paste')) {
-            $parent_id_real = (int) $VALID->inGET('idsx_real_parent_id'); // получить значение из JS
+        if (($VALID->inPOST('idsx_paste_key') == 'paste')) {
+            $parent_id_real = (int) $VALID->inPOST('idsx_real_parent_id'); // получить значение из JS
         }
 
         //Вставляем вырезанные категории    
-        if ($VALID->inGET('idsx_paste_key') == 'paste' && isset($_SESSION['buffer']) == TRUE) {
+        if ($VALID->inPOST('idsx_paste_key') == 'paste' && isset($_SESSION['buffer']) == TRUE) {
             $count_session_buffer = count($_SESSION['buffer']); // Получаем количество значений в массиве
             for ($buf = 0; $buf < $count_session_buffer; $buf++) {
                 // Получаем последний sort_category в текущем parent_id и увеличиваем его на 1
@@ -328,18 +331,18 @@ class Eac {
         $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
 
-        if (($VALID->inGET('idsx_statusOn_key') == 'statusOn')
-                or ( $VALID->inGET('idsx_statusOff_key') == 'statusOff')) {
+        if (($VALID->inPOST('idsx_statusOn_key') == 'statusOn')
+                or ( $VALID->inPOST('idsx_statusOff_key') == 'statusOff')) {
 
-            $parent_id_real = (int) $VALID->inGET('idsx_real_parent_id'); // получить значение из JS
+            $parent_id_real = (int) $VALID->inPOST('idsx_real_parent_id'); // получить значение из JS
 
-            if ($VALID->inGET('idsx_statusOn_key') == 'statusOn') {
-                $idx = $VALID->inGET('idsx_statusOn_id');
+            if ($VALID->inPOST('idsx_statusOn_key') == 'statusOn') {
+                $idx = $VALID->inPOST('idsx_statusOn_id');
                 $status = 1;
             }
 
-            if ($VALID->inGET('idsx_statusOff_key') == 'statusOff') {
-                $idx = $VALID->inGET('idsx_statusOff_id');
+            if ($VALID->inPOST('idsx_statusOff_key') == 'statusOff') {
+                $idx = $VALID->inPOST('idsx_statusOff_id');
                 $status = 0;
             }
 
@@ -350,8 +353,8 @@ class Eac {
             for ($x = 0; $x < $count_keys; $x++) {
 
                 //Обновляем статус подкатегорий
-                if (($VALID->inGET('idsx_statusOn_key') == 'statusOn')
-                        or ( $VALID->inGET('idsx_statusOff_key') == 'statusOff')) {
+                if (($VALID->inPOST('idsx_statusOn_key') == 'statusOn')
+                        or ( $VALID->inPOST('idsx_statusOff_key') == 'statusOff')) {
                     $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET status=? WHERE id=?", [$status, $keys[$x]]);
                     if ($parent_id_real > 0) {
                         $parent_id = $parent_id_real; // Возвращаемся в свою директорию после "Вырезать"
@@ -360,8 +363,8 @@ class Eac {
             }
 
             //Обновляем статус основной категории
-            if (($VALID->inGET('idsx_statusOn_key') == 'statusOn')
-                    or ( $VALID->inGET('idsx_statusOff_key') == 'statusOff')) {
+            if (($VALID->inPOST('idsx_statusOn_key') == 'statusOn')
+                    or ( $VALID->inPOST('idsx_statusOff_key') == 'statusOff')) {
                 $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET status=? WHERE id=?", [$status, $idx]);
             }
         }
