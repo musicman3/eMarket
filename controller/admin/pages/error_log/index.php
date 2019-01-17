@@ -29,6 +29,8 @@ $navigate = $NAVIGATION->postLink(count($lines), $lines_on_page);
 $start = $navigate[0];
 $finish = $navigate[1];
 
+//Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
+$JS_END = __DIR__;
 
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
 require_once(ROOT . '/model/end.php');
