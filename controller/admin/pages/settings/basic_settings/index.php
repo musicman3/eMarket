@@ -13,7 +13,9 @@ require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 if ($VALID->inPOST('lines_on_page')) {
 
     $PDO->inPrepare("UPDATE " . TABLE_BASIC_SETTINGS . " SET lines_on_page=?", [$VALID->inPOST('lines_on_page')]);
-
+    
+    // Выводим сообщение об успехе
+    $_SESSION['message'] = ['success', lang('action_completed_successfully')];
     // Считываем значение
     $lines_on_page = $SET->linesOnPage();
 }
@@ -22,10 +24,15 @@ if ($VALID->inPOST('lines_on_page')) {
 if ($VALID->inPOST('session_expr_time')) {
 
     $PDO->inPrepare("UPDATE " . TABLE_BASIC_SETTINGS . " SET session_expr_time=?", [$VALID->inPOST('session_expr_time')]);
-
+    
+    // Выводим сообщение об успехе
+    $_SESSION['message'] = ['success', lang('action_completed_successfully')];
     // Считываем значение
     $session_expr_time = $SET->sessionExprTime();
 }
+
+//Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
+$JS_END = __DIR__;
 
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
 require_once(ROOT . '/model/end.php');

@@ -19,7 +19,7 @@
                 </h3>
             </div>
 
-            <form class="form-horizontal" id="form" name="form" action="index.php" method="post" enctype="multipart/form-data">
+            <form id="form_add" name="form_add" action="javascript:void(null);" onsubmit="callAdd()">
                 <div class="panel-body">
                     <input hidden name="add" value="ok">
 
