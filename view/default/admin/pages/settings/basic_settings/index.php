@@ -18,24 +18,24 @@
                 </h3>
             </div>
 
-            <form id="form_add" name="form_add" action="javascript:void(null);" onsubmit="callAdd()">
+            <form id="form_add" name="form_add" class="form-horizontal" action="javascript:void(null);" onsubmit="callAdd()">
                 <div class="panel-body">
                     <input hidden name="add" value="ok">
 
                     <div class="form-group">
-                        <label class="col-sm-3"><?php echo lang('lines_on_page') ?></label>
+                        <div class="col-sm-3 text-left"><label class="control-label"><?php echo lang('lines_on_page') ?></label></div>
                         <div class="col-sm-9">
                             <input type="text" name="lines_on_page" class="form-control" value="<?php echo $SET->linesOnPage() ?>" required />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3"><?php echo lang('session_expr_time') ?> <span data-toggle="tooltip" data-placement="right" data-original-title="<?php echo lang('session_expr_time_help') ?>" class="glyphicon glyphicon-question-sign"></span></label>
+                        <div class="col-sm-3 text-left"><label class=""><?php echo lang('session_expr_time') ?> <span data-toggle="tooltip" data-placement="right" data-original-title="<?php echo lang('session_expr_time_help') ?>" class="glyphicon glyphicon-question-sign"></span></label></div>
                         <div class="col-sm-9">
                             <input type="text" name="session_expr_time" class="form-control" value="<?php echo $SET->sessionExprTime() ?>" required />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3"><button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button></label>
+                        <div class="col-sm-3 text-left"><label class="control-label"><button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button></label></div>
                     </div>
 
                 </div>
