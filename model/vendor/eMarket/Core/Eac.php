@@ -168,6 +168,10 @@ class Eac {
             for ($x = 0; $x < $LANG_COUNT; $x++) {
                 $PDO->inPrepare("INSERT INTO " . $TABLE_CATEGORIES . " SET id=?, name=?, sort_category=?, language=?, parent_id=?, date_added=?, status=?", [$id, $VALID->inGET(lang('#lang_all')[$x]), $sort_category, lang('#lang_all')[$x], $parent_id, date("Y-m-d H:i:s"), $view_cat]);
             }
+            // Выводим сообщение об успехе
+            $_SESSION['message'] = ['success', lang('action_completed_successfully')];
+            // Разрешаем добавить изображения
+            $_SESSION['edit_image'] = 'ok';
         }
     }
 
@@ -187,6 +191,10 @@ class Eac {
                 // обновляем запись
                 $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET name=?, last_modified=? WHERE id=? AND language=?", [$VALID->inGET('name_edit' . lang('#lang_all')[$x]), date("Y-m-d H:i:s"), $VALID->inGET('edit'), lang('#lang_all')[$x]]);
             }
+            // Выводим сообщение об успехе
+            $_SESSION['message'] = ['success', lang('action_completed_successfully')];
+            // Разрешаем добавить изображения
+            $_SESSION['edit_image'] = 'ok';
         }
     }
 
@@ -216,6 +224,8 @@ class Eac {
 
             //Удаляем основную категорию    
             $PDO->inPrepare("DELETE FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$idx]);
+            // Выводим сообщение об успехе
+            $_SESSION['message'] = ['success', lang('action_completed_successfully')];
         }
 
         // Если parrent_id является массивом, то
@@ -296,6 +306,8 @@ class Eac {
             if ($parent_id_real > 0) {
                 $parent_id = $parent_id_real; // Возвращаемся в свою директорию после вставки
             }
+            // Выводим сообщение об успехе
+            $_SESSION['message'] = ['success', lang('action_completed_successfully')];
         }
         // Если parrent_id является массивом, то
         if (is_array($parent_id) == TRUE) {

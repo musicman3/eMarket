@@ -24,7 +24,7 @@ class Messages {
         $SET = new \eMarket\Core\Set;
         $VALID = new \eMarket\Core\Valid;
 
-        if ($VALID->inPOST('add') OR $VALID->inGET('add') OR $VALID->inPOST('edit') OR $VALID->inGET('edit') OR $VALID->inPOST('delete') OR $VALID->inGET('delete') OR $VALID->inPOST('modify') == 'ok' OR $VALID->inGET('modify') == 'ok') {
+        if ($VALID->inPOST('add') OR $VALID->inGET('add') OR $VALID->inPOST('edit') OR $VALID->inGET('edit') OR $VALID->inPOST('delete') OR $VALID->inGET('delete') OR $VALID->inGET('idsx_paste_key')) {
             $_SESSION['message_marker'] = 'ok';
         }
 
@@ -43,6 +43,13 @@ class Messages {
                 unset($_SESSION['edit_image']);
             }
         }
+        // При POST и GET по ajax + обновление страницы ШАГ 4 (для категорий)
+        if ($VALID->inGET('modify')) {
+            if (isset($_SESSION['message'])) {
+                require_once (ROOT . '/view/' . $SET->template() . '/layouts/alert.php');
+            }
+        }
+
         // При POST и GET по ajax + обновление страницы ШАГ 2
         if (isset($_SESSION['message_marker']) && $_SESSION['message_marker'] == 'ok_2') {
             $_SESSION['message_marker'] = 'ok_3';
