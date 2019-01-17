@@ -108,37 +108,37 @@ if (!isset($idsx_real_parent_id)) {
                     },
                     disabled: function () {
                         // Делаем не активным пункт меню, если нет строк
-                    <?php if (!isset($name_edit)) { ?>
+<?php if (!isset($name_edit)) { ?>
                             return true;
-                    <?php } ?>
+<?php } ?>
                     },
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
 
-                            $('#edit').on('show.bs.modal', function (event) {
-                                $('.progress-bar').css('width', 0 + '%');
-                                $('.file-upload').detach();
-                                $('#delete_image').val('');
-                                $('#general_image_edit').val('');
-                                $('#alert_messages_edit').empty();
+                        $('#edit').on('show.bs.modal', function (event) {
+                            $('.progress-bar').css('width', 0 + '%');
+                            $('.file-upload').detach();
+                            $('#delete_image').val('');
+                            $('#general_image_edit').val('');
+                            $('#alert_messages_edit').empty();
 
-                                var button = $(event.relatedTarget);
-                                // Получаем ID при клике на кнопку редактирования
-                                var modal_id = opt.$trigger.attr("id");
-                                // Получаем массивы данных
-                                var name_edit = $('div#ajax_data').data('name');
-                                var logo_edit = $('div#ajax_data').data('logo');
-                                var logo_general_edit = $('div#ajax_data').data('general');
+                            var button = $(event.relatedTarget);
+                            // Получаем ID при клике на кнопку редактирования
+                            var modal_id = opt.$trigger.attr("id");
+                            // Получаем массивы данных
+                            var name_edit = $('div#ajax_data').data('name');
+                            var logo_edit = $('div#ajax_data').data('logo');
+                            var logo_general_edit = $('div#ajax_data').data('general');
 
-                                // Ищем классы и добавляем данные
-                                for (x = 0; x < name_edit.length; x++) {
-                                    $('#name_edit' + x).val(name_edit[x][modal_id]);
-                                }
-                                $('#js_edit').val(modal_id);
-                                
-                                // Подгружаем изображения
-                                getImageToEdit(logo_general_edit, logo_edit, modal_id);
-                                
-                            });
+                            // Ищем классы и добавляем данные
+                            for (x = 0; x < name_edit.length; x++) {
+                                $('#name_edit' + x).val(name_edit[x][modal_id]);
+                            }
+                            $('#js_edit').val(modal_id);
+
+                            // Подгружаем изображения
+                            getImageToEdit(logo_general_edit, logo_edit, modal_id);
+
+                        });
 
                         // Открываем модальное окно
                         $('#edit').modal('show');
@@ -161,9 +161,9 @@ if (!isset($idsx_real_parent_id)) {
                             },
                             disabled: function () {
                                 // Делаем не активным пункт меню, если нет строк
-                            <?php if (!isset($name_edit)) { ?>
+<?php if (!isset($name_edit)) { ?>
                                     return true;
-                            <?php } ?>
+<?php } ?>
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
                                 // Установка синхронного запроса для jQuery.ajax
@@ -200,9 +200,9 @@ if (!isset($idsx_real_parent_id)) {
                             },
                             disabled: function () {
                                 // Делаем не активным пункт меню, если нет строк
-                            <?php if (!isset($name_edit)) { ?>
+<?php if (!isset($name_edit)) { ?>
                                     return true;
-                            <?php } ?>
+<?php } ?>
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
                                 // Установка синхронного запроса для jQuery.ajax
@@ -240,9 +240,9 @@ if (!isset($idsx_real_parent_id)) {
                             },
                             disabled: function () {
                                 // Делаем не активным пункт меню, если нет строк
-                            <?php if (!isset($name_edit)) { ?>
+<?php if (!isset($name_edit)) { ?>
                                     return true;
-                            <?php } ?>
+<?php } ?>
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
                                 // Установка синхронного запроса для jQuery.ajax
@@ -283,9 +283,9 @@ if (!isset($idsx_real_parent_id)) {
                             },
                             disabled: function () {
                                 // Делаем не активным пункт меню, если буффер пуст
-                            <?php if (!isset($_SESSION['buffer'])) { ?>
+<?php if (!isset($_SESSION['buffer'])) { ?>
                                     return true;
-                            <?php } ?>
+<?php } ?>
                             },
 
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
@@ -320,9 +320,9 @@ if (!isset($idsx_real_parent_id)) {
                             },
                             disabled: function () {
                                 // Делаем не активным пункт меню, если нет строк
-                            <?php if (!isset($name_edit)) { ?>
+<?php if (!isset($name_edit)) { ?>
                                     return true;
-                            <?php } ?>
+<?php } ?>
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
                                 // Установка синхронного запроса для jQuery.ajax
@@ -371,7 +371,7 @@ if (!isset($idsx_real_parent_id)) {
             type: 'POST',
             url: '/controller/admin/pages/stock/index.php',
             data: msg,
-            success: function (data) {
+            beforeSend: function (data) {
                 $('#add').modal('hide');
             }
         });
@@ -400,7 +400,7 @@ if (!isset($idsx_real_parent_id)) {
             type: 'POST',
             url: '/controller/admin/pages/stock/index.php',
             data: msg,
-            success: function (data) {
+            beforeSend: function (data) {
                 $('#edit').modal('hide');
             }
         });
