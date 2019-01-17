@@ -26,7 +26,7 @@
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="input-sm form-control" placeholder="<?php echo lang('name_region') ?>" type="text" name="<?php echo $SET->titleDir() . '_' . lang('#lang_all')[0] ?>" />
+                                    <input class="input-sm form-control" placeholder="<?php echo lang('name_region') ?>" type="text" name="<?php echo $SET->titleDir() . '_' . lang('#lang_all')[0] ?>" required />
                                 </div>
                             </div>
                         </div>
@@ -41,7 +41,7 @@
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo lang('name_region') ?>" type="text" name="<?php echo $SET->titleDir() . '_' . lang('#lang_all')[$x] ?>" />
+                                            <input class="input-sm form-control" placeholder="<?php echo lang('name_region') ?>" type="text" name="<?php echo $SET->titleDir() . '_' . lang('#lang_all')[$x] ?>" required />
                                         </div>
                                     </div>
                                 </div>
@@ -55,7 +55,7 @@
                         <div class="form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                <input class="input-sm form-control" placeholder="<?php echo lang('region_code') ?>" type="text" name="region_code" id="region_code" />
+                                <input class="input-sm form-control" placeholder="<?php echo lang('region_code') ?>" type="text" name="region_code" id="region_code" required />
                             </div>
                         </div>
                     </div>

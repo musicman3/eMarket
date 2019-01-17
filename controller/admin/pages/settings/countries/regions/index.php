@@ -31,6 +31,9 @@ if ($VALID->inPOST('add')) {
     for ($x = 0; $x < $LANG_COUNT; $x++) {
         $PDO->inPrepare("INSERT INTO " . TABLE_REGIONS . " SET id=?, country_id=?, name=?, language=?, region_code=?", [$id, $country_id, $VALID->inPOST($SET->titleDir() . '_' . lang('#lang_all')[$x]), lang('#lang_all')[$x], $VALID->inPOST('region_code')]);
     }
+
+    // Выводим сообщение об успехе
+    $_SESSION['message'] = ['success', lang('action_completed_successfully')];
 }
 
 // Если нажали на кнопку Редактировать
@@ -40,6 +43,9 @@ if ($VALID->inPOST('edit')) {
         // обновляем запись
         $PDO->inPrepare("UPDATE " . TABLE_REGIONS . " SET name=?, region_code=? WHERE id=? AND language=?", [$VALID->inPOST('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$x]), $VALID->inPOST('region_code_edit'), $VALID->inPOST('edit'), lang('#lang_all')[$x]]);
     }
+
+    // Выводим сообщение об успехе
+    $_SESSION['message'] = ['success', lang('action_completed_successfully')];
 }
 
 // Если нажали на кнопку Удалить
@@ -47,6 +53,8 @@ if ($VALID->inPOST('delete')) {
 
     // Удаляем
     $PDO->inPrepare("DELETE FROM " . TABLE_REGIONS . " WHERE country_id=? AND id=?", [$country_id, $VALID->inPOST('delete')]);
+    // Выводим сообщение об успехе
+    $_SESSION['message'] = ['success', lang('action_completed_successfully')];
 }
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ

@@ -25,7 +25,7 @@
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="input-sm form-control" placeholder="<?php echo lang('name_country') ?>" type="text" name="<?php echo $SET->titleDir() . '_' . lang('#lang_all')[0] ?>" />
+                                    <input class="input-sm form-control" placeholder="<?php echo lang('name_country') ?>" type="text" name="<?php echo $SET->titleDir() . '_' . lang('#lang_all')[0] ?>" required />
                                 </div>
                             </div>
                         </div>
@@ -40,7 +40,7 @@
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo lang('name_country') ?>" type="text" name="<?php echo $SET->titleDir() . '_' . lang('#lang_all')[$x] ?>" />
+                                            <input class="input-sm form-control" placeholder="<?php echo lang('name_country') ?>" type="text" name="<?php echo $SET->titleDir() . '_' . lang('#lang_all')[$x] ?>" required />
                                         </div>
                                     </div>
                                 </div>
@@ -54,13 +54,13 @@
                         <div class="form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                <input class="input-sm form-control" placeholder="<?php echo lang('alpha_2') ?>" type="text" name="alpha_2" id="alpha_2" />
+                                <input class="input-sm form-control" placeholder="<?php echo lang('alpha_2') ?>" type="text" name="alpha_2" id="alpha_2" required />
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                <input class="input-sm form-control" placeholder="<?php echo lang('alpha_3') ?>" type="text" name="alpha_3" id="alpha_3" />
+                                <input class="input-sm form-control" placeholder="<?php echo lang('alpha_3') ?>" type="text" name="alpha_3" id="alpha_3" required />
                             </div>
                         </div>
                         <div class="form-group">

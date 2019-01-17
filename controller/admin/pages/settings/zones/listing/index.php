@@ -31,6 +31,8 @@ if ($VALID->inPOST('add')) {
             $PDO->inPrepare("INSERT INTO " . TABLE_ZONES_VALUE . " SET country_id=?, regions_id=?, zones_id=?", [$multiselect[$x][0], $multiselect[$x][1], $zones_id]);
         }
     }
+    // Выводим сообщение об успехе
+    $_SESSION['message'] = ['success', lang('action_completed_successfully')];
 }
 
 // Собираем данные для массива Стран в мультиселекте

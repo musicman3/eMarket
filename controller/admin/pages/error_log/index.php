@@ -1,4 +1,5 @@
 <?php
+
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -11,6 +12,9 @@ require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 if ($VALID->inPOST('delete') == 'delete' && file_exists(ROOT . '/model/work/errors.log')) {
     // удаляем лог
     unlink(ROOT . '/model/work/errors.log');
+
+    // Выводим сообщение об успехе
+    $_SESSION['message'] = ['success', lang('action_completed_successfully')];
 }
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
@@ -29,5 +33,4 @@ $finish = $navigate[1];
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
 require_once(ROOT . '/model/end.php');
 /* ------------------------------------------ */
-
 ?>

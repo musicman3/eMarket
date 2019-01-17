@@ -15,15 +15,6 @@ $_SESSION['country_page'] = '/controller/admin/pages/settings/countries/index.ph
 // Если нажали на кнопку Добавить
 if ($VALID->inPOST('add')) {
 
-    // Вывод и обработка сообщений
-    for ($x = 0; $x < $LANG_COUNT; $x++) {
-        if ($VALID->inPOST($SET->titleDir() . '_' . lang('#lang_all')[$x]) == NULL OR $VALID->inPOST('alpha_2') == NULL OR $VALID->inPOST('alpha_3') == NULL) {
-            // Выводим сообщение об ошибке
-            $_SESSION['message'] = ['danger', lang('action_failed')];
-            goto end_add;
-        }
-    }
-
     // Получаем последний id и увеличиваем его на 1
     $id_max = $PDO->selectPrepare("SELECT id FROM " . TABLE_COUNTRIES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
     $id = intval($id_max) + 1;
@@ -35,20 +26,10 @@ if ($VALID->inPOST('add')) {
 
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
-    end_add:
 }
 
 // Если нажали на кнопку Редактировать
 if ($VALID->inPOST('edit')) {
-
-    // Вывод и обработка сообщений
-    for ($x = 0; $x < $LANG_COUNT; $x++) {
-        if ($VALID->inPOST('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$x]) == NULL OR $VALID->inPOST('alpha_2_edit') == NULL OR $VALID->inPOST('alpha_3_edit') == NULL) {
-            // Выводим сообщение об ошибке
-            $_SESSION['message'] = ['danger', lang('action_failed')];
-            goto end_edit;
-        }
-    }
 
     for ($x = 0; $x < $LANG_COUNT; $x++) {
         // обновляем запись
@@ -57,7 +38,6 @@ if ($VALID->inPOST('edit')) {
 
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
-    end_edit:
 }
 
 // Если нажали на кнопку Удалить

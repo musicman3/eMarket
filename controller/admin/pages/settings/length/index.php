@@ -45,6 +45,8 @@ if ($VALID->inPOST('add')) {
             $PDO->inPrepare("INSERT INTO " . TABLE_LENGTH . " SET id=?, name=?, language=?, code=?, value_length=?, default_length=?", [$id, $VALID->inPOST($SET->titleDir() . '_' . lang('#lang_all')[$x]), lang('#lang_all')[$x], $VALID->inPOST('code' . lang('#lang_all')[$x]), $VALID->inPOST('value_length'), $default_length]);
         }
     }
+    // Выводим сообщение об успехе
+    $_SESSION['message'] = ['success', lang('action_completed_successfully')];
 }
 
 // Если нажали на кнопку Редактировать
@@ -79,6 +81,8 @@ if ($VALID->inPOST('edit')) {
             $PDO->inPrepare("UPDATE " . TABLE_LENGTH . " SET name=?, code=?, value_length=?, default_length=? WHERE id=? AND language=?", [$VALID->inPOST('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$x]), $VALID->inPOST('code_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$x]), $VALID->inPOST('value_length_edit'), $default_length, $VALID->inPOST('edit'), lang('#lang_all')[$x]]);
         }
     }
+    // Выводим сообщение об успехе
+    $_SESSION['message'] = ['success', lang('action_completed_successfully')];
 }
 
 // Если нажали на кнопку Удалить
@@ -86,6 +90,8 @@ if ($VALID->inPOST('delete')) {
 
     // Удаляем
     $PDO->inPrepare("DELETE FROM " . TABLE_LENGTH . " WHERE id=?", [$VALID->inPOST('delete')]);
+    // Выводим сообщение об успехе
+    $_SESSION['message'] = ['success', lang('action_completed_successfully')];
 }
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
