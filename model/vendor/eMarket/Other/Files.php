@@ -46,6 +46,7 @@ class Files {
         // Если нажали на кнопку Добавить
         if ($VALID->inPOST('add') OR $VALID->inGET('add')) {
             if (isset($_SESSION['add_image']) && $_SESSION['add_image'] = 'ok') {
+                unset($_SESSION['add_image']);
                 // Делаем ресайз
                 self::imgResize($dir, $files, $prefix, $resize_param);
 
@@ -75,13 +76,13 @@ class Files {
 
                 // Обновляем запись для всех вкладок
                 $PDO->inPrepare("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [$image_list, $general_image_add, $id]);
-                unset($_SESSION['add_image']);
             }
         }
 
         // Если нажали на кнопку Редактировать
         if ($VALID->inPOST('edit') OR $VALID->inGET('edit')) {
             if (isset($_SESSION['add_image']) && $_SESSION['add_image'] = 'ok') {
+                unset($_SESSION['add_image']);
 
                 if ($VALID->inPOST('edit')) {
                     $id = $VALID->inPOST('edit');
