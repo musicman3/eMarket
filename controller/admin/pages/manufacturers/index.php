@@ -15,6 +15,7 @@ if ($VALID->inPOST('add')) {
     // Вывод и обработка сообщений
     for ($x = 0; $x < $LANG_COUNT; $x++) {
         if ($VALID->inPOST($SET->titleDir() . '_' . lang('#lang_all')[$x]) == NULL) {
+            // Выводим сообщение об ошибке
             $_SESSION['message'] = ['danger', lang('action_completed_failed')];
             goto end_add;
         }
@@ -29,8 +30,9 @@ if ($VALID->inPOST('add')) {
         $PDO->inPrepare("INSERT INTO " . TABLE_MANUFACTURERS . " SET id=?, name=?, language=?, site=?", [$id, $VALID->inPOST($SET->titleDir() . '_' . lang('#lang_all')[$x]), lang('#lang_all')[$x], $VALID->inPOST('site')]);
     }
 
-    // Разрешаем добавить изображения
+    // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
+    // Разрешаем добавить изображения
     $_SESSION['add_image'] = 'ok';
     end_add:
 }
@@ -40,6 +42,7 @@ if ($VALID->inPOST('edit')) {
     // Вывод и обработка сообщений
     for ($x = 0; $x < $LANG_COUNT; $x++) {
         if ($VALID->inPOST('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$x]) == NULL) {
+            // Выводим сообщение об ошибке
             $_SESSION['message'] = ['danger', lang('action_completed_failed')];
             goto end_edit;
         }
@@ -49,8 +52,9 @@ if ($VALID->inPOST('edit')) {
         $PDO->inPrepare("UPDATE " . TABLE_MANUFACTURERS . " SET name=?, site=? WHERE id=? AND language=?", [$VALID->inPOST('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$x]), $VALID->inPOST('site_edit'), $VALID->inPOST('edit'), lang('#lang_all')[$x]]);
     }
 
-    // Разрешаем добавить изображения
+    // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
+    // Разрешаем добавить изображения
     $_SESSION['edit_image'] = 'ok';
     end_edit:
 }
