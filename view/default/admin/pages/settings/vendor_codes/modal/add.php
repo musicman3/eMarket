@@ -28,9 +28,9 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="input-group has-error">
+                                <div class="input-group has-success">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                                    <input class="input-sm form-control" placeholder="<?php echo lang('name_description') ?>" type="text" name="vendor_code<?php echo lang('#lang_all')[0] ?>" id="vendor_code<?php echo lang('#lang_all')[0] ?>" required />
+                                    <input class="input-sm form-control" placeholder="<?php echo lang('name_description') ?>" type="text" name="vendor_code<?php echo lang('#lang_all')[0] ?>" id="vendor_code<?php echo lang('#lang_all')[0] ?>" />
                                 </div>
                             </div>
                         </div>
@@ -48,9 +48,9 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <div class="input-group has-error">
+                                        <div class="input-group has-success">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo lang('name_description') ?>" type="text" name="vendor_code<?php echo lang('#lang_all')[$x] ?>" id="vendor_code<?php echo lang('#lang_all')[$x] ?>" required />
+                                            <input class="input-sm form-control" placeholder="<?php echo lang('name_description') ?>" type="text" name="vendor_code<?php echo lang('#lang_all')[$x] ?>" id="vendor_code<?php echo lang('#lang_all')[$x] ?>" />
                                         </div>
                                     </div>
                                 </div>
