@@ -67,7 +67,9 @@ class Files {
                     }
                 }
                 // "Главное изображение" по-умолчанию
-                $general_image_add = explode(',', $image_list, -1)[0];
+                if (empty($image_list) == FALSE) {
+                    $general_image_add = explode(',', $image_list, -1)[0];
+                }
                 // Назначаем "Главное изображение" в модальном окне "Добавить"
                 if ($VALID->inPOST('general_image_add')) {
                     $general_image_add = $prefix . $VALID->inPOST('general_image_add');
@@ -99,7 +101,9 @@ class Files {
                 }
             }
             // "Главное изображение" по-умолчанию
-            $general_image_edit = explode(',', $image_list, -1)[0];
+            if (empty($image_list) == FALSE) {
+                $general_image_edit = explode(',', $image_list, -1)[0];
+            }
             // Назначаем "Главное изображение" в модальном окне "Редактировать"
             if ($VALID->inPOST('general_image_edit')) {
                 $general_image_edit = $VALID->inPOST('general_image_edit');
@@ -142,7 +146,7 @@ class Files {
                         }
                     }
                 }
-                if (isset($logo_general_update) && count($image_list_new) > 0) {
+                if (isset($logo_general_update) && empty($image_list_new) == FALSE) {
                     // Если есть маркер, то устанавливаем новую первую картинку по списку главной
                     $PDO->inPrepare("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [$image_list_new, explode(',', $image_list_new, -1)[0], $id]);
                 } else {
