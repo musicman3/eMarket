@@ -66,11 +66,11 @@ class Files {
                         $image_list .= basename($file) . ',';
                     }
                 }
+                // "Главное изображение" по-умолчанию
+                $general_image_add = explode(',', $image_list, -1)[0];
                 // Назначаем "Главное изображение" в модальном окне "Добавить"
                 if ($VALID->inPOST('general_image_add')) {
                     $general_image_add = $prefix . $VALID->inPOST('general_image_add');
-                } else {
-                    $general_image_add = explode(',', $image_list, -1)[0];
                 }
                 // Перемещаем оригинальные файлы из временной папки в постоянную
                 $TREE->filesDirAction(ROOT . '/uploads/temp/originals/', ROOT . '/uploads/images/' . $dir . '/originals/');
@@ -98,16 +98,15 @@ class Files {
                     $image_list .= basename($file) . ',';
                 }
             }
-
+            // "Главное изображение" по-умолчанию
+            $general_image_edit = explode(',', $image_list, -1)[0];
             // Назначаем "Главное изображение" в модальном окне "Редактировать"
             if ($VALID->inPOST('general_image_edit')) {
                 $general_image_edit = $VALID->inPOST('general_image_edit');
-            } elseif
+            }
             // Назначаем "Главное изображение" для нового не сохраненного изображения в модальном окне "Редактировать"
-            ($VALID->inPOST('general_image_edit_new')) {
+            if ($VALID->inPOST('general_image_edit_new')) {
                 $general_image_edit = $prefix . $VALID->inPOST('general_image_edit_new');
-            } else {
-                $general_image_edit = explode(',', $image_list, -1)[0];
             }
 
             // Перемещаем оригинальные файлы из временной папки в постоянную
