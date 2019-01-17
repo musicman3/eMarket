@@ -45,7 +45,7 @@ class Files {
             $TREE->filesDirAction(ROOT . '/uploads/temp/files/');
         }
         // Если нажали на кнопку Добавить
-        if (isset($_SESSION['add_image']) && $_SESSION['add_image'] = 'ok' && $count_files > 0) {
+        if ($VALID->inPOST('add') OR (isset($_SESSION['add_image']) && $_SESSION['add_image'] = 'ok' && $count_files > 0)) {
             // Делаем ресайз
             self::imgResize($dir, $files, $prefix, $resize_param);
 
@@ -76,7 +76,7 @@ class Files {
         }
 
         // Если нажали на кнопку Редактировать
-        if (isset($_SESSION['edit_image']) && $_SESSION['edit_image'] = 'ok' && $count_files > 0) {
+        if ($VALID->inPOST('edit') OR (isset($_SESSION['edit_image']) && $_SESSION['edit_image'] = 'ok' && $count_files > 0)) {
 
             if ($VALID->inPOST('edit')) {
                 $id = $VALID->inPOST('edit');
@@ -116,9 +116,8 @@ class Files {
             // Выборочное удаление изображений в модальном окне "Редактировать"
             if ($VALID->inPOST('delete_image')) {
                 // Получаем массив удаляемых изображений
-                if ($VALID->inPOST('delete_image')) {
-                    $delete_image_arr = explode(',', $VALID->inPOST('delete_image'), -1);
-                }
+                $delete_image_arr = explode(',', $VALID->inPOST('delete_image'), -1);
+
                 // Получаем массив изображений из БД
                 $image_list_arr = explode(',', $PDO->selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), -1);
                 $image_list_new = '';
@@ -148,9 +147,8 @@ class Files {
 
         // Если нажали на кнопку Удалить
         if ($VALID->inPOST('delete')) {
-            if ($VALID->inPOST('delete')) {
-                $id = $VALID->inPOST('delete');
-            }
+            $id = $VALID->inPOST('delete');
+
             $logo_delete = explode(',', $PDO->selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), -1);
             if (count($logo_delete) > 0) {
                 foreach ($logo_delete as $file) {
@@ -165,9 +163,8 @@ class Files {
 
         // Выборочное удаление изображений в модальном окне "Добавить"
         if ($VALID->inPOST('delete_new_image') == 'ok' && $VALID->inPOST('delete_image')) {
-            if ($VALID->inPOST('delete_image')) {
-                $id = $VALID->inPOST('delete_image');
-            }
+            $id = $VALID->inPOST('delete_image');
+
             // Удаляем файлы
             $FUNC->deleteFile(ROOT . '/uploads/temp/files/' . $id);
             $FUNC->deleteFile(ROOT . '/uploads/temp/thumbnail/' . $id);
@@ -251,9 +248,8 @@ class Files {
 
         // Если получили запрос на получение данных по изображению
         if ($VALID->inPOST('image_data')) {
-            if ($VALID->inPOST('image_data')) {
-                $file = $VALID->inPOST('image_data');
-            }
+            $file = $VALID->inPOST('image_data');
+
             // Массив с данными по оригинальному изображению
             $image_data = getimagesize(ROOT . '/uploads/temp/files/' . $file);
             // Получаем ширину и высоту изображения
