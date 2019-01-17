@@ -89,6 +89,7 @@ default = Default
 default_set = Default set
 zone = Zone
 action_completed_successfully = Action completed successfully!
+action_completed_failed = Action completed failed!
 categories_transfer = Transfer with the next page
 download_complete = Download complete!
 image_resize_error = ATTENTION: Some images not added. One of the sides of the image must be at least:

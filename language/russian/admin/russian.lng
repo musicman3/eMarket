@@ -90,6 +90,7 @@ default_set = Установить по умолчанию
 zone = Зона
 country = Страна
 action_completed_successfully = Действие успешно выполнено!
+action_completed_failed = Действие не выполнено!
 categories_transfer = Трансфер со следующей страницей
 download_complete = Загрузка завершена!
 image_resize_error = ВНИМАНИЕ: Некоторые изображения не добавлены. Как минимум одна из сторон изображения должна быть не менее чем: 

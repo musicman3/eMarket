@@ -8,8 +8,20 @@
 require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 /* ------------------------------------------ */
 
+
 // Если нажали на кнопку Добавить
 if ($VALID->inPOST('add')) {
+    // Вывод и обработка сообщений
+    for ($x = 0; $x < $LANG_COUNT; $x++) {
+        if ($VALID->inPOST($SET->titleDir() . '_' . lang('#lang_all')[$x]) == '') {
+            $_SESSION['message'] = ['danger', lang('action_completed_failed')];
+            goto end_add;
+        } else {
+            $_SESSION['message'] = ['success', lang('action_completed_successfully')];
+        }
+    }
+    // Разрешаем добавить изображения
+    $_SESSION['add_image'] = 'ok';
 
     // Получаем последний id и увеличиваем его на 1
     $id_max = $PDO->selectPrepare("SELECT id FROM " . TABLE_MANUFACTURERS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
@@ -19,13 +31,27 @@ if ($VALID->inPOST('add')) {
     for ($x = 0; $x < $LANG_COUNT; $x++) {
         $PDO->inPrepare("INSERT INTO " . TABLE_MANUFACTURERS . " SET id=?, name=?, language=?, site=?", [$id, $VALID->inPOST($SET->titleDir() . '_' . lang('#lang_all')[$x]), lang('#lang_all')[$x], $VALID->inPOST('site')]);
     }
+    end_add:
 }
 
 // Если нажали на кнопку Редактировать
 if ($VALID->inPOST('edit')) {
+    // Вывод и обработка сообщений
+    for ($x = 0; $x < $LANG_COUNT; $x++) {
+        if ($VALID->inPOST('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$x]) == '') {
+            $_SESSION['message'] = ['danger', lang('action_completed_failed')];
+            goto end_edit;
+        } else {
+            $_SESSION['message'] = ['success', lang('action_completed_successfully')];
+        }
+    }
+    // Разрешаем добавить изображения
+    $_SESSION['add_image'] = 'ok';
+
     for ($x = 0; $x < $LANG_COUNT; $x++) {
         $PDO->inPrepare("UPDATE " . TABLE_MANUFACTURERS . " SET name=?, site=? WHERE id=? AND language=?", [$VALID->inPOST('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$x]), $VALID->inPOST('site_edit'), $VALID->inPOST('edit'), lang('#lang_all')[$x]]);
     }
+    end_edit:
 }
 
 // Загручик изображений (ВСТАВЛЯТЬ ПЕРЕД УДАЛЕНИЕМ)
@@ -42,6 +68,7 @@ $FILES->imgUpload(TABLE_MANUFACTURERS, 'manufacturers', $resize_param);
 if ($VALID->inPOST('delete')) {
     // Удаляем запись
     $PDO->inPrepare("DELETE FROM " . TABLE_MANUFACTURERS . " WHERE id=?", [$VALID->inPOST('delete')]);
+    $_SESSION['message'] = ['success', lang('action_completed_successfully')];
 }
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ

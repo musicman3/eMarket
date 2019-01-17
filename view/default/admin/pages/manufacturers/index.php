@@ -19,7 +19,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <!--Выводим уведомление об успешном действии-->
-                    <?php $MESSAGES->alert('success', lang('action_completed_successfully')); ?>
+                    <?php $MESSAGES->alert(); ?>
                     <h3 class="panel-title">
                         <div class="pull-left"><?php echo lang('title_' . $SET->titleDir() . '_index') ?></div>
                         <div class="clearfix"></div>
