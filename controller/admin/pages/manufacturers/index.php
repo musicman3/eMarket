@@ -46,7 +46,7 @@ if ($VALID->inPOST('edit')) {
         }
     }
     // Разрешаем добавить изображения
-    $_SESSION['add_image'] = 'ok';
+    $_SESSION['edit_image'] = 'ok';
 
     for ($x = 0; $x < $LANG_COUNT; $x++) {
         $PDO->inPrepare("UPDATE " . TABLE_MANUFACTURERS . " SET name=?, site=? WHERE id=? AND language=?", [$VALID->inPOST('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$x]), $VALID->inPOST('site_edit'), $VALID->inPOST('edit'), lang('#lang_all')[$x]]);

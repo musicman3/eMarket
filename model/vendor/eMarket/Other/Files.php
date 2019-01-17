@@ -44,123 +44,119 @@ class Files {
             $TREE->filesDirAction(ROOT . '/uploads/temp/files/');
         }
         // Если нажали на кнопку Добавить
-        if ($VALID->inPOST('add') OR $VALID->inGET('add')) {
-            if (isset($_SESSION['add_image']) && $_SESSION['add_image'] = 'ok') {
-                unset($_SESSION['add_image']);
-                // Делаем ресайз
-                self::imgResize($dir, $files, $prefix, $resize_param);
+        if (isset($_SESSION['add_image']) && $_SESSION['add_image'] = 'ok') {
+            unset($_SESSION['add_image']);
+            // Делаем ресайз
+            self::imgResize($dir, $files, $prefix, $resize_param);
 
-                // Составляем новый список файлов изображений
-                $files = glob(ROOT . '/uploads/temp/originals/*');
+            // Составляем новый список файлов изображений
+            $files = glob(ROOT . '/uploads/temp/originals/*');
 
-                // Получаем последний id и увеличиваем его на 1
-                $id_max = $PDO->selectPrepare("SELECT id FROM " . $TABLE . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
-                $id = intval($id_max);
+            // Получаем последний id и увеличиваем его на 1
+            $id_max = $PDO->selectPrepare("SELECT id FROM " . $TABLE . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+            $id = intval($id_max);
 
-                $image_list = '';
-                foreach ($files as $file) {
-                    if (is_file($file) && file_exists($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
-                        $image_list .= basename($file) . ',';
-                    }
+            $image_list = '';
+            foreach ($files as $file) {
+                if (is_file($file) && file_exists($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
+                    $image_list .= basename($file) . ',';
                 }
-                // Назначаем "Главное изображение" в модальном окне "Добавить"
-                if ($VALID->inPOST('general_image_add')) {
-                    $general_image_add = $prefix . $VALID->inPOST('general_image_add');
-                } elseif ($VALID->inGET('general_image_add')) {
-                    $general_image_add = $prefix . $VALID->inGET('general_image_add');
-                } else {
-                    $general_image_add = explode(',', $image_list, -1)[0];
-                }
-                // Перемещаем оригинальные файлы из временной папки в постоянную
-                $TREE->filesDirAction(ROOT . '/uploads/temp/originals/', ROOT . '/uploads/images/' . $dir . '/originals/');
-
-                // Обновляем запись для всех вкладок
-                $PDO->inPrepare("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [$image_list, $general_image_add, $id]);
             }
+            // Назначаем "Главное изображение" в модальном окне "Добавить"
+            if ($VALID->inPOST('general_image_add')) {
+                $general_image_add = $prefix . $VALID->inPOST('general_image_add');
+            } elseif ($VALID->inGET('general_image_add')) {
+                $general_image_add = $prefix . $VALID->inGET('general_image_add');
+            } else {
+                $general_image_add = explode(',', $image_list, -1)[0];
+            }
+            // Перемещаем оригинальные файлы из временной папки в постоянную
+            $TREE->filesDirAction(ROOT . '/uploads/temp/originals/', ROOT . '/uploads/images/' . $dir . '/originals/');
+
+            // Обновляем запись для всех вкладок
+            $PDO->inPrepare("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [$image_list, $general_image_add, $id]);
         }
 
         // Если нажали на кнопку Редактировать
-        if ($VALID->inPOST('edit') OR $VALID->inGET('edit')) {
-            if (isset($_SESSION['add_image']) && $_SESSION['add_image'] = 'ok') {
-                unset($_SESSION['add_image']);
+        if (isset($_SESSION['edit_image']) && $_SESSION['edit_image'] = 'ok') {
+            unset($_SESSION['edit_image']);
 
-                if ($VALID->inPOST('edit')) {
-                    $id = $VALID->inPOST('edit');
-                }
-                if ($VALID->inGET('edit')) {
-                    $id = $VALID->inGET('edit');
-                }
-                // Делаем ресайз
-                self::imgResize($dir, $files, $prefix, $resize_param);
+            if ($VALID->inPOST('edit')) {
+                $id = $VALID->inPOST('edit');
+            }
+            if ($VALID->inGET('edit')) {
+                $id = $VALID->inGET('edit');
+            }
+            // Делаем ресайз
+            self::imgResize($dir, $files, $prefix, $resize_param);
 
-                // Составляем новый список файлов изображений
-                $files = glob(ROOT . '/uploads/temp/originals/*');
+            // Составляем новый список файлов изображений
+            $files = glob(ROOT . '/uploads/temp/originals/*');
 
-                $image_list = $PDO->selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]);
-                foreach ($files as $file) {
-                    if (is_file($file) && file_exists($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
-                        $image_list .= basename($file) . ',';
-                    }
+            $image_list = $PDO->selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]);
+            foreach ($files as $file) {
+                if (is_file($file) && file_exists($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
+                    $image_list .= basename($file) . ',';
                 }
+            }
 
-                // Назначаем "Главное изображение" в модальном окне "Редактировать"
-                if ($VALID->inPOST('general_image_edit')) {
-                    $general_image_edit = $VALID->inPOST('general_image_edit');
-                }
-                if ($VALID->inGET('general_image_edit')) {
-                    $general_image_edit = $VALID->inGET('general_image_edit');
-                }
-                // Назначаем "Главное изображение" для нового не сохраненного изображения в модальном окне "Редактировать"
-                if ($VALID->inPOST('general_image_edit_new')) {
-                    $general_image_edit = $prefix . $VALID->inPOST('general_image_edit_new');
-                }
-                if ($VALID->inGET('general_image_edit_new')) {
-                    $general_image_edit = $prefix . $VALID->inGET('general_image_edit_new');
-                }
+            // Назначаем "Главное изображение" в модальном окне "Редактировать"
+            if ($VALID->inPOST('general_image_edit')) {
+                $general_image_edit = $VALID->inPOST('general_image_edit');
+            }
+            if ($VALID->inGET('general_image_edit')) {
+                $general_image_edit = $VALID->inGET('general_image_edit');
+            }
+            // Назначаем "Главное изображение" для нового не сохраненного изображения в модальном окне "Редактировать"
+            if ($VALID->inPOST('general_image_edit_new')) {
+                $general_image_edit = $prefix . $VALID->inPOST('general_image_edit_new');
+            }
+            if ($VALID->inGET('general_image_edit_new')) {
+                $general_image_edit = $prefix . $VALID->inGET('general_image_edit_new');
+            }
 
-                // Перемещаем оригинальные файлы из временной папки в постоянную
-                $TREE->filesDirAction(ROOT . '/uploads/temp/originals/', ROOT . '/uploads/images/' . $dir . '/originals/');
+            // Перемещаем оригинальные файлы из временной папки в постоянную
+            $TREE->filesDirAction(ROOT . '/uploads/temp/originals/', ROOT . '/uploads/images/' . $dir . '/originals/');
 
-                // Обновляем запись
-                if (isset($general_image_edit)) {
-                    $PDO->inPrepare("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [$image_list, $general_image_edit, $id]);
-                } else {
-                    $PDO->inPrepare("UPDATE " . $TABLE . " SET logo=? WHERE id=?", [$image_list, $id]);
+            // Обновляем запись
+            if (isset($general_image_edit)) {
+                $PDO->inPrepare("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [$image_list, $general_image_edit, $id]);
+            } else {
+                $PDO->inPrepare("UPDATE " . $TABLE . " SET logo=? WHERE id=?", [$image_list, $id]);
+            }
+
+            // Выборочное удаление изображений в модальном окне "Редактировать"
+            if ($VALID->inPOST('delete_image') OR $VALID->inGET('delete_image')) {
+                // Получаем массив удаляемых изображений
+                if ($VALID->inPOST('delete_image')) {
+                    $delete_image_arr = explode(',', $VALID->inPOST('delete_image'), -1);
                 }
-
-                // Выборочное удаление изображений в модальном окне "Редактировать"
-                if ($VALID->inPOST('delete_image') OR $VALID->inGET('delete_image')) {
-                    // Получаем массив удаляемых изображений
-                    if ($VALID->inPOST('delete_image')) {
-                        $delete_image_arr = explode(',', $VALID->inPOST('delete_image'), -1);
-                    }
-                    if ($VALID->inGET('delete_image')) {
-                        $delete_image_arr = explode(',', $VALID->inGET('delete_image'), -1);
-                    }
-                    // Получаем массив изображений из БД
-                    $image_list_arr = explode(',', $PDO->selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), -1);
-                    $image_list_new = '';
-                    foreach ($image_list_arr as $key => $file) {
-                        if (!in_array($file, $delete_image_arr)) {
-                            $image_list_new .= $file . ',';
-                        } else {
-                            // Удаляем файлы
-                            foreach ($resize_param as $key => $value) {
-                                $FUNC->deleteFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $file);
-                            }
-                            $FUNC->deleteFile(ROOT . '/uploads/images/' . $dir . '/originals/' . $file);
-                            // Если удаляемая картинка является главной, то устанавливаем маркер
-                            if ($file == $PDO->selectPrepare("SELECT logo_general FROM " . $TABLE . " WHERE id=?", [$id])) {
-                                $logo_general_update = 'ok';
-                            }
+                if ($VALID->inGET('delete_image')) {
+                    $delete_image_arr = explode(',', $VALID->inGET('delete_image'), -1);
+                }
+                // Получаем массив изображений из БД
+                $image_list_arr = explode(',', $PDO->selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), -1);
+                $image_list_new = '';
+                foreach ($image_list_arr as $key => $file) {
+                    if (!in_array($file, $delete_image_arr)) {
+                        $image_list_new .= $file . ',';
+                    } else {
+                        // Удаляем файлы
+                        foreach ($resize_param as $key => $value) {
+                            $FUNC->deleteFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $file);
+                        }
+                        $FUNC->deleteFile(ROOT . '/uploads/images/' . $dir . '/originals/' . $file);
+                        // Если удаляемая картинка является главной, то устанавливаем маркер
+                        if ($file == $PDO->selectPrepare("SELECT logo_general FROM " . $TABLE . " WHERE id=?", [$id])) {
+                            $logo_general_update = 'ok';
                         }
                     }
-                    if (isset($logo_general_update)) {
-                        // Если есть маркер, то устанавливаем новую первую картинку по списку главной
-                        $PDO->inPrepare("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [$image_list_new, explode(',', $image_list_new, -1)[0], $id]);
-                    } else {
-                        $PDO->inPrepare("UPDATE " . $TABLE . " SET logo=? WHERE id=?", [$image_list_new, $id]);
-                    }
+                }
+                if (isset($logo_general_update)) {
+                    // Если есть маркер, то устанавливаем новую первую картинку по списку главной
+                    $PDO->inPrepare("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [$image_list_new, explode(',', $image_list_new, -1)[0], $id]);
+                } else {
+                    $PDO->inPrepare("UPDATE " . $TABLE . " SET logo=? WHERE id=?", [$image_list_new, $id]);
                 }
             }
         }
