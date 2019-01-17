@@ -36,6 +36,7 @@ class Files {
         $prefix = time() . '_';
         // Составляем список файлов изображений
         $files = glob(ROOT . '/uploads/temp/files/*');
+        $count_files = count($files);
 
         // Если открываем модальное окно, то очищаются папки временных файлов изображений
         if ($VALID->inPOST('file_upload') == 'empty' OR $VALID->inGET('file_upload') == 'empty') {
@@ -44,8 +45,7 @@ class Files {
             $TREE->filesDirAction(ROOT . '/uploads/temp/files/');
         }
         // Если нажали на кнопку Добавить
-        if (isset($_SESSION['add_image']) && $_SESSION['add_image'] = 'ok') {
-            unset($_SESSION['add_image']);
+        if (isset($_SESSION['add_image']) && $_SESSION['add_image'] = 'ok' && $count_files > 0) {
             // Делаем ресайз
             self::imgResize($dir, $files, $prefix, $resize_param);
 
@@ -78,8 +78,7 @@ class Files {
         }
 
         // Если нажали на кнопку Редактировать
-        if (isset($_SESSION['edit_image']) && $_SESSION['edit_image'] = 'ok') {
-            unset($_SESSION['edit_image']);
+        if (isset($_SESSION['edit_image']) && $_SESSION['edit_image'] = 'ok' && $count_files > 0) {
 
             if ($VALID->inPOST('edit')) {
                 $id = $VALID->inPOST('edit');
@@ -170,12 +169,14 @@ class Files {
                 $id = $VALID->inGET('delete');
             }
             $logo_delete = explode(',', $PDO->selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), -1);
+            if(count($logo_delete) > 0){
             foreach ($logo_delete as $file) {
                 // Удаляем файлы
                 foreach ($resize_param as $key => $value) {
                     $FUNC->deleteFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $file);
                 }
                 $FUNC->deleteFile(ROOT . '/uploads/images/' . $dir . '/originals/' . $file);
+            }
             }
         }
 

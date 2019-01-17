@@ -1,4 +1,5 @@
 <?php
+
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -34,6 +35,13 @@ class Messages {
             }
             unset($_SESSION['message_marker']);
             unset($_SESSION['message']);
+
+            if (isset($_SESSION['add_image'])) {
+                unset($_SESSION['add_image']);
+            }
+            if (isset($_SESSION['edit_image'])) {
+                unset($_SESSION['edit_image']);
+            }
         }
         // При POST и GET по ajax + обновление страницы ШАГ 2
         if (isset($_SESSION['message_marker']) && $_SESSION['message_marker'] == 'ok_2') {
