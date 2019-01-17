@@ -13,7 +13,7 @@ require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 if ($VALID->inPOST('add')) {
     // Вывод и обработка сообщений
     for ($x = 0; $x < $LANG_COUNT; $x++) {
-        if ($VALID->inPOST($SET->titleDir() . '_' . lang('#lang_all')[$x]) == '') {
+        if ($VALID->inPOST($SET->titleDir() . '_' . lang('#lang_all')[$x]) == NULL) {
             $_SESSION['message'] = ['danger', lang('action_completed_failed')];
             goto end_add;
         } else {
@@ -38,7 +38,7 @@ if ($VALID->inPOST('add')) {
 if ($VALID->inPOST('edit')) {
     // Вывод и обработка сообщений
     for ($x = 0; $x < $LANG_COUNT; $x++) {
-        if ($VALID->inPOST('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$x]) == '') {
+        if ($VALID->inPOST('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$x]) == NULL) {
             $_SESSION['message'] = ['danger', lang('action_completed_failed')];
             goto end_edit;
         } else {
