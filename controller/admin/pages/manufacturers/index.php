@@ -16,7 +16,7 @@ if ($VALID->inPOST('add')) {
     for ($x = 0; $x < $LANG_COUNT; $x++) {
         if ($VALID->inPOST($SET->titleDir() . '_' . lang('#lang_all')[$x]) == NULL) {
             // Выводим сообщение об ошибке
-            $_SESSION['message'] = ['danger', lang('action_completed_failed')];
+            $_SESSION['message'] = ['danger', lang('action_failed')];
             goto end_add;
         }
     }
@@ -43,7 +43,7 @@ if ($VALID->inPOST('edit')) {
     for ($x = 0; $x < $LANG_COUNT; $x++) {
         if ($VALID->inPOST('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$x]) == NULL) {
             // Выводим сообщение об ошибке
-            $_SESSION['message'] = ['danger', lang('action_completed_failed')];
+            $_SESSION['message'] = ['danger', lang('action_failed')];
             goto end_edit;
         }
     }
