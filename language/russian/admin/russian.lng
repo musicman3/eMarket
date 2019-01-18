@@ -10,6 +10,7 @@ title_admin_index = Панель администратора
 title_basic_settings_index = Базовые настройки
 title_categories_index = Категории
 title_countries_index = Страны
+title_currencies_index = Валюты
 title_error_log_index = Лог ошибок
 title_listing_index = Страны и регионы
 title_login_index = Страница авторизации
