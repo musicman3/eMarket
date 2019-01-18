@@ -5,6 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 require(ROOT . '/controller/admin/pages/settings/currencies/modal/edit.php');
+
 ?>
 
 <!-- Модальное окно "Изменить" -->
@@ -41,6 +42,7 @@ require(ROOT . '/controller/admin/pages/settings/currencies/modal/edit.php');
                         <?php
                         if ($LANG_COUNT > 1) {
                             for ($x = 1; $x < $LANG_COUNT; $x++) {
+
                                 ?>
 
                                 <div id="<?php echo lang('#lang_all')[$x] . $modal_id ?>" class="tab-pane fade">
@@ -61,8 +63,29 @@ require(ROOT . '/controller/admin/pages/settings/currencies/modal/edit.php');
                                 <?php
                             }
                         }
-                        ?>
 
+                        ?>
+                        <div class="form-group">
+                            <div class="input-group has-success">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                                <input class="input-sm form-control" type="text" name="symbol_edit" id="symbol_edit" required />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group has-success">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                                <select name="symbol_position_edit" id="symbol_position_edit" class="input-sm form-control">
+                                    <option value="right"><?php echo lang('symbol_right') ?></option>
+                                    <option value="left"><?php echo lang('symbol_left') ?></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group has-error">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
+                                <input class="input-sm form-control" type="text" pattern="[0-9]{0,1}" name="decimal_places_edit" id="decimal_places_edit" required />
+                            </div>
+                        </div>
                         <div class="form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>

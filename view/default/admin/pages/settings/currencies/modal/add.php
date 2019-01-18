@@ -3,6 +3,7 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+
 ?>
 <!-- Модальное окно "Добавить" -->
 <div id="add" class="modal fade" tabindex="-1">
@@ -38,6 +39,7 @@
                         <?php
                         if ($LANG_COUNT > 1) {
                             for ($x = 1; $x < $LANG_COUNT; $x++) {
+
                                 ?>
 
                                 <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">
@@ -55,20 +57,42 @@
                                     </div>
                                 </div>
 
-                            <?php }
+                                <?php
+                            }
                         }
-                        ?>
 
+                        ?>
+                        <div class="form-group">
+                            <div class="input-group has-success">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                                <input class="input-sm form-control" placeholder="<?php echo lang('currency_symbol') ?>" type="text" name="symbol" id="symbol" required />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group has-success">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                                <select name="symbol_position" id="symbol_position" class="input-sm form-control">
+                                    <option value="right"><?php echo lang('symbol_right') ?></option>
+                                    <option value="left"><?php echo lang('symbol_left') ?></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group has-error">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
+                                <input class="input-sm form-control" placeholder="<?php echo lang('decimal_places') ?>" type="text" pattern="[0-9]{0,1}" name="decimal_places" id="decimal_places" required />
+                            </div>
+                        </div>
                         <div class="form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
                                 <input class="input-sm form-control" placeholder="<?php echo lang('value') ?>" type="text" pattern="\d+(\.\d{0,10})?" name="value" id="value" required />
                             </div>
                         </div>
-                            <div class="form-group">
-                                <label for="default_value"><?php echo lang('default_set') ?> </label>
-                                <input class="check-box" name="default_value" type="checkbox" checked>
-                            </div>
+                        <div class="form-group">
+                            <label for="default_value"><?php echo lang('default_set') ?> </label>
+                            <input class="check-box" name="default_value" type="checkbox" checked>
+                        </div>
                     </div>
                 </div>
 

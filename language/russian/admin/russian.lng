@@ -104,3 +104,9 @@ session_expr_time_help = В течение указанного времени �
 ;MANUFACTURERS
 manufacturer = Производитель
 site = Сайт
+
+;CURRENCIES
+currency_symbol = Символ валюты
+decimal_places = Количество десятичных знаков
+symbol_left = Символ слева
+symbol_right = Символ справа

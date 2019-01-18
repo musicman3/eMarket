@@ -103,3 +103,9 @@ session_expr_time_help = The session will be active for set time after the last 
 ;MANUFACTURERS
 manufacturer = Manufacturer
 site = Site
+
+;CURRENCIES
+currency_symbol = Currency symbol
+decimal_places = Decimal places
+symbol_left = Symbol left
+symbol_right = Symbol right
