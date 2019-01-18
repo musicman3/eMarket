@@ -173,8 +173,6 @@ class Eac {
             }
             // Выводим сообщение об успехе
             $_SESSION['message'] = ['success', lang('action_completed_successfully')];
-            // Разрешаем добавить изображения
-            $_SESSION['edit_image'] = 'ok';
         }
     }
 
@@ -196,8 +194,6 @@ class Eac {
             }
             // Выводим сообщение об успехе
             $_SESSION['message'] = ['success', lang('action_completed_successfully')];
-            // Разрешаем добавить изображения
-            $_SESSION['edit_image'] = 'ok';
         }
     }
 

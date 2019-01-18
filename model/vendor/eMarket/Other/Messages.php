@@ -35,13 +35,6 @@ class Messages {
             }
             unset($_SESSION['message_marker']);
             unset($_SESSION['message']);
-
-            if (isset($_SESSION['add_image'])) {
-                unset($_SESSION['add_image']);
-            }
-            if (isset($_SESSION['edit_image'])) {
-                unset($_SESSION['edit_image']);
-            }
         }
         // При POST и GET по ajax + обновление страницы ШАГ 4 (обновление по ajax)
         if ($VALID->inGET('modify')) {

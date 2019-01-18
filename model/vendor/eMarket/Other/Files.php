@@ -45,7 +45,7 @@ class Files {
             $TREE->filesDirAction(ROOT . '/uploads/temp/files/');
         }
         // Если нажали на кнопку Добавить
-        if ($VALID->inPOST('add') OR ( isset($_SESSION['add_image']) && $_SESSION['add_image'] = 'ok') && $count_files > 0) {
+        if ($VALID->inPOST('add')) {
             // Делаем ресайз
             if ($count_files > 0) {
                 self::imgResize($dir, $files, $prefix, $resize_param);
@@ -83,7 +83,7 @@ class Files {
         }
 
         // Если нажали на кнопку Редактировать
-        if ($VALID->inPOST('edit') OR ( isset($_SESSION['edit_image']) && $_SESSION['edit_image'] = 'ok') && $count_files > 0) {
+        if ($VALID->inPOST('edit')) {
 
             if ($VALID->inPOST('edit')) {
                 $id = $VALID->inPOST('edit');

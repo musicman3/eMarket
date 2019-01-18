@@ -24,8 +24,6 @@ if ($VALID->inPOST('add')) {
 
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
-    // Разрешаем добавить изображения
-    $_SESSION['add_image'] = 'ok';
 }
 
 // Если нажали на кнопку Редактировать
@@ -37,8 +35,6 @@ if ($VALID->inPOST('edit')) {
 
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
-    // Разрешаем добавить изображения
-    $_SESSION['edit_image'] = 'ok';
 }
 
 // Загручик изображений (ВСТАВЛЯТЬ ПЕРЕД УДАЛЕНИЕМ)
