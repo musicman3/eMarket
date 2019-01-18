@@ -4,7 +4,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-require(ROOT . '/controller/admin/pages/settings/length/modal/edit.php');
+require(ROOT . '/controller/admin/pages/settings/currencies/modal/edit.php');
 ?>
 
 <!-- Модальное окно "Изменить" -->
@@ -66,12 +66,12 @@ require(ROOT . '/controller/admin/pages/settings/length/modal/edit.php');
                         <div class="form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                <input class="value_length_edit input-sm form-control" type="text" pattern="\d+(\.\d{2})?" name="value_length_edit" id="value_length_edit" required />
+                                <input class="value_edit input-sm form-control" type="text" pattern="\d+(\.\d{2})?" name="value_edit" id="value_edit" required />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="status_length_edit"><?php echo lang('default_set') ?> </label>
-                            <input class="check-box" id="status_length_edit" type="checkbox" name="status_length_edit">
+                            <label for="status_value_edit"><?php echo lang('default_set') ?> </label>
+                            <input class="check-box" id="status_value_edit" type="checkbox" name="status_value_edit">
                         </div>
                     </div>
                 </div>

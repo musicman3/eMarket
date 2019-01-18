@@ -9,7 +9,7 @@
 <!-- КОНЕЦ Модальное окно "Добавить" -->
 
 <!-- Модальное окно "Редактировать" -->
-<?php require(ROOT . '/view/' . $SET->template() . '/admin/pages/settings/length/modal/edit.php') ?>
+<?php require(ROOT . '/view/' . $SET->template() . '/admin/pages/settings/currencies/modal/edit.php') ?>
 <!-- КОНЕЦ Модальное окно "Редактировать" -->
 
 <div id="ajax">

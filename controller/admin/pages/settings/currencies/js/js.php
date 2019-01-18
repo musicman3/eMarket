@@ -14,8 +14,8 @@
             // Получаем массивы данных
             var name_edit = <?php echo $name_edit ?>;
             var code_edit = <?php echo $code_edit ?>;
-            var value_length_edit = <?php echo $value_length_edit ?>;
-            var status = <?php echo $status_length_edit ?>;
+            var value_edit = <?php echo $value_edit ?>;
+            var status = <?php echo $status_value_edit ?>;
 
             // Ищем классы и добавляем данные
             for (x = 0; x < name_edit.length; x++) {
@@ -23,15 +23,15 @@
                 $('#code_edit' + x).val(code_edit[x][modal_id]);
             }
 
-            $('#value_length_edit').val(value_length_edit[modal_id]);
+            $('#value_edit').val(value_edit[modal_id]);
             $('#js_edit').val(modal_id);
             // Меняем значение чекбокса
-            $('#status_length_edit').prop('checked', status[modal_id]);
+            $('#status_value_edit').prop('checked', status[modal_id]);
         });
     </script>
 <?php
 }
 // Подгружаем Ajax Добавить, Редактировать, Удалить
-$AJAX->action('/controller/admin/pages/settings/length/index.php');
+$AJAX->action('/controller/admin/pages/settings/currencies/index.php');
 ?>
 

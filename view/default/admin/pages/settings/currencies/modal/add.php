@@ -62,12 +62,12 @@
                         <div class="form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                <input class="input-sm form-control" placeholder="<?php echo lang('value') ?>" type="text" pattern="\d+(\.\d{2})?" name="value_length" id="value_length" required />
+                                <input class="input-sm form-control" placeholder="<?php echo lang('value') ?>" type="text" pattern="\d+(\.\d{2})?" name="value" id="value" required />
                             </div>
                         </div>
                             <div class="form-group">
-                                <label for="default_length"><?php echo lang('default_set') ?> </label>
-                                <input class="check-box" name="default_length" type="checkbox" checked>
+                                <label for="default_value"><?php echo lang('default_set') ?> </label>
+                                <input class="check-box" name="default_value" type="checkbox" checked>
                             </div>
                     </div>
                 </div>

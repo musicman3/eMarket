@@ -53,7 +53,7 @@ if ($VALID->inPOST('add')) {
 if ($VALID->inPOST('edit')) {
 
     // Если есть установка по-умолчанию
-    if ($VALID->inPOST('status_length_edit')) {
+    if ($VALID->inPOST('status_value_edit')) {
         $default_value = 1;
     } else {
         $default_value = 0;

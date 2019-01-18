@@ -17,12 +17,12 @@ for ($i = $start; $i < $finish; $i++) {
         }
         
         $value_edit_temp[$modal_id] = (float)$PDO->selectPrepare("SELECT value FROM " . TABLE_CURRENCIES . " WHERE id=?", [$modal_id]);
-        $status_length_edit_temp[$modal_id] = (int) $PDO->selectPrepare("SELECT default_value FROM " . TABLE_CURRENCIES . " WHERE id=?", [$modal_id]);
+        $status_value_edit_temp[$modal_id] = (int) $PDO->selectPrepare("SELECT default_value FROM " . TABLE_CURRENCIES . " WHERE id=?", [$modal_id]);
         // ПАРАМЕТРЫ ДЛЯ ПЕРЕДАЧИ В МОДАЛ
         $name_edit = json_encode($name_edit_temp); // Имя
         $code_edit = json_encode($code_edit_temp); // Короткое имя
         $value_edit = json_encode($value_edit_temp); // Значение
-        $status_length_edit = json_encode($status_length_edit_temp); // Статус
+        $status_value_edit = json_encode($status_value_edit_temp); // Статус
     }
 }
 if (!isset($modal_id)) {
