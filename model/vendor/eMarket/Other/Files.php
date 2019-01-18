@@ -85,9 +85,8 @@ class Files {
         // Если нажали на кнопку Редактировать
         if ($VALID->inPOST('edit')) {
 
-            if ($VALID->inPOST('edit')) {
-                $id = $VALID->inPOST('edit');
-            }
+            $id = $VALID->inPOST('edit');
+
             // Делаем ресайз
             self::imgResize($dir, $files, $prefix, $resize_param);
 
