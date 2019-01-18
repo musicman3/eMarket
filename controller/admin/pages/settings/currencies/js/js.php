@@ -35,9 +35,9 @@
             $('#status_value_edit').prop('checked', status[modal_id]);
             // Выбираем установленный селект
             if (symbol_position_edit[modal_id] === 'left') {
-                $('#symbol_position_edit option[value="left"]').prop('selected', status[modal_id]);
+                $('#symbol_position_edit option[value="left"]').prop('selected', true);
             } else {
-                $('#symbol_position_edit option[value="right"]').prop('selected', status[modal_id]);
+                $('#symbol_position_edit option[value="right"]').prop('selected', true);
             }
         });
     </script>
