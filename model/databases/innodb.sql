@@ -58,7 +58,8 @@ CREATE TABLE emkt_currencies (
 	language varchar(64),
         value decimal(20,10),
         default_value int NOT NULL,
-        code_position varchar(16),
+        symbol varchar(16),
+        symbol_position varchar(16),
         decimal_places char(1),
         last_updated datetime NULL,
 	PRIMARY KEY (id, language))
