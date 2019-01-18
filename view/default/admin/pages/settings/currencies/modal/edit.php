@@ -66,7 +66,7 @@ require(ROOT . '/controller/admin/pages/settings/currencies/modal/edit.php');
                         <div class="form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                <input class="value_edit input-sm form-control" type="text" pattern="\d+(\.\d{2})?" name="value_edit" id="value_edit" required />
+                                <input class="value_edit input-sm form-control" type="text" name="value_edit" id="value_edit" required />
                             </div>
                         </div>
                         <div class="form-group">

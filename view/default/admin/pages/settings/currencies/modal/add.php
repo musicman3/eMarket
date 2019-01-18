@@ -62,7 +62,7 @@
                         <div class="form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                <input class="input-sm form-control" placeholder="<?php echo lang('value') ?>" type="text" pattern="\d+(\.\d{2})?" name="value" id="value" required />
+                                <input class="input-sm form-control" placeholder="<?php echo lang('value') ?>" type="text" name="value" id="value" required />
                             </div>
                         </div>
                             <div class="form-group">
