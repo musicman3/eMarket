@@ -29,6 +29,7 @@ $tab_admin = $db_pref . 'administrators';
 $tab_basic_settings = $db_pref . 'basic_settings';
 $tab_categories = $db_pref . 'categories';
 $tab_countries = $db_pref . 'countries';
+$tab_currencies = $db_pref . 'currencies';
 $tab_length = $db_pref . 'length';
 $tab_manufacturers = $db_pref . 'manufacturers';
 $tab_products = $db_pref . 'products';
@@ -58,6 +59,7 @@ $config = '<?php' . "\n" .
         '  define(\'TABLE_BASIC_SETTINGS\', \'' . $tab_basic_settings . '\');' . "\n" .
         '  define(\'TABLE_CATEGORIES\', \'' . $tab_categories . '\');' . "\n" .
         '  define(\'TABLE_COUNTRIES\', \'' . $tab_countries . '\');' . "\n" .
+        '  define(\'TABLE_CURRENCIES\', \'' . $tab_currencies . '\');' . "\n" .
         '  define(\'TABLE_LENGTH\', \'' . $tab_length . '\');' . "\n" .
         '  define(\'TABLE_MANUFACTURERS\', \'' . $tab_manufacturers . '\');' . "\n" .
         '  define(\'TABLE_PRODUCTS\', \'' . $tab_products . '\');' . "\n" .
