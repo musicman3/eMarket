@@ -66,7 +66,7 @@ require(ROOT . '/controller/admin/pages/settings/weight/modal/edit.php');
                         <div class="form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                <input class="input-sm form-control" type="text" name="value_weight_edit" pattern="\d+(\.\d{2})?" id="value_weight_edit" required />
+                                <input class="input-sm form-control" type="text" name="value_weight_edit" pattern="\d+(\.\d{0,7})?" id="value_weight_edit" required />
                             </div>
                         </div>
                         <div class="form-group">

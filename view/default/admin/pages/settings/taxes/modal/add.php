@@ -54,7 +54,7 @@
                         <div class="form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                <input class="input-sm form-control" placeholder="Налоговая ставка (%)" type="text" pattern="\d+(\.\d{2})?" name="rate" id="rate" required />
+                                <input class="input-sm form-control" placeholder="Налоговая ставка (%)" type="text" pattern="\d+(\.\d{0,2})?" name="rate" id="rate" required />
                             </div>
                         </div>
                     </div>
