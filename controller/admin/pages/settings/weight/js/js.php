@@ -17,7 +17,7 @@
             var value_weight_edit = <?php echo $value_weight_edit ?>;
             var status = <?php echo $status_weight_edit ?>;
 
-            // Ищем классы и добавляем данные
+            // Ищем id и добавляем данные
             for (x = 0; x < name_edit.length; x++) {
                 $('#name_edit' + x).val(name_edit[x][modal_id]);
                 $('#weight_edit' + x).val(code_edit[x][modal_id]);

@@ -17,7 +17,7 @@
             var alpha_3 = <?php echo $alpha_3 ?>;
             var address_format = <?php echo $address_format ?>;
 
-            // Ищем классы и добавляем данные
+            // Ищем id и добавляем данные
             for (x = 0; x < name_edit.length; x++) {
                 $('#name_edit' + x).val(name_edit[x][modal_id]);
             }

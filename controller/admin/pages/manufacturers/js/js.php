@@ -18,7 +18,7 @@
         var logo_edit = $('div#ajax_data').data('logo');
         var logo_general_edit = $('div#ajax_data').data('general');
 
-        // Ищем классы и добавляем данные
+        // Ищем id и добавляем данные
         for (x = 0; x < name_edit.length; x++) {
             $('#name_edit' + x).val(name_edit[x][modal_id]);
         }

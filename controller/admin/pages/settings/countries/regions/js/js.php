@@ -15,7 +15,7 @@
             var name_edit = <?php echo $name_edit ?>;
             var code_edit = <?php echo $code_edit ?>;
 
-            // Ищем классы и добавляем данные
+            // Ищем id и добавляем данные
             for (x = 0; x < name_edit.length; x++) {
                 $('#name_edit' + x).val(name_edit[x][modal_id]);
             }
