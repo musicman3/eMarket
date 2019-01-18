@@ -50,6 +50,21 @@ CREATE TABLE emkt_countries (
 	PRIMARY KEY (id, language))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+DROP TABLE IF EXISTS emkt_currencies;
+CREATE TABLE emkt_currencies (
+	id int NOT NULL,
+	name varchar(64),
+        code varchar(8),
+	language varchar(64),
+        value decimal(14,7),
+        default_value int NOT NULL,
+        symbol_left varchar(16),
+        symbol_right varchar(16),
+        decimal_places char(1),
+        last_updated datetime NULL,
+	PRIMARY KEY (id, language))
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 DROP TABLE IF EXISTS emkt_length;
 CREATE TABLE emkt_length (
 	id int NOT NULL,
