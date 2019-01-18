@@ -58,10 +58,10 @@ CREATE TABLE emkt_currencies (
 	language varchar(64),
         value decimal(14,7),
         default_value int NOT NULL,
-        symbol_left varchar(16),
-        symbol_right varchar(16),
+        code_position varchar(16),
         decimal_places char(1),
         last_updated datetime NULL,
+	PRIMARY KEY (id, language))
 	PRIMARY KEY (id, language))
 ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
