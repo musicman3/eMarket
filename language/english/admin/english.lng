@@ -122,4 +122,9 @@ symbol_right = Symbol right
 iso_4217 = Code ISO 4217
 
 ;TAXES
+tax_rate = Rate (%)
+rate = Rate
+tax = Tax
+
+;CATEGORIES
 add_category = Add category

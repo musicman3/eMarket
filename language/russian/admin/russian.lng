@@ -128,9 +128,4 @@ rate = Ставка
 tax = Налог
 
 ;CATEGORIES
-tax_rate = Налоговая ставка (%)
-rate = Ставка
-tax = Налог
-
-;TAXES
 add_category = Добавить категорию
