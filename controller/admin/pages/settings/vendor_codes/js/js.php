@@ -14,6 +14,7 @@
             // Получаем массивы данных
             var name_edit = <?php echo $name_edit ?>;
             var code_edit = <?php echo $code_edit ?>;
+            var status = <?php echo $default_vendor_code_edit ?>;
 
             // Ищем id и добавляем данные
             for (x = 0; x < name_edit.length; x++) {
@@ -22,6 +23,7 @@
             }
 
             $('#js_edit').val(modal_id);
+            $('#default_vendor_code_edit').prop('checked', status[modal_id]);
         });
     </script>
 <?php

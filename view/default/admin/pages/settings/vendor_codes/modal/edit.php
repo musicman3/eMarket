@@ -1,10 +1,11 @@
 <?php
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
-  |    GNU GENERAL PUBLIC LICENSE v.3.0    |    
+  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 require(ROOT . '/controller/admin/pages/settings/vendor_codes/modal/edit.php');
+
 ?>
 
 <!-- Модальное окно "Изменить" -->
@@ -17,7 +18,7 @@ require(ROOT . '/controller/admin/pages/settings/vendor_codes/modal/edit.php');
             <form id="form_edit" name="form_edit" action="javascript:void(null);" onsubmit="callEdit()">
                 <div class="panel-body">
                     <input id="js_edit" type="hidden" name="edit" value="" />
-                    
+
                     <!-- Языковые панели -->
                     <?php require_once(ROOT . '/view/' . $SET->template() . '/layouts/lang_tabs_edit.php') ?>
 
@@ -41,6 +42,7 @@ require(ROOT . '/controller/admin/pages/settings/vendor_codes/modal/edit.php');
                         <?php
                         if ($LANG_COUNT > 1) {
                             for ($x = 1; $x < $LANG_COUNT; $x++) {
+
                                 ?>
 
                                 <div id="<?php echo lang('#lang_all')[$x] . $modal_id ?>" class="tab-pane fade">
@@ -58,9 +60,15 @@ require(ROOT . '/controller/admin/pages/settings/vendor_codes/modal/edit.php');
                                     </div>
                                 </div>
 
-                            <?php }
-                        } ?>
+                            <?php
+                            }
+                        }
 
+                        ?>
+                        <div class="form-group">
+                            <label for="default_vendor_code_edit"><?php echo lang('default_set') ?> </label>
+                            <input class="check-box" id="default_vendor_code_edit" type="checkbox" name="default_vendor_code_edit">
+                        </div>
                     </div>
                 </div>
 

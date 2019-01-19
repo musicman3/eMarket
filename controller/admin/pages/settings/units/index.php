@@ -1,5 +1,4 @@
 <?php
-
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -11,8 +10,8 @@ require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 // 
 // Если нажали на кнопку Добавить
 if ($VALID->inPOST('add')) {
-    
-        // Если есть установка по-умолчанию
+
+    // Если есть установка по-умолчанию
     if ($VALID->inPOST('default_unit')) {
         $default_unit = 1;
     } else {
@@ -34,8 +33,8 @@ if ($VALID->inPOST('add')) {
 
 // Если нажали на кнопку Редактировать
 if ($VALID->inPOST('edit')) {
-    
-        // Если есть установка по-умолчанию
+
+    // Если есть установка по-умолчанию
     if ($VALID->inPOST('default_unit_edit')) {
         $default_unit = 1;
     } else {
@@ -73,4 +72,5 @@ $JS_END = __DIR__;
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
 require_once(ROOT . '/model/end.php');
 /* ------------------------------------------ */
+
 ?>

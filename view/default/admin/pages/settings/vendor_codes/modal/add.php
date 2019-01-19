@@ -1,8 +1,9 @@
 <?php
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
-  |    GNU GENERAL PUBLIC LICENSE v.3.0    |    
+  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+
 ?>
 <!-- Модальное окно "Добавить" -->
 <div id="add" class="modal fade" tabindex="-1">
@@ -38,13 +39,14 @@
                         <?php
                         if ($LANG_COUNT > 1) {
                             for ($x = 1; $x < $LANG_COUNT; $x++) {
+
                                 ?>
 
                                 <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo lang('product_vendor_code') ?>" type="text" name="<?php echo $SET->titleDir() . '_' .lang('#lang_all')[$x] ?>" required />
+                                            <input class="input-sm form-control" placeholder="<?php echo lang('product_vendor_code') ?>" type="text" name="<?php echo $SET->titleDir() . '_' . lang('#lang_all')[$x] ?>" required />
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -55,8 +57,15 @@
                                     </div>
                                 </div>
 
-                            <?php }
-                        } ?>
+                            <?php
+                            }
+                        }
+
+                        ?>
+                        <div class="form-group">
+                            <label for="default_vendor_code"><?php echo lang('default_set') ?> </label>
+                            <input class="check-box" name="default_vendor_code" type="checkbox" checked>
+                        </div>
                     </div>
                 </div>
 
