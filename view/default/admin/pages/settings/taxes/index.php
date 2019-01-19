@@ -63,8 +63,8 @@
                             </tr>
                             <?php if ($lines == TRUE) { ?>
                                 <tr class="border">
-                                    <th>Налог</th>
-                                    <th class="al-text">Ставка</th>
+                                    <th><?php echo lang('tax') ?></th>
+                                    <th class="al-text"><?php echo lang('rate') ?></th>
                                     <th class="al-text-w"></th>
                                 </tr>
                             <?php } ?>
