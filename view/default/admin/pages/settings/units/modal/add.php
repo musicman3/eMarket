@@ -57,6 +57,11 @@
 
                             <?php }
                         } ?>
+                        
+                        <div class="form-group">
+                            <label for="default_unit"><?php echo lang('default_set') ?> </label>
+                            <input class="check-box" name="default_unit" type="checkbox" checked>
+                        </div>
                     </div>
                 </div>
 

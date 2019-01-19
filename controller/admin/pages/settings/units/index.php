@@ -11,6 +11,13 @@ require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 // 
 // Если нажали на кнопку Добавить
 if ($VALID->inPOST('add')) {
+    
+        // Если есть установка по-умолчанию
+    if ($VALID->inPOST('default_unit')) {
+        $default_unit = 1;
+    } else {
+        $default_unit = 0;
+    }
 
     // Получаем последний id и увеличиваем его на 1
     $id_max = $PDO->selectPrepare("SELECT id FROM " . TABLE_UNITS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
@@ -18,7 +25,7 @@ if ($VALID->inPOST('add')) {
 
     // добавляем запись для всех вкладок
     for ($x = 0; $x < $LANG_COUNT; $x++) {
-        $PDO->inPrepare("INSERT INTO " . TABLE_UNITS . " SET id=?, name=?, language=?, unit=?", [$id, $VALID->inPOST($SET->titleDir() . '_' . lang('#lang_all')[$x]), lang('#lang_all')[$x], $VALID->inPOST('unit' . lang('#lang_all')[$x])]);
+        $PDO->inPrepare("INSERT INTO " . TABLE_UNITS . " SET id=?, name=?, language=?, unit=?, default_unit=?", [$id, $VALID->inPOST($SET->titleDir() . '_' . lang('#lang_all')[$x]), lang('#lang_all')[$x], $VALID->inPOST('unit' . lang('#lang_all')[$x]), $default_unit]);
     }
 
     // Выводим сообщение об успехе
@@ -27,10 +34,17 @@ if ($VALID->inPOST('add')) {
 
 // Если нажали на кнопку Редактировать
 if ($VALID->inPOST('edit')) {
+    
+        // Если есть установка по-умолчанию
+    if ($VALID->inPOST('default_unit_edit')) {
+        $default_unit = 1;
+    } else {
+        $default_unit = 0;
+    }
 
     for ($x = 0; $x < $LANG_COUNT; $x++) {
         // обновляем запись
-        $PDO->inPrepare("UPDATE " . TABLE_UNITS . " SET name=?, unit=? WHERE id=? AND language=?", [$VALID->inPOST('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$x]), $VALID->inPOST('unit_edit' . lang('#lang_all')[$x]), $VALID->inPOST('edit'), lang('#lang_all')[$x]]);
+        $PDO->inPrepare("UPDATE " . TABLE_UNITS . " SET name=?, unit=?, default_unit=? WHERE id=? AND language=?", [$VALID->inPOST('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$x]), $VALID->inPOST('unit_edit' . lang('#lang_all')[$x]), $default_unit, $VALID->inPOST('edit'), lang('#lang_all')[$x]]);
     }
 
     // Выводим сообщение об успехе
@@ -47,7 +61,7 @@ if ($VALID->inPOST('delete')) {
 }
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
-$lines = $PDO->getColRow("SELECT id, name, unit FROM " . TABLE_UNITS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+$lines = $PDO->getColRow("SELECT id, name, unit, default_unit FROM " . TABLE_UNITS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
 $lines_on_page = $SET->linesOnPage();
 $navigate = $NAVIGATION->getLink(count($lines), $lines_on_page);
 $start = $navigate[0];
