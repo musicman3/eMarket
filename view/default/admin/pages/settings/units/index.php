@@ -29,7 +29,7 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th colspan="2">
+                                <th colspan="3">
                                     <?php if ($lines == TRUE) { ?>
                                         <div class="page"><?php echo lang('s') ?> <?php echo $start + 1 ?> <?php echo lang('po') ?> <?php echo $finish ?> ( <?php echo lang('iz') ?> <?php echo count($lines); ?> )</div>
                                         <?php
@@ -58,13 +58,14 @@
                                     </form>
 
                                     <?php if (count($lines) > $lines_on_page) { ?> <div class="left"> <?php } else { ?> <div class="right"> <?php } ?>
-                                    <a href="#add" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
+                                            <a href="#add" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
                                 </th>
                             </tr>
                             <?php if ($lines == TRUE) { ?>
                                 <tr class="border">
                                     <th><?php echo lang('name_full') ?></th>
                                     <th class="al-text"><?php echo lang('name_little') ?></th>
+                                    <th class="al-text"><?php echo lang('default') ?></th>
                                     <th class="al-text-w"></th>
                                 </tr>
                             <?php } ?>
@@ -74,6 +75,11 @@
                                 <tr>
                                     <td><?php echo $lines[$start][1] ?></td>
                                     <td class="al-text"><?php echo $lines[$start][2] ?></td>
+                                    <?php if ($lines[$start][3] == 1) { ?>
+                                        <td class="al-text"><?php echo lang('confirm-yes') ?></td>
+                                    <?php } else { ?>
+                                        <td class="al-text"><?php echo lang('confirm-no') ?></td>
+                                    <?php } ?>
                                     <td class="al-text-w">
                                         <form id="form_delete<?php echo $lines[$start][0] ?>" name="form_delete" action="javascript:void(null);" onsubmit="callDelete('<?php echo $lines[$start][0] ?>')" enctype="multipart/form-data">
                                             <input hidden name="delete" value="<?php echo $lines[$start][0] ?>">
