@@ -152,6 +152,7 @@ CREATE TABLE emkt_units (
 	name varchar(256),
 	language varchar(64),
         unit varchar(256),
+        default_unit int NOT NULL,
 	PRIMARY KEY (id, language))
 ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
@@ -161,6 +162,7 @@ CREATE TABLE emkt_vendor_codes (
 	name varchar(256),
 	language varchar(64),
         vendor_code varchar(256),
+        default_vendor_code int NOT NULL,
 	PRIMARY KEY (id, language))
 ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
