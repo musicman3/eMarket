@@ -8567,7 +8567,7 @@ INSERT INTO emkt_regions VALUES(2823, 174, 'VL', 'Vâlcea', 'english');
 INSERT INTO emkt_regions VALUES(2824, 174, 'VN', 'Vrancea', 'english');
 INSERT INTO emkt_regions VALUES(2825, 174, 'VS', 'Vaslui', 'english');
 
-INSERT INTO emkt_countries VALUES (175,'russian Federation','english','RU','RUS','');
+INSERT INTO emkt_countries VALUES (175,'Russian Federation','english','RU','RUS','');
 
 INSERT INTO emkt_regions VALUES(2826, 175, 'AD', 'Республика Адыгея', 'english');
 INSERT INTO emkt_regions VALUES(2827, 175, 'AL', 'Республика Алтай', 'english');
