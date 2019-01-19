@@ -16,6 +16,7 @@ for ($i = $start; $i < $finish; $i++) {
             $code_edit_temp[$x][$modal_id] = $PDO->selectPrepare("SELECT code FROM " . TABLE_CURRENCIES . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]]);
         }
         
+        $iso_4217_edit_temp[$modal_id] = $PDO->selectPrepare("SELECT iso_4217 FROM " . TABLE_CURRENCIES . " WHERE id=?", [$modal_id]);
         $value_edit_temp[$modal_id] = (float)$PDO->selectPrepare("SELECT value FROM " . TABLE_CURRENCIES . " WHERE id=?", [$modal_id]);
         $symbol_edit_temp[$modal_id] = $PDO->selectPrepare("SELECT symbol FROM " . TABLE_CURRENCIES . " WHERE id=?", [$modal_id]);
         $symbol_position_edit_temp[$modal_id] = $PDO->selectPrepare("SELECT symbol_position FROM " . TABLE_CURRENCIES . " WHERE id=?", [$modal_id]);
@@ -24,6 +25,7 @@ for ($i = $start; $i < $finish; $i++) {
         // ПАРАМЕТРЫ ДЛЯ ПЕРЕДАЧИ В МОДАЛ
         $name_edit = json_encode($name_edit_temp); // Имя
         $code_edit = json_encode($code_edit_temp); // Короткое имя
+        $iso_4217_edit = json_encode($iso_4217_edit_temp); // iso 4217
         $value_edit = json_encode($value_edit_temp); // Значение
         $symbol_edit = json_encode($symbol_edit_temp); // Символ
         $symbol_position_edit = json_encode($symbol_position_edit_temp); // Позиция символа

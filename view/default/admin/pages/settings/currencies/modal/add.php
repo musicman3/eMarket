@@ -63,6 +63,12 @@
 
                         ?>
                         <div class="form-group">
+                            <div class="input-group has-error">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                                <input class="input-sm form-control" placeholder="<?php echo lang('iso_4217') ?>" type="text" pattern="[A-Za-z]{3}" name="iso_4217" id="iso_4217" required />
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
                                 <input class="input-sm form-control" placeholder="<?php echo lang('currency_symbol') ?>" type="text" name="symbol" id="symbol" />

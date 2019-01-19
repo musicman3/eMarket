@@ -110,3 +110,4 @@ currency_symbol = Символ валюты
 decimal_places = Количество десятичных знаков
 symbol_left = Символ слева
 symbol_right = Символ справа
+iso_4217 = Код ISO 4217

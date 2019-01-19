@@ -66,6 +66,12 @@ require(ROOT . '/controller/admin/pages/settings/currencies/modal/edit.php');
 
                         ?>
                         <div class="form-group">
+                            <div class="input-group has-error">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                                <input class="input-sm form-control" type="text" pattern="[A-Za-z]{3}" name="iso_4217_edit" id="iso_4217_edit" required />
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
                                 <input class="input-sm form-control" type="text" name="symbol_edit" id="symbol_edit" />

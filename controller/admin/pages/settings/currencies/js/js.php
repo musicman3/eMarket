@@ -15,6 +15,7 @@
             // Получаем массивы данных
             var name_edit = <?php echo $name_edit ?>;
             var code_edit = <?php echo $code_edit ?>;
+            var iso_4217_edit = <?php echo $iso_4217_edit ?>;
             var value_edit = <?php echo $value_edit ?>;
             var symbol_edit = <?php echo $symbol_edit ?>;
             var symbol_position_edit = <?php echo $symbol_position_edit ?>;
@@ -26,7 +27,8 @@
                 $('#name_edit' + x).val(name_edit[x][modal_id]);
                 $('#code_edit' + x).val(code_edit[x][modal_id]);
             }
-
+            
+            $('#iso_4217_edit').val(iso_4217_edit[modal_id]);
             $('#value_edit').val(value_edit[modal_id]);
             $('#symbol_edit').val(symbol_edit[modal_id]);
             $('#decimal_places_edit').val(decimal_places_edit[modal_id]);

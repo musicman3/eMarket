@@ -28,7 +28,7 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th colspan="4">
+                                <th colspan="5">
                                     <?php if ($lines == TRUE) { ?>
                                         <div class="page"><?php echo lang('s') ?> <?php echo $start + 1 ?> <?php echo lang('po') ?> <?php echo $finish ?> ( <?php echo lang('iz') ?> <?php echo count($lines); ?> )</div>
                                         <?php
@@ -63,6 +63,7 @@
                                 <tr class="border">
                                     <th><?php echo lang('name_full') ?></th>
                                     <th class="al-text"><?php echo lang('name_little') ?></th>
+                                    <th class="al-text"><?php echo lang('iso_4217') ?></th>
                                     <th class="al-text"><?php echo lang('value') ?></th>
                                     <th class="al-text"><?php echo lang('default') ?></th>
                                     <th class="al-text-w"></th>
@@ -74,8 +75,9 @@
                                 <tr>
                                     <td><?php echo $lines[$start][1] ?></td>
                                     <td class="al-text"><?php echo $lines[$start][2] ?></td>
-                                    <td class="al-text"><?php echo (float)$lines[$start][3] ?></td>
-                                    <?php if ($lines[$start][4] == 1) { ?>
+                                    <td class="al-text"><?php echo $lines[$start][3] ?></td>
+                                    <td class="al-text"><?php echo (float)$lines[$start][4] ?></td>
+                                    <?php if ($lines[$start][5] == 1) { ?>
                                         <td class="al-text"><?php echo lang('confirm-yes') ?></td>
                                     <?php } else { ?>
                                         <td class="al-text"><?php echo lang('confirm-no') ?></td>

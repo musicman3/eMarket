@@ -109,3 +109,4 @@ currency_symbol = Currency symbol
 decimal_places = Decimal places
 symbol_left = Symbol left
 symbol_right = Symbol right
+iso_4217 = Code ISO 4217

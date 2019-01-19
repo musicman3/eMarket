@@ -36,13 +36,13 @@ if ($VALID->inPOST('add')) {
         
         // добавляем запись для всех вкладок
         for ($x = 0; $x < $LANG_COUNT; $x++) {
-            $PDO->inPrepare("INSERT INTO " . TABLE_CURRENCIES . " SET id=?, name=?, language=?, code=?, value=?, default_value=?, symbol=?, symbol_position=?, decimal_places=?", [$id, $VALID->inPOST($SET->titleDir() . '_' . lang('#lang_all')[$x]), lang('#lang_all')[$x], $VALID->inPOST('code' . lang('#lang_all')[$x]), 1, $default_value, $VALID->inPOST('symbol'), $VALID->inPOST('symbol_position'), $VALID->inPOST('decimal_places')]);
+            $PDO->inPrepare("INSERT INTO " . TABLE_CURRENCIES . " SET id=?, name=?, language=?, code=?, iso_4217=?, value=?, default_value=?, symbol=?, symbol_position=?, decimal_places=?", [$id, $VALID->inPOST($SET->titleDir() . '_' . lang('#lang_all')[$x]), lang('#lang_all')[$x], $VALID->inPOST('code' . lang('#lang_all')[$x]), $VALID->inPOST('iso_4217'), 1, $default_value, $VALID->inPOST('symbol'), $VALID->inPOST('symbol_position'), $VALID->inPOST('decimal_places')]);
         }
     } else {
 
         // добавляем запись для всех вкладок
         for ($x = 0; $x < $LANG_COUNT; $x++) {
-            $PDO->inPrepare("INSERT INTO " . TABLE_CURRENCIES . " SET id=?, name=?, language=?, code=?, value=?, default_value=?, symbol=?, symbol_position=?, decimal_places=?", [$id, $VALID->inPOST($SET->titleDir() . '_' . lang('#lang_all')[$x]), lang('#lang_all')[$x], $VALID->inPOST('code' . lang('#lang_all')[$x]), $VALID->inPOST('value'), $default_value, $VALID->inPOST('symbol'), $VALID->inPOST('symbol_position'), $VALID->inPOST('decimal_places')]);
+            $PDO->inPrepare("INSERT INTO " . TABLE_CURRENCIES . " SET id=?, name=?, language=?, code=?, iso_4217=?, value=?, default_value=?, symbol=?, symbol_position=?, decimal_places=?", [$id, $VALID->inPOST($SET->titleDir() . '_' . lang('#lang_all')[$x]), lang('#lang_all')[$x], $VALID->inPOST('code' . lang('#lang_all')[$x]), $VALID->inPOST('iso_4217'), $VALID->inPOST('value'), $default_value, $VALID->inPOST('symbol'), $VALID->inPOST('symbol_position'), $VALID->inPOST('decimal_places')]);
         }
     }
     // Выводим сообщение об успехе
@@ -72,13 +72,13 @@ if ($VALID->inPOST('edit')) {
 
         for ($x = 0; $x < $LANG_COUNT; $x++) {
             // обновляем запись
-            $PDO->inPrepare("UPDATE " . TABLE_CURRENCIES . " SET name=?, code=?, value=?, default_value=?, symbol=?, symbol_position=?, decimal_places=?, last_updated=? WHERE id=? AND language=?", [$VALID->inPOST('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$x]), $VALID->inPOST('code_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$x]), 1, $default_value, $VALID->inPOST('symbol_edit'), $VALID->inPOST('symbol_position_edit'), $VALID->inPOST('decimal_places_edit'), date("Y-m-d H:i:s"), $VALID->inPOST('edit'), lang('#lang_all')[$x]]);
+            $PDO->inPrepare("UPDATE " . TABLE_CURRENCIES . " SET name=?, code=?, iso_4217=?, value=?, default_value=?, symbol=?, symbol_position=?, decimal_places=?, last_updated=? WHERE id=? AND language=?", [$VALID->inPOST('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$x]), $VALID->inPOST('code_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$x]), $VALID->inPOST('iso_4217_edit'), 1, $default_value, $VALID->inPOST('symbol_edit'), $VALID->inPOST('symbol_position_edit'), $VALID->inPOST('decimal_places_edit'), date("Y-m-d H:i:s"), $VALID->inPOST('edit'), lang('#lang_all')[$x]]);
         }
     } else {
 
         for ($x = 0; $x < $LANG_COUNT; $x++) {
             // обновляем запись
-            $PDO->inPrepare("UPDATE " . TABLE_CURRENCIES . " SET name=?, code=?, value=?, default_value=?, symbol=?, symbol_position=?, decimal_places=?, last_updated=? WHERE id=? AND language=?", [$VALID->inPOST('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$x]), $VALID->inPOST('code_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$x]), $VALID->inPOST('value_edit'), $default_value, $VALID->inPOST('symbol_edit'), $VALID->inPOST('symbol_position_edit'), $VALID->inPOST('decimal_places_edit'), date("Y-m-d H:i:s"), $VALID->inPOST('edit'), lang('#lang_all')[$x]]);
+            $PDO->inPrepare("UPDATE " . TABLE_CURRENCIES . " SET name=?, code=?, iso_4217=?, value=?, default_value=?, symbol=?, symbol_position=?, decimal_places=?, last_updated=? WHERE id=? AND language=?", [$VALID->inPOST('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$x]), $VALID->inPOST('code_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$x]), $VALID->inPOST('iso_4217_edit'), $VALID->inPOST('value_edit'), $default_value, $VALID->inPOST('symbol_edit'), $VALID->inPOST('symbol_position_edit'), $VALID->inPOST('decimal_places_edit'), date("Y-m-d H:i:s"), $VALID->inPOST('edit'), lang('#lang_all')[$x]]);
         }
     }
     // Выводим сообщение об успехе
@@ -95,7 +95,7 @@ if ($VALID->inPOST('delete')) {
 }
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
-$lines = $PDO->getColRow("SELECT id, name, code, value, default_value FROM " . TABLE_CURRENCIES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+$lines = $PDO->getColRow("SELECT id, name, code, iso_4217, value, default_value FROM " . TABLE_CURRENCIES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
 $lines_on_page = $SET->linesOnPage();
 $navigate = $NAVIGATION->getLink(count($lines), $lines_on_page);
 $start = $navigate[0];
