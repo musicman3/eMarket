@@ -10195,3 +10195,62 @@ INSERT INTO emkt_regions VALUES(4249, 238, 'MW', 'Mashonaland West', 'english');
 
 /* ЗАГРУЗКА НАСТРОЕК */
 INSERT INTO emkt_basic_settings VALUES (1, 20, 60);
+
+/* ЗАГРУЗКА ЗОН */
+INSERT INTO emkt_zones VALUES (1, 'Moskow', null, 'english');
+INSERT INTO emkt_zones VALUES (1, 'Москва', null, 'russian');
+
+/* ЗАГРУЗКА ЗНАЧЕНИЙ ЗОН */
+INSERT INTO emkt_zones_value VALUES (1, 175, 29, 1);
+
+/* ЗАГРУЗКА НАЛОГОВ */
+INSERT INTO emkt_taxes VALUES (1, 'VAT', 'english', '20.00');
+INSERT INTO emkt_taxes VALUES (1, 'НДС', 'russian', '20.00');
+
+/* ЗАГРУЗКА ДЛИНЫ */
+INSERT INTO emkt_length VALUES (1, 'Meter', 'm', 'english', '1.0000000', '1');
+INSERT INTO emkt_length VALUES (1, 'Метр', 'м', 'russian', '1.0000000', '1');
+INSERT INTO emkt_length VALUES (2, 'Centimeter', 'cm', 'english', '0.0100000', '0');
+INSERT INTO emkt_length VALUES (2, 'Сантиметр', 'см', 'russian', '0.0100000', '0');
+INSERT INTO emkt_length VALUES (3, 'Millimeter', 'mm', 'english', '0.0010000', '0');
+INSERT INTO emkt_length VALUES (3, 'Миллиметр', 'мм', 'russian', '0.0010000', '0');
+INSERT INTO emkt_length VALUES (4, 'Inch', 'in', 'english', '0.0254000', '0');
+INSERT INTO emkt_length VALUES (4, 'Дюйм', 'д', 'russian', '0.0254000', '0');
+INSERT INTO emkt_length VALUES (5, 'Foot', 'ft', 'english', '0.3048000', '0');
+INSERT INTO emkt_length VALUES (5, 'Фут', 'ф', 'russian', '0.3048000', '0');
+
+/* ЗАГРУЗКА ВЕСА */
+INSERT INTO emkt_weight VALUES (1, 'Kilogramm', 'kg', 'english', '1.0000000', '1');
+INSERT INTO emkt_weight VALUES (1, 'Килограмм', 'kg', 'russian', '1.0000000', '1');
+INSERT INTO emkt_weight VALUES (2, 'Gramm', 'g', 'english', '0.0010000', '0');
+INSERT INTO emkt_weight VALUES (2, 'Грамм', 'г', 'russian', '0.0010000', '0');
+INSERT INTO emkt_weight VALUES (3, 'Ounce', 'oz', 'english', '0.0283500', '0');
+INSERT INTO emkt_weight VALUES (3, 'Унция', 'ун', 'russian', '0.0283500', '0');
+
+/* ЗАГРУЗКА ИДЕНТИФИКАТОРОВ ТОВАРА */
+INSERT INTO emkt_vendor_codes VALUES (1, 'Articul', 'english', '', '1');
+INSERT INTO emkt_vendor_codes VALUES (1, 'Артикул', 'russian', '', '1');
+INSERT INTO emkt_vendor_codes VALUES (2, 'SCU', 'english', '', '0');
+INSERT INTO emkt_vendor_codes VALUES (2, 'SCU', 'russian', '', '0');
+INSERT INTO emkt_vendor_codes VALUES (3, 'UPC', 'english', '', '0');
+INSERT INTO emkt_vendor_codes VALUES (3, 'UPC', 'russian', '', '0');
+INSERT INTO emkt_vendor_codes VALUES (4, 'EAN', 'english', '', '0');
+INSERT INTO emkt_vendor_codes VALUES (4, 'EAN', 'russian', '', '0');
+INSERT INTO emkt_vendor_codes VALUES (5, 'JAN', 'english', '', '0');
+INSERT INTO emkt_vendor_codes VALUES (5, 'JAN', 'russian', '', '0');
+INSERT INTO emkt_vendor_codes VALUES (6, 'ISBN', 'english', '', '0');
+INSERT INTO emkt_vendor_codes VALUES (6, 'ISBN', 'russian', '', '0');
+INSERT INTO emkt_vendor_codes VALUES (7, 'MPN', 'english', '', '0');
+INSERT INTO emkt_vendor_codes VALUES (7, 'MPN', 'russian', '', '0');
+
+/* ЗАГРУЗКА ЕДИНИЦ ИЗМЕРЕНИЯ */
+INSERT INTO emkt_units VALUES (1, 'Pieces', 'english', 'pcs', '1');
+INSERT INTO emkt_units VALUES (1, 'Штука', 'russian', 'шт', '1');
+INSERT INTO emkt_units VALUES (2, 'Packing', 'english', 'pkg', '0');
+INSERT INTO emkt_units VALUES (2, 'Упаковка', 'russian', 'уп', '0');
+
+/* ЗАГРУЗКА ВАЛЮТ */
+INSERT INTO emkt_currencies VALUES (1, 'Russian Rouble', 'RUR', 'english', '1.0000000000', '1', '₽', 'right', '2', NULL);
+INSERT INTO emkt_currencies VALUES (1, 'Рубль РФ', 'руб', 'russian', '1.0000000000', '1', '₽', 'right', '2', NULL);
+INSERT INTO emkt_currencies VALUES (2, 'Dollar USA', 'USD', 'english', '0.0014700000', '0', '$', 'left', '2', NULL);
+INSERT INTO emkt_currencies VALUES (2, 'Доллар США', 'долл', 'russian', '0.0014700000', '0', '$', 'left', '2', NULL);
