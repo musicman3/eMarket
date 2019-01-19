@@ -19,11 +19,11 @@
             //Регистронезависимый живой поиск
             enableCaseInsensitiveFiltering: true,
             //Надписи в живом поиске
-            filterPlaceholder: 'Искать...',
+            filterPlaceholder: '<?php echo lang('search') ?>',
             //Включить "Выбрать все"
             includeSelectAllOption: true,
             //Надписи "Выбрать все"
-            selectAllText: 'Выбрать все',
+            selectAllText: '<?php echo lang('select_all') ?>',
             //"Выбрать все" для раскрытых и не раскрытых стран
             selectAllJustVisible: false,
             //Включить поддержку HTML в названиях
@@ -33,15 +33,15 @@
             
             //Свой Title на кнопке
             buttonTitle: function () {
-                return 'Выберите страну и регион';
+                return '<?php echo lang('select_country_and_region') ?>';
             },
 
             //Надписи на кнопке
             buttonText: function (options, select) {
                 if (options.length === 0) {
-                    return 'Выберите страну и регион';
+                    return '<?php echo lang('select_country_and_region') ?>';
                 } else if (options.length > 0) {
-                    return 'Выбрано позиций: ' + options.length + ' шт.';
+                    return '<?php echo lang('positions_selected') ?>: ' + options.length + ' <?php echo lang('pcs') ?>';
                 } else {
                     var labels = [];
                     options.each(function () {

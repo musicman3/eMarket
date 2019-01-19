@@ -5,7 +5,7 @@
 
 [admin]
 
-;Title
+;TITLE
 title_admin_index = Панель администратора
 title_basic_settings_index = Базовые настройки
 title_categories_index = Категории
@@ -26,7 +26,7 @@ title_weight_index = Вес
 title_length_index = Длина
 title_manufacturers_index = Производители
 
-;кнопки меню
+;КНОПКИ МЕНЮ
 menu_catalog = Каталог товаров
 menu_error_log = Лог ошибок
 menu_exit = Выход
@@ -55,6 +55,11 @@ button_show = Отобразить
 button_hide = Скрыть
 cut = Вырезать
 paste = Вставить
+search = Искать...
+select_all = Выбрать все
+select_country_and_region = Выберите страну и регион
+positions_selected = Выбрано позиций
+pcs = шт.
 
 ;РАЗНОЕ
 s = с

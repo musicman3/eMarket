@@ -5,7 +5,7 @@
 
 [admin]
 
-;Title
+;TITLE
 title_admin_index = Administration Panel
 title_basic_settings_index = Basic settings
 title_categories_index = Categories
@@ -26,7 +26,7 @@ title_weight_index = Weight
 title_length_index = Length
 title_manufacturers_index = Manufacturers
 
-;кнопки меню
+;MENU_BUTTONS
 menu_catalog = Catalog
 menu_error_log = Error log
 menu_exit = Exit
@@ -38,7 +38,7 @@ menu_tools = Tools
 
 login_error = E-Mail or password error
 
-;КНОПКИ
+;BUTTONS
 button_add = Add
 button_add_image = Add image...
 button_cancel = Cancel
@@ -55,8 +55,13 @@ button_show = Show
 button_hide = Hide
 cut = Cut
 paste = Paste
+search = Search...
+select_all = Select all
+select_country_and_region = Select country and region
+positions_selected = Positions selected
+pcs = pcs.
 
-;РАЗНОЕ
+;OTHER
 s = Displaying 
 po = to
 iz = of
