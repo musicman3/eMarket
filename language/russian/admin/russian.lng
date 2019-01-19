@@ -43,13 +43,18 @@ button_add = Добавить
 button_add_image = Добавить изображение...
 button_cancel = Отмена
 button_delete = Удалить
-button_edit = Изменить
+button_edit = Редактировать
 button_move = Переместить
 cancel = Отмена
 confirm-del = Удалить?
 confirm-no = Нет
 confirm-yes = Да
 save = Сохранить
+selected = Выбранное
+button_show = Отобразить
+button_hide = Скрыть
+cut = Вырезать
+paste = Вставить
 
 ;РАЗНОЕ
 s = с
@@ -116,3 +121,11 @@ iso_4217 = Код ISO 4217
 tax_rate = Налоговая ставка (%)
 rate = Ставка
 tax = Налог
+
+;CATEGORIES
+tax_rate = Налоговая ставка (%)
+rate = Ставка
+tax = Налог
+
+;TAXES
+add_category = Добавить категорию

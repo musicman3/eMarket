@@ -92,7 +92,7 @@ if (!isset($idsx_real_parent_id)) {
             items: {
 
                 "add": {
-                    name: "Добавить категорию",
+                    name: "<?php echo lang('add_category') ?>",
                     icon: function () {
                         return 'context-menu-icon glyphicon-plus';
                     },
@@ -102,7 +102,7 @@ if (!isset($idsx_real_parent_id)) {
                 },
 
                 "edit": {
-                    name: "Редактировать",
+                    name: "<?php echo lang('button_edit') ?>",
                     icon: function () {
                         return 'context-menu-icon glyphicon-edit';
                     },
@@ -148,14 +148,14 @@ if (!isset($idsx_real_parent_id)) {
                 "sep": "---------",
 
                 "fold": {
-                    "name": "Выбранное",
+                    "name": "<?php echo lang('selected') ?>",
                     icon: function () {
                         return 'context-menu-icon glyphicon-ok';
                     },
                     "items": {
 
                         "statusOn": {
-                            name: "Отобразить",
+                            name: "<?php echo lang('button_show') ?>",
                             icon: function () {
                                 return 'context-menu-icon glyphicon-eye-open';
                             },
@@ -194,7 +194,7 @@ if (!isset($idsx_real_parent_id)) {
                         },
 
                         "statusOff": {
-                            name: "Скрыть",
+                            name: "<?php echo lang('button_hide') ?>",
                             icon: function () {
                                 return 'context-menu-icon glyphicon-eye-close';
                             },
@@ -234,7 +234,7 @@ if (!isset($idsx_real_parent_id)) {
                         "sep2": "---------",
 
                         "cut": {
-                            name: "Вырезать",
+                            name: "<?php echo lang('cut') ?>",
                             icon: function () {
                                 return 'context-menu-icon glyphicon-scissors';
                             },
@@ -277,7 +277,7 @@ if (!isset($idsx_real_parent_id)) {
                         },
 
                         "paste": {
-                            name: "Вставить",
+                            name: "<?php echo lang('paste') ?>",
                             icon: function () {
                                 return 'context-menu-icon glyphicon-paste';
                             },
@@ -314,7 +314,7 @@ if (!isset($idsx_real_parent_id)) {
                         "sep3": "---------",
 
                         "delete": {
-                            name: "Удалить",
+                            name: "<?php echo lang('button_delete') ?>",
                             icon: function () {
                                 return 'context-menu-icon glyphicon-trash';
                             },
@@ -353,7 +353,7 @@ if (!isset($idsx_real_parent_id)) {
                     }
                 },
                 "sep4": "---------",
-                "quit": {name: "Выход", icon: function () {
+                "quit": {name: "<?php echo lang('menu_exit') ?>", icon: function () {
                         return 'context-menu-icon glyphicon-remove';
                     }}
             }

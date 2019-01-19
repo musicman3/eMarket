@@ -50,6 +50,11 @@ confirm-del = Delete?
 confirm-no = No
 confirm-yes = Yes
 save = Save
+selected = Selected
+button_show = Show
+button_hide = Hide
+cut = Cut
+paste = Paste
 
 ;РАЗНОЕ
 s = Displaying 
@@ -112,6 +117,4 @@ symbol_right = Symbol right
 iso_4217 = Code ISO 4217
 
 ;TAXES
-tax_rate = Rate (%)
-rate = Rate
-tax = Tax
+add_category = Add category
