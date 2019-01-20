@@ -77,7 +77,7 @@ class Eac {
     }
 
     /**
-     * Установить parent_id родительской категории
+     * Первоначальная установка parent_id родительской категории
      * @param string $TABLE_CATEGORIES (название таблицы категорий)
      * @return string $parent_id (идентификатор родительской категории)
      */
@@ -377,7 +377,7 @@ class Eac {
     }
 
     /**
-     * Статус категорий в EAC
+     * Установка parent_id при навигации в EAC
      * @param string $TABLE_CATEGORIES (название таблицы категорий)
      * @param string $idx (идентификатор)
      * @return string $parent_id (идентификатор родительской категории)
@@ -401,7 +401,7 @@ class Eac {
     }
 
     /**
-     * Статус категорий в EAC
+     * Ключ категорий в EAC
      * @param string $TABLE_CATEGORIES (название таблицы категорий)
      * @param string $idx (идентификатор)
      * @return array $keys

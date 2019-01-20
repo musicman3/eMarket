@@ -60,20 +60,39 @@
 
                                         <!-- Переключаем страницу "ВПЕРЕД" -->
                                         <form>
-                                            <?php if (count($lines) > $lines_on_page) { ?>
-                                                <input hidden name="start" value="<?php echo $start ?>">
-                                                <input hidden name="finish" value="<?php echo $finish ?>">
-                                                <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
-                                                <div class="right"><button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
-                                            <?php } ?>
+                                            <?php if (count($lines) > $lines_on_page OR count($lines_product) > $lines_on_page OR ( count($lines) + count($lines_product)) > $lines_on_page) { ?>
+
+                                                <?php if ($finish >= count($lines) && ($start + $lines_on_page) < $finish + $lines_on_page) { ?>
+                                                    <input hidden name="start" value="<?php echo $start + $lines_on_page ?>">
+                                                    <input hidden name="finish" value="<?php echo $finish + $lines_on_page ?>">
+                                                    <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
+                                                <?php } else { ?>
+                                                    <input hidden name="start" value="<?php echo $start ?>">
+                                                    <input hidden name="finish" value="<?php echo $finish ?>">
+                                                    <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
+
+                                                    <?php
+                                                }
+                                                if ($start <= $finish - $lines_on_page) {
+
+                                                    ?>
+
+                                                    <div class="right"><button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
+                                                    <?php
+                                                }
+                                            }
+
+                                            ?>
                                         </form>
 
                                         <!-- Переключаем страницу "НАЗАД" -->
                                         <form>
-                                            <?php if (count($lines) > $lines_on_page) { ?>
+                                            <?php if (count($lines) > $lines_on_page OR count($lines_product) > $lines_on_page OR ( count($lines) + count($lines_product)) > $lines_on_page) { ?>
+
                                                 <input hidden name="start2" value="<?php echo $start ?>">
                                                 <input hidden name="finish2" value="<?php echo $finish ?>">
                                                 <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
+
                                                 <div class="left"><button type="submit" class="btn btn-primary btn-xs"  action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
                                             <?php } ?>
                                         </form>
@@ -181,7 +200,7 @@
                                 ?>
 
                                 <!-- ТОВАРЫ -->
-                                <?php if ($transfer <= $lines_on_page) { ?>
+                                <?php if ($transfer < $lines_on_page) { ?>
                                     <tr class="sort-list" unitid="<?php echo $lines_product[0][0] ?>">
                                         <td class="sortleft-m"></td>
                                         <td class="sortleft"><div><a href="#" class="btn btn-success btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-shopping-cart"> </span></a></div></td>
