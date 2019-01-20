@@ -125,7 +125,7 @@ CREATE TABLE emkt_products (
         description text,
 	sort int DEFAULT '0',
         status int,
-	PRIMARY KEY (id))
+	PRIMARY KEY (id, language))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS emkt_regions;

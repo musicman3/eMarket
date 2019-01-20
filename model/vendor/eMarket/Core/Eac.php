@@ -69,7 +69,7 @@ class Eac {
         if ($parent_id_status != $parent_id) {
             $parent_id = $parent_id_status;
         }
-        
+
         // Если нажали на кнопку Добавить
         self::addProduct($TABLE_PRODUCTS, $parent_id);
 
@@ -430,18 +430,18 @@ class Eac {
     }
 
     /**
-     * Статус категорий в EAC
-     * @param string $TABLE_CATEGORIES (название таблицы категорий)
-     * @param string $idx (идентификатор)
-     * @return array $keys
+     * Добавить товар в EAC
+     * @param string $TABLE_PRODUCTS (название таблицы товаров)
+     * @param string $parent_id (идентификатор родительской категории)
      */
     private function addProduct($TABLE_PRODUCTS, $parent_id) {
-        
+
         $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
+        $LANG_COUNT = count(lang('#lang_all'));
 
         // Если нажали на кнопку Добавить товар
-        if ($VALID->inPOST('productName')) {
+        if ($VALID->inPOST('productName_' . lang('#lang_all')[0])) {
 
             // Формат даты после Datepicker
             if ($VALID->inPOST('date_available')) {
@@ -456,15 +456,20 @@ class Eac {
             } else {
                 $view_product = 0;
             }
-            
-            // Получаем последний sort_category в текущем parent_id и увеличиваем его на 1
-            $sort_max = $PDO->selectPrepare("SELECT id FROM " . $TABLE_PRODUCTS . " WHERE language=? AND parent_id=? ORDER BY sort_category DESC", [lang('#lang_all')[0], $parent_id]);
-            $prod_id = intval($sort_max) + 1;
 
-            // добавляем запись
-            $PDO->inPrepare("INSERT INTO " . $TABLE_PRODUCTS .
-                    " SET id=?, name=?, parent_id=?, date_added=?, date_available=?, model=?, price=?, quantity=?, keyword=?, tags=?, description=?", [$prod_id, $VALID->inPOST('productName'), $parent_id, date("Y-m-d H:i:s"), $date_available, $VALID->inPOST('model'), $VALID->inPOST('price'),
-                $VALID->inPOST('quantity'), $VALID->inPOST('keyword'), $VALID->inPOST('tags'), $VALID->inPOST('description')]);
+            // Получаем последний id и увеличиваем его на 1
+            $id_max = $PDO->selectPrepare("SELECT id FROM " . $TABLE_PRODUCTS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+            $id = intval($id_max) + 1;
+
+            // добавляем запись для всех вкладок
+            for ($x = 0; $x < $LANG_COUNT; $x++) {
+                $PDO->inPrepare("INSERT INTO " . $TABLE_PRODUCTS .
+                        " SET id=?, name=?, language=?, parent_id=?, date_added=?, date_available=?, model=?, price=?, quantity=?, keyword=?, tags=?, description=?",
+                        [$id, $VALID->inPOST('productName_' . lang('#lang_all')[$x]), lang('#lang_all')[$x], $parent_id, date("Y-m-d H:i:s"), $date_available, $VALID->inPOST('model'), $VALID->inPOST('price'),
+                            $VALID->inPOST('quantity'), $VALID->inPOST('keyword_' . lang('#lang_all')[$x]), $VALID->inPOST('tags_' . lang('#lang_all')[$x]), $VALID->inPOST('description_' . lang('#lang_all')[$x])]);
+            }
+            // Выводим сообщение об успехе
+            $_SESSION['message'] = ['success', lang('action_completed_successfully')];
         }
     }
 
