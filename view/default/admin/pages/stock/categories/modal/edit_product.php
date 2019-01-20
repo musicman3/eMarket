@@ -4,6 +4,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+require(ROOT . '/controller/admin/pages/stock/categories/modal/edit_product.php');
 ?>
 <!-- Модальное окно "Добавить товар" -->
 <div id="editProduct" class="products modal fade" tabindex="-1">
@@ -34,7 +35,7 @@
                         <div id="panel_edit1" class="tab-pane fade in active">
 
                             <!-- Языковые панели -->
-                            <?php require_once(ROOT . '/view/' . $SET->template() . '/layouts/lang_tabs_add_product.php') ?>
+                            <?php require_once(ROOT . '/view/' . $SET->template() . '/layouts/lang_tabs_edit_product.php') ?>
 
                             <!-- Содержимое языковых панелей -->
                             <div class="tab-content">
@@ -42,7 +43,7 @@
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="productNameEdit_<?php echo lang('#lang_all')[0] ?>" id="productNameEdit_<?php echo lang('#lang_all')[0] ?>" />
+                                            <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="productNameEdit_0" id="productNameEdit_0" />
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -73,7 +74,7 @@
                                             <div class="form-group">
                                                 <div class="input-group has-error">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                                    <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="productNameEdit_<?php echo lang('#lang_all')[$x] ?>" id="productNameEdit_<?php echo lang('#lang_all')[$x] ?>" />
+                                                    <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="productNameEdit_<?php echo $x ?>" id="productNameEdit_<?php echo $x ?>" />
                                                 </div>
                                             </div>
                                             <div class="form-group">

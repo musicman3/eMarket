@@ -132,6 +132,31 @@ if (!isset($idsx_real_parent_id)) {
                     
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
                         
+                        var modal_edit = opt.$trigger.attr("id");
+                        
+                        if (modal_edit.search('product_') > -1){
+                            
+                            $('#editProduct').on('show.bs.modal', function (event) {
+
+                            // Получаем ID при клике на кнопку редактирования
+                            var modal_id = modal_edit.split('product_')[1];
+                            // Получаем массивы данных
+                            var name_edit = $('div#ajax_data').data('nameproduct');
+
+                            // Ищем id и добавляем данные
+                            for (x = 0; x < name_edit.length; x++) {
+                                $('#productNameEdit_' + x).val(name_edit[x][modal_id]);
+                            }
+
+                        });
+                            
+                            
+                            
+                            $('#editProduct').modal('show');   
+                            //alert(modal_edit .split('product_')[1]);
+                            
+                        }else{
+                                                
                         $('#edit').on('show.bs.modal', function (event) {
                             $('.progress-bar').css('width', 0 + '%');
                             $('.file-upload').detach();
@@ -139,7 +164,6 @@ if (!isset($idsx_real_parent_id)) {
                             $('#general_image_edit').val('');
                             $('#alert_messages_edit').empty();
 
-                            var button = $(event.relatedTarget);
                             // Получаем ID при клике на кнопку редактирования
                             var modal_id = opt.$trigger.attr("id");
                             // Получаем массивы данных
@@ -159,7 +183,10 @@ if (!isset($idsx_real_parent_id)) {
                         });
 
                         // Открываем модальное окно
-                        $('#edit').modal('show');
+                        $('#edit').modal('show');    
+                            
+                        }
+
                     }
                 },
 
