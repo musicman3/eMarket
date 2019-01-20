@@ -48,14 +48,13 @@
                                     <th colspan="3">
                                         <?php
                                         // Счетчик в навигации
-                                        if ($finish == $count_lines && ($finish - $start) < $lines_on_page OR $finish == $lines_on_page) {
+                                        if ($finish == $count_lines && ($finish - $start) <= $lines_on_page OR $finish == $lines_on_page) {
                                             $finish_out = $finish;
                                         } else {
                                             $finish_out = $finish - 1;
                                         }
 
                                         ?>
-
 
                                         <div class="page"><?php echo lang('s') ?> <?php echo $start + 1 ?> <?php echo lang('po') ?> <?php echo $finish_out ?> ( <?php echo lang('iz') ?> <?php echo $count_lines; ?> )</div>
 
@@ -173,8 +172,6 @@
                                             <?php } else { ?>
                                                 <div class="context-one" id="<?php echo $lines[$start][0] ?>"><?php echo $lines[$start][1] ?></div>
                                             <?php } ?>
-
-
                                         </td>	 
                                     </tr>
 
@@ -183,20 +180,18 @@
 
                                 ?>
 
-
-
                                 <!-- ТОВАРЫ -->
-                                <tr class="sort-list" unitid="<?php echo $lines_product[0][0] ?>">
-                                    <td class="sortleft-m"></td>
-                                    <td class="sortleft"><div><a href="#" class="btn btn-success btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-shopping-cart"> </span></a></div></td>
-                                    <!-- ВЫБРАННЫЕ СТРОКИ -->
-                                    <td class="option" id="<?php echo $lines_product[0][0] ?>"><span class="inactive" style="display: none;"></span>
-                                        <div class="context-one" id="<?php echo $lines_product[0][0] ?>"><?php echo $lines_product[0][1] ?></div>
-                                    </td>
-                                </tr>
+                                <?php if ($transfer <= $lines_on_page) { ?>
+                                    <tr class="sort-list" unitid="<?php echo $lines_product[0][0] ?>">
+                                        <td class="sortleft-m"></td>
+                                        <td class="sortleft"><div><a href="#" class="btn btn-success btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-shopping-cart"> </span></a></div></td>
+                                        <!-- ВЫБРАННЫЕ СТРОКИ -->
+                                        <td class="option" id="<?php echo $lines_product[0][0] ?>"><span class="inactive" style="display: none;"></span>
+                                            <div class="context-one" id="<?php echo $lines_product[0][0] ?>"><?php echo $lines_product[0][1] ?></div>
+                                        </td>
+                                    </tr>
 
-
-
+                                <?php } ?>
 
                             </tbody>
                         </table>
