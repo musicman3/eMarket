@@ -6,7 +6,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 // собираем данные для отображения в Редактировании категорий
-for ($i = 0; $i < $count_lines_products; $i++) {
+for ($i = $start_product; $i < $finish_product; $i++) {
     if (isset($lines_product[$i][0]) == TRUE) {
         
         $modal_id_product = $lines_product[$i][0]; // ID
