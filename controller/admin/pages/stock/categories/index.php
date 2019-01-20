@@ -12,9 +12,16 @@ $resize_param = [];
 array_push($resize_param, ['125', '94']); // ширина, высота
 //
 // Загружаем движок EAC
-$EAC_ENGINE = $EAC->start(TABLE_CATEGORIES, $TOKEN, $resize_param);
+$EAC_ENGINE = $EAC->start(TABLE_CATEGORIES, TABLE_PRODUCTS, $TOKEN, $resize_param);
 $idsx_real_parent_id = $EAC_ENGINE[0];
 $parent_id = $EAC_ENGINE[1];
+
+// Формируем массив Налог для выпадающего списка
+$taxes_all = $PDO->getCol("SELECT name FROM " . TABLE_TAXES . " WHERE language=?", [lang('#lang_all')[0]]);
+
+// Формируем массив Единица измерения для выпадающего списка
+$units_all = $PDO->getCol("SELECT unit FROM " . TABLE_UNITS . " WHERE language=?", [lang('#lang_all')[0]]);
+
 
 // КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 // 

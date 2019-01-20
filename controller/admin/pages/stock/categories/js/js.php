@@ -90,17 +90,34 @@ if (!isset($idsx_real_parent_id)) {
                 return send();
             },
             items: {
+                
+                "addProduct": {
+                    name: "<?php echo lang('add_product') ?>",
+                    icon: function () {
+                        return 'context-menu-icon glyphicon-shopping-cart';
+                    },
+                    callback: function (itemKey, opt, rootMenu, originalEvent) {
+                        $('#addProduct').on('shown.bs.modal', function() {
+                        $(document).off('focusin.modal');
+                        });
+                        $('#addProduct').modal('show');
+                    }
+                }, 
+                
+                "sep": "---------",
 
                 "add": {
                     name: "<?php echo lang('add_category') ?>",
                     icon: function () {
-                        return 'context-menu-icon glyphicon-plus';
+                        return 'context-menu-icon glyphicon-folder-open';
                     },
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
                         $('#add').modal('show');
                     }
                 },
-
+                        
+                "sep2": "---------",
+                        
                 "edit": {
                     name: "<?php echo lang('button_edit') ?>",
                     icon: function () {
@@ -112,6 +129,7 @@ if (!isset($idsx_real_parent_id)) {
                             return true;
                     <?php } ?>
                     },
+                    
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
 
                         $('#edit').on('show.bs.modal', function (event) {
@@ -420,6 +438,65 @@ if (!isset($idsx_real_parent_id)) {
         }
     }
 </script>
+
+<script type="text/javascript" src="/ext/tinymce/tinymce.min.js"></script>
+<!-- Настройка TinyMCE" -->
+<script type="text/javascript">
+    tinymce.init({
+        selector: 'textarea',
+        plugins: 'advlist autolink visualblocks visualchars fullscreen lists charmap imagetools hr textcolor table link image wordcount code media preview',
+        toolbar1: 'undo redo | bold italic underline strikethrough backcolor forecolor | alignleft aligncenter alignright alignjustify | outdent indent bullist numlist hr | visualchars visualblocks ',
+        toolbar2: 'fontselect fontsizeselect formatselect superscript removeformat | charmap link unlink image media table | code preview fullscreen',
+        language: '<?php echo lang('meta-language') ?>',
+        toolbar_items_size: 'small',
+        menubar: false
+    });
+</script>
+
+<!-- Автовыбор языка Datepicker" -->
+<script type="text/javascript" src="/ext/jquery/ui/i18n/datepicker-<?php echo lang('meta-language') ?>.js"></script>
+<!-- Настройка Datepicker" -->
+<script type="text/javascript">
+    $(function () {
+        $("#date_available").datepicker({
+            showOtherMonths: true,
+            showAnim: 'fadeIn',
+            duration: 'normal',
+            showWeek: true,
+            selectOtherMonths: true
+        });
+    });
+</script>
+
+<!-- Модальное окно "Добавить" -->
+<script type="text/javascript">
+    function callAddProduct() {
+        var msg = $('#formAddProduct').serialize();
+        // Установка синхронного запроса для jQuery.ajax
+        jQuery.ajaxSetup({async: false});
+        jQuery.ajax({
+            type: 'POST',
+            url: '/controller/admin/pages/stock/index.php',
+            data: msg,
+            beforeSend: function (data) {
+                $('#addProduct').modal('hide');
+            }
+        });
+        // Отправка запроса для обновления страницы
+        jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных POST
+                {parent_down: <?php echo $parent_id ?>,
+                    modify: 'update_ok'},
+                AjaxSuccess);
+        // Обновление страницы
+        function AjaxSuccess(data) {
+            setTimeout(function () {
+                document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
+            }, 100);
+            $("#sort-list").sortable();
+        }
+    }
+</script>
+
 <?php
 // Подгружаем jQuery File Upload
 $AJAX->fileUpload('index.php', 'categories', $resize_param);

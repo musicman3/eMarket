@@ -22,7 +22,7 @@ class Eac {
      * @param array $resize_param (параметры ресайза)
      * @return array array($idsx_real_parent_id, $parent_id)
      */
-    public function start($TABLE_CATEGORIES, $TOKEN, $resize_param) {
+    public function start($TABLE_CATEGORIES, $TABLE_PRODUCTS, $TOKEN, $resize_param) {
 
         $FILES = new \eMarket\Other\Files;
 
@@ -69,6 +69,9 @@ class Eac {
         if ($parent_id_status != $parent_id) {
             $parent_id = $parent_id_status;
         }
+        
+        // Если нажали на кнопку Добавить
+        self::addProduct($TABLE_PRODUCTS, $parent_id);
 
         return array($idsx_real_parent_id, $parent_id);
     }
@@ -424,6 +427,45 @@ class Eac {
         }
 
         return $keys;
+    }
+
+    /**
+     * Статус категорий в EAC
+     * @param string $TABLE_CATEGORIES (название таблицы категорий)
+     * @param string $idx (идентификатор)
+     * @return array $keys
+     */
+    private function addProduct($TABLE_PRODUCTS, $parent_id) {
+        
+        $PDO = new \eMarket\Core\Pdo;
+        $VALID = new \eMarket\Core\Valid;
+
+        // Если нажали на кнопку Добавить товар
+        if ($VALID->inPOST('productName')) {
+
+            // Формат даты после Datepicker
+            if ($VALID->inPOST('date_available')) {
+                $date_available = date('Y-m-d', strtotime($VALID->inPOST('date_available')));
+            } else {
+
+                $date_available = NULL;
+            }
+
+            if ($VALID->inPOST('view_product')) {
+                $view_product = 1;
+            } else {
+                $view_product = 0;
+            }
+            
+            // Получаем последний sort_category в текущем parent_id и увеличиваем его на 1
+            $sort_max = $PDO->selectPrepare("SELECT id FROM " . $TABLE_PRODUCTS . " WHERE language=? AND parent_id=? ORDER BY sort_category DESC", [lang('#lang_all')[0], $parent_id]);
+            $prod_id = intval($sort_max) + 1;
+
+            // добавляем запись
+            $PDO->inPrepare("INSERT INTO " . $TABLE_PRODUCTS .
+                    " SET id=?, name=?, parent_id=?, date_added=?, date_available=?, model=?, price=?, quantity=?, keyword=?, tags=?, description=?", [$prod_id, $VALID->inPOST('productName'), $parent_id, date("Y-m-d H:i:s"), $date_available, $VALID->inPOST('model'), $VALID->inPOST('price'),
+                $VALID->inPOST('quantity'), $VALID->inPOST('keyword'), $VALID->inPOST('tags'), $VALID->inPOST('description')]);
+        }
     }
 
 }

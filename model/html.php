@@ -42,13 +42,7 @@
                 });
             </script>
 
-            <?php if (file_exists('products.php')) { ?>
-                <script type="text/javascript" src="/ext/tinymce/tinymce.min.js"></script>
-                <!-- Автовыбор языка Datepicker" -->
-                <script type="text/javascript" src="/ext/jquery/ui/i18n/datepicker-<?php echo lang('meta-language') ?>.js"></script>
-
-                <?php
-            }
+            <?php
             if (isset($_SESSION['login']) && isset($_SESSION['pass']) && file_exists(ROOT . '/view/' . $SET->template() . '/admin/nav.css')) {
 
                 ?>
@@ -69,7 +63,7 @@
             <link href="/ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
             <link href="/ext/bootstrap/css/normalize.css" rel="stylesheet" media="screen" />
             <link rel="stylesheet" type="text/css" href="/view/<?php echo $SET->template() ?>/catalog/style.css" media="screen" />
-	    <script type="text/javascript" src="/ext/jquery/jquery.min.js"></script>
+            <script type="text/javascript" src="/ext/jquery/jquery.min.js"></script>
         </head>
     <body>
         <?php

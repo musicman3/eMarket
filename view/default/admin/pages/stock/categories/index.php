@@ -7,6 +7,9 @@
 <!-- Вставляем модальное окно "Добавить категорию" -->
 <?php require_once('modal/add.php') ?>
 
+<!-- Вставляем модальное окно "Добавить товар" -->
+<?php require_once('modal/add_product.php') ?>
+
 <!-- Модальное окно "Редактировать" -->
 <?php require_once(ROOT . '/view/' . $SET->template() . '/admin/pages/stock/categories/modal/edit.php') ?>
 <!-- КОНЕЦ Модальное окно "Редактировать" -->
