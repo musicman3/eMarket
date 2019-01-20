@@ -200,17 +200,25 @@
                                 ?>
 
                                 <!-- ТОВАРЫ -->
-                                <?php if ($transfer < $lines_on_page) { ?>
-                                    <tr class="sort-list" unitid="<?php echo $lines_product[0][0] ?>">
-                                        <td class="sortleft-m"></td>
-                                        <td class="sortleft"><div><a href="#" class="btn btn-success btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-shopping-cart"> </span></a></div></td>
-                                        <!-- ВЫБРАННЫЕ СТРОКИ -->
-                                        <td class="option" id="<?php echo $lines_product[0][0] ?>"><span class="inactive" style="display: none;"></span>
-                                            <div class="context-one" id="<?php echo $lines_product[0][0] ?>"><?php echo $lines_product[0][1] ?></div>
-                                        </td>
-                                    </tr>
+                                <?php
+                                if ($transfer < $lines_on_page) {
+                                    for ($x = 0; $x < count($lines_product); $x++) {
 
-                                <?php } ?>
+                                        ?>
+                                        <tr class="sort-list" unitid="<?php echo $lines_product[$x][0] ?>">
+                                            <td class="sortleft-m"></td>
+                                            <td class="sortleft"><div><a href="#" class="btn btn-success btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-shopping-cart"> </span></a></div></td>
+                                            <!-- ВЫБРАННЫЕ СТРОКИ -->
+                                            <td class="option" id="<?php echo $lines_product[$x][0] ?>"><span class="inactive" style="display: none;"></span>
+                                                <div class="context-one" id="<?php echo $lines_product[$x][0] ?>"><?php echo $lines_product[$x][1] ?></div>
+                                            </td>
+                                        </tr>
+
+                                    <?php
+                                    }
+                                }
+
+                                ?>
 
                             </tbody>
                         </table>
@@ -270,7 +278,7 @@
                             </tbody>
                         </table>
                     </div>
-                <?php } ?>
+<?php } ?>
             </div>
         </div>
     </div>

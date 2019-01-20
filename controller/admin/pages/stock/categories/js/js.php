@@ -131,7 +131,7 @@ if (!isset($idsx_real_parent_id)) {
                     },
                     
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
-
+                        
                         $('#edit').on('show.bs.modal', function (event) {
                             $('.progress-bar').css('width', 0 + '%');
                             $('.file-upload').detach();
