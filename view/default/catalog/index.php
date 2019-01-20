@@ -145,7 +145,7 @@ $(document).ready(function(){
     <div class="row">
         
         <!-- Центр -->
-        <div id="bodyContent" class="col-md-8 col-md-push-2">
+        <div id="bodyContent" class="col-md-10 col-md-push-2">
 	    <h3>eMarket Bootstrap 3 Demo</h3>
 	    <div class="contentContainer">
 		<div class="contentText-before">
@@ -157,7 +157,7 @@ $(document).ready(function(){
 		    <h4>New Products!</h4>
 		    <div id="products" class="row list-group">
 
-			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 grid-group-item">
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item">
 			    <div class="productHolder">
 				<div class="list-item"><a href="#"><img src="/uploads/images/products/resize_4/2.png" class="img-responsive img-rounded center-block"><button class="hidden-xs hidden-sm" data-toggle="modal" data-target="#Modal1">Быстрый просмотр</button></a></div>
 				<div>
@@ -174,7 +174,7 @@ $(document).ready(function(){
 				</div>
 			    </div>
 			</div>
-			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 grid-group-item">
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item">
 			    <div class="productHolder">
 				<div class="list-item"><a href="#"><img src="/uploads/images/products/resize_4/2.png" class="img-responsive img-rounded center-block"><button class="hidden-xs hidden-sm" data-toggle="modal" data-target="#Modal2">Быстрый просмотр</button></a></div>
 				<div>
@@ -191,9 +191,26 @@ $(document).ready(function(){
 				</div>
 			    </div>
 			</div>
-			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 grid-group-item">
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item">
 			    <div class="productHolder">
 				<div class="list-item"><a href="#"><img src="/uploads/images/products/resize_4/3.png" class="img-responsive img-rounded center-block"><button class="hidden-xs hidden-sm" data-toggle="modal" data-target="#Modal3">Быстрый просмотр</button></a></div>
+				<div>
+				    <h5 class="text-center list-group-item-heading"><a href="#">Unreal Tournament Primary Holder</a></h5>
+				    <div class="clearfix"></div>
+				    <div class="row button">
+					<div class="col-xs-6">
+					    <button type="button" class="btn btn-default btn-sm">$241 189.99</button>
+					</div>
+					<div class="col-xs-6 text-right">
+					    <a id="btn1" href="#" class="btn btn-primary btn-sm">Buy Now</a>
+					</div>
+				    </div>
+				</div>
+			    </div>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item">
+			    <div class="productHolder">
+				<div class="list-item"><a href="#"><img src="/uploads/images/products/resize_4/4.png" class="img-responsive img-rounded center-block"><button class="hidden-xs hidden-sm" data-toggle="modal" data-target="#Modal3">Быстрый просмотр</button></a></div>
 				<div>
 				    <h5 class="text-center list-group-item-heading"><a href="#">Unreal Tournament Primary Holder</a></h5>
 				    <div class="clearfix"></div>
@@ -216,7 +233,7 @@ $(document).ready(function(){
         <!-- Центр -->
 
         <!-- Левая-->
-        <div id="columnLeft" class="col-lg-2 col-md-2 col-sm-6 col-xs-12 col-md-pull-8">
+        <div id="columnLeft" class="col-lg-2 col-md-2 col-sm-12 col-xs-12 col-md-pull-10">
             <div class="panel panel-default">
                 <div class="panel-heading">Categories</div>
                 <div class="panel-body">
@@ -228,17 +245,6 @@ $(document).ready(function(){
             </div>
         </div>
         <!-- Левая -->
-
-        <!-- Правая -->
-        <div id="columnRight" class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">Shopping Cart</div>
-                <div class="panel-body">
-		    <p class="text-center"><i class="glyphicon glyphicon-shopping-cart"></i> 0 items</p>
-                </div>
-            </div>
-        </div>
-        <!-- Правая -->
 
     </div>
     <!-- Контент -->
