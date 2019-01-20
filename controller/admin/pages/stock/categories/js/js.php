@@ -485,7 +485,7 @@ if (!isset($idsx_real_parent_id)) {
 <!-- Настройка Datepicker" -->
 <script type="text/javascript">
     $(function () {
-        $("#date_available").datepicker({
+        $("#dateAvailable, #dateAvailableEdit").datepicker({
             showOtherMonths: true,
             showAnim: 'fadeIn',
             duration: 'normal',
