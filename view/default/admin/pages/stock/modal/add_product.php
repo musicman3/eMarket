@@ -6,30 +6,30 @@
 
 ?>
 <!-- Модальное окно "Добавить товар" -->
-<div id="addProduct" class="products modal fade" tabindex="-1">
+<div id="add_product" class="products modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header"><div class="tooltip-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Заполните карточку товара" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
                 <h4 class="modal-title"><?php echo lang('title_' . $SET->titleDir() . '_index') ?></h4>
             </div>
-            <form id="formAddProduct" name="formAddProduct" action="javascript:void(null);" onsubmit="callAddProduct()">
+            <form id="form_add_product" name="form_add_product" action="javascript:void(null);" onsubmit="callAddProduct()">
                 <div class="panel-body">
                     <input type="hidden" name="parent_id" value="<?php echo $parent_id ?>" />
-                    <input type="hidden" name="addProduct" value="ok" />
-                    <input id="generalImageAddProduct" type="hidden" name="generalImageAddProduct" value="">
+                    <input type="hidden" name="add_product" value="ok" />
+                    <input id="general_image_add_product" type="hidden" name="general_image_add_product" value="">
 
                     <!-- Панели формы -->
                     <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#panel1">Основное</a></li>
-                        <li><a data-toggle="tab" href="#panel2">Данные</a></li>
-                        <li><a data-toggle="tab" href="#panel3">Изображения</a></li>
+                        <li class="active"><a data-toggle="tab" href="#panel_add_1">Основное</a></li>
+                        <li><a data-toggle="tab" href="#panel_add_2">Данные</a></li>
+                        <li><a data-toggle="tab" href="#panel_add_3">Изображения</a></li>
                     </ul>
 
                     <!-- Содержимое панелей формы-->
                     <div class="tab-content">
 
                         <!-- Содержимое панели основное -->
-                        <div id="panel1" class="tab-pane fade in active">
+                        <div id="panel_add_1" class="tab-pane fade in active">
 
                             <!-- Языковые панели -->
                             <?php require_once(ROOT . '/view/' . $SET->template() . '/layouts/lang_tabs_add_product.php') ?>
@@ -40,7 +40,7 @@
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="productName_<?php echo lang('#lang_all')[0] ?>" id="productName_<?php echo lang('#lang_all')[0] ?>" />
+                                            <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="product_name_<?php echo lang('#lang_all')[0] ?>" id="product_name_<?php echo lang('#lang_all')[0] ?>" />
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -71,7 +71,7 @@
                                             <div class="form-group">
                                                 <div class="input-group has-error">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                                    <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="productName_<?php echo lang('#lang_all')[$x] ?>" id="productName_<?php echo lang('#lang_all')[$x] ?>" />
+                                                    <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="product_name_<?php echo lang('#lang_all')[$x] ?>" id="product_name_<?php echo lang('#lang_all')[$x] ?>" />
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -102,7 +102,7 @@
                         </div>
 
                         <!-- Содержимое панели Данные -->
-                        <div id="panel2" class="tab-pane fade">
+                        <div id="panel_add_2" class="tab-pane fade">
                             <div class="row">
                                 <div class="col-left form-group">
                                     <div class="input-group has-error">
@@ -167,7 +167,7 @@
                                 <div class="col-right form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                        <input class="input-sm form-control data" placeholder="Дата поступления" type="text" name="dateAvailable" id="dateAvailable" />
+                                        <input class="input-sm form-control data" placeholder="Дата поступления" type="text" name="date_available" id="date_available" />
                                     </div>
                                 </div>
                             </div>
@@ -199,7 +199,7 @@
                                 <div class="col-left form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
-                                        <select name="product_code" id="product_code" class="input-sm form-control">
+                                        <select name="vendor_code" id="vendor_code" class="input-sm form-control">
                                             <option disabled selected hidden>-- Идентификатор --</option>
                                             <option>Нет</option>
                                             <option>Артикул</option>
@@ -215,7 +215,7 @@
                                 <div class="col-right form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                        <input class="input-sm form-control" placeholder="Значение идентификатора" type="text" name="productCodeValue" id="productCodeValue" />
+                                        <input class="input-sm form-control" placeholder="Значение идентификатора" type="text" name="vendor_code_value" id="vendor_code_value" />
                                     </div>
                                 </div>
                             </div>
@@ -223,7 +223,7 @@
                                 <div class="col-left form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
-                                        <select name="unitWeight" id="unitWeight" class="input-sm form-control">
+                                        <select name="unit_weight" id="unit_weight" class="input-sm form-control">
                                             <option disabled selected hidden>-- Вес --</option>
                                             <option>кг.</option>
                                             <option>гр.</option>
@@ -234,7 +234,7 @@
                                 <div class="col-right form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                        <input class="input-sm form-control" placeholder="Значение веса" type="text" name="weight" id="weight" />
+                                        <input class="input-sm form-control" placeholder="Значение веса" type="text" name="value_weight" id="value_weight" />
                                     </div>
                                 </div>
                             </div>
@@ -242,13 +242,13 @@
                                 <div class="col-left form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                        <input class="input-sm form-control" placeholder="Минимальное количество" type="text" name="minQuantity" id="minQuantity" />
+                                        <input class="input-sm form-control" placeholder="Минимальное количество" type="text" name="min_quantity" id="min_quantity" />
                                     </div>
                                 </div>
                                 <div class="col-right form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
-                                        <select name="unitLenght" id="unitLenght" class="input-sm form-control">
+                                        <select name="unit_lenght" id="unit_lenght" class="input-sm form-control">
                                             <option disabled selected hidden>-- Размер --</option>
                                             <option>мм</option>
                                             <option>см</option>
@@ -261,19 +261,19 @@
                                 <div class="col-left-w form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                        <input class="input-sm form-control" placeholder="Длина" type="text" name="length" id="length" />
+                                        <input class="input-sm form-control" placeholder="Длина" type="text" name="value_length" id="value_length" />
                                     </div>
                                 </div>
                                 <div class="col-left-w form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                        <input class="input-sm form-control" placeholder="Ширина" type="text" name="width" id="width" />
+                                        <input class="input-sm form-control" placeholder="Ширина" type="text" name="value_width" id="value_width" />
                                     </div>
                                 </div>
                                 <div class="col-right-w form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                        <input class="input-sm form-control" placeholder="Высота" type="text" name="height" id="height" />
+                                        <input class="input-sm form-control" placeholder="Высота" type="text" name="value_height" id="value_height" />
                                     </div>
                                 </div>
                             </div>
@@ -281,7 +281,7 @@
                         </div>
 
                         <!-- Содержимое панели Изображения -->
-                        <div id="panel3" class="tab-pane fade">
+                        <div id="panel_add_3" class="tab-pane fade">
                             <div class="form-group">
                                 <label for="image"><?php echo lang('images') ?>:</label><br>
                             </div>

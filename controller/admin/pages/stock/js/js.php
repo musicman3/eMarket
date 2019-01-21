@@ -91,16 +91,16 @@ if (!isset($idsx_real_parent_id)) {
             },
             items: {
                 
-                "addProduct": {
+                "add_product": {
                     name: "<?php echo lang('add_product') ?>",
                     icon: function () {
                         return 'context-menu-icon glyphicon-shopping-cart';
                     },
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
-                        $('#addProduct').on('shown.bs.modal', function() {
+                        $('#add_product').on('shown.bs.modal', function() {
                         $(document).off('focusin.modal');
                         });
-                        $('#addProduct').modal('show');
+                        $('#add_product').modal('show');
                     }
                 }, 
                 
@@ -136,7 +136,7 @@ if (!isset($idsx_real_parent_id)) {
                         
                         if (modal_edit.search('product_') > -1){
                             
-                            $('#editProduct').on('show.bs.modal', function (event) {
+                            $('#edit_product').on('show.bs.modal', function (event) {
 
                             // Получаем ID при клике на кнопку редактирования
                             var modal_id = modal_edit.split('product_')[1];
@@ -145,14 +145,14 @@ if (!isset($idsx_real_parent_id)) {
 
                             // Ищем id и добавляем данные
                             for (x = 0; x < name_edit.length; x++) {
-                                $('#productNameEdit_' + x).val(name_edit[x][modal_id]);
+                                $('#product_name_edit_' + x).val(name_edit[x][modal_id]);
                             }
 
                         });
                             
                             
                             
-                            $('#editProduct').modal('show');   
+                            $('#edit_product').modal('show');   
                             //alert(modal_edit .split('product_')[1]);
                             
                         }else{
@@ -485,7 +485,7 @@ if (!isset($idsx_real_parent_id)) {
 <!-- Настройка Datepicker" -->
 <script type="text/javascript">
     $(function () {
-        $("#dateAvailable, #dateAvailableEdit").datepicker({
+        $("#date_available, #date_available_edit").datepicker({
             showOtherMonths: true,
             showAnim: 'fadeIn',
             duration: 'normal',
@@ -498,7 +498,7 @@ if (!isset($idsx_real_parent_id)) {
 <!-- Модальное окно "Добавить" -->
 <script type="text/javascript">
     function callAddProduct() {
-        var msg = $('#formAddProduct').serialize();
+        var msg = $('#form_add_product').serialize();
         // Установка синхронного запроса для jQuery.ajax
         jQuery.ajaxSetup({async: false});
         jQuery.ajax({
@@ -506,7 +506,7 @@ if (!isset($idsx_real_parent_id)) {
             url: '/controller/admin/pages/stock/index.php',
             data: msg,
             beforeSend: function (data) {
-                $('#addProduct').modal('hide');
+                $('#add_product').modal('hide');
             }
         });
         // Отправка запроса для обновления страницы

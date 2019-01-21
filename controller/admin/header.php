@@ -21,11 +21,10 @@ $menu_exit = '7'; //ВЫХОД
 $level[$menu_market] = array('#', 'Магазин', 'true');
 
 $menu[$menu_market][0] = array('/controller/admin/pages/stock/index.php', 'products.png', lang('title_stock_index'), '', 'false');
-$menu[$menu_market][1] = array('/controller/admin/pages/stock/products/products.php', 'products.png', lang('title_products_products'), '', 'false');
-$menu[$menu_market][2] = array('/controller/admin/pages/manufacturers/index.php', 'manufacturers.png', lang('title_manufacturers_index'), '', 'false');
-$menu[$menu_market][3] = array('#', 'attributes.png', 'Атрибуты', '', 'false');
-$menu[$menu_market][4] = array('#', 'date.png', 'Ожидаемые', '', 'false');
-$menu[$menu_market][5] = array('/controller/admin/pages/settings/', 'configure.png', lang('title_settings_index'), '', 'false');
+$menu[$menu_market][1] = array('/controller/admin/pages/manufacturers/index.php', 'manufacturers.png', lang('title_manufacturers_index'), '', 'false');
+$menu[$menu_market][2] = array('#', 'attributes.png', 'Атрибуты', '', 'false');
+$menu[$menu_market][3] = array('#', 'date.png', 'Ожидаемые', '', 'false');
+$menu[$menu_market][4] = array('/controller/admin/pages/settings/', 'configure.png', lang('title_settings_index'), '', 'false');
 
 //ПРОДАЖИ
 $level[$menu_sales] = array('#', 'Продажи', 'true');

@@ -441,7 +441,7 @@ class Eac {
         $LANG_COUNT = count(lang('#lang_all'));
 
         // Если нажали на кнопку Добавить товар
-        if ($VALID->inPOST('productName_' . lang('#lang_all')[0])) {
+        if ($VALID->inPOST('product_name_' . lang('#lang_all')[0])) {
 
             // Формат даты после Datepicker
             if ($VALID->inPOST('date_available')) {
@@ -465,7 +465,7 @@ class Eac {
             for ($x = 0; $x < $LANG_COUNT; $x++) {
                 $PDO->inPrepare("INSERT INTO " . $TABLE_PRODUCTS .
                         " SET id=?, name=?, language=?, parent_id=?, date_added=?, date_available=?, model=?, price=?, quantity=?, keyword=?, tags=?, description=?",
-                        [$id, $VALID->inPOST('productName_' . lang('#lang_all')[$x]), lang('#lang_all')[$x], $parent_id, date("Y-m-d H:i:s"), $date_available, $VALID->inPOST('model'), $VALID->inPOST('price'),
+                        [$id, $VALID->inPOST('product_name_' . lang('#lang_all')[$x]), lang('#lang_all')[$x], $parent_id, date("Y-m-d H:i:s"), $date_available, $VALID->inPOST('model'), $VALID->inPOST('price'),
                             $VALID->inPOST('quantity'), $VALID->inPOST('keyword_' . lang('#lang_all')[$x]), $VALID->inPOST('tags_' . lang('#lang_all')[$x]), $VALID->inPOST('description_' . lang('#lang_all')[$x])]);
             }
             // Выводим сообщение об успехе

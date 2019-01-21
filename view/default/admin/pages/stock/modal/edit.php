@@ -4,7 +4,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 // 
-require(ROOT . '/controller/admin/pages/stock/categories/modal/edit.php');
+require(ROOT . '/controller/admin/pages/stock/modal/edit.php');
 
 ?>
 
