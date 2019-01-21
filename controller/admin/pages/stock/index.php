@@ -40,16 +40,18 @@ $finish = $navigate[1];
 
 $lines_product = $PDO->getColRow("SELECT * FROM " . TABLE_PRODUCTS . " WHERE parent_id=? AND language=? ORDER BY id DESC", [$parent_id, lang('#lang_all')[0]]);
 $count_lines_products = count($lines_product);  //считаем количество строк
-$navigate_product = $NAVIGATION->getLink($count_lines_products, $lines_on_page, 1);
+$navigate_product = $NAVIGATION->getLink($count_lines_products, $lines_on_page);
 $start_product = $navigate_product[0];
 $finish_product = $navigate_product[1];
 
-$cat_id_parrent = $PDO->getCol("SELECT id FROM " . TABLE_CATEGORIES . " WHERE parent_id=? AND language=? ORDER BY sort_category DESC", [$parent_id, lang('#lang_all')[0]]);
-$prod_id_parrent = $PDO->getCol("SELECT id FROM " . TABLE_PRODUCTS . " WHERE parent_id=? AND language=? ORDER BY id DESC", [$parent_id, lang('#lang_all')[0]]);
+$arr_merge = $FUNC->arrayMergeOriginKey('cat', 'prod', $lines, $lines_product);
+$count_lines_merge = $count_lines + $count_lines_products;
 
-//$arr = $FUNC->arrayMergeOriginKey('cat', 'prod', $cat_id_parrent, $prod_id_parrent);
-
-//$DEBUG->trace($arr);
+$navigate2 = $NAVIGATION->getLink($count_lines_merge, $lines_on_page, 1, $count_lines);
+$start2 = $navigate2[0];
+$finish2 = $navigate2[1];
+//print_r($start2 . '--' . $finish2);
+//$DEBUG->trace($arr_merge);
 
 // КОНЕЦ-> КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
