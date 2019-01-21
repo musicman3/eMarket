@@ -6,10 +6,10 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 // собираем данные для отображения в Редактировании категорий
-for ($i = $start_product; $i < $finish_product; $i++) {
-    if (isset($lines_product[$i][0]) == TRUE) {
+for ($i = $start2; $i < $finish2; $i++) {
+    if (isset($arr_merge['prod'][$i][0]) == TRUE) {
         
-        $modal_id_product = $lines_product[$i][0]; // ID
+        $modal_id_product = $arr_merge['prod'][$i][0]; // ID
         $count_lang = $LANG_COUNT;
 
         for ($x = 0; $x < $count_lang; $x++) {
