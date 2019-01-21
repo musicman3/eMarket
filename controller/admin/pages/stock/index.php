@@ -38,11 +38,18 @@ $navigate = $NAVIGATION->getLink($count_lines, $lines_on_page, 1);
 $start = $navigate[0];
 $finish = $navigate[1];
 
-$lines_product = $PDO->getColRow("SELECT * FROM " . TABLE_PRODUCTS . " WHERE parent_id=? AND language=?", [$parent_id, lang('#lang_all')[0]]);
+$lines_product = $PDO->getColRow("SELECT * FROM " . TABLE_PRODUCTS . " WHERE parent_id=? AND language=? ORDER BY id DESC", [$parent_id, lang('#lang_all')[0]]);
 $count_lines_products = count($lines_product);  //считаем количество строк
 $navigate_product = $NAVIGATION->getLink($count_lines_products, $lines_on_page, 1);
 $start_product = $navigate_product[0];
 $finish_product = $navigate_product[1];
+
+$cat_id_parrent = $PDO->getCol("SELECT id FROM " . TABLE_CATEGORIES . " WHERE parent_id=? AND language=? ORDER BY sort_category DESC", [$parent_id, lang('#lang_all')[0]]);
+$prod_id_parrent = $PDO->getCol("SELECT id FROM " . TABLE_PRODUCTS . " WHERE parent_id=? AND language=? ORDER BY id DESC", [$parent_id, lang('#lang_all')[0]]);
+
+//$arr = $FUNC->arrayMergeOriginKey('cat', 'prod', $cat_id_parrent, $prod_id_parrent);
+
+//$DEBUG->trace($arr);
 
 // КОНЕЦ-> КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>

@@ -65,41 +65,21 @@
 
                                         <!-- Переключаем страницу "ВПЕРЕД" -->
                                         <form>
-                                            <?php if (count($lines) > $lines_on_page OR count($lines_product) > $lines_on_page OR ( count($lines) + count($lines_product)) > $lines_on_page) { ?>
+                                            <input hidden name="start" value="<?php echo $start ?>">
+                                            <input hidden name="finish" value="<?php echo $finish ?>">
+                                            <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
 
-                                                <?php if ($finish >= count($lines) && ($start + $lines_on_page) < $finish + $lines_on_page) { ?>
-                                                    <input hidden name="start" value="<?php echo $start + $lines_on_page ?>">
-                                                    <input hidden name="finish" value="<?php echo $finish + $lines_on_page ?>">
-                                                    <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
-                                                <?php } else { ?>
-                                                    <input hidden name="start" value="<?php echo $start ?>">
-                                                    <input hidden name="finish" value="<?php echo $finish ?>">
-                                                    <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
+                                            <div class="right"><button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
 
-                                                    <?php
-                                                }
-                                                if ($start <= $finish - $lines_on_page) {
-
-                                                    ?>
-
-                                                    <div class="right"><button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
-                                                    <?php
-                                                }
-                                            }
-
-                                            ?>
                                         </form>
 
                                         <!-- Переключаем страницу "НАЗАД" -->
                                         <form>
-                                            <?php if (count($lines) > $lines_on_page OR count($lines_product) > $lines_on_page OR ( count($lines) + count($lines_product)) > $lines_on_page) { ?>
+                                            <input hidden name="start2" value="<?php echo $start ?>">
+                                            <input hidden name="finish2" value="<?php echo $finish ?>">
+                                            <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
 
-                                                <input hidden name="start2" value="<?php echo $start ?>">
-                                                <input hidden name="finish2" value="<?php echo $finish ?>">
-                                                <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
-
-                                                <div class="left"><button type="submit" class="btn btn-primary btn-xs"  action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
-                                            <?php } ?>
+                                            <div class="left"><button type="submit" class="btn btn-primary btn-xs"  action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
                                         </form>
 
                                     </th>
@@ -219,7 +199,7 @@
                                             </td>
                                         </tr>
 
-                                    <?php
+                                        <?php
                                     }
                                 }
 
@@ -283,7 +263,7 @@
                             </tbody>
                         </table>
                     </div>
-<?php } ?>
+                <?php } ?>
             </div>
         </div>
     </div>

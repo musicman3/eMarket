@@ -1,5 +1,4 @@
 <?php
-
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -139,6 +138,71 @@ class Func {
             chmod($file, 0777);
             unlink($file); // Удаляем файлы
         }
+    }
+
+    /**
+     * Функция слияния массивов с сохранением нумерации ключа
+     * 
+     * ПРИМЕР:
+     * 
+     * Массив 1 + параметр имени $name_1 = 'cat'
+     * 
+     * 0 Array
+      (
+      [0] => 3
+      [1] => 2
+      [2] => 1
+      )
+     * 
+     * Массив 2 + параметр имени $name_2 = 'prod'
+     * 
+     * 1 Array
+      (
+      [0] => 4
+      [1] => 6
+      [2] => 7
+      )
+     * 
+     * Массив на выходе
+     * 
+     * 0 Array
+      (
+      [cat] => Array
+      (
+      [0] => 3
+      [1] => 2
+      [2] => 1
+      )
+
+      [prod] => Array
+      (
+      [3] => 4
+      [4] => 6
+      [5] => 7
+      )
+
+      )
+
+     * @param string $name_1 (имя в основном массиве)
+     * @param string $name_2 (имя в дополнительном массиве)
+     * @param array $arr_1 (основной массив)
+     * @param array $arr_2 (дополнительный массив)
+     * @return array (слитый массив)
+     */
+    public function arrayMergeOriginKey($name_1, $name_2, $arr_1, $arr_2) {
+
+        $a = array($name_1 => $arr_1);
+
+        $count_a = count($arr_1);
+        for ($x = 0; $x < count($arr_2); $x++) {
+            $value = $arr_2[$x];
+            unset($arr_2[$x]);
+            $arr_2[$x + $count_a] = $value;
+        }
+
+        $b = array($name_2 => $arr_2);
+
+        return array_merge($a, $b);
     }
 
 }
