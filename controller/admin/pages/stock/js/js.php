@@ -49,6 +49,7 @@ if (!isset($idsx_real_parent_id)) {
         function AjaxSuccess(data) {
             $('#fileupload-edit').fileupload('destroy');
             $('#fileupload-add').fileupload('destroy');
+            tinymce.remove();
             $('#ajax').html(data);
         }
     }
