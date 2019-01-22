@@ -34,9 +34,9 @@ $lines_on_page = $SET->linesOnPage();
 // получаем отсортированное по sort_category содержимое в виде массива для отображения на странице и сортируем в обратном порядке
 $lines = $PDO->getColRow("SELECT * FROM " . TABLE_CATEGORIES . " WHERE parent_id=? AND language=? ORDER BY sort_category DESC", [$parent_id, lang('#lang_all')[0]]);
 $count_lines = count($lines);  //считаем количество строк
-$navigate = $NAVIGATION->getLink($count_lines, $lines_on_page, 1);
-$start = $navigate[0];
-$finish = $navigate[1];
+$navigate_cat = $NAVIGATION->getLink($count_lines, $lines_on_page, 1);
+$start_cat = $navigate_cat[0];
+$finish_cat = $navigate_cat[1];
 
 $lines_product = $PDO->getColRow("SELECT * FROM " . TABLE_PRODUCTS . " WHERE parent_id=? AND language=? ORDER BY id DESC", [$parent_id, lang('#lang_all')[0]]);
 $count_lines_products = count($lines_product);  //считаем количество строк
@@ -47,9 +47,9 @@ $finish_product = $navigate_product[1];
 $arr_merge = $FUNC->arrayMergeOriginKey('cat', 'prod', $lines, $lines_product);
 $count_lines_merge = $count_lines + $count_lines_products;
 
-$navigate2 = $NAVIGATION->getLink($count_lines_merge, $lines_on_page, 1);
-$start2 = $navigate2[0];
-$finish2 = $navigate2[1];
+$navigate = $NAVIGATION->getLink($count_lines_merge, $lines_on_page, 1);
+$start = $navigate[0];
+$finish = $navigate[1];
 //print_r($start2 . '--' . $finish2);
 //$DEBUG->trace($arr_merge);
 

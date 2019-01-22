@@ -6,7 +6,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 // собираем данные для отображения в Редактировании категорий
-for ($i = $start2; $i < $finish2; $i++) {
+for ($i = $start; $i < $finish; $i++) {
     if (isset($arr_merge['prod'][$i][0]) == TRUE) {
         
         $modal_id_product = $arr_merge['prod'][$i][0]; // ID

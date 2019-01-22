@@ -53,20 +53,20 @@
                                     <th colspan="3">
                                         <?php
                                         // Счетчик в навигации
-                                        if ($finish2 == $count_lines_merge && ($finish2 - $start2) <= $lines_on_page OR $finish2 == $lines_on_page) {
-                                            $finish_out = $finish2;
+                                        if ($finish == $count_lines_merge && ($finish - $start) <= $lines_on_page OR $finish == $lines_on_page) {
+                                            $finish_out = $finish;
                                         } else {
-                                            $finish_out = $finish2 - 1;
+                                            $finish_out = $finish - 1;
                                         }
 
                                         ?>
 
-                                        <div class="page"><?php echo lang('s') ?> <?php echo $start2 + 1 ?> <?php echo lang('po') ?> <?php echo $finish_out ?> ( <?php echo lang('iz') ?> <?php echo $count_lines_merge; ?> )</div>
+                                        <div class="page"><?php echo lang('s') ?> <?php echo $start + 1 ?> <?php echo lang('po') ?> <?php echo $finish_out ?> ( <?php echo lang('iz') ?> <?php echo $count_lines_merge; ?> )</div>
 
                                         <!-- Переключаем страницу "ВПЕРЕД" -->
                                         <form>
-                                            <input hidden name="start" value="<?php echo $start2 ?>">
-                                            <input hidden name="finish" value="<?php echo $finish2 ?>">
+                                            <input hidden name="start" value="<?php echo $start ?>">
+                                            <input hidden name="finish" value="<?php echo $finish ?>">
                                             <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
                                             <div class="right"><button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
 
@@ -74,8 +74,8 @@
 
                                         <!-- Переключаем страницу "НАЗАД" -->
                                         <form>
-                                            <input hidden name="start2" value="<?php echo $start2 ?>">
-                                            <input hidden name="finish2" value="<?php echo $finish2 ?>">
+                                            <input hidden name="start2" value="<?php echo $start ?>">
+                                            <input hidden name="finish2" value="<?php echo $finish ?>">
                                             <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
                                             <div class="left"><button type="submit" class="btn btn-primary btn-xs"  action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
                                         </form>
@@ -111,22 +111,22 @@
                                 }
                                 $transfer = 0;
 
-                                for ($start2; $start2 < $finish2; $start2++) {
+                                for ($start; $start < $finish; $start++) {
                                      $transfer++;
-                                    if ($start2 < $count_lines) {
+                                    if ($start < $count_lines) {
                                        
 
                                         ?>
 
-                                        <tr class="sort-list" unitid="<?php echo $arr_merge['cat'][$start2][0] ?>">
+                                        <tr class="sort-list" unitid="<?php echo $arr_merge['cat'][$start][0] ?>">
 
                                             <!-- Вырезанные категории "АКТИВНЫЕ" -->
-                                            <?php if (isset($_SESSION['buffer']) == true && in_array($arr_merge['cat'][$start2][0], $_SESSION['buffer']) == true && $arr_merge['cat'][$start2][8] == 1) { ?>
+                                            <?php if (isset($_SESSION['buffer']) == true && in_array($arr_merge['cat'][$start][0], $_SESSION['buffer']) == true && $arr_merge['cat'][$start][8] == 1) { ?>
                                                 <td class="sortyes sortleft-m"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
                                                 <td class="sortleft"><div><a href="#" class="btn btn-primary btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-folder-open"> </span></a></div></td>
 
                                                 <!-- Вырезанные категории "НЕ АКТИВНЫЕ" -->
-                                            <?php } elseif (isset($_SESSION['buffer']) == true && in_array($arr_merge['cat'][$start2][0], $_SESSION['buffer']) == true && $arr_merge['cat'][$start2][8] == 0) { ?>
+                                            <?php } elseif (isset($_SESSION['buffer']) == true && in_array($arr_merge['cat'][$start][0], $_SESSION['buffer']) == true && $arr_merge['cat'][$start][8] == 0) { ?>
                                                 <td class="sortyes sortleft-m"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
                                                 <td class="sortleft"><div><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-folder-open"> </span></a></div></td>
 
@@ -136,14 +136,14 @@
                                                 <td class="sortleft"><div><a href="#" class="btn btn-primary btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-transfer"> </span></a></div></td>
 
                                                 <!-- Если категория НЕ АКТИВНА -->
-                                            <?php } elseif ($arr_merge['cat'][$start2][8] == 0) { ?>
+                                            <?php } elseif ($arr_merge['cat'][$start][8] == 0) { ?>
                                                 <td class="sortyes sortleft-m"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
                                                 <td class="sortleft">
 
                                                     <!-- Неактивная категория "ВНИЗ" -->
                                                     <form>
                                                         <div>
-                                                            <button name="parent_down" value="<?php echo $arr_merge['cat'][$start2][0] ?>" class="btn btn-default btn-xs" title="<?php echo $arr_merge['cat'][$start2][1] ?>" action="index.php" formmethod="get"><span class="glyphicon glyphicon-folder-open"> </span></button>
+                                                            <button name="parent_down" value="<?php echo $arr_merge['cat'][$start][0] ?>" class="btn btn-default btn-xs" title="<?php echo $arr_merge['cat'][$start][1] ?>" action="index.php" formmethod="get"><span class="glyphicon glyphicon-folder-open"> </span></button>
                                                         </div>
                                                     </form>
 
@@ -160,7 +160,7 @@
                                                     <!-- Активная категория "ВНИЗ" -->
                                                     <form>
                                                         <div>
-                                                            <button name="parent_down" value="<?php echo $arr_merge['cat'][$start2][0] ?>" class="btn btn-primary btn-xs" title="<?php echo $arr_merge['cat'][$start2][1] ?>" action="index.php" formmethod="get"><span class="glyphicon glyphicon-folder-open"> </span></button>
+                                                            <button name="parent_down" value="<?php echo $arr_merge['cat'][$start][0] ?>" class="btn btn-primary btn-xs" title="<?php echo $arr_merge['cat'][$start][1] ?>" action="index.php" formmethod="get"><span class="glyphicon glyphicon-folder-open"> </span></button>
                                                         </div>
                                                     </form>
 
@@ -171,11 +171,11 @@
                                             ?>
 
                                             <!-- ВЫБРАННЫЕ СТРОКИ -->
-                                            <td class="option" id="<?php echo $arr_merge['cat'][$start2][0] ?>"><span class="inactive" style="display: none;"></span>
+                                            <td class="option" id="<?php echo $arr_merge['cat'][$start][0] ?>"><span class="inactive" style="display: none;"></span>
                                                 <?php if ($transfer == $lines_on_page + 1) { ?>
-                                                    <div class="transfer" id="<?php echo $arr_merge['cat'][$start2][0] ?>"><?php echo lang('categories_transfer') ?></div>
+                                                    <div class="transfer" id="<?php echo $arr_merge['cat'][$start][0] ?>"><?php echo lang('categories_transfer') ?></div>
                                                 <?php } else { ?>
-                                                    <div class="context-one" id="<?php echo $arr_merge['cat'][$start2][0] ?>"><?php echo $arr_merge['cat'][$start2][1] ?></div>
+                                                    <div class="context-one" id="<?php echo $arr_merge['cat'][$start][0] ?>"><?php echo $arr_merge['cat'][$start][1] ?></div>
                                                 <?php } ?>
                                             </td>	 
                                         </tr>
@@ -183,15 +183,15 @@
                                         <?php
                                     }
                                     // ТОВАРЫ
-                                    if ($start2 >= $count_lines && $transfer < $lines_on_page + 1) {
+                                    if ($start >= $count_lines && $transfer < $lines_on_page + 1) {
 
                                         ?>
-                                        <tr class="sort-list" unitid="<?php echo $arr_merge['prod'][$start2][0] ?>">
+                                        <tr class="sort-list" unitid="<?php echo $arr_merge['prod'][$start][0] ?>">
                                             <td class="sortleft-m"></td>
                                             <td class="sortleft"><div><a href="#" class="btn btn-success btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-shopping-cart"> </span></a></div></td>
                                             <!-- ВЫБРАННЫЕ СТРОКИ -->
-                                            <td class="option" id="<?php echo $arr_merge['prod'][$start2][0] ?>"><span class="inactive" style="display: none;"></span>
-                                                <div class="context-one" id="product_<?php echo $arr_merge['prod'][$start2][0] ?>"><?php echo $arr_merge['prod'][$start2][1] ?></div>
+                                            <td class="option" id="<?php echo $arr_merge['prod'][$start][0] ?>"><span class="inactive" style="display: none;"></span>
+                                                <div class="context-one" id="product_<?php echo $arr_merge['prod'][$start][0] ?>"><?php echo $arr_merge['prod'][$start][1] ?></div>
                                             </td>
                                         </tr>
 
