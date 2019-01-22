@@ -94,18 +94,12 @@ class Eac {
         }
 
         // Устанавливаем родительскую категорию при переходе на уровень выше
-        if ($VALID->inPOST('parent_up')) {
-            $parent_id = $PDO->selectPrepare("SELECT parent_id FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$VALID->inPOST('parent_up')]);
-        } elseif
-        ($VALID->inGET('parent_up')) {
+        if ($VALID->inGET('parent_up')) {
             $parent_id = $PDO->selectPrepare("SELECT parent_id FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$VALID->inGET('parent_up')]);
         }
 
         // Устанавливаем родительскую категорию при переходе на уровень ниже
-        if ($VALID->inPOST('parent_down')) {
-            $parent_id = $VALID->inPOST('parent_down');
-        } elseif
-        ($VALID->inGET('parent_down')) {
+        if ($VALID->inGET('parent_down')) {
             $parent_id = $VALID->inGET('parent_down');
         }
 
