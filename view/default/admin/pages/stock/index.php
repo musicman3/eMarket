@@ -31,7 +31,7 @@
                     <?php $MESSAGES->alert(); ?>
 
                     <h3 class="panel-title">
-                        <div class="pull-left"><?php echo lang('title_categories_index') ?></div>
+                        <div class="pull-left"><?php echo lang('title_' . $SET->titleDir() . '_index') ?></div>
                         <div class="clearfix"></div>
                     </h3>
                 </div>
