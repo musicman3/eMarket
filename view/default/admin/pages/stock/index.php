@@ -3,7 +3,6 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-
 ?>
 <!-- Вставляем модальное окно "Добавить категорию" -->
 <?php require_once('modal/add.php') ?>
@@ -58,7 +57,6 @@
                                         } else {
                                             $finish_out = $finish - 1;
                                         }
-
                                         ?>
 
                                         <div class="page"><?php echo lang('s') ?> <?php echo $start + 1 ?> <?php echo lang('po') ?> <?php echo $finish_out ?> ( <?php echo lang('iz') ?> <?php echo $count_lines_merge; ?> )</div>
@@ -89,7 +87,6 @@
                                 if ($start < $count_lines_cat) {
                                     $parent_up = $arr_merge['cat'][$start][2];
                                     if ($parent_up > 0) {
-
                                         ?>
 
                                         <tr class="sortno">
@@ -112,10 +109,8 @@
                                 $transfer = 0;
 
                                 for ($start; $start < $finish; $start++) {
-                                     $transfer++;
+                                    $transfer++;
                                     if ($start < $count_lines_cat) {
-                                       
-
                                         ?>
 
                                         <tr class="sort-list" unitid="<?php echo $arr_merge['cat'][$start][0] ?>">
@@ -151,7 +146,6 @@
 
                                                 <?php
                                             } else {
-
                                                 ?>
                                                 <!-- Если категория АКТИВНА -->
                                                 <td class="sortyes sortleft-m"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
@@ -167,7 +161,6 @@
                                                 </td>
                                                 <?php
                                             }
-
                                             ?>
 
                                             <!-- ВЫБРАННЫЕ СТРОКИ -->
@@ -182,25 +175,48 @@
 
                                         <?php
                                     }
-                                    // ТОВАРЫ
-                                    if ($start >= $count_lines_cat && $transfer < $lines_on_page + 1) {
-
+                                    // ЕСЛИ НЕТ КАТЕГОРИЙ НО ЕСТЬ ТОВАРЫ И В ПОДКАТЕГОРИИ
+                                    if ($lines_cat == FALSE && $parent_id > 0) {
                                         ?>
-                                        <tr class="sort-list" unitid="<?php echo $arr_merge['prod'][$start.'a'][0] ?>">
+
+                                        <tr>
+                                            <th colspan="3">
+                                                <div><?php echo lang('no_listing') ?></div>
+                                            </th>
+                                        </tr>
+                                        <tr class="sortno">
+                                            <td  class="sortleft-m"></td>
+                                            <td class="sortleft">
+
+                                                <!-- Категорий нет "ВВЕРХ" -->
+                                                <form>
+                                                    <div>
+                                                        <button name="parent_up" value="<?php echo $parent_id ?>" class="btn btn-default btn-xs" title="" action="index.php" formmethod="get"><span class="glyphicon glyphicon-option-horizontal"></span></button>
+                                                    </div>
+                                                </form>
+
+                                            </td>
+                                            <td class="options"><div class="context-one"><?php echo lang('no_listing') ?></div></td>
+                                        </tr>
+
+                                        <?php
+                                    }
+                                    // ВЫВОДИМ ТОВАРЫ
+                                    if ($start >= $count_lines_cat && $transfer < $lines_on_page + 1) {
+                                        ?>
+                                        <tr class="sort-list" unitid="<?php echo $arr_merge['prod'][$start . 'a'][0] ?>">
                                             <td class="sortleft-m"></td>
                                             <td class="sortleft"><div><a href="#" class="btn btn-success btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-shopping-cart"> </span></a></div></td>
                                             <!-- ВЫБРАННЫЕ СТРОКИ -->
-                                            <td class="option" id="<?php echo $arr_merge['prod'][$start.'a'][0] ?>"><span class="inactive" style="display: none;"></span>
-                                                <div class="context-one" id="product_<?php echo $arr_merge['prod'][$start.'a'][0] ?>"><?php echo $arr_merge['prod'][$start.'a'][1] ?></div>
+                                            <td class="option" id="<?php echo $arr_merge['prod'][$start . 'a'][0] ?>"><span class="inactive" style="display: none;"></span>
+                                                <div class="context-one" id="product_<?php echo $arr_merge['prod'][$start . 'a'][0] ?>"><?php echo $arr_merge['prod'][$start . 'a'][1] ?></div>
                                             </td>
                                         </tr>
 
                                         <?php
                                     }
                                 }
-
                                 ?>
-
 
                             </tbody>
                         </table>
@@ -208,7 +224,6 @@
 
                     <?php
                 } elseif ($lines_cat == FALSE && $parent_id > 0) {
-
                     ?>
 
                     <div class="panel-body">
@@ -240,7 +255,6 @@
                     </div>
                     <?php
                 } else {
-
                     ?>
                     <div class="panel-body">
                         <table class="table table-hover">
@@ -260,7 +274,7 @@
                             </tbody>
                         </table>
                     </div>
-<?php } ?>
+                <?php } ?>
             </div>
         </div>
     </div>
