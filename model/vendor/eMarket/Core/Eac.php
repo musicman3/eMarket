@@ -88,7 +88,7 @@ class Eac {
         $VALID = new \eMarket\Core\Valid;
 
         // Устанавливаем родительскую категорию
-        $parent_id = $VALID->inGET('parent_id');
+        $parent_id = $VALID->inPOST('parent_id');
         if ($parent_id == FALSE) {
             $parent_id = 0;
         }
