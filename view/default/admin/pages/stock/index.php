@@ -86,7 +86,7 @@
                             <tbody id="sort-list">
 
                                 <?php
-                                if ($lines_cat == TRUE) {
+                                if ($start <= $count_lines_cat) {
                                     $parent_up = $arr_merge['cat'][$start][2];
                                     if ($parent_up > 0) {
 
