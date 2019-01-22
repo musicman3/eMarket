@@ -112,9 +112,9 @@
                                 $transfer = 0;
 
                                 for ($start2; $start2 < $finish2; $start2++) {
-
+                                     $transfer++;
                                     if ($start2 < $count_lines) {
-                                        $transfer++;
+                                       
 
                                         ?>
 
@@ -183,7 +183,7 @@
                                         <?php
                                     }
                                     // ТОВАРЫ
-                                    if ($start2 >= $count_lines) {
+                                    if ($start2 >= $count_lines && $transfer < $lines_on_page + 1) {
 
                                         ?>
                                         <tr class="sort-list" unitid="<?php echo $arr_merge['prod'][$start2][0] ?>">
