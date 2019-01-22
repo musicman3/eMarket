@@ -87,7 +87,7 @@
 
                                 <?php
                                 if ($lines == TRUE) {
-                                    $parent_up = $lines[0][3];
+                                    $parent_up = $arr_merge['cat'][$start][2];
                                     if ($parent_up > 0) {
 
                                         ?>
@@ -121,12 +121,12 @@
                                         <tr class="sort-list" unitid="<?php echo $arr_merge['cat'][$start][0] ?>">
 
                                             <!-- Вырезанные категории "АКТИВНЫЕ" -->
-                                            <?php if (isset($_SESSION['buffer']) == true && in_array($arr_merge['cat'][$start][0], $_SESSION['buffer']) == true && $arr_merge['cat'][$start][8] == 1) { ?>
+                                            <?php if (isset($_SESSION['buffer']) == true && in_array($arr_merge['cat'][$start][0], $_SESSION['buffer']) == true && $arr_merge['cat'][$start][3] == 1) { ?>
                                                 <td class="sortyes sortleft-m"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
                                                 <td class="sortleft"><div><a href="#" class="btn btn-primary btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-folder-open"> </span></a></div></td>
 
                                                 <!-- Вырезанные категории "НЕ АКТИВНЫЕ" -->
-                                            <?php } elseif (isset($_SESSION['buffer']) == true && in_array($arr_merge['cat'][$start][0], $_SESSION['buffer']) == true && $arr_merge['cat'][$start][8] == 0) { ?>
+                                            <?php } elseif (isset($_SESSION['buffer']) == true && in_array($arr_merge['cat'][$start][0], $_SESSION['buffer']) == true && $arr_merge['cat'][$start][3] == 0) { ?>
                                                 <td class="sortyes sortleft-m"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
                                                 <td class="sortleft"><div><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-folder-open"> </span></a></div></td>
 
@@ -136,7 +136,7 @@
                                                 <td class="sortleft"><div><a href="#" class="btn btn-primary btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-transfer"> </span></a></div></td>
 
                                                 <!-- Если категория НЕ АКТИВНА -->
-                                            <?php } elseif ($arr_merge['cat'][$start][8] == 0) { ?>
+                                            <?php } elseif ($arr_merge['cat'][$start][3] == 0) { ?>
                                                 <td class="sortyes sortleft-m"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
                                                 <td class="sortleft">
 
