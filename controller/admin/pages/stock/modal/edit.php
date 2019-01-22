@@ -7,9 +7,9 @@
 
 // собираем данные для отображения в Редактировании категорий
 for ($i = $start; $i < $finish; $i++) {
-    if (isset($lines[$i][0]) == TRUE) {
+    if (isset($lines_cat[$i][0]) == TRUE) {
 
-        $modal_id = $lines[$i][0]; // ID
+        $modal_id = $lines_cat[$i][0]; // ID
         $count_lang = $LANG_COUNT;
 
         for ($x = 0; $x < $count_lang; $x++) {

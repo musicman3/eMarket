@@ -35,7 +35,7 @@
                         <div class="clearfix"></div>
                     </h3>
                 </div>
-                <?php if ($lines == TRUE OR $lines_product == TRUE) { ?>
+                <?php if ($lines_cat == TRUE OR $lines_product == TRUE) { ?>
                     <div class="panel-body">
                         <!--Скрытый div для передачи данных-->
                         <?php if (isset($name_edit) OR isset($name_edit_product)) { ?>
@@ -86,7 +86,7 @@
                             <tbody id="sort-list">
 
                                 <?php
-                                if ($lines == TRUE) {
+                                if ($lines_cat == TRUE) {
                                     $parent_up = $arr_merge['cat'][$start][2];
                                     if ($parent_up > 0) {
 
@@ -113,7 +113,7 @@
 
                                 for ($start; $start < $finish; $start++) {
                                      $transfer++;
-                                    if ($start < $count_lines) {
+                                    if ($start < $count_lines_cat) {
                                        
 
                                         ?>
@@ -183,7 +183,7 @@
                                         <?php
                                     }
                                     // ТОВАРЫ
-                                    if ($start >= $count_lines && $transfer < $lines_on_page + 1) {
+                                    if ($start >= $count_lines_cat && $transfer < $lines_on_page + 1) {
 
                                         ?>
                                         <tr class="sort-list" unitid="<?php echo $arr_merge['prod'][$start][0] ?>">
@@ -207,7 +207,7 @@
                     </div>
 
                     <?php
-                } elseif ($lines == FALSE && $parent_id > 0) {
+                } elseif ($lines_cat == FALSE && $parent_id > 0) {
 
                     ?>
 

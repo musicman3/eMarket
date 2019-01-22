@@ -32,14 +32,14 @@ if ($VALID->inGET('parent_id_temp')) {
 
 $lines_on_page = $SET->linesOnPage();
 // получаем отсортированное по sort_category содержимое в виде массива для отображения на странице и сортируем в обратном порядке
-$lines = $PDO->getColRow("SELECT id, name, parent_id, status FROM " . TABLE_CATEGORIES . " WHERE parent_id=? AND language=? ORDER BY sort_category DESC", [$parent_id, lang('#lang_all')[0]]);
-$count_lines = count($lines);  //считаем количество строк
+$lines_cat = $PDO->getColRow("SELECT id, name, parent_id, status FROM " . TABLE_CATEGORIES . " WHERE parent_id=? AND language=? ORDER BY sort_category DESC", [$parent_id, lang('#lang_all')[0]]);
+$count_lines_cat = count($lines_cat);  //считаем количество строк
 
 $lines_product = $PDO->getColRow("SELECT id, name FROM " . TABLE_PRODUCTS . " WHERE parent_id=? AND language=? ORDER BY id DESC", [$parent_id, lang('#lang_all')[0]]);
 $count_lines_products = count($lines_product);  //считаем количество строк
 
-$arr_merge = $FUNC->arrayMergeOriginKey('cat', 'prod', $lines, $lines_product);
-$count_lines_merge = ($count_lines + $count_lines_products) - 1;
+$arr_merge = $FUNC->arrayMergeOriginKey('cat', 'prod', $lines_cat, $lines_product);
+$count_lines_merge = ($count_lines_cat + $count_lines_products) - 1;
 
 $navigate = $NAVIGATION->getLink($count_lines_merge, $lines_on_page, 1);
 $start = $navigate[0];
