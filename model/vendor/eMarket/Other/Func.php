@@ -176,9 +176,9 @@ class Func {
 
       [prod] => Array
       (
-      [3] => 4
-      [4] => 6
-      [5] => 7
+      [3a] => 4
+      [4a] => 6
+      [5a] => 7
       )
 
       )
@@ -197,7 +197,7 @@ class Func {
         for ($x = 0; $x < count($arr_2); $x++) {
             $value = $arr_2[$x];
             unset($arr_2[$x]);
-            $arr_2[$x + $count_a] = $value;
+            $arr_2[$x + $count_a . 'a'] = $value;
         }
 
         $b = array($name_2 => $arr_2);
