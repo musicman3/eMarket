@@ -1,4 +1,5 @@
 <?php
+
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -95,6 +96,9 @@ class Eac {
         // Устанавливаем родительскую категорию при переходе на уровень выше
         if ($VALID->inPOST('parent_up')) {
             $parent_id = $PDO->selectPrepare("SELECT parent_id FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$VALID->inPOST('parent_up')]);
+        } elseif
+        ($VALID->inGET('parent_up')) {
+            $parent_id = $PDO->selectPrepare("SELECT parent_id FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$VALID->inGET('parent_up')]);
         }
 
         // Устанавливаем родительскую категорию при переходе на уровень ниже
@@ -464,9 +468,8 @@ class Eac {
             // добавляем запись для всех вкладок
             for ($x = 0; $x < $LANG_COUNT; $x++) {
                 $PDO->inPrepare("INSERT INTO " . $TABLE_PRODUCTS .
-                        " SET id=?, name=?, language=?, parent_id=?, date_added=?, date_available=?, model=?, price=?, quantity=?, keyword=?, tags=?, description=?",
-                        [$id, $VALID->inPOST('product_name_' . lang('#lang_all')[$x]), lang('#lang_all')[$x], $parent_id, date("Y-m-d H:i:s"), $date_available, $VALID->inPOST('model'), $VALID->inPOST('price'),
-                            $VALID->inPOST('quantity'), $VALID->inPOST('keyword_' . lang('#lang_all')[$x]), $VALID->inPOST('tags_' . lang('#lang_all')[$x]), $VALID->inPOST('description_' . lang('#lang_all')[$x])]);
+                        " SET id=?, name=?, language=?, parent_id=?, date_added=?, date_available=?, model=?, price=?, quantity=?, keyword=?, tags=?, description=?", [$id, $VALID->inPOST('product_name_' . lang('#lang_all')[$x]), lang('#lang_all')[$x], $parent_id, date("Y-m-d H:i:s"), $date_available, $VALID->inPOST('model'), $VALID->inPOST('price'),
+                    $VALID->inPOST('quantity'), $VALID->inPOST('keyword_' . lang('#lang_all')[$x]), $VALID->inPOST('tags_' . lang('#lang_all')[$x]), $VALID->inPOST('description_' . lang('#lang_all')[$x])]);
             }
             // Выводим сообщение об успехе
             $_SESSION['message'] = ['success', lang('action_completed_successfully')];
