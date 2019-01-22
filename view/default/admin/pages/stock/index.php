@@ -111,7 +111,7 @@
                                 }
                                 $transfer = 0;
 
-                                for ($start; $start < $finish; $start++) {
+                                for ($start; $start <= $finish; $start++) {
                                      $transfer++;
                                     if ($start < $count_lines_cat) {
                                        
