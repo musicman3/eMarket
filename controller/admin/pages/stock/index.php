@@ -39,7 +39,7 @@ $lines_product = $PDO->getColRow("SELECT id, name FROM " . TABLE_PRODUCTS . " WH
 $count_lines_products = count($lines_product);  //считаем количество строк
 
 $arr_merge = $FUNC->arrayMergeOriginKey('cat', 'prod', $lines_cat, $lines_product);
-$count_lines_merge = ($count_lines_cat + $count_lines_products) - 1;
+$count_lines_merge = ($count_lines_cat + $count_lines_products);
 
 $navigate = $NAVIGATION->getLink($count_lines_merge, $lines_on_page, 1);
 $start = $navigate[0];
