@@ -186,12 +186,12 @@
                                     if ($start >= $count_lines_cat && $transfer < $lines_on_page + 1) {
 
                                         ?>
-                                        <tr class="sort-list" unitid="<?php echo $arr_merge['prod'][$start . 'a'][0] ?>">
+                                        <tr class="sort-list" unitid="<?php echo $arr_merge['prod'][$start.'a'][0] ?>">
                                             <td class="sortleft-m"></td>
                                             <td class="sortleft"><div><a href="#" class="btn btn-success btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-shopping-cart"> </span></a></div></td>
                                             <!-- ВЫБРАННЫЕ СТРОКИ -->
-                                            <td class="option" id="<?php echo $arr_merge['prod'][$start . 'a'][0] ?>"><span class="inactive" style="display: none;"></span>
-                                                <div class="context-one" id="product_<?php echo $arr_merge['prod'][$start . 'a'][0] ?>"><?php echo $arr_merge['prod'][$start . 'a'][1] ?></div>
+                                            <td class="option" id="<?php echo $arr_merge['prod'][$start.'a'][0] ?>"><span class="inactive" style="display: none;"></span>
+                                                <div class="context-one" id="product_<?php echo $arr_merge['prod'][$start.'a'][0] ?>"><?php echo $arr_merge['prod'][$start.'a'][1] ?></div>
                                             </td>
                                         </tr>
 

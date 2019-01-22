@@ -7,9 +7,9 @@
 
 // собираем данные для отображения в Редактировании категорий
 for ($i = $start; $i < $finish; $i++) {
-    if (isset($arr_merge['prod'][$i . 'a'][0]) == TRUE) {
+    if (isset($arr_merge['prod'][$i.'a'][0]) == TRUE) {
         
-        $modal_id_product = $arr_merge['prod'][$i . 'a'][0]; // ID
+        $modal_id_product = $arr_merge['prod'][$i.'a'][0]; // ID
         $count_lang = $LANG_COUNT;
 
         for ($x = 0; $x < $count_lang; $x++) {
