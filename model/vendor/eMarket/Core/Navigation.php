@@ -1,4 +1,5 @@
 <?php
+
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -21,10 +22,9 @@ class Navigation {
      * @param string $count_lines (количество строк на странице)
      * @param string $lines_on_page (максимум строк на странице)
      * @param string $transfer (используется трансфер)
-     * @param string $transfer_finish (номер элемента в массиве для конца трансфера)
      * @return array array($start, $finish)
      */
-    public function getLink($count_lines, $lines_on_page, int $transfer = null, int $transfer_finish = null) {
+    public function getLink($count_lines, $lines_on_page, int $transfer = null) {
 
         //$count_lines - общее число строк
         //$lines_on_page - число строк на странице
@@ -68,11 +68,7 @@ class Navigation {
             if ($finish < $lines_on_page) {
                 $finish = $lines_on_page;
             }
-            if ($finish > $transfer_finish) {
-                return array($start, $finish);
-            } else {
-                return array($start, $finish + $transfer);
-            }
+            return array($start, $finish + $transfer);
         }
 
         return array($start, $finish);
@@ -84,10 +80,9 @@ class Navigation {
      * @param string $count_lines (количество строк на странице)
      * @param string $lines_on_page (максимум строк на странице)
      * @param string $transfer (используется трансфер)
-     * @param string $transfer_finish (номер элемента в массиве для конца трансфера)
      * @return array array($start, $finish)
      */
-    public function postLink($count_lines, $lines_on_page, int $transfer = null, int $transfer_finish = null) {
+    public function postLink($count_lines, $lines_on_page, int $transfer = null) {
 
         //$count_lines - общее число строк
         //$lines_on_page - число строк на странице
@@ -131,11 +126,7 @@ class Navigation {
             if ($finish < $lines_on_page) {
                 $finish = $lines_on_page;
             }
-            if ($finish > $transfer_finish) {
-                return array($start, $finish);
-            } else {
-                return array($start, $finish + $transfer);
-            }
+            return array($start, $finish + $transfer);
         }
 
         return array($start, $finish);

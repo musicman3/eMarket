@@ -47,7 +47,7 @@ $finish_product = $navigate_product[1];
 $arr_merge = $FUNC->arrayMergeOriginKey('cat', 'prod', $lines, $lines_product);
 $count_lines_merge = $count_lines + $count_lines_products;
 
-$navigate2 = $NAVIGATION->getLink($count_lines_merge, $lines_on_page, 1, $count_lines);
+$navigate2 = $NAVIGATION->getLink($count_lines_merge, $lines_on_page, 1);
 $start2 = $navigate2[0];
 $finish2 = $navigate2[1];
 //print_r($start2 . '--' . $finish2);
