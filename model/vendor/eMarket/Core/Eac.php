@@ -41,7 +41,7 @@ class Eac {
 
         $idsx_real_parent_id = $parent_id; //для отправки в JS
         // Если нажали на кнопку Удалить
-        $parent_id_delete = self::deleteCategory($TABLE_CATEGORIES, $parent_id);
+        $parent_id_delete = self::deleteCategory($TABLE_CATEGORIES, $TABLE_PRODUCTS, $parent_id);
 
         // Если нажали на кнопку Вырезать
         $parent_id_cut = self::cutCategory($TABLE_CATEGORIES, $parent_id);
@@ -204,7 +204,7 @@ class Eac {
      * @param string $parent_id (идентификатор родительской категории)
      * @return string $parent_id (идентификатор родительской категории)
      */
-    private function deleteCategory($TABLE_CATEGORIES, $parent_id) {
+    private function deleteCategory($TABLE_CATEGORIES, $TABLE_PRODUCTS, $parent_id) {
 
         $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
@@ -218,12 +218,20 @@ class Eac {
 
             $count_keys = count($keys); // Получаем количество значений в массиве
             for ($x = 0; $x < $count_keys; $x++) {
+                
+                //Удаляем товар  
+                $PDO->inPrepare("DELETE FROM " . $TABLE_PRODUCTS . " WHERE parent_id=?", [$keys[$x]]);
+                
                 //Удаляем подкатегории
                 $PDO->inPrepare("DELETE FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$keys[$x]]);
             }
 
+            //Удаляем товар  
+            $PDO->inPrepare("DELETE FROM " . $TABLE_PRODUCTS . " WHERE parent_id=?", [$idx]);
+
             //Удаляем основную категорию    
             $PDO->inPrepare("DELETE FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$idx]);
+
             // Выводим сообщение об успехе
             $_SESSION['message'] = ['success', lang('action_completed_successfully')];
         }
