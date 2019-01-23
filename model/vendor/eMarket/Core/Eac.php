@@ -302,13 +302,12 @@ class Eac {
         $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
 
-        if (($VALID->inPOST('idsx_paste_key') == 'paste')) {
-            $parent_id_real = (int) $VALID->inPOST('idsx_real_parent_id'); // получить значение из JS
-        }
-
         //Вставляем вырезанные категории    
         if ($VALID->inPOST('idsx_paste_key') == 'paste' && isset($_SESSION['buffer']) == TRUE) {
+            
+            $parent_id_real = (int) $VALID->inPOST('idsx_real_parent_id'); // получить значение из JS
             $count_session_buffer = count($_SESSION['buffer']); // Получаем количество значений в массиве
+            
             for ($buf = 0; $buf < $count_session_buffer; $buf++) {
                 // Получаем последний sort_category в текущем parent_id и увеличиваем его на 1
                 $sort_max = $PDO->selectPrepare("SELECT sort_category FROM " . $TABLE_CATEGORIES . " WHERE language=? AND parent_id=? ORDER BY sort_category DESC", [lang('#lang_all')[0], $parent_id_real]);
