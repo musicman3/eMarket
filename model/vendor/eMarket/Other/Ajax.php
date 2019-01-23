@@ -38,7 +38,7 @@ class Ajax {
                     }
                 });
                 // Отправка запроса для обновления страницы
-                jQuery.get('<?php echo $url ?>', // отправка данных GET
+                jQuery.get('<?php echo $url ?>',
                         {modify: 'update_ok'},
                         AjaxSuccess);
                 // Обновление страницы
@@ -65,7 +65,7 @@ class Ajax {
                     }
                 });
                 // Отправка запроса для обновления страницы
-                jQuery.get('<?php echo $url ?>', // отправка данных GET
+                jQuery.get('<?php echo $url ?>',
                         {modify: 'update_ok'},
                         AjaxSuccess);
                 // Обновление страницы
@@ -92,7 +92,7 @@ class Ajax {
                     }
                 });
                 // Отправка запроса для обновления страницы
-                jQuery.get('<?php echo $url ?>', // отправка данных GET
+                jQuery.get('<?php echo $url ?>',
                         {modify: 'update_ok'},
                         AjaxSuccess);
                 // Обновление страницы

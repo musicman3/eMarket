@@ -37,11 +37,11 @@ if (!isset($idsx_real_parent_id)) {
         });
         // Установка синхронного запроса для jQuery.ajax
         jQuery.ajaxSetup({async: false});
-        jQuery.post('/controller/admin/pages/stock/index.php', // отправка данных POST
+        jQuery.post('/controller/admin/pages/stock/index.php',
                 {token_ajax: token,
                     ids: ids.join()});
         // Повторный вызов функции для нормального обновления страницы
-        jQuery.get('<?php echo $VALID->inSERVER('REQUEST_URI') ?>', // отправка данных POST
+        jQuery.get('<?php echo $VALID->inSERVER('REQUEST_URI') ?>',
                 {}, // id родительской категории
                 AjaxSuccess);
         function AjaxSuccess(data) {
@@ -144,7 +144,6 @@ if (!isset($idsx_real_parent_id)) {
                                 for (x = 0; x < name_edit.length; x++) {
                                     $('#product_name_edit_' + x).val(name_edit[x][modal_id]);
                                 }
-
                             });
 
                             $('#edit_product').modal('show');
@@ -174,7 +173,6 @@ if (!isset($idsx_real_parent_id)) {
 
                                 // Подгружаем изображения
                                 getImageToEdit(logo_general_edit, logo_edit, modal_id);
-
                             });
 
                             // Открываем модальное окно
@@ -209,16 +207,16 @@ if (!isset($idsx_real_parent_id)) {
                                 // Установка синхронного запроса для jQuery.ajax
                                 jQuery.ajaxSetup({async: false});
                                 // Отправка данных по каждой выделенной строке
-                                $(".option").each(function () { // выделенное мышкой
+                                $(".option").each(function () {
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
-                                        jQuery.post('/controller/admin/pages/stock/index.php', // отправка данных POST
+                                        jQuery.post('/controller/admin/pages/stock/index.php',
                                                 {idsx_statusOn_id: this.id,
                                                     idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
                                                     idsx_statusOn_key: itemKey});
 
                                 });
                                 // Отправка запроса для обновления страницы
-                                jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных POST
+                                jQuery.get('/controller/admin/pages/stock/index.php',
                                         {parent_down: <?php echo $parent_id ?>},
                                         AjaxSuccess);
                                 // Обновление страницы
@@ -248,15 +246,15 @@ if (!isset($idsx_real_parent_id)) {
                                 // Установка синхронного запроса для jQuery.ajax
                                 jQuery.ajaxSetup({async: false});
                                 // Отправка данных по каждой выделенной строке
-                                $(".option").each(function () { // выделенное мышкой
+                                $(".option").each(function () {
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
-                                        jQuery.post('/controller/admin/pages/stock/index.php', // отправка данных POST
+                                        jQuery.post('/controller/admin/pages/stock/index.php',
                                                 {idsx_statusOff_id: this.id,
                                                     idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
                                                     idsx_statusOff_key: itemKey});
                                 });
                                 // Отправка запроса для обновления страницы
-                                jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных POST
+                                jQuery.get('/controller/admin/pages/stock/index.php',
                                         {parent_down: <?php echo $parent_id ?>},
                                         AjaxSuccess);
                                 // Обновление страницы
@@ -288,20 +286,20 @@ if (!isset($idsx_real_parent_id)) {
                                 // Установка синхронного запроса для jQuery.ajax
                                 jQuery.ajaxSetup({async: false});
                                 // Отправка маркера на очитку буффера
-                                jQuery.post('/controller/admin/pages/stock/index.php', // отправка данных POST
+                                jQuery.post('/controller/admin/pages/stock/index.php',
                                         {idsx_cut_marker: 'cut'});
 
                                 // Отправка данных по каждой выделенной строке
                                 $(".option").each(function () { // выделенное мышкой
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
-                                        jQuery.post('/controller/admin/pages/stock/index.php', // отправка данных POST
+                                        jQuery.post('/controller/admin/pages/stock/index.php',
                                                 {idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
                                                     idsx_cut_id: this.id,
                                                     parent_down: <?php echo $parent_id ?>,
                                                     idsx_cut_key: itemKey});
                                 });
                                 // Отправка запроса для обновления страницы
-                                jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных POST
+                                jQuery.get('/controller/admin/pages/stock/index.php',
                                         {parent_down: <?php echo $parent_id ?>},
                                         AjaxSuccess);
                                 // Обновление страницы
@@ -331,13 +329,13 @@ if (!isset($idsx_real_parent_id)) {
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
                                 // Установка синхронного запроса для jQuery.ajax
                                 jQuery.ajaxSetup({async: false});
-                                jQuery.post('/controller/admin/pages/stock/index.php', // отправка данных POST
+                                jQuery.post('/controller/admin/pages/stock/index.php',
                                         {idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
                                             parent_down: <?php echo $parent_id ?>,
                                             idsx_paste_key: itemKey});
 
                                 // Отправка запроса для обновления страницы
-                                jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных POST
+                                jQuery.get('/controller/admin/pages/stock/index.php',
                                         {parent_down: <?php echo $parent_id ?>,
                                             modify: 'update_ok'},
                                         AjaxSuccess);
@@ -370,12 +368,12 @@ if (!isset($idsx_real_parent_id)) {
                                 // Отправка данных по каждой выделенной строке
                                 $(".option").each(function () { // выделенное мышкой
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
-                                        jQuery.post('/controller/admin/pages/stock/index.php', // отправка данных POST
+                                        jQuery.post('/controller/admin/pages/stock/index.php',
                                                 {delete: this.id,
                                                     parent_down: <?php echo $parent_id ?>});
                                 });
                                 // Отправка запроса для обновления страницы
-                                jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных POST
+                                jQuery.get('/controller/admin/pages/stock/index.php',
                                         {parent_down: <?php echo $parent_id ?>,
                                             modify: 'ok'},
                                         AjaxSuccess);
@@ -416,7 +414,7 @@ if (!isset($idsx_real_parent_id)) {
             }
         });
         // Отправка запроса для обновления страницы
-        jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных POST
+        jQuery.get('/controller/admin/pages/stock/index.php',
                 {parent_down: <?php echo $parent_id ?>,
                     modify: 'update_ok'},
                 AjaxSuccess);
@@ -445,7 +443,7 @@ if (!isset($idsx_real_parent_id)) {
             }
         });
         // Отправка запроса для обновления страницы
-        jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных POST
+        jQuery.get('/controller/admin/pages/stock/index.php',
                 {parent_down: <?php echo $parent_id ?>,
                     modify: 'ok'},
                 AjaxSuccess);
@@ -461,7 +459,7 @@ if (!isset($idsx_real_parent_id)) {
     }
 </script>
 
-<!-- Визуальный редактор" -->
+<!-- CKEditor" -->
 <script type="text/javascript" src="/ext/ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="/ext/ckeditor/translations/<?php echo lang('meta-language') ?>.js"></script>
 <script type="text/javascript">
@@ -509,9 +507,9 @@ if (!isset($idsx_real_parent_id)) {
         editor.destroy();
     });
 </script>
-<!-- Автовыбор языка Datepicker" -->
+
+<!-- Datepicker" -->
 <script type="text/javascript" src="/ext/jquery/ui/i18n/datepicker-<?php echo lang('meta-language') ?>.js"></script>
-<!-- Настройка Datepicker" -->
 <script type="text/javascript">
     $(function () {
         $("#date_available, #date_available_edit").datepicker({
@@ -539,7 +537,7 @@ if (!isset($idsx_real_parent_id)) {
             }
         });
         // Отправка запроса для обновления страницы
-        jQuery.get('/controller/admin/pages/stock/index.php', // отправка данных POST
+        jQuery.get('/controller/admin/pages/stock/index.php',
                 {parent_down: <?php echo $parent_id ?>,
                     modify: 'update_ok'},
                 AjaxSuccess);
