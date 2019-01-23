@@ -203,6 +203,21 @@ class Ajax {
                 jQuery.post('<?php echo $url ?>',
                         {file_upload: 'empty'});
             });
+            
+            //Если открыли модальное окно
+            $('#add_product, #edit_product').on('show.bs.modal', function (event) {
+                        
+                ClassicEditor
+		.create( document.querySelector( 'textarea' ), {
+			// toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
+		} )
+		.then( editor => {
+			window.editor = editor;
+		} )
+		.catch( err => {
+			console.error( err.stack );
+		} );
+            });
 
             // Очищаем модальное окно и hidden input при закрытии
             $(this).on('hidden.bs.modal', function (event) {
@@ -213,6 +228,7 @@ class Ajax {
                 $('#general_image_add').val('');
                 $('#alert_messages_add').empty();
                 $('#alert_messages_edit').empty();
+                editor.destroy();
                 //$(this).find('form').trigger('reset'); // Очищаем формы
             });
 

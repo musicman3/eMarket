@@ -48,7 +48,6 @@ if (!isset($idsx_real_parent_id)) {
         function AjaxSuccess(data) {
             $('#fileupload-edit').fileupload('destroy');
             $('#fileupload-add').fileupload('destroy');
-            editor.destroy();
             $('#ajax').html(data);
         }
     }
@@ -138,7 +137,6 @@ if (!isset($idsx_real_parent_id)) {
                         if (modal_edit.search('product_') > -1){
                             
                             $('#edit_product').on('show.bs.modal', function (event) {
-
                             // Получаем ID при клике на кнопку редактирования
                             var modal_id = modal_edit.split('product_')[1];
                             // Получаем массивы данных
@@ -472,16 +470,7 @@ if (!isset($idsx_real_parent_id)) {
 
 <script type="text/javascript" src="/ext/ckeditor/ckeditor.js"></script>
 <script>
-	ClassicEditor
-		.create( document.querySelector( 'textarea' ), {
-			// toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
-		} )
-		.then( editor => {
-			window.editor = editor;
-		} )
-		.catch( err => {
-			console.error( err.stack );
-		} );
+
 </script>
 
 <!-- Автовыбор языка Datepicker" -->
