@@ -205,6 +205,23 @@ class Func {
         return array_merge($a, $b);
     }
 
+    /**
+     * Функция удаления файлов
+
+     * @param array $array (писходный массив)
+     * @param string $val (значение value, которое необходимо удалить)
+     * @return array $array (итоговый массив)
+     */
+    public function deleteInArray($array, $val) {
+
+        //Удаляем из буффера, если есть
+        if (isset($array) && in_array($val, $array)) {
+            unset($array[array_search($val, $array)]);
+            array_values($array); // Сбрасываем ключи
+        }
+        return $array;
+    }
+
 }
 
 ?>

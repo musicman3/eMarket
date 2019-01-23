@@ -1,5 +1,4 @@
 <?php
-
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -208,6 +207,7 @@ class Eac {
 
         $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
+        $FUNC = new \eMarket\Other\Func;
 
         if ($VALID->inPOST('delete')) {
 
@@ -218,12 +218,15 @@ class Eac {
 
             $count_keys = count($keys); // Получаем количество значений в массиве
             for ($x = 0; $x < $count_keys; $x++) {
-                
+
                 //Удаляем товар  
                 $PDO->inPrepare("DELETE FROM " . $TABLE_PRODUCTS . " WHERE parent_id=?", [$keys[$x]]);
-                
+
                 //Удаляем подкатегории
                 $PDO->inPrepare("DELETE FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$keys[$x]]);
+
+                //Удаляем из буффера, если есть
+                $_SESSION['buffer'] = $FUNC->deleteInArray($_SESSION['buffer'], $keys[$x]);
             }
 
             //Удаляем товар  
@@ -231,6 +234,9 @@ class Eac {
 
             //Удаляем основную категорию    
             $PDO->inPrepare("DELETE FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$idx]);
+
+            //Удаляем из буффера, если есть
+            $_SESSION['buffer'] = $FUNC->deleteInArray($_SESSION['buffer'], $idx);
 
             // Выводим сообщение об успехе
             $_SESSION['message'] = ['success', lang('action_completed_successfully')];
