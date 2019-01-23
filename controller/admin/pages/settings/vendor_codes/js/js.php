@@ -12,9 +12,9 @@
             var button = $(event.relatedTarget);
             var modal_id = button.data('edit'); // Получаем ID из data-edit при клике на кнопку редактирования
             // Получаем массивы данных
-            var name_edit = <?php echo $name_edit ?>;
-            var code_edit = <?php echo $code_edit ?>;
-            var status = <?php echo $default_vendor_code_edit ?>;
+            var name_edit = $('div#ajax_data').data('name');
+            var code_edit = $('div#ajax_data').data('code');
+            var vendor_edit = $('div#ajax_data').data('vendor');
 
             // Ищем id и добавляем данные
             for (x = 0; x < name_edit.length; x++) {
@@ -23,7 +23,7 @@
             }
 
             $('#js_edit').val(modal_id);
-            $('#default_vendor_code_edit').prop('checked', status[modal_id]);
+            $('#default_vendor_code_edit').prop('checked', vendor_edit[modal_id]);
         });
     </script>
 <?php

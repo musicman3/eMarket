@@ -25,5 +25,7 @@ for ($i = $start; $i < $finish; $i++) {
 }
 if (!isset($modal_id)) {
     $modal_id = 'false';
+    $name_edit = ''; // Имя
+    $code_edit = ''; // Alpha 2
 }
 ?>

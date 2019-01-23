@@ -1,5 +1,4 @@
 <?php
-
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-= 
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -23,5 +22,8 @@ for ($i = $start; $i < $finish; $i++) {
 }
 if (!isset($modal_id)) {
     $modal_id = 'false';
+    $name_edit = ''; // Имя
+    $code_edit = ''; // Короткое имя
 }
+
 ?>

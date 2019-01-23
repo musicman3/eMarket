@@ -1,5 +1,4 @@
 <?php
-
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-= 
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -16,7 +15,7 @@ for ($i = $start; $i < $finish; $i++) {
             $name_edit_temp[$x][$modal_id] = $PDO->selectPrepare("SELECT name FROM " . TABLE_VENDOR_CODES . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]]);
             $code_edit_temp[$x][$modal_id] = $PDO->selectPrepare("SELECT vendor_code FROM " . TABLE_VENDOR_CODES . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]]);
         }
-        
+
         $default_vendor_code_edit_temp[$modal_id] = (int) $PDO->selectPrepare("SELECT default_vendor_code FROM " . TABLE_VENDOR_CODES . " WHERE id=?", [$modal_id]);
 
         // ПАРАМЕТРЫ ДЛЯ ПЕРЕДАЧИ В МОДАЛ
@@ -27,5 +26,9 @@ for ($i = $start; $i < $finish; $i++) {
 }
 if (!isset($modal_id)) {
     $modal_id = 'false';
+    $name_edit = ''; // Имя
+    $code_edit = ''; // Короткое имя
+    $default_vendor_code_edit = ''; // Статус
 }
+
 ?>

@@ -1,5 +1,4 @@
 <?php
-
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-= 
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -15,12 +14,12 @@ for ($i = $start; $i < $finish; $i++) {
             $name_edit_temp[$x][$modal_id] = $PDO->selectPrepare("SELECT name FROM " . TABLE_CURRENCIES . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]]);
             $code_edit_temp[$x][$modal_id] = $PDO->selectPrepare("SELECT code FROM " . TABLE_CURRENCIES . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]]);
         }
-        
+
         $iso_4217_edit_temp[$modal_id] = $PDO->selectPrepare("SELECT iso_4217 FROM " . TABLE_CURRENCIES . " WHERE id=?", [$modal_id]);
-        $value_edit_temp[$modal_id] = (float)$PDO->selectPrepare("SELECT value FROM " . TABLE_CURRENCIES . " WHERE id=?", [$modal_id]);
+        $value_edit_temp[$modal_id] = (float) $PDO->selectPrepare("SELECT value FROM " . TABLE_CURRENCIES . " WHERE id=?", [$modal_id]);
         $symbol_edit_temp[$modal_id] = $PDO->selectPrepare("SELECT symbol FROM " . TABLE_CURRENCIES . " WHERE id=?", [$modal_id]);
         $symbol_position_edit_temp[$modal_id] = $PDO->selectPrepare("SELECT symbol_position FROM " . TABLE_CURRENCIES . " WHERE id=?", [$modal_id]);
-        $decimal_places_edit_temp[$modal_id] = (float)$PDO->selectPrepare("SELECT decimal_places FROM " . TABLE_CURRENCIES . " WHERE id=?", [$modal_id]);
+        $decimal_places_edit_temp[$modal_id] = (float) $PDO->selectPrepare("SELECT decimal_places FROM " . TABLE_CURRENCIES . " WHERE id=?", [$modal_id]);
         $status_value_edit_temp[$modal_id] = (int) $PDO->selectPrepare("SELECT default_value FROM " . TABLE_CURRENCIES . " WHERE id=?", [$modal_id]);
         // ПАРАМЕТРЫ ДЛЯ ПЕРЕДАЧИ В МОДАЛ
         $name_edit = json_encode($name_edit_temp); // Имя
@@ -35,5 +34,14 @@ for ($i = $start; $i < $finish; $i++) {
 }
 if (!isset($modal_id)) {
     $modal_id = 'false';
+    $name_edit = ''; // Имя
+    $code_edit = ''; // Короткое имя
+    $iso_4217_edit = ''; // iso 4217
+    $value_edit = ''; // Значение
+    $symbol_edit = ''; // Символ
+    $symbol_position_edit = ''; // Позиция символа
+    $decimal_places_edit = ''; // Кол-во десятичных знаков
+    $status_value_edit = ''; // Статус
 }
+
 ?>

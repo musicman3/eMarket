@@ -26,5 +26,6 @@ for ($i = $start; $i < $finish; $i++) {
 }
 if (!isset($modal_id_product)) {
     $modal_id_product = 'false';
+    $name_edit_product = ''; // Имя
 }
 ?>

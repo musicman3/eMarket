@@ -37,7 +37,6 @@
                 <?php if ($lines_cat == TRUE OR $lines_product == TRUE) { ?>
                     <div class="panel-body">
                         <!--Скрытый div для передачи данных-->
-                        <?php if ($modal_id_product != FALSE OR $modal_id != FALSE) { ?>
                             <div id="ajax_data" class='hidden'
                                  data-name='<?php echo $name_edit ?>'
                                  data-nameproduct='<?php echo $name_edit_product ?>'
@@ -45,7 +44,6 @@
                                  data-general='<?php echo $logo_general ?>'
                                  ></div>
 
-                        <?php } ?>
                         <table class="table table-hover">
                             <thead>
                                 <tr>

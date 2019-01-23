@@ -26,6 +26,12 @@
                     </h3>
                 </div>
                 <div class="panel-body">
+                    <!--Скрытый div для передачи данных-->
+                    <div id="ajax_data" class='hidden'
+                         data-name='<?php echo $name_edit ?>'
+                         data-code='<?php echo $code_edit ?>'
+                         ></div>
+
                     <table class="table table-hover">
                         <thead>
                             <tr>
@@ -58,7 +64,7 @@
                                     </form>
 
                                     <?php if (count($lines) > $lines_on_page) { ?> <div class="left"> <?php } else { ?> <div class="right"> <?php } ?>
-                                    <a href="#add" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
+                                            <a href="#add" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
                                 </th>
                             </tr>
                             <?php if ($lines == TRUE) { ?>

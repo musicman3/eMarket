@@ -26,6 +26,13 @@
                     </h3>
                 </div>
                 <div class="panel-body">
+                    <!--Скрытый div для передачи данных-->
+                    <div id="ajax_data" class='hidden'
+                         data-name='<?php echo $name_edit ?>'
+                         data-code='<?php echo $code_edit ?>'
+                         data-vendor='<?php echo $default_vendor_code_edit ?>'
+                         ></div>
+                    
                     <table class="table table-hover">
                         <thead>
                             <tr>

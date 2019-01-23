@@ -12,10 +12,10 @@
             var button = $(event.relatedTarget);
             var modal_id = button.data('edit'); // Получаем ID из data-edit при клике на кнопку редактирования
             // Получаем массивы данных
-            var name_edit = <?php echo $name_edit ?>;
-            var code_edit = <?php echo $code_edit ?>;
-            var value_weight_edit = <?php echo $value_weight_edit ?>;
-            var status = <?php echo $status_weight_edit ?>;
+            var name_edit = $('div#ajax_data').data('name');
+            var code_edit = $('div#ajax_data').data('code');
+            var value_weight_edit = $('div#ajax_data').data('weight');
+            var status = $('div#ajax_data').data('status');
 
             // Ищем id и добавляем данные
             for (x = 0; x < name_edit.length; x++) {

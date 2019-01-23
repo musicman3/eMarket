@@ -1,5 +1,4 @@
 <?php
-
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-= 
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -15,8 +14,8 @@ for ($i = $start; $i < $finish; $i++) {
             $name_edit_temp[$x][$modal_id] = $PDO->selectPrepare("SELECT name FROM " . TABLE_WEIGHT . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]]);
             $code_edit_temp[$x][$modal_id] = $PDO->selectPrepare("SELECT code FROM " . TABLE_WEIGHT . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]]);
         }
-        
-        $value_weight_edit_temp[$modal_id] = (float)$PDO->selectPrepare("SELECT value_weight FROM " . TABLE_WEIGHT . " WHERE id=?", [$modal_id]);
+
+        $value_weight_edit_temp[$modal_id] = (float) $PDO->selectPrepare("SELECT value_weight FROM " . TABLE_WEIGHT . " WHERE id=?", [$modal_id]);
         $status_weight_edit_temp[$modal_id] = (int) $PDO->selectPrepare("SELECT default_weight FROM " . TABLE_WEIGHT . " WHERE id=?", [$modal_id]);
         // ПАРАМЕТРЫ ДЛЯ ПЕРЕДАЧИ В МОДАЛ
         $name_edit = json_encode($name_edit_temp); // Имя
@@ -27,5 +26,10 @@ for ($i = $start; $i < $finish; $i++) {
 }
 if (!isset($modal_id)) {
     $modal_id = 'false';
+    $name_edit = ''; // Имя
+    $code_edit = ''; // Короткое имя
+    $value_weight_edit = ''; // Значение
+    $status_weight_edit = ''; // Статус
 }
+
 ?>

@@ -13,14 +13,14 @@
             var button = $(event.relatedTarget);
             var modal_id = button.data('edit'); // Получаем ID из data-edit при клике на кнопку редактирования
             // Получаем массивы данных
-            var name_edit = <?php echo $name_edit ?>;
-            var code_edit = <?php echo $code_edit ?>;
-            var iso_4217_edit = <?php echo $iso_4217_edit ?>;
-            var value_edit = <?php echo $value_edit ?>;
-            var symbol_edit = <?php echo $symbol_edit ?>;
-            var symbol_position_edit = <?php echo $symbol_position_edit ?>;
-            var decimal_places_edit = <?php echo $decimal_places_edit ?>;
-            var status = <?php echo $status_value_edit ?>;
+            var name_edit = $('div#ajax_data').data('name');
+            var code_edit = $('div#ajax_data').data('code');
+            var iso_4217_edit = $('div#ajax_data').data('iso4217');
+            var value_edit = $('div#ajax_data').data('value');
+            var symbol_edit = $('div#ajax_data').data('symbol');
+            var symbol_position_edit = $('div#ajax_data').data('position');
+            var decimal_places_edit = $('div#ajax_data').data('decimal');
+            var status = $('div#ajax_data').data('status');
 
             // Ищем id и добавляем данные
             for (x = 0; x < name_edit.length; x++) {

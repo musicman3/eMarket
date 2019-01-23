@@ -3,6 +3,7 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+
 ?>
 <!-- Модальное окно "Добавить" -->
 <?php require_once('modal/add.php') ?>
@@ -25,6 +26,18 @@
                     </h3>
                 </div>
                 <div class="panel-body">
+                    <!--Скрытый div для передачи данных-->
+                    <div id="ajax_data" class='hidden'
+                         data-name='<?php echo $name_edit ?>'
+                         data-code='<?php echo $code_edit ?>'
+                         data-iso4217='<?php echo $iso_4217_edit ?>'
+                         data-value='<?php echo $value_edit ?>'
+                         data-symbol='<?php echo $symbol_edit ?>'
+                         data-position='<?php echo $symbol_position_edit ?>'
+                         data-decimal='<?php echo $decimal_places_edit ?>'
+                         data-status='<?php echo $status_value_edit ?>'
+                         ></div>
+
                     <table class="table table-hover">
                         <thead>
                             <tr>
@@ -33,6 +46,7 @@
                                         <div class="page"><?php echo lang('s') ?> <?php echo $start + 1 ?> <?php echo lang('po') ?> <?php echo $finish ?> ( <?php echo lang('iz') ?> <?php echo count($lines); ?> )</div>
                                         <?php
                                     } else {
+
                                         ?>
                                         <div><?php echo lang('no_listing') ?></div>
                                     <?php } ?>
@@ -76,7 +90,7 @@
                                     <td><?php echo $lines[$start][1] ?></td>
                                     <td class="al-text"><?php echo $lines[$start][2] ?></td>
                                     <td class="al-text"><?php echo $lines[$start][3] ?></td>
-                                    <td class="al-text"><?php echo (float)$lines[$start][4] ?></td>
+                                    <td class="al-text"><?php echo (float) $lines[$start][4] ?></td>
                                     <?php if ($lines[$start][5] == 1) { ?>
                                         <td class="al-text"><?php echo lang('confirm-yes') ?></td>
                                     <?php } else { ?>
