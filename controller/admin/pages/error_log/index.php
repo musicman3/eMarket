@@ -22,7 +22,7 @@ if (file_exists(ROOT . '/model/work/errors.log')) { // Если файл сущ�
     // получаем содержимое файла в виде массива и сортируем в обратном порядке
     $lines = array_reverse(file(ROOT . '/model/work/errors.log'));
 } else { // если файла нет, то выводим пустой массив
-    $lines = array();
+    $lines = [];
 }
 $lines_on_page = $SET->linesOnPage();
 $navigate = $NAVIGATION->postLink(count($lines), $lines_on_page);

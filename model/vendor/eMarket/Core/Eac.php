@@ -278,7 +278,7 @@ class Eac {
             //Вырезаем основную родительскую категорию    
             if ($VALID->inPOST('idsx_cut_key') == 'cut') {
                 if (!isset($_SESSION['buffer'])) {
-                    $_SESSION['buffer'] = array();
+                    $_SESSION['buffer'] = [];
                 }
                 array_push($_SESSION['buffer'], $idx);
                 if ($parent_id_real > 0) {
@@ -429,7 +429,7 @@ class Eac {
         $data_cat = $PDO->inPrepare("SELECT id, parent_id FROM " . $TABLE_CATEGORIES);
 
         $category = $idx; // id родителя
-        $categories = array();
+        $categories = [];
         $keys[] = $category; // добавляем первый ключ в массив
         // В цикле формируем ассоциативный массив разделов
         while ($category = $data_cat->fetch(\PDO::FETCH_ASSOC)) {

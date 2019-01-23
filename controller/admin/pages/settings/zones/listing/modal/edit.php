@@ -5,7 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 // собираем данные для отображения в Редактировании
 if (isset($lines[$k][0]) == TRUE) {
-    $name_edit = array();
+    $name_edit = [];
     for ($x = 0; $x < $LANG_COUNT; $x++) {
         array_push($name_edit, $PDO->selectPrepare("SELECT name FROM " . TABLE_ZONES . " WHERE id=? and language=?", [$lines[$k][0], lang('#lang_all')[$x]]));
     }

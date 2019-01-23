@@ -76,7 +76,7 @@ class Func {
      */
     public function filterArrayToKey($basic_array, $name_key, $value_key, $val) {
 
-        $arr = array();
+        $arr = [];
         foreach ($basic_array as $value) {
             if ($value[$name_key] == $value_key) {
                 array_push($arr, $value[$val]);
@@ -120,7 +120,7 @@ class Func {
      * @return array $array_return (новый массив)
      */
     public function arrayExplode($array, $delimiter) {
-        $array_return = array();
+        $array_return = [];
         foreach ($array as $v) {
             $array_return = array_merge($array_return, array(explode($delimiter, $v)));
         }

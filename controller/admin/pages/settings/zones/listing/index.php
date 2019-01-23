@@ -59,7 +59,7 @@ $start = $navigate[0];
 $finish = $navigate[1];
 
 // Формирование списка для всплывающих подсказок
-$text_arr = array();
+$text_arr = [];
 for ($y = $start; $y < $finish; $y++) {
     $text = '| ';
     for ($x = 0; $x < count($regions); $x++) {

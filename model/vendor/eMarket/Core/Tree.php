@@ -24,8 +24,8 @@ class Tree {
      */
     public function filesTree($dir) {
         $handle = opendir($dir) or die("Error: Can't open directory $dir");
-        $files = Array();
-        $subfiles = Array();
+        $files = [];
+        $subfiles = [];
         while (false !== ($file = readdir($handle))) {
             if ($file != '.' && $file != '..' && $file != '.gitkeep' && $file != '.gitignore') { //Исключаемые данные
                 if (is_dir($dir . '/' . $file)) {

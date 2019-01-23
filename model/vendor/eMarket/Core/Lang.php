@@ -38,7 +38,7 @@ class Lang {
         }
 
         //Получение списка языков
-        $lang_all = array(); // массив с языками
+        $lang_all = []; // массив с языками
         array_push($lang_all, $default_language); // первым в массиве идет язык по умолчанию
 
         $lang_trans = parse_ini_file(getenv('DOCUMENT_ROOT') . '/language/' . $default_language . '/admin/lang.lng', TRUE, INI_SCANNER_RAW);
