@@ -79,7 +79,6 @@ if (!isset($idsx_real_parent_id)) {
                             setTimeout(function () {
                                 $('#fileupload-edit').fileupload('destroy');
                                 $('#fileupload-add').fileupload('destroy');
-                                editor.destroy();
                                 $('#ajax').html(data);
                             }, 1000);
                         }
@@ -227,7 +226,6 @@ if (!isset($idsx_real_parent_id)) {
                                     setTimeout(function () {
                                         $('#fileupload-edit').fileupload('destroy');
                                         $('#fileupload-add').fileupload('destroy');
-                                        editor.destroy();
                                         $('#ajax').html(data);
                                     }, 100);
                                     $("#sort-list").sortable();
@@ -266,7 +264,6 @@ if (!isset($idsx_real_parent_id)) {
                                     setTimeout(function () {
                                         $('#fileupload-edit').fileupload('destroy');
                                         $('#fileupload-add').fileupload('destroy');
-                                        editor.destroy();
                                         $('#ajax').html(data);
                                     }, 100);
                                     $("#sort-list").sortable();
@@ -312,7 +309,6 @@ if (!isset($idsx_real_parent_id)) {
                                     setTimeout(function () {
                                         $('#fileupload-edit').fileupload('destroy');
                                         $('#fileupload-add').fileupload('destroy');
-                                        editor.destroy();
                                         $('#ajax').html(data);
                                     }, 100);
                                     $("#sort-list").sortable();
@@ -388,7 +384,6 @@ if (!isset($idsx_real_parent_id)) {
                                     setTimeout(function () {
                                         $('#fileupload-edit').fileupload('destroy');
                                         $('#fileupload-add').fileupload('destroy');
-                                        editor.destroy();
                                         $('#ajax').html(data);
                                     }, 100);
                                     $("#sort-list").sortable();
