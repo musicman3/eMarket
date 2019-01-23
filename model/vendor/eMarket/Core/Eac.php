@@ -226,7 +226,7 @@ class Eac {
                 $PDO->inPrepare("DELETE FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$keys[$x]]);
 
                 //Удаляем из буффера, если есть
-                $_SESSION['buffer'] = $FUNC->deleteInArray($_SESSION['buffer'], $keys[$x]);
+                $_SESSION['buffer'] = $FUNC->deleteValInArray($_SESSION['buffer'], $keys[$x]);
             }
 
             //Удаляем товар  
@@ -236,7 +236,7 @@ class Eac {
             $PDO->inPrepare("DELETE FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$idx]);
 
             //Удаляем из буффера, если есть
-            $_SESSION['buffer'] = $FUNC->deleteInArray($_SESSION['buffer'], $idx);
+            $_SESSION['buffer'] = $FUNC->deleteValInArray($_SESSION['buffer'], $idx);
 
             // Выводим сообщение об успехе
             $_SESSION['message'] = ['success', lang('action_completed_successfully')];

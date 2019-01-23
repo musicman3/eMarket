@@ -212,7 +212,7 @@ class Func {
      * @param string $val (значение value, которое необходимо удалить)
      * @return array $array (итоговый массив)
      */
-    public function deleteInArray($array, $val) {
+    public function deleteValInArray($array, $val) {
 
         //Удаляем из буффера, если есть
         if (isset($array) && in_array($val, $array)) {
