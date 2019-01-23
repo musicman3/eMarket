@@ -465,11 +465,13 @@ if (!isset($idsx_real_parent_id)) {
 <script type="text/javascript" src="/ext/ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="/ext/ckeditor/translations/<?php echo lang('meta-language') ?>.js"></script>
 <script type="text/javascript">
-    //Если открыли модальное окно #add_product, #edit_product
-    $('#add_product, #edit_product').on('show.bs.modal', function (event) {
+    //Если открыли модальное окно #add_product
+    $('#add_product').on('show.bs.modal', function (event) {
         // Инициализация CKEditor
+        var lang_count = '<?php echo count(lang('#lang_all')) ?>';
+        for (var count = 0; count < lang_count; count++){
         ClassicEditor
-                .create(document.querySelector('textarea'), {
+                .create(document.querySelector('#add_product_' + count), {
                     language: '<?php echo lang('meta-language') ?>'
                             // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
                 })
@@ -479,7 +481,27 @@ if (!isset($idsx_real_parent_id)) {
                 .catch(err => {
                     console.error(err.stack);
                 });
+        }
     });
+    
+    //Если открыли модальное окно #edit_product
+    $('#edit_product').on('show.bs.modal', function (event) {
+        // Инициализация CKEditor
+        var lang_count = '<?php echo count(lang('#lang_all')) ?>';
+        for (var count = 0; count < lang_count; count++){
+        ClassicEditor
+                .create(document.querySelector('#edit_product_' + count), {
+                    language: '<?php echo lang('meta-language') ?>'
+                            // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
+                })
+                .then(editor => {
+                    window.editor = editor;
+                })
+                .catch(err => {
+                    console.error(err.stack);
+                });
+        }
+    });    
 
     //Если закрыли модальное окно #add_product, #edit_product
     $('#add_product, #edit_product').on('hidden.bs.modal', function (event) {

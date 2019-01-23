@@ -40,23 +40,23 @@
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="product_name_<?php echo lang('#lang_all')[0] ?>" id="product_name_<?php echo lang('#lang_all')[0] ?>" />
+                                            <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="product_name_<?php echo lang('#lang_all')[0] ?>" />
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label><?php echo lang('product_description') ?>:</label><br>
-                                        <textarea rows="3" class="input-sm form-control" name="description_<?php echo lang('#lang_all')[0] ?>" id="description_<?php echo lang('#lang_all')[0] ?>" /></textarea>
+                                        <textarea rows="3" class="input-sm form-control" id="add_product_0" name="description_<?php echo lang('#lang_all')[0] ?>" /></textarea>
                                     </div>
                                     <div class="col-left">
                                         <div class="input-group has-success">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" placeholder="Keyword" type="text" name="keyword_<?php echo lang('#lang_all')[0] ?>" id="keyword_<?php echo lang('#lang_all')[0] ?>" />
+                                            <input class="input-sm form-control" placeholder="Keyword" type="text" name="keyword_<?php echo lang('#lang_all')[0] ?>" />
                                         </div>
                                     </div>
                                     <div class="col-right">
                                         <div class="input-group has-success">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" placeholder="Tags" type="text" name="tags_<?php echo lang('#lang_all')[0] ?>" id="tags_<?php echo lang('#lang_all')[0] ?>" />
+                                            <input class="input-sm form-control" placeholder="Tags" type="text" name="tags_<?php echo lang('#lang_all')[0] ?>" />
                                         </div>
                                     </div>
                                 </div>
@@ -71,23 +71,23 @@
                                             <div class="form-group">
                                                 <div class="input-group has-error">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                                    <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="product_name_<?php echo lang('#lang_all')[$x] ?>" id="product_name_<?php echo lang('#lang_all')[$x] ?>" />
+                                                    <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="product_name_<?php echo lang('#lang_all')[$x] ?>" />
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label><?php echo lang('product_description') ?>:</label><br>
-                                                <textarea rows="3" class="input-sm form-control" name="description_<?php echo lang('#lang_all')[$x] ?>" id="description_<?php echo lang('#lang_all')[$x] ?>" /></textarea>
+                                                <textarea rows="3" class="input-sm form-control" id="add_product_<?php echo $x ?>" name="description_<?php echo lang('#lang_all')[$x] ?>" /></textarea>
                                             </div>
                                             <div class="col-left">
                                                 <div class="input-group has-success">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                                    <input class="input-sm form-control" placeholder="Keyword" type="text" name="keyword_<?php echo lang('#lang_all')[$x] ?>" id="keyword_<?php echo lang('#lang_all')[$x] ?>" />
+                                                    <input class="input-sm form-control" placeholder="Keyword" type="text" name="keyword_<?php echo lang('#lang_all')[$x] ?>" />
                                                 </div>
                                             </div>
                                             <div class="col-right">
                                                 <div class="input-group has-success">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                                    <input class="input-sm form-control" placeholder="Tags" type="text" name="tags_<?php echo lang('#lang_all')[$x] ?>" id="tags_<?php echo lang('#lang_all')[$x] ?>" />
+                                                    <input class="input-sm form-control" placeholder="Tags" type="text" name="tags_<?php echo lang('#lang_all')[$x] ?>" />
                                                 </div>
                                             </div>
                                         </div>

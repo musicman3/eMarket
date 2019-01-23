@@ -48,18 +48,18 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                     </div>
                                     <div class="form-group">
                                         <label><?php echo lang('product_description') ?>:</label><br>
-                                        <textarea rows="3" class="input-sm form-control" name="description_edit_<?php echo lang('#lang_all')[0] ?>" id="description_edit_<?php echo lang('#lang_all')[0] ?>" /></textarea>
+                                        <textarea rows="3" class="input-sm form-control" id="edit_product_0" name="description_edit_<?php echo lang('#lang_all')[0] ?>" /></textarea>
                                     </div>
                                     <div class="col-left">
                                         <div class="input-group has-success">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" placeholder="Keyword" type="text" name="keyword_edit_<?php echo lang('#lang_all')[0] ?>" id="keyword_edit_<?php echo lang('#lang_all')[0] ?>" />
+                                            <input class="input-sm form-control" placeholder="Keyword" type="text" name="keyword_edit_<?php echo lang('#lang_all')[0] ?>" />
                                         </div>
                                     </div>
                                     <div class="col-right">
                                         <div class="input-group has-success">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" placeholder="Tags" type="text" name="tags_edit_<?php echo lang('#lang_all')[0] ?>" id="tags_edit_<?php echo lang('#lang_all')[0] ?>" />
+                                            <input class="input-sm form-control" placeholder="Tags" type="text" name="tags_edit_<?php echo lang('#lang_all')[0] ?>" />
                                         </div>
                                     </div>
                                 </div>
@@ -79,18 +79,18 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                             </div>
                                             <div class="form-group">
                                                 <label><?php echo lang('product_description') ?>:</label><br>
-                                                <textarea rows="3" class="input-sm form-control" name="description_edit_<?php echo lang('#lang_all')[$x] ?>" id="description_edit_<?php echo lang('#lang_all')[$x] ?>" /></textarea>
+                                                <textarea rows="3" class="input-sm form-control" id="edit_product_<?php echo $x ?>" name="description_edit_<?php echo lang('#lang_all')[$x] ?>" /></textarea>
                                             </div>
                                             <div class="col-left">
                                                 <div class="input-group has-success">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                                    <input class="input-sm form-control" placeholder="Keyword" type="text" name="keyword_edit_<?php echo lang('#lang_all')[$x] ?>" id="keyword_edit_<?php echo lang('#lang_all')[$x] ?>" />
+                                                    <input class="input-sm form-control" placeholder="Keyword" type="text" name="keyword_edit_<?php echo lang('#lang_all')[$x] ?>" />
                                                 </div>
                                             </div>
                                             <div class="col-right">
                                                 <div class="input-group has-success">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                                    <input class="input-sm form-control" placeholder="Tags" type="text" name="tags_edit_<?php echo lang('#lang_all')[$x] ?>" id="tags_edit_<?php echo lang('#lang_all')[$x] ?>" />
+                                                    <input class="input-sm form-control" placeholder="Tags" type="text" name="tags_edit_<?php echo lang('#lang_all')[$x] ?>" />
                                                 </div>
                                             </div>
                                         </div>
