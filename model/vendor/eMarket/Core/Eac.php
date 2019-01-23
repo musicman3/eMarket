@@ -121,7 +121,7 @@ class Eac {
             // Если в массиве пустое значение, то собираем новый массив без этого значения со сбросом ключей
             $sort_array_id = array_values(array_filter($sort_array_id_ajax));
 
-            $sort_array_category = array(); // Массив со списком sort_category под сортировку
+            $sort_array_category = []; // Массив со списком sort_category под сортировку
 
             $count_sort_array_id = count($sort_array_id); // Получаем количество значений в массиве
 
@@ -226,7 +226,7 @@ class Eac {
                 $PDO->inPrepare("DELETE FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$keys[$x]]);
 
                 //Удаляем из буффера, если есть
-                if ($_SESSION['buffer'] != FALSE) {
+                if (isset($_SESSION['buffer']) && $_SESSION['buffer'] != FALSE) {
                     $_SESSION['buffer'] = $FUNC->deleteValInArray($_SESSION['buffer'], [$keys[$x]]);
                 }
             }
@@ -238,7 +238,7 @@ class Eac {
             $PDO->inPrepare("DELETE FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$idx]);
 
             //Удаляем из буффера, если есть
-            if ($_SESSION['buffer'] != FALSE) {
+            if (isset($_SESSION['buffer']) && $_SESSION['buffer'] != FALSE) {
                 $_SESSION['buffer'] = $FUNC->deleteValInArray($_SESSION['buffer'], [$idx]);
             }
 
