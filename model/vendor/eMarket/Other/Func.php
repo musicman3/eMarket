@@ -208,7 +208,7 @@ class Func {
     /**
      * Функция удаления значения из массива
 
-     * @param array $array (писходный массив)
+     * @param array $array (исходный массив)
      * @param string $val (значение value, которое необходимо удалить)
      * @return array $array (итоговый массив)
      */
