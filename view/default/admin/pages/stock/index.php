@@ -37,7 +37,7 @@
                 <?php if ($lines_cat == TRUE OR $lines_product == TRUE) { ?>
                     <div class="panel-body">
                         <!--Скрытый div для передачи данных-->
-                        <?php if (isset($name_edit) OR isset($name_edit_product)) { ?>
+                        <?php if ($modal_id_product != FALSE OR $modal_id != FALSE) { ?>
                             <div id="ajax_data" class='hidden'
                                  data-name='<?php echo $name_edit ?>'
                                  data-nameproduct='<?php echo $name_edit_product ?>'
@@ -176,7 +176,7 @@
                                         <?php
                                     }
                                     // ЕСЛИ НЕТ КАТЕГОРИЙ НО ЕСТЬ ТОВАРЫ И В ПОДКАТЕГОРИИ
-                                    if ($lines_cat == FALSE && $parent_id > 0) {
+                                    if ($count_lines_cat == 0 && $parent_id > 0) {
                                         ?>
 
                                         <tr>
