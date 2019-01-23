@@ -7,7 +7,6 @@
 if (!isset($idsx_real_parent_id)) {
     $idsx_real_parent_id = '';
 }
-
 ?>
 <!-- /Сортировка мышкой -->
 <script type="text/javascript">
@@ -90,20 +89,20 @@ if (!isset($idsx_real_parent_id)) {
                 return send();
             },
             items: {
-                
+
                 "add_product": {
                     name: "<?php echo lang('add_product') ?>",
                     icon: function () {
                         return 'context-menu-icon glyphicon-shopping-cart';
                     },
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
-                        $('#add_product').on('shown.bs.modal', function() {
-                        $(document).off('focusin.modal');
+                        $('#add_product').on('shown.bs.modal', function () {
+                            $(document).off('focusin.modal');
                         });
                         $('#add_product').modal('show');
                     }
-                }, 
-                
+                },
+
                 "sep": "---------",
 
                 "add": {
@@ -115,9 +114,9 @@ if (!isset($idsx_real_parent_id)) {
                         $('#add').modal('show');
                     }
                 },
-                        
+
                 "sep2": "---------",
-                        
+
                 "edit": {
                     name: "<?php echo lang('button_edit') ?>",
                     icon: function () {
@@ -125,63 +124,63 @@ if (!isset($idsx_real_parent_id)) {
                     },
                     disabled: function () {
                         // Делаем не активным пункт меню, если нет строк
-                    <?php if (!isset($name_edit)) { ?>
+                        <?php if (!isset($name_edit)) { ?>
                             return true;
-                    <?php } ?>
+                        <?php } ?>
                     },
-                    
+
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
-                        
+
                         var modal_edit = opt.$trigger.attr("id");
-                        
-                        if (modal_edit.search('product_') > -1){
-                            
+
+                        if (modal_edit.search('product_') > -1) {
+
                             $('#edit_product').on('show.bs.modal', function (event) {
-                            // Получаем ID при клике на кнопку редактирования
-                            var modal_id = modal_edit.split('product_')[1];
-                            // Получаем массивы данных
-                            var name_edit = $('div#ajax_data').data('nameproduct');
+                                // Получаем ID при клике на кнопку редактирования
+                                var modal_id = modal_edit.split('product_')[1];
+                                // Получаем массивы данных
+                                var name_edit = $('div#ajax_data').data('nameproduct');
 
-                            // Ищем id и добавляем данные
-                            for (x = 0; x < name_edit.length; x++) {
-                                $('#product_name_edit_' + x).val(name_edit[x][modal_id]);
-                            }
+                                // Ищем id и добавляем данные
+                                for (x = 0; x < name_edit.length; x++) {
+                                    $('#product_name_edit_' + x).val(name_edit[x][modal_id]);
+                                }
 
-                        });
-                              
-                        $('#edit_product').modal('show');   
-                        //alert(modal_edit .split('product_')[1]);
-                            
-                        }else{
-                                                
-                        $('#edit').on('show.bs.modal', function (event) {
-                            $('.progress-bar').css('width', 0 + '%');
-                            $('.file-upload').detach();
-                            $('#delete_image').val('');
-                            $('#general_image_edit').val('');
-                            $('#alert_messages_edit').empty();
+                            });
 
-                            // Получаем ID при клике на кнопку редактирования
-                            var modal_id = opt.$trigger.attr("id");
-                            // Получаем массивы данных
-                            var name_edit = $('div#ajax_data').data('name');
-                            var logo_edit = $('div#ajax_data').data('logo');
-                            var logo_general_edit = $('div#ajax_data').data('general');
+                            $('#edit_product').modal('show');
+                            //alert(modal_edit .split('product_')[1]);
 
-                            // Ищем id и добавляем данные
-                            for (x = 0; x < name_edit.length; x++) {
-                                $('#name_edit' + x).val(name_edit[x][modal_id]);
-                            }
-                            $('#js_edit').val(modal_id);
+                        } else {
 
-                            // Подгружаем изображения
-                            getImageToEdit(logo_general_edit, logo_edit, modal_id);
+                            $('#edit').on('show.bs.modal', function (event) {
+                                $('.progress-bar').css('width', 0 + '%');
+                                $('.file-upload').detach();
+                                $('#delete_image').val('');
+                                $('#general_image_edit').val('');
+                                $('#alert_messages_edit').empty();
 
-                        });
+                                // Получаем ID при клике на кнопку редактирования
+                                var modal_id = opt.$trigger.attr("id");
+                                // Получаем массивы данных
+                                var name_edit = $('div#ajax_data').data('name');
+                                var logo_edit = $('div#ajax_data').data('logo');
+                                var logo_general_edit = $('div#ajax_data').data('general');
 
-                        // Открываем модальное окно
-                        $('#edit').modal('show');    
-                            
+                                // Ищем id и добавляем данные
+                                for (x = 0; x < name_edit.length; x++) {
+                                    $('#name_edit' + x).val(name_edit[x][modal_id]);
+                                }
+                                $('#js_edit').val(modal_id);
+
+                                // Подгружаем изображения
+                                getImageToEdit(logo_general_edit, logo_edit, modal_id);
+
+                            });
+
+                            // Открываем модальное окно
+                            $('#edit').modal('show');
+
                         }
 
                     }
@@ -203,9 +202,9 @@ if (!isset($idsx_real_parent_id)) {
                             },
                             disabled: function () {
                                 // Делаем не активным пункт меню, если нет строк
-                            <?php if (!isset($name_edit)) { ?>
+                                <?php if (!isset($name_edit)) { ?>
                                     return true;
-                            <?php } ?>
+                                <?php } ?>
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
                                 // Установка синхронного запроса для jQuery.ajax
@@ -243,9 +242,9 @@ if (!isset($idsx_real_parent_id)) {
                             },
                             disabled: function () {
                                 // Делаем не активным пункт меню, если нет строк
-                            <?php if (!isset($name_edit)) { ?>
+                                <?php if (!isset($name_edit)) { ?>
                                     return true;
-                            <?php } ?>
+                                <?php } ?>
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
                                 // Установка синхронного запроса для jQuery.ajax
@@ -284,9 +283,9 @@ if (!isset($idsx_real_parent_id)) {
                             },
                             disabled: function () {
                                 // Делаем не активным пункт меню, если нет строк
-                            <?php if (!isset($name_edit)) { ?>
+                                <?php if (!isset($name_edit)) { ?>
                                     return true;
-                            <?php } ?>
+                                <?php } ?>
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
                                 // Установка синхронного запроса для jQuery.ajax
@@ -328,9 +327,9 @@ if (!isset($idsx_real_parent_id)) {
                             },
                             disabled: function () {
                                 // Делаем не активным пункт меню, если буффер пуст
-                            <?php if (!isset($_SESSION['buffer'])) { ?>
+                                <?php if (!isset($_SESSION['buffer'])) { ?>
                                     return true;
-                            <?php } ?>
+                                <?php } ?>
                             },
 
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
@@ -365,9 +364,9 @@ if (!isset($idsx_real_parent_id)) {
                             },
                             disabled: function () {
                                 // Делаем не активным пункт меню, если нет строк
-                            <?php if (!isset($name_edit)) { ?>
+                                <?php if (!isset($name_edit)) { ?>
                                     return true;
-                            <?php } ?>
+                                <?php } ?>
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
                                 // Установка синхронного запроса для jQuery.ajax
@@ -468,11 +467,32 @@ if (!isset($idsx_real_parent_id)) {
     }
 </script>
 
+<!-- Визуальный редактор" -->
 <script type="text/javascript" src="/ext/ckeditor/ckeditor.js"></script>
-<script>
+<script type="text/javascript" src="/ext/ckeditor/translations/<?php echo lang('meta-language') ?>.js"></script>
+<script type="text/javascript">
+    //Если открыли модальное окно #add_product, #edit_product
+    $('#add_product, #edit_product').on('show.bs.modal', function (event) {
+        // Инициализация CKEditor
+        ClassicEditor
+                .create(document.querySelector('textarea'), {
+                    language: '<?php echo lang('meta-language') ?>'
+                            // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
+                })
+                .then(editor => {
+                    window.editor = editor;
+                })
+                .catch(err => {
+                    console.error(err.stack);
+                });
+    });
 
+    //Если закрыли модальное окно #add_product, #edit_product
+    $('#add_product, #edit_product').on('hidden.bs.modal', function (event) {
+        // Destroy CKEditor 
+        editor.destroy();
+    });
 </script>
-
 <!-- Автовыбор языка Datepicker" -->
 <script type="text/javascript" src="/ext/jquery/ui/i18n/datepicker-<?php echo lang('meta-language') ?>.js"></script>
 <!-- Настройка Datepicker" -->
@@ -520,5 +540,4 @@ if (!isset($idsx_real_parent_id)) {
 <?php
 // Подгружаем jQuery File Upload
 $AJAX->fileUpload('index.php', 'categories', $resize_param);
-
 ?>
