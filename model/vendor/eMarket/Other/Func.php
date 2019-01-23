@@ -209,17 +209,16 @@ class Func {
      * Функция удаления значения из массива
 
      * @param array $array (исходный массив)
-     * @param string $val (значение value, которое необходимо удалить)
-     * @return array $array (итоговый массив)
+     * @param array $val (значения, которые необходимо удалить - ['val', 'val2']) 
+     * @return array $array_return (итоговый массив)
      */
     public function deleteValInArray($array, $val) {
 
-        //Удаляем из буффера, если есть
-        if (isset($array) && in_array($val, $array)) {
-            unset($array[array_search($val, $array)]);
-            array_values($array); // Сбрасываем ключи
+        if (isset($array) && is_array($array)) {
+            $result = array_diff($array, $val);
+            $array_return = array_values($result); // Сбрасываем ключи
         }
-        return $array;
+        return $array_return;
     }
 
 }
