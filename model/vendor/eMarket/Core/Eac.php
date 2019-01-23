@@ -226,7 +226,9 @@ class Eac {
                 $PDO->inPrepare("DELETE FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$keys[$x]]);
 
                 //Удаляем из буффера, если есть
-                $_SESSION['buffer'] = $FUNC->deleteValInArray($_SESSION['buffer'], [$keys[$x]]);
+                if ($_SESSION['buffer'] != FALSE) {
+                    $_SESSION['buffer'] = $FUNC->deleteValInArray($_SESSION['buffer'], [$keys[$x]]);
+                }
             }
 
             //Удаляем товар  
@@ -236,7 +238,9 @@ class Eac {
             $PDO->inPrepare("DELETE FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$idx]);
 
             //Удаляем из буффера, если есть
-            $_SESSION['buffer'] = $FUNC->deleteValInArray($_SESSION['buffer'], [$idx]);
+            if ($_SESSION['buffer'] != FALSE) {
+                $_SESSION['buffer'] = $FUNC->deleteValInArray($_SESSION['buffer'], [$idx]);
+            }
 
             // Выводим сообщение об успехе
             $_SESSION['message'] = ['success', lang('action_completed_successfully')];
@@ -304,10 +308,10 @@ class Eac {
 
         //Вставляем вырезанные категории    
         if ($VALID->inPOST('idsx_paste_key') == 'paste' && isset($_SESSION['buffer']) == TRUE) {
-            
+
             $parent_id_real = (int) $VALID->inPOST('idsx_real_parent_id'); // получить значение из JS
             $count_session_buffer = count($_SESSION['buffer']); // Получаем количество значений в массиве
-            
+
             for ($buf = 0; $buf < $count_session_buffer; $buf++) {
                 // Получаем последний sort_category в текущем parent_id и увеличиваем его на 1
                 $sort_max = $PDO->selectPrepare("SELECT sort_category FROM " . $TABLE_CATEGORIES . " WHERE language=? AND parent_id=? ORDER BY sort_category DESC", [lang('#lang_all')[0], $parent_id_real]);
@@ -426,7 +430,6 @@ class Eac {
 
         $category = $idx; // id родителя
         $categories = array();
-        $keys = array(); // массив ключей
         $keys[] = $category; // добавляем первый ключ в массив
         // В цикле формируем ассоциативный массив разделов
         while ($category = $data_cat->fetch(\PDO::FETCH_ASSOC)) {

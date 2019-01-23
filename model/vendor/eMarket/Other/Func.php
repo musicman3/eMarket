@@ -210,7 +210,7 @@ class Func {
 
      * @param array $array (исходный массив)
      * @param array $val (значения, которые необходимо удалить - ['val', 'val2']) 
-     * @return array $array_return (итоговый массив)
+     * @return array|false $array_return (итоговый массив)
      */
     public function deleteValInArray($array, $val) {
 
@@ -218,7 +218,11 @@ class Func {
             $result = array_diff($array, $val);
             $array_return = array_values($result); // Сбрасываем ключи
         }
-        return $array_return;
+        if (count($array_return) > 0) {
+            return $array_return;
+        } else {
+            return FALSE;
+        }
     }
 
 }
