@@ -467,13 +467,14 @@ if (!isset($idsx_real_parent_id)) {
     $('#add_product').on('show.bs.modal', function (event) {
         // Инициализация CKEditor
         <?php for ($x = 0; $x < count(lang('#lang_all')); $x++) { ?>
+                x=0;
             ClassicEditor
                     .create(document.querySelector('#add_product_<?php echo $x ?>'), {
                         language: '<?php echo lang('meta-language') ?>'
                                 // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
                     })
-                    .then(editor<?php echo $x ?> => {
-                        window.editor<?php echo $x ?> = editor<?php echo $x ?>;
+                    .then(editor => {
+                        window.editor<?php echo $x ?> = editor;
                     })
                     .catch(err => {
                         console.error(err.stack);
@@ -490,8 +491,8 @@ if (!isset($idsx_real_parent_id)) {
                         language: '<?php echo lang('meta-language') ?>'
                                 // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
                     })
-                    .then(editor<?php echo $x ?> => {
-                        window.editor<?php echo $x ?> = editor<?php echo $x ?>;
+                    .then(editor => {
+                        window.editor<?php echo $x ?> = editor;
                     })
                     .catch(err => {
                         console.error(err.stack);
