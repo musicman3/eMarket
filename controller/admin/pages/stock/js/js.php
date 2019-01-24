@@ -95,9 +95,6 @@ if (!isset($idsx_real_parent_id)) {
                         return 'context-menu-icon glyphicon-shopping-cart';
                     },
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
-                        $('#add_product').on('shown.bs.modal', function () {
-                            $(document).off('focusin.modal');
-                        });
                         $('#add_product').modal('show');
                     }
                 },
@@ -500,7 +497,10 @@ if (!isset($idsx_real_parent_id)) {
         // Инициализация Summernote
         for (var x = 0; x < count_lang; x++) {
             $('#add_product_' + x).summernote({
-                lang: '<?php echo lang('language_code') ?>'
+                lang: '<?php echo lang('language_code') ?>',
+                placeholder: 'Hello bootstrap 4',
+                tabsize: 2,
+                dialogsInBody: true
             });
         }
     });
@@ -510,7 +510,10 @@ if (!isset($idsx_real_parent_id)) {
         // Инициализация Summernote
         for (var x = 0; x < count_lang; x++) {
             $('#edit_product_' + x).summernote({
-                lang: '<?php echo lang('language_code') ?>'
+                lang: '<?php echo lang('language_code') ?>',
+                placeholder: 'Hello bootstrap 4',
+                tabsize: 2,
+                dialogsInBody: true
             });
         }
     });
