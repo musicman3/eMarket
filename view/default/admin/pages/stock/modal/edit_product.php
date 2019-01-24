@@ -48,7 +48,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                     </div>
                                     <div class="form-group">
                                         <label><?php echo lang('product_description') ?>:</label><br>
-                                        <textarea rows="3" class="input-sm form-control" id="edit_product_0" name="description_edit_<?php echo lang('#lang_all')[0] ?>" /></textarea>
+                                        <textarea rows="3" class="input-sm form-control summernote_edit" id="edit_product_0" name="description_edit_<?php echo lang('#lang_all')[0] ?>" /></textarea>
                                     </div>
                                     <div class="col-left">
                                         <div class="input-group has-success">
@@ -79,7 +79,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                             </div>
                                             <div class="form-group">
                                                 <label><?php echo lang('product_description') ?>:</label><br>
-                                                <textarea rows="3" class="input-sm form-control" id="edit_product_<?php echo $x ?>" name="description_edit_<?php echo lang('#lang_all')[$x] ?>" /></textarea>
+                                                <textarea rows="3" class="input-sm form-control summernote_edit" id="edit_product_<?php echo $x ?>" name="description_edit_<?php echo lang('#lang_all')[$x] ?>" /></textarea>
                                             </div>
                                             <div class="col-left">
                                                 <div class="input-group has-success">

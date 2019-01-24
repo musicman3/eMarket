@@ -490,33 +490,32 @@ if (!isset($idsx_real_parent_id)) {
 <link href="/ext/summernote/summernote.css" rel="stylesheet">
 <script src="/ext/summernote/lang/summernote-<?php echo lang('language_code') ?>.js"></script>
 <script type="text/javascript">
-    count_lang = '<?php echo count(lang('#lang_all')) ?>';
-    
+
     //Если открыли модальное окно #add_product
     $('#add_product').on('show.bs.modal', function (event) {
         // Инициализация Summernote
-        for (var x = 0; x < count_lang; x++) {
-            $('#add_product_' + x).summernote({
-                lang: '<?php echo lang('language_code') ?>',
-                placeholder: 'Hello bootstrap 4',
-                tabsize: 2,
-                dialogsInBody: true
-            });
-        }
+        $('.summernote_add').summernote({
+            lang: '<?php echo lang('language_code') ?>',
+            placeholder: 'Hello bootstrap 4',
+            tabsize: 2,
+            dialogsInBody: true,
+            dialogsFade: true
+        });
     });
 
-    //Если открыли модальное окно #edit_product
+    //Если открыли модальное окно #add_product
     $('#edit_product').on('show.bs.modal', function (event) {
         // Инициализация Summernote
-        for (var x = 0; x < count_lang; x++) {
-            $('#edit_product_' + x).summernote({
-                lang: '<?php echo lang('language_code') ?>',
-                placeholder: 'Hello bootstrap 4',
-                tabsize: 2,
-                dialogsInBody: true
-            });
-        }
+        $('.summernote_edit').summernote({
+            lang: '<?php echo lang('language_code') ?>',
+            placeholder: 'Hello bootstrap 4',
+            tabsize: 2,
+            dialogsInBody: true,
+            dialogsFade: true
+        });
     });
+
+    count_lang = '<?php echo count(lang('#lang_all')) ?>';
 
     //Если закрыли модальное окно #add_product
     $('#add_product').on('hidden.bs.modal', function (event) {
@@ -525,14 +524,14 @@ if (!isset($idsx_real_parent_id)) {
             $('#add_product_' + x).summernote('destroy');
         }
     });
-    
+
     //Если закрыли модальное окно #edit_product
     $('#edit_product').on('hidden.bs.modal', function (event) {
         // Destroy Summernote
         for (var x = 0; x < count_lang; x++) {
             $('#edit_product_' + x).summernote('destroy');
         }
-    });    
+    });
 </script>
 
 <!-- Datepicker" -->
