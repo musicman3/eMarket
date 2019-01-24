@@ -467,7 +467,6 @@ if (!isset($idsx_real_parent_id)) {
     $('#add_product').on('show.bs.modal', function (event) {
         // Инициализация CKEditor
         <?php for ($x = 0; $x < count(lang('#lang_all')); $x++) { ?>
-                x=0;
             ClassicEditor
                     .create(document.querySelector('#add_product_<?php echo $x ?>'), {
                         language: '<?php echo lang('meta-language') ?>'
