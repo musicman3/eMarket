@@ -466,45 +466,45 @@ if (!isset($idsx_real_parent_id)) {
     //Если открыли модальное окно #add_product
     $('#add_product').on('show.bs.modal', function (event) {
         // Инициализация CKEditor
-        var lang_count = '<?php echo count(lang('#lang_all')) ?>';
-        for (var count = 0; count < lang_count; count++) {
+        <?php for ($count = 0; $count < count(lang('#lang_all')); $count++) { ?>
             ClassicEditor
-                    .create(document.querySelector('#add_product_' + count), {
+                    .create(document.querySelector('#add_product_<?php echo $count ?>'), {
                         language: '<?php echo lang('meta-language') ?>'
                                 // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
                     })
-                    .then(editor => {
-                        window.editor = editor;
+                    .then(editor<?php echo $count ?> => {
+                        window.editor<?php echo $count ?> = editor<?php echo $count ?>;
                     })
                     .catch(err => {
                         console.error(err.stack);
                     });
-        }
+        <?php } ?>
     });
 
     //Если открыли модальное окно #edit_product
     $('#edit_product').on('show.bs.modal', function (event) {
         // Инициализация CKEditor
-        var lang_count = '<?php echo count(lang('#lang_all')) ?>';
-        for (var count = 0; count < lang_count; count++) {
+        <?php for ($count = 0; $count < count(lang('#lang_all')); $count++) { ?>
             ClassicEditor
-                    .create(document.querySelector('#edit_product_' + count), {
+                    .create(document.querySelector('#edit_product_<?php echo $count ?>'), {
                         language: '<?php echo lang('meta-language') ?>'
                                 // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
                     })
-                    .then(editor => {
-                        window.editor = editor;
+                    .then(editor<?php echo $count ?> => {
+                        window.editor<?php echo $count ?> = editor<?php echo $count ?>;
                     })
                     .catch(err => {
                         console.error(err.stack);
                     });
-        }
-    }); 
+        <?php } ?>
+    });
 
-    //Если закрыли модальное окно #add_product, #edit_product
-    $('#add_product, #edit_product').on('hidden.bs.modal', function (event) {
+    //Если закрыли модальное окно
+    $(this).on('hidden.bs.modal', function (event) {
         // Destroy CKEditor 
-        editor.destroy();
+        <?php for ($count = 0; $count < count(lang('#lang_all')); $count++) { ?>
+        editor<?php echo $count ?>.destroy();
+        <?php } ?>
     });
 </script>
 
