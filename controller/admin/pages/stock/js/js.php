@@ -459,70 +459,7 @@ if (!isset($idsx_real_parent_id)) {
     }
 </script>
 
-<!-- CKEditor" -->
-<script type="text/javascript" src="/ext/ckeditor/ckeditor.js"></script>
-<script type="text/javascript" src="/ext/ckeditor/translations/<?php echo lang('meta-language') ?>.js"></script>
-<script type="text/javascript">
-    //Если открыли модальное окно #add_product
-    $('#add_product').on('show.bs.modal', function (event) {
-        // Инициализация CKEditor
-        <?php for ($x = 0; $x < count(lang('#lang_all')); $x++) { ?>
-            ClassicEditor
-                    .create(document.querySelector('#add_product_<?php echo $x ?>'), {
-                        language: '<?php echo lang('meta-language') ?>'
-                                // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
-                    })
-                    .then(editor => {
-                        window.editor<?php echo $x ?> = editor;
-                    })
-                    .catch(err => {
-                        console.error(err.stack);
-                    });
-        <?php } ?>
-    });
-
-    //Если открыли модальное окно #edit_product
-    $('#edit_product').on('show.bs.modal', function (event) {
-        // Инициализация CKEditor
-        <?php for ($x = 0; $x < count(lang('#lang_all')); $x++) { ?>
-            ClassicEditor
-                    .create(document.querySelector('#edit_product_<?php echo $x ?>'), {
-                        language: '<?php echo lang('meta-language') ?>'
-                                // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
-                    })
-                    .then(editor => {
-                        window.editor<?php echo $x ?> = editor;
-                    })
-                    .catch(err => {
-                        console.error(err.stack);
-                    });
-        <?php } ?>
-    });
-
-    //Если закрыли модальное окно
-    $(this).on('hidden.bs.modal', function (event) {
-        // Destroy CKEditor 
-        <?php for ($x = 0; $x < count(lang('#lang_all')); $x++) { ?>
-        editor<?php echo $x ?>.destroy();
-        <?php } ?>
-    });
-</script>
-
-<!-- Datepicker" -->
-<script type="text/javascript" src="/ext/jquery/ui/i18n/datepicker-<?php echo lang('meta-language') ?>.js"></script>
-<script type="text/javascript">
-    $(function () {
-        $("#date_available, #date_available_edit").datepicker({
-            showOtherMonths: true,
-            showAnim: 'fadeIn',
-            duration: 'normal',
-            showWeek: true,
-            selectOtherMonths: true
-        });
-    });
-</script>
-
-<!-- Модальное окно "Добавить" -->
+<!-- Модальное окно "Добавить товар" -->
 <script type="text/javascript">
     function callAddProduct() {
         var msg = $('#form_add_product').serialize();
@@ -549,6 +486,64 @@ if (!isset($idsx_real_parent_id)) {
             $("#sort-list").sortable();
         }
     }
+</script>
+
+<!-- Summernote" -->
+<script type="text/javascript" src="/ext/summernote/summernote.min.js"></script>
+<link href="/ext/summernote/summernote.css" rel="stylesheet">
+<script src="/ext/summernote/lang/summernote-<?php echo lang('language_code') ?>.js"></script>
+<script type="text/javascript">
+    count_lang = '<?php echo count(lang('#lang_all')) ?>';
+    
+    //Если открыли модальное окно #add_product
+    $('#add_product').on('show.bs.modal', function (event) {
+        // Инициализация Summernote
+        for (var x = 0; x < count_lang; x++) {
+            $('#add_product_' + x).summernote({
+                lang: '<?php echo lang('language_code') ?>'
+            });
+        }
+    });
+
+    //Если открыли модальное окно #edit_product
+    $('#edit_product').on('show.bs.modal', function (event) {
+        // Инициализация Summernote
+        for (var x = 0; x < count_lang; x++) {
+            $('#edit_product_' + x).summernote({
+                lang: '<?php echo lang('language_code') ?>'
+            });
+        }
+    });
+
+    //Если закрыли модальное окно #add_product
+    $('#add_product').on('hidden.bs.modal', function (event) {
+        // Destroy Summernote
+        for (var x = 0; x < count_lang; x++) {
+            $('#add_product_' + x).summernote('destroy');
+        }
+    });
+    
+    //Если закрыли модальное окно #edit_product
+    $('#edit_product').on('hidden.bs.modal', function (event) {
+        // Destroy Summernote
+        for (var x = 0; x < count_lang; x++) {
+            $('#edit_product_' + x).summernote('destroy');
+        }
+    });    
+</script>
+
+<!-- Datepicker" -->
+<script type="text/javascript" src="/ext/jquery/ui/i18n/datepicker-<?php echo lang('meta-language') ?>.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#date_available, #date_available_edit").datepicker({
+            showOtherMonths: true,
+            showAnim: 'fadeIn',
+            duration: 'normal',
+            showWeek: true,
+            selectOtherMonths: true
+        });
+    });
 </script>
 
 <?php
