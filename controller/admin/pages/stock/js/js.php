@@ -496,9 +496,9 @@ if (!isset($idsx_real_parent_id)) {
         // Инициализация Summernote
         $('.summernote_add').summernote({
             lang: '<?php echo lang('language_code') ?>',
-            tabsize: 2,
             dialogsInBody: true,
-            dialogsFade: true
+            dialogsFade: true,
+            height: '100px'
         });
     });
 
@@ -507,9 +507,9 @@ if (!isset($idsx_real_parent_id)) {
         // Инициализация Summernote
         $('.summernote_edit').summernote({
             lang: '<?php echo lang('language_code') ?>',
-            tabsize: 2,
             dialogsInBody: true,
-            dialogsFade: true
+            dialogsFade: true,
+            height: '100px'
         });
     });
 
