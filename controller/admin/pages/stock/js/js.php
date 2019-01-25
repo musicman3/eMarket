@@ -496,7 +496,6 @@ if (!isset($idsx_real_parent_id)) {
         // Инициализация Summernote
         $('.summernote_add').summernote({
             lang: '<?php echo lang('language_code') ?>',
-            placeholder: 'Hello bootstrap 4',
             tabsize: 2,
             dialogsInBody: true,
             dialogsFade: true
@@ -508,14 +507,13 @@ if (!isset($idsx_real_parent_id)) {
         // Инициализация Summernote
         $('.summernote_edit').summernote({
             lang: '<?php echo lang('language_code') ?>',
-            placeholder: 'Hello bootstrap 4',
             tabsize: 2,
             dialogsInBody: true,
             dialogsFade: true
         });
     });
 
-    count_lang = '<?php echo count(lang('#lang_all')) ?>';
+    count_lang = '<?php echo $LANG_COUNT ?>';
 
     //Если закрыли модальное окно #add_product
     $('#add_product').on('hidden.bs.modal', function (event) {
