@@ -498,18 +498,46 @@ if (!isset($idsx_real_parent_id)) {
             lang: '<?php echo lang('language_code') ?>',
             dialogsInBody: true,
             dialogsFade: true,
-            height: '100px'
+            height: '100px',
+            toolbar: [
+                ['fullscreen ', ['fullscreen']],
+                ['style', ['style']],
+                ['font_set', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript']],
+                ['hr', ['hr']],
+                ['color', ['color']],
+                ['forecolor', ['forecolor']],
+                ['font_type', ['fontsize', 'fontname']],
+                ['undo ', ['undo', 'redo', 'clear']],
+                ['paragraph ', ['ol', 'ul', 'paragraph', 'height']],
+                ['link', ['link', 'linkDialogShow', 'unlink']],
+                ['insert', ['table', 'picture', 'video']],
+                ['misc', ['codeview', 'help']]
+            ]
         });
     });
 
     //Если открыли модальное окно #add_product
-    $('#edit_product').on('show.bs.modal', function (event) {
+    $('#add_edit').on('show.bs.modal', function (event) {
         // Инициализация Summernote
         $('.summernote_edit').summernote({
             lang: '<?php echo lang('language_code') ?>',
             dialogsInBody: true,
             dialogsFade: true,
-            height: '100px'
+            height: '100px',
+            toolbar: [
+                ['fullscreen ', ['fullscreen']],
+                ['style', ['style']],
+                ['font_set', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript']],
+                ['hr', ['hr']],
+                ['color', ['color']],
+                ['forecolor', ['forecolor']],
+                ['font_type', ['fontsize', 'fontname']],
+                ['undo ', ['undo', 'redo', 'clear']],
+                ['paragraph ', ['ol', 'ul', 'paragraph', 'height']],
+                ['link', ['link', 'linkDialogShow', 'unlink']],
+                ['insert', ['table', 'picture', 'video']],
+                ['misc', ['codeview', 'help']]
+            ]
         });
     });
 
