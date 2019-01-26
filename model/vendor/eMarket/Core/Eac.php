@@ -40,13 +40,13 @@ class Eac {
 
         $idsx_real_parent_id = $parent_id; //для отправки в JS
         // Если нажали на кнопку Удалить
-        $parent_id_delete = self::deleteCategory($TABLE_CATEGORIES, $TABLE_PRODUCTS, $parent_id);
+        $parent_id_delete = self::delete($TABLE_CATEGORIES, $TABLE_PRODUCTS, $parent_id);
 
         // Если нажали на кнопку Вырезать
         $parent_id_cut = self::cutCategory($TABLE_CATEGORIES, $parent_id);
 
         // Если нажали на кнопку Вставить
-        $parent_id_paste = self::pasteCategory($TABLE_CATEGORIES, $parent_id);
+        $parent_id_paste = self::pasteCategory($TABLE_CATEGORIES, $TABLE_PRODUCTS, $parent_id);
 
         // Если нажали на кнопку Скрыть/Отобразить
         $parent_id_status = self::statusCategory($TABLE_CATEGORIES, $parent_id);
@@ -204,7 +204,7 @@ class Eac {
      * @param string $parent_id (идентификатор родительской категории)
      * @return string $parent_id (идентификатор родительской категории)
      */
-    private function deleteCategory($TABLE_CATEGORIES, $TABLE_PRODUCTS, $parent_id) {
+    private function delete($TABLE_CATEGORIES, $TABLE_PRODUCTS, $parent_id) {
 
         $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
@@ -278,24 +278,38 @@ class Eac {
         $FUNC = new \eMarket\Other\Func;
 
         if ($VALID->inPOST('idsx_cut_marker') == 'cut') { // очищаем буфер обмена, если он был заполнен, при нажатии Вырезать
-            unset($_SESSION['buffer']['cat']);
+            unset($_SESSION['buffer']);
         }
 
         if (($VALID->inPOST('idsx_cut_key') == 'cut')) {
             // Если в массиве пустое значение, то собираем новый массив без этого значения со сбросом ключей
             $idx = $FUNC->deleteEmptyInArray($VALID->inPOST('idsx_cut_id'));
             for ($i = 0; $i < count($idx); $i++) {
+
                 $parent_id_real = (int) $VALID->inPOST('idsx_real_parent_id'); // получить значение из JS
                 $parent_id = self::dataParentIdCategory($TABLE_CATEGORIES, $idx[$i]);
 
                 //Вырезаем основную родительскую категорию    
                 if ($VALID->inPOST('idsx_cut_key') == 'cut') {
-                    if (!isset($_SESSION['buffer']['cat'])) {
-                        $_SESSION['buffer']['cat'] = [];
-                    }
-                    array_push($_SESSION['buffer']['cat'], $idx[$i]);
-                    if ($parent_id_real > 0) {
-                        $parent_id = $parent_id_real; // Возвращаемся в свою директорию после обновления
+                    // Это категория
+                    if (strstr($idx[$i], '_', true) != 'product') {
+                        if (!isset($_SESSION['buffer']['cat'])) {
+                            $_SESSION['buffer']['cat'] = [];
+                        }
+                        array_push($_SESSION['buffer']['cat'], $idx[$i]);
+                        if ($parent_id_real > 0) {
+                            $parent_id = $parent_id_real; // Возвращаемся в свою директорию после обновления
+                        }
+                    } else {
+                        // Это товар
+                        if (!isset($_SESSION['buffer']['prod'])) {
+                            $_SESSION['buffer']['prod'] = [];
+                        }
+                        $id_prod = explode('product_', $idx[$i]);
+                        array_push($_SESSION['buffer']['prod'], $id_prod[1]);
+                        if ($parent_id_real > 0) {
+                            $parent_id = $parent_id_real; // Возвращаемся в свою директорию после обновления
+                        }
                     }
                 }
             }
@@ -315,25 +329,32 @@ class Eac {
      * @param string $parent_id (идентификатор родительской категории)
      * @return string $parent_id (идентификатор родительской категории)
      */
-    private function pasteCategory($TABLE_CATEGORIES, $parent_id) {
+    private function pasteCategory($TABLE_CATEGORIES, $TABLE_PRODUCTS, $parent_id) {
 
         $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
 
         //Вставляем вырезанные категории    
-        if ($VALID->inPOST('idsx_paste_key') == 'paste' && isset($_SESSION['buffer']['cat']) == TRUE) {
+        if ($VALID->inPOST('idsx_paste_key') == 'paste' && isset($_SESSION['buffer']) == TRUE) {
 
             $parent_id_real = (int) $VALID->inPOST('idsx_real_parent_id'); // получить значение из JS
-            $count_session_buffer = count($_SESSION['buffer']['cat']); // Получаем количество значений в массиве
+            $count_session_buffer = count($_SESSION['buffer']); // Получаем количество значений в массиве
 
             for ($buf = 0; $buf < $count_session_buffer; $buf++) {
-                // Получаем последний sort_category в текущем parent_id и увеличиваем его на 1
-                $sort_max = $PDO->selectPrepare("SELECT sort_category FROM " . $TABLE_CATEGORIES . " WHERE language=? AND parent_id=? ORDER BY sort_category DESC", [lang('#lang_all')[0], $parent_id_real]);
-                $sort_category = intval($sort_max) + 1;
-                // Обновляем данные
-                $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET parent_id=?, sort_category=? WHERE id=?", [$parent_id_real, $sort_category, $_SESSION['buffer']['cat'][$buf]]);
+                // Это категория
+                if (isset($_SESSION['buffer']['cat']) && count($_SESSION['buffer']['cat']) > 0) {
+                    // Получаем последний sort_category в текущем parent_id и увеличиваем его на 1
+                    $sort_max = $PDO->selectPrepare("SELECT sort_category FROM " . $TABLE_CATEGORIES . " WHERE language=? AND parent_id=? ORDER BY sort_category DESC", [lang('#lang_all')[0], $parent_id_real]);
+                    $sort_category = intval($sort_max) + 1;
+                    // Обновляем данные
+                    $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET parent_id=?, sort_category=? WHERE id=?", [$parent_id_real, $sort_category, $_SESSION['buffer']['cat'][$buf]]);
+                } elseif (isset($_SESSION['buffer']['prod']) && count($_SESSION['buffer']['prod']) > 0) {
+                    // Это товар
+                    // Обновляем данные
+                    $PDO->inPrepare("UPDATE " . $TABLE_PRODUCTS . " SET parent_id=? WHERE id=?", [$parent_id_real, $_SESSION['buffer']['prod'][$buf]]);
+                }
             }
-            unset($_SESSION['buffer']['cat']); // очищаем буфер обмена
+            unset($_SESSION['buffer']); // очищаем буфер обмена
             if ($parent_id_real > 0) {
                 $parent_id = $parent_id_real; // Возвращаемся в свою директорию после вставки
             }
