@@ -156,16 +156,20 @@ class Files {
 
         // Если нажали на кнопку Удалить
         if ($VALID->inPOST('delete')) {
-            $id = $VALID->inPOST('delete');
+            $idx = $VALID->inPOST('delete');
 
-            $logo_delete = explode(',', $PDO->selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), -1);
-            if (count($logo_delete) > 0) {
-                foreach ($logo_delete as $file) {
-                    // Удаляем файлы
-                    foreach ($resize_param as $key => $value) {
-                        $FUNC->deleteFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $file);
+            for ($i = 0; $i < count($idx); $i++) {
+                $id = $idx[$i];
+
+                $logo_delete = explode(',', $PDO->selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), -1);
+                if (count($logo_delete) > 0) {
+                    foreach ($logo_delete as $file) {
+                        // Удаляем файлы
+                        foreach ($resize_param as $key => $value) {
+                            $FUNC->deleteFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $file);
+                        }
+                        $FUNC->deleteFile(ROOT . '/uploads/images/' . $dir . '/originals/' . $file);
                     }
-                    $FUNC->deleteFile(ROOT . '/uploads/images/' . $dir . '/originals/' . $file);
                 }
             }
         }

@@ -213,37 +213,39 @@ class Eac {
 
             $idx = $VALID->inPOST('delete');
 
-            $parent_id = self::dataParentIdCategory($TABLE_CATEGORIES, $idx);
-            $keys = self::dataKeysCategory($TABLE_CATEGORIES, $idx);
+            for ($i = 0; $i < count($idx); $i++) {
+                $parent_id = self::dataParentIdCategory($TABLE_CATEGORIES, $idx[$i]);
+                $keys = self::dataKeysCategory($TABLE_CATEGORIES, $idx[$i]);
 
-            $count_keys = count($keys); // Получаем количество значений в массиве
-            for ($x = 0; $x < $count_keys; $x++) {
+                $count_keys = count($keys); // Получаем количество значений в массиве
+                for ($x = 0; $x < $count_keys; $x++) {
+
+                    //Удаляем товар  
+                    $PDO->inPrepare("DELETE FROM " . $TABLE_PRODUCTS . " WHERE parent_id=?", [$keys[$x]]);
+
+                    //Удаляем подкатегории
+                    $PDO->inPrepare("DELETE FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$keys[$x]]);
+
+                    //Удаляем из буффера, если есть
+                    if (isset($_SESSION['buffer']) && $_SESSION['buffer'] != FALSE) {
+                        $_SESSION['buffer'] = $FUNC->deleteValInArray($_SESSION['buffer'], [$keys[$x]]);
+                    }
+                }
 
                 //Удаляем товар  
-                $PDO->inPrepare("DELETE FROM " . $TABLE_PRODUCTS . " WHERE parent_id=?", [$keys[$x]]);
+                $PDO->inPrepare("DELETE FROM " . $TABLE_PRODUCTS . " WHERE parent_id=?", [$idx[$i]]);
 
-                //Удаляем подкатегории
-                $PDO->inPrepare("DELETE FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$keys[$x]]);
+                //Удаляем основную категорию    
+                $PDO->inPrepare("DELETE FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$idx[$i]]);
 
                 //Удаляем из буффера, если есть
                 if (isset($_SESSION['buffer']) && $_SESSION['buffer'] != FALSE) {
-                    $_SESSION['buffer'] = $FUNC->deleteValInArray($_SESSION['buffer'], [$keys[$x]]);
+                    $_SESSION['buffer'] = $FUNC->deleteValInArray($_SESSION['buffer'], [$idx[$i]]);
                 }
+
+                // Выводим сообщение об успехе
+                $_SESSION['message'] = ['success', lang('action_completed_successfully')];
             }
-
-            //Удаляем товар  
-            $PDO->inPrepare("DELETE FROM " . $TABLE_PRODUCTS . " WHERE parent_id=?", [$idx]);
-
-            //Удаляем основную категорию    
-            $PDO->inPrepare("DELETE FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$idx]);
-
-            //Удаляем из буффера, если есть
-            if (isset($_SESSION['buffer']) && $_SESSION['buffer'] != FALSE) {
-                $_SESSION['buffer'] = $FUNC->deleteValInArray($_SESSION['buffer'], [$idx]);
-            }
-
-            // Выводим сообщение об успехе
-            $_SESSION['message'] = ['success', lang('action_completed_successfully')];
         }
 
         // Если parrent_id является массивом, то
@@ -271,18 +273,20 @@ class Eac {
         if (($VALID->inPOST('idsx_cut_key') == 'cut')) {
 
             $idx = $VALID->inPOST('idsx_cut_id');
-            $parent_id_real = (int) $VALID->inPOST('idsx_real_parent_id'); // получить значение из JS
-            //
-            $parent_id = self::dataParentIdCategory($TABLE_CATEGORIES, $idx);
+            for ($i = 0; $i < count($idx); $i++) {
+                $parent_id_real = (int) $VALID->inPOST('idsx_real_parent_id'); // получить значение из JS
+                //
+                $parent_id = self::dataParentIdCategory($TABLE_CATEGORIES, $idx[$i]);
 
-            //Вырезаем основную родительскую категорию    
-            if ($VALID->inPOST('idsx_cut_key') == 'cut') {
-                if (!isset($_SESSION['buffer'])) {
-                    $_SESSION['buffer'] = [];
-                }
-                array_push($_SESSION['buffer'], $idx);
-                if ($parent_id_real > 0) {
-                    $parent_id = $parent_id_real; // Возвращаемся в свою директорию после обновления
+                //Вырезаем основную родительскую категорию    
+                if ($VALID->inPOST('idsx_cut_key') == 'cut') {
+                    if (!isset($_SESSION['buffer'])) {
+                        $_SESSION['buffer'] = [];
+                    }
+                    array_push($_SESSION['buffer'], $idx[$i]);
+                    if ($parent_id_real > 0) {
+                        $parent_id = $parent_id_real; // Возвращаемся в свою директорию после обновления
+                    }
                 }
             }
         }
@@ -359,27 +363,28 @@ class Eac {
                 $idx = $VALID->inPOST('idsx_statusOff_id');
                 $status = 0;
             }
+            for ($i = 0; $i < count($idx); $i++) {
+                $parent_id = self::dataParentIdCategory($TABLE_CATEGORIES, $idx[$i]);
+                $keys = self::dataKeysCategory($TABLE_CATEGORIES, $idx[$i]);
 
-            $parent_id = self::dataParentIdCategory($TABLE_CATEGORIES, $idx);
-            $keys = self::dataKeysCategory($TABLE_CATEGORIES, $idx);
+                $count_keys = count($keys); // Получаем количество значений в массиве
+                for ($x = 0; $x < $count_keys; $x++) {
 
-            $count_keys = count($keys); // Получаем количество значений в массиве
-            for ($x = 0; $x < $count_keys; $x++) {
-
-                //Обновляем статус подкатегорий
-                if (($VALID->inPOST('idsx_statusOn_key') == 'statusOn')
-                        or ( $VALID->inPOST('idsx_statusOff_key') == 'statusOff')) {
-                    $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET status=? WHERE id=?", [$status, $keys[$x]]);
-                    if ($parent_id_real > 0) {
-                        $parent_id = $parent_id_real; // Возвращаемся в свою директорию после "Вырезать"
+                    //Обновляем статус подкатегорий
+                    if (($VALID->inPOST('idsx_statusOn_key') == 'statusOn')
+                            or ( $VALID->inPOST('idsx_statusOff_key') == 'statusOff')) {
+                        $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET status=? WHERE id=?", [$status, $keys[$x]]);
+                        if ($parent_id_real > 0) {
+                            $parent_id = $parent_id_real; // Возвращаемся в свою директорию после "Вырезать"
+                        }
                     }
                 }
-            }
 
-            //Обновляем статус основной категории
-            if (($VALID->inPOST('idsx_statusOn_key') == 'statusOn')
-                    or ( $VALID->inPOST('idsx_statusOff_key') == 'statusOff')) {
-                $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET status=? WHERE id=?", [$status, $idx]);
+                //Обновляем статус основной категории
+                if (($VALID->inPOST('idsx_statusOn_key') == 'statusOn')
+                        or ( $VALID->inPOST('idsx_statusOff_key') == 'statusOff')) {
+                    $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET status=? WHERE id=?", [$status, $idx[$i]]);
+                }
             }
         }
 

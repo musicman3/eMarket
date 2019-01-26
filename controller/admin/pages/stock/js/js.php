@@ -204,14 +204,15 @@ if (!isset($idsx_real_parent_id)) {
                                 // Установка синхронного запроса для jQuery.ajax
                                 jQuery.ajaxSetup({async: false});
                                 // Отправка данных по каждой выделенной строке
-                                $(".option").each(function () {
+                                var idArray = [];
+                                $(".option").each(function (i) {
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
-                                        jQuery.post('/controller/admin/pages/stock/index.php',
-                                                {idsx_statusOn_id: this.id,
-                                                    idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
-                                                    idsx_statusOn_key: itemKey});
-
+                                        idArray[i]=this.id;
                                 });
+                                jQuery.post('/controller/admin/pages/stock/index.php',
+                                                {idsx_statusOn_id: idArray,
+                                                    idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
+                                                    idsx_statusOn_key: itemKey});        
                                 // Отправка запроса для обновления страницы
                                 jQuery.get('/controller/admin/pages/stock/index.php',
                                         {parent_down: <?php echo $parent_id ?>},
@@ -243,13 +244,15 @@ if (!isset($idsx_real_parent_id)) {
                                 // Установка синхронного запроса для jQuery.ajax
                                 jQuery.ajaxSetup({async: false});
                                 // Отправка данных по каждой выделенной строке
-                                $(".option").each(function () {
+                                var idArray = [];
+                                $(".option").each(function (i) {
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
-                                        jQuery.post('/controller/admin/pages/stock/index.php',
-                                                {idsx_statusOff_id: this.id,
+                                        idArray[i]=this.id;
+                                });
+                                jQuery.post('/controller/admin/pages/stock/index.php',
+                                                {idsx_statusOff_id: idArray,
                                                     idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
                                                     idsx_statusOff_key: itemKey});
-                                });
                                 // Отправка запроса для обновления страницы
                                 jQuery.get('/controller/admin/pages/stock/index.php',
                                         {parent_down: <?php echo $parent_id ?>},
@@ -285,16 +288,17 @@ if (!isset($idsx_real_parent_id)) {
                                 // Отправка маркера на очитку буффера
                                 jQuery.post('/controller/admin/pages/stock/index.php',
                                         {idsx_cut_marker: 'cut'});
-
                                 // Отправка данных по каждой выделенной строке
-                                $(".option").each(function () { // выделенное мышкой
+                                var idArray = [];
+                                $(".option").each(function (i) {
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
-                                        jQuery.post('/controller/admin/pages/stock/index.php',
+                                        idArray[i]=this.id;
+                                });
+                                jQuery.post('/controller/admin/pages/stock/index.php',
                                                 {idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
-                                                    idsx_cut_id: this.id,
+                                                    idsx_cut_id: idArray,
                                                     parent_down: <?php echo $parent_id ?>,
                                                     idsx_cut_key: itemKey});
-                                });
                                 // Отправка запроса для обновления страницы
                                 jQuery.get('/controller/admin/pages/stock/index.php',
                                         {parent_down: <?php echo $parent_id ?>},
@@ -363,12 +367,14 @@ if (!isset($idsx_real_parent_id)) {
                                 // Установка синхронного запроса для jQuery.ajax
                                 jQuery.ajaxSetup({async: false});
                                 // Отправка данных по каждой выделенной строке
-                                $(".option").each(function () { // выделенное мышкой
+                                var idArray = [];
+                                $(".option").each(function (i) { // выделенное мышкой
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
-                                        jQuery.post('/controller/admin/pages/stock/index.php',
-                                                {delete: this.id,
-                                                    parent_down: <?php echo $parent_id ?>});
+                                        idArray[i]=this.id;
                                 });
+                                jQuery.post('/controller/admin/pages/stock/index.php',
+                                                {delete: idArray,
+                                                    parent_down: <?php echo $parent_id ?>});
                                 // Отправка запроса для обновления страницы
                                 jQuery.get('/controller/admin/pages/stock/index.php',
                                         {parent_down: <?php echo $parent_id ?>,
