@@ -94,7 +94,7 @@ CREATE TABLE emkt_products (
         name varchar(256),
         description text,
         language varchar(64),
-        status int,
+        status int DEFAULT '1' NOT NULL,
 	parent_id int DEFAULT '0' NOT NULL,
 	logo varchar(1024),
         logo_general varchar(128),
