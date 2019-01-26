@@ -7,6 +7,7 @@
 if (!isset($idsx_real_parent_id)) {
     $idsx_real_parent_id = '';
 }
+
 ?>
 <!-- /Сортировка мышкой -->
 <script type="text/javascript">
@@ -120,9 +121,9 @@ if (!isset($idsx_real_parent_id)) {
                     },
                     disabled: function () {
                         // Делаем не активным пункт меню, если нет строк
-                        <?php if (!isset($name_edit)) { ?>
+                        if ($('div#ajax_data').data('name') === undefined || $('div#ajax_data').data('nameproduct') === undefined) {
                             return true;
-                        <?php } ?>
+                        }
                     },
 
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
@@ -180,12 +181,18 @@ if (!isset($idsx_real_parent_id)) {
                     }
                 },
 
-                "sep": "---------",
+                "sep3": "---------",
 
                 "fold": {
                     "name": "<?php echo lang('selected') ?>",
                     icon: function () {
                         return 'context-menu-icon glyphicon-ok';
+                    },
+                    disabled: function () {
+                        // Делаем не активным пункт меню, если нет строк
+                        if ($('div#ajax_data').data('name') === undefined || $('div#ajax_data').data('nameproduct') === undefined) {
+                            return true;
+                        }
                     },
                     "items": {
 
@@ -194,12 +201,6 @@ if (!isset($idsx_real_parent_id)) {
                             icon: function () {
                                 return 'context-menu-icon glyphicon-eye-open';
                             },
-                            disabled: function () {
-                                // Делаем не активным пункт меню, если нет строк
-                                <?php if (!isset($name_edit)) { ?>
-                                    return true;
-                                <?php } ?>
-                            },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
                                 // Установка синхронного запроса для jQuery.ajax
                                 jQuery.ajaxSetup({async: false});
@@ -207,12 +208,12 @@ if (!isset($idsx_real_parent_id)) {
                                 var idArray = [];
                                 $(".option").each(function (i) {
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
-                                        idArray[i]=this.id;
+                                        idArray[i] = this.id;
                                 });
                                 jQuery.post('/controller/admin/pages/stock/index.php',
-                                                {idsx_statusOn_id: idArray,
-                                                    idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
-                                                    idsx_statusOn_key: itemKey});        
+                                        {idsx_statusOn_id: idArray,
+                                            idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
+                                            idsx_statusOn_key: itemKey});
                                 // Отправка запроса для обновления страницы
                                 jQuery.get('/controller/admin/pages/stock/index.php',
                                         {parent_down: <?php echo $parent_id ?>},
@@ -234,12 +235,6 @@ if (!isset($idsx_real_parent_id)) {
                             icon: function () {
                                 return 'context-menu-icon glyphicon-eye-close';
                             },
-                            disabled: function () {
-                                // Делаем не активным пункт меню, если нет строк
-                                <?php if (!isset($name_edit)) { ?>
-                                    return true;
-                                <?php } ?>
-                            },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
                                 // Установка синхронного запроса для jQuery.ajax
                                 jQuery.ajaxSetup({async: false});
@@ -247,12 +242,12 @@ if (!isset($idsx_real_parent_id)) {
                                 var idArray = [];
                                 $(".option").each(function (i) {
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
-                                        idArray[i]=this.id;
+                                        idArray[i] = this.id;
                                 });
                                 jQuery.post('/controller/admin/pages/stock/index.php',
-                                                {idsx_statusOff_id: idArray,
-                                                    idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
-                                                    idsx_statusOff_key: itemKey});
+                                        {idsx_statusOff_id: idArray,
+                                            idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
+                                            idsx_statusOff_key: itemKey});
                                 // Отправка запроса для обновления страницы
                                 jQuery.get('/controller/admin/pages/stock/index.php',
                                         {parent_down: <?php echo $parent_id ?>},
@@ -269,18 +264,12 @@ if (!isset($idsx_real_parent_id)) {
                             }
                         },
 
-                        "sep2": "---------",
+                        "sep4": "---------",
 
                         "cut": {
                             name: "<?php echo lang('cut') ?>",
                             icon: function () {
                                 return 'context-menu-icon glyphicon-scissors';
-                            },
-                            disabled: function () {
-                                // Делаем не активным пункт меню, если нет строк
-                                <?php if (!isset($name_edit)) { ?>
-                                    return true;
-                                <?php } ?>
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
                                 // Установка синхронного запроса для jQuery.ajax
@@ -292,13 +281,13 @@ if (!isset($idsx_real_parent_id)) {
                                 var idArray = [];
                                 $(".option").each(function (i) {
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
-                                        idArray[i]=this.id;
+                                        idArray[i] = this.id;
                                 });
                                 jQuery.post('/controller/admin/pages/stock/index.php',
-                                                {idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
-                                                    idsx_cut_id: idArray,
-                                                    parent_down: <?php echo $parent_id ?>,
-                                                    idsx_cut_key: itemKey});
+                                        {idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
+                                            idsx_cut_id: idArray,
+                                            parent_down: <?php echo $parent_id ?>,
+                                            idsx_cut_key: itemKey});
                                 // Отправка запроса для обновления страницы
                                 jQuery.get('/controller/admin/pages/stock/index.php',
                                         {parent_down: <?php echo $parent_id ?>},
@@ -320,13 +309,6 @@ if (!isset($idsx_real_parent_id)) {
                             icon: function () {
                                 return 'context-menu-icon glyphicon-paste';
                             },
-                            disabled: function () {
-                                // Делаем не активным пункт меню, если буффер пуст
-                                <?php if (!isset($_SESSION['buffer'])) { ?>
-                                    return true;
-                                <?php } ?>
-                            },
-
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
                                 // Установка синхронного запроса для jQuery.ajax
                                 jQuery.ajaxSetup({async: false});
@@ -350,18 +332,12 @@ if (!isset($idsx_real_parent_id)) {
                             }
                         },
 
-                        "sep3": "---------",
+                        "sep5": "---------",
 
                         "delete": {
                             name: "<?php echo lang('button_delete') ?>",
                             icon: function () {
                                 return 'context-menu-icon glyphicon-trash';
-                            },
-                            disabled: function () {
-                                // Делаем не активным пункт меню, если нет строк
-                                <?php if (!isset($name_edit)) { ?>
-                                    return true;
-                                <?php } ?>
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
                                 // Установка синхронного запроса для jQuery.ajax
@@ -370,11 +346,11 @@ if (!isset($idsx_real_parent_id)) {
                                 var idArray = [];
                                 $(".option").each(function (i) { // выделенное мышкой
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
-                                        idArray[i]=this.id;
+                                        idArray[i] = this.id;
                                 });
                                 jQuery.post('/controller/admin/pages/stock/index.php',
-                                                {delete: idArray,
-                                                    parent_down: <?php echo $parent_id ?>});
+                                        {delete: idArray,
+                                            parent_down: <?php echo $parent_id ?>});
                                 // Отправка запроса для обновления страницы
                                 jQuery.get('/controller/admin/pages/stock/index.php',
                                         {parent_down: <?php echo $parent_id ?>,
@@ -393,7 +369,7 @@ if (!isset($idsx_real_parent_id)) {
                         }
                     }
                 },
-                "sep4": "---------",
+                "sep6": "---------",
                 "quit": {name: "<?php echo lang('menu_exit') ?>", icon: function () {
                         return 'context-menu-icon glyphicon-remove';
                     }}
@@ -523,7 +499,7 @@ if (!isset($idsx_real_parent_id)) {
     });
 
     //Если открыли модальное окно #add_product
-    $('#add_edit').on('show.bs.modal', function (event) {
+    $('#edit_product').on('show.bs.modal', function (event) {
         // Инициализация Summernote
         $('.summernote_edit').summernote({
             lang: '<?php echo lang('language_code') ?>',
@@ -547,14 +523,6 @@ if (!isset($idsx_real_parent_id)) {
         });
     });
 
-    //Если закрыли модальное окно #add_product
-    $('#add_product').on('hidden.bs.modal', function (event) {
-        // Destroy Summernote
-        for (var x = 0; x < count_lang; x++) {
-            $('#add_product_' + x).summernote('destroy');
-        }
-    });
-
     count_lang = '<?php echo $LANG_COUNT ?>';
 
     //Если закрыли модальное окно #add_product
@@ -572,7 +540,7 @@ if (!isset($idsx_real_parent_id)) {
             $('#edit_product_' + x).summernote('destroy');
         }
     });
-    
+
     // Фикс модала в модале
     $(document).on('hidden.bs.modal', '.modal', function (event) {
         $('.modal:visible').length && $('body').addClass('modal-open');
@@ -606,4 +574,5 @@ if (!isset($idsx_real_parent_id)) {
 <?php
 // Подгружаем jQuery File Upload
 $AJAX->fileUpload('index.php', 'categories', $resize_param);
+
 ?>
