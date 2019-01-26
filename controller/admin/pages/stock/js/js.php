@@ -504,7 +504,6 @@ if (!isset($idsx_real_parent_id)) {
             lang: '<?php echo lang('language_code') ?>',
             dialogsInBody: true,
             dialogsFade: true,
-            height: '100px',
             toolbar: [
                 ['fullscreen ', ['fullscreen']],
                 ['style', ['style']],
@@ -529,7 +528,6 @@ if (!isset($idsx_real_parent_id)) {
             lang: '<?php echo lang('language_code') ?>',
             dialogsInBody: true,
             dialogsFade: true,
-            height: '100px',
             toolbar: [
                 ['fullscreen ', ['fullscreen']],
                 ['style', ['style']],
