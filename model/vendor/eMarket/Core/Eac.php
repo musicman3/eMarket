@@ -214,7 +214,7 @@ class Eac {
             $idx = $VALID->inPOST('delete');
 
             for ($i = 0; $i < count($idx); $i++) {
-                if (strpbrk($idx[$i], 'product_') == FALSE) {
+                if (strstr($idx[$i], '_') != 'product') {
                     // Это категория
                     $parent_id = self::dataParentIdCategory($TABLE_CATEGORIES, $idx[$i]);
                     $keys = self::dataKeysCategory($TABLE_CATEGORIES, $idx[$i]);
