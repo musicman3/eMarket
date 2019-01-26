@@ -546,11 +546,6 @@ if (!isset($idsx_real_parent_id)) {
             ]
         });
     });
-    
-    // Фикс модала в модале
-    $(document).on('hidden.bs.modal', '.modal', function (event) {
-        $('.modal:visible').length && $('body').addClass('modal-open');
-    });
 
     //Если закрыли модальное окно #add_product
     $('#add_product').on('hidden.bs.modal', function (event) {
@@ -577,6 +572,11 @@ if (!isset($idsx_real_parent_id)) {
             $('#edit_product_' + x).summernote('destroy');
         }
     });
+    
+    // Фикс модала в модале
+    $(document).on('hidden.bs.modal', '.modal', function (event) {
+        $('.modal:visible').length && $('body').addClass('modal-open');
+    });    
 </script>
 
 <!-- Datepicker" -->
