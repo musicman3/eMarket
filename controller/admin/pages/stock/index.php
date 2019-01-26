@@ -45,7 +45,7 @@ $navigate = $NAVIGATION->getLink($count_lines_merge, $lines_on_page, 1);
 $start = $navigate[0];
 $finish = $navigate[1];
 //print_r($start2 . '--' . $finish2);
-$DEBUG->trace($_SESSION['buffer']);
+//$DEBUG->trace($arr_merge);
 
 // КОНЕЦ-> КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
