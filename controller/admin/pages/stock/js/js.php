@@ -582,9 +582,6 @@ if (!isset($idsx_real_parent_id)) {
         $('body').css({overflow: 'hidden'});
         $(this).tooltip('hide');
     });
-    $(document).on('click', '.note-fullscreen', function () {
-        $('body').css({overflow: ''});
-    });
 
 
 </script>
