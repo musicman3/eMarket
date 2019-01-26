@@ -214,37 +214,45 @@ class Eac {
             $idx = $VALID->inPOST('delete');
 
             for ($i = 0; $i < count($idx); $i++) {
-                $parent_id = self::dataParentIdCategory($TABLE_CATEGORIES, $idx[$i]);
-                $keys = self::dataKeysCategory($TABLE_CATEGORIES, $idx[$i]);
+                if (strpbrk($idx[$i], 'product_') == FALSE) {
+                    // Это категория
+                    $parent_id = self::dataParentIdCategory($TABLE_CATEGORIES, $idx[$i]);
+                    $keys = self::dataKeysCategory($TABLE_CATEGORIES, $idx[$i]);
 
-                $count_keys = count($keys); // Получаем количество значений в массиве
-                for ($x = 0; $x < $count_keys; $x++) {
+                    $count_keys = count($keys); // Получаем количество значений в массиве
+                    for ($x = 0; $x < $count_keys; $x++) {
+
+                        //Удаляем товар  
+                        $PDO->inPrepare("DELETE FROM " . $TABLE_PRODUCTS . " WHERE parent_id=?", [$keys[$x]]);
+
+                        //Удаляем подкатегории
+                        $PDO->inPrepare("DELETE FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$keys[$x]]);
+
+                        //Удаляем из буффера, если есть
+                        if (isset($_SESSION['buffer']) && $_SESSION['buffer'] != FALSE) {
+                            $_SESSION['buffer'] = $FUNC->deleteValInArray($_SESSION['buffer'], [$keys[$x]]);
+                        }
+                    }
 
                     //Удаляем товар  
-                    $PDO->inPrepare("DELETE FROM " . $TABLE_PRODUCTS . " WHERE parent_id=?", [$keys[$x]]);
+                    $PDO->inPrepare("DELETE FROM " . $TABLE_PRODUCTS . " WHERE parent_id=?", [$idx[$i]]);
 
-                    //Удаляем подкатегории
-                    $PDO->inPrepare("DELETE FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$keys[$x]]);
+                    //Удаляем основную категорию    
+                    $PDO->inPrepare("DELETE FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$idx[$i]]);
 
                     //Удаляем из буффера, если есть
                     if (isset($_SESSION['buffer']) && $_SESSION['buffer'] != FALSE) {
-                        $_SESSION['buffer'] = $FUNC->deleteValInArray($_SESSION['buffer'], [$keys[$x]]);
+                        $_SESSION['buffer'] = $FUNC->deleteValInArray($_SESSION['buffer'], [$idx[$i]]);
                     }
+
+                    // Выводим сообщение об успехе
+                    $_SESSION['message'] = ['success', lang('action_completed_successfully')];
+                } else {
+                    // Это товар
+                    //Удаляем товар
+                    $id_prod = explode('product_', $idx[$i]);
+                    $PDO->inPrepare("DELETE FROM " . $TABLE_PRODUCTS . " WHERE id=?", [$id_prod[1]]);
                 }
-
-                //Удаляем товар  
-                $PDO->inPrepare("DELETE FROM " . $TABLE_PRODUCTS . " WHERE parent_id=?", [$idx[$i]]);
-
-                //Удаляем основную категорию    
-                $PDO->inPrepare("DELETE FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$idx[$i]]);
-
-                //Удаляем из буффера, если есть
-                if (isset($_SESSION['buffer']) && $_SESSION['buffer'] != FALSE) {
-                    $_SESSION['buffer'] = $FUNC->deleteValInArray($_SESSION['buffer'], [$idx[$i]]);
-                }
-
-                // Выводим сообщение об успехе
-                $_SESSION['message'] = ['success', lang('action_completed_successfully')];
             }
         }
 
