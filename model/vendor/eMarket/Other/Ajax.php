@@ -124,7 +124,6 @@ class Ajax {
         <script src = "/ext/jquery_file_upload/js/vendor/jquery.ui.widget.js"></script>
         <script src="/ext/jquery_file_upload/js/jquery.iframe-transport.js"></script>
         <script src="/ext/jquery_file_upload/js/jquery.fileupload.js"></script>
-        <script src="/ext/fastmd5/md5.min.js"></script>
         <script type="text/javascript">
             // Загрузка новых изображений в модальное окно "Редактировать и Добавить"
             $(function () {
@@ -141,7 +140,6 @@ class Ajax {
                     done: function (e, data) {
 
                         $.each(data.result.files, function (index, file) {
-                            var hash_name = md5(file.name); // Хэшируем
 
                             jQuery.ajax({
                                 type: 'POST',
@@ -166,10 +164,10 @@ class Ajax {
                                     } else {
                                         // Если все ок, то выводим изображение
                                         if ($('#add').hasClass('in') === true) {
-                                            $('<span class="file-upload" id="image_add_new_' + hash_name + '"/>').html('<div class="holder"><img src="/uploads/temp/thumbnail/' + file.name + '" class="thumbnail" id="general_' + hash_name + '" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="deleteImageAddNew_' + hash_name + '" onclick="deleteImageAddNew(\'' + file.name + '\', \'' + hash_name + '\')"><span class="glyphicon glyphicon-trash"></span></button> <button class="btn btn-primary btn-xs" type="button" name="imageGeneralAddNew_' + hash_name + '" onclick="imageGeneralAddNew(\'' + file.name + '\', \'' + hash_name + '\')"><span class="glyphicon glyphicon-star"></span></button></div></div>').appendTo('#logo-add'); // Вставляем лого
+                                            $('<span class="file-upload" id="image_add_new_' + index + '"/>').html('<div class="holder"><img src="/uploads/temp/thumbnail/' + file.name + '" class="thumbnail" id="general_' + index + '" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="deleteImageAddNew_' + index + '" onclick="deleteImageAddNew(\'' + file.name + '\', \'' + index + '\')"><span class="glyphicon glyphicon-trash"></span></button> <button class="btn btn-primary btn-xs" type="button" name="imageGeneralAddNew_' + index + '" onclick="imageGeneralAddNew(\'' + file.name + '\', \'' + index + '\')"><span class="glyphicon glyphicon-star"></span></button></div></div>').appendTo('#logo-add'); // Вставляем лого
                                         }
                                         if ($('#edit').hasClass('in') === true) {
-                                            $('<span class="file-upload" id="image_edit_new_' + hash_name + '"/>').html('<div class="holder"><img src="/uploads/temp/thumbnail/' + file.name + '" class="thumbnail" id="general_edit_' + hash_name + '" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="deleteImageEditNew_' + hash_name + '" onclick="deleteImageEditNew(\'' + file.name + '\', \'' + hash_name + '\')"><span class="glyphicon glyphicon-trash"></span></button> <button class="btn btn-primary btn-xs" type="button" name="imageGeneralEditNew_' + hash_name + '" onclick="imageGeneralEditNew(\'' + file.name + '\', \'' + hash_name + '\')"><span class="glyphicon glyphicon-star"></span></button></div></div>').appendTo('#logo-edit'); // Вставляем лого
+                                            $('<span class="file-upload" id="image_edit_new_' + index + '"/>').html('<div class="holder"><img src="/uploads/temp/thumbnail/' + file.name + '" class="thumbnail" id="general_edit_' + index + '" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="deleteImageEditNew_' + index + '" onclick="deleteImageEditNew(\'' + file.name + '\', \'' + index + '\')"><span class="glyphicon glyphicon-trash"></span></button> <button class="btn btn-primary btn-xs" type="button" name="imageGeneralEditNew_' + index + '" onclick="imageGeneralEditNew(\'' + file.name + '\', \'' + index + '\')"><span class="glyphicon glyphicon-star"></span></button></div></div>').appendTo('#logo-edit'); // Вставляем лого
                                         }
                                     }
                                 }
