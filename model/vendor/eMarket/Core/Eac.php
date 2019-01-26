@@ -114,12 +114,13 @@ class Eac {
 
         $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
+        $FUNC = new \eMarket\Other\Func;
 
         // если сортируем категории мышкой
         if ($VALID->inPOST('token_ajax') == $TOKEN && $VALID->inPOST('ids')) {
             $sort_array_id_ajax = explode(',', $VALID->inPOST('ids')); // Массив со списком id под сортировку
             // Если в массиве пустое значение, то собираем новый массив без этого значения со сбросом ключей
-            $sort_array_id = array_values(array_filter($sort_array_id_ajax));
+            $sort_array_id = $FUNC->deleteEmptyInArray($sort_array_id_ajax);
 
             $sort_array_category = []; // Массив со списком sort_category под сортировку
 
@@ -273,17 +274,17 @@ class Eac {
     private function cutCategory($TABLE_CATEGORIES, $parent_id) {
 
         $VALID = new \eMarket\Core\Valid;
+        $FUNC = new \eMarket\Other\Func;
 
         if ($VALID->inPOST('idsx_cut_marker') == 'cut') { // очищаем буфер обмена, если он был заполнен, при нажатии Вырезать
             unset($_SESSION['buffer']['cat']);
         }
 
         if (($VALID->inPOST('idsx_cut_key') == 'cut')) {
-
-            $idx = $VALID->inPOST('idsx_cut_id');
+            // Если в массиве пустое значение, то собираем новый массив без этого значения со сбросом ключей
+            $idx = $FUNC->deleteEmptyInArray($VALID->inPOST('idsx_cut_id'));
             for ($i = 0; $i < count($idx); $i++) {
                 $parent_id_real = (int) $VALID->inPOST('idsx_real_parent_id'); // получить значение из JS
-                //
                 $parent_id = self::dataParentIdCategory($TABLE_CATEGORIES, $idx[$i]);
 
                 //Вырезаем основную родительскую категорию    

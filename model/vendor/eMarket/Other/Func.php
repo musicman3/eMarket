@@ -225,6 +225,21 @@ class Func {
         }
     }
 
+    /**
+     * Функция удаления пустого значения из массива
+
+     * @param array $array (исходный массив)
+     * @return array|false $array_return (итоговый массив)
+     */
+    public function deleteEmptyInArray($array) {
+        if (isset($array) && is_array($array)) {
+            $array_return = array_values(array_filter($array));
+            return $array_return;
+        } else {
+            return FALSE;
+        }
+    }
+
 }
 
 ?>
