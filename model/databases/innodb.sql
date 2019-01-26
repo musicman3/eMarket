@@ -111,6 +111,7 @@ CREATE TABLE emkt_products (
         date_available date,
         manufacturer int,
         barcode varchar(256),
+        barcode_value varchar(256),
         vendor_code varchar(64),
         vendor_code_value varchar(64),
         weight int,
