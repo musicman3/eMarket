@@ -551,13 +551,6 @@ if (!isset($idsx_real_parent_id)) {
         $(".modal:visible").length && $("body").addClass("modal-open");
     });
 
-    $(document).on('inserted.bs.tooltip', function (event) {
-        var zIndex = 100000 + (10 * $(".modal:visible").length);
-        var Id = $(event.target).attr("aria-describedby");
-        $("#" + Id).css("z-index", zIndex);
-        $("#" + Id).css("z-index", zIndex);
-    });
-
     //Если закрыли модальное окно #add_product
     $('#add_product').on('hidden.bs.modal', function (event) {
         // Destroy Summernote
