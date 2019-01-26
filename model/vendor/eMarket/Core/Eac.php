@@ -212,7 +212,8 @@ class Eac {
 
         if ($VALID->inPOST('delete')) {
 
-            $idx = $VALID->inPOST('delete');
+            // Если в массиве пустое значение, то собираем новый массив без этого значения со сбросом ключей
+            $idx = $FUNC->deleteEmptyInArray($VALID->inPOST('delete'));
 
             for ($i = 0; $i < count($idx); $i++) {
                 if (strstr($idx[$i], '_', true) != 'product') {
@@ -357,6 +358,7 @@ class Eac {
 
         $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
+        $FUNC = new \eMarket\Other\Func;
 
         if (($VALID->inPOST('idsx_statusOn_key') == 'statusOn')
                 or ( $VALID->inPOST('idsx_statusOff_key') == 'statusOff')) {
@@ -364,12 +366,14 @@ class Eac {
             $parent_id_real = (int) $VALID->inPOST('idsx_real_parent_id'); // получить значение из JS
 
             if ($VALID->inPOST('idsx_statusOn_key') == 'statusOn') {
-                $idx = $VALID->inPOST('idsx_statusOn_id');
+                // Если в массиве пустое значение, то собираем новый массив без этого значения со сбросом ключей
+                $idx = $FUNC->deleteEmptyInArray($VALID->inPOST('idsx_statusOn_id'));
                 $status = 1;
             }
 
             if ($VALID->inPOST('idsx_statusOff_key') == 'statusOff') {
-                $idx = $VALID->inPOST('idsx_statusOff_id');
+                // Если в массиве пустое значение, то собираем новый массив без этого значения со сбросом ключей
+                $idx = $FUNC->deleteEmptyInArray($VALID->inPOST('idsx_statusOff_id'));
                 $status = 0;
             }
             for ($i = 0; $i < count($idx); $i++) {
