@@ -576,7 +576,17 @@ if (!isset($idsx_real_parent_id)) {
     // Фикс модала в модале
     $(document).on('hidden.bs.modal', '.modal', function (event) {
         $('.modal:visible').length && $('body').addClass('modal-open');
-    });    
+    });
+    // Фикс Fullscreen в модале
+    $(document).on('click', '.btn-fullscreen', function () {
+        $('body').css({overflow: 'hidden'});
+        $(this).tooltip('hide');
+    });
+    $(document).on('click', '.note-fullscreen', function () {
+        $('body').css({overflow: ''});
+    });
+
+
 </script>
 
 <!-- Datepicker" -->
