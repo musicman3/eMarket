@@ -233,7 +233,8 @@ class Func {
      */
     public function deleteEmptyInArray($array) {
         if (isset($array) && is_array($array)) {
-            $array_return = array_values(array_filter($array));
+            $result = array_filter($array);
+            $array_return = array_values($result); // Сбрасываем ключи
             return $array_return;
         } else {
             return FALSE;
