@@ -229,8 +229,8 @@ class Eac {
                         $PDO->inPrepare("DELETE FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$keys[$x]]);
 
                         //Удаляем из буффера, если есть
-                        if (isset($_SESSION['buffer']) && $_SESSION['buffer'] != FALSE) {
-                            $_SESSION['buffer'] = $FUNC->deleteValInArray($_SESSION['buffer'], [$keys[$x]]);
+                        if (isset($_SESSION['buffer']['cat']) && $_SESSION['buffer']['cat'] != FALSE) {
+                            $_SESSION['buffer']['cat'] = $FUNC->deleteValInArray($_SESSION['buffer']['cat'], [$keys[$x]]);
                         }
                     }
 
@@ -241,8 +241,8 @@ class Eac {
                     $PDO->inPrepare("DELETE FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$idx[$i]]);
 
                     //Удаляем из буффера, если есть
-                    if (isset($_SESSION['buffer']) && $_SESSION['buffer'] != FALSE) {
-                        $_SESSION['buffer'] = $FUNC->deleteValInArray($_SESSION['buffer'], [$idx[$i]]);
+                    if (isset($_SESSION['buffer']['cat']) && $_SESSION['buffer']['cat'] != FALSE) {
+                        $_SESSION['buffer']['cat'] = $FUNC->deleteValInArray($_SESSION['buffer']['cat'], [$idx[$i]]);
                     }
 
                     // Выводим сообщение об успехе
@@ -275,7 +275,7 @@ class Eac {
         $VALID = new \eMarket\Core\Valid;
 
         if ($VALID->inPOST('idsx_cut_marker') == 'cut') { // очищаем буфер обмена, если он был заполнен, при нажатии Вырезать
-            unset($_SESSION['buffer']);
+            unset($_SESSION['buffer']['cat']);
         }
 
         if (($VALID->inPOST('idsx_cut_key') == 'cut')) {
@@ -288,10 +288,10 @@ class Eac {
 
                 //Вырезаем основную родительскую категорию    
                 if ($VALID->inPOST('idsx_cut_key') == 'cut') {
-                    if (!isset($_SESSION['buffer'])) {
-                        $_SESSION['buffer'] = [];
+                    if (!isset($_SESSION['buffer']['cat'])) {
+                        $_SESSION['buffer']['cat'] = [];
                     }
-                    array_push($_SESSION['buffer'], $idx[$i]);
+                    array_push($_SESSION['buffer']['cat'], $idx[$i]);
                     if ($parent_id_real > 0) {
                         $parent_id = $parent_id_real; // Возвращаемся в свою директорию после обновления
                     }
@@ -319,19 +319,19 @@ class Eac {
         $VALID = new \eMarket\Core\Valid;
 
         //Вставляем вырезанные категории    
-        if ($VALID->inPOST('idsx_paste_key') == 'paste' && isset($_SESSION['buffer']) == TRUE) {
+        if ($VALID->inPOST('idsx_paste_key') == 'paste' && isset($_SESSION['buffer']['cat']) == TRUE) {
 
             $parent_id_real = (int) $VALID->inPOST('idsx_real_parent_id'); // получить значение из JS
-            $count_session_buffer = count($_SESSION['buffer']); // Получаем количество значений в массиве
+            $count_session_buffer = count($_SESSION['buffer']['cat']); // Получаем количество значений в массиве
 
             for ($buf = 0; $buf < $count_session_buffer; $buf++) {
                 // Получаем последний sort_category в текущем parent_id и увеличиваем его на 1
                 $sort_max = $PDO->selectPrepare("SELECT sort_category FROM " . $TABLE_CATEGORIES . " WHERE language=? AND parent_id=? ORDER BY sort_category DESC", [lang('#lang_all')[0], $parent_id_real]);
                 $sort_category = intval($sort_max) + 1;
                 // Обновляем данные
-                $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET parent_id=?, sort_category=? WHERE id=?", [$parent_id_real, $sort_category, $_SESSION['buffer'][$buf]]);
+                $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET parent_id=?, sort_category=? WHERE id=?", [$parent_id_real, $sort_category, $_SESSION['buffer']['cat'][$buf]]);
             }
-            unset($_SESSION['buffer']); // очищаем буфер обмена
+            unset($_SESSION['buffer']['cat']); // очищаем буфер обмена
             if ($parent_id_real > 0) {
                 $parent_id = $parent_id_real; // Возвращаемся в свою директорию после вставки
             }

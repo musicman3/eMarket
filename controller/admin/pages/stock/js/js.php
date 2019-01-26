@@ -8,6 +8,12 @@ if (!isset($idsx_real_parent_id)) {
     $idsx_real_parent_id = '';
 }
 
+if (isset($_SESSION['buffer'])) {
+    $ses_verify = count($_SESSION['buffer']);
+} else {
+    $ses_verify = '0';
+}
+
 ?>
 <!-- /Сортировка мышкой -->
 <script type="text/javascript">
@@ -64,6 +70,9 @@ if (!isset($idsx_real_parent_id)) {
 
 <!-- /Контекстное меню -->
 <script type="text/javascript">
+
+    session = '<?php echo $ses_verify ?>';
+
     $(function () {
         $.contextMenu({
             selector: '.context-one',
@@ -190,7 +199,7 @@ if (!isset($idsx_real_parent_id)) {
                     },
                     disabled: function () {
                         // Делаем не активным пункт меню, если нет строк
-                        if ($('div#ajax_data').data('name') === undefined || $('div#ajax_data').data('nameproduct') === undefined) {
+                        if ($('div#ajax_data').data('name') === undefined && $('div#ajax_data').data('nameproduct') === undefined && session === '0') {
                             return true;
                         }
                     },
@@ -200,6 +209,12 @@ if (!isset($idsx_real_parent_id)) {
                             name: "<?php echo lang('button_show') ?>",
                             icon: function () {
                                 return 'context-menu-icon glyphicon-eye-open';
+                            },
+                            disabled: function () {
+                                // Делаем не активным пункт меню, если нет строк
+                                if ($('div#ajax_data').data('name') === undefined || $('div#ajax_data').data('nameproduct') === undefined) {
+                                    return true;
+                                }
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
                                 // Установка синхронного запроса для jQuery.ajax
@@ -234,6 +249,12 @@ if (!isset($idsx_real_parent_id)) {
                             name: "<?php echo lang('button_hide') ?>",
                             icon: function () {
                                 return 'context-menu-icon glyphicon-eye-close';
+                            },
+                            disabled: function () {
+                                // Делаем не активным пункт меню, если нет строк
+                                if ($('div#ajax_data').data('name') === undefined || $('div#ajax_data').data('nameproduct') === undefined) {
+                                    return true;
+                                }
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
                                 // Установка синхронного запроса для jQuery.ajax
@@ -270,6 +291,12 @@ if (!isset($idsx_real_parent_id)) {
                             name: "<?php echo lang('cut') ?>",
                             icon: function () {
                                 return 'context-menu-icon glyphicon-scissors';
+                            },
+                            disabled: function () {
+                                // Делаем не активным пункт меню, если нет строк
+                                if ($('div#ajax_data').data('name') === undefined || $('div#ajax_data').data('nameproduct') === undefined) {
+                                    return true;
+                                }
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
                                 // Установка синхронного запроса для jQuery.ajax
@@ -309,6 +336,12 @@ if (!isset($idsx_real_parent_id)) {
                             icon: function () {
                                 return 'context-menu-icon glyphicon-paste';
                             },
+                            disabled: function () {
+                                // Делаем не активным пункт меню, если нет строк
+                                if (session === '0') {
+                                    return true;
+                                }
+                            },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
                                 // Установка синхронного запроса для jQuery.ajax
                                 jQuery.ajaxSetup({async: false});
@@ -338,6 +371,12 @@ if (!isset($idsx_real_parent_id)) {
                             name: "<?php echo lang('button_delete') ?>",
                             icon: function () {
                                 return 'context-menu-icon glyphicon-trash';
+                            },
+                            disabled: function () {
+                                // Делаем не активным пункт меню, если нет строк
+                                if ($('div#ajax_data').data('name') === undefined || $('div#ajax_data').data('nameproduct') === undefined) {
+                                    return true;
+                                }
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
                                 // Установка синхронного запроса для jQuery.ajax
