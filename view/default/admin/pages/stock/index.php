@@ -224,7 +224,7 @@
 
                                                 <!-- Если категория НЕ АКТИВНА -->
                                             <?php } elseif ($arr_merge['prod'][$start . 'a'][3] == 0) { ?>
-                                                <td class="sortyes sortleft-m"></td>    
+                                                <td class="sortleft-m"></td>    
                                                 <td class="sortleft"><div><a href="#" class="btn btn-default btn-xs" role="button" aria-disabled="true"><span class="glyphicon glyphicon-shopping-cart"> </span></a></div></td>
                                             <?php } else { ?>
 
