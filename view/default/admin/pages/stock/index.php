@@ -212,23 +212,23 @@
                                         ?>
                                         <tr class="sort-list">
 
-                                            <!-- Вырезанные категории "АКТИВНЫЕ" -->
+                                            <!-- Вырезанные товары "АКТИВНЫЕ" -->
                                             <?php if (isset($_SESSION['buffer']['prod']) == true && in_array($arr_merge['prod'][$start . 'a'][0], $_SESSION['buffer']['prod']) == true && $arr_merge['prod'][$start . 'a'][3] == 1) { ?>
                                                 <td class="sortleft-m"></td>    
                                                 <td class="sortleft"><div><a href="#" class="btn btn-success btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-shopping-cart"> </span></a></div></td>
 
-                                                <!-- Вырезанные категории "НЕ АКТИВНЫЕ" -->
+                                                <!-- Вырезанные товары "НЕ АКТИВНЫЕ" -->
                                             <?php } elseif (isset($_SESSION['buffer']['prod']) == true && in_array($arr_merge['prod'][$start . 'a'][0], $_SESSION['buffer']['prod']) == true && $arr_merge['prod'][$start . 'a'][3] == 0) { ?>
                                                 <td class="sortleft-m"></td>    
                                                 <td class="sortleft"><div><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-shopping-cart"> </span></a></div></td>
 
-                                                <!-- Если категория НЕ АКТИВНА -->
+                                                <!-- Если товар НЕ АКТИВНА -->
                                             <?php } elseif ($arr_merge['prod'][$start . 'a'][3] == 0) { ?>
                                                 <td class="sortleft-m"></td>    
                                                 <td class="sortleft"><div><a href="#" class="btn btn-default btn-xs" role="button" aria-disabled="true"><span class="glyphicon glyphicon-shopping-cart"> </span></a></div></td>
                                             <?php } else { ?>
 
-                                                <!-- Если категория АКТИВНА -->    
+                                                <!-- Если товар АКТИВНА -->    
                                                 <td class="sortleft-m"></td>
                                                 <td class="sortleft"><div><a href="#" class="btn btn-success btn-xs" role="button" aria-disabled="true"><span class="glyphicon glyphicon-shopping-cart"> </span></a></div></td>
                                                 <!-- ВЫБРАННЫЕ СТРОКИ -->
