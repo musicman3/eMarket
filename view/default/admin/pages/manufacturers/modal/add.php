@@ -25,7 +25,7 @@
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="<?php echo $SET->titleDir() . '_' . lang('#lang_all')[0] ?>" required />
+                                    <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="name_manufacturers_0" id="name_manufacturers_0" required />
                                 </div>
                             </div>
                         </div>
@@ -39,7 +39,7 @@
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="<?php echo $SET->titleDir() . '_' . lang('#lang_all')[$x] ?>" required />
+                                            <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="name_manufacturers_<?php echo $x ?>" id="name_manufacturers_<?php echo $x ?>" required />
                                         </div>
                                     </div>
                                 </div>
@@ -52,7 +52,7 @@
                         <div class="form-group">
                             <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
-                                <input class="input-sm form-control" placeholder="<?php echo lang('site') ?>" type="text" name="site" id="site" />
+                                <input class="input-sm form-control" placeholder="<?php echo lang('site') ?>" type="text" name="site_manufacturers" id="site_manufacturers" />
                             </div>
                         </div>
                         
