@@ -21,7 +21,7 @@ if ($VALID->inPOST('add')) {
 
     // добавляем запись для всех вкладок
     for ($x = 0; $x < $LANG_COUNT; $x++) {
-        $PDO->inPrepare("INSERT INTO " . TABLE_ZONES . " SET id=?, name=?, note=?, language=?", [$id, $VALID->inPOST($SET->titleDir() . '_' . lang('#lang_all')[$x]), $VALID->inPOST('note'), lang('#lang_all')[$x]]);
+        $PDO->inPrepare("INSERT INTO " . TABLE_ZONES . " SET id=?, name=?, note=?, language=?", [$id, $VALID->inPOST('name_zones_' . $x), $VALID->inPOST('note_zones'), lang('#lang_all')[$x]]);
     }
 
     // Выводим сообщение об успехе
@@ -33,7 +33,7 @@ if ($VALID->inPOST('edit')) {
 
     for ($x = 0; $x < $LANG_COUNT; $x++) {
         // обновляем запись
-        $PDO->inPrepare("UPDATE " . TABLE_ZONES . " SET name=?, note=? WHERE id=? AND language=?", [$VALID->inPOST('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$x]), $VALID->inPOST('note_edit'), $VALID->inPOST('edit'), lang('#lang_all')[$x]]);
+        $PDO->inPrepare("UPDATE " . TABLE_ZONES . " SET name=?, note=? WHERE id=? AND language=?", [$VALID->inPOST('name_zones_edit_' . $x), $VALID->inPOST('note_zones_edit'), $VALID->inPOST('edit'), lang('#lang_all')[$x]]);
     }
 
     // Выводим сообщение об успехе

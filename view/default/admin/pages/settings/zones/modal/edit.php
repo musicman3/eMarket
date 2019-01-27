@@ -26,7 +26,7 @@ require(ROOT . '/controller/admin/pages/settings/zones/modal/edit.php');
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="input-sm form-control" type="text" name="name_edit_<?php echo $SET->titleDir() . '_' . lang('#lang_all')[0] ?>" id="name_edit0" required />
+                                    <input class="input-sm form-control" type="text" name="name_zones_edit_0" id="name_zones_edit_0" required />
                                 </div>
                             </div>
                         </div>
@@ -41,7 +41,7 @@ require(ROOT . '/controller/admin/pages/settings/zones/modal/edit.php');
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" type="text" name="name_edit_<?php echo $SET->titleDir() . '_' . lang('#lang_all')[$x] ?>" id="name_edit<?php echo $x ?>" required />
+                                            <input class="input-sm form-control" type="text" name="name_zones_edit_<?php echo $x ?>" id="name_zones_edit_<?php echo $x ?>" required />
                                         </div>
                                     </div>
                                 </div>
@@ -52,8 +52,8 @@ require(ROOT . '/controller/admin/pages/settings/zones/modal/edit.php');
 
                         ?>
                         <div class="form-group">
-                            <label for="note_edit"><?php echo lang('name_description') ?></label>
-                            <textarea class="form-control" rows="5" name="note_edit" id="note_edit"></textarea>
+                            <label for="note_zones_edit"><?php echo lang('name_description') ?></label>
+                            <textarea class="form-control" rows="5" name="note_zones_edit" id="note_zones_edit"></textarea>
                         </div> 
                     </div>
                 </div>
