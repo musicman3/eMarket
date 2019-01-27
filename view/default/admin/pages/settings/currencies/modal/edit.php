@@ -28,13 +28,13 @@ require(ROOT . '/controller/admin/pages/settings/currencies/modal/edit.php');
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="input-sm form-control" type="text" name="name_edit_<?php echo $SET->titleDir() . '_' . lang('#lang_all')[0] ?>" id="name_edit0" required />
+                                    <input class="input-sm form-control" type="text" name="name_currencies_edit_0" id="name_currencies_edit_0" required />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="input-sm form-control" type="text" name="code_edit_<?php echo $SET->titleDir() . '_' . lang('#lang_all')[0] ?>" id="code_edit0" required />
+                                    <input class="input-sm form-control" type="text" name="code_currencies_edit_0" id="code_currencies_edit_0" required />
                                 </div>
                             </div>
                         </div>
@@ -49,13 +49,13 @@ require(ROOT . '/controller/admin/pages/settings/currencies/modal/edit.php');
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" type="text" name="name_edit_<?php echo $SET->titleDir() . '_' . lang('#lang_all')[$x] ?>" id="name_edit<?php echo $x ?>" required />
+                                            <input class="input-sm form-control" type="text" name="name_currencies_edit_<?php echo $x ?>" id="name_currencies_edit_<?php echo $x ?>" required />
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" type="text" name="code_edit_<?php echo $SET->titleDir() . '_' . lang('#lang_all')[$x] ?>" id="code_edit<?php echo $x ?>" required />
+                                            <input class="input-sm form-control" type="text" name="code_currencies_edit_<?php echo $x ?>" id="code_currencies_edit_<?php echo $x ?>" required />
                                         </div>
                                     </div>
                                 </div>
@@ -68,19 +68,19 @@ require(ROOT . '/controller/admin/pages/settings/currencies/modal/edit.php');
                         <div class="form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                                <input class="input-sm form-control" type="text" pattern="[A-Za-z]{3}" name="iso_4217_edit" id="iso_4217_edit" required />
+                                <input class="input-sm form-control" type="text" pattern="[A-Za-z]{3}" name="iso_4217_currencies_edit" id="iso_4217_currencies_edit" required />
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                                <input class="input-sm form-control" type="text" name="symbol_edit" id="symbol_edit" />
+                                <input class="input-sm form-control" type="text" name="symbol_currencies_edit" id="symbol_currencies_edit" />
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                                <select name="symbol_position_edit" id="symbol_position_edit" class="input-sm form-control">
+                                <select name="symbol_position_currencies_edit" id="symbol_position_currencies_edit" class="input-sm form-control">
                                     <option value="right"><?php echo lang('symbol_right') ?></option>
                                     <option value="left"><?php echo lang('symbol_left') ?></option>
                                 </select>
@@ -89,18 +89,18 @@ require(ROOT . '/controller/admin/pages/settings/currencies/modal/edit.php');
                         <div class="form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                <input class="input-sm form-control" type="text" pattern="[0-9]{0,1}" name="decimal_places_edit" id="decimal_places_edit" required />
+                                <input class="input-sm form-control" type="text" pattern="[0-9]{0,1}" name="decimal_places_currencies_edit" id="decimal_places_currencies_edit" required />
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                <input class="value_edit input-sm form-control" type="text" pattern="\d+(\.\d{0,10})?" name="value_edit" id="value_edit" required />
+                                <input class="value_edit input-sm form-control" type="text" pattern="\d+(\.\d{0,10})?" name="value_currencies_edit" id="value_currencies_edit" required />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="status_value_edit"><?php echo lang('default_set') ?> </label>
-                            <input class="check-box" id="status_value_edit" type="checkbox" name="status_value_edit">
+                            <label for="default_value_currencies_edit"><?php echo lang('default_set') ?> </label>
+                            <input class="check-box" id="default_value_currencies_edit" type="checkbox" name="default_value_currencies_edit">
                         </div>
                     </div>
                 </div>

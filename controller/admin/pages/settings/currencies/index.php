@@ -13,7 +13,7 @@ require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 if ($VALID->inPOST('add')) {
 
     // Если есть установка по-умолчанию
-    if ($VALID->inPOST('default_value')) {
+    if ($VALID->inPOST('default_value_currencies')) {
         $default_value = 1;
     } else {
         $default_value = 0;
@@ -31,18 +31,18 @@ if ($VALID->inPOST('add')) {
         $value_all = $PDO->getColAssoc("SELECT id, value, language FROM " . TABLE_CURRENCIES, []);
         $count_value_all = count($value_all);
         for ($x = 0; $x < $count_value_all; $x++) {
-            $PDO->inPrepare("UPDATE " . TABLE_CURRENCIES . " SET value=? WHERE id=? AND language=?", [($value_all[$x]['value'] / $VALID->inPOST('value')), $value_all[$x]['id'], $value_all[$x]['language']]);
+            $PDO->inPrepare("UPDATE " . TABLE_CURRENCIES . " SET value=? WHERE id=? AND language=?", [($value_all[$x]['value'] / $VALID->inPOST('value_currencies')), $value_all[$x]['id'], $value_all[$x]['language']]);
         }
         
         // добавляем запись для всех вкладок
         for ($x = 0; $x < $LANG_COUNT; $x++) {
-            $PDO->inPrepare("INSERT INTO " . TABLE_CURRENCIES . " SET id=?, name=?, language=?, code=?, iso_4217=?, value=?, default_value=?, symbol=?, symbol_position=?, decimal_places=?", [$id, $VALID->inPOST($SET->titleDir() . '_' . lang('#lang_all')[$x]), lang('#lang_all')[$x], $VALID->inPOST('code' . lang('#lang_all')[$x]), $VALID->inPOST('iso_4217'), 1, $default_value, $VALID->inPOST('symbol'), $VALID->inPOST('symbol_position'), $VALID->inPOST('decimal_places')]);
+            $PDO->inPrepare("INSERT INTO " . TABLE_CURRENCIES . " SET id=?, name=?, language=?, code=?, iso_4217=?, value=?, default_value=?, symbol=?, symbol_position=?, decimal_places=?", [$id, $VALID->inPOST('name_currencies_' . $x), lang('#lang_all')[$x], $VALID->inPOST('code_currencies_' . $x), $VALID->inPOST('iso_4217_currencies'), 1, $default_value, $VALID->inPOST('symbol_currencies'), $VALID->inPOST('symbol_position_currencies'), $VALID->inPOST('decimal_places_currencies')]);
         }
     } else {
 
         // добавляем запись для всех вкладок
         for ($x = 0; $x < $LANG_COUNT; $x++) {
-            $PDO->inPrepare("INSERT INTO " . TABLE_CURRENCIES . " SET id=?, name=?, language=?, code=?, iso_4217=?, value=?, default_value=?, symbol=?, symbol_position=?, decimal_places=?", [$id, $VALID->inPOST($SET->titleDir() . '_' . lang('#lang_all')[$x]), lang('#lang_all')[$x], $VALID->inPOST('code' . lang('#lang_all')[$x]), $VALID->inPOST('iso_4217'), $VALID->inPOST('value'), $default_value, $VALID->inPOST('symbol'), $VALID->inPOST('symbol_position'), $VALID->inPOST('decimal_places')]);
+            $PDO->inPrepare("INSERT INTO " . TABLE_CURRENCIES . " SET id=?, name=?, language=?, code=?, iso_4217=?, value=?, default_value=?, symbol=?, symbol_position=?, decimal_places=?", [$id, $VALID->inPOST('name_currencies_' . $x), lang('#lang_all')[$x], $VALID->inPOST('code_currencies_' . $x), $VALID->inPOST('iso_4217_currencies'), $VALID->inPOST('value_currencies'), $default_value, $VALID->inPOST('symbol_currencies'), $VALID->inPOST('symbol_position_currencies'), $VALID->inPOST('decimal_places_currencies')]);
         }
     }
     // Выводим сообщение об успехе
@@ -53,7 +53,7 @@ if ($VALID->inPOST('add')) {
 if ($VALID->inPOST('edit')) {
 
     // Если есть установка по-умолчанию
-    if ($VALID->inPOST('status_value_edit')) {
+    if ($VALID->inPOST('default_value_currencies_edit')) {
         $default_value = 1;
     } else {
         $default_value = 0;
@@ -67,18 +67,18 @@ if ($VALID->inPOST('edit')) {
         $value_all = $PDO->getColAssoc("SELECT id, value, language FROM " . TABLE_CURRENCIES, []);
         $count_value_all = count($value_all);
         for ($x = 0; $x < $count_value_all; $x++) {
-            $PDO->inPrepare("UPDATE " . TABLE_CURRENCIES . " SET value=? WHERE id=? AND language=?", [($value_all[$x]['value'] / $VALID->inPOST('value_edit')), $value_all[$x]['id'], $value_all[$x]['language']]);
+            $PDO->inPrepare("UPDATE " . TABLE_CURRENCIES . " SET value=? WHERE id=? AND language=?", [($value_all[$x]['value'] / $VALID->inPOST('value_currencies_edit')), $value_all[$x]['id'], $value_all[$x]['language']]);
         }
 
         for ($x = 0; $x < $LANG_COUNT; $x++) {
             // обновляем запись
-            $PDO->inPrepare("UPDATE " . TABLE_CURRENCIES . " SET name=?, code=?, iso_4217=?, value=?, default_value=?, symbol=?, symbol_position=?, decimal_places=?, last_updated=? WHERE id=? AND language=?", [$VALID->inPOST('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$x]), $VALID->inPOST('code_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$x]), $VALID->inPOST('iso_4217_edit'), 1, $default_value, $VALID->inPOST('symbol_edit'), $VALID->inPOST('symbol_position_edit'), $VALID->inPOST('decimal_places_edit'), date("Y-m-d H:i:s"), $VALID->inPOST('edit'), lang('#lang_all')[$x]]);
+            $PDO->inPrepare("UPDATE " . TABLE_CURRENCIES . " SET name=?, code=?, iso_4217=?, value=?, default_value=?, symbol=?, symbol_position=?, decimal_places=?, last_updated=? WHERE id=? AND language=?", [$VALID->inPOST('name_currencies_edit_' . $x), $VALID->inPOST('code_currencies_edit_' . $x), $VALID->inPOST('iso_4217_currencies_edit'), 1, $default_value, $VALID->inPOST('symbol_currencies_edit'), $VALID->inPOST('symbol_position_currencies_edit'), $VALID->inPOST('decimal_places_currencies_edit'), date("Y-m-d H:i:s"), $VALID->inPOST('edit'), lang('#lang_all')[$x]]);
         }
     } else {
 
         for ($x = 0; $x < $LANG_COUNT; $x++) {
             // обновляем запись
-            $PDO->inPrepare("UPDATE " . TABLE_CURRENCIES . " SET name=?, code=?, iso_4217=?, value=?, default_value=?, symbol=?, symbol_position=?, decimal_places=?, last_updated=? WHERE id=? AND language=?", [$VALID->inPOST('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$x]), $VALID->inPOST('code_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$x]), $VALID->inPOST('iso_4217_edit'), $VALID->inPOST('value_edit'), $default_value, $VALID->inPOST('symbol_edit'), $VALID->inPOST('symbol_position_edit'), $VALID->inPOST('decimal_places_edit'), date("Y-m-d H:i:s"), $VALID->inPOST('edit'), lang('#lang_all')[$x]]);
+            $PDO->inPrepare("UPDATE " . TABLE_CURRENCIES . " SET name=?, code=?, iso_4217=?, value=?, default_value=?, symbol=?, symbol_position=?, decimal_places=?, last_updated=? WHERE id=? AND language=?", [$VALID->inPOST('name_currencies_edit_' . $x), $VALID->inPOST('code_currencies_edit_' . $x), $VALID->inPOST('iso_4217_currencies_edit'), $VALID->inPOST('value_currencies_edit'), $default_value, $VALID->inPOST('symbol_currencies_edit'), $VALID->inPOST('symbol_position_currencies_edit'), $VALID->inPOST('decimal_places_currencies_edit'), date("Y-m-d H:i:s"), $VALID->inPOST('edit'), lang('#lang_all')[$x]]);
         }
     }
     // Выводим сообщение об успехе

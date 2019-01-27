@@ -25,13 +25,13 @@
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="input-sm form-control" placeholder="<?php echo lang('name_full') ?>" type="text" name="<?php echo $SET->titleDir() . '_' . lang('#lang_all')[0] ?>" required />
+                                    <input class="input-sm form-control" placeholder="<?php echo lang('name_full') ?>" type="text" name="name_currencies_0" id="name_currencies_0" required />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                                    <input class="input-sm form-control" placeholder="<?php echo lang('name_little') ?>" type="text" name="code<?php echo lang('#lang_all')[0] ?>" id="code<?php echo lang('#lang_all')[0] ?>" required />
+                                    <input class="input-sm form-control" placeholder="<?php echo lang('name_little') ?>" type="text" name="code_currencies_0" id="code_currencies_0" required />
                                 </div>
                             </div>
                         </div>
@@ -46,13 +46,13 @@
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo lang('name_full') ?>" type="text" name="<?php echo $SET->titleDir() . '_' . lang('#lang_all')[$x] ?>" required />
+                                            <input class="input-sm form-control" placeholder="<?php echo lang('name_full') ?>" type="text" name="name_currencies_<?php echo $x ?>" id="name_currencies_<?php echo $x ?>" required />
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo lang('name_little') ?>" type="text" name="code<?php echo lang('#lang_all')[$x] ?>" id="code<?php echo lang('#lang_all')[$x] ?>" required />
+                                            <input class="input-sm form-control" placeholder="<?php echo lang('name_little') ?>" type="text" name="code_currencies_<?php echo $x ?>" id="code_currencies_<?php echo $x ?>" required />
                                         </div>
                                     </div>
                                 </div>
@@ -65,19 +65,19 @@
                         <div class="form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                                <input class="input-sm form-control" placeholder="<?php echo lang('iso_4217') ?>" type="text" pattern="[A-Za-z]{3}" name="iso_4217" id="iso_4217" required />
+                                <input class="input-sm form-control" placeholder="<?php echo lang('iso_4217') ?>" type="text" pattern="[A-Za-z]{3}" name="iso_4217_currencies" id="iso_4217_currencies" required />
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                                <input class="input-sm form-control" placeholder="<?php echo lang('currency_symbol') ?>" type="text" name="symbol" id="symbol" />
+                                <input class="input-sm form-control" placeholder="<?php echo lang('currency_symbol') ?>" type="text" name="symbol_currencies" id="symbol_currencies" />
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                                <select name="symbol_position" id="symbol_position" class="input-sm form-control">
+                                <select name="symbol_position_currencies" id="symbol_position_currencies" class="input-sm form-control">
                                     <option value="right"><?php echo lang('symbol_right') ?></option>
                                     <option value="left"><?php echo lang('symbol_left') ?></option>
                                 </select>
@@ -86,18 +86,18 @@
                         <div class="form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                <input class="input-sm form-control" placeholder="<?php echo lang('decimal_places') ?>" type="text" pattern="[0-9]{0,1}" name="decimal_places" id="decimal_places" required />
+                                <input class="input-sm form-control" placeholder="<?php echo lang('decimal_places') ?>" type="text" pattern="[0-9]{0,1}" name="decimal_places_currencies" id="decimal_places_currencies" required />
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                <input class="input-sm form-control" placeholder="<?php echo lang('value') ?>" type="text" pattern="\d+(\.\d{0,10})?" name="value" id="value" required />
+                                <input class="input-sm form-control" placeholder="<?php echo lang('value') ?>" type="text" pattern="\d+(\.\d{0,10})?" name="value_currencies" id="value_currencies" required />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="default_value"><?php echo lang('default_set') ?> </label>
-                            <input class="check-box" name="default_value" type="checkbox" checked>
+                            <label for="default_value_currencies"><?php echo lang('default_set') ?> </label>
+                            <input class="check-box" name="default_value_currencies" id="default_value_currencies" type="checkbox" checked>
                         </div>
                     </div>
                 </div>
