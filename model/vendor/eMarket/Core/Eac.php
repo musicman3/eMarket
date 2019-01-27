@@ -346,13 +346,15 @@ class Eac {
 
             for ($buf = 0; $buf < $count_session_buffer; $buf++) {
                 // Это категория
-                if (isset($_SESSION['buffer']['cat']) && count($_SESSION['buffer']['cat']) > 0) {
+                if (isset($_SESSION['buffer']['cat'][$buf]) && count($_SESSION['buffer']['cat']) > 0) {
                     // Получаем последний sort_category в текущем parent_id и увеличиваем его на 1
                     $sort_max = $PDO->selectPrepare("SELECT sort_category FROM " . $TABLE_CATEGORIES . " WHERE language=? AND parent_id=? ORDER BY sort_category DESC", [lang('#lang_all')[0], $parent_id_real]);
                     $sort_category = intval($sort_max) + 1;
                     // Обновляем данные
                     $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET parent_id=?, sort_category=? WHERE id=?", [$parent_id_real, $sort_category, $_SESSION['buffer']['cat'][$buf]]);
-                } elseif (isset($_SESSION['buffer']['prod']) && count($_SESSION['buffer']['prod']) > 0) {
+                }
+
+                if (isset($_SESSION['buffer']['prod'][$buf]) && count($_SESSION['buffer']['prod']) > 0) {
                     // Это товар
                     // Обновляем данные
                     $PDO->inPrepare("UPDATE " . $TABLE_PRODUCTS . " SET parent_id=? WHERE id=?", [$parent_id_real, $_SESSION['buffer']['prod'][$buf]]);
