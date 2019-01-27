@@ -43,13 +43,13 @@ class Eac {
         $parent_id_delete = self::delete($TABLE_CATEGORIES, $TABLE_PRODUCTS, $parent_id);
 
         // Если нажали на кнопку Вырезать
-        $parent_id_cut = self::cutCategory($TABLE_CATEGORIES, $parent_id);
+        $parent_id_cut = self::cut($TABLE_CATEGORIES, $parent_id);
 
         // Если нажали на кнопку Вставить
-        $parent_id_paste = self::pasteCategory($TABLE_CATEGORIES, $TABLE_PRODUCTS, $parent_id);
+        $parent_id_paste = self::paste($TABLE_CATEGORIES, $TABLE_PRODUCTS, $parent_id);
 
         // Если нажали на кнопку Скрыть/Отобразить
-        $parent_id_status = self::statusCategory($TABLE_CATEGORIES, $TABLE_PRODUCTS, $parent_id);
+        $parent_id_status = self::status($TABLE_CATEGORIES, $TABLE_PRODUCTS, $parent_id);
 
         // Сортировка мышкой EAC
         self::sortList(TABLE_CATEGORIES, $TOKEN);
@@ -218,8 +218,8 @@ class Eac {
             for ($i = 0; $i < count($idx); $i++) {
                 if (strstr($idx[$i], '_', true) != 'product') {
                     // Это категория
-                    $parent_id = self::dataParentIdCategory($TABLE_CATEGORIES, $idx[$i]);
-                    $keys = self::dataKeysCategory($TABLE_CATEGORIES, $idx[$i]);
+                    $parent_id = self::dataParentId($TABLE_CATEGORIES, $idx[$i]);
+                    $keys = self::dataKeys($TABLE_CATEGORIES, $idx[$i]);
 
                     $count_keys = count($keys); // Получаем количество значений в массиве
                     for ($x = 0; $x < $count_keys; $x++) {
@@ -237,6 +237,9 @@ class Eac {
                     //Удаляем из буффера, если есть
                     if (isset($_SESSION['buffer']['cat']) && $_SESSION['buffer']['cat'] != FALSE) {
                         $_SESSION['buffer']['cat'] = $FUNC->deleteValInArray($_SESSION['buffer']['cat'], [$idx[$i]]);
+                        if (count($_SESSION['buffer']['cat']) == 0) {
+                            unset($_SESSION['buffer']['cat']);
+                        }
                     }
                 } else {
                     // Это товар
@@ -246,7 +249,10 @@ class Eac {
 
                     //Удаляем из буффера, если есть
                     if (isset($_SESSION['buffer']['prod']) && $_SESSION['buffer']['prod'] != FALSE) {
-                        $_SESSION['buffer']['prod'] = $FUNC->deleteValInArray($_SESSION['buffer']['cat'], [$id_prod[1]]);
+                        $_SESSION['buffer']['prod'] = $FUNC->deleteValInArray($_SESSION['buffer']['prod'], [$id_prod[1]]);
+                        if (count($_SESSION['buffer']['prod']) == 0) {
+                            unset($_SESSION['buffer']['prod']);
+                        }
                     }
                 }
                 // Выводим сообщение об успехе
@@ -268,7 +274,7 @@ class Eac {
      * @param string $parent_id (идентификатор родительской категории)
      * @return string $parent_id (идентификатор родительской категории)
      */
-    private function cutCategory($TABLE_CATEGORIES, $parent_id) {
+    private function cut($TABLE_CATEGORIES, $parent_id) {
 
         $VALID = new \eMarket\Core\Valid;
         $FUNC = new \eMarket\Other\Func;
@@ -283,7 +289,7 @@ class Eac {
             for ($i = 0; $i < count($idx); $i++) {
 
                 $parent_id_real = (int) $VALID->inPOST('idsx_real_parent_id'); // получить значение из JS
-                $parent_id = self::dataParentIdCategory($TABLE_CATEGORIES, $idx[$i]);
+                $parent_id = self::dataParentId($TABLE_CATEGORIES, $idx[$i]);
 
                 //Вырезаем основную родительскую категорию    
                 if ($VALID->inPOST('idsx_cut_key') == 'cut') {
@@ -325,7 +331,7 @@ class Eac {
      * @param string $parent_id (идентификатор родительской категории)
      * @return string $parent_id (идентификатор родительской категории)
      */
-    private function pasteCategory($TABLE_CATEGORIES, $TABLE_PRODUCTS, $parent_id) {
+    private function paste($TABLE_CATEGORIES, $TABLE_PRODUCTS, $parent_id) {
 
         $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
@@ -371,7 +377,7 @@ class Eac {
      * @param string $parent_id (идентификатор родительской категории)
      * @return string $parent_id (идентификатор родительской категории)
      */
-    private function statusCategory($TABLE_CATEGORIES, $TABLE_PRODUCTS, $parent_id) {
+    private function status($TABLE_CATEGORIES, $TABLE_PRODUCTS, $parent_id) {
 
         $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
@@ -396,8 +402,8 @@ class Eac {
             for ($i = 0; $i < count($idx); $i++) {
                 if (strstr($idx[$i], '_', true) != 'product') {
                     // Это категория
-                    $parent_id = self::dataParentIdCategory($TABLE_CATEGORIES, $idx[$i]);
-                    $keys = self::dataKeysCategory($TABLE_CATEGORIES, $idx[$i]);
+                    $parent_id = self::dataParentId($TABLE_CATEGORIES, $idx[$i]);
+                    $keys = self::dataKeys($TABLE_CATEGORIES, $idx[$i]);
 
                     $count_keys = count($keys); // Получаем количество значений в массиве
                     for ($x = 0; $x < $count_keys; $x++) {
@@ -449,7 +455,7 @@ class Eac {
      * @param string $idx (идентификатор)
      * @return string $parent_id (идентификатор родительской категории)
      */
-    private function dataParentIdCategory($TABLE_CATEGORIES, $idx) {
+    private function dataParentId($TABLE_CATEGORIES, $idx) {
 
         $PDO = new \eMarket\Core\Pdo;
 
@@ -473,7 +479,7 @@ class Eac {
      * @param string $idx (идентификатор)
      * @return array $keys
      */
-    private function dataKeysCategory($TABLE_CATEGORIES, $idx) {
+    private function dataKeys($TABLE_CATEGORIES, $idx) {
 
         $PDO = new \eMarket\Core\Pdo;
 

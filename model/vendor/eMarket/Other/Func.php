@@ -217,8 +217,6 @@ class Func {
         if (isset($array) && is_array($array)) {
             $result = array_diff($array, $val);
             $array_return = array_values($result); // Сбрасываем ключи
-        }
-        if (count($array_return) > 0) {
             return $array_return;
         } else {
             return FALSE;
