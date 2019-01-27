@@ -27,7 +27,7 @@ require(ROOT . '/controller/admin/pages/settings/countries/modal/edit.php');
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="input-sm form-control" type="text" name="name_edit_<?php echo $SET->titleDir() . '_' . lang('#lang_all')[0] ?>" id="name_edit0" required />
+                                    <input class="input-sm form-control" type="text" name="name_countries_edit_0" id="name_countries_edit_0" required />
                                 </div>
                             </div>
                         </div>
@@ -41,7 +41,7 @@ require(ROOT . '/controller/admin/pages/settings/countries/modal/edit.php');
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" type="text" name="name_edit_<?php echo $SET->titleDir() . '_' . lang('#lang_all')[$x] ?>" id="name_edit<?php echo $x ?>" required />
+                                            <input class="input-sm form-control" type="text" name="name_countries_edit_<?php echo $x ?>" id="name_countries_edit_<?php echo $x ?>" required />
                                         </div>
                                     </div>
                                 </div>
@@ -54,18 +54,18 @@ require(ROOT . '/controller/admin/pages/settings/countries/modal/edit.php');
                         <div class="form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                <input class="form-control" type="text" name="alpha_2_edit" id="alpha_2_edit" required />
+                                <input class="form-control" type="text" name="alpha_2_countries_edit" id="alpha_2_countries_edit" required />
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                <input class="form-control" type="text" name="alpha_3_edit" id="alpha_3_edit" required />
+                                <input class="form-control" type="text" name="alpha_3_countries_edit" id="alpha_3_countries_edit" required />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="address_format_edit"><?php echo lang('address_format') ?></label>
-                            <textarea class="form-control" rows="5" name="address_format_edit" id="address_format_edit"></textarea>
+                            <label for="address_format_countries_edit"><?php echo lang('address_format') ?></label>
+                            <textarea class="form-control" rows="5" name="address_format_countries_edit" id="address_format_countries_edit"></textarea>
                         </div> 
                     </div>
                 </div>
