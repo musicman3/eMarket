@@ -201,6 +201,7 @@ class Eac {
     /**
      * Удаляем категорию в EAC
      * @param string $TABLE_CATEGORIES (название таблицы категорий)
+     * @param string $TABLE_PRODUCTS (название таблицы товаров)
      * @param string $parent_id (идентификатор родительской категории)
      * @return string $parent_id (идентификатор родительской категории)
      */
@@ -328,6 +329,7 @@ class Eac {
     /**
      * Вставляем категорию в EAC
      * @param string $TABLE_CATEGORIES (название таблицы категорий)
+     * @param string $TABLE_PRODUCTS (название таблицы товаров)
      * @param string $parent_id (идентификатор родительской категории)
      * @return string $parent_id (идентификатор родительской категории)
      */
@@ -374,6 +376,7 @@ class Eac {
     /**
      * Статус категорий в EAC
      * @param string $TABLE_CATEGORIES (название таблицы категорий)
+     * @param string $TABLE_PRODUCTS (название таблицы товаров)
      * @param string $parent_id (идентификатор родительской категории)
      * @return string $parent_id (идентификатор родительской категории)
      */
