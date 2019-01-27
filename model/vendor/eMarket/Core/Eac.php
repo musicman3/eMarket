@@ -49,7 +49,7 @@ class Eac {
         $parent_id_paste = self::pasteCategory($TABLE_CATEGORIES, $TABLE_PRODUCTS, $parent_id);
 
         // Если нажали на кнопку Скрыть/Отобразить
-        $parent_id_status = self::statusCategory($TABLE_CATEGORIES, $parent_id);
+        $parent_id_status = self::statusCategory($TABLE_CATEGORIES, $TABLE_PRODUCTS, $parent_id);
 
         // Сортировка мышкой EAC
         self::sortList(TABLE_CATEGORIES, $TOKEN);
@@ -228,16 +228,8 @@ class Eac {
                         $PDO->inPrepare("DELETE FROM " . $TABLE_PRODUCTS . " WHERE parent_id=?", [$keys[$x]]);
 
                         //Удаляем подкатегории
-                        $PDO->inPrepare("DELETE FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$keys[$x]]);
-
-                        //Удаляем из буффера, если есть
-                        if (isset($_SESSION['buffer']['cat']) && $_SESSION['buffer']['cat'] != FALSE) {
-                            $_SESSION['buffer']['cat'] = $FUNC->deleteValInArray($_SESSION['buffer']['cat'], [$keys[$x]]);
-                        }
+                        $PDO->inPrepare("DELETE FROM " . $TABLE_CATEGORIES . " WHERE parent_id=?", [$keys[$x]]);
                     }
-
-                    //Удаляем товар  
-                    $PDO->inPrepare("DELETE FROM " . $TABLE_PRODUCTS . " WHERE parent_id=?", [$idx[$i]]);
 
                     //Удаляем основную категорию    
                     $PDO->inPrepare("DELETE FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$idx[$i]]);
@@ -246,15 +238,19 @@ class Eac {
                     if (isset($_SESSION['buffer']['cat']) && $_SESSION['buffer']['cat'] != FALSE) {
                         $_SESSION['buffer']['cat'] = $FUNC->deleteValInArray($_SESSION['buffer']['cat'], [$idx[$i]]);
                     }
-
-                    // Выводим сообщение об успехе
-                    $_SESSION['message'] = ['success', lang('action_completed_successfully')];
                 } else {
                     // Это товар
-                    //Удаляем товар
                     $id_prod = explode('product_', $idx[$i]);
+                    //Удаляем основной товар
                     $PDO->inPrepare("DELETE FROM " . $TABLE_PRODUCTS . " WHERE id=?", [$id_prod[1]]);
+
+                    //Удаляем из буффера, если есть
+                    if (isset($_SESSION['buffer']['prod']) && $_SESSION['buffer']['prod'] != FALSE) {
+                        $_SESSION['buffer']['prod'] = $FUNC->deleteValInArray($_SESSION['buffer']['cat'], [$id_prod[1]]);
+                    }
                 }
+                // Выводим сообщение об успехе
+                $_SESSION['message'] = ['success', lang('action_completed_successfully')];
             }
         }
 
@@ -375,7 +371,7 @@ class Eac {
      * @param string $parent_id (идентификатор родительской категории)
      * @return string $parent_id (идентификатор родительской категории)
      */
-    private function statusCategory($TABLE_CATEGORIES, $parent_id) {
+    private function statusCategory($TABLE_CATEGORIES, $TABLE_PRODUCTS, $parent_id) {
 
         $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
@@ -398,26 +394,43 @@ class Eac {
                 $status = 0;
             }
             for ($i = 0; $i < count($idx); $i++) {
-                $parent_id = self::dataParentIdCategory($TABLE_CATEGORIES, $idx[$i]);
-                $keys = self::dataKeysCategory($TABLE_CATEGORIES, $idx[$i]);
+                if (strstr($idx[$i], '_', true) != 'product') {
+                    // Это категория
+                    $parent_id = self::dataParentIdCategory($TABLE_CATEGORIES, $idx[$i]);
+                    $keys = self::dataKeysCategory($TABLE_CATEGORIES, $idx[$i]);
 
-                $count_keys = count($keys); // Получаем количество значений в массиве
-                for ($x = 0; $x < $count_keys; $x++) {
+                    $count_keys = count($keys); // Получаем количество значений в массиве
+                    for ($x = 0; $x < $count_keys; $x++) {
 
-                    //Обновляем статус подкатегорий
-                    if (($VALID->inPOST('idsx_statusOn_key') == 'statusOn')
-                            or ( $VALID->inPOST('idsx_statusOff_key') == 'statusOff')) {
-                        $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET status=? WHERE id=?", [$status, $keys[$x]]);
-                        if ($parent_id_real > 0) {
-                            $parent_id = $parent_id_real; // Возвращаемся в свою директорию после "Вырезать"
+                        //Обновляем статус подкатегорий
+                        if (($VALID->inPOST('idsx_statusOn_key') == 'statusOn')
+                                or ( $VALID->inPOST('idsx_statusOff_key') == 'statusOff')) {
+
+                            // Это категория
+                            $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET status=? WHERE parent_id=?", [$status, $keys[$x]]);
+
+                            // Это товар
+                            $PDO->inPrepare("UPDATE " . $TABLE_PRODUCTS . " SET status=? WHERE parent_id=?", [$status, $keys[$x]]);
+
+                            if ($parent_id_real > 0) {
+                                $parent_id = $parent_id_real; // Возвращаемся в свою директорию после "Вырезать"
+                            }
                         }
                     }
-                }
 
-                //Обновляем статус основной категории
-                if (($VALID->inPOST('idsx_statusOn_key') == 'statusOn')
-                        or ( $VALID->inPOST('idsx_statusOff_key') == 'statusOff')) {
-                    $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET status=? WHERE id=?", [$status, $idx[$i]]);
+                    //Обновляем статус основной категории
+                    if (($VALID->inPOST('idsx_statusOn_key') == 'statusOn')
+                            or ( $VALID->inPOST('idsx_statusOff_key') == 'statusOff')) {
+                        $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET status=? WHERE id=?", [$status, $idx[$i]]);
+                    }
+                } else {
+                    // Это товар
+                    //Обновляем статус основного товара
+                    if (($VALID->inPOST('idsx_statusOn_key') == 'statusOn')
+                            or ( $VALID->inPOST('idsx_statusOff_key') == 'statusOff')) {
+                        $id_prod = explode('product_', $idx[$i]);
+                        $PDO->inPrepare("UPDATE " . $TABLE_PRODUCTS . " SET status=? WHERE id=?", [$status, $id_prod[1]]);
+                    }
                 }
             }
         }
