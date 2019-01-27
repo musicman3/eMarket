@@ -25,7 +25,7 @@
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="<?php echo $SET->titleDir() . '_' . lang('#lang_all')[0] ?>" required />
+                                    <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="name_taxes_0" id="name_taxes_0" required />
                                 </div>
                             </div>
                         </div>
@@ -40,7 +40,7 @@
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="<?php echo $SET->titleDir() . '_' . lang('#lang_all')[$x] ?>" required />
+                                            <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="name_taxes_<?php echo $x ?>" id="name_taxes_<?php echo $x ?>" required />
                                         </div>
                                     </div>
                                 </div>
@@ -54,7 +54,7 @@
                         <div class="form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                <input class="input-sm form-control" placeholder="<?php echo lang('tax_rate') ?>" type="text" pattern="\d+(\.\d{0,2})?" name="rate" id="rate" required />
+                                <input class="input-sm form-control" placeholder="<?php echo lang('tax_rate') ?>" type="text" pattern="\d+(\.\d{0,2})?" name="rate_taxes" id="rate_taxes" required />
                             </div>
                         </div>
                     </div>

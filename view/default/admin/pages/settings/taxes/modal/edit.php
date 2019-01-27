@@ -26,7 +26,7 @@ require(ROOT . '/controller/admin/pages/settings/taxes/modal/edit.php');
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="input-sm form-control" type="text" name="name_edit_<?php echo $SET->titleDir() . '_' . lang('#lang_all')[0] ?>" id="name_edit0" required />
+                                    <input class="input-sm form-control" type="text" name="name_taxes_edit_0" id="name_taxes_edit_0" required />
                                 </div>
                             </div>
                         </div>
@@ -40,7 +40,7 @@ require(ROOT . '/controller/admin/pages/settings/taxes/modal/edit.php');
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" type="text" name="name_edit_<?php echo $SET->titleDir() . '_' . lang('#lang_all')[$x] ?>" id="name_edit<?php echo $x ?>" required />
+                                            <input class="input-sm form-control" type="text" name="name_taxes_edit_<?php echo $x ?>" id="name_taxes_edit_<?php echo $x ?>" required />
                                         </div>
                                     </div>
                                 </div>
@@ -51,7 +51,7 @@ require(ROOT . '/controller/admin/pages/settings/taxes/modal/edit.php');
                         <div class="form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                <input class="input-sm form-control" type="text" name="rate_edit" pattern="\d+(\.\d{0,2})?" id="rate_edit" required />
+                                <input class="input-sm form-control" type="text" pattern="\d+(\.\d{0,2})?" name="rate_taxes_edit" id="rate_taxes_edit" required />
                             </div>
                         </div>
                     </div>
