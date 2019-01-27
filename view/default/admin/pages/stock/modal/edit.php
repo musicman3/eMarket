@@ -33,7 +33,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit.php');
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="input-sm form-control" type="text" name="name_edit_0" id="name_edit_0" required />
+                                    <input class="input-sm form-control" type="text" name="name_categories_stock_edit_0" id="name_categories_stock_edit_0" required />
                                 </div>
                             </div>
                         </div>
@@ -48,7 +48,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit.php');
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" type="text" name="name_edit_<?php echo $x ?>" id="name_edit_<?php echo $x ?>" required />
+                                            <input class="input-sm form-control" type="text" name="name_categories_stock_edit_<?php echo $x ?>" id="name_categories_stock_edit_<?php echo $x ?>" required />
                                         </div>
                                     </div>
                                 </div>

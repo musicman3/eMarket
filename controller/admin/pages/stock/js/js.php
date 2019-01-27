@@ -174,7 +174,7 @@ if (isset($_SESSION['buffer'])) {
 
                                 // Ищем id и добавляем данные
                                 for (x = 0; x < name_edit.length; x++) {
-                                    $('#name_edit_' + x).val(name_edit[x][modal_id]);
+                                    $('#name_categories_stock_edit_' + x).val(name_edit[x][modal_id]);
                                 }
                                 $('#js_edit').val(modal_id);
 

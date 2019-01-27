@@ -26,7 +26,7 @@
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="name_0" required />
+                                    <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="name_categories_stock_0" id="name_categories_stock_0" required />
                                 </div>
                             </div>
                         </div>
@@ -40,7 +40,7 @@
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="name_<?php echo $x ?>" required />
+                                            <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="name_categories_stock_<?php echo $x ?>" id="name_categories_stock_<?php echo $x ?>" required />
                                         </div>
                                     </div>
                                 </div>
@@ -70,8 +70,8 @@
                         <div id="logo-add" class="text-center"></div>
                     </div>
                     <div class="form-group">
-                        <label for="view_cat"><?php echo lang('display') ?> </label>
-                        <input class="check-box" type="checkbox" name="view_cat" checked>
+                        <label for="view_categories_stock"><?php echo lang('display') ?> </label>
+                        <input class="check-box" type="checkbox" name="view_categories_stock" id="view_categories_stock" checked>
                     </div>
                 </div>
                 <div class="modal-footer">
