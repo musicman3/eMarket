@@ -24,7 +24,7 @@ if ($VALID->inPOST('add')) {
 
     // добавляем запись для всех вкладок
     for ($x = 0; $x < $LANG_COUNT; $x++) {
-        $PDO->inPrepare("INSERT INTO " . TABLE_VENDOR_CODES . " SET id=?, name=?, language=?, vendor_code=?, default_vendor_code=?", [$id, $VALID->inPOST($SET->titleDir() . '_' . lang('#lang_all')[$x]), lang('#lang_all')[$x], $VALID->inPOST('vendor_code' . lang('#lang_all')[$x]), $default_vendor_code]);
+        $PDO->inPrepare("INSERT INTO " . TABLE_VENDOR_CODES . " SET id=?, name=?, language=?, vendor_code=?, default_vendor_code=?", [$id, $VALID->inPOST('name_vendor_codes_' . $x), lang('#lang_all')[$x], $VALID->inPOST('vendor_code_' . $x), $default_vendor_code]);
     }
 
     // Выводим сообщение об успехе
@@ -43,7 +43,7 @@ if ($VALID->inPOST('edit')) {
 
     for ($x = 0; $x < $LANG_COUNT; $x++) {
         // обновляем запись
-        $PDO->inPrepare("UPDATE " . TABLE_VENDOR_CODES . " SET name=?, vendor_code=?, default_vendor_code=? WHERE id=? AND language=?", [$VALID->inPOST('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$x]), $VALID->inPOST('vendor_code_edit' . lang('#lang_all')[$x]), $default_vendor_code, $VALID->inPOST('edit'), lang('#lang_all')[$x]]);
+        $PDO->inPrepare("UPDATE " . TABLE_VENDOR_CODES . " SET name=?, vendor_code=?, default_vendor_code=? WHERE id=? AND language=?", [$VALID->inPOST('name_vendor_codes_edit_' . $x), $VALID->inPOST('vendor_code_edit_' . $x), $default_vendor_code, $VALID->inPOST('edit'), lang('#lang_all')[$x]]);
     }
 
     // Выводим сообщение об успехе

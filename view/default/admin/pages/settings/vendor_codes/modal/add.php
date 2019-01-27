@@ -25,13 +25,13 @@
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="input-sm form-control" placeholder="<?php echo lang('product_vendor_code') ?>" type="text" name="<?php echo $SET->titleDir() . '_' . lang('#lang_all')[0] ?>" required />
+                                    <input class="input-sm form-control" placeholder="<?php echo lang('product_vendor_code') ?>" type="text" name="name_vendor_codes_0" id="name_vendor_codes_0" required />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-group has-success">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                                    <input class="input-sm form-control" placeholder="<?php echo lang('name_description') ?>" type="text" name="vendor_code<?php echo lang('#lang_all')[0] ?>" id="vendor_code<?php echo lang('#lang_all')[0] ?>" />
+                                    <input class="input-sm form-control" placeholder="<?php echo lang('name_description') ?>" type="text" name="vendor_code_0" id="vendor_code_0" />
                                 </div>
                             </div>
                         </div>
@@ -46,13 +46,13 @@
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo lang('product_vendor_code') ?>" type="text" name="<?php echo $SET->titleDir() . '_' . lang('#lang_all')[$x] ?>" required />
+                                            <input class="input-sm form-control" placeholder="<?php echo lang('product_vendor_code') ?>" type="text" name="name_vendor_codes_<?php echo $x ?>" id="name_vendor_codes_<?php echo $x ?>" required />
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="input-group has-success">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo lang('name_description') ?>" type="text" name="vendor_code<?php echo lang('#lang_all')[$x] ?>" id="vendor_code<?php echo lang('#lang_all')[$x] ?>" />
+                                            <input class="input-sm form-control" placeholder="<?php echo lang('name_description') ?>" type="text" name="vendor_code_<?php echo $x ?>" id="vendor_code_<?php echo $x ?>" />
                                         </div>
                                     </div>
                                 </div>
@@ -64,7 +64,7 @@
                         ?>
                         <div class="form-group">
                             <label for="default_vendor_code"><?php echo lang('default_set') ?> </label>
-                            <input class="check-box" name="default_vendor_code" type="checkbox" checked>
+                            <input class="check-box" name="default_vendor_code" id="default_vendor_code" type="checkbox" checked>
                         </div>
                     </div>
                 </div>

@@ -28,13 +28,13 @@ require(ROOT . '/controller/admin/pages/settings/vendor_codes/modal/edit.php');
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="input-sm form-control" type="text" name="name_edit_<?php echo $SET->titleDir() . '_' . lang('#lang_all')[0] ?>" id="name_edit0" required />
+                                    <input class="input-sm form-control" type="text" name="name_vendor_codes_edit_0" id="name_vendor_codes_edit_0" required />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-group has-success">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                    <input class="input-sm form-control" type="text" name="vendor_code_edit<?php echo lang('#lang_all')[0] ?>" id="vendor_code_edit0" />
+                                    <input class="input-sm form-control" type="text" name="vendor_code_edit_0" id="vendor_code_edit_0" />
                                 </div>
                             </div>
                         </div>
@@ -47,15 +47,15 @@ require(ROOT . '/controller/admin/pages/settings/vendor_codes/modal/edit.php');
 
                                 <div id="<?php echo lang('#lang_all')[$x] . $modal_id ?>" class="tab-pane fade">
                                     <div class="form-group">
-                                        <div class="input-group has-success">
+                                        <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" type="text" name="name_edit_<?php echo $SET->titleDir() . '_' . lang('#lang_all')[$x] ?>" id="name_edit<?php echo $x ?>" />
+                                            <input class="input-sm form-control" type="text" name="name_vendor_codes_edit_<?php echo $x ?>" id="name_vendor_codes_edit_<?php echo $x ?>" />
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <div class="input-group has-error">
+                                        <div class="input-group has-success">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                            <input class="input-sm form-control" type="text" name="vendor_code_edit<?php echo lang('#lang_all')[$x] ?>" id="vendor_code_edit<?php echo $x ?>" required />
+                                            <input class="input-sm form-control" type="text" name="vendor_code_edit_<?php echo $x ?>" id="vendor_code_edit_<?php echo $x ?>" required />
                                         </div>
                                     </div>
                                 </div>
@@ -67,7 +67,7 @@ require(ROOT . '/controller/admin/pages/settings/vendor_codes/modal/edit.php');
                         ?>
                         <div class="form-group">
                             <label for="default_vendor_code_edit"><?php echo lang('default_set') ?> </label>
-                            <input class="check-box" id="default_vendor_code_edit" type="checkbox" name="default_vendor_code_edit">
+                            <input class="check-box" name="default_vendor_code_edit" id="default_vendor_code_edit" type="checkbox">
                         </div>
                     </div>
                 </div>

@@ -18,8 +18,8 @@
 
             // Ищем id и добавляем данные
             for (x = 0; x < name_edit.length; x++) {
-                $('#name_edit' + x).val(name_edit[x][modal_id]);
-                $('#vendor_code_edit' + x).val(code_edit[x][modal_id]);
+                $('#name_vendor_codes_edit_' + x).val(name_edit[x][modal_id]);
+                $('#vendor_code_edit_' + x).val(code_edit[x][modal_id]);
             }
 
             $('#js_edit').val(modal_id);
