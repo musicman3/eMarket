@@ -116,11 +116,11 @@
                                         <select name="tax" id="tax" class="input-sm form-control">
                                             <option selected hidden>-- Налог --</option>
                                             <?php
-                                            for ($tx = 0; $tx < count($taxes_all); $tx++) {
+                                            for ($x = 0; $x < count($taxes_all); $x++) {
 
                                                 ?>
 
-                                                <option><?php echo $taxes_all[$tx] ?></option>
+                                                <option><?php echo $taxes_all[$x] ?></option>
 
                                                 <?php
                                             }
@@ -143,11 +143,11 @@
                                         <select name="unit" id="unit" class="input-sm form-control">
                                             <option disabled selected hidden>-- <?php echo lang('product_unit') ?> --</option>
                                             <?php
-                                            for ($un = 0; $un < count($units_all); $un++) {
+                                            for ($x = 0; $x < count($units_all); $x++) {
 
                                                 ?>
 
-                                                <option><?php echo $units_all[$un] ?></option>
+                                                <option><?php echo $units_all[$x] ?></option>
 
                                                 <?php
                                             }
@@ -175,11 +175,19 @@
                                 <div class="col-left form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
-                                        <select name="manufacturer" id="manufacturer" class="input-sm form-control">
-                                            <option disabled selected hidden>-- Производитель --</option>
-                                            <option>Acer</option>
-                                            <option>Asus</option>
-                                            <option>Intel</option>
+                                        <select name="manufacturers" id="manufacturers" class="input-sm form-control">
+                                            <option selected hidden>-- Производитель --</option>
+                                            <?php
+                                            for ($x = 0; $x < count($manufacturers_all); $x++) {
+
+                                                ?>
+
+                                                <option><?php echo $manufacturers_all[$x] ?></option>
+
+                                                <?php
+                                            }
+
+                                            ?>
                                         </select>
                                     </div>
                                 </div>
@@ -199,16 +207,19 @@
                                 <div class="col-left form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
-                                        <select name="vendor_code" id="vendor_code" class="input-sm form-control">
-                                            <option disabled selected hidden>-- Идентификатор --</option>
-                                            <option>Нет</option>
-                                            <option>Артикул</option>
-                                            <option>SCU</option>
-                                            <option>UPC</option>
-                                            <option>EAN</option>
-                                            <option>JAN</option>
-                                            <option>ISBN</option>
-                                            <option>MPN</option>
+                                        <select name="vendor_codes" id="vendor_codes" class="input-sm form-control">
+                                            <option selected hidden>-- Идентификатор --</option>
+                                            <?php
+                                            for ($x = 0; $x < count($vendor_codes_all); $x++) {
+
+                                                ?>
+
+                                                <option><?php echo $vendor_codes_all[$x] ?></option>
+
+                                                <?php
+                                            }
+
+                                            ?>
                                         </select>
                                     </div>
                                 </div>
@@ -223,11 +234,19 @@
                                 <div class="col-left form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
-                                        <select name="unit_weight" id="unit_weight" class="input-sm form-control">
-                                            <option disabled selected hidden>-- Вес --</option>
-                                            <option>кг.</option>
-                                            <option>гр.</option>
-                                            <option>унц.</option>
+                                        <select name="weight" id="weight" class="input-sm form-control">
+                                            <option selected hidden>-- Вес --</option>
+                                            <?php
+                                            for ($x = 0; $x < count($weight_all); $x++) {
+
+                                                ?>
+
+                                                <option><?php echo $weight_all[$x] ?></option>
+
+                                                <?php
+                                            }
+
+                                            ?>
                                         </select>
                                     </div>
                                 </div>
@@ -248,11 +267,19 @@
                                 <div class="col-right form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
-                                        <select name="unit_lenght" id="unit_lenght" class="input-sm form-control">
-                                            <option disabled selected hidden>-- Размер --</option>
-                                            <option>мм</option>
-                                            <option>см</option>
-                                            <option>м</option>
+                                        <select name="length" id="length" class="input-sm form-control">
+                                            <option selected hidden>-- Размер --</option>
+                                            <?php
+                                            for ($x = 0; $x < count($length_all); $x++) {
+
+                                                ?>
+
+                                                <option><?php echo $length_all[$x] ?></option>
+
+                                                <?php
+                                            }
+
+                                            ?>
                                         </select>
                                     </div>
                                 </div>

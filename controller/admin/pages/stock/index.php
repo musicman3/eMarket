@@ -20,7 +20,19 @@ $parent_id = $EAC_ENGINE[1];
 $taxes_all = $PDO->getCol("SELECT name FROM " . TABLE_TAXES . " WHERE language=?", [lang('#lang_all')[0]]);
 
 // Формируем массив Единица измерения для выпадающего списка
-$units_all = $PDO->getCol("SELECT unit FROM " . TABLE_UNITS . " WHERE language=?", [lang('#lang_all')[0]]);
+$units_all = $PDO->getCol("SELECT name FROM " . TABLE_UNITS . " WHERE language=?", [lang('#lang_all')[0]]);
+
+// Формируем массив Размер измерения для выпадающего списка
+$length_all = $PDO->getCol("SELECT name FROM " . TABLE_LENGTH . " WHERE language=?", [lang('#lang_all')[0]]);
+
+// Формируем массив Вес измерения для выпадающего списка
+$weight_all = $PDO->getCol("SELECT name FROM " . TABLE_WEIGHT . " WHERE language=?", [lang('#lang_all')[0]]);
+
+// Формируем массив Вес измерения для выпадающего списка
+$vendor_codes_all = $PDO->getCol("SELECT name FROM " . TABLE_VENDOR_CODES . " WHERE language=?", [lang('#lang_all')[0]]);
+
+// Формируем массив Производитель измерения для выпадающего списка
+$manufacturers_all = $PDO->getCol("SELECT name FROM " . TABLE_MANUFACTURERS . " WHERE language=?", [lang('#lang_all')[0]]);
 
 
 // КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
