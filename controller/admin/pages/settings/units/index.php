@@ -24,7 +24,7 @@ if ($VALID->inPOST('add')) {
 
     // добавляем запись для всех вкладок
     for ($x = 0; $x < $LANG_COUNT; $x++) {
-        $PDO->inPrepare("INSERT INTO " . TABLE_UNITS . " SET id=?, name=?, language=?, unit=?, default_unit=?", [$id, $VALID->inPOST($SET->titleDir() . '_' . lang('#lang_all')[$x]), lang('#lang_all')[$x], $VALID->inPOST('unit' . lang('#lang_all')[$x]), $default_unit]);
+        $PDO->inPrepare("INSERT INTO " . TABLE_UNITS . " SET id=?, name=?, language=?, unit=?, default_unit=?", [$id, $VALID->inPOST('name_units_' . $x), lang('#lang_all')[$x], $VALID->inPOST('unit_units_' . $x), $default_unit]);
     }
 
     // Выводим сообщение об успехе
@@ -43,7 +43,7 @@ if ($VALID->inPOST('edit')) {
 
     for ($x = 0; $x < $LANG_COUNT; $x++) {
         // обновляем запись
-        $PDO->inPrepare("UPDATE " . TABLE_UNITS . " SET name=?, unit=?, default_unit=? WHERE id=? AND language=?", [$VALID->inPOST('name_edit_' . $SET->titleDir() . '_' . lang('#lang_all')[$x]), $VALID->inPOST('unit_edit' . lang('#lang_all')[$x]), $default_unit, $VALID->inPOST('edit'), lang('#lang_all')[$x]]);
+        $PDO->inPrepare("UPDATE " . TABLE_UNITS . " SET name=?, unit=?, default_unit=? WHERE id=? AND language=?", [$VALID->inPOST('name_units_edit_' . $x), $VALID->inPOST('unit_units_edit' . $x), $default_unit, $VALID->inPOST('edit'), lang('#lang_all')[$x]]);
     }
 
     // Выводим сообщение об успехе

@@ -27,13 +27,13 @@ require(ROOT . '/controller/admin/pages/settings/units/modal/edit.php');
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="input-sm form-control" type="text" name="name_edit_<?php echo $SET->titleDir() . '_' . lang('#lang_all')[0] ?>" id="name_edit0" required />
+                                    <input class="input-sm form-control" type="text" name="name_units_edit_0" id="name_units_edit_0" required />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                    <input class="input-sm form-control" type="text" name="unit_edit<?php echo lang('#lang_all')[0] ?>" id="unit_edit0" required />
+                                    <input class="input-sm form-control" type="text" name="unit_units_edit_0" id="unit_units_edit_0" required />
                                 </div>
                             </div>
                         </div>
@@ -48,13 +48,13 @@ require(ROOT . '/controller/admin/pages/settings/units/modal/edit.php');
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" type="text" name="name_edit_<?php echo $SET->titleDir() . '_' . lang('#lang_all')[$x] ?>" id="name_edit<?php echo $x ?>" required />
+                                            <input class="input-sm form-control" type="text" name="name_units_edit_<?php echo $x ?>" id="name_units_edit_<?php echo $x ?>" required />
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                            <input class="input-sm form-control" type="text" name="unit_edit<?php echo lang('#lang_all')[$x] ?>" id="unit_edit<?php echo $x ?>" required />
+                                            <input class="input-sm form-control" type="text" name="unit_units_edit_<?php echo $x ?>" id="unit_units_edit_<?php echo $x ?>" required />
                                         </div>
                                     </div>
                                 </div>
@@ -66,7 +66,7 @@ require(ROOT . '/controller/admin/pages/settings/units/modal/edit.php');
 
                         <div class="form-group">
                             <label for="default_unit_edit"><?php echo lang('default_set') ?> </label>
-                            <input class="check-box" id="default_unit_edit" type="checkbox" name="default_unit_edit">
+                            <input class="check-box" name="default_unit_edit" id="default_unit_edit" type="checkbox">
                         </div>
                     </div>
                 </div>
