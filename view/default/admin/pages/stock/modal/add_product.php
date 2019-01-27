@@ -115,17 +115,11 @@
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
                                         <select name="tax" id="tax" class="input-sm form-control">
                                             <option selected hidden>-- Налог --</option>
-                                            <?php
-                                            for ($x = 0; $x < count($taxes_all); $x++) {
-
-                                                ?>
+                                            <?php for ($x = 0; $x < count($taxes_all); $x++) { ?>
 
                                                 <option><?php echo $taxes_all[$x] ?></option>
 
-                                                <?php
-                                            }
-
-                                            ?>
+                                            <?php } ?>
                                         </select>
                                     </div>
                                 </div>
@@ -142,17 +136,11 @@
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
                                         <select name="unit" id="unit" class="input-sm form-control">
                                             <option disabled selected hidden>-- <?php echo lang('product_unit') ?> --</option>
-                                            <?php
-                                            for ($x = 0; $x < count($units_all); $x++) {
-
-                                                ?>
+                                            <?php for ($x = 0; $x < count($units_all); $x++) { ?>
 
                                                 <option><?php echo $units_all[$x] ?></option>
 
-                                                <?php
-                                            }
-
-                                            ?>
+                                            <?php } ?>
                                         </select>
                                     </div>
                                 </div>
@@ -177,17 +165,11 @@
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
                                         <select name="manufacturers" id="manufacturers" class="input-sm form-control">
                                             <option selected hidden>-- Производитель --</option>
-                                            <?php
-                                            for ($x = 0; $x < count($manufacturers_all); $x++) {
-
-                                                ?>
+                                            <?php for ($x = 0; $x < count($manufacturers_all); $x++) { ?>
 
                                                 <option><?php echo $manufacturers_all[$x] ?></option>
 
-                                                <?php
-                                            }
-
-                                            ?>
+                                            <?php } ?>
                                         </select>
                                     </div>
                                 </div>
@@ -209,17 +191,11 @@
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
                                         <select name="vendor_codes" id="vendor_codes" class="input-sm form-control">
                                             <option selected hidden>-- Идентификатор --</option>
-                                            <?php
-                                            for ($x = 0; $x < count($vendor_codes_all); $x++) {
-
-                                                ?>
+                                            <?php for ($x = 0; $x < count($vendor_codes_all); $x++) { ?>
 
                                                 <option><?php echo $vendor_codes_all[$x] ?></option>
 
-                                                <?php
-                                            }
-
-                                            ?>
+                                            <?php } ?>
                                         </select>
                                     </div>
                                 </div>
@@ -236,17 +212,11 @@
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
                                         <select name="weight" id="weight" class="input-sm form-control">
                                             <option selected hidden>-- Вес --</option>
-                                            <?php
-                                            for ($x = 0; $x < count($weight_all); $x++) {
-
-                                                ?>
+                                            <?php for ($x = 0; $x < count($weight_all); $x++) { ?>
 
                                                 <option><?php echo $weight_all[$x] ?></option>
 
-                                                <?php
-                                            }
-
-                                            ?>
+                                            <?php } ?>
                                         </select>
                                     </div>
                                 </div>
@@ -269,17 +239,11 @@
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
                                         <select name="length" id="length" class="input-sm form-control">
                                             <option selected hidden>-- Размер --</option>
-                                            <?php
-                                            for ($x = 0; $x < count($length_all); $x++) {
-
-                                                ?>
+                                            <?php for ($x = 0; $x < count($length_all); $x++) { ?>
 
                                                 <option><?php echo $length_all[$x] ?></option>
 
-                                                <?php
-                                            }
-
-                                            ?>
+                                            <?php } ?>
                                         </select>
                                     </div>
                                 </div>
