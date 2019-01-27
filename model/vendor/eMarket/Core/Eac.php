@@ -170,7 +170,7 @@ class Eac {
 
             // добавляем запись для всех вкладок
             for ($x = 0; $x < $LANG_COUNT; $x++) {
-                $PDO->inPrepare("INSERT INTO " . $TABLE_CATEGORIES . " SET id=?, name=?, sort_category=?, language=?, parent_id=?, date_added=?, status=?", [$id, $VALID->inPOST(lang('#lang_all')[$x]), $sort_category, lang('#lang_all')[$x], $parent_id, date("Y-m-d H:i:s"), $view_cat]);
+                $PDO->inPrepare("INSERT INTO " . $TABLE_CATEGORIES . " SET id=?, name=?, sort_category=?, language=?, parent_id=?, date_added=?, status=?", [$id, $VALID->inPOST('name_' . $x), $sort_category, lang('#lang_all')[$x], $parent_id, date("Y-m-d H:i:s"), $view_cat]);
             }
             // Выводим сообщение об успехе
             $_SESSION['message'] = ['success', lang('action_completed_successfully')];
@@ -191,7 +191,7 @@ class Eac {
 
             for ($x = 0; $x < $LANG_COUNT; $x++) {
                 // обновляем запись
-                $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET name=?, last_modified=? WHERE id=? AND language=?", [$VALID->inPOST('name_edit' . lang('#lang_all')[$x]), date("Y-m-d H:i:s"), $VALID->inPOST('edit'), lang('#lang_all')[$x]]);
+                $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET name=?, last_modified=? WHERE id=? AND language=?", [$VALID->inPOST('name_edit_' . $x), date("Y-m-d H:i:s"), $VALID->inPOST('edit'), lang('#lang_all')[$x]]);
             }
             // Выводим сообщение об успехе
             $_SESSION['message'] = ['success', lang('action_completed_successfully')];
@@ -518,17 +518,17 @@ class Eac {
         $LANG_COUNT = count(lang('#lang_all'));
 
         // Если нажали на кнопку Добавить товар
-        if ($VALID->inPOST('product_name_' . lang('#lang_all')[0])) {
+        if ($VALID->inPOST('add_product')) {
 
             // Формат даты после Datepicker
-            if ($VALID->inPOST('date_available')) {
-                $date_available = date('Y-m-d', strtotime($VALID->inPOST('date_available')));
+            if ($VALID->inPOST('product_date_available')) {
+                $date_available = date('Y-m-d', strtotime($VALID->inPOST('product_date_available')));
             } else {
 
                 $date_available = NULL;
             }
 
-            if ($VALID->inPOST('view_product')) {
+            if ($VALID->inPOST('product_view_product')) {
                 $view_product = 1;
             } else {
                 $view_product = 0;
@@ -541,8 +541,8 @@ class Eac {
             // добавляем запись для всех вкладок
             for ($x = 0; $x < $LANG_COUNT; $x++) {
                 $PDO->inPrepare("INSERT INTO " . $TABLE_PRODUCTS .
-                        " SET id=?, name=?, language=?, parent_id=?, date_added=?, date_available=?, model=?, price=?, quantity=?, keyword=?, tags=?, description=?", [$id, $VALID->inPOST('product_name_' . lang('#lang_all')[$x]), lang('#lang_all')[$x], $parent_id, date("Y-m-d H:i:s"), $date_available, $VALID->inPOST('model'), $VALID->inPOST('price'),
-                    $VALID->inPOST('quantity'), $VALID->inPOST('keyword_' . lang('#lang_all')[$x]), $VALID->inPOST('tags_' . lang('#lang_all')[$x]), $VALID->inPOST('description_' . lang('#lang_all')[$x])]);
+                        " SET id=?, name=?, language=?, parent_id=?, date_added=?, date_available=?, model=?, price=?, quantity=?, keyword=?, tags=?, description=?", [$id, $VALID->inPOST('product_name_' . $x), lang('#lang_all')[$x], $parent_id, date("Y-m-d H:i:s"), $date_available, $VALID->inPOST('product_model'), $VALID->inPOST('product_price'),
+                    $VALID->inPOST('product_quantity'), $VALID->inPOST('product_keyword_' . $x), $VALID->inPOST('product_tags_' . $x), $VALID->inPOST('product_description_' . $x)]);
             }
             // Выводим сообщение об успехе
             $_SESSION['message'] = ['success', lang('action_completed_successfully')];
