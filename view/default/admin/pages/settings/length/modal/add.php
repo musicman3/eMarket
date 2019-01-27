@@ -24,13 +24,13 @@
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="input-sm form-control" placeholder="<?php echo lang('name_full') ?>" type="text" name="<?php echo $SET->titleDir() . '_' . lang('#lang_all')[0] ?>" required />
+                                    <input class="input-sm form-control" placeholder="<?php echo lang('name_full') ?>" type="text" name="name_length_0" id="name_length_0" required />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                                    <input class="input-sm form-control" placeholder="<?php echo lang('name_little') ?>" type="text" name="code<?php echo lang('#lang_all')[0] ?>" id="code<?php echo lang('#lang_all')[0] ?>" required />
+                                    <input class="input-sm form-control" placeholder="<?php echo lang('name_little') ?>" type="text" name="code_length_0" id="code_length_0" required />
                                 </div>
                             </div>
                         </div>
@@ -44,13 +44,13 @@
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo lang('name_full') ?>" type="text" name="<?php echo $SET->titleDir() . '_' . lang('#lang_all')[$x] ?>" required />
+                                            <input class="input-sm form-control" placeholder="<?php echo lang('name_full') ?>" type="text" name="name_length_<?php echo $x ?>" id="name_length_<?php echo $x ?>" required />
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo lang('name_little') ?>" type="text" name="code<?php echo lang('#lang_all')[$x] ?>" id="code<?php echo lang('#lang_all')[$x] ?>" required />
+                                            <input class="input-sm form-control" placeholder="<?php echo lang('name_little') ?>" type="text" name="code_length_<?php echo $x ?>" id="code_length_<?php echo $x ?>" required />
                                         </div>
                                     </div>
                                 </div>
@@ -67,7 +67,7 @@
                         </div>
                             <div class="form-group">
                                 <label for="default_length"><?php echo lang('default_set') ?> </label>
-                                <input class="check-box" name="default_length" type="checkbox" checked>
+                                <input class="check-box" name="default_length" id="default_length" type="checkbox" checked>
                             </div>
                     </div>
                 </div>
