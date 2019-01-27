@@ -27,13 +27,13 @@ require(ROOT . '/controller/admin/pages/settings/weight/modal/edit.php');
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="input-sm form-control" type="text" name="name_edit_<?php echo $SET->titleDir() . '_' . lang('#lang_all')[0] ?>" id="name_edit0" required />
+                                    <input class="input-sm form-control" type="text" name="name_weight_edit_0" id="name_weight_edit_0" required />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="input-sm form-control" type="text" name="weight_edit_<?php echo $SET->titleDir() . '_' . lang('#lang_all')[0] ?>" id="weight_edit0" required />
+                                    <input class="input-sm form-control" type="text" name="code_weight_edit_0" id="code_weight_edit_0" required />
                                 </div>
                             </div>
                         </div>
@@ -47,13 +47,13 @@ require(ROOT . '/controller/admin/pages/settings/weight/modal/edit.php');
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" type="text" name="name_edit_<?php echo $SET->titleDir() . '_' . lang('#lang_all')[$x] ?>" id="name_edit<?php echo $x ?>" required />
+                                            <input class="input-sm form-control" type="text" name="name_weight_edit_<?php echo $x ?>" id="name_weight_edit_<?php echo $x ?>" required />
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" type="text" name="weight_edit_<?php echo $SET->titleDir() . '_' . lang('#lang_all')[$x] ?>" id="weight_edit<?php echo $x ?>" required />
+                                            <input class="input-sm form-control" type="text" name="code_weight_edit_<?php echo $x ?>" id="code_weight_edit_<?php echo $x ?>" required />
                                         </div>
                                     </div>
                                 </div>
@@ -70,8 +70,8 @@ require(ROOT . '/controller/admin/pages/settings/weight/modal/edit.php');
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="status_weight_edit"><?php echo lang('default_set') ?> </label>
-                            <input class="check-box" id="status_weight_edit" type="checkbox" name="status_weight_edit">
+                            <label for="default_weight_edit"><?php echo lang('default_set') ?> </label>
+                            <input class="check-box" name="default_weight_edit" id="default_weight_edit" type="checkbox">
                         </div>
                     </div>
                 </div>
