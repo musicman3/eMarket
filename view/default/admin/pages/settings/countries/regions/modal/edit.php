@@ -27,7 +27,7 @@ require(ROOT . '/controller/admin/pages/settings/countries/regions/modal/edit.ph
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="input-sm form-control" type="text" name="name_edit_<?php echo $SET->titleDir() . '_' . lang('#lang_all')[0] ?>" id="name_edit0" required />
+                                    <input class="input-sm form-control" type="text" name="name_regions_edit_0" id="name_regions_edit_0" required />
                                 </div>
                             </div>
                         </div>
@@ -42,7 +42,7 @@ require(ROOT . '/controller/admin/pages/settings/countries/regions/modal/edit.ph
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" type="text" name="name_edit_<?php echo $SET->titleDir() . '_' . lang('#lang_all')[$x] ?>" id="name_edit<?php echo $x ?>" required />
+                                            <input class="input-sm form-control" type="text" name="name_regions_edit_<?php echo $x ?>" id="name_regions_edit_<?php echo $x ?>" required />
                                         </div>
                                     </div>
                                 </div>
@@ -56,7 +56,7 @@ require(ROOT . '/controller/admin/pages/settings/countries/regions/modal/edit.ph
                         <div class="form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                <input class="input-sm form-control" type="text" name="region_code_edit" id="region_code_edit" required />
+                                <input class="input-sm form-control" type="text" name="region_code_regions_edit" id="region_code_regions_edit" required />
                             </div>
                         </div>
                     </div>
