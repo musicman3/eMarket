@@ -222,13 +222,13 @@
                                                 <td class="sortleft-m"></td>    
                                                 <td class="sortleft"><div><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-shopping-cart"> </span></a></div></td>
 
-                                                <!-- Если товар НЕ АКТИВНА -->
+                                                <!-- Если товар НЕ АКТИВЕН -->
                                             <?php } elseif ($arr_merge['prod'][$start . 'a'][3] == 0) { ?>
                                                 <td class="sortleft-m"></td>    
                                                 <td class="sortleft"><div><a href="#" class="btn btn-default btn-xs" role="button" aria-disabled="true"><span class="glyphicon glyphicon-shopping-cart"> </span></a></div></td>
                                             <?php } else { ?>
 
-                                                <!-- Если товар АКТИВНА -->    
+                                                <!-- Если товар АКТИВЕН -->    
                                                 <td class="sortleft-m"></td>
                                                 <td class="sortleft"><div><a href="#" class="btn btn-success btn-xs" role="button" aria-disabled="true"><span class="glyphicon glyphicon-shopping-cart"> </span></a></div></td>
                                                 <!-- ВЫБРАННЫЕ СТРОКИ -->
