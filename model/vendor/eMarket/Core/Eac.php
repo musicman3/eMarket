@@ -1,4 +1,5 @@
 <?php
+
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -17,42 +18,42 @@ class Eac {
 
     /**
      * Инициализация EAC
-     * @param string $TABLE_CATEGORIES (название таблицы категорий)
+     * @param array $TABLES (названия таблиц)
      * @param string $TOKEN (токен)
      * @param array $resize_param (параметры ресайза)
      * @return array array($idsx_real_parent_id, $parent_id)
      */
-    public function start($TABLE_CATEGORIES, $TABLE_PRODUCTS, $TOKEN, $resize_param) {
+    public function start($TABLES, $TOKEN, $resize_param) {
 
         $FILES = new \eMarket\Other\Files;
 
         // Устанавливаем parent_id родительской категории
-        $parent_id = self::parentIdStart($TABLE_CATEGORIES);
+        $parent_id = self::parentIdStart($TABLES[0]);
 
         // Если нажали на кнопку Добавить
-        self::addCategory($TABLE_CATEGORIES, $parent_id);
+        self::addCategory($TABLES[0], $parent_id);
 
         // Если нажали на кнопку Редактировать
-        self::editCategory($TABLE_CATEGORIES);
+        self::editCategory($TABLES[0]);
 
         // Загручик изображений (ВСТАВЛЯТЬ ПЕРЕД УДАЛЕНИЕМ)
-        $FILES->imgUpload($TABLE_CATEGORIES, 'categories', $resize_param);
+        $FILES->imgUpload($TABLES[0], 'categories', $resize_param);
 
         $idsx_real_parent_id = $parent_id; //для отправки в JS
         // Если нажали на кнопку Удалить
-        $parent_id_delete = self::delete($TABLE_CATEGORIES, $TABLE_PRODUCTS, $parent_id);
+        $parent_id_delete = self::delete($TABLES[0], $TABLES[1], $parent_id);
 
         // Если нажали на кнопку Вырезать
-        $parent_id_cut = self::cut($TABLE_CATEGORIES, $parent_id);
+        $parent_id_cut = self::cut($TABLES[0], $parent_id);
 
         // Если нажали на кнопку Вставить
-        $parent_id_paste = self::paste($TABLE_CATEGORIES, $TABLE_PRODUCTS, $parent_id);
+        $parent_id_paste = self::paste($TABLES[0], $TABLES[1], $parent_id);
 
         // Если нажали на кнопку Скрыть/Отобразить
-        $parent_id_status = self::status($TABLE_CATEGORIES, $TABLE_PRODUCTS, $parent_id);
+        $parent_id_status = self::status($TABLES[0], $TABLES[1], $parent_id);
 
         // Сортировка мышкой EAC
-        self::sortList(TABLE_CATEGORIES, $TOKEN);
+        self::sortList($TABLES[0], $TOKEN);
 
         if ($parent_id_delete != $parent_id) {
             $parent_id = $parent_id_delete;
@@ -71,7 +72,7 @@ class Eac {
         }
 
         // Если нажали на кнопку Добавить
-        self::addProduct($TABLE_PRODUCTS, $parent_id);
+        self::addProduct($TABLES[1], $TABLES[2], $parent_id);
 
         return array($idsx_real_parent_id, $parent_id);
     }
@@ -509,9 +510,10 @@ class Eac {
     /**
      * Добавить товар в EAC
      * @param string $TABLE_PRODUCTS (название таблицы товаров)
+     * @param string $TABLE_TAXES (название таблицы налогов)
      * @param string $parent_id (идентификатор родительской категории)
      */
-    private function addProduct($TABLE_PRODUCTS, $parent_id) {
+    private function addProduct($TABLE_PRODUCTS, $TABLE_TAXES, $parent_id) {
 
         $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
@@ -534,6 +536,12 @@ class Eac {
                 $view_product = 0;
             }
 
+            if ($VALID->inPOST('tax_product_stock')) {
+                $tax_product_stock = (int)$PDO->selectPrepare("SELECT id FROM " . $TABLE_TAXES . " WHERE language=?, name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('tax_product_stock')]);
+            }else{
+                $tax_product_stock = NULL;
+            }
+
             // Получаем последний id и увеличиваем его на 1
             $id_max = $PDO->selectPrepare("SELECT id FROM " . $TABLE_PRODUCTS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max) + 1;
@@ -541,8 +549,9 @@ class Eac {
             // добавляем запись для всех вкладок
             for ($x = 0; $x < $LANG_COUNT; $x++) {
                 $PDO->inPrepare("INSERT INTO " . $TABLE_PRODUCTS .
-                        " SET id=?, name=?, language=?, parent_id=?, date_added=?, date_available=?, model=?, price=?, quantity=?, keyword=?, tags=?, description=?", [$id, $VALID->inPOST('name_product_stock_' . $x), lang('#lang_all')[$x], $parent_id, date("Y-m-d H:i:s"), $date_available, $VALID->inPOST('model_product_stock'), $VALID->inPOST('price_product_stock'),
-                    $VALID->inPOST('quantity_product_stock'), $VALID->inPOST('keyword_product_stock_' . $x), $VALID->inPOST('tags_product_stock_' . $x), $VALID->inPOST('description_product_stock_' . $x)]);
+                        " SET id=?, name=?, language=?, parent_id=?, date_added=?, date_available=?, model=?, price=?, quantity=?, keyword=?, tags=?, description=?, tax=?",
+                        [$id, $VALID->inPOST('name_product_stock_' . $x), lang('#lang_all')[$x], $parent_id, date("Y-m-d H:i:s"), $date_available, $VALID->inPOST('model_product_stock'), $VALID->inPOST('price_product_stock'),
+                    $VALID->inPOST('quantity_product_stock'), $VALID->inPOST('keyword_product_stock_' . $x), $VALID->inPOST('tags_product_stock_' . $x), $VALID->inPOST('description_product_stock_' . $x), $tax_product_stock]);
             }
             // Выводим сообщение об успехе
             $_SESSION['message'] = ['success', lang('action_completed_successfully')];

@@ -1,4 +1,5 @@
 <?php
+
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-= 
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -10,9 +11,14 @@ require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 //
 $resize_param = [];
 array_push($resize_param, ['125', '94']); // ширина, высота
-//
+// Создаем массив используемых таблиц в EAC
+$TABLES = [
+    TABLE_CATEGORIES,
+    TABLE_PRODUCTS,
+    TABLE_TAXES
+];
 // Загружаем движок EAC
-$EAC_ENGINE = $EAC->start(TABLE_CATEGORIES, TABLE_PRODUCTS, $TOKEN, $resize_param);
+$EAC_ENGINE = $EAC->start($TABLES, $TOKEN, $resize_param);
 $idsx_real_parent_id = $EAC_ENGINE[0];
 $parent_id = $EAC_ENGINE[1];
 
@@ -58,7 +64,6 @@ $start = $navigate[0];
 $finish = $navigate[1];
 //print_r($start2 . '--' . $finish2);
 //$DEBUG->trace($arr_merge);
-
 // КОНЕЦ-> КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
 $JS_END = __DIR__;
@@ -66,5 +71,4 @@ $JS_END = __DIR__;
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
 require_once(ROOT . '/model/end.php');
 /* ------------------------------------------ */
-
 ?>
