@@ -35,7 +35,7 @@
                         <div class="clearfix"></div>
                     </h3>
                 </div>
-                <?php if ($lines_cat == TRUE OR $lines_product == TRUE) { ?>
+                <?php if ($lines_cat == TRUE OR $lines_prod == TRUE) { ?>
                     <div class="panel-body">
                         <!--Скрытый div для передачи данных-->
                         <div id="ajax_data" class='hidden'
