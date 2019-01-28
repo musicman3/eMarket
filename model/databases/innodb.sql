@@ -125,7 +125,7 @@ CREATE TABLE emkt_products (
         ordered int default '0',
         viewed int default '0',
         download_file varchar(256),
-        downloads_stat int,
+        downloads_stat int default '0',
 	PRIMARY KEY (id, language))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

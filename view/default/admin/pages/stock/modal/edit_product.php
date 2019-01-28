@@ -116,19 +116,13 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                 <div class="col-right form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
-                                        <select name="tax_product_stock_edit" id="tax_product_stock_edit" class="input-sm form-control">
-                                            <option selected hidden>-- Налог --</option>
-                                            <?php
-                                            for ($tx = 0; $tx < count($taxes_all); $tx++) {
+                                        <select name="currency_product_stock_edit" id="currency_product_stock_edit" class="input-sm form-control">
+                                            <option selected hidden>-- Валюта --</option>
+                                            <?php for ($x = 0; $x < count($currencies_all); $x++) { ?>
 
-                                                ?>
+                                                <option><?php echo $currencies_all[$x] ?></option>
 
-                                                <option><?php echo $taxes_all[$tx] ?></option>
-
-                                                <?php
-                                            }
-
-                                            ?>
+                                            <?php } ?>
                                         </select>
                                     </div>
                                 </div>
@@ -145,17 +139,11 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
                                         <select name="unit_product_stock_edit" id="unit_product_stock_edit" class="input-sm form-control">
                                             <option disabled selected hidden>-- <?php echo lang('product_unit') ?> --</option>
-                                            <?php
-                                            for ($un = 0; $un < count($units_all); $un++) {
-
-                                                ?>
+                                            <?php for ($un = 0; $un < count($units_all); $un++) { ?>
 
                                                 <option><?php echo $units_all[$un] ?></option>
 
-                                                <?php
-                                            }
-
-                                            ?>
+                                                <?php } ?>
                                         </select>
                                     </div>
                                 </div>
@@ -179,21 +167,25 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
                                         <select name="manufacturers_product_stock_edit" id="manufacturers_product_stock_edit" class="input-sm form-control">
-                                            <option disabled selected hidden>-- Производитель --</option>
-                                            <option>Acer</option>
-                                            <option>Asus</option>
-                                            <option>Intel</option>
+                                            <option selected hidden>-- Производитель --</option>
+                                            <?php for ($x = 0; $x < count($manufacturers_all); $x++) { ?>
+
+                                                <option><?php echo $manufacturers_all[$x] ?></option>
+
+                                            <?php } ?>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-right form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
-                                        <select name="code_product_stock_edit" id="code_product_stock_edit" class="input-sm form-control">
-                                            <option disabled selected hidden>-- Штриховые коды --</option>
-                                            <option>Нет</option>                                        
-                                            <option>Barcode</option>
-                                            <option>QR-code</option>
+                                        <select name="tax_product_stock_edit" id="tax_product_stock_edit" class="input-sm form-control">
+                                            <option selected hidden>-- Налог --</option>
+                                            <?php for ($x = 0; $x < count($taxes_all); $x++) { ?>
+
+                                                <option><?php echo $taxes_all[$x] ?></option>
+
+                                            <?php } ?>
                                         </select>
                                     </div>
                                 </div>
@@ -203,15 +195,12 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
                                         <select name="vendor_codes_product_stock_edit" id="vendor_codes_product_stock_edit" class="input-sm form-control">
-                                            <option disabled selected hidden>-- Идентификатор --</option>
-                                            <option>Нет</option>
-                                            <option>Артикул</option>
-                                            <option>SCU</option>
-                                            <option>UPC</option>
-                                            <option>EAN</option>
-                                            <option>JAN</option>
-                                            <option>ISBN</option>
-                                            <option>MPN</option>
+                                            <option selected hidden>-- Идентификатор --</option>
+                                            <?php for ($x = 0; $x < count($vendor_codes_all); $x++) { ?>
+
+                                                <option><?php echo $vendor_codes_all[$x] ?></option>
+
+                                            <?php } ?>
                                         </select>
                                     </div>
                                 </div>
@@ -227,10 +216,12 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
                                         <select name="weight_product_stock_edit" id="weight_product_stock_edit" class="input-sm form-control">
-                                            <option disabled selected hidden>-- Вес --</option>
-                                            <option>кг.</option>
-                                            <option>гр.</option>
-                                            <option>унц.</option>
+                                            <option selected hidden>-- Вес --</option>
+                                            <?php for ($x = 0; $x < count($weight_all); $x++) { ?>
+
+                                                <option><?php echo $weight_all[$x] ?></option>
+
+                                            <?php } ?>
                                         </select>
                                     </div>
                                 </div>
@@ -252,10 +243,12 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
                                         <select name="length_product_stock_edit" id="length_product_stock_edit" class="input-sm form-control">
-                                            <option disabled selected hidden>-- Размер --</option>
-                                            <option>мм</option>
-                                            <option>см</option>
-                                            <option>м</option>
+                                            <option selected hidden>-- Размер --</option>
+                                            <?php for ($x = 0; $x < count($length_all); $x++) { ?>
+
+                                                <option><?php echo $length_all[$x] ?></option>
+
+                                            <?php } ?>
                                         </select>
                                     </div>
                                 </div>

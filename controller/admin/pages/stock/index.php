@@ -19,12 +19,17 @@ $TABLES = [
     TABLE_UNITS,
     TABLE_MANUFACTURERS,
     TABLE_VENDOR_CODES,
-    TABLE_WEIGHT
+    TABLE_WEIGHT,
+    TABLE_LENGTH,
+    TABLE_CURRENCIES
 ];
 // Загружаем движок EAC
 $EAC_ENGINE = $EAC->start($TABLES, $TOKEN, $resize_param);
 $idsx_real_parent_id = $EAC_ENGINE[0];
 $parent_id = $EAC_ENGINE[1];
+
+// Формируем массив Валюта для выпадающего списка
+$currencies_all = $PDO->getCol("SELECT name FROM " . TABLE_CURRENCIES . " WHERE language=?", [lang('#lang_all')[0]]);
 
 // Формируем массив Налог для выпадающего списка
 $taxes_all = $PDO->getCol("SELECT name FROM " . TABLE_TAXES . " WHERE language=?", [lang('#lang_all')[0]]);

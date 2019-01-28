@@ -113,11 +113,11 @@
                                 <div class="col-right form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
-                                        <select name="tax_product_stock" id="tax_product_stock" class="input-sm form-control">
-                                            <option selected hidden>-- Налог --</option>
-                                            <?php for ($x = 0; $x < count($taxes_all); $x++) { ?>
+                                        <select name="currency_product_stock" id="currency_product_stock" class="input-sm form-control">
+                                            <option selected hidden>-- Валюта --</option>
+                                            <?php for ($x = 0; $x < count($currencies_all); $x++) { ?>
 
-                                                <option><?php echo $taxes_all[$x] ?></option>
+                                                <option><?php echo $currencies_all[$x] ?></option>
 
                                             <?php } ?>
                                         </select>
@@ -176,11 +176,13 @@
                                 <div class="col-right form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
-                                        <select name="code_product_stock" id="code_product_stock" class="input-sm form-control">
-                                            <option disabled selected hidden>-- Штриховые коды --</option>
-                                            <option>Нет</option>                                        
-                                            <option>Barcode</option>
-                                            <option>QR-code</option>
+                                        <select name="tax_product_stock" id="tax_product_stock" class="input-sm form-control">
+                                            <option selected hidden>-- Налог --</option>
+                                            <?php for ($x = 0; $x < count($taxes_all); $x++) { ?>
+
+                                                <option><?php echo $taxes_all[$x] ?></option>
+
+                                            <?php } ?>
                                         </select>
                                     </div>
                                 </div>
