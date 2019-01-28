@@ -51,7 +51,7 @@ $lines_prod = $PDO->getColRow("SELECT id, name, parent_id, status FROM " . TABLE
 $count_lines_prod = count($lines_prod);  //считаем количество строк
 
 $arr_merge = $FUNC->arrayMergeOriginKey('cat', 'prod', $lines_cat, $lines_prod);
-$count_lines_merge = ($count_lines_cat + $count_lines_prod);
+$count_lines_merge = $count_lines_cat + $count_lines_prod;
 
 $navigate = $NAVIGATION->getLink($count_lines_merge, $lines_on_page, 1);
 $start = $navigate[0];
