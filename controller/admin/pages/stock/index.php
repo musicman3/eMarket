@@ -48,10 +48,10 @@ $lines_cat = $PDO->getColRow("SELECT id, name, parent_id, status FROM " . TABLE_
 $count_lines_cat = count($lines_cat);  //считаем количество строк
 
 $lines_prod = $PDO->getColRow("SELECT id, name, parent_id, status FROM " . TABLE_PRODUCTS . " WHERE parent_id=? AND language=? ORDER BY id DESC", [$parent_id, lang('#lang_all')[0]]);
-$count_lines_products = count($lines_prod);  //считаем количество строк
+$count_lines_prod = count($lines_prod);  //считаем количество строк
 
 $arr_merge = $FUNC->arrayMergeOriginKey('cat', 'prod', $lines_cat, $lines_prod);
-$count_lines_merge = ($count_lines_cat + $count_lines_products);
+$count_lines_merge = ($count_lines_cat + $count_lines_prod);
 
 $navigate = $NAVIGATION->getLink($count_lines_merge, $lines_on_page, 1);
 $start = $navigate[0];
