@@ -43,23 +43,23 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="product_name_edit_0" id="product_name_edit_0" />
+                                            <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="name_product_stock_edit_0" id="name_product_stock_edit_0" />
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label><?php echo lang('product_description') ?>:</label><br>
-                                        <textarea rows="3" class="input-sm form-control summernote_edit" id="edit_product_0" name="description_edit_<?php echo lang('#lang_all')[0] ?>" /></textarea>
+                                        <textarea rows="3" class="input-sm form-control summernote_edit" id="edit_product_0" name="description_product_stock_edit_0" id="description_product_stock_edit_0" /></textarea>
                                     </div>
                                     <div class="col-left">
                                         <div class="input-group has-success">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" placeholder="Keyword" type="text" name="keyword_edit_<?php echo lang('#lang_all')[0] ?>" />
+                                            <input class="input-sm form-control" placeholder="Keyword" type="text" name="keyword_product_stock_edit_0" id="keyword_product_stock_edit_0" />
                                         </div>
                                     </div>
                                     <div class="col-right">
                                         <div class="input-group has-success">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" placeholder="Tags" type="text" name="tags_edit_<?php echo lang('#lang_all')[0] ?>" />
+                                            <input class="input-sm form-control" placeholder="Tags" type="text" name="tags_product_stock_edit_0" id="tags_product_stock_edit_0" />
                                         </div>
                                     </div>
                                 </div>
@@ -74,23 +74,23 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                             <div class="form-group">
                                                 <div class="input-group has-error">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                                    <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="product_name_edit_<?php echo $x ?>" id="product_name_edit_<?php echo $x ?>" />
+                                                    <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="name_product_stock_edit_<?php echo $x ?>" id="name_product_stock_edit_<?php echo $x ?>" />
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label><?php echo lang('product_description') ?>:</label><br>
-                                                <textarea rows="3" class="input-sm form-control summernote_edit" id="edit_product_<?php echo $x ?>" name="description_edit_<?php echo lang('#lang_all')[$x] ?>" /></textarea>
+                                                <textarea rows="3" class="input-sm form-control summernote_edit" id="edit_product_<?php echo $x ?>" name="description_product_stock_edit_<?php echo $x ?>" id="description_product_stock_edit_<?php echo $x ?>" /></textarea>
                                             </div>
                                             <div class="col-left">
                                                 <div class="input-group has-success">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                                    <input class="input-sm form-control" placeholder="Keyword" type="text" name="keyword_edit_<?php echo lang('#lang_all')[$x] ?>" />
+                                                    <input class="input-sm form-control" placeholder="Keyword" type="text" name="keyword_product_stock_edit_<?php echo $x ?>" id="keyword_product_stock_edit_<?php echo $x ?>" />
                                                 </div>
                                             </div>
                                             <div class="col-right">
                                                 <div class="input-group has-success">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                                    <input class="input-sm form-control" placeholder="Tags" type="text" name="tags_edit_<?php echo lang('#lang_all')[$x] ?>" />
+                                                    <input class="input-sm form-control" placeholder="Tags" type="text" name="tags_product_stock_edit_<?php echo $x ?>" id="tags_product_stock_edit_<?php echo $x ?>" />
                                                 </div>
                                             </div>
                                         </div>
@@ -110,13 +110,13 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                 <div class="col-left form-group">
                                     <div class="input-group has-error">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                        <input class="input-sm form-control" placeholder="<?php echo lang('product_price') ?>" type="text" name="price_edit" id="price_edit" />
+                                        <input class="input-sm form-control" placeholder="<?php echo lang('product_price') ?>" type="text" name="price_product_stock_edit" id="price_product_stock_edit" />
                                     </div>
                                 </div>
                                 <div class="col-right form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
-                                        <select name="tax_edit" id="tax_edit" class="input-sm form-control">
+                                        <select name="tax_product_stock_edit" id="tax_product_stock_edit" class="input-sm form-control">
                                             <option selected hidden>-- Налог --</option>
                                             <?php
                                             for ($tx = 0; $tx < count($taxes_all); $tx++) {
@@ -137,13 +137,13 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                 <div class="col-left form-group">
                                     <div class="input-group has-error">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                        <input class="input-sm form-control" placeholder="<?php echo lang('product_quantity') ?>" type="text" name="quantity_edit" id="quantity_edit" />
+                                        <input class="input-sm form-control" placeholder="<?php echo lang('product_quantity') ?>" type="text" name="quantity_product_stock_edit" id="quantity_product_stock_edit" />
                                     </div>
                                 </div>
                                 <div class="col-right form-group">
                                     <div class="input-group has-error">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
-                                        <select name="unit_edit" id="unit_edit" class="input-sm form-control">
+                                        <select name="unit_product_stock_edit" id="unit_product_stock_edit" class="input-sm form-control">
                                             <option disabled selected hidden>-- <?php echo lang('product_unit') ?> --</option>
                                             <?php
                                             for ($un = 0; $un < count($units_all); $un++) {
@@ -164,13 +164,13 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                 <div class="col-left form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                        <input class="input-sm form-control" placeholder="Модель" type="text" name="model_edit" id="model_edit" />
+                                        <input class="input-sm form-control" placeholder="Модель" type="text" name="model_product_stock_edit" id="model_product_stock_edit" />
                                     </div>
                                 </div>
                                 <div class="col-right form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                        <input class="input-sm form-control data" placeholder="Дата поступления" type="text" name="date_available_edit" id="date_available_edit" />
+                                        <input class="input-sm form-control data" placeholder="Дата поступления" type="text" name="date_available_product_stock_edit" id="date_available_product_stock_edit" />
                                     </div>
                                 </div>
                             </div>
@@ -178,7 +178,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                 <div class="col-left form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
-                                        <select name="manufacturer_edit" id="manufacturer_edit" class="input-sm form-control">
+                                        <select name="manufacturers_product_stock_edit" id="manufacturers_product_stock_edit" class="input-sm form-control">
                                             <option disabled selected hidden>-- Производитель --</option>
                                             <option>Acer</option>
                                             <option>Asus</option>
@@ -189,7 +189,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                 <div class="col-right form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
-                                        <select name="code_edit" id="code_edit" class="input-sm form-control">
+                                        <select name="code_product_stock_edit" id="code_product_stock_edit" class="input-sm form-control">
                                             <option disabled selected hidden>-- Штриховые коды --</option>
                                             <option>Нет</option>                                        
                                             <option>Barcode</option>
@@ -202,7 +202,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                 <div class="col-left form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
-                                        <select name="vendor_code_edit" id="vendor_code_edit" class="input-sm form-control">
+                                        <select name="vendor_codes_product_stock_edit" id="vendor_codes_product_stock_edit" class="input-sm form-control">
                                             <option disabled selected hidden>-- Идентификатор --</option>
                                             <option>Нет</option>
                                             <option>Артикул</option>
@@ -218,7 +218,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                 <div class="col-right form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                        <input class="input-sm form-control" placeholder="Значение идентификатора" type="text" name="vendor_code_value_edit" id="vendor_code_value_edit" />
+                                        <input class="input-sm form-control" placeholder="Значение идентификатора" type="text" name="vendor_code_value_product_stock_edit" id="vendor_code_value_product_stock_edit" />
                                     </div>
                                 </div>
                             </div>
@@ -226,7 +226,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                 <div class="col-left form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
-                                        <select name="unit_weight_edit" id="unit_weight_edit" class="input-sm form-control">
+                                        <select name="weight_product_stock_edit" id="weight_product_stock_edit" class="input-sm form-control">
                                             <option disabled selected hidden>-- Вес --</option>
                                             <option>кг.</option>
                                             <option>гр.</option>
@@ -237,7 +237,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                 <div class="col-right form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                        <input class="input-sm form-control" placeholder="Значение веса" type="text" name="value_weight_edit" id="value_weight_edit" />
+                                        <input class="input-sm form-control" placeholder="Значение веса" type="text" name="value_weight_product_stock_edit" id="value_weight_product_stock_edit" />
                                     </div>
                                 </div>
                             </div>
@@ -245,13 +245,13 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                 <div class="col-left form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                        <input class="input-sm form-control" placeholder="Минимальное количество" type="text" name="min_quantity_edit" id="min_quantity_edit" />
+                                        <input class="input-sm form-control" placeholder="Минимальное количество" type="text" name="min_quantity_product_stock_edit" id="min_quantity_product_stock_edit" />
                                     </div>
                                 </div>
                                 <div class="col-right form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
-                                        <select name="unit_lenght_edit" id="unit_lenght_edit" class="input-sm form-control">
+                                        <select name="length_product_stock_edit" id="length_product_stock_edit" class="input-sm form-control">
                                             <option disabled selected hidden>-- Размер --</option>
                                             <option>мм</option>
                                             <option>см</option>
@@ -264,19 +264,19 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                 <div class="col-left-w form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                        <input class="input-sm form-control" placeholder="Длина" type="text" name="value_length_edit" id="value_length_edit" />
+                                        <input class="input-sm form-control" placeholder="Длина" type="text" name="value_length_product_stock_edit" id="value_length_product_stock_edit" />
                                     </div>
                                 </div>
                                 <div class="col-left-w form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                        <input class="input-sm form-control" placeholder="Ширина" type="text" name="value_width_edit" id="value_width_edit" />
+                                        <input class="input-sm form-control" placeholder="Ширина" type="text" name="value_width_product_stock_edit" id="value_width_product_stock_edit" />
                                     </div>
                                 </div>
                                 <div class="col-right-w form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                        <input class="input-sm form-control" placeholder="Высота" type="text" name="value_height_edit" id="value_height_edit" />
+                                        <input class="input-sm form-control" placeholder="Высота" type="text" name="value_height_product_stock_edit" id="value_height_product_stock_edit" />
                                     </div>
                                 </div>
                             </div>

@@ -521,14 +521,14 @@ class Eac {
         if ($VALID->inPOST('add_product')) {
 
             // Формат даты после Datepicker
-            if ($VALID->inPOST('product_date_available')) {
-                $date_available = date('Y-m-d', strtotime($VALID->inPOST('product_date_available')));
+            if ($VALID->inPOST('date_available_product_stock')) {
+                $date_available = date('Y-m-d', strtotime($VALID->inPOST('date_available_product_stock')));
             } else {
 
                 $date_available = NULL;
             }
 
-            if ($VALID->inPOST('product_view_product')) {
+            if ($VALID->inPOST('view_product_stock')) {
                 $view_product = 1;
             } else {
                 $view_product = 0;
@@ -541,8 +541,8 @@ class Eac {
             // добавляем запись для всех вкладок
             for ($x = 0; $x < $LANG_COUNT; $x++) {
                 $PDO->inPrepare("INSERT INTO " . $TABLE_PRODUCTS .
-                        " SET id=?, name=?, language=?, parent_id=?, date_added=?, date_available=?, model=?, price=?, quantity=?, keyword=?, tags=?, description=?", [$id, $VALID->inPOST('product_name_' . $x), lang('#lang_all')[$x], $parent_id, date("Y-m-d H:i:s"), $date_available, $VALID->inPOST('product_model'), $VALID->inPOST('product_price'),
-                    $VALID->inPOST('product_quantity'), $VALID->inPOST('product_keyword_' . $x), $VALID->inPOST('product_tags_' . $x), $VALID->inPOST('product_description_' . $x)]);
+                        " SET id=?, name=?, language=?, parent_id=?, date_added=?, date_available=?, model=?, price=?, quantity=?, keyword=?, tags=?, description=?", [$id, $VALID->inPOST('name_product_stock_' . $x), lang('#lang_all')[$x], $parent_id, date("Y-m-d H:i:s"), $date_available, $VALID->inPOST('model_product_stock'), $VALID->inPOST('price_product_stock'),
+                    $VALID->inPOST('quantity_product_stock'), $VALID->inPOST('keyword_product_stock_' . $x), $VALID->inPOST('tags_product_stock_' . $x), $VALID->inPOST('description_product_stock_' . $x)]);
             }
             // Выводим сообщение об успехе
             $_SESSION['message'] = ['success', lang('action_completed_successfully')];

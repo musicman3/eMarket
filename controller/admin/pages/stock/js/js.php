@@ -149,7 +149,7 @@ if (isset($_SESSION['buffer'])) {
 
                                 // Ищем id и добавляем данные
                                 for (x = 0; x < name_edit.length; x++) {
-                                    $('#product_name_edit_' + x).val(name_edit[x][modal_id]);
+                                    $('#name_product_stock_edit_' + x).val(name_edit[x][modal_id]);
                                 }
                             });
 
@@ -600,7 +600,7 @@ if (isset($_SESSION['buffer'])) {
 <script type="text/javascript" src="/ext/jquery/ui/i18n/datepicker-<?php echo lang('meta-language') ?>.js"></script>
 <script type="text/javascript">
     $(function () {
-        $("#product_date_available, #product_date_available_edit").datepicker({
+        $("#date_available_product_stock, #date_available_product_stock_edit").datepicker({
             showOtherMonths: true,
             showAnim: 'fadeIn',
             duration: 'normal',

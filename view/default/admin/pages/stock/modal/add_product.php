@@ -40,23 +40,23 @@
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="product_name_0" id="product_name_0" />
+                                            <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="name_product_stock_0" id="name_product_stock_0" />
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label><?php echo lang('product_description') ?>:</label><br>
-                                        <textarea rows="3" class="input-sm form-control summernote_add" name="product_description_0" id="product_description_0" /></textarea>
+                                        <textarea rows="3" class="input-sm form-control summernote_add" name="description_product_stock_0" id="description_product_stock_0" /></textarea>
                                     </div>
                                     <div class="col-left">
                                         <div class="input-group has-success">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" placeholder="Keyword" type="text" name="product_keyword_0" id="product_keyword_0" />
+                                            <input class="input-sm form-control" placeholder="Keyword" type="text" name="keyword_product_stock_0" id="keyword_product_stock_0" />
                                         </div>
                                     </div>
                                     <div class="col-right">
                                         <div class="input-group has-success">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" placeholder="Tags" type="text" name="product_tags_0" id="product_tags_0" />
+                                            <input class="input-sm form-control" placeholder="Tags" type="text" name="tags_product_stock_0" id="tags_product_stock_0" />
                                         </div>
                                     </div>
                                 </div>
@@ -71,23 +71,23 @@
                                             <div class="form-group">
                                                 <div class="input-group has-error">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                                    <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="product_name_<?php echo $x ?>" id="product_name_<?php echo $x ?>" />
+                                                    <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="name_product_stock_<?php echo $x ?>" id="name_product_stock_<?php echo $x ?>" />
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label><?php echo lang('product_description') ?>:</label><br>
-                                                <textarea rows="3" class="input-sm form-control summernote_add" name="product_description_<?php echo $x ?>" id="product_description_<?php echo $x ?>" /></textarea>
+                                                <textarea rows="3" class="input-sm form-control summernote_add" name="description_product_stock_<?php echo $x ?>" id="description_product_stock_<?php echo $x ?>" /></textarea>
                                             </div>
                                             <div class="col-left">
                                                 <div class="input-group has-success">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                                    <input class="input-sm form-control" placeholder="Keyword" type="text" name="product_keyword_<?php echo $x ?>" id="product_keyword_<?php echo $x ?>" />
+                                                    <input class="input-sm form-control" placeholder="Keyword" type="text" name="keyword_product_stock_<?php echo $x ?>" id="keyword_product_stock_<?php echo $x ?>" />
                                                 </div>
                                             </div>
                                             <div class="col-right">
                                                 <div class="input-group has-success">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                                    <input class="input-sm form-control" placeholder="Tags" type="text" name="product_tags_<?php echo $x ?>" id="product_tags_<?php echo $x ?>" />
+                                                    <input class="input-sm form-control" placeholder="Tags" type="text" name="tags_product_stock_<?php echo $x ?>" id="tags_product_stock_<?php echo $x ?>" />
                                                 </div>
                                             </div>
                                         </div>
@@ -107,13 +107,13 @@
                                 <div class="col-left form-group">
                                     <div class="input-group has-error">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                        <input class="input-sm form-control" placeholder="<?php echo lang('product_price') ?>" type="text" name="product_price" id="product_price" />
+                                        <input class="input-sm form-control" placeholder="<?php echo lang('product_price') ?>" type="text" name="price_product_stock" id="price_product_stock" />
                                     </div>
                                 </div>
                                 <div class="col-right form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
-                                        <select name="product_tax" id="product_tax" class="input-sm form-control">
+                                        <select name="tax_product_stock" id="tax_product_stock" class="input-sm form-control">
                                             <option selected hidden>-- Налог --</option>
                                             <?php for ($x = 0; $x < count($taxes_all); $x++) { ?>
 
@@ -128,13 +128,13 @@
                                 <div class="col-left form-group">
                                     <div class="input-group has-error">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                        <input class="input-sm form-control" placeholder="<?php echo lang('product_quantity') ?>" type="text" name="product_quantity" id="product_quantity" />
+                                        <input class="input-sm form-control" placeholder="<?php echo lang('product_quantity') ?>" type="text" name="quantity_product_stock" id="quantity_product_stock" />
                                     </div>
                                 </div>
                                 <div class="col-right form-group">
                                     <div class="input-group has-error">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
-                                        <select name="product_unit" id="product_unit" class="input-sm form-control">
+                                        <select name="unit_product_stock" id="unit_product_stock" class="input-sm form-control">
                                             <option disabled selected hidden>-- <?php echo lang('product_unit') ?> --</option>
                                             <?php for ($x = 0; $x < count($units_all); $x++) { ?>
 
@@ -149,13 +149,13 @@
                                 <div class="col-left form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                        <input class="input-sm form-control" placeholder="Модель" type="text" name="product_model" id="product_model" />
+                                        <input class="input-sm form-control" placeholder="Модель" type="text" name="model_product_stock" id="model_product_stock" />
                                     </div>
                                 </div>
                                 <div class="col-right form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                        <input class="input-sm form-control data" placeholder="Дата поступления" type="text" name="product_date_available" id="product_date_available" />
+                                        <input class="input-sm form-control data" placeholder="Дата поступления" type="text" name="date_available_product_stock" id="date_available_product_stock" />
                                     </div>
                                 </div>
                             </div>
@@ -163,7 +163,7 @@
                                 <div class="col-left form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
-                                        <select name="product_manufacturers" id="product_manufacturers" class="input-sm form-control">
+                                        <select name="manufacturers_product_stock" id="manufacturers_product_stock" class="input-sm form-control">
                                             <option selected hidden>-- Производитель --</option>
                                             <?php for ($x = 0; $x < count($manufacturers_all); $x++) { ?>
 
@@ -176,7 +176,7 @@
                                 <div class="col-right form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
-                                        <select name="product_code" id="product_code" class="input-sm form-control">
+                                        <select name="code_product_stock" id="code_product_stock" class="input-sm form-control">
                                             <option disabled selected hidden>-- Штриховые коды --</option>
                                             <option>Нет</option>                                        
                                             <option>Barcode</option>
@@ -189,7 +189,7 @@
                                 <div class="col-left form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
-                                        <select name="product_vendor_codes" id="product_vendor_codes" class="input-sm form-control">
+                                        <select name="vendor_codes_product_stock" id="vendor_codes_product_stock" class="input-sm form-control">
                                             <option selected hidden>-- Идентификатор --</option>
                                             <?php for ($x = 0; $x < count($vendor_codes_all); $x++) { ?>
 
@@ -202,7 +202,7 @@
                                 <div class="col-right form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                        <input class="input-sm form-control" placeholder="Значение идентификатора" type="text" name="product_vendor_code_value" id="product_vendor_code_value" />
+                                        <input class="input-sm form-control" placeholder="Значение идентификатора" type="text" name="vendor_code_value_product_stock" id="vendor_code_value_product_stock" />
                                     </div>
                                 </div>
                             </div>
@@ -210,7 +210,7 @@
                                 <div class="col-left form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
-                                        <select name="product_weight" id="product_weight" class="input-sm form-control">
+                                        <select name="weight_product_stock" id="weight_product_stock" class="input-sm form-control">
                                             <option selected hidden>-- Вес --</option>
                                             <?php for ($x = 0; $x < count($weight_all); $x++) { ?>
 
@@ -223,7 +223,7 @@
                                 <div class="col-right form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                        <input class="input-sm form-control" placeholder="Значение веса" type="text" name="product_value_weight" id="product_value_weight" />
+                                        <input class="input-sm form-control" placeholder="Значение веса" type="text" name="value_weight_product_stock" id="value_weight_product_stock" />
                                     </div>
                                 </div>
                             </div>
@@ -231,13 +231,13 @@
                                 <div class="col-left form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                        <input class="input-sm form-control" placeholder="Минимальное количество" type="text" name="product_min_quantity" id="product_min_quantity" />
+                                        <input class="input-sm form-control" placeholder="Минимальное количество" type="text" name="min_quantity_product_stock" id="min_quantity_product_stock" />
                                     </div>
                                 </div>
                                 <div class="col-right form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
-                                        <select name="product_length" id="product_length" class="input-sm form-control">
+                                        <select name="length_product_stock" id="length_product_stock" class="input-sm form-control">
                                             <option selected hidden>-- Размер --</option>
                                             <?php for ($x = 0; $x < count($length_all); $x++) { ?>
 
@@ -252,19 +252,19 @@
                                 <div class="col-left-w form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                        <input class="input-sm form-control" placeholder="Длина" type="text" name="product_value_length" id="product_value_length" />
+                                        <input class="input-sm form-control" placeholder="Длина" type="text" name="value_length_product_stock" id="value_length_product_stock" />
                                     </div>
                                 </div>
                                 <div class="col-left-w form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                        <input class="input-sm form-control" placeholder="Ширина" type="text" name="product_value_width" id="product_value_width" />
+                                        <input class="input-sm form-control" placeholder="Ширина" type="text" name="value_width_product_stock" id="value_width_product_stock" />
                                     </div>
                                 </div>
                                 <div class="col-right-w form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                        <input class="input-sm form-control" placeholder="Высота" type="text" name="product_value_height" id="product_value_height" />
+                                        <input class="input-sm form-control" placeholder="Высота" type="text" name="value_height_product_stock" id="value_height_product_stock" />
                                     </div>
                                 </div>
                             </div>
