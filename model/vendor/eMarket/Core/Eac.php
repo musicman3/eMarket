@@ -1,5 +1,4 @@
 <?php
-
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -72,7 +71,7 @@ class Eac {
         }
 
         // Если нажали на кнопку Добавить
-        self::addProduct($TABLES[1], $TABLES[2], $TABLES[3], $TABLES[4], $TABLES[5], $parent_id);
+        self::addProduct($TABLES, $parent_id);
 
         return array($idsx_real_parent_id, $parent_id);
     }
@@ -509,16 +508,21 @@ class Eac {
 
     /**
      * Добавить товар в EAC
-     * @param string $TABLE_PRODUCTS (название таблицы товаров)
-     * @param string $TABLE_TAXES (название таблицы налогов)
-     * @param string $TABLE_UNITS (название таблицы единиц измерения)
+     * @param array $TABLES (названия таблиц)
      * @param string $parent_id (идентификатор родительской категории)
      */
-    private function addProduct($TABLE_PRODUCTS, $TABLE_TAXES, $TABLE_UNITS, $TABLE_MANUFACTURERS, $TABLE_VENDOR_CODES, $parent_id) {
+    private function addProduct($TABLES, $parent_id) {
 
         $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
         $LANG_COUNT = count(lang('#lang_all'));
+
+        $TABLE_PRODUCTS = $TABLES[1];
+        $TABLE_TAXES = $TABLES[2];
+        $TABLE_UNITS = $TABLES[3];
+        $TABLE_MANUFACTURERS = $TABLES[4];
+        $TABLE_VENDOR_CODES = $TABLES[5];
+        $TABLE_WEIGHT = $TABLES[6];
 
         // Если нажали на кнопку Добавить товар
         if ($VALID->inPOST('add_product')) {
@@ -554,11 +558,17 @@ class Eac {
             } else {
                 $manufacturers_product_stock = NULL;
             }
-            
+
             if ($VALID->inPOST('vendor_codes_product_stock')) {
                 $vendor_codes_product_stock = (int) $PDO->selectPrepare("SELECT id FROM " . $TABLE_VENDOR_CODES . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('vendor_codes_product_stock')]);
             } else {
                 $vendor_codes_product_stock = NULL;
+            }
+            
+            if ($VALID->inPOST('weight_product_stock')) {
+                $weight_product_stock = (int) $PDO->selectPrepare("SELECT id FROM " . $TABLE_WEIGHT . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('weight_product_stock')]);
+            } else {
+                $weight_product_stock = NULL;
             }
 
             // Получаем последний id и увеличиваем его на 1
@@ -568,10 +578,10 @@ class Eac {
             // добавляем запись для всех вкладок
             for ($x = 0; $x < $LANG_COUNT; $x++) {
                 $PDO->inPrepare("INSERT INTO " . $TABLE_PRODUCTS .
-                        " SET id=?, name=?, language=?, parent_id=?, date_added=?, date_available=?, model=?, price=?, quantity=?, quantity_value=?, keyword=?, tags=?, description=?, tax=?, manufacturer=?, vendor_code=?, vendor_code_value=?", [
+                        " SET id=?, name=?, language=?, parent_id=?, date_added=?, date_available=?, model=?, price=?, quantity=?, quantity_value=?, keyword=?, tags=?, description=?, tax=?, manufacturer=?, vendor_code=?, vendor_code_value=?, weight=?, weight_value=?", [
                     $id, $VALID->inPOST('name_product_stock_' . $x), lang('#lang_all')[$x], $parent_id, date("Y-m-d H:i:s"), $date_available, $VALID->inPOST('model_product_stock'), $VALID->inPOST('price_product_stock'),
                     $VALID->inPOST('quantity_product_stock'), $unit_product_stock, $VALID->inPOST('keyword_product_stock_' . $x), $VALID->inPOST('tags_product_stock_' . $x), $VALID->inPOST('description_product_stock_' . $x),
-                    $tax_product_stock, $manufacturers_product_stock, $vendor_codes_product_stock, $VALID->inPOST('vendor_code_value_product_stock')
+                    $tax_product_stock, $manufacturers_product_stock, $vendor_codes_product_stock, $VALID->inPOST('vendor_code_value_product_stock'), $weight_product_stock, $VALID->inPOST('value_weight_product_stock')
                 ]);
             }
             // Выводим сообщение об успехе
