@@ -72,7 +72,7 @@ class Eac {
         }
 
         // Если нажали на кнопку Добавить
-        self::addProduct($TABLES[1], $TABLES[2], $TABLES[3], $parent_id);
+        self::addProduct($TABLES[1], $TABLES[2], $TABLES[3], $TABLES[4], $parent_id);
 
         return array($idsx_real_parent_id, $parent_id);
     }
@@ -514,7 +514,7 @@ class Eac {
      * @param string $TABLE_UNITS (название таблицы единиц измерения)
      * @param string $parent_id (идентификатор родительской категории)
      */
-    private function addProduct($TABLE_PRODUCTS, $TABLE_TAXES, $TABLE_UNITS, $parent_id) {
+    private function addProduct($TABLE_PRODUCTS, $TABLE_TAXES, $TABLE_UNITS, $TABLE_MANUFACTUTERS, $parent_id) {
 
         $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
@@ -538,15 +538,21 @@ class Eac {
             }
 
             if ($VALID->inPOST('tax_product_stock')) {
-                $tax_product_stock = (int) $PDO->selectPrepare("SELECT id FROM " . $TABLE_TAXES . " WHERE language=?, name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('tax_product_stock')]);
+                $tax_product_stock = (int) $PDO->selectPrepare("SELECT id FROM " . $TABLE_TAXES . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('tax_product_stock')]);
             } else {
                 $tax_product_stock = NULL;
             }
 
             if ($VALID->inPOST('unit_product_stock')) {
-                $unit_product_stock = (int) $PDO->selectPrepare("SELECT id FROM " . $TABLE_UNITS . " WHERE language=?, name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('tax_product_stock')]);
+                $unit_product_stock = (int) $PDO->selectPrepare("SELECT id FROM " . $TABLE_UNITS . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('unit_product_stock')]);
             } else {
                 $unit_product_stock = NULL;
+            }
+            
+            if ($VALID->inPOST('manufacturers_product_stock')) {
+                $manufacturers_product_stock = (int) $PDO->selectPrepare("SELECT id FROM " . $TABLE_MANUFACTUTERS . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('manufacturers_product_stock')]);
+            } else {
+                $manufacturers_product_stock = NULL;
             }
 
             // Получаем последний id и увеличиваем его на 1
@@ -556,8 +562,8 @@ class Eac {
             // добавляем запись для всех вкладок
             for ($x = 0; $x < $LANG_COUNT; $x++) {
                 $PDO->inPrepare("INSERT INTO " . $TABLE_PRODUCTS .
-                        " SET id=?, name=?, language=?, parent_id=?, date_added=?, date_available=?, model=?, price=?, quantity=?, quantity_value=?, keyword=?, tags=?, description=?, tax=?", [$id, $VALID->inPOST('name_product_stock_' . $x), lang('#lang_all')[$x], $parent_id, date("Y-m-d H:i:s"), $date_available, $VALID->inPOST('model_product_stock'), $VALID->inPOST('price_product_stock'),
-                    $VALID->inPOST('quantity_product_stock'), $unit_product_stock, $VALID->inPOST('keyword_product_stock_' . $x), $VALID->inPOST('tags_product_stock_' . $x), $VALID->inPOST('description_product_stock_' . $x), $tax_product_stock]);
+                        " SET id=?, name=?, language=?, parent_id=?, date_added=?, date_available=?, model=?, price=?, quantity=?, quantity_value=?, keyword=?, tags=?, description=?, tax=?, manufacturer=?", [$id, $VALID->inPOST('name_product_stock_' . $x), lang('#lang_all')[$x], $parent_id, date("Y-m-d H:i:s"), $date_available, $VALID->inPOST('model_product_stock'), $VALID->inPOST('price_product_stock'),
+                    $VALID->inPOST('quantity_product_stock'), $unit_product_stock, $VALID->inPOST('keyword_product_stock_' . $x), $VALID->inPOST('tags_product_stock_' . $x), $VALID->inPOST('description_product_stock_' . $x), $tax_product_stock, $manufacturers_product_stock]);
             }
             // Выводим сообщение об успехе
             $_SESSION['message'] = ['success', lang('action_completed_successfully')];

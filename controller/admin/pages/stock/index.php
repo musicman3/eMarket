@@ -16,7 +16,8 @@ $TABLES = [
     TABLE_CATEGORIES,
     TABLE_PRODUCTS,
     TABLE_TAXES,
-    TABLE_UNITS
+    TABLE_UNITS,
+    TABLE_MANUFACTURERS
 ];
 // Загружаем движок EAC
 $EAC_ENGINE = $EAC->start($TABLES, $TOKEN, $resize_param);
