@@ -514,7 +514,7 @@ class Eac {
      * @param string $TABLE_UNITS (название таблицы единиц измерения)
      * @param string $parent_id (идентификатор родительской категории)
      */
-    private function addProduct($TABLE_PRODUCTS, $TABLE_TAXES, $TABLE_UNITS, $TABLE_MANUFACTUTERS, $parent_id) {
+    private function addProduct($TABLE_PRODUCTS, $TABLE_TAXES, $TABLE_UNITS, $TABLE_MANUFACTURERS, $parent_id) {
 
         $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
@@ -550,7 +550,7 @@ class Eac {
             }
             
             if ($VALID->inPOST('manufacturers_product_stock')) {
-                $manufacturers_product_stock = (int) $PDO->selectPrepare("SELECT id FROM " . $TABLE_MANUFACTUTERS . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('manufacturers_product_stock')]);
+                $manufacturers_product_stock = (int) $PDO->selectPrepare("SELECT id FROM " . $TABLE_MANUFACTURERS . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('manufacturers_product_stock')]);
             } else {
                 $manufacturers_product_stock = NULL;
             }
