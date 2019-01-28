@@ -15,7 +15,8 @@ array_push($resize_param, ['125', '94']); // ширина, высота
 $TABLES = [
     TABLE_CATEGORIES,
     TABLE_PRODUCTS,
-    TABLE_TAXES
+    TABLE_TAXES,
+    TABLE_UNITS
 ];
 // Загружаем движок EAC
 $EAC_ENGINE = $EAC->start($TABLES, $TOKEN, $resize_param);
