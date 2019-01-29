@@ -342,7 +342,18 @@ class Eac {
         if ($VALID->inPOST('idsx_paste_key') == 'paste' && isset($_SESSION['buffer']) == TRUE) {
 
             $parent_id_real = (int) $VALID->inPOST('idsx_real_parent_id'); // получить значение из JS
-            $count_session_buffer = count($_SESSION['buffer']['cat']) + count($_SESSION['buffer']['prod']); // Получаем количество значений в массиве
+            if (isset ($_SESSION['buffer']['cat'])){
+                $count_session_buffer_cat = count($_SESSION['buffer']['cat']);
+            }else{
+                $count_session_buffer_cat = 0;
+            }
+            if (isset ($_SESSION['buffer']['prod'])){
+                $count_session_buffer_prod = count($_SESSION['buffer']['prod']);
+            }else{
+                $count_session_buffer_prod = 0;
+            }
+            
+            $count_session_buffer = $count_session_buffer_cat + $count_session_buffer_prod; // Получаем количество значений в массиве
 
             for ($buf = 0; $buf < $count_session_buffer; $buf++) {
                 // Это категория

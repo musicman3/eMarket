@@ -3,7 +3,6 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-
 ?>
 <!-- Вставляем модальное окно "Добавить категорию" -->
 <?php require_once('modal/add.php') ?>
@@ -56,7 +55,7 @@
                                         } else {
                                             $finish_out = $finish - 1;
                                         }
-
+                                        $marker_cat = 1;
                                         ?>
 
                                         <div class="page"><?php echo lang('s') ?> <?php echo $start + 1 ?> <?php echo lang('po') ?> <?php echo $finish_out ?> ( <?php echo lang('iz') ?> <?php echo $count_lines_merge; ?> )</div>
@@ -87,7 +86,6 @@
                                 if ($start < $count_lines_cat) {
                                     $parent_up = $arr_merge['cat'][$start][2];
                                     if ($parent_up > 0) {
-
                                         ?>
 
                                         <tr class="sortno">
@@ -112,7 +110,6 @@
                                 for ($start; $start < $finish; $start++) {
                                     $transfer++;
                                     if ($start < $count_lines_cat) {
-
                                         ?>
 
                                         <tr class="sort-list" unitid="<?php echo $arr_merge['cat'][$start][0] ?>">
@@ -148,7 +145,6 @@
 
                                                 <?php
                                             } else {
-
                                                 ?>
                                                 <!-- Если категория АКТИВНА -->
                                                 <td class="sortyes sortleft-m"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
@@ -164,7 +160,6 @@
                                                 </td>
                                                 <?php
                                             }
-
                                             ?>
 
                                             <!-- ВЫБРАННЫЕ СТРОКИ -->
@@ -180,8 +175,7 @@
                                         <?php
                                     }
                                     // ЕСЛИ НЕТ КАТЕГОРИЙ НО ЕСТЬ ТОВАРЫ И В ПОДКАТЕГОРИИ
-                                    if ($count_lines_cat == 0 && $parent_id > 0) {
-
+                                    if ($count_lines_cat == 0 && $parent_id > 0 && $marker_cat == 1) {
                                         ?>
 
                                         <tr>
@@ -205,10 +199,10 @@
                                         </tr>
 
                                         <?php
+                                        $marker_cat++;
                                     }
                                     // ВЫВОДИМ ТОВАРЫ
                                     if ($start >= $count_lines_cat && $transfer < $lines_on_page + 1) {
-
                                         ?>
                                         <tr class="sort-list">
 
@@ -242,7 +236,6 @@
                                         <?php
                                     }
                                 }
-
                                 ?>
 
                             </tbody>
@@ -251,7 +244,6 @@
 
                     <?php
                 } elseif ($lines_cat == FALSE && $parent_id > 0) {
-
                     ?>
 
                     <div class="panel-body">
@@ -283,7 +275,6 @@
                     </div>
                     <?php
                 } else {
-
                     ?>
                     <div class="panel-body">
                         <table class="table table-hover">
