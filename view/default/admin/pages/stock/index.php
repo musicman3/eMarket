@@ -55,7 +55,7 @@
                                         } else {
                                             $finish_out = $finish - 1;
                                         }
-                                        $marker_cat = 1;
+
                                         ?>
 
                                         <div class="page"><?php echo lang('s') ?> <?php echo $start + 1 ?> <?php echo lang('po') ?> <?php echo $finish_out ?> ( <?php echo lang('iz') ?> <?php echo $count_lines_merge; ?> )</div>
@@ -83,9 +83,8 @@
                             <tbody id="sort-list">
 
                                 <?php
-                                if ($start < $count_lines_cat) {
-                                    $parent_up = $arr_merge['cat'][$start][2];
-                                    if ($parent_up > 0) {
+                                if ($start <= $count_lines_cat) {
+                                    if ($parent_id > 0) {
                                         ?>
 
                                         <tr class="sortno">
@@ -95,7 +94,7 @@
                                                 <!-- Категории "ВВЕРХ" -->
                                                 <form>
                                                     <div>
-                                                        <button name="parent_up" value="<?php echo $parent_up ?>" class="btn btn-default btn-xs" title="" action="index.php" formmethod="get"><span class="glyphicon glyphicon-option-horizontal"></span></button>
+                                                        <button name="parent_up" value="<?php echo $parent_id ?>" class="btn btn-default btn-xs" title="" action="index.php" formmethod="get"><span class="glyphicon glyphicon-option-horizontal"></span></button>
                                                     </div>
                                                 </form>
 
@@ -174,33 +173,7 @@
 
                                         <?php
                                     }
-                                    // ЕСЛИ НЕТ КАТЕГОРИЙ НО ЕСТЬ ТОВАРЫ И В ПОДКАТЕГОРИИ
-                                    if ($count_lines_cat == 0 && $parent_id > 0 && $marker_cat == 1) {
-                                        ?>
 
-                                        <tr>
-                                            <th colspan="3">
-                                                <div><?php echo lang('no_listing') ?></div>
-                                            </th>
-                                        </tr>
-                                        <tr class="sortno">
-                                            <td class="sortleft-m"></td>
-                                            <td class="sortleft">
-
-                                                <!-- Категорий нет "ВВЕРХ" -->
-                                                <form>
-                                                    <div>
-                                                        <button name="parent_up" value="<?php echo $parent_id ?>" class="btn btn-default btn-xs" title="" action="index.php" formmethod="get"><span class="glyphicon glyphicon-option-horizontal"></span></button>
-                                                    </div>
-                                                </form>
-
-                                            </td>
-                                            <td class="options"><div class="context-one"><?php echo lang('no_listing') ?></div></td>
-                                        </tr>
-
-                                        <?php
-                                        $marker_cat++;
-                                    }
                                     // ВЫВОДИМ ТОВАРЫ
                                     if ($start >= $count_lines_cat && $transfer < $lines_on_page + 1) {
                                         ?>
