@@ -86,7 +86,7 @@
                             <tbody id="sort-list">
 
                                 <?php
-                                if (($start <= $count_lines_cat && $parent_id > 0) OR ($start <= $count_lines_prod && $parent_id)) {
+                                if ($start <= $count_lines_cat && $parent_id > 0 OR $start <= $count_lines_prod && $parent_id) {
                                         ?>
 
                                         <tr class="sortno">
