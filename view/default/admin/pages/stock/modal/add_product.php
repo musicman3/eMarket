@@ -155,7 +155,7 @@
                                 <div class="col-right form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                        <input class="input-sm form-control data" placeholder="Дата поступления" type="text" name="date_available_product_stock" id="date_available_product_stock" />
+                                        <input class="input-sm form-control data" placeholder="Дата поступления" type="text" name="date_available_product_stock" id="date_available_product_stock" autocomplete="off" />
                                     </div>
                                 </div>
                             </div>

@@ -596,17 +596,13 @@ if (isset($_SESSION['buffer'])) {
 
 </script>
 
-<!-- Datepicker" -->
-<script type="text/javascript" src="/ext/jquery/ui/i18n/datepicker-<?php echo lang('meta-language') ?>.js"></script>
+<!-- Bootstrap Datepicker" -->
+<script type="text/javascript" src="/ext/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+<link href="/ext/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+<script type="text/javascript" src="/ext/bootstrap-datepicker/locales/bootstrap-datepicker.<?php echo lang('meta-language') ?>.min.js"></script>
 <script type="text/javascript">
-    $(function () {
-        $("#date_available_product_stock, #date_available_product_stock_edit").datepicker({
-            showOtherMonths: true,
-            showAnim: 'fadeIn',
-            duration: 'normal',
-            showWeek: true,
-            selectOtherMonths: true
-        });
+        $('#date_available_product_stock, #date_available_product_stock_edit input').datepicker({
+        language: "<?php echo lang('meta-language') ?>"
     });
 </script>
 
