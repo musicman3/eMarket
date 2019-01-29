@@ -49,13 +49,13 @@ require(ROOT . '/controller/admin/pages/settings/vendor_codes/modal/edit.php');
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" type="text" name="name_vendor_codes_edit_<?php echo $x ?>" id="name_vendor_codes_edit_<?php echo $x ?>" />
+                                            <input class="input-sm form-control" type="text" name="name_vendor_codes_edit_<?php echo $x ?>" id="name_vendor_codes_edit_<?php echo $x ?>" required />
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="input-group has-success">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                            <input class="input-sm form-control" type="text" name="vendor_code_edit_<?php echo $x ?>" id="vendor_code_edit_<?php echo $x ?>" required />
+                                            <input class="input-sm form-control" type="text" name="vendor_code_edit_<?php echo $x ?>" id="vendor_code_edit_<?php echo $x ?>" />
                                         </div>
                                     </div>
                                 </div>
