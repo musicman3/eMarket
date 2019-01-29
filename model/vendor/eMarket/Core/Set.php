@@ -1,5 +1,4 @@
 <?php
-
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -67,6 +66,27 @@ class Set {
         $PDO = new \eMarket\Core\Pdo;
         $session_expr_time = $PDO->selectPrepare("SELECT session_expr_time FROM " . TABLE_BASIC_SETTINGS, []);
         return $session_expr_time;
+    }
+
+    /**
+     * Отображаем Select с учетом значения по-умолчанию
+     *
+     * @param array (массив для Select)
+     */
+    public function viewSelect($value) {
+        
+        $count_value = count($value);
+        for ($x = 0; $x < $count_value; $x++) {
+            if (isset($value[$x][1]) && $value[$x][1] == 1) {
+
+                ?>
+                <!-- Строка Select по умолчанию-->
+                <option selected><?php echo $value[$x][0] ?></option>
+            <?php } else { ?>
+                <option><?php echo $value[$x][0] ?></option>
+                <?php
+            }
+        }
     }
 
 }

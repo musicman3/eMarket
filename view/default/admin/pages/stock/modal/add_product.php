@@ -112,14 +112,9 @@
                                 </div>
                                 <div class="col-right form-group">
                                     <div class="input-group has-success">
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-euro"></span></span>
                                         <select name="currency_product_stock" id="currency_product_stock" class="input-sm form-control">
-                                            <option selected hidden>-- Валюта --</option>
-                                            <?php for ($x = 0; $x < count($currencies_all); $x++) { ?>
-
-                                                <option><?php echo $currencies_all[$x] ?></option>
-
-                                            <?php } ?>
+                                            <?php $SET->viewSelect($currencies_all) ?>
                                         </select>
                                     </div>
                                 </div>
@@ -136,11 +131,7 @@
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
                                         <select name="unit_product_stock" id="unit_product_stock" class="input-sm form-control">
                                             <option disabled selected hidden>-- <?php echo lang('product_unit') ?> --</option>
-                                            <?php for ($x = 0; $x < count($units_all); $x++) { ?>
-
-                                                <option><?php echo $units_all[$x] ?></option>
-
-                                            <?php } ?>
+                                            <?php $SET->viewSelect($units_all) ?>
                                         </select>
                                     </div>
                                 </div>
@@ -154,78 +145,58 @@
                                 </div>
                                 <div class="col-right form-group">
                                     <div class="input-group has-success">
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                        <input class="input-sm form-control data" placeholder="Дата поступления" type="text" name="date_available_product_stock" id="date_available_product_stock" autocomplete="off" />
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
+                                        <select name="manufacturers_product_stock" id="manufacturers_product_stock" class="input-sm form-control">
+                                            <?php $SET->viewSelect($manufacturers_all) ?>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-left form-group">
                                     <div class="input-group has-success">
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
-                                        <select name="manufacturers_product_stock" id="manufacturers_product_stock" class="input-sm form-control">
-                                            <option selected hidden>-- Производитель --</option>
-                                            <?php for ($x = 0; $x < count($manufacturers_all); $x++) { ?>
-
-                                                <option><?php echo $manufacturers_all[$x] ?></option>
-
-                                            <?php } ?>
-                                        </select>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                        <input class="input-sm form-control data" placeholder="Дата поступления" type="text" name="date_available_product_stock" id="date_available_product_stock" autocomplete="off" />
                                     </div>
                                 </div>
                                 <div class="col-right form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
                                         <select name="tax_product_stock" id="tax_product_stock" class="input-sm form-control">
-                                            <option selected hidden>-- Налог --</option>
-                                            <?php for ($x = 0; $x < count($taxes_all); $x++) { ?>
-
-                                                <option><?php echo $taxes_all[$x] ?></option>
-
-                                            <?php } ?>
+                                            <?php $SET->viewSelect($taxes_all) ?>
                                         </select>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-left form-group">
-                                    <div class="input-group has-success">
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
-                                        <select name="vendor_codes_product_stock" id="vendor_codes_product_stock" class="input-sm form-control">
-                                            <option selected hidden>-- Идентификатор --</option>
-                                            <?php for ($x = 0; $x < count($vendor_codes_all); $x++) { ?>
-
-                                                <option><?php echo $vendor_codes_all[$x] ?></option>
-
-                                            <?php } ?>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-right form-group">
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
                                         <input class="input-sm form-control" placeholder="Значение идентификатора" type="text" name="vendor_code_value_product_stock" id="vendor_code_value_product_stock" />
                                     </div>
                                 </div>
+                                <div class="col-right form-group">
+                                    <div class="input-group has-success">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
+                                        <select name="vendor_codes_product_stock" id="vendor_codes_product_stock" class="input-sm form-control">
+                                            <?php $SET->viewSelect($vendor_codes_all) ?>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-left form-group">
                                     <div class="input-group has-success">
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
-                                        <select name="weight_product_stock" id="weight_product_stock" class="input-sm form-control">
-                                            <option selected hidden>-- Вес --</option>
-                                            <?php for ($x = 0; $x < count($weight_all); $x++) { ?>
-
-                                                <option><?php echo $weight_all[$x] ?></option>
-
-                                            <?php } ?>
-                                        </select>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
+                                        <input class="input-sm form-control" placeholder="Значение веса" type="text" name="value_weight_product_stock" id="value_weight_product_stock" />
                                     </div>
                                 </div>
                                 <div class="col-right form-group">
                                     <div class="input-group has-success">
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                        <input class="input-sm form-control" placeholder="Значение веса" type="text" name="value_weight_product_stock" id="value_weight_product_stock" />
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
+                                        <select name="weight_product_stock" id="weight_product_stock" class="input-sm form-control">
+                                            <?php $SET->viewSelect($weight_all) ?>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -240,12 +211,7 @@
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
                                         <select name="length_product_stock" id="length_product_stock" class="input-sm form-control">
-                                            <option selected hidden>-- Размер --</option>
-                                            <?php for ($x = 0; $x < count($length_all); $x++) { ?>
-
-                                                <option><?php echo $length_all[$x] ?></option>
-
-                                            <?php } ?>
+                                            <?php $SET->viewSelect($length_all) ?>
                                         </select>
                                     </div>
                                 </div>

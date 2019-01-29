@@ -22,6 +22,11 @@ if ($VALID->inPOST('add')) {
     $id_max = $PDO->selectPrepare("SELECT id FROM " . TABLE_VENDOR_CODES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
     $id = intval($id_max) + 1;
 
+    // Оставляем один экземпляр значения по-умолчанию
+    if ($id > 1 && $default_vendor_code != 0) {
+        $PDO->inPrepare("UPDATE " . TABLE_VENDOR_CODES . " SET default_vendor_code=?", [0]);
+    }
+
     // добавляем запись для всех вкладок
     for ($x = 0; $x < $LANG_COUNT; $x++) {
         $PDO->inPrepare("INSERT INTO " . TABLE_VENDOR_CODES . " SET id=?, name=?, language=?, vendor_code=?, default_vendor_code=?", [$id, $VALID->inPOST('name_vendor_codes_' . $x), lang('#lang_all')[$x], $VALID->inPOST('vendor_code_' . $x), $default_vendor_code]);
@@ -39,6 +44,11 @@ if ($VALID->inPOST('edit')) {
         $default_vendor_code = 1;
     } else {
         $default_vendor_code = 0;
+    }
+
+    // Оставляем один экземпляр значения по-умолчанию
+    if ($default_vendor_code != 0) {
+        $PDO->inPrepare("UPDATE " . TABLE_VENDOR_CODES . " SET default_vendor_code=?", [0]);
     }
 
     for ($x = 0; $x < $LANG_COUNT; $x++) {

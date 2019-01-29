@@ -29,25 +29,25 @@ $idsx_real_parent_id = $EAC_ENGINE[0];
 $parent_id = $EAC_ENGINE[1];
 
 // Формируем массив Валюта для выпадающего списка
-$currencies_all = $PDO->getCol("SELECT name FROM " . TABLE_CURRENCIES . " WHERE language=?", [lang('#lang_all')[0]]);
+$currencies_all = $PDO->getColRow("SELECT name, default_value FROM " . TABLE_CURRENCIES . " WHERE language=?", [lang('#lang_all')[0]]);
 
 // Формируем массив Налог для выпадающего списка
-$taxes_all = $PDO->getCol("SELECT name FROM " . TABLE_TAXES . " WHERE language=?", [lang('#lang_all')[0]]);
+$taxes_all = $PDO->getColRow("SELECT name FROM " . TABLE_TAXES . " WHERE language=?", [lang('#lang_all')[0]]);
 
 // Формируем массив Единица измерения для выпадающего списка
-$units_all = $PDO->getCol("SELECT name FROM " . TABLE_UNITS . " WHERE language=?", [lang('#lang_all')[0]]);
+$units_all = $PDO->getColRow("SELECT name, default_unit FROM " . TABLE_UNITS . " WHERE language=?", [lang('#lang_all')[0]]);
 
 // Формируем массив Размер измерения для выпадающего списка
-$length_all = $PDO->getCol("SELECT name FROM " . TABLE_LENGTH . " WHERE language=?", [lang('#lang_all')[0]]);
+$length_all = $PDO->getColRow("SELECT name, default_length FROM " . TABLE_LENGTH . " WHERE language=?", [lang('#lang_all')[0]]);
 
 // Формируем массив Вес измерения для выпадающего списка
-$weight_all = $PDO->getCol("SELECT name FROM " . TABLE_WEIGHT . " WHERE language=?", [lang('#lang_all')[0]]);
+$weight_all = $PDO->getColRow("SELECT name, default_weight FROM " . TABLE_WEIGHT . " WHERE language=?", [lang('#lang_all')[0]]);
 
 // Формируем массив Вес измерения для выпадающего списка
-$vendor_codes_all = $PDO->getCol("SELECT name FROM " . TABLE_VENDOR_CODES . " WHERE language=?", [lang('#lang_all')[0]]);
+$vendor_codes_all = $PDO->getColRow("SELECT name, default_vendor_code FROM " . TABLE_VENDOR_CODES . " WHERE language=?", [lang('#lang_all')[0]]);
 
 // Формируем массив Производитель измерения для выпадающего списка
-$manufacturers_all = $PDO->getCol("SELECT name FROM " . TABLE_MANUFACTURERS . " WHERE language=?", [lang('#lang_all')[0]]);
+$manufacturers_all = $PDO->getColRow("SELECT name FROM " . TABLE_MANUFACTURERS . " WHERE language=?", [lang('#lang_all')[0]]);
 
 
 // КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
@@ -72,7 +72,7 @@ $navigate = $NAVIGATION->getLink($count_lines_merge, $lines_on_page, 1);
 $start = $navigate[0];
 $finish = $navigate[1];
 //print_r($start2 . '--' . $finish2);
-//$DEBUG->trace($arr_merge);
+//$DEBUG->trace($currencies_all);
 // КОНЕЦ-> КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
 $JS_END = __DIR__;
