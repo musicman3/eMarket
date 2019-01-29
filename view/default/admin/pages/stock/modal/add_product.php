@@ -128,7 +128,7 @@
                                 </div>
                                 <div class="col-right form-group">
                                     <div class="input-group has-error">
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-flag"></span></span>
                                         <select name="unit_product_stock" id="unit_product_stock" class="input-sm form-control">
                                             <option disabled selected hidden>-- <?php echo lang('product_unit') ?> --</option>
                                             <?php $SET->viewSelect($units_all) ?>
@@ -161,7 +161,7 @@
                                 </div>
                                 <div class="col-right form-group">
                                     <div class="input-group has-success">
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span></span>
                                         <select name="tax_product_stock" id="tax_product_stock" class="input-sm form-control">
                                             <?php $SET->viewSelect($taxes_all) ?>
                                         </select>
@@ -177,7 +177,7 @@
                                 </div>
                                 <div class="col-right form-group">
                                     <div class="input-group has-success">
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-tag"></span></span>
                                         <select name="vendor_codes_product_stock" id="vendor_codes_product_stock" class="input-sm form-control">
                                             <?php $SET->viewSelect($vendor_codes_all) ?>
                                         </select>
@@ -193,7 +193,7 @@
                                 </div>
                                 <div class="col-right form-group">
                                     <div class="input-group has-success">
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-scale"></span></span>
                                         <select name="weight_product_stock" id="weight_product_stock" class="input-sm form-control">
                                             <?php $SET->viewSelect($weight_all) ?>
                                         </select>
@@ -209,7 +209,7 @@
                                 </div>
                                 <div class="col-right form-group">
                                     <div class="input-group has-success">
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-road"></span></span>
                                         <select name="length_product_stock" id="length_product_stock" class="input-sm form-control">
                                             <?php $SET->viewSelect($length_all) ?>
                                         </select>
