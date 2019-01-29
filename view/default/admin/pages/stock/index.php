@@ -62,7 +62,7 @@
 
                                         <!-- Переключаем страницу "ВПЕРЕД" -->
                                         <form>
-                                            <?php if (count($arr_merge) > $lines_on_page) { ?>
+                                            <?php if ($count_lines_merge > $lines_on_page) { ?>
                                             <input hidden name="start" value="<?php echo $start ?>">
                                             <input hidden name="finish" value="<?php echo $finish ?>">
                                             <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
@@ -72,7 +72,7 @@
 
                                         <!-- Переключаем страницу "НАЗАД" -->
                                         <form>
-                                            <?php if (count($arr_merge) > $lines_on_page) { ?>
+                                            <?php if ($count_lines_merge > $lines_on_page) { ?>
                                             <input hidden name="start2" value="<?php echo $start ?>">
                                             <input hidden name="finish2" value="<?php echo $finish ?>">
                                             <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
