@@ -12,7 +12,7 @@ if (isset($_SESSION['login']) && isset($_SESSION['pass'])) { // Выводим �
         <div class="container-fluid">
 
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-expanded="false">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -20,7 +20,7 @@ if (isset($_SESSION['login']) && isset($_SESSION['pass'])) { // Выводим �
                 </button>
             </div>
 
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div class="collapse navbar-collapse" id="bs-navbar">
                 <!-- 1 УРОВЕНЬ МЕНЮ -->
                 <ul class="nav navbar-nav">
                     <?php
