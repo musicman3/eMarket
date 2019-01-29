@@ -83,8 +83,7 @@
                             <tbody id="sort-list">
 
                                 <?php
-                                if ($start <= $count_lines_cat) {
-                                    if ($parent_id > 0) {
+                                if ($start <= $count_lines_cat && $parent_id > 0 && $parent_id > 0) {
                                         ?>
 
                                         <tr class="sortno">
@@ -102,7 +101,7 @@
                                         </tr>
 
                                         <?php
-                                    }
+
                                 }
                                 $transfer = 0;
 
