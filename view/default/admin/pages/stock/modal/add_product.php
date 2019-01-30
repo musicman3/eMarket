@@ -105,12 +105,14 @@
                         <div id="panel_add_2" class="tab-pane fade">
                             <div class="row">
                                 <div class="col-left form-group">
+				    <div><small class="form-text text-muted">Укажите габариты</small></div>
                                     <div class="input-group has-error">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
                                         <input class="input-sm form-control" placeholder="<?php echo lang('product_price') ?>" type="text" name="price_product_stock" id="price_product_stock" />
                                     </div>
                                 </div>
                                 <div class="col-right form-group">
+				    <div><small class="form-text text-muted">Укажите габариты</small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-euro"></span></span>
                                         <select name="currency_product_stock" id="currency_product_stock" class="input-sm form-control">
@@ -121,12 +123,14 @@
                             </div>
                             <div class="row">
                                 <div class="col-left form-group">
+				    <div><small class="form-text text-muted">Укажите габариты</small></div>
                                     <div class="input-group has-error">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
                                         <input class="input-sm form-control" placeholder="<?php echo lang('product_quantity') ?>" type="text" name="quantity_product_stock" id="quantity_product_stock" />
                                     </div>
                                 </div>
                                 <div class="col-right form-group">
+				    <div><small class="form-text text-muted">Укажите габариты</small></div>
                                     <div class="input-group has-error">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-flag"></span></span>
                                         <select name="unit_product_stock" id="unit_product_stock" class="input-sm form-control">
@@ -138,12 +142,14 @@
                             </div>
                             <div class="row">
                                 <div class="col-left form-group">
+				    <div><small class="form-text text-muted">Укажите габариты</small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
                                         <input class="input-sm form-control" placeholder="Модель" type="text" name="model_product_stock" id="model_product_stock" />
                                     </div>
                                 </div>
                                 <div class="col-right form-group">
+				    <div><small class="form-text text-muted">Укажите габариты</small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
                                         <select name="manufacturers_product_stock" id="manufacturers_product_stock" class="input-sm form-control">
@@ -154,12 +160,14 @@
                             </div>
                             <div class="row">
                                 <div class="col-left form-group">
+				    <div><small class="form-text text-muted">Укажите габариты</small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                         <input class="input-sm form-control data" placeholder="Дата поступления" type="text" name="date_available_product_stock" id="date_available_product_stock" autocomplete="off" />
                                     </div>
                                 </div>
                                 <div class="col-right form-group">
+				    <div><small class="form-text text-muted">Укажите габариты</small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span></span>
                                         <select name="tax_product_stock" id="tax_product_stock" class="input-sm form-control">
@@ -170,12 +178,14 @@
                             </div>
                             <div class="row">
                                 <div class="col-left form-group">
+				    <div><small class="form-text text-muted">Укажите габариты</small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
                                         <input class="input-sm form-control" placeholder="Значение идентификатора" type="text" name="vendor_code_value_product_stock" id="vendor_code_value_product_stock" />
                                     </div>
                                 </div>
                                 <div class="col-right form-group">
+				    <div><small class="form-text text-muted">Укажите габариты</small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-tag"></span></span>
                                         <select name="vendor_codes_product_stock" id="vendor_codes_product_stock" class="input-sm form-control">
@@ -186,12 +196,14 @@
                             </div>
                             <div class="row">
                                 <div class="col-left form-group">
+				    <div><small class="form-text text-muted">Укажите габариты</small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
                                         <input class="input-sm form-control" placeholder="Значение веса" type="text" name="value_weight_product_stock" id="value_weight_product_stock" />
                                     </div>
                                 </div>
                                 <div class="col-right form-group">
+				    <div><small class="form-text text-muted">Укажите габариты</small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-scale"></span></span>
                                         <select name="weight_product_stock" id="weight_product_stock" class="input-sm form-control">
@@ -202,12 +214,14 @@
                             </div>
                             <div class="row">
                                 <div class="col-left form-group">
+				    <div><small class="form-text text-muted">Укажите габариты</small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
                                         <input class="input-sm form-control" placeholder="Минимальное количество" type="text" name="min_quantity_product_stock" id="min_quantity_product_stock" />
                                     </div>
                                 </div>
                                 <div class="col-right form-group">
+				    <div><small class="form-text text-muted">Укажите габариты</small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-road"></span></span>
                                         <select name="length_product_stock" id="length_product_stock" class="input-sm form-control">
