@@ -74,7 +74,7 @@ require(ROOT . '/controller/admin/pages/settings/currencies/modal/edit.php');
                         <div class="form-group">
                             <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                                <input class="input-sm form-control" type="text" name="symbol_currencies_edit" id="symbol_currencies_edit" />
+                                <input class="input-sm form-control" placeholder="<?php echo lang('currency_symbol') ?>" type="text" name="symbol_currencies_edit" id="symbol_currencies_edit" />
                             </div>
                         </div>
                         <div class="form-group">

@@ -30,7 +30,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="input-group has-success">
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
                                     <input class="input-sm form-control" placeholder="<?php echo lang('name_description') ?>" type="text" name="vendor_code_0" id="vendor_code_0" />
                                 </div>
                             </div>
@@ -51,7 +51,7 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="input-group has-success">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
                                             <input class="input-sm form-control" placeholder="<?php echo lang('name_description') ?>" type="text" name="vendor_code_<?php echo $x ?>" id="vendor_code_<?php echo $x ?>" />
                                         </div>
                                     </div>

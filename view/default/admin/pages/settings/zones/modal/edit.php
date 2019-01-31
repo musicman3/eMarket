@@ -52,8 +52,8 @@ require(ROOT . '/controller/admin/pages/settings/zones/modal/edit.php');
 
                         ?>
                         <div class="form-group">
-                            <label for="note_zones_edit"><?php echo lang('name_description') ?></label>
-                            <textarea class="form-control" rows="5" name="note_zones_edit" id="note_zones_edit"></textarea>
+                            <div><small class="form-text text-muted"><?php echo lang('name_description') ?></small></div>
+                            <textarea class="form-control" placeholder="<?php echo lang('add_name_description') ?>" rows="5" name="note_zones_edit" id="note_zones_edit"></textarea>
                         </div> 
                     </div>
                 </div>

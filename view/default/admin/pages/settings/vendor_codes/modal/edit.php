@@ -34,7 +34,7 @@ require(ROOT . '/controller/admin/pages/settings/vendor_codes/modal/edit.php');
                             <div class="form-group">
                                 <div class="input-group has-success">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                    <input class="input-sm form-control" type="text" name="vendor_code_edit_0" id="vendor_code_edit_0" />
+                                    <input class="input-sm form-control" placeholder="<?php echo lang('name_description') ?>" type="text" name="vendor_code_edit_0" id="vendor_code_edit_0" />
                                 </div>
                             </div>
                         </div>
@@ -55,7 +55,7 @@ require(ROOT . '/controller/admin/pages/settings/vendor_codes/modal/edit.php');
                                     <div class="form-group">
                                         <div class="input-group has-success">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                            <input class="input-sm form-control" type="text" name="vendor_code_edit_<?php echo $x ?>" id="vendor_code_edit_<?php echo $x ?>" />
+                                            <input class="input-sm form-control" placeholder="<?php echo lang('name_description') ?>" type="text" name="vendor_code_edit_<?php echo $x ?>" id="vendor_code_edit_<?php echo $x ?>" />
                                         </div>
                                     </div>
                                 </div>

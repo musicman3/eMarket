@@ -59,7 +59,7 @@ require(ROOT . '/controller/admin/pages/manufacturers/modal/edit.php');
                         <div class="form-group">
                             <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
-                                <input class="input-sm form-control" type="text" name="site_manufacturers_edit" id="site_manufacturers_edit" />
+                                <input class="input-sm form-control" placeholder="<?php echo lang('site') ?>" type="text" name="site_manufacturers_edit" id="site_manufacturers_edit" />
                             </div>
                         </div>
                         

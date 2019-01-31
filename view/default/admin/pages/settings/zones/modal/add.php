@@ -51,7 +51,7 @@
 
                         ?>
                         <div class="form-group">
-                            <label for="note_zones"><?php echo lang('name_description') ?></label>
+                            <div><small class="form-text text-muted"><?php echo lang('name_description') ?></small></div>
                             <textarea class="form-control" placeholder="<?php echo lang('add_name_description') ?>" rows="5" name="note_zones" id="note_zones"></textarea>
                         </div> 
                     </div>
