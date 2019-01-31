@@ -20,15 +20,16 @@
 
                     <!-- Панели формы -->
                     <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#panel_add_1">Основное</a></li>
-                        <li><a data-toggle="tab" href="#panel_add_2">Данные</a></li>
-                        <li><a data-toggle="tab" href="#panel_add_3">Изображения</a></li>
+                        <li class="active"><a data-toggle="tab" href="#panel_add_1">Описание</a></li>
+                        <li><a data-toggle="tab" href="#panel_add_2">Основное</a></li>
+                        <li><a data-toggle="tab" href="#panel_add_3">Дополнительное</a></li>
+                        <li><a data-toggle="tab" href="#panel_add_4">Изображения</a></li>
                     </ul>
 
                     <!-- Содержимое панелей формы-->
                     <div class="tab-content">
 
-                        <!-- Содержимое панели основное -->
+                        <!-- Содержимое панели Описание -->
                         <div id="panel_add_1" class="tab-pane fade in active">
 
                             <!-- Языковые панели -->
@@ -101,16 +102,18 @@
                             </div>
                         </div>
 
-                        <!-- Содержимое панели Данные -->
+                        <!-- Содержимое панели Основное -->
                         <div id="panel_add_2" class="tab-pane fade">
                             <div class="row">
                                 <div class="col-left form-group">
+                                    <div><small class="form-text text-muted">Укажите габариты</small></div>
                                     <div class="input-group has-error">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
                                         <input class="input-sm form-control" placeholder="<?php echo lang('product_price') ?>" type="text" name="price_product_stock" id="price_product_stock" />
                                     </div>
                                 </div>
                                 <div class="col-right form-group">
+                                    <div><small class="form-text text-muted">Укажите габариты</small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-euro"></span></span>
                                         <select name="currency_product_stock" id="currency_product_stock" class="input-sm form-control" data-toggle="tooltip" title="<?php echo lang('title_currencies_index') ?>">
@@ -121,12 +124,14 @@
                             </div>
                             <div class="row">
                                 <div class="col-left form-group">
+                                    <div><small class="form-text text-muted">Укажите габариты</small></div>
                                     <div class="input-group has-error">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
                                         <input class="input-sm form-control" placeholder="<?php echo lang('product_quantity') ?>" type="text" name="quantity_product_stock" id="quantity_product_stock" />
                                     </div>
                                 </div>
                                 <div class="col-right form-group">
+                                    <div><small class="form-text text-muted">Укажите габариты</small></div>
                                     <div class="input-group has-error">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-flag"></span></span>
                                         <select name="unit_product_stock" id="unit_product_stock" class="input-sm form-control" data-toggle="tooltip" title="<?php echo lang('title_units_index') ?>">
@@ -137,12 +142,14 @@
                             </div>
                             <div class="row">
                                 <div class="col-left form-group">
+                                    <div><small class="form-text text-muted">Укажите габариты</small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
                                         <input class="input-sm form-control" placeholder="Модель" type="text" name="model_product_stock" id="model_product_stock" />
                                     </div>
                                 </div>
                                 <div class="col-right form-group">
+                                    <div><small class="form-text text-muted">Укажите габариты</small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
                                         <select name="manufacturers_product_stock" id="manufacturers_product_stock" class="input-sm form-control" data-toggle="tooltip" title="<?php echo lang('title_manufacturers_index') ?>">
@@ -153,12 +160,14 @@
                             </div>
                             <div class="row">
                                 <div class="col-left form-group">
+                                    <div><small class="form-text text-muted">Укажите габариты</small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                         <input class="input-sm form-control data" placeholder="Дата поступления" type="text" name="date_available_product_stock" id="date_available_product_stock" autocomplete="off" />
                                     </div>
                                 </div>
                                 <div class="col-right form-group">
+                                    <div><small class="form-text text-muted">Укажите габариты</small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span></span>
                                         <select name="tax_product_stock" id="tax_product_stock" class="input-sm form-control" data-toggle="tooltip" title="<?php echo lang('title_taxes_index') ?>">
@@ -167,14 +176,22 @@
                                     </div>
                                 </div>
                             </div>
+                            
+
+                        </div>
+                        
+                        <!-- Содержимое панели Дополнительное -->
+                        <div id="panel_add_3" class="tab-pane fade">
                             <div class="row">
                                 <div class="col-left form-group">
+                                    <div><small class="form-text text-muted">Укажите габариты</small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
                                         <input class="input-sm form-control" placeholder="Значение идентификатора" type="text" name="vendor_code_value_product_stock" id="vendor_code_value_product_stock" />
                                     </div>
                                 </div>
                                 <div class="col-right form-group">
+                                    <div><small class="form-text text-muted">Укажите габариты</small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-tag"></span></span>
                                         <select name="vendor_codes_product_stock" id="vendor_codes_product_stock" class="input-sm form-control" data-toggle="tooltip" title="<?php echo lang('title_vendor_codes_index') ?>">
@@ -185,12 +202,14 @@
                             </div>
                             <div class="row">
                                 <div class="col-left form-group">
+                                    <div><small class="form-text text-muted">Укажите габариты</small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
                                         <input class="input-sm form-control" placeholder="Значение веса" type="text" name="value_weight_product_stock" id="value_weight_product_stock" />
                                     </div>
                                 </div>
                                 <div class="col-right form-group">
+                                    <div><small class="form-text text-muted">Укажите габариты</small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-scale"></span></span>
                                         <select name="weight_product_stock" id="weight_product_stock" class="input-sm form-control" data-toggle="tooltip" title="<?php echo lang('title_weight_index') ?>">
@@ -201,12 +220,14 @@
                             </div>
                             <div class="row">
                                 <div class="col-left form-group">
+                                    <div><small class="form-text text-muted">Укажите габариты</small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
                                         <input class="input-sm form-control" placeholder="Минимальное количество" type="text" name="min_quantity_product_stock" id="min_quantity_product_stock" />
                                     </div>
                                 </div>
                                 <div class="col-right form-group">
+                                    <div><small class="form-text text-muted">Укажите габариты</small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-road"></span></span>
                                         <select name="length_product_stock" id="length_product_stock" class="input-sm form-control" data-toggle="tooltip" title="<?php echo lang('title_length_index') ?>">
@@ -217,29 +238,31 @@
                             </div>
                             <div class="row">
                                 <div class="col-left-w form-group">
+                                    <div><small class="form-text text-muted">Укажите габариты</small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
                                         <input class="input-sm form-control" placeholder="Длина" type="text" name="value_length_product_stock" id="value_length_product_stock" />
                                     </div>
                                 </div>
                                 <div class="col-left-w form-group">
+                                    <div><small class="form-text text-muted">Укажите габариты</small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
                                         <input class="input-sm form-control" placeholder="Ширина" type="text" name="value_width_product_stock" id="value_width_product_stock" />
                                     </div>
                                 </div>
                                 <div class="col-right-w form-group">
+                                    <div><small class="form-text text-muted">Укажите габариты</small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
                                         <input class="input-sm form-control" placeholder="Высота" type="text" name="value_height_product_stock" id="value_height_product_stock" />
                                     </div>
                                 </div>
                             </div>
-
                         </div>
 
                         <!-- Содержимое панели Изображения -->
-                        <div id="panel_add_3" class="tab-pane fade">
+                        <div id="panel_add_4" class="tab-pane fade">
                             <div class="form-group">
                                 <label for="image"><?php echo lang('images') ?>:</label><br>
                             </div>
