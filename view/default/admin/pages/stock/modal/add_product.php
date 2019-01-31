@@ -39,22 +39,25 @@
                             <div class="tab-content">
                                 <div id="product_<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade in active">
                                     <div class="form-group">
+                                        <div><small class="form-text text-muted">Название товара</small></div>
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
                                             <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="name_product_stock_0" id="name_product_stock_0" />
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label><?php echo lang('product_description') ?>:</label><br>
+                                        <div><small class="form-text text-muted"><?php echo lang('product_description') ?>:</small></div>
                                         <textarea rows="3" class="input-sm form-control summernote_add" name="description_product_stock_0" id="description_product_stock_0" /></textarea>
                                     </div>
                                     <div class="col-left">
+                                        <div><small class="form-text text-muted">Keyword для поисковой оптимизации</small></div>
                                         <div class="input-group has-success">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
                                             <input class="input-sm form-control" placeholder="Keyword" type="text" name="keyword_product_stock_0" id="keyword_product_stock_0" />
                                         </div>
                                     </div>
                                     <div class="col-right">
+                                        <div><small class="form-text text-muted">Tags для поисковой оптимизации</small></div>
                                         <div class="input-group has-success">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
                                             <input class="input-sm form-control" placeholder="Tags" type="text" name="tags_product_stock_0" id="tags_product_stock_0" />
@@ -70,22 +73,25 @@
 
                                         <div id="product_<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">
                                             <div class="form-group">
+                                                <div><small class="form-text text-muted">Название товара</small></div>
                                                 <div class="input-group has-error">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
                                                     <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="name_product_stock_<?php echo $x ?>" id="name_product_stock_<?php echo $x ?>" />
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label><?php echo lang('product_description') ?>:</label><br>
+                                                <div><small class="form-text text-muted"><?php echo lang('product_description') ?>:</small></div>
                                                 <textarea rows="3" class="input-sm form-control summernote_add" name="description_product_stock_<?php echo $x ?>" id="description_product_stock_<?php echo $x ?>" /></textarea>
                                             </div>
                                             <div class="col-left">
+                                                <div><small class="form-text text-muted">Keyword для поисковой оптимизации</small></div>
                                                 <div class="input-group has-success">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
                                                     <input class="input-sm form-control" placeholder="Keyword" type="text" name="keyword_product_stock_<?php echo $x ?>" id="keyword_product_stock_<?php echo $x ?>" />
                                                 </div>
                                             </div>
                                             <div class="col-right">
+                                                <div><small class="form-text text-muted">Tags для поисковой оптимизации</small></div>
                                                 <div class="input-group has-success">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
                                                     <input class="input-sm form-control" placeholder="Tags" type="text" name="tags_product_stock_<?php echo $x ?>" id="tags_product_stock_<?php echo $x ?>" />
@@ -109,7 +115,7 @@
                                     <div><small class="form-text text-muted">Цена товара</small></div>
                                     <div class="input-group has-error">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                        <input class="input-sm form-control" placeholder="<?php echo lang('product_price') ?>" type="text" name="price_product_stock" id="price_product_stock" />
+                                        <input class="input-sm form-control" placeholder="0.00" type="text" name="price_product_stock" id="price_product_stock" />
                                     </div>
                                 </div>
                                 <div class="col-right form-group">
@@ -127,7 +133,7 @@
                                     <div><small class="form-text text-muted">Количество на складе</small></div>
                                     <div class="input-group has-error">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                        <input class="input-sm form-control" placeholder="<?php echo lang('product_quantity') ?>" type="text" name="quantity_product_stock" id="quantity_product_stock" />
+                                        <input class="input-sm form-control" placeholder="1" type="text" name="quantity_product_stock" id="quantity_product_stock" />
                                     </div>
                                 </div>
                                 <div class="col-right form-group">
@@ -145,7 +151,7 @@
                                     <div><small class="form-text text-muted">Модель товара</small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                        <input class="input-sm form-control" placeholder="Модель" type="text" name="model_product_stock" id="model_product_stock" />
+                                        <input class="input-sm form-control" placeholder="ABC123" type="text" name="model_product_stock" id="model_product_stock" />
                                     </div>
                                 </div>
                                 <div class="col-right form-group">
@@ -187,7 +193,7 @@
                                     <div><small class="form-text text-muted">Значение идентификатора товара</small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                        <input class="input-sm form-control" placeholder="Значение идентификатора" type="text" name="vendor_code_value_product_stock" id="vendor_code_value_product_stock" />
+                                        <input class="input-sm form-control" placeholder="ABC123" type="text" name="vendor_code_value_product_stock" id="vendor_code_value_product_stock" />
                                     </div>
                                 </div>
                                 <div class="col-right form-group">
@@ -205,7 +211,7 @@
                                     <div><small class="form-text text-muted">Вес товара</small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                        <input class="input-sm form-control" placeholder="Значение веса" type="text" name="value_weight_product_stock" id="value_weight_product_stock" />
+                                        <input class="input-sm form-control" placeholder="0.00" type="text" name="value_weight_product_stock" id="value_weight_product_stock" />
                                     </div>
                                 </div>
                                 <div class="col-right form-group">
@@ -223,7 +229,7 @@
                                     <div><small class="form-text text-muted">Минимальное количество для заказа</small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                        <input class="input-sm form-control" placeholder="Минимальное количество" type="text" name="min_quantity_product_stock" id="min_quantity_product_stock" />
+                                        <input class="input-sm form-control" placeholder="1" type="text" name="min_quantity_product_stock" id="min_quantity_product_stock" />
                                     </div>
                                 </div>
                                 <div class="col-right form-group">
@@ -238,24 +244,24 @@
                             </div>
                             <div class="row">
                                 <div class="col-left-w form-group">
-                                    <div><small class="form-text text-muted">Значение длины товара</small></div>
+                                    <div><small class="form-text text-muted">Длина товара</small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                        <input class="input-sm form-control" placeholder="Длина" type="text" name="value_length_product_stock" id="value_length_product_stock" />
+                                        <input class="input-sm form-control" placeholder="0.00" type="text" name="value_length_product_stock" id="value_length_product_stock" />
                                     </div>
                                 </div>
                                 <div class="col-left-w form-group">
-                                    <div><small class="form-text text-muted">Значение ширины товара</small></div>
+                                    <div><small class="form-text text-muted">Ширина товара</small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                        <input class="input-sm form-control" placeholder="Ширина" type="text" name="value_width_product_stock" id="value_width_product_stock" />
+                                        <input class="input-sm form-control" placeholder="0.00" type="text" name="value_width_product_stock" id="value_width_product_stock" />
                                     </div>
                                 </div>
                                 <div class="col-right-w form-group">
-                                    <div><small class="form-text text-muted">Значение высоты товара</small></div>
+                                    <div><small class="form-text text-muted">Высота товара</small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                        <input class="input-sm form-control" placeholder="Высота" type="text" name="value_height_product_stock" id="value_height_product_stock" />
+                                        <input class="input-sm form-control" placeholder="0.00" type="text" name="value_height_product_stock" id="value_height_product_stock" />
                                     </div>
                                 </div>
                             </div>
