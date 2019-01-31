@@ -546,6 +546,7 @@ if (isset($_SESSION['buffer'])) {
             dialogsInBody: true,
             dialogsFade: true,
             height: '100px',
+            placeholder: 'Создайте описание товара с помощью этого редактора...',
             toolbar: [
                 ['fullscreen ', ['fullscreen']],
                 ['style', ['style']],
