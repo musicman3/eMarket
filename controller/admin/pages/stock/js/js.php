@@ -520,6 +520,7 @@ if (isset($_SESSION['buffer'])) {
             dialogsInBody: true,
             dialogsFade: true,
             height: '100px',
+            placeholder: 'Создайте описание товара с помощью этого редактора...',
             toolbar: [
                 ['fullscreen ', ['fullscreen']],
                 ['style', ['style']],
@@ -602,8 +603,7 @@ if (isset($_SESSION['buffer'])) {
 <script type="text/javascript" src="/ext/bootstrap-datepicker/locales/bootstrap-datepicker.<?php echo lang('meta-language') ?>.min.js"></script>
 <script type="text/javascript">
         $('#date_available_product_stock, #date_available_product_stock_edit input').datepicker({
-        language: "<?php echo lang('meta-language') ?>",
-        autoclose: true
+        language: "<?php echo lang('meta-language') ?>"
     });
 </script>
 

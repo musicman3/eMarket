@@ -46,14 +46,14 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <div><small class="form-text text-muted"><?php echo lang('product_description') ?>:</small></div>
+                                        <div><small class="form-text text-muted">Описание товара</small></div>
                                         <textarea rows="3" class="input-sm form-control summernote_add" name="description_product_stock_0" id="description_product_stock_0" /></textarea>
                                     </div>
                                     <div class="col-left">
-                                        <div><small class="form-text text-muted">Keyword для поисковой оптимизации</small></div>
+                                        <div><small class="form-text text-muted">Keywords для поисковой оптимизации</small></div>
                                         <div class="input-group has-success">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" placeholder="Keyword" type="text" name="keyword_product_stock_0" id="keyword_product_stock_0" />
+                                            <input class="input-sm form-control" placeholder="Keywords" type="text" name="keyword_product_stock_0" id="keyword_product_stock_0" />
                                         </div>
                                     </div>
                                     <div class="col-right">
@@ -80,14 +80,14 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <div><small class="form-text text-muted"><?php echo lang('product_description') ?>:</small></div>
+                                                <div><small class="form-text text-muted">Описание товара</small></div>
                                                 <textarea rows="3" class="input-sm form-control summernote_add" name="description_product_stock_<?php echo $x ?>" id="description_product_stock_<?php echo $x ?>" /></textarea>
                                             </div>
                                             <div class="col-left">
-                                                <div><small class="form-text text-muted">Keyword для поисковой оптимизации</small></div>
+                                                <div><small class="form-text text-muted">Keywords для поисковой оптимизации</small></div>
                                                 <div class="input-group has-success">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                                    <input class="input-sm form-control" placeholder="Keyword" type="text" name="keyword_product_stock_<?php echo $x ?>" id="keyword_product_stock_<?php echo $x ?>" />
+                                                    <input class="input-sm form-control" placeholder="Keywords" type="text" name="keyword_product_stock_<?php echo $x ?>" id="keyword_product_stock_<?php echo $x ?>" />
                                                 </div>
                                             </div>
                                             <div class="col-right">
@@ -157,7 +157,7 @@
                                 <div class="col-right form-group">
                                     <div><small class="form-text text-muted">Производитель товара</small></div>
                                     <div class="input-group has-success">
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-object-align-bottom"></span></span>
                                         <select name="manufacturers_product_stock" id="manufacturers_product_stock" class="input-sm form-control">
                                             <?php $SET->viewSelect($manufacturers_all) ?>
                                         </select>
