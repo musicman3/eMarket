@@ -120,7 +120,7 @@
                                 </div>
                                 <div class="col-right form-group">
                                     <div><small class="form-text text-muted">Тип валюты</small></div>
-                                    <div class="input-group has-success">
+                                    <div class="input-group has-error">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-euro"></span></span>
                                         <select name="currency_product_stock" id="currency_product_stock" class="input-sm form-control">
                                             <?php $SET->viewSelect($currencies_all) ?>
