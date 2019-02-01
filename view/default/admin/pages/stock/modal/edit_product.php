@@ -50,7 +50,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                     </div>
                                     <div class="form-group">
                                         <div><small class="form-text text-muted">Описание товара</small></div>
-                                        <textarea rows="3" class="input-sm form-control summernote_edit" id="edit_product_0" name="description_product_stock_edit_0" id="description_product_stock_edit_0" /></textarea>
+                                        <textarea rows="3" class="input-sm form-control summernote_edit" name="description_product_stock_edit_0" id="description_product_stock_edit_0" /></textarea>
                                     </div>
                                     <div class="col-left">
                                         <div><small class="form-text text-muted">Keywords для поисковой оптимизации</small></div>
@@ -84,7 +84,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                             </div>
                                             <div class="form-group">
                                                 <div><small class="form-text text-muted">Описание товара</small></div>
-                                                <textarea rows="3" class="input-sm form-control summernote_edit" id="edit_product_<?php echo $x ?>" name="description_product_stock_edit_<?php echo $x ?>" id="description_product_stock_edit_<?php echo $x ?>" /></textarea>
+                                                <textarea rows="3" class="input-sm form-control summernote_edit" name="description_product_stock_edit_<?php echo $x ?>" id="description_product_stock_edit_<?php echo $x ?>" /></textarea>
                                             </div>
                                             <div class="col-left">
                                                 <div><small class="form-text text-muted">Keywords для поисковой оптимизации</small></div>

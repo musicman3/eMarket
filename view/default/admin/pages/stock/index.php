@@ -39,9 +39,10 @@
                         <!--Скрытый div для передачи данных-->
                         <div id="ajax_data" class='hidden'
                              data-name='<?php echo $name_edit ?>'
-                             data-nameproduct='<?php echo $name_edit_product ?>'
                              data-logo='<?php echo $logo_edit ?>'
                              data-general='<?php echo $logo_general ?>'
+                             data-nameproduct='<?php echo $name_edit_product ?>'
+                             data-descriptionproduct='<?php echo $description_edit_product ?>'
                              ></div>
 
                         <table class="table table-hover">
