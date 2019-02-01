@@ -107,7 +107,6 @@
         ?>
 
         <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="/ext/bootstrap/js/menu.js"></script>
         <?php
     } //КОНЕЦ ВЫВОДА ТОЛЬКО В КАТАЛОГЕ
     //
