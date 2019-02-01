@@ -125,7 +125,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                     <div><small class="form-text text-muted">Тип валюты</small></div>
                                     <div class="input-group has-error">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-euro"></span></span>
-                                        <select name="currency_product_stock_edit" id="currency_product_stock_edit" class="input-sm form-control" data-toggle="tooltip" title="<?php echo lang('title_currencies_index') ?>">
+                                        <select name="currency_product_stock_edit" id="currency_product_stock_edit" class="input-sm form-control">
                                             <?php $SET->viewSelect($currencies_all) ?>
                                         </select>
                                     </div>
@@ -143,7 +143,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                     <div><small class="form-text text-muted">Единица измерения количества</small></div>
                                     <div class="input-group has-error">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-flag"></span></span>
-                                        <select name="unit_product_stock_edit" id="unit_product_stock_edit" class="input-sm form-control" data-toggle="tooltip" title="<?php echo lang('title_units_index') ?>">
+                                        <select name="unit_product_stock_edit" id="unit_product_stock_edit" class="input-sm form-control">
                                             <?php $SET->viewSelect($units_all) ?>
                                         </select>
                                     </div>
@@ -161,7 +161,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                     <div><small class="form-text text-muted">Производитель товара</small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-object-align-bottom"></span></span>
-                                        <select name="manufacturers_product_stock_edit" id="manufacturers_product_stock_edit" class="input-sm form-control" data-toggle="tooltip" title="<?php echo lang('title_manufacturers_index') ?>">
+                                        <select name="manufacturers_product_stock_edit" id="manufacturers_product_stock_edit" class="input-sm form-control">
                                             <?php $SET->viewSelect($manufacturers_all) ?>
                                         </select>
                                     </div>
@@ -179,7 +179,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                     <div><small class="form-text text-muted">Тип налога</small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span></span>
-                                        <select name="tax_product_stock_edit" id="tax_product_stock_edit" class="input-sm form-control" data-toggle="tooltip" title="<?php echo lang('title_taxes_index') ?>">
+                                        <select name="tax_product_stock_edit" id="tax_product_stock_edit" class="input-sm form-control">
                                             <?php $SET->viewSelect($taxes_all) ?>
                                         </select>
                                     </div>
@@ -202,7 +202,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                     <div><small class="form-text text-muted">Тип идентификатора</small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-tag"></span></span>
-                                        <select name="vendor_codes_product_stock_edit" id="vendor_codes_product_stock_edit" class="input-sm form-control" data-toggle="tooltip" title="<?php echo lang('title_vendor_codes_index') ?>">
+                                        <select name="vendor_codes_product_stock_edit" id="vendor_codes_product_stock_edit" class="input-sm form-control">
                                             <?php $SET->viewSelect($vendor_codes_all) ?>
                                         </select>
                                     </div>
@@ -220,7 +220,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                     <div><small class="form-text text-muted">Единица измерения веса</small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-scale"></span></span>
-                                        <select name="weight_product_stock_edit" id="weight_product_stock_edit" class="input-sm form-control" data-toggle="tooltip" title="<?php echo lang('title_weight_index') ?>">
+                                        <select name="weight_product_stock_edit" id="weight_product_stock_edit" class="input-sm form-control">
                                             <?php $SET->viewSelect($weight_all) ?>
                                         </select>
                                     </div>
@@ -238,7 +238,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                     <div><small class="form-text text-muted">Единица измерения длины</small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-road"></span></span>
-                                        <select name="length_product_stock_edit" id="length_product_stock_edit" class="input-sm form-control" data-toggle="tooltip" title="<?php echo lang('title_length_index') ?>">
+                                        <select name="length_product_stock_edit" id="length_product_stock_edit" class="input-sm form-control">
                                             <?php $SET->viewSelect($length_all) ?>
                                         </select>
                                     </div>

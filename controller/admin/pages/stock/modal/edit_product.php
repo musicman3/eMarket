@@ -18,6 +18,7 @@ for ($i = $start; $i < $finish; $i++) {
             $keyword_edit_temp_product[$x][$modal_id_product] = $PDO->selectPrepare("SELECT keyword FROM " . TABLE_PRODUCTS . " WHERE id=? and language=?", [$modal_id_product, lang('#lang_all')[$x]]);
             $tags_edit_temp_product[$x][$modal_id_product] = $PDO->selectPrepare("SELECT tags FROM " . TABLE_PRODUCTS . " WHERE id=? and language=?", [$modal_id_product, lang('#lang_all')[$x]]);
         }
+        $price_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT price FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
         //$logo_edit_temp[$modal_id] = explode(',', $PDO->selectPrepare("SELECT logo FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id]), -1);
         //$logo_general_edit_temp[$modal_id] = $PDO->selectPrepare("SELECT logo_general FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id]);
 
@@ -26,6 +27,7 @@ for ($i = $start; $i < $finish; $i++) {
         $description_edit_product = json_encode($description_edit_temp_product); // Описание
         $keyword_edit_product = json_encode($keyword_edit_temp_product); // Keywords
         $tags_edit_product = json_encode($tags_edit_temp_product); // Tags
+        $price_edit_product = json_encode($price_edit_temp_product); // Цена
         //$logo_edit = json_encode($logo_edit_temp); // Список изображений
         //$logo_general = json_encode($logo_general_edit_temp); // Главное изображение
     }
@@ -36,5 +38,6 @@ if (!isset($modal_id_product)) {
     $description_edit_product = ''; // Описание
     $keyword_edit_product = ''; // Keywords
     $tags_edit_product = ''; // Tags
+    $price_edit_product = ''; // Цена
 }
 ?>
