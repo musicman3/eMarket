@@ -160,7 +160,7 @@ if (isset($_SESSION['buffer'])) {
                                     $('#tags_product_stock_edit_' + x).val(tags_edit[x][modal_id]);
                                 }
                                 $('#price_product_stock_edit').val(price_edit[modal_id]);
-                                $('#currency_product_stock_edit :contains(' + jQuery.parseJSON(currency_edit) + ')').prop('selected', 'selected');
+                                $('#currency_product_stock_edit :contains(' + jQuery.parseJSON(currency_edit) + ')').prop('selected', true);
                             });
 
                             $('#edit_product').modal('show');
