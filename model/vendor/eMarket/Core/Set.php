@@ -72,12 +72,13 @@ class Set {
      * Отображаем Select с учетом значения по-умолчанию
      *
      * @param array (массив для Select)
+     * @param string (если не нужно Selected)
      */
-    public function viewSelect($value) {
+    public function viewSelect($value, $selected = null) {
         
         $count_value = count($value);
         for ($x = 0; $x < $count_value; $x++) {
-            if (isset($value[$x][1]) && $value[$x][1] == 1) {
+            if (isset($value[$x][1]) && $value[$x][1] == 1 && $selected != 'false') {
 
                 ?>
                 <!-- Строка Select по умолчанию-->

@@ -150,6 +150,7 @@ if (isset($_SESSION['buffer'])) {
                                 var keyword_edit = $('div#ajax_data').data('keywordproduct');
                                 var tags_edit = $('div#ajax_data').data('tagsproduct');
                                 var price_edit = $('div#ajax_data').data('priceproduct');
+                                var currency_edit = $('div#ajax_data').data('currencyproduct');
 
                                 // Ищем id и добавляем данные
                                 for (x = 0; x < name_edit.length; x++) {
@@ -159,6 +160,7 @@ if (isset($_SESSION['buffer'])) {
                                     $('#tags_product_stock_edit_' + x).val(tags_edit[x][modal_id]);
                                 }
                                 $('#price_product_stock_edit').val(price_edit[modal_id]);
+                                $('#currency_product_stock_edit :contains(' + jQuery.parseJSON(currency_edit) + ')').attr('selected', 'selected');
                             });
 
                             $('#edit_product').modal('show');

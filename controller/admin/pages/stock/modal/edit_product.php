@@ -1,5 +1,4 @@
 <?php
-
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-= 
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -7,9 +6,9 @@
 
 // собираем данные для отображения в Редактировании категорий
 for ($i = $start; $i < $finish; $i++) {
-    if (isset($arr_merge['prod'][$i.'a'][0]) == TRUE) {
-        
-        $modal_id_product = $arr_merge['prod'][$i.'a'][0]; // ID
+    if (isset($arr_merge['prod'][$i . 'a'][0]) == TRUE) {
+
+        $modal_id_product = $arr_merge['prod'][$i . 'a'][0]; // ID
         $count_lang = $LANG_COUNT;
 
         for ($x = 0; $x < $count_lang; $x++) {
@@ -19,15 +18,19 @@ for ($i = $start; $i < $finish; $i++) {
             $tags_edit_temp_product[$x][$modal_id_product] = $PDO->selectPrepare("SELECT tags FROM " . TABLE_PRODUCTS . " WHERE id=? and language=?", [$modal_id_product, lang('#lang_all')[$x]]);
         }
         $price_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT price FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
+        //Валюта
+        $currency = $PDO->selectPrepare("SELECT currency FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
+        $currency_edit_temp_product = $PDO->selectPrepare("SELECT name FROM " . TABLE_CURRENCIES . " WHERE id=? and language=?", [$currency, lang('#lang_all')[0]]);
+
         //$logo_edit_temp[$modal_id] = explode(',', $PDO->selectPrepare("SELECT logo FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id]), -1);
         //$logo_general_edit_temp[$modal_id] = $PDO->selectPrepare("SELECT logo_general FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id]);
-
         // ПАРАМЕТРЫ ДЛЯ ПЕРЕДАЧИ В МОДАЛ
         $name_edit_product = json_encode($name_edit_temp_product); // Имя
         $description_edit_product = json_encode($description_edit_temp_product); // Описание
         $keyword_edit_product = json_encode($keyword_edit_temp_product); // Keywords
         $tags_edit_product = json_encode($tags_edit_temp_product); // Tags
         $price_edit_product = json_encode($price_edit_temp_product); // Цена
+        $currency_edit_product = json_encode($currency_edit_temp_product); // Валюта
         //$logo_edit = json_encode($logo_edit_temp); // Список изображений
         //$logo_general = json_encode($logo_general_edit_temp); // Главное изображение
     }
@@ -39,5 +42,7 @@ if (!isset($modal_id_product)) {
     $keyword_edit_product = ''; // Keywords
     $tags_edit_product = ''; // Tags
     $price_edit_product = ''; // Цена
+    $currency_edit_product = ''; // Валюта
 }
+
 ?>
