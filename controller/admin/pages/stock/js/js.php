@@ -147,11 +147,15 @@ if (isset($_SESSION['buffer'])) {
                                 // Получаем массивы данных
                                 var name_edit = $('div#ajax_data').data('nameproduct');
                                 var description_edit = $('div#ajax_data').data('descriptionproduct');
+                                var keyword_edit = $('div#ajax_data').data('keywordproduct');
+                                var tags_edit = $('div#ajax_data').data('tagsproduct');
 
                                 // Ищем id и добавляем данные
                                 for (x = 0; x < name_edit.length; x++) {
                                     $('#name_product_stock_edit_' + x).val(name_edit[x][modal_id]);
                                     $('#description_product_stock_edit_' + x).summernote('code', description_edit[x][modal_id]);
+                                    $('#keyword_product_stock_edit_' + x).val(keyword_edit[x][modal_id]);
+                                    $('#tags_product_stock_edit_' + x).val(tags_edit[x][modal_id]);
                                 }
                             });
 
