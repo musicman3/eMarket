@@ -93,8 +93,6 @@
 
         <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/ext/bootstrap/js/bootstrap-confirmation.min.js"></script>
-        <script type="text/javascript" src="/ext/bootstrap/js/confirmation.js"></script>
-        <script type="text/javascript" src="/ext/bootstrap/js/menu.js"></script>
         <script type="text/javascript" src="/ext/contextmenu/js/contextmenu.js"></script>
         <script type="text/javascript" src="/ext/bootstrap/js/bootstrap-multiselect.js"></script>
 
