@@ -74,15 +74,15 @@ class Set {
      * @param array (массив для Select)
      * @param string (если не нужно Selected)
      */
-    public function viewSelect($value, $selected = null) {
+    public function viewSelect($value, $id = null, $selected = null) {
         
         $count_value = count($value);
         for ($x = 0; $x < $count_value; $x++) {
-            if (isset($value[$x][1]) && $value[$x][1] == 1 && $selected != false) {
+            if (isset($value[$x][1]) && $value[$x][1] == 1 && $selected != false && $id != null) {
 
                 ?>
                 <!-- Строка Select по умолчанию-->
-                <option selected><?php echo $value[$x][0] ?></option>
+                <option value="<?php echo $id ?>" selected><?php echo $value[$x][0] ?></option>
             <?php } else { ?>
                 <option><?php echo $value[$x][0] ?></option>
                 <?php

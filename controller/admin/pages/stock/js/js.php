@@ -166,13 +166,13 @@ if (isset($_SESSION['buffer'])) {
                                     $('#tags_product_stock_edit_' + x).val(tags_edit[x][modal_id]);
                                 }
                                 $('#price_product_stock_edit').val(price_edit[modal_id]);
-                                $('#currency_product_stock_edit :contains(' + currency_edit[modal_id] + ')').prop('selected', true);
-                                $('#quantity_product_stock_edit').val(quantity_edit[modal_id]);
-                                $('#unit_product_stock_edit :contains(' + unit_edit[modal_id] + ')').prop('selected', true);
+                                $('#currency_product_stock_edit').val(currency_edit[modal_id]);
+                                $('#quantity_product_stock_edit').val(quantity_edit[modal_id]);;
+                                $('#unit_product_stock_edit').val(unit_edit[modal_id]);
                                 $('#model_product_stock_edit').val(model_edit[modal_id]);
-                                $('#manufacturers_product_stock_edit :contains(' + manufacturers_edit[modal_id] + ')').prop('selected', true);
+                                $('#manufacturers_product_stock_edit').val(manufacturers_edit[modal_id]);
                                 $('#date_available_product_stock_edit').datepicker('update', new Date(date_available_edit[modal_id].replace(/-/g, ',')));
-                                $('#tax_product_stock_edit :contains(' + tax_edit[modal_id] + ')').prop('selected', true);
+                                $('#tax_product_stock_edit').val(tax_edit[modal_id]);
                             });
 
                             $('#edit_product').modal('show');
