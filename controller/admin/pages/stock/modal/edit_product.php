@@ -17,7 +17,7 @@ for ($i = $start; $i < $finish; $i++) {
             $keyword_edit_temp_product[$x][$modal_id_product] = $PDO->selectPrepare("SELECT keyword FROM " . TABLE_PRODUCTS . " WHERE id=? and language=?", [$modal_id_product, lang('#lang_all')[$x]]);
             $tags_edit_temp_product[$x][$modal_id_product] = $PDO->selectPrepare("SELECT tags FROM " . TABLE_PRODUCTS . " WHERE id=? and language=?", [$modal_id_product, lang('#lang_all')[$x]]);
         }
-        
+
         // Цена
         $price_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT price FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
 
@@ -26,7 +26,7 @@ for ($i = $start; $i < $finish; $i++) {
         foreach ($currency as $val) {
             $currency_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT name FROM " . TABLE_CURRENCIES . " WHERE id=? and language=?", [$val, lang('#lang_all')[0]]);
         }
-        
+
         // Количество
         $quantity_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT quantity FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
 
@@ -35,34 +35,43 @@ for ($i = $start; $i < $finish; $i++) {
         foreach ($units as $val) {
             $units_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT name FROM " . TABLE_UNITS . " WHERE id=? and language=?", [$val, lang('#lang_all')[0]]);
         }
-        
+
         // Модель
         $model_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT model FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
-        
+
         // Производитель
         $manufacturer[$modal_id_product] = $PDO->selectPrepare("SELECT manufacturer FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
         foreach ($manufacturer as $val) {
             $manufacturers_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT name FROM " . TABLE_MANUFACTURERS . " WHERE id=? and language=?", [$val, lang('#lang_all')[0]]);
         }
-        
+
         // Дата поступления
         $date_available_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT date_available FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
-        
+
         // Налог
         $tax[$modal_id_product] = $PDO->selectPrepare("SELECT tax FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
         foreach ($tax as $val) {
             $tax_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT name FROM " . TABLE_TAXES . " WHERE id=? and language=?", [$val, lang('#lang_all')[0]]);
         }
-        
+
         // Значение идентификатора
         $vendor_code_value_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT vendor_code_value FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
-        
+
         // Идентификатор
         $vendor_code[$modal_id_product] = $PDO->selectPrepare("SELECT vendor_code FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
         foreach ($vendor_code as $val) {
             $vendor_code_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT name FROM " . TABLE_VENDOR_CODES . " WHERE id=? and language=?", [$val, lang('#lang_all')[0]]);
-        }        
-        
+        }
+
+        // Значение Веса
+        $weight_value_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT weight_value FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
+
+        // Вес
+        $weight[$modal_id_product] = $PDO->selectPrepare("SELECT weight FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
+        foreach ($weight as $val) {
+            $weight_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT name FROM " . TABLE_WEIGHT . " WHERE id=? and language=?", [$val, lang('#lang_all')[0]]);
+        }
+
         //$logo_edit_temp[$modal_id] = explode(',', $PDO->selectPrepare("SELECT logo FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id]), -1);
         //$logo_general_edit_temp[$modal_id] = $PDO->selectPrepare("SELECT logo_general FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id]);
         // ПАРАМЕТРЫ ДЛЯ ПЕРЕДАЧИ В МОДАЛ
@@ -80,6 +89,8 @@ for ($i = $start; $i < $finish; $i++) {
         $tax_edit_product = json_encode($tax_edit_temp_product); // Налог
         $vendor_code_value_edit_product = json_encode($vendor_code_value_edit_temp_product); // Значение идентификатора
         $vendor_code_edit_product = json_encode($vendor_code_edit_temp_product); // Идентификатор
+        $weight_value_edit_product = json_encode($weight_value_edit_temp_product); // Значение веса
+        $weight_edit_product = json_encode($weight_edit_temp_product); // Вес
         //
         //$logo_edit = json_encode($logo_edit_temp); // Список изображений
         //$logo_general = json_encode($logo_general_edit_temp); // Главное изображение
@@ -104,6 +115,8 @@ if (!isset($modal_id_product)) {
     $tax_edit_product = ''; // Налог
     $vendor_code_value_edit_product = ''; // Значение идентификатора
     $vendor_code_edit_product = ''; // Идентификатор
+    $weight_value_edit_product = ''; // Значение веса
+    $weight_edit_product = ''; // Вес
 }
 
 ?>

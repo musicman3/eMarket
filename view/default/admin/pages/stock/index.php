@@ -55,6 +55,8 @@
                              data-taxproduct='<?php echo $tax_edit_product ?>'
                              data-vendorcodevalueproduct='<?php echo $vendor_code_value_edit_product ?>'
                              data-vendorcodeproduct='<?php echo $vendor_code_edit_product ?>'
+                             data-weightvalueproduct='<?php echo $weight_value_edit_product ?>'
+                             data-weightproduct='<?php echo $weight_edit_product ?>'
                              ></div>
 
                         <table class="table table-hover">

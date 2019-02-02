@@ -211,7 +211,7 @@
                                     <div><small class="form-text text-muted">Вес товара</small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                        <input class="input-sm form-control" placeholder="0.00" type="text" name="value_weight_product_stock" id="value_weight_product_stock" />
+                                        <input class="input-sm form-control" placeholder="0.00" type="text" name="weight_value_product_stock" id="weight_value_product_stock" />
                                     </div>
                                 </div>
                                 <div class="col-right form-group">

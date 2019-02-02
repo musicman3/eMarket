@@ -159,6 +159,8 @@ if (isset($_SESSION['buffer'])) {
                                 var tax_edit = $('div#ajax_data').data('taxproduct');
                                 var vendor_code_value_edit = $('div#ajax_data').data('vendorcodevalueproduct');
                                 var vendor_code_edit = $('div#ajax_data').data('vendorcodeproduct');
+                                var weight_value_edit = $('div#ajax_data').data('weightvalueproduct');
+                                var weight_edit = $('div#ajax_data').data('weightproduct');
 
                                 // Ищем id и добавляем данные
                                 for (x = 0; x < name_edit.length; x++) {
@@ -177,6 +179,8 @@ if (isset($_SESSION['buffer'])) {
                                 $('#tax_product_stock_edit').val(tax_edit[modal_id]);
                                 $('#vendor_code_value_product_stock_edit').val(vendor_code_value_edit[modal_id]);
                                 $('#vendor_codes_product_stock_edit').val(vendor_code_edit[modal_id]);
+                                $('#weight_value_product_stock_edit').val(weight_value_edit[modal_id]);
+                                $('#weight_product_stock_edit').val(weight_edit[modal_id]);
                             });
 
                             $('#edit_product').modal('show');

@@ -213,7 +213,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                     <div><small class="form-text text-muted">Вес товара</small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                        <input class="input-sm form-control" placeholder="0.00" type="text" name="value_weight_product_stock_edit" id="value_weight_product_stock_edit" />
+                                        <input class="input-sm form-control" placeholder="0.00" type="text" name="weight_value_product_stock_edit" id="weight_value_product_stock_edit" />
                                     </div>
                                 </div>
                                 <div class="col-right form-group">
@@ -221,7 +221,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-scale"></span></span>
                                         <select name="weight_product_stock_edit" id="weight_product_stock_edit" class="input-sm form-control">
-                                            <?php $SET->viewSelect($weight_all) ?>
+                                            <?php $SET->viewSelect($weight_all, $weight_all[2], false) ?>
                                         </select>
                                     </div>
                                 </div>
