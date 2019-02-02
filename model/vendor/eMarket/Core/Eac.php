@@ -70,8 +70,11 @@ class Eac {
             $parent_id = $parent_id_status;
         }
 
-        // Если нажали на кнопку Добавить
+        // Если нажали на кнопку Добавить Товар
         self::addProduct($TABLES, $parent_id);
+
+        // Если нажали на кнопку Редактировать товар
+        self::editProduct($TABLES, $parent_id);
 
         return array($idsx_real_parent_id, $parent_id);
     }
@@ -342,17 +345,17 @@ class Eac {
         if ($VALID->inPOST('idsx_paste_key') == 'paste' && isset($_SESSION['buffer']) == TRUE) {
 
             $parent_id_real = (int) $VALID->inPOST('idsx_real_parent_id'); // получить значение из JS
-            if (isset ($_SESSION['buffer']['cat'])){
+            if (isset($_SESSION['buffer']['cat'])) {
                 $count_session_buffer_cat = count($_SESSION['buffer']['cat']);
-            }else{
+            } else {
                 $count_session_buffer_cat = 0;
             }
-            if (isset ($_SESSION['buffer']['prod'])){
+            if (isset($_SESSION['buffer']['prod'])) {
                 $count_session_buffer_prod = count($_SESSION['buffer']['prod']);
-            }else{
+            } else {
                 $count_session_buffer_prod = 0;
             }
-            
+
             $count_session_buffer = $count_session_buffer_cat + $count_session_buffer_prod; // Получаем количество значений в массиве
 
             for ($buf = 0; $buf < $count_session_buffer; $buf++) {
@@ -577,19 +580,19 @@ class Eac {
             } else {
                 $vendor_codes_product_stock = NULL;
             }
-            
+
             if ($VALID->inPOST('weight_product_stock')) {
                 $weight_product_stock = (int) $PDO->selectPrepare("SELECT id FROM " . $TABLE_WEIGHT . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('weight_product_stock')]);
             } else {
                 $weight_product_stock = NULL;
             }
-            
+
             if ($VALID->inPOST('length_product_stock')) {
                 $length_product_stock = (int) $PDO->selectPrepare("SELECT id FROM " . $TABLE_LENGTH . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('length_product_stock')]);
             } else {
                 $length_product_stock = NULL;
             }
-            
+
             if ($VALID->inPOST('currency_product_stock')) {
                 $currency_product_stock = (int) $PDO->selectPrepare("SELECT id FROM " . $TABLE_CURRENCIES . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('currency_product_stock')]);
             } else {
@@ -606,6 +609,98 @@ class Eac {
                         " SET id=?, name=?, language=?, parent_id=?, date_added=?, date_available=?, model=?, price=?, currency=?, quantity=?, unit=?, keyword=?, tags=?, description=?, tax=?, manufacturer=?, vendor_code=?, vendor_code_value=?, weight=?, weight_value=?, dimension=?, lenght=?, width=?, height=?, min_quantity=?", [
                     $id, $VALID->inPOST('name_product_stock_' . $x), lang('#lang_all')[$x], $parent_id, date("Y-m-d H:i:s"), $date_available, $VALID->inPOST('model_product_stock'), $VALID->inPOST('price_product_stock'), $currency_product_stock, $VALID->inPOST('quantity_product_stock'), $unit_product_stock, $VALID->inPOST('keyword_product_stock_' . $x), $VALID->inPOST('tags_product_stock_' . $x), $VALID->inPOST('description_product_stock_' . $x),
                     $tax_product_stock, $manufacturers_product_stock, $vendor_codes_product_stock, $VALID->inPOST('vendor_code_value_product_stock'), $weight_product_stock, $VALID->inPOST('weight_value_product_stock'), $length_product_stock, $VALID->inPOST('value_length_product_stock'), $VALID->inPOST('value_width_product_stock'), $VALID->inPOST('value_height_product_stock'), $VALID->inPOST('min_quantity_product_stock')
+                ]);
+            }
+            // Выводим сообщение об успехе
+            $_SESSION['message'] = ['success', lang('action_completed_successfully')];
+        }
+    }
+
+    /**
+     * Редактировать товар в EAC
+     * @param array $TABLES (названия таблиц)
+     * @param string $parent_id (идентификатор родительской категории)
+     */
+    private function editProduct($TABLES, $parent_id) {
+
+        $PDO = new \eMarket\Core\Pdo;
+        $VALID = new \eMarket\Core\Valid;
+        $LANG_COUNT = count(lang('#lang_all'));
+
+        $TABLE_PRODUCTS = $TABLES[1];
+        $TABLE_TAXES = $TABLES[2];
+        $TABLE_UNITS = $TABLES[3];
+        $TABLE_MANUFACTURERS = $TABLES[4];
+        $TABLE_VENDOR_CODES = $TABLES[5];
+        $TABLE_WEIGHT = $TABLES[6];
+        $TABLE_LENGTH = $TABLES[7];
+        $TABLE_CURRENCIES = $TABLES[8];
+
+        // Если нажали на кнопку Добавить товар
+        if ($VALID->inPOST('edit_product')) {
+
+            // Формат даты после Datepicker
+            if ($VALID->inPOST('date_available_product_stock_edit')) {
+                $date_available = date('Y-m-d', strtotime($VALID->inPOST('date_available_product_stock_edit')));
+            } else {
+
+                $date_available = NULL;
+            }
+
+            if ($VALID->inPOST('view_product_stock_edit')) {
+                $view_product = 1;
+            } else {
+                $view_product = 0;
+            }
+
+            if ($VALID->inPOST('tax_product_stock_edit')) {
+                $tax_product_stock = (int) $PDO->selectPrepare("SELECT id FROM " . $TABLE_TAXES . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('tax_product_stock_edit')]);
+            } else {
+                $tax_product_stock = NULL;
+            }
+
+            if ($VALID->inPOST('unit_product_stock_edit')) {
+                $unit_product_stock = (int) $PDO->selectPrepare("SELECT id FROM " . $TABLE_UNITS . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('unit_product_stock_edit')]);
+            } else {
+                $unit_product_stock = NULL;
+            }
+
+            if ($VALID->inPOST('manufacturers_product_stock_edit')) {
+                $manufacturers_product_stock = (int) $PDO->selectPrepare("SELECT id FROM " . $TABLE_MANUFACTURERS . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('manufacturers_product_stock_edit')]);
+            } else {
+                $manufacturers_product_stock = NULL;
+            }
+
+            if ($VALID->inPOST('vendor_codes_product_stock_edit')) {
+                $vendor_codes_product_stock = (int) $PDO->selectPrepare("SELECT id FROM " . $TABLE_VENDOR_CODES . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('vendor_codes_product_stock_edit')]);
+            } else {
+                $vendor_codes_product_stock = NULL;
+            }
+
+            if ($VALID->inPOST('weight_product_stock_edit')) {
+                $weight_product_stock = (int) $PDO->selectPrepare("SELECT id FROM " . $TABLE_WEIGHT . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('weight_product_stock_edit')]);
+            } else {
+                $weight_product_stock = NULL;
+            }
+
+            if ($VALID->inPOST('length_product_stock_edit')) {
+                $length_product_stock = (int) $PDO->selectPrepare("SELECT id FROM " . $TABLE_LENGTH . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('length_product_stock_edit')]);
+            } else {
+                $length_product_stock = NULL;
+            }
+
+            if ($VALID->inPOST('currency_product_stock_edit')) {
+                $currency_product_stock = (int) $PDO->selectPrepare("SELECT id FROM " . $TABLE_CURRENCIES . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('currency_product_stock_edit')]);
+            } else {
+                $currency_product_stock = NULL;
+            }
+
+            // добавляем запись для всех вкладок
+            for ($x = 0; $x < $LANG_COUNT; $x++) {
+                $PDO->inPrepare("UPDATE " . $TABLE_PRODUCTS .
+                        " SET name=?, parent_id=?, last_modified=?, date_available=?, model=?, price=?, currency=?, quantity=?, unit=?, keyword=?, tags=?, description=?, tax=?, manufacturer=?, vendor_code=?, vendor_code_value=?, weight=?, weight_value=?, dimension=?, lenght=?, width=?, height=?, min_quantity=? WHERE id=? AND language=?", [
+                    $VALID->inPOST('name_product_stock_edit_' . $x), $parent_id, date("Y-m-d H:i:s"), $date_available, $VALID->inPOST('model_product_stock_edit'), $VALID->inPOST('price_product_stock_edit'), $currency_product_stock, $VALID->inPOST('quantity_product_stock_edit'), $unit_product_stock, $VALID->inPOST('keyword_product_stock_edit_' . $x), $VALID->inPOST('tags_product_stock_edit_' . $x), $VALID->inPOST('description_product_stock_edit_' . $x),
+                    $tax_product_stock, $manufacturers_product_stock, $vendor_codes_product_stock, $VALID->inPOST('vendor_code_value_product_stock_edit'), $weight_product_stock, $VALID->inPOST('weight_value_product_stock_edit'), $length_product_stock, $VALID->inPOST('value_length_product_stock_edit'), $VALID->inPOST('value_width_product_stock_edit'), $VALID->inPOST('value_height_product_stock_edit'), $VALID->inPOST('min_quantity_product_stock_edit'), $VALID->inPOST('edit_product'), lang('#lang_all')[$x]
                 ]);
             }
             // Выводим сообщение об успехе

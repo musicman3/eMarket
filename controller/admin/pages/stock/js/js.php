@@ -191,6 +191,8 @@ if (isset($_SESSION['buffer'])) {
                                 $('#value_length_product_stock_edit').val(lenght_edit[modal_id]);
                                 $('#value_width_product_stock_edit').val(width_edit[modal_id]);
                                 $('#value_height_product_stock_edit').val(height_edit[modal_id]);
+                                
+                                $('#js_edit_product').val(modal_id);
                             });
 
                             $('#edit_product').modal('show');
@@ -529,6 +531,35 @@ if (isset($_SESSION['buffer'])) {
             data: msg,
             beforeSend: function (data) {
                 $('#add_product').modal('hide');
+            }
+        });
+        // Отправка запроса для обновления страницы
+        jQuery.get('/controller/admin/pages/stock/index.php',
+                {parent_down: <?php echo $parent_id ?>,
+                    modify: 'update_ok'},
+                AjaxSuccess);
+        // Обновление страницы
+        function AjaxSuccess(data) {
+            setTimeout(function () {
+                document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
+            }, 100);
+            $("#sort-list").sortable();
+        }
+    }
+</script>
+
+<!-- Модальное окно "Редактировать товар" -->
+<script type="text/javascript">
+    function callEditProduct() {
+        var msg = $('#form_edit_product').serialize();
+        // Установка синхронного запроса для jQuery.ajax
+        jQuery.ajaxSetup({async: false});
+        jQuery.ajax({
+            type: 'POST',
+            url: '/controller/admin/pages/stock/index.php',
+            data: msg,
+            beforeSend: function (data) {
+                $('#edit_product').modal('hide');
             }
         });
         // Отправка запроса для обновления страницы

@@ -126,7 +126,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                     <div class="input-group has-error">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-euro"></span></span>
                                         <select name="currency_product_stock_edit" id="currency_product_stock_edit" class="input-sm form-control">
-                                            <?php $SET->viewSelect($currencies_all, $currencies_all[2], false) ?>
+                                            <?php $SET->viewSelect($currencies_all, $currencies_all[0][2], false) ?>
                                         </select>
                                     </div>
                                 </div>
@@ -144,7 +144,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                     <div class="input-group has-error">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-flag"></span></span>
                                         <select name="unit_product_stock_edit" id="unit_product_stock_edit" class="input-sm form-control">
-                                            <?php $SET->viewSelect($units_all, $units_all[2], false) ?>
+                                            <?php $SET->viewSelect($units_all, $units_all[0][2], false) ?>
                                         </select>
                                     </div>
                                 </div>
@@ -162,7 +162,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-object-align-bottom"></span></span>
                                         <select name="manufacturers_product_stock_edit" id="manufacturers_product_stock_edit" class="input-sm form-control">
-                                            <?php $SET->viewSelect($manufacturers_all, $manufacturers_all[1], false) ?>
+                                            <?php $SET->viewSelect($manufacturers_all, $manufacturers_all[0][1], false) ?>
                                         </select>
                                     </div>
                                 </div>
@@ -180,7 +180,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span></span>
                                         <select name="tax_product_stock_edit" id="tax_product_stock_edit" class="input-sm form-control">
-                                            <?php $SET->viewSelect($taxes_all, $taxes_all[1], false) ?>
+                                            <?php $SET->viewSelect($taxes_all, $taxes_all[0][1], false) ?>
                                         </select>
                                     </div>
                                 </div>
@@ -203,7 +203,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-tag"></span></span>
                                         <select name="vendor_codes_product_stock_edit" id="vendor_codes_product_stock_edit" class="input-sm form-control">
-                                            <?php $SET->viewSelect($vendor_codes_all, $vendor_codes_all[2], false) ?>
+                                            <?php $SET->viewSelect($vendor_codes_all, $vendor_codes_all[0][2], false) ?>
                                         </select>
                                     </div>
                                 </div>
@@ -221,7 +221,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-scale"></span></span>
                                         <select name="weight_product_stock_edit" id="weight_product_stock_edit" class="input-sm form-control">
-                                            <?php $SET->viewSelect($weight_all, $weight_all[2], false) ?>
+                                            <?php $SET->viewSelect($weight_all, $weight_all[0][2], false) ?>
                                         </select>
                                     </div>
                                 </div>
@@ -239,7 +239,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-road"></span></span>
                                         <select name="length_product_stock_edit" id="length_product_stock_edit" class="input-sm form-control">
-                                            <?php $SET->viewSelect($length_all, $length_all[2], false) ?>
+                                            <?php $SET->viewSelect($length_all, $length_all[0][2], false) ?>
                                         </select>
                                     </div>
                                 </div>
