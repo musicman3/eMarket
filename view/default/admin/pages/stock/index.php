@@ -47,6 +47,8 @@
                              data-tagsproduct='<?php echo $tags_edit_product ?>'
                              data-priceproduct='<?php echo $price_edit_product ?>'
                              data-currencyproduct='<?php echo $currency_edit_product ?>'
+                             data-quantityproduct='<?php echo $quantity_edit_product ?>'
+                             data-unitsproduct='<?php echo $units_edit_temp_product ?>'
                              ></div>
 
                         <table class="table table-hover">

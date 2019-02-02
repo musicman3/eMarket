@@ -78,7 +78,7 @@ class Set {
         
         $count_value = count($value);
         for ($x = 0; $x < $count_value; $x++) {
-            if (isset($value[$x][1]) && $value[$x][1] == 1 && $selected != 'false') {
+            if (isset($value[$x][1]) && $value[$x][1] == 1 && $selected != false) {
 
                 ?>
                 <!-- Строка Select по умолчанию-->

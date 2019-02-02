@@ -126,7 +126,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                     <div class="input-group has-error">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-euro"></span></span>
                                         <select name="currency_product_stock_edit" id="currency_product_stock_edit" class="input-sm form-control">
-                                            <?php $SET->viewSelect($currencies_all, 'false') ?>
+                                            <?php $SET->viewSelect($currencies_all, false) ?>
                                         </select>
                                     </div>
                                 </div>
@@ -144,7 +144,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                     <div class="input-group has-error">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-flag"></span></span>
                                         <select name="unit_product_stock_edit" id="unit_product_stock_edit" class="input-sm form-control">
-                                            <?php $SET->viewSelect($units_all) ?>
+                                            <?php $SET->viewSelect($units_all, false) ?>
                                         </select>
                                     </div>
                                 </div>
