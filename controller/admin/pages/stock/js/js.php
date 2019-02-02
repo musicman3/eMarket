@@ -155,6 +155,8 @@ if (isset($_SESSION['buffer'])) {
                                 var unit_edit = $('div#ajax_data').data('unitsproduct');
                                 var model_edit = $('div#ajax_data').data('modelproduct');
                                 var manufacturers_edit = $('div#ajax_data').data('manufacturersproduct');
+                                var date_available_edit = $('div#ajax_data').data('dateavailableproduct');
+                                var tax_edit = $('div#ajax_data').data('taxproduct');
 
                                 // Ищем id и добавляем данные
                                 for (x = 0; x < name_edit.length; x++) {
@@ -169,6 +171,8 @@ if (isset($_SESSION['buffer'])) {
                                 $('#unit_product_stock_edit :contains(' + unit_edit[modal_id] + ')').prop('selected', true);
                                 $('#model_product_stock_edit').val(model_edit[modal_id]);
                                 $('#manufacturers_product_stock_edit :contains(' + manufacturers_edit[modal_id] + ')').prop('selected', true);
+                                $('#date_available_product_stock_edit').val(date_available_edit[modal_id]);
+                                $('#tax_product_stock_edit :contains(' + tax_edit[modal_id] + ')').prop('selected', true);
                             });
 
                             $('#edit_product').modal('show');
@@ -621,7 +625,7 @@ if (isset($_SESSION['buffer'])) {
 <link href="/ext/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
 <script type="text/javascript" src="/ext/bootstrap-datepicker/locales/bootstrap-datepicker.<?php echo lang('meta-language') ?>.min.js"></script>
 <script type="text/javascript">
-        $('#date_available_product_stock, #date_available_product_stock_edit input').datepicker({
+        $('#date_available_product_stock, #date_available_product_stock_edit').datepicker({
         language: "<?php echo lang('meta-language') ?>"
     });
 </script>

@@ -17,29 +17,43 @@ for ($i = $start; $i < $finish; $i++) {
             $keyword_edit_temp_product[$x][$modal_id_product] = $PDO->selectPrepare("SELECT keyword FROM " . TABLE_PRODUCTS . " WHERE id=? and language=?", [$modal_id_product, lang('#lang_all')[$x]]);
             $tags_edit_temp_product[$x][$modal_id_product] = $PDO->selectPrepare("SELECT tags FROM " . TABLE_PRODUCTS . " WHERE id=? and language=?", [$modal_id_product, lang('#lang_all')[$x]]);
         }
+        
+        // Цена
         $price_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT price FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
 
-        //Валюта
+        // Валюта
         $currency[$modal_id_product] = $PDO->selectPrepare("SELECT currency FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
         foreach ($currency as $val) {
             $currency_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT name FROM " . TABLE_CURRENCIES . " WHERE id=? and language=?", [$val, lang('#lang_all')[0]]);
         }
-
+        
+        // Количество
         $quantity_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT quantity FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
 
-        //Единицы измерения
+        // Единицы измерения
         $units[$modal_id_product] = $PDO->selectPrepare("SELECT quantity_value FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
         foreach ($units as $val) {
             $units_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT name FROM " . TABLE_UNITS . " WHERE id=? and language=?", [$val, lang('#lang_all')[0]]);
         }
-
+        
+        // Модель
         $model_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT model FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
         
-        //Производитель
+        // Производитель
         $manufacturer[$modal_id_product] = $PDO->selectPrepare("SELECT manufacturer FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
         foreach ($manufacturer as $val) {
             $manufacturers_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT name FROM " . TABLE_MANUFACTURERS . " WHERE id=? and language=?", [$val, lang('#lang_all')[0]]);
         }
+        
+        // Дата поступления
+        $date_available_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT date_available FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
+        
+        // Налог
+        $tax[$modal_id_product] = $PDO->selectPrepare("SELECT tax FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
+        foreach ($tax as $val) {
+            $tax_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT name FROM " . TABLE_TAXES . " WHERE id=? and language=?", [$val, lang('#lang_all')[0]]);
+        }
+        
         //$logo_edit_temp[$modal_id] = explode(',', $PDO->selectPrepare("SELECT logo FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id]), -1);
         //$logo_general_edit_temp[$modal_id] = $PDO->selectPrepare("SELECT logo_general FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id]);
         // ПАРАМЕТРЫ ДЛЯ ПЕРЕДАЧИ В МОДАЛ
@@ -50,9 +64,13 @@ for ($i = $start; $i < $finish; $i++) {
         $price_edit_product = json_encode($price_edit_temp_product); // Цена
         $currency_edit_product = json_encode($currency_edit_temp_product); // Валюта
         $quantity_edit_product = json_encode($quantity_edit_temp_product); // Количество
-        $units_edit_product = json_encode($units_edit_temp_product); // Ед. Измерения
+        $units_edit_product = json_encode($units_edit_temp_product); // Единицы измерения
         $model_edit_product = json_encode($model_edit_temp_product); // Модель
         $manufacturers_edit_product = json_encode($manufacturers_edit_temp_product); // Производитель
+        $date_available_edit_product = json_encode($date_available_edit_temp_product); // Дата поступления
+        $tax_edit_product = json_encode($tax_edit_temp_product); // Налог
+        //
+        //
         //$logo_edit = json_encode($logo_edit_temp); // Список изображений
         //$logo_general = json_encode($logo_general_edit_temp); // Главное изображение
     }
@@ -69,9 +87,11 @@ if (!isset($modal_id_product)) {
     $price_edit_product = ''; // Цена
     $currency_edit_product = ''; // Валюта
     $quantity_edit_product = ''; // Количество
-    $units_edit_product = ''; // Ед. Измерения
+    $units_edit_product = ''; // Единицы измерения
     $model_edit_product = ''; // Модель
     $manufacturers_edit_product = ''; // Производитель
+    $date_available_edit_product = ''; // Дата поступления
+    $tax_edit_product = ''; // Налог
 }
 
 ?>

@@ -180,7 +180,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span></span>
                                         <select name="tax_product_stock_edit" id="tax_product_stock_edit" class="input-sm form-control">
-                                            <?php $SET->viewSelect($taxes_all) ?>
+                                            <?php $SET->viewSelect($taxes_all, false) ?>
                                         </select>
                                     </div>
                                 </div>
