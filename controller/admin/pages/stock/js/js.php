@@ -171,7 +171,7 @@ if (isset($_SESSION['buffer'])) {
                                 $('#unit_product_stock_edit :contains(' + unit_edit[modal_id] + ')').prop('selected', true);
                                 $('#model_product_stock_edit').val(model_edit[modal_id]);
                                 $('#manufacturers_product_stock_edit :contains(' + manufacturers_edit[modal_id] + ')').prop('selected', true);
-                                $('#date_available_product_stock_edit').val(date_available_edit[modal_id]);
+                                $('#date_available_product_stock_edit').datepicker('update', new Date(date_available_edit[modal_id].replace(/-/g, ',')));
                                 $('#tax_product_stock_edit :contains(' + tax_edit[modal_id] + ')').prop('selected', true);
                             });
 
