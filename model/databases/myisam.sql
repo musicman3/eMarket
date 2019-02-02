@@ -106,7 +106,7 @@ CREATE TABLE emkt_products (
         currency int,
         tax int,
         quantity int,
-        quantity_value int,
+        unit int,
         model varchar(64), 
         date_available date,
         manufacturer int,

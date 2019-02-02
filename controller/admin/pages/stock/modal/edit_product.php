@@ -31,7 +31,7 @@ for ($i = $start; $i < $finish; $i++) {
         $quantity_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT quantity FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
 
         // Единицы измерения
-        $units[$modal_id_product] = $PDO->selectPrepare("SELECT quantity_value FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
+        $units[$modal_id_product] = $PDO->selectPrepare("SELECT unit FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
         foreach ($units as $val) {
             $units_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT name FROM " . TABLE_UNITS . " WHERE id=? and language=?", [$val, lang('#lang_all')[0]]);
         }
