@@ -18,19 +18,28 @@ for ($i = $start; $i < $finish; $i++) {
             $tags_edit_temp_product[$x][$modal_id_product] = $PDO->selectPrepare("SELECT tags FROM " . TABLE_PRODUCTS . " WHERE id=? and language=?", [$modal_id_product, lang('#lang_all')[$x]]);
         }
         $price_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT price FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
+
         //Валюта
-        $currency = $PDO->selectPrepare("SELECT currency FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
-        $currency_edit_temp_product = $PDO->selectPrepare("SELECT name FROM " . TABLE_CURRENCIES . " WHERE id=? and language=?", [$currency, lang('#lang_all')[0]]);
+        $currency[$modal_id_product] = $PDO->selectPrepare("SELECT currency FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
+        foreach ($currency as $val) {
+            $currency_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT name FROM " . TABLE_CURRENCIES . " WHERE id=? and language=?", [$val, lang('#lang_all')[0]]);
+        }
 
         $quantity_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT quantity FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
+
         //Единицы измерения
-        $units = $PDO->selectPrepare("SELECT quantity_value FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
-        $units_edit_temp_product = $PDO->selectPrepare("SELECT name FROM " . TABLE_UNITS . " WHERE id=? and language=?", [$units, lang('#lang_all')[0]]);
-        
+        $units[$modal_id_product] = $PDO->selectPrepare("SELECT quantity_value FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
+        foreach ($units as $val) {
+            $units_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT name FROM " . TABLE_UNITS . " WHERE id=? and language=?", [$val, lang('#lang_all')[0]]);
+        }
+
         $model_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT model FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
+        
         //Производитель
-        $manufacturer = $PDO->selectPrepare("SELECT manufacturer FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
-        $manufacturers_edit_temp_product = $PDO->selectPrepare("SELECT name FROM " . TABLE_MANUFACTURERS . " WHERE id=? and language=?", [$manufacturer, lang('#lang_all')[0]]);
+        $manufacturer[$modal_id_product] = $PDO->selectPrepare("SELECT manufacturer FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
+        foreach ($manufacturer as $val) {
+            $manufacturers_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT name FROM " . TABLE_MANUFACTURERS . " WHERE id=? and language=?", [$val, lang('#lang_all')[0]]);
+        }
         //$logo_edit_temp[$modal_id] = explode(',', $PDO->selectPrepare("SELECT logo FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id]), -1);
         //$logo_general_edit_temp[$modal_id] = $PDO->selectPrepare("SELECT logo_general FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id]);
         // ПАРАМЕТРЫ ДЛЯ ПЕРЕДАЧИ В МОДАЛ
@@ -48,6 +57,9 @@ for ($i = $start; $i < $finish; $i++) {
         //$logo_general = json_encode($logo_general_edit_temp); // Главное изображение
     }
 }
+
+//$DEBUG->trace($units_edit_temp_product);
+
 if (!isset($modal_id_product)) {
     $modal_id_product = 'false';
     $name_edit_product = ''; // Имя

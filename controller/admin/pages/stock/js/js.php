@@ -164,11 +164,11 @@ if (isset($_SESSION['buffer'])) {
                                     $('#tags_product_stock_edit_' + x).val(tags_edit[x][modal_id]);
                                 }
                                 $('#price_product_stock_edit').val(price_edit[modal_id]);
-                                $('#currency_product_stock_edit :contains(' + jQuery.parseJSON(currency_edit) + ')').prop('selected', true);
+                                $('#currency_product_stock_edit :contains(' + currency_edit[modal_id] + ')').prop('selected', true);
                                 $('#quantity_product_stock_edit').val(quantity_edit[modal_id]);
-                                $('#unit_product_stock_edit :contains(' + unit_edit + ')').prop('selected', true);
+                                $('#unit_product_stock_edit :contains(' + unit_edit[modal_id] + ')').prop('selected', true);
                                 $('#model_product_stock_edit').val(model_edit[modal_id]);
-                                $('#manufacturers_product_stock_edit :contains(' + manufacturers_edit + ')').prop('selected', true);
+                                $('#manufacturers_product_stock_edit :contains(' + manufacturers_edit[modal_id] + ')').prop('selected', true);
                             });
 
                             $('#edit_product').modal('show');

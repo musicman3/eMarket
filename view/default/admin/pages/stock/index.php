@@ -48,9 +48,9 @@
                              data-priceproduct='<?php echo $price_edit_product ?>'
                              data-currencyproduct='<?php echo $currency_edit_product ?>'
                              data-quantityproduct='<?php echo $quantity_edit_product ?>'
-                             data-unitsproduct='<?php echo $units_edit_temp_product ?>'
+                             data-unitsproduct='<?php echo $units_edit_product ?>'
                              data-modelproduct='<?php echo $model_edit_product ?>'
-                             data-manufacturersproduct='<?php echo $manufacturers_edit_temp_product ?>'
+                             data-manufacturersproduct='<?php echo $manufacturers_edit_product ?>'
                              ></div>
 
                         <table class="table table-hover">
