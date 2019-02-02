@@ -42,6 +42,8 @@ for ($i = $start; $i < $finish; $i++) {
         $currency_edit_product = json_encode($currency_edit_temp_product); // Валюта
         $quantity_edit_product = json_encode($quantity_edit_temp_product); // Количество
         $units_edit_product = json_encode($units_edit_temp_product); // Ед. Измерения
+        $model_edit_product = json_encode($model_edit_temp_product); // Модель
+        $manufacturers_edit_product = json_encode($manufacturers_edit_temp_product); // Производитель
         //$logo_edit = json_encode($logo_edit_temp); // Список изображений
         //$logo_general = json_encode($logo_general_edit_temp); // Главное изображение
     }
@@ -56,6 +58,8 @@ if (!isset($modal_id_product)) {
     $currency_edit_product = ''; // Валюта
     $quantity_edit_product = ''; // Количество
     $units_edit_product = ''; // Ед. Измерения
+    $model_edit_product = ''; // Модель
+    $manufacturers_edit_product = ''; // Производитель
 }
 
 ?>
