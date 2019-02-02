@@ -162,7 +162,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-object-align-bottom"></span></span>
                                         <select name="manufacturers_product_stock_edit" id="manufacturers_product_stock_edit" class="input-sm form-control">
-                                            <?php $SET->viewSelect($manufacturers_all) ?>
+                                            <?php $SET->viewSelect($manufacturers_all, false) ?>
                                         </select>
                                     </div>
                                 </div>

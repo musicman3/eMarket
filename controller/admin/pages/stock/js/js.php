@@ -153,6 +153,8 @@ if (isset($_SESSION['buffer'])) {
                                 var currency_edit = $('div#ajax_data').data('currencyproduct');
                                 var quantity_edit = $('div#ajax_data').data('quantityproduct');
                                 var unit_edit = $('div#ajax_data').data('unitsproduct');
+                                var model_edit = $('div#ajax_data').data('modelproduct');
+                                var manufacturers_edit = $('div#ajax_data').data('manufacturersproduct');
 
                                 // Ищем id и добавляем данные
                                 for (x = 0; x < name_edit.length; x++) {
@@ -165,6 +167,8 @@ if (isset($_SESSION['buffer'])) {
                                 $('#currency_product_stock_edit :contains(' + jQuery.parseJSON(currency_edit) + ')').prop('selected', true);
                                 $('#quantity_product_stock_edit').val(quantity_edit[modal_id]);
                                 $('#unit_product_stock_edit :contains(' + unit_edit + ')').prop('selected', true);
+                                $('#model_product_stock_edit').val(model_edit[modal_id]);
+                                $('#manufacturers_product_stock_edit :contains(' + manufacturers_edit + ')').prop('selected', true);
                             });
 
                             $('#edit_product').modal('show');

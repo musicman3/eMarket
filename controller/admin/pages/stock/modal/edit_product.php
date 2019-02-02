@@ -21,11 +21,16 @@ for ($i = $start; $i < $finish; $i++) {
         //Валюта
         $currency = $PDO->selectPrepare("SELECT currency FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
         $currency_edit_temp_product = $PDO->selectPrepare("SELECT name FROM " . TABLE_CURRENCIES . " WHERE id=? and language=?", [$currency, lang('#lang_all')[0]]);
-        
+
         $quantity_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT quantity FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
         //Единицы измерения
         $units = $PDO->selectPrepare("SELECT quantity_value FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
         $units_edit_temp_product = $PDO->selectPrepare("SELECT name FROM " . TABLE_UNITS . " WHERE id=? and language=?", [$units, lang('#lang_all')[0]]);
+        
+        $model_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT model FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
+        //Производитель
+        $manufacturer = $PDO->selectPrepare("SELECT manufacturer FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
+        $manufacturers_edit_temp_product = $PDO->selectPrepare("SELECT name FROM " . TABLE_MANUFACTURERS . " WHERE id=? and language=?", [$manufacturer, lang('#lang_all')[0]]);
         //$logo_edit_temp[$modal_id] = explode(',', $PDO->selectPrepare("SELECT logo FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id]), -1);
         //$logo_general_edit_temp[$modal_id] = $PDO->selectPrepare("SELECT logo_general FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id]);
         // ПАРАМЕТРЫ ДЛЯ ПЕРЕДАЧИ В МОДАЛ
@@ -37,8 +42,6 @@ for ($i = $start; $i < $finish; $i++) {
         $currency_edit_product = json_encode($currency_edit_temp_product); // Валюта
         $quantity_edit_product = json_encode($quantity_edit_temp_product); // Количество
         $units_edit_product = json_encode($units_edit_temp_product); // Ед. Измерения
-
-        
         //$logo_edit = json_encode($logo_edit_temp); // Список изображений
         //$logo_general = json_encode($logo_general_edit_temp); // Главное изображение
     }
