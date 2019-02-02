@@ -57,6 +57,11 @@
                              data-vendorcodeproduct='<?php echo $vendor_code_edit_product ?>'
                              data-weightvalueproduct='<?php echo $weight_value_edit_product ?>'
                              data-weightproduct='<?php echo $weight_edit_product ?>'
+                             data-minquantityproduct='<?php echo $min_quantity_edit_product ?>'
+                             data-dimensionproduct='<?php echo $dimension_edit_product ?>'
+                             data-lenghtproduct='<?php echo $lenght_edit_product ?>'
+                             data-widthproduct='<?php echo $width_edit_product ?>'
+                             data-heightproduct='<?php echo $height_edit_product ?>'
                              ></div>
 
                         <table class="table table-hover">

@@ -161,6 +161,11 @@ if (isset($_SESSION['buffer'])) {
                                 var vendor_code_edit = $('div#ajax_data').data('vendorcodeproduct');
                                 var weight_value_edit = $('div#ajax_data').data('weightvalueproduct');
                                 var weight_edit = $('div#ajax_data').data('weightproduct');
+                                var min_quantity_edit = $('div#ajax_data').data('minquantityproduct');
+                                var dimension_edit = $('div#ajax_data').data('dimensionproduct');
+                                var lenght_edit = $('div#ajax_data').data('lenghtproduct');
+                                var width_edit = $('div#ajax_data').data('widthproduct');
+                                var height_edit = $('div#ajax_data').data('heightproduct');
 
                                 // Ищем id и добавляем данные
                                 for (x = 0; x < name_edit.length; x++) {
@@ -181,6 +186,11 @@ if (isset($_SESSION['buffer'])) {
                                 $('#vendor_codes_product_stock_edit').val(vendor_code_edit[modal_id]);
                                 $('#weight_value_product_stock_edit').val(weight_value_edit[modal_id]);
                                 $('#weight_product_stock_edit').val(weight_edit[modal_id]);
+                                $('#min_quantity_product_stock_edit').val(min_quantity_edit[modal_id]);
+                                $('#length_product_stock_edit').val(dimension_edit[modal_id]);
+                                $('#value_length_product_stock_edit').val(lenght_edit[modal_id]);
+                                $('#value_width_product_stock_edit').val(width_edit[modal_id]);
+                                $('#value_height_product_stock_edit').val(height_edit[modal_id]);
                             });
 
                             $('#edit_product').modal('show');

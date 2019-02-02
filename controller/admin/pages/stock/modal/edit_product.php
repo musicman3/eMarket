@@ -62,7 +62,7 @@ for ($i = $start; $i < $finish; $i++) {
         foreach ($vendor_code as $val) {
             $vendor_code_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT name FROM " . TABLE_VENDOR_CODES . " WHERE id=? and language=?", [$val, lang('#lang_all')[0]]);
         }
-
+        
         // Значение Веса
         $weight_value_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT weight_value FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
 
@@ -71,6 +71,24 @@ for ($i = $start; $i < $finish; $i++) {
         foreach ($weight as $val) {
             $weight_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT name FROM " . TABLE_WEIGHT . " WHERE id=? and language=?", [$val, lang('#lang_all')[0]]);
         }
+        
+        // Минимальное количество
+        $min_quantity_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT min_quantity FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
+
+        // Ед. изм. длины
+        $dimension[$modal_id_product] = $PDO->selectPrepare("SELECT dimension FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
+        foreach ($dimension as $val) {
+            $dimension_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT name FROM " . TABLE_LENGTH . " WHERE id=? and language=?", [$val, lang('#lang_all')[0]]);
+        }
+        
+        // Длина
+        $lenght_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT lenght FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
+        
+        // Ширина
+        $width_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT width FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
+        
+        // Высота
+        $height_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT height FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
 
         //$logo_edit_temp[$modal_id] = explode(',', $PDO->selectPrepare("SELECT logo FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id]), -1);
         //$logo_general_edit_temp[$modal_id] = $PDO->selectPrepare("SELECT logo_general FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id]);
@@ -91,6 +109,11 @@ for ($i = $start; $i < $finish; $i++) {
         $vendor_code_edit_product = json_encode($vendor_code_edit_temp_product); // Идентификатор
         $weight_value_edit_product = json_encode($weight_value_edit_temp_product); // Значение веса
         $weight_edit_product = json_encode($weight_edit_temp_product); // Вес
+        $min_quantity_edit_product = json_encode($min_quantity_edit_temp_product); // Минимальное количество
+        $dimension_edit_product = json_encode($dimension_edit_temp_product); // Ед. изм. длины
+        $lenght_edit_product = json_encode($lenght_edit_temp_product); // Длина
+        $width_edit_product = json_encode($width_edit_temp_product); // Ширина
+        $height_edit_product = json_encode($height_edit_temp_product); // Высота
         //
         //$logo_edit = json_encode($logo_edit_temp); // Список изображений
         //$logo_general = json_encode($logo_general_edit_temp); // Главное изображение
@@ -117,6 +140,11 @@ if (!isset($modal_id_product)) {
     $vendor_code_edit_product = ''; // Идентификатор
     $weight_value_edit_product = ''; // Значение веса
     $weight_edit_product = ''; // Вес
+    $min_quantity_edit_product = ''; // Минимальное количество
+    $dimension_edit_product = ''; // Ед. изм. длины
+    $lenght_edit_product = ''; // Длина
+    $width_edit_product = ''; // Ширина
+    $height_edit_product = ''; // Высота
 }
 
 ?>
