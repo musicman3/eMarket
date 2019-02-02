@@ -53,6 +53,8 @@
                              data-manufacturersproduct='<?php echo $manufacturers_edit_product ?>'
                              data-dateavailableproduct='<?php echo $date_available_edit_product ?>'
                              data-taxproduct='<?php echo $tax_edit_product ?>'
+                             data-vendorcodevalueproduct='<?php echo $vendor_code_value_edit_product ?>'
+                             data-vendorcodeproduct='<?php echo $vendor_code_edit_product ?>'
                              ></div>
 
                         <table class="table table-hover">

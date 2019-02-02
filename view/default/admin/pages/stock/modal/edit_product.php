@@ -203,7 +203,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-tag"></span></span>
                                         <select name="vendor_codes_product_stock_edit" id="vendor_codes_product_stock_edit" class="input-sm form-control">
-                                            <?php $SET->viewSelect($vendor_codes_all) ?>
+                                            <?php $SET->viewSelect($vendor_codes_all, $vendor_codes_all[2], false) ?>
                                         </select>
                                     </div>
                                 </div>

@@ -38,13 +38,13 @@ $taxes_all = $PDO->getColRow("SELECT name, id FROM " . TABLE_TAXES . " WHERE lan
 $units_all = $PDO->getColRow("SELECT name, default_unit, id FROM " . TABLE_UNITS . " WHERE language=?", [lang('#lang_all')[0]]);
 
 // Формируем массив Размер измерения для выпадающего списка
-$length_all = $PDO->getColRow("SELECT name, default_length FROM " . TABLE_LENGTH . " WHERE language=?", [lang('#lang_all')[0]]);
+$length_all = $PDO->getColRow("SELECT name, default_length, id FROM " . TABLE_LENGTH . " WHERE language=?", [lang('#lang_all')[0]]);
 
 // Формируем массив Вес измерения для выпадающего списка
-$weight_all = $PDO->getColRow("SELECT name, default_weight FROM " . TABLE_WEIGHT . " WHERE language=?", [lang('#lang_all')[0]]);
+$weight_all = $PDO->getColRow("SELECT name, default_weight, id FROM " . TABLE_WEIGHT . " WHERE language=?", [lang('#lang_all')[0]]);
 
 // Формируем массив Вес измерения для выпадающего списка
-$vendor_codes_all = $PDO->getColRow("SELECT name, default_vendor_code FROM " . TABLE_VENDOR_CODES . " WHERE language=?", [lang('#lang_all')[0]]);
+$vendor_codes_all = $PDO->getColRow("SELECT name, default_vendor_code, id FROM " . TABLE_VENDOR_CODES . " WHERE language=?", [lang('#lang_all')[0]]);
 
 // Формируем массив Производитель измерения для выпадающего списка
 $manufacturers_all = $PDO->getColRow("SELECT name, id FROM " . TABLE_MANUFACTURERS . " WHERE language=?", [lang('#lang_all')[0]]);

@@ -54,6 +54,15 @@ for ($i = $start; $i < $finish; $i++) {
             $tax_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT name FROM " . TABLE_TAXES . " WHERE id=? and language=?", [$val, lang('#lang_all')[0]]);
         }
         
+        // Значение идентификатора
+        $vendor_code_value_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT vendor_code_value FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
+        
+        // Идентификатор
+        $vendor_code[$modal_id_product] = $PDO->selectPrepare("SELECT vendor_code FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
+        foreach ($vendor_code as $val) {
+            $vendor_code_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT name FROM " . TABLE_VENDOR_CODES . " WHERE id=? and language=?", [$val, lang('#lang_all')[0]]);
+        }        
+        
         //$logo_edit_temp[$modal_id] = explode(',', $PDO->selectPrepare("SELECT logo FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id]), -1);
         //$logo_general_edit_temp[$modal_id] = $PDO->selectPrepare("SELECT logo_general FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id]);
         // ПАРАМЕТРЫ ДЛЯ ПЕРЕДАЧИ В МОДАЛ
@@ -69,7 +78,8 @@ for ($i = $start; $i < $finish; $i++) {
         $manufacturers_edit_product = json_encode($manufacturers_edit_temp_product); // Производитель
         $date_available_edit_product = json_encode($date_available_edit_temp_product); // Дата поступления
         $tax_edit_product = json_encode($tax_edit_temp_product); // Налог
-        //
+        $vendor_code_value_edit_product = json_encode($vendor_code_value_edit_temp_product); // Значение идентификатора
+        $vendor_code_edit_product = json_encode($vendor_code_edit_temp_product); // Идентификатор
         //
         //$logo_edit = json_encode($logo_edit_temp); // Список изображений
         //$logo_general = json_encode($logo_general_edit_temp); // Главное изображение
@@ -92,6 +102,8 @@ if (!isset($modal_id_product)) {
     $manufacturers_edit_product = ''; // Производитель
     $date_available_edit_product = ''; // Дата поступления
     $tax_edit_product = ''; // Налог
+    $vendor_code_value_edit_product = ''; // Значение идентификатора
+    $vendor_code_edit_product = ''; // Идентификатор
 }
 
 ?>
