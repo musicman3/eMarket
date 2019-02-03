@@ -624,7 +624,6 @@ if (isset($_SESSION['buffer'])) {
         }
     });
 
-
     // Фикс модала в модале
     $(document).on('hidden.bs.modal', '.modal', function (event) {
         $('.modal:visible').length && $('body').addClass('modal-open');
@@ -637,7 +636,6 @@ if (isset($_SESSION['buffer'])) {
     $(document).on('click', '.note-fullscreen', function () {
         $('body').css({overflow: ''});
     });
-
 
 </script>
 
