@@ -676,7 +676,9 @@ if (isset($_SESSION['buffer'])) {
 <script type="text/javascript">
     $('#date_available_product_stock, #date_available_product_stock_edit').datepicker({
         language: "<?php echo lang('meta-language') ?>",
-        autoclose: true
+        autoclose: true,
+        updateViewDate: false,
+        clearBtn: true
     });
 </script>
 
