@@ -194,7 +194,7 @@ class Ajax {
             });
 
             //Если открыли модальное окно
-            $(this).on('show.bs.modal', function (event) {
+            $('#add, #edit').on('show.bs.modal', function (event) {
                 // Отправка запроса для очистки временных файлов
                 jQuery.post('<?php echo $url ?>',
                         {file_upload: 'empty'});
@@ -374,7 +374,7 @@ class Ajax {
             });
 
             //Если открыли модальное окно
-            $(this).on('show.bs.modal', function (event) {
+            $('#add_product, #edit_product').on('show.bs.modal', function (event) {
                 // Отправка запроса для очистки временных файлов
                 jQuery.post('<?php echo $url ?>',
                         {file_upload: 'empty'});
