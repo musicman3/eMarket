@@ -201,7 +201,7 @@ class Ajax {
             });
 
             // Очищаем модальное окно и hidden input при закрытии
-            $(this).on('hidden.bs.modal', function (event) {
+            $('#add, #edit').on('hidden.bs.modal', function (event) {
                 $('.progress-bar').css('width', 0 + '%');
                 $('.file-upload').detach();
                 $('#delete_image').val('');
@@ -381,7 +381,7 @@ class Ajax {
             });
 
             // Очищаем модальное окно и hidden input при закрытии
-            $(this).on('hidden.bs.modal', function (event) {
+            $('#add_product, #edit_product').on('hidden.bs.modal', function (event) {
                 $('.progress-bar').css('width', 0 + '%');
                 $('.file-upload').detach();
                 $('#delete_image_product').val('');
