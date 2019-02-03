@@ -582,7 +582,7 @@ if (isset($_SESSION['buffer'])) {
 <link href="/ext/summernote/summernote.css" rel="stylesheet">
 <script src="/ext/summernote/lang/summernote-<?php echo lang('language_code') ?>.js"></script>
 <script type="text/javascript">
-    
+
     // Настройка Summernote
     var summernote_pref = {
         lang: '<?php echo lang('language_code') ?>',
@@ -606,39 +606,24 @@ if (isset($_SESSION['buffer'])) {
         ]
     };
 
-    //Если открыли модальное окно #add_product
-    $('#add_product').on('show.bs.modal', function (event) {
+    //Если открыли модальное окно #add_product, #edit_product
+    $('#add_product, #edit_product').on('show.bs.modal', function (event) {
         // Инициализация Summernote
-        for (var x = 0; x < count_lang; x++) {
-            $('#description_product_stock_' + x).summernote(summernote_pref);
-        }
-    });
-
-    //Если открыли модальное окно #add_product
-    $('#edit_product').on('show.bs.modal', function (event) {
-        // Инициализация Summernote
-        for (var x = 0; x < count_lang; x++) {
-            $('#description_product_stock_edit_' + x).summernote(summernote_pref);
-        }
+        $('.summernote_add').summernote(summernote_pref);
+        $('.summernote_edit').summernote(summernote_pref);
     });
 
     count_lang = '<?php echo $LANG_COUNT ?>';
 
-    //Если закрыли модальное окно #add_product
-    $('#add_product').on('hidden.bs.modal', function (event) {
+    //Если закрыли модальное окно #add_product, #edit_product
+    $('#add_product, #edit_product').on('hidden.bs.modal', function (event) {
         // Destroy Summernote
         for (var x = 0; x < count_lang; x++) {
             $('#description_product_stock_' + x).summernote('destroy');
-        }
-    });
-
-    //Если закрыли модальное окно #edit_product
-    $('#edit_product').on('hidden.bs.modal', function (event) {
-        // Destroy Summernote
-        for (var x = 0; x < count_lang; x++) {
             $('#description_product_stock_edit_' + x).summernote('destroy');
         }
     });
+
 
     // Фикс модала в модале
     $(document).on('hidden.bs.modal', '.modal', function (event) {
