@@ -176,7 +176,7 @@ if (isset($_SESSION['buffer'])) {
                                 }
                                 $('#price_product_stock_edit').val(price_edit[modal_id]);
                                 $('#currency_product_stock_edit').val(currency_edit[modal_id]);
-                                $('#quantity_product_stock_edit').val(quantity_edit[modal_id]);;
+                                $('#quantity_product_stock_edit').val(quantity_edit[modal_id]);
                                 $('#unit_product_stock_edit').val(unit_edit[modal_id]);
                                 $('#model_product_stock_edit').val(model_edit[modal_id]);
                                 $('#manufacturers_product_stock_edit').val(manufacturers_edit[modal_id]);
@@ -191,7 +191,7 @@ if (isset($_SESSION['buffer'])) {
                                 $('#value_length_product_stock_edit').val(lenght_edit[modal_id]);
                                 $('#value_width_product_stock_edit').val(width_edit[modal_id]);
                                 $('#value_height_product_stock_edit').val(height_edit[modal_id]);
-                                
+
                                 $('#js_edit_product').val(modal_id);
                             });
 
@@ -582,57 +582,44 @@ if (isset($_SESSION['buffer'])) {
 <link href="/ext/summernote/summernote.css" rel="stylesheet">
 <script src="/ext/summernote/lang/summernote-<?php echo lang('language_code') ?>.js"></script>
 <script type="text/javascript">
+    
+    // Настройка Summernote
+    var summernote_pref = {
+        lang: '<?php echo lang('language_code') ?>',
+        dialogsInBody: true,
+        dialogsFade: true,
+        height: '100px',
+        placeholder: 'Создайте описание товара с помощью этого редактора...',
+        toolbar: [
+            ['fullscreen ', ['fullscreen']],
+            ['style', ['style']],
+            ['font_set', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript']],
+            ['hr', ['hr']],
+            ['color', ['color']],
+            ['forecolor', ['forecolor']],
+            ['font_type', ['fontsize', 'fontname']],
+            ['undo ', ['undo', 'redo', 'clear']],
+            ['paragraph ', ['ol', 'ul', 'paragraph', 'height']],
+            ['link', ['link', 'linkDialogShow', 'unlink']],
+            ['insert', ['table', 'picture', 'video']],
+            ['misc', ['codeview', 'help']]
+        ]
+    };
 
     //Если открыли модальное окно #add_product
     $('#add_product').on('show.bs.modal', function (event) {
         // Инициализация Summernote
-        $('.summernote_add').summernote({
-            lang: '<?php echo lang('language_code') ?>',
-            dialogsInBody: true,
-            dialogsFade: true,
-            height: '100px',
-            placeholder: 'Создайте описание товара с помощью этого редактора...',
-            toolbar: [
-                ['fullscreen ', ['fullscreen']],
-                ['style', ['style']],
-                ['font_set', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript']],
-                ['hr', ['hr']],
-                ['color', ['color']],
-                ['forecolor', ['forecolor']],
-                ['font_type', ['fontsize', 'fontname']],
-                ['undo ', ['undo', 'redo', 'clear']],
-                ['paragraph ', ['ol', 'ul', 'paragraph', 'height']],
-                ['link', ['link', 'linkDialogShow', 'unlink']],
-                ['insert', ['table', 'picture', 'video']],
-                ['misc', ['codeview', 'help']]
-            ]
-        });
+        for (var x = 0; x < count_lang; x++) {
+            $('#description_product_stock_' + x).summernote(summernote_pref);
+        }
     });
 
     //Если открыли модальное окно #add_product
     $('#edit_product').on('show.bs.modal', function (event) {
         // Инициализация Summernote
-        $('.summernote_edit').summernote({
-            lang: '<?php echo lang('language_code') ?>',
-            dialogsInBody: true,
-            dialogsFade: true,
-            height: '100px',
-            placeholder: 'Создайте описание товара с помощью этого редактора...',
-            toolbar: [
-                ['fullscreen ', ['fullscreen']],
-                ['style', ['style']],
-                ['font_set', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript']],
-                ['hr', ['hr']],
-                ['color', ['color']],
-                ['forecolor', ['forecolor']],
-                ['font_type', ['fontsize', 'fontname']],
-                ['undo ', ['undo', 'redo', 'clear']],
-                ['paragraph ', ['ol', 'ul', 'paragraph', 'height']],
-                ['link', ['link', 'linkDialogShow', 'unlink']],
-                ['insert', ['table', 'picture', 'video']],
-                ['misc', ['codeview', 'help']]
-            ]
-        });
+        for (var x = 0; x < count_lang; x++) {
+            $('#description_product_stock_edit_' + x).summernote(summernote_pref);
+        }
     });
 
     count_lang = '<?php echo $LANG_COUNT ?>';
@@ -641,7 +628,7 @@ if (isset($_SESSION['buffer'])) {
     $('#add_product').on('hidden.bs.modal', function (event) {
         // Destroy Summernote
         for (var x = 0; x < count_lang; x++) {
-            $('#add_product_' + x).summernote('destroy');
+            $('#description_product_stock_' + x).summernote('destroy');
         }
     });
 
@@ -649,7 +636,7 @@ if (isset($_SESSION['buffer'])) {
     $('#edit_product').on('hidden.bs.modal', function (event) {
         // Destroy Summernote
         for (var x = 0; x < count_lang; x++) {
-            $('#edit_product_' + x).summernote('destroy');
+            $('#description_product_stock_edit_' + x).summernote('destroy');
         }
     });
 
@@ -674,7 +661,7 @@ if (isset($_SESSION['buffer'])) {
 <link href="/ext/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
 <script type="text/javascript" src="/ext/bootstrap-datepicker/locales/bootstrap-datepicker.<?php echo lang('meta-language') ?>.min.js"></script>
 <script type="text/javascript">
-        $('#date_available_product_stock, #date_available_product_stock_edit').datepicker({
+    $('#date_available_product_stock, #date_available_product_stock_edit').datepicker({
         language: "<?php echo lang('meta-language') ?>",
         autoclose: true
     });
