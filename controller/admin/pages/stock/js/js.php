@@ -613,11 +613,10 @@ if (isset($_SESSION['buffer'])) {
         $('.summernote_edit').summernote(summernote_pref);
     });
 
-    count_lang = '<?php echo $LANG_COUNT ?>';
-
     //Если закрыли модальное окно #add_product, #edit_product
     $('#add_product, #edit_product').on('hidden.bs.modal', function (event) {
         // Destroy Summernote
+        var count_lang = '<?php echo $LANG_COUNT ?>';
         for (var x = 0; x < count_lang; x++) {
             $('#description_product_stock_' + x).summernote('destroy');
             $('#description_product_stock_edit_' + x).summernote('destroy');
