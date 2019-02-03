@@ -37,6 +37,10 @@ if (isset($_SESSION['login_error']) == TRUE) {
 } else {
     $login_error = '';
 }
+if ($VALID->inPOST('install') == 'ok') {
+    session_destroy();    //удаляем текущую сессию
+    session_start();
+}
 
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
 require_once(ROOT . '/model/end.php');
