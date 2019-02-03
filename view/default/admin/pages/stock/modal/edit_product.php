@@ -172,7 +172,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                     <div><small class="form-text text-muted">Дата поступления товара на склад</small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                        <input class="input-sm form-control data" placeholder="Дата поступления" type="text" name="date_available_product_stock_edit" id="date_available_product_stock_edit" autocomplete="off" />
+                                        <input class="input-sm form-control" placeholder="Дата поступления" type="text" name="date_available_product_stock_edit" id="date_available_product_stock_edit" autocomplete="off" />
                                     </div>
                                 </div>
                                 <div class="col-right form-group">
