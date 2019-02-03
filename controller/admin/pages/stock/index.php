@@ -11,6 +11,13 @@ require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 //
 $resize_param = [];
 array_push($resize_param, ['125', '94']); // ширина, высота
+//
+$resize_param_product = [];
+array_push($resize_param_product, ['125', '94']); // ширина, высота
+array_push($resize_param_product, ['200','150']);
+array_push($resize_param_product, ['325','244']);
+array_push($resize_param_product, ['525','394']);
+array_push($resize_param_product, ['850','638']);
 // Создаем массив используемых таблиц в EAC
 $TABLES = [
     TABLE_CATEGORIES,
@@ -24,7 +31,7 @@ $TABLES = [
     TABLE_CURRENCIES
 ];
 // Загружаем движок EAC
-$EAC_ENGINE = $EAC->start($TABLES, $TOKEN, $resize_param);
+$EAC_ENGINE = $EAC->start($TABLES, $TOKEN, $resize_param, $resize_param_product);
 $idsx_real_parent_id = $EAC_ENGINE[0];
 $parent_id = $EAC_ENGINE[1];
 

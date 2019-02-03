@@ -45,7 +45,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                         <div><small class="form-text text-muted">Название товара</small></div>
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="name_product_stock_edit_0" id="name_product_stock_edit_0" />
+                                            <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="name_product_stock_edit_0" id="name_product_stock_edit_0" required />
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -79,7 +79,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                                 <div><small class="form-text text-muted">Название товара</small></div>
                                                 <div class="input-group has-error">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                                    <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="name_product_stock_edit_<?php echo $x ?>" id="name_product_stock_edit_<?php echo $x ?>" />
+                                                    <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="name_product_stock_edit_<?php echo $x ?>" id="name_product_stock_edit_<?php echo $x ?>" required />
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -118,7 +118,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                     <div><small class="form-text text-muted">Цена товара</small></div>
                                     <div class="input-group has-error">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                        <input class="input-sm form-control" placeholder="0.00" type="text" name="price_product_stock_edit" id="price_product_stock_edit" />
+                                        <input class="input-sm form-control" placeholder="0.00" type="text" name="price_product_stock_edit" id="price_product_stock_edit" required />
                                     </div>
                                 </div>
                                 <div class="col-right form-group">
@@ -136,7 +136,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                     <div><small class="form-text text-muted">Количество на складе</small></div>
                                     <div class="input-group has-error">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                        <input class="input-sm form-control" placeholder="1" type="text" name="quantity_product_stock_edit" id="quantity_product_stock_edit" />
+                                        <input class="input-sm form-control" placeholder="1" type="text" name="quantity_product_stock_edit" id="quantity_product_stock_edit" required />
                                     </div>
                                 </div>
                                 <div class="col-right form-group">
@@ -271,9 +271,23 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
 
                         <!-- Содержимое панели Изображения -->
                         <div id="panel_edit_4" class="tab-pane fade">
+                            
+                            <!-- Выводим сообщения -->
+                            <div id="alert_messages_edit_product"></div>
+
+                            <!-- ЗАГРУЗКА jQuery-File-Upload -->
                             <div class="form-group">
-                                <label for="image"><?php echo lang('images') ?>:</label><br>
-                                
+                                <span class="btn btn-primary btn-sm fileinput-button">
+                                    <i class="glyphicon glyphicon-picture"></i><span> <?php echo lang('button_add_image') ?></span>
+                                    <input class="input-sm form-control" id="fileupload-edit-product" type="file" name="files[]" accept="image/jpeg,image/png,image/gif" multiple>
+                                </span>
+                                <?php echo lang('max') ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>
+                                <br>
+                                <br>
+                                <div id="progress_edit_product" class="progress">
+                                    <div class="progress-bar progress-bar-warning progress-bar-striped active"></div>
+                                </div>
+                                <div id="logo-edit-product" class="text-center"></div>
                             </div>
                         </div>
 

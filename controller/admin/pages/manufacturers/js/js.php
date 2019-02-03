@@ -24,7 +24,7 @@
         }
         $('#site_manufacturers_edit').val(site_edit[modal_id]);
         $('#js_edit').val(modal_id);
-        
+
         // Подгружаем изображения
         getImageToEdit(logo_general_edit, logo_edit, modal_id);
 
@@ -33,6 +33,14 @@
 <?php
 // Подгружаем Ajax Добавить, Редактировать, Удалить
 $AJAX->action('index.php');
+
+?>
+<!--Подгружаем jQuery File Upload -->
+<script src = "/ext/jquery_file_upload/js/vendor/jquery.ui.widget.js"></script>
+<script src="/ext/jquery_file_upload/js/jquery.iframe-transport.js"></script>
+<script src="/ext/jquery_file_upload/js/jquery.fileupload.js"></script>
+<script src="/ext/fastmd5/md5.min.js"></script>
+<?php
 // Подгружаем jQuery File Upload
 $AJAX->fileUpload('index.php', 'manufacturers', $resize_param);
 

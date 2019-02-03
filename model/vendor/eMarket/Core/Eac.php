@@ -22,7 +22,7 @@ class Eac {
      * @param array $resize_param (параметры ресайза)
      * @return array array($idsx_real_parent_id, $parent_id)
      */
-    public function start($TABLES, $TOKEN, $resize_param) {
+    public function start($TABLES, $TOKEN, $resize_param, $resize_param_product) {
 
         $FILES = new \eMarket\Other\Files;
 
@@ -35,8 +35,11 @@ class Eac {
         // Если нажали на кнопку Редактировать
         self::editCategory($TABLES[0]);
 
-        // Загручик изображений (ВСТАВЛЯТЬ ПЕРЕД УДАЛЕНИЕМ)
+        // Загручик изображений категорий (ВСТАВЛЯТЬ ПЕРЕД УДАЛЕНИЕМ)
         $FILES->imgUpload($TABLES[0], 'categories', $resize_param);
+
+        // Загручик изображений товаров (ВСТАВЛЯТЬ ПЕРЕД УДАЛЕНИЕМ)
+        $FILES->imgUploadProduct($TABLES[1], 'products', $resize_param_product);
 
         $idsx_real_parent_id = $parent_id; //для отправки в JS
         // Если нажали на кнопку Удалить
@@ -599,6 +602,36 @@ class Eac {
                 $currency_product_stock = NULL;
             }
 
+            if ($VALID->inPOST('weight_value_product_stock')) {
+                $weight_value_product_stock = $VALID->inPOST('weight_value_product_stock');
+            } else {
+                $weight_value_product_stock = NULL;
+            }
+
+            if ($VALID->inPOST('value_length_product_stock')) {
+                $value_length_product_stock = $VALID->inPOST('value_length_product_stock');
+            } else {
+                $value_length_product_stock = NULL;
+            }
+
+            if ($VALID->inPOST('value_width_product_stock')) {
+                $value_width_product_stock = $VALID->inPOST('value_width_product_stock');
+            } else {
+                $value_width_product_stock = NULL;
+            }
+            
+            if ($VALID->inPOST('value_height_product_stock')) {
+                $value_height_product_stock = $VALID->inPOST('value_height_product_stock');
+            } else {
+                $value_height_product_stock = NULL;
+            }
+            
+            if ($VALID->inPOST('min_quantity_product_stock')) {
+                $min_quantity_product_stock = $VALID->inPOST('min_quantity_product_stock');
+            } else {
+                $min_quantity_product_stock = NULL;
+            }
+
             // Получаем последний id и увеличиваем его на 1
             $id_max = $PDO->selectPrepare("SELECT id FROM " . $TABLE_PRODUCTS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max) + 1;
@@ -608,7 +641,7 @@ class Eac {
                 $PDO->inPrepare("INSERT INTO " . $TABLE_PRODUCTS .
                         " SET id=?, name=?, language=?, parent_id=?, date_added=?, date_available=?, model=?, price=?, currency=?, quantity=?, unit=?, keyword=?, tags=?, description=?, tax=?, manufacturer=?, vendor_code=?, vendor_code_value=?, weight=?, weight_value=?, dimension=?, lenght=?, width=?, height=?, min_quantity=?", [
                     $id, $VALID->inPOST('name_product_stock_' . $x), lang('#lang_all')[$x], $parent_id, date("Y-m-d H:i:s"), $date_available, $VALID->inPOST('model_product_stock'), $VALID->inPOST('price_product_stock'), $currency_product_stock, $VALID->inPOST('quantity_product_stock'), $unit_product_stock, $VALID->inPOST('keyword_product_stock_' . $x), $VALID->inPOST('tags_product_stock_' . $x), $VALID->inPOST('description_product_stock_' . $x),
-                    $tax_product_stock, $manufacturers_product_stock, $vendor_codes_product_stock, $VALID->inPOST('vendor_code_value_product_stock'), $weight_product_stock, $VALID->inPOST('weight_value_product_stock'), $length_product_stock, $VALID->inPOST('value_length_product_stock'), $VALID->inPOST('value_width_product_stock'), $VALID->inPOST('value_height_product_stock'), $VALID->inPOST('min_quantity_product_stock')
+                    $tax_product_stock, $manufacturers_product_stock, $vendor_codes_product_stock, $VALID->inPOST('vendor_code_value_product_stock'), $weight_product_stock, $weight_value_product_stock, $length_product_stock, $value_length_product_stock, $value_width_product_stock, $value_height_product_stock, $min_quantity_product_stock
                 ]);
             }
             // Выводим сообщение об успехе
@@ -694,13 +727,43 @@ class Eac {
             } else {
                 $currency_product_stock = NULL;
             }
+            
+            if ($VALID->inPOST('weight_value_product_stock')) {
+                $weight_value_product_stock = $VALID->inPOST('weight_value_product_stock');
+            } else {
+                $weight_value_product_stock = NULL;
+            }
+
+            if ($VALID->inPOST('value_length_product_stock')) {
+                $value_length_product_stock = $VALID->inPOST('value_length_product_stock');
+            } else {
+                $value_length_product_stock = NULL;
+            }
+
+            if ($VALID->inPOST('value_width_product_stock')) {
+                $value_width_product_stock = $VALID->inPOST('value_width_product_stock');
+            } else {
+                $value_width_product_stock = NULL;
+            }
+            
+            if ($VALID->inPOST('value_height_product_stock')) {
+                $value_height_product_stock = $VALID->inPOST('value_height_product_stock');
+            } else {
+                $value_height_product_stock = NULL;
+            }        
+            
+            if ($VALID->inPOST('min_quantity_product_stock')) {
+                $min_quantity_product_stock = $VALID->inPOST('min_quantity_product_stock');
+            } else {
+                $min_quantity_product_stock = NULL;
+            }            
 
             // добавляем запись для всех вкладок
             for ($x = 0; $x < $LANG_COUNT; $x++) {
                 $PDO->inPrepare("UPDATE " . $TABLE_PRODUCTS .
                         " SET name=?, parent_id=?, last_modified=?, date_available=?, model=?, price=?, currency=?, quantity=?, unit=?, keyword=?, tags=?, description=?, tax=?, manufacturer=?, vendor_code=?, vendor_code_value=?, weight=?, weight_value=?, dimension=?, lenght=?, width=?, height=?, min_quantity=? WHERE id=? AND language=?", [
                     $VALID->inPOST('name_product_stock_edit_' . $x), $parent_id, date("Y-m-d H:i:s"), $date_available, $VALID->inPOST('model_product_stock_edit'), $VALID->inPOST('price_product_stock_edit'), $currency_product_stock, $VALID->inPOST('quantity_product_stock_edit'), $unit_product_stock, $VALID->inPOST('keyword_product_stock_edit_' . $x), $VALID->inPOST('tags_product_stock_edit_' . $x), $VALID->inPOST('description_product_stock_edit_' . $x),
-                    $tax_product_stock, $manufacturers_product_stock, $vendor_codes_product_stock, $VALID->inPOST('vendor_code_value_product_stock_edit'), $weight_product_stock, $VALID->inPOST('weight_value_product_stock_edit'), $length_product_stock, $VALID->inPOST('value_length_product_stock_edit'), $VALID->inPOST('value_width_product_stock_edit'), $VALID->inPOST('value_height_product_stock_edit'), $VALID->inPOST('min_quantity_product_stock_edit'), $VALID->inPOST('edit_product'), lang('#lang_all')[$x]
+                    $tax_product_stock, $manufacturers_product_stock, $vendor_codes_product_stock, $VALID->inPOST('vendor_code_value_product_stock_edit'), $weight_product_stock, $weight_value_product_stock, $length_product_stock, $value_length_product_stock, $value_width_product_stock, $value_height_product_stock, $min_quantity_product_stock, $VALID->inPOST('edit_product'), lang('#lang_all')[$x]
                 ]);
             }
             // Выводим сообщение об успехе

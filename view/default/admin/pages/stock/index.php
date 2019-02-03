@@ -41,6 +41,8 @@
                              data-name='<?php echo $name_edit ?>'
                              data-logo='<?php echo $logo_edit ?>'
                              data-general='<?php echo $logo_general ?>'
+                             data-logoproduct='<?php echo $logo_edit_product ?>'
+                             data-generalproduct='<?php echo $logo_general_product ?>'
                              data-nameproduct='<?php echo $name_edit_product ?>'
                              data-descriptionproduct='<?php echo $description_edit_product ?>'
                              data-keywordproduct='<?php echo $keyword_edit_product ?>'

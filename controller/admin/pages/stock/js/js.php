@@ -142,6 +142,11 @@ if (isset($_SESSION['buffer'])) {
                         if (modal_edit.search('product_') > -1) {
 
                             $('#edit_product').on('show.bs.modal', function (event) {
+                                $('.progress-bar').css('width', 0 + '%');
+                                $('.file-upload').detach();
+                                $('#delete_image_product').val('');
+                                $('#general_image_edit_product').val('');
+                                $('#alert_messages_edit_product').empty();
                                 // Получаем ID при клике на кнопку редактирования
                                 var modal_id = modal_edit.split('product_')[1];
                                 // Получаем массивы данных
@@ -167,6 +172,9 @@ if (isset($_SESSION['buffer'])) {
                                 var width_edit = $('div#ajax_data').data('widthproduct');
                                 var height_edit = $('div#ajax_data').data('heightproduct');
 
+                                var logo_edit_product = $('div#ajax_data').data('logoproduct');
+                                var logo_general_edit_product = $('div#ajax_data').data('generalproduct');
+
                                 // Ищем id и добавляем данные
                                 for (x = 0; x < name_edit.length; x++) {
                                     $('#name_product_stock_edit_' + x).val(name_edit[x][modal_id]);
@@ -180,7 +188,13 @@ if (isset($_SESSION['buffer'])) {
                                 $('#unit_product_stock_edit').val(unit_edit[modal_id]);
                                 $('#model_product_stock_edit').val(model_edit[modal_id]);
                                 $('#manufacturers_product_stock_edit').val(manufacturers_edit[modal_id]);
-                                $('#date_available_product_stock_edit').datepicker('update', new Date(date_available_edit[modal_id].replace(/-/g, ',')));
+
+                                if (date_available_edit[modal_id] === null) {
+                                    $('#date_available_product_stock_edit').datepicker('update', '');
+                                } else {
+                                    $('#date_available_product_stock_edit').datepicker('update', new Date(date_available_edit[modal_id].replace(/-/g, ',')));
+                                }
+
                                 $('#tax_product_stock_edit').val(tax_edit[modal_id]);
                                 $('#vendor_code_value_product_stock_edit').val(vendor_code_value_edit[modal_id]);
                                 $('#vendor_codes_product_stock_edit').val(vendor_code_edit[modal_id]);
@@ -193,6 +207,9 @@ if (isset($_SESSION['buffer'])) {
                                 $('#value_height_product_stock_edit').val(height_edit[modal_id]);
 
                                 $('#js_edit_product').val(modal_id);
+                                // Подгружаем изображения
+                                getImageToEditProduct(logo_general_edit_product, logo_edit_product, modal_id);
+
                             });
 
                             $('#edit_product').modal('show');
@@ -649,8 +666,14 @@ if (isset($_SESSION['buffer'])) {
     });
 </script>
 
+<!--Подгружаем jQuery File Upload -->
+<script src = "/ext/jquery_file_upload/js/vendor/jquery.ui.widget.js"></script>
+<script src="/ext/jquery_file_upload/js/jquery.iframe-transport.js"></script>
+<script src="/ext/jquery_file_upload/js/jquery.fileupload.js"></script>
+<script src="/ext/fastmd5/md5.min.js"></script>
 <?php
 // Подгружаем jQuery File Upload
 $AJAX->fileUpload('index.php', 'categories', $resize_param);
+$AJAX->fileUploadProduct('index.php', 'products', $resize_param_product);
 
 ?>

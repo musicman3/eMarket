@@ -90,8 +90,8 @@ for ($i = $start; $i < $finish; $i++) {
         // Высота
         $height_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT height FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
 
-        //$logo_edit_temp[$modal_id] = explode(',', $PDO->selectPrepare("SELECT logo FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id]), -1);
-        //$logo_general_edit_temp[$modal_id] = $PDO->selectPrepare("SELECT logo_general FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id]);
+        $logo_edit_temp_product[$modal_id_product] = explode(',', $PDO->selectPrepare("SELECT logo FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]), -1);
+        $logo_general_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT logo_general FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
         // ПАРАМЕТРЫ ДЛЯ ПЕРЕДАЧИ В МОДАЛ
         $name_edit_product = json_encode($name_edit_temp_product); // Имя
         $description_edit_product = json_encode($description_edit_temp_product); // Описание
@@ -115,8 +115,8 @@ for ($i = $start; $i < $finish; $i++) {
         $width_edit_product = json_encode($width_edit_temp_product); // Ширина
         $height_edit_product = json_encode($height_edit_temp_product); // Высота
         //
-        //$logo_edit = json_encode($logo_edit_temp); // Список изображений
-        //$logo_general = json_encode($logo_general_edit_temp); // Главное изображение
+        $logo_edit_product = json_encode($logo_edit_temp_product); // Список изображений
+        $logo_general_product = json_encode($logo_general_edit_temp_product); // Главное изображение
     }
 }
 
@@ -145,6 +145,8 @@ if (!isset($modal_id_product)) {
     $lenght_edit_product = ''; // Длина
     $width_edit_product = ''; // Ширина
     $height_edit_product = ''; // Высота
+    $logo_edit_product = ''; // Список изображений
+    $logo_general_product = ''; // Главное изображение
 }
 
 ?>
