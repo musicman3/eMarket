@@ -156,19 +156,21 @@ class Files {
 
         // Если нажали на кнопку Удалить
         if ($VALID->inPOST('delete')) {
-            $idx = $VALID->inPOST('delete');
+            $idx = $FUNC->deleteEmptyInArray($VALID->inPOST('delete'));
 
             for ($i = 0; $i < count($idx); $i++) {
-                $id = $idx[$i];
+                if (strstr($idx[$i], '_', true) != 'product') {
+                    $id = $idx[$i];
 
-                $logo_delete = explode(',', $PDO->selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), -1);
-                if (count($logo_delete) > 0) {
-                    foreach ($logo_delete as $file) {
-                        // Удаляем файлы
-                        foreach ($resize_param as $key => $value) {
-                            $FUNC->deleteFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $file);
+                    $logo_delete = explode(',', $PDO->selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), -1);
+                    if (count($logo_delete) > 0) {
+                        foreach ($logo_delete as $file) {
+                            // Удаляем файлы
+                            foreach ($resize_param as $key => $value) {
+                                $FUNC->deleteFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $file);
+                            }
+                            $FUNC->deleteFile(ROOT . '/uploads/images/' . $dir . '/originals/' . $file);
                         }
-                        $FUNC->deleteFile(ROOT . '/uploads/images/' . $dir . '/originals/' . $file);
                     }
                 }
             }
@@ -183,7 +185,7 @@ class Files {
             $FUNC->deleteFile(ROOT . '/uploads/temp/thumbnail/' . $id);
         }
     }
-    
+
     /**
      * Загрузчик изображений
      *
@@ -225,7 +227,7 @@ class Files {
             $count_files = count($files);
             if ($count_files > 0) {
 
-                // Получаем последний id и увеличиваем его на 1
+                // Получаем последний id
                 $id_max = $PDO->selectPrepare("SELECT id FROM " . $TABLE . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
                 $id = intval($id_max);
 
@@ -324,20 +326,23 @@ class Files {
         }
 
         // Если нажали на кнопку Удалить
-        if ($VALID->inPOST('delete_product')) {
-            $idx = $VALID->inPOST('delete_product');
+        if ($VALID->inPOST('delete')) {
+            $idx = $FUNC->deleteEmptyInArray($VALID->inPOST('delete'));
 
             for ($i = 0; $i < count($idx); $i++) {
-                $id = $idx[$i];
+                if (strstr($idx[$i], '_', true) == 'product') {
+                    // Это товар
+                    $id = explode('product_', $idx[$i]);
 
-                $logo_delete = explode(',', $PDO->selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), -1);
-                if (count($logo_delete) > 0) {
-                    foreach ($logo_delete as $file) {
-                        // Удаляем файлы
-                        foreach ($resize_param as $key => $value) {
-                            $FUNC->deleteFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $file);
+                    $logo_delete = explode(',', $PDO->selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id[1]]), -1);
+                    if (count($logo_delete) > 0) {
+                        foreach ($logo_delete as $file) {
+                            // Удаляем файлы
+                            foreach ($resize_param as $key => $value) {
+                                $FUNC->deleteFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $file);
+                            }
+                            $FUNC->deleteFile(ROOT . '/uploads/images/' . $dir . '/originals/' . $file);
                         }
-                        $FUNC->deleteFile(ROOT . '/uploads/images/' . $dir . '/originals/' . $file);
                     }
                 }
             }
@@ -351,7 +356,7 @@ class Files {
             $FUNC->deleteFile(ROOT . '/uploads/temp/files/' . $id);
             $FUNC->deleteFile(ROOT . '/uploads/temp/thumbnail/' . $id);
         }
-    }    
+    }
 
     /**
      * Ресайз изображений

@@ -34,6 +34,12 @@ class Eac {
 
         // Если нажали на кнопку Редактировать
         self::editCategory($TABLES[0]);
+        
+        // Если нажали на кнопку Добавить Товар
+        self::addProduct($TABLES, $parent_id);
+
+        // Если нажали на кнопку Редактировать товар
+        self::editProduct($TABLES, $parent_id);
 
         // Загручик изображений категорий (ВСТАВЛЯТЬ ПЕРЕД УДАЛЕНИЕМ)
         $FILES->imgUpload($TABLES[0], 'categories', $resize_param);
@@ -72,12 +78,6 @@ class Eac {
         if ($parent_id_status != $parent_id) {
             $parent_id = $parent_id_status;
         }
-
-        // Если нажали на кнопку Добавить Товар
-        self::addProduct($TABLES, $parent_id);
-
-        // Если нажали на кнопку Редактировать товар
-        self::editProduct($TABLES, $parent_id);
 
         return array($idsx_real_parent_id, $parent_id);
     }

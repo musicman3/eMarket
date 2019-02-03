@@ -111,7 +111,7 @@ class Ajax {
      * jQuery File Upload (загрузка изображений)
      *
      * @param string $url (url страницы обработки)
-     * @param string $dir (директория страницы обработки)
+     * @param string $dir (директория для файлов)
      * @param array $resize_param (параметры ресайза)
      */
     public function fileUpload($url, $dir, $resize_param) {
@@ -291,7 +291,7 @@ class Ajax {
      * jQuery File fileUploadProduct (загрузка изображений в товары)
      *
      * @param string $url (url страницы обработки)
-     * @param string $dir (директория страницы обработки)
+     * @param string $dir (директория для файлов)
      * @param array $resize_param (параметры ресайза)
      */
     public function fileUploadProduct($url, $dir, $resize_param) {

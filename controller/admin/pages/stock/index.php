@@ -14,10 +14,7 @@ array_push($resize_param, ['125', '94']); // ширина, высота
 //
 $resize_param_product = [];
 array_push($resize_param_product, ['125', '94']); // ширина, высота
-array_push($resize_param_product, ['200','150']);
-array_push($resize_param_product, ['325','244']);
-array_push($resize_param_product, ['525','394']);
-array_push($resize_param_product, ['850','638']);
+
 // Создаем массив используемых таблиц в EAC
 $TABLES = [
     TABLE_CATEGORIES,
