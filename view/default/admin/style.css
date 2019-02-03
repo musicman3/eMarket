@@ -29,14 +29,16 @@ body {background:#e4e4da;font-family: 'Open Sans',sans-serif;background-image:ur
 .navbar-right {color:#ffffff;margin-right:5px;}
 .navbar {min-height: 30px;}
 #bs-navbar .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {color:#ffffff;}
+@media (min-width:768px){#bs-navbar .dropdown-menu > li > a {padding: 3px 5px;}}
+@media (max-width:767px){#bs-navbar .dropdown-menu > li > a {padding: 3px 0px 5px 20px;}}
 @media (max-width:767px){#bs-navbar .navbar-nav .dropdown-menu .link > li > a {padding: 5px 10px 5px 40px;}}
-.navbar-inverse .navbar-nav>li> a {color:#ffffff;}
+.navbar-inverse .navbar-nav > li > a {color:#ffffff;}
 #bs-navbar .dropdown-menu {background:#000000;min-width: 0px;}
-#bs-navbar .dropdown-menu>ul {margin-top:5px;}
-#bs-navbar .dropdown-menu>li>a {color:#ffffff;padding: 3px 5px;}
-#bs-navbar .dropdown-menu>li>a:focus, .dropdown-menu > li > a:hover {background:#505050;color:#ffffff;}
-.nav>li>a {padding: 5px;}
-.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {background:#505050;color:#ffffff;}
+#bs-navbar .dropdown-menu > ul {margin-top:5px;}
+#bs-navbar .dropdown-menu > li > a {color:#ffffff;}
+#bs-navbar .dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover {background:#505050;color:#ffffff;}
+.nav > li > a {padding: 5px;}
+.nav .open > a, .nav .open > a:focus, .nav .open > a:hover {background:#505050;color:#ffffff;}
 .table {margin-bottom:0px;}
 .panel-title {font-size: 18px;padding:2px 0px 2px 0px;}
 .modal-body, .panel-body, .input-sm {font-size: 14px;}
@@ -50,7 +52,7 @@ body {background:#e4e4da;font-family: 'Open Sans',sans-serif;background-image:ur
 #category .check-box {vertical-align: middle;margin-top: 0;}
 input[type=checkbox], input[type=radio] {vertical-align: text-bottom;}
 .popover-title {text-align:center;padding:5px 0 5px 0;}
-.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {padding:5px;}
+.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {padding:5px;}
 .sortyes {cursor:move;}
 .table .sortleft {width:30px;vertical-align: middle;text-align: center;}
 .table .sortleft-m {color:#d8d8cf;width:25px;vertical-align: middle;text-align: center;}
