@@ -54,6 +54,8 @@ if (isset($_SESSION['buffer'])) {
         function AjaxSuccess(data) {
             $('#fileupload-edit').fileupload('destroy');
             $('#fileupload-add').fileupload('destroy');
+            $('#fileupload-edit-product').fileupload('destroy');
+            $('#fileupload-add-product').fileupload('destroy');
             $('#ajax').html(data);
         }
     }
@@ -89,6 +91,8 @@ if (isset($_SESSION['buffer'])) {
                             setTimeout(function () {
                                 $('#fileupload-edit').fileupload('destroy');
                                 $('#fileupload-add').fileupload('destroy');
+                                $('#fileupload-edit-product').fileupload('destroy');
+                                $('#fileupload-add-product').fileupload('destroy');
                                 $('#ajax').html(data);
                             }, 1000);
                         }
@@ -297,6 +301,8 @@ if (isset($_SESSION['buffer'])) {
                                     setTimeout(function () {
                                         $('#fileupload-edit').fileupload('destroy');
                                         $('#fileupload-add').fileupload('destroy');
+                                        $('#fileupload-edit-product').fileupload('destroy');
+                                        $('#fileupload-add-product').fileupload('destroy');
                                         $('#ajax').html(data);
                                     }, 100);
                                     $("#sort-list").sortable();
@@ -337,6 +343,8 @@ if (isset($_SESSION['buffer'])) {
                                     setTimeout(function () {
                                         $('#fileupload-edit').fileupload('destroy');
                                         $('#fileupload-add').fileupload('destroy');
+                                        $('#fileupload-edit-product').fileupload('destroy');
+                                        $('#fileupload-add-product').fileupload('destroy');
                                         $('#ajax').html(data);
                                     }, 100);
                                     $("#sort-list").sortable();
@@ -383,6 +391,8 @@ if (isset($_SESSION['buffer'])) {
                                     setTimeout(function () {
                                         $('#fileupload-edit').fileupload('destroy');
                                         $('#fileupload-add').fileupload('destroy');
+                                        $('#fileupload-edit-product').fileupload('destroy');
+                                        $('#fileupload-add-product').fileupload('destroy');
                                         $('#ajax').html(data);
                                     }, 100);
                                     $("#sort-list").sortable();
@@ -459,6 +469,8 @@ if (isset($_SESSION['buffer'])) {
                                     setTimeout(function () {
                                         $('#fileupload-edit').fileupload('destroy');
                                         $('#fileupload-add').fileupload('destroy');
+                                        $('#fileupload-edit-product').fileupload('destroy');
+                                        $('#fileupload-add-product').fileupload('destroy');
                                         $('#ajax').html(data);
                                     }, 100);
                                     $("#sort-list").sortable();
@@ -529,6 +541,8 @@ if (isset($_SESSION['buffer'])) {
             setTimeout(function () {
                 $('#fileupload-edit').fileupload('destroy');
                 $('#fileupload-add').fileupload('destroy');
+                $('#fileupload-edit-product').fileupload('destroy');
+                $('#fileupload-add-product').fileupload('destroy');
                 $('#ajax').html(data);
             }, 100);
             $("#sort-list").sortable();
