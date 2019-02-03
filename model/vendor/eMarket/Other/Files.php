@@ -141,6 +141,7 @@ class Files {
                         $FUNC->deleteFile(ROOT . '/uploads/images/' . $dir . '/originals/' . $file);
                         // Если удаляемая картинка является главной, то устанавливаем маркер
                         if ($file == $PDO->selectPrepare("SELECT logo_general FROM " . $TABLE . " WHERE id=?", [$id])) {
+                            $PDO->inPrepare("UPDATE " . $TABLE . " SET logo_general=? WHERE id=?", [NULL, $id]);
                             $logo_general_update = 'ok';
                         }
                     }
@@ -312,6 +313,7 @@ class Files {
                         $FUNC->deleteFile(ROOT . '/uploads/images/' . $dir . '/originals/' . $file);
                         // Если удаляемая картинка является главной, то устанавливаем маркер
                         if ($file == $PDO->selectPrepare("SELECT logo_general FROM " . $TABLE . " WHERE id=?", [$id])) {
+                            $PDO->inPrepare("UPDATE " . $TABLE . " SET logo_general=? WHERE id=?", [NULL, $id]);
                             $logo_general_update = 'ok';
                         }
                     }
