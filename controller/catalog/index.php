@@ -7,6 +7,9 @@
 /* >-->-->-->  CONNECT PAGE START  <--<--<--< */
 require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 /* ------------------------------------------ */
+
+$products_new = $PRODUCTS->viewNew(10);
+
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
 require_once(ROOT . '/model/end.php');
 /* ------------------------------------------ */
