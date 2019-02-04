@@ -28,6 +28,17 @@ class Products {
         $product = $PDO->getColRow("SELECT * FROM " . TABLE_PRODUCTS . " WHERE language=? ORDER BY id DESC LIMIT " . $count . "", [lang('#lang_all')[0]]);
         return $product;
     }
+    
+    /**
+     * Изображения товара
+     *
+     * @param string $count (номер товара)
+     * @return array $image (названия изображений в массиве)
+     */
+    public function viewNewImages($products_new_count) {
+        $image = explode(',', $products_new_count[6], -1);
+        return $image;
+    }    
 
 }
 
