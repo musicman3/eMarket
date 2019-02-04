@@ -678,7 +678,8 @@ if (isset($_SESSION['buffer'])) {
         language: "<?php echo lang('meta-language') ?>",
         autoclose: true,
         updateViewDate: false,
-        clearBtn: true
+        clearBtn: true,
+        calendarWeeks: true
     });
 </script>
 
