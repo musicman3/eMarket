@@ -24,6 +24,7 @@ $DEBUG = new eMarket\Other\Debug;
 $FILES = new eMarket\Other\Files;
 $FUNC = new eMarket\Other\Func;
 $MESSAGES = new eMarket\Other\Messages;
+$PRODUCTS = new eMarket\Other\Products;
 //
 //АВТОЗАГРУЗЧИК ФУНКЦИЙ
 //Получаем список путей к файлам функций
