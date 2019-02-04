@@ -80,7 +80,7 @@
     <!-- Breadcrumb -->
     <ul class="breadcrumb">
 	<li class="selected"><a href="#">Home</a></li>
-        <li class="selected"><a href="#">Categories</a></li>
+        <li>Categories</li>
     </ul>
     <!-- Breadcrumb -->
 
@@ -88,8 +88,6 @@
     <div id="Carousel" class="carousel slide hidden-xs hidden-sm" data-interval="5000" data-pause="hover" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#Carousel" data-slide-to="0" class="active"></li>
-            <li data-target="#Carousel" data-slide-to="1"></li>
-            <li data-target="#Carousel" data-slide-to="2"></li>
         </ol>
         <div class="carousel-inner" role="listbox" >
             <div class="item active">
@@ -98,24 +96,6 @@
 		    <div class="carousel-caption">
 		    <h3>Los Angeles</h3>
 		    <p>LA is always so much fun!</p>
-		    </div>
-		</a>
-	    </div>
-            <div class="item">
-		<a href="#">
-		    <img class="center-block" src="/uploads/images/slideshow/resize_0/slider-2.jpg" alt="">
-		    <div class="carousel-caption">
-		    <h3>Chicago</h3>
-		    <p>Thank you, Chicago!</p>
-		    </div>
-		</a>
-	    </div>
-            <div class="item">
-		<a href="#">
-		    <img class="center-block" src="/uploads/images/slideshow/resize_0/slider-3.jpg" alt="">
-		    <div class="carousel-caption">
-		    <h3>New York</h3>
-		    <p>We love the Big Apple!</p>
 		    </div>
 		</a>
 	    </div>
