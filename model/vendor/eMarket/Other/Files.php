@@ -392,6 +392,7 @@ class Files {
                             copy(ROOT . '/uploads/temp/files/' . basename($file), ROOT . '/uploads/temp/originals/' . $prefix . basename($file));
                         }
                         $IMAGE->fromFile(ROOT . '/uploads/temp/files/' . basename($file))
+                                ->autoOrient()
                                 ->bestFit($value[0], $value[1]) // ширина, высота
                                 ->toFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $prefix . basename($file));
                     }
@@ -444,6 +445,7 @@ class Files {
             // Делаем ресайз временной картинки thumbnail
             if ($width >= $quality_width OR $height >= $quality_height) {
                 $IMAGE->fromFile(ROOT . '/uploads/temp/files/' . $file)
+                        ->autoOrient()
                         ->bestFit($resize_param[0][0], $resize_param[0][1]) // ширина, высота
                         ->toFile(ROOT . '/uploads/temp/thumbnail/' . $file);
             }
