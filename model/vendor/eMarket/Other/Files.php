@@ -386,7 +386,7 @@ class Files {
                     $quality_width = $resize_max[0];
                     $quality_height = $resize_max[1];
 
-                    if ($width >= $quality_width && $height >= $quality_height) {
+                    if ($width >= $quality_width OR $height >= $quality_height) {
                         //Копируем выбранный оригинал во временную папку
                         if (!file_exists(ROOT . '/uploads/temp/originals/' . $prefix . basename($file))) {
                             copy(ROOT . '/uploads/temp/files/' . basename($file), ROOT . '/uploads/temp/originals/' . $prefix . basename($file));
@@ -442,7 +442,7 @@ class Files {
             $quality_height = $resize_max[1];
 
             // Делаем ресайз временной картинки thumbnail
-            if ($width >= $quality_width && $height >= $quality_height) {
+            if ($width >= $quality_width OR $height >= $quality_height) {
                 $IMAGE->fromFile(ROOT . '/uploads/temp/files/' . $file)
                         ->bestFit($resize_param[0][0], $resize_param[0][1]) // ширина, высота
                         ->toFile(ROOT . '/uploads/temp/thumbnail/' . $file);
