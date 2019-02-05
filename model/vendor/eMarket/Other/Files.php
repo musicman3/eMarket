@@ -1,4 +1,5 @@
 <?php
+
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -385,21 +386,13 @@ class Files {
                     $quality_width = $resize_max[0];
                     $quality_height = $resize_max[1];
 
-                    if ($width >= $quality_width && $width > $height) {
+                    if ($width >= $quality_width && $height >= $quality_height) {
                         //Копируем выбранный оригинал во временную папку
                         if (!file_exists(ROOT . '/uploads/temp/originals/' . $prefix . basename($file))) {
                             copy(ROOT . '/uploads/temp/files/' . basename($file), ROOT . '/uploads/temp/originals/' . $prefix . basename($file));
                         }
                         $IMAGE->fromFile(ROOT . '/uploads/temp/files/' . basename($file))
-                                ->resize($value[0], null) // ширина, высота
-                                ->toFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $prefix . basename($file));
-                    } elseif ($height >= $quality_height && $height >= $width) {
-                        //Копируем выбранный оригинал во временную папку
-                        if (!file_exists(ROOT . '/uploads/temp/originals/' . $prefix . basename($file))) {
-                            copy(ROOT . '/uploads/temp/files/' . basename($file), ROOT . '/uploads/temp/originals/' . $prefix . basename($file));
-                        }
-                        $IMAGE->fromFile(ROOT . '/uploads/temp/files/' . basename($file))
-                                ->resize(null, $value[1]) // ширина, высота
+                                ->bestFit($value[0], $value[1]) // ширина, высота
                                 ->toFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $prefix . basename($file));
                     }
                 }
@@ -449,13 +442,9 @@ class Files {
             $quality_height = $resize_max[1];
 
             // Делаем ресайз временной картинки thumbnail
-            if ($width >= $quality_width && $width > $height) {
+            if ($width >= $quality_width && $height >= $quality_height) {
                 $IMAGE->fromFile(ROOT . '/uploads/temp/files/' . $file)
-                        ->resize($resize_param[0][0], null) // ширина, высота
-                        ->toFile(ROOT . '/uploads/temp/thumbnail/' . $file);
-            } elseif ($height >= $quality_height && $height >= $width) {
-                $IMAGE->fromFile(ROOT . '/uploads/temp/files/' . $file)
-                        ->resize(null, $resize_param[0][1]) // ширина, высота
+                        ->bestFit($resize_param[0][0], $resize_param[0][1]) // ширина, высота
                         ->toFile(ROOT . '/uploads/temp/thumbnail/' . $file);
             }
             // Отправяем данные по изображению в ответ на запрос Ajax
