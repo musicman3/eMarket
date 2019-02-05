@@ -44,4 +44,4 @@ body{font-family: 'Lato',sans-serif;}
 .grid-group-item {margin-bottom: 20px;}
 .list-group-item-heading {margin-bottom:10px;margin-top:10px;}
 .productHolder {border: 1px solid #eee;padding: 10px;border-radius: 4px;}
-.list-item {display: table-cell;vertical-align: middle;}
+.list-item {display: flex;align-items: center;justify-content: center;flex-direction: row;}
