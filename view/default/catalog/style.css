@@ -44,7 +44,3 @@ body{font-family: 'Lato',sans-serif;}
 .grid-group-item {margin-bottom: 20px;}
 .list-group-item-heading {margin-bottom:10px;margin-top:10px;}
 .productHolder {border: 1px solid #eee;padding: 10px;border-radius: 4px;}
-
-.productHolder .list-item button {font-size: 12px;line-height: 28px;color: #005E7D;-webkit-border-radius: 4px;border-radius: 4px;background-color: #FFF;width: 135px;height: 28px;padding: 0;border: 1px solid #F9F0E2;outline: 0;position: absolute;top: -25%;right: 0;bottom: 0;left: 0;margin: auto;cursor: pointer;-webkit-transition: none;transition: none;z-index: 10;}
-.productHolder .list-item button {display: none;}
-.productHolder .list-item a:hover button {display: block;}
