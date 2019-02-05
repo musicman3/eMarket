@@ -1,5 +1,4 @@
 <?php
-
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -374,17 +373,35 @@ class Files {
         // Делаем ресайз
         $IMAGE = new \claviska\SimpleImage;
         $FUNC = new \eMarket\Other\Func;
+        $resize_max = self::imgResizeMax($resize_param);
 
         foreach ($files as $file) {
             if (is_file($file) && file_exists($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
                 foreach ($resize_param as $key => $value) {
-                    //Копируем выбранный оригинал во временную папку
-                    if (!file_exists(ROOT . '/uploads/temp/originals/' . $prefix . basename($file))) {
-                        copy(ROOT . '/uploads/temp/files/' . basename($file), ROOT . '/uploads/temp/originals/' . $prefix . basename($file));
+
+                    $width = $IMAGE->fromFile(ROOT . '/uploads/temp/files/' . basename($file))->getWidth();
+                    $height = $IMAGE->fromFile(ROOT . '/uploads/temp/files/' . basename($file))->getHeight();
+
+                    $quality_width = $resize_max[0];
+                    $quality_height = $resize_max[1];
+
+                    if ($width >= $quality_width && $width > $height) {
+                        //Копируем выбранный оригинал во временную папку
+                        if (!file_exists(ROOT . '/uploads/temp/originals/' . $prefix . basename($file))) {
+                            copy(ROOT . '/uploads/temp/files/' . basename($file), ROOT . '/uploads/temp/originals/' . $prefix . basename($file));
+                        }
+                        $IMAGE->fromFile(ROOT . '/uploads/temp/files/' . basename($file))
+                                ->resize($value[0], null) // ширина, высота
+                                ->toFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $prefix . basename($file));
+                    } elseif ($height >= $quality_height && $height >= $width) {
+                        //Копируем выбранный оригинал во временную папку
+                        if (!file_exists(ROOT . '/uploads/temp/originals/' . $prefix . basename($file))) {
+                            copy(ROOT . '/uploads/temp/files/' . basename($file), ROOT . '/uploads/temp/originals/' . $prefix . basename($file));
+                        }
+                        $IMAGE->fromFile(ROOT . '/uploads/temp/files/' . basename($file))
+                                ->resize(null, $value[1]) // ширина, высота
+                                ->toFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $prefix . basename($file));
                     }
-                    $IMAGE->fromFile(ROOT . '/uploads/temp/files/' . basename($file))
-                            ->bestFit($value[0], $value[1]) // ширина, высота
-                            ->toFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $prefix . basename($file));
                 }
                 // Удаляем временные файлы
                 $FUNC->deleteFile(ROOT . '/uploads/temp/thumbnail/' . basename($file));
@@ -394,10 +411,10 @@ class Files {
     }
 
     /**
-     * Массив минимальных размеров изображения для лучшего качества
+     * Массив максимальных размеров изображения после ресайза
      *
      * @param array $resize_param (параметры ресайза)
-     * @return array $resize_max (параметры ресайза для лучшего качества)
+     * @return array $resize_max (параметры ресайза для максимального качества)
      */
     public function imgResizeMax($resize_param) {
 
@@ -416,6 +433,7 @@ class Files {
 
         $VALID = new \eMarket\Core\Valid;
         $IMAGE = new \claviska\SimpleImage;
+        $resize_max = self::imgResizeMax($resize_param);
 
         // Если получили запрос на получение данных по изображению
         if ($VALID->inPOST('image_data')) {
@@ -423,11 +441,23 @@ class Files {
 
             // Массив с данными по оригинальному изображению
             $image_data = getimagesize(ROOT . '/uploads/temp/files/' . $file);
+            // Получаем ширину и высоту изображения
+            $width = $image_data[0];
+            $height = $image_data[1];
+            //Минимальный размер ширины и высоты для качественного ресайза
+            $quality_width = $resize_max[0];
+            $quality_height = $resize_max[1];
 
             // Делаем ресайз временной картинки thumbnail
-            $IMAGE->fromFile(ROOT . '/uploads/temp/files/' . $file)
-                    ->bestFit($resize_param[0][0], $resize_param[0][1]) // ширина, высота
-                    ->toFile(ROOT . '/uploads/temp/thumbnail/' . $file);
+            if ($width >= $quality_width && $width > $height) {
+                $IMAGE->fromFile(ROOT . '/uploads/temp/files/' . $file)
+                        ->resize($resize_param[0][0], null) // ширина, высота
+                        ->toFile(ROOT . '/uploads/temp/thumbnail/' . $file);
+            } elseif ($height >= $quality_height && $height >= $width) {
+                $IMAGE->fromFile(ROOT . '/uploads/temp/files/' . $file)
+                        ->resize(null, $resize_param[0][1]) // ширина, высота
+                        ->toFile(ROOT . '/uploads/temp/thumbnail/' . $file);
+            }
             // Отправяем данные по изображению в ответ на запрос Ajax
             echo json_encode($image_data);
             exit();
