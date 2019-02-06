@@ -285,6 +285,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                 <?php echo lang('max') ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>
                                 <br>
                                 <br>
+                                <div><small class="form-text text-muted">Эффекты для обработки изображения</small></div>
                                 <div class="input-group has-success">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-adjust"></span></span>
                                     <select name="effect-edit-product" id="effect-edit-product" class="input-sm form-control">

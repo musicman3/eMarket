@@ -282,6 +282,7 @@
                                 <?php echo lang('max') ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>
                                 <br>
                                 <br>
+                                <div><small class="form-text text-muted">Эффекты для обработки изображения</small></div>
                                 <div class="input-group has-success">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-adjust"></span></span>
                                     <select name="effect-add-product" id="effect-add-product" class="input-sm form-control">
