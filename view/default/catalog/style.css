@@ -4,11 +4,11 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 @font-face {font-family: 'Lato';src: url('fonts/Lato-Regular.ttf');}
 *, ::after, ::before {box-sizing: border-box;}
-body{font-family: 'Lato',sans-serif;}
+body {font-family: 'Lato',sans-serif;}
 :focus {outline: 0;}
-#header{padding-top:10px;margin-left:-15px;margin-right:-15px;}
+#header {padding-top:10px;margin-left:-15px;margin-right:-15px;}
 #bodyContent {padding-bottom: 10px;}
-.breadcrumb{margin-bottom:10px;margin-top:10px;}
+.breadcrumb {margin-bottom:10px;margin-top:10px;}
 #Carousel {margin-bottom:10px;}
 #Carousel .left {border-left: 0px solid #ddd;border-radius: 6px;}
 #Carousel .right {border-right: 0px solid #ddd;border-radius: 6px;}
@@ -17,10 +17,10 @@ body{font-family: 'Lato',sans-serif;}
 .carousel-inner p {font-size: 18px;padding: 20px;animation: anime-P 1.6s ease-out;}
 @keyframes anime-H3 { from { opacity: 0; transform: translateX(-2000px); } to { opacity: 1; transform: translateX(0); } }
 @keyframes anime-P { from { opacity: 0; transform: translateX(2000px); } to { opacity: 1; transform: translateX(0); } }
-.footer{color:#000000;width:100%;margin-top:10px;padding:10px;}
-.panel-heading{padding:5px 10px;}
-.panel-default > .panel-heading{color:#428bca;}
-.panel-body{padding:5px;}
+.footer {color:#000000;width:100%;margin-top:10px;padding:10px;}
+.panel-heading {padding:5px 10px;}
+.panel-default > .panel-heading {color:#428bca;}
+.panel-body {padding:5px;}
 #bodyContent h3 {color: #03539a;}
 .navbar {min-height: 30px;margin-bottom: 10px;border-radius:0;}
 .navbar-left {margin-left:-15px}
@@ -38,7 +38,7 @@ body{font-family: 'Lato',sans-serif;}
 .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:focus, .navbar-inverse .navbar-nav > .open > a:hover {background:#222222;}
 .nav .open > a, .nav .open > a:focus, .nav .open > a:hover {background:#505050;color:#ffffff;}
 .navbar-toggle {margin-top: 0;margin-bottom: 0;}
-@media (max-width:767px){.navbar-nav .dropdown-menu .link > li > a {padding: 5px 10px 5px 40px;}}
+@media (max-width:767px) {.navbar-nav .dropdown-menu .link > li > a {padding: 5px 10px 5px 40px;}}
 #columnLeft .panel-heading, #columnRight .panel-heading {font-size: 16px;}
 .searchbox-margin {margin-top: 15px;}
 .grid-group-item {margin-bottom: 20px;}
