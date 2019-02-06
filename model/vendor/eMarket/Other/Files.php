@@ -1,5 +1,4 @@
 <?php
-
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -374,6 +373,7 @@ class Files {
         // Делаем ресайз
         $IMAGE = new \claviska\SimpleImage;
         $FUNC = new \eMarket\Other\Func;
+        $VALID = new \eMarket\Core\Valid;
         $resize_max = self::imgResizeMax($resize_param);
 
         foreach ($files as $file) {
@@ -393,8 +393,14 @@ class Files {
                         }
                         $IMAGE->fromFile(ROOT . '/uploads/temp/files/' . basename($file))
                                 ->autoOrient()
-                                ->bestFit($value[0], $value[1]) // ширина, высота
-                                ->toFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $prefix . basename($file));
+                                ->bestFit($value[0], $value[1]); // ширина, высота
+                        if ($VALID->inPOST('effect-edit-product') == 'effect-sepia' OR $VALID->inPOST('effect-add-product') == 'effect-sepia') {
+                            $IMAGE->sepia();
+                        }
+                        if ($VALID->inPOST('effect-edit-product') == 'effect-black-white' OR $VALID->inPOST('effect-add-product') == 'effect-black-white') {
+                            $IMAGE->desaturate();
+                        }
+                        $IMAGE->toFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $prefix . basename($file));
                     }
                 }
                 // Удаляем временные файлы
@@ -446,8 +452,14 @@ class Files {
             if ($width >= $quality_width OR $height >= $quality_height) {
                 $IMAGE->fromFile(ROOT . '/uploads/temp/files/' . $file)
                         ->autoOrient()
-                        ->bestFit($resize_param[0][0], $resize_param[0][1]) // ширина, высота
-                        ->toFile(ROOT . '/uploads/temp/thumbnail/' . $file);
+                        ->bestFit($resize_param[0][0], $resize_param[0][1]); // ширина, высота
+                if ($VALID->inPOST('effect_edit') == 'effect-sepia' OR $VALID->inPOST('effect_add') == 'effect-sepia') {
+                    $IMAGE->sepia();
+                }
+                if ($VALID->inPOST('effect_edit') == 'effect-black-white' OR $VALID->inPOST('effect_add') == 'effect-black-white') {
+                    $IMAGE->desaturate();
+                }
+                $IMAGE->toFile(ROOT . '/uploads/temp/thumbnail/' . $file);
             }
             // Отправяем данные по изображению в ответ на запрос Ajax
             echo json_encode($image_data);

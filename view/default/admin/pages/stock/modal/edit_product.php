@@ -5,6 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
+
 ?>
 <!-- Модальное окно "Добавить товар" -->
 <div id="edit_product" class="products modal fade" tabindex="-1">
@@ -187,7 +188,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                             </div>
 
                         </div>
-                        
+
                         <!-- Содержимое панели Дополнительное -->
                         <div id="panel_edit_3" class="tab-pane fade">
                             <div class="row">
@@ -271,7 +272,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
 
                         <!-- Содержимое панели Изображения -->
                         <div id="panel_edit_4" class="tab-pane fade">
-                            
+
                             <!-- Выводим сообщения -->
                             <div id="alert_messages_edit_product"></div>
 
@@ -283,6 +284,15 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                 </span>
                                 <?php echo lang('max') ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>
                                 <br>
+                                <br>
+                                <div class="input-group has-success">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-adjust"></span></span>
+                                    <select name="effect-edit-product" id="effect-edit-product" class="input-sm form-control">
+                                        <option value="effect-off" selected>Нет эффектов</option>
+                                        <option value="effect-sepia">Эффект сепия</option>
+                                        <option value="effect-black-white">Черно-белое</option>
+                                    </select>
+                                </div>
                                 <br>
                                 <div id="progress_edit_product" class="progress">
                                     <div class="progress-bar progress-bar-warning progress-bar-striped active"></div>

@@ -22,6 +22,7 @@ class Ajax {
      */
     public function action($url) {
         $VALID = new \eMarket\Core\Valid;
+
         ?>
         <!-- Модальное окно "Добавить" -->
         <script type="text/javascript">
@@ -119,6 +120,7 @@ class Ajax {
         $FILES = new \eMarket\Other\Files;
 
         $resize_max = $FILES->imgResizeMax($resize_param);
+
         ?>
 
         <script type="text/javascript">
@@ -299,6 +301,7 @@ class Ajax {
         $FILES = new \eMarket\Other\Files;
 
         $resize_max = $FILES->imgResizeMax($resize_param);
+
         ?>
 
         <script type="text/javascript">
@@ -323,7 +326,9 @@ class Ajax {
                                 type: 'POST',
                                 dataType: 'json',
                                 url: '<?php echo $url ?>',
-                                data: {image_data: file.name},
+                                data: {image_data: file.name,
+                                    effect_edit: $('#effect-edit-product').val(),
+                                    effect_add: $('#effect-add-product').val()},
                                 success: function (image_size) {
                                     // Вычисляем размеры изображения
                                     var this_width = image_size[0]; // Ширина оригинала
@@ -465,7 +470,8 @@ class Ajax {
         </script>
 
         <?php
-    }    
+    }
 
 }
+
 ?>

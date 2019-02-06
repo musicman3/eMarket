@@ -269,7 +269,7 @@
 
                         <!-- Содержимое панели Изображения -->
                         <div id="panel_add_4" class="tab-pane fade">
-                            
+
                             <!-- Выводим сообщения -->
                             <div id="alert_messages_add_product"></div>
 
@@ -281,6 +281,15 @@
                                 </span>
                                 <?php echo lang('max') ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>
                                 <br>
+                                <br>
+                                <div class="input-group has-success">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-adjust"></span></span>
+                                    <select name="effect-add-product" id="effect-add-product" class="input-sm form-control">
+                                        <option value="effect-off" selected>Нет эффектов</option>
+                                        <option value="effect-sepia">Эффект сепия</option>
+                                        <option value="effect-black-white">Черно-белое</option>
+                                    </select>
+                                </div>
                                 <br>
                                 <div id="progress_add_product" class="progress">
                                     <div class="progress-bar progress-bar-warning progress-bar-striped active"></div>
