@@ -1,82 +1,50 @@
 <?php
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
-  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
+  |    GNU GENERAL PUBLIC LICENSE v.3.0    |    
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-if (isset($_SESSION['login']) && isset($_SESSION['pass'])) { // Выводим если авторизованы 
+?>
 
-    ?>
+<nav class="navbar navbar-inverse navbar-no-corners navbar-no-margin" role="navigation">
+    <div class="container-fluid">
+	<div class="navbar-header">
+	    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse-core-nav">
+		<span class="sr-only">Toggle Navigation</span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+	    </button>
+	</div>
 
-    <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
-        <div class="container-fluid">
-
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-
-            <div class="collapse navbar-collapse" id="bs-navbar">
-                <!-- 1 УРОВЕНЬ МЕНЮ -->
-                <ul class="nav navbar-nav">
-                    <?php
-                    for ($i = 0; $i < count($level); $i++) {
-                        // Параметры для меню с подуровнями
-                        $param_1 = 'class="dropdown-toggle" data-toggle="dropdown"';
-                        $param_2 = '<b class="caret"></b>';
-                        // если нет подуровней,то не отображаем их
-                        if ($level[$i][2] == 'false') {
-                            $param_1 = '';
-                            $param_2 = '';
-                        }
-
-                        ?>
-                    
-                        <li>
-                            <!-- выводим данные 1 уровня меню -->
-                            <a href="<?php echo $level[$i][0] ?>" <?php echo $param_1 ?>><?php echo $level[$i][1] . $param_2 ?></a>
-                            <?php if (isset($menu[$i])) { ?>
-                                <!-- 2 УРОВЕНЬ МЕНЮ -->
-                                <ul class="dropdown-menu">
-                                    <?php
-                                    for ($x = 0; $x < count($menu[$i]); $x++) {
-                                        // если нет подуровней,то не отображаем их
-                                        if ($menu[$i][$x][4] == 'false') {
-                                            $param_1 = '';
-                                            $param_2 = '';
-                                        }
-
-                                        ?>
-                                    
-                                        <li>
-                                            <!-- выводим данные 2 уровня меню -->
-                                            <a <?php echo $menu[$i][$x][3]; ?> href="<?php echo $menu[$i][$x][0] ?>" <?php echo $param_1 ?>><img src="/view/<?php echo $SET->template() ?>/admin/images/icons/16x16/<?php echo $menu[$i][$x][1]; ?>" /> <?php echo $menu[$i][$x][2] . ' ' . $param_2 ?></a>
-                                            <?php if (isset($submenu[$i][$x])) { ?>
-                                                <!-- 3 УРОВЕНЬ МЕНЮ -->
-                                                <ul class="dropdown-menu link">
-                                                    <?php
-                                                    for ($y = 0; $y < count($submenu[$i][$x]); $y++) {
-
-                                                        ?>
-                                                        <li>
-                                                            <!-- выводим данные 3 уровня меню -->
-                                                            <a href="<?php echo $submenu[$i][$x][$y][0]; ?>"><img src="/view/<?php echo $SET->template() ?><?php echo $submenu[$i][$x][$y][1]; ?>" /> <?php echo $submenu[$i][$x][$y][2]; ?> </a>
-                                                        </li><?php } ?>
-                                                </ul><?php } ?>
-                                                
-                                        </li><?php } ?>
-                                        
-                                </ul><?php } ?>
-                                
-                        </li><?php } ?>
-                        
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-<?php } ?>
+	<div class="collapse navbar-collapse" id="bs-navbar-collapse-core-nav">
+	    <ul class="nav navbar-nav navbar-left">
+		<li><a href="#"><i class="glyphicon glyphicon-home"></i><span class="hidden-sm"> Home</span></a></li>
+		<li><a href="#"><i class="glyphicon glyphicon-certificate"></i><span class="hidden-sm">  New Products</span></a></li>
+		<li><a href="#"><i class="glyphicon glyphicon-fire"></i><span class="hidden-sm"> Special Offers</span></a></li>
+		<li><a href="#"><i class="glyphicon glyphicon-comment"></i><span class="hidden-sm"> Reviews</span></a></li>
+	    </ul>
+	    <ul class="nav navbar-nav navbar-right">
+		<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-credit-card"></i><span class="hidden-sm"> Currencies</span> <span class="caret"></span></a>
+		    <ul class="dropdown-menu">
+			<li><a href="#">U.S. Dollar</a></li>
+			<li><a href="#">Euro</a></li>
+		    </ul>
+		</li>
+	    <li class="dropdown">
+		<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-user"></i><span class="hidden-sm"> My Account</span> <span class="caret"></span></a>
+		    <ul class="dropdown-menu">
+			<li><a href="#">Log In</a></li>
+			<li><a href="#">Register</a></li>
+			<li class="divider"></li>
+			<li><a href="#">My Account</a></li>
+			<li><a href="#">My Orders</a></li>
+			<li><a href="#">My Address Book</a></li>
+			<li><a href="#">My Password</a></li>
+		    </ul>
+	    </li>
+		<li class="nav navbar-text"><i class="glyphicon glyphicon-shopping-cart"></i> 0 items</li>
+	    </ul>
+	</div>
+    </div>
+</nav>

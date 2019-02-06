@@ -29,6 +29,10 @@
     <body>
 
         <?php
+        // ЗАГРУЖАЕМ HEADER
+        require_once(ROOT . '/controller/catalog/header.php');
+        require_once(ROOT . '/view/' . $SET->template() . '/catalog/header.php');
+
         // ЗАГРУЖАЕМ ТЕЛО HTML СТРАНИЦЫ
         require_once($VIEW->routing());
         ?>
@@ -36,6 +40,10 @@
         <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/ext/simpleeqh/simpleeqh.js"></script>
         <?php
+        // ЗАГРУЖАЕМ FOOTER
+        require_once(ROOT . '/controller/catalog/footer.php');
+        require_once(ROOT . '/view/' . $SET->template() . '/catalog/footer.php');
+        
         //Если существует $JS_END
         if (isset($JS_END)) {
             //то подгружаем JS.PHP файл

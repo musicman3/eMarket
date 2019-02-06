@@ -5,55 +5,9 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 ?>
-<!-- Для смартфонов -->
-<nav class="navbar navbar-inverse navbar-no-corners navbar-no-margin" role="navigation">
-    <div class="container-fluid">
-	<div class="navbar-header">
-	    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse-core-nav">
-		<span class="sr-only">Toggle Navigation</span>
-		<span class="icon-bar"></span>
-		<span class="icon-bar"></span>
-		<span class="icon-bar"></span>
-	    </button>
-	</div>
 
-	<div class="collapse navbar-collapse" id="bs-navbar-collapse-core-nav">
-	    <ul class="nav navbar-nav navbar-left">
-		<li><a href="#"><i class="glyphicon glyphicon-home"></i><span class="hidden-sm"> Home</span></a></li>
-		<li><a href="#"><i class="glyphicon glyphicon-certificate"></i><span class="hidden-sm">  New Products</span></a></li>
-		<li><a href="#"><i class="glyphicon glyphicon-fire"></i><span class="hidden-sm"> Special Offers</span></a></li>
-		<li><a href="#"><i class="glyphicon glyphicon-comment"></i><span class="hidden-sm"> Reviews</span></a></li>
-	    </ul>
-	    <ul class="nav navbar-nav navbar-right">
-		<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-credit-card"></i><span class="hidden-sm"> Currencies</span> <span class="caret"></span></a>
-		    <ul class="dropdown-menu">
-			<li><a href="#">U.S. Dollar</a></li>
-			<li><a href="#">Euro</a></li>
-		    </ul>
-		</li>
-	    <li class="dropdown">
-		<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-user"></i><span class="hidden-sm"> My Account</span> <span class="caret"></span></a>
-		    <ul class="dropdown-menu">
-			<li><a href="#">Log In</a></li>
-			<li><a href="#">Register</a></li>
-			<li class="divider"></li>
-			<li><a href="#">My Account</a></li>
-			<li><a href="#">My Orders</a></li>
-			<li><a href="#">My Address Book</a></li>
-			<li><a href="#">My Password</a></li>
-		    </ul>
-	    </li>
-		<li class="nav navbar-text"><i class="glyphicon glyphicon-shopping-cart"></i> 0 items</li>
-	    </ul>
-	</div>
-    </div>
-</nav>
-<!-- Для смартфонов -->
-
-<!-- Wrapper -->
 <div id="bodyWrapper" class="container-fluid">
 
-    <!-- Лого и поиск -->
     <div id="header">
         <div class="col-sm-4">
             <a href=""><img src="/view/<?php echo $SET->template() ?>/catalog/images/emarket.png"></a>
@@ -73,18 +27,14 @@
 	    </div>
 	 </div>
     </div>
-    <!-- Лого и поиск -->
     
     <div class="clearfix"></div>
 
-    <!-- Breadcrumb -->
     <ul class="breadcrumb">
 	<li class="selected"><a href="#">Home</a></li>
         <li>Categories</li>
     </ul>
-    <!-- Breadcrumb -->
 
-    <!-- Слайдер -->
     <div id="Carousel" class="carousel slide hidden-xs hidden-sm" data-interval="5000" data-pause="hover" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#Carousel" data-slide-to="0" class="active"></li>
@@ -107,24 +57,23 @@
             <span class="glyphicon glyphicon-chevron-right"></span>
         </a>
     </div>
-    <!-- Слайдер -->
+
 <script type="text/javascript" language="javascript">
 $(window).load(function(){ 
 $(".list-item").simpleEQH();
 $(".list-group-item-heading").simpleEQH();
 });
 </script>
-    <!-- Контент -->
+
     <div class="row">
         
-        <!-- Центр -->
         <div id="bodyContent" class="col-md-10 col-md-push-2">
 	    <h3>eMarket Bootstrap 3 Demo</h3>
 	    <div class="contentContainer">
 		<div class="contentText-before">
 		    <h4>Welcome Guest!</h4>
 		    <p>The default shopping cart comes with Jquery UI, Grid960, Fancybox and BxGallery, in this demo those have been replaced by Boostrap and Bootstrap 3 Lightbox making it lighter, faster and responsive.</p>
-		</div>		
+		</div>
 		<div class="clearfix"></div>
 		<div class="contentText-after">
 		    <h4>New Products!</h4>
@@ -154,9 +103,7 @@ $(".list-group-item-heading").simpleEQH();
 		</div>
 	    </div>
         </div>
-        <!-- Центр -->
 
-        <!-- Левая-->
         <div id="columnLeft" class="col-lg-2 col-md-2 col-sm-12 col-xs-12 col-md-pull-10">
             <div class="panel panel-default">
                 <div class="panel-heading">Categories</div>
@@ -168,16 +115,7 @@ $(".list-group-item-heading").simpleEQH();
                 </div>
             </div>
         </div>
-        <!-- Левая -->
 
     </div>
-    <!-- Контент -->
 
 </div>
-<!-- Wrapper -->
-
-<!-- Подвал -->
-<div class="footer">
-    <p align="center"><?php echo date('Y'); ?> | eMarket Design by Prizraki</p>
-</div>
-<!-- Подвал -->
