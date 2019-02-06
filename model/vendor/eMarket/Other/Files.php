@@ -400,6 +400,12 @@ class Files {
                         if ($VALID->inPOST('effect-edit-product') == 'effect-black-white' OR $VALID->inPOST('effect-add-product') == 'effect-black-white') {
                             $IMAGE->desaturate();
                         }
+                        if ($VALID->inPOST('effect-edit-product') == 'effect-blur-1' OR $VALID->inPOST('effect-add-product') == 'effect-blur-1') {
+                            $IMAGE->blur('selective', 1);
+                        }
+                        if ($VALID->inPOST('effect-edit-product') == 'effect-blur-2' OR $VALID->inPOST('effect-add-product') == 'effect-blur-2') {
+                            $IMAGE->blur('selective', 2);
+                        }
                         $IMAGE->toFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $prefix . basename($file));
                     }
                 }
@@ -458,6 +464,12 @@ class Files {
                 }
                 if ($VALID->inPOST('effect_edit') == 'effect-black-white' OR $VALID->inPOST('effect_add') == 'effect-black-white') {
                     $IMAGE->desaturate();
+                }
+                if ($VALID->inPOST('effect_edit') == 'effect-blur-1' OR $VALID->inPOST('effect_add') == 'effect-blur-1') {
+                    $IMAGE->blur('selective', 1);
+                }
+                if ($VALID->inPOST('effect_edit') == 'effect-blur-2' OR $VALID->inPOST('effect_add') == 'effect-blur-2') {
+                    $IMAGE->blur('selective', 2);
                 }
                 $IMAGE->toFile(ROOT . '/uploads/temp/thumbnail/' . $file);
             }

@@ -290,8 +290,10 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-adjust"></span></span>
                                     <select name="effect-edit-product" id="effect-edit-product" class="input-sm form-control">
                                         <option value="effect-off" selected>Нет эффектов</option>
-                                        <option value="effect-sepia">Эффект сепия</option>
-                                        <option value="effect-black-white">Черно-белое</option>
+                                        <option value="effect-sepia">Сепия</option>
+                                        <option value="effect-black-white">Чёрно-белое</option>
+                                        <option value="effect-blur-1">Размытие 1</option>
+                                        <option value="effect-blur-2">Размытие 2</option>
                                     </select>
                                 </div>
                                 <br>
