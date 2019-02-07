@@ -80,7 +80,7 @@ $(".list-item-heading").simpleEQH();
 		    <div id="products" class="row list-group">
 
 			<?php for ($x=0; $x<count($products_new); $x++){ ?>
-			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item">
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 list-group-item">
 			    <div class="productHolder">
 				<div class="list-item"><a href="<?php echo $products_new[$x][0]; ?>"><img src="/uploads/images/products/resize_1/<?php echo $products_new[$x][7]; ?>" class="img-responsive img-rounded center-block"></a></div>
 				<h5 class="text-center list-item-heading"><a href="<?php echo $products_new[$x][0]; ?>"><?php echo $products_new[$x][1]; ?></a></h5>
