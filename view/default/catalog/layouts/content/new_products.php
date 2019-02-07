@@ -14,7 +14,7 @@ $(".grid-item-heading").simpleEQH();
 
 	    <div class="contentContainer">
 		<div class="contentText">
-		    <h4>New Products!</h4>
+		    <h4>New Products</h4>
 		    <div id="products" class="row grid-group">
 
 			<?php for ($x=0; $x<count($products_new); $x++){ ?>

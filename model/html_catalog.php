@@ -32,13 +32,46 @@
         // ЗАГРУЖАЕМ HEADER
         require_once(ROOT . '/controller/catalog/header.php');
         require_once(ROOT . '/view/' . $SET->template() . '/catalog/header.php');
+        ?>
+    
+<div id="bodyWrapper" class="container-fluid">
 
-        // ЗАГРУЖАЕМ ТЕЛО HTML СТРАНИЦЫ
+    <div id="header">
+        <div class="col-sm-4">
+            <a href=""><img class="img-responsive pull-left" src="/view/<?php echo $SET->template() ?>/catalog/images/emarket.png"></a>
+        </div>
+        <div class="col-sm-8">
+	    Search
+	</div>
+    </div>
+    
+    <div class="clearfix"></div>
+
+Breadcrumb
+
+    <div class="clearfix"></div>
+
+Carousel
+
+    <div class="row">
+        
+        <div id="bodyContent" class="col-md-10 col-md-push-2">
+        <?php
         require_once($VIEW->routing());
         ?>
+        </div>
 
-        <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="/ext/simpleeqh/simpleeqh.js"></script>
+        <div id="columnLeft" class="col-lg-2 col-md-2 col-sm-12 col-xs-12 col-md-pull-10">
+        <?php
+        require_once(ROOT . '/controller/catalog/layouts/boxes/categories.php');
+        require_once(ROOT . '/view/' . $SET->template() . '/catalog/layouts/boxes/categories.php');
+        ?>
+        </div>
+
+    </div>
+
+</div>
+
         <?php
         // ЗАГРУЖАЕМ FOOTER
         require_once(ROOT . '/controller/catalog/footer.php');
@@ -56,5 +89,7 @@
         // Результат на экран
         echo "Время генерации страницы: " . $totaltime . " сек.<br><br>";
         ?>
+        <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/ext/simpleeqh/simpleeqh.js"></script>
     </body>
 </html>
