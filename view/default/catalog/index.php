@@ -83,17 +83,11 @@ $(".list-item-heading").simpleEQH();
 			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item">
 			    <div class="productHolder">
 				<div class="list-item"><a href="<?php echo $products_new[$x][0]; ?>"><img src="/uploads/images/products/resize_1/<?php echo $products_new[$x][7]; ?>" class="img-responsive img-rounded center-block"></a></div>
-				<div>
-				    <h5 class="text-center list-item-heading"><a href="<?php echo $products_new[$x][0]; ?>"><?php echo $products_new[$x][1]; ?></a></h5>
-				    <div class="clearfix"></div>
-				    <div class="row button">
-					<div class="col-xs-6">
-					    <button type="button" class="btn btn-default btn-sm"><?php echo $products_new[$x][12]; ?></button>
-					</div>
-					<div class="col-xs-6 text-right">
-					    <a id="btn1" href="<?php echo $products_new[$x][0]; ?>" class="btn btn-primary btn-sm">Buy Now</a>
-					</div>
-				    </div>
+				<h5 class="text-center list-item-heading"><a href="<?php echo $products_new[$x][0]; ?>"><?php echo $products_new[$x][1]; ?></a></h5>
+				<div class="clearfix"></div>
+				<div class="row button">
+				    <div class="col-xs-6"><button type="button" class="btn btn-default btn-sm"><?php echo $products_new[$x][12]; ?></button></div>
+				    <div class="col-xs-6 text-right"><a id="btn1" href="<?php echo $products_new[$x][0]; ?>" class="btn btn-primary btn-sm">Buy Now</a></div>
 				</div>
 			    </div>
 			</div>
