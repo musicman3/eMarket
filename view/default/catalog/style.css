@@ -41,7 +41,8 @@ body {font-family: 'Lato',sans-serif;}
 @media (max-width:767px) {.navbar-nav .dropdown-menu .link > li > a {padding: 5px 10px 5px 40px;}}
 #columnLeft .panel-heading, #columnRight .panel-heading {font-size: 16px;}
 .searchbox-margin {margin-top: 15px;}
-.grid-group-item {margin-bottom: 20px;}
+.list-group-item {margin-bottom: 20px;}
+.item.list-group-item {float: none;width: 100%;background-color: #fff;border: none;}
 .list-item-heading {margin-bottom:10px;margin-top:10px;}
 .productHolder {border: 1px solid #eee;padding: 10px;border-radius: 4px;}
 .list-item {display: flex;align-items: center;justify-content: center;flex-direction: row;}
