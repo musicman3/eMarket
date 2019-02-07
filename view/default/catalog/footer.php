@@ -7,5 +7,5 @@
 ?>
 
 <div class="footer">
-    <p align="center"><?php echo date('Y'); ?> | eMarket Design by Prizraki</p>
+    <p align="center">Copyright © 2018-<?php echo date('Y') ?> | eMarket Design by Prizraki</p>
 </div>
