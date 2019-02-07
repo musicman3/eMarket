@@ -9,15 +9,15 @@
 //
 //ВЫВОД ТОЛЬКО В АДМИНКЕ
 if ($SET->path() == 'admin') {
-    require_once(getenv('DOCUMENT_ROOT') . '/model/html_admin.php');
+    require_once(getenv('DOCUMENT_ROOT') . '/view/' . $SET->template() . '/admin/constructor.php');
 }
 //ВЫВОД ТОЛЬКО В КАТАЛОГЕ
 if ($SET->path() == 'catalog') {
-    require_once(getenv('DOCUMENT_ROOT') . '/model/html_catalog.php');
+    require_once(getenv('DOCUMENT_ROOT') . '/view/' . $SET->template() . '/catalog/constructor.php');
 }
 //ВЫВОД ТОЛЬКО В КАТАЛОГЕ
 if ($SET->path() == 'install') {
-    require_once(getenv('DOCUMENT_ROOT') . '/model/html_install.php');
+    require_once(getenv('DOCUMENT_ROOT') . '/view/' . $SET->template() . '/install/constructor.php');
 }
 //Закрываем соединение с БД
 $PDO->connect('end');
