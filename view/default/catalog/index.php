@@ -14,14 +14,14 @@
         </div>
         <div class="col-sm-8">
 	    Search
-	 </div>
+	</div>
     </div>
     
     <div class="clearfix"></div>
 
-    <div class="breadcrumb">
-	Breadcrumb
-    </div>
+Breadcrumb
+
+    <div class="clearfix"></div>
 
 Carousel
 
