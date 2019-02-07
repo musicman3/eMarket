@@ -3,7 +3,6 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 @font-face {font-family: 'Lato';src: url('fonts/Lato-Regular.ttf');}
-*, ::after, ::before {box-sizing: border-box;}
 body {font-family: 'Lato',sans-serif;}
 :focus {outline: 0;}
 #header {padding-top:10px;margin-left:-15px;margin-right:-15px;}

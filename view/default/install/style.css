@@ -3,7 +3,6 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 @font-face {font-family: 'Open Sans';src: url('fonts/OpenSans-Regular.ttf');}
-*, ::after, ::before {box-sizing: border-box;}
 :focus {outline: 0;}
 html {position: relative;min-height: 100%;}
 body {background:#e4e4da;font-family: 'Open Sans',sans-serif;background-image:url('images/sep-half.png');margin-bottom: 70px;padding-top:5px;}
