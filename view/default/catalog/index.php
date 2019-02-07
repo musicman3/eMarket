@@ -28,7 +28,9 @@ Carousel
     <div class="row">
         
         <div id="bodyContent" class="col-md-10 col-md-push-2">
-Content
+Content top
+	    <div class="clearfix"></div>
+Content bottom
         </div>
 
         <div id="columnLeft" class="col-lg-2 col-md-2 col-sm-12 col-xs-12 col-md-pull-10">
