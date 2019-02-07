@@ -61,7 +61,7 @@
 <script type="text/javascript" language="javascript">
 $(window).load(function(){ 
 $(".list-item").simpleEQH();
-$(".list-group-item-heading").simpleEQH();
+$(".list-item-heading").simpleEQH();
 });
 </script>
 
@@ -84,7 +84,7 @@ $(".list-group-item-heading").simpleEQH();
 			    <div class="productHolder">
 				<div class="list-item"><a href="<?php echo $products_new[$x][0]; ?>"><img src="/uploads/images/products/resize_1/<?php echo $products_new[$x][7]; ?>" class="img-responsive img-rounded center-block"></a></div>
 				<div>
-				    <h5 class="text-center list-group-item-heading"><a href="<?php echo $products_new[$x][0]; ?>"><?php echo $products_new[$x][1]; ?></a></h5>
+				    <h5 class="text-center list-item-heading"><a href="<?php echo $products_new[$x][0]; ?>"><?php echo $products_new[$x][1]; ?></a></h5>
 				    <div class="clearfix"></div>
 				    <div class="row button">
 					<div class="col-xs-6">
