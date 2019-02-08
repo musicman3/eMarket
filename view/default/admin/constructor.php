@@ -47,8 +47,7 @@
         
         <?php
         // ЗАГРУЖАЕМ HEADER
-        require_once(ROOT . '/controller/admin/header.php');
-        require_once(ROOT . '/view/' . $SET->template() . '/admin/header.php');
+        $VIEW->layoutRouting(ROOT . '/controller/admin/header.php');
 
         // ЗАГРУЖАЕМ ТЕЛО HTML СТРАНИЦЫ
         require_once($VIEW->routing());
@@ -61,8 +60,7 @@
 
         <?php
         // ЗАГРУЖАЕМ FOOTER
-        require_once(ROOT . '/controller/admin/footer.php');
-        require_once(ROOT . '/view/' . $SET->template() . '/admin/footer.php');
+        $VIEW->layoutRouting(ROOT . '/controller/admin/footer.php');
 
         //Если существует $JS_END
         if (isset($JS_END)) {

@@ -1,5 +1,4 @@
 <?php
-
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -29,20 +28,21 @@ class View {
 
         return $str;
     }
-    
+
     /**
      * Роутинг слоев (layouts)
      *
-     * @return string $str (роутинг на view)
+     * @param string $path (путь к подключаемому файлу)
      */
-    public function routLayouts() {
+    public function layoutRouting($path) {
 
         $SET = new \eMarket\Core\Set;
 
-        $str = str_replace('controller', 'view/' . $SET->template(), getenv('SCRIPT_FILENAME'));
+        $path_view = str_replace('controller', 'view/' . $SET->template(), $path);
 
-        return $str;
-    }    
+        require_once ($path);
+        require_once ($path_view);
+    }
 
 }
 

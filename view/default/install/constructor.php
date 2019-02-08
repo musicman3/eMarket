@@ -3,6 +3,7 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+
 ?>
 
 <!doctype html>
@@ -30,8 +31,8 @@
         // ЗАГРУЖАЕМ ТЕЛО HTML СТРАНИЦЫ
         require_once($VIEW->routing());
 
-        require_once(getenv('DOCUMENT_ROOT') . '/controller/install/footer.php');
-        require_once(getenv('DOCUMENT_ROOT') . '/view/' . $SET->template() . '/install/footer.php');
+        $VIEW->layoutRouting(getenv('DOCUMENT_ROOT') . '/controller/install/footer.php');
+
         ?>
 
         <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.min.js"></script>
@@ -42,6 +43,7 @@
             //то подгружаем JS.PHP файл
             require_once($JS_END . '/js/js.php');
         }
+
         ?>
     </body>
 </html>
