@@ -5,7 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
 
-<div id="basic" class="container-fluid">
+<div id="settings_basic_settings" class="container-fluid">
     <div class="row-fluid">
         <div class="panel panel-default">
 

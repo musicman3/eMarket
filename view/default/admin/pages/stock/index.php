@@ -20,7 +20,7 @@
 
 <div id="ajax">
 
-    <div id="category" class="container-fluid">
+    <div id="stock" class="container-fluid">
         <div class="row-fluid">
             <div class="panel panel-default">
 

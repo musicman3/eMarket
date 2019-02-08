@@ -6,7 +6,7 @@
 
 ?>
 
-<div id="log" class="container-fluid">
+<div id="error_log" class="container-fluid">
     <div class="row-fluid">
         <div class="panel panel-default">
 

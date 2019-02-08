@@ -5,7 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
 
-<div id="templates" class="container-fluid hidden-sm hidden-xs">
+<div id="settings_templates" class="container-fluid hidden-sm hidden-xs">
     <div class="row-fluid">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -39,7 +39,7 @@
     </div>
 </div>
 
-<div id="templates" class="container-fluid visible-sm visible-xs">
+<div id="settings_templates" class="container-fluid visible-sm visible-xs">
     <div class="row-fluid">
         <div class="panel panel-default">
             <div class="panel-heading">

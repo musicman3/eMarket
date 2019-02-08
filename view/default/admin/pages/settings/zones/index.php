@@ -14,7 +14,7 @@
 <!-- КОНЕЦ Модальное окно "Редактировать" -->
 
 <div id="ajax">
-    <div id="settings" class="container-fluid">
+    <div id="settings_zones" class="container-fluid">
         <div class="row-fluid">
             <div class="panel panel-default">
                 <div class="panel-heading">
