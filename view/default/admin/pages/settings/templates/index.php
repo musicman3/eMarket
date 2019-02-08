@@ -10,7 +10,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">
-                    <div class="pull-left">Шаблон</div>
+                    <div class="pull-left"><a class="btn btn-primary btn-xs" href="../"><span class="back glyphicon glyphicon-share-alt"></span></a> Шаблон</div>
                     <div class="clearfix"></div>
                 </h3>
             </div>
