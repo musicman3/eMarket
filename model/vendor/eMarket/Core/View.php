@@ -29,6 +29,20 @@ class View {
 
         return $str;
     }
+    
+    /**
+     * Роутинг слоев (layouts)
+     *
+     * @return string $str (роутинг на view)
+     */
+    public function routLayouts() {
+
+        $SET = new \eMarket\Core\Set;
+
+        $str = str_replace('controller', 'view/' . $SET->template(), getenv('SCRIPT_FILENAME'));
+
+        return $str;
+    }    
 
 }
 

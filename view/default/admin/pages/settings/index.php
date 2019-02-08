@@ -69,7 +69,7 @@
                                     <div class="settings"><a href="#" class="btn btn-default btn-xs disabled"><span class="glyphicon glyphicon-picture glyph-xs"> </span></a>Изображения</div>
                                 </td>
                                 <td>
-                                    <div class="settings"><a href="#" class="btn btn-default btn-xs disabled"><span class="glyphicon glyphicon-th-large glyph-xs"> </span></a>Разное</div>
+                                    <div class="settings"><a href="templates/" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-th-large glyph-xs"> </span></a>Шаблоны</div>
                                 </td>
                             </tr>                            
                         </tbody>
