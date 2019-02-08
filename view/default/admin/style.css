@@ -73,8 +73,7 @@ div.context-one {padding:5px;}
 .settings .btn {margin-right: 10px;}
 .modal-content .tooltip-inner {font-family: 'Open Sans',sans-serif;max-width:400px;}
 #basic_settings .tooltip-inner {font-family: 'Open Sans',sans-serif;width:200px;}
-.tooltip-right {float: right;}
-.tooltip-right .glyphicon {color: #000000;opacity: 0.5}
+.pull-right .glyphicon {color: #000000;opacity: 0.5}
 .tab-content {padding-top: 10px;}
 .input-group .data {position: static;}
 .back {transform: scale(-1, 1);}
