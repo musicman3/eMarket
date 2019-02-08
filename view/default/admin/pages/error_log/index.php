@@ -20,7 +20,7 @@
             </div>
             <?php if (file_exists(ROOT . '/model/work/errors.log') == true) { ?>
                 <div class="panel-body">
-                    <!--<div class="table-responsive">-->
+
                     <table class="table">
                         <thead>
                             <tr>
@@ -94,7 +94,7 @@
                         </tbody>
 
                     </table>
-                    <!--</div>-->
+
                 </div>
             <?php } else { ?>
                 <div class="panel-body"><?php echo lang('no_listing') ?></div>
