@@ -48,7 +48,6 @@ body {background:#e4e4da;font-family: 'Open Sans',sans-serif;background-image:ur
 .right {display: inline-block;float: right;}
 .left {display: inline-block;float: right; padding-right:10px;}
 .add-xs {font-size:14px;display: inline-block;float: right; padding-right:5px;padding-left:5px;}
-#category .check-box {vertical-align: middle;margin-top: 0;}
 input[type=checkbox], input[type=radio] {vertical-align: text-bottom;}
 .popover-title {text-align:center;padding:5px 0 5px 0;}
 .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {padding:5px;}
@@ -69,12 +68,11 @@ div.context-one {padding:5px;}
 .products .col-right {float: left;width: 250px;}
 .products .col-left-w {float: left;width: 150px;margin-right: 58px;}
 .products .col-right-w {float: left;width: 150px;}
-#products .table > thead > tr.border > th {border-bottom: 1px solid #ddd;}
 @media (min-width:768px){.products .modal-dialog {width:680px;margin:30px auto;}}
 .settings {float: left;padding-left: 5px;}
 .settings .btn {margin-right: 10px;}
 .modal-content .tooltip-inner {font-family: 'Open Sans',sans-serif;max-width:400px;}
-#basic .tooltip-inner {font-family: 'Open Sans',sans-serif;width:200px;}
+#basic_settings .tooltip-inner {font-family: 'Open Sans',sans-serif;width:200px;}
 .tooltip-right {float: right;}
 .tooltip-right .glyphicon {color: #000000;opacity: 0.5}
 .tab-content {padding-top: 10px;}
