@@ -24,8 +24,8 @@ $(".grid-item-heading").simpleEQH();
 				<h5 class="text-center grid-item-heading"><a href="<?php echo $products_new[$x][0]; ?>"><?php echo $products_new[$x][1]; ?></a></h5>
 				<div class="clearfix"></div>
 				<div class="row button">
-				    <div class="col-xs-6"><button type="button" class="btn btn-default btn-sm"><?php echo $products_new[$x][12]; ?></button></div>
-				    <div class="col-xs-6 text-right"><a id="btn1" href="<?php echo $products_new[$x][0]; ?>" class="btn btn-primary btn-sm">Buy Now</a></div>
+				    <div class="col-xs-6"><button type="button" class="btn btn-default"><?php echo $products_new[$x][12]; ?></button></div>
+				    <div class="col-xs-6 text-right"><a id="btn1" href="<?php echo $products_new[$x][0]; ?>" class="btn btn-primary">Buy Now</a></div>
 				</div>
 			    </div>
 			</div>
