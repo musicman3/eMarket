@@ -13,8 +13,8 @@
 	<div class="item col-sm-4 list-group-item">
 	    <div class="productHolder">
 		<img src="images.jpg" class="img-responsive">
-		<h4 class="group inner list-group-item-heading"><a href="#">Name</a></h4>
-		<p class="group inner list-group-item-text">Text…</p>
+		<h4 class="group inner list-item-heading">Name</h4>
+		<p class="group inner list-item-text">Text…</p>
 		<div class="clearfix"></div>
 		<div class="row button">
 		    <div class="col-xs-6"><button type="button" class="btn btn-default">Price</button></div>
