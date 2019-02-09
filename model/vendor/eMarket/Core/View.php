@@ -40,7 +40,7 @@ class View {
         $SET = new \eMarket\Core\Set;
 
         foreach ($array_pos as $key => $val) {
-            if ($val == $position && strpos($key, $SET->path()) == TRUE) {
+            if ($val == $position) {
                 $path_view = str_replace('controller', 'view/' . $SET->template(), $key);
                 require_once (getenv('DOCUMENT_ROOT') . $key);
                 require_once (getenv('DOCUMENT_ROOT') . $path_view);
