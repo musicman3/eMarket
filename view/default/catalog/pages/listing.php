@@ -12,7 +12,7 @@
     <div id="products" class="row list-group">
 	<div class="item col-sm-4 list-group-item">
 	    <div class="productHolder">
-		<a href="#><img src="images.jpg" alt="" title="" class="img-responsive img-rounded group list-group-image"></a>
+		<a href="#"><img src="images.jpg" alt="" title="" class="img-responsive img-rounded group list-image"></a>
 		<h4 class="group inner list-item-heading"><a href="#">Name</a></h4>
 		<p class="group inner list-item-text">Text…</p>
 		<div class="clearfix"></div>
