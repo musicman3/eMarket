@@ -39,7 +39,7 @@ class View {
 
         $SET = new \eMarket\Core\Set;
         
-        $array_out = FALSE;
+        $array_out = [];
         foreach ($array_pos as $key => $val) {
             if ($val == $position) {
                 $path_view = str_replace('controller', 'view/' . $SET->template(), $key);
@@ -59,7 +59,7 @@ class View {
 
         $SET = new \eMarket\Core\Set;
         
-        $array_out = FALSE;
+        $array_out = [];
         foreach ($array_in as $key => $val) {
 
             if (strpos($key, $SET->path()) == TRUE) {
