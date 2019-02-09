@@ -17,7 +17,7 @@
         <meta name="author" content="eMarket" />
         <meta name="owner" content="eMarket" />
         <meta name="copyright" content="Copyright © 2018 by eMarket Team. All right reserved." />
-        
+
         <!-- Автогенерация Title" -->
         <title><?php echo lang('title_' . $SET->titleDir() . '_' . basename($VALID->inSERVER('PHP_SELF'), '.php')) ?></title>
 
@@ -39,18 +39,20 @@
 
         <?php
         if (isset($_SESSION['login']) && isset($_SESSION['pass']) && file_exists(ROOT . '/view/' . $SET->template() . '/admin/nav.css')) {
+
             ?>
             <link rel="stylesheet" type="text/css" href="/view/<?php echo $SET->template() ?>/admin/nav.css" media="screen" />
-        <?php } ?>
+<?php } ?>
     </head>
     <body>
-        
+
         <?php
         // ЗАГРУЖАЕМ HEADER
-        $VIEW->layoutRouting(ROOT . '/controller/admin/header.php');
+        $VIEW->layoutRouting('header', $LAYOUT_POS);
 
         // ЗАГРУЖАЕМ ТЕЛО HTML СТРАНИЦЫ
         require_once($VIEW->routing());
+
         ?>
 
         <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.min.js"></script>
@@ -60,7 +62,7 @@
 
         <?php
         // ЗАГРУЖАЕМ FOOTER
-        $VIEW->layoutRouting(ROOT . '/controller/admin/footer.php');
+        $VIEW->layoutRouting('footer', $LAYOUT_POS);
 
         //Если существует $JS_END
         if (isset($JS_END)) {
@@ -73,6 +75,7 @@
         $totaltime = round(($tend - $tstart), 2);
         // Результат на экран
         echo "Время генерации страницы: " . $totaltime . " сек.<br><br>";
+
         ?>
     </body>
 </html>

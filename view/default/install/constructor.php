@@ -30,8 +30,8 @@
         <?php
         // ЗАГРУЖАЕМ ТЕЛО HTML СТРАНИЦЫ
         require_once($VIEW->routing());
-
-        $VIEW->layoutRouting(getenv('DOCUMENT_ROOT') . '/controller/install/footer.php');
+        
+        $VIEW->layoutRouting('footer', $LAYOUT_POS);
 
         ?>
 

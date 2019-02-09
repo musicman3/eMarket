@@ -25,4 +25,15 @@ require_once('router_lang.php');
 // Считаем количество языков
 $LANG_COUNT = count(lang('#lang_all'));
 
+// НАСТРОЙКИ ПОЗИЦИЙ
+$LAYOUT_POS = [
+    '/controller/admin/header.php' => 'header',
+    '/controller/admin/footer.php' => 'footer',
+    '/controller/catalog/header.php' => 'header',
+    '/controller/catalog/footer.php' => 'footer',
+    '/controller/catalog/layouts/boxes/categories.php' => 'boxes-left',
+    '/controller/install/header.php' => 'header',
+    '/controller/install/footer.php' => 'footer',
+];
+
 ?>

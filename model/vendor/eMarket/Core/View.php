@@ -32,16 +32,20 @@ class View {
     /**
      * Роутинг слоев (layouts)
      *
-     * @param string $path (путь к подключаемому файлу)
+     * @param string $position (позиция на странице)
+     * @param array $array_pos (массив настроек позиций)
      */
-    public function layoutRouting($path) {
+    public function layoutRouting($position, $array_pos) {
 
         $SET = new \eMarket\Core\Set;
 
-        $path_view = str_replace('controller', 'view/' . $SET->template(), $path);
-
-        require_once ($path);
-        require_once ($path_view);
+        foreach ($array_pos as $key => $val) {
+            if ($val == $position && strpos($key, $SET->path()) == TRUE) {
+                $path_view = str_replace('controller', 'view/' . $SET->template(), $key);
+                require_once (getenv('DOCUMENT_ROOT') . $key);
+                require_once (getenv('DOCUMENT_ROOT') . $path_view);
+            }
+        }
     }
 
 }

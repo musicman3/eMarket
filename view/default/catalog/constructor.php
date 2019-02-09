@@ -31,7 +31,7 @@
 
         <?php
         // ЗАГРУЖАЕМ HEADER
-        $VIEW->layoutRouting(ROOT . '/controller/catalog/header.php');
+        $VIEW->layoutRouting('header', $LAYOUT_POS);
 
         ?>
 
@@ -66,7 +66,7 @@
                 <div id="columnLeft" class="col-lg-2 col-md-2 col-sm-12 col-xs-12 col-md-pull-10">
                     <?php
                     // ЗАГРУЖАЕМ БОКСЫ
-                    $VIEW->layoutRouting(ROOT . '/controller/catalog/layouts/boxes/categories.php');
+                    $VIEW->layoutRouting('boxes-left', $LAYOUT_POS);
 
                     ?>
                 </div>
@@ -77,7 +77,7 @@
 
         <?php
         // ЗАГРУЖАЕМ FOOTER
-        $VIEW->layoutRouting(ROOT . '/controller/catalog/footer.php');
+        $VIEW->layoutRouting('footer', $LAYOUT_POS);
 
         //Если существует $JS_END
         if (isset($JS_END)) {
