@@ -48,6 +48,27 @@ class View {
         }
     }
 
+    /**
+     * Роутинг данных из View
+     * 
+     * @param array $array_in (массив настроек позиций)
+     * @return array $array (массив настроек позиций для конкретного пути)
+     */
+    public function layoutRoutingFilter($array_in) {
+        
+        $SET = new \eMarket\Core\Set;
+
+        foreach ($array_in as $key => $val) {
+
+            if (strpos($key, $SET->path()) == TRUE) {
+
+                $array_out[$key] = $val;
+            }
+        }
+
+        return $array_out;
+    }
+
 }
 
 ?>

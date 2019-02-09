@@ -26,7 +26,7 @@ require_once('router_lang.php');
 $LANG_COUNT = count(lang('#lang_all'));
 
 // НАСТРОЙКИ ПОЗИЦИЙ (ВРЕМЕННО)
-$LAYOUT_POS = [
+$LAYOUT_POS_ARR = [
     '/controller/admin/header.php' => 'header',
     '/controller/admin/footer.php' => 'footer',
     '/controller/catalog/header.php' => 'header',
@@ -35,5 +35,7 @@ $LAYOUT_POS = [
     '/controller/install/header.php' => 'header',
     '/controller/install/footer.php' => 'footer',
 ];
+
+$LAYOUT_POS = $VIEW->layoutRoutingFilter($LAYOUT_POS_ARR); // Оставляем в массиве только то, что относится к пути (admin, catalog и т.п.)
 
 ?>
