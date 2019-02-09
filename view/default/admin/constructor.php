@@ -3,6 +3,7 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+
 ?>
 
 <!doctype html>
@@ -42,13 +43,16 @@
 
             ?>
             <link rel="stylesheet" type="text/css" href="/view/<?php echo $SET->template() ?>/admin/nav.css" media="screen" />
-<?php } ?>
+        <?php } ?>
     </head>
     <body>
 
         <?php
         // ЗАГРУЖАЕМ HEADER
-        $VIEW->layoutRouting('header', $LAYOUT_POS);
+        foreach ($VIEW->layoutRouting('header', $LAYOUT_POS) as $controller => $view) {
+            require_once (getenv('DOCUMENT_ROOT') . $controller);
+            require_once (getenv('DOCUMENT_ROOT') . $view);
+        }
 
         // ЗАГРУЖАЕМ ТЕЛО HTML СТРАНИЦЫ
         require_once($VIEW->routing());
@@ -62,7 +66,10 @@
 
         <?php
         // ЗАГРУЖАЕМ FOOTER
-        $VIEW->layoutRouting('footer', $LAYOUT_POS);
+        foreach ($VIEW->layoutRouting('footer', $LAYOUT_POS) as $controller => $view) {
+            require_once (getenv('DOCUMENT_ROOT') . $controller);
+            require_once (getenv('DOCUMENT_ROOT') . $view);
+        }
 
         //Если существует $JS_END
         if (isset($JS_END)) {

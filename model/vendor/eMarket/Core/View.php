@@ -38,26 +38,28 @@ class View {
     public function layoutRouting($position, $array_pos) {
 
         $SET = new \eMarket\Core\Set;
-
+        
+        $array_out = FALSE;
         foreach ($array_pos as $key => $val) {
             if ($val == $position) {
                 $path_view = str_replace('controller', 'view/' . $SET->template(), $key);
-                require_once (getenv('DOCUMENT_ROOT') . $key);
-                require_once (getenv('DOCUMENT_ROOT') . $path_view);
+                $array_out[$key] = $path_view;
             }
         }
+        return $array_out;
     }
 
     /**
-     * Роутинг данных из View
+     * Фильтрация данных роутинга для конкретной страницы
      * 
      * @param array $array_in (массив настроек позиций)
      * @return array $array (массив настроек позиций для конкретного пути)
      */
     public function layoutRoutingFilter($array_in) {
-        
-        $SET = new \eMarket\Core\Set;
 
+        $SET = new \eMarket\Core\Set;
+        
+        $array_out = FALSE;
         foreach ($array_in as $key => $val) {
 
             if (strpos($key, $SET->path()) == TRUE) {

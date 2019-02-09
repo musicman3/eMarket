@@ -31,7 +31,11 @@
         // ЗАГРУЖАЕМ ТЕЛО HTML СТРАНИЦЫ
         require_once($VIEW->routing());
         
-        $VIEW->layoutRouting('footer', $LAYOUT_POS);
+        // ЗАГРУЖАЕМ FOOTER
+        foreach ($VIEW->layoutRouting('footer', $LAYOUT_POS) as $controller => $view) {
+            require_once (getenv('DOCUMENT_ROOT') . $controller);
+            require_once (getenv('DOCUMENT_ROOT') . $view);
+        }
 
         ?>
 

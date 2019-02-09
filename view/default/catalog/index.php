@@ -14,7 +14,10 @@
 </div>
 
 <?php
-
-$VIEW->layoutRouting('content-center', $LAYOUT_POS);
+// ПОДКЛЮЧАЕМ БОКС КОНТЕНТА
+foreach ($VIEW->layoutRouting('content-center', $LAYOUT_POS) as $controller => $view) {
+    require_once (getenv('DOCUMENT_ROOT') . $controller);
+    require_once (getenv('DOCUMENT_ROOT') . $view);
+}
 
 ?>
