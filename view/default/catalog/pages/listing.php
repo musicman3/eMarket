@@ -6,7 +6,8 @@
 
 ?>
 
-    <h3>Name Categories</h3>
+<h3>Name Categories</h3>
+
     <div class="contentContainer">
 	<div class="contentText">
 

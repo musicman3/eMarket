@@ -6,8 +6,8 @@
 
 ?>
 
-Content top
-<div class="clearfix"></div>
+<h3>eMarket Bootstrap 3 Demo</h3>
+
 <?php
 require_once(ROOT . '/controller/catalog/layouts/content/new_products.php');
 require_once(ROOT . '/view/' . $SET->template() . '/catalog/layouts/content/new_products.php');

@@ -6,7 +6,8 @@
 
 ?>
 
-    <h3>Products Name</h3>
+<h3>Products Name</h3>
+
     <div class="contentContainer">
 	<div class="contentText">
 
