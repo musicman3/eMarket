@@ -14,7 +14,7 @@
 </div>
 
 <?php
-require_once(ROOT . '/controller/catalog/layouts/content/new_products.php');
-require_once(ROOT . '/view/' . $SET->template() . '/catalog/layouts/content/new_products.php');
+
+$VIEW->layoutRouting('content-center', $LAYOUT_POS);
 
 ?>

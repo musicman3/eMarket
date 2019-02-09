@@ -32,8 +32,9 @@ $LAYOUT_POS_ARR = [
     '/controller/catalog/header.php' => 'header',
     '/controller/catalog/footer.php' => 'footer',
     '/controller/catalog/layouts/boxes/categories.php' => 'boxes-left',
+    '/controller/catalog/layouts/content/new_products.php' => 'content-center',
     '/controller/install/header.php' => 'header',
-    '/controller/install/footer.php' => 'footer',
+    '/controller/install/footer.php' => 'footer'
 ];
 
 $LAYOUT_POS = $VIEW->layoutRoutingFilter($LAYOUT_POS_ARR); // Оставляем в массиве только то, что относится к пути (admin, catalog и т.п.)

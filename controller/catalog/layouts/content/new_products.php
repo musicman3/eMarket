@@ -4,4 +4,6 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+$PRODUCTS = new eMarket\Other\Products;
+$products_new = $PRODUCTS->viewNew(10);
 ?>
