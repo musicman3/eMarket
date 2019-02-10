@@ -6,8 +6,6 @@
 
 ?>
 
-
-
 <div id="settings_templates" class="container-fluid hidden-sm hidden-xs">
     <div class="row-fluid">
         <div class="panel panel-default">
@@ -18,32 +16,42 @@
                 </h3>
             </div>
             <div class="panel-body">
-                <table class="table table-bordered">
-                    <tbody>
-                        <tr>
-                            <td class="text-center connectedSortable" colspan="3" id="sortable2">Навигация</td>
-                            <td class="text-center connectedSortable" rowspan="4" id="sortable1">Модули
-
-                                <div id="1" class="text-center">Item 1</div>
-                                <div id="2" class="text-center">Item 2</div>
-                                <div id="3" class="text-center">Item 3</div>
-                                <div id="4" class="text-center">Item 4</div>
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center connectedSortable" colspan="3" id="sortable3">Хедер</td>
-                        </tr>
-                        <tr>
-                            <td class="text-center connectedSortable" id="sortable4">Левый</td>
-                            <td class="text-center connectedSortable" id="sortable5">Центр</td>
-                            <td class="text-center connectedSortable" id="sortable6">Правый</td>
-                        </tr>
-                        <tr>
-                            <td class="text-center connectedSortable" colspan="3" id="sortable7">Футер</td>
-                        </tr>
-                    </tbody>
-                </table>
+<div class="center-block">
+<ul style="width:668px; display:inline-block; border:1px solid #ccc;vertical-align:top;padding: 5px;">
+    <li style="list-style-type: none;text-align:center;">Название</li>
+</ul>
+<ul style="width:220px; display:inline-block; border:1px solid #ccc;vertical-align:top;padding: 5px;">
+    <li style="list-style-type: none;text-align:center;">Название</li>
+    <li style="list-style-type: none;text-align:center;">Five</li>
+    <li style="list-style-type: none;text-align:center;">Six</li>
+</ul>
+</div>
+<div class="center-block">
+<ul style="width:220px; display:inline-block; border:1px solid #ccc;vertical-align:top;padding: 5px;">
+    <li style="list-style-type: none;text-align:center;">Название</li>
+</ul>
+<ul style="width:220px; display:inline-block; border:1px solid #ccc;vertical-align:top;padding: 5px;">
+    <li style="list-style-type: none;text-align:center;">Название</li>
+</ul>
+<ul style="width:220px; display:inline-block; border:1px solid #ccc;vertical-align:top;padding: 5px;">
+    <li style="list-style-type: none;text-align:center;">Название</li>
+</ul>
+<ul style="width:220px; display:inline-block; border:1px solid #ccc;vertical-align:top;padding: 5px;">
+    <li style="list-style-type: none;text-align:center;">Название</li>
+    <li style="list-style-type: none;text-align:center;">Five</li>
+    <li style="list-style-type: none;text-align:center;">Six</li>
+</ul>
+</div>
+<div class="center-block">
+<ul style="width:668px; display:inline-block; border:1px solid #ccc;vertical-align:top;padding: 5px;">
+    <li style="list-style-type: none;text-align:center;">Название</li>
+</ul>
+<ul style="width:220px; display:inline-block; border:1px solid #ccc;vertical-align:top;padding: 5px;">
+    <li style="list-style-type: none;text-align:center;">Название</li>
+    <li style="list-style-type: none;text-align:center;">Five</li>
+    <li style="list-style-type: none;text-align:center;">Six</li>
+</ul>
+</div>
             </div>
         </div>
     </div>
@@ -66,19 +74,28 @@
 </div>
 
 <script>
-    $(function () {
-        $("#sortable1, #sortable2, #sortable3, #sortable4, #sortable5, #sortable6, #sortable7").sortable({
-            connectWith: ".connectedSortable",
-            stop: function (event, div) {
-                var arrList2 = $('#sortable2 div').map(function () {
-                    return $(this).attr('id');
-                }).get();
-
-                var arrList3 = $('#sortable3 div').map(function () {
-                    return $(this).attr('id');
-                }).get();
-                //alert(arrList3);
-            }
-        }).disableSelection();
-    });
+$("ul").on('click', 'li', function (e) {
+    if (e.ctrlKey || e.metaKey) {
+        $(this).toggleClass("selected");
+    } else {
+        $(this).addClass("selected").siblings().removeClass('selected');
+    }
+}).sortable({
+    connectWith: "ul",
+    delay: 150,
+    revert: 0,
+    helper: function (e, item) {
+        if (!item.hasClass('selected')) {
+            item.addClass('selected').siblings().removeClass('selected');
+        }
+        var elements = item.parent().children('.selected').clone();
+        item.data('multidrag', elements).siblings('.selected').remove();
+        var helper = $('<li/>');
+        return helper.append(elements);
+    },
+    stop: function (e, ui) {
+        var elements = ui.item.data('multidrag');
+        ui.item.after(elements).remove();
+    }
+});
 </script>
