@@ -74,9 +74,6 @@
 </div>
 
 <script>
-
-
-
     $(function () {
         $("#sortable1, #sortable2").sortable({
             connectWith: ".connectedSortable",
@@ -105,7 +102,7 @@
                 //alert(arrList3);
             }
         });
-        
+
         $("#sortable7, #sortable8").sortable({
             connectWith: ".connectedSortable3",
             items: "li:not(.sortno)",
@@ -118,8 +115,6 @@
                 }).get();
                 //alert(arrList3);
             }
-        });        
-
+        });
     });
-
 </script>
