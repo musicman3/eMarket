@@ -18,36 +18,36 @@
             <div class="panel-body">
 <div class="center-block">
 <ul style="width:668px; display:inline-block; border:1px solid #ccc;vertical-align:top;padding: 5px;">
-    <li style="list-style-type: none;text-align:center;">Название</li>
+    <li class="sortno" style="list-style-type: none;text-align:center;">Название</li>
 </ul>
 <ul style="width:220px; display:inline-block; border:1px solid #ccc;vertical-align:top;padding: 5px;">
-    <li style="list-style-type: none;text-align:center;">Название</li>
+    <li class="sortno" style="list-style-type: none;text-align:center;">Название</li>
     <li style="list-style-type: none;text-align:center;">Five</li>
     <li style="list-style-type: none;text-align:center;">Six</li>
 </ul>
 </div>
 <div class="center-block">
 <ul style="width:220px; display:inline-block; border:1px solid #ccc;vertical-align:top;padding: 5px;">
-    <li style="list-style-type: none;text-align:center;">Название</li>
+    <li class="sortno" style="list-style-type: none;text-align:center;">Название</li>
 </ul>
 <ul style="width:220px; display:inline-block; border:1px solid #ccc;vertical-align:top;padding: 5px;">
-    <li style="list-style-type: none;text-align:center;">Название</li>
+    <li class="sortno" style="list-style-type: none;text-align:center;">Название</li>
 </ul>
 <ul style="width:220px; display:inline-block; border:1px solid #ccc;vertical-align:top;padding: 5px;">
-    <li style="list-style-type: none;text-align:center;">Название</li>
+    <li class="sortno" style="list-style-type: none;text-align:center;">Название</li>
 </ul>
 <ul style="width:220px; display:inline-block; border:1px solid #ccc;vertical-align:top;padding: 5px;">
-    <li style="list-style-type: none;text-align:center;">Название</li>
+    <li class="sortno" style="list-style-type: none;text-align:center;">Название</li>
     <li style="list-style-type: none;text-align:center;">Five</li>
     <li style="list-style-type: none;text-align:center;">Six</li>
 </ul>
 </div>
 <div class="center-block">
 <ul style="width:668px; display:inline-block; border:1px solid #ccc;vertical-align:top;padding: 5px;">
-    <li style="list-style-type: none;text-align:center;">Название</li>
+    <li class="sortno" style="list-style-type: none;text-align:center;">Название</li>
 </ul>
 <ul style="width:220px; display:inline-block; border:1px solid #ccc;vertical-align:top;padding: 5px;">
-    <li style="list-style-type: none;text-align:center;">Название</li>
+    <li class="sortno" style="list-style-type: none;text-align:center;">Название</li>
     <li style="list-style-type: none;text-align:center;">Five</li>
     <li style="list-style-type: none;text-align:center;">Six</li>
 </ul>
@@ -74,28 +74,9 @@
 </div>
 
 <script>
-$("ul").on('click', 'li', function (e) {
-    if (e.ctrlKey || e.metaKey) {
-        $(this).toggleClass("selected");
-    } else {
-        $(this).addClass("selected").siblings().removeClass('selected');
-    }
-}).sortable({
-    connectWith: "ul",
-    delay: 150,
-    revert: 0,
-    helper: function (e, item) {
-        if (!item.hasClass('selected')) {
-            item.addClass('selected').siblings().removeClass('selected');
-        }
-        var elements = item.parent().children('.selected').clone();
-        item.data('multidrag', elements).siblings('.selected').remove();
-        var helper = $('<li/>');
-        return helper.append(elements);
-    },
-    stop: function (e, ui) {
-        var elements = ui.item.data('multidrag');
-        ui.item.after(elements).remove();
-    }
-});
+$("ul").sortable({
+      items: "li:not(.sortno)",
+      connectWith: "ul"
+    });
+ $("ul").disableSelection();
 </script>
