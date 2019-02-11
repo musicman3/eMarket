@@ -78,6 +78,12 @@
         $("#sortable1, #sortable2").sortable({
             connectWith: ".connectedSortable",
             items: "li:not(.sortno)",
+            over: function (event, ui) {
+                ui.helper.css("color", "#FF0000");
+            },
+            beforeStop: function (event, ui) {
+                ui.helper.css("color", "");
+            },
             stop: function (event, li) {
                 var arrList2 = $('#sortable1 li').map(function () {
                     return $(this).attr('id');
@@ -92,6 +98,12 @@
         $("#sortable3, #sortable4, #sortable5, #sortable6").sortable({
             connectWith: ".connectedSortable2",
             items: "li:not(.sortno)",
+            over: function (event, ui) {
+                ui.helper.css("color", "#FF0000");
+            },
+            beforeStop: function (event, ui) {
+                ui.helper.css("color", "");
+            },
             stop: function (event, li) {
                 var arrList2 = $('#sortable1 li').map(function () {
                     return $(this).attr('id');
@@ -106,6 +118,12 @@
         $("#sortable7, #sortable8").sortable({
             connectWith: ".connectedSortable3",
             items: "li:not(.sortno)",
+            over: function (event, ui) {
+                ui.helper.css("color", "#FF0000");
+            },
+            beforeStop: function (event, ui) {
+                ui.helper.css("color", "");
+            },
             stop: function (event, li) {
                 var arrList2 = $('#sortable1 li').map(function () {
                     return $(this).attr('id');
