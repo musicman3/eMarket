@@ -33,6 +33,9 @@ $LAYOUT_POS_ARR = [
     '/controller/catalog/footer.php' => 'footer',
     '/controller/catalog/layouts/boxes/categories.php' => 'boxes-left',
     '/controller/catalog/layouts/content/new_products.php' => 'content-center',
+    '/controller/catalog/layouts/content/logo_search.php' => 'header',
+    '/controller/catalog/layouts/content/breadcrumb.php' => 'header',
+    '/controller/catalog/layouts/content/slide_show.php' => 'header',
     '/controller/install/header.php' => 'header',
     '/controller/install/footer.php' => 'footer'
 ];

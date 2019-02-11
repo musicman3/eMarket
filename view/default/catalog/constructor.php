@@ -40,23 +40,6 @@
 
         <div id="bodyWrapper" class="container-fluid">
 
-            <div id="header">
-                <div class="col-sm-4">
-                    <a href=""><img class="img-responsive pull-left" src="/view/<?php echo $SET->template() ?>/catalog/images/emarket.png"></a>
-                </div>
-                <div class="col-sm-8">
-                    Search
-                </div>
-            </div>
-
-            <div class="clearfix"></div>
-
-            Breadcrumb
-
-            <div class="clearfix"></div>
-
-            Carousel
-
             <div class="row">
 
                 <div id="bodyContent" class="col-md-10 col-md-push-2">
