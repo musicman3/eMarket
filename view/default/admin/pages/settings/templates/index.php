@@ -52,6 +52,7 @@
                         <li class="sortyes">Six</li>
                     </ul>
                 </div>
+		<button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button>
             </div>
         </div>
     </div>
