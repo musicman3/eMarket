@@ -7,7 +7,7 @@
 ?>
 
 <div class="container-fluid">
-    <div id="Carousel" class="carousel slide hidden-sm" data-interval="5000" data-pause="hover" data-ride="carousel">
+    <div id="Carousel" class="carousel slide hidden-sm hidden-xs" data-interval="5000" data-pause="hover" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#Carousel" data-slide-to="0" class="active"></li>
         </ol>
