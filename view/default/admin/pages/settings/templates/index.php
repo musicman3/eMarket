@@ -17,39 +17,39 @@
             </div>
             <div class="panel-body">
                 <div class="center-block">
-                    <ul id="sortable1" class="connectedSortable" style="width:668px; display:inline-block; border:1px solid #ccc;vertical-align:top;padding: 5px;">
-                        <li class="sortno" style="list-style-type: none;text-align:center;">Название</li>
+                    <ul id="sortable1" class="connectedSortable bg-success" style="width:668px;">
+                        <li class="sortno">Название</li>
                     </ul>
-                    <ul id="sortable2" class="connectedSortable" style="width:220px; display:inline-block; border:1px solid #ccc;vertical-align:top;padding: 5px;">
-                        <li class="sortno" style="list-style-type: none;text-align:center;">Название стакан</li>
-                        <li style="list-style-type: none;text-align:center;">Five</li>
-                        <li style="list-style-type: none;text-align:center;">Six</li>
-                    </ul>
-                </div>
-                <div class="center-block">
-                    <ul id="sortable3" class="connectedSortable2" style="width:220px; display:inline-block; border:1px solid #ccc;vertical-align:top;padding: 5px;">
-                        <li class="sortno" style="list-style-type: none;text-align:center;">Название</li>
-                    </ul>
-                    <ul id="sortable4" class="connectedSortable2" style="width:220px; display:inline-block; border:1px solid #ccc;vertical-align:top;padding: 5px;">
-                        <li class="sortno" style="list-style-type: none;text-align:center;">Название</li>
-                    </ul>
-                    <ul id="sortable5" class="connectedSortable2" style="width:220px; display:inline-block; border:1px solid #ccc;vertical-align:top;padding: 5px;">
-                        <li class="sortno" style="list-style-type: none;text-align:center;">Название</li>
-                    </ul>
-                    <ul id="sortable6" class="connectedSortable2" style="width:220px; display:inline-block; border:1px solid #ccc;vertical-align:top;padding: 5px;">
-                        <li class="sortno" style="list-style-type: none;text-align:center;">Название стакан</li>
-                        <li style="list-style-type: none;text-align:center;">Five</li>
-                        <li style="list-style-type: none;text-align:center;">Six</li>
+                    <ul id="sortable2" class="connectedSortable bg-success" style="width:220px;">
+                        <li class="sortno">Название стакан</li>
+                        <li class="sortyes">Five</li>
+                        <li class="sortyes">Six</li>
                     </ul>
                 </div>
                 <div class="center-block">
-                    <ul id="sortable7" class="connectedSortable3" style="width:668px; display:inline-block; border:1px solid #ccc;vertical-align:top;padding: 5px;">
-                        <li class="sortno" style="list-style-type: none;text-align:center;">Название</li>
+                    <ul id="sortable3" class="connectedSortable2 bg-info" style="width:220px;">
+                        <li class="sortno">Название</li>
                     </ul>
-                    <ul id="sortable8" class="connectedSortable3" style="width:220px; display:inline-block; border:1px solid #ccc;vertical-align:top;padding: 5px;">
-                        <li class="sortno" style="list-style-type: none;text-align:center;">Название стакан</li>
-                        <li style="list-style-type: none;text-align:center;">Five</li>
-                        <li style="list-style-type: none;text-align:center;">Six</li>
+                    <ul id="sortable4" class="connectedSortable2 bg-info" style="width:220px;">
+                        <li class="sortno">Название</li>
+                    </ul>
+                    <ul id="sortable5" class="connectedSortable2 bg-info" style="width:220px;">
+                        <li class="sortno">Название</li>
+                    </ul>
+                    <ul id="sortable6" class="connectedSortable2 bg-info" style="width:220px;">
+                        <li class="sortno">Название стакан</li>
+                        <li class="sortyes">Five</li>
+                        <li class="sortyes">Six</li>
+                    </ul>
+                </div>
+                <div class="center-block">
+                    <ul id="sortable7" class="connectedSortable3 bg-success" style="width:668px;">
+                        <li class="sortno">Название</li>
+                    </ul>
+                    <ul id="sortable8" class="connectedSortable3 bg-success" style="width:220px;">
+                        <li class="sortno">Название стакан</li>
+                        <li class="sortyes">Five</li>
+                        <li class="sortyes">Six</li>
                     </ul>
                 </div>
             </div>
