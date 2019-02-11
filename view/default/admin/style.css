@@ -93,6 +93,6 @@ div.context-one {padding:5px;}
 .block {position:absolute;bottom:0;width:100%;height:100%;padding-top:30px;background:rgba(255,255,255, 0.5);display:none;}
 .holder:hover .block {display:block;}
 .img-active {border: 1px solid #a94442;}
-#settings_templates .bg-success, #settings_templates .bg-info {display:inline-block; border:1px solid #ccc;vertical-align:top;padding: 5px;}
-#settings_templates .sortno {list-style-type: none;text-align:center;font-weight:bold;}
+#settings_templates .block-ul {display:inline-block; border:1px solid #ccc;vertical-align:top;border-radius:4px;padding-left:0;}
+#settings_templates .sortno {list-style-type: none;text-align:center;}
 #settings_templates .sortyes {list-style-type: none;text-align:center;}
