@@ -34,9 +34,7 @@
                             <input type="text" name="session_expr_time" class="form-control" value="<?php echo $SET->sessionExprTime() ?>" required />
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="col-sm-3 text-left"><label class="control-label"><button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button></label></div>
-                    </div>
+                    <button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button>
 
                 </div>
             </form>
