@@ -79,7 +79,7 @@
             connectWith: ".connectedSortable",
             items: "li:not(.sortno)",
             over: function (event, ui) {
-                ui.helper.css("color", "#FF0000");
+                ui.helper.css("color", "#204d74");
             },
             beforeStop: function (event, ui) {
                 ui.helper.css("color", "");
@@ -99,7 +99,7 @@
             connectWith: ".connectedSortable2",
             items: "li:not(.sortno)",
             over: function (event, ui) {
-                ui.helper.css("color", "#FF0000");
+                ui.helper.css("color", "#204d74");
             },
             beforeStop: function (event, ui) {
                 ui.helper.css("color", "");
@@ -119,7 +119,7 @@
             connectWith: ".connectedSortable3",
             items: "li:not(.sortno)",
             over: function (event, ui) {
-                ui.helper.css("color", "#FF0000");
+                ui.helper.css("color", "#204d74");
             },
             beforeStop: function (event, ui) {
                 ui.helper.css("color", "");
