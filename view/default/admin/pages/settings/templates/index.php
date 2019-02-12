@@ -17,39 +17,39 @@
             </div>
             <div class="panel-body">
                 <div class="center-block">
-                    <ul id="sortable1" class="connectedSortable block-ul connected" style="width:75%">
+                    <ul id="sortable1" class="connectedSortable block-ul" style="width:75%">
                         <li class="sortno border list-group-item-success">Название</li>
                     </ul>
                     <ul id="sortable2" class="connectedSortable block-ul" style="width:24.5%">
                         <li class="sortno border list-group-item-success">Название стакан</li>
-                        <li class="sortyes context-one">Five</li>
-                        <li class="sortyes context-one">Six</li>
+                        <li class="sortyes">Five</li>
+                        <li class="sortyes">Six</li>
                     </ul>
                 </div>
                 <div class="center-block">
-                    <ul id="sortable3" class="connectedSortable2 block-l connected" style="width:25%;">
+                    <ul id="sortable3" class="connectedSortable2 block-l" style="width:25%;">
                         <li class="sortno border-l list-group-item-info">Название</li>
                     </ul>
-                    <ul id="sortable4" class="connectedSortable2 block-m block-c connected" style="width:25%">
+                    <ul id="sortable4" class="connectedSortable2 block-m block-c" style="width:25%">
                         <li class="sortno list-group-item-info">Название</li>
                     </ul>
-                    <ul id="sortable5" class="connectedSortable2 block-m block-r connected" style="width:25%;">
+                    <ul id="sortable5" class="connectedSortable2 block-m block-r" style="width:25%;">
                         <li class="sortno border-r list-group-item-info">Название</li>
                     </ul>
                     <ul id="sortable6" class="connectedSortable2 block-ul" style="width:24.5%">
                         <li class="sortno border list-group-item-info">Название стакан</li>
-                        <li class="sortyes context-one">Five</li>
-                        <li class="sortyes context-one">Six</li>
+                        <li class="sortyes">Five</li>
+                        <li class="sortyes">Six</li>
                     </ul>
                 </div>
                 <div class="center-block">
-                    <ul id="sortable7" class="connectedSortable3 block-ul connected" style="width:75%">
+                    <ul id="sortable7" class="connectedSortable3 block-ul" style="width:75%">
                         <li class="sortno border list-group-item-success">Название</li>
                     </ul>
                     <ul id="sortable8" class="connectedSortable3 block-ul" style="width:24.5%">
                         <li class="sortno border list-group-item-success">Название стакан</li>
-                        <li class="sortyes context-one">Five</li>
-                        <li class="sortyes context-one">Six</li>
+                        <li class="sortyes">Five</li>
+                        <li class="sortyes">Six</li>
                     </ul>
                 </div>
 		<button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button>
@@ -119,22 +119,5 @@
                 //alert(arrList3);
             }
         });
-    });
-
-$(function() {
-        $.contextMenu({
-            selector: '.connected li.context-one',
-            callback: function(key, options) {
-                var m = "clicked: " + key;
-                window.console && console.log(m) || alert(m);
-            },
-            items: {
-                "edit": {name: "Edit", icon: "edit"},
-            }
-        });
-
-        $('.connected li.context-one').on('click', function(e){
-            console.log('clicked', this);
-        })
     });
 </script>
