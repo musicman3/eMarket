@@ -120,13 +120,13 @@
             }
         });
     });
-    
+
 $(function() {
         $.contextMenu({
-            selector: '.connected li.context-one', 
+            selector: '.connected li.context-one',
             callback: function(key, options) {
                 var m = "clicked: " + key;
-                window.console && console.log(m) || alert(m); 
+                window.console && console.log(m) || alert(m);
             },
             items: {
                 "edit": {name: "Edit", icon: "edit"},
@@ -135,6 +135,6 @@ $(function() {
 
         $('.connected li.context-one').on('click', function(e){
             console.log('clicked', this);
-        })    
+        })
     });
 </script>
