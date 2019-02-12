@@ -148,13 +148,12 @@ CREATE TABLE emkt_taxes (
 	PRIMARY KEY (id, language))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-DROP TABLE IF EXISTS emkt_templates;
+DROP TABLE IF EXISTS emkt_template_constructor;
 CREATE TABLE emkt_templates (
-	id varchar(256) NOT NULL,
 	key varchar(256),
         value varchar(32),
         sort int NOT NULL,
-	PRIMARY KEY (id))
+	PRIMARY KEY (key))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS emkt_units;
@@ -10265,3 +10264,20 @@ INSERT INTO emkt_currencies VALUES (1, 'Russian Rouble', 'rub.', 'RUB', 'english
 INSERT INTO emkt_currencies VALUES (1, 'Рубль РФ', 'руб.', 'RUB', 'russian', '1.0000000000', '1', '₽', 'right', '2', NULL);
 INSERT INTO emkt_currencies VALUES (2, 'Dollar USA', 'doll.', 'USD', 'english', '0.0014700000', '0', '$', 'left', '2', NULL);
 INSERT INTO emkt_currencies VALUES (2, 'Доллар США', 'долл.', 'USD', 'russian', '0.0014700000', '0', '$', 'left', '2', NULL);
+
+/* ЗАГРУЗКА КОМПОНОВКИ ШАБЛОНОВ */
+/* ADMIN */
+INSERT INTO emkt_template_constructor VALUES ('/controller/admin/header.php', 'header', '0');
+INSERT INTO emkt_template_constructor VALUES ('/controller/admin/footer.php', 'footer', '0');
+/* CATALOG */
+INSERT INTO emkt_template_constructor VALUES ('/controller/catalog/header.php', 'header', '0');
+INSERT INTO emkt_template_constructor VALUES ('/controller/catalog/layouts/content/logo_search.php', 'header', '1');
+INSERT INTO emkt_template_constructor VALUES ('/controller/catalog/layouts/content/breadcrumb.php', 'header', '2');
+INSERT INTO emkt_template_constructor VALUES ('/controller/catalog/layouts/content/slide_show.php', 'header', '3');
+INSERT INTO emkt_template_constructor VALUES ('/controller/catalog/footer.php', 'footer', '0');
+INSERT INTO emkt_template_constructor VALUES ('/controller/catalog/layouts/boxes/categories.php', 'boxes-left', '0');
+INSERT INTO emkt_template_constructor VALUES ('/controller/catalog/layouts/content/welcome.php', 'content-center', '0');
+INSERT INTO emkt_template_constructor VALUES ('/controller/catalog/layouts/content/new_products.php', 'content-center', '1');
+/* INSTALL */
+INSERT INTO emkt_template_constructor VALUES ('/controller/install/header.php', 'header', '0');
+INSERT INTO emkt_template_constructor VALUES ('/controller/install/footer.php', 'footer', '0');
