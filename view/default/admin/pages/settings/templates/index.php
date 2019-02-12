@@ -11,11 +11,19 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">
-                    <div class="pull-left"><a class="btn btn-primary btn-xs" href="../"><span class="back glyphicon glyphicon-share-alt"></span></a> Шаблон</div>
+                    <div class="pull-left"><a class="btn btn-primary btn-xs" href="../"><span class="back glyphicon glyphicon-share-alt"></span></a> Шаблоны</div>
                     <div class="clearfix"></div>
                 </h3>
             </div>
             <div class="panel-body">
+		<div class="pull-left input-group has-error">
+		    <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
+		    <select name="currency_product_stock" id="currency_product_stock" class="input-sm form-control">
+			<option>Раз</option>
+			<option>Два</option>
+		    </select>
+		</div>
+		<div class="clearfix"></div>
                 <div class="center-block">
                     <ul id="sortable1" class="connectedSortable block-ul" style="width:75%">
                         <li class="sortno border list-group-item-success">Название</li>
