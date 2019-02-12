@@ -149,7 +149,7 @@ CREATE TABLE emkt_taxes (
 ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS emkt_template_constructor;
-CREATE TABLE emkt_templates (
+CREATE TABLE emkt_template_constructor (
 	key varchar(256),
         value varchar(32),
         sort int NOT NULL,
