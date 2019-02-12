@@ -148,6 +148,15 @@ CREATE TABLE emkt_taxes (
 	PRIMARY KEY (id, language))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+DROP TABLE IF EXISTS emkt_templates;
+CREATE TABLE emkt_templates (
+	id varchar(256) NOT NULL,
+	key varchar(256),
+        value varchar(32),
+        sort int NOT NULL,
+	PRIMARY KEY (id))
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 DROP TABLE IF EXISTS emkt_units;
 CREATE TABLE emkt_units (
 	id int NOT NULL,
