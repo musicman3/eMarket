@@ -35,6 +35,7 @@ $tab_manufacturers = $db_pref . 'manufacturers';
 $tab_products = $db_pref . 'products';
 $tab_regions = $db_pref . 'regions';
 $tab_taxes = $db_pref . 'taxes';
+$tab_template_constructor = $db_pref . 'template_constructor';
 $tab_units = $db_pref . 'units';
 $tab_vendor_codes = $db_pref . 'vendor_codes';
 $tab_weight = $db_pref . 'weight';
@@ -65,6 +66,7 @@ $config = '<?php' . "\n" .
         '  define(\'TABLE_PRODUCTS\', \'' . $tab_products . '\');' . "\n" .
         '  define(\'TABLE_REGIONS\', \'' . $tab_regions . '\');' . "\n" .
         '  define(\'TABLE_TAXES\', \'' . $tab_taxes . '\');' . "\n" .
+        '  define(\'TABLE_TEMPLATE_CONSTRUCTOR\', \'' . $tab_template_constructor . '\');' . "\n" .
         '  define(\'TABLE_UNITS\', \'' . $tab_units . '\');' . "\n" .
         '  define(\'TABLE_VENDOR_CODES\', \'' . $tab_vendor_codes . '\');' . "\n" .
         '  define(\'TABLE_WEIGHT\', \'' . $tab_weight . '\');' . "\n" .
