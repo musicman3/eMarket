@@ -60,7 +60,7 @@ class View {
 
         $return = $PDO->getCol("SELECT url FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=?  ORDER BY sort ASC", [$SET->path(), $box]);
 
-        return $return;
+        return self::layoutRouting($return);
     }
 
 }

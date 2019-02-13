@@ -49,7 +49,7 @@
 
         <?php
         // ЗАГРУЖАЕМ HEADER
-        foreach ($VIEW->layoutRouting($VIEW->layoutRoutingFilter('header')) as $path) {
+        foreach ($VIEW->layoutRoutingFilter('header') as $path) {
             require_once (getenv('DOCUMENT_ROOT') . $path);
         }
 
@@ -65,7 +65,7 @@
 
         <?php
         // ЗАГРУЖАЕМ FOOTER
-        foreach ($VIEW->layoutRouting($VIEW->layoutRoutingFilter('footer')) as $path) {
+        foreach ($VIEW->layoutRoutingFilter('footer') as $path) {
             require_once (getenv('DOCUMENT_ROOT') . $path);
         }
 
