@@ -31,7 +31,7 @@
 
         <?php
         // ЗАГРУЖАЕМ HEADER
-        foreach ($VIEW->positionRouting('header') as $path) {
+        foreach ($VIEW->layoutRouting('header') as $path) {
             require_once (getenv('DOCUMENT_ROOT') . $path);
         }
 
@@ -51,7 +51,7 @@
                 <div id="columnLeft" class="col-lg-2 col-md-2 col-sm-12 col-xs-12 col-md-pull-10">
                     <?php
                     // ЗАГРУЖАЕМ БОКСЫ
-                    foreach ($VIEW->positionRouting('boxes-left') as $path) {
+                    foreach ($VIEW->layoutRouting('boxes-left') as $path) {
                         require_once (getenv('DOCUMENT_ROOT') . $path);
                     }
 
@@ -64,7 +64,7 @@
 
         <?php
         // ЗАГРУЖАЕМ FOOTER
-        foreach ($VIEW->positionRouting('footer') as $path) {
+        foreach ($VIEW->layoutRouting('footer') as $path) {
             require_once (getenv('DOCUMENT_ROOT') . $path);
         }
 
