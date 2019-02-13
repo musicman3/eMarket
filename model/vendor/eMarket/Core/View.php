@@ -33,7 +33,7 @@ class View {
      * Роутинг слоев (layouts)
      *
      * @param array $array_pos (массив настроек позиций контроллера)
-     * @return $array_out $array (массив настроек позиций контроллера и вида)
+     * @return array $array_out (массив настроек позиций контроллера и вида)
      */
     public function layoutRouting($array_pos) {
 
@@ -48,12 +48,12 @@ class View {
     }
 
     /**
-     * Фильтрация данных роутинга для конкретной страницы и конкретного бокса, с сортировкой
+     * Вывод всех отсортированных данных в конкретную позицию шаблона
      * 
      * @param string $box (позиция)
-     * @return array $array (массив настроек позиций для конкретного пути)
+     * @return array $return (массив настроек позиций для конкретного пути)
      */
-    public function layoutRoutingFilter($box) {
+    public function positionRouting($box) {
 
         $SET = new \eMarket\Core\Set;
         $PDO = new \eMarket\Core\Pdo;
