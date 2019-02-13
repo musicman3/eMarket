@@ -43,4 +43,6 @@ $LAYOUT_POS_ARR = [
 
 $LAYOUT_POS = $VIEW->layoutRoutingFilter($LAYOUT_POS_ARR); // Оставляем в массиве только то, что относится к пути (admin, catalog и т.п.)
 
+$abc = $VIEW->layoutRoutingFilter2('header');
+//$DEBUG->trace($abc);
 ?>
