@@ -50,15 +50,15 @@ class View {
     /**
      * Вывод всех отсортированных данных в конкретную позицию шаблона
      * 
-     * @param string $box (позиция)
+     * @param string $position (позиция)
      * @return array $return (массив настроек позиций для конкретного пути)
      */
-    public function positionRouting($box) {
+    public function positionRouting($position) {
 
         $SET = new \eMarket\Core\Set;
         $PDO = new \eMarket\Core\Pdo;
 
-        $return = $PDO->getCol("SELECT url FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=?  ORDER BY sort ASC", [$SET->path(), $box]);
+        $return = $PDO->getCol("SELECT url FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=?  ORDER BY sort ASC", [$SET->path(), $position]);
 
         return self::layoutRouting($return);
     }
