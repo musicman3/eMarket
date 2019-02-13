@@ -49,9 +49,8 @@
 
         <?php
         // ЗАГРУЖАЕМ HEADER
-        foreach ($VIEW->layoutRouting('header', $LAYOUT_POS) as $controller => $view) {
-            require_once (getenv('DOCUMENT_ROOT') . $controller);
-            require_once (getenv('DOCUMENT_ROOT') . $view);
+        foreach ($VIEW->layoutRouting($VIEW->layoutRoutingFilter('header')) as $path) {
+            require_once (getenv('DOCUMENT_ROOT') . $path);
         }
 
         // ЗАГРУЖАЕМ ТЕЛО HTML СТРАНИЦЫ
@@ -66,9 +65,8 @@
 
         <?php
         // ЗАГРУЖАЕМ FOOTER
-        foreach ($VIEW->layoutRouting('footer', $LAYOUT_POS) as $controller => $view) {
-            require_once (getenv('DOCUMENT_ROOT') . $controller);
-            require_once (getenv('DOCUMENT_ROOT') . $view);
+        foreach ($VIEW->layoutRouting($VIEW->layoutRoutingFilter('footer')) as $path) {
+            require_once (getenv('DOCUMENT_ROOT') . $path);
         }
 
         //Если существует $JS_END

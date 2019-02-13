@@ -1,5 +1,4 @@
 <?php
-
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -33,52 +32,28 @@ class View {
     /**
      * Роутинг слоев (layouts)
      *
-     * @param string $position (позиция на странице)
-     * @param array $array_pos (массив настроек позиций)
+     * @param array $array_pos (массив настроек позиций контроллера)
+     * @return $array_out $array (массив настроек позиций контроллера и вида)
      */
-    public function layoutRouting($position, $array_pos) {
+    public function layoutRouting($array_pos) {
 
         $SET = new \eMarket\Core\Set;
 
-        $array_out = [];
-        foreach ($array_pos as $key => $val) {
-            if ($val == $position) {
-                $path_view = str_replace('controller', 'view/' . $SET->template(), $key);
-                $array_out[$key] = $path_view;
-            }
+        foreach ($array_pos as $val) {
+            $path_view = str_replace('controller', 'view/' . $SET->template(), $val);
+            $array_out[] = $val;
+            $array_out[] = $path_view;
         }
         return $array_out;
     }
 
     /**
-     * Фильтрация данных роутинга для конкретной страницы
-     * 
-     * @param array $array_in (массив настроек позиций)
-     * @return array $array (массив настроек позиций для конкретного пути)
-     */
-    public function layoutRoutingFilter($array_in) {
-
-        $SET = new \eMarket\Core\Set;
-
-        $array_out = [];
-        foreach ($array_in as $key => $val) {
-
-            if (strpos($key, $SET->path()) == TRUE) {
-
-                $array_out[$key] = $val;
-            }
-        }
-
-        return $array_out;
-    }
-
-    /**
-     * Фильтрация данных роутинга для конкретной страницы
+     * Фильтрация данных роутинга для конкретной страницы и конкретного бокса, с сортировкой
      * 
      * @param string $box (позиция)
      * @return array $array (массив настроек позиций для конкретного пути)
      */
-    public function layoutRoutingFilter2($box) {
+    public function layoutRoutingFilter($box) {
 
         $SET = new \eMarket\Core\Set;
         $PDO = new \eMarket\Core\Pdo;

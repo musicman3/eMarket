@@ -30,12 +30,10 @@
         <?php
         // ЗАГРУЖАЕМ ТЕЛО HTML СТРАНИЦЫ
         require_once($VIEW->routing());
-        
+
         // ЗАГРУЖАЕМ FOOTER
-        foreach ($VIEW->layoutRouting('footer', $LAYOUT_POS) as $controller => $view) {
-            require_once (getenv('DOCUMENT_ROOT') . $controller);
-            require_once (getenv('DOCUMENT_ROOT') . $view);
-        }
+        require_once (getenv('DOCUMENT_ROOT') . '/controller/install/footer.php');
+        require_once (getenv('DOCUMENT_ROOT') . '/view/' . $SET->template() . '/install/footer.php');
 
         ?>
 

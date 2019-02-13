@@ -10,9 +10,8 @@
 
 <?php
 // ПОДКЛЮЧАЕМ БОКС КОНТЕНТА
-foreach ($VIEW->layoutRouting('content-center', $LAYOUT_POS) as $controller => $view) {
-    require_once (getenv('DOCUMENT_ROOT') . $controller);
-    require_once (getenv('DOCUMENT_ROOT') . $view);
+foreach ($VIEW->layoutRouting($VIEW->layoutRoutingFilter('content-center')) as $path) {
+    require_once (getenv('DOCUMENT_ROOT') . $path);
 }
 
 ?>

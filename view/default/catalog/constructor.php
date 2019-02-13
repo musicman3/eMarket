@@ -31,9 +31,8 @@
 
         <?php
         // ЗАГРУЖАЕМ HEADER
-        foreach ($VIEW->layoutRouting('header', $LAYOUT_POS) as $controller => $view) {
-            require_once (getenv('DOCUMENT_ROOT') . $controller);
-            require_once (getenv('DOCUMENT_ROOT') . $view);
+        foreach ($VIEW->layoutRouting($VIEW->layoutRoutingFilter('header')) as $path) {
+            require_once (getenv('DOCUMENT_ROOT') . $path);
         }
 
         ?>
@@ -52,9 +51,8 @@
                 <div id="columnLeft" class="col-lg-2 col-md-2 col-sm-12 col-xs-12 col-md-pull-10">
                     <?php
                     // ЗАГРУЖАЕМ БОКСЫ
-                    foreach ($VIEW->layoutRouting('boxes-left', $LAYOUT_POS) as $controller => $view) {
-                        require_once (getenv('DOCUMENT_ROOT') . $controller);
-                        require_once (getenv('DOCUMENT_ROOT') . $view);
+                    foreach ($VIEW->layoutRouting($VIEW->layoutRoutingFilter('boxes-left')) as $path) {
+                        require_once (getenv('DOCUMENT_ROOT') . $path);
                     }
 
                     ?>
@@ -66,10 +64,10 @@
 
         <?php
         // ЗАГРУЖАЕМ FOOTER
-        foreach ($VIEW->layoutRouting('footer', $LAYOUT_POS) as $controller => $view) {
-            require_once (getenv('DOCUMENT_ROOT') . $controller);
-            require_once (getenv('DOCUMENT_ROOT') . $view);
+        foreach ($VIEW->layoutRouting($VIEW->layoutRoutingFilter('footer')) as $path) {
+            require_once (getenv('DOCUMENT_ROOT') . $path);
         }
+
 
         //Если существует $JS_END
         if (isset($JS_END)) {
