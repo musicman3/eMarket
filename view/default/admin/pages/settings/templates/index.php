@@ -35,7 +35,7 @@
                     </ul>
                     <ul id="sortable2" class="connectedSortable block-ul" style="width:33%">
                         <li class="sortno border list-group-item-success">Корзина header</li>
-                        <?php foreach ($layout_header_glass as $path) { ?>
+                        <?php foreach ($layout_header_basket as $path) { ?>
                             <li class="sortyes"><?php echo basename($path, '.php') ?></li>
                         <?php } ?>
                     </ul>
@@ -49,7 +49,7 @@
                     </ul>
                     <ul id="sortable4" class="connectedSortable2 block-ul" style="width:33%">
                         <li class="sortno border list-group-item-success">Корзина content</li>
-                        <?php foreach ($layout_content_glass as $path) { ?>
+                        <?php foreach ($layout_content_basket as $path) { ?>
                             <li class="sortyes"><?php echo basename($path, '.php') ?></li>
                         <?php } ?>
                     </ul>
@@ -69,7 +69,7 @@
                     </ul>
                     <ul id="sortable7" class="connectedSortable3 block-ul" style="width:33%">
                         <li class="sortno border list-group-item-info">Корзина boxes</li>
-                        <?php foreach ($layout_boxes_glass as $path) { ?>
+                        <?php foreach ($layout_boxes_basket as $path) { ?>
                             <li class="sortyes"><?php echo basename($path, '.php') ?></li>
                         <?php } ?>
                     </ul>
@@ -83,7 +83,7 @@
                     </ul>
                     <ul id="sortable9" class="connectedSortable4 block-ul" style="width:33%">
                         <li class="sortno border list-group-item-success">Корзина footer</li>
-                        <?php foreach ($layout_footer_glass as $path) { ?>
+                        <?php foreach ($layout_footer_basket as $path) { ?>
                             <li class="sortyes"><?php echo basename($path, '.php') ?></li>
                         <?php } ?>
                     </ul>
