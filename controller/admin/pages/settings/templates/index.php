@@ -13,13 +13,13 @@ $layout_pages = $PDO->getCol("SELECT url FROM " . TABLE_TEMPLATE_CONSTRUCTOR . "
 
 $layout_header = $PDO->getCol("SELECT url FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? ORDER BY sort ASC", ['catalog', 'header']);
 $layout_content = $PDO->getCol("SELECT url FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? ORDER BY sort ASC", ['catalog', 'content']);
-$layout_boxes_left = $PDO->getCol("SELECT url FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND position_id=? ORDER BY sort ASC", ['catalog', 'boxes', 'left']);
-$layout_boxes_right = $PDO->getCol("SELECT url FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND position_id=? ORDER BY sort ASC", ['catalog', 'boxes', 'right']);
+$layout_boxes_left = $PDO->getCol("SELECT url FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? ORDER BY sort ASC", ['catalog', 'boxes-left']);
+$layout_boxes_right = $PDO->getCol("SELECT url FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? ORDER BY sort ASC", ['catalog', 'boxes-right']);
 $layout_footer = $PDO->getCol("SELECT url FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? ORDER BY sort ASC", ['catalog', 'footer']);
 
 $layout_header_glass = $PDO->getCol("SELECT url FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? ORDER BY sort ASC", ['catalog', 'header-glass']);
 $layout_content_glass = $PDO->getCol("SELECT url FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? ORDER BY sort ASC", ['catalog', 'content-glass']);
-$layout_boxes_glass = $PDO->getCol("SELECT url FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND position_id=? ORDER BY sort ASC", ['catalog', 'boxes-glass', 'right']);
+$layout_boxes_glass = $PDO->getCol("SELECT url FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? ORDER BY sort ASC", ['catalog', 'boxes-glass']);
 $layout_footer_glass = $PDO->getCol("SELECT url FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? ORDER BY sort ASC", ['catalog', 'footer-glass']);
 
 //$DEBUG->trace($layout_pages);
