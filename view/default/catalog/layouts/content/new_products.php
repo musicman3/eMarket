@@ -12,7 +12,7 @@ $(".grid-item-heading").simpleEQH();
 });
 </script>
 
-
+<?php if (count($products_new) > 0) { ?>
 <div class="contentText">
     <h4>New Products</h4>
     <div id="new_products" class="row grid-group">
@@ -31,3 +31,4 @@ $(".grid-item-heading").simpleEQH();
 	<?php } ?>
     </div>
 </div>
+<?php } ?>
