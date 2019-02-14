@@ -40,7 +40,7 @@ class View {
         $SET = new \eMarket\Core\Set;
         $PDO = new \eMarket\Core\Pdo;
 
-        $array_pos = $PDO->getCol("SELECT url FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=?  ORDER BY sort ASC", [$SET->path(), $position]);
+        $array_pos = $PDO->getCol("SELECT url FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? ORDER BY sort ASC", [$SET->path(), $position]);
         
         foreach ($array_pos as $val) {
             $path_view = str_replace('controller', 'view/' . $SET->template(), $val);

@@ -150,11 +150,12 @@ ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS emkt_template_constructor;
 CREATE TABLE emkt_template_constructor (
-	url varchar(191),
+        id int NOT NULL auto_increment,
+	url varchar(256),
         group_id varchar(32),
         value varchar(32),
         sort int NOT NULL,
-	PRIMARY KEY (url))
+	PRIMARY KEY (id))
 ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS emkt_units;
@@ -10268,17 +10269,16 @@ INSERT INTO emkt_currencies VALUES (2, 'Доллар США', 'долл.', 'USD'
 
 /* ЗАГРУЗКА КОМПОНОВКИ ШАБЛОНОВ */
 /* ADMIN */
-INSERT INTO emkt_template_constructor VALUES ('/controller/admin/header.php', 'admin', 'header', '0');
-INSERT INTO emkt_template_constructor VALUES ('/controller/admin/footer.php', 'admin', 'footer', '0');
+INSERT INTO emkt_template_constructor VALUES (1, '/controller/admin/header.php', 'admin', 'header', '0');
+INSERT INTO emkt_template_constructor VALUES (2, '/controller/admin/footer.php', 'admin', 'footer', '0');
 /* CATALOG */
-INSERT INTO emkt_template_constructor VALUES ('/controller/catalog/header.php', 'catalog', 'header', '0');
-INSERT INTO emkt_template_constructor VALUES ('/controller/catalog/layouts/content/logo_search.php', 'catalog', 'header', '1');
-INSERT INTO emkt_template_constructor VALUES ('/controller/catalog/layouts/content/breadcrumb.php', 'catalog', 'header', '2');
-INSERT INTO emkt_template_constructor VALUES ('/controller/catalog/layouts/content/slide_show.php', 'catalog', 'header', '3');
-INSERT INTO emkt_template_constructor VALUES ('/controller/catalog/footer.php', 'catalog', 'footer', '0');
-INSERT INTO emkt_template_constructor VALUES ('/controller/catalog/layouts/boxes/categories.php', 'catalog', 'boxes-left', '0');
-INSERT INTO emkt_template_constructor VALUES ('/controller/catalog/layouts/content/welcome.php', 'catalog', 'content-center', '0');
-INSERT INTO emkt_template_constructor VALUES ('/controller/catalog/layouts/content/new_products.php', 'catalog', 'content-center', '1');
+INSERT INTO emkt_template_constructor VALUES (3, '/controller/catalog/header.php', 'catalog', 'header', '0');
+INSERT INTO emkt_template_constructor VALUES (4, '/controller/catalog/layouts/content/logo_search.php', 'catalog', 'header', '1');
+INSERT INTO emkt_template_constructor VALUES (5, '/controller/catalog/layouts/content/breadcrumb.php', 'catalog', 'header', '2');
+INSERT INTO emkt_template_constructor VALUES (6, '/controller/catalog/layouts/content/slide_show.php', 'catalog', 'header', '3');
+INSERT INTO emkt_template_constructor VALUES (7, '/controller/catalog/footer.php', 'catalog', 'footer', '0');
+INSERT INTO emkt_template_constructor VALUES (8, '/controller/catalog/layouts/boxes/categories.php', 'catalog', 'boxes-left', '0');
+INSERT INTO emkt_template_constructor VALUES (9, '/controller/catalog/layouts/content/welcome.php', 'catalog', 'content-center', '0');
+INSERT INTO emkt_template_constructor VALUES (10, '/controller/catalog/layouts/content/new_products.php', 'catalog', 'content-center', '1');
 /* INSTALL */
-INSERT INTO emkt_template_constructor VALUES ('/controller/install/header.php', 'install', 'header', '0');
-INSERT INTO emkt_template_constructor VALUES ('/controller/install/footer.php', 'install', 'footer', '0');
+INSERT INTO emkt_template_constructor VALUES (11, '/controller/install/footer.php', 'install', 'footer', '0');
