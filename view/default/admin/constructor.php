@@ -50,7 +50,7 @@
         <?php
         // ЗАГРУЖАЕМ HEADER
         foreach ($VIEW->layoutRouting('header') as $path) {
-            require_once (getenv('DOCUMENT_ROOT') . $path);
+            require_once (ROOT . $path);
         }
 
         // ЗАГРУЖАЕМ ТЕЛО HTML СТРАНИЦЫ
@@ -66,7 +66,7 @@
         <?php
         // ЗАГРУЖАЕМ FOOTER
         foreach ($VIEW->layoutRouting('footer') as $path) {
-            require_once (getenv('DOCUMENT_ROOT') . $path);
+            require_once (ROOT . $path);
         }
 
         //Если существует $JS_END

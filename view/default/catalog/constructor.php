@@ -32,7 +32,7 @@
         <?php
         // ЗАГРУЖАЕМ HEADER
         foreach ($VIEW->layoutRouting('header') as $path) {
-            require_once (getenv('DOCUMENT_ROOT') . $path);
+            require_once (ROOT . $path);
         }
 
         ?>
@@ -52,7 +52,7 @@
                     <?php
                     // ЗАГРУЖАЕМ БОКСЫ
                     foreach ($VIEW->layoutRouting('boxes-left') as $path) {
-                        require_once (getenv('DOCUMENT_ROOT') . $path);
+                        require_once (ROOT . $path);
                     }
 
                     ?>
@@ -65,7 +65,7 @@
         <?php
         // ЗАГРУЖАЕМ FOOTER
         foreach ($VIEW->layoutRouting('footer') as $path) {
-            require_once (getenv('DOCUMENT_ROOT') . $path);
+            require_once (ROOT . $path);
         }
 
 
