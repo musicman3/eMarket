@@ -44,7 +44,11 @@ class View {
         $array_pos = $PDO->getColRow("SELECT url, page FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? ORDER BY sort ASC", [$SET->path(), $position]);
         $array_out = [];
         foreach ($array_pos as $val) {
-            if ($val[1] == $SET->titleDir() OR $val[1] == 'all') {
+            if ($val[1] != $SET->titleDir() && $val[1] != 'all' && $val[1] != '' && $val[1] != '!' . $SET->titleDir()) {
+                $path_view = str_replace('controller', 'view/' . $SET->template(), $val[0]);
+                $array_out[] = $val[0];
+                $array_out[] = $path_view;
+            }elseif ($val[1] == $SET->titleDir() OR $val[1] == 'all') {
                 $path_view = str_replace('controller', 'view/' . $SET->template(), $val[0]);
                 $array_out[] = $val[0];
                 $array_out[] = $path_view;
