@@ -9,7 +9,7 @@
 <h3>Name Categories</h3>
 
 <div class="contentText">
-    <div id="products" class="row list-group">
+    <div id="listing" class="row list-group">
 	<div class="item col-sm-4 list-group-item">
 	    <div class="productHolder">
 		<a href="#"><img src="images.jpg" alt="" title="" class="img-responsive img-rounded group list-image"></a>
