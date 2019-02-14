@@ -150,7 +150,7 @@ ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS emkt_template_constructor;
 CREATE TABLE emkt_template_constructor (
-	url varchar(256),
+	url varchar(191),
         group_id varchar(32),
         value varchar(32),
         sort int NOT NULL,
