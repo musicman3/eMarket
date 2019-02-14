@@ -51,7 +51,7 @@
                 <div id="columnLeft" class="col-lg-2 col-md-2 col-sm-12 col-xs-12 col-md-pull-10">
                     <?php
                     // ЗАГРУЖАЕМ БОКСЫ
-                    foreach ($VIEW->layoutRouting('boxes-left') as $path) {
+                    foreach ($VIEW->layoutRouting('boxes', 'left') as $path) {
                         require_once (ROOT . $path);
                     }
 

@@ -154,6 +154,7 @@ CREATE TABLE emkt_template_constructor (
 	url varchar(256),
         group_id varchar(32),
         value varchar(32),
+        position_id varchar(32),
         page varchar(256),
         sort int NOT NULL,
 	PRIMARY KEY (id))
@@ -10270,16 +10271,16 @@ INSERT INTO emkt_currencies VALUES (2, 'Доллар США', 'долл.', 'USD'
 
 /* ЗАГРУЗКА КОМПОНОВКИ ШАБЛОНОВ */
 /* ADMIN */
-INSERT INTO emkt_template_constructor (url, group_id, value, page, sort) VALUES ('/controller/admin/header.php', 'admin', 'header', 'all', '0');
-INSERT INTO emkt_template_constructor (url, group_id, value, page, sort) VALUES ('/controller/admin/footer.php', 'admin', 'footer', 'all', '0');
+INSERT INTO emkt_template_constructor (url, group_id, value, position_id, page, sort) VALUES ('/controller/admin/header.php', 'admin', 'header', '', 'all', '0');
+INSERT INTO emkt_template_constructor (url, group_id, value, position_id, page, sort) VALUES ('/controller/admin/footer.php', 'admin', 'footer', '', 'all', '0');
 /* INSTALL */
-INSERT INTO emkt_template_constructor (url, group_id, value, page, sort) VALUES ('/controller/install/footer.php', 'install', 'footer', 'all', '0');
+INSERT INTO emkt_template_constructor (url, group_id, value, position_id, page, sort) VALUES ('/controller/install/footer.php', 'install', 'footer', '', 'all', '0');
 /* CATALOG ALL */
-INSERT INTO emkt_template_constructor (url, group_id, value, page, sort) VALUES ('/controller/catalog/header.php', 'catalog', 'header', 'all', '0');
-INSERT INTO emkt_template_constructor (url, group_id, value, page, sort) VALUES ('/controller/catalog/layouts/content/logo_search.php', 'catalog', 'header', 'all', '1');
-INSERT INTO emkt_template_constructor (url, group_id, value, page, sort) VALUES ('/controller/catalog/layouts/content/breadcrumb.php', 'catalog', 'header', 'all', '2');
-INSERT INTO emkt_template_constructor (url, group_id, value, page, sort) VALUES ('/controller/catalog/layouts/content/slide_show.php', 'catalog', 'header', 'all', '3');
-INSERT INTO emkt_template_constructor (url, group_id, value, page, sort) VALUES ('/controller/catalog/footer.php', 'catalog', 'footer', 'all', '0');
-INSERT INTO emkt_template_constructor (url, group_id, value, page, sort) VALUES ('/controller/catalog/layouts/boxes/categories.php', 'catalog', 'boxes-left', 'all', '0');
-INSERT INTO emkt_template_constructor (url, group_id, value, page, sort) VALUES ('/controller/catalog/layouts/content/welcome.php', 'catalog', 'content-center', 'all', '0');
-INSERT INTO emkt_template_constructor (url, group_id, value, page, sort) VALUES ('/controller/catalog/layouts/content/new_products.php', 'catalog', 'content-center', 'all', '1');
+INSERT INTO emkt_template_constructor (url, group_id, value, position_id, page, sort) VALUES ('/controller/catalog/header.php', 'catalog', 'header', '', 'all', '0');
+INSERT INTO emkt_template_constructor (url, group_id, value, position_id, page, sort) VALUES ('/controller/catalog/layouts/content/logo_search.php', 'catalog', 'header', '', 'all', '1');
+INSERT INTO emkt_template_constructor (url, group_id, value, position_id, page, sort) VALUES ('/controller/catalog/layouts/content/breadcrumb.php', 'catalog', 'header', '', 'all', '2');
+INSERT INTO emkt_template_constructor (url, group_id, value, position_id, page, sort) VALUES ('/controller/catalog/layouts/content/slide_show.php', 'catalog', 'header', '', 'all', '3');
+INSERT INTO emkt_template_constructor (url, group_id, value, position_id, page, sort) VALUES ('/controller/catalog/footer.php', 'catalog', 'footer', '', 'all', '0');
+INSERT INTO emkt_template_constructor (url, group_id, value, position_id, page, sort) VALUES ('/controller/catalog/layouts/boxes/categories.php', 'catalog', 'boxes', 'left', 'all', '0');
+INSERT INTO emkt_template_constructor (url, group_id, value, position_id, page, sort) VALUES ('/controller/catalog/layouts/content/welcome.php', 'catalog', 'content', '', 'all', '0');
+INSERT INTO emkt_template_constructor (url, group_id, value, position_id, page, sort) VALUES ('/controller/catalog/layouts/content/new_products.php', 'catalog', 'content', '', 'all', '1');

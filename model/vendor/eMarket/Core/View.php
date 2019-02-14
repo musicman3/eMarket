@@ -1,5 +1,4 @@
 <?php
-
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -33,15 +32,20 @@ class View {
     /**
      * Вывод отсортированных слоев в конкретную позицию шаблона
      * 
+     * @param string $value (название разметочного места)
      * @param string $position (позиция)
      * @return array $array_out (массив настроек позиций для конкретного пути)
      */
-    public function layoutRouting($position) {
+    public function layoutRouting($value, $position = null) {
 
         $SET = new \eMarket\Core\Set;
         $PDO = new \eMarket\Core\Pdo;
 
-        $array_pos = $PDO->getColRow("SELECT url, page FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? ORDER BY sort ASC", [$SET->path(), $position]);
+        if ($position != null) {
+            $array_pos = $PDO->getColRow("SELECT url, page FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND position_id=? ORDER BY sort ASC", [$SET->path(), $value, $position]);
+        } else {
+            $array_pos = $PDO->getColRow("SELECT url, page FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? ORDER BY sort ASC", [$SET->path(), $value]);
+        }
         $array_out = [];
         foreach ($array_pos as $val) {
             if ($val[1] == $SET->titleDir() OR $val[1] == 'all') {
