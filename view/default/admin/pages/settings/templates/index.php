@@ -16,6 +16,7 @@
                 </h3>
             </div>
             <div class="panel-body">
+                
                 <div class="pull-left input-group has-error">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-th-large"></span></span>
                     <select name="name_templates" id="name_templates" class="input-sm form-control">
@@ -31,9 +32,7 @@
 
                         ?>
                     </select>
-                </div>
-                
-                <div class="pull-left input-group has-error">
+
                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
                     <select name="layout_pages_templates" id="layout_pages_templates" class="input-sm form-control">
                         <option>Все страницы</option>
