@@ -3,6 +3,7 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+
 ?>
 
 <script>
@@ -17,13 +18,16 @@
                 ui.helper.css("color", "");
             },
             stop: function (event, li) {
-                var arrList2 = $('#sortable1 li').map(function () {
+                var arrList1 = $('#sortable1 li').map(function () {
                     return $(this).attr('id');
                 }).get();
-                var arrList3 = $('#sortable2 li').map(function () {
+                var arrList2 = $('#sortable2 li').map(function () {
                     return $(this).attr('id');
                 }).get();
-                //alert(arrList3);
+                jQuery.post('index.php',
+                        {layout_header: arrList1,
+                            layout_header_basket: arrList2}
+                );
             }
         });
 
@@ -37,13 +41,16 @@
                 ui.helper.css("color", "");
             },
             stop: function (event, li) {
-                var arrList2 = $('#sortable1 li').map(function () {
+                var arrList1 = $('#sortable3 li').map(function () {
                     return $(this).attr('id');
                 }).get();
-                var arrList3 = $('#sortable2 li').map(function () {
+                var arrList2 = $('#sortable4 li').map(function () {
                     return $(this).attr('id');
                 }).get();
-                //alert(arrList3);
+                jQuery.post('index.php',
+                        {layout_content: arrList1,
+                            layout_content_basket: arrList2}
+                );
             }
         });
 
@@ -57,16 +64,24 @@
                 ui.helper.css("color", "");
             },
             stop: function (event, li) {
-                var arrList2 = $('#sortable1 li').map(function () {
+                var arrList1 = $('#sortable5 li').map(function () {
                     return $(this).attr('id');
                 }).get();
-                var arrList3 = $('#sortable2 li').map(function () {
+                var arrList2 = $('#sortable6 li').map(function () {
                     return $(this).attr('id');
                 }).get();
-                //alert(arrList3);
+                var arrList3 = $('#sortable7 li').map(function () {
+                    return $(this).attr('id');
+                }).get();
+                //alert(arrList2);
+                jQuery.post('index.php',
+                        {layout_boxes_left: arrList1,
+                            layout_boxes_right: arrList2,
+                            layout_boxes_basket: arrList3}
+                );
             }
         });
-        
+
         $("#sortable8, #sortable9").sortable({
             connectWith: ".connectedSortable4",
             items: "li:not(.sortno)",
@@ -77,14 +92,17 @@
                 ui.helper.css("color", "");
             },
             stop: function (event, li) {
-                var arrList2 = $('#sortable1 li').map(function () {
+                var arrList1 = $('#sortable8 li').map(function () {
                     return $(this).attr('id');
                 }).get();
-                var arrList3 = $('#sortable2 li').map(function () {
+                var arrList2 = $('#sortable9 li').map(function () {
                     return $(this).attr('id');
                 }).get();
-                //alert(arrList3);
+                jQuery.post('index.php',
+                        {layout_footer: arrList1,
+                            layout_footer_basket: arrList2}
+                );
             }
-        });        
+        });
     });
 </script>
