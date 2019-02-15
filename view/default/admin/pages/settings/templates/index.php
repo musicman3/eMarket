@@ -17,14 +17,41 @@
             </div>
             <div class="panel-body">
                 <div class="pull-left input-group has-error">
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-th-large"></span></span>
+                    <select name="name_templates" id="name_templates" class="input-sm form-control">
+                        <?php
+                        foreach ($name_template as $path) {
+                            if ($path != '.' && $path != '..') {
+
+                                ?>
+                                <option><?php echo $path ?></option>
+                                <?php
+                            }
+                        }
+
+                        ?>
+                    </select>
+                </div>
+                
+                <div class="pull-left input-group has-error">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
                     <select name="layout_pages_templates" id="layout_pages_templates" class="input-sm form-control">
                         <option>Все страницы</option>
                         <option>catalog</option>
-                        <option>listing</option>
-                        <option>products</option>
+                        <?php
+                        foreach ($layout_pages as $path) {
+                            if ($path != '.' && $path != '..') {
+
+                                ?>
+                                <option><?php echo $path ?></option>
+                                <?php
+                            }
+                        }
+
+                        ?>
                     </select>
                 </div>
+                
                 <div class="clearfix"></div>
                 <div class="center-block">
                     <ul id="sortable1" class="connectedSortable block-ul" style="width:66%">

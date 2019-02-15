@@ -8,7 +8,8 @@
 require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 /* ------------------------------------------ */
 
-//$layout_pages = $PDO->getCol("SELECT url FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? ORDER BY sort ASC", ['catalog']);
+$layout_pages = scandir(ROOT . '/controller/catalog/pages/');
+$name_template = scandir(ROOT . '/view/');
 
 $layout_header = $PDO->getCol("SELECT url FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? ORDER BY sort ASC", ['catalog', 'header', 'default']);
 $layout_content = $PDO->getCol("SELECT url FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? ORDER BY sort ASC", ['catalog', 'content', 'default']);
@@ -98,6 +99,7 @@ if ($VALID->inPOST('layout_footer') OR $VALID->inPOST('layout_footer_basket')) {
 }
 
 //$DEBUG->trace($layout_pages);
+//
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
 $JS_END = __DIR__;
 
