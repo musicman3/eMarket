@@ -155,6 +155,7 @@ CREATE TABLE emkt_template_constructor (
         group_id varchar(32),
         value varchar(32),
         page varchar(256),
+        template_name varchar(256),
         sort int NOT NULL,
 	PRIMARY KEY (id))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
