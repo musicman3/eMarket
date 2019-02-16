@@ -7,7 +7,6 @@
 ?>
 
 <div id="error_log" class="container-fluid">
-    <div class="row-fluid">
         <div class="panel panel-default">
 
             <div class="panel-heading">
@@ -100,5 +99,4 @@
                 <div class="panel-body"><?php echo lang('no_listing') ?></div>
             <?php } ?>
         </div>
-    </div>
 </div>

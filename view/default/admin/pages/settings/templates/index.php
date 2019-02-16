@@ -7,7 +7,6 @@
 ?>
 
 <div id="settings_templates" class="container-fluid">
-    <div class="row-fluid">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">
@@ -117,5 +116,4 @@
                 <button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button>
             </div>
         </div>
-    </div>
 </div>

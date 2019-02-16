@@ -11,7 +11,6 @@
 
 <div id="ajax">
     <div id="settings_zones_listing" class="container-fluid">
-        <div class="row-fluid">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <!--Выводим уведомление об успешном действии-->
@@ -87,6 +86,5 @@
                     </table>
                 </div>
             </div>
-        </div>
     </div>
 </div>

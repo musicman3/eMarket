@@ -21,7 +21,6 @@
 <div id="ajax">
 
     <div id="stock" class="container-fluid">
-        <div class="row-fluid">
             <div class="panel panel-default">
 
                 <div class="panel-heading">
@@ -293,6 +292,5 @@
                     </div>
                 <?php } ?>
             </div>
-        </div>
     </div>
 </div>
