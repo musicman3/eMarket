@@ -7,17 +7,17 @@
 ?>
 
 <script type="text/javascript" language="javascript">
-function categorytreeview(){		
-    if($('.box-category').hasClass('treeview')==true){		
+function categorytreeview(){
+    if($('.box-category').hasClass('treeview')==true){
 	$(".box-category").treeview({
 	    animated: "slow",
 	    collapsed: true,
-	    unique: true		
+	    unique: true
     });
     $('.box-category li').parent().removeClass('expandable');
     $('.box-category li').parent().addClass('collapsable');
-    $('box-category .box-category .collapsable li').css('display','block');		
-    }	
+    $('box-category .box-category .collapsable li').css('display','block');
+    }
 }
 $(document).ready(function(){categorytreeview();});
 </script>
