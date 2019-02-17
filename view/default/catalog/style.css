@@ -26,7 +26,7 @@ body {font-family: 'Lato',sans-serif;}
 .footer {color:#000000;width:100%;margin-top:10px;padding:10px;}
 .panel-heading {padding:5px 10px;}
 .panel-default > .panel-heading {color:#428bca;}
-.panel-body {padding:5px;}
+.panel-body {padding:10px;}
 #bodyContent h3 {color: #03539a;margin-top: 3px;}
 .navbar {min-height: 30px;margin-bottom: 10px;border-radius:0;}
 .navbar-left {margin-left:-15px}
@@ -55,7 +55,6 @@ body {font-family: 'Lato',sans-serif;}
 .category_block ul ul {padding: 0 0 0 15px;}
 .category_block ul li {list-style: none;}
 .category_block ul li:last-child {border-bottom: none;}
-.category_block .box-category {margin-bottom: 10px;}
 .category_block .hitarea {float: right;}
 .category_block .hitarea.expandable-hitarea {height: 20px;width: 20px;z-index: 9;text-align: right;cursor: pointer;position: static;}
 .category_block .hitarea.collapsable-hitarea {height: 20px;width: 20px;z-index: 9;text-align: right;cursor: pointer;position: static;}
