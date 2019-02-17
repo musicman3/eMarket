@@ -52,7 +52,7 @@ body {font-family: 'Lato',sans-serif;}
 .productHolder {border: 1px solid #eee;padding: 10px;border-radius: 4px;}
 .grid-item {display: flex;align-items: center;justify-content: center;flex-direction: row;}
 .category_block ul {padding: 0;margin: 0;}
-.category_block ul ul {padding: 0 0 0 15px;}
+.category_block ul ul {padding: 0 0 0 10px;}
 .category_block ul li {list-style: none;}
 .category_block ul li:last-child {border-bottom: none;}
 .category_block .hitarea {float: right;}
