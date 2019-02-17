@@ -10,7 +10,7 @@
     function categorytreeview() {
         if ($('.box-category').hasClass('treeview') === true) {
             $(".box-category").treeview({
-                animated: "fast",
+                animated: 100,
                 collapsed: true,
                 unique: true
             });
