@@ -6,6 +6,6 @@
 
 ?>
 
-<div class="footer container-fluid">
+<div class="container-fluid">
     <p class="text-center">Copyright © 2018-<?php echo date('Y') ?> | eMarket Design</p>
 </div>
