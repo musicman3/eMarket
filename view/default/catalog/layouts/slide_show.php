@@ -7,14 +7,14 @@
 ?>
 
 <div class="container-fluid">
-    <div id="Carousel" class="carousel slide hidden-sm hidden-xs" data-interval="5000" data-pause="hover" data-ride="carousel">
+    <div id="Carousel" class="carousel slide hidden-sm hidden-xs" data-interval="5000" data-pause="hover" data-ride="carousel" data-wrap="true">
         <ol class="carousel-indicators">
             <li data-target="#Carousel" data-slide-to="0" class="active"></li>
         </ol>
         <div class="carousel-inner" role="listbox" >
             <div class="item active">
 		<a href="#">
-		    <img class="center-block" src="/uploads/images/slideshow/resize_0/slider-1.jpg" alt="">
+		    <img class="center-block" src="/uploads/images/slideshow/resize_0/slider-1.jpg">
 		    <div class="carousel-caption">
 		    <h3>Los Angeles</h3>
 		    <p>LA is always so much fun!</p>
