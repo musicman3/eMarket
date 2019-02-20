@@ -23,10 +23,39 @@
                 var arrList2 = $('#sortable2 li').map(function () {
                     return $(this).attr('id');
                 }).get();
+                var arrList3 = $('#sortable3 li').map(function () {
+                    return $(this).attr('id');
+                }).get();
+                var arrList4 = $('#sortable4 li').map(function () {
+                    return $(this).attr('id');
+                }).get();
+                var arrList5 = $('#sortable5 li').map(function () {
+                    return $(this).attr('id');
+                }).get();
+                var arrList6 = $('#sortable6 li').map(function () {
+                    return $(this).attr('id');
+                }).get();
+                var arrList7 = $('#sortable7 li').map(function () {
+                    return $(this).attr('id');
+                }).get();
+                var arrList8 = $('#sortable8 li').map(function () {
+                    return $(this).attr('id');
+                }).get();
+                var arrList9 = $('#sortable9 li').map(function () {
+                    return $(this).attr('id');
+                }).get();
                 jQuery.post('index.php',
                         {layout_header: arrList1,
                             layout_header_basket: arrList2,
-                            template: $('#name_templates').val()}
+                            layout_content: arrList3,
+                            layout_content_basket: arrList4,
+                            layout_boxes_left: arrList5,
+                            layout_boxes_right: arrList6,
+                            layout_boxes_basket: arrList7,
+                            layout_footer: arrList8,
+                            layout_footer_basket: arrList9,
+                            template: $('#name_templates').val(),
+                            page: $('#layout_pages_templates').val()}
                 );
             }
         });
@@ -41,16 +70,45 @@
                 ui.helper.css("color", "");
             },
             stop: function (event, li) {
-                var arrList1 = $('#sortable3 li').map(function () {
+                var arrList1 = $('#sortable1 li').map(function () {
                     return $(this).attr('id');
                 }).get();
-                var arrList2 = $('#sortable4 li').map(function () {
+                var arrList2 = $('#sortable2 li').map(function () {
+                    return $(this).attr('id');
+                }).get();
+                var arrList3 = $('#sortable3 li').map(function () {
+                    return $(this).attr('id');
+                }).get();
+                var arrList4 = $('#sortable4 li').map(function () {
+                    return $(this).attr('id');
+                }).get();
+                var arrList5 = $('#sortable5 li').map(function () {
+                    return $(this).attr('id');
+                }).get();
+                var arrList6 = $('#sortable6 li').map(function () {
+                    return $(this).attr('id');
+                }).get();
+                var arrList7 = $('#sortable7 li').map(function () {
+                    return $(this).attr('id');
+                }).get();
+                var arrList8 = $('#sortable8 li').map(function () {
+                    return $(this).attr('id');
+                }).get();
+                var arrList9 = $('#sortable9 li').map(function () {
                     return $(this).attr('id');
                 }).get();
                 jQuery.post('index.php',
-                        {layout_content: arrList1,
-                            layout_content_basket: arrList2,
-                            template: $('#name_templates').val()}
+                        {layout_header: arrList1,
+                            layout_header_basket: arrList2,
+                            layout_content: arrList3,
+                            layout_content_basket: arrList4,
+                            layout_boxes_left: arrList5,
+                            layout_boxes_right: arrList6,
+                            layout_boxes_basket: arrList7,
+                            layout_footer: arrList8,
+                            layout_footer_basket: arrList9,
+                            template: $('#name_templates').val(),
+                            page: $('#layout_pages_templates').val()}
                 );
             }
         });
@@ -65,21 +123,46 @@
                 ui.helper.css("color", "");
             },
             stop: function (event, li) {
-                var arrList1 = $('#sortable5 li').map(function () {
+                var arrList1 = $('#sortable1 li').map(function () {
                     return $(this).attr('id');
                 }).get();
-                var arrList2 = $('#sortable6 li').map(function () {
+                var arrList2 = $('#sortable2 li').map(function () {
                     return $(this).attr('id');
                 }).get();
-                var arrList3 = $('#sortable7 li').map(function () {
+                var arrList3 = $('#sortable3 li').map(function () {
+                    return $(this).attr('id');
+                }).get();
+                var arrList4 = $('#sortable4 li').map(function () {
+                    return $(this).attr('id');
+                }).get();
+                var arrList5 = $('#sortable5 li').map(function () {
+                    return $(this).attr('id');
+                }).get();
+                var arrList6 = $('#sortable6 li').map(function () {
+                    return $(this).attr('id');
+                }).get();
+                var arrList7 = $('#sortable7 li').map(function () {
+                    return $(this).attr('id');
+                }).get();
+                var arrList8 = $('#sortable8 li').map(function () {
+                    return $(this).attr('id');
+                }).get();
+                var arrList9 = $('#sortable9 li').map(function () {
                     return $(this).attr('id');
                 }).get();
                 //alert(arrList2);
                 jQuery.post('index.php',
-                        {layout_boxes_left: arrList1,
-                            layout_boxes_right: arrList2,
-                            layout_boxes_basket: arrList3,
-                            template: $('#name_templates').val()}
+                        {layout_header: arrList1,
+                            layout_header_basket: arrList2,
+                            layout_content: arrList3,
+                            layout_content_basket: arrList4,
+                            layout_boxes_left: arrList5,
+                            layout_boxes_right: arrList6,
+                            layout_boxes_basket: arrList7,
+                            layout_footer: arrList8,
+                            layout_footer_basket: arrList9,
+                            template: $('#name_templates').val(),
+                            page: $('#layout_pages_templates').val()}
                 );
             }
         });
@@ -94,18 +177,56 @@
                 ui.helper.css("color", "");
             },
             stop: function (event, li) {
-                var arrList1 = $('#sortable8 li').map(function () {
+                var arrList1 = $('#sortable1 li').map(function () {
                     return $(this).attr('id');
                 }).get();
-                var arrList2 = $('#sortable9 li').map(function () {
+                var arrList2 = $('#sortable2 li').map(function () {
+                    return $(this).attr('id');
+                }).get();
+                var arrList3 = $('#sortable3 li').map(function () {
+                    return $(this).attr('id');
+                }).get();
+                var arrList4 = $('#sortable4 li').map(function () {
+                    return $(this).attr('id');
+                }).get();
+                var arrList5 = $('#sortable5 li').map(function () {
+                    return $(this).attr('id');
+                }).get();
+                var arrList6 = $('#sortable6 li').map(function () {
+                    return $(this).attr('id');
+                }).get();
+                var arrList7 = $('#sortable7 li').map(function () {
+                    return $(this).attr('id');
+                }).get();
+                var arrList8 = $('#sortable8 li').map(function () {
+                    return $(this).attr('id');
+                }).get();
+                var arrList9 = $('#sortable9 li').map(function () {
                     return $(this).attr('id');
                 }).get();
                 jQuery.post('index.php',
-                        {layout_footer: arrList1,
-                            layout_footer_basket: arrList2,
-                            template: $('#name_templates').val()}
+                        {layout_header: arrList1,
+                            layout_header_basket: arrList2,
+                            layout_content: arrList3,
+                            layout_content_basket: arrList4,
+                            layout_boxes_left: arrList5,
+                            layout_boxes_right: arrList6,
+                            layout_boxes_basket: arrList7,
+                            layout_footer: arrList8,
+                            layout_footer_basket: arrList9,
+                            template: $('#name_templates').val(),
+                            page: $('#layout_pages_templates').val()}
                 );
             }
         });
     });
+</script>
+
+<script type="text/javascript" language="javascript">
+    selectTemplate = function (event) {
+        document.forms["select_template"].submit();
+    };
+    selectPage = function (event) {
+        document.forms["select_page"].submit();
+    };
 </script>
