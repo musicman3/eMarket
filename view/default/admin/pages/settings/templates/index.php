@@ -19,9 +19,10 @@
                 <div class="pull-left input-group has-error">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-th-large"></span></span>
                     <select name="name_templates" id="name_templates" class="input-sm form-control">
+                        <option><?php echo $SET->template() ?></option>
                         <?php
                         foreach ($name_template as $path) {
-                            if ($path != '.' && $path != '..') {
+                            if ($path != '.' && $path != '..' && $path != $SET->template()) {
 
                                 ?>
                                 <option><?php echo $path ?></option>

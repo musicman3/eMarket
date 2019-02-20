@@ -3,7 +3,6 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-
 ?>
 
 <script>
@@ -26,7 +25,8 @@
                 }).get();
                 jQuery.post('index.php',
                         {layout_header: arrList1,
-                            layout_header_basket: arrList2}
+                            layout_header_basket: arrList2,
+                            template: $('#name_templates').val()}
                 );
             }
         });
@@ -49,7 +49,8 @@
                 }).get();
                 jQuery.post('index.php',
                         {layout_content: arrList1,
-                            layout_content_basket: arrList2}
+                            layout_content_basket: arrList2,
+                            template: $('#name_templates').val()}
                 );
             }
         });
@@ -77,7 +78,8 @@
                 jQuery.post('index.php',
                         {layout_boxes_left: arrList1,
                             layout_boxes_right: arrList2,
-                            layout_boxes_basket: arrList3}
+                            layout_boxes_basket: arrList3,
+                            template: $('#name_templates').val()}
                 );
             }
         });
@@ -100,7 +102,8 @@
                 }).get();
                 jQuery.post('index.php',
                         {layout_footer: arrList1,
-                            layout_footer_basket: arrList2}
+                            layout_footer_basket: arrList2,
+                            template: $('#name_templates').val()}
                 );
             }
         });
