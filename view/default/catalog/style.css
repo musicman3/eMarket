@@ -10,12 +10,9 @@ button::-moz-focus-inner {border: 0 !important;}
 input, textarea {outline: none;}
 input:active, textarea:active {outline: none;}
 body {font-family: 'Lato',sans-serif;}
-#header {margin-top:10px;margin-bottom:10px;}
+#header, #bodyWrapper, #Carousel, .breadcrumb, .footer {margin-top:5px;margin-bottom:5px;}
 #header .searchbox-margin {padding-top: 15px;}
 #header .logo {padding: 0 10px 0 0;}
-#bodyContent {padding-bottom: 10px;}
-.breadcrumb {margin-bottom:10px;margin-top:10px;}
-#Carousel {margin-bottom:10px;margin-top:10px;}
 #Carousel .left {border-left: 0px solid #ddd;border-radius: 6px;}
 #Carousel .right {border-right: 0px solid #ddd;border-radius: 6px;}
 .carousel-inner {border: 1px solid #ddd;border-radius: 6px;}
@@ -23,7 +20,7 @@ body {font-family: 'Lato',sans-serif;}
 .carousel-inner p {font-size: 18px;padding: 20px;animation: anime-P 1.6s ease-out;}
 @keyframes anime-H3 { from { opacity: 0; transform: translateX(-2000px); } to { opacity: 1; transform: translateX(0); } }
 @keyframes anime-P { from { opacity: 0; transform: translateX(2000px); } to { opacity: 1; transform: translateX(0); } }
-.footer {color:#000000;width:100%;margin-top:10px;padding:10px;}
+.footer {color:#000000;width:100%;}
 .panel-heading {padding:5px 10px;}
 .panel-default > .panel-heading {color:#428bca;}
 .panel-body {padding:10px;}
@@ -48,7 +45,6 @@ body {font-family: 'Lato',sans-serif;}
 #columnLeft .panel-heading, #columnRight .panel-heading {font-size: 16px;}
 .list-group-item, .grid-group-item {margin-bottom: 20px;}
 .item.list-group-item {float: none;width: 100%;background-color: #fff;border: none;}
-.list-item-heading, .grid-item-heading {margin-bottom:10px;margin-top:10px;}
 .productHolder {border: 1px solid #dddddd;padding: 10px;border-radius: 4px;}
 .grid-item {display: flex;align-items: center;justify-content: center;flex-direction: row;}
 .category_block ul {padding: 0;margin: 0;}
