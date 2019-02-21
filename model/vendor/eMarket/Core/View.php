@@ -41,7 +41,7 @@ class View {
         $SET = new \eMarket\Core\Set;
         $PDO = new \eMarket\Core\Pdo;
 
-        $array_pos_temp = $PDO->getColRow("SELECT url, value FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND page=? ORDER BY sort ASC", [$SET->path(), $SET->titleDir()]);
+        $array_pos_temp = $PDO->getColRow("SELECT url, value FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND page=? AND template_name=? ORDER BY sort ASC", [$SET->path(), $SET->titleDir(), $SET->template()]);
         if (count($array_pos_temp) > 0) {
             $array_pos = $array_pos_temp;
             $array_out = [];
@@ -54,7 +54,7 @@ class View {
             }
             return $array_out;
         } else {
-            $array_pos = $PDO->getColRow("SELECT url, page FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? ORDER BY sort ASC", [$SET->path(), $position]);
+            $array_pos = $PDO->getColRow("SELECT url, page FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? ORDER BY sort ASC", [$SET->path(), $position, $SET->template()]);
             $array_out = [];
             foreach ($array_pos as $val) {
                 if ($val[1] == 'all') {
