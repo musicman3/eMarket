@@ -42,7 +42,7 @@
                     <input type="hidden" name="name_templates" value="<?php echo $select_template ?>" />
                     <select name="layout_pages_templates" id="layout_pages_templates" class="input-sm form-control" onchange="selectPage(event)">
                         <option>Все страницы</option>
-                        <?php if ($select_page == 'catalog') { ?>
+                        <?php if ($select_page == 'catalog' OR !$VALID->inPOST('layout_pages_templates')) { ?>
                             <option selected>catalog</option>
                         <?php } else {
                             ?>
