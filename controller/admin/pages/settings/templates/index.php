@@ -79,19 +79,23 @@ if ($VALID->inPOST('layout_header') OR $VALID->inPOST('layout_header_basket')) {
     $PDO->inPrepare("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", ['catalog', 'header', $VALID->inPOST('template'), $select_page]);
     $PDO->inPrepare("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", ['catalog', 'header-basket', $VALID->inPOST('template'), $select_page]);
 
-    for ($x = 0; $x < count($VALID->inPOST('layout_header')); $x++) {
-        if ($VALID->inPOST('layout_header')[$x] == 'header') {
-            $PDO->inPrepare("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/' . $VALID->inPOST('layout_header')[$x] . '.php', 'catalog', 'header', $select_page, $x, $VALID->inPOST('template')]);
-        } else {
-            $PDO->inPrepare("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/layouts/' . $VALID->inPOST('layout_header')[$x] . '.php', 'catalog', 'header', $select_page, $x, $VALID->inPOST('template')]);
+    if (empty($VALID->inPOST('layout_header')) == FALSE) {
+        for ($x = 0; $x < count($VALID->inPOST('layout_header')); $x++) {
+            if ($VALID->inPOST('layout_header')[$x] == 'header') {
+                $PDO->inPrepare("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/' . $VALID->inPOST('layout_header')[$x] . '.php', 'catalog', 'header', $select_page, $x, $VALID->inPOST('template')]);
+            } else {
+                $PDO->inPrepare("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/layouts/' . $VALID->inPOST('layout_header')[$x] . '.php', 'catalog', 'header', $select_page, $x, $VALID->inPOST('template')]);
+            }
         }
     }
 
-    for ($x = 0; $x < count($VALID->inPOST('layout_header_basket')); $x++) {
-        if ($VALID->inPOST('layout_header_basket')[$x] == 'header') {
-            $PDO->inPrepare("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/' . $VALID->inPOST('layout_header_basket')[$x] . '.php', 'catalog', 'header-basket', $select_page, $x, $VALID->inPOST('template')]);
-        } else {
-            $PDO->inPrepare("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/layouts/' . $VALID->inPOST('layout_header_basket')[$x] . '.php', 'catalog', 'header-basket', $select_page, $x, $VALID->inPOST('template')]);
+    if (empty($VALID->inPOST('layout_header_basket')) == FALSE) {
+        for ($x = 0; $x < count($VALID->inPOST('layout_header_basket')); $x++) {
+            if ($VALID->inPOST('layout_header_basket')[$x] == 'header') {
+                $PDO->inPrepare("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/' . $VALID->inPOST('layout_header_basket')[$x] . '.php', 'catalog', 'header-basket', $select_page, $x, $VALID->inPOST('template')]);
+            } else {
+                $PDO->inPrepare("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/layouts/' . $VALID->inPOST('layout_header_basket')[$x] . '.php', 'catalog', 'header-basket', $select_page, $x, $VALID->inPOST('template')]);
+            }
         }
     }
 
@@ -99,12 +103,16 @@ if ($VALID->inPOST('layout_header') OR $VALID->inPOST('layout_header_basket')) {
     $PDO->inPrepare("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", ['catalog', 'content', $VALID->inPOST('template'), $select_page]);
     $PDO->inPrepare("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", ['catalog', 'content-basket', $VALID->inPOST('template'), $select_page]);
 
-    for ($x = 0; $x < count($VALID->inPOST('layout_content')); $x++) {
-        $PDO->inPrepare("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/layouts/' . $VALID->inPOST('layout_content')[$x] . '.php', 'catalog', 'content', $select_page, $x, $VALID->inPOST('template')]);
+    if (empty($VALID->inPOST('layout_content')) == FALSE) {
+        for ($x = 0; $x < count($VALID->inPOST('layout_content')); $x++) {
+            $PDO->inPrepare("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/layouts/' . $VALID->inPOST('layout_content')[$x] . '.php', 'catalog', 'content', $select_page, $x, $VALID->inPOST('template')]);
+        }
     }
 
-    for ($x = 0; $x < count($VALID->inPOST('layout_content_basket')); $x++) {
-        $PDO->inPrepare("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/layouts/' . $VALID->inPOST('layout_content_basket')[$x] . '.php', 'catalog', 'content-basket', $select_page, $x, $VALID->inPOST('template')]);
+    if (empty($VALID->inPOST('layout_content_basket')) == FALSE) {
+        for ($x = 0; $x < count($VALID->inPOST('layout_content_basket')); $x++) {
+            $PDO->inPrepare("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/layouts/' . $VALID->inPOST('layout_content_basket')[$x] . '.php', 'catalog', 'content-basket', $select_page, $x, $VALID->inPOST('template')]);
+        }
     }
 
     // ОБРАБАТЫВАЕМ BOXES
@@ -112,35 +120,45 @@ if ($VALID->inPOST('layout_header') OR $VALID->inPOST('layout_header_basket')) {
     $PDO->inPrepare("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", ['catalog', 'boxes-right', $VALID->inPOST('template'), $select_page]);
     $PDO->inPrepare("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", ['catalog', 'boxes-basket', $VALID->inPOST('template'), $select_page]);
 
-    for ($x = 0; $x < count($VALID->inPOST('layout_boxes_left')); $x++) {
-        $PDO->inPrepare("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/layouts/' . $VALID->inPOST('layout_boxes_left')[$x] . '.php', 'catalog', 'boxes-left', $select_page, $x, $VALID->inPOST('template')]);
+    if (empty($VALID->inPOST('layout_boxes_left')) == FALSE) {
+        for ($x = 0; $x < count($VALID->inPOST('layout_boxes_left')); $x++) {
+            $PDO->inPrepare("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/layouts/' . $VALID->inPOST('layout_boxes_left')[$x] . '.php', 'catalog', 'boxes-left', $select_page, $x, $VALID->inPOST('template')]);
+        }
     }
 
-    for ($x = 0; $x < count($VALID->inPOST('layout_boxes_right')); $x++) {
-        $PDO->inPrepare("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/layouts/' . $VALID->inPOST('layout_boxes_right')[$x] . '.php', 'catalog', 'boxes-right', $select_page, $x, $VALID->inPOST('template')]);
+    if (empty($VALID->inPOST('layout_boxes_right')) == FALSE) {
+        for ($x = 0; $x < count($VALID->inPOST('layout_boxes_right')); $x++) {
+            $PDO->inPrepare("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/layouts/' . $VALID->inPOST('layout_boxes_right')[$x] . '.php', 'catalog', 'boxes-right', $select_page, $x, $VALID->inPOST('template')]);
+        }
     }
 
-    for ($x = 0; $x < count($VALID->inPOST('layout_boxes_basket')); $x++) {
-        $PDO->inPrepare("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/layouts/' . $VALID->inPOST('layout_boxes_basket')[$x] . '.php', 'catalog', 'boxes-basket', $select_page, $x, $VALID->inPOST('template')]);
+    if (empty($VALID->inPOST('layout_boxes_basket')) == FALSE) {
+        for ($x = 0; $x < count($VALID->inPOST('layout_boxes_basket')); $x++) {
+            $PDO->inPrepare("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/layouts/' . $VALID->inPOST('layout_boxes_basket')[$x] . '.php', 'catalog', 'boxes-basket', $select_page, $x, $VALID->inPOST('template')]);
+        }
     }
 
     // ОБРАБАТЫВАЕМ FOOTER
     $PDO->inPrepare("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", ['catalog', 'footer', $VALID->inPOST('template'), $select_page]);
     $PDO->inPrepare("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", ['catalog', 'footer-basket', $VALID->inPOST('template'), $select_page]);
 
-    for ($x = 0; $x < count($VALID->inPOST('layout_footer')); $x++) {
-        if ($VALID->inPOST('layout_footer')[$x] == 'footer') {
-            $PDO->inPrepare("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/' . $VALID->inPOST('layout_footer')[$x] . '.php', 'catalog', 'footer', $select_page, $x, $VALID->inPOST('template')]);
-        } else {
-            $PDO->inPrepare("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/layouts/' . $VALID->inPOST('layout_footer')[$x] . '.php', 'catalog', 'footer', $select_page, $x, $VALID->inPOST('template')]);
+    if (empty($VALID->inPOST('layout_footer')) == FALSE) {
+        for ($x = 0; $x < count($VALID->inPOST('layout_footer')); $x++) {
+            if ($VALID->inPOST('layout_footer')[$x] == 'footer') {
+                $PDO->inPrepare("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/' . $VALID->inPOST('layout_footer')[$x] . '.php', 'catalog', 'footer', $select_page, $x, $VALID->inPOST('template')]);
+            } else {
+                $PDO->inPrepare("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/layouts/' . $VALID->inPOST('layout_footer')[$x] . '.php', 'catalog', 'footer', $select_page, $x, $VALID->inPOST('template')]);
+            }
         }
     }
 
-    for ($x = 0; $x < count($VALID->inPOST('layout_footer_basket')); $x++) {
-        if ($VALID->inPOST('layout_footer_basket')[$x] == 'footer') {
-            $PDO->inPrepare("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/' . $VALID->inPOST('layout_footer_basket')[$x] . '.php', 'catalog', 'footer-basket', $select_page, $x, $VALID->inPOST('template')]);
-        } else {
-            $PDO->inPrepare("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/layouts/' . $VALID->inPOST('layout_footer_basket')[$x] . '.php', 'catalog', 'footer-basket', $select_page, $x, $VALID->inPOST('template')]);
+    if (empty($VALID->inPOST('layout_footer_basket')) == FALSE) {
+        for ($x = 0; $x < count($VALID->inPOST('layout_footer_basket')); $x++) {
+            if ($VALID->inPOST('layout_footer_basket')[$x] == 'footer') {
+                $PDO->inPrepare("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/' . $VALID->inPOST('layout_footer_basket')[$x] . '.php', 'catalog', 'footer-basket', $select_page, $x, $VALID->inPOST('template')]);
+            } else {
+                $PDO->inPrepare("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/layouts/' . $VALID->inPOST('layout_footer_basket')[$x] . '.php', 'catalog', 'footer-basket', $select_page, $x, $VALID->inPOST('template')]);
+            }
         }
     }
 }
