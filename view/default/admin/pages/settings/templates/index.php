@@ -16,7 +16,7 @@
         <div class="panel-body">
 
     <div class="row">
-	<div class="col-left form-group">
+	<div class="pull-left form-group">
             <div class="input-group has-error">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-th-large"></span></span>
                 <form method="post" name="select_template" action="index.php">
@@ -41,7 +41,7 @@
             </div>
 	</div>
 
-	<div class="col-left form-group">
+	<div class="pull-left form-group">
 	    <div class="input-group has-error">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
                 <form method="post" name="select_page" action="index.php">
