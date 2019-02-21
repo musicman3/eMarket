@@ -15,7 +15,6 @@
         </div>
         <div class="panel-body">
 
-    <div class="row">
 	<div class="pull-left form-group">
             <div class="input-group has-error">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-th-large"></span></span>
@@ -72,7 +71,6 @@
                 </form>
 	    </div>
 	</div>
-    </div>
 
             <div class="clearfix"></div>
             <div class="center-block">
