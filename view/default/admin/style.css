@@ -45,7 +45,7 @@ body {background:#e4e4da;font-family: 'Open Sans',sans-serif;background-image:ur
 .right {display: inline-block;float: right;}
 .left {display: inline-block;float: right; padding-right:10px;}
 .add-xs {font-size:14px;display: inline-block;float: right; padding-right:5px;padding-left:5px;}
-input[type=checkbox], input[type=radio] {vertical-align: text-bottom;}
+/*input[type=checkbox], input[type=radio] {vertical-align: text-bottom;}*/
 .popover-title {text-align:center;padding:5px 0 5px 0;}
 .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {padding:5px;}
 .sortyes {cursor:move;}
@@ -99,5 +99,7 @@ div.context-one {padding:5px;}
 #settings_templates .border {border:0px solid #ccc;border-top-left-radius: 4px;border-top-right-radius: 4px;}
 #settings_templates .border-l {border:0px solid #ccc;border-top-left-radius: 4px;}
 #settings_templates .border-r {border:0px solid #ccc;border-top-right-radius: 4px;}
-#settings_templates .pull-left {width: 25%;padding-bottom: 10px;}
+/*#settings_templates .pull-left {padding-bottom: 10px;margin-right: 5px;}*/
+#settings_templates .col-left {float: left;margin-right: 5px;}
+#settings_templates .row {margin-left: 0;margin-right: 0;}
 #settings_templates .input-sm {padding: 0 10px;}

@@ -15,7 +15,9 @@
         </div>
         <div class="panel-body">
 
-            <div class="pull-left input-group has-error">
+    <div class="row">
+	<div class="col-left form-group">
+            <div class="input-group has-error">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-th-large"></span></span>
                 <form method="post" name="select_template" action="index.php">
                     <select name="name_templates" id="name_templates" class="input-sm form-control"  onchange="selectTemplate(event)">
@@ -36,7 +38,11 @@
                         ?>
                     </select>
                 </form>
+            </div>
+	</div>
 
+	<div class="col-left form-group">
+	    <div class="input-group has-error">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
                 <form method="post" name="select_page" action="index.php">
                     <input type="hidden" name="name_templates" value="<?php echo $select_template ?>" />
@@ -64,7 +70,9 @@
                         ?>
                     </select>
                 </form>
-            </div>
+	    </div>
+	</div>
+    </div>
 
             <div class="clearfix"></div>
             <div class="center-block">
