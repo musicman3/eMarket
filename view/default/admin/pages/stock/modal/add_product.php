@@ -49,14 +49,14 @@
                                         <div><small class="form-text text-muted">Описание товара</small></div>
                                         <textarea rows="3" class="input-sm form-control summernote_add" name="description_product_stock_0" id="description_product_stock_0" /></textarea>
                                     </div>
-                                    <div class="col-left">
+                                    <div class="pull-left">
                                         <div><small class="form-text text-muted">Keywords для поисковой оптимизации</small></div>
                                         <div class="input-group has-success">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
                                             <input class="input-sm form-control" placeholder="Keywords" type="text" name="keyword_product_stock_0" id="keyword_product_stock_0" />
                                         </div>
                                     </div>
-                                    <div class="col-right">
+                                    <div class="pull-right">
                                         <div><small class="form-text text-muted">Tags для поисковой оптимизации</small></div>
                                         <div class="input-group has-success">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
@@ -83,14 +83,14 @@
                                                 <div><small class="form-text text-muted">Описание товара</small></div>
                                                 <textarea rows="3" class="input-sm form-control summernote_add" name="description_product_stock_<?php echo $x ?>" id="description_product_stock_<?php echo $x ?>" /></textarea>
                                             </div>
-                                            <div class="col-left">
+                                            <div class="pull-left">
                                                 <div><small class="form-text text-muted">Keywords для поисковой оптимизации</small></div>
                                                 <div class="input-group has-success">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
                                                     <input class="input-sm form-control" placeholder="Keywords" type="text" name="keyword_product_stock_<?php echo $x ?>" id="keyword_product_stock_<?php echo $x ?>" />
                                                 </div>
                                             </div>
-                                            <div class="col-right">
+                                            <div class="pull-right">
                                                 <div><small class="form-text text-muted">Tags для поисковой оптимизации</small></div>
                                                 <div class="input-group has-success">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
