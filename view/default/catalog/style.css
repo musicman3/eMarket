@@ -15,6 +15,10 @@ body {font-family: 'Lato',sans-serif;}
 #header .logo {padding: 0 10px 0 0;}
 #Carousel .left {border-left: 0px solid #ddd;border-radius: 6px;}
 #Carousel .right {border-right: 0px solid #ddd;border-radius: 6px;}
+#Carousel .glyphicon-chevron-left {opacity:0;left:0;transition: all .5s ease;}
+#Carousel .glyphicon-chevron-right {opacity:0;right:0;transition: all .5s ease}
+#Carousel:hover .glyphicon-chevron-left {opacity:1;left:25%;}
+#Carousel:hover .glyphicon-chevron-right {opacity:1;right:25%;}
 .carousel-inner {border: 1px solid #ddd;border-radius: 6px;}
 .carousel-inner h3 {padding: 20px;animation: anime-H3 1.3s ease-out;}
 .carousel-inner p {font-size: 18px;padding: 20px;animation: anime-P 1.6s ease-out;}
