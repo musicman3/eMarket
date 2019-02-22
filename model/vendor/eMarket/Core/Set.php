@@ -32,7 +32,15 @@ class Set {
      */
     public function path() {
         $VALID = new \eMarket\Core\Valid;
-        $path = explode('/', ($VALID->inSERVER('REQUEST_URI')))[2];
+
+        if (strrpos($VALID->inSERVER('REQUEST_URI'), 'controller/admin/') == true) {
+            $path = 'admin';
+        } elseif (strrpos($VALID->inSERVER('REQUEST_URI'), 'controller/install/') == true) {
+            $path = 'install';
+        } else {
+            $path = 'catalog';
+        }
+
         return $path;
     }
 
@@ -75,11 +83,10 @@ class Set {
      * @param string (если не нужно Selected)
      */
     public function viewSelect($value, $id = null, $selected = null) {
-        
+
         $count_value = count($value);
         for ($x = 0; $x < $count_value; $x++) {
             if (isset($value[$x][1]) && $value[$x][1] == 1 && $selected != false && $id != null) {
-
                 ?>
                 <!-- Строка Select по умолчанию-->
                 <option value="<?php echo $id ?>" selected><?php echo $value[$x][0] ?></option>
@@ -91,5 +98,4 @@ class Set {
     }
 
 }
-
 ?>
