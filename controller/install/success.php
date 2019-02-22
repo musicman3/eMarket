@@ -149,6 +149,8 @@ php_value error_reporting -1
 php_value error_log " . ROOT . "/model/work/errors.log
 
 RewriteEngine On
+RewriteCond %{DOCUMENT_ROOT}/controller/catalog/$1 -d
+RewriteRule ^(.*)$ controller/catalog/$1 [L,QSA]
 RewriteCond %{DOCUMENT_ROOT}/controller/catalog/$1 -f
 RewriteRule ^(.*)$ controller/catalog/$1 [L,QSA]";
 
