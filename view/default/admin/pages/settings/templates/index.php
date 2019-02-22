@@ -83,13 +83,13 @@
             <div class="clearfix"></div>
             <div class="center-block">
                 <ul id="sortable1" class="connectedSortable block-ul" style="width:66%">
-                    <li class="sortno border list-group-item-success"><span class="glyphicon glyphicon-resize-horizontal"></span>&nbsp;&nbsp;header</li>
+                    <li class="sortno border bg-primary"><span class="glyphicon glyphicon-resize-horizontal"></span>&nbsp;&nbsp;header</li>
                     <?php foreach ($layout_header as $path) { ?>
                         <li id="<?php echo basename($path, '.php') ?>" class="sortyes"><?php echo basename($path, '.php') ?></li>
                     <?php } ?>
                 </ul>
                 <ul id="sortable2" class="connectedSortable block-ul" style="width:33%">
-                    <li class="sortno border list-group-item-success"><span class="glyphicon glyphicon-resize-horizontal"></span><span class="glyphicon glyphicon-trash"></span></li>
+                    <li class="sortno border bg-primary"><span class="glyphicon glyphicon-resize-horizontal"></span><span class="glyphicon glyphicon-trash"></span></li>
                     <?php foreach ($layout_header_basket as $path) { ?>
                         <li id="<?php echo basename($path, '.php') ?>" class="sortyes"><?php echo basename($path, '.php') ?></li>
                     <?php } ?>
@@ -97,13 +97,13 @@
             </div>
             <div class="center-block">
                 <ul id="sortable3" class="connectedSortable2 block-ul" style="width:66%">
-                    <li class="sortno border list-group-item-success"><span class="glyphicon glyphicon-resize-horizontal"></span>&nbsp;&nbsp;content</li>
+                    <li class="sortno border bg-primary"><span class="glyphicon glyphicon-resize-horizontal"></span>&nbsp;&nbsp;content</li>
                     <?php foreach ($layout_content as $path) { ?>
                         <li id="<?php echo basename($path, '.php') ?>" class="sortyes"><?php echo basename($path, '.php') ?></li>
                     <?php } ?>
                 </ul>
                 <ul id="sortable4" class="connectedSortable2 block-ul" style="width:33%">
-                    <li class="sortno border list-group-item-success"><span class="glyphicon glyphicon-resize-horizontal"></span><span class="glyphicon glyphicon-trash"></span></li>
+                    <li class="sortno border bg-primary"><span class="glyphicon glyphicon-resize-horizontal"></span><span class="glyphicon glyphicon-trash"></span></li>
                     <?php foreach ($layout_content_basket as $path) { ?>
                         <li id="<?php echo basename($path, '.php') ?>" class="sortyes"><?php echo basename($path, '.php') ?></li>
                     <?php } ?>
@@ -111,19 +111,19 @@
             </div>
             <div class="center-block">
                 <ul id="sortable5" class="connectedSortable3 block-l" style="width:33%;">
-                    <li class="sortno border-l list-group-item-success"><span class="glyphicon glyphicon-resize-horizontal"></span>&nbsp;&nbsp;boxes-left</li>
+                    <li class="sortno border-l bg-primary"><span class="glyphicon glyphicon-resize-horizontal"></span>&nbsp;&nbsp;boxes-left</li>
                     <?php foreach ($layout_boxes_left as $path) { ?>
                         <li id="<?php echo basename($path, '.php') ?>" class="sortyes"><?php echo basename($path, '.php') ?></li>
                     <?php } ?>
                 </ul>
                 <ul id="sortable6" class="connectedSortable3 block-m block-r" style="width:33%;">
-                    <li class="sortno border-r list-group-item-success"><span class="glyphicon glyphicon-resize-horizontal"></span>&nbsp;&nbsp;boxes-right</li>
+                    <li class="sortno border-r bg-primary"><span class="glyphicon glyphicon-resize-horizontal"></span>&nbsp;&nbsp;boxes-right</li>
                     <?php foreach ($layout_boxes_right as $path) { ?>
                         <li id="<?php echo basename($path, '.php') ?>" class="sortyes"><?php echo basename($path, '.php') ?></li>
                     <?php } ?>
                 </ul>
                 <ul id="sortable7" class="connectedSortable3 block-ul" style="width:33%">
-                    <li class="sortno border list-group-item-success"><span class="glyphicon glyphicon-resize-horizontal"></span><span class="glyphicon glyphicon-trash"></span></li>
+                    <li class="sortno border bg-primary"><span class="glyphicon glyphicon-resize-horizontal"></span><span class="glyphicon glyphicon-trash"></span></li>
                     <?php foreach ($layout_boxes_basket as $path) { ?>
                         <li id="<?php echo basename($path, '.php') ?>" class="sortyes"><?php echo basename($path, '.php') ?></li>
                     <?php } ?>
@@ -131,13 +131,13 @@
             </div>
             <div class="center-block">
                 <ul id="sortable8" class="connectedSortable4 block-ul" style="width:66%">
-                    <li class="sortno border list-group-item-success"><span class="glyphicon glyphicon-resize-horizontal"></span>&nbsp;&nbsp;footer</li>
+                    <li class="sortno border bg-primary"><span class="glyphicon glyphicon-resize-horizontal"></span>&nbsp;&nbsp;footer</li>
                     <?php foreach ($layout_footer as $path) { ?>
                         <li id="<?php echo basename($path, '.php') ?>" class="sortyes"><?php echo basename($path, '.php') ?></li>
                     <?php } ?>
                 </ul>
                 <ul id="sortable9" class="connectedSortable4 block-ul" style="width:33%">
-                    <li class="sortno border list-group-item-success"><span class="glyphicon glyphicon-resize-horizontal"></span><span class="glyphicon glyphicon-trash"></span></li>
+                    <li class="sortno border bg-primary"><span class="glyphicon glyphicon-resize-horizontal"></span><span class="glyphicon glyphicon-trash"></span></li>
                     <?php foreach ($layout_footer_basket as $path) { ?>
                         <li id="<?php echo basename($path, '.php') ?>" class="sortyes"><?php echo basename($path, '.php') ?></li>
                         <?php } ?>
