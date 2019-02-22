@@ -83,7 +83,7 @@
             <div class="clearfix"></div>
             <div class="center-block">
                 <ul id="sortable1" class="connectedSortable block-ul" style="width:66%">
-                    <li class="sortno border list-group-item-success">header</li>
+                    <li class="sortno border list-group-item-success"><span class="glyphicon glyphicon-resize-horizontal"></span>&nbsp;&nbsp;header</li>
                     <?php foreach ($layout_header as $path) { ?>
                         <li id="<?php echo basename($path, '.php') ?>" class="sortyes"><?php echo basename($path, '.php') ?></li>
                     <?php } ?>
@@ -97,7 +97,7 @@
             </div>
             <div class="center-block">
                 <ul id="sortable3" class="connectedSortable2 block-ul" style="width:66%">
-                    <li class="sortno border list-group-item-success">content</li>
+                    <li class="sortno border list-group-item-success"><span class="glyphicon glyphicon-resize-horizontal"></span>&nbsp;&nbsp;content</li>
                     <?php foreach ($layout_content as $path) { ?>
                         <li id="<?php echo basename($path, '.php') ?>" class="sortyes"><?php echo basename($path, '.php') ?></li>
                     <?php } ?>
@@ -111,13 +111,13 @@
             </div>
             <div class="center-block">
                 <ul id="sortable5" class="connectedSortable3 block-l" style="width:33%;">
-                    <li class="sortno border-l list-group-item-success">boxes-left</li>
+                    <li class="sortno border-l list-group-item-success"><span class="glyphicon glyphicon-resize-horizontal"></span>&nbsp;&nbsp;boxes-left</li>
                     <?php foreach ($layout_boxes_left as $path) { ?>
                         <li id="<?php echo basename($path, '.php') ?>" class="sortyes"><?php echo basename($path, '.php') ?></li>
                     <?php } ?>
                 </ul>
                 <ul id="sortable6" class="connectedSortable3 block-m block-r" style="width:33%;">
-                    <li class="sortno border-r list-group-item-success">boxes-right</li>
+                    <li class="sortno border-r list-group-item-success"><span class="glyphicon glyphicon-resize-horizontal"></span>&nbsp;&nbsp;boxes-right</li>
                     <?php foreach ($layout_boxes_right as $path) { ?>
                         <li id="<?php echo basename($path, '.php') ?>" class="sortyes"><?php echo basename($path, '.php') ?></li>
                     <?php } ?>
@@ -131,7 +131,7 @@
             </div>
             <div class="center-block">
                 <ul id="sortable8" class="connectedSortable4 block-ul" style="width:66%">
-                    <li class="sortno border list-group-item-success">footer</li>
+                    <li class="sortno border list-group-item-success"><span class="glyphicon glyphicon-resize-horizontal"></span>&nbsp;&nbsp;footer</li>
                     <?php foreach ($layout_footer as $path) { ?>
                         <li id="<?php echo basename($path, '.php') ?>" class="sortyes"><?php echo basename($path, '.php') ?></li>
                     <?php } ?>
