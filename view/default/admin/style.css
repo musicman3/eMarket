@@ -90,14 +90,14 @@ div.context-one {padding:5px;}
 .block {position:absolute;bottom:0;width:100%;height:100%;padding-top:30px;background:rgba(255,255,255, 0.5);display:none;}
 .holder:hover .block {display:block;}
 .img-active {border: 1px solid #a94442;}
-#settings_templates .block-ul {display:inline-block;border:1px solid #ccc;border-top-left-radius: 4px;border-top-right-radius: 4px;vertical-align:top;padding-left:0;}
+#settings_templates .block-ul {display:inline-block;border:1px solid #dddddd;border-top-left-radius: 4px;border-top-right-radius: 4px;vertical-align:top;padding-left:0;}
 #settings_templates .sortno {list-style-type: none;text-align:center;padding: 5px 0 5px 0;margin-bottom: 3px;}
 #settings_templates .sortyes {list-style-type: none;text-align:center;padding-bottom: 3px;}
 #settings_templates .block-m {margin-left:-3.45px;}
-#settings_templates .block-l {display:inline-block;border:1px solid #ccc;border-top-left-radius: 4px;vertical-align:top;padding-left:0;}
-#settings_templates .block-r {display:inline-block;border:1px solid #ccc;border-top-right-radius: 4px;vertical-align:top;padding-left:0;}
-#settings_templates .border {border:0px solid #ccc;border-top-left-radius: 4px;border-top-right-radius: 4px;}
-#settings_templates .border-l {border:0px solid #ccc;border-top-left-radius: 4px;}
-#settings_templates .border-r {border:0px solid #ccc;border-top-right-radius: 4px;}
+#settings_templates .block-l {display:inline-block;border:1px solid #dddddd;border-top-left-radius: 4px;vertical-align:top;padding-left:0;}
+#settings_templates .block-r {display:inline-block;border:1px solid #dddddd;border-top-right-radius: 4px;vertical-align:top;padding-left:0;}
+#settings_templates .border {border:0px solid #dddddd;border-top-left-radius: 4px;border-top-right-radius: 4px;}
+#settings_templates .border-l {border:0px solid #dddddd;border-top-left-radius: 4px;}
+#settings_templates .border-r {border:0px solid #dddddd;border-top-right-radius: 4px;}
 #settings_templates .pull-left {margin-right: 5px;}
 #settings_templates .input-sm {padding: 0 10px;}
