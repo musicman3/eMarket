@@ -89,7 +89,7 @@
                     <?php } ?>
                 </ul>
                 <ul id="sortable2" class="connectedSortable block-ul" style="width:33%">
-                    <li class="sortno border list-group-item-success"><span class="glyphicon glyphicon-trash"></span></li>
+                    <li class="sortno border list-group-item-success"><span class="glyphicon glyphicon-resize-horizontal"></span>&nbsp;&nbsp;<span class="glyphicon glyphicon-trash"></span></li>
                     <?php foreach ($layout_header_basket as $path) { ?>
                         <li id="<?php echo basename($path, '.php') ?>" class="sortyes"><?php echo basename($path, '.php') ?></li>
                     <?php } ?>
@@ -103,7 +103,7 @@
                     <?php } ?>
                 </ul>
                 <ul id="sortable4" class="connectedSortable2 block-ul" style="width:33%">
-                    <li class="sortno border list-group-item-success"><span class="glyphicon glyphicon-trash"></span></li>
+                    <li class="sortno border list-group-item-success"><span class="glyphicon glyphicon-resize-horizontal"></span>&nbsp;&nbsp;<span class="glyphicon glyphicon-trash"></span></li>
                     <?php foreach ($layout_content_basket as $path) { ?>
                         <li id="<?php echo basename($path, '.php') ?>" class="sortyes"><?php echo basename($path, '.php') ?></li>
                     <?php } ?>
@@ -123,7 +123,7 @@
                     <?php } ?>
                 </ul>
                 <ul id="sortable7" class="connectedSortable3 block-ul" style="width:33%">
-                    <li class="sortno border list-group-item-success"><span class="glyphicon glyphicon-trash"></span></li>
+                    <li class="sortno border list-group-item-success"><span class="glyphicon glyphicon-resize-horizontal"></span>&nbsp;&nbsp;<span class="glyphicon glyphicon-trash"></span></li>
                     <?php foreach ($layout_boxes_basket as $path) { ?>
                         <li id="<?php echo basename($path, '.php') ?>" class="sortyes"><?php echo basename($path, '.php') ?></li>
                     <?php } ?>
@@ -137,7 +137,7 @@
                     <?php } ?>
                 </ul>
                 <ul id="sortable9" class="connectedSortable4 block-ul" style="width:33%">
-                    <li class="sortno border list-group-item-success"><span class="glyphicon glyphicon-trash"></span></li>
+                    <li class="sortno border list-group-item-success"><span class="glyphicon glyphicon-resize-horizontal"></span>&nbsp;&nbsp;<span class="glyphicon glyphicon-trash"></span></li>
                     <?php foreach ($layout_footer_basket as $path) { ?>
                         <li id="<?php echo basename($path, '.php') ?>" class="sortyes"><?php echo basename($path, '.php') ?></li>
                         <?php } ?>
