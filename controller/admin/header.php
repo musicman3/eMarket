@@ -78,7 +78,7 @@ for ($lng = 0; $lng < count(lang('#lang_all')); $lng++) {
     $submenu[$menu_help][1][$lng] = array('/controller/admin/?language=' . lang('#lang_all')[$lng], '/admin/images/langflags/' . lang('#lang_all')[$lng] . '.png', lang('language_name', lang('#lang_all')[$lng]));
 }
 
-$menu[$menu_help][2] = array('/controller/catalog/index.php', 'home.png', lang('menu_catalog'), 'target="_blank"', 'false'); // В отдельном окне
+$menu[$menu_help][2] = array('/', 'home.png', lang('menu_catalog'), 'target="_blank"', 'false'); // В отдельном окне
 
 //ВЫХОД
 $level[$menu_exit] = array('/controller/admin/login/?logout=ok', lang('menu_exit'), 'false');
