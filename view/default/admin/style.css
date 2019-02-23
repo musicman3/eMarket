@@ -96,8 +96,8 @@ div.context-one {padding:5px;}
 #settings_templates .block-m {margin-left:-3.45px;}
 #settings_templates .block-l {display:inline-block;border:1px solid #dddddd;border-top-left-radius: 4px;vertical-align:top;padding-left:0;}
 #settings_templates .block-r {display:inline-block;border:1px solid #dddddd;border-top-right-radius: 4px;vertical-align:top;padding-left:0;}
-#settings_templates .border {border:0px solid #dddddd;border-top-left-radius: 4px;border-top-right-radius: 4px;}
-#settings_templates .border-l {border:0px solid #dddddd;border-top-left-radius: 4px;}
-#settings_templates .border-r {border:0px solid #dddddd;border-top-right-radius: 4px;}
+#settings_templates .border {border-top-left-radius: 4px;border-top-right-radius: 4px;}
+#settings_templates .border-l {border-top-left-radius: 4px;}
+#settings_templates .border-r {border-top-right-radius: 4px;}
 #settings_templates .pull-left {margin-right: 5px;}
 #settings_templates .input-sm {padding: 0 10px;}
