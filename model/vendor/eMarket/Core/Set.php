@@ -18,7 +18,7 @@ class Set {
     /**
      * Название текущего шаблона
      *
-     * @return string
+     * @return string $template
      */
     public function template() {
         $template = 'default';
@@ -79,7 +79,7 @@ class Set {
     /**
      * Считываем значение строк на странице
      *
-     * @return string
+     * @return string $lines_on_page
      */
     public function linesOnPage() {
         $PDO = new \eMarket\Core\Pdo;
@@ -90,7 +90,7 @@ class Set {
     /**
      * Считываем значение времени сессии администратора
      *
-     * @return string
+     * @return string $session_expr_time
      */
     public function sessionExprTime() {
         $PDO = new \eMarket\Core\Pdo;
@@ -101,14 +101,15 @@ class Set {
     /**
      * Отображаем Select с учетом значения по-умолчанию
      *
-     * @param array (массив для Select)
-     * @param string (если не нужно Selected)
+     * @param array $value (массив для Select)
+     * @param string $id (идентификатор id)
+     * @param string (если не нужно Selected, то указываем FALSE)
      */
     public function viewSelect($value, $id = null, $selected = null) {
 
         $count_value = count($value);
         for ($x = 0; $x < $count_value; $x++) {
-            if (isset($value[$x][1]) && $value[$x][1] == 1 && $selected != false && $id != null) {
+            if (isset($value[$x][1]) && $value[$x][1] == 1 && $selected != FALSE && $id != null) {
 
                 ?>
                 <!-- Строка Select по умолчанию-->

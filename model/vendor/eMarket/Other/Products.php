@@ -32,7 +32,7 @@ class Products {
     /**
      * Изображения товара
      *
-     * @param string $count (номер товара)
+     * @param string $products_new_count (номер товара)
      * @return array $image (названия изображений в массиве)
      */
     public function viewNewImages($products_new_count) {
