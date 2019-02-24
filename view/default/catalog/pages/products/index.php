@@ -17,7 +17,7 @@
 		<p class="group inner list-item-text"><?php echo $products[2] ?></p>
 		<div class="clearfix"></div>
 		<div class="row button">
-		    <div class="col-xs-6"><button type="button" class="btn btn-default">Price</button></div>
+		    <div class="col-xs-6"><button type="button" class="btn btn-default"><?php echo $product_price ?></button></div>
 		    <div class="col-xs-6 text-right"><a id="btn1" href="#" class="btn btn-primary"><span class="cart"></span> Add to Cart</a></div>
 		</div>
 	    </div>

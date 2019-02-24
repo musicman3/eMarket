@@ -10,8 +10,9 @@ require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 
 $products = $PRODUCTS->productData($VALID->inGET('id'))[0];
 $product_category = $PRODUCTS->productCategories($products[5]);
+$product_price = $PRODUCTS->productPrice($VALID->inGET('id'), 1);
 
-//$DEBUG->trace($image);
+//$DEBUG->trace($product_price);
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
 require_once(ROOT . '/model/end.php');
 /* ------------------------------------------ */
