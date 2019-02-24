@@ -43,9 +43,9 @@ class Products {
     }
     
     /**
-     * Изображения товара
+     * Все изображения конкретного товара в массиве
      *
-     * @param string $products_new_count (номер товара)
+     * @param string $products_new_count (ячейка со списком изображений товара)
      * @return array $image (названия изображений в массиве)
      */
     public function viewNewImages($products_new_count) {
