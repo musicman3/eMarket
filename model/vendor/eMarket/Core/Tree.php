@@ -1,5 +1,4 @@
 <?php
-
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -62,6 +61,38 @@ class Tree {
                 unlink($file); // Удаляем старые файлы
             }
         }
+    }
+
+    /**
+     * ФУНКЦИЯ ВЫВОДА КАТЕГОРИЙ
+     *
+     * @param string $parent_id опционально (начальная директория)
+     * @param array $array_cat (путь к директории с файлами)
+     */
+    public function categories($parent_id = 0) {
+
+        $PDO = new \eMarket\Core\Pdo;
+
+        $result = $PDO->getObj("SELECT id, name, parent_id FROM " . TABLE_CATEGORIES . " WHERE language=? ORDER BY sort_category DESC", [lang('#lang_all')[0]]);
+
+        $array_cat = [];
+        foreach ($result as $value) {
+            $array_cat[$value->parent_id][] = $value;
+        }
+
+        if (empty($array_cat[$parent_id])) {
+            return;
+        }
+
+        echo '<ul>';
+
+        foreach ($array_cat[$parent_id] as $value) {
+            echo '<li><a href="/listing/?category_id=' . $value->id . '&parent_id=' . $value->parent_id . '">' . $value->name . '</a>';
+            self::categories($value->id);
+            echo '</li>';
+        }
+
+        echo '</ul>';
     }
 
 }

@@ -1,5 +1,4 @@
 <?php
-
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -363,6 +362,24 @@ class Pdo {
         if ($exec = self::connect()->prepare($sql)
                 AND $exec->execute($a)
                 AND $result = $exec->fetchAll(\PDO :: FETCH_ASSOC)) {
+            
+        }
+        return $result;
+    }
+
+    /**
+     * getObj для запроса в виде объекта.
+     * 
+     * @param string $sql (запрос из БД MYSQL)
+     * @param array $a (параметр для execute($a))
+     * @return bool|array $result (возвращает данные или FALSE)
+     */
+    public function getObj($sql, $a) {
+
+        $result = FALSE;
+        if ($exec = self::connect()->prepare($sql)
+                AND $exec->execute($a)
+                AND $result = $exec->fetchAll(\PDO :: FETCH_OBJ)) {
             
         }
         return $result;

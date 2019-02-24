@@ -28,16 +28,7 @@
     <div class="panel-heading">Categories</div>
     <div class="panel-body category_block">
         <ul class="box-category treeview">
-            <li><a href="#" class="activSub">Hardware</a>
-                <ul>
-                    <li><a href="#" class="activSub" >Monitors</a>
-                        <ul>
-                            <li><a href="#">Samsung</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li><a href="#">Software</a></li>
+            <?php $TREE->categories() ?>
         </ul>
     </div>
 </div>
