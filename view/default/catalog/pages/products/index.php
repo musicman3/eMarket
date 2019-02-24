@@ -12,7 +12,7 @@
     <div id="products" class="row list-group">
 	<div class="item col-sm-4 list-group-item">
 	    <div class="productHolder">
-		<img src="/uploads/images/products/resize_1/<?php echo $products[7] ?>" class="img-responsive">
+		<img src="/uploads/images/products/resize_2/<?php echo $products[7] ?>" class="img-responsive">
 		<h4 class="group inner list-item-heading"><?php echo $products[1] ?></h4>
 		<p class="group inner list-item-text"><?php echo $products[2] ?></p>
 		<div class="clearfix"></div>
