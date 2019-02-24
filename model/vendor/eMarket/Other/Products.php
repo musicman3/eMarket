@@ -30,6 +30,19 @@ class Products {
     }
     
     /**
+     * Данные по товару
+     *
+     * @param string $id (id товара)
+     * @return array $product (данные по товару)
+     */
+    public function productData($id) {
+        $PDO = new \eMarket\Core\Pdo;
+
+        $product = $PDO->getColRow("SELECT * FROM " . TABLE_PRODUCTS . " WHERE language=? AND id=?", [lang('#lang_all')[0], $id]);
+        return $product;
+    }
+    
+    /**
      * Изображения товара
      *
      * @param string $products_new_count (номер товара)

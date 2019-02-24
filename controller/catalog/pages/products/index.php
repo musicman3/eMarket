@@ -8,7 +8,7 @@
 require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 /* ------------------------------------------ */
 
-$products_new = $PRODUCTS->viewNew(10);
+$products = $PRODUCTS->productData($VALID->inGET('id'))[0];
 
 //$DEBUG->trace($image);
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */

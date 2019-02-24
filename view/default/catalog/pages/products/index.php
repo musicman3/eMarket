@@ -3,7 +3,7 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |    
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-
+//$DEBUG->trace($PRODUCTS->productData($VALID->inGET('id'))[0][7]);
 ?>
 
 <h3>Products Name</h3>
@@ -12,9 +12,9 @@
     <div id="products" class="row list-group">
 	<div class="item col-sm-4 list-group-item">
 	    <div class="productHolder">
-		<img src="images.jpg" class="img-responsive">
-		<h4 class="group inner list-item-heading">Name</h4>
-		<p class="group inner list-item-text">Text…</p>
+		<img src="/uploads/images/products/resize_1/<?php echo $products[7] ?>" class="img-responsive">
+		<h4 class="group inner list-item-heading"><?php echo $products[1] ?></h4>
+		<p class="group inner list-item-text"><?php echo $products[2] ?></p>
 		<div class="clearfix"></div>
 		<div class="row button">
 		    <div class="col-xs-6"><button type="button" class="btn btn-default">Price</button></div>
