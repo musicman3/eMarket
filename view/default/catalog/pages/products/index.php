@@ -6,7 +6,7 @@
 //$DEBUG->trace($PRODUCTS->productData($VALID->inGET('id'))[0][7]);
 ?>
 
-<h3>Products Name</h3>
+<h3><?php echo $product_category ?></h3>
 
 <div class="contentText">
     <div id="products" class="row list-group">

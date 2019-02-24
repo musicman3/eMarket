@@ -51,6 +51,19 @@ class Products {
     public function viewNewImages($products_new_count) {
         $image = explode(',', $products_new_count[6], -1);
         return $image;
+    }
+    
+    /**
+     * Данные по категории товара
+     *
+     * @param string $id (id категории)
+     * @return array $product (данные по категории)
+     */
+    public function productCategories($id) {
+        $PDO = new \eMarket\Core\Pdo;
+
+        $categories = $PDO->getCell("SELECT name FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], $id]);
+        return $categories;
     }    
 
 }
