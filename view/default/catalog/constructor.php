@@ -3,7 +3,6 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-
 ?>
 
 <!doctype html>
@@ -21,7 +20,7 @@
 
         <!-- Автогенерация Title" -->
         <title><?php echo lang('title_' . $SET->titleDir() . '_' . basename($VALID->inSERVER('PHP_SELF'), '.php')) ?></title>
-        
+
         <link rel="canonical" href="<?php echo $SET->canonicalPathCatalog() ?>" />
         <link href="/ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
         <link href="/ext/bootstrap/css/normalize.css" rel="stylesheet" media="screen" />
@@ -35,19 +34,49 @@
         foreach ($VIEW->layoutRouting('header') as $path) {
             require_once (ROOT . $path);
         }
-
         ?>
 
         <div id="bodyWrapper" class="container-fluid">
 
             <div class="row">
 
-                <div id="bodyContent" class="col-xs-12">
-                    <?php
-                    require_once($VIEW->routing());
+                <?php
+                // ПРОВЕРЯЕМ НАЛИЧИЕ БОКСА В РАЗМЕТКЕ
+                $COUNT_BOX_LEFT = count($VIEW->layoutRouting('boxes-left'));
 
+                if ($COUNT_BOX_LEFT != 0) {
                     ?>
-                </div>
+
+                    <div id="bodyContent" class="col-md-10 col-md-push-2">
+                        <?php
+                        require_once($VIEW->routing());
+                        ?>
+                    </div>
+
+                <?php } else { ?>
+
+                    <div id="bodyContent" class="col-xs-12">
+                        <?php
+                        require_once($VIEW->routing());
+                        ?>
+                    </div>
+
+                    <?php
+                }
+
+                if ($COUNT_BOX_LEFT != 0) {
+                    ?>
+
+                    <div id="columnLeft" class="col-md-2 col-xs-12 col-md-pull-10">
+                        <?php
+                        // ЗАГРУЖАЕМ БОКСЫ
+                        foreach ($VIEW->layoutRouting('boxes-left') as $path) {
+                            require_once (ROOT . $path);
+                        }
+                        ?>
+                    </div>
+
+                <?php } ?>
 
             </div>
 
@@ -71,7 +100,6 @@
         $totaltime = round(($tend - $tstart), 2);
         // Результат на экран
         echo "Время генерации страницы: " . $totaltime . " сек.<br><br>";
-
         ?>
         <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/ext/simpleeqh/simpleeqh.js"></script>
