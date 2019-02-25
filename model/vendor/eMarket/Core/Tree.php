@@ -1,4 +1,5 @@
 <?php
+
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -68,8 +69,9 @@ class Tree {
      *
      * @param string $parent_id опционально (начальная директория)
      * @param array $array_cat (путь к директории с файлами)
+     * @param string $marker (маркер для добавления класса в первый ul)
      */
-    public function categories($parent_id = 0) {
+    public function categories($parent_id = 0, $marker = null) {
 
         $PDO = new \eMarket\Core\Pdo;
 
@@ -84,15 +86,24 @@ class Tree {
             return;
         }
 
-        echo '<ul>';
+        if ($marker != TRUE) {
+            echo '<ul class="box-category treeview">';
+        } else {
+            echo '<ul>';
+        }
 
         foreach ($array_cat[$parent_id] as $value) {
             echo '<li><a href="/listing/?category_id=' . $value->id . '&parent_id=' . $value->parent_id . '">' . $value->name . '</a>';
-            self::categories($value->id);
+            self::categories($value->id, TRUE);
             echo '</li>';
         }
 
-        echo '</ul>';
+
+        if ($marker != TRUE) {
+            echo '</ul>';
+        } else {
+            echo '</ul>';
+        }
     }
 
 }
