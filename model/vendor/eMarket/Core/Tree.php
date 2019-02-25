@@ -74,6 +74,7 @@ class Tree {
     public function categories($parent_id = 0, $marker = null) {
 
         $PDO = new \eMarket\Core\Pdo;
+        $VALID = new \eMarket\Core\Valid;
 
         $result = $PDO->getObj("SELECT id, name, parent_id FROM " . TABLE_CATEGORIES . " WHERE language=? ORDER BY sort_category DESC", [lang('#lang_all')[0]]);
 
@@ -93,11 +94,14 @@ class Tree {
         }
 
         foreach ($array_cat[$parent_id] as $value) {
-            echo '<li><a href="/listing/?category_id=' . $value->id . '&parent_id=' . $value->parent_id . '">' . $value->name . '</a>';
+            if ($value->id == $VALID->inGET('category_id')){
+            echo '<li class="collapsable open" id="' . $value->id . '"><a href="/listing/?category_id=' . $value->id . '&parent_id=' . $value->parent_id . '">' . $value->name . '</a>';
+            }else{
+                echo '<li class="expandable" id="' . $value->id . '"><a href="/listing/?category_id=' . $value->id . '&parent_id=' . $value->parent_id . '">' . $value->name . '</a>';
+            }
             self::categories($value->id, TRUE);
             echo '</li>';
-        }
-
+        }      
 
         if ($marker != TRUE) {
             echo '</ul>';
@@ -105,6 +109,7 @@ class Tree {
             echo '</ul>';
         }
     }
+    
 
 }
 
