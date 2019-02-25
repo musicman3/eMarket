@@ -42,19 +42,9 @@
 
             <div class="row">
 
-                <div id="bodyContent" class="col-md-10 col-md-push-2">
+                <div id="bodyContent" class="col-xs-12">
                     <?php
                     require_once($VIEW->routing());
-
-                    ?>
-                </div>
-
-                <div id="columnLeft" class="col-md-2 col-xs-12 col-md-pull-10">
-                    <?php
-                    // ЗАГРУЖАЕМ БОКСЫ
-                    foreach ($VIEW->layoutRouting('boxes-left') as $path) {
-                        require_once (ROOT . $path);
-                    }
 
                     ?>
                 </div>
