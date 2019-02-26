@@ -10,7 +10,8 @@
         if ($('.box-category').hasClass('treeview') === true) {
             $(".box-category").treeview({
                 animated: 100,
-                collapsed: true,
+                collapsed: true, 
+                
                 unique: true
             });
             $('.box-category li').parent().removeClass('expandable');

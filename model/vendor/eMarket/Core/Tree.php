@@ -1,5 +1,4 @@
 <?php
-
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -94,14 +93,14 @@ class Tree {
         }
 
         foreach ($array_cat[$parent_id] as $value) {
-            if ($value->id == $VALID->inGET('category_id')){
-            echo '<li class="collapsable open" id="' . $value->id . '"><a href="/listing/?category_id=' . $value->id . '&parent_id=' . $value->parent_id . '">' . $value->name . '</a>';
-            }else{
+            if ($value->id == $VALID->inGET('category_id')) {
+                echo '<li class="collapsable open" id="' . $value->id . '"><a href="/listing/?category_id=' . $value->id . '&parent_id=' . $value->parent_id . '">' . $value->name . '</a>';
+            } else {
                 echo '<li class="expandable" id="' . $value->id . '"><a href="/listing/?category_id=' . $value->id . '&parent_id=' . $value->parent_id . '">' . $value->name . '</a>';
             }
             self::categories($value->id, TRUE);
             echo '</li>';
-        }      
+        }
 
         if ($marker != TRUE) {
             echo '</ul>';
@@ -110,6 +109,28 @@ class Tree {
         }
     }
     
+    /**
+     * ФУНКЦИЯ ВЫВОДА ВСЕХ ПРЕДКОВ ПО ID
+     *
+     * @param string $id (id от которого нужно собирать предков вверх)
+     * @param array $array_cat2 (вспомогательный массив)
+     * return array $array_cat2 (итоговый массив предков)
+     */
+    public function allParentCat($id = null, $array_cat2 = []) {
+        $PDO = new \eMarket\Core\Pdo;
+        $result = $PDO->getObj("SELECT id, name, parent_id FROM " . TABLE_CATEGORIES . " WHERE language=? ORDER BY sort_category DESC", [lang('#lang_all')[0]]);
+        $array_cat = [];
+
+        foreach ($result as $value) {
+            $array_cat[$value->id][] = $value;
+            if ($value->id == $id && $value->parent_id >= 0) {
+                $array_cat2[] = $value->parent_id;
+                return self::allParentCat($value->parent_id, $array_cat2);
+            }
+        }
+
+        return $array_cat2;
+    }
 
 }
 

@@ -10,6 +10,8 @@ require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 
 
 
+//$DEBUG->trace($TREE->allParentCat(6));
+
 //$DEBUG->trace($image);
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
 require_once(ROOT . '/model/end.php');
