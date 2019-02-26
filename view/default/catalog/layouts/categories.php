@@ -12,7 +12,7 @@
     </div>
 </div>
 <div id="data_breadcrumb" class="hidden"
-     data-breadcrumb='<?php echo $categories_and_breadcrumb ?>'>
+     data-breadcrumb='<?php $categories_and_breadcrumb ?>'>
 </div>
 
 <script type="text/javascript" language="javascript">
