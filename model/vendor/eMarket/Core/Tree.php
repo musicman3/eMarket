@@ -115,10 +115,8 @@ class Tree {
      * return array $array_cat2 (итоговый массив предков)
      */
     public function allParentCat($sql, $id = null, $array_cat2 = []) {
-        $array_cat = [];
 
         foreach ($sql as $value) {
-            $array_cat[$value->id][] = $value;
             if ($value->id == $id && $value->parent_id >= 0) {
                 $array_cat2[] = $value->parent_id;
                 return self::allParentCat($sql, $value->parent_id, $array_cat2);
