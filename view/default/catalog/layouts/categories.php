@@ -12,12 +12,8 @@
             $(".box-category").treeview({
                 animated: 100,
                 collapsed: true, 
-                
                 unique: true
             });
-            $('.box-category li').parent().removeClass('expandable');
-            $('.box-category li').parent().addClass('collapsable');
-            $('box-category .box-category .collapsable li').css('display', 'block');
         }
     }
     $(document).ready(function () {
