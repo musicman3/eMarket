@@ -3,6 +3,7 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+
 ?>
 
 <script type="text/javascript" language="javascript">
@@ -27,6 +28,6 @@
 <div class="panel panel-default">
     <div class="panel-heading">Categories</div>
     <div class="panel-body category_block">
-        <?php $TREE->categories() ?>
+        <?php $TREE->categories($sql, $expandable) ?>
     </div>
 </div>

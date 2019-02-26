@@ -4,4 +4,9 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+$sql = $PDO->getObj("SELECT id, name, parent_id FROM " . TABLE_CATEGORIES . " WHERE language=? ORDER BY sort_category DESC", [lang('#lang_all')[0]]);
+
+// Массив родителей раскрытой категории
+$expandable = $TREE->allParentCat($sql, $VALID->inGET('category_id'));
+
 ?>

@@ -66,19 +66,16 @@ class Tree {
     /**
      * ФУНКЦИЯ ВЫВОДА КАТЕГОРИЙ
      *
-     * @param string $parent_id опционально (начальная директория)
-     * @param array $array_cat (путь к директории с файлами)
+     * @param array $sql (массив категорий в виде объекта)
+     * @param array $expandable (массив раскрытых категорий)
+     * @param string $parent_id (родительская категория для дерева)
      * @param string $marker (маркер для добавления класса в первый ul)
      */
-    public function categories($parent_id = 0, $marker = null) {
-
-        $PDO = new \eMarket\Core\Pdo;
+    public function categories($sql, $expandable = null, $parent_id = 0, $marker = null) {
         $VALID = new \eMarket\Core\Valid;
 
-        $result = $PDO->getObj("SELECT id, name, parent_id FROM " . TABLE_CATEGORIES . " WHERE language=? ORDER BY sort_category DESC", [lang('#lang_all')[0]]);
-
         $array_cat = [];
-        foreach ($result as $value) {
+        foreach ($sql as $value) {
             $array_cat[$value->parent_id][] = $value;
         }
 
@@ -93,12 +90,12 @@ class Tree {
         }
 
         foreach ($array_cat[$parent_id] as $value) {
-            if ($value->id == $VALID->inGET('category_id')) {
+            if ($value->id == $VALID->inGET('category_id') OR in_array($value->id, $expandable)) {
                 echo '<li class="collapsable open" id="' . $value->id . '"><a href="/listing/?category_id=' . $value->id . '&parent_id=' . $value->parent_id . '">' . $value->name . '</a>';
             } else {
                 echo '<li class="expandable" id="' . $value->id . '"><a href="/listing/?category_id=' . $value->id . '&parent_id=' . $value->parent_id . '">' . $value->name . '</a>';
             }
-            self::categories($value->id, TRUE);
+            self::categories($sql, $expandable, $value->id, TRUE);
             echo '</li>';
         }
 
@@ -112,20 +109,19 @@ class Tree {
     /**
      * ФУНКЦИЯ ВЫВОДА ВСЕХ ПРЕДКОВ ПО ID
      *
+     * @param array $sql (массив категорий в виде объекта)
      * @param string $id (id от которого нужно собирать предков вверх)
      * @param array $array_cat2 (вспомогательный массив)
      * return array $array_cat2 (итоговый массив предков)
      */
-    public function allParentCat($id = null, $array_cat2 = []) {
-        $PDO = new \eMarket\Core\Pdo;
-        $result = $PDO->getObj("SELECT id, name, parent_id FROM " . TABLE_CATEGORIES . " WHERE language=? ORDER BY sort_category DESC", [lang('#lang_all')[0]]);
+    public function allParentCat($sql, $id = null, $array_cat2 = []) {
         $array_cat = [];
 
-        foreach ($result as $value) {
+        foreach ($sql as $value) {
             $array_cat[$value->id][] = $value;
             if ($value->id == $id && $value->parent_id >= 0) {
                 $array_cat2[] = $value->parent_id;
-                return self::allParentCat($value->parent_id, $array_cat2);
+                return self::allParentCat($sql, $value->parent_id, $array_cat2);
             }
         }
 
