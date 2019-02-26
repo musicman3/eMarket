@@ -24,6 +24,6 @@
 <div class="panel panel-default">
     <div class="panel-heading">Categories</div>
     <div class="panel-body category_block">
-        <?php $TREE->categories($sql, $expandable) ?>
+        <?php $TREE->categories($sql, $VALID->inGET('category_id')) ?>
     </div>
 </div>

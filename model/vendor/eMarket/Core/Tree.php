@@ -67,16 +67,23 @@ class Tree {
      * ФУНКЦИЯ ВЫВОДА КАТЕГОРИЙ
      *
      * @param array $sql (массив категорий в виде объекта)
-     * @param array $expandable (массив раскрытых категорий)
+     * @param string $id (id от которого нужно собирать предков вверх, передается через GET)
+     * @param array $array_cat2 (вспомогательный массив)
      * @param string $parent_id (родительская категория для дерева)
      * @param string $marker (маркер для добавления класса в первый ul)
      */
-    public function categories($sql, $expandable = null, $parent_id = 0, $marker = null) {
+    public function categories($sql, $id = null, $array_cat2 = [], $parent_id = 0, $marker = null) {
         $VALID = new \eMarket\Core\Valid;
 
         $array_cat = [];
         foreach ($sql as $value) {
             $array_cat[$value->parent_id][] = $value;
+            
+            if ($value->id == $id && $value->parent_id > 0) {
+                $array_cat2[] = $value->parent_id;
+                return self::categories($sql, $value->parent_id, $array_cat2);
+            }
+            
         }
 
         if (empty($array_cat[$parent_id])) {
@@ -90,12 +97,12 @@ class Tree {
         }
 
         foreach ($array_cat[$parent_id] as $value) {
-            if ($value->id == $VALID->inGET('category_id') OR in_array($value->id, $expandable)) {
+            if ($value->id == $VALID->inGET('category_id') OR in_array($value->id, $array_cat2)) {
                 echo '<li class="collapsable open" id="' . $value->id . '"><a href="/listing/?category_id=' . $value->id . '&parent_id=' . $value->parent_id . '">' . $value->name . '</a>';
             } else {
                 echo '<li class="expandable" id="' . $value->id . '"><a href="/listing/?category_id=' . $value->id . '&parent_id=' . $value->parent_id . '">' . $value->name . '</a>';
             }
-            self::categories($sql, $expandable, $value->id, TRUE);
+            self::categories($sql, null, $array_cat2, $value->id, TRUE);
             echo '</li>';
         }
 
@@ -104,26 +111,6 @@ class Tree {
         } else {
             echo '</ul>';
         }
-    }
-    
-    /**
-     * ФУНКЦИЯ ВЫВОДА ВСЕХ ПРЕДКОВ ПО ID
-     *
-     * @param array $sql (массив категорий в виде объекта)
-     * @param string $id (id от которого нужно собирать предков вверх)
-     * @param array $array_cat2 (вспомогательный массив)
-     * return array $array_cat2 (итоговый массив предков)
-     */
-    public function allParentCat($sql, $id = null, $array_cat2 = []) {
-
-        foreach ($sql as $value) {
-            if ($value->id == $id && $value->parent_id >= 0) {
-                $array_cat2[] = $value->parent_id;
-                return self::allParentCat($sql, $value->parent_id, $array_cat2);
-            }
-        }
-
-        return $array_cat2;
     }
 
 }
