@@ -71,6 +71,7 @@ class Tree {
      * @param array $array_cat2 (вспомогательный массив)
      * @param string $parent_id (родительская категория для дерева)
      * @param string $marker (маркер для добавления класса в первый ul)
+     * @return array $array_cat2 (массив всех предков для breadcrumb)
      */
     public function categories($sql, $id = null, $array_cat2 = [], $parent_id = 0, $marker = null) {
         $VALID = new \eMarket\Core\Valid;
@@ -111,6 +112,7 @@ class Tree {
         } else {
             echo '</ul>';
         }
+        return $array_cat2;
     }
 
 }
