@@ -48,7 +48,7 @@ body {font-family: 'Lato',sans-serif;}
 #columnLeft .panel-heading, #columnRight .panel-heading {font-size: 16px;}
 .list-group-item, .grid-group-item {margin-bottom: 20px;}
 .item.list-group-item {float: none;width: 100%;background-color: #fff;border: none;}
-.productHolder {border: 1px solid #dddddd;padding: 10px;border-radius: 4px;}
+.productHolder, .categoriesHolder {border: 1px solid #dddddd;padding: 10px;border-radius: 4px;}
 .grid-item {display: flex;align-items: center;justify-content: center;flex-direction: row;}
 .category_block ul {padding: 0;margin: 0;}
 .category_block ul ul {padding: 0 0 0 10px;}
