@@ -2,14 +2,14 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-@font-face {font-family: 'Lato';src: url('fonts/Lato-Regular.ttf');}
+@font-face {font-family: 'Open Sans';src: url('fonts/OpenSans-Regular.ttf');}
 :focus {outline:none;}
 a:active, a:focus {outline: none;}
 button:active, button:focus {outline: none !important;}
 button::-moz-focus-inner {border: 0 !important;}
 input, textarea {outline: none;}
 input:active, textarea:active {outline: none;}
-body {font-family: 'Lato',sans-serif;}
+body {font-family: 'Open Sans',sans-serif;}
 #header, #bodyWrapper, #Carousel, .breadcrumb, .footer {margin-top:5px;margin-bottom:5px;}
 #header .searchbox-margin {padding-top: 15px;}
 #header .logo {padding: 0 10px 0 0;}
