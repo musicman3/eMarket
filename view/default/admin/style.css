@@ -10,7 +10,7 @@ button::-moz-focus-inner {border: 0 !important;}
 input, textarea {outline: none;}
 input:active, textarea:active {outline: none;}
 html {position: relative;min-height: 100%;}
-body {background:#e4e4da;font-family: 'Open Sans',sans-serif;background-image:url('images/sep-half.png');margin-bottom: 70px;}
+body {background:#e4e4da;font-family: 'Open Sans';background-image:url('images/sep-half.png');margin-bottom: 70px;}
 .welcome {text-align: center;font-size: 40px;color: #c6c6c6;text-shadow: 0px 1px 1px #FFF;padding-top: 60px;}
 .welcome_logo {padding-top: 30px;padding-bottom: 30px;font-size: 70px;}
 .welcome_description {padding-bottom: 50px;color: #aaaaaa;}
@@ -68,8 +68,8 @@ div.context-one {padding:5px;}
 @media (min-width:768px){.products .modal-dialog {width:680px;margin:30px auto;}}
 .settings {float: left;padding-left: 5px;}
 .settings .btn {margin-right: 10px;}
-.modal-content .tooltip-inner {font-family: 'Open Sans',sans-serif;max-width:400px;}
-#settings_basic_settings .tooltip-inner {font-family: 'Open Sans',sans-serif;width:200px;}
+.modal-content .tooltip-inner {font-family: 'Open Sans';max-width:400px;}
+#settings_basic_settings .tooltip-inner {font-family: 'Open Sans';width:200px;}
 .pull-right .glyphicon {color: #000000;opacity: 0.5}
 .tab-content {padding-top: 10px;}
 .input-group .data {position: static;}
