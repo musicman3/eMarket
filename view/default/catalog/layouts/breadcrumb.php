@@ -8,7 +8,7 @@
 
 <div class="container-fluid">
     <div class="breadcrumb">
-	<li class="selected"><a href="#">Home</a></li>
+	<li class="selected"><a href="/">Home</a></li>
         <li>Categories</li>
     </div>
 </div>
