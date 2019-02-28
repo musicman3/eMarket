@@ -10,14 +10,14 @@
 
 <div class="contentText">
     <div id="products" class="row list-group">
-	<div class="item col-sm-4 list-group-item">
-		<img src="/uploads/images/products/resize_2/<?php echo $products[7] ?>" class="img-responsive list-group-image">
-		<?php echo $products[2] ?>
-		<div class="clearfix"></div>
-		<div class="row button">
-		    <div class="col-xs-6"><button type="button" class="btn btn-default"><?php echo $product_price ?></button></div>
-		    <div class="col-xs-6 text-right"><a id="btn1" href="#" class="btn btn-primary"><span class="cart"></span> Add to Cart</a></div>
-		</div>
+	<div class="list-group-item">
+	    <img src="/uploads/images/products/resize_2/<?php echo $products[7] ?>" class="img-responsive list-group-image">
+	    <?php echo $products[2] ?>
+	    <div class="clearfix"></div>
+	    <div class="row button">
+		<div class="col-xs-6"><button type="button" class="btn btn-default"><?php echo $product_price ?></button></div>
+		<div class="col-xs-6 text-right"><a id="btn1" href="#" class="btn btn-primary"><span class="cart"></span> Add to Cart</a></div>
+	    </div>
 	</div>
     </div>
 </div>
