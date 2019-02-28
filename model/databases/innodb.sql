@@ -10303,8 +10303,8 @@ INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name
 INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/catalog/layouts/copyright.php', 'catalog', 'footer', 'listing', 'default', '0');
 INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/catalog/layouts/categories.php', 'catalog', 'boxes-left', 'listing', 'default', '0');
 INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/catalog/layouts/welcome.php', 'catalog', 'content-basket', 'listing', 'default', '0');
-INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/catalog/layouts/categories_listing.php', 'catalog', 'content-basket', 'listing', 'default', '1');
-INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/catalog/layouts/new_products.php', 'catalog', 'content', 'listing', 'default', '2');
+INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/catalog/layouts/categories_listing.php', 'catalog', 'content', 'listing', 'default', '1');
+INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/catalog/layouts/new_products.php', 'catalog', 'content-basket', 'listing', 'default', '2');
 /* PRODUCTS */
 INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/catalog/layouts/navbar.php', 'catalog', 'header', 'products', 'default', '0');
 INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/catalog/layouts/logo_search.php', 'catalog', 'header', 'products', 'default', '1');
