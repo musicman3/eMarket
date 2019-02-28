@@ -62,5 +62,5 @@ body {font-family: 'Open Sans';}
 .category_block a:hover {color: #23527c;text-decoration: none;}
 #products .list-group-item {float: none;width: 100%;border: none;}
 #products .list-group-item img {float: left;margin-right: 10px;margin-bottom: 10px;}
-#products .list-text {text-align: justify;}
+#products .list-item-text {text-align: justify;}
 #listing .list-group-item {float: none;width: 100%;border: none;}
