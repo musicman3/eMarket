@@ -4,27 +4,27 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-// ПОДКЛЮЧАЕМ БОКС КОНТЕНТА
-foreach ($VIEW->layoutRouting('content') as $path) {
-    require_once (ROOT . $path);
-}
 ?>
 
-<h3><?php echo $product_category ?></h3>
+<h3><?php echo $products[1] ?></h3>
 
 <div class="contentText">
     <div id="products" class="row list-group">
 	<div class="item col-sm-4 list-group-item">
-	    <div class="productHolder">
-		<img src="/uploads/images/products/resize_2/<?php echo $products[7] ?>" class="img-responsive">
-		<h4 class="group inner list-item-heading"><?php echo $products[1] ?></h4>
-		<p class="group inner list-item-text"><?php echo $products[2] ?></p>
+		<img src="/uploads/images/products/resize_2/<?php echo $products[7] ?>" class="img-responsive list-group-image">
+		<?php echo $products[2] ?>
 		<div class="clearfix"></div>
 		<div class="row button">
 		    <div class="col-xs-6"><button type="button" class="btn btn-default"><?php echo $product_price ?></button></div>
 		    <div class="col-xs-6 text-right"><a id="btn1" href="#" class="btn btn-primary"><span class="cart"></span> Add to Cart</a></div>
 		</div>
-	    </div>
 	</div>
     </div>
 </div>
+
+<?php
+// ПОДКЛЮЧАЕМ БОКС КОНТЕНТА
+foreach ($VIEW->layoutRouting('content') as $path) {
+    require_once (ROOT . $path);
+}
+?>
