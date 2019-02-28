@@ -4,6 +4,11 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+// ПОДКЛЮЧАЕМ БОКС КОНТЕНТА
+foreach ($VIEW->layoutRouting('content') as $path) {
+    require_once (ROOT . $path);
+}
+
 ?>
 
 <h3>Name Categories</h3>

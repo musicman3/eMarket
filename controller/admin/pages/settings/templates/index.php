@@ -18,7 +18,7 @@ if ($VALID->inGET('layout_pages_templates')) {
         $select_page = $VALID->inGET('layout_pages_templates');
     }
 } else {
-    $select_page = 'all';
+    $select_page = 'catalog';
 }
 
 if ($VALID->inGET('name_templates')) {

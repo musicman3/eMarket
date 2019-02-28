@@ -3,7 +3,11 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |    
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-//$DEBUG->trace($PRODUCTS->productData($VALID->inGET('id'))[0][7]);
+
+// ПОДКЛЮЧАЕМ БОКС КОНТЕНТА
+foreach ($VIEW->layoutRouting('content') as $path) {
+    require_once (ROOT . $path);
+}
 ?>
 
 <h3><?php echo $product_category ?></h3>
