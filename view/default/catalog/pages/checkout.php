@@ -16,7 +16,7 @@
 			<td class="text-center"><a href="/"><img class="img-thumbnail" src="2product50x59.jpg"></a></td>
 			<td class="text-left"><a href="/">Название товара</a></td>
 			<td class="text-left">
-			    <div style="max-width: 200px;" class="input-group btn-block">
+			    <div class="input-group btn-block">
 				<input type="text" class="form-control quantity" size="1" value="1" name="quantity">
 				<span class="input-group-btn">
 				    <button class="btn btn-primary" data-toggle="tooltip" title="" type="submit" data-original-title="Update"><span class="glyphicon glyphicon-refresh"></span></button>

@@ -65,3 +65,4 @@ body {font-family: 'Open Sans';}
 #products .list-item-text, #listing .list-item-text {text-align: justify;}
 #checkout td {vertical-align: middle;}
 #checkout .button {padding-bottom: 10px;}
+#checkout .btn-block {max-width: 150px;}
