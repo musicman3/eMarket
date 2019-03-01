@@ -69,51 +69,49 @@ class Products {
      * Данные стоимости товара
      *
      * @param string $price (цена)
+     * @param array $CURRENCIES (данные по валюте)
      * @param string $format (выводить стоимость в форматированном виде: 0 - полное наим., 1- сокращ. наим., 2 - знак валюты, 3 - ISO код)
      * @return array $price (данные по стоимости)
      */
-    public function productPrice($price, $format = null) {
-        $PDO = new \eMarket\Core\Pdo;
-
-        $currencies = $PDO->getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND default_value=?", [lang('#lang_all')[0], 1])[0];
+    public function productPrice($price, $CURRENCIES, $format = null) {
         
         if ($format == 0) {
-            if ($currencies[8] == 'left') {
-                return $price_return = $currencies[1] . ' ' . number_format($price, $currencies[9], lang('currency_separator'), lang('currency_group_separator'));
+            if ($CURRENCIES[8] == 'left') {
+                return $price_return = $CURRENCIES[1] . ' ' . number_format($price, $CURRENCIES[9], lang('currency_separator'), lang('currency_group_separator'));
             }
-            if ($currencies[8] == 'right') {
-                return $price_return = number_format($price, $currencies[9], lang('currency_separator'), lang('currency_group_separator')) . ' ' . $currencies[1];
+            if ($CURRENCIES[8] == 'right') {
+                return $price_return = number_format($price, $CURRENCIES[9], lang('currency_separator'), lang('currency_group_separator')) . ' ' . $CURRENCIES[1];
             }
         }
 
         if ($format == 1) {
-            if ($currencies[8] == 'left') {
-                return $price_return = $currencies[2] . ' ' . number_format($price, $currencies[9], lang('currency_separator'), lang('currency_group_separator'));
+            if ($CURRENCIES[8] == 'left') {
+                return $price_return = $CURRENCIES[2] . ' ' . number_format($price, $CURRENCIES[9], lang('currency_separator'), lang('currency_group_separator'));
             }
-            if ($currencies[8] == 'right') {
-                return $price_return = number_format($price, $currencies[9], lang('currency_separator'), lang('currency_group_separator')) . ' ' . $currencies[2];
+            if ($CURRENCIES[8] == 'right') {
+                return $price_return = number_format($price, $CURRENCIES[9], lang('currency_separator'), lang('currency_group_separator')) . ' ' . $CURRENCIES[2];
             }
         }
 
         if ($format == 2) {
-            if ($currencies[8] == 'left') {
-                return $price_return = $currencies[7] . ' ' . number_format($price, $currencies[9], lang('currency_separator'), lang('currency_group_separator'));
+            if ($CURRENCIES[8] == 'left') {
+                return $price_return = $CURRENCIES[7] . ' ' . number_format($price, $CURRENCIES[9], lang('currency_separator'), lang('currency_group_separator'));
             }
-            if ($currencies[8] == 'right') {
-                return $price_return = number_format($price, $currencies[9], lang('currency_separator'), lang('currency_group_separator')) . ' ' . $currencies[7];
+            if ($CURRENCIES[8] == 'right') {
+                return $price_return = number_format($price, $CURRENCIES[9], lang('currency_separator'), lang('currency_group_separator')) . ' ' . $CURRENCIES[7];
             }
         }
         
         if ($format == 3) {
-            if ($currencies[8] == 'left') {
-                return $price_return = $currencies[3] . ' ' . number_format($price, $currencies[9], lang('currency_separator'), lang('currency_group_separator'));
+            if ($CURRENCIES[8] == 'left') {
+                return $price_return = $CURRENCIES[3] . ' ' . number_format($price, $CURRENCIES[9], lang('currency_separator'), lang('currency_group_separator'));
             }
-            if ($currencies[8] == 'right') {
-                return $price_return = number_format($price, $currencies[9], lang('currency_separator'), lang('currency_group_separator')) . ' ' . $currencies[3];
+            if ($CURRENCIES[8] == 'right') {
+                return $price_return = number_format($price, $CURRENCIES[9], lang('currency_separator'), lang('currency_group_separator')) . ' ' . $CURRENCIES[3];
             }
         }
 
-        return number_format($price, $currencies[9], lang('currency_separator'), lang('currency_group_separator'));
+        return number_format($price, $CURRENCIES[9], lang('currency_separator'), lang('currency_group_separator'));
     }
 
 }

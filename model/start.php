@@ -24,5 +24,7 @@ $AUTORIZE->sessionCatalog();
 require_once('router_lang.php');
 // Считаем количество языков
 $LANG_COUNT = count(lang('#lang_all'));
+// Данные по текущей валюте
+$CURRENCIES = $PDO->getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND default_value=?", [lang('#lang_all')[0], 1])[0];
 
 ?>

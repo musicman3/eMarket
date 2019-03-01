@@ -23,7 +23,7 @@
                         <h5 class="text-center grid-item-heading"><a href="/products/?id=<?php echo $value[0]; ?>"><?php echo $value[1]; ?></a></h5>
                         <div class="clearfix"></div>
                         <div class="row button">
-                            <div class="col-xs-6"><button type="button" class="btn btn-default"><?php echo $PRODUCTS->productPrice($value[12], 1) ?></button></div>
+                            <div class="col-xs-6"><button type="button" class="btn btn-default"><?php echo $PRODUCTS->productPrice($value[12], $CURRENCIES, 1) ?></button></div>
                             <div class="col-xs-6 text-right"><a id="btn1" href="<?php echo $value[0]; ?>" class="btn btn-primary">Buy Now</a></div>
                         </div>
                     </div>
