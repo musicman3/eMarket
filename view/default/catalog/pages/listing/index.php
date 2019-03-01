@@ -15,17 +15,19 @@ foreach ($VIEW->layoutRouting('content') as $path) {
 
 <div class="contentText">
     <div id="listing" class="row list-group">
+        <?php foreach ($products as $value) { ?>
 	<div class="list-group-item">
 	    <div class="productHolder">
-		<a href="#"><img src="images.jpg" alt="" title="" class="img-responsive list-group-image"></a>
-		<h4 class="list-item-heading"><a href="#">Name</a></h4>
+		<a href="/products/?id=<?php echo $value[0] ?>"><img src="/uploads/images/products/resize_0/<?php echo $value[2] ?>" alt="" title="" class="img-responsive list-group-image"></a>
+		<h4 class="list-item-heading"><a href="/products/?id=<?php echo $value[0] ?>"><?php echo $value[1] ?></a></h4>
 		<p class="list-item-text">Text…</p>
 		<div class="clearfix"></div>
 		<div class="row button">
-		    <div class="col-xs-6"><button type="button" class="btn btn-default">Price</button></div>
+		    <div class="col-xs-6"><button type="button" class="btn btn-default"><?php echo $PRODUCTS->productPrice($value[3], 1) ?></button></div>
 		    <div class="col-xs-6 text-right"><a id="btn1" href="#" class="btn btn-primary"><span class="cart"></span> Buy Now</a></div>
 		</div>
 	    </div>
 	</div>
+        <?php } ?>  
     </div>
 </div>

@@ -68,14 +68,13 @@ class Products {
     /**
      * Данные стоимости товара
      *
-     * @param string $id (id товара)
+     * @param string $price (цена)
      * @param string $format (выводить стоимость в форматированном виде: 0 - полное наим., 1- сокращ. наим., 2 - знак валюты, 3 - ISO код)
      * @return array $price (данные по стоимости)
      */
-    public function productPrice($id, $format = null) {
+    public function productPrice($price, $format = null) {
         $PDO = new \eMarket\Core\Pdo;
 
-        $price = $PDO->getCell("SELECT price FROM " . TABLE_PRODUCTS . " WHERE language=? AND id=?", [lang('#lang_all')[0], $id]);
         $currencies = $PDO->getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND default_value=?", [lang('#lang_all')[0], 1])[0];
         
         if ($format == 0) {

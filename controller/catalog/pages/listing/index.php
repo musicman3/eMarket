@@ -8,7 +8,7 @@
 require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 /* ------------------------------------------ */
 
-$products_new = $PRODUCTS->viewNew(10);
+$products = $PDO->getColRow("SELECT id, name, logo_general, price FROM " . TABLE_PRODUCTS . " WHERE language=? AND parent_id=? ORDER BY date_added DESC", [lang('#lang_all')[0], $VALID->inGET('category_id')]);
 
 //$DEBUG->trace($image);
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
