@@ -63,4 +63,5 @@ body {font-family: 'Open Sans';}
 #products .list-group-item, #listing .list-group-item {float: none;width: 100%;border: none;}
 #products .list-group-item img, #listing .list-group-item img {float: left;margin-right: 10px;margin-bottom: 10px;}
 #products .list-item-text, #listing .list-item-text {text-align: justify;}
-#listing .list-item-heading {}
+#checkout td {vertical-align: middle;}
+#checkout .button {padding-bottom: 10px;}
