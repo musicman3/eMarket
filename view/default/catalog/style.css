@@ -66,3 +66,4 @@ body {font-family: 'Open Sans';}
 #checkout td {vertical-align: middle;}
 #checkout .button {padding-bottom: 10px;}
 #checkout .btn-block {max-width: 150px;}
+#checkout .table-bordered > tbody > tr > td {border:0;}
