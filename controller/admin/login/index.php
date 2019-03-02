@@ -12,7 +12,7 @@ session_start();
 
 if ($VALID->inGET('logout') == 'ok') {
     session_destroy();    //удаляем текущую сессию
-    header('Location: /controller/admin/login/');    //перенаправляем на login.php
+    header('Location: /controller/admin/login/');    //перенаправляем на авторизацию
 }
 
 if ($VALID->inPOST('autorize') == 'ok') {
@@ -26,7 +26,7 @@ if ($VALID->inPOST('autorize') == 'ok') {
     } else {
         $_SESSION['login'] = $VALID->inPOST('login');
         $_SESSION['pass'] = $HASH;
-        header('Location: /controller/admin/index.php');    // else: редирект на index.php
+        header('Location: /controller/admin/');    // Если все успешно, то редирект в административную часть
     }
 }
 
