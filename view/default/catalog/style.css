@@ -61,8 +61,9 @@ body {font-family: 'Open Sans';}
 .category_block a {color: #4586bd;text-decoration: none;}
 .category_block a:hover {color: #23527c;text-decoration: none;}
 #products .list-group-item, #listing .list-group-item {float: none;width: 100%;border: none;}
-#products .list-group-item img, #listing .list-group-item img {float: left;margin-right: 10px;margin-bottom: 10px;}
+#products .list-group-item img, #listing .list-group-item img {float: left;margin: 0 10px 10px 0;}
 #products .list-item-text, #listing .list-item-text {text-align: justify;}
+#listing .caption {margin-top:-10px;}
 #checkout .button {padding-bottom: 10px;}
 #checkout .btn-block {max-width: 150px;}
 #checkout .table-bordered > tbody > tr > td {border:0;vertical-align: middle;}
