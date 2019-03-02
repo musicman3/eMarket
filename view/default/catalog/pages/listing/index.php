@@ -25,8 +25,8 @@ foreach ($VIEW->layoutRouting('content') as $path) {
 		</div>
 		<div class="clearfix"></div>
 		<div class="row button">
-		    <div class="col-md-6 col-xs-12"><button type="button" class="btn btn-default"><?php echo $PRODUCTS->productPrice($value[3], $CURRENCIES, 1) ?></button></div>
-		    <div class="col-md-6 col-xs-12 text-right"><a id="btn1" href="#" class="btn btn-primary"><span class="cart"></span> Buy Now</a></div>
+		    <div class="col-xs-6"><button type="button" class="btn btn-default"><?php echo $PRODUCTS->productPrice($value[3], $CURRENCIES, 1) ?></button></div>
+		    <div class="col-xs-6 text-right"><a id="btn1" href="#" class="btn btn-primary"><span class="cart"></span> Buy Now</a></div>
 		</div>
 	    </div>
 	</div>
