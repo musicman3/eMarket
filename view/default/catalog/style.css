@@ -46,9 +46,6 @@ body {font-family: 'Open Sans';}
 .navbar-toggle {margin-top: 0;margin-bottom: 0;}
 @media (max-width:767px) {.navbar-nav .dropdown-menu .link > li > a {padding: 5px 10px 5px 40px;}}
 #columnLeft .panel-heading, #columnRight .panel-heading {font-size: 16px;}
-.list-group-item, .grid-group-item {margin-bottom: 20px;}
-.productHolder, .categoriesHolder {border: 1px solid #dddddd;padding: 10px;border-radius: 4px;}
-.grid-item {display: flex;align-items: center;justify-content: center;flex-direction: row;}
 .category_block ul {padding: 0;margin: 0;}
 .category_block ul ul {padding: 0 0 0 10px;}
 .category_block ul li {list-style: none;}
@@ -60,10 +57,20 @@ body {font-family: 'Open Sans';}
 .category_block .hitarea.collapsable-hitarea:before {font-family: 'Glyphicons Halflings';content: '\2212';color: #4586bd;opacity: 0.7;font-size: 10px;vertical-align: middle;}
 .category_block a {color: #4586bd;text-decoration: none;}
 .category_block a:hover {color: #23527c;text-decoration: none;}
-#products .list-group-item, #listing .list-group-item {float: none;width: 100%;border: none;}
-#products .list-group-item img, #listing .list-group-item img {float: left;margin: 0 10px 10px 0;}
-#products .list-item-text, #listing .list-item-text {text-align: justify;}
-#listing .caption {margin-top:-10px;}
+#categories_listing .categoriesHolder {border: 1px solid #dddddd;padding: 10px;border-radius: 4px;}
+#new_products .grid-group-item, #listing .grid-group-item, #products .grid-group-item {margin-bottom: 20px;}
+#new_products .productHolder, #listing .productHolder {border: 1px solid #dddddd;padding: 10px;border-radius: 4px;}
+#new_products .grid-item {display: flex;align-items: center;justify-content: center;flex-direction: row;}
+#products .list-group-item {float: none;width: 100%;border: none;margin-bottom: 20px;}
+#products .list-group-item img {float: left;margin: 0 10px 10px 0;}
+#products .item-text {text-align: justify;}
+#listing .list-group-item {border: none;padding: 0px 15px;margin-bottom: 20px;}
+#listing .list-group-item img {float: left;margin: 0 10px 10px 0;}
+#listing .item-text {text-align: justify;}
+#listing .list-group-item .caption {margin-top:-10px;}
+#listing .grid-group-item .item-heading {text-align: center;}
+#listing .grid-group-item .item-text {display: none;}
+#listing .grid-group-item img {display: block;margin-right: auto;margin-left: auto;}
 #checkout .button {padding-bottom: 10px;}
 #checkout .btn-block {max-width: 150px;}
 #checkout .table-bordered > tbody > tr > td {border:0;vertical-align: middle;}

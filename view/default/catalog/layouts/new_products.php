@@ -15,7 +15,7 @@
 <?php if (count($products_new) > 0) { ?>
     <div class="contentText">
         <h4>New Products</h4>
-        <div id="new_products" class="row grid-group">
+        <div id="new_products" class="row">
             <?php foreach ($products_new as $value) { ?>
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item">
                     <div class="productHolder">

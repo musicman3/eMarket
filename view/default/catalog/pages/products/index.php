@@ -9,7 +9,7 @@
 <h3><?php echo $products[1] ?></h3>
 
 <div class="contentText">
-    <div id="products" class="row list-group">
+    <div id="products" class="row">
 	<div class="list-group-item">
 	    <div class="col-xs-3"><img src="/uploads/images/products/resize_2/<?php echo $products[7] ?>" class="img-responsive list-group-image"></div>
 	    <div class="col-xs-9 list-item-text"><?php echo $products[2] ?></div>

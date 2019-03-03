@@ -11,17 +11,64 @@ foreach ($VIEW->layoutRouting('content') as $path) {
 
 ?>
 
+<script type="text/javascript" language="javascript">
+    $(window).load(function () {
+        $(".grid-group-item").simpleEQH();
+        $(".grid-item-heading").simpleEQH();
+    });
+</script>
+<script>
+$(document).ready(function() {
+  <?php 
+  if (@$_COOKIE['cookie_list'] == 'list' ) {
+    echo "$('#listing .item').addClass('list-group-item');";
+  }
+  elseif (@$_COOKIE['cookie_list'] == 'grid') {
+    echo "$('#listing .item').addClass('grid-group-item');";
+  }
+  ?>
+
+  $('#list').click(function(event){
+    event.preventDefault();
+    $('#listing .item').removeClass('col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item');
+    $('#listing .item').addClass('col-xs-12 list-group-item');
+    $.cookie('cookie_list', 'list', {
+    expires: 5,
+    path: '/',
+    });
+  });
+  
+    $('#grid').click(function(event){
+    event.preventDefault();
+    $('#listing .item').removeClass('col-xs-12 list-group-item');
+    $('#listing .item').addClass('col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item');
+      $.cookie('cookie_list', 'grid', {
+    expires: 5,
+    path: '/',
+    });
+    });
+  
+  
+});
+</script>
+
 <h3>Name Categories</h3>
 
 <div class="contentText">
-    <div id="listing" class="row list-group">
+    <div class="well well-sm">
+        <div class="btn-group">
+            <a href="#" id="list" class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span></a>
+            <a href="#" id="grid" class="btn btn-default"><span class="glyphicon glyphicon-th"></span></a>
+        </div>
+    </div>
+    <div id="listing" class="row">
         <?php foreach ($products as $value) { ?>
-	<div class="list-group-item">
+	<div class="item col-xs-12 list-group-item">
 	    <div class="productHolder">
-		<a href="/products/?id=<?php echo $value[0] ?>"><img src="/uploads/images/products/resize_1/<?php echo $value[2] ?>" class="img-responsive list-group-image"></a>
+		<a href="/products/?id=<?php echo $value[0] ?>"><img src="/uploads/images/products/resize_1/<?php echo $value[2] ?>" class="img-responsive"></a>
 		<div class="caption">
-		    <h4 class="list-item-heading"><a href="/products/?id=<?php echo $value[0] ?>"><?php echo $value[1] ?></a></h4>
-		    <div class="list-item-text"><?php echo $value[4] ?></div>
+		    <h4 class="item-heading"><a href="/products/?id=<?php echo $value[0] ?>"><?php echo $value[1] ?></a></h4>
+		    <div class="item-text"><?php echo $value[4] ?></div>
 		</div>
 		<div class="clearfix"></div>
 		<div class="row button">
