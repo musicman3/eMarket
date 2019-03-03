@@ -57,14 +57,13 @@ class Autorize {
     public function sessionCatalog() {
 
         $SET = new \eMarket\Core\Set;
-        $PDO = new \eMarket\Core\Pdo;
         if ($SET->path() == 'catalog' && $SET->titleDir() != 'login') {
 
             session_start();
 
             if (!isset($_SESSION['login'])) { // Если нет пользователя
                 session_destroy();
-                header('Location: /controller/admin/login/'); // переадресация на LOGIN
+                header('Location: /controller/admin/?route=login'); // переадресация на LOGIN
             } else {
                 $TOKEN_CATALOG = $_SESSION['pass']; // создаем токен для ajax и пр.
                 //Язык авторизованного пользователя
