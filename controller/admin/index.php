@@ -8,8 +8,10 @@
 require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 /* ------------------------------------------ */
 
-if ($VALID->inGET('route')){
+if ($VALID->inGET('route') != '') {
     require_once (ROOT . '/controller/admin/pages/' . $VALID->inGET('route') . '/index.php');
+} else {
+    require_once (ROOT . '/controller/admin/pages/dashboard/index.php');
 }
 
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */

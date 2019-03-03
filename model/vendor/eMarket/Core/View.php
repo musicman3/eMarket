@@ -1,5 +1,4 @@
 <?php
-
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -29,9 +28,9 @@ class View {
 
         return $str;
     }
-    
+
     /**
-     * Роутинг данных из View
+     * Роутинг данных из View для административной панели
      *
      * @return string $str (роутинг на view)
      */
@@ -39,17 +38,20 @@ class View {
 
         $SET = new \eMarket\Core\Set;
         $VALID = new \eMarket\Core\Valid;
-
-        $str = str_replace('controller', 'view/' . $SET->template(), getenv('DOCUMENT_ROOT') . '/controller/' . $SET->path() . '/pages/' . $VALID->inGET('route') . '/index.php');
-        if (file_exists ($str)) {
+        if ($VALID->inGET('route') != '') {
+            $str = str_replace('controller', 'view/' . $SET->template(), getenv('DOCUMENT_ROOT') . '/controller/' . $SET->path() . '/pages/' . $VALID->inGET('route') . '/index.php');
+        } else {
+            $str = str_replace('controller', 'view/' . $SET->template(), getenv('DOCUMENT_ROOT') . '/controller/' . $SET->path() . '/pages/dashboard/index.php');
+        }
+        if (file_exists($str)) {
             return $str;
-        }else{
+        } else {
             return false;
         }
     }
-    
+
     /**
-     * Роутинг данных из View
+     * Роутинг данных из View для каталога
      *
      * @return string $str (роутинг на view)
      */
@@ -57,17 +59,17 @@ class View {
 
         $SET = new \eMarket\Core\Set;
         $VALID = new \eMarket\Core\Valid;
-        if ($VALID->inGET('route') != ''){
-        $str = str_replace('controller', 'view/' . $SET->template(), getenv('DOCUMENT_ROOT') . '/controller/' . $SET->path() . '/pages/' . $VALID->inGET('route') . '/index.php');
-        }else{
+        if ($VALID->inGET('route') != '') {
+            $str = str_replace('controller', 'view/' . $SET->template(), getenv('DOCUMENT_ROOT') . '/controller/' . $SET->path() . '/pages/' . $VALID->inGET('route') . '/index.php');
+        } else {
             $str = str_replace('controller', 'view/' . $SET->template(), getenv('DOCUMENT_ROOT') . '/controller/' . $SET->path() . '/pages/catalog/index.php');
         }
-        if (file_exists ($str)) {
+        if (file_exists($str)) {
             return $str;
-        }else{
+        } else {
             return false;
         }
-    }     
+    }
 
     /**
      * Вывод отсортированных слоев в конкретную позицию шаблона
