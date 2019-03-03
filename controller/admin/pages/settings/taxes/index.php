@@ -5,9 +5,6 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-/* >-->-->-->  CONNECT PAGE START  <--<--<--< */
-require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
-/* ------------------------------------------ */
 // 
 // Если нажали на кнопку Добавить
 if ($VALID->inPOST('add')) {
@@ -56,7 +53,4 @@ $finish = $navigate[1];
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
 $JS_END = __DIR__;
 
-/* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
-require_once(ROOT . '/model/end.php');
-/* ------------------------------------------ */
 ?>

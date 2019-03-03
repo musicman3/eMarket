@@ -4,9 +4,6 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-/* >-->-->-->  CONNECT PAGE START  <--<--<--< */
-require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
-/* ------------------------------------------ */
 
 session_start();
 
@@ -41,9 +38,5 @@ if ($VALID->inPOST('install') == 'ok') {
     session_destroy();    //удаляем текущую сессию
     session_start();
 }
-
-/* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
-require_once(ROOT . '/model/end.php');
-/* ------------------------------------------ */
 
 ?>

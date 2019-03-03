@@ -4,10 +4,6 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-
-/* >-->-->-->  CONNECT PAGE START  <--<--<--< */
-require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
-/* ------------------------------------------ */
 // 
 // КОЛИЧЕСТВО СТРОК НА СТРАНИЦЕ
 if ($VALID->inPOST('lines_on_page')) {
@@ -34,7 +30,4 @@ if ($VALID->inPOST('session_expr_time')) {
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
 $JS_END = __DIR__;
 
-/* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
-require_once(ROOT . '/model/end.php');
-/* ------------------------------------------ */
 ?>

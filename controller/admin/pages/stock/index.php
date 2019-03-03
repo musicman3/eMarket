@@ -5,9 +5,6 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-/* >-->-->-->  CONNECT PAGE START  <--<--<--< */
-require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
-/* ------------------------------------------ */
 //
 $resize_param = [];
 array_push($resize_param, ['125', '94']); // ширина, высота
@@ -80,12 +77,8 @@ $navigate = $NAVIGATION->getLink($count_lines_merge, $lines_on_page, 1);
 $start = $navigate[0];
 $finish = $navigate[1];
 
-//$DEBUG->trace($PRODUCTS->viewNew(2));
 // КОНЕЦ-> КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
 $JS_END = __DIR__;
 
-/* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
-require_once(ROOT . '/model/end.php');
-/* ------------------------------------------ */
 ?>

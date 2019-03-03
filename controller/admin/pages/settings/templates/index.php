@@ -4,10 +4,6 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-/* >-->-->-->  CONNECT PAGE START  <--<--<--< */
-require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
-/* ------------------------------------------ */
-
 $layout_pages = scandir(ROOT . '/controller/catalog/pages/');
 $name_template = scandir(ROOT . '/view/');
 
@@ -166,9 +162,5 @@ if ($VALID->inGET('layout_header') OR $VALID->inGET('layout_header_basket')) {
 //
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
 $JS_END = __DIR__;
-
-/* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
-require_once(ROOT . '/model/end.php');
-/* ------------------------------------------ */
 
 ?>
