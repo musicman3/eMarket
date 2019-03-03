@@ -32,6 +32,6 @@
 <?php
 }
 // Подгружаем Ajax Добавить, Редактировать, Удалить
-$AJAX->action('?route=settings/length');
+$AJAX->action('');
 ?>
 

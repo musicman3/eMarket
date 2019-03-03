@@ -44,7 +44,7 @@
                 var arrList9 = $('#sortable9 li').map(function () {
                     return $(this).attr('id');
                 }).get();
-                jQuery.get('?route=settings/templates',
+                jQuery.get('',
                         {layout_header: arrList1,
                             layout_header_basket: arrList2,
                             layout_content: arrList3,
@@ -97,7 +97,7 @@
                 var arrList9 = $('#sortable9 li').map(function () {
                     return $(this).attr('id');
                 }).get();
-                jQuery.get('?route=settings/templates',
+                jQuery.get('',
                         {layout_header: arrList1,
                             layout_header_basket: arrList2,
                             layout_content: arrList3,
@@ -151,7 +151,7 @@
                     return $(this).attr('id');
                 }).get();
                 //alert(arrList2);
-                jQuery.get('?route=settings/templates',
+                jQuery.get('',
                         {layout_header: arrList1,
                             layout_header_basket: arrList2,
                             layout_content: arrList3,
@@ -204,7 +204,7 @@
                 var arrList9 = $('#sortable9 li').map(function () {
                     return $(this).attr('id');
                 }).get();
-                jQuery.get('?route=settings/templates',
+                jQuery.get('',
                         {layout_header: arrList1,
                             layout_header_basket: arrList2,
                             layout_content: arrList3,
