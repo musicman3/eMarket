@@ -32,6 +32,6 @@
 <?php
 }
 // Подгружаем Ajax Добавить, Редактировать, Удалить
-$AJAX->action('/controller/admin/pages/settings/length/index.php');
+$AJAX->action('?route=settings/length');
 ?>
 
