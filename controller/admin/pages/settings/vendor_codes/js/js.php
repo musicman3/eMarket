@@ -29,6 +29,6 @@
 <?php
 }
 // Подгружаем Ajax Добавить, Редактировать, Удалить
-$AJAX->action('/controller/admin/pages/settings/vendor_codes/index.php');
+$AJAX->action('');
 ?>
 
