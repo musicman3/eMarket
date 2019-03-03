@@ -32,6 +32,6 @@
 <?php
 }
 // Подгружаем Ajax Добавить, Редактировать, Удалить
-$AJAX->action('/controller/admin/pages/settings/weight/index.php');
+$AJAX->action('');
 ?>
 
