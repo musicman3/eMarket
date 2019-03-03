@@ -46,7 +46,7 @@
     <?php
 }
 // Подгружаем Ajax Добавить, Редактировать, Удалить
-$AJAX->action('/controller/admin/pages/settings/currencies/index.php');
+$AJAX->action('?route=settings/currencies');
 
 ?>
 
