@@ -26,6 +26,6 @@
 <?php
 }
 // Подгружаем Ajax Добавить, Редактировать, Удалить
-$AJAX->action('/controller/admin/pages/settings/taxes/index.php');
+$AJAX->action('?route=settings/taxes');
 ?>
 
