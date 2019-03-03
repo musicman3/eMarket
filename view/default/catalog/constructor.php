@@ -49,7 +49,7 @@
 
                     <div id="bodyContent" class="col-md-10 col-md-push-2">
                         <?php
-                        require_once($VIEW->routing());
+                        require_once($VIEW->routingCatalog());
                         ?>
                     </div>
 
@@ -57,7 +57,7 @@
 
                     <div id="bodyContent" class="col-xs-12">
                         <?php
-                        require_once($VIEW->routing());
+                        require_once($VIEW->routingCatalog());
                         ?>
                     </div>
 

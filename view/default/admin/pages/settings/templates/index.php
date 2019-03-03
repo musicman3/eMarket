@@ -53,13 +53,9 @@
                         <input type="hidden" name="name_templates" value="<?php echo $select_template ?>" />
                         <select name="layout_pages_templates" id="layout_pages_templates" class="input-sm form-control" onchange="selectPage(event)">
                             <option>Все страницы</option>
-                            <?php if ($select_page == 'catalog' OR ! $VALID->inGET('layout_pages_templates')) { ?>
-                                <option selected>catalog</option>
-                            <?php } else {
-
-                                ?>
-                                <option>catalog</option>
-                                <?php
+                            <?php
+                            if (!$VALID->inGET('layout_pages_templates')) {
+                                $select_page = 'catalog';
                             }
                             foreach ($layout_pages as $path) {
                                 if ($path != '.' && $path != '..') {
