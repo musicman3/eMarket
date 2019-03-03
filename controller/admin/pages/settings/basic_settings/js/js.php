@@ -6,5 +6,5 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 // Подгружаем Ajax Добавить, Редактировать, Удалить
-$AJAX->action('index.php');
+$AJAX->action('?route=settings/basic_settings');
 ?>
