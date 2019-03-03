@@ -4,7 +4,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-// ПОДКЛЮЧАЕМ БОКС КОНТЕНТА
+// ПОДКЛЮЧАЕМ КОНТЕНТ
 foreach ($VIEW->layoutRouting('content') as $path) {
     require_once (ROOT . $path);
 }

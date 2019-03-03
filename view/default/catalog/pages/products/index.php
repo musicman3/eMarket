@@ -25,7 +25,7 @@
 </div>
 
 <?php
-// ПОДКЛЮЧАЕМ БОКС КОНТЕНТА
+// ПОДКЛЮЧАЕМ КОНТЕНТ
 foreach ($VIEW->layoutRouting('content') as $path) {
     require_once (ROOT . $path);
 }

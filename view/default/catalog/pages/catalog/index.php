@@ -9,7 +9,7 @@
 <h3>eMarket Bootstrap 3 Demo</h3>
 
 <?php
-// ПОДКЛЮЧАЕМ БОКС КОНТЕНТА
+// ПОДКЛЮЧАЕМ КОНТЕНТ
 foreach ($VIEW->layoutRouting('content') as $path) {
     require_once (ROOT . $path);
 }
