@@ -30,6 +30,6 @@
 <?php
 }
 // Подгружаем Ajax Добавить, Редактировать, Удалить
-$AJAX->action('/controller/admin/pages/settings/units/index.php');
+$AJAX->action('');
 ?>
 
