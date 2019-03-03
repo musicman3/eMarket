@@ -44,7 +44,7 @@ if (isset($_SESSION['buffer'])) {
         });
         // Установка синхронного запроса для jQuery.ajax
         jQuery.ajaxSetup({async: false});
-        jQuery.post('/controller/admin/pages/stock/index.php',
+        jQuery.post('?route=stock',
                 {token_ajax: token,
                     ids: ids.join()});
         // Повторный вызов функции для нормального обновления страницы
@@ -83,7 +83,7 @@ if (isset($_SESSION['buffer'])) {
                     $.ajax({
                         method: 'POST',
                         dataType: 'text',
-                        url: '/controller/admin/pages/stock/index.php',
+                        url: '?route=stock',
                         data: ({
                             itemName: itemKey, //название ключа из меню (edit, delete, copy и т.п.)
                             ids2: opt.$trigger.attr("id")}), //id строки
@@ -288,12 +288,12 @@ if (isset($_SESSION['buffer'])) {
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                         idArray[i] = this.id;
                                 });
-                                jQuery.post('/controller/admin/pages/stock/index.php',
+                                jQuery.post('?route=stock',
                                         {idsx_statusOn_id: idArray,
                                             idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
                                             idsx_statusOn_key: itemKey});
                                 // Отправка запроса для обновления страницы
-                                jQuery.get('/controller/admin/pages/stock/index.php',
+                                jQuery.get('?route=stock',
                                         {parent_down: <?php echo $parent_id ?>},
                                         AjaxSuccess);
                                 // Обновление страницы
@@ -330,12 +330,12 @@ if (isset($_SESSION['buffer'])) {
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                         idArray[i] = this.id;
                                 });
-                                jQuery.post('/controller/admin/pages/stock/index.php',
+                                jQuery.post('?route=stock',
                                         {idsx_statusOff_id: idArray,
                                             idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
                                             idsx_statusOff_key: itemKey});
                                 // Отправка запроса для обновления страницы
-                                jQuery.get('/controller/admin/pages/stock/index.php',
+                                jQuery.get('?route=stock',
                                         {parent_down: <?php echo $parent_id ?>},
                                         AjaxSuccess);
                                 // Обновление страницы
@@ -369,7 +369,7 @@ if (isset($_SESSION['buffer'])) {
                                 // Установка синхронного запроса для jQuery.ajax
                                 jQuery.ajaxSetup({async: false});
                                 // Отправка маркера на очитку буффера
-                                jQuery.post('/controller/admin/pages/stock/index.php',
+                                jQuery.post('?route=stock',
                                         {idsx_cut_marker: 'cut'});
                                 // Отправка данных по каждой выделенной строке
                                 var idArray = [];
@@ -377,13 +377,13 @@ if (isset($_SESSION['buffer'])) {
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                         idArray[i] = this.id;
                                 });
-                                jQuery.post('/controller/admin/pages/stock/index.php',
+                                jQuery.post('?route=stock',
                                         {idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
                                             idsx_cut_id: idArray,
                                             parent_down: <?php echo $parent_id ?>,
                                             idsx_cut_key: itemKey});
                                 // Отправка запроса для обновления страницы
-                                jQuery.get('/controller/admin/pages/stock/index.php',
+                                jQuery.get('?route=stock',
                                         {parent_down: <?php echo $parent_id ?>},
                                         AjaxSuccess);
                                 // Обновление страницы
@@ -414,13 +414,13 @@ if (isset($_SESSION['buffer'])) {
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
                                 // Установка синхронного запроса для jQuery.ajax
                                 jQuery.ajaxSetup({async: false});
-                                jQuery.post('/controller/admin/pages/stock/index.php',
+                                jQuery.post('?route=stock',
                                         {idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
                                             parent_down: <?php echo $parent_id ?>,
                                             idsx_paste_key: itemKey});
 
                                 // Отправка запроса для обновления страницы
-                                jQuery.get('/controller/admin/pages/stock/index.php',
+                                jQuery.get('?route=stock',
                                         {parent_down: <?php echo $parent_id ?>,
                                             modify: 'update_ok'},
                                         AjaxSuccess);
@@ -456,11 +456,11 @@ if (isset($_SESSION['buffer'])) {
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                         idArray[i] = this.id;
                                 });
-                                jQuery.post('/controller/admin/pages/stock/index.php',
+                                jQuery.post('?route=stock',
                                         {delete: idArray,
                                             parent_down: <?php echo $parent_id ?>});
                                 // Отправка запроса для обновления страницы
-                                jQuery.get('/controller/admin/pages/stock/index.php',
+                                jQuery.get('?route=stock',
                                         {parent_down: <?php echo $parent_id ?>,
                                             modify: 'ok'},
                                         AjaxSuccess);
@@ -496,14 +496,14 @@ if (isset($_SESSION['buffer'])) {
         jQuery.ajaxSetup({async: false});
         jQuery.ajax({
             type: 'POST',
-            url: '/controller/admin/pages/stock/index.php',
+            url: '?route=stock',
             data: msg,
             beforeSend: function (data) {
                 $('#add').modal('hide');
             }
         });
         // Отправка запроса для обновления страницы
-        jQuery.get('/controller/admin/pages/stock/index.php',
+        jQuery.get('?route=stock',
                 {parent_down: <?php echo $parent_id ?>,
                     modify: 'update_ok'},
                 AjaxSuccess);
@@ -525,14 +525,14 @@ if (isset($_SESSION['buffer'])) {
         jQuery.ajaxSetup({async: false});
         jQuery.ajax({
             type: 'POST',
-            url: '/controller/admin/pages/stock/index.php',
+            url: '?route=stock',
             data: msg,
             beforeSend: function (data) {
                 $('#edit').modal('hide');
             }
         });
         // Отправка запроса для обновления страницы
-        jQuery.get('/controller/admin/pages/stock/index.php',
+        jQuery.get('?route=stock',
                 {parent_down: <?php echo $parent_id ?>,
                     modify: 'ok'},
                 AjaxSuccess);
@@ -558,14 +558,14 @@ if (isset($_SESSION['buffer'])) {
         jQuery.ajaxSetup({async: false});
         jQuery.ajax({
             type: 'POST',
-            url: '/controller/admin/pages/stock/index.php',
+            url: '?route=stock',
             data: msg,
             beforeSend: function (data) {
                 $('#add_product').modal('hide');
             }
         });
         // Отправка запроса для обновления страницы
-        jQuery.get('/controller/admin/pages/stock/index.php',
+        jQuery.get('?route=stock',
                 {parent_down: <?php echo $parent_id ?>,
                     modify: 'update_ok'},
                 AjaxSuccess);
@@ -587,14 +587,14 @@ if (isset($_SESSION['buffer'])) {
         jQuery.ajaxSetup({async: false});
         jQuery.ajax({
             type: 'POST',
-            url: '/controller/admin/pages/stock/index.php',
+            url: '?route=stock',
             data: msg,
             beforeSend: function (data) {
                 $('#edit_product').modal('hide');
             }
         });
         // Отправка запроса для обновления страницы
-        jQuery.get('/controller/admin/pages/stock/index.php',
+        jQuery.get('?route=stock',
                 {parent_down: <?php echo $parent_id ?>,
                     modify: 'update_ok'},
                 AjaxSuccess);
@@ -690,7 +690,7 @@ if (isset($_SESSION['buffer'])) {
 <script src="/ext/fastmd5/md5.min.js"></script>
 <?php
 // Подгружаем jQuery File Upload
-$AJAX->fileUpload('index.php', 'categories', $resize_param);
-$AJAX->fileUploadProduct('index.php', 'products', $resize_param_product);
+$AJAX->fileUpload('?route=stock', 'categories', $resize_param);
+$AJAX->fileUploadProduct('?route=stock', 'products', $resize_param_product);
 
 ?>

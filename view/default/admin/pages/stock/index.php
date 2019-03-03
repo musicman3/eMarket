@@ -117,6 +117,7 @@
                                                 <!-- Категории "ВВЕРХ" -->
                                                 <form>
                                                     <div>
+                                                        <input hidden name="route" value="stock">
                                                         <button name="parent_up" value="<?php echo $parent_id ?>" class="btn btn-default btn-xs" title="" action="index.php" formmethod="get"><span class="glyphicon glyphicon-option-horizontal"></span></button>
                                                     </div>
                                                 </form>
@@ -159,6 +160,7 @@
                                                     <!-- Неактивная категория "ВНИЗ" -->
                                                     <form>
                                                         <div>
+                                                            <input hidden name="route" value="stock">
                                                             <button name="parent_down" value="<?php echo $arr_merge['cat'][$start][0] ?>" class="btn btn-default btn-xs" title="<?php echo $arr_merge['cat'][$start][1] ?>" action="index.php" formmethod="get"><span class="glyphicon glyphicon-folder-open"> </span></button>
                                                         </div>
                                                     </form>
@@ -175,6 +177,7 @@
                                                     <!-- Активная категория "ВНИЗ" -->
                                                     <form>
                                                         <div>
+                                                            <input hidden name="route" value="stock">
                                                             <button name="parent_down" value="<?php echo $arr_merge['cat'][$start][0] ?>" class="btn btn-primary btn-xs" title="<?php echo $arr_merge['cat'][$start][1] ?>" action="index.php" formmethod="get"><span class="glyphicon glyphicon-folder-open"> </span></button>
                                                         </div>
                                                     </form>
@@ -259,6 +262,7 @@
                                         <!-- Категорий нет "ВВЕРХ" -->
                                         <form>
                                             <div>
+                                                <input hidden name="route" value="stock">
                                                 <button name="parent_up" value="<?php echo $parent_id ?>" class="btn btn-default btn-xs" title="" action="index.php" formmethod="get"><span class="glyphicon glyphicon-option-horizontal"></span></button>
                                             </div>
                                         </form>

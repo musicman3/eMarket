@@ -47,7 +47,6 @@
 
                                     <form id="form_delete_log" name="form_delete_log" action="javascript:void(null);" onsubmit="callDelete('_log')" enctype="multipart/form-data">
                                         <input hidden name="delete" value="delete">
-                                        <input hidden name="route" value="error_log">
                                         <?php if (count($lines) > $lines_on_page) { ?> <div class="left"> <?php } else { ?> <div class="right"> <?php } ?>
                                         <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button></div>
                                     </form>
