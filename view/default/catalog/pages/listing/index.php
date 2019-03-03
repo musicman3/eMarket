@@ -65,9 +65,9 @@ $(document).ready(function() {
         <?php foreach ($products as $value) { ?>
 	<div class="item col-xs-12 list-group-item">
 	    <div class="productHolder">
-		<a href="/products/?id=<?php echo $value[0] ?>"><img src="/uploads/images/products/resize_1/<?php echo $value[2] ?>" class="img-responsive"></a>
+		<a href="/?route=products&id=<?php echo $value[0] ?>"><img src="/uploads/images/products/resize_1/<?php echo $value[2] ?>" class="img-responsive"></a>
 		<div class="caption">
-		    <h4 class="item-heading"><a href="/products/?id=<?php echo $value[0] ?>"><?php echo $value[1] ?></a></h4>
+		    <h4 class="item-heading"><a href="/?route=products&id=<?php echo $value[0] ?>"><?php echo $value[1] ?></a></h4>
 		    <div class="item-text"><?php echo $value[4] ?></div>
 		</div>
 		<div class="clearfix"></div>
