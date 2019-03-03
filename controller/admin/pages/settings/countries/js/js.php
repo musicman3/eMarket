@@ -31,5 +31,5 @@
 <?php
 }
 // Подгружаем Ajax Добавить, Редактировать, Удалить
-$AJAX->action('/controller/admin/pages/settings/countries/index.php');
+$AJAX->action('?route=settings/countries');
 ?>

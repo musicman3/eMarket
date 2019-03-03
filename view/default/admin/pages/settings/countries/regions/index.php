@@ -20,7 +20,7 @@
                     <!--Выводим уведомление об успешном действии-->
                     <?php $MESSAGES->alert(); ?>
                     <h3 class="panel-title">
-                        <div class="pull-left"><a class="btn btn-primary btn-xs" href="../"><span class="back glyphicon glyphicon-share-alt"></span></a> <?php echo lang('title_' . $SET->titleDir() . '_index') ?></div>
+                        <div class="pull-left"><a class="btn btn-primary btn-xs" href="?route=settings/countries"><span class="back glyphicon glyphicon-share-alt"></span></a> <?php echo lang('title_' . $SET->titleDir() . '_index') ?></div>
                         <div class="clearfix"></div>
                     </h3>
                 </div>
@@ -49,6 +49,7 @@
                                     <th>
                                         <form>
                                             <?php if (count($lines) > $lines_on_page) { ?>
+                                                <input hidden name="route" value="settings/countries/regions">
                                                 <input hidden name="start" value="<?php echo $start ?>">
                                                 <input hidden name="finish" value="<?php echo $finish ?>">
                                                 <input hidden name="country_id" value="<?php echo $VALID->inGET('country_id') ?>">
@@ -58,6 +59,7 @@
 
                                         <form>
                                             <?php if (count($lines) > $lines_on_page) { ?>
+                                                <input hidden name="route" value="settings/countries/regions">
                                                 <input hidden name="start2" value="<?php echo $start ?>">
                                                 <input hidden name="finish2" value="<?php echo $finish ?>">
                                                 <input hidden name="country_id" value="<?php echo $VALID->inGET('country_id') ?>">

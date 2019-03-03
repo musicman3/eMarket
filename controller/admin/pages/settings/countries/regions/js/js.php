@@ -27,5 +27,5 @@
 <?php
 }
 // Подгружаем Ajax Добавить, Редактировать, Удалить
-$AJAX->action('/controller/admin/pages/settings/countries/regions/index.php');
+$AJAX->action('?route=settings/countries/regions');
 ?>
