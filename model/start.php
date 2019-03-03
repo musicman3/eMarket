@@ -15,8 +15,9 @@ if ($SET->path() != 'install') {
 }
 
 // Загружаем авторизацию Административной части
-$TOKEN = $AUTORIZE->sessionAdmin();
-
+if ($VALID->inGET('route') != 'login') {
+    $TOKEN = $AUTORIZE->sessionAdmin();
+}
 // Загружаем авторизацию Каталога
 $AUTORIZE->sessionCatalog();
 

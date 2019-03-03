@@ -72,7 +72,9 @@ class Set {
      * @return string $title_dir
      */
     public function titleDir() {
-        $title_dir = basename(getcwd());
+        $VALID = new \eMarket\Core\Valid;
+        
+        $title_dir = basename(pathinfo($VALID->inSERVER('REQUEST_URI'))['dirname']);
         return $title_dir;
     }
 

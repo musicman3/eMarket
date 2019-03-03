@@ -8,6 +8,6 @@
 //Переключаем язык в Административной панели
 if ($VALID->inGET('language') && $SET->path() == 'admin') {
     $PDO->inPrepare("UPDATE " . TABLE_ADMINISTRATORS . " SET language=? WHERE login=? AND password=?", [$VALID->inGET('language'), $_SESSION['login'], $_SESSION['pass']]);
-    header('Location: /controller/admin/'); // переадресация
+    header('Location: ?route=dashboard'); // переадресация
 }
 ?>

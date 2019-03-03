@@ -32,13 +32,13 @@ class Autorize {
 
             if (isset($_SESSION['session_start']) && (time() - $_SESSION['session_start']) / 60 > $SET->sessionExprTime()) { // Если истекло время сеанса
                 session_destroy();
-                header('Location: /controller/admin/login/'); // переадресация на LOGIN
+                header('Location: ?route=login'); // переадресация на LOGIN
             }
             $_SESSION['session_start'] = time();
 
             if (!isset($_SESSION['login'])) { // Если нет пользователя
                 session_destroy();
-                header('Location: /controller/admin/login/'); // переадресация на LOGIN
+                header('Location: ?route=login'); // переадресация на LOGIN
             } else {
                 $TOKEN = $_SESSION['pass']; // создаем токен для ajax и пр.
                 //Язык авторизованного администратора

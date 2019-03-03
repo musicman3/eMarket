@@ -54,7 +54,7 @@
         }
 
         // ЗАГРУЖАЕМ ТЕЛО HTML СТРАНИЦЫ
-        require_once($VIEW->routing());
+        require_once($VIEW->routingAdmin());
 
         ?>
 

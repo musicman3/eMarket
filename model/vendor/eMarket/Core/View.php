@@ -29,6 +29,24 @@ class View {
 
         return $str;
     }
+    
+    /**
+     * Роутинг данных из View
+     *
+     * @return string $str (роутинг на view)
+     */
+    public function routingAdmin() {
+
+        $SET = new \eMarket\Core\Set;
+        $VALID = new \eMarket\Core\Valid;
+
+        $str = str_replace('controller', 'view/' . $SET->template(), getenv('DOCUMENT_ROOT') . '/controller/' . $SET->path() . '/pages/' . $VALID->inGET('route') . '/index.php');
+        if (file_exists ($str)) {
+            return $str;
+        }else{
+            return false;
+        }
+    }    
 
     /**
      * Вывод отсортированных слоев в конкретную позицию шаблона

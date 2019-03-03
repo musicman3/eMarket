@@ -18,7 +18,7 @@
 
 
 <div class="login-box side-form">
-    <form  action='index.php' method='post'>
+    <form  action='?route=login' method='post'>
         
         <input hidden name="autorize" value="ok">
         
