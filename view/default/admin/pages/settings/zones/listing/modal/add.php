@@ -12,9 +12,10 @@
             <div class="modal-header"><div class="pull-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Ставка указывается в формате: 10.00" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
                 <h4 class="modal-title"><?php echo lang('title_'. $SET->titleDir() .'_index') ?></h4>
             </div>
-            <form id="form" name="form" action="index.php" onsubmit="$('.modal').modal('hide')" method="post" enctype="multipart/form-data">
+            <form id="form" name="form" onsubmit="$('.modal').modal('hide')" method="post" enctype="multipart/form-data">
 
                 <div class="modal-footer">
+                    <input hidden name="route" value="settings/zones/listing">
                     <input type="hidden" name="add" value="ok" />
                     <input hidden name="zone_id" value="<?php echo $zones_id ?>">
 
