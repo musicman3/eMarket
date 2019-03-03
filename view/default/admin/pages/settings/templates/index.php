@@ -10,7 +10,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">
-                <div class="pull-left"><a class="btn btn-primary btn-xs" href="../"><span class="back glyphicon glyphicon-share-alt"></span></a> Шаблоны</div>
+                <div class="pull-left"><a class="btn btn-primary btn-xs" href="?route=settings"><span class="back glyphicon glyphicon-share-alt"></span></a> Шаблоны</div>
                 <div class="clearfix"></div>
             </h3>
         </div>
@@ -20,6 +20,7 @@
                 <div class="input-group has-error">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-th-large"></span></span>
                     <form method="get" name="select_template" action="index.php">
+                        <input hidden name="route" value="settings/templates">
                         <select name="name_templates" id="name_templates" class="input-sm form-control"  onchange="selectTemplate(event)">
                             <option><?php echo $SET->template() ?></option>
                             <?php
@@ -47,7 +48,8 @@
             <div class="pull-left form-group">
                 <div class="input-group has-error">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                    <form method="get" name="select_page" action="index.php">
+                    <form method="get" name="select_page">
+                        <input hidden name="route" value="settings/templates">
                         <input type="hidden" name="name_templates" value="<?php echo $select_template ?>" />
                         <select name="layout_pages_templates" id="layout_pages_templates" class="input-sm form-control" onchange="selectPage(event)">
                             <option>Все страницы</option>
