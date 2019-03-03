@@ -6,7 +6,7 @@
 [admin]
 
 ;TITLE
-title_admin_index = Administration Panel
+title_dashboard_index = Administration Panel
 title_basic_settings_index = Basic settings
 title_categories_index = Categories
 title_countries_index = Countries
