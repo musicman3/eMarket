@@ -7,7 +7,6 @@
 ?>
 <script type="text/javascript" language="javascript">
     $(window).load(function () {
-        $(".grid-item").simpleEQH();
         $(".grid-item-heading").simpleEQH();
     });
 </script>
