@@ -13,8 +13,7 @@ foreach ($VIEW->layoutRouting('content') as $path) {
 
 <script type="text/javascript" language="javascript">
     $(window).load(function () {
-        $(".grid-group-item").simpleEQH();
-        $(".grid-item-heading").simpleEQH();
+        $(".item-heading").simpleEQH();
     });
 </script>
 
