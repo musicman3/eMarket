@@ -21,7 +21,7 @@ foreach ($VIEW->layoutRouting('content') as $path) {
 <script type="text/javascript">
     function setCookie(key, value, days) {
         var expires = new Date();
-        expires.setTime(expires.getTime() + (days * 1 * 24 * 60 * 60 * 1000));
+        expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
         document.cookie = key + '=' + value + ';expires=' + expires.toUTCString();
     }
 
