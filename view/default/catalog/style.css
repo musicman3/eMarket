@@ -10,6 +10,8 @@ button::-moz-focus-inner {border: 0 !important;}
 input, textarea {outline: none;}
 input:active, textarea:active {outline: none;}
 body {font-family: 'Open Sans';}
+h4 {font-size:20px;}
+h5 {font-size:16px;}
 #header, #bodyWrapper, #Carousel, .breadcrumb, .footer {margin-top:5px;margin-bottom:5px;}
 #header .searchbox-margin {padding-top: 15px;}
 #header .logo {padding: 0 10px 0 0;}
