@@ -20,16 +20,17 @@
 		    <div class="col-xs-6 text-right"><a id="btn1" href="#" class="btn btn-primary"><span class="cart"></span> Add to Cart</a></div>
 		</div>
 	    </div>
-	</div>
-    </div>
-</div>
-<div id="products_tab">
-    <ul class="nav nav-tabs">
-	<li class="active"><a data-toggle="tab" href="#panel_add_1">Описание</a></li>
-    </ul>
-    <div class="tab-content">
-	<div id="panel_add_1" class="tab-pane fade in active">
-	    <div class="item-text"><?php echo $products[2] ?></div>
+	    <br>
+	    <div class="products_tab">
+		<ul class="nav nav-tabs">
+		    <li class="active"><a data-toggle="tab" href="#panel_add_1">Описание</a></li>
+		</ul>
+		<div class="tab-content">
+		    <div id="panel_add_1" class="tab-pane fade in active">
+			<div class="item-text"><?php echo $products[2] ?></div>
+		    </div>
+		</div>
+	    </div>
 	</div>
     </div>
 </div>
