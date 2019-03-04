@@ -63,8 +63,8 @@ foreach ($VIEW->layoutRouting('content') as $path) {
 <div class="contentText">
     <div class="well well-sm">
         <div class="btn-group">
-            <a href="#" id="list" class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span></a>
             <a href="#" id="grid" class="btn btn-default"><span class="glyphicon glyphicon-th"></span></a>
+            <a href="#" id="list" class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span></a>
         </div>
     </div>
     <div id="listing" class="row">
