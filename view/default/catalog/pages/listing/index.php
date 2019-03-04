@@ -19,9 +19,9 @@ foreach ($VIEW->layoutRouting('content') as $path) {
 
 <!-- Функция для установки Cookie -->
 <script type="text/javascript">
-    function setCookie(key, value) {
+    function setCookie(key, value, days) {
         var expires = new Date();
-        expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000));
+        expires.setTime(expires.getTime() + (days * 1 * 24 * 60 * 60 * 1000));
         document.cookie = key + '=' + value + ';expires=' + expires.toUTCString();
     }
 
@@ -46,13 +46,13 @@ foreach ($VIEW->layoutRouting('content') as $path) {
             event.preventDefault();
             $('#listing .item').removeClass('col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item');
             $('#listing .item').addClass('col-xs-12 list-group-item');
-            setCookie('cookie_list', 'list');
+            setCookie('cookie_list', 'list', 30);
         });
         $('#grid').click(function (event) {
             event.preventDefault();
             $('#listing .item').removeClass('col-xs-12 list-group-item');
             $('#listing .item').addClass('col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item');
-            setCookie('cookie_list', 'grid');
+            setCookie('cookie_list', 'grid', 30);
         });
     });
 </script>
