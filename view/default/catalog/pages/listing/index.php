@@ -73,7 +73,7 @@ foreach ($VIEW->layoutRouting('content') as $path) {
                     <a href="/?route=products&id=<?php echo $value[0] ?>"><img src="/uploads/images/products/resize_1/<?php echo $value[2] ?>" class="img-responsive"></a>
                     <div class="caption">
                         <h5 class="item-heading"><a href="/?route=products&id=<?php echo $value[0] ?>"><?php echo $value[1] ?></a></h5>
-                        <div class="item-text"><?php echo $value[4] ?></div>
+                        <div class="item-text"> </div>
                     </div>
                     <div class="clearfix"></div>
                     <div class="row button">
