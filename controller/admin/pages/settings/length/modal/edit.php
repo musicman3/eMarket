@@ -11,12 +11,13 @@ for ($i = $start; $i < $finish; $i++) {
         $count_lang = $LANG_COUNT;
 
         for ($x = 0; $x < $count_lang; $x++) {
-            $name_edit_temp[$x][$modal_id] = $PDO->selectPrepare("SELECT name FROM " . TABLE_LENGTH . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]]);
-            $code_edit_temp[$x][$modal_id] = $PDO->selectPrepare("SELECT code FROM " . TABLE_LENGTH . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]]);
+            $query_lang = $PDO->getColRow("SELECT name, code FROM " . TABLE_LENGTH . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]])[0];
+            $name_edit_temp[$x][$modal_id] = $query_lang[0];
+            $code_edit_temp[$x][$modal_id] = $query_lang[1];
         }
-
-        $value_length_edit_temp[$modal_id] = (float) $PDO->selectPrepare("SELECT value_length FROM " . TABLE_LENGTH . " WHERE id=?", [$modal_id]);
-        $status_length_edit_temp[$modal_id] = (int) $PDO->selectPrepare("SELECT default_length FROM " . TABLE_LENGTH . " WHERE id=?", [$modal_id]);
+        $query = $PDO->getColRow("SELECT value_length, default_length FROM " . TABLE_LENGTH . " WHERE id=?", [$modal_id])[0];
+        $value_length_edit_temp[$modal_id] = (float) $query[0];
+        $status_length_edit_temp[$modal_id] = (int) $query[1];
         // ПАРАМЕТРЫ ДЛЯ ПЕРЕДАЧИ В МОДАЛ
         $name_edit = json_encode($name_edit_temp); // Имя
         $code_edit = json_encode($code_edit_temp); // Короткое имя
