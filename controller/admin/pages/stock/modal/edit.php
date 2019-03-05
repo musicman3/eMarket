@@ -14,8 +14,9 @@ for ($i = $start; $i < $finish; $i++) {
         for ($x = 0; $x < $count_lang; $x++) {
             $name_edit_temp[$x][$modal_id] = $PDO->selectPrepare("SELECT name FROM " . TABLE_CATEGORIES . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]]);
         }
-        $logo_edit_temp[$modal_id] = explode(',', $PDO->selectPrepare("SELECT logo FROM " . TABLE_CATEGORIES . " WHERE id=?", [$modal_id]), -1);
-        $logo_general_edit_temp[$modal_id] = $PDO->selectPrepare("SELECT logo_general FROM " . TABLE_CATEGORIES . " WHERE id=?", [$modal_id]);
+        $query = $PDO->getColRow("SELECT logo, logo_general FROM " . TABLE_CATEGORIES . " WHERE id=?", [$modal_id])[0];
+        $logo_edit_temp[$modal_id] = explode(',', $query[0], -1);
+        $logo_general_edit_temp[$modal_id] = $query[1];
 
         // ПАРАМЕТРЫ ДЛЯ ПЕРЕДАЧИ В МОДАЛ
         $name_edit = json_encode($name_edit_temp); // Имя
