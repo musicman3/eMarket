@@ -147,7 +147,7 @@ php_flag display_startup_errors on
 php_flag log_errors on
 php_flag mysql.trace_mode on
 php_value error_reporting -1
-php_value error_log D:/OSPanel/domains/localhost/model/work/errors.log
+php_value error_log " . ROOT . "/model/work/errors.log
 
 RewriteEngine On
 #Redirect
