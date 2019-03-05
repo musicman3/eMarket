@@ -24,6 +24,7 @@ title_zones_index = Зоны
 title_weight_index = Вес
 title_length_index = Длина
 title_manufacturers_index = Производители
+title_templates_index = Компоновка шаблонов
 
 ;КНОПКИ МЕНЮ
 menu_catalog = Каталог товаров
@@ -129,3 +130,6 @@ tax = Налог
 ;CATEGORIES
 add_category = Добавить категорию
 add_product = Добавить товар
+
+;TEMPLATES
+all_pages_template = Все страницы

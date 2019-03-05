@@ -68,7 +68,7 @@
                                     <div class="settings"><a href="#" class="btn btn-default btn-xs disabled"><span class="glyphicon glyphicon-picture glyph-xs"> </span></a>Изображения</div>
                                 </td>
                                 <td>
-                                    <div class="settings"><a href="?route=settings/templates" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-th-large glyph-xs"> </span></a>Шаблоны</div>
+                                    <div class="settings"><a href="?route=settings/templates" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-th-large glyph-xs"> </span></a><?php echo lang('title_templates_index') ?></div>
                                 </td>
                             </tr>                            
                         </tbody>

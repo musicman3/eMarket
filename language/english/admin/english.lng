@@ -24,6 +24,7 @@ title_zones_index = Zones
 title_weight_index = Weight
 title_length_index = Length
 title_manufacturers_index = Manufacturers
+title_templates_index = Template layout
 
 ;MENU_BUTTONS
 menu_catalog = Catalog
@@ -128,3 +129,6 @@ tax = Tax
 ;CATEGORIES
 add_category = Add category
 add_product = Add product
+
+;TEMPLATES
+all_pages_template = All pages

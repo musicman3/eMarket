@@ -10,7 +10,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">
-                <div class="pull-left"><a class="btn btn-primary btn-xs" href="?route=settings"><span class="back glyphicon glyphicon-share-alt"></span></a> Шаблоны</div>
+                <div class="pull-left"><a class="btn btn-primary btn-xs" href="?route=settings"><span class="back glyphicon glyphicon-share-alt"></span></a> <?php echo lang('title_templates_index') ?></div>
                 <div class="clearfix"></div>
             </h3>
         </div>
@@ -52,7 +52,7 @@
                         <input hidden name="route" value="settings/templates">
                         <input type="hidden" name="name_templates" value="<?php echo $select_template ?>" />
                         <select name="layout_pages_templates" id="layout_pages_templates" class="input-sm form-control" onchange="selectPage(event)">
-                            <option>Все страницы</option>
+                            <option><?php echo lang('all_pages_template') ?></option>
                             <?php
                             if (!$VALID->inGET('layout_pages_templates')) {
                                 $select_page = 'catalog';
