@@ -12,8 +12,9 @@ for ($i = $start; $i < $finish; $i++) {
         $count_lang = $LANG_COUNT;
 
         for ($x = 0; $x < $count_lang; $x++) {
-            $name_edit_temp[$x][$modal_id] = $PDO->selectPrepare("SELECT name FROM " . TABLE_VENDOR_CODES . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]]);
-            $code_edit_temp[$x][$modal_id] = $PDO->selectPrepare("SELECT vendor_code FROM " . TABLE_VENDOR_CODES . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]]);
+            $query_lang = $PDO->getColRow("SELECT name, vendor_code FROM " . TABLE_VENDOR_CODES . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]])[0];
+            $name_edit_temp[$x][$modal_id] = $query_lang[0];
+            $code_edit_temp[$x][$modal_id] = $query_lang[1];
         }
 
         $default_vendor_code_edit_temp[$modal_id] = (int) $PDO->selectPrepare("SELECT default_vendor_code FROM " . TABLE_VENDOR_CODES . " WHERE id=?", [$modal_id]);
