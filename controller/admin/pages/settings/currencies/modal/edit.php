@@ -11,16 +11,17 @@ for ($i = $start; $i < $finish; $i++) {
         $count_lang = $LANG_COUNT;
 
         for ($x = 0; $x < $count_lang; $x++) {
-            $name_edit_temp[$x][$modal_id] = $PDO->selectPrepare("SELECT name FROM " . TABLE_CURRENCIES . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]]);
-            $code_edit_temp[$x][$modal_id] = $PDO->selectPrepare("SELECT code FROM " . TABLE_CURRENCIES . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]]);
+            $query_lang = $name_edit_temp[$x][$modal_id] = $PDO->getColRow("SELECT name, code FROM " . TABLE_CURRENCIES . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]])[0];
+            $name_edit_temp[$x][$modal_id] = $query_lang[0];
+            $code_edit_temp[$x][$modal_id] = $query_lang[1];
         }
-
-        $iso_4217_edit_temp[$modal_id] = $PDO->selectPrepare("SELECT iso_4217 FROM " . TABLE_CURRENCIES . " WHERE id=?", [$modal_id]);
-        $value_edit_temp[$modal_id] = (float) $PDO->selectPrepare("SELECT value FROM " . TABLE_CURRENCIES . " WHERE id=?", [$modal_id]);
-        $symbol_edit_temp[$modal_id] = $PDO->selectPrepare("SELECT symbol FROM " . TABLE_CURRENCIES . " WHERE id=?", [$modal_id]);
-        $symbol_position_edit_temp[$modal_id] = $PDO->selectPrepare("SELECT symbol_position FROM " . TABLE_CURRENCIES . " WHERE id=?", [$modal_id]);
-        $decimal_places_edit_temp[$modal_id] = (float) $PDO->selectPrepare("SELECT decimal_places FROM " . TABLE_CURRENCIES . " WHERE id=?", [$modal_id]);
-        $status_value_edit_temp[$modal_id] = (int) $PDO->selectPrepare("SELECT default_value FROM " . TABLE_CURRENCIES . " WHERE id=?", [$modal_id]);
+        $query = $PDO->getColRow("SELECT iso_4217, value, symbol, symbol_position, decimal_places, default_value FROM " . TABLE_CURRENCIES . " WHERE id=?", [$modal_id])[0];
+        $iso_4217_edit_temp[$modal_id] = $query[0];
+        $value_edit_temp[$modal_id] = (float) $query[1];
+        $symbol_edit_temp[$modal_id] = $query[2];
+        $symbol_position_edit_temp[$modal_id] = $query[3];
+        $decimal_places_edit_temp[$modal_id] = (float) $query[4];
+        $status_value_edit_temp[$modal_id] = (int) $query[5];
         // ПАРАМЕТРЫ ДЛЯ ПЕРЕДАЧИ В МОДАЛ
         $name_edit = json_encode($name_edit_temp); // Имя
         $code_edit = json_encode($code_edit_temp); // Короткое имя
