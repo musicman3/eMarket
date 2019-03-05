@@ -154,12 +154,7 @@ RewriteEngine On
 RewriteCond %{DOCUMENT_ROOT}/controller/catalog/$1 -d
 RewriteRule ^(.*)$ controller/catalog/$1 [L,QSA]
 RewriteCond %{DOCUMENT_ROOT}/controller/catalog/$1 -f
-RewriteRule ^(.*)$ controller/catalog/$1 [L,QSA]
-#Routing
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_URI} ^(.*)$
-RewriteRule ^ /controller/catalog/?route=%1 [L,QSA]";
+RewriteRule ^(.*)$ controller/catalog/$1 [L,QSA]";
 
 // Если файл существует, то ставим права 777
 if (file_exists(ROOT . '/.htaccess') && !is_writeable(ROOT . '/.htaccess')) {
