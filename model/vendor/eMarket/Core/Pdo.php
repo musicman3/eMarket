@@ -14,6 +14,9 @@ namespace eMarket\Core;
  * 
  */
 class Pdo {
+    
+    // Счетчик запросов к БД
+    public static $query_count = 0;
 
     /**
      * Функция для соединения с БД
@@ -22,6 +25,7 @@ class Pdo {
      */
     public function connect($a = null) {
         static $connect = null;
+        self::$query_count++;
 
         $SET = new \eMarket\Core\Set;
 

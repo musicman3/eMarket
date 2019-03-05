@@ -99,7 +99,8 @@
         // Округляем до двух знаков после запятой
         $totaltime = round(($tend - $tstart), 2);
         // Результат на экран
-        echo "Время генерации страницы: " . $totaltime . " сек.<br><br>";
+        echo "Время генерации страницы: " . $totaltime . " сек.<br>";
+        echo "Запросов к БД: " . $PDO::$query_count . " шт.<br><br>";
         ?>
         <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/ext/simpleeqh/simpleeqh.js"></script>
