@@ -728,32 +728,32 @@ class Eac {
                 $currency_product_stock = NULL;
             }
             
-            if ($VALID->inPOST('weight_value_product_stock')) {
-                $weight_value_product_stock = $VALID->inPOST('weight_value_product_stock');
+            if ($VALID->inPOST('weight_value_product_stock_edit')) {
+                $weight_value_product_stock = $VALID->inPOST('weight_value_product_stock_edit');
             } else {
                 $weight_value_product_stock = NULL;
             }
 
-            if ($VALID->inPOST('value_length_product_stock')) {
-                $value_length_product_stock = $VALID->inPOST('value_length_product_stock');
+            if ($VALID->inPOST('value_length_product_stock_edit')) {
+                $value_length_product_stock = $VALID->inPOST('value_length_product_stock_edit');
             } else {
                 $value_length_product_stock = NULL;
             }
 
-            if ($VALID->inPOST('value_width_product_stock')) {
-                $value_width_product_stock = $VALID->inPOST('value_width_product_stock');
+            if ($VALID->inPOST('value_width_product_stock_edit')) {
+                $value_width_product_stock = $VALID->inPOST('value_width_product_stock_edit');
             } else {
                 $value_width_product_stock = NULL;
             }
             
-            if ($VALID->inPOST('value_height_product_stock')) {
-                $value_height_product_stock = $VALID->inPOST('value_height_product_stock');
+            if ($VALID->inPOST('value_height_product_stock_edit')) {
+                $value_height_product_stock = $VALID->inPOST('value_height_product_stock_edit');
             } else {
                 $value_height_product_stock = NULL;
             }        
             
-            if ($VALID->inPOST('min_quantity_product_stock')) {
-                $min_quantity_product_stock = $VALID->inPOST('min_quantity_product_stock');
+            if ($VALID->inPOST('min_quantity_product_stock_edit')) {
+                $min_quantity_product_stock = $VALID->inPOST('min_quantity_product_stock_edit');
             } else {
                 $min_quantity_product_stock = NULL;
             }            
