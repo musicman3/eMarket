@@ -7,7 +7,7 @@
 
 // 
 //Сохраняем сессию с URL текущей страницы
-$_SESSION['country_page'] = '/controller/admin/pages/settings/countries/index.php';
+$_SESSION['country_page'] = $VALID->inSERVER('REQUEST_URI');
 
 // Если нажали на кнопку Добавить
 if ($VALID->inPOST('add')) {
