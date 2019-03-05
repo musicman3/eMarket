@@ -137,6 +137,7 @@ $text = "#****** Copyright © 2018 eMarket ******#
 # https://github.com/musicman3/eMarket #
 #**************************************#
 
+#Error log
 Options -Indexes
 php_flag ignore_repeated_errors off
 php_flag ignore_repeated_source off
@@ -146,9 +147,10 @@ php_flag display_startup_errors on
 php_flag log_errors on
 php_flag mysql.trace_mode on
 php_value error_reporting -1
-php_value error_log " . ROOT . "/model/work/errors.log
+php_value error_log D:/OSPanel/domains/localhost/model/work/errors.log
 
 RewriteEngine On
+#Redirect
 RewriteCond %{DOCUMENT_ROOT}/controller/catalog/$1 -d
 RewriteRule ^(.*)$ controller/catalog/$1 [L,QSA]
 RewriteCond %{DOCUMENT_ROOT}/controller/catalog/$1 -f
@@ -156,7 +158,12 @@ RewriteRule ^(.*)$ controller/catalog/$1 [L,QSA]
 RewriteCond %{DOCUMENT_ROOT}/controller/catalog/pages/$1 -d
 RewriteRule ^(.*)$ controller/catalog/pages/$1 [L,QSA]
 RewriteCond %{DOCUMENT_ROOT}/controller/catalog/pages/$1 -f
-RewriteRule ^(.*)$ controller/catalog/pages/$1 [L,QSA]";
+RewriteRule ^(.*)$ controller/catalog/pages/$1 [L,QSA]
+#Routing
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} ^(.*)$
+RewriteRule ^ /controller/catalog/?route=%1 [L,QSA]";
 
 // Если файл существует, то ставим права 777
 if (file_exists(ROOT . '/.htaccess') && !is_writeable(ROOT . '/.htaccess')) {
