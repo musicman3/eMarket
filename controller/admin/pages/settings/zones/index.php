@@ -10,7 +10,7 @@ require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 /* ------------------------------------------ */
 // 
 //Сохраняем сессию с URL текущей страницы
-$_SESSION['zone_page'] = '/controller/admin/pages/settings/zones/index.php';
+$_SESSION['zone_page'] = $VALID->inSERVER('REQUEST_URI');
 
 // Если нажали на кнопку Добавить
 if ($VALID->inPOST('add')) {
