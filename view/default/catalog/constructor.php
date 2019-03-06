@@ -19,7 +19,7 @@
         <meta name="copyright" content="Copyright © 2018 by eMarket Team. All right reserved." />
 
         <!-- Автогенерация Title" -->
-        <title><?php echo lang('title_' . $SET->titleDir() . '_' . basename($VALID->inSERVER('PHP_SELF'), '.php')) ?></title>
+        <title><?php echo lang('title_' . $SET->titleDir() . '_index') ?></title>
 
         <link rel="canonical" href="<?php echo $SET->canonicalPathCatalog() ?>" />
         <link href="/ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />

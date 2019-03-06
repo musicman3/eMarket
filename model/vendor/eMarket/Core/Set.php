@@ -73,8 +73,11 @@ class Set {
      */
     public function titleDir() {
         $VALID = new \eMarket\Core\Valid;
-        
+
         $title_dir = basename($VALID->inGET('route'));
+        if ($title_dir == '') {
+            $title_dir = 'catalog';
+        }
         return $title_dir;
     }
 
@@ -112,7 +115,6 @@ class Set {
         $count_value = count($value);
         for ($x = 0; $x < $count_value; $x++) {
             if (isset($value[$x][1]) && $value[$x][1] == 1 && $selected != FALSE && $id != null) {
-
                 ?>
                 <!-- Строка Select по умолчанию-->
                 <option value="<?php echo $id ?>" selected><?php echo $value[$x][0] ?></option>
@@ -124,5 +126,4 @@ class Set {
     }
 
 }
-
 ?>
