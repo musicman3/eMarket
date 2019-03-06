@@ -11,11 +11,11 @@ for ($i = $start; $i < $finish; $i++) {
         $count_lang = $LANG_COUNT;
 
         for ($x = 0; $x < $count_lang; $x++) {
-            $query_lang = $name_edit_temp[$x][$modal_id] = $PDO->getColRow("SELECT name, code FROM " . TABLE_CURRENCIES . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]])[0];
+            $query_lang = $name_edit_temp[$x][$modal_id] = $PDO->getRow("SELECT name, code FROM " . TABLE_CURRENCIES . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]]);
             $name_edit_temp[$x][$modal_id] = $query_lang[0];
             $code_edit_temp[$x][$modal_id] = $query_lang[1];
         }
-        $query = $PDO->getColRow("SELECT iso_4217, value, symbol, symbol_position, decimal_places, default_value FROM " . TABLE_CURRENCIES . " WHERE id=?", [$modal_id])[0];
+        $query = $PDO->getRow("SELECT iso_4217, value, symbol, symbol_position, decimal_places, default_value FROM " . TABLE_CURRENCIES . " WHERE id=?", [$modal_id]);
         $iso_4217_edit_temp[$modal_id] = $query[0];
         $value_edit_temp[$modal_id] = (float) $query[1];
         $symbol_edit_temp[$modal_id] = $query[2];

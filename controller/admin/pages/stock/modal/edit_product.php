@@ -12,7 +12,7 @@ for ($i = $start; $i < $finish; $i++) {
         $count_lang = $LANG_COUNT;
 
         for ($x = 0; $x < $count_lang; $x++) {
-            $query_lang = $PDO->getColRow("SELECT name, description, keyword, tags FROM " . TABLE_PRODUCTS . " WHERE id=? and language=?", [$modal_id_product, lang('#lang_all')[$x]])[0];
+            $query_lang = $PDO->getRow("SELECT name, description, keyword, tags FROM " . TABLE_PRODUCTS . " WHERE id=? and language=?", [$modal_id_product, lang('#lang_all')[$x]]);
             $name_edit_temp_product[$x][$modal_id_product] = $query_lang[0];
             $description_edit_temp_product[$x][$modal_id_product] = $query_lang[1];
             $keyword_edit_temp_product[$x][$modal_id_product] = $query_lang[2];
@@ -20,7 +20,7 @@ for ($i = $start; $i < $finish; $i++) {
         }
 
         // Цена
-        $query = $PDO->getColRow("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product])[0];
+        $query = $PDO->getRow("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
         $price_edit_temp_product[$modal_id_product] = $query[12];
 
         // Валюта

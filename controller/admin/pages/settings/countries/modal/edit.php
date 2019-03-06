@@ -15,7 +15,7 @@ for ($i = $start; $i < $finish; $i++) {
             $name_edit_temp[$x][$modal_id] = $PDO->selectPrepare("SELECT name FROM " . TABLE_COUNTRIES . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]]);
         }
         
-        $query = $PDO->getColRow("SELECT alpha_2, alpha_3, address_format FROM " . TABLE_COUNTRIES . " WHERE id=?", [$modal_id])[0];
+        $query = $PDO->getRow("SELECT alpha_2, alpha_3, address_format FROM " . TABLE_COUNTRIES . " WHERE id=?", [$modal_id]);
         $alpha_2_temp[$modal_id] = $query[0];
         $alpha_3_temp[$modal_id] = $query[1];
         $address_format_temp[$modal_id] = $query[2];

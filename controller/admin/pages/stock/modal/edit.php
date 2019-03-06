@@ -14,7 +14,7 @@ for ($i = $start; $i < $finish; $i++) {
         for ($x = 0; $x < $count_lang; $x++) {
             $name_edit_temp[$x][$modal_id] = $PDO->selectPrepare("SELECT name FROM " . TABLE_CATEGORIES . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]]);
         }
-        $query = $PDO->getColRow("SELECT logo, logo_general FROM " . TABLE_CATEGORIES . " WHERE id=?", [$modal_id])[0];
+        $query = $PDO->getRow("SELECT logo, logo_general FROM " . TABLE_CATEGORIES . " WHERE id=?", [$modal_id]);
         $logo_edit_temp[$modal_id] = explode(',', $query[0], -1);
         $logo_general_edit_temp[$modal_id] = $query[1];
 

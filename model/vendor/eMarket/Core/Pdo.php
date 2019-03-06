@@ -207,6 +207,38 @@ class Pdo {
         }
         return $result;
     }
+    
+    /**
+     * getRow для запроса данных из строки в виде одномерного массива.
+     * Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах.
+     * 
+     * ПРИМЕР
+     *
+     * Если значение не найдено, то выдает пустой массив: Array()
+     * 
+     * Если применять в запросе $PDO->getRow("SELECT name, age FROM table WHERE language=?", ['russian']) то выдаст все значения колонки id в виде одномерного массива,
+     * удовлетворяющие условию language='russian'.
+     *
+     * Array
+     * (
+     * [0] => John
+     * [1] => Age 18
+     * )
+     * 
+     * @param string $sql (запрос из БД MYSQL)
+     * @param array $a (параметр для execute($a))
+     * @return bool|array $result (возвращает массив или FALSE)
+     */
+    public function getRow($sql, $a) {
+
+        $result = FALSE;
+        if ($exec = self::connect()->prepare($sql)
+                AND $exec->execute($a)
+                AND $result = $exec->fetchAll(\PDO :: FETCH_NUM)) {
+            
+        }
+        return $result[0];
+    }    
 
     /**
      * getCellFalse выдает значение ячейки. Если ячейка не найдена то возвращает FALSE.
