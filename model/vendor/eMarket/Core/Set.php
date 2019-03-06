@@ -39,8 +39,8 @@ class Set {
         }
         $path = HTTP_SERVER . $path_temp;
 
-        if (strrpos($VALID->inSERVER('REQUEST_URI'), 'controller/catalog/') == true) {
-            $path_temp = HTTP_SERVER . str_replace('/controller/catalog/', '', $VALID->inSERVER('REQUEST_URI'));
+        if (strrpos($VALID->inSERVER('REQUEST_URI'), '?route') == true) {
+            $path_temp = HTTP_SERVER . str_replace('/?route', '?route', $VALID->inSERVER('REQUEST_URI'));
             $path = str_replace('index.php', '', $path_temp);
         }
 
