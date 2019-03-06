@@ -25,9 +25,9 @@ class Pdo {
      */
     public function connect($a = null) {
         static $connect = null;
-        self::$query_count++;
 
         $SET = new \eMarket\Core\Set;
+        self::$query_count++; //Считаем запросы к БД
 
         if (isset($a) && $a == 'end') {
             return $connect;
