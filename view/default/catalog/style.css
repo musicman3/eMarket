@@ -62,7 +62,6 @@ h5 {font-size:16px;}
 #categories_listing .categoriesHolder {border: 1px solid #dddddd;padding: 10px;border-radius: 4px;}
 #new_products .grid-group-item, #listing .grid-group-item, #products .grid-group-item, #categories_listing .grid-group-item {margin-bottom: 20px;}
 #new_products .productHolder, #listing .productHolder {border: 1px solid #dddddd;padding: 10px;border-radius: 4px;}
-#new_products .grid-item {display: flex;align-items: center;justify-content: center;flex-direction: row;}
 #products .list-group-item {float: none;width: 100%;border: none;margin-bottom: 20px;}
 #products .list-group-item img {float: left;margin: 0 10px 10px 0;}
 #products .item-text {text-align: justify;}
