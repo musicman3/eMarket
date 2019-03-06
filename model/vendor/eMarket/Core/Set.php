@@ -75,8 +75,14 @@ class Set {
         $VALID = new \eMarket\Core\Valid;
 
         $title_dir = basename($VALID->inGET('route'));
-        if ($title_dir == '') {
+        if ($title_dir == '' && self::path() == 'catalog') {
             $title_dir = 'catalog';
+        }
+        if ($title_dir == '' && self::path() == 'admin') {
+            $title_dir = 'dashboard';
+        }
+        if ($title_dir == '' && self::path() == 'install') {
+            $title_dir = 'install';
         }
         return $title_dir;
     }
