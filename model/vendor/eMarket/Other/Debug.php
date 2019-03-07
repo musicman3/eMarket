@@ -16,8 +16,6 @@ namespace eMarket\Other;
  */
 class Debug {
 
-    public static $time_start = null;
-
     /**
      * Удобное отображение массива при отладке
      *
