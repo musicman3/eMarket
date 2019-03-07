@@ -32,7 +32,7 @@ class Debug {
     /**
      * Отображение отладочной информации
      *
-     * @param string $time_start (метки начала и конца)
+     * @param string $time_start (начальное время)
      */
     public function info($time_start) {
         $PDO = new \eMarket\Core\Pdo;
