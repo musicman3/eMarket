@@ -10,15 +10,13 @@
 
 <div class="contentText">
     <div id="products" class="row">
-	<div class="item col-xs-12 list-group-item">
+	<div class="list-group-item">
 	    <div class="col-xs-4"><img src="/uploads/images/products/resize_2/<?php echo $products[7] ?>" class="img-responsive"></div>
-	    <div class="caption">
-		<div class="col-xs-8"> </div>
-		<div class="clearfix"></div>
-		<div class="row button">
-		    <div class="col-xs-6"><button type="button" class="btn btn-default"><?php echo $product_price ?></button></div>
-		    <div class="col-xs-6 text-right"><a id="btn1" href="#" class="btn btn-primary"><span class="cart"></span> Add to Cart</a></div>
-		</div>
+	    <div class="col-xs-8"> </div>
+	    <div class="clearfix"></div>
+	    <div class="row button">
+		<div class="col-xs-6"><button type="button" class="btn btn-default"><?php echo $product_price ?></button></div>
+		<div class="col-xs-6 text-right"><a id="btn1" href="#" class="btn btn-primary"><span class="cart"></span> Add to Cart</a></div>
 	    </div>
 	    <br>
 	    <ul class="nav nav-tabs">
