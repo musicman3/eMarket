@@ -5,7 +5,8 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 error_reporting(-1);
 
-$tstart = microtime(1); // Засекаем начальное время 
+$TIME_START = microtime(1); // Засекаем начальное время 
+//
 // Автозагрузка
 require_once('cluster.php');
 

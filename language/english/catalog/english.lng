@@ -4,4 +4,7 @@
 ;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
 
 [catalog]
-
+debug_page_generation_time = Page generation time:
+debug_db_queries = DB queries:
+debug_sec = sec.
+debug_pcs = pcs.

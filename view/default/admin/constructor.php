@@ -74,13 +74,8 @@
             //то подгружаем JS.PHP файл
             require_once($JS_END . '/js/js.php');
         }
-
-        $tend = microtime(1); // Засекаем конечное время
-        // Округляем до двух знаков после запятой
-        $totaltime = round(($tend - $tstart), 2);
-        // Результат на экран
-        echo "Время генерации страницы: " . $totaltime . " сек.<br>";
-        echo "Запросов к БД: " . $PDO::$query_count . " шт.<br><br>";
+        // Выводим отладочную информацию
+        $DEBUG->info($TIME_START);
 
         ?>
     </body>

@@ -104,6 +104,10 @@ action_failed = Action failed!
 categories_transfer = Transfer with the next page
 download_complete = Download complete!
 image_resize_error = ATTENTION: Some images not added. One of the sides of the image must be at least:
+debug_page_generation_time = Page generation time:
+debug_db_queries = DB queries:
+debug_sec = sec.
+debug_pcs = pcs.
 
 ;BASIC SETTINGS
 lines_on_page = Lines on page

@@ -4,4 +4,7 @@
 ;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
 
 [catalog]
-
+debug_page_generation_time = Время генерации страницы:
+debug_db_queries = Запросов к БД:
+debug_sec = сек.
+debug_pcs = шт.

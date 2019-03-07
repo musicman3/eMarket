@@ -16,6 +16,8 @@ namespace eMarket\Other;
  */
 class Debug {
 
+    public static $time_start = null;
+
     /**
      * Удобное отображение массива при отладке
      *
@@ -27,6 +29,22 @@ class Debug {
         print_r($var);
         echo '</pre>';
         $int++;
+    }
+
+    /**
+     * Отображение отладочной информации
+     *
+     * @param string $time_start (метки начала и конца)
+     */
+    public function info($time_start) {
+        $PDO = new \eMarket\Core\Pdo;
+
+        $tend = microtime(1); // Засекаем конечное время
+        // Округляем до двух знаков после запятой
+        $totaltime = round(($tend - $time_start), 2);
+        // Результат на экран
+        echo lang('debug_page_generation_time') . " " . $totaltime . " " . lang('debug_sec') . "<br>";
+        echo lang('debug_db_queries') . " " . $PDO::$query_count . " " . lang('debug_pcs') . "<br><br>";
     }
 
 }
