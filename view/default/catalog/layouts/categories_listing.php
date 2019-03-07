@@ -7,10 +7,9 @@
 ?>
 
 <?php if ($categories == true) { ?>
-<div class="contentText">
+<div id="categories_listing" class="contentText">
     <h4>Categories</h4>
-    <div id="categories_listing" class="row grid-group">
-
+    <div class="row grid-group">
         <?php foreach ($categories as $value) { ?>
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item">
                 <div class="categoriesHolder">

@@ -59,14 +59,14 @@ foreach ($VIEW->layoutRouting('content') as $path) {
 
 <h3>Name Categories</h3>
 
-<div class="contentText">
+<div id="listing" class="contentText">
     <div class="well well-sm">
         <div class="btn-group">
             <a href="#" id="grid" class="btn btn-default"><span class="glyphicon glyphicon-th"></span></a>
             <a href="#" id="list" class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span></a>
         </div>
     </div>
-    <div id="listing" class="row">
+    <div class="row">
         <?php foreach ($products as $value) { ?>
             <div class="item col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item">
                 <div class="productHolder">
