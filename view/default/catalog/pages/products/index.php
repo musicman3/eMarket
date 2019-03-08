@@ -6,7 +6,7 @@
 
 ?>
 
-<h3><?php echo $products[1] ?></h3>
+<h1><?php echo $products[1] ?></h1>
 
 <div id="products" class="contentText">
     <div class="row">

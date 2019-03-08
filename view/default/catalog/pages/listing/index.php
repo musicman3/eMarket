@@ -57,7 +57,7 @@ foreach ($VIEW->layoutRouting('content') as $path) {
     });
 </script>
 
-<h3>Name Categories</h3>
+<h1>Name Categories</h1>
 
 <?php if ($products == true) { ?>
 <div id="listing" class="contentText">

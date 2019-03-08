@@ -29,7 +29,7 @@ h5 {font-size:16px;}
 .panel-heading {padding:5px 10px;}
 .panel-default > .panel-heading {color:#428bca;}
 .panel-body {padding:10px;}
-#bodyContent h3 {color: #03539a;margin-top: 3px;}
+#bodyContent h1 {color: #03539a;margin-top: 3px;font-size: 24px;}
 .navbar {min-height: 30px;margin-bottom: 10px;border-radius:0;}
 .navbar-left {margin-left:-15px}
 .container-fluid > .navbar-collapse {margin-left:-15px;margin-right:-15px;}

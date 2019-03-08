@@ -11,7 +11,7 @@ foreach ($VIEW->layoutRouting('content') as $path) {
 
 ?>
 
-<h3>Shopping Cart</h3>
+<h1>Shopping Cart</h1>
 <div id="checkout" class="contentText">
     <form enctype="multipart/form-data" method="post" action="#">
         <div class="table-responsive">

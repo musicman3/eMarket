@@ -6,7 +6,7 @@
 
 ?>
 
-<h3>eMarket Bootstrap 3 Demo</h3>
+<h1>eMarket Bootstrap 3 Demo</h1>
 
 <?php
 // ПОДКЛЮЧАЕМ КОНТЕНТ
