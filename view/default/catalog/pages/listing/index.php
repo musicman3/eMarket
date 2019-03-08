@@ -90,7 +90,7 @@ foreach ($VIEW->layoutRouting('content') as $path) {
 <div id="listing" class="contentText">
     <div class="well well-sm">
         <div class="btn-group">
-            Товаров нет
+	    <div class="btn">В этой категории нет товаров.</div>
         </div>
     </div>
 </div>
