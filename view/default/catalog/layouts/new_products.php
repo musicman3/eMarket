@@ -11,7 +11,7 @@
     });
 </script>
 
-<?php if (count($products_new) > 0) { ?>
+<?php if ($products_new == true) { ?>
     <div id="new_products" class="contentText">
         <h4>New Products</h4>
         <div class="row">
