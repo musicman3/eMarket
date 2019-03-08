@@ -59,6 +59,7 @@ foreach ($VIEW->layoutRouting('content') as $path) {
 
 <h3>Name Categories</h3>
 
+<?php if ($products == true) { ?>
 <div id="listing" class="contentText">
     <div class="well well-sm">
         <div class="btn-group">
@@ -85,3 +86,12 @@ foreach ($VIEW->layoutRouting('content') as $path) {
         <?php } ?>  
     </div>
 </div>
+<?php } else { ?>
+<div id="listing" class="contentText">
+    <div class="well well-sm">
+        <div class="btn-group">
+            Товаров нет
+        </div>
+    </div>
+</div>
+<?php } ?>
