@@ -36,7 +36,7 @@ class Debug {
     public function info($time_start) {
         $PDO = new \eMarket\Core\Pdo;
         
-        $val = $debug = $PDO->getCell("SELECT debug FROM " . TABLE_BASIC_SETTINGS . "", []);
+        $val = $PDO->getCell("SELECT debug FROM " . TABLE_BASIC_SETTINGS . "", []);
         if ($val == 1) {
             $tend = microtime(1); // Засекаем конечное время
             // Округляем до двух знаков после запятой
