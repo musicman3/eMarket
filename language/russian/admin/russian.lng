@@ -114,6 +114,9 @@ debug_pcs = шт.
 lines_on_page = Строк на странице
 session_expr_time = Время простоя сессии (мин.)
 session_expr_time_help = В течение указанного времени после последнего обновления страницы браузера сессия будет активна
+debug_info = Отладочная информация
+debug_on = Вкл.
+debug_off = Откл.
 
 ;MANUFACTURERS
 manufacturer = Производитель

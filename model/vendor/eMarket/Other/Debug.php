@@ -1,5 +1,4 @@
 <?php
-
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -36,13 +35,16 @@ class Debug {
      */
     public function info($time_start) {
         $PDO = new \eMarket\Core\Pdo;
-
-        $tend = microtime(1); // Засекаем конечное время
-        // Округляем до двух знаков после запятой
-        $totaltime = round(($tend - $time_start), 2);
-        // Результат на экран
-        echo lang('debug_page_generation_time') . " " . $totaltime . " " . lang('debug_sec') . "<br>";
-        echo lang('debug_db_queries') . " " . $PDO::$query_count . " " . lang('debug_pcs') . "<br><br>";
+        
+        $val = $debug = $PDO->getCell("SELECT debug FROM " . TABLE_BASIC_SETTINGS . "", []);
+        if ($val == 1) {
+            $tend = microtime(1); // Засекаем конечное время
+            // Округляем до двух знаков после запятой
+            $totaltime = round(($tend - $time_start), 2);
+            // Результат на экран
+            echo lang('debug_page_generation_time') . " " . $totaltime . " " . lang('debug_sec') . "<br>";
+            echo lang('debug_db_queries') . " " . $PDO::$query_count . " " . lang('debug_pcs') . "<br><br>";
+        }
     }
 
 }

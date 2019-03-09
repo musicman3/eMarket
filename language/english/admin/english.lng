@@ -113,6 +113,9 @@ debug_pcs = pcs.
 lines_on_page = Lines on page
 session_expr_time = Session downtime (min.)
 session_expr_time_help = The session will be active for set time after the last refresh of the browser page.
+debug_info = Debug info
+debug_on = On
+debug_off = Off
 
 ;MANUFACTURERS
 manufacturer = Manufacturer
