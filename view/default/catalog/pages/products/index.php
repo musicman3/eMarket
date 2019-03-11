@@ -16,14 +16,14 @@
 	    <div class="clearfix"></div>
 	    <div class="row button">
 		<div class="col-xs-6"><button type="button" class="btn btn-default"><?php echo $product_price ?></button></div>
-		<div class="col-xs-6 text-right"><a id="btn1" href="#" class="btn btn-primary"><span class="cart"></span> Add to Cart</a></div>
+		<div class="col-xs-6 text-right"><a id="btn1" href="#" class="btn btn-primary"><span class="cart"></span><?php echo lang('buy_now') ?></a></div>
 	    </div>
 	</div>
     </div>
     <div class="row">
 	<div class="list-group-item">
 	    <ul class="nav nav-tabs">
-		<li class="active"><a data-toggle="tab" href="#panel_add_1">Описание</a></li>
+		<li class="active"><a data-toggle="tab" href="#panel_add_1"><?php echo lang('description_product') ?></a></li>
 	    </ul>
 	    <div class="tab-content">
 		<div id="panel_add_1" class="tab-pane fade in active">

@@ -4,7 +4,23 @@
 ;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
 
 [catalog]
+
+;DEBUG
 debug_page_generation_time = Время генерации страницы:
 debug_db_queries = Запросов к БД:
 debug_sec = сек.
 debug_pcs = шт.
+
+;LAYOUTS
+categories_name = Категории
+search_name = Искать...
+new_products_name = Новые товары
+
+;PAGES
+description_product = Описание товара
+
+;BREADCRUMB
+breadcrumb_home = Главная
+
+;OTHER
+buy_now = Купить

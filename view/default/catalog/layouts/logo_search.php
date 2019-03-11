@@ -15,7 +15,7 @@
 	    <div class="searchbox-margin">
 		<form name="quick_find" action="#" method="get" class="form-horizontal">
 		    <div class="input-group">
-			<input type="search" name="keywords" required="" placeholder="Search" class="form-control">
+			<input type="search" name="keywords" required="" placeholder="<?php echo lang('search_name') ?>" class="form-control">
 			<span class="input-group-btn">
 			    <button type="submit" class="btn btn-primary">
 				    <i class="glyphicon glyphicon-search"></i>

@@ -6,7 +6,7 @@
 ?>
 
 <div class="panel panel-default">
-    <div class="panel-heading">Categories</div>
+    <div class="panel-heading"><?php echo lang('categories_name') ?></div>
     <div class="panel-body category_block">
         <?php $categories_and_breadcrumb = $TREE->categories($sql, $VALID->inGET('category_id')); ?>
     </div>

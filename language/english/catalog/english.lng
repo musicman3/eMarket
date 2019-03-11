@@ -4,7 +4,23 @@
 ;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
 
 [catalog]
+
+;DEBUG
 debug_page_generation_time = Page generation time:
 debug_db_queries = DB queries:
 debug_sec = sec.
 debug_pcs = pcs.
+
+;LAYOUTS
+categories_name = Categories
+search_name = Search...
+new_products_name = Новые товары
+
+;PAGES
+description_product = Description
+
+;BREADCRUMB
+breadcrumb_home = Home
+
+;OTHER
+buy_now = Buy Now

@@ -13,7 +13,7 @@
 
 <?php if ($products_new == true) { ?>
     <div id="new_products" class="contentText">
-        <h4>New Products</h4>
+        <h4><?php echo lang('new_products_name') ?></h4>
         <div class="row">
             <?php foreach ($products_new as $value) { ?>
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item">
@@ -23,7 +23,7 @@
                         <div class="clearfix"></div>
                         <div class="row button">
                             <div class="col-xs-6"><button type="button" class="btn btn-default"><?php echo $PRODUCTS->productPrice($value[12], $CURRENCIES, 1) ?></button></div>
-                            <div class="col-xs-6 text-right"><a id="btn1" href="#" class="btn btn-primary">Buy Now</a></div>
+                            <div class="col-xs-6 text-right"><a id="btn1" href="#" class="btn btn-primary"><?php echo lang('buy_now') ?></a></div>
                         </div>
                     </div>
                 </div>

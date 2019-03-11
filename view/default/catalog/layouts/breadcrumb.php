@@ -8,7 +8,7 @@
 
 <div class="container-fluid">
     <div class="breadcrumb">
-	<li class="selected"><a href="/">Home</a></li>
-        <li>Categories</li>
+	<li class="selected"><a href="/"><?php echo lang('breadcrumb_home') ?></a></li>
+        <li><?php echo lang('categories_name') ?></li>
     </div>
 </div>
