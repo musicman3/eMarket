@@ -36,13 +36,16 @@
                                 </th>
 
                                 <th>
+                                
+                                    <div class="right"><a href="#add" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-pencil"></span></a></div>
+                                
                                     <form>
                                         <?php if (count($lines) > $lines_on_page) { ?>
                                             <input hidden name="route" value="settings/zones/listing">
                                             <input hidden name="start" value="<?php echo $start ?>">
                                             <input hidden name="finish" value="<?php echo $finish ?>">
                                             <input hidden name="zone_id" value="<?php echo $zones_id ?>">
-                                            <div class="right"><button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
+                                            <div class="left"><button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
                                         <?php } ?>
                                     </form>
 
@@ -56,8 +59,6 @@
                                         <?php } ?>
                                     </form>
 
-                                    <?php if (count($lines) > $lines_on_page) { ?> <div class="left"> <?php } else { ?> <div class="right"> <?php } ?>
-                                    <a href="#add" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-pencil"></span></a></div>
                                 </th>
                             </tr>
                             <?php if ($lines == TRUE) { ?>
