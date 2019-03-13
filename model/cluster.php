@@ -20,6 +20,7 @@ $VIEW = new eMarket\Core\View;
 
 //СОЗДАЕМ ОБЪЕКТЫ OTHER
 $AJAX = new eMarket\Other\Ajax;
+$CART = new eMarket\Other\Cart;
 $DEBUG = new eMarket\Other\Debug;
 $FILES = new eMarket\Other\Files;
 $FUNC = new eMarket\Other\Func;

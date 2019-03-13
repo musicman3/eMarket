@@ -23,7 +23,7 @@
                         <div class="clearfix"></div>
                         <div class="row button">
                             <div class="col-xs-6"><button type="button" class="btn btn-default"><?php echo $PRODUCTS->productPrice($value[12], $CURRENCIES, 1) ?></button></div>
-                            <div class="col-xs-6 text-right"><a id="btn1" href="#" class="btn btn-primary"><?php echo lang('buy_now') ?></a></div>
+                            <div class="col-xs-6 text-right"><a id="btn1" href="/?route=catalog&add_to_cart=<?php echo $value[0]; ?>" class="btn btn-primary"><?php echo lang('buy_now') ?></a></div>
                         </div>
                     </div>
                 </div>

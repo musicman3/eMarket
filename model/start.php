@@ -24,11 +24,19 @@ $AUTORIZE->sessionCatalog();
 
 // Загружаем языковой роутер
 require_once('router_lang.php');
+
 // Считаем количество языков
 $LANG_COUNT = count(lang('#lang_all'));
+
 // Данные по текущей валюте
 if ($SET->path() != 'install') {
     $CURRENCIES = $PDO->getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND default_value=?", [lang('#lang_all')[0], 1])[0];
 }
+
+// Добавляем в корзину
+if ($SET->path() == 'catalog' && $VALID->inGET('add_to_cart')) {
+    $CART->add($VALID->inGET('add_to_cart'), 1);
+}
+//$DEBUG->trace($_SESSION['cart']);
 
 ?>
