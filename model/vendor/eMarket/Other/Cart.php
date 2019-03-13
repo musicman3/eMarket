@@ -21,12 +21,13 @@ class Cart {
      *
      * @param string $id (ID товара)
      */
-    public function add($id, $quantity) {
+    public function add($id, $quantity = null) {
 
         if (!isset($_SESSION['cart'])) {
-            $_SESSION['cart'] = ['id' => $id, 'quantity' => $quantity];
-        } else {
-            $_SESSION['cart'] = ['id' => 2, 'quantity' => 2];
+            $_SESSION['cart'] = [['id' => $id, 'quantity' => $quantity]];
+        }
+        if (isset($_SESSION['cart'])) {
+            array_push($_SESSION['cart'], [['id' => 2, 'quantity' => 2]]);
         }
     }
 
