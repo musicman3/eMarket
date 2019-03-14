@@ -5,11 +5,6 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 ?>
-<script type="text/javascript" language="javascript">
-    $(window).load(function () {
-        $(".grid-item-heading").simpleEQH();
-    });
-</script>
 
 <?php if ($products_new == true) { ?>
     <div id="new_products" class="contentText">
@@ -23,11 +18,28 @@
                         <div class="clearfix"></div>
                         <div class="row button">
                             <div class="col-xs-6"><button type="button" class="btn btn-default"><?php echo $PRODUCTS->productPrice($value[12], $CURRENCIES, 1) ?></button></div>
-                            <div class="col-xs-6 text-right"><a id="btn1" href="/?route=catalog&add_to_cart=<?php echo $value[0]; ?>" class="btn btn-primary"><?php echo lang('buy_now') ?></a></div>
+
+                            <div class="col-xs-6 text-right">
+                                <form id="form_add_to_cart" name="form_add_to_cart" action="javascript:void(null);" onsubmit="addToCart()">
+                                    <input type="hidden" name="add_to_cart" value="<?php echo $value[0] ?>" />
+                                    <button type="submit" class="btn btn-primary"><?php echo lang('buy_now') ?></button>
+                                </form>
+                            </div>
+
                         </div>
                     </div>
                 </div>
             <?php } ?>
         </div>
     </div>
-<?php } ?>
+    <?php
+}
+
+$AJAX->сart('');
+
+?>
+<script type="text/javascript" language="javascript">
+    $(window).load(function () {
+        $(".grid-item-heading").simpleEQH();
+    });
+</script>

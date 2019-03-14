@@ -472,6 +472,44 @@ class Ajax {
         <?php
     }
 
-}
 
+    /**
+     * Ajax обработка для корзины
+     *
+     * @param string $url (url страницы обработки)
+     */
+    public function сart($url) {
+        $VALID = new \eMarket\Core\Valid;
+
+        ?>
+        <!-- Модальное окно "Добавить" -->
+        <script type="text/javascript">
+            function addToCart() {
+                var msg = $('#form_add_to_cart').serialize();
+                // Установка синхронного запроса для jQuery.ajax
+                jQuery.ajaxSetup({async: false});
+                jQuery.ajax({
+                    type: 'GET',
+                    url: '<?php echo $url ?>',
+                    data: msg,
+                    beforeSend: function () {
+                        //$('#add').modal('hide');
+                    }
+                });
+                // Отправка запроса для обновления страницы
+                jQuery.get('<?php echo $url ?>',
+                        {modify: 'update_ok'},
+                        AjaxSuccess);
+                // Обновление страницы
+                function AjaxSuccess(data) {
+                    setTimeout(function () {
+                        document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
+                    }, 100);
+                }
+            }
+        </script>
+
+        <?php
+    }
+}
 ?>
