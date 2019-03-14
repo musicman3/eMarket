@@ -44,7 +44,7 @@
 		    </ul>
 	    </li>
 	    <?php //if (items == 0) { ?>
-		<li class="nav navbar-text"><i class="glyphicon glyphicon-shopping-cart"></i> 0 items</li>
+		<li class="nav navbar-text"><i class="glyphicon glyphicon-shopping-cart"></i> <?php echo $CART->totalQuantity() . ' ' . lang('navbar_pcs') ?></li>
 	    <?php //} else { ?>
 		<!--<li class="dropdown">
 		    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-shopping-cart"></i> 1 item(s) <span class="caret"></span></a>

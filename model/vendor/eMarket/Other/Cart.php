@@ -19,6 +19,7 @@ class Cart {
      * Добавить товар в корзину
      *
      * @param string $id (ID товара)
+     * @param string $quantity (количество добавляемых товаров)
      */
     public function add($id, $quantity = null) {
         
@@ -36,6 +37,20 @@ class Cart {
             }
         }
     }
+    
+    /**
+     * Подсчет количества товара в корзине
+     *
+     * @return string $total_quantity (количества товара)
+     */
+    public function totalQuantity() {
+        
+        $total_quantity = 0;
+        foreach ($_SESSION['cart'] as $value) {
+            $total_quantity = $total_quantity + $value['quantity'];
+        }
+        return $total_quantity;
+    }    
 
 }
 
