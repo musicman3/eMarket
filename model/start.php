@@ -37,6 +37,7 @@ if ($SET->path() != 'install') {
 if ($SET->path() == 'catalog' && $VALID->inGET('add_to_cart')) {
     $CART->add($VALID->inGET('add_to_cart'), 1);
 }
-//$DEBUG->trace($CART->totalQuantity());
+//unset($_SESSION['cart']);
+//$DEBUG->trace($_SESSION['cart']);
 
 ?>
