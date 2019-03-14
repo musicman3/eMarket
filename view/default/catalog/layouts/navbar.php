@@ -51,7 +51,7 @@
 		    <ul class="dropdown-menu">
 			<li><a href="#"><?php echo $CART->totalQuantity() . ' ' . lang('navbar_pcs') . ' (' . $PRODUCTS->productPrice($CART->totalPrice(), $CURRENCIES, 1) . ')' ?></a></li>
 			<li class="divider"></li>
-			<li><a href="#">View Cart</a></li>
+			<li><a href="/?route=cart">View Cart</a></li>
 		    </ul>
 		</li>
 		<li><a href="#"><i class="glyphicon glyphicon-barcode"></i><span class="hidden-sm"> Checkout</span></a></li>
