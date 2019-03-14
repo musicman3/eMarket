@@ -1,4 +1,5 @@
 <?php
+
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -33,11 +34,9 @@ if ($SET->path() != 'install') {
     $CURRENCIES = $PDO->getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND default_value=?", [lang('#lang_all')[0], 1])[0];
 }
 
-// Добавляем в корзину
-if ($SET->path() == 'catalog' && $VALID->inGET('add_to_cart')) {
-    $CART->add($VALID->inGET('add_to_cart'), 1);
-}
+// Инициализация корзины
+$CART->init();
+
 //unset($_SESSION['cart']);
 //$DEBUG->trace($_SESSION['cart']);
-
 ?>
