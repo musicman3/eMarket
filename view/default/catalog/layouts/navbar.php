@@ -54,7 +54,7 @@
 			<li><a href="#">View Cart</a></li>
 		    </ul>
 		</li>
-		<li><a href="#"><i class="glyphicon glyphicon-inbox"></i><span class="hidden-sm"> Checkout</span></a></li>-->
+		<li><a href="#"><i class="glyphicon glyphicon-barcode"></i><span class="hidden-sm"> Checkout</span></a></li>-->
 	    <?php } ?>
 	    </ul>
 	</div>
