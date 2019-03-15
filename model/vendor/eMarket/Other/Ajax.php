@@ -521,7 +521,7 @@ class Ajax {
                 // Установка синхронного запроса для jQuery.ajax
                 jQuery.ajaxSetup({async: false});
                 jQuery.get('<?php echo $url ?>',
-                        {quantity_product: id,
+                        {quantity_product_id: id,
                         pcs_product: pcs},
                         AjaxSuccess);
                 // Обновление страницы

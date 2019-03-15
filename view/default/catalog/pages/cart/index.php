@@ -22,11 +22,9 @@ foreach ($VIEW->layoutRouting('content') as $path) {
                         <td class="text-left"><a href="/?route=products&id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></td>
                         <td class="text-left">
                             <div class="input-group btn-block">
-                                <form id="delete_product" name="delete_product" action="">
-                                    <input type="hidden" name="route" value="cart" />
-                                    <input type="hidden" name="quantity_product_id" value="<?php echo $value['id'] ?>" />
+                                <form id="delete_product" name="delete_product" action="javascript:void(null);" onsubmit="quantityProduct(<?php echo $value['id'] ?>, $('#number_<?php echo $value['id'] ?>').val())">
                                     <button class="btn btn-primary btn-sm" type="button" onclick="this.nextElementSibling.stepDown()"><span class="glyphicon glyphicon-minus"></span></button>
-                                    <input name="pcs_product" type="number" min="1" max="999" value="<?php echo $CART->cartProductQuantity($value['id']) ?>" readonly class="form-control quantity">
+                                    <input id="number_<?php echo $value['id'] ?>" type="number" min="1" max="999" value="<?php echo $CART->cartProductQuantity($value['id']) ?>" readonly class="form-control quantity">
                                     <button class="btn btn-primary btn-sm" type="button" onclick="this.previousElementSibling.stepUp()"><span class="glyphicon glyphicon-plus"></span></button>
                                     <button class="btn btn-primary btn-sm" type="submit"><span class="glyphicon glyphicon-refresh"></span></button>
                                 </form>
@@ -59,7 +57,6 @@ foreach ($VIEW->layoutRouting('content') as $path) {
         <div class="pull-right"><a class="btn btn-primary" href="/">Checkout</a></div>
     </div>
 </div>
-
 <?php
 $AJAX->сart('');
 ?>
