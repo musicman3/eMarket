@@ -24,7 +24,7 @@ class Products {
     public function viewNew($count) {
         $PDO = new \eMarket\Core\Pdo;
 
-        $product = $PDO->getColRow("SELECT * FROM " . TABLE_PRODUCTS . " WHERE language=? ORDER BY id DESC LIMIT " . $count . "", [lang('#lang_all')[0]]);
+        $product = $PDO->getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE language=? ORDER BY id DESC LIMIT " . $count . "", [lang('#lang_all')[0]]);
         return $product;
     }
 
@@ -37,7 +37,7 @@ class Products {
     public function productData($id) {
         $PDO = new \eMarket\Core\Pdo;
 
-        $product = $PDO->getColRow("SELECT * FROM " . TABLE_PRODUCTS . " WHERE language=? AND id=?", [lang('#lang_all')[0], $id]);
+        $product = $PDO->getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE language=? AND id=?", [lang('#lang_all')[0], $id]);
         return $product;
     }
 

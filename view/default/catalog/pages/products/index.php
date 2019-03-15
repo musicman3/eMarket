@@ -6,12 +6,12 @@
 
 ?>
 
-<h1><?php echo $products[1] ?></h1>
+<h1><?php echo $products['name'] ?></h1>
 
 <div id="products" class="contentText">
     <div class="row">
 	<div class="list-group-item">
-	    <div class="col-xs-4"><img src="/uploads/images/products/resize_2/<?php echo $products[7] ?>" class="img-responsive"></div>
+	    <div class="col-xs-4"><img src="/uploads/images/products/resize_2/<?php echo $products['logo_general'] ?>" class="img-responsive"></div>
 	    <div class="col-xs-8"> </div>
 	    <div class="clearfix"></div>
 	    <div class="row button">
@@ -27,7 +27,7 @@
 	    </ul>
 	    <div class="tab-content">
 		<div id="panel_add_1" class="tab-pane fade in active">
-		    <div class="item-text"><?php echo $products[2] ?></div>
+		    <div class="item-text"><?php echo $products['description'] ?></div>
 		</div>
 	    </div>
 	</div>

@@ -5,7 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 $products = $PRODUCTS->productData($VALID->inGET('id'))[0];
-$product_category = $PRODUCTS->productCategories($products[5]);
-$product_price = $PRODUCTS->productPrice($products[12], $CURRENCIES, 1);
+$product_category = $PRODUCTS->productCategories($products['parent_id']);
+$product_price = $PRODUCTS->productPrice($products['price'], $CURRENCIES, 1);
 
 ?>
