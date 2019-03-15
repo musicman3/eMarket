@@ -481,7 +481,7 @@ class Ajax {
         $VALID = new \eMarket\Core\Valid;
 
         ?>
-        <!-- Модальное окно "Добавить" -->
+        <!-- Добавить товар -->
         <script type="text/javascript">
             function addToCart(id) {
                 // Установка синхронного запроса для jQuery.ajax
@@ -498,7 +498,7 @@ class Ajax {
             }
         </script>
 
-        <!-- Модальное окно "Добавить" -->
+        <!-- Удалить товар -->
         <script type="text/javascript">
             function deleteProduct(id) {
                 // Установка синхронного запроса для jQuery.ajax
@@ -515,7 +515,7 @@ class Ajax {
             }
         </script>
 
-        <!-- Модальное окно "Добавить" -->
+        <!-- Редактировать количество -->
         <script type="text/javascript">
             function quantityProduct(id, pcs) {
                 // Установка синхронного запроса для jQuery.ajax
