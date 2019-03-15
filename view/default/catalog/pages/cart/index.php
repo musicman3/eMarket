@@ -59,3 +59,7 @@ foreach ($VIEW->layoutRouting('content') as $path) {
         <div class="pull-right"><a class="btn btn-primary" href="/">Checkout</a></div>
     </div>
 </div>
+
+<?php
+$AJAX->сart('');
+?>
