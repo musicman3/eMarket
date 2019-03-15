@@ -39,5 +39,5 @@ $CART->init();
 
 
 //unset($_SESSION['cart']);
-$DEBUG->trace($_SESSION['cart']);
+//$DEBUG->trace($_SESSION['cart']);
 ?>
