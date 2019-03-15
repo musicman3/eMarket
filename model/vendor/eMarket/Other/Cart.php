@@ -93,6 +93,42 @@ class Cart {
         }
     }
 
+    /**
+     * Подсчет количества товара в корзине
+     *
+     * @return array $cart (информация о товарах в корзине)
+     */
+    public function info() {
+        $PDO = new \eMarket\Core\Pdo;
+
+        $cart_info = [];
+        if (isset($_SESSION['cart'])) {
+            foreach ($_SESSION['cart'] as $value) {
+                $product = $PDO->getColAssoc("SELECT id, name, logo_general, price FROM " . TABLE_PRODUCTS . " WHERE language=? AND id=?", [lang('#lang_all')[0], $value['id']]);
+                array_push($cart_info, $product[0]);
+            }
+        }
+        return $cart_info;
+    }
+
+    /**
+     * Подсчет количества товара в корзине
+     * @param string $id (ID товара в корзине)
+     * @return string $total_quantity (количества товара)
+     */
+    public function cartProductQuantity($id) {
+
+        $product_quantity = 0;
+        if (isset($_SESSION['cart'])) {
+            foreach ($_SESSION['cart'] as $value) {
+                if ($value['id'] == $id) {
+                    $product_quantity = $value['quantity'];
+                }
+            }
+        }
+        return $product_quantity;
+    }
+
 }
 
 ?>

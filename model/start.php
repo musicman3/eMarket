@@ -37,6 +37,7 @@ if ($SET->path() != 'install') {
 // Инициализация корзины
 $CART->init();
 
+
 //unset($_SESSION['cart']);
 //$DEBUG->trace($_SESSION['cart']);
 ?>

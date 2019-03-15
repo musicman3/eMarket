@@ -4,4 +4,5 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+$cart_info = $CART->info();
 ?>
