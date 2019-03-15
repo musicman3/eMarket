@@ -485,15 +485,10 @@ class Ajax {
         <!-- Модальное окно "Добавить" -->
         <script type="text/javascript">
             function addToCart(id) {
-                var msg = $('#form_add_to_cart').serialize();
                 // Установка синхронного запроса для jQuery.ajax
                 jQuery.ajaxSetup({async: false});
                 jQuery.get('<?php echo $url ?>',
                         {add_to_cart: id},
-                        AjaxSuccess);
-                // Отправка запроса для обновления страницы
-                jQuery.get('<?php echo $url ?>',
-                        {modify: 'update_ok'},
                         AjaxSuccess);
                 // Обновление страницы
                 function AjaxSuccess(data) {
