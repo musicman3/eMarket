@@ -5,7 +5,5 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 $cart_info = $CART->info();
-$CART->deleteProduct();
-$CART->quantityProduct();
 
 ?>

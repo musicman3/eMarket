@@ -92,6 +92,8 @@ class Cart {
             }
             self::add($VALID->inGET('add_to_cart'), $add_quantity);
         }
+        self::deleteProduct();
+        self::quantityProduct();
     }
 
     /**
