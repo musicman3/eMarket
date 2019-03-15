@@ -22,7 +22,7 @@ foreach ($VIEW->layoutRouting('content') as $path) {
                         <td class="text-left"><a href="/">Название товара</a></td>
                         <td class="text-left">
                             <div class="input-group btn-block">
-                                <input type="text" class="form-control quantity" size="1" value="1" name="quantity">
+                                <input type="number" class="form-control quantity" value="1" name="quantity" min="0">
                                 <span class="input-group-btn">
                                     <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-refresh"></span></button>
                                     <button class="btn btn-primary" type="button"><span class="glyphicon glyphicon-trash"></span></button>
