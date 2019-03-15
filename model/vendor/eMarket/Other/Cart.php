@@ -68,9 +68,11 @@ class Cart {
         $PDO = new \eMarket\Core\Pdo;
 
         $total_price = 0;
-        foreach ($_SESSION['cart'] as $value) {
-            $price = $PDO->getCell("SELECT price FROM " . TABLE_PRODUCTS . " WHERE id=? AND language=?", [$value['id'], lang('#lang_all')[0]]);
-            $total_price = $total_price + $price * $value['quantity'];
+        if (isset($_SESSION['cart'])) {
+            foreach ($_SESSION['cart'] as $value) {
+                $price = $PDO->getCell("SELECT price FROM " . TABLE_PRODUCTS . " WHERE id=? AND language=?", [$value['id'], lang('#lang_all')[0]]);
+                $total_price = $total_price + $price * $value['quantity'];
+            }
         }
         return $total_price;
     }
