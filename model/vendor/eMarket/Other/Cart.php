@@ -1,5 +1,4 @@
 <?php
-
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -26,7 +25,7 @@ class Cart {
         $FUNC = new \eMarket\Other\Func;
 
         $count = 0;
-        if (!isset($_SESSION['cart'])) {
+        if (!isset($_SESSION['cart']) OR count($_SESSION['cart']) == 0) {
             $_SESSION['cart'] = [['id' => $id, 'quantity' => $quantity]];
         } else {
             // Если не было такого id, то добавляем в массив для подсчета
@@ -129,6 +128,25 @@ class Cart {
             }
         }
         return $product_quantity;
+    }
+
+    /**
+     * Удаляем товар из корзины
+     * 
+     * @return string $array_new (количества товара)
+     */
+    public function deleteProduct() {
+        $VALID = new \eMarket\Core\Valid;
+
+        if ($VALID->inGET('delete_product') && isset($_SESSION['cart'])) {
+            $array_new = [];
+            foreach ($_SESSION['cart'] as $value) {
+                if ($value['id'] != $VALID->inGET('delete_product')) {
+                    array_push($array_new, $value);
+                }
+            }
+            $_SESSION['cart'] = $array_new;
+        }
     }
 
 }

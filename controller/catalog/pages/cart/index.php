@@ -5,4 +5,6 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 $cart_info = $CART->info();
+$CART->deleteProduct();
+$AJAX->сart('');
 ?>

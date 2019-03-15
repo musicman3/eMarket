@@ -472,7 +472,6 @@ class Ajax {
         <?php
     }
 
-
     /**
      * Ajax обработка для корзины
      *
@@ -499,7 +498,25 @@ class Ajax {
             }
         </script>
 
+        <!-- Модальное окно "Добавить" -->
+        <script type="text/javascript">
+            function deleteProduct(id) {
+                // Установка синхронного запроса для jQuery.ajax
+                jQuery.ajaxSetup({async: false});
+                jQuery.get('<?php echo $url ?>',
+                        {delete_product: id},
+                        AjaxSuccess);
+                // Обновление страницы
+                function AjaxSuccess(data) {
+                    setTimeout(function () {
+                        document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
+                    }, 100);
+                }
+            }
+        </script>
         <?php
     }
+
 }
+
 ?>
