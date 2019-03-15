@@ -73,6 +73,7 @@ body {font-family: 'Open Sans';}
 #listing .grid-group-item .item-heading {text-align: center;}
 #listing .grid-group-item .item-text {display: none;}
 #listing .grid-group-item img {display: block;margin-right: auto;margin-left: auto;}
-#checkout .button {padding-bottom: 10px;}
-#checkout .btn-block {max-width: 150px;}
-#checkout .table-bordered > tbody > tr > td {border:0;vertical-align: middle;}
+#cart .button {padding-bottom: 10px;}
+#cart .table-bordered > tbody > tr > td {border:0;vertical-align: middle;}
+#cart .quantity {all: unset;-moz-appearance: textfield;width: 30px;text-align: center;}
+#cart .quantity:-webkit-inner-spin-button {display: none;}
