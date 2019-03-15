@@ -20,8 +20,8 @@
                             <div class="col-xs-6"><button type="button" class="btn btn-default"><?php echo $PRODUCTS->productPrice($value[12], $CURRENCIES, 1) ?></button></div>
 
                             <div class="col-xs-6 text-right">
-                                <form id="form_add_to_cart" name="form_add_to_cart" action="javascript:void(null);" onsubmit="addToCart()">
-                                    <input type="hidden" name="add_to_cart" value="<?php echo $value[0] ?>" />
+                                <form id="form_add_to_cart" name="form_add_to_cart" action="javascript:void(null);" onsubmit="addToCart(<?php echo $value[0] ?>)">
+
                                     <button type="submit" class="btn btn-primary"><?php echo lang('buy_now') ?></button>
                                 </form>
                             </div>
