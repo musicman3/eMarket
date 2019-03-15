@@ -133,7 +133,6 @@ class Cart {
     /**
      * Удаляем товар из корзины
      * 
-     * @return string $array_new (количества товара)
      */
     public function deleteProduct() {
         $VALID = new \eMarket\Core\Valid;
@@ -146,6 +145,24 @@ class Cart {
                 }
             }
             $_SESSION['cart'] = $array_new;
+        }
+    }
+
+    /**
+     * Удаляем товар из корзины
+     * 
+     */
+    public function quantityProduct() {
+        $VALID = new \eMarket\Core\Valid;
+
+        if ($VALID->inGET('quantity_product_id') && isset($_SESSION['cart'])) {
+            $count = 0;
+            foreach ($_SESSION['cart'] as $value) {
+                if ($value['id'] == $VALID->inGET('quantity_product_id')) {
+                    $_SESSION['cart'][$count]['quantity'] = $VALID->inGET('pcs_product');
+                }
+                $count++;
+            }
         }
     }
 

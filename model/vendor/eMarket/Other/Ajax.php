@@ -514,6 +514,24 @@ class Ajax {
                 }
             }
         </script>
+
+        <!-- Модальное окно "Добавить" -->
+        <script type="text/javascript">
+            function quantityProduct(id, pcs) {
+                // Установка синхронного запроса для jQuery.ajax
+                jQuery.ajaxSetup({async: false});
+                jQuery.get('<?php echo $url ?>',
+                        {quantity_product: id,
+                        pcs_product: pcs},
+                        AjaxSuccess);
+                // Обновление страницы
+                function AjaxSuccess(data) {
+                    setTimeout(function () {
+                        document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
+                    }, 100);
+                }
+            }
+        </script>
         <?php
     }
 
