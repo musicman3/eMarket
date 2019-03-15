@@ -21,7 +21,7 @@ class Cart {
      * @param string $id (ID товара)
      * @param string $quantity (количество добавляемых товаров)
      */
-    public function add($id, $quantity = null) {
+    public function addProduct($id, $quantity = null) {
         $FUNC = new \eMarket\Other\Func;
 
         $count = 0;
@@ -91,7 +91,7 @@ class Cart {
                 } else {
                     $add_quantity = $VALID->inGET('add_quantity');
                 }
-                self::add($VALID->inGET('add_to_cart'), $add_quantity);
+                self::addProduct($VALID->inGET('add_to_cart'), $add_quantity);
             }
             self::deleteProduct();
             self::quantityProduct();
@@ -153,7 +153,7 @@ class Cart {
     }
 
     /**
-     * Удаляем товар из корзины
+     * Меняем количество товара в корзине
      * 
      */
     public function quantityProduct() {
