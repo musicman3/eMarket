@@ -84,16 +84,18 @@ class Cart {
         $VALID = new \eMarket\Core\Valid;
         $SET = new \eMarket\Core\Set;
 
-        if ($SET->path() == 'catalog' && $VALID->inGET('add_to_cart')) {
-            if (!$VALID->inGET('add_quantity')) {
-                $add_quantity = 1;
-            } else {
-                $add_quantity = $VALID->inGET('add_quantity');
+        if ($SET->path() == 'catalog') {
+            if ($VALID->inGET('add_to_cart')) {
+                if (!$VALID->inGET('add_quantity')) {
+                    $add_quantity = 1;
+                } else {
+                    $add_quantity = $VALID->inGET('add_quantity');
+                }
+                self::add($VALID->inGET('add_to_cart'), $add_quantity);
             }
-            self::add($VALID->inGET('add_to_cart'), $add_quantity);
+            self::deleteProduct();
+            self::quantityProduct();
         }
-        self::deleteProduct();
-        self::quantityProduct();
     }
 
     /**
