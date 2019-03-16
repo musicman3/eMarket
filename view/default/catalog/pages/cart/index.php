@@ -27,11 +27,7 @@ foreach ($VIEW->layoutRouting('content') as $path) {
                                     <input id="number_<?php echo $value['id'] ?>" type="number" min="1" max="999" value="<?php echo $CART->cartProductQuantity($value['id']) ?>" readonly class="form-control quantity">
                                     <button class="btn btn-primary btn-sm" type="button" onclick="pcsProduct('plus', <?php echo $value['id'] ?>)"><span class="glyphicon glyphicon-plus"></span></button>
                                     <button class="btn btn-primary btn-sm" type="submit"><span class="glyphicon glyphicon-refresh"></span></button>
-                                </form>
-                            </td>
-                            <td class="text-left">
-                                <form id="delete_product" name="delete_product" action="javascript:void(null);" onsubmit="deleteProduct(<?php echo $value['id'] ?>)">
-                                    <button class="btn btn-primary btn-sm" type="submit"><span class="glyphicon glyphicon-trash"></span></button>
+                                    <button class="btn btn-primary btn-sm" type="submit" onclick="deleteProduct(<?php echo $value['id'] ?>)"><span class="glyphicon glyphicon-trash"></span></button>
                                 </form>
                             </td>
                             <td class="text-right"><?php echo $PRODUCTS->productPrice($value['price'] * $CART->cartProductQuantity($value['id']), $CURRENCIES, 1) ?></td>
@@ -69,6 +65,5 @@ foreach ($VIEW->layoutRouting('content') as $path) {
 <?php } ?>
 
 <?php
-
 
 ?>
