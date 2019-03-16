@@ -31,7 +31,7 @@ $LANG_COUNT = count(lang('#lang_all'));
 
 // Данные по текущей валюте
 if ($SET->path() != 'install') {
-    $CURRENCIES = $PDO->getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND default_value=?", [lang('#lang_all')[0], 1])[0];
+    $CURRENCIES = $SET->currencyDefault();
 }
 
 // Инициализация корзины

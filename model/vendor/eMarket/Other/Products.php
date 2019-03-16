@@ -77,41 +77,41 @@ class Products {
         
         if ($format == 0) {
             if ($CURRENCIES[8] == 'left') {
-                return $price_return = $CURRENCIES[1] . ' ' . number_format($price, $CURRENCIES[9], lang('currency_separator'), lang('currency_group_separator'));
+                return $price_return = $CURRENCIES[1] . ' ' . number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator'), lang('currency_group_separator'));
             }
             if ($CURRENCIES[8] == 'right') {
-                return $price_return = number_format($price, $CURRENCIES[9], lang('currency_separator'), lang('currency_group_separator')) . ' ' . $CURRENCIES[1];
+                return $price_return = number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator'), lang('currency_group_separator')) . ' ' . $CURRENCIES[1];
             }
         }
 
         if ($format == 1) {
             if ($CURRENCIES[8] == 'left') {
-                return $price_return = $CURRENCIES[2] . ' ' . number_format($price, $CURRENCIES[9], lang('currency_separator'), lang('currency_group_separator'));
+                return $price_return = $CURRENCIES[2] . ' ' . number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator'), lang('currency_group_separator'));
             }
             if ($CURRENCIES[8] == 'right') {
-                return $price_return = number_format($price, $CURRENCIES[9], lang('currency_separator'), lang('currency_group_separator')) . ' ' . $CURRENCIES[2];
+                return $price_return = number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator'), lang('currency_group_separator')) . ' ' . $CURRENCIES[2];
             }
         }
 
         if ($format == 2) {
             if ($CURRENCIES[8] == 'left') {
-                return $price_return = $CURRENCIES[7] . ' ' . number_format($price, $CURRENCIES[9], lang('currency_separator'), lang('currency_group_separator'));
+                return $price_return = $CURRENCIES[7] . ' ' . number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator'), lang('currency_group_separator'));
             }
             if ($CURRENCIES[8] == 'right') {
-                return $price_return = number_format($price, $CURRENCIES[9], lang('currency_separator'), lang('currency_group_separator')) . ' ' . $CURRENCIES[7];
+                return $price_return = number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator'), lang('currency_group_separator')) . ' ' . $CURRENCIES[7];
             }
         }
         
         if ($format == 3) {
             if ($CURRENCIES[8] == 'left') {
-                return $price_return = $CURRENCIES[3] . ' ' . number_format($price, $CURRENCIES[9], lang('currency_separator'), lang('currency_group_separator'));
+                return $price_return = $CURRENCIES[3] . ' ' . number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator'), lang('currency_group_separator'));
             }
             if ($CURRENCIES[8] == 'right') {
-                return $price_return = number_format($price, $CURRENCIES[9], lang('currency_separator'), lang('currency_group_separator')) . ' ' . $CURRENCIES[3];
+                return $price_return = number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator'), lang('currency_group_separator')) . ' ' . $CURRENCIES[3];
             }
         }
 
-        return number_format($price, $CURRENCIES[9], lang('currency_separator'), lang('currency_group_separator'));
+        return number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator'), lang('currency_group_separator'));
     }
 
 }

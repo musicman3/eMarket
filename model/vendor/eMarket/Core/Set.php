@@ -26,6 +26,52 @@ class Set {
     }
 
     /**
+     * Название валют
+     *
+     * @return array $currencies
+     */
+    public function currenciesNames() {
+        $PDO = new \eMarket\Core\Pdo;
+
+        $currencies = $PDO->getCol("SELECT name FROM " . TABLE_CURRENCIES . " WHERE language=?", [lang('#lang_all')[0]]);
+        return $currencies;
+    }
+    
+    /**
+     * ISO код по названию валюты
+     *
+     * @return array $iso
+     */
+    public function currenciesIsoFromName($name) {
+        $PDO = new \eMarket\Core\Pdo;
+
+        $iso = $PDO->getCell("SELECT iso_4217 FROM " . TABLE_CURRENCIES . " WHERE language=? AND name=?", [lang('#lang_all')[0], $name]);
+        return $iso;
+    }    
+
+    /**
+     * Данные по валюте по-умолчанию
+     *
+     * @return array $currency
+     */
+    public function currencyDefault() {
+        $PDO = new \eMarket\Core\Pdo;
+        $VALID = new \eMarket\Core\Valid;
+
+        if (!isset($_SESSION['currency_default_catalog'])) {
+            $currency = $PDO->getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND default_value=?", [lang('#lang_all')[0], 1])[0];
+            $_SESSION['currency_default_catalog'] = $currency[3];
+        } elseif (isset($_SESSION['currency_default_catalog']) && !$VALID->inGET('currency_default')) {
+            $currency = $PDO->getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND iso_4217=?", [lang('#lang_all')[0], $_SESSION['currency_default_catalog']])[0];
+        } elseif (isset($_SESSION['currency_default_catalog']) && $VALID->inGET('currency_default')) {
+            $currency = $PDO->getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND iso_4217=?", [lang('#lang_all')[0], $VALID->inGET('currency_default')])[0];
+            $_SESSION['currency_default_catalog'] = $currency[3];
+        }
+
+        return $currency;
+    }
+
+    /**
      * Каноническая ссылка
      *
      * @return string $path
@@ -121,6 +167,7 @@ class Set {
         $count_value = count($value);
         for ($x = 0; $x < $count_value; $x++) {
             if (isset($value[$x][1]) && $value[$x][1] == 1 && $selected != FALSE && $id != null) {
+
                 ?>
                 <!-- Строка Select по умолчанию-->
                 <option value="<?php echo $id ?>" selected><?php echo $value[$x][0] ?></option>
@@ -132,4 +179,5 @@ class Set {
     }
 
 }
+
 ?>

@@ -10267,8 +10267,8 @@ INSERT INTO emkt_units VALUES (2, 'Упаковка', 'russian', 'уп.', '0');
 /* ЗАГРУЗКА ВАЛЮТ */
 INSERT INTO emkt_currencies VALUES (1, 'Russian Rouble', 'rub.', 'RUB', 'english', '1.0000000000', '1', '₽', 'right', '2', NULL);
 INSERT INTO emkt_currencies VALUES (1, 'Рубль РФ', 'руб.', 'RUB', 'russian', '1.0000000000', '1', '₽', 'right', '2', NULL);
-INSERT INTO emkt_currencies VALUES (2, 'Dollar USA', 'doll.', 'USD', 'english', '0.0014700000', '0', '$', 'left', '2', NULL);
-INSERT INTO emkt_currencies VALUES (2, 'Доллар США', 'долл.', 'USD', 'russian', '0.0014700000', '0', '$', 'left', '2', NULL);
+INSERT INTO emkt_currencies VALUES (2, 'Dollar USA', 'doll.', 'USD', 'english', '0.0147000000', '0', '$', 'left', '2', NULL);
+INSERT INTO emkt_currencies VALUES (2, 'Доллар США', 'долл.', 'USD', 'russian', '0.0147000000', '0', '$', 'left', '2', NULL);
 
 /* ЗАГРУЗКА КОМПОНОВКИ ШАБЛОНОВ */
 /* ADMIN */
