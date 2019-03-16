@@ -21,10 +21,10 @@ foreach ($VIEW->layoutRouting('content') as $path) {
                         <tr>
                             <td class="text-center"><a href="/?route=products&id=<?php echo $value['id'] ?>"><img class="img-thumbnail" src="/uploads/images/products/resize_0/<?php echo $value['logo_general'] ?>"></a></td>
                             <td class="text-left"><a href="/?route=products&id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></td>
-                            <td class="text-right">
+                            <td class="text-left">
                                 <form id="quantity_product" name="quantity_product" action="javascript:void(null);" onsubmit="quantityProduct(<?php echo $value['id'] ?>, $('#number_<?php echo $value['id'] ?>').val())">
                                     <button class="btn btn-primary btn-sm" type="button" onclick="pcsProduct('minus', <?php echo $value['id'] ?>)"><span class="glyphicon glyphicon-minus"></span></button>
-                                    <input id="number_<?php echo $value['id'] ?>" type="number" value="<?php echo $CART->cartProductQuantity($value['id']) ?>" class="form-control quantity">
+                                    <input id="number_<?php echo $value['id'] ?>" type="number" value="<?php echo $CART->cartProductQuantity($value['id']) ?>" class="quantity">
                                     <button class="btn btn-primary btn-sm" type="button" onclick="pcsProduct('plus', <?php echo $value['id'] ?>)"><span class="glyphicon glyphicon-plus"></span></button>
                                     <button class="btn btn-primary btn-sm" type="submit"><span class="glyphicon glyphicon-refresh"></span></button>
                                     <button class="btn btn-primary btn-sm" type="button" onclick="deleteProduct(<?php echo $value['id'] ?>)"><span class="glyphicon glyphicon-trash"></span></button>
