@@ -35,7 +35,7 @@
 		<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-credit-card"></i><span class="hidden-sm"> <?php echo lang('navbar_currencies') ?></span> <span class="caret"></span></a>
 		    <ul class="dropdown-menu">
                         <?php foreach ($SET->currenciesNames() as $value) { ?>
-			<li><a href="<?php echo '/?route=catalog&currency_default=' . $SET->currenciesIsoFromName($value) ?>"><?php echo $value ?></a></li>
+			<li><a href="<?php echo '/?route=catalog&currency_default=' . $SET->currencyIsoFromName($value) ?>"><?php echo $value ?></a></li>
 			<?php } ?>
 		    </ul>
 		</li>

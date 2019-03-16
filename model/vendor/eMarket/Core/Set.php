@@ -42,7 +42,7 @@ class Set {
      *
      * @return array $iso
      */
-    public function currenciesIsoFromName($name) {
+    public function currencyIsoFromName($name) {
         $PDO = new \eMarket\Core\Pdo;
 
         $iso = $PDO->getCell("SELECT iso_4217 FROM " . TABLE_CURRENCIES . " WHERE language=? AND name=?", [lang('#lang_all')[0], $name]);
