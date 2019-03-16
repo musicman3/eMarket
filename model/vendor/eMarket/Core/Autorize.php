@@ -61,9 +61,8 @@ class Autorize {
 
             session_start();
 
-            if (!isset($_SESSION['login'])) { // Если нет пользователя
-                session_destroy();
-                header('Location: /controller/admin/?route=login'); // переадресация на LOGIN
+            if (!isset($_SESSION['login_user'])) { // Если нет пользователя
+
             } else {
                 $TOKEN_CATALOG = $_SESSION['pass']; // создаем токен для ajax и пр.
                 //Язык авторизованного пользователя

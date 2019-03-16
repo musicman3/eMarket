@@ -34,6 +34,9 @@ function lang($a = null, $b = null) {
     if ($VALID->inPOST('language')) {
         $_SESSION['DEFAULT_LANGUAGE'] = $VALID->inPOST('language');
     }
+    if ($VALID->inGET('language')) {
+        $_SESSION['DEFAULT_LANGUAGE'] = $VALID->inGET('language');
+    }
 
     //Устанавливаем $lang_all
     if (!isset($lang_all)) {

@@ -25,6 +25,13 @@
 		<li><a href="#"><i class="glyphicon glyphicon-comment"></i><span class="hidden-sm"> Reviews</span></a></li>
 	    </ul>
 	    <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-globe"></i><span class="hidden-sm"> <?php echo lang('navbar_languages') ?></span> <span class="caret"></span></a>
+		    <ul class="dropdown-menu">
+                        <?php foreach (lang('#lang_all') as $value) { ?>
+			<li><a href="<?php echo '/?route=catalog&language=' . $value ?>"><?php echo lang('language_name', $value) ?></a></li>
+                        <?php } ?>
+		    </ul>
+		</li>
 		<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-credit-card"></i><span class="hidden-sm"> Currencies</span> <span class="caret"></span></a>
 		    <ul class="dropdown-menu">
 			<li><a href="#">U.S. Dollar</a></li>
