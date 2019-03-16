@@ -6,4 +6,6 @@
 
 $cart_info = $CART->info();
 
+//Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
+$JS_END = __DIR__;
 ?>
