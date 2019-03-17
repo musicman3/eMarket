@@ -80,5 +80,3 @@ body {font-family: 'Open Sans';}
 #cart .quantity:-webkit-inner-spin-button {display: none;}
 #register legend {font-size: 14px;text-transform: uppercase;padding: 5px 0px 5px;display: block;width: 100%;margin-bottom: 20px;color: #666;border: 0;border-bottom-color: currentcolor;border-bottom-style: none;border-bottom-width: 0px;border-bottom: 1px solid #e5e5e5;}
 #register fieldset {min-width: 0;padding: 0;margin: 0;border: 0;}
-#register div.required .control-label:before {content: '* ';color: #F00;font-weight: bold;}
-#register .control-label {text-align: left;font-weight: 500;}
