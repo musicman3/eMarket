@@ -52,7 +52,7 @@
 		    </ul>
 	    </li>
 	    <?php if ($CART->totalQuantity() == 0) { ?>
-		<li class="nav navbar-text"><i class="glyphicon glyphicon-shopping-cart"></i> <?php echo $CART->totalQuantity() . ' ' . lang('navbar_pcs') ?></li>
+		<li class="nav"><a href="#" class="disabled"><i class="glyphicon glyphicon-shopping-cart"></i> <?php echo $CART->totalQuantity() . ' ' . lang('navbar_pcs') ?></a></li>
 	    <?php } else { ?>
 		<li class="dropdown">
 		    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-shopping-cart"></i> <?php echo $CART->totalQuantity() . ' ' . lang('navbar_pcs') ?> <span class="caret"></span></a>
