@@ -33,7 +33,7 @@ class Set {
     public function currenciesData() {
         $PDO = new \eMarket\Core\Pdo;
 
-        $currencies = $PDO->getColRow("SELECT name, iso_4217 FROM " . TABLE_CURRENCIES . " WHERE language=?", [lang('#lang_all')[0]]);
+        $currencies = $PDO->getColRow("SELECT name, id FROM " . TABLE_CURRENCIES . " WHERE language=?", [lang('#lang_all')[0]]);
         return $currencies;
     }
 
@@ -50,9 +50,9 @@ class Set {
             $currency = $PDO->getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND default_value=?", [lang('#lang_all')[0], 1])[0];
             $_SESSION['currency_default_catalog'] = $currency[3];
         } elseif (isset($_SESSION['currency_default_catalog']) && !$VALID->inGET('currency_default')) {
-            $currency = $PDO->getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND iso_4217=?", [lang('#lang_all')[0], $_SESSION['currency_default_catalog']])[0];
+            $currency = $PDO->getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], $_SESSION['currency_default_catalog']])[0];
         } elseif (isset($_SESSION['currency_default_catalog']) && $VALID->inGET('currency_default')) {
-            $currency = $PDO->getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND iso_4217=?", [lang('#lang_all')[0], $VALID->inGET('currency_default')])[0];
+            $currency = $PDO->getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], $VALID->inGET('currency_default')])[0];
             $_SESSION['currency_default_catalog'] = $currency[3];
         }
 
