@@ -26,28 +26,16 @@ class Set {
     }
 
     /**
-     * Название валют
+     * Данные по валютам
      *
      * @return array $currencies
      */
-    public function currenciesNames() {
+    public function currenciesData() {
         $PDO = new \eMarket\Core\Pdo;
 
-        $currencies = $PDO->getCol("SELECT name FROM " . TABLE_CURRENCIES . " WHERE language=?", [lang('#lang_all')[0]]);
+        $currencies = $PDO->getColRow("SELECT name, iso_4217 FROM " . TABLE_CURRENCIES . " WHERE language=?", [lang('#lang_all')[0]]);
         return $currencies;
     }
-    
-    /**
-     * ISO код по названию валюты
-     *
-     * @return array $iso
-     */
-    public function currencyIsoFromName($name) {
-        $PDO = new \eMarket\Core\Pdo;
-
-        $iso = $PDO->getCell("SELECT iso_4217 FROM " . TABLE_CURRENCIES . " WHERE language=? AND name=?", [lang('#lang_all')[0], $name]);
-        return $iso;
-    }    
 
     /**
      * Данные по основной валюте
