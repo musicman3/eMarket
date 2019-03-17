@@ -62,7 +62,6 @@
 			<li><a href="/?route=cart">View Cart</a></li>
 		    </ul>
 		</li>
-		<li><a href="#"><i class="glyphicon glyphicon-barcode"></i><span class="hidden-sm"> Checkout</span></a></li>
 	    <?php } ?>
 	    </ul>
 	</div>
