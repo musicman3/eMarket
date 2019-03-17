@@ -48,12 +48,12 @@ class Set {
 
         if (!isset($_SESSION['currency_default_catalog'])) {
             $currency = $PDO->getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND default_value=?", [lang('#lang_all')[0], 1])[0];
-            $_SESSION['currency_default_catalog'] = $currency[3];
+            $_SESSION['currency_default_catalog'] = $currency[0];
         } elseif (isset($_SESSION['currency_default_catalog']) && !$VALID->inGET('currency_default')) {
             $currency = $PDO->getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], $_SESSION['currency_default_catalog']])[0];
         } elseif (isset($_SESSION['currency_default_catalog']) && $VALID->inGET('currency_default')) {
             $currency = $PDO->getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], $VALID->inGET('currency_default')])[0];
-            $_SESSION['currency_default_catalog'] = $currency[3];
+            $_SESSION['currency_default_catalog'] = $currency[0];
         }
 
         return $currency;
