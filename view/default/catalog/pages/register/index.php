@@ -14,20 +14,20 @@
 	    <legend>Ваши персональные данные</legend>
 	    <div class="input-group has-error">
 		<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-		<input type="text" class="form-control" placeholder="Имя" id="input-firstname" value="" name="firstname">
+		<input type="text" class="form-control" placeholder="Имя" id="input-firstname" value="" name="firstname" required>
 	    </div>
 	    <br>
 	    <div class="input-group has-error">
 		<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-		<input type="text" class="form-control" placeholder="Фамилия" id="input-lastname" value="" name="lastname">
+		<input type="text" class="form-control" placeholder="Фамилия" id="input-lastname" value="" name="lastname" required>
 	    </div>
 	    <br>
 	    <div class="input-group has-error">
 		<span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-		    <input type="email" class="form-control" placeholder="E-Mail" id="input-email" value="" name="email">
+		    <input type="email" class="form-control" type="email" placeholder="E-Mail" id="input-email" value="" name="email" required>
 	    </div>
 	    <br>
-	    <div class="input-group has-info">
+	    <div class="input-group has-success">
 		<span class="input-group-addon"><span class="glyphicon glyphicon-phone-alt"></span></span>
 		<input type="tel" class="form-control" placeholder="Телефон" id="input-telephone" value="" name="telephone">
 	    </div>
@@ -37,12 +37,12 @@
 	    <legend>Ваш пароль</legend>
 	    <div class="input-group has-error">
 		<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-		<input type="password" class="form-control" placeholder="Пароль" id="input-password" value="" name="password">
+		<input type="password" class="form-control" type="password" minlength="6" placeholder="Пароль" id="input-password" value="" name="password" required>
 	    </div>
 	    <br>
 	    <div class="input-group has-error">
 		<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-		<input type="password" class="form-control" placeholder="Подтвердить пароль" id="input-confirm" value="" name="confirm">
+		<input type="password" class="form-control" type="password" minlength="6" placeholder="Подтвердить пароль" id="input-confirm" value="" name="confirm" required>
 	    </div>
 	    <br>
 	</fieldset>

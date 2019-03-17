@@ -34,7 +34,7 @@
 
             <div class="panel-body">
 
-                <form action="success.php" method="post" accept-charset="utf-8" style="display: inline;" onsubmit="return check(this.email.value);">
+                <form action="success.php" method="post" accept-charset="utf-8" style="display: inline;" onsubmit="check()">
 
                     <!-- Выбранный язык" -->
                     <input type='hidden' name='language' value='<?php echo $DEFAULT_LANGUAGE ?>' />
