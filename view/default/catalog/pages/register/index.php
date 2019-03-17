@@ -13,22 +13,22 @@
 	<fieldset id="account">
 	    <legend>Ваши персональные данные</legend>
 	    <div class="input-group has-error">
-		<span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+		<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
 		<input type="text" class="form-control" placeholder="Имя" id="input-firstname" value="" name="firstname">
 	    </div>
 	    <br>
 	    <div class="input-group has-error">
-		<span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+		<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
 		<input type="text" class="form-control" placeholder="Фамилия" id="input-lastname" value="" name="lastname">
 	    </div>
 	    <br>
 	    <div class="input-group has-error">
-		<span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+		<span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
 		    <input type="email" class="form-control" placeholder="E-Mail" id="input-email" value="" name="email">
 	    </div>
 	    <br>
 	    <div class="input-group has-info">
-		<span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+		<span class="input-group-addon"><span class="glyphicon glyphicon-phone-alt"></span></span>
 		<input type="tel" class="form-control" placeholder="Телефон" id="input-telephone" value="" name="telephone">
 	    </div>
 	    <br>
@@ -36,12 +36,12 @@
 	<fieldset>
 	    <legend>Ваш пароль</legend>
 	    <div class="input-group has-error">
-		<span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+		<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
 		<input type="password" class="form-control" placeholder="Пароль" id="input-password" value="" name="password">
 	    </div>
 	    <br>
 	    <div class="input-group has-error">
-		<span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+		<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
 		<input type="password" class="form-control" placeholder="Подтвердить пароль" id="input-confirm" value="" name="confirm">
 	    </div>
 	    <br>
