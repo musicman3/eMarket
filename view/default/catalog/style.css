@@ -12,7 +12,7 @@ input:active, textarea:active {outline: none;}
 body {font-family: 'Open Sans';}
 #header, #bodyWrapper, #Carousel, .breadcrumb {margin-top:5px;margin-bottom:5px;}
 .footer {margin:15px 0 15px 0;}
-#header .searchbox-margin {padding-top: 15px;}
+#header .searchbox-margin {padding-top: 18px;}
 #header .logo {padding: 0 10px 0 0;}
 #Carousel .left {border-radius: 4px;}
 #Carousel .right {border-radius: 4px;}
