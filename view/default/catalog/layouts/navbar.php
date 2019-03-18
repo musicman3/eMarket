@@ -42,7 +42,7 @@
 	    <li class="dropdown">
 		<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-user"></i><span class="hidden-sm"> My Account</span> <span class="caret"></span></a>
 		    <ul class="dropdown-menu">
-			<li><a href="#">Log In</a></li>
+			<li><a href="/?route=login">Log In</a></li>
 			<li><a href="/?route=register">Register</a></li>
 			<li class="divider"></li>
 			<li><a href="#">My Account</a></li>
