@@ -24,7 +24,7 @@
 	    <br>
 	    <div class="input-group has-error email">
 		<span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-		    <input type="email" class="form-control" type="email" placeholder="E-Mail" id="input-email" value="" name="email" required>
+		    <input type="email" class="form-control" placeholder="E-Mail" id="input-email" value="" name="email" required>
 	    </div>
 	    <br>
 	    <div class="input-group has-success">
@@ -37,12 +37,12 @@
 	    <legend>Ваш пароль</legend>
 	    <div class="input-group has-error password">
 		<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-		<input type="password" class="form-control" type="password" minlength="6" maxlength="40" placeholder="Введите пароль" id="input-password" value="" name="password" required>
+		<input type="password" class="form-control" minlength="6" maxlength="40" placeholder="Введите пароль" id="input-password" value="" name="password" required>
 	    </div>
 	    <br>
 	    <div class="input-group has-error confirm">
 		<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-		<input type="password" class="form-control" type="password" minlength="6" maxlength="40" placeholder="Подтвердите пароль" id="input-confirm" value="" name="confirm" required>
+		<input type="password" class="form-control" minlength="6" maxlength="40" placeholder="Подтвердите пароль" id="input-confirm" value="" name="confirm" required>
 	    </div>
 	    <br>
 	</fieldset>
