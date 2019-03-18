@@ -16,7 +16,7 @@
 	    <div class="clearfix"></div>
 	    <div class="row button">
 		<div class="col-xs-6"><button type="button" class="btn btn-default"><?php echo $product_price ?></button></div>
-		<div class="col-xs-6 text-right"><a id="btn1" href="#" class="btn btn-primary"><span class="cart"></span><?php echo lang('buy_now') ?></a></div>
+		<div class="col-xs-6 text-right"><a id="btn1" href="#" class="btn btn-primary"><?php echo lang('buy_now') ?></a></div>
 	    </div>
 	</div>
     </div>
