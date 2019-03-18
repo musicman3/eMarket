@@ -7,11 +7,24 @@
 $AJAX->сart('');
 ?>
 <script type="text/javascript">
+    if ($('#input-firstname').val() !== '') {
+        $('.firstname').removeClass('has-error');
+        $('.firstname').addClass('has-success');
+    }
+    if ($('#input-lastname').val() !== '') {
+        $('.lastname').removeClass('has-error');
+        $('.lastname').addClass('has-success');
+    }
+
+    if ($('#input-email').val().match(/^[a-zA-Zа-яА-Я_\d][-a-zA-Zа-яА-Я0-9_\.\d]*\@[a-zA-Zа-яА-Я\d][-a-zA-Zа-яА-Я\.\d]*\.[a-zA-Zа-яА-Я]{2,4}$/)) {
+        $('.email').removeClass('has-error');
+        $('.email').addClass('has-success');
+    }
+
     $('#input-firstname').on('input', function () {
         if ($('#input-firstname').val() !== '') {
             $('.firstname').removeClass('has-error');
             $('.firstname').addClass('has-success');
-
         } else {
             $('.firstname').removeClass('has-success');
             $('.firstname').addClass('has-error');
@@ -22,7 +35,6 @@ $AJAX->сart('');
         if ($('#input-lastname').val() !== '') {
             $('.lastname').removeClass('has-error');
             $('.lastname').addClass('has-success');
-
         } else {
             $('.lastname').removeClass('has-success');
             $('.lastname').addClass('has-error');
@@ -48,7 +60,6 @@ $AJAX->сart('');
             $('.confirm').addClass('has-success');
             $('.password').removeClass('has-error');
             $('.password').addClass('has-success');
-
         } else {
             $('.confirm').removeClass('has-success');
             $('.confirm').addClass('has-error');
@@ -58,9 +69,10 @@ $AJAX->сart('');
     });
 
     function validatePassword() {
-        if ($('#input-password').val() !== $('#input-confirm').val())
+        if ($('#input-password').val() !== $('#input-confirm').val()) {
             document.getElementById("input-confirm").setCustomValidity("<?php echo lang('password_check') ?>");
-        else
+        } else {
             document.getElementById("input-confirm").setCustomValidity('');
+        }
     }
 </script>

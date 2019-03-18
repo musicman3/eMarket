@@ -34,16 +34,16 @@
 
             <div class="panel-body">
 
-                <form action="success.php" method="post" accept-charset="utf-8" style="display: inline;" onsubmit="check()">
+                <form action="success.php" method="post" accept-charset="utf-8" style="display: inline;" onchange="return validatePassword();">
 
                     <!-- Выбранный язык" -->
                     <input type='hidden' name='language' value='<?php echo $DEFAULT_LANGUAGE ?>' />
 
                     <div class="row">
                         <div class="col-left form-group">
-                            <div class="input-group has-error">
+                            <div class="input-group has-error server_db">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-hdd"></span></span>
-                                <input class="input-sm form-control" id="server_db" placeholder="<?php echo lang('server_db') ?>" type="text" name="server_db" />
+                                <input class="input-sm form-control" id="server_db" minlength="1" placeholder="<?php echo lang('server_db') ?>" type="text" name="server_db" required />
                             </div>
                         </div>
                         <div class="col-left form-group">
@@ -60,9 +60,9 @@
 
                     <div class="row">
                         <div class="col-left form-group">
-                            <div class="input-group has-error">
+                            <div class="input-group has-error login_db">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-hdd"></span></span>
-                                <input class="input-sm form-control" id="login_db" placeholder="<?php echo lang('login_db') ?>" type="text" name="login_db" />
+                                <input class="input-sm form-control" id="login_db" minlength="1" placeholder="<?php echo lang('login_db') ?>" type="text" name="login_db" required />
                             </div>
                         </div>
                         <div class="col-left form-group">
@@ -79,9 +79,9 @@
 
                     <div class="row">
                         <div class="col-left form-group">
-                            <div class="input-group has-error">
+                            <div class="input-group has-error database_name">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-hdd"></span></span>
-                                <input class="input-sm form-control" id="database_name" placeholder="<?php echo lang('database_name') ?>" type="text" name="database_name" />
+                                <input class="input-sm form-control" id="database_name" minlength="1" placeholder="<?php echo lang('database_name') ?>" type="text" name="database_name" required />
                             </div>
                         </div>
 
@@ -100,15 +100,15 @@
 
                     <div class="row">
                         <div class="col-left form-group">
-                            <div class="input-group has-error">
+                            <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-hdd"></span></span>
                                 <input class="input-sm form-control" placeholder="<?php echo lang('password_db') ?>" type="password" name="password_db" />
                             </div>
                         </div>
                         <div class="col-left form-group">
-                            <div class="input-group has-error">
+                            <div class="input-group has-error email">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
-                                <input class="input-sm form-control" id="email" placeholder="<?php echo lang('login_admin') ?>" type="text" name="login_admin" />
+                                <input class="input-sm form-control" id="email" placeholder="<?php echo lang('login_admin') ?>" type="email" name="login_admin" required />
                             </div>
                         </div>
                     </div>
@@ -117,13 +117,13 @@
                         <div class="col-left form-group">
                             <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-hdd"></span></span>
-                                <input class="input-sm form-control" placeholder="<?php echo lang('database_prefix') ?>" type="text" name="database_prefix" value="emkt_" />
+                                <input class="input-sm form-control" placeholder="<?php echo lang('database_prefix') ?>" type="text" name="database_prefix" value="emkt_" required />
                             </div>
                         </div>
                         <div class="col-left form-group">
-                            <div class="input-group has-error">
+                            <div class="input-group has-error password">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
-                                <input class="input-sm form-control" id="password_admin" placeholder="<?php echo lang('password_admin') ?>" type="password" name="password_admin" />
+                                <input class="input-sm form-control" id="password_admin" minlength="7" maxlength="40" placeholder="<?php echo lang('password_admin') ?>" type="password" name="password_admin" required />
                             </div>
                         </div>
                     </div>
@@ -132,13 +132,13 @@
                         <div class="col-left form-group">
                             <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-hdd"></span></span>
-                                <input class="input-sm form-control" placeholder="<?php echo lang('database_port') ?>" type="text" name="database_port" value="3306" />
+                                <input class="input-sm form-control" placeholder="<?php echo lang('database_port') ?>" type="text" name="database_port" value="3306" required />
                             </div>
                         </div>
                         <div class="col-left form-group">
-                            <div class="input-group has-error">
+                            <div class="input-group has-error confirm">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-hand-right"></span></span>
-                                <input class="input-sm form-control" id="password_admin_confirm" placeholder="<?php echo lang('password_admin_confirm') ?>" type="password" name="password_admin_confirm" />
+                                <input class="input-sm form-control" id="password_admin_confirm" minlength="7" maxlength="40" placeholder="<?php echo lang('password_admin_confirm') ?>" type="password" name="password_admin_confirm" required />
                             </div>
                         </div>
                     </div>
@@ -155,7 +155,7 @@
                         </div>
                         <div class="col-left form-group">
                             <div class="input-group has-error">
-                                <button class="btn btn-primary btn-sm" type="submit" name="install_button" onclick="return pass_check();" /><?php echo lang('install_button') ?></button>
+                                <button class="btn btn-primary btn-sm" type="submit" name="install_button" /><?php echo lang('install_button') ?></button>
                             </div>
                         </div>
                     </div>
