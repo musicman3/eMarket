@@ -35,14 +35,14 @@
 	</fieldset>
 	<fieldset>
 	    <legend>Ваш пароль</legend>
-	    <div class="input-group has-error">
+	    <div class="input-group has-error password">
 		<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-		<input type="password" class="form-control" type="password" minlength="6" placeholder="Пароль" id="input-password" value="" name="password" required>
+		<input type="password" class="form-control" type="password" minlength="6" maxlength="40" placeholder="Введите пароль" id="input-password" value="" name="password" required>
 	    </div>
 	    <br>
-	    <div class="input-group has-error">
+	    <div class="input-group has-error confirm">
 		<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-		<input type="password" class="form-control" type="password" minlength="6" placeholder="Подтвердить пароль" id="input-confirm" value="" name="confirm" required>
+		<input type="password" class="form-control" type="password" minlength="6" maxlength="40" placeholder="Подтвердите пароль" id="input-confirm" value="" name="confirm" required>
 	    </div>
 	    <br>
 	</fieldset>
