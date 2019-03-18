@@ -82,13 +82,9 @@
         }
     });
 
-    function validatePassword() {
+    function validate() {
         var password = $("#password_admin").val();
         var password_2 = $("#password_admin_confirm").val();
-
-        var db_host = $('#server_db').val();
-        var db_user = $('#login_db').val();
-        var db_name = $('#database_name').val();
         var email = $('#email').val();
 
         if (password !== password_2) {
@@ -97,24 +93,6 @@
             document.getElementById("password_admin_confirm").setCustomValidity('');
         }
 
-        //Если не заполнен Сервер БД
-        if (db_host.length < 1) {
-            document.getElementById("server_db").setCustomValidity("<?php echo lang('db_host_check') ?>");
-        } else {
-            document.getElementById("server_db").setCustomValidity('');
-        }
-        //Если не заполнен пользователь БД
-        if (db_user.length < 1) {
-            document.getElementById("login_db").setCustomValidity("<?php echo lang('db_user_check') ?>");
-        } else {
-            document.getElementById("login_db").setCustomValidity('');
-        }
-        //Если не заполнено имя БД
-        if (db_name.length < 1) {
-            document.getElementById("database_name").setCustomValidity("<?php echo lang('db_name_check') ?>");
-        } else {
-            document.getElementById("database_name").setCustomValidity('');
-        }
         //Если email не соответствует типу
         if (!email.match(/^[a-zA-Zа-яА-Я_\d][-a-zA-Zа-яА-Я0-9_\.\d]*\@[a-zA-Zа-яА-Я\d][-a-zA-Zа-яА-Я\.\d]*\.[a-zA-Zа-яА-Я]{2,4}$/)) {
             document.getElementById("email").setCustomValidity("<?php echo lang('email_check') ?>");

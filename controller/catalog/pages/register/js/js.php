@@ -5,6 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 $AJAX->сart('');
+
 ?>
 <script type="text/javascript">
     if ($('#input-firstname').val() !== '') {
@@ -68,11 +69,17 @@ $AJAX->сart('');
         }
     });
 
-    function validatePassword() {
+    function validate() {
         if ($('#input-password').val() !== $('#input-confirm').val()) {
             document.getElementById("input-confirm").setCustomValidity("<?php echo lang('password_check') ?>");
         } else {
             document.getElementById("input-confirm").setCustomValidity('');
+        }
+        //Если email не соответствует типу
+        if (!$('#input-email').val().match(/^[a-zA-Zа-яА-Я_\d][-a-zA-Zа-яА-Я0-9_\.\d]*\@[a-zA-Zа-яА-Я\d][-a-zA-Zа-яА-Я\.\d]*\.[a-zA-Zа-яА-Я]{2,4}$/)) {
+            document.getElementById("input-email").setCustomValidity("<?php echo lang('email_check') ?>");
+        } else {
+            document.getElementById("input-email").setCustomValidity('');
         }
     }
 </script>

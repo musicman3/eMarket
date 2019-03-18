@@ -32,3 +32,4 @@ navbar_currencies = Currencies
 
 ;REGISTER
 password_check = Confirmation password error
+email_check = Please, enter correct E-Mail

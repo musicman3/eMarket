@@ -34,7 +34,7 @@
 
             <div class="panel-body">
 
-                <form action="success.php" method="post" accept-charset="utf-8" style="display: inline;" onchange="return validatePassword();">
+                <form action="success.php" method="post" accept-charset="utf-8" style="display: inline;" onchange="validate()">
 
                     <!-- Выбранный язык" -->
                     <input type='hidden' name='language' value='<?php echo $DEFAULT_LANGUAGE ?>' />

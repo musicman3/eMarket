@@ -57,3 +57,4 @@ navbar_currencies = Валюты
 
 ;REGISTER
 password_check = Пароль и подтверждение пароля не совпадают
+email_check = Пожалуйста, введите корректный E-Mail

@@ -9,7 +9,7 @@
 <h1><?php echo lang('register_account') ?></h1>
 
 <div id="register" class="contentText">
-    <form class="form-horizontal" enctype="multipart/form-data" method="post" action="" onchange="return validatePassword();">
+    <form class="form-horizontal" enctype="multipart/form-data" method="post" action="" onchange="validate()">
 	<fieldset id="account">
 	    <legend><?php echo lang('personal_details') ?></legend>
 	    <div class="input-group has-error firstname">
