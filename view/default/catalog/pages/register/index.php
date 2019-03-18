@@ -12,12 +12,12 @@
     <form class="form-horizontal" enctype="multipart/form-data" method="post" action="">
 	<fieldset id="account">
 	    <legend>Ваши персональные данные</legend>
-	    <div class="input-group has-error">
+	    <div class="input-group has-error firstname">
 		<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
 		<input type="text" class="form-control" placeholder="Имя" id="input-firstname" value="" name="firstname" required>
 	    </div>
 	    <br>
-	    <div class="input-group has-error">
+	    <div class="input-group has-error lastname">
 		<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
 		<input type="text" class="form-control" placeholder="Фамилия" id="input-lastname" value="" name="lastname" required>
 	    </div>
