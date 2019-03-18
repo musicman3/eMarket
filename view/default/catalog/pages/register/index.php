@@ -46,9 +46,10 @@
 	    </div>
 	    <br>
 	</fieldset>
-	<div class="pull-right">Я прочитал и согласен с <a class="agree" href="#"><b>условиями</b></a> политики конфиденциальности.
+	<div class="text-right">Я прочитал и согласен с <a class="agree" href="#"><b>условиями</b></a> политики конфиденциальности.
 	    <input type="checkbox" value="1" name="agree">&nbsp;
 	    <input type="submit" class="btn btn-primary" value="Продолжить">
 	</div>
+	<br>
     </form>
 </div>
