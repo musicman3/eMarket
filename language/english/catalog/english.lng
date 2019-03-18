@@ -29,3 +29,6 @@ buy_now = Buy Now
 navbar_pcs = pcs.
 navbar_languages = Languages
 navbar_currencies = Currencies
+
+;REGISTER
+password_check = Confirmation password error

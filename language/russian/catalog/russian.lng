@@ -29,3 +29,6 @@ buy_now = Купить
 navbar_pcs = шт.
 navbar_languages = Языки
 navbar_currencies = Валюты
+
+;REGISTER
+password_check = Пароль и подтверждение пароля не совпадают

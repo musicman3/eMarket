@@ -56,4 +56,11 @@ $AJAX->сart('');
             $('.password').addClass('has-error');
         }
     });
+
+    function validatePassword() {
+        if ($('#input-password').val() !== $('#input-confirm').val())
+            document.getElementById("input-confirm").setCustomValidity("<?php echo lang('password_check') ?>");
+        else
+            document.getElementById("input-confirm").setCustomValidity('');
+    }
 </script>

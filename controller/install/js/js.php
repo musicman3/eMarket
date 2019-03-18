@@ -7,15 +7,15 @@
 
 <script type="text/javascript">
     function pass_check() {
-        var password = $("#password_admin").val();        if (password !== password_2) {
+        var password = $("#password_admin").val();
+        var password_2 = $("#password_admin_confirm").val();
+        if (password !== password_2) {
             alert("<?php echo lang('password_check') ?>");
             $('#password_admin').empty();
             $('#password_admin_confirm').empty();
             return false;
         }
-        var password_2 = $("#password_admin_confirm").val();
-
-        if (password.length < 6) {
+        if (password.length < 5) {
             alert("<?php echo lang('password_lenght_min') ?>");
             $('#password_admin').empty();
             $('#password_admin_confirm').empty();
