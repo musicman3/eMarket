@@ -22,7 +22,7 @@
 		<input type="text" class="form-control" placeholder="Фамилия" id="input-lastname" value="" name="lastname" required>
 	    </div>
 	    <br>
-	    <div class="input-group has-error">
+	    <div class="input-group has-error email">
 		<span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
 		    <input type="email" class="form-control" type="email" placeholder="E-Mail" id="input-email" value="" name="email" required>
 	    </div>

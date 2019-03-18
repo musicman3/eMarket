@@ -29,4 +29,15 @@ $AJAX->сart('');
             $('.lastname').addClass('has-error');
         }
     });
+    
+    $('#input-email').keyup(function () {
+        var email = $('#input-email').val();
+        if (!email.match(/^([a-z0-9_\-]+\.)*[a-z0-9_\-]+@([a-z0-9][a-z0-9\-]*[a-z0-9]\.)+[a-z]{2,4}$/i)) {
+            $('.email').removeClass('has-success');
+            $('.email').addClass('has-error');
+        } else {
+            $('.email').removeClass('has-error');
+            $('.email').addClass('has-success');
+        }
+    });    
 </script>
