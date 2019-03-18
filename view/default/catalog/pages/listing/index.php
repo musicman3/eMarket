@@ -79,7 +79,7 @@ foreach ($VIEW->layoutRouting('content') as $path) {
                     <div class="clearfix"></div>
                     <div class="row button">
                         <div class="col-xs-6"><button type="button" class="btn btn-default"><?php echo $PRODUCTS->productPrice($value[3], $CURRENCIES, 1) ?></button></div>
-                        <div class="col-xs-6 text-right"><a id="btn1" href="#" class="btn btn-primary"><span class="cart"></span> Buy Now</a></div>
+                        <div class="col-xs-6 text-right"><a id="btn1" href="#" class="btn btn-primary"><?php echo lang('buy_now') ?></a></div>
                     </div>
                 </div>
             </div>
@@ -90,7 +90,7 @@ foreach ($VIEW->layoutRouting('content') as $path) {
 <div id="listing" class="contentText">
     <div class="well well-sm">
         <div class="btn-group">
-	    <div class="btn">В этой категории нет товаров.</div>
+	    <div class="btn"><?php echo lang('listing_no') ?></div>
         </div>
     </div>
 </div>

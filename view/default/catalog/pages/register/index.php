@@ -6,49 +6,49 @@
 
 ?>
 
-<h1>Регистрация аккаунта</h1>
+<h1><?php echo lang('register_account') ?></h1>
 
 <div id="register" class="contentText">
     <form class="form-horizontal" enctype="multipart/form-data" method="post" action="" onchange="return validatePassword();">
 	<fieldset id="account">
-	    <legend>Ваши персональные данные</legend>
+	    <legend><?php echo lang('personal_details') ?></legend>
 	    <div class="input-group has-error firstname">
 		<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-		<input class="form-control" type="text" placeholder="Имя" minlength="1" id="input-firstname" value="" name="firstname" required>
+		<input class="form-control" type="text" placeholder="<?php echo lang('first_name') ?>" minlength="1" id="input-firstname" value="" name="firstname" required>
 	    </div>
 	    <br>
 	    <div class="input-group has-error lastname">
 		<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-		<input class="form-control" type="text" placeholder="Фамилия" minlength="1" id="input-lastname" value="" name="lastname" required>
+		<input class="form-control" type="text" placeholder="<?php echo lang('last_name') ?>" minlength="1" id="input-lastname" value="" name="lastname" required>
 	    </div>
 	    <br>
 	    <div class="input-group has-error email">
 		<span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-		    <input class="form-control" type="email" placeholder="E-Mail" id="input-email" value="" name="email" required>
+		    <input class="form-control" type="email" placeholder="<?php echo lang('e_mail') ?>" id="input-email" value="" name="email" required>
 	    </div>
 	    <br>
 	    <div class="input-group has-success">
 		<span class="input-group-addon"><span class="glyphicon glyphicon-phone-alt"></span></span>
-		<input class="form-control" type="tel" placeholder="Телефон" id="input-telephone" value="" name="telephone">
+		<input class="form-control" type="tel" placeholder="<?php echo lang('telephone') ?>" id="input-telephone" value="" name="telephone">
 	    </div>
 	    <br>
 	</fieldset>
 	<fieldset>
-	    <legend>Ваш пароль</legend>
+	    <legend><?php echo lang('details_password') ?></legend>
 	    <div class="input-group has-error password">
 		<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-		<input class="form-control" type="password" minlength="7" maxlength="40" placeholder="Введите пароль" id="input-password" value="" name="password" required>
+		<input class="form-control" type="password" minlength="7" maxlength="40" placeholder="<?php echo lang('password') ?>" id="input-password" value="" name="password" required>
 	    </div>
 	    <br>
 	    <div class="input-group has-error confirm">
 		<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-		<input class="form-control" type="password" minlength="7" maxlength="40" placeholder="Подтвердите пароль" id="input-confirm" value="" name="confirm" required>
+		<input class="form-control" type="password" minlength="7" maxlength="40" placeholder="<?php echo lang('confirm_password') ?>" id="input-confirm" value="" name="confirm" required>
 	    </div>
 	    <br>
 	</fieldset>
-	<div class="text-right">Я прочитал и согласен с <a class="agree" href="#"><b>условиями</b></a> политики конфиденциальности.
+	<div class="text-right"><?php echo lang('offero_1') ?> <a class="agree" href="#"><b><?php echo lang('offero_2') ?></b></a> <?php echo lang('offero_3') ?>
 	    <input type="checkbox" value="1" name="agree">&nbsp;
-	    <input class="btn btn-primary" type="submit" value="Продолжить">
+	    <input class="btn btn-primary" type="submit" value="<?php echo lang('continue') ?>">
 	</div>
 	<br>
     </form>

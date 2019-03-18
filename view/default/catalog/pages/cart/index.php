@@ -6,7 +6,7 @@
 
 ?>
 
-<h1>Shopping Cart</h1>
+<h1><?php echo lang('shopping_cart') ?></h1>
 <?php if ($cart_info == true) { ?>
     <div id="cart" class="contentText">
         <div class="table-responsive">
@@ -37,7 +37,7 @@
                 <table class="table table-bordered">
                     <tbody>
                         <tr>
-                            <td class="text-right"><strong>Total:</strong></td>
+                            <td class="text-right"><strong><?php echo lang('total') ?>:</strong></td>
                             <td class="text-right"><?php echo $PRODUCTS->productPrice($CART->totalPrice(), $CURRENCIES, 1) ?></td>
                         </tr>
                     </tbody>
@@ -45,15 +45,15 @@
             </div>
         </div>
         <div class="input-group-btn button">
-            <div class="pull-left"><a class="btn btn-primary" href="/">Continue Shopping</a></div>
-            <div class="pull-right"><a class="btn btn-primary" href="/">Checkout</a></div>
+            <div class="pull-left"><a class="btn btn-primary" href="/"><?php echo lang('continue_shopping') ?></a></div>
+            <div class="pull-right"><a class="btn btn-primary" href="/"><?php echo lang('сheckout') ?></a></div>
         </div>
     </div>
 <?php } else { ?>
     <div id="cart" class="contentText">
         <div class="well well-sm">
             <div class="btn-group">
-                <div class="btn">В корзине нет товаров.</div>
+                <div class="btn"><?php echo lang('shopping_cart_no') ?></div>
             </div>
         </div>
     </div>

@@ -18,6 +18,31 @@ new_products_name = Новые товары
 
 ;PAGES
 description_product = Описание товара
+shopping_cart = Корзина
+continue_shopping = Продолжить покупки
+сheckout = Оформить заказ
+shopping_cart_no = В корзине нет товаров
+total = Итого
+listing_no = В этой категории нет товаров
+log_in = Войдите или зарегестрируйтесь
+returning_customer = Постоянный клиент
+new_customer = Новый покупатель
+sign_in = Войти
+continue = Продолжить
+e_mail = E-Mail
+telephone = Телефон
+password = Введите пароль
+confirm_password = Подтвердите пароль
+detail_password = Ваш пароль
+password_no = Забыли пароль?
+log_in_description = Создав учетную запись в eMarket, вы сможете делать покупки быстрее, быть в курсе статуса заказов и отслеживать заказы, которые вы уже сделали ранее.
+register_account = Регистрация аккаунта
+personal_details = Ваши персональные данные
+first_name = Имя
+last_name = Фамилия
+offero_1 = Я прочитал и согласен с
+offero_2 = условиями
+offero_3 = политики конфиденциальности.
 
 ;BREADCRUMB
 breadcrumb_home = Главная
