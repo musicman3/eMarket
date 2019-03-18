@@ -15,13 +15,13 @@
 		<div class="panel-body">
 		    <legend>Постоянный клиент</legend>
 		    <div class="form-group has-error email">
-			<input type="email" class="form-control" placeholder="E-Mail" id="input-email" name="email" required>
+			<input class="form-control" type="email" placeholder="E-Mail" id="input-email" name="email" required>
 		    </div>
 		    <div class="form-group has-error password">
-			<input type="password" class="form-control" minlength="6" maxlength="40" placeholder="Введите пароль" id="input-password" name="password" required>
+			<input class="form-control" type="password" minlength="6" maxlength="40" placeholder="Введите пароль" id="input-password" name="password" required>
 		    </div>
 		    <div class="form-group">
-			<button type="submit" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-log-in"></span> Войти</button>
+			<button class="btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-log-in"></span> Войти</button>
 		    </div>
 		    <a class="btn btn-default" role="button" href="">Забыли пароль? Кликните сюда.</a>
 		</div>
