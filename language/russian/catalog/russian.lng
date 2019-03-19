@@ -18,6 +18,7 @@ new_products_name = Новые товары
 sale = Распродажа
 recommended = Рекомендуемые
 articles = Статьи
+my_account = Личный кабинет
 
 ;PAGES
 description_product = Описание товара
@@ -27,7 +28,7 @@ shopping_cart = Корзина
 shopping_cart_no = В корзине нет товаров
 total = Итого
 listing_no = В этой категории нет товаров
-log_in = Войдите или зарегистрируйтесь
+log_in = Авторизация
 returning_customer = Постоянный клиент
 new_customer = Новый покупатель
 sign_in = Войти
@@ -39,7 +40,7 @@ confirm_password = Подтвердите пароль
 details_password = Ваш пароль
 password_no = Забыли пароль?
 log_in_description = Создав учетную запись в eMarket, вы сможете делать покупки быстрее, быть в курсе статуса заказов и отслеживать заказы, которые вы уже сделали ранее.
-register_account = Регистрация аккаунта
+register_account = Регистрация
 personal_details = Ваши персональные данные
 first_name = Имя
 last_name = Фамилия
