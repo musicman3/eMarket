@@ -15,6 +15,9 @@ debug_pcs = шт.
 categories_name = Категории
 search_name = Искать...
 new_products_name = Новые товары
+sale = Распродажа
+recommended = Рекомендуемые
+articles = Статьи
 
 ;PAGES
 description_product = Описание товара
