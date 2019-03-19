@@ -8,6 +8,7 @@
         "classmap": ["vendor/blueimp/"]
     },
     "require": {
-        "claviska/simpleimage": "^3.3"
+        "claviska/simpleimage": "^3.3",
+        "phpmailer/phpmailer": "^6.0"
     }
 }

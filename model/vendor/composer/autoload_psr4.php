@@ -7,5 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'eMarket\\' => array($vendorDir . '/eMarket'),
+    'PHPMailer\\PHPMailer\\' => array($vendorDir . '/phpmailer/phpmailer/src'),
     '' => array($vendorDir . '/league/color-extractor/src'),
 );
