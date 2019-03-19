@@ -45,7 +45,7 @@
             </div>
         </div>
         <div class="input-group-btn button">
-            <div class="pull-left"><a class="btn btn-primary" href="/"><?php echo lang('continue_shopping') ?></a></div>
+            <div class="pull-left"><a class="btn btn-primary" href="/"><?php echo lang('сheckout_click') ?></a></div>
             <div class="pull-right"><a class="btn btn-primary" href="/"><?php echo lang('сheckout') ?></a></div>
         </div>
     </div>

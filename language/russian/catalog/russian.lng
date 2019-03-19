@@ -19,7 +19,7 @@ new_products_name = Новые товары
 ;PAGES
 description_product = Описание товара
 shopping_cart = Корзина
-continue_shopping = Продолжить покупки
+сheckout_click = Купить в 1 клик
 сheckout = Оформить заказ
 shopping_cart_no = В корзине нет товаров
 total = Итого
