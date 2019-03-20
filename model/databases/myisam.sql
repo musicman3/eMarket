@@ -71,9 +71,9 @@ DROP TABLE IF EXISTS emkt_customers;
 CREATE TABLE emkt_customers (
         id int NOT NULL auto_increment,
         gender char(1),
-        firstname varchar(128) NOT NULL,
-        lastname varchar(128) NOT NULL,
-        middle_name varchar(128) NOT NULL,
+        firstname varchar(32) NOT NULL,
+        lastname varchar(32) NOT NULL,
+        middle_name varchar(32) NOT NULL,
         date_account_created datetime,
         date_account_last_modified datetime,
         date_last_logon datetime,
