@@ -67,6 +67,38 @@ CREATE TABLE emkt_currencies (
 	PRIMARY KEY (id, language))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+DROP TABLE IF EXISTS emkt_customers;
+CREATE TABLE emkt_customers (
+        id int NOT NULL auto_increment,
+        gender char(1),
+        firstname varchar(128) NOT NULL,
+        lastname varchar(128) NOT NULL,
+        middle_name varchar(128) NOT NULL,
+        date_account_created datetime,
+        date_account_last_modified datetime,
+        date_last_logon datetime,
+        default_address_id int,
+        date_of_birth datetime,
+        email varchar(128) NOT NULL,
+        fax varchar(256),
+        global_product_notifications int DEFAULT '0',
+        ip_address varchar(64),
+        newsletter char(1),
+        number_of_logons int,
+        password varchar(256),
+        status int DEFAULT '0',
+        telephone varchar(256),
+PRIMARY KEY (id)
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+DROP TABLE IF EXISTS emkt_customers_activation;
+CREATE TABLE emkt_customers_activation (
+        id int NOT NULL,
+        activation_code varchar(256),
+        activation_code_end datetime,
+PRIMARY KEY (id)
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 DROP TABLE IF EXISTS emkt_length;
 CREATE TABLE emkt_length (
 	id int NOT NULL,
