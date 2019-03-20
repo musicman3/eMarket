@@ -1,5 +1,5 @@
 {
-    "name": "eMarket",
+    "name": "e-market/e-market",
     "description": "eMarket Online Store",
     "autoload": {
         "psr-4": {
