@@ -80,15 +80,15 @@ CREATE TABLE emkt_customers (
         default_address_id int,
         date_of_birth datetime,
         email varchar(128) NOT NULL,
-        fax varchar(256),
+        fax varchar(32),
         global_product_notifications int DEFAULT '0',
         ip_address varchar(64),
         newsletter char(1),
         number_of_logons int,
         password varchar(256),
         status int DEFAULT '0',
-        telephone varchar(256),
-PRIMARY KEY (id)
+        telephone varchar(32),
+PRIMARY KEY (id))
 ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS emkt_customers_activation;
@@ -96,7 +96,7 @@ CREATE TABLE emkt_customers_activation (
         id int NOT NULL,
         activation_code varchar(256),
         activation_code_end datetime,
-PRIMARY KEY (id)
+PRIMARY KEY (id))
 ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS emkt_length;
