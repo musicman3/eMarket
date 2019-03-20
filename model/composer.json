@@ -1,6 +1,7 @@
 {
     "name": "emarket/classes",
     "description": "eMarket Online Store",
+    "license": "GPL-3.0-only",
     "autoload": {
         "psr-4": {
             "eMarket\\": "vendor/eMarket/"
