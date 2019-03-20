@@ -5,12 +5,12 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
 
-<!doctype html>
+<!DOCTYPE html>
 <html dir="ltr" lang="<?php echo lang('meta-language') ?>">
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noindex,nofollow" />
         <meta name="generator" content="HippoEDIT, Netbeans, Notepad++" />
         <meta name="classification" content="software" />
@@ -20,6 +20,7 @@
 
         <!-- Автогенерация Title" -->
         <title><?php echo lang('title_' . $SET->titleDir() . '_index') ?></title>
+        <meta name="description" content="">
 
         <link rel="canonical" href="<?php echo $SET->canonicalPathCatalog() ?>" />
         <link href="/ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
