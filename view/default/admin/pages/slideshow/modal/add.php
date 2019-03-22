@@ -16,79 +16,47 @@
             
             <div class="panel-body">
 		<ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#panel_add_1">Основное</a></li>
-                    <li><a data-toggle="tab" href="#panel_add_2">Изображения</a></li>
-                </ul>
-                <div class="tab-content">
-		    <div id="panel_add_1" class="tab-pane fade in active">
-			<ul class="nav nav-tabs">
-			    <li class="active"><a data-toggle="tab" href="#russian"><img src="/view/default/admin/images/langflags/russian.png" alt="russian" title="russian" width="16" height="10"> Русский</a></li>
-			</ul>
-			<!-- Содержимое языковых панелей -->
-			<div class="tab-content">
-			    <div id="russian" class="tab-pane fade in active">
-				<div class="form-group">
-				    <div class="input-group has-success">
-					<span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
-					<input class="input-sm form-control" placeholder="Адрес ссылки" type="text" name="" id="" required />
-				    </div>
-				</div>
-				<div class="form-group">
-				    <div class="input-group has-success">
-					<span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-					<input class="input-sm form-control" placeholder="Заголовок (?)" type="text" name="" id="" required />
-				    </div>
-				</div>
-				<div class="form-group">
-				    <div class="input-group has-success">
-					<span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-					<input class="input-sm form-control" placeholder="Текст (?)" type="text" name="" id="" required />
-				    </div>
-				</div>
-			    </div>
-			</div>
-		
+			<li class="active"><a data-toggle="tab" href="#russian"><img src="/view/default/admin/images/langflags/russian.png" alt="russian" title="russian" width="16" height="10"> Русский</a></li>
+		</ul>
+		<!-- Содержимое языковых панелей -->
+		<div class="tab-content">
+		    <div id="russian" class="tab-pane fade in active">
 			<div class="form-group">
-			    <div class="input-group has-error">
+			    <div class="input-group has-success">
 				<span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
-				<input class="input-sm form-control" placeholder="Интервал (мс)" type="text" name="" id="" required />
+				<input class="input-sm form-control" placeholder="Адрес ссылки" type="text" name="" id="" required />
 			    </div>
 			</div>
-
-			<label>Останавливать смену слайда при нахождении курсора? </label>
-			<input class="check-box" type="checkbox" checked="">
-			<br>
-			<label>Зацикливать смену слайдов? </label>
-			<input class="check-box" type="checkbox" checked="">
-			<br>
-			<label>Показывать индикаторы? </label>
-			<input class="check-box" type="checkbox" checked="">
-			<br>
-			<label>Показывать стрелки навигации? </label>
-			<input class="check-box" type="checkbox" checked="">
-			<br>
-			<label>Отображать? </label>
-			<input class="check-box" type="checkbox" checked="">
-
-			<!-- Выводим сообщения -->
-			<div id="alert_messages_add"></div>
-		    </div>
-		    <div id="panel_add_2" class="tab-pane fade">
-			<!-- ЗАГРУЗКА jQuery-File-Upload -->
 			<div class="form-group">
-			    <span class="btn btn-primary btn-sm fileinput-button">
-				<i class="glyphicon glyphicon-picture"></i><span> <?php echo lang('button_add_image') ?></span>
-				<input class="input-sm form-control" id="fileupload-add" type="file" name="files[]" accept="image/jpeg,image/png,image/gif" multiple>
-			    </span>
-			    <div id="progress" class="progress">
-				<div class="progress-bar progress-bar-warning progress-bar-striped active"></div>
+			    <div class="input-group has-success">
+				<span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+				<input class="input-sm form-control" placeholder="Заголовок (?)" type="text" name="" id="" required />
 			    </div>
-			    <div id="logo-add" class="text-center"></div>
+			</div>
+			<div class="form-group">
+			    <div class="input-group has-success">
+				<span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+				<input class="input-sm form-control" placeholder="Текст (?)" type="text" name="" id="" required />
+			    </div>
 			</div>
 		    </div>
 		</div>
+		
+		<!-- Выводим сообщения -->
+		<div id="alert_messages_add"></div>
 
-            </div>
+		<!-- ЗАГРУЗКА jQuery-File-Upload -->
+		<div class="form-group">
+		    <span class="btn btn-primary btn-sm fileinput-button">
+			<i class="glyphicon glyphicon-picture"></i><span> <?php echo lang('button_add_image') ?></span>
+			<input class="input-sm form-control" id="fileupload-add" type="file" name="files[]" accept="image/jpeg,image/png,image/gif" multiple>
+		    </span>
+		    <div id="progress" class="progress">
+			<div class="progress-bar progress-bar-warning progress-bar-striped active"></div>
+		    </div>
+		    <div id="logo-add" class="text-center"></div>
+		</div>
+	    </div>
 
             <div class="modal-footer">
                 <button class="btn btn-primary btn-xs" type="button" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-remove"></span> <?php echo lang('cancel') ?></button>
