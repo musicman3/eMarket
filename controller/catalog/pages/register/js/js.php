@@ -56,7 +56,7 @@ $AJAX->сart('');
     $('#input-confirm').on('input', function () {
         var password = $('#input-password').val();
         var confirm = $('#input-confirm').val();
-        if ($('#input-confirm').val() === $('#input-password').val() && password.length > 6 && confirm.length > 6 && password.length < 41 && confirm.length < 41) {
+        if (confirm === password && password.length > 6 && confirm.length > 6 && password.length < 41 && confirm.length < 41) {
             $('.confirm').removeClass('has-error');
             $('.confirm').addClass('has-success');
             $('.password').removeClass('has-error');
@@ -70,16 +70,18 @@ $AJAX->сart('');
     });
 
     function validate() {
+        var confirm = $('#input-confirm').get(0);
+        var email = $('#input-email').get(0);
         if ($('#input-password').val() !== $('#input-confirm').val()) {
-            document.getElementById("input-confirm").setCustomValidity("<?php echo lang('password_check') ?>");
+            confirm.setCustomValidity("<?php echo lang('password_check') ?>");
         } else {
-            document.getElementById("input-confirm").setCustomValidity('');
+            confirm.setCustomValidity('');
         }
         //Если email не соответствует типу
         if (!$('#input-email').val().match(/^[a-zA-Zа-яА-Я_\d][-a-zA-Zа-яА-Я0-9_\.\d]*\@[a-zA-Zа-яА-Я\d][-a-zA-Zа-яА-Я\.\d]*\.[a-zA-Zа-яА-Я]{2,4}$/)) {
-            document.getElementById("input-email").setCustomValidity("<?php echo lang('email_check') ?>");
+            email.setCustomValidity("<?php echo lang('email_check') ?>");
         } else {
-            document.getElementById("input-email").setCustomValidity('');
+            email.setCustomValidity('');
         }
     }
 </script>
