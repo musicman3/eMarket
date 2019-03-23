@@ -8,48 +8,50 @@ $AJAX->сart('');
 
 ?>
 <script type="text/javascript">
+
+    function replaceClass(nameClass, reverse = true) {
+        if (reverse === true) {
+            $(nameClass).removeClass('has-error');
+            $(nameClass).addClass('has-success');
+        } else {
+            $(nameClass).removeClass('has-success');
+            $(nameClass).addClass('has-error');
+    }
+    }
+
     if ($('#input-firstname').val() !== '') {
-        $('.firstname').removeClass('has-error');
-        $('.firstname').addClass('has-success');
+        replaceClass('.firstname', true);
     }
     if ($('#input-lastname').val() !== '') {
-        $('.lastname').removeClass('has-error');
-        $('.lastname').addClass('has-success');
+        replaceClass('.lastname', true);
     }
 
     if ($('#input-email').val().match(/^[a-zA-Zа-яА-Я_\d][-a-zA-Zа-яА-Я0-9_\.\d]*\@[a-zA-Zа-яА-Я\d][-a-zA-Zа-яА-Я\.\d]*\.[a-zA-Zа-яА-Я]{2,4}$/)) {
-        $('.email').removeClass('has-error');
-        $('.email').addClass('has-success');
+        replaceClass('.email', true);
     }
 
     $('#input-firstname').on('input', function () {
         if ($('#input-firstname').val() !== '') {
-            $('.firstname').removeClass('has-error');
-            $('.firstname').addClass('has-success');
+            replaceClass('.firstname', true);
         } else {
-            $('.firstname').removeClass('has-success');
-            $('.firstname').addClass('has-error');
+            replaceClass('.firstname', false);
         }
     });
 
     $('#input-lastname').on('input', function () {
         if ($('#input-lastname').val() !== '') {
-            $('.lastname').removeClass('has-error');
-            $('.lastname').addClass('has-success');
+            replaceClass('.lastname', true);
         } else {
-            $('.lastname').removeClass('has-success');
-            $('.lastname').addClass('has-error');
+            replaceClass('.lastname', false);
         }
     });
 
     $('#input-email').on('input', function () {
         var email = $('#input-email').val();
         if (!email.match(/^[a-zA-Zа-яА-Я_\d][-a-zA-Zа-яА-Я0-9_\.\d]*\@[a-zA-Zа-яА-Я\d][-a-zA-Zа-яА-Я\.\d]*\.[a-zA-Zа-яА-Я]{2,4}$/)) {
-            $('.email').removeClass('has-success');
-            $('.email').addClass('has-error');
+            replaceClass('.email', false);
         } else {
-            $('.email').removeClass('has-error');
-            $('.email').addClass('has-success');
+            replaceClass('.email', true);
         }
     });
 
@@ -57,15 +59,11 @@ $AJAX->сart('');
         var password = $('#input-password').val();
         var confirm = $('#input-confirm').val();
         if (confirm === password && password.length > 6 && confirm.length > 6 && password.length < 41 && confirm.length < 41) {
-            $('.confirm').removeClass('has-error');
-            $('.confirm').addClass('has-success');
-            $('.password').removeClass('has-error');
-            $('.password').addClass('has-success');
+            replaceClass('.confirm', true);
+            replaceClass('.password', true);
         } else {
-            $('.confirm').removeClass('has-success');
-            $('.confirm').addClass('has-error');
-            $('.password').removeClass('has-success');
-            $('.password').addClass('has-error');
+            replaceClass('.confirm', false);
+            replaceClass('.password', false);
         }
     });
 

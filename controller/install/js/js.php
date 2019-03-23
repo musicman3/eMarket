@@ -7,62 +7,60 @@
 ?>
 
 <script type="text/javascript">
+    function replaceClass(nameClass, reverse = true) {
+        if (reverse === true) {
+            $(nameClass).removeClass('has-error');
+            $(nameClass).addClass('has-success');
+        } else {
+            $(nameClass).removeClass('has-success');
+            $(nameClass).addClass('has-error');
+    }
+    }
+
     if ($('#server_db').val() !== '') {
-        $('.server_db').removeClass('has-error');
-        $('.server_db').addClass('has-success');
+        replaceClass('.server_db', true);
     }
     if ($('#login_db').val() !== '') {
-        $('.login_db').removeClass('has-error');
-        $('.login_db').addClass('has-success');
+        replaceClass('.login_db', true);
     }
     if ($('#database_name').val() !== '') {
-        $('.database_name').removeClass('has-error');
-        $('.database_name').addClass('has-success');
+        replaceClass('.database_name', true);
     }
 
     if ($('#email').val().match(/^[a-zA-Zа-яА-Я_\d][-a-zA-Zа-яА-Я0-9_\.\d]*\@[a-zA-Zа-яА-Я\d][-a-zA-Zа-яА-Я\.\d]*\.[a-zA-Zа-яА-Я]{2,4}$/)) {
-        $('.email').removeClass('has-error');
-        $('.email').addClass('has-success');
+        replaceClass('.email', true);
     }
 
     $('#server_db').on('input', function () {
         if ($('#server_db').val() !== '') {
-            $('.server_db').removeClass('has-error');
-            $('.server_db').addClass('has-success');
+            replaceClass('.server_db', true);
         } else {
-            $('.server_db').removeClass('has-success');
-            $('.server_db').addClass('has-error');
+            replaceClass('.server_db', false);
         }
     });
 
     $('#login_db').on('input', function () {
         if ($('#login_db').val() !== '') {
-            $('.login_db').removeClass('has-error');
-            $('.login_db').addClass('has-success');
+            replaceClass('.login_db', true);
         } else {
-            $('.login_db').removeClass('has-success');
-            $('.login_db').addClass('has-error');
+            replaceClass('.login_db', false);
         }
     });
 
     $('#database_name').on('input', function () {
         if ($('#database_name').val() !== '') {
-            $('.database_name').removeClass('has-error');
-            $('.database_name').addClass('has-success');
+            replaceClass('.database_name', true);
         } else {
-            $('.database_name').removeClass('has-success');
-            $('.database_name').addClass('has-error');
+            replaceClass('.database_name', false);
         }
     });
 
     $('#email').on('input', function () {
         var email = $('#email').val();
         if (!email.match(/^[a-zA-Zа-яА-Я_\d][-a-zA-Zа-яА-Я0-9_\.\d]*\@[a-zA-Zа-яА-Я\d][-a-zA-Zа-яА-Я\.\d]*\.[a-zA-Zа-яА-Я]{2,4}$/)) {
-            $('.email').removeClass('has-success');
-            $('.email').addClass('has-error');
+            replaceClass('.email', false);
         } else {
-            $('.email').removeClass('has-error');
-            $('.email').addClass('has-success');
+            replaceClass('.email', true);
         }
     });
 
@@ -70,16 +68,12 @@
         var password = $('#password_admin').val();
         var confirm = $('#password_admin_confirm').val();
         if (confirm === password && password.length > 6 && confirm.length > 6 && password.length < 41 && confirm.length < 41) {
-            $('.confirm').removeClass('has-error');
-            $('.confirm').addClass('has-success');
-            $('.password').removeClass('has-error');
-            $('.password').addClass('has-success');
+            replaceClass('.confirm', true);
+            replaceClass('.password', true);
 
         } else {
-            $('.confirm').removeClass('has-success');
-            $('.confirm').addClass('has-error');
-            $('.password').removeClass('has-success');
-            $('.password').addClass('has-error');
+            replaceClass('.confirm', false);
+            replaceClass('.password', false);
         }
     });
 
