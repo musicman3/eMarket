@@ -91,8 +91,8 @@
                         <div id="logo-add" class="text-center"></div>
                     </div>
                     <div class="form-group">
-                        <label for="view_categories_stock"><?php echo lang('display') ?> </label>
-                        <input class="check-box" type="checkbox" name="view_categories_stock" id="view_categories_stock" checked>
+                        <label for="view_slideshow"><?php echo lang('display') ?> </label>
+                        <input class="check-box" type="checkbox" name="view_slideshow" id="view_slideshow" checked>
                     </div>
                 </div>
                 <div class="modal-footer">
