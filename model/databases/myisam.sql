@@ -73,7 +73,7 @@ CREATE TABLE emkt_customers (
         gender char(1),
         firstname varchar(32) NOT NULL,
         lastname varchar(32) NOT NULL,
-        middle_name varchar(32) NOT NULL,
+        middle_name varchar(32),
         date_account_created datetime,
         date_account_last_modified datetime,
         date_last_logon datetime,
@@ -85,7 +85,7 @@ CREATE TABLE emkt_customers (
         ip_address varchar(64),
         newsletter char(1),
         number_of_logons int,
-        password varchar(256),
+        password varchar(256) NOT NULL,
         status int DEFAULT '0',
         telephone varchar(32),
 PRIMARY KEY (id))

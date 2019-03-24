@@ -1,5 +1,4 @@
 <?php
-
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -62,7 +61,6 @@ class Autorize {
             session_start();
 
             if (!isset($_SESSION['login_user'])) { // Если нет пользователя
-
             } else {
                 $TOKEN_CATALOG = $_SESSION['pass']; // создаем токен для ajax и пр.
                 //Язык авторизованного пользователя
@@ -71,6 +69,30 @@ class Autorize {
                 return $TOKEN_CATALOG;
             }
         }
+    }
+
+    /**
+     * Хэширование пароля
+     *
+     * @param string $password (входящий пароль)
+     * @return string $password_hash (хэшированный пароль)
+     */
+    public function passwordHash($password) {
+
+        if (HASH_METHOD == 'PASSWORD_DEFAULT') {
+            $options = ['cost' => 10]; // Уровень сложности
+            $METHOD = PASSWORD_DEFAULT;
+        }
+        if (HASH_METHOD == 'PASSWORD_BCRYPT') {
+            $options = ['cost' => 10]; // Уровень сложности
+            $METHOD = PASSWORD_BCRYPT;
+        }
+        if (HASH_METHOD == 'PASSWORD_ARGON2I') {
+            $options = ['time_cost' => 2]; // Максимум в сек. на вычисление хэша
+            $METHOD = PASSWORD_ARGON2I;
+        }
+        $password_hash = password_hash($password, $METHOD, $options); // Хэшируем пароль
+        return $password_hash;
     }
 
 }

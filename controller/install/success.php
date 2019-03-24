@@ -115,21 +115,7 @@ if (!file_exists($file_name)) {
 $buffer = str_replace('emkt_', DB_PREFIX, implode(file($file_name))); // Меняем префикс, если он другой
 $PDO->getExec($buffer);
 
-// Сохраняем e-mail и пароль
-if (HASH_METHOD == 'PASSWORD_DEFAULT') {
-    $options = ['cost' => 10]; // Уровень сложности
-    $METHOD = PASSWORD_DEFAULT;
-}
-if (HASH_METHOD == 'PASSWORD_BCRYPT') {
-    $options = ['cost' => 10]; // Уровень сложности
-    $METHOD = PASSWORD_BCRYPT;
-}
-if (HASH_METHOD == 'PASSWORD_ARGON2I') {
-    $options = ['time_cost' => 2]; // Максимум в сек. на вычисление хэша
-    $METHOD = PASSWORD_ARGON2I;
-}
-
-$password_admin_hash = password_hash($password_admin, $METHOD, $options); // Хэшируем пароль
+$password_admin_hash = $AUTORIZE->passwordHash($password_admin);
 
 if ($VALID->inPOST('login_admin') && $VALID->inPOST('password_admin')) {
     $PDO->inPrepare("INSERT INTO " . TABLE_ADMINISTRATORS . "  SET login=?, password=?, permission=?, language=?", [$login_admin, $password_admin_hash, 'admin', $lng]);
