@@ -5,11 +5,13 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 ?>
-
+<!--Выводим уведомление об успешном действии-->
+<?php $MESSAGES->alert(); ?>
 <h1><?php echo lang('register_account') ?></h1>
 
 <div id="register" class="contentText">
     <form class="form-horizontal" enctype="multipart/form-data" method="post" action="" onchange="validate()">
+        <input hidden name="modify" value="ok">
 	<fieldset id="account">
 	    <legend><?php echo lang('personal_details') ?></legend>
 	    <div class="input-group has-error firstname">
