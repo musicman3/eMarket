@@ -57,6 +57,33 @@ class Messages {
         }
     }
 
+    /**
+     * Уведомления на E-Mail
+     *
+     */
+    public function sendMail() {
+
+        $mail = new \PHPMailer\PHPMailer\PHPMailer();
+        // Set PHPMailer to use the sendmail transport
+        $mail->isSendmail();
+        //Set who the message is to be sent from
+        $mail->setFrom('office@emarket.com', 'First Last');
+        //Set an alternative reply-to address
+        $mail->addReplyTo('replyto@emarket.com', 'First Last');
+        //Set who the message is to be sent to
+        $mail->addAddress('office@mail.ru', 'John Doe');
+        //Set the subject line
+        $mail->Subject = 'PHPMailer mail() test';
+        //Read an HTML message body from an external file, convert referenced images to embedded,
+        $mail->msgHTML('<p><strong>«Hello, world!» </strong></p>');
+        //send the message, check for errors
+        if (!$mail->send()) {
+            echo "Mailer Error: " . $mail->ErrorInfo;
+        } else {
+            echo "Message sent!";
+        }
+    }
+
 }
 
 ?>
