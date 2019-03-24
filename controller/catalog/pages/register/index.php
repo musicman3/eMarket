@@ -13,7 +13,7 @@ if ($VALID->inPOST('email')) {
 
         $PDO->inPrepare("INSERT INTO " . TABLE_CUSTOMERS . " SET firstname=?, lastname=?, email=?, telephone=?, ip_address=?, password=?", [$VALID->inPOST('firstname'), $VALID->inPOST('lastname'), $VALID->inPOST('email'), $VALID->inPOST('telephone'), $SET->ipAdress(), $password_hash]);
     } else {
-        $_SESSION['message'] = ['danger', lang('messages_email_is_busy')];
+        $_SESSION['message'] = ['danger', lang('messages_email_is_busy'), 7000, TRUE];
     }
 }
 
