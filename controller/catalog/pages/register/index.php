@@ -10,8 +10,10 @@ if ($VALID->inPOST('email')) {
     $user_email = $PDO->getCellFalse("SELECT email FROM " . TABLE_CUSTOMERS . "", [$VALID->inPOST('email')]);
     if ($user_email == FALSE) {
         $password_hash = $AUTORIZE->passwordHash($VALID->inPOST('password'));
-
         $PDO->inPrepare("INSERT INTO " . TABLE_CUSTOMERS . " SET firstname=?, lastname=?, date_account_created=?, email=?, telephone=?, ip_address=?, password=?", [$VALID->inPOST('firstname'), $VALID->inPOST('lastname'), date("Y-m-d H:i:s"), $VALID->inPOST('email'), $VALID->inPOST('telephone'), $SET->ipAdress(), $password_hash]);
+        $id = $PDO->lastInsertId();
+        $activation_code = $FUNC->getToken(64);
+        $PDO->inPrepare("INSERT INTO " . TABLE_CUSTOMERS_ACTIVATION . " SET id=?, activation_code=?", [$id, $activation_code]);
     } else {
         $_SESSION['message'] = ['danger', lang('messages_email_is_busy'), 7000, TRUE];
     }

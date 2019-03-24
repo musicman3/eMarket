@@ -207,7 +207,7 @@ class Func {
 
     /**
      * Функция удаления значения из массива
-
+     *
      * @param array $array (исходный массив)
      * @param array $val (значения, которые необходимо удалить - ['val', 'val2']) 
      * @return array|false $array_return (итоговый массив)
@@ -225,7 +225,7 @@ class Func {
 
     /**
      * Функция удаления пустого значения из массива
-
+     *
      * @param array $array (исходный массив)
      * @return array|false $array_return (итоговый массив)
      */
@@ -237,6 +237,26 @@ class Func {
         } else {
             return FALSE;
         }
+    }
+
+    /**
+     * Функция получения случайного буквенно-цифрового токена
+     *
+     * @param string $length (длина токена)
+     * @return string $token (токен)
+     */
+    function getToken($length) {
+        $token = "";
+        $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        $codeAlphabet .= "abcdefghijklmnopqrstuvwxyz";
+        $codeAlphabet .= "0123456789";
+        $max = strlen($codeAlphabet);
+
+        for ($i = 0; $i < $length; $i++) {
+            $token .= $codeAlphabet[random_int(0, $max - 1)];
+        }
+
+        return $token;
     }
 
 }

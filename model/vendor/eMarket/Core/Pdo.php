@@ -420,6 +420,17 @@ class Pdo {
         }
         return $result;
     }
+    
+    /**
+     * lastInsertId для запроса последнего вставленного ID
+     * 
+     * @return string $result (возвращает данные)
+     */
+    public function lastInsertId() {
+
+        $result = self::connect()->lastInsertId();
+        return $result;
+    }   
 
 }
 

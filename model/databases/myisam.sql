@@ -94,8 +94,7 @@ ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 DROP TABLE IF EXISTS emkt_customers_activation;
 CREATE TABLE emkt_customers_activation (
         id int NOT NULL,
-        activation_code varchar(256),
-        activation_code_end datetime,
+        activation_code varchar(64),
 PRIMARY KEY (id))
 ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
