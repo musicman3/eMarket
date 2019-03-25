@@ -97,7 +97,12 @@ class Messages {
             $mail->addAddress($email_to);
             $mail->Subject = 'Регистрация в интернет-магазине eMarket';
             $mail->msgHTML('<p><strong>«Hello, world!» </strong></p><br><br>Тут будет ссылка:');
-            $mail->send();
+            //send the message, check for errors
+if (!$mail->send()) {
+    echo "Mailer Error: " . $mail->ErrorInfo;
+} else {
+    echo "Message sent!";
+}
         }
     }
 
