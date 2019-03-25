@@ -24,7 +24,7 @@ CREATE TABLE emkt_basic_settings (
         debug int DEFAULT '0' NOT NULL,
         host_email varchar(128) DEFAULT 'smtp.localhost' NOT NULL,
         username_email varchar(128) DEFAULT 'login' NOT NULL,
-        password_password varchar(128) DEFAULT 'password' NOT NULL,
+        password_email varchar(128) DEFAULT 'password' NOT NULL,
         smtp_secure varchar(64) DEFAULT 'tsl' NOT NULL,
         smtp_port int DEFAULT '587' NOT NULL,
         smtp_auth int DEFAULT '0' NOT NULL,

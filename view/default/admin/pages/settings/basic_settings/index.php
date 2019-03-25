@@ -63,7 +63,7 @@
 
             <div id="email" class="tab-pane fade">
 
-                <form id="form_email" name="form_email" class="form-horizontal" action="javascript:void(null);" onsubmit="callAdd()">
+                <form id="form_email" name="form_email" class="form-horizontal" action="javascript:void(null);" onsubmit="callAdd('form_email')">
                     <div class="panel-body">
                         <input hidden name="add" value="ok">
                         
@@ -85,35 +85,35 @@
                         <div class="form-group">
                             <div class="col-sm-3 text-left"><label class="control-label"><?php echo lang('basic_settings_host_email') ?></label></div>
                             <div class="col-sm-9">
-                                <input type="text" name="host_email" class="form-control" value="" required />
+                                <input type="text" name="host_email" class="form-control" value="<?php echo $host_email ?>" required />
                             </div>
                         </div>
                         
                         <div class="form-group">
                             <div class="col-sm-3 text-left"><label class="control-label"><?php echo lang('basic_settings_username_email') ?></label></div>
                             <div class="col-sm-9">
-                                <input type="text" name="username_email" class="form-control" value="" required />
+                                <input type="text" name="username_email" class="form-control" value="<?php echo $username_email ?>" required />
                             </div>
                         </div>
                         
                         <div class="form-group">
                             <div class="col-sm-3 text-left"><label class="control-label"><?php echo lang('basic_settings_password_email') ?></label></div>
                             <div class="col-sm-9">
-                                <input type="password" name="password_email" class="form-control" value="" required />
+                                <input type="password" name="password_email" class="form-control" value="<?php echo $password_email ?>" required />
                             </div>
                         </div>
                         
                         <div class="form-group">
                             <div class="col-sm-3 text-left"><label class="control-label"><?php echo lang('basic_settings_smtp_secure') ?></label></div>
                             <div class="col-sm-9">
-                                <input type="text" name="smtp_secure" class="form-control" value="" required />
+                                <input type="text" name="smtp_secure" class="form-control" value="<?php echo $smtp_secure ?>" required />
                             </div>
                         </div>
                         
                         <div class="form-group">
                             <div class="col-sm-3 text-left"><label class="control-label"><?php echo lang('basic_settings_smtp_port') ?></label></div>
                             <div class="col-sm-9">
-                                <input type="text" name="smtp_port" class="form-control" value="" required />
+                                <input type="text" name="smtp_port" class="form-control" value="<?php echo $smtp_port ?>" required />
                             </div>
                         </div>
                         

@@ -22,12 +22,15 @@ class Ajax {
      */
     public function action($url) {
         $VALID = new \eMarket\Core\Valid;
-
         ?>
         <!-- Модальное окно "Добавить" -->
         <script type="text/javascript">
-            function callAdd() {
-                var msg = $('#form_add').serialize();
+            function callAdd(name) {
+                if (name === undefined) {
+                    var msg = $('#form_add').serialize();
+                } else {
+                    var msg = $('#' + name).serialize();
+                }
                 // Установка синхронного запроса для jQuery.ajax
                 jQuery.ajaxSetup({async: false});
                 jQuery.ajax({
@@ -47,7 +50,7 @@ class Ajax {
                     setTimeout(function () {
                         document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
                     }, 100);
-                }
+            }
             }
         </script>
 
@@ -120,7 +123,6 @@ class Ajax {
         $FILES = new \eMarket\Other\Files;
 
         $resize_max = $FILES->imgResizeMax($resize_param);
-
         ?>
 
         <script type="text/javascript">
@@ -301,7 +303,6 @@ class Ajax {
         $FILES = new \eMarket\Other\Files;
 
         $resize_max = $FILES->imgResizeMax($resize_param);
-
         ?>
 
         <script type="text/javascript">
@@ -479,7 +480,6 @@ class Ajax {
      */
     public function сart($url) {
         $VALID = new \eMarket\Core\Valid;
-
         ?>
         <!-- Добавить товар -->
         <script type="text/javascript">
@@ -522,7 +522,7 @@ class Ajax {
                 jQuery.ajaxSetup({async: false});
                 jQuery.get('<?php echo $url ?>',
                         {quantity_product_id: id,
-                        pcs_product: pcs},
+                            pcs_product: pcs},
                         AjaxSuccess);
                 // Обновление страницы
                 function AjaxSuccess(data) {
@@ -536,5 +536,4 @@ class Ajax {
     }
 
 }
-
 ?>
