@@ -102,7 +102,7 @@
                             <div class="col-sm-3 text-left"><label class=""><?php echo lang('basic_settings_smtp_auth') ?></label></div>
                             <div class="col-sm-9">
                                 <select name="smtp_auth" id="smtp_auth" class="input-sm form-control">
-                                    <?php if ($smtp_auth_set == 1) { ?>
+                                    <?php if ($smtp_auth == 1) { ?>
                                         <option selected><?php echo lang('debug_on') ?></option>
                                         <option><?php echo lang('debug_off') ?></option>
                                     <?php } else { ?>
