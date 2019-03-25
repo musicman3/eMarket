@@ -25,6 +25,7 @@
 
         <!-- Содержимое панелей -->
         <div class="tab-content">
+            <!-- Основные настройки -->
             <div id="general" class="tab-pane fade in active">
                 <form id="form_add" name="form_add" class="form-horizontal" action="javascript:void(null);" onsubmit="callAdd()">
                     <div class="panel-body">
@@ -60,9 +61,8 @@
                     </div>
                 </form>
             </div>
-
+            <!-- Настройки E-Mail -->
             <div id="email" class="tab-pane fade">
-
                 <form id="form_email" name="form_email" class="form-horizontal" action="javascript:void(null);" onsubmit="callAdd('form_email')">
                     <div class="panel-body">
                         <input hidden name="add" value="ok">
