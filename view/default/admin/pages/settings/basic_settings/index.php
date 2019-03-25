@@ -16,12 +16,14 @@
                 <div class="clearfix"></div>
             </h3>
         </div>
-
-        <!-- Панели -->
-        <ul class="nav nav-tabs">
-            <li class="active"><a data-toggle="tab" href="#general"><?php echo lang('basic_settigs_general') ?></a></li>
-            <li><a data-toggle="tab" href="#email"><?php echo lang('basic_settigs_email') ?></a></li>
-        </ul>
+        <br>
+        <div>
+            <!-- Панели -->
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#general"><?php echo lang('basic_settigs_general') ?></a></li>
+                <li><a data-toggle="tab" href="#email"><?php echo lang('basic_settigs_email') ?></a></li>
+            </ul>
+        </div>
 
         <!-- Содержимое панелей -->
         <div class="tab-content">
@@ -66,21 +68,21 @@
                 <form id="form_email" name="form_email" class="form-horizontal" action="javascript:void(null);" onsubmit="callAdd('form_email')">
                     <div class="panel-body">
                         <input hidden name="add" value="ok">
-                        
+
                         <div class="form-group">
                             <div class="col-sm-3 text-left"><label class="control-label"><?php echo lang('basic_settings_email') ?></label></div>
                             <div class="col-sm-9">
                                 <input type="text" type="email" name="email" class="form-control" value="<?php echo $email ?>" required />
                             </div>
                         </div>
-                        
+
                         <div class="form-group">
                             <div class="col-sm-3 text-left"><label class="control-label"><?php echo lang('basic_settings_email_name') ?></label></div>
                             <div class="col-sm-9">
                                 <input type="text" name="email_name" class="form-control" value="<?php echo $email_name ?>" required />
                             </div>
                         </div>
-                        
+
                         <div class="form-group">
                             <div class="col-sm-3 text-left"><label class=""><?php echo lang('basic_settings_smtp_use') ?></label></div>
                             <div class="col-sm-9">
@@ -95,7 +97,7 @@
                                 </select>
                             </div>
                         </div>
-                        
+
                         <div class="form-group">
                             <div class="col-sm-3 text-left"><label class=""><?php echo lang('basic_settings_smtp_auth') ?></label></div>
                             <div class="col-sm-9">
@@ -117,35 +119,35 @@
                                 <input type="text" id="host_email" name="host_email" class="form-control" value="<?php echo $host_email ?>" required />
                             </div>
                         </div>
-                        
+
                         <div class="form-group">
                             <div class="col-sm-3 text-left"><label class="control-label"><?php echo lang('basic_settings_username_email') ?></label></div>
                             <div class="col-sm-9">
                                 <input type="text" id="username_email" name="username_email" class="form-control" value="<?php echo $username_email ?>" required />
                             </div>
                         </div>
-                        
+
                         <div class="form-group">
                             <div class="col-sm-3 text-left"><label class="control-label"><?php echo lang('basic_settings_password_email') ?></label></div>
                             <div class="col-sm-9">
                                 <input type="password" id="password_email" name="password_email" class="form-control" value="<?php echo $password_email ?>" required />
                             </div>
                         </div>
-                        
+
                         <div class="form-group">
                             <div class="col-sm-3 text-left"><label class="control-label"><?php echo lang('basic_settings_smtp_secure') ?></label></div>
                             <div class="col-sm-9">
                                 <input type="text" id="smtp_secure" name="smtp_secure" class="form-control" value="<?php echo $smtp_secure ?>" required />
                             </div>
                         </div>
-                        
+
                         <div class="form-group">
                             <div class="col-sm-3 text-left"><label class="control-label"><?php echo lang('basic_settings_smtp_port') ?></label></div>
                             <div class="col-sm-9">
                                 <input type="text" id="smtp_port" name="smtp_port" class="form-control" value="<?php echo $smtp_port ?>" required />
                             </div>
                         </div>
-                        
+
                         <button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button>
                     </div>
                 </form>
