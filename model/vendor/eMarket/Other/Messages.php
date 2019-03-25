@@ -93,6 +93,7 @@ class Messages {
             $mail->Password = $basic_settings['password_email'];
             $mail->SMTPSecure = $basic_settings['smtp_secure'];
             $mail->Port = $basic_settings['smtp_port'];
+            $mail->setFrom($basic_settings['email'], $basic_settings['email_name']);
             $mail->addAddress($email_to);
             $mail->Subject = 'PHPMailer mail() test';
             $mail->msgHTML('<p><strong>«Hello, world!» </strong></p>');
