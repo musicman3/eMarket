@@ -16,21 +16,18 @@
                 <div class="clearfix"></div>
             </h3>
         </div>
-        <br>
-        <div>
+        <div class="panel-body">
             <!-- Панели -->
             <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#general"><?php echo lang('basic_settigs_general') ?></a></li>
                 <li><a data-toggle="tab" href="#email"><?php echo lang('basic_settigs_email') ?></a></li>
             </ul>
-        </div>
 
-        <!-- Содержимое панелей -->
-        <div class="tab-content">
-            <!-- Основные настройки -->
-            <div id="general" class="tab-pane fade in active">
-                <form id="form_add" name="form_add" class="form-horizontal" action="javascript:void(null);" onsubmit="callAdd()">
-                    <div class="panel-body">
+	    <!-- Содержимое панелей -->
+	    <div class="tab-content">
+		<!-- Основные настройки -->
+		<div id="general" class="tab-pane fade in active">
+		    <form id="form_add" name="form_add" class="form-horizontal" action="javascript:void(null);" onsubmit="callAdd()">
                         <input hidden name="add" value="ok">
 
                         <div class="form-group">
@@ -60,19 +57,17 @@
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button>
-                    </div>
-                </form>
-            </div>
-            <!-- Настройки E-Mail -->
-            <div id="email" class="tab-pane fade">
-                <form id="form_email" name="form_email" class="form-horizontal" action="javascript:void(null);" onsubmit="callAdd('form_email')">
-                    <div class="panel-body">
+		    </form>
+		</div>
+		<!-- Настройки E-Mail -->
+		<div id="email" class="tab-pane fade">
+		    <form id="form_email" name="form_email" class="form-horizontal" action="javascript:void(null);" onsubmit="callAdd('form_email')">
                         <input hidden name="add" value="ok">
 
                         <div class="form-group">
                             <div class="col-sm-3 text-left"><label class="control-label"><?php echo lang('basic_settings_email') ?></label></div>
                             <div class="col-sm-9">
-                                <input type="email" name="email" class="form-control" value="<?php echo $email ?>" required />
+                                <input type="text" type="email" name="email" class="form-control" value="<?php echo $email ?>" required />
                             </div>
                         </div>
 
@@ -149,11 +144,10 @@
                         </div>
 
                         <button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button>
-                    </div>
-                </form>
+		    </form>
 
-            </div>
-        </div>        
-
+		</div>
+	    </div>        
+	</div>
     </div>
 </div>
