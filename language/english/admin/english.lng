@@ -118,6 +118,14 @@ session_expr_time_help = The session will be active for set time after the last 
 debug_info = Debug info
 debug_on = On
 debug_off = Off
+basic_settigs_general = General settings
+basic_settigs_email = E-Mail settings
+basic_settings_host_email = Host
+basic_settings_username_email = Username
+basic_settings_password_email = Password
+basic_settings_smtp_auth = SMTP Autorization
+basic_settings_smtp_secure = Secure connect
+basic_settings_smtp_port = SMTP Port
 
 ;MANUFACTURERS
 manufacturer = Manufacturer

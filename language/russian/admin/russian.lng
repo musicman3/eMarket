@@ -119,6 +119,14 @@ session_expr_time_help = В течение указанного времени �
 debug_info = Отладочная информация
 debug_on = Вкл.
 debug_off = Откл.
+basic_settigs_general = Основные настройки
+basic_settigs_email = Настройки E-Mail
+basic_settings_host_email = Хост
+basic_settings_username_email = Логин
+basic_settings_password_email = Пароль
+basic_settings_smtp_auth = Авторизация через SMTP
+basic_settings_smtp_secure = Защищенное соединение
+basic_settings_smtp_port = SMTP Порт
 
 ;MANUFACTURERS
 manufacturer = Производитель

@@ -46,6 +46,26 @@ if ($VALID->inPOST('debug')) {
     $debug = $PDO->getCell("SELECT debug FROM " . TABLE_BASIC_SETTINGS . "", []);
 }
 
+// SMTP авторизация
+$smtp = $PDO->getCell("SELECT smtp_auth FROM " . TABLE_BASIC_SETTINGS . "", []);
+
+if ($VALID->inPOST('smtp_auth')) {
+
+    if ($VALID->inPOST('smtp_auth') == lang('debug_on')) {
+        $smtp_auth_set = 1;
+    }
+    if ($VALID->inPOST('smtp_auth') == lang('debug_off')) {
+        $smtp_auth_set = 0;
+    }
+
+    $PDO->inPrepare("UPDATE " . TABLE_BASIC_SETTINGS . " SET smtp_auth=?", [$smtp_auth_set]);
+
+    // Выводим сообщение об успехе
+    $_SESSION['message'] = ['success', lang('action_completed_successfully')];
+    // Считываем значение
+    $smtp = $PDO->getCell("SELECT smtp_auth FROM " . TABLE_BASIC_SETTINGS . "", []);
+}
+
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
 $JS_END = __DIR__;
 

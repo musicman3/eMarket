@@ -20,8 +20,14 @@ DROP TABLE IF EXISTS emkt_basic_settings;
 CREATE TABLE emkt_basic_settings (
 	id int NOT NULL auto_increment,
 	lines_on_page int DEFAULT '20' NOT NULL,
-        session_expr_time int DEFAULT '15' NOT NULL,
+        session_expr_time int DEFAULT '60' NOT NULL,
         debug int DEFAULT '0' NOT NULL,
+        host_email varchar(128) DEFAULT 'smtp.localhost' NOT NULL,
+        username_email varchar(128) DEFAULT 'login' NOT NULL,
+        password_password varchar(128) DEFAULT 'password' NOT NULL,
+        smtp_secure varchar(64) DEFAULT 'tsl' NOT NULL,
+        smtp_port int DEFAULT '587' NOT NULL,
+        smtp_auth int DEFAULT '0' NOT NULL,
 PRIMARY KEY (id))
 ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
@@ -10240,7 +10246,7 @@ INSERT INTO emkt_regions VALUES(4248, 238, 'MV', 'Masvingo', 'English');
 INSERT INTO emkt_regions VALUES(4249, 238, 'MW', 'Mashonaland West', 'English');
 
 /* ЗАГРУЗКА НАСТРОЕК */
-INSERT INTO emkt_basic_settings VALUES (1, 20, 60, 0);
+INSERT INTO emkt_basic_settings VALUES (1, 20, 60, 0, 'smtp.localhost', 'login', 'password', 'tsl', 587, 0);
 
 /* ЗАГРУЗКА ЗОН */
 INSERT INTO emkt_zones VALUES (1, 'Moskow', null, 'english');
