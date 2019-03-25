@@ -1,4 +1,5 @@
 <?php
+
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -46,8 +47,53 @@ if ($VALID->inPOST('debug')) {
     $debug = $PDO->getCell("SELECT debug FROM " . TABLE_BASIC_SETTINGS . "", []);
 }
 
+
+// E-Mail
+$email = $PDO->getCell("SELECT email FROM " . TABLE_BASIC_SETTINGS . "", []);
+if ($VALID->inPOST('email')) {
+
+    $PDO->inPrepare("UPDATE " . TABLE_BASIC_SETTINGS . " SET email=?", [$VALID->inPOST('email')]);
+
+    // Выводим сообщение об успехе
+    $_SESSION['message'] = ['success', lang('action_completed_successfully')];
+    // Считываем значение
+    $email = $PDO->getCell("SELECT email FROM " . TABLE_BASIC_SETTINGS . "", []);
+}
+
+// E-Mail Имя отправителя
+$email_name = $PDO->getCell("SELECT email_name FROM " . TABLE_BASIC_SETTINGS . "", []);
+if ($VALID->inPOST('email_name')) {
+
+    $PDO->inPrepare("UPDATE " . TABLE_BASIC_SETTINGS . " SET email_name=?", [$VALID->inPOST('email_name')]);
+
+    // Выводим сообщение об успехе
+    $_SESSION['message'] = ['success', lang('action_completed_successfully')];
+    // Считываем значение
+    $email_name = $PDO->getCell("SELECT email_name FROM " . TABLE_BASIC_SETTINGS . "", []);
+}
+
+// SMTP статус
+$smtp_status = $PDO->getCell("SELECT smtp_status FROM " . TABLE_BASIC_SETTINGS . "", []);
+
+if ($VALID->inPOST('smtp_status')) {
+
+    if ($VALID->inPOST('smtp_status') == lang('debug_on')) {
+        $smtp_status_set = 1;
+    }
+    if ($VALID->inPOST('smtp_status') == lang('debug_off')) {
+        $smtp_status_set = 0;
+    }
+
+    $PDO->inPrepare("UPDATE " . TABLE_BASIC_SETTINGS . " SET smtp_status=?", [$smtp_status_set]);
+
+    // Выводим сообщение об успехе
+    $_SESSION['message'] = ['success', lang('action_completed_successfully')];
+    // Считываем значение
+    $smtp_status = $PDO->getCell("SELECT smtp_status FROM " . TABLE_BASIC_SETTINGS . "", []);
+}
+
 // SMTP авторизация
-$smtp = $PDO->getCell("SELECT smtp_auth FROM " . TABLE_BASIC_SETTINGS . "", []);
+$smtp_auth = $PDO->getCell("SELECT smtp_auth FROM " . TABLE_BASIC_SETTINGS . "", []);
 
 if ($VALID->inPOST('smtp_auth')) {
 
@@ -63,7 +109,7 @@ if ($VALID->inPOST('smtp_auth')) {
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
     // Считываем значение
-    $smtp = $PDO->getCell("SELECT smtp_auth FROM " . TABLE_BASIC_SETTINGS . "", []);
+    $smtp_auth = $PDO->getCell("SELECT smtp_auth FROM " . TABLE_BASIC_SETTINGS . "", []);
 }
 
 // Хост E-Mail
@@ -128,5 +174,4 @@ if ($VALID->inPOST('smtp_port')) {
 
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
 $JS_END = __DIR__;
-
 ?>

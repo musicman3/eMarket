@@ -68,10 +68,39 @@
                         <input hidden name="add" value="ok">
                         
                         <div class="form-group">
+                            <div class="col-sm-3 text-left"><label class="control-label"><?php echo lang('basic_settings_email') ?></label></div>
+                            <div class="col-sm-9">
+                                <input type="text" type="email" name="email" class="form-control" value="<?php echo $email ?>" required />
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="col-sm-3 text-left"><label class="control-label"><?php echo lang('basic_settings_email_name') ?></label></div>
+                            <div class="col-sm-9">
+                                <input type="text" name="email_name" class="form-control" value="<?php echo $email_name ?>" required />
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="col-sm-3 text-left"><label class=""><?php echo lang('basic_settings_smtp_use') ?></label></div>
+                            <div class="col-sm-9">
+                                <select name="smtp_status" id="smtp_status" class="input-sm form-control">
+                                    <?php if ($smtp_status == 1) { ?>
+                                        <option selected><?php echo lang('debug_on') ?></option>
+                                        <option><?php echo lang('debug_off') ?></option>
+                                    <?php } else { ?>
+                                        <option><?php echo lang('debug_on') ?></option>
+                                        <option selected><?php echo lang('debug_off') ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
                             <div class="col-sm-3 text-left"><label class=""><?php echo lang('basic_settings_smtp_auth') ?></label></div>
                             <div class="col-sm-9">
                                 <select name="smtp_auth" id="smtp_auth" class="input-sm form-control">
-                                    <?php if ($debug == 1) { ?>
+                                    <?php if ($smtp_auth_set == 1) { ?>
                                         <option selected><?php echo lang('debug_on') ?></option>
                                         <option><?php echo lang('debug_off') ?></option>
                                     <?php } else { ?>

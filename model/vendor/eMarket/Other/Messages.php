@@ -1,4 +1,5 @@
 <?php
+
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -61,26 +62,41 @@ class Messages {
      * Уведомления на E-Mail
      *
      */
-    public function sendMail() {
+    public function sendRegisterMail($email_to) {
 
+        $PDO = new \eMarket\Core\Pdo;
         $mail = new \PHPMailer\PHPMailer\PHPMailer();
-        // Set PHPMailer to use the sendmail transport
-        $mail->isSendmail();
-        //Set who the message is to be sent from
-        $mail->setFrom('office@emarket.com', 'First Last');
-        //Set an alternative reply-to address
-        $mail->addReplyTo('replyto@emarket.com', 'First Last');
-        //Set who the message is to be sent to
-        $mail->addAddress('office@mail.ru', 'John Doe');
-        //Set the subject line
-        $mail->Subject = 'PHPMailer mail() test';
-        //Read an HTML message body from an external file, convert referenced images to embedded,
-        $mail->msgHTML('<p><strong>«Hello, world!» </strong></p>');
-        //send the message, check for errors
-        if (!$mail->send()) {
-            echo "Mailer Error: " . $mail->ErrorInfo;
-        } else {
-            echo "Message sent!";
+
+        $basic_settings = $PDO->getColAssoc("SELECT * FROM " . TABLE_BASIC_SETTINGS . "", []);
+
+        if ($basic_settings['smtp_status'] == 0) {
+            $mail->isSendmail();
+            $mail->setFrom($basic_settings['email'], $basic_settings['email_name']);
+            $mail->addAddress($email_to);
+            $mail->Subject = 'PHPMailer mail() test';
+            $mail->msgHTML('<p><strong>«Hello, world!» </strong></p>');
+            $mail->send();
+        }
+
+        if ($basic_settings['smtp_status'] == 1) {
+
+            if ($basic_settings['smtp_auth'] == 0) {
+                $smtp_auth = false;
+            } else {
+                $smtp_auth = true;
+            }
+
+            $mail->isSMTP();
+            $mail->Host = $basic_settings['host_email'];
+            $mail->SMTPAuth = $smtp_auth;
+            $mail->Username = $basic_settings['username_email'];
+            $mail->Password = $basic_settings['password_email'];
+            $mail->SMTPSecure = $basic_settings['smtp_secure'];
+            $mail->Port = $basic_settings['smtp_port'];
+            $mail->addAddress($email_to);
+            $mail->Subject = 'PHPMailer mail() test';
+            $mail->msgHTML('<p><strong>«Hello, world!» </strong></p>');
+            $mail->send();
         }
     }
 

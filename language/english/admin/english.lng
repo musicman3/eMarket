@@ -126,6 +126,9 @@ basic_settings_password_email = Password
 basic_settings_smtp_auth = SMTP Autorization
 basic_settings_smtp_secure = Secure connect
 basic_settings_smtp_port = SMTP Port
+basic_settings_smtp_use = Use SMTP
+basic_settings_email = Sender E-mail
+basic_settings_email_name = Sender name
 
 ;MANUFACTURERS
 manufacturer = Manufacturer

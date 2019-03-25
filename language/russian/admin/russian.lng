@@ -124,9 +124,12 @@ basic_settigs_email = Настройки E-Mail
 basic_settings_host_email = Хост
 basic_settings_username_email = Логин
 basic_settings_password_email = Пароль
-basic_settings_smtp_auth = Авторизация через SMTP
+basic_settings_smtp_auth = Авторизация SMTP
 basic_settings_smtp_secure = Защищенное соединение
 basic_settings_smtp_port = SMTP Порт
+basic_settings_smtp_use = Использовать SMTP
+basic_settings_email = E-mail отправителя
+basic_settings_email_name = Имя отправителя
 
 ;MANUFACTURERS
 manufacturer = Производитель
