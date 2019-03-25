@@ -66,6 +66,7 @@ class Messages {
 
         $PDO = new \eMarket\Core\Pdo;
         $mail = new \PHPMailer\PHPMailer\PHPMailer();
+        $mail->CharSet = 'utf-8';
 
         $basic_settings = $PDO->getColAssoc("SELECT * FROM " . TABLE_BASIC_SETTINGS . "", [])[0];
 
@@ -97,12 +98,7 @@ class Messages {
             $mail->addAddress($email_to);
             $mail->Subject = 'Регистрация в интернет-магазине eMarket';
             $mail->msgHTML('<p><strong>«Hello, world!» </strong></p><br><br>Тут будет ссылка:');
-            //send the message, check for errors
-if (!$mail->send()) {
-    echo "Mailer Error: " . $mail->ErrorInfo;
-} else {
-    echo "Message sent!";
-}
+            $mail->send();
         }
     }
 
