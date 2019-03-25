@@ -72,7 +72,7 @@
                         <div class="form-group">
                             <div class="col-sm-3 text-left"><label class="control-label"><?php echo lang('basic_settings_email') ?></label></div>
                             <div class="col-sm-9">
-                                <input type="text" type="email" name="email" class="form-control" value="<?php echo $email ?>" required />
+                                <input type="email" name="email" class="form-control" value="<?php echo $email ?>" required />
                             </div>
                         </div>
 
