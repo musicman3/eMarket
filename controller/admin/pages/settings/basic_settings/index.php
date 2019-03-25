@@ -58,6 +58,8 @@ if ($VALID->inPOST('email')) {
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
     // Считываем значение
     $email = $PDO->getCell("SELECT email FROM " . TABLE_BASIC_SETTINGS . "", []);
+    
+    $MESSAGES->sendMail($VALID->inPOST('email'));
 }
 
 // E-Mail Имя отправителя
