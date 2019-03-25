@@ -62,19 +62,19 @@ class Messages {
      * Уведомления на E-Mail
      *
      */
-    public function sendRegisterMail($email_to) {
+    public function sendMail($email_to) {
 
         $PDO = new \eMarket\Core\Pdo;
         $mail = new \PHPMailer\PHPMailer\PHPMailer();
 
-        $basic_settings = $PDO->getColAssoc("SELECT * FROM " . TABLE_BASIC_SETTINGS . "", []);
+        $basic_settings = $PDO->getColAssoc("SELECT * FROM " . TABLE_BASIC_SETTINGS . "", [])[0];
 
         if ($basic_settings['smtp_status'] == 0) {
             $mail->isSendmail();
             $mail->setFrom($basic_settings['email'], $basic_settings['email_name']);
             $mail->addAddress($email_to);
-            $mail->Subject = 'PHPMailer mail() test';
-            $mail->msgHTML('<p><strong>«Hello, world!» </strong></p>');
+            $mail->Subject = 'Регистрация в интернет-магазине eMarket';
+            $mail->msgHTML('<p><strong>«Hello, world!» </strong></p><br><br>Тут будет ссылка:');
             $mail->send();
         }
 
@@ -95,8 +95,8 @@ class Messages {
             $mail->Port = $basic_settings['smtp_port'];
             $mail->setFrom($basic_settings['email'], $basic_settings['email_name']);
             $mail->addAddress($email_to);
-            $mail->Subject = 'PHPMailer mail() test';
-            $mail->msgHTML('<p><strong>«Hello, world!» </strong></p>');
+            $mail->Subject = 'Регистрация в интернет-магазине eMarket';
+            $mail->msgHTML('<p><strong>«Hello, world!» </strong></p><br><br>Тут будет ссылка:');
             $mail->send();
         }
     }

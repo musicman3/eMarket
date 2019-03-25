@@ -4,7 +4,6 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-
 if ($VALID->inPOST('email')) {
 
     $user_email = $PDO->getCellFalse("SELECT email FROM " . TABLE_CUSTOMERS . "", [$VALID->inPOST('email')]);
@@ -14,7 +13,7 @@ if ($VALID->inPOST('email')) {
         $id = $PDO->lastInsertId();
         $activation_code = $FUNC->getToken(64);
         $PDO->inPrepare("INSERT INTO " . TABLE_CUSTOMERS_ACTIVATION . " SET id=?, activation_code=?", [$id, $activation_code]);
-        //$MESSAGES->sendMail();
+        $MESSAGES->sendMail($VALID->inPOST('email'));
     } else {
         $_SESSION['message'] = ['danger', lang('messages_email_is_busy'), 7000, TRUE];
     }
