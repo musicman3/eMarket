@@ -6,7 +6,7 @@
 
 ?>
 <!-- Модальное окно "Настройки" -->
-<?php require_once('modal/settings.php') ?>
+<?php require(ROOT . '/view/' . $SET->template() . '/admin/pages/slideshow/modal/settings.php') ?>
 <!-- КОНЕЦ Модальное окно "Настройки" -->
 
 <!-- Модальное окно "Добавить" -->
