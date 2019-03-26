@@ -6,8 +6,8 @@
 
 if ($VALID->inPOST('email')) {
 
-    $user_email = $PDO->getCellFalse("SELECT email FROM " . TABLE_CUSTOMERS . "", [$VALID->inPOST('email')]);
-    if ($user_email == FALSE) {
+    $user_email = $PDO->selectPrepare("SELECT id FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$VALID->inPOST('email')]);
+    if ($user_email == NULL) {
         $password_hash = $AUTORIZE->passwordHash($VALID->inPOST('password'));
         $PDO->inPrepare("INSERT INTO " . TABLE_CUSTOMERS . " SET firstname=?, lastname=?, date_account_created=?, email=?, telephone=?, ip_address=?, password=?", [$VALID->inPOST('firstname'), $VALID->inPOST('lastname'), date("Y-m-d H:i:s"), $VALID->inPOST('email'), $VALID->inPOST('telephone'), $SET->ipAdress(), $password_hash]);
         $id = $PDO->lastInsertId();
