@@ -6,7 +6,7 @@
 require(ROOT . '/controller/admin/pages/slideshow/modal/settings.php');
 
 ?>
-<!-- Модальное окно "Добавить" -->
+<!-- Модальное окно "Настройки" -->
 <div id="settings" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -52,4 +52,4 @@ require(ROOT . '/controller/admin/pages/slideshow/modal/settings.php');
         </div>
     </div>
 </div>
-<!-- КОНЕЦ Модальное окно "Добавить" -->
+<!-- КОНЕЦ Модальное окно "Настройки" -->
