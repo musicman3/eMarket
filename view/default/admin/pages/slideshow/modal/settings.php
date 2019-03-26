@@ -17,7 +17,7 @@ require(ROOT . '/controller/admin/pages/slideshow/modal/settings.php');
                 <div class="panel-body">
 
                     <!-- Выводим сообщения -->
-                    <div id="alert_messages_add"></div>
+                    <div id="alert_messages_settings"></div>
                     
 		    <div class="form-group has-error">
 			<input class="input-sm form-control" placeholder="Интервал (мс)" type="text" name="" id="" required />
