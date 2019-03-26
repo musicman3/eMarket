@@ -5,6 +5,10 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 ?>
+<!-- Модальное окно "Настройки" -->
+<?php require_once('modal/settings.php') ?>
+<!-- КОНЕЦ Модальное окно "Настройки" -->
+
 <!-- Модальное окно "Добавить" -->
 <?php require_once('modal/add.php') ?>
 <!-- КОНЕЦ Модальное окно "Добавить" -->
@@ -20,7 +24,7 @@
                     <!--Выводим уведомление об успешном действии-->
                     <?php $MESSAGES->alert(); ?>
                     <h3 class="panel-title">
-                        <div class="pull-left"><?php echo lang('title_' . $SET->titleDir() . '_index') ?></div>
+                        <div class="pull-left"><a href="#settings" class="btn btn-primary btn-xs" data-toggle="modal"><span class="back glyphicon glyphicon-wrench"></span></a> <?php echo lang('title_' . $SET->titleDir() . '_index') ?></div>
                         <div class="clearfix"></div>
                     </h3>
                 </div>
