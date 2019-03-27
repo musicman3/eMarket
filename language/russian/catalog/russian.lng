@@ -55,6 +55,7 @@ buy_now = Купить
 ;MESSAGES
 messages_email_is_busy = Этот E-Mail уже занят! Пожалуйста, укажите другой E-Mail.
 messages_registration_complete = Регистрация успешно завершена! Пожалуйста, проверьте Вашу электронную почту.
+messages_activation_complete = Активация успешно завершена! Пожалуйста, войдите в свой аккаунт.
 
 ;NAVBAR
 navbar_pcs = шт.

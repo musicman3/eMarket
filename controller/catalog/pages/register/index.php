@@ -15,12 +15,12 @@ if ($VALID->inPOST('email')) {
         $activation_code = $FUNC->getToken(64);
         $PDO->inPrepare("INSERT INTO " . TABLE_CUSTOMERS_ACTIVATION . " SET id=?, activation_code=?", [$id, $activation_code]);
         
-        $link = HTTP_SERVER . '?route=register&activation_code=' . $activation_code;
+        $link = HTTP_SERVER . '?route=login&activation_code=' . $activation_code;
         $MESSAGES->sendMail($VALID->inPOST('email'), lang('email_registration_subject'), sprintf(lang('email_registration_message'), $link, $link));
         
         $_SESSION['message'] = ['success', lang('messages_registration_complete'), 7000, TRUE];
     } else {
-        $_SESSION['message'] = ['danger', lang('messages_email_is_busy'), 7000, TRUE];
+        $_SESSION['message'] = ['danger', lang('messages_activation_complete'), 7000, TRUE];
     }
 }
 

@@ -55,6 +55,7 @@ buy_now = Buy Now
 ;MESSAGES
 messages_email_is_busy = This email is busy! Please enter another email.
 messages_registration_complete = Registration successfully completed! Please check your email.
+messages_activation_complete = Activation successfully completed! Please login to you account.
 
 ;NAVBAR
 navbar_pcs = pcs.
