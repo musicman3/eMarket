@@ -36,3 +36,7 @@ navbar_currencies = Currencies
 ;REGISTER
 password_check = Confirmation password error
 email_check = Please, enter correct E-Mail
+
+;E-MAIL MESSAGES
+email_registration_subject = Registration in the online store eMarket!
+email_registration_message = This is registration message. <br><br>Registration Code:

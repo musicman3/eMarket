@@ -61,12 +61,15 @@ class Messages {
     /**
      * Уведомления на E-Mail
      *
+     * @param string $email_to (E-Mail получателя. Разделитель ";")
+     * @param string $subject (текст темы E-Mail)
+     * @param string $message (Сообщение в html)
      */
-    public function sendMail($email_to) {
+    public function sendMail($email_to, $subject, $message) {
 
         $PDO = new \eMarket\Core\Pdo;
         $mail = new \PHPMailer\PHPMailer\PHPMailer();
-        $mail->CharSet = 'utf-8';
+        $mail->CharSet = 'UTF-8';
 
         $basic_settings = $PDO->getColAssoc("SELECT * FROM " . TABLE_BASIC_SETTINGS . "", [])[0];
 
@@ -74,8 +77,8 @@ class Messages {
             $mail->isSendmail();
             $mail->setFrom($basic_settings['email'], $basic_settings['email_name']);
             $mail->addAddress($email_to);
-            $mail->Subject = 'Регистрация в интернет-магазине eMarket';
-            $mail->msgHTML('<p><strong>«Hello, world!» </strong></p><br><br>Тут будет ссылка:');
+            $mail->Subject = $subject;
+            $mail->msgHTML($message);
             $mail->send();
         }
 
@@ -96,8 +99,8 @@ class Messages {
             $mail->Port = $basic_settings['smtp_port'];
             $mail->setFrom($basic_settings['email'], $basic_settings['email_name']);
             $mail->addAddress($email_to);
-            $mail->Subject = 'Регистрация в интернет-магазине eMarket';
-            $mail->msgHTML('<p><strong>«Hello, world!» </strong></p><br><br>Тут будет ссылка:');
+            $mail->Subject = $subject;
+            $mail->msgHTML($message);
             $mail->send();
         }
     }
