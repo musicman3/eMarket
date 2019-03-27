@@ -53,7 +53,7 @@
     <div id="cart" class="contentText">
         <div class="well well-sm">
             <div class="btn-group">
-                <div class="btn"><?php echo lang('shopping_cart_no') ?></div>
+                <div class="btn"><?php echo lang('shopping_cart_empty') ?></div>
             </div>
         </div>
     </div>

@@ -47,7 +47,7 @@
 	    </div>
 	    <br>
 	</fieldset>
-	<div class="text-right"><?php echo lang('offero_1') ?> <a class="agree" href="#"><b><?php echo lang('offero_2') ?></b></a> <?php echo lang('offero_3') ?>
+	<div class="text-right"><?php echo lang('privacy_statement_agree') ?>
 	    <input type="checkbox" value="1" name="agree">&nbsp;
 	    <input class="btn btn-primary" type="submit" value="<?php echo lang('continue') ?>">
 	</div>

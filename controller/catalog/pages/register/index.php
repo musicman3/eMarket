@@ -10,11 +10,15 @@ if ($VALID->inPOST('email')) {
     if ($user_email == NULL) {
         $password_hash = $AUTORIZE->passwordHash($VALID->inPOST('password'));
         $PDO->inPrepare("INSERT INTO " . TABLE_CUSTOMERS . " SET firstname=?, lastname=?, date_account_created=?, email=?, telephone=?, ip_address=?, password=?", [$VALID->inPOST('firstname'), $VALID->inPOST('lastname'), date("Y-m-d H:i:s"), $VALID->inPOST('email'), $VALID->inPOST('telephone'), $SET->ipAdress(), $password_hash]);
+        
         $id = $PDO->lastInsertId();
         $activation_code = $FUNC->getToken(64);
         $PDO->inPrepare("INSERT INTO " . TABLE_CUSTOMERS_ACTIVATION . " SET id=?, activation_code=?", [$id, $activation_code]);
+        
         $link = HTTP_SERVER . '?route=register&activation_code=' . $activation_code;
         $MESSAGES->sendMail($VALID->inPOST('email'), lang('email_registration_subject'), sprintf(lang('email_registration_message'), $link, $link));
+        
+        $_SESSION['message'] = ['success', lang('messages_registration_complete'), 7000, TRUE];
     } else {
         $_SESSION['message'] = ['danger', lang('messages_email_is_busy'), 7000, TRUE];
     }

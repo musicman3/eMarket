@@ -14,10 +14,37 @@ debug_pcs = pcs.
 ;LAYOUTS
 categories_name = Categories
 search_name = Search...
-new_products_name = Новые товары
+new_products_name = New products
+sale = Sale
+recommended = Recommended
+articles = Articles
+my_account = My account
 
 ;PAGES
 description_product = Description
+shopping_cart = Cart
+сheckout_click = Buy in one click
+сheckout = Checkout
+shopping_cart_empty = Shopping cart is empty
+total = Total
+listing_no = There are no products in this category.
+login_to_account = Autorization
+regular_customer = Regular customer
+new_customer = New Customer
+sign_in = Sign in
+continue = Continue
+e_mail = E-Mail
+telephone = Telephone
+password = Enter password
+confirm_password = Confirm password
+details_password = Password details
+forgot_your_password = Forgot your password?
+login_description = By creating an account you will be able to take advantage of this store by shopping faster, be kept up to date on the status of an order, and keep track of the orders you have made.
+register_account = Registration
+personal_details = Personal details
+first_name = First Name
+last_name = Last Name
+privacy_statement_agree = I have read and agreed to your <a href="%s" target="_blank" class="agree">privacy statement</a>.
 
 ;BREADCRUMB
 breadcrumb_home = Home
@@ -27,6 +54,7 @@ buy_now = Buy Now
 
 ;MESSAGES
 messages_email_is_busy = This email is busy! Please enter another email.
+messages_registration_complete = Registration successfully completed! Please check your email.
 
 ;NAVBAR
 navbar_pcs = pcs.
@@ -39,4 +67,4 @@ email_check = Please, enter correct E-Mail
 
 ;E-MAIL MESSAGES
 email_registration_subject = Registration in the online store eMarket!
-email_registration_message = This is registration message. <br><br>Registration Code: <a href="%s" target="_blank">%s</a>
+email_registration_message = Click the link below to let us know this is really your email and complete registration. <br><br><a href="%s" target="_blank">%s</a>
