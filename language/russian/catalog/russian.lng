@@ -68,4 +68,4 @@ email_check = Пожалуйста, введите корректный E-Mail
 
 ;E-MAIL MESSAGES
 email_registration_subject = Регистрация в интернет-магазине eMarket!
-email_registration_message = Это сообщение о регистрации. <br><br>Регистрационый код:
+email_registration_message = Это сообщение о регистрации. <br><br>Регистрационый код: <p><a href="%s" target="_blank">%s</a></p>

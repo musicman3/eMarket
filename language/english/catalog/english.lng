@@ -39,4 +39,4 @@ email_check = Please, enter correct E-Mail
 
 ;E-MAIL MESSAGES
 email_registration_subject = Registration in the online store eMarket!
-email_registration_message = This is registration message. <br><br>Registration Code:
+email_registration_message = This is registration message. <br><br>Registration Code: <p><a href="%s" target="_blank">%s</a></p>
