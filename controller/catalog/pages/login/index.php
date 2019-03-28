@@ -22,7 +22,7 @@ if ($VALID->inGET('activation_code')) {
 
 if ($VALID->inPOST('email')) {
     $HASH = $PDO->selectPrepare("SELECT password FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$VALID->inPOST('email')]);
-    if (password_verify($VALID->inPOST('password'), $HASH)) {    //Если проверка не удалась:
+    if (password_verify($VALID->inPOST('password'), $HASH)) {
         $_SESSION['password_customer'] = $HASH;
         $_SESSION['email_customer'] = $VALID->inPOST('email');
     }
