@@ -10,7 +10,7 @@
 <h1><?php echo lang('login_to_account') ?></h1>
 
 <div id="login" class="contentText">
-    <form class="form-horizontal" enctype="multipart/form-data" method="post" action="">
+    <form enctype="multipart/form-data" method="post" action="">
         <div class="row">
             <div class="col-sm-6">
                 <div class="panel panel-info">
