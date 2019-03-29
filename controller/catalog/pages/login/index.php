@@ -25,6 +25,8 @@ if ($VALID->inPOST('email')) {
     if (password_verify($VALID->inPOST('password'), $HASH)) {
         $_SESSION['password_customer'] = $HASH;
         $_SESSION['email_customer'] = $VALID->inPOST('email');
+    }else{
+        $_SESSION['message'] = ['danger', lang('messages_email_or_password_is_not_correct'), 7000, TRUE];
     }
 }
 

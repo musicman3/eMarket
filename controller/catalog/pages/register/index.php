@@ -20,7 +20,7 @@ if ($VALID->inPOST('email')) {
         
         $_SESSION['message'] = ['success', lang('messages_registration_complete'), 7000, TRUE];
     } else {
-        $_SESSION['message'] = ['danger', lang('messages_activation_complete'), 7000, TRUE];
+        $_SESSION['message'] = ['danger', lang('messages_email_is_busy'), 7000, TRUE];
     }
 }
 
