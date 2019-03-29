@@ -71,7 +71,7 @@ foreach ($VIEW->layoutRouting('content') as $path) {
         <?php foreach ($products as $value) { ?>
             <div class="item col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item">
                 <div class="productHolder">
-                    <a href="/?route=products&id=<?php echo $value[0] ?>"><img src="/uploads/images/products/resize_1/<?php echo $value[2] ?>" class="img-responsive"></a>
+                    <a href="/?route=products&id=<?php echo $value[0] ?>"><img src="/uploads/images/products/resize_1/<?php echo $value[2] ?>" alt="<?php echo $value[1] ?>" class="img-responsive"></a>
                     <div class="caption">
                         <h5 class="item-heading"><a href="/?route=products&id=<?php echo $value[0] ?>"><?php echo $value[1] ?></a></h5>
                         <div class="item-text"> </div>

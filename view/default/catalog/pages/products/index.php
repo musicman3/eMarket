@@ -11,7 +11,7 @@
 <div id="products" class="contentText">
     <div class="row">
 	<div class="list-group-item">
-	    <div class="col-xs-4"><img src="/uploads/images/products/resize_2/<?php echo $products['logo_general'] ?>" class="img-responsive"></div>
+	    <div class="col-xs-4"><img src="/uploads/images/products/resize_2/<?php echo $products['logo_general'] ?>" alt="<?php echo $products['name'] ?>" class="img-responsive"></div>
 	    <div class="col-xs-8"> </div>
 	    <div class="clearfix"></div>
 	    <div class="row button">

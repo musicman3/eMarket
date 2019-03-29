@@ -14,7 +14,7 @@
                 <tbody>
                     <?php foreach ($cart_info as $value) { ?>
                         <tr>
-                            <td class="text-center"><a href="/?route=products&id=<?php echo $value['id'] ?>"><img class="img-thumbnail" src="/uploads/images/products/resize_0/<?php echo $value['logo_general'] ?>"></a></td>
+                            <td class="text-center"><a href="/?route=products&id=<?php echo $value['id'] ?>"><img src="/uploads/images/products/resize_0/<?php echo $value['logo_general'] ?>" alt="<?php echo $value['name'] ?>" class="img-thumbnail"></a></td>
                             <td class="text-left"><a href="/?route=products&id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></td>
                             <td class="text-left">
                                 <form id="quantity_product" name="quantity_product" action="javascript:void(null);" onsubmit="quantityProduct(<?php echo $value['id'] ?>, $('#number_<?php echo $value['id'] ?>').val())">
