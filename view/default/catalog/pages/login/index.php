@@ -23,7 +23,7 @@
                             <input class="form-control" type="password" minlength="7" maxlength="40" placeholder="<?php echo lang('password') ?>" id="password" name="password" required>
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-log-in"></span> <?php echo lang('sign_in') ?></button>
+                            <button class="btn btn-primary btn-block" type="submit"><?php echo lang('sign_in') ?></button>
                         </div>
                         <a class="btn btn-default" role="button" href=""><?php echo lang('forgot_your_password') ?></a>
                     </div>
@@ -34,7 +34,7 @@
                     <div class="panel-body">
                         <legend><?php echo lang('new_customer') ?></legend>
                         <p><?php echo lang('login_description') ?></p>
-                        <a href="/?route=register" class="btn btn-primary btn-block"> <span class="glyphicon glyphicon-chevron-right"></span> <?php echo lang('continue') ?></a>
+                        <a href="/?route=register" class="btn btn-primary btn-block"><?php echo lang('continue') ?></a>
                     </div>
                 </div>
             </div>
