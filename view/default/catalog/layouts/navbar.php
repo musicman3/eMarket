@@ -40,20 +40,18 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                     <?php if ($CUSTOMER == FALSE) { ?>
-                    <a href="/?route=login"><i class="glyphicon glyphicon-user"></i><span class="hidden-sm"> <?php echo lang('login_to_account') ?></span></a>
+                    <?php if ($CUSTOMER == FALSE) { ?>
+                        <a href="/?route=login"><i class="glyphicon glyphicon-user"></i><span class="hidden-sm"> <?php echo lang('login_to_account') ?></span></a>
                     <?php } else { ?>
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-user"></i><span class="hidden-sm"> <?php echo lang('my_account') ?></span> <span class="caret"></span></a>
-                    
-                    <ul class="dropdown-menu">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-user"></i><span class="hidden-sm"> <?php echo lang('my_account') ?></span> <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
                             <li><a href="/?route=login&logout=ok"><?php echo lang('navbar_logout') ?></a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">My Account</a></li>
-                        <li><a href="#">My Orders</a></li>
-                        <li><a href="#">My Address Book</a></li>
-                        <li><a href="#">My Password</a></li>
-                        
-                    </ul>
+                            <li class="divider"></li>
+                            <li><a href="#">My Account</a></li>
+                            <li><a href="#">My Orders</a></li>
+                            <li><a href="#">My Address Book</a></li>
+                            <li><a href="#">My Password</a></li>
+                        </ul>
                     <?php } ?>
                 </li>
                 <?php if ($CART->totalQuantity() == 0) { ?>
