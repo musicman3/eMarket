@@ -20,9 +20,7 @@ if ($VALID->inGET('route') != 'login') {
     $TOKEN = $AUTORIZE->sessionAdmin();
 }
 // Загружаем авторизацию Каталога
-if ($VALID->inGET('route') != 'login') {
-    $TOKEN = $AUTORIZE->sessionCatalog();
-}
+$CUSTOMER = $AUTORIZE->sessionCatalog();
 
 // Загружаем языковой роутер
 require_once('router_lang.php');
@@ -40,6 +38,6 @@ $CART->init();
 
 
 //unset($_SESSION['cart']);
-//$DEBUG->trace($_SESSION['cart']);
+//$DEBUG->trace($CUSTOMER);
 
 ?>

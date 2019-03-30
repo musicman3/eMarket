@@ -56,7 +56,7 @@ class Autorize {
     public function sessionCatalog() {
 
         $SET = new \eMarket\Core\Set;
-        if ($SET->path() == 'catalog' && $SET->titleDir() != 'login') {
+        if ($SET->path() == 'catalog') {
 
             session_start();
             if (isset($_SESSION['session_start']) && (time() - $_SESSION['session_start']) / 60 > $SET->sessionExprTime()) { // Если истекло время сеанса

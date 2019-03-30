@@ -22,12 +22,19 @@ if ($VALID->inGET('activation_code')) {
 
 if ($VALID->inPOST('email')) {
     $HASH = $PDO->selectPrepare("SELECT password FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$VALID->inPOST('email')]);
-    if (password_verify($VALID->inPOST('password'), $HASH)) {
+    if (!password_verify($VALID->inPOST('password'), $HASH)) {
+        $_SESSION['message'] = ['danger', lang('messages_email_or_password_is_not_correct'), 7000, TRUE];
+    } else {
         $_SESSION['password_customer'] = $HASH;
         $_SESSION['email_customer'] = $VALID->inPOST('email');
-    } else {
-        $_SESSION['message'] = ['danger', lang('messages_email_or_password_is_not_correct'), 7000, TRUE];
+        header('Location: ' . HTTP_SERVER);
     }
+}
+
+if ($VALID->inGET('logout')) {
+    unset($_SESSION['password_customer']);
+    unset($_SESSION['email_customer']);
+    header('Location: ?route=' . $VALID->inGET('route'));
 }
 
 ?>

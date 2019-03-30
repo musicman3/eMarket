@@ -62,6 +62,7 @@ messages_email_or_password_is_not_correct = E-mail или пароль ошиб�
 navbar_pcs = шт.
 navbar_languages = Языки
 navbar_currencies = Валюты
+navbar_logout = Выйти
 
 ;REGISTER
 password_check = Пароль и подтверждение пароля не совпадают
