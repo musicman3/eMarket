@@ -5,7 +5,8 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 ?>
-
+<!--Выводим уведомление об успешном действии-->
+<?php $MESSAGES->alert(); ?>
 <h1><?php echo lang('login_to_account') ?></h1>
 
 <div id="login" class="contentText">
@@ -23,9 +24,6 @@
                         </div>
                         <div class="form-group">
                             <button class="btn btn-primary btn-block" type="submit"><?php echo lang('sign_in') ?></button>
-                        </div>
-                        <div>
-                            <?php $MESSAGES->alert(); ?>
                         </div>
                         <a class="btn btn-default" role="button" href=""><?php echo lang('forgot_your_password') ?></a>
                     </div>
