@@ -1,5 +1,4 @@
 <?php
-
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -21,7 +20,9 @@ if ($VALID->inGET('route') != 'login') {
     $TOKEN = $AUTORIZE->sessionAdmin();
 }
 // Загружаем авторизацию Каталога
-$AUTORIZE->sessionCatalog();
+if ($VALID->inGET('route') != 'login') {
+    $TOKEN = $AUTORIZE->sessionCatalog();
+}
 
 // Загружаем языковой роутер
 require_once('router_lang.php');
@@ -40,4 +41,5 @@ $CART->init();
 
 //unset($_SESSION['cart']);
 //$DEBUG->trace($_SESSION['cart']);
+
 ?>

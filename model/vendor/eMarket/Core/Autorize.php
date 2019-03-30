@@ -56,17 +56,18 @@ class Autorize {
     public function sessionCatalog() {
 
         $SET = new \eMarket\Core\Set;
-        if ($SET->path() == 'catalog') {
+        if ($SET->path() == 'catalog' && $SET->titleDir() != 'login') {
 
             session_start();
+            if (isset($_SESSION['session_start']) && (time() - $_SESSION['session_start']) / 60 > $SET->sessionExprTime()) { // Если истекло время сеанса
+                return FALSE;
+            }
+            $_SESSION['session_start'] = time();
 
-            if (!isset($_SESSION['login_user'])) { // Если нет пользователя
+            if (!isset($_SESSION['email_customer'])) { // Если нет пользователя
+                return FALSE;
             } else {
-                $TOKEN_CATALOG = $_SESSION['pass']; // создаем токен для ajax и пр.
-                //Язык авторизованного пользователя
-                $_SESSION['DEFAULT_LANGUAGE'] = DEFAULT_LANGUAGE;
-
-                return $TOKEN_CATALOG;
+                return TRUE;
             }
         }
     }
