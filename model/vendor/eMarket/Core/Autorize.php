@@ -60,6 +60,8 @@ class Autorize {
 
             session_start();
             if (isset($_SESSION['session_start']) && (time() - $_SESSION['session_start']) / 60 > $SET->sessionExprTime()) { // Если истекло время сеанса
+                unset ($_SESSION['password_customer']);
+                unset ($_SESSION['email_customer']);
                 return FALSE;
             }
             $_SESSION['session_start'] = time();
