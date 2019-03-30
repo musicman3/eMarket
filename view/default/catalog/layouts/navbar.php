@@ -40,20 +40,21 @@
                     </ul>
                 </li>
                 <li class="dropdown">
+                     <?php if ($CUSTOMER == FALSE) { ?>
+                    <a href="/?route=login"><i class="glyphicon glyphicon-user"></i><span class="hidden-sm"> <?php echo lang('login_to_account') ?></span></a>
+                    <?php } else { ?>
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-user"></i><span class="hidden-sm"> <?php echo lang('my_account') ?></span> <span class="caret"></span></a>
+                    
                     <ul class="dropdown-menu">
-                        <?php if ($CUSTOMER == FALSE) { ?>
-                            <li><a href="/?route=login"><?php echo lang('login_to_account') ?></a></li>
-                            <li><a href="/?route=register"><?php echo lang('register_account') ?></a></li>
-                        <?php } else { ?>
                             <li><a href="/?route=login&logout=ok"><?php echo lang('navbar_logout') ?></a></li>
                         <li class="divider"></li>
                         <li><a href="#">My Account</a></li>
                         <li><a href="#">My Orders</a></li>
                         <li><a href="#">My Address Book</a></li>
                         <li><a href="#">My Password</a></li>
-                        <?php } ?>
+                        
                     </ul>
+                    <?php } ?>
                 </li>
                 <?php if ($CART->totalQuantity() == 0) { ?>
                     <li class="nav"><a href="#" class="disabled"><i class="glyphicon glyphicon-shopping-cart"></i> <?php echo $CART->totalQuantity() . ' ' . lang('navbar_pcs') ?></a></li>
