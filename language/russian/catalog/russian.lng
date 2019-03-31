@@ -68,6 +68,10 @@ navbar_logout = Выйти
 password_check = Пароль и подтверждение пароля не совпадают
 email_check = Пожалуйста, введите корректный E-Mail
 
+;WELCOME
+welcome_name = Добро пожаловать %s!
+welcome_guest = Гость
+
 ;E-MAIL MESSAGES
 email_registration_subject = Регистрация в интернет-магазине eMarket!
 email_registration_message = Нажмите на ссылку, указанную ниже, чтобы подтвердить что это действительно Ваш E-mail и завершить регистрацию. <br><br><a href="%s" target="_blank">%s</a>

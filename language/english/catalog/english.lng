@@ -68,6 +68,10 @@ navbar_logout = Выйти
 password_check = Confirmation password error
 email_check = Please, enter correct E-Mail
 
+;WELCOME
+welcome_name = Welcome %s!
+welcome_guest = Guest
+
 ;E-MAIL MESSAGES
 email_registration_subject = Registration in the online store eMarket!
 email_registration_message = Click the link below to let us know this is really your email and complete registration. <br><br><a href="%s" target="_blank">%s</a>
