@@ -20,8 +20,11 @@ if ($VALID->inGET('route') != 'login') {
     $TOKEN = $AUTORIZE->sessionAdmin();
 }
 // Загружаем авторизацию Каталога
-$CUSTOMER = $AUTORIZE->sessionCatalog();
-
+if ($AUTORIZE->sessionCatalog() == TRUE) {
+    $CUSTOMER = $PDO->getColAssoc("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']])[0];
+} else {
+    $CUSTOMER = FALSE;
+}
 // Загружаем языковой роутер
 require_once('router_lang.php');
 
