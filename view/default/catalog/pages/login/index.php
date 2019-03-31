@@ -5,7 +5,8 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 ?>
-
+<!--Выводим уведомление об успешном действии-->
+<?php $MESSAGES->alert(); ?>
 <h1><?php echo lang('login_to_account') ?></h1>
 
 <div id="login" class="contentText">
