@@ -17,10 +17,10 @@
 	    <div class="row button">
 		<div class="col-xs-6"><button type="button" class="btn btn-default"><?php echo $product_price ?></button></div>
 		<div class="col-xs-6 text-right">
-		    <form id="quantity_product" name="quantity_product" action="javascript:void(null);" onsubmit="quantityProduct(<?php echo $value['id'] ?>, $('#number_<?php echo $value['id'] ?>').val())">
-			<button class="btn btn-primary" type="button" onclick="pcsProduct('minus', <?php echo $value['id'] ?>)"><span class="glyphicon glyphicon-minus"></span></button>
-                        <input id="number_<?php echo $value['id'] ?>" type="number" value="<?php echo $CART->cartProductQuantity($value['id']) ?>" class="quantity">
-                        <button class="btn btn-primary" type="button" onclick="pcsProduct('plus', <?php echo $value['id'] ?>)"><span class="glyphicon glyphicon-plus"></span></button>
+		    <form id="quantity_product" name="quantity_product" action="javascript:void(null);" onsubmit="quantityProduct(<?php echo $products['id'] ?>, $('#number_<?php echo $products['id'] ?>').val())">
+			<button class="btn btn-primary" type="button" onclick="pcsProduct('minus', <?php echo $products['id'] ?>)"><span class="glyphicon glyphicon-minus"></span></button>
+                        <input id="number_<?php echo $products['id'] ?>" type="number" value="<?php echo $CART->cartProductQuantity($products['id']) ?>" class="quantity">
+                        <button class="btn btn-primary" type="button" onclick="pcsProduct('plus', <?php echo $products['id'] ?>)"><span class="glyphicon glyphicon-plus"></span></button>
 			<a id="btn1" href="#" class="btn btn-primary"><?php echo lang('buy_now') ?></a>
 		    </form>
 		</div>
