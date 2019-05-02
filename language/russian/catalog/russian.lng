@@ -5,6 +5,12 @@
 
 [catalog]
 
+;TITLE
+title_catalog_index = Интернет-магазин
+title_login_index = Авторизация
+title_register_index = Регистрация
+
+
 ;DEBUG
 debug_page_generation_time = Время генерации страницы:
 debug_db_queries = Запросов к БД:

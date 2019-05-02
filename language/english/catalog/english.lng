@@ -5,6 +5,11 @@
 
 [catalog]
 
+;TITLE
+title_catalog_index = Online Market
+title_login_index = Autorization
+title_register_index = Registration
+
 ;DEBUG
 debug_page_generation_time = Page generation time:
 debug_db_queries = DB queries:

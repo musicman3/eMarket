@@ -110,7 +110,7 @@ class Set {
 
         $title_dir = basename($VALID->inGET('route'));
         if ($title_dir == '' && self::path() == 'catalog') {
-            $title_dir = 'catalog';
+            $title_dir = '';
         }
         if ($title_dir == '' && self::path() == 'admin') {
             $title_dir = 'dashboard';
@@ -119,6 +119,32 @@ class Set {
             $title_dir = 'install';
         }
         return $title_dir;
+    }
+
+    /**
+     * Название раздела в каталоге
+     *
+     * @return string $title
+     */
+    public function titleCatalog() {
+        $VALID = new \eMarket\Core\Valid;
+        $PDO = new \eMarket\Core\Pdo;
+        
+        $title = ': ' . lang('title_' . basename($VALID->inGET('route')) . '_index');
+        
+        if (basename($VALID->inGET('route')) == '' && self::path() == 'catalog') {
+            $title = '';
+        }
+        
+        if (basename($VALID->inGET('route')) == 'listing' && self::path() == 'catalog') {
+            $title = ': ' . $PDO->getCell("SELECT name FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], $VALID->inGET('category_id')]);
+        }
+        
+        if (basename($VALID->inGET('route')) == 'products' && self::path() == 'catalog') {
+            $title = ': ' . $PDO->getCell("SELECT name FROM " . TABLE_PRODUCTS . " WHERE language=? AND id=?", [lang('#lang_all')[0], $VALID->inGET('id')]);
+        }
+        
+        return $title;
     }
 
     /**
