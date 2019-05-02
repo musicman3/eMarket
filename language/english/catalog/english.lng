@@ -57,6 +57,7 @@ breadcrumb_home = Home
 
 ;OTHER
 buy_now = Buy Now
+add_to_cart = Add to Cart
 
 ;MESSAGES
 messages_email_is_busy = This email is busy! Please enter another email.

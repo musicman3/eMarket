@@ -21,7 +21,7 @@
 			<button class="btn btn-primary" type="button" onclick="pcsProduct('minus', <?php echo $products['id'] ?>)"><span class="glyphicon glyphicon-minus"></span></button>
                         <input id="number_<?php echo $products['id'] ?>" type="number" value="<?php echo $CART->cartProductQuantity($products['id']) ?>" class="quantity">
                         <button class="btn btn-primary" type="button" onclick="pcsProduct('plus', <?php echo $products['id'] ?>)"><span class="glyphicon glyphicon-plus"></span></button>
-			<a id="btn1" href="#" class="btn btn-primary"><?php echo lang('buy_now') ?></a>
+                        <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-shopping-cart"></span> <?php echo lang('add_to_cart') ?></button>
 		    </form>
 		</div>
 	    </div>
