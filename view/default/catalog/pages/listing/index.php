@@ -37,11 +37,12 @@ foreach ($VIEW->layoutRouting('content') as $path) {
         if (getCookie('cookie_list') === 'list') {
             $('#listing .item').removeClass('col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item');
             $('#listing .item').addClass('col-xs-12 list-group-item');
-        } if (getCookie('cookie_list') === 'grid'){
+        }
+        if (getCookie('cookie_list') === 'grid') {
             $('#listing .item').removeClass('col-xs-12 list-group-item');
             $('#listing .item').addClass('col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item');
         }
-        
+
         $('#list').click(function (event) {
             event.preventDefault();
             $('#listing .item').removeClass('col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item');
@@ -60,38 +61,47 @@ foreach ($VIEW->layoutRouting('content') as $path) {
 <h1>Name Categories</h1>
 
 <?php if ($products == true) { ?>
-<div id="listing" class="contentText">
-    <div class="well well-sm">
-        <div class="btn-group">
-            <a href="#" id="grid" class="btn btn-default"><span class="glyphicon glyphicon-th"></span></a>
-            <a href="#" id="list" class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span></a>
+    <div id="listing" class="contentText">
+        <div class="well well-sm">
+            <div class="btn-group">
+                <a href="#" id="grid" class="btn btn-default"><span class="glyphicon glyphicon-th"></span></a>
+                <a href="#" id="list" class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span></a>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <?php foreach ($products as $value) { ?>
-            <div class="item col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item">
-                <div class="productHolder">
-                    <a href="/?route=products&id=<?php echo $value[0] ?>"><img src="/uploads/images/products/resize_1/<?php echo $value[2] ?>" alt="<?php echo $value[1] ?>" class="img-responsive"></a>
-                    <div class="caption">
-                        <h5 class="item-heading"><a href="/?route=products&id=<?php echo $value[0] ?>"><?php echo $value[1] ?></a></h5>
-                        <div class="item-text"> </div>
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="row button">
-                        <div class="col-xs-6"><button type="button" class="btn btn-default"><?php echo $PRODUCTS->productPrice($value[3], $CURRENCIES, 1) ?></button></div>
-                        <div class="col-xs-6 text-right"><a id="btn1" href="#" class="btn btn-primary"><?php echo lang('buy_now') ?></a></div>
+        <div class="row">
+            <?php foreach ($products as $value) { ?>
+                <div class="item col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item">
+                    <div class="productHolder">
+                        <a href="/?route=products&id=<?php echo $value[0] ?>"><img src="/uploads/images/products/resize_1/<?php echo $value[2] ?>" alt="<?php echo $value[1] ?>" class="img-responsive"></a>
+                        <div class="caption">
+                            <h5 class="item-heading"><a href="/?route=products&id=<?php echo $value[0] ?>"><?php echo $value[1] ?></a></h5>
+                            <div class="item-text"> </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="row button">
+                            <div class="col-xs-6"><button type="button" class="btn btn-default"><?php echo $PRODUCTS->productPrice($value[3], $CURRENCIES, 1) ?></button></div>
+                            <div class="col-xs-6 text-right">
+                                <form id="form_add_to_cart" name="form_add_to_cart" action="javascript:void(null);" onsubmit="addToCart(<?php echo $value[0] ?>)">
+                                    <button type="submit" class="btn btn-primary"><?php echo lang('buy_now') ?></button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        <?php } ?>  
-    </div>
-</div>
-<?php } else { ?>
-<div id="listing" class="contentText">
-    <div class="well well-sm">
-        <div class="btn-group">
-	    <div class="btn"><?php echo lang('listing_no') ?></div>
+            <?php } ?>  
         </div>
     </div>
-</div>
-<?php } ?>
+<?php } else { ?>
+    <div id="listing" class="contentText">
+        <div class="well well-sm">
+            <div class="btn-group">
+                <div class="btn"><?php echo lang('listing_no') ?></div>
+            </div>
+        </div>
+    </div>
+<?php
+}
+
+$AJAX->сart('');
+
+?>
