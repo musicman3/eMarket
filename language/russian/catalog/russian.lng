@@ -9,6 +9,7 @@
 title_catalog_index = Интернет-магазин
 title_login_index = Авторизация
 title_register_index = Регистрация
+title_cart_index = Корзина
 
 
 ;DEBUG
