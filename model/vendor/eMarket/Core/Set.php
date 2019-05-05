@@ -216,6 +216,24 @@ class Set {
         }
         return $ipaddress;
     }
+    
+    /**
+     * Получаем названия для Breadcrumb
+     *
+     * @param array $breadcrumb_array (массив breadcrumb в виде id)
+     * @return string $breadcrumb (массив breadcrumb в виде названия)
+     */
+    public function breadcrumb($breadcrumb_array) {
+        $PDO = new \eMarket\Core\Pdo;
+        
+        $breadcrumb = [];
+        foreach ($breadcrumb_array as $value) {
+            $name = $PDO->getCell("SELECT name FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], $value]);
+            array_push ($breadcrumb, $name);
+        }
+
+        return $breadcrumb;
+    }    
 
 }
 
