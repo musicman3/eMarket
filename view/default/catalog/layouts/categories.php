@@ -12,7 +12,7 @@
     </div>
 </div>
 <div id="data_breadcrumb" class="hidden"
-     data-breadcrumbid='<?php echo json_encode($categories_and_breadcrumb) ?>'>
+     data-breadcrumbid='<?php echo json_encode($categories_and_breadcrumb) ?>'
      data-breadcrumb='<?php echo json_encode($SET->breadcrumb($categories_and_breadcrumb)) ?>'>
 </div>
 
