@@ -223,7 +223,7 @@ class Set {
      * @param array $breadcrumb_array (массив breadcrumb в виде id)
      * @return string $breadcrumb (массив breadcrumb в виде названия)
      */
-    public function breadcrumb($breadcrumb_array) {
+    public function breadcrumbName($breadcrumb_array) {
         $PDO = new \eMarket\Core\Pdo;
         
         $breadcrumb = [];
@@ -234,6 +234,24 @@ class Set {
 
         return $breadcrumb;
     }    
+    
+    /**
+     * Получаем parent_id для Breadcrumb
+     *
+     * @param array $breadcrumb_array (массив breadcrumb в виде id)
+     * @return string $breadcrumb (массив breadcrumb в виде parent_id)
+     */
+    public function breadcrumbParentId($breadcrumb_array) {
+        $PDO = new \eMarket\Core\Pdo;
+        
+        $breadcrumb = [];
+        foreach ($breadcrumb_array as $value) {
+            $name = $PDO->getCell("SELECT parent_id FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], $value]);
+            array_push ($breadcrumb, $name);
+        }
+
+        return $breadcrumb;
+    }      
 
 }
 

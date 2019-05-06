@@ -12,8 +12,9 @@
     </div>
 </div>
 <div id="data_breadcrumb" class="hidden"
-     data-breadcrumbid='<?php echo json_encode($categories_and_breadcrumb) ?>'
-     data-breadcrumb='<?php echo json_encode($SET->breadcrumb($categories_and_breadcrumb)) ?>'>
+     data-breadcrumbid='<?php echo json_encode(array_reverse($categories_and_breadcrumb)) ?>'
+     data-breadcrumbparentid='<?php echo json_encode($SET->breadcrumbParentId(array_reverse($categories_and_breadcrumb))) ?>'
+     data-breadcrumbname='<?php echo json_encode($SET->breadcrumbName(array_reverse($categories_and_breadcrumb))) ?>'>
 </div>
 
 <script type="text/javascript" language="javascript">

@@ -102,5 +102,6 @@
         <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/ext/simpleeqh/simpleeqh.js"></script>
         <script type="text/javascript" src="/ext/jstree/jstree.min.js"></script>
+        <?php require_once (ROOT . '/view/' . $SET->template() . '/js/breadcrumb.php') ?>
     </body>
 </html>
