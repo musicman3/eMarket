@@ -130,18 +130,18 @@ class Set {
         $VALID = new \eMarket\Core\Valid;
         $PDO = new \eMarket\Core\Pdo;
         
-        $title = ': ' . lang('title_' . basename($VALID->inGET('route')) . '_index');
+        $title = lang('title_' . basename($VALID->inGET('route')) . '_index');
         
         if (basename($VALID->inGET('route')) == '' && self::path() == 'catalog') {
             $title = '';
         }
         
         if (basename($VALID->inGET('route')) == 'listing' && self::path() == 'catalog') {
-            $title = ': ' . $PDO->getCell("SELECT name FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], $VALID->inGET('category_id')]);
+            $title = $PDO->getCell("SELECT name FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], $VALID->inGET('category_id')]);
         }
         
         if (basename($VALID->inGET('route')) == 'products' && self::path() == 'catalog') {
-            $title = ': ' . $PDO->getCell("SELECT name FROM " . TABLE_PRODUCTS . " WHERE language=? AND id=?", [lang('#lang_all')[0], $VALID->inGET('id')]);
+            $title = $PDO->getCell("SELECT name FROM " . TABLE_PRODUCTS . " WHERE language=? AND id=?", [lang('#lang_all')[0], $VALID->inGET('id')]);
         }
         
         return $title;

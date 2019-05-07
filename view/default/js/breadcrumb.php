@@ -27,9 +27,7 @@
             breadcrumb();
         });
 
-<?php }
-
-if ($VALID->inGET('route') == 'listing') {
+<?php } elseif ($VALID->inGET('route') == 'listing') {
     ?>
         function breadcrumb() {
             var breadcrumbid = $('div#data_breadcrumb').data('breadcrumbid');
@@ -42,6 +40,18 @@ if ($VALID->inGET('route') == 'listing') {
                 }
             }
             $('#breadcrumb').append('<li class="selected"><?php echo $categories_name ?></li>');
+        }
+
+        $(document).ready(function () {
+            breadcrumb();
+        });
+<?php } else { ?>
+        function breadcrumb() {
+            var breadcrumbid = $('div#data_breadcrumb').data('breadcrumbid');
+            var breadcrumbparentid = $('div#data_breadcrumb').data('breadcrumbparentid');
+            var breadcrumbname = $('div#data_breadcrumb').data('breadcrumbname');
+
+            $('#breadcrumb').append('<li class="selected"><?php echo $SET->titleCatalog() ?></li>');
         }
 
         $(document).ready(function () {
