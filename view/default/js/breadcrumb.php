@@ -3,13 +3,12 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-
 ?>
 
 <script type="text/javascript" language="javascript">
     $('#breadcrumb').append('<li class="selected"><a href="/"><?php echo lang('breadcrumb_home') ?></a></li>');
 
-<?php if (isset($products['name'])) { ?>
+<?php if ($VALID->inGET('route') == 'products') { ?>
         function breadcrumb() {
             var breadcrumbid = $('div#data_breadcrumb').data('breadcrumbid');
             var breadcrumbparentid = $('div#data_breadcrumb').data('breadcrumbparentid');
@@ -28,7 +27,10 @@
             breadcrumb();
         });
 
-<?php }elseif((isset($categories_name))) { ?>
+<?php }
+
+if ($VALID->inGET('route') == 'listing') {
+    ?>
         function breadcrumb() {
             var breadcrumbid = $('div#data_breadcrumb').data('breadcrumbid');
             var breadcrumbparentid = $('div#data_breadcrumb').data('breadcrumbparentid');
