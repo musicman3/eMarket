@@ -483,11 +483,13 @@ class Ajax {
         ?>
         <!-- Добавить товар -->
         <script type="text/javascript">
-            function addToCart(id) {
+            function addToCart(id, pcs) {
                 // Установка синхронного запроса для jQuery.ajax
                 jQuery.ajaxSetup({async: false});
                 jQuery.get('<?php echo $url ?>',
-                        {add_to_cart: id},
+                        {add_to_cart: id,
+                        quantity_product_id: id,
+                        pcs_product: pcs},
                         AjaxSuccess);
                 // Обновление страницы
                 function AjaxSuccess(data) {
