@@ -124,6 +124,7 @@ class Set {
     /**
      * Название раздела в каталоге
      *
+     * @param string $marker (маркер для указания знака)
      * @return string $title
      */
     public function titleCatalog($marker = null) {
