@@ -9,6 +9,8 @@ $cart_info = $CART->info();
 $products = $PRODUCTS->productData($VALID->inGET('id'))[0];
 $product_category = $PRODUCTS->productCategories($products['parent_id']);
 $product_price = $PRODUCTS->productPrice($products['price'], $CURRENCIES, 1);
+$categories_name = $PDO->getCell("SELECT name FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], $VALID->inGET('category_id')]);
+$category_parent_id = $PDO->getCell("SELECT parent_id FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], $VALID->inGET('category_id')]);
 
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
 $JS_END = __DIR__;

@@ -9,7 +9,26 @@
 <script type="text/javascript" language="javascript">
     $('#breadcrumb').append('<li class="selected"><a href="/"><?php echo lang('breadcrumb_home') ?></a></li>');
 
-<?php if (isset($categories_name)) { ?>
+<?php if (isset($products['name'])) { ?>
+        function breadcrumb() {
+            var breadcrumbid = $('div#data_breadcrumb').data('breadcrumbid');
+            var breadcrumbparentid = $('div#data_breadcrumb').data('breadcrumbparentid');
+            var breadcrumbname = $('div#data_breadcrumb').data('breadcrumbname');
+
+            if (breadcrumbid.length > 0) {
+                for (x = 0; x < breadcrumbname.length; x++) {
+                    $('#breadcrumb').append('<li class="selected"><a href="/?route=listing&category_id=' + breadcrumbid[x] + '&parent_id=' + breadcrumbparentid[x] + '">' + breadcrumbname[x] + '</a></li>');
+                }
+            }
+            $('#breadcrumb').append('<li class="selected"><a href="/?route=listing&category_id=<?php echo $VALID->inGET('category_id') ?>&parent_id=<?php echo $VALID->inGET('parent_id') ?>"><?php echo $categories_name ?></a></li>');
+            $('#breadcrumb').append('<li class="selected"><?php echo $products['name'] ?></li>');
+        }
+
+        $(document).ready(function () {
+            breadcrumb();
+        });
+
+<?php }elseif((isset($categories_name))) { ?>
         function breadcrumb() {
             var breadcrumbid = $('div#data_breadcrumb').data('breadcrumbid');
             var breadcrumbparentid = $('div#data_breadcrumb').data('breadcrumbparentid');
@@ -26,6 +45,5 @@
         $(document).ready(function () {
             breadcrumb();
         });
-
 <?php } ?>
 </script>
