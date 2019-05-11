@@ -1,15 +1,15 @@
 <?php
-
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-
 session_start();
 
 if ($VALID->inGET('logout') == 'ok') {
-    session_destroy();    //удаляем текущую сессию
+    //удаляем текущую сессию
+    unset($_SESSION['login']);
+    unset($_SESSION['pass']);
     header('Location: ?route=login');    //перенаправляем на авторизацию
 }
 
@@ -17,7 +17,9 @@ if ($VALID->inPOST('autorize') == 'ok') {
     //Ищем авторизованного администратора
     $HASH = $PDO->selectPrepare("SELECT password FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [$VALID->inPOST('login')]);
     if (!password_verify($VALID->inPOST('pass'), $HASH)) {    //Если проверка не удалась:
-        session_destroy();
+        //удаляем текущую сессию
+        unset($_SESSION['login']);
+        unset($_SESSION['pass']);
         session_start();
         $_SESSION['default_language'] = DEFAULT_LANGUAGE;
         $_SESSION['login_error'] = lang('login_error');
@@ -36,7 +38,9 @@ if (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
 // если логин или пароль не верные, то готовим уведомление
 if (isset($_SESSION['login_error']) == TRUE) {
     $login_error = $_SESSION['login_error'];
-    session_destroy();
+    //удаляем текущую сессию
+    unset($_SESSION['login']);
+    unset($_SESSION['pass']);
 } else {
     $login_error = '';
 }
@@ -44,4 +48,5 @@ if ($VALID->inPOST('install') == 'ok') {
     session_destroy();    //удаляем текущую сессию
     session_start();
 }
+
 ?>

@@ -30,13 +30,14 @@ class Autorize {
             session_start();
 
             if (isset($_SESSION['session_start']) && (time() - $_SESSION['session_start']) / 60 > $SET->sessionExprTime()) { // Если истекло время сеанса
-                session_destroy();
+                //session_destroy();
                 header('Location: ?route=login'); // переадресация на LOGIN
             }
             $_SESSION['session_start'] = time();
 
             if (!isset($_SESSION['login'])) { // Если нет пользователя
-                session_destroy();
+                unset($_SESSION['login']);    //удаляем текущую сессию
+                unset($_SESSION['pass']);
                 header('Location: ?route=login'); // переадресация на LOGIN
             } else {
                 $TOKEN = $_SESSION['pass']; // создаем токен для ajax и пр.
@@ -59,12 +60,12 @@ class Autorize {
         if ($SET->path() == 'catalog') {
 
             session_start();
-            if (isset($_SESSION['session_start']) && (time() - $_SESSION['session_start']) / 60 > $SET->sessionExprTime()) { // Если истекло время сеанса
-                unset ($_SESSION['password_customer']);
-                unset ($_SESSION['email_customer']);
+            if (isset($_SESSION['customer_session_start']) && (time() - $_SESSION['customer_session_start']) / 60 > $SET->sessionExprTime()) { // Если истекло время сеанса
+                unset($_SESSION['password_customer']);
+                unset($_SESSION['email_customer']);
                 return FALSE;
             }
-            $_SESSION['session_start'] = time();
+            $_SESSION['customer_session_start'] = time();
 
             if (!isset($_SESSION['email_customer'])) { // Если нет пользователя
                 return FALSE;
