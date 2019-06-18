@@ -5,6 +5,10 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 ?>
+<!-- Модальное окно -->
+<?php require_once('modal/forgot-password.php') ?>
+<!-- КОНЕЦ Модальное окно -->
+
 <!--Выводим уведомление об успешном действии-->
 <?php $MESSAGES->alert(); ?>
 <h1><?php echo lang('login_to_account') ?></h1>
@@ -26,7 +30,7 @@
                             <button class="btn btn-primary btn-block" type="submit"><?php echo lang('sign_in') ?></button>
                         </div>
                     </form>
-                    <a class="btn btn-default" role="button" href=""><?php echo lang('forgot_your_password') ?></a>
+                    <a class="btn btn-default" role="button" href="#forgot" data-toggle="modal"><?php echo lang('forgot_your_password') ?></a>
                 </div>
             </div>
         </div>
