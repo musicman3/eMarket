@@ -81,7 +81,7 @@ foreach ($VIEW->layoutRouting('content') as $path) {
                         <div class="row button">
                             <div class="col-xs-6"><button type="button" class="btn btn-default"><?php echo $PRODUCTS->productPrice($value['price'], $CURRENCIES, 1) ?></button></div>
                             <div class="col-xs-6 text-right">
-                                <form id="form_add_to_cart" name="form_add_to_cart" action="javascript:void(null);" onsubmit="addToCart(<?php echo $value['id'] ?>, 1)">
+                                <form id="form_add_to_cart" name="form_add_to_cart" action="javascript:void(null);" onsubmit="addToCart(<?php echo $value['id'] ?>, 'true')">
                                     <button type="submit" class="btn btn-primary"><?php echo lang('buy_now') ?></button>
                                 </form>
                             </div>
