@@ -23,9 +23,9 @@
                             <?php } ?>
                             <button class="btn btn-primary" type="button" onclick="pcsProduct('minus', <?php echo $products['id'] ?>)"><span class="glyphicon glyphicon-minus"></span></button>
                             <?php if ($CART->cartProductQuantity($products['id']) > 0) { ?>
-                                <input id="number_<?php echo $products['id'] ?>" type="number" value="<?php echo $CART->cartProductQuantity($products['id']) ?>" class="quantity">
+                                <input id="number_<?php echo $products['id'] ?>" type="number" readonly="readonly" value="<?php echo $CART->cartProductQuantity($products['id']) ?>" class="quantity">
                             <?php } else { ?>
-                                <input id="number_<?php echo $products['id'] ?>" type="number" value="1" class="quantity">
+                                <input id="number_<?php echo $products['id'] ?>" type="number" readonly="readonly" value="1" class="quantity">
                             <?php } ?>
                             <button class="btn btn-primary" type="button" onclick="pcsProduct('plus', <?php echo $products['id'] ?>)"><span class="glyphicon glyphicon-plus"></span></button>
                             <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-shopping-cart"></span> <?php echo lang('add_to_cart') ?></button>
