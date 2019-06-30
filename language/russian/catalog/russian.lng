@@ -75,6 +75,7 @@ navbar_logout = Выйти
 ;REGISTER
 password_check = Пароль и подтверждение пароля не совпадают
 email_check = Пожалуйста, введите корректный E-Mail
+password_recovery = Восстановление пароля
 
 ;WELCOME
 welcome_name = Добро пожаловать %s!
