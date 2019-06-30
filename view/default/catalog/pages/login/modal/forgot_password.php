@@ -5,7 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
 <!-- Модальное окно -->
-<div id="forgot" class="modal fade" tabindex="-1">
+<div id="forgot_password" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
 	    <div class="modal-header">
@@ -15,7 +15,7 @@
             <form enctype="multipart/form-data" method="post" action="">
 		<div class="modal-body">
 		    <div class="has-error email">
-			<input class="form-control" type="email" placeholder="<?php echo lang('e_mail') ?>" id="email" name="email" required>
+			<input class="form-control" type="email" placeholder="<?php echo lang('e_mail') ?>" id="email_for_recovery" name="email_for_recovery" required>
 		    </div>
 		</div>
 		<div class="modal-footer">
