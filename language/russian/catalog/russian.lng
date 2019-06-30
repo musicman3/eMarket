@@ -76,6 +76,8 @@ navbar_logout = Выйти
 password_check = Пароль и подтверждение пароля не совпадают
 email_check = Пожалуйста, введите корректный E-Mail
 password_recovery = Восстановление пароля
+password_recovery_message_success = Сообщение для восстановления пароля отправлено на Ваш E-mail
+password_recovery_message_failed = Пожалуйста, введите корректный E-Mail
 
 ;WELCOME
 welcome_name = Добро пожаловать %s!

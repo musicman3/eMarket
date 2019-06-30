@@ -31,6 +31,16 @@ if ($VALID->inPOST('email')) {
     }
 }
 
+if ($VALID->inPOST('email_for_recovery')) {
+    $recovery = $PDO->getCellFalse("SELECT email FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$VALID->inPOST('email_for_recovery')]);
+    if ($recovery != FALSE) {
+        $_SESSION['message'] = ['success', lang('password_recovery_message_success'), 7000, TRUE];
+    } else {
+        $_SESSION['message'] = ['danger', lang('password_recovery_message_failed'), 7000, TRUE];
+    }
+}
+
+
 if ($VALID->inGET('logout')) {
     unset($_SESSION['password_customer']);
     unset($_SESSION['email_customer']);
