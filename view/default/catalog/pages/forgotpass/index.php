@@ -24,5 +24,9 @@
 	    </div>
 	    <br>
 	</fieldset>
+	<div class="text-right">
+	    <input class="btn btn-primary" type="submit" value="<?php echo lang('continue') ?>">
+	</div>
+	<br>
     </form>
 </div>
