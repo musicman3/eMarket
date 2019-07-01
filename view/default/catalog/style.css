@@ -80,5 +80,5 @@ nav .disabled {pointer-events: none;}
 #cart .quantity {all: unset;-moz-appearance: textfield;width: 30px;text-align: center;vertical-align: middle;border: 1px solid #2e6da4;border-radius: 3px;padding: 4px 0 4px 0;}
 #products .quantity {all: unset;-moz-appearance: textfield;width: 38px;text-align: center;vertical-align: middle;border: 1px solid #2e6da4;border-radius: 3px;padding: 6px 0 6px 0;}
 #cart .quantity:-webkit-inner-spin-button, #products .quantity:-webkit-inner-spin-button {display: none;}
-#register fieldset {min-width: 0;padding: 0;margin: 0;border: 0;}
+#register fieldset, #forgotpass fieldset {min-width: 0;padding: 0;margin: 0;border: 0;}
 #register legend, #login legend, #forgotpass legend {font-size: 14px;text-transform: uppercase;padding: 5px 0px 5px;display: block;width: 100%;margin-bottom: 20px;color: #666;border: 0;border-bottom-color: currentcolor;border-bottom-style: none;border-bottom-width: 0px;border-bottom: 1px solid #e5e5e5;}
