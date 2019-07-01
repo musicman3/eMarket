@@ -6,7 +6,7 @@
 
 ?>
 <!-- Модальное окно -->
-<?php require_once('modal/forgot_password.php') ?>
+<?php require_once('modal/recovery_password.php') ?>
 <!-- КОНЕЦ Модальное окно -->
 
 <!--Выводим уведомление об успешном действии-->
