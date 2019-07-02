@@ -129,6 +129,13 @@ CREATE TABLE emkt_manufacturers (
 	PRIMARY KEY (id, language))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+DROP TABLE IF EXISTS emkt_password_recovery;
+CREATE TABLE emkt_password_recovery (
+        id int NOT NULL,
+        recovery_code varchar(64),
+PRIMARY KEY (id))
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 DROP TABLE IF EXISTS emkt_products;
 CREATE TABLE emkt_products (
 	id int DEFAULT '0' NOT NULL,
