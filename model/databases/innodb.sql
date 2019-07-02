@@ -133,6 +133,7 @@ DROP TABLE IF EXISTS emkt_password_recovery;
 CREATE TABLE emkt_password_recovery (
         id int NOT NULL,
         recovery_code varchar(64),
+        recovery_code_created datetime,
 PRIMARY KEY (id))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
