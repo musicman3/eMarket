@@ -30,7 +30,8 @@ class Autorize {
             session_start();
 
             if (isset($_SESSION['session_start']) && (time() - $_SESSION['session_start']) / 60 > $SET->sessionExprTime()) { // Если истекло время сеанса
-                //session_destroy();
+                unset($_SESSION['login']);    //удаляем текущую сессию
+                unset($_SESSION['pass']);
                 header('Location: ?route=login'); // переадресация на LOGIN
             }
             $_SESSION['session_start'] = time();
