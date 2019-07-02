@@ -131,7 +131,8 @@ ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS emkt_password_recovery;
 CREATE TABLE emkt_password_recovery (
-        id int NOT NULL,
+        id int NOT NULL auto_increment,
+        customer_id int NOT NULL,
         recovery_code varchar(64),
         recovery_code_created datetime,
 PRIMARY KEY (id))
