@@ -35,6 +35,7 @@ $tab_customers_activation = $db_pref . 'customers_activation';
 $tab_length = $db_pref . 'length';
 $tab_manufacturers = $db_pref . 'manufacturers';
 $tab_products = $db_pref . 'products';
+$tab_password_recovery = $db_pref . 'password_recovery';
 $tab_regions = $db_pref . 'regions';
 $tab_taxes = $db_pref . 'taxes';
 $tab_template_constructor = $db_pref . 'template_constructor';
@@ -68,6 +69,7 @@ $config = '<?php' . "\n" .
         '  define(\'TABLE_LENGTH\', \'' . $tab_length . '\');' . "\n" .
         '  define(\'TABLE_MANUFACTURERS\', \'' . $tab_manufacturers . '\');' . "\n" .
         '  define(\'TABLE_PRODUCTS\', \'' . $tab_products . '\');' . "\n" .
+        '  define(\'TABLE_PASSWORD_RECOVERY\', \'' . $tab_password_recovery . '\');' . "\n" .
         '  define(\'TABLE_REGIONS\', \'' . $tab_regions . '\');' . "\n" .
         '  define(\'TABLE_TAXES\', \'' . $tab_taxes . '\');' . "\n" .
         '  define(\'TABLE_TEMPLATE_CONSTRUCTOR\', \'' . $tab_template_constructor . '\');' . "\n" .
