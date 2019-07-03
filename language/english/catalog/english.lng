@@ -51,6 +51,8 @@ personal_details = Personal details
 first_name = First Name
 last_name = Last Name
 privacy_statement_agree = I have read and agreed to your <a href="%s" target="_blank" class="agree">privacy statement</a>.
+this_page_is_not_available = This page is not available!
+enter_a_new_password = Enter a new password
 
 ;BREADCRUMB
 breadcrumb_home = Home

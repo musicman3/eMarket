@@ -52,6 +52,8 @@ personal_details = Ваши персональные данные
 first_name = Имя
 last_name = Фамилия
 privacy_statement_agree = Я прочитал регламент о <a href="%s" target="_blank" class="agree">конфиденциальности</a> и согласен с ним.
+this_page_is_not_available = Эта страница не доступна!
+enter_a_new_password = Введите новый пароль
 
 ;BREADCRUMB
 breadcrumb_home = Главная
