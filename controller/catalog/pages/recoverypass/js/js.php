@@ -31,7 +31,6 @@
 
     function validate() {
         var confirm = $('#input-confirm').get(0);
-        var email = $('#input-email').get(0);
         if ($('#input-password').val() !== $('#input-confirm').val()) {
             confirm.setCustomValidity("<?php echo lang('password_check') ?>");
         } else {
