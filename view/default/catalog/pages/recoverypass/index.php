@@ -9,6 +9,7 @@
 <?php $MESSAGES->alert(); ?>
 <h1><?php echo lang('password_recovery') ?></h1>
 
+<?php if (isset($customer_id) && $customer_id != FALSE) { ?>
 <div id="forgotpass" class="contentText">
     <form enctype="multipart/form-data" method="post" action="" onchange="validate()">
 	<fieldset>
@@ -30,3 +31,4 @@
 	<br>
     </form>
 </div>
+<?php } ?>
