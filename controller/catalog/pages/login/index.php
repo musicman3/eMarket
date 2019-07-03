@@ -1,4 +1,5 @@
 <?php
+
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -34,7 +35,7 @@ if ($VALID->inPOST('email')) {
 if ($VALID->inPOST('email_for_recovery')) {
     $customer_id = $PDO->getCellFalse("SELECT id FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$VALID->inPOST('email_for_recovery')]);
     $recovery_check = $PDO->getCellFalse("SELECT recovery_code FROM " . TABLE_PASSWORD_RECOVERY . " WHERE customer_id=?", [$customer_id]);
-    if ($customer_id != FALSE && $recovery_check == FALSE) {
+    if ($customer_id != FALSE && $recovery_check == FALSE) { // Если произведен запрос на восстановление доступа
         $recovery_code = $FUNC->getToken(64);
         $PDO->inPrepare("INSERT INTO " . TABLE_PASSWORD_RECOVERY . " SET customer_id=?, recovery_code=?, recovery_code_created=?", [$customer_id, $recovery_code, date("Y-m-d H:i:s")]);
 
@@ -42,7 +43,15 @@ if ($VALID->inPOST('email_for_recovery')) {
         $MESSAGES->sendMail($VALID->inPOST('email_for_recovery'), lang('email_recovery_password_subject'), sprintf(lang('email_recovery_password_message'), $link, $link));
 
         $_SESSION['message'] = ['success', lang('password_recovery_message_success'), 7000, TRUE];
-    } else {
+    } elseif ($customer_id != FALSE && $recovery_check != FALSE) { // Если произведен повторный запрос
+        $recovery_code = $FUNC->getToken(64);
+        $PDO->inPrepare("UPDATE " . TABLE_PASSWORD_RECOVERY . " SET recovery_code=?, recovery_code_created=? WHERE customer_id=?", [$recovery_code, date("Y-m-d H:i:s"), $customer_id]);
+        
+        $link = HTTP_SERVER . '?route=recoverypass&recovery_code=' . $recovery_code;
+        $MESSAGES->sendMail($VALID->inPOST('email_for_recovery'), lang('email_recovery_password_subject'), sprintf(lang('email_recovery_password_message'), $link, $link));
+
+        $_SESSION['message'] = ['success', lang('password_recovery_message_success'), 7000, TRUE];
+    } else { // Если нет такого пользователя
         $_SESSION['message'] = ['danger', lang('password_recovery_message_failed'), 7000, TRUE];
     }
 }
@@ -53,5 +62,4 @@ if ($VALID->inGET('logout')) {
     unset($_SESSION['email_customer']);
     header('Location: ?route=' . $VALID->inGET('route'));
 }
-
 ?>
