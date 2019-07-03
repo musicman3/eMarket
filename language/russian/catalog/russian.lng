@@ -86,3 +86,5 @@ welcome_guest = Гость
 ;E-MAIL MESSAGES
 email_registration_subject = Регистрация в интернет-магазине eMarket!
 email_registration_message = Нажмите на ссылку, указанную ниже, чтобы подтвердить что это действительно Ваш E-mail и завершить регистрацию. <br><br><a href="%s" target="_blank">%s</a>
+email_recovery_password_subject = Восстановление доступа к аккаунту
+email_recovery_password_message = Нажмите на ссылку, указанную ниже, чтобы указать новый пароль для доступа к аккаунту. <br><br><a href="%s" target="_blank">%s</a>
