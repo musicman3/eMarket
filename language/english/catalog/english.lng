@@ -10,6 +10,7 @@ title_catalog_index =  eMarket Online Store
 title_login_index = Autorization
 title_register_index = Registration
 title_cart_index = Cart
+title_recoverypass_index = Password Recovery
 
 ;DEBUG
 debug_page_generation_time = Page generation time:
