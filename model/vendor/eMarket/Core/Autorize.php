@@ -32,6 +32,7 @@ class Autorize {
             if (isset($_SESSION['session_start']) && (time() - $_SESSION['session_start']) / 60 > $SET->sessionExprTime()) { // Если истекло время сеанса
                 unset($_SESSION['login']);    //удаляем текущую сессию
                 unset($_SESSION['pass']);
+                unset($_SESSION['session_start']);
                 header('Location: ?route=login'); // переадресация на LOGIN
             }
             $_SESSION['session_start'] = time();
@@ -64,6 +65,7 @@ class Autorize {
             if (isset($_SESSION['customer_session_start']) && (time() - $_SESSION['customer_session_start']) / 60 > $SET->sessionExprTime()) { // Если истекло время сеанса
                 unset($_SESSION['password_customer']);
                 unset($_SESSION['email_customer']);
+                unset($_SESSION['customer_session_start']);
                 return FALSE;
             }
             $_SESSION['customer_session_start'] = time();
