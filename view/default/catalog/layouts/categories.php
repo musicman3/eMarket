@@ -11,12 +11,13 @@
         <?php $categories_and_breadcrumb = $TREE->categories($sql, $VALID->inGET('category_id')); ?>
     </div>
 </div>
-<div id="data_breadcrumb" class="hidden"
-     data-breadcrumbid='<?php echo json_encode(array_reverse($categories_and_breadcrumb)) ?>'
-     data-breadcrumbparentid='<?php echo json_encode($SET->breadcrumbParentId(array_reverse($categories_and_breadcrumb))) ?>'
-     data-breadcrumbname='<?php echo json_encode($SET->breadcrumbName(array_reverse($categories_and_breadcrumb))) ?>'>
-</div>
-
+<?php if ($categories_and_breadcrumb != 0) { ?>
+    <div id="data_breadcrumb" class="hidden"
+         data-breadcrumbid='<?php echo json_encode(array_reverse($categories_and_breadcrumb)) ?>'
+         data-breadcrumbparentid='<?php echo json_encode($SET->breadcrumbParentId(array_reverse($categories_and_breadcrumb))) ?>'
+         data-breadcrumbname='<?php echo json_encode($SET->breadcrumbName(array_reverse($categories_and_breadcrumb))) ?>'>
+    </div>
+<?php } ?>
 <script type="text/javascript" language="javascript">
     function categorytreeview() {
         if ($('.box-category').hasClass('treeview') === true) {
