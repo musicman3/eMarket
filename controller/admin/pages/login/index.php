@@ -48,4 +48,7 @@ if ($VALID->inPOST('autorize') == 'ok') {
         header('Location: ?route=dashboard');    // Если все успешно, то редирект в административную часть
     }
 }
+
+//Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
+$JS_END = __DIR__;
 ?>

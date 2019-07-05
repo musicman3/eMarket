@@ -32,11 +32,3 @@
         <input type="submit" class="btn btn-block btn-xs" value="<?php echo lang('entrance') ?>">
     </form>
 </div>
-
-<script>
-    $(function () {
-        window.setTimeout(function () {
-            $('#alert').alert('close');
-        }, 3000);
-    });
-</script>
