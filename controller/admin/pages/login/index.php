@@ -19,7 +19,7 @@ if (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
 }
 
 // если логин или пароль не верные, то готовим уведомление
-if (isset($_SESSION['login_error']) == TRUE) {
+if (isset($_SESSION['login_error']) == TRUE && $VALID->inPOST('login') && $VALID->inPOST('pass')) {
     $login_error = $_SESSION['login_error'];
     //удаляем текущую сессию
     unset($_SESSION['login']);
