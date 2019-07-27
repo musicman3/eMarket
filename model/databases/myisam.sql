@@ -129,6 +129,16 @@ CREATE TABLE emkt_manufacturers (
 	PRIMARY KEY (id, language))
 ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
+DROP TABLE IF EXISTS emkt_modules;
+CREATE TABLE emkt_modules (
+	id int NOT NULL auto_increment,
+	name varchar(256),
+	modules_cat varchar(256),
+        install int(64),
+        active int(64),
+	PRIMARY KEY (id))
+ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+
 DROP TABLE IF EXISTS emkt_password_recovery;
 CREATE TABLE emkt_password_recovery (
         id int NOT NULL auto_increment,
