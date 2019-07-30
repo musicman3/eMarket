@@ -133,7 +133,9 @@ DROP TABLE IF EXISTS emkt_modules;
 CREATE TABLE emkt_modules (
 	id int NOT NULL auto_increment,
 	name varchar(256),
-	modules_cat varchar(256),
+	category varchar(256),
+        page varchar(256),
+        position varchar(256),
         install int(64),
         active int(64),
 	PRIMARY KEY (id))
