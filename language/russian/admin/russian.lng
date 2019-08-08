@@ -6,25 +6,26 @@
 [admin]
 
 ;TITLE
-title_dashboard_index = Панель администратора
 title_basic_settings_index = Базовые настройки
 title_categories_index = Категории
 title_countries_index = Страны
 title_currencies_index = Валюты
+title_dashboard_index = Панель администратора
 title_error_log_index = Лог ошибок
+title_length_index = Длина
 title_listing_index = Страны и регионы
 title_login_index = Страница авторизации
+title_manufacturers_index = Производители
+title_modules_index = Модули
 title_regions_index = Регионы
 title_settings_index = Настройки
 title_stock_index = Склад
 title_taxes_index = Налоги
+title_templates_index = Компоновка шаблонов
 title_units_index = Единицы измерения
 title_vendor_codes_index = Идентификаторы товара
-title_zones_index = Зоны
 title_weight_index = Вес
-title_length_index = Длина
-title_manufacturers_index = Производители
-title_templates_index = Компоновка шаблонов
+title_zones_index = Зоны
 
 ;КНОПКИ МЕНЮ
 menu_catalog = Каталог товаров
@@ -111,6 +112,12 @@ debug_page_generation_time = Время генерации страницы:
 debug_db_queries = Запросов к БД:
 debug_sec = сек.
 debug_pcs = шт.
+
+;MODULES
+payment_modules = Оплата
+shipping_modules = Доставка
+cart_modules = Корзина
+other_modules = Другое
 
 ;BASIC SETTINGS
 lines_on_page = Строк на странице
