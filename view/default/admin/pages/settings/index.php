@@ -46,7 +46,7 @@
                                     <div class="settings"><a href="?route=settings/units" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-flag glyph-xs"> </span></a><?php echo lang('title_units_index') ?></div>
                                 </td>
                                 <td>
-                                    <div class="settings"><a href="#" class="btn btn-default btn-xs disabled"><span class="glyphicon glyphicon-barcode glyph-xs"> </span></a>Штриховые коды</div>
+                                    <div class="settings"><a href="#" class="btn btn-default btn-xs disabled"><span class="glyphicon glyphicon-hdd glyph-xs"> </span></a>Модули</div>
                                 </td>
                             </tr>
                             <tr>
