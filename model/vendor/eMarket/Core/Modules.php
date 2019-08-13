@@ -21,9 +21,15 @@ class Modules {
      * @return bool (TRUE/FALSE)
      */
     public function init() {
-        
-        
 
+        $DEBUG = new \eMarket\Other\Debug;
+        $TREE = new \eMarket\Core\Tree;
+
+        $path = getenv('DOCUMENT_ROOT') . '/modules';
+        $modules_name = $TREE->allDirForPath($path, 'true');
+
+
+        $DEBUG->trace($modules_name);
     }
 
 }

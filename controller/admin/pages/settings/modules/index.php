@@ -168,6 +168,8 @@ if ($VALID->inPOST('smtp_port')) {
     $smtp_port = $PDO->getCell("SELECT smtp_port FROM " . TABLE_BASIC_SETTINGS . "", []);
 }
 
+//$MODULES->init();
+
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
 $JS_END = __DIR__;
 ?>

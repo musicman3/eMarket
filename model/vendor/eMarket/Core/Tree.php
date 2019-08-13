@@ -50,7 +50,7 @@ class Tree {
      * @param string|null $new_dir опционально (директория для перемещения)
      * @param string|null $rename опционально (префикс к имени файла)
      */
-    public function filesDirAction($dir, $new_dir = null, $rename = null) { // $dir - путь к директории с файлами
+    public function filesDirAction($dir, $new_dir = null, $rename = null) {
         $files = glob($dir . '*');
         foreach ($files as $file) {
             if (is_file($file) && file_exists($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
@@ -60,6 +60,27 @@ class Tree {
                 chmod($file, 0777);
                 unlink($file); // Удаляем старые файлы
             }
+        }
+    }
+
+    /**
+     * ФУНКЦИЯ ПОЛУЧЕНИЯ СПИСКА ВСЕХ ДИРЕКТОРИЙ ПО УКАЗАННОМУ ПУТИ
+     *
+     * @param string $path (путь к директории)
+     * @param string $marker (если true, то выдает ассоциированный массив с подкаталогами)
+     * @return array (массив директорий)
+     */
+    public function allDirForPath($path, $marker = null) {
+        
+        $level_1 = array_values(array_diff(scandir($path), ['..', '.']));
+        if ($marker == 'true') {
+            $level_2 = [];
+            foreach ($level_1 as $value) {
+                $level_2 = array_merge($level_2, [$value => self::allDirForPath($path . '/' . $value)]);
+            }
+            return $level_2;
+        } else {
+            return $level_1;
         }
     }
 
@@ -79,12 +100,11 @@ class Tree {
         $array_cat = [];
         foreach ($sql as $value) {
             $array_cat[$value->parent_id][] = $value;
-            
+
             if ($value->id == $id && $value->parent_id > 0) {
                 $array_cat2[] = $value->parent_id;
                 return self::categories($sql, $value->parent_id, $array_cat2);
             }
-            
         }
 
         if (empty($array_cat[$parent_id])) {
