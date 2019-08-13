@@ -12,6 +12,7 @@ $AUTORIZE = new eMarket\Core\Autorize;
 $EAC = new eMarket\Core\Eac;
 $LANG = new eMarket\Core\Lang;
 $NAVIGATION = new eMarket\Core\Navigation;
+$MODULES = new eMarket\Core\Modules;
 $PDO = new eMarket\Core\Pdo;
 $SET = new eMarket\Core\Set;
 $TREE = new eMarket\Core\Tree;
