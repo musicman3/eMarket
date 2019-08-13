@@ -25,8 +25,8 @@ class Modules {
         $DEBUG = new \eMarket\Other\Debug;
         $TREE = new \eMarket\Core\Tree;
 
-        $path = getenv('DOCUMENT_ROOT') . '/modules';
-        $modules_name = $TREE->allDirForPath($path, 'true');
+        $path = getenv('DOCUMENT_ROOT') . '/modules/';
+        $modules_name = $TREE->allDirForPath($path);
 
 
         $DEBUG->trace($modules_name);

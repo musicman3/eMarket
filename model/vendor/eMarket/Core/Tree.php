@@ -76,7 +76,7 @@ class Tree {
         if ($marker == 'true') {
             $level_2 = [];
             foreach ($level_1 as $value) {
-                $level_2 = array_merge($level_2, [$value => self::allDirForPath($path . '/' . $value)]);
+                $level_2 = array_merge($level_2, [$value => self::allDirForPath($path . $value)]);
             }
             return $level_2;
         } else {
