@@ -4,6 +4,5 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-// Подгружаем Ajax
-$AJAX->action('?route=settings/basic_settings');
+
 ?>
