@@ -1,5 +1,4 @@
 <?php
-
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -28,8 +27,24 @@ class Lang {
         $TREE = new \eMarket\Core\Tree;
         $SET = new \eMarket\Core\Set;
 
-        //Получаем список путей к языковым файлам
-        $files_path = $TREE->filesTree(getenv('DOCUMENT_ROOT') . '/language/' . $default_language . '/' . $SET->path());
+        //Получаем массив со списком путей к языковым файлам движка
+        $engine_path_array = $TREE->filesTree(getenv('DOCUMENT_ROOT') . '/language/' . $default_language . '/' . $SET->path());
+
+        // Получаем список путей к языковым файлам модулей
+        $modules_path = getenv('DOCUMENT_ROOT') . '/modules/';
+        $modules_info = $TREE->allDirForPath($modules_path, 'true');
+        
+        // Готовим массив со списком путей к языковым файлам модулей
+        $modules_path_array = [];
+        foreach ($modules_info as $modules_type => $modules_names_array) {
+            foreach ($modules_names_array as $modules_names) {
+                $modules_path_array = array_merge($modules_path_array, [$modules_path . $modules_type . '/' . $modules_names . '/language/' . $default_language . '.lng']);
+            }
+        }
+
+        // Сливаем списки путей к языковым файлам
+        $files_path = array_merge($engine_path_array, $modules_path_array);
+
         //Парсинг языковых файлов
         $lang = parse_ini_file($files_path[0], FALSE, INI_SCANNER_RAW);
         foreach ($files_path as $files) {
