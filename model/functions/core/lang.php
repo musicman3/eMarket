@@ -17,26 +17,6 @@ function lang($a = null, $b = null) {
     static $lang_var = null, $lang_trans = null, $lang_all = null;
 
     $LANG = new \eMarket\Core\Lang;
-    $SET = new \eMarket\Core\Set;
-    $VALID = new \eMarket\Core\Valid;
-
-    //Если пользователь не авторизован, то устанавливаем язык по умолчанию
-    if (!isset($_SESSION['DEFAULT_LANGUAGE']) && $SET->path() != 'install') {
-        $_SESSION['DEFAULT_LANGUAGE'] = DEFAULT_LANGUAGE;
-    }
-
-    //Если первый раз в инсталляторе, то устанавливаем язык по умолчанию Russian
-    if (!$VALID->inPOST('language') && $SET->path() == 'install') {
-        $_SESSION['DEFAULT_LANGUAGE'] = 'russian';
-    }
-
-    //Если переключили язык не авторизованно или в инсталляторе
-    if ($VALID->inPOST('language')) {
-        $_SESSION['DEFAULT_LANGUAGE'] = $VALID->inPOST('language');
-    }
-    if ($VALID->inGET('language')) {
-        $_SESSION['DEFAULT_LANGUAGE'] = $VALID->inGET('language');
-    }
 
     //Устанавливаем $lang_all
     if (!isset($lang_all)) {

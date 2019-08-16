@@ -24,28 +24,8 @@ class Lang {
      */
     function lang($default_language, $marker = null) {
 
-        $TREE = new \eMarket\Core\Tree;
-        $SET = new \eMarket\Core\Set;
-
-        //Получаем массив со списком путей к языковым файлам движка
-        $engine_path_array = $TREE->filesTree(getenv('DOCUMENT_ROOT') . '/language/' . $default_language . '/' . $SET->path());
-
-        // Получаем список путей к языковым файлам модулей
-        $modules_path = getenv('DOCUMENT_ROOT') . '/modules/';
-        $modules_info = $TREE->allDirForPath($modules_path, 'true');
-        
-        // Готовим массив со списком путей к языковым файлам модулей
-        $modules_path_array = [];
-        foreach ($modules_info as $modules_type => $modules_names_array) {
-            foreach ($modules_names_array as $modules_names) {
-                $modules_path_array = array_merge($modules_path_array, [$modules_path . $modules_type . '/' . $modules_names . '/language/' . $default_language . '.lng']);
-            }
-        }
-
-        // Сливаем списки путей к языковым файлам
-        $files_path = array_merge($engine_path_array, $modules_path_array);
-
         //Парсинг языковых файлов
+        $files_path = $_SESSION['LANG_PATH'];
         $lang = parse_ini_file($files_path[0], FALSE, INI_SCANNER_RAW);
         foreach ($files_path as $files) {
             $ini = parse_ini_file($files, FALSE, INI_SCANNER_RAW);
@@ -75,6 +55,75 @@ class Lang {
         }
 
         return $lang;
+    }
+
+    /**
+     * Установка языка по умолчанию
+     *
+     */
+    function defaultLang() {
+
+        $SET = new \eMarket\Core\Set;
+        $VALID = new \eMarket\Core\Valid;
+
+        //Если пользователь не авторизован, то устанавливаем язык по умолчанию
+        if (!isset($_SESSION['DEFAULT_LANGUAGE']) && $SET->path() != 'install') {
+            $_SESSION['DEFAULT_LANGUAGE'] = DEFAULT_LANGUAGE;
+        }
+
+        //Если первый раз в инсталляторе, то устанавливаем язык по умолчанию Russian
+        if (!$VALID->inPOST('language') && $SET->path() == 'install') {
+            $_SESSION['DEFAULT_LANGUAGE'] = 'russian';
+        }
+
+        //Если переключили язык не авторизованно или в инсталляторе
+        if ($VALID->inPOST('language')) {
+            $_SESSION['DEFAULT_LANGUAGE'] = $VALID->inPOST('language');
+        }
+        if ($VALID->inGET('language')) {
+            $_SESSION['DEFAULT_LANGUAGE'] = $VALID->inGET('language');
+        }
+    }
+
+    /**
+     * Список путей к языковым файлам
+     * 
+     */
+    function langPath() {
+
+        $TREE = new \eMarket\Core\Tree;
+        $SET = new \eMarket\Core\Set;
+
+        //Получаем массив со списком путей к языковым файлам движка
+        $engine_path_array = $TREE->filesTree(getenv('DOCUMENT_ROOT') . '/language/' . $_SESSION['DEFAULT_LANGUAGE'] . '/' . $SET->path());
+
+        // Получаем список путей к языковым файлам модулей
+        $modules_path = getenv('DOCUMENT_ROOT') . '/modules/';
+        $modules_info = $TREE->allDirForPath($modules_path, 'true');
+
+        // Готовим массив со списком путей к языковым файлам модулей
+        $modules_path_array = [];
+        foreach ($modules_info as $modules_type => $modules_names_array) {
+            foreach ($modules_names_array as $modules_names) {
+                $modules_path_array = array_merge($modules_path_array, [$modules_path . $modules_type . '/' . $modules_names . '/language/' . $_SESSION['DEFAULT_LANGUAGE'] . '.lng']);
+            }
+        }
+
+        // Сливаем вместе списки путей к языковым файлам и записываем в сессию
+        $_SESSION['LANG_PATH'] = array_merge($engine_path_array, $modules_path_array);
+    }
+
+    /**
+     * Инициализация языков
+     * 
+     */
+    function init() {
+
+        // Устанавливаем язык по умолчанию
+        self::defaultLang();
+
+        // Загружаем пути к языковым файлам
+        self::langPath();
     }
 
 }
