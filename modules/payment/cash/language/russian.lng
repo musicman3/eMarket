@@ -3,6 +3,9 @@
 ;   https://github.com/musicman3/eMarket   ;
 ;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
 
+[all]
+payment_cash_name = Наличными
+
 [admin]
 
 ;TITLE
