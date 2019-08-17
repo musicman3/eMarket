@@ -21,7 +21,7 @@ function lang($a = null, $b = null) {
     if ($lang_default == null) {
         // Язык по-умолчанию
         $LANG->defaultLang();
-        $lang_default == 'true';
+        $lang_default = 'true';
     }
 
     //Устанавливаем $lang_all
