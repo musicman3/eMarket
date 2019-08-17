@@ -14,22 +14,28 @@
  * @return array $lang_all
  */
 function lang($a = null, $b = null) {
-    static $lang_var = null, $lang_trans = null, $lang_all = null;
+    static $lang_var = null, $lang_trans = null, $lang_all = null, $lang_default = null;
 
     $LANG = new \eMarket\Core\Lang;
 
+    if ($lang_default == null) {
+        // Язык по-умолчанию
+        $LANG->defaultLang();
+        $lang_default == 'true';
+    }
+
     //Устанавливаем $lang_all
-    if (!isset($lang_all)) {
+    if ($lang_all == null) {
         $lang_all = $LANG->lang($_SESSION['DEFAULT_LANGUAGE'], 'all');
     }
 
     //Устанавливаем $lang_trans
-    if (!isset($lang_trans)) {
+    if ($lang_trans == null) {
         $lang_trans = $LANG->lang($_SESSION['DEFAULT_LANGUAGE'], 'translate');
     }
 
     //Устанавливаем $lang_var
-    if (!isset($lang_var)) {
+    if ($lang_var == null) {
         $lang_var = $LANG->lang($_SESSION['DEFAULT_LANGUAGE']);
     }
 

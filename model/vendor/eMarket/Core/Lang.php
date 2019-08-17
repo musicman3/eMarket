@@ -24,9 +24,7 @@ class Lang {
      */
     function lang($default_language, $marker = null) {
 
-        static $lang = null;
-        static $lang_trans = null;
-        static $lang_all = null;
+        static $lang = null, $lang_trans = null, $lang_all = null;
         $TREE = new \eMarket\Core\Tree;
         $SET = new \eMarket\Core\Set;
 
