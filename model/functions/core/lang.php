@@ -17,9 +17,9 @@ function lang($a = null, $b = null) {
     static $lang_var = null, $lang_trans = null, $lang_all = null, $lang_default = null;
 
     $LANG = new \eMarket\Core\Lang;
-
+    
+    // Язык по-умолчанию
     if ($lang_default == null) {
-        // Язык по-умолчанию
         $LANG->defaultLang();
         $lang_default = 'true';
     }
