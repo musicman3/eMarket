@@ -26,8 +26,8 @@ if ($AUTORIZE->sessionCatalog() == TRUE) {
     $CUSTOMER = FALSE;
 }
 
-// Инициализация языков
-$LANG->init();
+// Язык по-умолчанию
+$LANG->defaultLang();
 
 // Загружаем языковой роутер
 require_once('router_lang.php');
