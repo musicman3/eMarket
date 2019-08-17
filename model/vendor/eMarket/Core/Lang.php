@@ -70,7 +70,6 @@ class Lang {
                     array_push($lang_all, $lang_name);
                     // Собираем данные из всех general.lng
                     $ini_lang = parse_ini_file(getenv('DOCUMENT_ROOT') . '/language/' . $lang_name . '/admin/lang.lng', TRUE, INI_SCANNER_RAW);
-
                     $lang_trans = array_merge($lang_trans, $ini_lang);
                 }
             }
