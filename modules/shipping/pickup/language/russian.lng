@@ -6,9 +6,9 @@
 [admin]
 
 ;TITLE
-admin_test = Тест
+shipping_pickup_admin_test = Тест
 
 [catalog]
 
 ;TITLE
-catalog_test = Тест
+shipping_pickup_catalog_test = Тест
