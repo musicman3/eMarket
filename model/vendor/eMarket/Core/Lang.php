@@ -32,7 +32,7 @@ class Lang {
 
         if ($lang == null) {
             //Получаем массив со списком путей к языковым файлам движка
-            $engine_path_array = $TREE->filesTree(getenv('DOCUMENT_ROOT') . '/language/' . $_SESSION['DEFAULT_LANGUAGE'] . '/' . $SET->path());
+            $engine_path_array = $TREE->filesTree(getenv('DOCUMENT_ROOT') . '/language/' . $default_language . '/' . $SET->path());
 
             // Получаем список путей к языковым файлам модулей
             $modules_path = getenv('DOCUMENT_ROOT') . '/modules/';
@@ -42,7 +42,7 @@ class Lang {
             $modules_path_array = [];
             foreach ($modules_info as $modules_type => $modules_names_array) {
                 foreach ($modules_names_array as $modules_names) {
-                    $modules_path_array = array_merge($modules_path_array, [$modules_path . $modules_type . '/' . $modules_names . '/language/' . $_SESSION['DEFAULT_LANGUAGE'] . '.lng']);
+                    $modules_path_array = array_merge($modules_path_array, [$modules_path . $modules_type . '/' . $modules_names . '/language/' . $default_language . '.lng']);
                 }
             }
 
