@@ -3,6 +3,7 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+
 ?>
 
 <div id="settings_basic_settings" class="container-fluid">
@@ -27,77 +28,179 @@
 
             <!-- Содержимое панелей -->
             <div class="tab-content">
+
                 <!-- Оплата -->
                 <div id="payment_modules" class="tab-pane fade in active">
 
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th colspan="6">
-                                </th>
-                            </tr>
+                    <?php if (isset($_SESSION['MODULES_INFO']['payment'])) { ?>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th colspan="2">
+                                    </th>
+                                </tr>
 
-                            <tr class="border">
-                                <th><?php echo lang('name_full') ?></th>
-                                <th class="al-text"><?php echo lang('name_little') ?></th>
-                                <th class="al-text"><?php echo lang('value') ?></th>
-                                <th class="al-text"><?php echo lang('default') ?></th>
-                                <th class="al-text-w"></th>
-                            </tr>
+                                <tr class="border">
+                                    <th><?php echo lang('modules_name') ?></th>
+                                    <th class="al-text-w"></th>
+                                </tr>
 
-                        </thead>
-                        <tbody>
+                            </thead>
 
-                            <tr>
-                                <td>123</td>
-                                <td class="al-text">325</td>
-                                <td class="al-text">ывачс</td>
+                            <tbody>
+                                <?php foreach ($_SESSION['MODULES_INFO']['payment'] as $payment_key) { ?>
+                                    <tr>
+                                        <td><?php echo lang('payment_' . $payment_key . '_name') ?></td>
 
-                                <td class="al-text">вапва</td>
+                                        <td class="al-text-w">
+                                            <form id="form_delete<?php echo '_payment_' . $payment_key ?>" name="form_delete" action="javascript:void(null);" onsubmit="callDelete('<?php echo '_payment_' . $payment_key ?>')" enctype="multipart/form-data">
+                                                <input hidden name="delete" value="<?php echo '_payment_' . $payment_key ?>">
+                                                <div class="right">
+                                                    <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button>
+                                                </div>
+                                            </form>
+                                            <!--Вызов модального окна для редактирования-->
+                                            <div class="left">
+                                                <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#edit" data-edit="<?php echo '_payment_' . $payment_key ?>"><span class="glyphicon glyphicon-edit"></span></button>
+                                            </div>
+                                        </td>
 
-                                <td class="al-text-w">
-                                    <form id="form_delete<?php echo $lines[$start][0] ?>" name="form_delete" action="javascript:void(null);" onsubmit="callDelete('<?php echo $lines[$start][0] ?>')" enctype="multipart/form-data">
-                                        <input hidden name="delete" value="<?php echo $lines[$start][0] ?>">
-                                        <div class="right">
-                                            <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button>
-                                        </div>
-                                    </form>
-                                    <!--Вызов модального окна для редактирования-->
-                                    <div class="left">
-                                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#edit" data-edit="<?php echo $lines[$start][0] ?>"><span class="glyphicon glyphicon-edit"></span></button>
-                                    </div>
-                                </td>
-                            </tr>
-
-                        </tbody>
-                    </table>
-
-
+                                    </tr>
+                                <?php } ?> 
+                            </tbody>
+                        </table>
+                    <?php } ?> 
                 </div>
                 <!-- Доставка -->
                 <div id="shipping_modules" class="tab-pane fade">
 
+                    <?php if (isset($_SESSION['MODULES_INFO']['shipping'])) { ?>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th colspan="2">
+                                    </th>
+                                </tr>
 
+                                <tr class="border">
+                                    <th><?php echo lang('modules_name') ?></th>
+                                    <th class="al-text-w"></th>
+                                </tr>
 
+                            </thead>
 
+                            <tbody>
+                                <?php foreach ($_SESSION['MODULES_INFO']['shipping'] as $shipping_key) { ?>
+                                    <tr>
+                                        <td><?php echo lang('shipping_' . $shipping_key . '_name') ?></td>
+
+                                        <td class="al-text-w">
+                                            <form id="form_delete<?php echo '_shipping_' . $shipping_key ?>" name="form_delete" action="javascript:void(null);" onsubmit="callDelete('<?php echo '_shipping_' . $shipping_key ?>')" enctype="multipart/form-data">
+                                                <input hidden name="delete" value="<?php echo '_shipping_' . $shipping_key ?>">
+                                                <div class="right">
+                                                    <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button>
+                                                </div>
+                                            </form>
+                                            <!--Вызов модального окна для редактирования-->
+                                            <div class="left">
+                                                <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#edit" data-edit="<?php echo '_shipping_' . $shipping_key ?>"><span class="glyphicon glyphicon-edit"></span></button>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                <?php } ?> 
+                            </tbody>
+                        </table>
+                    <?php } ?> 
                 </div>
 
                 <!-- Корзина -->
                 <div id="cart_modules" class="tab-pane fade">
 
+                    <?php if (isset($_SESSION['MODULES_INFO']['cart'])) { ?>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th colspan="2">
+                                    </th>
+                                </tr>
 
+                                <tr class="border">
+                                    <th><?php echo lang('modules_name') ?></th>
+                                    <th class="al-text-w"></th>
+                                </tr>
 
+                            </thead>
 
+                            <tbody>
+                                <?php foreach ($_SESSION['MODULES_INFO']['cart'] as $cart_key) { ?>
+                                    <tr>
+                                        <td><?php echo lang('cart_' . $cart_key . '_name') ?></td>
+
+                                        <td class="al-text-w">
+                                            <form id="form_delete<?php echo '_cart_' . $cart_key ?>" name="form_delete" action="javascript:void(null);" onsubmit="callDelete('<?php echo '_cart_' . $cart_key ?>')" enctype="multipart/form-data">
+                                                <input hidden name="delete" value="<?php echo '_cart_' . $payment_key ?>">
+                                                <div class="right">
+                                                    <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button>
+                                                </div>
+                                            </form>
+                                            <!--Вызов модального окна для редактирования-->
+                                            <div class="left">
+                                                <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#edit" data-edit="<?php echo '_cart_' . $cart_key ?>"><span class="glyphicon glyphicon-edit"></span></button>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                <?php } ?> 
+                            </tbody>
+                        </table>
+                    <?php } ?>
                 </div>
 
                 <!-- Другое -->
                 <div id="other_modules" class="tab-pane fade">
 
+                    <?php if (isset($_SESSION['MODULES_INFO']['other'])) { ?>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th colspan="2">
+                                    </th>
+                                </tr>
 
+                                <tr class="border">
+                                    <th><?php echo lang('modules_name') ?></th>
+                                    <th class="al-text-w"></th>
+                                </tr>
 
+                            </thead>
 
+                            <tbody>
+                                <?php foreach ($_SESSION['MODULES_INFO']['other'] as $other_key) { ?>
+                                    <tr>
+                                        <td><?php echo lang('other_' . $other_key . '_name') ?></td>
+
+                                        <td class="al-text-w">
+                                            <form id="form_delete<?php echo '_other_' . $other_key ?>" name="form_delete" action="javascript:void(null);" onsubmit="callDelete('<?php echo '_other_' . $other_key ?>')" enctype="multipart/form-data">
+                                                <input hidden name="delete" value="<?php echo '_other_' . $other_key ?>">
+                                                <div class="right">
+                                                    <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button>
+                                                </div>
+                                            </form>
+                                            <!--Вызов модального окна для редактирования-->
+                                            <div class="left">
+                                                <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#edit" data-edit="<?php echo '_other_' . $other_key ?>"><span class="glyphicon glyphicon-edit"></span></button>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                <?php } ?> 
+                            </tbody>
+                        </table>
+                    <?php } ?>
                 </div>
-            </div>        
+
+            </div>  
         </div>
     </div>
 </div>

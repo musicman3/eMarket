@@ -118,6 +118,7 @@ payment_modules = Оплата
 shipping_modules = Доставка
 cart_modules = Корзина
 other_modules = Другое
+modules_name = Название модуля
 
 ;BASIC SETTINGS
 lines_on_page = Строк на странице

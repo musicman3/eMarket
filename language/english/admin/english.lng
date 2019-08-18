@@ -117,6 +117,7 @@ payment_modules = Payment
 shipping_modules = Shipping
 cart_modules = Cart
 other_modules = Other
+modules_name = Modules name
 
 ;BASIC SETTINGS
 lines_on_page = Lines on page

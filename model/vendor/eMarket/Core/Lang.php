@@ -34,11 +34,11 @@ class Lang {
 
             // Получаем список путей к языковым файлам модулей
             $modules_path = getenv('DOCUMENT_ROOT') . '/modules/';
-            $modules_info = $TREE->allDirForPath($modules_path, 'true');
+            $_SESSION['MODULES_INFO'] = $TREE->allDirForPath($modules_path, 'true');
 
             // Готовим массив со списком путей к языковым файлам модулей
             $modules_path_array = [];
-            foreach ($modules_info as $modules_type => $modules_names_array) {
+            foreach ($_SESSION['MODULES_INFO'] as $modules_type => $modules_names_array) {
                 foreach ($modules_names_array as $modules_names) {
                     $modules_path_array = array_merge($modules_path_array, [$modules_path . $modules_type . '/' . $modules_names . '/language/' . $default_language . '.lng']);
                 }
