@@ -4,5 +4,6 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-
+// Подгружаем Ajax Добавить, Редактировать, Удалить
+$AJAX->action('?route=settings/modules');
 ?>
