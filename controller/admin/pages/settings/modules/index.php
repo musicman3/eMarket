@@ -8,6 +8,9 @@
 
 //$MODULES->init();
 
+$installed_list = $PDO->getColAssoc("SELECT id, name, type FROM " . TABLE_MODULES . "", []);
+
+//$DEBUG->trace($installed_list);
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
 $JS_END = __DIR__;
 ?>

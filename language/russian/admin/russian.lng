@@ -50,6 +50,7 @@ cancel = Отмена
 confirm-del = Удалить?
 confirm-no = Нет
 confirm-yes = Да
+confirm-install = Установить?
 save = Сохранить
 selected = Выбранное
 button_show = Отобразить
