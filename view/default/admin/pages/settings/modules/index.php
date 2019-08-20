@@ -6,7 +6,7 @@
 
 ?>
 
-<div id="settings_basic_settings" class="container-fluid">
+<div id="settings_modules" class="container-fluid">
     <div class="panel panel-default">
 
         <div class="panel-heading">
