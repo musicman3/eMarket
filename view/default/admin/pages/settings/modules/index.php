@@ -50,7 +50,7 @@
                             <tbody>
                                 <?php
                                 foreach ($_SESSION['MODULES_INFO']['payment'] as $key) {
-                                    if ($payment_installed['name'] != $key) {
+                                    if (!isset($payment_installed[0]['name']) OR $payment_installed[0]['name'] != $key) {
 
                                         ?>
                                         <tr>
