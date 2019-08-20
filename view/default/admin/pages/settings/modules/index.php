@@ -79,7 +79,7 @@
                                                 <form id="form_edit<?php echo '_payment_' . $key ?>" name="form_edit" action="javascript:void(null);" onsubmit="callEdit('<?php echo '_payment_' . $key ?>')" enctype="multipart/form-data">
                                                     <input hidden name="edit" value="<?php echo '_payment_' . $key ?>">
                                                     <div class="right">
-                                                        <button type="submit" name="add_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-delete') ?>"><span class="glyphicon glyphicon-remove"> </span></button>
+                                                        <button type="submit" name="add_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-remove"> </span></button>
                                                     </div>
                                                 </form>
                                                 <!--Вызов модального окна для редактирования-->
