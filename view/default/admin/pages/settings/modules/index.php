@@ -40,8 +40,52 @@
                                     </th>
                                 </tr>
 
-                                <tr class="border">
-                                    <th><?php echo lang('modules_name') ?></th>
+                                <tr class="info border">
+                                    <th><?php echo lang('installed_modules') ?></th>
+                                    <th class="al-text-w"></th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+                                <?php
+                                foreach ($_SESSION['MODULES_INFO']['payment'] as $key) {
+                                    if (isset($payment_installed[0]['name']) && $payment_installed[0]['name'] == $key) {
+
+                                        ?>
+                                        <tr>
+                                            <td><?php echo lang('payment_' . $key . '_name') ?></td>
+
+                                            <?php ?>
+                                            <td class="al-text-w">
+                                                <form id="form_edit<?php echo '_payment_' . $key ?>" name="form_edit" action="javascript:void(null);" onsubmit="callEdit('<?php echo 'payment_' . $key ?>')" enctype="multipart/form-data">
+                                                    <input hidden name="edit" value="<?php echo 'payment_' . $key ?>">
+                                                    <div class="right">
+                                                        <button type="submit" name="add_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-remove"> </span></button>
+                                                    </div>
+                                                </form>
+                                                <!--Вызов модального окна для редактирования-->
+                                                <div class="left">
+                                                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#edit" data-edit="<?php echo '_payment_' . $key ?>"><span class="glyphicon glyphicon-edit"></span></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <?php
+                                    }
+                                }
+
+                                ?> 
+                            </tbody>
+                        </table>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th colspan="2">
+                                    </th>
+                                </tr>
+
+                                <tr class="danger border">
+                                    <th><?php echo lang('uninstalled_modules') ?></th>
                                     <th class="al-text-w"></th>
                                 </tr>
 
@@ -53,43 +97,20 @@
                                     if (!isset($payment_installed[0]['name']) OR $payment_installed[0]['name'] != $key) {
 
                                         ?>
+
                                         <tr>
                                             <td><?php echo lang('payment_' . $key . '_name') ?></td>
 
                                             <?php ?>
                                             <td class="al-text-w">
-                                                <form id="form_add<?php echo '_payment_' . $key ?>" name="form_add" action="javascript:void(null);" onsubmit="callAdd('<?php echo '_payment_' . $key ?>')" enctype="multipart/form-data">
-                                                    <input hidden name="add" value="<?php echo '_payment_' . $key ?>">
+                                                <form id="form_add<?php echo '_payment_' . $key ?>" name="form_add" action="javascript:void(null);" onsubmit="callAdd('<?php echo 'payment_' . $key ?>')" enctype="multipart/form-data">
+                                                    <input hidden name="add" value="<?php echo 'payment_' . $key ?>">
                                                     <div class="right">
                                                         <button type="submit" name="add_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-install') ?>"><span class="glyphicon glyphicon-plus"> </span></button>
                                                     </div>
                                                 </form>
                                             </td>
-
                                         </tr>
-                                    <?php } else {
-
-                                        ?>
-
-                                        <tr>
-                                            <td><?php echo lang('payment_' . $key . '_name') ?></td>
-
-                                            <?php ?>
-                                            <td class="al-text-w">
-                                                <form id="form_edit<?php echo '_payment_' . $key ?>" name="form_edit" action="javascript:void(null);" onsubmit="callEdit('<?php echo '_payment_' . $key ?>')" enctype="multipart/form-data">
-                                                    <input hidden name="edit" value="<?php echo '_payment_' . $key ?>">
-                                                    <div class="right">
-                                                        <button type="submit" name="add_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-remove"> </span></button>
-                                                    </div>
-                                                </form>
-                                                <!--Вызов модального окна для редактирования-->
-                                                <div class="left">
-                                                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#edit" data-edit="<?php echo '_payment_' . $key ?>"><span class="glyphicon glyphicon-edit"></span></button>
-                                                </div>
-                                            </td>
-
-                                        </tr>
-
                                         <?php
                                     }
                                 }

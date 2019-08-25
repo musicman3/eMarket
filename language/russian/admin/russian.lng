@@ -119,7 +119,8 @@ payment_modules = Оплата
 shipping_modules = Доставка
 cart_modules = Корзина
 other_modules = Другое
-modules_name = Название модуля
+installed_modules = Установленные модули
+uninstalled_modules = Модули, доступные для установки
 
 ;BASIC SETTINGS
 lines_on_page = Строк на странице
