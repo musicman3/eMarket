@@ -58,10 +58,10 @@
 
                                             <?php ?>
                                             <td class="al-text-w">
-                                                <form id="form_edit<?php echo '_payment_' . $key ?>" name="form_edit" action="javascript:void(null);" onsubmit="callEdit('<?php echo 'payment_' . $key ?>')" enctype="multipart/form-data">
-                                                    <input hidden name="edit" value="<?php echo 'payment_' . $key ?>">
+                                                <form id="form_delete<?php echo '_payment_' . $key ?>" name="form_delete" action="javascript:void(null);" onsubmit="callDelete('<?php echo '_payment_' . $key ?>')" enctype="multipart/form-data">
+                                                    <input hidden name="delete" value="<?php echo 'payment_' . $key ?>">
                                                     <div class="right">
-                                                        <button type="submit" name="add_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-remove"> </span></button>
+                                                        <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-remove"> </span></button>
                                                     </div>
                                                 </form>
                                                 <!--Вызов модального окна для редактирования-->
@@ -103,7 +103,7 @@
 
                                             <?php ?>
                                             <td class="al-text-w">
-                                                <form id="form_add<?php echo '_payment_' . $key ?>" name="form_add" action="javascript:void(null);" onsubmit="callAdd('<?php echo 'payment_' . $key ?>')" enctype="multipart/form-data">
+                                                <form id="form_add<?php echo '_payment_' . $key ?>" name="form_add" action="javascript:void(null);" onsubmit="callAdd('form_add<?php echo '_payment_' . $key ?>')" enctype="multipart/form-data">
                                                     <input hidden name="add" value="<?php echo 'payment_' . $key ?>">
                                                     <div class="right">
                                                         <button type="submit" name="add_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-install') ?>"><span class="glyphicon glyphicon-plus"> </span></button>
