@@ -66,7 +66,7 @@
                                                 </form>
                                                 <!--Вызов модального окна для редактирования-->
                                                 <div class="left">
-                                                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#edit" data-edit="<?php echo '_payment_' . $key ?>"><span class="glyphicon glyphicon-edit"></span></button>
+                                                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#edit" data-edit="<?php echo 'payment_' . $key ?>"><span class="glyphicon glyphicon-edit"></span></button>
                                                 </div>
                                             </td>
                                         </tr>
