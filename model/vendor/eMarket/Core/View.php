@@ -39,11 +39,11 @@ class View {
         $SET = new \eMarket\Core\Set;
         $VALID = new \eMarket\Core\Valid;
         
-        if ($VALID->inGET('page') != '') {
-            $page = $VALID->inGET('page') . '.php';
+        if ($VALID->inGET('object') != '') {
+            $page = $VALID->inGET('object') . '.php';
         }
 
-        if (!$VALID->inGET('page') OR $VALID->inGET('page') == '') {
+        if (!$VALID->inGET('object') OR $VALID->inGET('object') == '') {
             $page = 'index.php';
         }
 
