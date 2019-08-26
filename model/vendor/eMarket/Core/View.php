@@ -38,6 +38,7 @@ class View {
 
         $SET = new \eMarket\Core\Set;
         $VALID = new \eMarket\Core\Valid;
+        
         if ($VALID->inGET('page') != '') {
             $page = $VALID->inGET('page') . '.php';
         }
