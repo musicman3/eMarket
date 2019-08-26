@@ -38,8 +38,16 @@ class View {
 
         $SET = new \eMarket\Core\Set;
         $VALID = new \eMarket\Core\Valid;
+        if ($VALID->inGET('page') != '') {
+            $page = $VALID->inGET('page') . '.php';
+        }
+
+        if (!$VALID->inGET('page') OR $VALID->inGET('page') == '') {
+            $page = 'index.php';
+        }
+
         if ($VALID->inGET('route') != '') {
-            $str = str_replace('controller', 'view/' . $SET->template(), getenv('DOCUMENT_ROOT') . '/controller/' . $SET->path() . '/pages/' . $VALID->inGET('route') . '/index.php');
+            $str = str_replace('controller', 'view/' . $SET->template(), getenv('DOCUMENT_ROOT') . '/controller/' . $SET->path() . '/pages/' . $VALID->inGET('route') . '/' . $page);
         } else {
             $str = str_replace('controller', 'view/' . $SET->template(), getenv('DOCUMENT_ROOT') . '/controller/' . $SET->path() . '/pages/dashboard/index.php');
         }
