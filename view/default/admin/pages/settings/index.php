@@ -18,21 +18,21 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <div class="settings"><a href="?route=settings/countries" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-globe glyph-xs"> </span></a><?php echo lang('title_countries_index') ?></div>
+                                    <div class="settings"><a href="?route=settings/countries" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-globe glyph-xs"> </span></a><?php echo lang('title_settings_countries_index') ?></div>
                                 </td>
                                 <td>
-                                    <div class="settings"><a href="?route=settings/zones" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-adjust glyph-xs"> </span></a><?php echo lang('title_zones_index') ?></div>
+                                    <div class="settings"><a href="?route=settings/zones" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-adjust glyph-xs"> </span></a><?php echo lang('title_settings_zones_index') ?></div>
                                 </td>
                                 <td>
-                                    <div class="settings"><a href="?route=settings/taxes" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-briefcase glyph-xs"> </span></a><?php echo lang('title_taxes_index') ?></div>
+                                    <div class="settings"><a href="?route=settings/taxes" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-briefcase glyph-xs"> </span></a><?php echo lang('title_settings_taxes_index') ?></div>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <div class="settings"><a href="?route=settings/length" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-road glyph-xs"> </span></a><?php echo lang('title_length_index') ?></div>
+                                    <div class="settings"><a href="?route=settings/length" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-road glyph-xs"> </span></a><?php echo lang('title_settings_length_index') ?></div>
                                 </td>
                                 <td>
-                                    <div class="settings"><a href="?route=settings/weight" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-scale glyph-xs"> </span></a><?php echo lang('title_weight_index') ?></div>
+                                    <div class="settings"><a href="?route=settings/weight" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-scale glyph-xs"> </span></a><?php echo lang('title_settings_weight_index') ?></div>
                                 </td>
                                 <td>
                                     <div class="settings"><a href="#" class="btn btn-default btn-xs disabled"><span class="glyphicon glyphicon-comment glyph-xs"> </span></a>Языки</div>
@@ -40,21 +40,21 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <div class="settings"><a href="?route=settings/vendor_codes" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-tag glyph-xs"> </span></a><?php echo lang('title_vendor_codes_index') ?></div>
+                                    <div class="settings"><a href="?route=settings/vendor_codes" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-tag glyph-xs"> </span></a><?php echo lang('title_settings_vendor_codes_index') ?></div>
                                 </td>
                                 <td>
-                                    <div class="settings"><a href="?route=settings/units" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-flag glyph-xs"> </span></a><?php echo lang('title_units_index') ?></div>
+                                    <div class="settings"><a href="?route=settings/units" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-flag glyph-xs"> </span></a><?php echo lang('title_settings_units_index') ?></div>
                                 </td>
                                 <td>
-                                    <div class="settings"><a href="?route=settings/modules" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-hdd glyph-xs"> </span></a>Модули</div>
+                                    <div class="settings"><a href="?route=settings/modules" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-hdd glyph-xs"> </span></a><?php echo lang('title_settings_modules_index') ?></div>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <div class="settings"><a href="?route=settings/basic_settings" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-cog glyph-xs"> </span></a><?php echo lang('title_basic_settings_index') ?></div>
+                                    <div class="settings"><a href="?route=settings/basic_settings" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-cog glyph-xs"> </span></a><?php echo lang('title_settings_basic_settings_index') ?></div>
                                 </td>
                                 <td>
-                                    <div class="settings"><a href="?route=settings/currencies" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-euro glyph-xs"> </span></a><?php echo lang('title_currencies_index') ?></div>
+                                    <div class="settings"><a href="?route=settings/currencies" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-euro glyph-xs"> </span></a><?php echo lang('title_settings_currencies_index') ?></div>
                                 </td>
                                 <td>
                                     <div class="settings"><a href="#" class="btn btn-default btn-xs disabled"><span class="glyphicon glyphicon-pushpin glyph-xs"> </span></a>Состояние заказа</div>
@@ -68,7 +68,7 @@
                                     <div class="settings"><a href="#" class="btn btn-default btn-xs disabled"><span class="glyphicon glyphicon-picture glyph-xs"> </span></a>Изображения</div>
                                 </td>
                                 <td>
-                                    <div class="settings"><a href="?route=settings/templates" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-th-large glyph-xs"> </span></a><?php echo lang('title_templates_index') ?></div>
+                                    <div class="settings"><a href="?route=settings/templates" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-th-large glyph-xs"> </span></a><?php echo lang('title_settings_templates_index') ?></div>
                                 </td>
                             </tr>                            
                         </tbody>

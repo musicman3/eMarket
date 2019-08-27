@@ -108,7 +108,7 @@ class Set {
     public function titleDir() {
         $VALID = new \eMarket\Core\Valid;
 
-        $title_dir = basename($VALID->inGET('route'));
+        $title_dir = str_replace('/', '_', $VALID->inGET('route'));
         if ($title_dir == '' && self::path() == 'catalog') {
             $title_dir = '';
         }

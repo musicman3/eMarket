@@ -6,26 +6,27 @@
 [admin]
 
 ;TITLE
-title_basic_settings_index = Basic settings
+title_settings_basic_settings_index = Basic settings
 title_categories_index = Categories
-title_countries_index = Countries
-title_currencies_index = Currencies
+title_settings_zones_listing_index = Countries and regions
+title_settings_countries_index = Countries
+title_settings_currencies_index = Currencies
 title_dashboard_index = Administration Panel
 title_error_log_index = Error log
-title_length_index = Length
-title_listing_index = Countries and regions
+title_settings_length_index = Length
 title_login_index = Login page
 title_manufacturers_index = Manufacturers
-title_modules_index = Modules
-title_regions_index = Regions
+title_settings_modules_index = Modules
+title_settings_modules_edit_index = Edit
+title_settings_countries_regions_index = Regions
 title_settings_index = Settings
 title_stock_index = Stock
-title_taxes_index = Taxes
-title_templates_index = Template layout
-title_units_index = Units
-title_vendor_codes_index = Vendor codes
-title_weight_index = Weight
-title_zones_index = Zones
+title_settings_taxes_index = Taxes
+title_settings_templates_index = Template layout
+title_settings_units_index = Units
+title_settings_vendor_codes_index = Vendor codes
+title_settings_weight_index = Weight
+title_settings_zones_index = Zones
 
 ;MENU_BUTTONS
 menu_catalog = Catalog
