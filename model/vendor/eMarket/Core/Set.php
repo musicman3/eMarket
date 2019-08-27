@@ -110,7 +110,7 @@ class Set {
 
         $title_dir = str_replace('/', '_', $VALID->inGET('route'));
         if ($VALID->inGET('object') != '') {
-            $title_dir = $title_dir . '_' . $VALID->inGET('object');
+            $title_dir = $title_dir . '_page_' . $VALID->inGET('object');
         }
         
         if ($title_dir == '' && self::path() == 'catalog') {
