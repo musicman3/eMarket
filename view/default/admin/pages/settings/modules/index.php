@@ -65,7 +65,7 @@
                                                     </div>
                                                 </form>
                                                 <div class="left">
-                                                    <button type="button" onClick='location.href = "?route=settings/modules&object=edit&type=payment&name=<?php echo $key ?>"' class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-edit"> </span></button>
+                                                    <button type="button" onClick='location.href = "?route=settings/modules/edit&type=payment&name=<?php echo $key ?>"' class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-edit"> </span></button>
                                                 </div>
                                             </td>
                                         </tr>
