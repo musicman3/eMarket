@@ -9,7 +9,7 @@
 <div class="panel-body">
 
     <div class="pull-right">
-	<input type="checkbox" data-toggle="switch" data-size="mini" data-on-text="ВКЛ." data-off-text="ВЫКЛ." name="switch" checked>
+	<input hidden type="checkbox" data-toggle="switch" data-size="mini" data-on-text="ВКЛ." data-off-text="ВЫКЛ." name="switch" checked>
     </div>
     <div class="pull-left">
 	<div class="text-left">Модуль оплаты ВасяПэй</div>
