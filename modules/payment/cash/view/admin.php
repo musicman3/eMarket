@@ -7,10 +7,16 @@
 ?>
 
 <div class="panel-body">
-    <input type="checkbox" name="switch" checked>
-    <div class="text-left">Модуль оплаты ВасяПэй</div>
-    <div class="text-left">Автор: Вася Пупкин</div>
-    <div class="text-left">Версия: 1.0</div>
+
+    <div class="pull-right">
+	<input type="checkbox" name="switch" checked>
+    </div>
+    <div class="pull-left">
+	<div class="text-left">Модуль оплаты ВасяПэй</div>
+	<div class="text-left">Автор: Вася Пупкин</div>
+	<div class="text-left">Версия: 1.0</div>
+    </div>
+    <div class="clearfix"></div>
     </br>
     <div class="form-group">
         <div class="input-group has-error">
