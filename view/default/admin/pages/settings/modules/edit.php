@@ -18,5 +18,8 @@
             </h3>
         </div>
 
+        <!--Выводим данные из модуля-->
+        <?php require_once (ROOT . '/modules/' . $VALID->inGET('type') . '/' . $VALID->inGET('name') . '/controller/admin.php'); ?>
+
     </div>
 </div>

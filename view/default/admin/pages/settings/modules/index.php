@@ -64,10 +64,15 @@
                                                         <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-remove"> </span></button>
                                                     </div>
                                                 </form>
-                                                <!--Вызов модального окна для редактирования-->
-                                                <div class="left">
-                                                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#edit" data-edit="<?php echo 'payment_' . $key ?>"><span class="glyphicon glyphicon-edit"></span></button>
-                                                </div>
+                                                <form id="form_edit<?php echo '_payment_' . $key ?>" name="form_edit" enctype="multipart/form-data">
+                                                    <input hidden name="route" value="settings/modules">
+                                                    <input hidden name="object" value="edit">
+                                                    <input hidden name="type" value="payment">
+                                                    <input hidden name="name" value="<?php echo $key ?>">
+                                                    <div class="left">
+                                                        <button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-edit"> </span></button>
+                                                    </div>
+                                                </form>
                                             </td>
                                         </tr>
                                         <?php
