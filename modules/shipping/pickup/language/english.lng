@@ -5,6 +5,8 @@
 
 [all]
 shipping_pickup_name = Pickup
+shipping_pickup_author = eMarket
+shipping_pickup_version = 1.0
 
 [admin]
 
