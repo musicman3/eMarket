@@ -21,7 +21,7 @@
             <!-- Панели -->
             <ul class="nav nav-tabs">
                 <!-- Оплата -->
-                <?php if ($VALID->inGET('active') == 'payment' OR ! $VALID->inGET('active')) { ?>
+                <?php if ($VALID->inGET('active') == 'payment' OR !$VALID->inGET('active')) { ?>
                     <li class="active"><a data-toggle="tab" href="#payment_modules"><?php echo lang('payment_modules') ?></a></li>
                 <?php } else { ?>
                     <li><a data-toggle="tab" href="#payment_modules"><?php echo lang('payment_modules') ?></a></li>
@@ -53,7 +53,7 @@
             <div class="tab-content">
 
                 <!-- Оплата -->
-                <?php if ($VALID->inGET('active') == 'payment' OR ! $VALID->inGET('active')) { ?>
+                <?php if ($VALID->inGET('active') == 'payment' OR !$VALID->inGET('active')) { ?>
                     <div id="payment_modules" class="tab-pane fade in active">
                     <?php } else { ?>
                         <div id="payment_modules" class="tab-pane fade">
