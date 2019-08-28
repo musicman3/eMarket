@@ -22,10 +22,11 @@ class Ajax {
      */
     public function action($url) {
         $VALID = new \eMarket\Core\Valid;
+
         ?>
         <!-- Модальное окно "Добавить" -->
         <script type="text/javascript">
-            function callAdd(name) {
+            function callAdd(name, url) {
                 if (name === undefined) {
                     var msg = $('#form_add').serialize();
                 } else {
@@ -48,9 +49,13 @@ class Ajax {
                 // Обновление страницы
                 function AjaxSuccess(data) {
                     setTimeout(function () {
-                        document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
+                        if (url === undefined) {
+                            document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
+                        } else {
+                            document.location.href = url;
+                        }
                     }, 100);
-            }
+                }
             }
         </script>
 
@@ -83,7 +88,7 @@ class Ajax {
 
         <!-- Функция "Удалить" -->
         <script type="text/javascript">
-            function callDelete(id) {
+            function callDelete(id, url) {
                 var msg = $('#form_delete' + id).serialize();
                 // Установка синхронного запроса для jQuery.ajax
                 jQuery.ajaxSetup({async: false});
@@ -102,7 +107,11 @@ class Ajax {
                 // Обновление страницы
                 function AjaxSuccess(data) {
                     setTimeout(function () {
-                        document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
+                        if (url === undefined) {
+                            document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
+                        } else {
+                            document.location.href = url;
+                        }
                     }, 100);
                 }
             }
@@ -123,6 +132,7 @@ class Ajax {
         $FILES = new \eMarket\Other\Files;
 
         $resize_max = $FILES->imgResizeMax($resize_param);
+
         ?>
 
         <script type="text/javascript">
@@ -303,6 +313,7 @@ class Ajax {
         $FILES = new \eMarket\Other\Files;
 
         $resize_max = $FILES->imgResizeMax($resize_param);
+
         ?>
 
         <script type="text/javascript">
@@ -480,6 +491,7 @@ class Ajax {
      */
     public function сart($url) {
         $VALID = new \eMarket\Core\Valid;
+
         ?>
         <!-- Добавить товар -->
         <script type="text/javascript">
@@ -488,8 +500,8 @@ class Ajax {
                 jQuery.ajaxSetup({async: false});
                 jQuery.get('<?php echo $url ?>',
                         {add_to_cart: id,
-                        quantity_product_id: id,
-                        pcs_product: pcs},
+                            quantity_product_id: id,
+                            pcs_product: pcs},
                         AjaxSuccess);
                 // Обновление страницы
                 function AjaxSuccess(data) {
@@ -538,4 +550,5 @@ class Ajax {
     }
 
 }
+
 ?>

@@ -9,6 +9,7 @@
 //$MODULES->init();
 
 $payment_installed = $PDO->getColAssoc("SELECT name FROM " . TABLE_MODULES . " WHERE type=?", ['payment']);
+$shipping_installed = $PDO->getColAssoc("SELECT name FROM " . TABLE_MODULES . " WHERE type=?", ['shipping']);
 
 if ($VALID->inPOST('add')){
     $module = explode('_', $VALID->inPOST('add'));
