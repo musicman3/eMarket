@@ -27,11 +27,12 @@
                 <div class="text-left"><?php echo lang('modules_author') ?> <?php echo lang($VALID->inGET('type') . '_' . $VALID->inGET('name') . '_author') ?></div>
                 <div class="text-left"><?php echo lang('modules_version') ?> <?php echo lang($VALID->inGET('type') . '_' . $VALID->inGET('name') . '_version') ?></div>
             </div>
-            <div class="clearfix"></div>
-        </div>
+            <div class="clearfix"></div></br>
 
         <!--Выводим данные из модуля-->
         <?php require_once (ROOT . '/modules/' . $VALID->inGET('type') . '/' . $VALID->inGET('name') . '/controller/admin.php'); ?>
+        
+        </div>
 
     </div>
 </div>
