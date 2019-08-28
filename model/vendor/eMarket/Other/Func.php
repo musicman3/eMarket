@@ -60,7 +60,7 @@ class Func {
      * 
      * $val = 2; - это ключ ячейки Город [2] из которого берется значение Города для нового одномерного массива
      *
-     * $mass = $FUNC->filterArrayToKey($array, $value_key, $name_key, $id, $val);
+     * $mass = $FUNC->filterArrayToKey($array, $value_key, $name_key, $val);
      * 
      * на выходе получаем сортированный массив
      * 
