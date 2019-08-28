@@ -10,6 +10,8 @@
 
 $payment_installed = $PDO->getColAssoc("SELECT name FROM " . TABLE_MODULES . " WHERE type=?", ['payment']);
 $shipping_installed = $PDO->getColAssoc("SELECT name FROM " . TABLE_MODULES . " WHERE type=?", ['shipping']);
+$cart_installed = $PDO->getColAssoc("SELECT name FROM " . TABLE_MODULES . " WHERE type=?", ['cart']);
+$other_installed = $PDO->getColAssoc("SELECT name FROM " . TABLE_MODULES . " WHERE type=?", ['other']);
 
 if ($VALID->inPOST('add')){
     $module = explode('_', $VALID->inPOST('add'));
