@@ -129,7 +129,7 @@
 
                                                 <?php ?>
                                                 <td class="al-text-w">
-                                                    <form id="form_add<?php echo '_payment_' . $key ?>" name="form_add" action="javascript:void(null);" onsubmit="callAdd('form_add<?php echo '_payment_' . $key ?>', '?route=settings/modules&active=add')" enctype="multipart/form-data">
+                                                    <form id="form_add<?php echo '_payment_' . $key ?>" name="form_add" action="javascript:void(null);" onsubmit="callAdd('form_add<?php echo '_payment_' . $key ?>', '?route=settings/modules&active=payment')" enctype="multipart/form-data">
                                                         <input hidden name="add" value="<?php echo 'payment_' . $key ?>">
                                                         <div class="right">
                                                             <button type="submit" name="add_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-install') ?>"><span class="glyphicon glyphicon-plus"> </span></button>
