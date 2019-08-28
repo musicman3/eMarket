@@ -42,7 +42,7 @@
                     } else {
                         $class_tab = 'tab-pane fade';
                     }
-                    $installed_arr = $FUNC->filterArrayToKey($installed, 'type', $type, 'name');
+                    $installed_filter = $FUNC->filterArrayToKey($installed, 'type', $type, 'name');
 
                     ?>
                     <div id="<?php echo $type ?>_modules" class="<?php echo $class_tab ?>">
@@ -65,7 +65,7 @@
                                 <tbody>
                                     <?php
                                     foreach ($_SESSION['MODULES_INFO'][$type] as $key) {
-                                        if (in_array($key, $installed_arr)) {
+                                        if (in_array($key, $installed_filter)) {
 
                                             ?>
                                             <tr>
@@ -109,7 +109,7 @@
                                 <tbody>
                                     <?php
                                     foreach ($_SESSION['MODULES_INFO'][$type] as $key) {
-                                        if (!in_array($key, $installed_arr)) {
+                                        if (!in_array($key, $installed_filter)) {
 
                                             ?>
 
