@@ -5,6 +5,8 @@
 
 [all]
 payment_cash_name = Наличными
+payment_cash_author = eMarket
+payment_cash_version = 1.0
 
 [admin]
 

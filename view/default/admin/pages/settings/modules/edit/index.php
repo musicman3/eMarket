@@ -17,6 +17,18 @@
                 <div class="clearfix"></div>
             </h3>
         </div>
+        
+        <div class="panel-body">
+            <div class="pull-right">
+                <input hidden type="checkbox" data-off-color="danger" data-size="mini" data-on-text="ВКЛ." data-off-text="ВЫКЛ." name="switch" checked>
+            </div>
+            <div class="pull-left">
+                <div class="text-left"><?php echo lang('modules_name') ?> <?php echo lang($VALID->inGET('type') . '_' . $VALID->inGET('name') . '_name') ?></div>
+                <div class="text-left"><?php echo lang('modules_author') ?> <?php echo lang($VALID->inGET('type') . '_' . $VALID->inGET('name') . '_author') ?></div>
+                <div class="text-left"><?php echo lang('modules_version') ?> <?php echo lang($VALID->inGET('type') . '_' . $VALID->inGET('name') . '_version') ?></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
 
         <!--Выводим данные из модуля-->
         <?php require_once (ROOT . '/modules/' . $VALID->inGET('type') . '/' . $VALID->inGET('name') . '/controller/admin.php'); ?>

@@ -121,6 +121,9 @@ cart_modules = Cart
 other_modules = Other
 installed_modules = Installed modules
 uninstalled_modules = Modules available for installation
+modules_name = Modules name:
+modules_author = Author:
+modules_version = Version:
 
 ;BASIC SETTINGS
 lines_on_page = Lines on page

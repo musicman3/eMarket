@@ -122,6 +122,9 @@ cart_modules = Корзина
 other_modules = Другое
 installed_modules = Установленные модули
 uninstalled_modules = Модули, доступные для установки
+modules_name = Название модуля:
+modules_author = Автор:
+modules_version = Версия:
 
 ;BASIC SETTINGS
 lines_on_page = Строк на странице
