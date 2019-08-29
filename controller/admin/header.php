@@ -10,10 +10,9 @@ $menu_market = '0'; //МАГАЗИН
 $menu_sales = '1'; // ПРОДАЖИ
 $menu_marketing = '2'; //МАРКЕТИНГ
 $menu_count_linesparty = '3'; //КОНТРАГЕНТЫ
-$menu_modules = '4'; //МОДУЛИ
-$menu_tools = '5'; //ИНСТРУМЕНТЫ
-$menu_help = '6'; //ПОМОЩЬ
-$menu_exit = '7'; //ВЫХОД
+$menu_tools = '4'; //ИНСТРУМЕНТЫ
+$menu_help = '5'; //ПОМОЩЬ
+$menu_exit = '6'; //ВЫХОД
 //МАГАЗИН
 // параметры 1 уровня: [0] - url, [1] - Название, [2] - наличие подменю
 // параметры 2 уровня: [0] - url, [1] - картинка, [2] - Название, [3] - наличие target="_blank", [4] - наличие подменю
@@ -49,12 +48,6 @@ $level[$menu_count_linesparty] = array('#', 'Контрагенты', 'true');
 
 $menu[$menu_count_linesparty][0] = array('#', 'building.png', 'Юридические лица', '', 'false');
 $menu[$menu_count_linesparty][1] = array('#', 'people.png', 'Физические лица', '', 'false');
-
-//МОДУЛИ
-$level[$menu_modules] = array('#', 'Модули', 'true');
-
-$menu[$menu_modules][0] = array('#', 'payment.png', 'Модули оплаты', '', 'false');
-$menu[$menu_modules][1] = array('#', 'shipping.png', 'Модули доставки', '', 'false');
 
 //ИНСТРУМЕНТЫ
 $level[$menu_tools] = array('#', lang('menu_tools'), 'true');
