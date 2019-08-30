@@ -149,6 +149,7 @@ CREATE TABLE emkt_modules (
         sort int(3),
         install int(64),
         active int(64),
+        default_module int NOT NULL,
 	PRIMARY KEY (id))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
