@@ -11,7 +11,7 @@ $installed = $PDO->getColAssoc("SELECT name, type FROM " . TABLE_MODULES . "", [
 
 if ($VALID->inPOST('add')){
     $module = explode('_', $VALID->inPOST('add'));
-    $PDO->inPrepare("INSERT INTO " . TABLE_MODULES . " SET name=?, type=?, page=?, position=?, sort=?, install=?, active=?", [$module[1], $module[0], NULL, NULL, NULL, 1, 1]);
+    $PDO->inPrepare("INSERT INTO " . TABLE_MODULES . " SET name=?, type=?, page=?, position=?, sort=?, install=?, active=?, default_module=?", [$module[1], $module[0], NULL, NULL, NULL, 1, 1, 0]);
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
 }
