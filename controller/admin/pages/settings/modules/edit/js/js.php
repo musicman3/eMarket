@@ -14,5 +14,5 @@ $AJAX->action('?route=settings/modules');
 
 <!-- Инициализация bootstrap-switch -->
 <script type="text/javascript">
-    $("[name='switch']").bootstrapSwitch();
+    $('#switch').bootstrapSwitch();
 </script>

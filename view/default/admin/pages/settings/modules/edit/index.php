@@ -20,7 +20,7 @@
         
         <div class="panel-body">
             <div class="pull-right">
-                <input hidden type="checkbox" data-off-color="danger" data-size="mini" data-on-text="ВКЛ." data-off-text="ВЫКЛ." name="switch" checked>
+                <input hidden type="checkbox" data-off-color="danger" data-size="mini" data-on-text="ВКЛ." data-off-text="ВЫКЛ." name="switch" id="switch" checked>
             </div>
             <div class="pull-left">
                 <div class="text-left"><?php echo lang('modules_name') ?> <?php echo lang($VALID->inGET('type') . '_' . $VALID->inGET('name') . '_name') ?></div>
