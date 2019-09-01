@@ -13,7 +13,7 @@
             <!--Выводим уведомление об успешном действии-->
             <?php $MESSAGES->alert(); ?>
             <h3 class="panel-title">
-                <div class="pull-left"><a class="btn btn-primary btn-xs" href="?route=settings/modules&active=<?php echo $VALID->inGET('type') ?>"><span class="back glyphicon glyphicon-share-alt"></span></a> <?php echo lang($VALID->inGET('type') . '_' . $VALID->inGET('name') . '_name') ?></div>
+                <div class="pull-left"><button type="button" onClick='location.href = "?route=settings/modules&active=<?php echo $VALID->inGET('type') ?>"' class="btn btn-primary btn-xs"><span class="back glyphicon glyphicon-share-alt"></span></button> <?php echo lang($VALID->inGET('type') . '_' . $VALID->inGET('name') . '_name') ?></div>
                 <div class="clearfix"></div>
             </h3>
         </div>

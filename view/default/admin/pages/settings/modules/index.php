@@ -13,7 +13,7 @@
             <!--Выводим уведомление об успешном действии-->
             <?php $MESSAGES->alert(); ?>
             <h3 class="panel-title">
-                <div class="pull-left"><a class="btn btn-primary btn-xs" href="?route=settings"><span class="back glyphicon glyphicon-share-alt"></span></a> <?php echo lang('title_' . $SET->titleDir() . '_index') ?></div>
+                <div class="pull-left"><button type="button" onClick='location.href = "?route=settings"' class="btn btn-primary btn-xs"><span class="back glyphicon glyphicon-share-alt"></span></button> <?php echo lang('title_' . $SET->titleDir() . '_index') ?></div>
                 <div class="clearfix"></div>
             </h3>
         </div>

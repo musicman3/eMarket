@@ -20,7 +20,7 @@
                     <!--Выводим уведомление об успешном действии-->
                     <?php $MESSAGES->alert(); ?>
                     <h3 class="panel-title">
-                        <div class="pull-left"><a class="btn btn-primary btn-xs" href="<?php echo $_SESSION['country_page'] ?>"><span class="back glyphicon glyphicon-share-alt"></span></a> <?php echo lang('title_' . $SET->titleDir() . '_index') ?></div>
+                        <div class="pull-left"><button type="button" onClick='location.href = "<?php echo $_SESSION['country_page'] ?>"' class="btn btn-primary btn-xs"><span class="back glyphicon glyphicon-share-alt"></span></button> <?php echo lang('title_' . $SET->titleDir() . '_index') ?></div>
                         <div class="clearfix"></div>
                     </h3>
                 </div>
