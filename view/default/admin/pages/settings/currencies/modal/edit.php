@@ -99,8 +99,8 @@ require(ROOT . '/controller/admin/pages/settings/currencies/modal/edit.php');
                             </div>
                         </div>
                         <div class="form-group">
+                            <input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" id="default_value_currencies_edit" type="checkbox" name="default_value_currencies_edit">
                             <label for="default_value_currencies_edit"><?php echo lang('default_set') ?> </label>
-                            <input class="check-box" id="default_value_currencies_edit" type="checkbox" name="default_value_currencies_edit">
                         </div>
                     </div>
                 </div>

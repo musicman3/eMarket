@@ -70,8 +70,8 @@ require(ROOT . '/controller/admin/pages/settings/length/modal/edit.php');
                             </div>
                         </div>
                         <div class="form-group">
+                            <input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" type="checkbox" name="default_length_edit" id="default_length_edit">
                             <label for="default_length_edit"><?php echo lang('default_set') ?> </label>
-                            <input class="check-box" type="checkbox" name="default_length_edit" id="default_length_edit">
                         </div>
                     </div>
                 </div>

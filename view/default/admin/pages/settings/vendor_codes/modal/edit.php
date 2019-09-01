@@ -66,8 +66,8 @@ require(ROOT . '/controller/admin/pages/settings/vendor_codes/modal/edit.php');
 
                         ?>
                         <div class="form-group">
+                            <input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="default_vendor_code_edit" id="default_vendor_code_edit" type="checkbox" checked>
                             <label for="default_vendor_code_edit"><?php echo lang('default_set') ?> </label>
-                            <input class="check-box" name="default_vendor_code_edit" id="default_vendor_code_edit" type="checkbox">
                         </div>
                     </div>
                 </div>

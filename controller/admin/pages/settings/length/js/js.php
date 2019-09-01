@@ -4,11 +4,16 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
+<link rel="stylesheet" href="/ext/bootstrap-switch/css/bootstrap-switch.min.css" type="text/css"/>
+<script type="text/javascript" src="/ext/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+<script type="text/javascript">
+    $('#default_length').bootstrapSwitch();
+</script>
 <?php if (isset($name_edit)) { ?>
     <!-- Загрузка данных в модальное окно -->
     <script type="text/javascript">
         $('#edit').on('show.bs.modal', function (event) {
-            
+            $('#default_length_edit').bootstrapSwitch('destroy', true);
             var button = $(event.relatedTarget);
             var modal_id = button.data('edit'); // Получаем ID из data-edit при клике на кнопку редактирования
             // Получаем массивы данных
@@ -27,6 +32,7 @@
             $('#js_edit').val(modal_id);
             // Меняем значение чекбокса
             $('#default_length_edit').prop('checked', status[modal_id]);
+            $('#default_length_edit').bootstrapSwitch();
         });
     </script>
 <?php

@@ -70,8 +70,8 @@ require(ROOT . '/controller/admin/pages/settings/weight/modal/edit.php');
                             </div>
                         </div>
                         <div class="form-group">
+                            <input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="default_weight_edit" id="default_weight_edit" type="checkbox">
                             <label for="default_weight_edit"><?php echo lang('default_set') ?> </label>
-                            <input class="check-box" name="default_weight_edit" id="default_weight_edit" type="checkbox">
                         </div>
                     </div>
                 </div>

@@ -65,8 +65,8 @@ require(ROOT . '/controller/admin/pages/settings/units/modal/edit.php');
                         ?>
 
                         <div class="form-group">
+                            <input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="default_unit_edit" id="default_unit_edit" type="checkbox">
                             <label for="default_unit_edit"><?php echo lang('default_set') ?> </label>
-                            <input class="check-box" name="default_unit_edit" id="default_unit_edit" type="checkbox">
                         </div>
                     </div>
                 </div>

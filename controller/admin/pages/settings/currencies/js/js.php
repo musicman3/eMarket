@@ -5,11 +5,16 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 ?>
+<link rel="stylesheet" href="/ext/bootstrap-switch/css/bootstrap-switch.min.css" type="text/css"/>
+<script type="text/javascript" src="/ext/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+<script type="text/javascript">
+    $('#default_value_currencies').bootstrapSwitch();
+</script>
 <?php if (isset($name_edit)) { ?>
     <!-- Загрузка данных в модальное окно -->
     <script type="text/javascript">
         $('#edit').on('show.bs.modal', function (event) {
-
+            $('#default_value_currencies_edit').bootstrapSwitch('destroy', true);
             var button = $(event.relatedTarget);
             var modal_id = button.data('edit'); // Получаем ID из data-edit при клике на кнопку редактирования
             // Получаем массивы данных
@@ -35,6 +40,7 @@
             $('#js_edit').val(modal_id);
             // Меняем значение чекбокса
             $('#default_value_currencies_edit').prop('checked', status[modal_id]);
+            $('#default_value_currencies_edit').bootstrapSwitch();
             // Выбираем установленный селект
             if (symbol_position_edit[modal_id] === 'left') {
                 $('#symbol_position_currencies_edit option[value="left"]').prop('selected', true);
