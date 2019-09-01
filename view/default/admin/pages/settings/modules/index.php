@@ -22,7 +22,7 @@
             <ul class="nav nav-tabs">
                 <?php
                 foreach ($_SESSION['MODULES_INFO'] as $type => $name) {
-                    if ($VALID->inGET('active') == $type OR ( !$VALID->inGET('active') && $type == 'payment')) {
+                    if ($VALID->inGET('active') == $type OR (!$VALID->inGET('active') && $type == 'payment')) {
                         $class = ' class="active"';
                     } else {
                         $class = '';
@@ -37,7 +37,7 @@
             <div class="tab-content">
                 <?php
                 foreach ($_SESSION['MODULES_INFO'] as $type => $name) {
-                    if ($VALID->inGET('active') == $type OR ( !$VALID->inGET('active') && $type == 'payment')) {
+                    if ($VALID->inGET('active') == $type OR (!$VALID->inGET('active') && $type == 'payment')) {
                         $class_tab = 'tab-pane fade in active';
                     } else {
                         $class_tab = 'tab-pane fade';
