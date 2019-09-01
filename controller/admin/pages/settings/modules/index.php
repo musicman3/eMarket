@@ -23,6 +23,21 @@ if ($VALID->inPOST('delete')){
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
 }
+
+if ($VALID->inPOST('edit')){
+    
+    if ($VALID->inPOST('switch') == 'on'){
+        $active = 1;
+    }
+    if (!$VALID->inPOST('switch')){
+        $active = 0;
+    }
+    $module = explode('_', $VALID->inPOST('edit'));
+    $PDO->inPrepare("UPDATE " . TABLE_MODULES . " SET active=? WHERE name=? AND type=?", [$active, $module[1], $module[0]]);
+    // Выводим сообщение об успехе
+    $_SESSION['message'] = ['success', lang('action_completed_successfully')];
+}
+
 //$DEBUG->trace($payment_installed);
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
 $JS_END = __DIR__;

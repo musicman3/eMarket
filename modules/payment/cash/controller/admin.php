@@ -4,7 +4,6 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-
 // Загружаем разметку модуля
 require_once (__DIR__ . '../../view/admin.php');
 

@@ -61,7 +61,7 @@ class Ajax {
 
         <!-- Модальное окно "Редактировать" -->
         <script type="text/javascript">
-            function callEdit() {
+            function callEdit(url) {
                 var msg = $('#form_edit').serialize();
                 // Установка синхронного запроса для jQuery.ajax
                 jQuery.ajaxSetup({async: false});
@@ -80,7 +80,11 @@ class Ajax {
                 // Обновление страницы
                 function AjaxSuccess(data) {
                     setTimeout(function () {
-                        document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
+                        if (url === undefined) {
+                            document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
+                        } else {
+                            document.location.href = url;
+                        }
                     }, 100);
                 }
             }
