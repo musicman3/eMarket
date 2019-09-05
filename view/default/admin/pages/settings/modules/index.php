@@ -23,13 +23,13 @@
                 <?php
                 foreach ($_SESSION['MODULES_INFO'] as $type => $name) {
                     if ($VALID->inGET('active') == $type OR (!$VALID->inGET('active') && $type == 'payment')) {
-                        $class = ' class="active"';
+                        $class = '<li class="active>"';
                     } else {
-                        $class = '';
+                        $class = '<li>';
                     }
 
                     ?>
-                    <li<?php echo $class ?>><a data-toggle="tab" href="#<?php echo $type ?>_modules"><?php echo lang($type . '_modules') ?></a></li>
+                    <?php echo $class ?><a data-toggle="tab" href="#<?php echo $type ?>_modules"><?php echo lang($type . '_modules') ?></a></li>
                 <?php } ?>
             </ul>
 
