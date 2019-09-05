@@ -23,7 +23,7 @@
                 <?php
                 foreach ($_SESSION['MODULES_INFO'] as $type => $name) {
                     if ($VALID->inGET('active') == $type OR (!$VALID->inGET('active') && $type == 'payment')) {
-                        $class = '<li class="active>"';
+                        $class = '<li class="active">';
                     } else {
                         $class = '<li>';
                     }
