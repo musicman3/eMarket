@@ -20,6 +20,7 @@ class Eac {
      * @param array $TABLES (названия таблиц)
      * @param string $TOKEN (токен)
      * @param array $resize_param (параметры ресайза)
+     * @param array $resize_param_product (параметры ресайза фото товаров)
      * @return array array($idsx_real_parent_id, $parent_id)
      */
     public function start($TABLES, $TOKEN, $resize_param, $resize_param_product) {
