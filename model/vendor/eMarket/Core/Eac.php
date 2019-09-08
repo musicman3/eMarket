@@ -117,7 +117,7 @@ class Eac {
      * @param string $TABLE_CATEGORIES (название таблицы категорий)
      * @param string $TOKEN (токен)
      */
-    public function sortList($TABLE_CATEGORIES, $TOKEN) {
+    private function sortList($TABLE_CATEGORIES, $TOKEN) {
 
         $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
