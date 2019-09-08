@@ -9,8 +9,6 @@ require_once('vendor/autoload.php');
 //
 //СОЗДАЕМ ОБЪЕКТЫ CORE
 $AUTORIZE = new eMarket\Core\Autorize;
-$EAC = new eMarket\Core\Eac;
-$LANG = new eMarket\Core\Lang;
 $NAVIGATION = new eMarket\Core\Navigation;
 $MODULES = new eMarket\Core\Modules;
 $PDO = new eMarket\Core\Pdo;

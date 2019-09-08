@@ -5,16 +5,17 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-//
+$EAC = new eMarket\Core\Eac;
+
 $resize_param = [];
 array_push($resize_param, ['125', '94']); // ширина, высота
 //
 $resize_param_product = [];
 array_push($resize_param_product, ['125', '94']); // ширина, высота
-array_push($resize_param_product, ['200','150']);
-array_push($resize_param_product, ['325','244']);
-array_push($resize_param_product, ['525','394']);
-array_push($resize_param_product, ['850','638']);
+array_push($resize_param_product, ['200', '150']);
+array_push($resize_param_product, ['325', '244']);
+array_push($resize_param_product, ['525', '394']);
+array_push($resize_param_product, ['850', '638']);
 
 // Создаем массив используемых таблиц в EAC
 $TABLES = [
@@ -80,5 +81,4 @@ $finish = $navigate[1];
 // КОНЕЦ-> КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
 $JS_END = __DIR__;
-
 ?>
