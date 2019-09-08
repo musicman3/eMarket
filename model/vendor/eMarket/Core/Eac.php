@@ -13,7 +13,7 @@ namespace eMarket\Core;
  * @author eMarket
  * 
  */
-class Eac {
+final class Eac {
 
     /**
      * Инициализация EAC

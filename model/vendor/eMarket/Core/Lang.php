@@ -1,4 +1,5 @@
 <?php
+
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -13,7 +14,7 @@ namespace eMarket\Core;
  * @author eMarket
  * 
  */
-class Lang {
+final class Lang {
 
     /**
      * Подключение и парсинг языковых файлов
@@ -22,7 +23,7 @@ class Lang {
      * @param string $marker (маркер)
      * @return array $lang|$lang_all|$lang_trans
      */
-    function lang($default_language, $marker = null) {
+    public static function lang($default_language, $marker = null) {
 
         static $lang = null, $lang_trans = null, $lang_all = null;
         $TREE = new \eMarket\Core\Tree;
@@ -89,7 +90,7 @@ class Lang {
      * Установка языка по умолчанию
      *
      */
-    function defaultLang() {
+    public static function defaultLang() {
 
         $SET = new \eMarket\Core\Set;
         $VALID = new \eMarket\Core\Valid;
@@ -112,6 +113,7 @@ class Lang {
             $_SESSION['DEFAULT_LANGUAGE'] = $VALID->inGET('language');
         }
     }
+
 }
 
 ?>

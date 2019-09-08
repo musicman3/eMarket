@@ -1,4 +1,5 @@
 <?php
+
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -13,8 +14,8 @@ namespace eMarket\Core;
  * @author eMarket
  * 
  */
-class Pdo {
-    
+final class Pdo {
+
     // Счетчик запросов к БД
     public static $query_count = 0;
 
@@ -207,7 +208,7 @@ class Pdo {
         }
         return $result;
     }
-    
+
     /**
      * getRow для запроса данных из строки в виде одномерного массива.
      * Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах.
@@ -238,7 +239,7 @@ class Pdo {
             
         }
         return $result[0];
-    }    
+    }
 
     /**
      * getCellFalse выдает значение ячейки. Если ячейка не найдена то возвращает FALSE.
@@ -420,7 +421,7 @@ class Pdo {
         }
         return $result;
     }
-    
+
     /**
      * lastInsertId для запроса последнего вставленного ID
      * 
@@ -430,7 +431,7 @@ class Pdo {
 
         $result = self::connect()->lastInsertId();
         return $result;
-    }   
+    }
 
 }
 
