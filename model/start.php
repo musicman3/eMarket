@@ -4,7 +4,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 error_reporting(-1);
-ini_set('error_log', ROOT . '/work/errors.log');
+ini_set('error_log', __DIR__ . '/work/errors.log');
 
 $TIME_START = microtime(1); // Засекаем начальное время 
 //
