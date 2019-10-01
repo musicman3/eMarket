@@ -131,18 +131,6 @@ $text = "#****** Copyright © 2018 eMarket ******#
 # https://github.com/musicman3/eMarket #
 #**************************************#
 
-#Error log
-Options -Indexes
-php_flag ignore_repeated_errors off
-php_flag ignore_repeated_source off
-php_flag track_errors on
-php_flag display_errors on
-php_flag display_startup_errors on
-php_flag log_errors on
-php_flag mysql.trace_mode on
-php_value error_reporting -1
-php_value error_log " . ROOT . "/model/work/errors.log
-
 RewriteEngine On
 #Redirect
 RewriteCond %{DOCUMENT_ROOT}/controller/catalog/$1 -d
