@@ -9,15 +9,31 @@ $AJAX->action('?route=settings/basic_settings');
 ?>
 
 <script type="text/javascript">
-    var smtp_status = <?php echo $smtp_status ?>;
-    if (smtp_status === 0) {
+    if ($("#smtp_status option:selected").val() === '1') {
         $('#smtp_auth').attr('disabled', 'disabled');
         $('#host_email').attr('disabled', 'disabled');
         $('#username_email').attr('disabled', 'disabled');
         $('#password_email').attr('disabled', 'disabled');
         $('#smtp_secure').attr('disabled', 'disabled');
         $('#smtp_port').attr('disabled', 'disabled');
-    }else{
-        
     }
+
+    $('#smtp_status').change(function (event) {
+        if ($("#smtp_status option:selected").val() === '1') {
+            $('#smtp_auth').attr('disabled', 'disabled');
+            $('#host_email').attr('disabled', 'disabled');
+            $('#username_email').attr('disabled', 'disabled');
+            $('#password_email').attr('disabled', 'disabled');
+            $('#smtp_secure').attr('disabled', 'disabled');
+            $('#smtp_port').attr('disabled', 'disabled');
+        } else {
+            $('#smtp_auth').removeAttr('disabled');
+            $('#host_email').removeAttr('disabled');
+            $('#username_email').removeAttr('disabled');
+            $('#password_email').removeAttr('disabled');
+            $('#smtp_secure').removeAttr('disabled');
+            $('#smtp_port').removeAttr('disabled');
+        }
+    });
+
 </script>
