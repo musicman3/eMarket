@@ -30,6 +30,7 @@
         <link rel="stylesheet" href="/ext/bootstrap/css/bootstrap-multiselect.css" type="text/css"/>
         <script type="text/javascript" src="/ext/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/ext/jquery/ui/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="/ext/jquery/ui/jquery.ui.touch-punch.min.js"></script>
 
         <!-- Всплывающие подсказки" -->
         <script type="text/javascript">
