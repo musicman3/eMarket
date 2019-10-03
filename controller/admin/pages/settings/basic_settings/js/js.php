@@ -35,5 +35,4 @@ $AJAX->action('?route=settings/basic_settings');
             $('#smtp_port').removeAttr('disabled');
         }
     });
-
 </script>
