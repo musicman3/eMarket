@@ -83,11 +83,11 @@
                             <div class="col-sm-9">
                                 <select name="smtp_status" id="smtp_status" class="input-sm form-control">
                                     <?php if ($smtp_status == 1) { ?>
-                                        <option value="0" selected><?php echo lang('debug_on') ?></option>
-                                        <option value="1"><?php echo lang('debug_off') ?></option>
+                                        <option value="on" selected><?php echo lang('debug_on') ?></option>
+                                        <option value="off"><?php echo lang('debug_off') ?></option>
                                     <?php } else { ?>
-                                        <option value="0"><?php echo lang('debug_on') ?></option>
-                                        <option value="1" selected><?php echo lang('debug_off') ?></option>
+                                        <option value="on"><?php echo lang('debug_on') ?></option>
+                                        <option value="off" selected><?php echo lang('debug_off') ?></option>
                                     <?php } ?>
                                 </select>
                             </div>

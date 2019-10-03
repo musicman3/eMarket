@@ -9,7 +9,7 @@ $AJAX->action('?route=settings/basic_settings');
 ?>
 
 <script type="text/javascript">
-    if ($("#smtp_status option:selected").val() === '1') {
+    if ($("#smtp_status option:selected").val() === 'off') {
         $('#smtp_auth').attr('disabled', 'disabled');
         $('#host_email').attr('disabled', 'disabled');
         $('#username_email').attr('disabled', 'disabled');
@@ -19,7 +19,7 @@ $AJAX->action('?route=settings/basic_settings');
     }
 
     $('#smtp_status').change(function (event) {
-        if ($("#smtp_status option:selected").val() === '1') {
+        if ($("#smtp_status option:selected").val() === 'off') {
             $('#smtp_auth').attr('disabled', 'disabled');
             $('#host_email').attr('disabled', 'disabled');
             $('#username_email').attr('disabled', 'disabled');
