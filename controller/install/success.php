@@ -142,9 +142,9 @@ $fp = fopen(ROOT . '/.htaccess', "w+");
 fwrite($fp, $text);
 fclose($fp);
 
-// Если есть файл конфигурации, то ставим на него права 644
+// Если есть файл .htaccess, то ставим на него права 644
 if (file_exists(ROOT . '/.htaccess')) {
-    chmod($ROOT . '/.htaccess', 0644);
+    chmod(ROOT . '/.htaccess', 0644);
 }
 
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
