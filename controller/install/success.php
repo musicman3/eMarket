@@ -1,4 +1,5 @@
 <?php
+
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-= 
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -82,18 +83,18 @@ $config = '<?php' . "\n" .
         '  define(\'TABLE_ZONES_VALUE\', \'' . $tab_zones_value . '\');' . "\n" .
         '?>';
 
-// Если есть файл конфигурации, то ставим на него права 777
-if (file_exists($ROOT . '/model/configure/configure.php') && !is_writeable($ROOT . '/model/configure/configure.php')) {
-    chmod($ROOT . 'model/configure/configure.php', 0777);
-}
-// и записываем в него данные
-if (file_exists($ROOT . '/model/configure/configure.php') && is_writeable($ROOT . '/model/configure/configure.php')) {
-    $fp = fopen($ROOT . '/model/configure/configure.php', 'w');
-    fputs($fp, $config);
-    fclose($fp);
-} else {
+// Создаем файл конфигурации и записываем в него данные
+$fpd = fopen($ROOT . '/model/configure/configure.php', 'w+');
+fputs($fpd, $config);
+fclose($fpd);
 
-    // Если файла конфигурации нет, то переадресуем на страницу ошибки
+// Если есть файл конфигурации, то ставим на него права 644
+if (file_exists($ROOT . '/model/configure/configure.php')) {
+    chmod($ROOT . '/model/configure/configure.php', 0644);
+}
+
+// Если файла конфигурации нет или он недоступен, то переадресуем на страницу ошибки
+if (!file_exists($ROOT . '/model/configure/configure.php')) {
     header('Location: /controller/install/error.php?file_configure_not_found=true');
 }
 
@@ -110,7 +111,6 @@ if ($db_famyly == 'innodb') {
 
 // Если файла нет, то
 if (!file_exists($file_name)) {
-
     // Если отсутствует файл БД, то переадресуем на страницу ошибки
     header('Location: /controller/install/error.php?file_not_found=true');
 }
@@ -138,18 +138,18 @@ RewriteRule ^(.*)$ controller/catalog/$1 [L,QSA]
 RewriteCond %{DOCUMENT_ROOT}/controller/catalog/$1 -f
 RewriteRule ^(.*)$ controller/catalog/$1 [L,QSA]";
 
-// Если файл существует, то ставим права 777
-if (file_exists(ROOT . '/.htaccess') && !is_writeable(ROOT . '/.htaccess')) {
-    chmod(ROOT . '/.htaccess', 0777);
-}
 // открываем файл
-$fp = fopen(ROOT . '/.htaccess', "w");
+$fp = fopen(ROOT . '/.htaccess', "w+");
 // записываем в файл текст
 fwrite($fp, $text);
 fclose($fp);
 
+// Если есть файл конфигурации, то ставим на него права 644
+if (file_exists(ROOT . '/.htaccess')) {
+    chmod($ROOT . '/.htaccess', 0644);
+}
+
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
 require_once(getenv('DOCUMENT_ROOT') . '/model/end.php');
 /* ------------------------------------------ */
-
 ?>
