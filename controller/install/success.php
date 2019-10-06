@@ -91,10 +91,8 @@ fclose($fpd);
 // Если есть файл конфигурации, то ставим на него права 644
 if (file_exists($ROOT . '/model/configure/configure.php')) {
     chmod($ROOT . '/model/configure/configure.php', 0644);
-}
-
+} else {
 // Если файла конфигурации нет или он недоступен, то переадресуем на страницу ошибки
-if (!file_exists($ROOT . '/model/configure/configure.php')) {
     header('Location: /controller/install/error.php?file_configure_not_found=true');
 }
 
