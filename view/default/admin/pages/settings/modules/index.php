@@ -3,7 +3,6 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-
 ?>
 
 <div id="settings_modules" class="container-fluid">
@@ -22,12 +21,11 @@
             <ul class="nav nav-tabs">
                 <?php
                 foreach ($_SESSION['MODULES_INFO'] as $type => $name) {
-                    if ($VALID->inGET('active') == $type OR (!$VALID->inGET('active') && $type == 'payment')) {
+                    if ($VALID->inGET('active') == $type OR ( !$VALID->inGET('active') && $type == 'payment')) {
                         $class = '<li class="active">';
                     } else {
                         $class = '<li>';
                     }
-
                     ?>
                     <?php echo $class ?><a data-toggle="tab" href="#<?php echo $type ?>_modules"><?php echo lang($type . '_modules') ?></a></li>
                 <?php } ?>
@@ -37,14 +35,13 @@
             <div class="tab-content">
                 <?php
                 foreach ($_SESSION['MODULES_INFO'] as $type => $name) {
-                    if ($VALID->inGET('active') == $type OR (!$VALID->inGET('active') && $type == 'payment')) {
+                    if ($VALID->inGET('active') == $type OR ( !$VALID->inGET('active') && $type == 'payment')) {
                         $class_tab = 'tab-pane fade in active';
                     } else {
                         $class_tab = 'tab-pane fade';
                     }
                     $installed_filter = $FUNC->filterArrayToKey($installed, 'type', $type, 'name');
                     $installed_filter_active = $FUNC->filterArrayToKey($installed_active, 'type', $type, 'name');
-
                     ?>
                     <div id="<?php echo $type ?>_modules" class="<?php echo $class_tab ?>">
 
@@ -68,36 +65,35 @@
                                     foreach ($_SESSION['MODULES_INFO'][$type] as $key) {
                                         if (in_array($key, $installed_filter)) {
                                             if (in_array($key, $installed_filter_active)) {
-                                                $active='<tr class="success">';
-                                            }else{
-                                                $active='<tr>';
+                                                $active = '<tr class="success">';
+                                            } else {
+                                                $active = '<tr>';
                                             }
                                             echo $active;
                                             ?>
-                                            
-                                                <td><?php echo lang($type . '_' . $key . '_name') ?></td>
 
-                                                <?php ?>
-                                                <td class="al-text-w">
-                                                    <form id="form_delete<?php echo $type . '_' . $key ?>" name="form_delete" action="javascript:void(null);" onsubmit="callDelete('<?php echo $type . '_' . $key ?>', '?route=settings/modules&active=<?php echo $type ?>')" enctype="multipart/form-data">
-                                                        <input hidden name="delete" value="<?php echo $type . '_' . $key ?>">
-                                                        <div class="right">
-                                                            <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-remove"> </span></button>
-                                                        </div>
-                                                    </form>
-                                                    <div class="left">
-                                                        <button type="button" onClick='location.href = "?route=settings/modules/edit&type=<?php echo $type ?>&name=<?php echo $key ?>"' class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-edit"> </span></button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <?php
-                                        }
+                                        <td><?php echo lang($type . '_' . $key . '_name') ?></td>
+
+                                        <?php ?>
+                                        <td class="al-text-w">
+                                            <form id="form_delete<?php echo $type . '_' . $key ?>" name="form_delete" action="javascript:void(null);" onsubmit="callDelete('<?php echo $type . '_' . $key ?>', '?route=settings/modules&active=<?php echo $type ?>')" enctype="multipart/form-data">
+                                                <input hidden name="delete" value="<?php echo $type . '_' . $key ?>">
+                                                <div class="right">
+                                                    <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-remove"> </span></button>
+                                                </div>
+                                            </form>
+                                            <div class="left">
+                                                <button type="button" onClick='location.href = "?route=settings/modules/edit&type=<?php echo $type ?>&name=<?php echo $key ?>"' class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-edit"> </span></button>
+                                            </div>
+                                        </td>
+                                        </tr>
+                                        <?php
                                     }
-
-                                    ?> 
+                                }
+                                ?> 
                                 </tbody>
                             </table>
-                        
+
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
@@ -116,7 +112,6 @@
                                     <?php
                                     foreach ($_SESSION['MODULES_INFO'][$type] as $key) {
                                         if (!in_array($key, $installed_filter)) {
-
                                             ?>
 
                                             <tr class="danger border">
@@ -135,13 +130,14 @@
                                             <?php
                                         }
                                     }
-
                                     ?> 
                                 </tbody>
                             </table>
                         </div>
-                    <?php }
-                } ?> 
+                    <?php
+                    }
+                }
+                ?> 
 
             </div>  
         </div> 
