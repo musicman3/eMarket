@@ -49,13 +49,13 @@
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th colspan="2">
-                                        </th>
+                                        <td colspan="2">
+                                        </td>
                                     </tr>
 
                                     <tr class="primary border">
-                                        <th><?php echo lang('installed_modules') ?></th>
-                                        <th class="al-text-w"></th>
+                                        <td><?php echo lang('installed_modules') ?></td>
+                                        <td class="al-text-w"></td>
                                     </tr>
 
                                 </thead>
@@ -97,13 +97,13 @@
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th colspan="2">
-                                        </th>
+                                        <td colspan="2">
+                                        </td>
                                     </tr>
 
                                     <tr class="primary border">
-                                        <th><?php echo lang('uninstalled_modules') ?></th>
-                                        <th class="al-text-w"></th>
+                                        <td><?php echo lang('uninstalled_modules') ?></td>
+                                        <td class="al-text-w"></td>
                                     </tr>
 
                                 </thead>
