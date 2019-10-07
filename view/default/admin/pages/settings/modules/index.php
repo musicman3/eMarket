@@ -67,7 +67,7 @@
                                             if (in_array($key, $installed_filter_active)) {
                                                 $active = '<tr class="success">';
                                             } else {
-                                                $active = '<tr>';
+                                                $active = '<tr class="danger">';
                                             }
                                             echo $active;
                                             ?>
