@@ -23,7 +23,7 @@
                         <div class="alert alert-warning"><?php echo $error_message ?></div>
                     <?php } ?>
 
-                    <button class="btn btn-info btn-sm" type="submit" name="button_go_login" /><?php echo lang('button_go_login') ?></button>
+                    <button class="btn btn-primary btn-sm" type="submit" name="button_go_login" /><?php echo lang('button_go_login') ?></button>
                 </form>
             </div>
         </div>
