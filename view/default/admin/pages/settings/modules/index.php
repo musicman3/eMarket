@@ -43,6 +43,7 @@
                         $class_tab = 'tab-pane fade';
                     }
                     $installed_filter = $FUNC->filterArrayToKey($installed, 'type', $type, 'name');
+                    $installed_filter_active = $FUNC->filterArrayToKey($installed_active, 'type', $type, 'name');
 
                     ?>
                     <div id="<?php echo $type ?>_modules" class="<?php echo $class_tab ?>">
@@ -66,9 +67,14 @@
                                     <?php
                                     foreach ($_SESSION['MODULES_INFO'][$type] as $key) {
                                         if (in_array($key, $installed_filter)) {
-
+                                            if (in_array($key, $installed_filter_active)) {
+                                                $active='<tr class="success">';
+                                            }else{
+                                                $active='<tr>';
+                                            }
+                                            echo $active;
                                             ?>
-                                            <tr>
+                                            
                                                 <td><?php echo lang($type . '_' . $key . '_name') ?></td>
 
                                                 <?php ?>
@@ -99,7 +105,7 @@
                                         </th>
                                     </tr>
 
-                                    <tr class="danger border">
+                                    <tr class="info border">
                                         <th><?php echo lang('uninstalled_modules') ?></th>
                                         <th class="al-text-w"></th>
                                     </tr>
@@ -113,7 +119,7 @@
 
                                             ?>
 
-                                            <tr>
+                                            <tr class="danger border">
                                                 <td><?php echo lang($type . '_' . $key . '_name') ?></td>
 
                                                 <?php ?>
