@@ -46,14 +46,10 @@
                     <div id="<?php echo $type ?>_modules" class="<?php echo $class_tab ?>">
 
                         <?php if (isset($_SESSION['MODULES_INFO'][$type])) { ?>
-                            <table class="table table-hover">
+                            <table class="table table-hover table-radius">
                                 <thead>
-                                    <tr>
-                                        <td colspan="2">
-                                        </td>
-                                    </tr>
 
-                                    <tr class="primary">
+                                    <tr class="bg-primary">
                                         <td><?php echo lang('installed_modules') ?></td>
                                         <td class="al-text-w"></td>
                                     </tr>
@@ -93,15 +89,11 @@
                                 ?> 
                                 </tbody>
                             </table>
-
-                            <table class="table table-hover">
+			    </br>
+                            <table class="table table-hover table-radius">
                                 <thead>
-                                    <tr>
-                                        <td colspan="2">
-                                        </td>
-                                    </tr>
 
-                                    <tr class="primary">
+                                    <tr class="bg-primary">
                                         <td><?php echo lang('uninstalled_modules') ?></td>
                                         <td class="al-text-w"></td>
                                     </tr>
