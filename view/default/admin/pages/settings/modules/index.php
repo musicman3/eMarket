@@ -53,7 +53,7 @@
                                         </th>
                                     </tr>
 
-                                    <tr class="info border">
+                                    <tr class="primary border">
                                         <th><?php echo lang('installed_modules') ?></th>
                                         <th class="al-text-w"></th>
                                     </tr>
@@ -101,7 +101,7 @@
                                         </th>
                                     </tr>
 
-                                    <tr class="info border">
+                                    <tr class="primary border">
                                         <th><?php echo lang('uninstalled_modules') ?></th>
                                         <th class="al-text-w"></th>
                                     </tr>
