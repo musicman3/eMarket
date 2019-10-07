@@ -53,7 +53,7 @@
                                         </td>
                                     </tr>
 
-                                    <tr class="primary border">
+                                    <tr class="primary">
                                         <td><?php echo lang('installed_modules') ?></td>
                                         <td class="al-text-w"></td>
                                     </tr>
@@ -101,7 +101,7 @@
                                         </td>
                                     </tr>
 
-                                    <tr class="primary border">
+                                    <tr class="primary">
                                         <td><?php echo lang('uninstalled_modules') ?></td>
                                         <td class="al-text-w"></td>
                                     </tr>
@@ -114,7 +114,7 @@
                                         if (!in_array($key, $installed_filter)) {
                                             ?>
 
-                                            <tr class="danger border">
+                                            <tr class="danger">
                                                 <td><?php echo lang($type . '_' . $key . '_name') ?></td>
 
                                                 <?php ?>
