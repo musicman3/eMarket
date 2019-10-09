@@ -74,10 +74,10 @@ if ($VALID->inPOST('email_name')) {
 // SMTP статус
 $smtp_status = $PDO->getCell("SELECT smtp_status FROM " . TABLE_BASIC_SETTINGS . "", []);
 if ($VALID->inPOST('smtp_status')) {
-    if ($VALID->inPOST('smtp_status') == lang('debug_on')) {
+    if ($VALID->inPOST('smtp_status') == 'on') {
         $smtp_status_set = 1;
     }
-    if ($VALID->inPOST('smtp_status') == lang('debug_off')) {
+    if ($VALID->inPOST('smtp_status') == 'off') {
         $smtp_status_set = 0;
     }
 
