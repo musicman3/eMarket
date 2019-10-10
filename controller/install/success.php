@@ -55,6 +55,7 @@ $config = '<?php' . "\n" .
         '  define(\'DB_USERNAME\', \'' . $login_db . '\');' . "\n" .
         '  define(\'DB_PASSWORD\', \'' . $password_db . '\');' . "\n" .
         '  define(\'DB_NAME\', \'' . $db_name . '\');' . "\n" .
+        '  define(\'DB_FAMILY\', \'' . $db_family . '\');' . "\n" .
         '  define(\'DB_PREFIX\', \'' . $db_pref . '\');' . "\n" .
         '  define(\'DB_PORT\', \'' . $db_port . '\');' . "\n" .
         '  define(\'DB_TYPE\', \'' . $db_type . '\');' . "\n" .

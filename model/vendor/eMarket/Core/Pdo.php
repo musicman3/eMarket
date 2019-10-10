@@ -53,6 +53,27 @@ final class Pdo {
     }
 
     /**
+     * Инсталляция файла БД
+     *
+     * @param string $path (путь к файлу БД)
+     */
+    public function dbInstall($path) {
+
+        // Подключаем файл БД
+        $file_name = $path . DB_TYPE . '.sql';
+
+        // Устанавливаем префикс БД
+        $buffer = str_replace('emkt_', DB_PREFIX, implode(file($file_name)));
+
+        //Устанавливаем семейство БД
+        if (DB_FAMILY == 'myisam') {
+            $buffer = str_replace('ENGINE=InnoDB', 'ENGINE=MyISAM', $buffer);
+        }
+
+        self::getExec($buffer);
+    }
+
+    /**
      * getQuery вместо self::connect()->query()
      *
      * @param string $sql (запрос из БД MYSQL)

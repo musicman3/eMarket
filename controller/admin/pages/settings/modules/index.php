@@ -10,27 +10,31 @@
 $installed = $PDO->getColAssoc("SELECT name, type FROM " . TABLE_MODULES . "", []);
 $installed_active = $PDO->getColAssoc("SELECT name, type FROM " . TABLE_MODULES . " WHERE active=?", [1]);
 
-if ($VALID->inPOST('add')){
+if ($VALID->inPOST('add')) {
     $module = explode('_', $VALID->inPOST('add'));
     $PDO->inPrepare("INSERT INTO " . TABLE_MODULES . " SET name=?, type=?, page=?, position=?, sort=?, install=?, active=?, default_module=?", [$module[1], $module[0], NULL, NULL, NULL, 1, 1, 0]);
+    
+    //Загружаем БД из файла
+    $PDO->dbInstall(ROOT . '/modules/' . $module[0] . '/' . $module[1] . '/install/');
+
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
 }
 
-if ($VALID->inPOST('delete')){
+if ($VALID->inPOST('delete')) {
     $module = explode('_', $VALID->inPOST('delete'));
-        // Удаляем
+    // Удаляем
     $PDO->inPrepare("DELETE FROM " . TABLE_MODULES . " WHERE name=? AND type=?", [$module[1], $module[0]]);
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
 }
 
-if ($VALID->inPOST('edit')){
-    
-    if ($VALID->inPOST('switch') == 'on'){
+if ($VALID->inPOST('edit')) {
+
+    if ($VALID->inPOST('switch') == 'on') {
         $active = 1;
     }
-    if (!$VALID->inPOST('switch')){
+    if (!$VALID->inPOST('switch')) {
         $active = 0;
     }
     $module = explode('_', $VALID->inPOST('edit'));
