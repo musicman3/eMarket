@@ -68,7 +68,7 @@
                                             echo $active;
                                             ?>
 
-                                        <td><?php echo lang($type . '_' . $key . '_name') ?></td>
+                                        <td><?php echo lang('modules_' . $type . '_' . $key . '_name') ?></td>
 
                                         <?php ?>
                                         <td class="al-text-w">
@@ -107,7 +107,7 @@
                                             ?>
 
                                             <tr class="danger">
-                                                <td><?php echo lang($type . '_' . $key . '_name') ?></td>
+                                                <td><?php echo lang('modules_' . $type . '_' . $key . '_name') ?></td>
 
                                                 <?php ?>
                                                 <td class="al-text-w">

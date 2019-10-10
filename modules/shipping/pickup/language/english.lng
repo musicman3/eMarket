@@ -4,16 +4,16 @@
 ;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
 
 [all]
-shipping_pickup_name = Pickup
-shipping_pickup_author = eMarket
-shipping_pickup_version = 1.0
+modules_shipping_pickup_name = Pickup
+modules_shipping_pickup_author = eMarket
+modules_shipping_pickup_version = 1.0
 
 [admin]
 
 ;TITLE
-shipping_pickup_admin_test = Test
+modules_shipping_pickup_admin_test = Test
 
 [catalog]
 
 ;TITLE
-shipping_pickup_catalog_test = Test
+modules_shipping_pickup_catalog_test = Test

@@ -13,7 +13,7 @@
             <!--Выводим уведомление об успешном действии-->
             <?php $MESSAGES->alert(); ?>
             <h3 class="panel-title">
-                <div class="pull-left"><span class="settings_back"><button type="button" onClick='location.href = "?route=settings/modules&active=<?php echo $VALID->inGET('type') ?>"' class="btn btn-primary btn-xs"><span class="back glyphicon glyphicon-share-alt"></span></button></span><span class="settings_name"><?php echo lang($VALID->inGET('type') . '_' . $VALID->inGET('name') . '_name') ?></span></div>
+                <div class="pull-left"><span class="settings_back"><button type="button" onClick='location.href = "?route=settings/modules&active=<?php echo $VALID->inGET('type') ?>"' class="btn btn-primary btn-xs"><span class="back glyphicon glyphicon-share-alt"></span></button></span><span class="settings_name"><?php echo lang('modules_' . $VALID->inGET('type') . '_' . $VALID->inGET('name') . '_name') ?></span></div>
                 <div class="clearfix"></div>
             </h3>
         </div>
@@ -25,9 +25,9 @@
                     <input hidden type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('button_on') ?>" data-off-text="<?php echo lang('button_off') ?>" name="switch" id="switch" <?php echo $switch ?>>
                 </div>
                 <div class="pull-left">
-                    <div class="text-left"><?php echo lang('modules_name') ?> <?php echo lang($VALID->inGET('type') . '_' . $VALID->inGET('name') . '_name') ?></div>
-                    <div class="text-left"><?php echo lang('modules_author') ?> <?php echo lang($VALID->inGET('type') . '_' . $VALID->inGET('name') . '_author') ?></div>
-                    <div class="text-left"><?php echo lang('modules_version') ?> <?php echo lang($VALID->inGET('type') . '_' . $VALID->inGET('name') . '_version') ?></div>
+                    <div class="text-left"><?php echo lang('modules_name') ?> <?php echo lang('modules_' . $VALID->inGET('type') . '_' . $VALID->inGET('name') . '_name') ?></div>
+                    <div class="text-left"><?php echo lang('modules_author') ?> <?php echo lang('modules_' . $VALID->inGET('type') . '_' . $VALID->inGET('name') . '_author') ?></div>
+                    <div class="text-left"><?php echo lang('modules_version') ?> <?php echo lang('modules_' . $VALID->inGET('type') . '_' . $VALID->inGET('name') . '_version') ?></div>
                 </div>
                 <div class="clearfix"></div></br>
 
