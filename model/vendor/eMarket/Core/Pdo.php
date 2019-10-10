@@ -67,7 +67,7 @@ final class Pdo {
 
         //Устанавливаем семейство БД
         if (DB_FAMILY == 'myisam') {
-            $buffer = str_replace('ENGINE=InnoDB', 'ENGINE=MyISAM', $buffer);
+            $buffer = str_ireplace('ENGINE=InnoDB', 'ENGINE=MyISAM', $buffer);
         }
 
         self::getExec($buffer);

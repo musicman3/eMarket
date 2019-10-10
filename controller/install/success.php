@@ -116,7 +116,7 @@ $buffer = str_replace('emkt_', DB_PREFIX, implode(file($file_name)));
 
 //Устанавливаем семейство БД
 if ($db_family == 'myisam') {
-    $buffer = str_replace('ENGINE=InnoDB', 'ENGINE=MyISAM', $buffer);
+    $buffer = str_ireplace('ENGINE=InnoDB', 'ENGINE=MyISAM', $buffer);
 }
 
 $PDO->getExec($buffer);
