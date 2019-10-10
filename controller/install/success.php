@@ -12,7 +12,7 @@ require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 // ФОРМИРУЕМ ДАННЫЕ ДЛЯ ФАЙЛА КОНФИГУРАЦИИ
 $ROOT = getenv('DOCUMENT_ROOT');
 $crypt_method = $VALID->inPOST('crypt_method');
-$db_famyly = $VALID->inPOST('database_family');
+$db_family = $VALID->inPOST('database_family');
 $db_name = $VALID->inPOST('database_name');
 $db_port = $VALID->inPOST('database_port');
 $db_pref = $VALID->inPOST('database_prefix');
@@ -100,11 +100,8 @@ if (file_exists($ROOT . '/model/configure/configure.php')) {
 require_once($ROOT . '/model/configure/configure.php');
 
 // Подключаем файл БД
-if ($db_famyly == 'myisam') {
-    $file_name = ROOT . '/model/databases/' . $db_famyly . '.sql';
-}
-if ($db_famyly == 'innodb') {
-    $file_name = ROOT . '/model/databases/' . $db_famyly . '.sql';
+if ($db_type == 'mysql') {
+    $file_name = ROOT . '/model/databases/mysql.sql';
 }
 
 // Если файла нет, то
@@ -113,8 +110,14 @@ if (!file_exists($file_name)) {
     header('Location: /controller/install/error.php?file_not_found=true');
 }
 
-// Импортируем данные из файла БД
-$buffer = str_replace('emkt_', DB_PREFIX, implode(file($file_name))); // Меняем префикс, если он другой
+// Устанавливаем префикс БД
+$buffer = str_replace('emkt_', DB_PREFIX, implode(file($file_name)));
+
+//Устанавливаем семейство БД
+if ($db_family == 'myisam') {
+    $buffer = str_replace('ENGINE=InnoDB', 'ENGINE=MyISAM', $buffer);
+}
+
 $PDO->getExec($buffer);
 
 $password_admin_hash = $AUTORIZE->passwordHash($password_admin);
