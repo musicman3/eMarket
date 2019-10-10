@@ -25,6 +25,7 @@ if ($VALID->inPOST('delete')) {
     $module = explode('_', $VALID->inPOST('delete'));
     // Удаляем
     $PDO->inPrepare("DELETE FROM " . TABLE_MODULES . " WHERE name=? AND type=?", [$module[1], $module[0]]);
+    $PDO->inPrepare("DROP TABLE " . DB_PREFIX . 'modules_' . $module[0] . '_' . $module[1], []);
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
 }
