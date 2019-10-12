@@ -59,9 +59,9 @@ class Cart {
     }
 
     /**
-     * Подсчет количества товара в корзине
+     * Подсчет стоимости в корзине
      *
-     * @return string $total_quantity (количества товара)
+     * @return string $total_price (количества товара)
      */
     public function totalPrice() {
         $PDO = new \eMarket\Core\Pdo;
@@ -94,12 +94,12 @@ class Cart {
                 self::addProduct($VALID->inGET('add_to_cart'), $add_quantity);
             }
             self::deleteProduct();
-            self::quantityProduct();
+            self::editProductQuantity();
         }
     }
 
     /**
-     * Подсчет количества товара в корзине
+     * Информация о товарах в корзине
      *
      * @return array $cart (информация о товарах в корзине)
      */
@@ -119,9 +119,9 @@ class Cart {
     /**
      * Подсчет количества товара в корзине
      * @param string $id (ID товара в корзине)
-     * @return string $total_quantity (количества товара)
+     * @return string $total_quantity (количество товара)
      */
-    public function cartProductQuantity($id) {
+    public function productQuantity($id) {
 
         $product_quantity = 0;
         if (isset($_SESSION['cart'])) {
@@ -156,7 +156,7 @@ class Cart {
      * Меняем количество товара в корзине
      * 
      */
-    public function quantityProduct() {
+    public function editProductQuantity() {
         $VALID = new \eMarket\Core\Valid;
 
         if ($VALID->inGET('quantity_product_id') && isset($_SESSION['cart'])) {
