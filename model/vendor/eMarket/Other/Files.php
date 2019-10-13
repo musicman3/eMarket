@@ -25,8 +25,7 @@ class Files {
     public function imgUpload($TABLE, $dir, $resize_param) {
 
         $TREE = new \eMarket\Core\Tree;
-        $FUNC = new \eMarket\Other\Func;
-
+        
         // Если получили запрос на получение данных по изображению
         self::imgThumbAndSize($resize_param);
 
@@ -134,9 +133,9 @@ class Files {
                     } else {
                         // Удаляем файлы
                         foreach ($resize_param as $key => $value) {
-                            $FUNC->deleteFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $file);
+                            \eMarket\Other\Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $file);
                         }
-                        $FUNC->deleteFile(ROOT . '/uploads/images/' . $dir . '/originals/' . $file);
+                        \eMarket\Other\Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/originals/' . $file);
                         // Если удаляемая картинка является главной, то устанавливаем маркер
                         if ($file == \eMarket\Core\Pdo::selectPrepare("SELECT logo_general FROM " . $TABLE . " WHERE id=?", [$id])) {
                             \eMarket\Core\Pdo::inPrepare("UPDATE " . $TABLE . " SET logo_general=? WHERE id=?", [NULL, $id]);
@@ -155,7 +154,7 @@ class Files {
 
         // Если нажали на кнопку Удалить
         if (\eMarket\Core\Valid::inPOST('delete')) {
-            $idx = $FUNC->deleteEmptyInArray(\eMarket\Core\Valid::inPOST('delete'));
+            $idx = \eMarket\Other\Func::deleteEmptyInArray(\eMarket\Core\Valid::inPOST('delete'));
 
             for ($i = 0; $i < count($idx); $i++) {
                 if (strstr($idx[$i], '_', true) != 'product') {
@@ -166,9 +165,9 @@ class Files {
                         foreach ($logo_delete as $file) {
                             // Удаляем файлы
                             foreach ($resize_param as $key => $value) {
-                                $FUNC->deleteFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $file);
+                                \eMarket\Other\Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $file);
                             }
-                            $FUNC->deleteFile(ROOT . '/uploads/images/' . $dir . '/originals/' . $file);
+                            \eMarket\Other\Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/originals/' . $file);
                         }
                     }
                 }
@@ -180,8 +179,8 @@ class Files {
             $id = \eMarket\Core\Valid::inPOST('delete_image');
 
             // Удаляем файлы
-            $FUNC->deleteFile(ROOT . '/uploads/temp/files/' . $id);
-            $FUNC->deleteFile(ROOT . '/uploads/temp/thumbnail/' . $id);
+            \eMarket\Other\Func::deleteFile(ROOT . '/uploads/temp/files/' . $id);
+            \eMarket\Other\Func::deleteFile(ROOT . '/uploads/temp/thumbnail/' . $id);
         }
     }
 
@@ -195,8 +194,7 @@ class Files {
     public function imgUploadProduct($TABLE, $dir, $resize_param) {
 
         $TREE = new \eMarket\Core\Tree;
-        $FUNC = new \eMarket\Other\Func;
-
+        
         // Если получили запрос на получение данных по изображению
         self::imgThumbAndSize($resize_param);
 
@@ -304,9 +302,9 @@ class Files {
                     } else {
                         // Удаляем файлы
                         foreach ($resize_param as $key => $value) {
-                            $FUNC->deleteFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $file);
+                            \eMarket\Other\Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $file);
                         }
-                        $FUNC->deleteFile(ROOT . '/uploads/images/' . $dir . '/originals/' . $file);
+                        \eMarket\Other\Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/originals/' . $file);
                         // Если удаляемая картинка является главной, то устанавливаем маркер
                         if ($file == \eMarket\Core\Pdo::selectPrepare("SELECT logo_general FROM " . $TABLE . " WHERE id=?", [$id])) {
                             \eMarket\Core\Pdo::inPrepare("UPDATE " . $TABLE . " SET logo_general=? WHERE id=?", [NULL, $id]);
@@ -325,7 +323,7 @@ class Files {
 
         // Если нажали на кнопку Удалить
         if (\eMarket\Core\Valid::inPOST('delete')) {
-            $idx = $FUNC->deleteEmptyInArray(\eMarket\Core\Valid::inPOST('delete'));
+            $idx = \eMarket\Other\Func::deleteEmptyInArray(\eMarket\Core\Valid::inPOST('delete'));
 
             for ($i = 0; $i < count($idx); $i++) {
                 if (strstr($idx[$i], '_', true) == 'product') {
@@ -337,9 +335,9 @@ class Files {
                         foreach ($logo_delete as $file) {
                             // Удаляем файлы
                             foreach ($resize_param as $key => $value) {
-                                $FUNC->deleteFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $file);
+                                \eMarket\Other\Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $file);
                             }
-                            $FUNC->deleteFile(ROOT . '/uploads/images/' . $dir . '/originals/' . $file);
+                            \eMarket\Other\Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/originals/' . $file);
                         }
                     }
                 }
@@ -351,8 +349,8 @@ class Files {
             $id = \eMarket\Core\Valid::inPOST('delete_image_product');
 
             // Удаляем файлы
-            $FUNC->deleteFile(ROOT . '/uploads/temp/files/' . $id);
-            $FUNC->deleteFile(ROOT . '/uploads/temp/thumbnail/' . $id);
+            \eMarket\Other\Func::deleteFile(ROOT . '/uploads/temp/files/' . $id);
+            \eMarket\Other\Func::deleteFile(ROOT . '/uploads/temp/thumbnail/' . $id);
         }
     }
 
@@ -368,7 +366,6 @@ class Files {
 
         // Делаем ресайз
         $IMAGE = new \claviska\SimpleImage;
-        $FUNC = new \eMarket\Other\Func;
         
         $resize_max = self::imgResizeMax($resize_param);
 
@@ -406,8 +403,8 @@ class Files {
                     }
                 }
                 // Удаляем временные файлы
-                $FUNC->deleteFile(ROOT . '/uploads/temp/thumbnail/' . basename($file));
-                $FUNC->deleteFile(ROOT . '/uploads/temp/files/' . basename($file));
+                \eMarket\Other\Func::deleteFile(ROOT . '/uploads/temp/thumbnail/' . basename($file));
+                \eMarket\Other\Func::deleteFile(ROOT . '/uploads/temp/files/' . basename($file));
             }
         }
     }

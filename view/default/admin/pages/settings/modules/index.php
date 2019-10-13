@@ -40,8 +40,8 @@
                     } else {
                         $class_tab = 'tab-pane fade';
                     }
-                    $installed_filter = $FUNC->filterArrayToKey($installed, 'type', $type, 'name');
-                    $installed_filter_active = $FUNC->filterArrayToKey($installed_active, 'type', $type, 'name');
+                    $installed_filter = \eMarket\Other\Func::filterArrayToKey($installed, 'type', $type, 'name');
+                    $installed_filter_active = \eMarket\Other\Func::filterArrayToKey($installed_active, 'type', $type, 'name');
                     ?>
                     <div id="<?php echo $type ?>_modules" class="<?php echo $class_tab ?>">
 

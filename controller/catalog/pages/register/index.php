@@ -12,7 +12,7 @@ if (\eMarket\Core\Valid::inPOST('email')) {
         \eMarket\Core\Pdo::inPrepare("INSERT INTO " . TABLE_CUSTOMERS . " SET firstname=?, lastname=?, date_account_created=?, email=?, telephone=?, ip_address=?, password=?", [\eMarket\Core\Valid::inPOST('firstname'), \eMarket\Core\Valid::inPOST('lastname'), date("Y-m-d H:i:s"), \eMarket\Core\Valid::inPOST('email'), \eMarket\Core\Valid::inPOST('telephone'), \eMarket\Core\Set::ipAdress(), $password_hash]);
         
         $id = \eMarket\Core\Pdo::lastInsertId();
-        $activation_code = $FUNC->getToken(64);
+        $activation_code = \eMarket\Other\Func::getToken(64);
         \eMarket\Core\Pdo::inPrepare("INSERT INTO " . TABLE_CUSTOMERS_ACTIVATION . " SET id=?, activation_code=?", [$id, $activation_code]);
         
         $link = HTTP_SERVER . '?route=login&activation_code=' . $activation_code;

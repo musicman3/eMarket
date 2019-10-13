@@ -38,7 +38,7 @@
                                     <optgroup label="<?php echo $v ?>">
                                         <?php
                                     }
-                                    foreach ($FUNC->filterArrayToKey($regions_multiselect, 1, $k, 2) as $k2 => $v2) {
+                                    foreach (\eMarket\Other\Func::filterArrayToKey($regions_multiselect, 1, $k, 2) as $k2 => $v2) {
                                         // Если Страна уже добавлена
                                         if (in_array(array($k), $lines) == TRUE && isset($regions[$count][1]) == TRUE && $k2 == $regions[$count][1]) {
                                             $count++;

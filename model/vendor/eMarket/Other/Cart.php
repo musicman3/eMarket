@@ -22,14 +22,13 @@ class Cart {
      * @param string $quantity (количество добавляемых товаров)
      */
     public static function addProduct($id, $quantity = null) {
-        $FUNC = new \eMarket\Other\Func;
-
+        
         $count = 0;
         if (!isset($_SESSION['cart']) OR count($_SESSION['cart']) == 0) {
             $_SESSION['cart'] = [['id' => $id, 'quantity' => $quantity]];
         } else {
             // Если не было такого id, то добавляем в массив для подсчета
-            $id_count = $FUNC->filterArrayToKey($_SESSION['cart'], 'id', $id, 'id');
+            $id_count = \eMarket\Other\Func::filterArrayToKey($_SESSION['cart'], 'id', $id, 'id');
             foreach ($_SESSION['cart'] as $value) {
                 if ($value['id'] == $id) {
                     $_SESSION['cart'][$count]['quantity'] = $_SESSION['cart'][$count]['quantity'] + $quantity;

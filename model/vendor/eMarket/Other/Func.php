@@ -60,7 +60,7 @@ class Func {
      * 
      * $val = 2; - это ключ ячейки Город [2] из которого берется значение Города для нового одномерного массива
      *
-     * $mass = $FUNC->filterArrayToKey($array, $value_key, $name_key, $val);
+     * $mass = \eMarket\Other\Func::filterArrayToKey($array, $value_key, $name_key, $val);
      * 
      * на выходе получаем сортированный массив
      * 
@@ -74,7 +74,7 @@ class Func {
      * @return array $arr (новый массив)
      * 
      */
-    public function filterArrayToKey($basic_array, $name_key, $value_key, $val) {
+    public static function filterArrayToKey($basic_array, $name_key, $value_key, $val) {
 
         $arr = [];
         foreach ($basic_array as $value) {
@@ -113,13 +113,13 @@ class Func {
       [1] => 1
       )
      * 
-     * Использовать так: $multiselect = $FUNC->arrayExplode($array, '-');
+     * Использовать так: $multiselect = \eMarket\Other\Func::arrayExplode($array, '-');
      * 
      * @param array $array (исходный одномерный массив с разделителем)
      * @param string $delimiter (разделитель)
      * @return array $array_return (новый массив)
      */
-    public function arrayExplode($array, $delimiter) {
+    public static function arrayExplode($array, $delimiter) {
         $array_return = [];
         foreach ($array as $v) {
             $array_return = array_merge($array_return, array(explode($delimiter, $v)));
@@ -132,7 +132,7 @@ class Func {
 
      * @param string $file (путь к файлу)
      */
-    public function deleteFile($file) {
+    public static function deleteFile($file) {
 
         if (file_exists($file)) {
             chmod($file, 0777);
@@ -189,7 +189,7 @@ class Func {
      * @param array $arr_2 (дополнительный массив)
      * @return array (слитый массив)
      */
-    public function arrayMergeOriginKey($name_1, $name_2, $arr_1, $arr_2) {
+    public static function arrayMergeOriginKey($name_1, $name_2, $arr_1, $arr_2) {
 
         $a = array($name_1 => $arr_1);
 
@@ -212,7 +212,7 @@ class Func {
      * @param array $val (значения, которые необходимо удалить - ['val', 'val2']) 
      * @return array|false $array_return (итоговый массив)
      */
-    public function deleteValInArray($array, $val) {
+    public static function deleteValInArray($array, $val) {
 
         if (isset($array) && is_array($array)) {
             $result = array_diff($array, $val);
@@ -229,7 +229,7 @@ class Func {
      * @param array $array (исходный массив)
      * @return array|false $array_return (итоговый массив)
      */
-    public function deleteEmptyInArray($array) {
+    public static function deleteEmptyInArray($array) {
         if (isset($array) && is_array($array)) {
             $result = array_filter($array);
             $array_return = array_values($result); // Сбрасываем ключи
@@ -245,7 +245,7 @@ class Func {
      * @param string $length (длина токена)
      * @return string $token (токен)
      */
-    function getToken($length) {
+    public static function getToken($length) {
         $token = "";
         $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         $codeAlphabet .= "abcdefghijklmnopqrstuvwxyz";

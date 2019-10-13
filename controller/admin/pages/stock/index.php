@@ -71,7 +71,7 @@ $count_lines_cat = count($lines_cat);  //считаем количество с�
 $lines_prod = \eMarket\Core\Pdo::getColRow("SELECT id, name, parent_id, status FROM " . TABLE_PRODUCTS . " WHERE parent_id=? AND language=? ORDER BY id DESC", [$parent_id, lang('#lang_all')[0]]);
 $count_lines_prod = count($lines_prod);  //считаем количество строк
 
-$arr_merge = $FUNC->arrayMergeOriginKey('cat', 'prod', $lines_cat, $lines_prod);
+$arr_merge = \eMarket\Other\Func::arrayMergeOriginKey('cat', 'prod', $lines_cat, $lines_prod);
 $count_lines_merge = $count_lines_cat + $count_lines_prod; // Считаем общее количество строк в категории
 
 $navigate = $NAVIGATION->getLink($count_lines_merge, $lines_on_page, 1);

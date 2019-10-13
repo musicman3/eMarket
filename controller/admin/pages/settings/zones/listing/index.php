@@ -22,7 +22,7 @@ if (\eMarket\Core\Valid::inPOST('add')) {
 
     if (empty(\eMarket\Core\Valid::inPOST('multiselect')) == FALSE) {
         // Создаем многомерный массив из одномерного, разбитого на части разделителем "-"
-        $multiselect = $FUNC->arrayExplode(\eMarket\Core\Valid::inPOST('multiselect'), '-');
+        $multiselect = \eMarket\Other\Func::arrayExplode(\eMarket\Core\Valid::inPOST('multiselect'), '-');
         // Добавляем выбранные в мультиселекте данные
         for ($x = 0; $x < count($multiselect); $x++) {
             \eMarket\Core\Pdo::inPrepare("INSERT INTO " . TABLE_ZONES_VALUE . " SET country_id=?, regions_id=?, zones_id=?", [$multiselect[$x][0], $multiselect[$x][1], $zones_id]);
@@ -61,7 +61,7 @@ for ($y = $start; $y < $finish; $y++) {
     $text = '| ';
     for ($x = 0; $x < count($regions); $x++) {
         if (isset($regions[$x][0]) == TRUE && isset($lines[$y][0]) == TRUE && $regions[$x][0] == $lines[$y][0]) { // если регион есть
-            $text .= $FUNC->filterArrayToKey($name_regions, 0, $regions[$x][0], 1)[$regions[$x][1]] . ' | '; // то, добавляем название региона
+            $text .= \eMarket\Other\Func::filterArrayToKey($name_regions, 0, $regions[$x][0], 1)[$regions[$x][1]] . ' | '; // то, добавляем название региона
         }
     }
     array_push($text_arr, $text);

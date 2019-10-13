@@ -116,13 +116,11 @@ final class Eac {
      */
     private function sortList($TABLE_CATEGORIES, $TOKEN) {
 
-        $FUNC = new \eMarket\Other\Func;
-
         // если сортируем категории мышкой
         if (\eMarket\Core\Valid::inPOST('token_ajax') == $TOKEN && \eMarket\Core\Valid::inPOST('ids')) {
             $sort_array_id_ajax = explode(',', \eMarket\Core\Valid::inPOST('ids')); // Массив со списком id под сортировку
             // Если в массиве пустое значение, то собираем новый массив без этого значения со сбросом ключей
-            $sort_array_id = $FUNC->deleteEmptyInArray($sort_array_id_ajax);
+            $sort_array_id = \eMarket\Other\Func::deleteEmptyInArray($sort_array_id_ajax);
 
             $sort_array_category = []; // Массив со списком sort_category под сортировку
 
@@ -205,12 +203,10 @@ final class Eac {
      */
     private function delete($TABLE_CATEGORIES, $TABLE_PRODUCTS, $parent_id) {
 
-        $FUNC = new \eMarket\Other\Func;
-
         if (\eMarket\Core\Valid::inPOST('delete')) {
 
             // Если в массиве пустое значение, то собираем новый массив без этого значения со сбросом ключей
-            $idx = $FUNC->deleteEmptyInArray(\eMarket\Core\Valid::inPOST('delete'));
+            $idx = \eMarket\Other\Func::deleteEmptyInArray(\eMarket\Core\Valid::inPOST('delete'));
 
             for ($i = 0; $i < count($idx); $i++) {
                 if (strstr($idx[$i], '_', true) != 'product') {
@@ -233,7 +229,7 @@ final class Eac {
 
                     //Удаляем из буффера, если есть
                     if (isset($_SESSION['buffer']['cat']) && $_SESSION['buffer']['cat'] != FALSE) {
-                        $_SESSION['buffer']['cat'] = $FUNC->deleteValInArray($_SESSION['buffer']['cat'], [$idx[$i]]);
+                        $_SESSION['buffer']['cat'] = \eMarket\Other\Func::deleteValInArray($_SESSION['buffer']['cat'], [$idx[$i]]);
                         if (count($_SESSION['buffer']['cat']) == 0) {
                             unset($_SESSION['buffer']['cat']);
                         }
@@ -246,7 +242,7 @@ final class Eac {
 
                     //Удаляем из буффера, если есть
                     if (isset($_SESSION['buffer']['prod']) && $_SESSION['buffer']['prod'] != FALSE) {
-                        $_SESSION['buffer']['prod'] = $FUNC->deleteValInArray($_SESSION['buffer']['prod'], [$id_prod[1]]);
+                        $_SESSION['buffer']['prod'] = \eMarket\Other\Func::deleteValInArray($_SESSION['buffer']['prod'], [$id_prod[1]]);
                         if (count($_SESSION['buffer']['prod']) == 0) {
                             unset($_SESSION['buffer']['prod']);
                         }
@@ -273,15 +269,13 @@ final class Eac {
      */
     private function cut($TABLE_CATEGORIES, $parent_id) {
 
-        $FUNC = new \eMarket\Other\Func;
-
         if (\eMarket\Core\Valid::inPOST('idsx_cut_marker') == 'cut') { // очищаем буфер обмена, если он был заполнен, при нажатии Вырезать
             unset($_SESSION['buffer']);
         }
 
         if ((\eMarket\Core\Valid::inPOST('idsx_cut_key') == 'cut')) {
             // Если в массиве пустое значение, то собираем новый массив без этого значения со сбросом ключей
-            $idx = $FUNC->deleteEmptyInArray(\eMarket\Core\Valid::inPOST('idsx_cut_id'));
+            $idx = \eMarket\Other\Func::deleteEmptyInArray(\eMarket\Core\Valid::inPOST('idsx_cut_id'));
             for ($i = 0; $i < count($idx); $i++) {
 
                 $parent_id_real = (int) \eMarket\Core\Valid::inPOST('idsx_real_parent_id'); // получить значение из JS
@@ -387,8 +381,6 @@ final class Eac {
      */
     private function status($TABLE_CATEGORIES, $TABLE_PRODUCTS, $parent_id) {
 
-        $FUNC = new \eMarket\Other\Func;
-
         if ((\eMarket\Core\Valid::inPOST('idsx_statusOn_key') == 'statusOn')
                 or ( \eMarket\Core\Valid::inPOST('idsx_statusOff_key') == 'statusOff')) {
 
@@ -396,13 +388,13 @@ final class Eac {
 
             if (\eMarket\Core\Valid::inPOST('idsx_statusOn_key') == 'statusOn') {
                 // Если в массиве пустое значение, то собираем новый массив без этого значения со сбросом ключей
-                $idx = $FUNC->deleteEmptyInArray(\eMarket\Core\Valid::inPOST('idsx_statusOn_id'));
+                $idx = \eMarket\Other\Func::deleteEmptyInArray(\eMarket\Core\Valid::inPOST('idsx_statusOn_id'));
                 $status = 1;
             }
 
             if (\eMarket\Core\Valid::inPOST('idsx_statusOff_key') == 'statusOff') {
                 // Если в массиве пустое значение, то собираем новый массив без этого значения со сбросом ключей
-                $idx = $FUNC->deleteEmptyInArray(\eMarket\Core\Valid::inPOST('idsx_statusOff_id'));
+                $idx = \eMarket\Other\Func::deleteEmptyInArray(\eMarket\Core\Valid::inPOST('idsx_statusOff_id'));
                 $status = 0;
             }
             for ($i = 0; $i < count($idx); $i++) {
