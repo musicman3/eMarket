@@ -10,7 +10,7 @@
 
 <?php
 // ПОДКЛЮЧАЕМ КОНТЕНТ
-foreach (\eMarket\Core\View::layoutRouting('content') as $path) {
+foreach (\eMarket\View::layoutRouting('content') as $path) {
     require_once (ROOT . $path);
 }
 

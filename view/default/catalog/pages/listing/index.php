@@ -5,7 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 // ПОДКЛЮЧАЕМ КОНТЕНТ
-foreach (\eMarket\Core\View::layoutRouting('content') as $path) {
+foreach (\eMarket\View::layoutRouting('content') as $path) {
     require_once (ROOT . $path);
 }
 
@@ -72,14 +72,14 @@ foreach (\eMarket\Core\View::layoutRouting('content') as $path) {
             <?php foreach ($products as $value) { ?>
                 <div class="item col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item">
                     <div class="productHolder">
-                        <a href="/?route=products&category_id=<?php echo \eMarket\Core\Valid::inGET('category_id') ?>&parent_id=<?php echo \eMarket\Core\Valid::inGET('parent_id') ?>&id=<?php echo $value['id'] ?>"><img src="/uploads/images/products/resize_1/<?php echo $value['logo_general'] ?>" alt="<?php echo $value['name'] ?>" class="img-responsive"></a>
+                        <a href="/?route=products&category_id=<?php echo \eMarket\Valid::inGET('category_id') ?>&parent_id=<?php echo \eMarket\Valid::inGET('parent_id') ?>&id=<?php echo $value['id'] ?>"><img src="/uploads/images/products/resize_1/<?php echo $value['logo_general'] ?>" alt="<?php echo $value['name'] ?>" class="img-responsive"></a>
                         <div class="caption">
-                            <h5 class="item-heading"><a href="/?route=products&category_id=<?php echo \eMarket\Core\Valid::inGET('category_id') ?>&parent_id=<?php echo \eMarket\Core\Valid::inGET('parent_id') ?>&id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></h5>
+                            <h5 class="item-heading"><a href="/?route=products&category_id=<?php echo \eMarket\Valid::inGET('category_id') ?>&parent_id=<?php echo \eMarket\Valid::inGET('parent_id') ?>&id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></h5>
                             <div class="item-text"> </div>
                         </div>
                         <div class="clearfix"></div>
                         <div class="row button">
-                            <div class="col-xs-6"><button type="button" class="btn btn-default"><?php echo \eMarket\Other\Products::productPrice($value['price'], $CURRENCIES, 1) ?></button></div>
+                            <div class="col-xs-6"><button type="button" class="btn btn-default"><?php echo \eMarket\Products::productPrice($value['price'], $CURRENCIES, 1) ?></button></div>
                             <div class="col-xs-6 text-right">
                                 <form id="form_add_to_cart" name="form_add_to_cart" action="javascript:void(null);" onsubmit="addToCart(<?php echo $value['id'] ?>, 'true')">
                                     <button type="submit" class="btn btn-primary"><?php echo lang('buy_now') ?></button>
@@ -102,6 +102,6 @@ foreach (\eMarket\Core\View::layoutRouting('content') as $path) {
 <?php
 }
 
-\eMarket\Other\Ajax::сart('');
+\eMarket\Ajax::сart('');
 
 ?>

@@ -7,18 +7,18 @@
 
 // 
 //Сохраняем сессию с URL текущей страницы
-$_SESSION['country_page'] = \eMarket\Core\Valid::inSERVER('REQUEST_URI');
+$_SESSION['country_page'] = \eMarket\Valid::inSERVER('REQUEST_URI');
 
 // Если нажали на кнопку Добавить
-if (\eMarket\Core\Valid::inPOST('add')) {
+if (\eMarket\Valid::inPOST('add')) {
 
     // Получаем последний id и увеличиваем его на 1
-    $id_max = \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . TABLE_COUNTRIES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+    $id_max = \eMarket\Pdo::selectPrepare("SELECT id FROM " . TABLE_COUNTRIES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
     $id = intval($id_max) + 1;
 
     // добавляем запись для всех вкладок
     for ($x = 0; $x < $LANG_COUNT; $x++) {
-        \eMarket\Core\Pdo::inPrepare("INSERT INTO " . TABLE_COUNTRIES . " SET id=?, name=?, language=?, alpha_2=?, alpha_3=?, address_format=?", [$id, \eMarket\Core\Valid::inPOST('name_countries_' . $x), lang('#lang_all')[$x], \eMarket\Core\Valid::inPOST('alpha_2_countries'), \eMarket\Core\Valid::inPOST('alpha_3_countries'), \eMarket\Core\Valid::inPOST('address_format_countries')]);
+        \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_COUNTRIES . " SET id=?, name=?, language=?, alpha_2=?, alpha_3=?, address_format=?", [$id, \eMarket\Valid::inPOST('name_countries_' . $x), lang('#lang_all')[$x], \eMarket\Valid::inPOST('alpha_2_countries'), \eMarket\Valid::inPOST('alpha_3_countries'), \eMarket\Valid::inPOST('address_format_countries')]);
     }
 
     // Выводим сообщение об успехе
@@ -26,11 +26,11 @@ if (\eMarket\Core\Valid::inPOST('add')) {
 }
 
 // Если нажали на кнопку Редактировать
-if (\eMarket\Core\Valid::inPOST('edit')) {
+if (\eMarket\Valid::inPOST('edit')) {
 
     for ($x = 0; $x < $LANG_COUNT; $x++) {
         // обновляем запись
-        \eMarket\Core\Pdo::inPrepare("UPDATE " . TABLE_COUNTRIES . " SET name=?, alpha_2=?, alpha_3=?, address_format=? WHERE id=? AND language=?", [\eMarket\Core\Valid::inPOST('name_countries_edit_' . $x), \eMarket\Core\Valid::inPOST('alpha_2_countries_edit'), \eMarket\Core\Valid::inPOST('alpha_3_countries_edit'), \eMarket\Core\Valid::inPOST('address_format_countries_edit'), \eMarket\Core\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
+        \eMarket\Pdo::inPrepare("UPDATE " . TABLE_COUNTRIES . " SET name=?, alpha_2=?, alpha_3=?, address_format=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_countries_edit_' . $x), \eMarket\Valid::inPOST('alpha_2_countries_edit'), \eMarket\Valid::inPOST('alpha_3_countries_edit'), \eMarket\Valid::inPOST('address_format_countries_edit'), \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
     }
 
     // Выводим сообщение об успехе
@@ -38,19 +38,19 @@ if (\eMarket\Core\Valid::inPOST('edit')) {
 }
 
 // Если нажали на кнопку Удалить
-if (\eMarket\Core\Valid::inPOST('delete')) {
+if (\eMarket\Valid::inPOST('delete')) {
 
     // Удаляем Страну и Регионы
-    \eMarket\Core\Pdo::inPrepare("DELETE FROM " . TABLE_COUNTRIES . " WHERE id=?", [\eMarket\Core\Valid::inPOST('delete')]);
-    \eMarket\Core\Pdo::inPrepare("DELETE FROM " . TABLE_REGIONS . " WHERE country_id=?", [\eMarket\Core\Valid::inPOST('delete')]);
+    \eMarket\Pdo::inPrepare("DELETE FROM " . TABLE_COUNTRIES . " WHERE id=?", [\eMarket\Valid::inPOST('delete')]);
+    \eMarket\Pdo::inPrepare("DELETE FROM " . TABLE_REGIONS . " WHERE country_id=?", [\eMarket\Valid::inPOST('delete')]);
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
 }
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
-$lines = \eMarket\Core\Pdo::getColRow("SELECT id, name, alpha_2, alpha_3 FROM " . TABLE_COUNTRIES . " WHERE language=? ORDER BY name", [lang('#lang_all')[0]]);
-$lines_on_page = \eMarket\Core\Set::linesOnPage();
-$navigate = \eMarket\Core\Navigation::getLink(count($lines), $lines_on_page);
+$lines = \eMarket\Pdo::getColRow("SELECT id, name, alpha_2, alpha_3 FROM " . TABLE_COUNTRIES . " WHERE language=? ORDER BY name", [lang('#lang_all')[0]]);
+$lines_on_page = \eMarket\Set::linesOnPage();
+$navigate = \eMarket\Navigation::getLink(count($lines), $lines_on_page);
 $start = $navigate[0];
 $finish = $navigate[1];
 

@@ -6,7 +6,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 // Если нажали на кнопку Удалить
-if (\eMarket\Core\Valid::inPOST('delete') == 'delete' && file_exists(ROOT . '/model/work/errors.log')) {
+if (\eMarket\Valid::inPOST('delete') == 'delete' && file_exists(ROOT . '/model/work/errors.log')) {
     // удаляем лог
     unlink(ROOT . '/model/work/errors.log');
 
@@ -21,8 +21,8 @@ if (file_exists(ROOT . '/model/work/errors.log')) { // Если файл сущ�
 } else { // если файла нет, то выводим пустой массив
     $lines = [];
 }
-$lines_on_page = \eMarket\Core\Set::linesOnPage();
-$navigate = \eMarket\Core\Navigation::postLink(count($lines), $lines_on_page);
+$lines_on_page = \eMarket\Set::linesOnPage();
+$navigate = \eMarket\Navigation::postLink(count($lines), $lines_on_page);
 $start = $navigate[0];
 $finish = $navigate[1];
 

@@ -19,13 +19,13 @@
         <meta name="copyright" content="Copyright © 2018 by eMarket Team. All right reserved." />
 
         <!-- Автогенерация Title" -->
-        <title><?php echo lang('title_catalog_index') . \eMarket\Core\Set::titleCatalog() ?></title>
+        <title><?php echo lang('title_catalog_index') . \eMarket\Set::titleCatalog() ?></title>
         <meta name="description" content="">
 
-        <link rel="canonical" href="<?php echo \eMarket\Core\Set::canonicalPathCatalog() ?>" />
+        <link rel="canonical" href="<?php echo \eMarket\Set::canonicalPathCatalog() ?>" />
         <link href="/ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
         <link href="/ext/bootstrap/css/normalize.css" rel="stylesheet" media="screen" />
-        <link rel="stylesheet" type="text/css" href="/view/<?php echo \eMarket\Core\Set::template() ?>/catalog/style.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="/view/<?php echo \eMarket\Set::template() ?>/catalog/style.css" media="screen" />
         <script type="text/javascript" src="/ext/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/ext/jquery/ui/jquery.ui.touch-punch.min.js"></script>
     </head>
@@ -33,7 +33,7 @@
 
         <?php
         // ЗАГРУЖАЕМ HEADER
-        foreach (\eMarket\Core\View::layoutRouting('header') as $path) {
+        foreach (\eMarket\View::layoutRouting('header') as $path) {
             require_once (ROOT . $path);
         }
         ?>
@@ -44,14 +44,14 @@
 
                 <?php
                 // ПРОВЕРЯЕМ НАЛИЧИЕ БОКСА В РАЗМЕТКЕ
-                $COUNT_BOX_LEFT = count(\eMarket\Core\View::layoutRouting('boxes-left'));
+                $COUNT_BOX_LEFT = count(\eMarket\View::layoutRouting('boxes-left'));
 
                 if ($COUNT_BOX_LEFT != 0) {
                     ?>
 
                     <div id="bodyContent" class="col-md-10 col-md-push-2">
                         <?php
-                        require_once(\eMarket\Core\View::routingCatalog());
+                        require_once(\eMarket\View::routingCatalog());
                         ?>
                     </div>
 
@@ -59,7 +59,7 @@
 
                     <div id="bodyContent" class="col-xs-12">
                         <?php
-                        require_once(\eMarket\Core\View::routingCatalog());
+                        require_once(\eMarket\View::routingCatalog());
                         ?>
                     </div>
 
@@ -72,7 +72,7 @@
                     <div id="columnLeft" class="col-md-2 col-xs-12 col-md-pull-10">
                         <?php
                         // ЗАГРУЖАЕМ БОКСЫ
-                        foreach (\eMarket\Core\View::layoutRouting('boxes-left') as $path) {
+                        foreach (\eMarket\View::layoutRouting('boxes-left') as $path) {
                             require_once (ROOT . $path);
                         }
                         ?>
@@ -86,7 +86,7 @@
 
         <?php
         // ЗАГРУЖАЕМ FOOTER
-        foreach (\eMarket\Core\View::layoutRouting('footer') as $path) {
+        foreach (\eMarket\View::layoutRouting('footer') as $path) {
             require_once (ROOT . $path);
         }
 
@@ -98,11 +98,11 @@
         }
 
         // Выводим отладочную информацию
-        \eMarket\Other\Debug::info($TIME_START);
+        \eMarket\Debug::info($TIME_START);
         ?>
         <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/ext/simpleeqh/simpleeqh.js"></script>
         <script type="text/javascript" src="/ext/jstree/jstree.min.js"></script>
-        <?php require_once (ROOT . '/view/' . \eMarket\Core\Set::template() . '/js/breadcrumb.php') ?>
+        <?php require_once (ROOT . '/view/' . \eMarket\Set::template() . '/js/breadcrumb.php') ?>
     </body>
 </html>

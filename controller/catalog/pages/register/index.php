@@ -4,19 +4,19 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-if (\eMarket\Core\Valid::inPOST('email')) {
+if (\eMarket\Valid::inPOST('email')) {
 
-    $user_email = \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . TABLE_CUSTOMERS . " WHERE email=?", [\eMarket\Core\Valid::inPOST('email')]);
+    $user_email = \eMarket\Pdo::selectPrepare("SELECT id FROM " . TABLE_CUSTOMERS . " WHERE email=?", [\eMarket\Valid::inPOST('email')]);
     if ($user_email == NULL) {
-        $password_hash = \eMarket\Core\Autorize::passwordHash(\eMarket\Core\Valid::inPOST('password'));
-        \eMarket\Core\Pdo::inPrepare("INSERT INTO " . TABLE_CUSTOMERS . " SET firstname=?, lastname=?, date_account_created=?, email=?, telephone=?, ip_address=?, password=?", [\eMarket\Core\Valid::inPOST('firstname'), \eMarket\Core\Valid::inPOST('lastname'), date("Y-m-d H:i:s"), \eMarket\Core\Valid::inPOST('email'), \eMarket\Core\Valid::inPOST('telephone'), \eMarket\Core\Set::ipAdress(), $password_hash]);
+        $password_hash = \eMarket\Autorize::passwordHash(\eMarket\Valid::inPOST('password'));
+        \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_CUSTOMERS . " SET firstname=?, lastname=?, date_account_created=?, email=?, telephone=?, ip_address=?, password=?", [\eMarket\Valid::inPOST('firstname'), \eMarket\Valid::inPOST('lastname'), date("Y-m-d H:i:s"), \eMarket\Valid::inPOST('email'), \eMarket\Valid::inPOST('telephone'), \eMarket\Set::ipAdress(), $password_hash]);
         
-        $id = \eMarket\Core\Pdo::lastInsertId();
-        $activation_code = \eMarket\Other\Func::getToken(64);
-        \eMarket\Core\Pdo::inPrepare("INSERT INTO " . TABLE_CUSTOMERS_ACTIVATION . " SET id=?, activation_code=?", [$id, $activation_code]);
+        $id = \eMarket\Pdo::lastInsertId();
+        $activation_code = \eMarket\Func::getToken(64);
+        \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_CUSTOMERS_ACTIVATION . " SET id=?, activation_code=?", [$id, $activation_code]);
         
         $link = HTTP_SERVER . '?route=login&activation_code=' . $activation_code;
-        \eMarket\Other\Messages::sendMail(\eMarket\Core\Valid::inPOST('email'), lang('email_registration_subject'), sprintf(lang('email_registration_message'), $link, $link));
+        \eMarket\Messages::sendMail(\eMarket\Valid::inPOST('email'), lang('email_registration_subject'), sprintf(lang('email_registration_message'), $link, $link));
         
         $_SESSION['message'] = ['success', lang('messages_registration_complete'), 7000, TRUE];
     } else {

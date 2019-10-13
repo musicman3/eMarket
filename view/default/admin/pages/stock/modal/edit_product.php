@@ -12,7 +12,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header"><div class="pull-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Заполните карточку товара" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
-                <h4 class="modal-title"><?php echo lang('title_' . \eMarket\Core\Set::titleDir() . '_index') ?></h4>
+                <h4 class="modal-title"><?php echo lang('title_' . \eMarket\Set::titleDir() . '_index') ?></h4>
             </div>
             <form id="form_edit_product" name="form_edit_product" action="javascript:void(null);" onsubmit="callEditProduct()">
                 <div class="panel-body">
@@ -37,7 +37,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                         <div id="panel_edit_1" class="tab-pane fade in active">
 
                             <!-- Языковые панели -->
-                            <?php require_once(ROOT . '/view/' . \eMarket\Core\Set::template() . '/layouts/lang_tabs_edit_product.php') ?>
+                            <?php require_once(ROOT . '/view/' . \eMarket\Set::template() . '/layouts/lang_tabs_edit_product.php') ?>
 
                             <!-- Содержимое языковых панелей -->
                             <div class="tab-content">
@@ -127,7 +127,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                     <div class="input-group has-error">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-euro"></span></span>
                                         <select name="currency_product_stock_edit" id="currency_product_stock_edit" class="input-sm form-control">
-                                            <?php \eMarket\Core\Set::viewSelect($currencies_all, $currencies_all[0][2], false) ?>
+                                            <?php \eMarket\Set::viewSelect($currencies_all, $currencies_all[0][2], false) ?>
                                         </select>
                                     </div>
                                 </div>
@@ -145,7 +145,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                     <div class="input-group has-error">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-flag"></span></span>
                                         <select name="unit_product_stock_edit" id="unit_product_stock_edit" class="input-sm form-control">
-                                            <?php \eMarket\Core\Set::viewSelect($units_all, $units_all[0][2], false) ?>
+                                            <?php \eMarket\Set::viewSelect($units_all, $units_all[0][2], false) ?>
                                         </select>
                                     </div>
                                 </div>
@@ -163,7 +163,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-object-align-bottom"></span></span>
                                         <select name="manufacturers_product_stock_edit" id="manufacturers_product_stock_edit" class="input-sm form-control">
-                                            <?php \eMarket\Core\Set::viewSelect($manufacturers_all, $manufacturers_all[0][1], false) ?>
+                                            <?php \eMarket\Set::viewSelect($manufacturers_all, $manufacturers_all[0][1], false) ?>
                                         </select>
                                     </div>
                                 </div>
@@ -181,7 +181,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span></span>
                                         <select name="tax_product_stock_edit" id="tax_product_stock_edit" class="input-sm form-control">
-                                            <?php \eMarket\Core\Set::viewSelect($taxes_all, $taxes_all[0][1], false) ?>
+                                            <?php \eMarket\Set::viewSelect($taxes_all, $taxes_all[0][1], false) ?>
                                         </select>
                                     </div>
                                 </div>
@@ -204,7 +204,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-tag"></span></span>
                                         <select name="vendor_codes_product_stock_edit" id="vendor_codes_product_stock_edit" class="input-sm form-control">
-                                            <?php \eMarket\Core\Set::viewSelect($vendor_codes_all, $vendor_codes_all[0][2], false) ?>
+                                            <?php \eMarket\Set::viewSelect($vendor_codes_all, $vendor_codes_all[0][2], false) ?>
                                         </select>
                                     </div>
                                 </div>
@@ -222,7 +222,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-scale"></span></span>
                                         <select name="weight_product_stock_edit" id="weight_product_stock_edit" class="input-sm form-control">
-                                            <?php \eMarket\Core\Set::viewSelect($weight_all, $weight_all[0][2], false) ?>
+                                            <?php \eMarket\Set::viewSelect($weight_all, $weight_all[0][2], false) ?>
                                         </select>
                                     </div>
                                 </div>
@@ -240,7 +240,7 @@ require(ROOT . '/controller/admin/pages/stock/modal/edit_product.php');
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-road"></span></span>
                                         <select name="length_product_stock_edit" id="length_product_stock_edit" class="input-sm form-control">
-                                            <?php \eMarket\Core\Set::viewSelect($length_all, $length_all[0][2], false) ?>
+                                            <?php \eMarket\Set::viewSelect($length_all, $length_all[0][2], false) ?>
                                         </select>
                                     </div>
                                 </div>

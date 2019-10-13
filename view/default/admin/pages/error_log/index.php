@@ -11,9 +11,9 @@
 
             <div class="panel-heading">
                 <!--Выводим уведомление об успешном действии-->
-                <?php \eMarket\Other\Messages::alert(); ?>
+                <?php \eMarket\Messages::alert(); ?>
                 <h3 class="panel-title">
-                    <div class="pull-left"><?php echo lang('title_'. \eMarket\Core\Set::titleDir() .'_index') ?></div>
+                    <div class="pull-left"><?php echo lang('title_'. \eMarket\Set::titleDir() .'_index') ?></div>
                     <div class="clearfix"></div>
                 </h3>
             </div>

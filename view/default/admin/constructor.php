@@ -20,11 +20,11 @@
         <meta name="copyright" content="Copyright © 2018 by eMarket Team. All right reserved." />
 
         <!-- Автогенерация Title" -->
-        <title><?php echo lang('title_' . \eMarket\Core\Set::titleDir() . '_index') ?></title>
+        <title><?php echo lang('title_' . \eMarket\Set::titleDir() . '_index') ?></title>
 
         <link href="/ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
         <link href="/ext/bootstrap/css/normalize.css" rel="stylesheet" media="screen" />
-        <link rel="stylesheet" type="text/css" href="/view/<?php echo \eMarket\Core\Set::template() ?>/admin/style.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="/view/<?php echo \eMarket\Set::template() ?>/admin/style.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="/ext/contextmenu/css/contextmenu.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="/ext/jquery/ui/jquery-ui.min.css" media="screen" />
         <link rel="stylesheet" href="/ext/bootstrap/css/bootstrap-multiselect.css" type="text/css"/>
@@ -40,22 +40,22 @@
         </script>
 
         <?php
-        if (isset($_SESSION['login']) && isset($_SESSION['pass']) && file_exists(ROOT . '/view/' . \eMarket\Core\Set::template() . '/admin/nav.css')) {
+        if (isset($_SESSION['login']) && isset($_SESSION['pass']) && file_exists(ROOT . '/view/' . \eMarket\Set::template() . '/admin/nav.css')) {
 
             ?>
-            <link rel="stylesheet" type="text/css" href="/view/<?php echo \eMarket\Core\Set::template() ?>/admin/nav.css" media="screen" />
+            <link rel="stylesheet" type="text/css" href="/view/<?php echo \eMarket\Set::template() ?>/admin/nav.css" media="screen" />
         <?php } ?>
     </head>
     <body>
 
         <?php
         // ЗАГРУЖАЕМ HEADER
-        foreach (\eMarket\Core\View::layoutRouting('header') as $path) {
+        foreach (\eMarket\View::layoutRouting('header') as $path) {
             require_once (ROOT . $path);
         }
 
         // ЗАГРУЖАЕМ ТЕЛО HTML СТРАНИЦЫ
-        require_once(\eMarket\Core\View::routingAdmin());
+        require_once(\eMarket\View::routingAdmin());
 
         ?>
 
@@ -66,7 +66,7 @@
 
         <?php
         // ЗАГРУЖАЕМ FOOTER
-        foreach (\eMarket\Core\View::layoutRouting('footer') as $path) {
+        foreach (\eMarket\View::layoutRouting('footer') as $path) {
             require_once (ROOT . $path);
         }
 
@@ -76,7 +76,7 @@
             require_once($JS_END . '/js/js.php');
         }
         // Выводим отладочную информацию
-        \eMarket\Other\Debug::info($TIME_START);
+        \eMarket\Debug::info($TIME_START);
 
         ?>
     </body>

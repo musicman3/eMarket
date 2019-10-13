@@ -12,10 +12,10 @@ for ($i = $start; $i < $finish; $i++) {
         $count_lang = $LANG_COUNT;
 
         for ($x = 0; $x < $count_lang; $x++) {
-            $name_edit_temp[$x][$modal_id] = \eMarket\Core\Pdo::selectPrepare("SELECT name FROM " . TABLE_COUNTRIES . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]]);
+            $name_edit_temp[$x][$modal_id] = \eMarket\Pdo::selectPrepare("SELECT name FROM " . TABLE_COUNTRIES . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]]);
         }
         
-        $query = \eMarket\Core\Pdo::getRow("SELECT alpha_2, alpha_3, address_format FROM " . TABLE_COUNTRIES . " WHERE id=?", [$modal_id]);
+        $query = \eMarket\Pdo::getRow("SELECT alpha_2, alpha_3, address_format FROM " . TABLE_COUNTRIES . " WHERE id=?", [$modal_id]);
         $alpha_2_temp[$modal_id] = $query[0];
         $alpha_3_temp[$modal_id] = $query[1];
         $address_format_temp[$modal_id] = $query[2];

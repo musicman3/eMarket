@@ -6,15 +6,15 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 // Если нажали на кнопку Добавить
-if (\eMarket\Core\Valid::inPOST('add')) {
+if (\eMarket\Valid::inPOST('add')) {
 
     // Получаем последний id и увеличиваем его на 1
-    $id_max = \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . TABLE_MANUFACTURERS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+    $id_max = \eMarket\Pdo::selectPrepare("SELECT id FROM " . TABLE_MANUFACTURERS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
     $id = intval($id_max) + 1;
 
     // добавляем запись для всех вкладок
     for ($x = 0; $x < $LANG_COUNT; $x++) {
-        \eMarket\Core\Pdo::inPrepare("INSERT INTO " . TABLE_MANUFACTURERS . " SET id=?, name=?, language=?, site=?", [$id, \eMarket\Core\Valid::inPOST('name_manufacturers_' . $x), lang('#lang_all')[$x], \eMarket\Core\Valid::inPOST('site_manufacturers')]);
+        \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_MANUFACTURERS . " SET id=?, name=?, language=?, site=?", [$id, \eMarket\Valid::inPOST('name_manufacturers_' . $x), lang('#lang_all')[$x], \eMarket\Valid::inPOST('site_manufacturers')]);
     }
 
     // Выводим сообщение об успехе
@@ -22,10 +22,10 @@ if (\eMarket\Core\Valid::inPOST('add')) {
 }
 
 // Если нажали на кнопку Редактировать
-if (\eMarket\Core\Valid::inPOST('edit')) {
+if (\eMarket\Valid::inPOST('edit')) {
 
     for ($x = 0; $x < $LANG_COUNT; $x++) {
-        \eMarket\Core\Pdo::inPrepare("UPDATE " . TABLE_MANUFACTURERS . " SET name=?, site=? WHERE id=? AND language=?", [\eMarket\Core\Valid::inPOST('name_manufacturers_edit_' . $x), \eMarket\Core\Valid::inPOST('site_manufacturers_edit'), \eMarket\Core\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
+        \eMarket\Pdo::inPrepare("UPDATE " . TABLE_MANUFACTURERS . " SET name=?, site=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_manufacturers_edit_' . $x), \eMarket\Valid::inPOST('site_manufacturers_edit'), \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
     }
 
     // Выводим сообщение об успехе
@@ -40,20 +40,20 @@ array_push($resize_param, ['125', '94']); // ширина, высота
 //array_push($resize_param, ['525','394']);
 //array_push($resize_param, ['850','638']);
 
-\eMarket\Other\Files::imgUpload(TABLE_MANUFACTURERS, 'manufacturers', $resize_param);
+\eMarket\Files::imgUpload(TABLE_MANUFACTURERS, 'manufacturers', $resize_param);
 
 // Если нажали на кнопку Удалить
-if (\eMarket\Core\Valid::inPOST('delete')) {
+if (\eMarket\Valid::inPOST('delete')) {
     // Удаляем запись
-    \eMarket\Core\Pdo::inPrepare("DELETE FROM " . TABLE_MANUFACTURERS . " WHERE id=?", [\eMarket\Core\Valid::inPOST('delete')]);
+    \eMarket\Pdo::inPrepare("DELETE FROM " . TABLE_MANUFACTURERS . " WHERE id=?", [\eMarket\Valid::inPOST('delete')]);
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
 }
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
-$lines = \eMarket\Core\Pdo::getColRow("SELECT id, name, logo, site FROM " . TABLE_MANUFACTURERS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
-$lines_on_page = \eMarket\Core\Set::linesOnPage();
-$navigate = \eMarket\Core\Navigation::getLink(count($lines), $lines_on_page);
+$lines = \eMarket\Pdo::getColRow("SELECT id, name, logo, site FROM " . TABLE_MANUFACTURERS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+$lines_on_page = \eMarket\Set::linesOnPage();
+$navigate = \eMarket\Navigation::getLink(count($lines), $lines_on_page);
 $start = $navigate[0];
 $finish = $navigate[1];
 

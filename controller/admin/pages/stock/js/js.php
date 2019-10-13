@@ -48,7 +48,7 @@ if (isset($_SESSION['buffer'])) {
                 {token_ajax: token,
                     ids: ids.join()});
         // Повторный вызов функции для нормального обновления страницы
-        jQuery.get('<?php echo \eMarket\Core\Valid::inSERVER('REQUEST_URI') ?>',
+        jQuery.get('<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>',
                 {}, // id родительской категории
                 AjaxSuccess);
         function AjaxSuccess(data) {
@@ -427,7 +427,7 @@ if (isset($_SESSION['buffer'])) {
                                 // Обновление страницы
                                 function AjaxSuccess(data) {
                                     setTimeout(function () {
-                                        document.location.href = '<?php echo \eMarket\Core\Valid::inSERVER('REQUEST_URI') ?>';
+                                        document.location.href = '<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>';
                                     }, 100);
                                     $("#sort-list").sortable();
                                 }
@@ -510,7 +510,7 @@ if (isset($_SESSION['buffer'])) {
         // Обновление страницы
         function AjaxSuccess(data) {
             setTimeout(function () {
-                document.location.href = '<?php echo \eMarket\Core\Valid::inSERVER('REQUEST_URI') ?>';
+                document.location.href = '<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>';
             }, 100);
             $("#sort-list").sortable();
         }
@@ -572,7 +572,7 @@ if (isset($_SESSION['buffer'])) {
         // Обновление страницы
         function AjaxSuccess(data) {
             setTimeout(function () {
-                document.location.href = '<?php echo \eMarket\Core\Valid::inSERVER('REQUEST_URI') ?>';
+                document.location.href = '<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>';
             }, 100);
             $("#sort-list").sortable();
         }
@@ -601,7 +601,7 @@ if (isset($_SESSION['buffer'])) {
         // Обновление страницы
         function AjaxSuccess(data) {
             setTimeout(function () {
-                document.location.href = '<?php echo \eMarket\Core\Valid::inSERVER('REQUEST_URI') ?>';
+                document.location.href = '<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>';
             }, 100);
             $("#sort-list").sortable();
         }
@@ -690,7 +690,7 @@ if (isset($_SESSION['buffer'])) {
 <script src="/ext/fastmd5/md5.min.js"></script>
 <?php
 // Подгружаем jQuery File Upload
-\eMarket\Other\Ajax::fileUpload('?route=stock', 'categories', $resize_param);
-\eMarket\Other\Ajax::fileUploadProduct('?route=stock', 'products', $resize_param_product);
+\eMarket\Ajax::fileUpload('?route=stock', 'categories', $resize_param);
+\eMarket\Ajax::fileUploadProduct('?route=stock', 'products', $resize_param_product);
 
 ?>

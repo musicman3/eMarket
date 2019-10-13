@@ -32,7 +32,7 @@
 </script>
 <?php
 // Подгружаем Ajax Добавить, Редактировать, Удалить
-\eMarket\Other\Ajax::action('');
+\eMarket\Ajax::action('');
 
 ?>
 <!--Подгружаем jQuery File Upload -->
@@ -42,6 +42,6 @@
 <script src="/ext/fastmd5/md5.min.js"></script>
 <?php
 // Подгружаем jQuery File Upload
-\eMarket\Other\Ajax::fileUpload('', 'manufacturers', $resize_param);
+\eMarket\Ajax::fileUpload('', 'manufacturers', $resize_param);
 
 ?>

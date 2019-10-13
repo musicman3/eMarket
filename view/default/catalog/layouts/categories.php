@@ -8,14 +8,14 @@
 <div class="panel panel-default">
     <div class="panel-heading"><?php echo lang('categories_name') ?></div>
     <div class="panel-body category_block">
-        <?php $categories_and_breadcrumb = \eMarket\Core\Tree::categories($sql, \eMarket\Core\Valid::inGET('category_id')); ?>
+        <?php $categories_and_breadcrumb = \eMarket\Tree::categories($sql, \eMarket\Valid::inGET('category_id')); ?>
     </div>
 </div>
 <?php if ($categories_and_breadcrumb != 0) { ?>
     <div id="data_breadcrumb" class="hidden"
          data-breadcrumbid='<?php echo json_encode(array_reverse($categories_and_breadcrumb)) ?>'
-         data-breadcrumbparentid='<?php echo json_encode(\eMarket\Core\Set::breadcrumbParentId(array_reverse($categories_and_breadcrumb))) ?>'
-         data-breadcrumbname='<?php echo json_encode(\eMarket\Core\Set::breadcrumbName(array_reverse($categories_and_breadcrumb))) ?>'>
+         data-breadcrumbparentid='<?php echo json_encode(\eMarket\Set::breadcrumbParentId(array_reverse($categories_and_breadcrumb))) ?>'
+         data-breadcrumbname='<?php echo json_encode(\eMarket\Set::breadcrumbName(array_reverse($categories_and_breadcrumb))) ?>'>
     </div>
 <?php } ?>
 <script type="text/javascript" language="javascript">

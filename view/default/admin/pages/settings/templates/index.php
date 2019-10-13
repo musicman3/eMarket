@@ -10,7 +10,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">
-                <div class="pull-left"><span class="settings_back"><button type="button" onClick='location.href = "?route=settings"' class="btn btn-primary btn-xs"><span class="back glyphicon glyphicon-share-alt"></span></button></span><span class="settings_name"><?php echo lang('title_' . \eMarket\Core\Set::titleDir() . '_index') ?></span></div>
+                <div class="pull-left"><span class="settings_back"><button type="button" onClick='location.href = "?route=settings"' class="btn btn-primary btn-xs"><span class="back glyphicon glyphicon-share-alt"></span></button></span><span class="settings_name"><?php echo lang('title_' . \eMarket\Set::titleDir() . '_index') ?></span></div>
                 <div class="clearfix"></div>
             </h3>
         </div>
@@ -22,10 +22,10 @@
                     <form method="get" name="select_template" action="index.php">
                         <input hidden name="route" value="settings/templates">
                         <select name="name_templates" id="name_templates" class="input-sm form-control"  onchange="selectTemplate(event)">
-                            <option><?php echo \eMarket\Core\Set::template() ?></option>
+                            <option><?php echo \eMarket\Set::template() ?></option>
                             <?php
                             foreach ($name_template as $path) {
-                                if ($path != '.' && $path != '..' && $path != \eMarket\Core\Set::template()) {
+                                if ($path != '.' && $path != '..' && $path != \eMarket\Set::template()) {
                                     if ($path == $select_template) {
 
                                         ?>
@@ -54,7 +54,7 @@
                         <select name="layout_pages_templates" id="layout_pages_templates" class="input-sm form-control" onchange="selectPage(event)">
                             <option><?php echo lang('all_pages_template') ?></option>
                             <?php
-                            if (!\eMarket\Core\Valid::inGET('layout_pages_templates')) {
+                            if (!\eMarket\Valid::inGET('layout_pages_templates')) {
                                 $select_page = 'catalog';
                             }
                             foreach ($layout_pages as $path) {

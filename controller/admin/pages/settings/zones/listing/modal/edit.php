@@ -7,9 +7,9 @@
 if (isset($lines[$k][0]) == TRUE) {
     $name_edit = [];
     for ($x = 0; $x < $LANG_COUNT; $x++) {
-        array_push($name_edit, \eMarket\Core\Pdo::selectPrepare("SELECT name FROM " . TABLE_ZONES . " WHERE id=? and language=?", [$lines[$k][0], lang('#lang_all')[$x]]));
+        array_push($name_edit, \eMarket\Pdo::selectPrepare("SELECT name FROM " . TABLE_ZONES . " WHERE id=? and language=?", [$lines[$k][0], lang('#lang_all')[$x]]));
     }
-    $value_edit = \eMarket\Core\Pdo::selectPrepare("SELECT note FROM " . TABLE_ZONES . " WHERE id=?", [$lines[$k][0]]);
+    $value_edit = \eMarket\Pdo::selectPrepare("SELECT note FROM " . TABLE_ZONES . " WHERE id=?", [$lines[$k][0]]);
 
 }
 

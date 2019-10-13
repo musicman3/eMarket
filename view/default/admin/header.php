@@ -54,7 +54,7 @@ if (isset($_SESSION['login']) && isset($_SESSION['pass'])) { // Выводим �
                                     
                                         <li>
                                             <!-- выводим данные 2 уровня меню -->
-                                            <a <?php echo $menu[$i][$x][3]; ?> href="<?php echo $menu[$i][$x][0] ?>" <?php echo $param_1 ?>><img src="/view/<?php echo \eMarket\Core\Set::template() ?>/admin/images/icons/16x16/<?php echo $menu[$i][$x][1]; ?>" /> <?php echo $menu[$i][$x][2] . ' ' . $param_2 ?></a>
+                                            <a <?php echo $menu[$i][$x][3]; ?> href="<?php echo $menu[$i][$x][0] ?>" <?php echo $param_1 ?>><img src="/view/<?php echo \eMarket\Set::template() ?>/admin/images/icons/16x16/<?php echo $menu[$i][$x][1]; ?>" /> <?php echo $menu[$i][$x][2] . ' ' . $param_2 ?></a>
                                             <?php if (isset($submenu[$i][$x])) { ?>
                                                 <!-- 3 УРОВЕНЬ МЕНЮ -->
                                                 <ul class="dropdown-menu link">
@@ -64,7 +64,7 @@ if (isset($_SESSION['login']) && isset($_SESSION['pass'])) { // Выводим �
                                                         ?>
                                                         <li>
                                                             <!-- выводим данные 3 уровня меню -->
-                                                            <a href="<?php echo $submenu[$i][$x][$y][0]; ?>"><img src="/view/<?php echo \eMarket\Core\Set::template() ?><?php echo $submenu[$i][$x][$y][1]; ?>" /> <?php echo $submenu[$i][$x][$y][2]; ?> </a>
+                                                            <a href="<?php echo $submenu[$i][$x][$y][0]; ?>"><img src="/view/<?php echo \eMarket\Set::template() ?><?php echo $submenu[$i][$x][$y][1]; ?>" /> <?php echo $submenu[$i][$x][$y][2]; ?> </a>
                                                         </li><?php } ?>
                                                 </ul><?php } ?>
                                                 

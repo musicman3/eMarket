@@ -8,12 +8,12 @@
 require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 /* ------------------------------------------ */
 //Если не переключали язык
-if (!\eMarket\Core\Valid::inPOST('language') && \eMarket\Core\Set::path() == 'install') {
+if (!\eMarket\Valid::inPOST('language') && \eMarket\Set::path() == 'install') {
     $DEFAULT_LANGUAGE = 'russian';
 }
 //Если переключили язык
-if (\eMarket\Core\Valid::inPOST('language')) {
-    $DEFAULT_LANGUAGE = \eMarket\Core\Valid::inPOST('language');
+if (\eMarket\Valid::inPOST('language')) {
+    $DEFAULT_LANGUAGE = \eMarket\Valid::inPOST('language');
 }
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
 $JS_END = __DIR__;

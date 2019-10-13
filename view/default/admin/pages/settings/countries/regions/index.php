@@ -10,7 +10,7 @@
 <!-- КОНЕЦ Модальное окно "Добавить" -->
 
 <!-- Модальное окно "Редактировать" -->
-<?php require(ROOT . '/view/' . \eMarket\Core\Set::template() . '/admin/pages/settings/countries/regions/modal/edit.php') ?>
+<?php require(ROOT . '/view/' . \eMarket\Set::template() . '/admin/pages/settings/countries/regions/modal/edit.php') ?>
 <!-- КОНЕЦ Модальное окно "Редактировать" -->
 
 <div id="ajax">
@@ -18,9 +18,9 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <!--Выводим уведомление об успешном действии-->
-                    <?php \eMarket\Other\Messages::alert(); ?>
+                    <?php \eMarket\Messages::alert(); ?>
                     <h3 class="panel-title">
-                        <div class="pull-left"><span class="settings_back"><button type="button" onClick='location.href = "<?php echo $_SESSION['country_page'] ?>"' class="btn btn-primary btn-xs"><span class="back glyphicon glyphicon-share-alt"></span></button></span><span class="settings_name"><?php echo lang('title_' . \eMarket\Core\Set::titleDir() . '_index') ?></span></div>
+                        <div class="pull-left"><span class="settings_back"><button type="button" onClick='location.href = "<?php echo $_SESSION['country_page'] ?>"' class="btn btn-primary btn-xs"><span class="back glyphicon glyphicon-share-alt"></span></button></span><span class="settings_name"><?php echo lang('title_' . \eMarket\Set::titleDir() . '_index') ?></span></div>
                         <div class="clearfix"></div>
                     </h3>
                 </div>
@@ -55,7 +55,7 @@
                                                 <input hidden name="route" value="settings/countries/regions">
                                                 <input hidden name="start" value="<?php echo $start ?>">
                                                 <input hidden name="finish" value="<?php echo $finish ?>">
-                                                <input hidden name="country_id" value="<?php echo \eMarket\Core\Valid::inGET('country_id') ?>">
+                                                <input hidden name="country_id" value="<?php echo \eMarket\Valid::inGET('country_id') ?>">
                                                 <div class="left"><button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
                                             <?php } ?>
                                         </form>
@@ -65,7 +65,7 @@
                                                 <input hidden name="route" value="settings/countries/regions">
                                                 <input hidden name="start2" value="<?php echo $start ?>">
                                                 <input hidden name="finish2" value="<?php echo $finish ?>">
-                                                <input hidden name="country_id" value="<?php echo \eMarket\Core\Valid::inGET('country_id') ?>">
+                                                <input hidden name="country_id" value="<?php echo \eMarket\Valid::inGET('country_id') ?>">
                                                 <div class="left"><button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
                                             <?php } ?>
                                         </form>
@@ -88,7 +88,7 @@
                                         <td class="al-text-w">
                                             <form id="form_delete<?php echo $lines[$start][0] ?>" name="form_delete" action="javascript:void(null);" onsubmit="callDelete('<?php echo $lines[$start][0] ?>')" enctype="multipart/form-data">
                                                 <input hidden name="delete" value="<?php echo $lines[$start][0] ?>">
-                                                <input hidden name="country_id" value="<?php echo \eMarket\Core\Valid::inGET('country_id') ?>">
+                                                <input hidden name="country_id" value="<?php echo \eMarket\Valid::inGET('country_id') ?>">
                                                 <div class="right">
                                                     <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button>
                                                 </div>

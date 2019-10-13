@@ -14,9 +14,9 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <!--Выводим уведомление об успешном действии-->
-                    <?php \eMarket\Other\Messages::alert(); ?>
+                    <?php \eMarket\Messages::alert(); ?>
                     <h3 class="panel-title">
-                        <div class="pull-left"><span class="settings_back"><a class="btn btn-primary btn-xs" href="<?php echo $_SESSION['zone_page'] ?>"><span class="back glyphicon glyphicon-share-alt"></span></a></span><span class="settings_name"><?php echo lang('title_' . \eMarket\Core\Set::titleDir() . '_index') ?></span></div>
+                        <div class="pull-left"><span class="settings_back"><a class="btn btn-primary btn-xs" href="<?php echo $_SESSION['zone_page'] ?>"><span class="back glyphicon glyphicon-share-alt"></span></a></span><span class="settings_name"><?php echo lang('title_' . \eMarket\Set::titleDir() . '_index') ?></span></div>
                         <div class="clearfix"></div>
                     </h3>
                 </div>
@@ -77,7 +77,7 @@
                                 ?>
                                 <tr>
                                     <td class="sortleft"><a class="btn btn-primary btn-xs" href="#" ><span data-toggle="tooltip" data-html="true" data-placement="right" data-original-title="<?php echo $text_arr[$count] ?>" class="glyphicon glyphicon-eye-open"></span></a></td>
-                                    <td><?php echo \eMarket\Other\Func::filterArrayToKey($name_country, 0, $lines[$start][0], 1)[0] ?></td>
+                                    <td><?php echo \eMarket\Func::filterArrayToKey($name_country, 0, $lines[$start][0], 1)[0] ?></td>
                                     <td> </td>
                                 </tr>
                                 <?php

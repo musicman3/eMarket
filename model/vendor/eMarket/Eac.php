@@ -4,7 +4,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-namespace eMarket\Core;
+namespace eMarket;
 
 /**
  * Движок EAC (Easy Ajax Catalog) v.1.0
@@ -41,10 +41,10 @@ final class Eac {
         self::editProduct($TABLES, $parent_id);
 
         // Загручик изображений категорий (ВСТАВЛЯТЬ ПЕРЕД УДАЛЕНИЕМ)
-        \eMarket\Other\Files::imgUpload($TABLES[0], 'categories', $resize_param);
+        \eMarket\Files::imgUpload($TABLES[0], 'categories', $resize_param);
 
         // Загручик изображений товаров (ВСТАВЛЯТЬ ПЕРЕД УДАЛЕНИЕМ)
-        \eMarket\Other\Files::imgUploadProduct($TABLES[1], 'products', $resize_param_product);
+        \eMarket\Files::imgUploadProduct($TABLES[1], 'products', $resize_param_product);
 
         $idsx_real_parent_id = $parent_id; //для отправки в JS
         // Если нажали на кнопку Удалить
@@ -89,19 +89,19 @@ final class Eac {
     private function parentIdStart($TABLE_CATEGORIES) {
 
         // Устанавливаем родительскую категорию
-        $parent_id = \eMarket\Core\Valid::inPOST('parent_id');
+        $parent_id = \eMarket\Valid::inPOST('parent_id');
         if ($parent_id == FALSE) {
             $parent_id = 0;
         }
 
         // Устанавливаем родительскую категорию при переходе на уровень выше
-        if (\eMarket\Core\Valid::inGET('parent_up')) {
-            $parent_id = \eMarket\Core\Pdo::selectPrepare("SELECT parent_id FROM " . $TABLE_CATEGORIES . " WHERE id=?", [\eMarket\Core\Valid::inGET('parent_up')]);
+        if (\eMarket\Valid::inGET('parent_up')) {
+            $parent_id = \eMarket\Pdo::selectPrepare("SELECT parent_id FROM " . $TABLE_CATEGORIES . " WHERE id=?", [\eMarket\Valid::inGET('parent_up')]);
         }
 
         // Устанавливаем родительскую категорию при переходе на уровень ниже
-        if (\eMarket\Core\Valid::inGET('parent_down')) {
-            $parent_id = \eMarket\Core\Valid::inGET('parent_down');
+        if (\eMarket\Valid::inGET('parent_down')) {
+            $parent_id = \eMarket\Valid::inGET('parent_down');
         }
 
         return $parent_id;
@@ -115,17 +115,17 @@ final class Eac {
     private function sortList($TABLE_CATEGORIES, $TOKEN) {
 
         // если сортируем категории мышкой
-        if (\eMarket\Core\Valid::inPOST('token_ajax') == $TOKEN && \eMarket\Core\Valid::inPOST('ids')) {
-            $sort_array_id_ajax = explode(',', \eMarket\Core\Valid::inPOST('ids')); // Массив со списком id под сортировку
+        if (\eMarket\Valid::inPOST('token_ajax') == $TOKEN && \eMarket\Valid::inPOST('ids')) {
+            $sort_array_id_ajax = explode(',', \eMarket\Valid::inPOST('ids')); // Массив со списком id под сортировку
             // Если в массиве пустое значение, то собираем новый массив без этого значения со сбросом ключей
-            $sort_array_id = \eMarket\Other\Func::deleteEmptyInArray($sort_array_id_ajax);
+            $sort_array_id = \eMarket\Func::deleteEmptyInArray($sort_array_id_ajax);
 
             $sort_array_category = []; // Массив со списком sort_category под сортировку
 
             $count_sort_array_id = count($sort_array_id); // Получаем количество значений в массиве
 
             for ($i = 0; $i < $count_sort_array_id; $i++) {
-                $sort_category = \eMarket\Core\Pdo::selectPrepare("SELECT sort_category FROM " . $TABLE_CATEGORIES . " WHERE id=? AND language=? ORDER BY id ASC", [$sort_array_id[$i], lang('#lang_all')[0]]);
+                $sort_category = \eMarket\Pdo::selectPrepare("SELECT sort_category FROM " . $TABLE_CATEGORIES . " WHERE id=? AND language=? ORDER BY id ASC", [$sort_array_id[$i], lang('#lang_all')[0]]);
                 array_push($sort_array_category, $sort_category); // Добавляем данные в массив sort_category
                 arsort($sort_array_category); // Сортируем массив со списком sort_category
             }
@@ -134,7 +134,7 @@ final class Eac {
 
             for ($i = 0; $i < $count_sort_array_id; $i++) {
 
-                \eMarket\Core\Pdo::inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET sort_category=? WHERE id=?", [(int) $sort_array_final[$sort_array_id[$i]], (int) $sort_array_id[$i]]);
+                \eMarket\Pdo::inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET sort_category=? WHERE id=?", [(int) $sort_array_final[$sort_array_id[$i]], (int) $sort_array_id[$i]]);
             }
         }
     }
@@ -148,25 +148,25 @@ final class Eac {
         
         $LANG_COUNT = count(lang('#lang_all'));
 
-        if (\eMarket\Core\Valid::inPOST('add')) {
+        if (\eMarket\Valid::inPOST('add')) {
 
-            if (\eMarket\Core\Valid::inPOST('view_categories_stock')) {
+            if (\eMarket\Valid::inPOST('view_categories_stock')) {
                 $view_cat = 1;
             } else {
                 $view_cat = 0;
             }
 
             // Получаем последний sort_category в текущем parent_id и увеличиваем его на 1
-            $sort_max = \eMarket\Core\Pdo::selectPrepare("SELECT sort_category FROM " . $TABLE_CATEGORIES . " WHERE language=? AND parent_id=? ORDER BY sort_category DESC", [lang('#lang_all')[0], $parent_id]);
+            $sort_max = \eMarket\Pdo::selectPrepare("SELECT sort_category FROM " . $TABLE_CATEGORIES . " WHERE language=? AND parent_id=? ORDER BY sort_category DESC", [lang('#lang_all')[0], $parent_id]);
             $sort_category = intval($sort_max) + 1;
 
             // Получаем последний id и увеличиваем его на 1
-            $id_max = \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . $TABLE_CATEGORIES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+            $id_max = \eMarket\Pdo::selectPrepare("SELECT id FROM " . $TABLE_CATEGORIES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max) + 1;
 
             // добавляем запись для всех вкладок
             for ($x = 0; $x < $LANG_COUNT; $x++) {
-                \eMarket\Core\Pdo::inPrepare("INSERT INTO " . $TABLE_CATEGORIES . " SET id=?, name=?, sort_category=?, language=?, parent_id=?, date_added=?, status=?", [$id, \eMarket\Core\Valid::inPOST('name_categories_stock_' . $x), $sort_category, lang('#lang_all')[$x], $parent_id, date("Y-m-d H:i:s"), $view_cat]);
+                \eMarket\Pdo::inPrepare("INSERT INTO " . $TABLE_CATEGORIES . " SET id=?, name=?, sort_category=?, language=?, parent_id=?, date_added=?, status=?", [$id, \eMarket\Valid::inPOST('name_categories_stock_' . $x), $sort_category, lang('#lang_all')[$x], $parent_id, date("Y-m-d H:i:s"), $view_cat]);
             }
             // Выводим сообщение об успехе
             $_SESSION['message'] = ['success', lang('action_completed_successfully')];
@@ -181,11 +181,11 @@ final class Eac {
 
         $LANG_COUNT = count(lang('#lang_all'));
 
-        if (\eMarket\Core\Valid::inPOST('edit')) {
+        if (\eMarket\Valid::inPOST('edit')) {
 
             for ($x = 0; $x < $LANG_COUNT; $x++) {
                 // обновляем запись
-                \eMarket\Core\Pdo::inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET name=?, last_modified=? WHERE id=? AND language=?", [\eMarket\Core\Valid::inPOST('name_categories_stock_edit_' . $x), date("Y-m-d H:i:s"), \eMarket\Core\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
+                \eMarket\Pdo::inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET name=?, last_modified=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_categories_stock_edit_' . $x), date("Y-m-d H:i:s"), \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
             }
             // Выводим сообщение об успехе
             $_SESSION['message'] = ['success', lang('action_completed_successfully')];
@@ -201,10 +201,10 @@ final class Eac {
      */
     private function delete($TABLE_CATEGORIES, $TABLE_PRODUCTS, $parent_id) {
 
-        if (\eMarket\Core\Valid::inPOST('delete')) {
+        if (\eMarket\Valid::inPOST('delete')) {
 
             // Если в массиве пустое значение, то собираем новый массив без этого значения со сбросом ключей
-            $idx = \eMarket\Other\Func::deleteEmptyInArray(\eMarket\Core\Valid::inPOST('delete'));
+            $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('delete'));
 
             for ($i = 0; $i < count($idx); $i++) {
                 if (strstr($idx[$i], '_', true) != 'product') {
@@ -216,18 +216,18 @@ final class Eac {
                     for ($x = 0; $x < $count_keys; $x++) {
 
                         //Удаляем товар  
-                        \eMarket\Core\Pdo::inPrepare("DELETE FROM " . $TABLE_PRODUCTS . " WHERE parent_id=?", [$keys[$x]]);
+                        \eMarket\Pdo::inPrepare("DELETE FROM " . $TABLE_PRODUCTS . " WHERE parent_id=?", [$keys[$x]]);
 
                         //Удаляем подкатегории
-                        \eMarket\Core\Pdo::inPrepare("DELETE FROM " . $TABLE_CATEGORIES . " WHERE parent_id=?", [$keys[$x]]);
+                        \eMarket\Pdo::inPrepare("DELETE FROM " . $TABLE_CATEGORIES . " WHERE parent_id=?", [$keys[$x]]);
                     }
 
                     //Удаляем основную категорию    
-                    \eMarket\Core\Pdo::inPrepare("DELETE FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$idx[$i]]);
+                    \eMarket\Pdo::inPrepare("DELETE FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$idx[$i]]);
 
                     //Удаляем из буффера, если есть
                     if (isset($_SESSION['buffer']['cat']) && $_SESSION['buffer']['cat'] != FALSE) {
-                        $_SESSION['buffer']['cat'] = \eMarket\Other\Func::deleteValInArray($_SESSION['buffer']['cat'], [$idx[$i]]);
+                        $_SESSION['buffer']['cat'] = \eMarket\Func::deleteValInArray($_SESSION['buffer']['cat'], [$idx[$i]]);
                         if (count($_SESSION['buffer']['cat']) == 0) {
                             unset($_SESSION['buffer']['cat']);
                         }
@@ -236,11 +236,11 @@ final class Eac {
                     // Это товар
                     $id_prod = explode('product_', $idx[$i]);
                     //Удаляем основной товар
-                    \eMarket\Core\Pdo::inPrepare("DELETE FROM " . $TABLE_PRODUCTS . " WHERE id=?", [$id_prod[1]]);
+                    \eMarket\Pdo::inPrepare("DELETE FROM " . $TABLE_PRODUCTS . " WHERE id=?", [$id_prod[1]]);
 
                     //Удаляем из буффера, если есть
                     if (isset($_SESSION['buffer']['prod']) && $_SESSION['buffer']['prod'] != FALSE) {
-                        $_SESSION['buffer']['prod'] = \eMarket\Other\Func::deleteValInArray($_SESSION['buffer']['prod'], [$id_prod[1]]);
+                        $_SESSION['buffer']['prod'] = \eMarket\Func::deleteValInArray($_SESSION['buffer']['prod'], [$id_prod[1]]);
                         if (count($_SESSION['buffer']['prod']) == 0) {
                             unset($_SESSION['buffer']['prod']);
                         }
@@ -267,20 +267,20 @@ final class Eac {
      */
     private function cut($TABLE_CATEGORIES, $parent_id) {
 
-        if (\eMarket\Core\Valid::inPOST('idsx_cut_marker') == 'cut') { // очищаем буфер обмена, если он был заполнен, при нажатии Вырезать
+        if (\eMarket\Valid::inPOST('idsx_cut_marker') == 'cut') { // очищаем буфер обмена, если он был заполнен, при нажатии Вырезать
             unset($_SESSION['buffer']);
         }
 
-        if ((\eMarket\Core\Valid::inPOST('idsx_cut_key') == 'cut')) {
+        if ((\eMarket\Valid::inPOST('idsx_cut_key') == 'cut')) {
             // Если в массиве пустое значение, то собираем новый массив без этого значения со сбросом ключей
-            $idx = \eMarket\Other\Func::deleteEmptyInArray(\eMarket\Core\Valid::inPOST('idsx_cut_id'));
+            $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('idsx_cut_id'));
             for ($i = 0; $i < count($idx); $i++) {
 
-                $parent_id_real = (int) \eMarket\Core\Valid::inPOST('idsx_real_parent_id'); // получить значение из JS
+                $parent_id_real = (int) \eMarket\Valid::inPOST('idsx_real_parent_id'); // получить значение из JS
                 $parent_id = self::dataParentId($TABLE_CATEGORIES, $idx[$i]);
 
                 //Вырезаем основную родительскую категорию    
-                if (\eMarket\Core\Valid::inPOST('idsx_cut_key') == 'cut') {
+                if (\eMarket\Valid::inPOST('idsx_cut_key') == 'cut') {
                     // Это категория
                     if (strstr($idx[$i], '_', true) != 'product') {
                         if (!isset($_SESSION['buffer']['cat'])) {
@@ -323,9 +323,9 @@ final class Eac {
     private function paste($TABLE_CATEGORIES, $TABLE_PRODUCTS, $parent_id) {
 
         //Вставляем вырезанные категории    
-        if (\eMarket\Core\Valid::inPOST('idsx_paste_key') == 'paste' && isset($_SESSION['buffer']) == TRUE) {
+        if (\eMarket\Valid::inPOST('idsx_paste_key') == 'paste' && isset($_SESSION['buffer']) == TRUE) {
 
-            $parent_id_real = (int) \eMarket\Core\Valid::inPOST('idsx_real_parent_id'); // получить значение из JS
+            $parent_id_real = (int) \eMarket\Valid::inPOST('idsx_real_parent_id'); // получить значение из JS
             if (isset($_SESSION['buffer']['cat'])) {
                 $count_session_buffer_cat = count($_SESSION['buffer']['cat']);
             } else {
@@ -343,16 +343,16 @@ final class Eac {
                 // Это категория
                 if (isset($_SESSION['buffer']['cat'][$buf]) && count($_SESSION['buffer']['cat']) > 0) {
                     // Получаем последний sort_category в текущем parent_id и увеличиваем его на 1
-                    $sort_max = \eMarket\Core\Pdo::selectPrepare("SELECT sort_category FROM " . $TABLE_CATEGORIES . " WHERE language=? AND parent_id=? ORDER BY sort_category DESC", [lang('#lang_all')[0], $parent_id_real]);
+                    $sort_max = \eMarket\Pdo::selectPrepare("SELECT sort_category FROM " . $TABLE_CATEGORIES . " WHERE language=? AND parent_id=? ORDER BY sort_category DESC", [lang('#lang_all')[0], $parent_id_real]);
                     $sort_category = intval($sort_max) + 1;
                     // Обновляем данные
-                    \eMarket\Core\Pdo::inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET parent_id=?, sort_category=? WHERE id=?", [$parent_id_real, $sort_category, $_SESSION['buffer']['cat'][$buf]]);
+                    \eMarket\Pdo::inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET parent_id=?, sort_category=? WHERE id=?", [$parent_id_real, $sort_category, $_SESSION['buffer']['cat'][$buf]]);
                 }
 
                 if (isset($_SESSION['buffer']['prod'][$buf]) && count($_SESSION['buffer']['prod']) > 0) {
                     // Это товар
                     // Обновляем данные
-                    \eMarket\Core\Pdo::inPrepare("UPDATE " . $TABLE_PRODUCTS . " SET parent_id=? WHERE id=?", [$parent_id_real, $_SESSION['buffer']['prod'][$buf]]);
+                    \eMarket\Pdo::inPrepare("UPDATE " . $TABLE_PRODUCTS . " SET parent_id=? WHERE id=?", [$parent_id_real, $_SESSION['buffer']['prod'][$buf]]);
                 }
             }
             unset($_SESSION['buffer']); // очищаем буфер обмена
@@ -379,20 +379,20 @@ final class Eac {
      */
     private function status($TABLE_CATEGORIES, $TABLE_PRODUCTS, $parent_id) {
 
-        if ((\eMarket\Core\Valid::inPOST('idsx_statusOn_key') == 'statusOn')
-                or ( \eMarket\Core\Valid::inPOST('idsx_statusOff_key') == 'statusOff')) {
+        if ((\eMarket\Valid::inPOST('idsx_statusOn_key') == 'statusOn')
+                or ( \eMarket\Valid::inPOST('idsx_statusOff_key') == 'statusOff')) {
 
-            $parent_id_real = (int) \eMarket\Core\Valid::inPOST('idsx_real_parent_id'); // получить значение из JS
+            $parent_id_real = (int) \eMarket\Valid::inPOST('idsx_real_parent_id'); // получить значение из JS
 
-            if (\eMarket\Core\Valid::inPOST('idsx_statusOn_key') == 'statusOn') {
+            if (\eMarket\Valid::inPOST('idsx_statusOn_key') == 'statusOn') {
                 // Если в массиве пустое значение, то собираем новый массив без этого значения со сбросом ключей
-                $idx = \eMarket\Other\Func::deleteEmptyInArray(\eMarket\Core\Valid::inPOST('idsx_statusOn_id'));
+                $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('idsx_statusOn_id'));
                 $status = 1;
             }
 
-            if (\eMarket\Core\Valid::inPOST('idsx_statusOff_key') == 'statusOff') {
+            if (\eMarket\Valid::inPOST('idsx_statusOff_key') == 'statusOff') {
                 // Если в массиве пустое значение, то собираем новый массив без этого значения со сбросом ключей
-                $idx = \eMarket\Other\Func::deleteEmptyInArray(\eMarket\Core\Valid::inPOST('idsx_statusOff_id'));
+                $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('idsx_statusOff_id'));
                 $status = 0;
             }
             for ($i = 0; $i < count($idx); $i++) {
@@ -405,14 +405,14 @@ final class Eac {
                     for ($x = 0; $x < $count_keys; $x++) {
 
                         //Обновляем статус подкатегорий
-                        if ((\eMarket\Core\Valid::inPOST('idsx_statusOn_key') == 'statusOn')
-                                or ( \eMarket\Core\Valid::inPOST('idsx_statusOff_key') == 'statusOff')) {
+                        if ((\eMarket\Valid::inPOST('idsx_statusOn_key') == 'statusOn')
+                                or ( \eMarket\Valid::inPOST('idsx_statusOff_key') == 'statusOff')) {
 
                             // Это категория
-                            \eMarket\Core\Pdo::inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET status=? WHERE parent_id=?", [$status, $keys[$x]]);
+                            \eMarket\Pdo::inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET status=? WHERE parent_id=?", [$status, $keys[$x]]);
 
                             // Это товар
-                            \eMarket\Core\Pdo::inPrepare("UPDATE " . $TABLE_PRODUCTS . " SET status=? WHERE parent_id=?", [$status, $keys[$x]]);
+                            \eMarket\Pdo::inPrepare("UPDATE " . $TABLE_PRODUCTS . " SET status=? WHERE parent_id=?", [$status, $keys[$x]]);
 
                             if ($parent_id_real > 0) {
                                 $parent_id = $parent_id_real; // Возвращаемся в свою директорию после "Вырезать"
@@ -421,17 +421,17 @@ final class Eac {
                     }
 
                     //Обновляем статус основной категории
-                    if ((\eMarket\Core\Valid::inPOST('idsx_statusOn_key') == 'statusOn')
-                            or ( \eMarket\Core\Valid::inPOST('idsx_statusOff_key') == 'statusOff')) {
-                        \eMarket\Core\Pdo::inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET status=? WHERE id=?", [$status, $idx[$i]]);
+                    if ((\eMarket\Valid::inPOST('idsx_statusOn_key') == 'statusOn')
+                            or ( \eMarket\Valid::inPOST('idsx_statusOff_key') == 'statusOff')) {
+                        \eMarket\Pdo::inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET status=? WHERE id=?", [$status, $idx[$i]]);
                     }
                 } else {
                     // Это товар
                     //Обновляем статус основного товара
-                    if ((\eMarket\Core\Valid::inPOST('idsx_statusOn_key') == 'statusOn')
-                            or ( \eMarket\Core\Valid::inPOST('idsx_statusOff_key') == 'statusOff')) {
+                    if ((\eMarket\Valid::inPOST('idsx_statusOn_key') == 'statusOn')
+                            or ( \eMarket\Valid::inPOST('idsx_statusOff_key') == 'statusOff')) {
                         $id_prod = explode('product_', $idx[$i]);
-                        \eMarket\Core\Pdo::inPrepare("UPDATE " . $TABLE_PRODUCTS . " SET status=? WHERE id=?", [$status, $id_prod[1]]);
+                        \eMarket\Pdo::inPrepare("UPDATE " . $TABLE_PRODUCTS . " SET status=? WHERE id=?", [$status, $id_prod[1]]);
                     }
                 }
             }
@@ -454,11 +454,11 @@ final class Eac {
     private function dataParentId($TABLE_CATEGORIES, $idx) {
 
         // Устанавливаем родительскую категорию
-        $parent_id = \eMarket\Core\Pdo::selectPrepare("SELECT parent_id FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$idx]);
+        $parent_id = \eMarket\Pdo::selectPrepare("SELECT parent_id FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$idx]);
         // Устанавливаем родительскую категорию родительской категории
-        $parent_id_up = \eMarket\Core\Pdo::selectPrepare("SELECT parent_id FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$parent_id]);
+        $parent_id_up = \eMarket\Pdo::selectPrepare("SELECT parent_id FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$parent_id]);
         // считаем одинаковые parent_id
-        $parent_id_num = \eMarket\Core\Pdo::getColRow("SELECT id FROM " . $TABLE_CATEGORIES . " WHERE parent_id=?", [$parent_id]);
+        $parent_id_num = \eMarket\Pdo::getColRow("SELECT id FROM " . $TABLE_CATEGORIES . " WHERE parent_id=?", [$parent_id]);
         // если меньше 2-х значений, то устанавливаем parent_id как родительский родительского
         if (count($parent_id_num) < 2) {
             $parent_id = $parent_id_up;
@@ -476,7 +476,7 @@ final class Eac {
     private function dataKeys($TABLE_CATEGORIES, $idx) {
 
         //Выбираем данные из БД
-        $data_cat = \eMarket\Core\Pdo::inPrepare("SELECT id, parent_id FROM " . $TABLE_CATEGORIES);
+        $data_cat = \eMarket\Pdo::inPrepare("SELECT id, parent_id FROM " . $TABLE_CATEGORIES);
 
         $category = $idx; // id родителя
         $categories = [];
@@ -512,104 +512,104 @@ final class Eac {
         $TABLE_CURRENCIES = $TABLES[8];
 
         // Если нажали на кнопку Добавить товар
-        if (\eMarket\Core\Valid::inPOST('add_product')) {
+        if (\eMarket\Valid::inPOST('add_product')) {
 
             // Формат даты после Datepicker
-            if (\eMarket\Core\Valid::inPOST('date_available_product_stock')) {
-                $date_available = date('Y-m-d', strtotime(\eMarket\Core\Valid::inPOST('date_available_product_stock')));
+            if (\eMarket\Valid::inPOST('date_available_product_stock')) {
+                $date_available = date('Y-m-d', strtotime(\eMarket\Valid::inPOST('date_available_product_stock')));
             } else {
 
                 $date_available = NULL;
             }
 
-            if (\eMarket\Core\Valid::inPOST('view_product_stock')) {
+            if (\eMarket\Valid::inPOST('view_product_stock')) {
                 $view_product = 1;
             } else {
                 $view_product = 0;
             }
 
-            if (\eMarket\Core\Valid::inPOST('tax_product_stock')) {
-                $tax_product_stock = (int) \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . $TABLE_TAXES . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], \eMarket\Core\Valid::inPOST('tax_product_stock')]);
+            if (\eMarket\Valid::inPOST('tax_product_stock')) {
+                $tax_product_stock = (int) \eMarket\Pdo::selectPrepare("SELECT id FROM " . $TABLE_TAXES . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], \eMarket\Valid::inPOST('tax_product_stock')]);
             } else {
                 $tax_product_stock = NULL;
             }
 
-            if (\eMarket\Core\Valid::inPOST('unit_product_stock')) {
-                $unit_product_stock = (int) \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . $TABLE_UNITS . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], \eMarket\Core\Valid::inPOST('unit_product_stock')]);
+            if (\eMarket\Valid::inPOST('unit_product_stock')) {
+                $unit_product_stock = (int) \eMarket\Pdo::selectPrepare("SELECT id FROM " . $TABLE_UNITS . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], \eMarket\Valid::inPOST('unit_product_stock')]);
             } else {
                 $unit_product_stock = NULL;
             }
 
-            if (\eMarket\Core\Valid::inPOST('manufacturers_product_stock')) {
-                $manufacturers_product_stock = (int) \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . $TABLE_MANUFACTURERS . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], \eMarket\Core\Valid::inPOST('manufacturers_product_stock')]);
+            if (\eMarket\Valid::inPOST('manufacturers_product_stock')) {
+                $manufacturers_product_stock = (int) \eMarket\Pdo::selectPrepare("SELECT id FROM " . $TABLE_MANUFACTURERS . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], \eMarket\Valid::inPOST('manufacturers_product_stock')]);
             } else {
                 $manufacturers_product_stock = NULL;
             }
 
-            if (\eMarket\Core\Valid::inPOST('vendor_codes_product_stock')) {
-                $vendor_codes_product_stock = (int) \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . $TABLE_VENDOR_CODES . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], \eMarket\Core\Valid::inPOST('vendor_codes_product_stock')]);
+            if (\eMarket\Valid::inPOST('vendor_codes_product_stock')) {
+                $vendor_codes_product_stock = (int) \eMarket\Pdo::selectPrepare("SELECT id FROM " . $TABLE_VENDOR_CODES . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], \eMarket\Valid::inPOST('vendor_codes_product_stock')]);
             } else {
                 $vendor_codes_product_stock = NULL;
             }
 
-            if (\eMarket\Core\Valid::inPOST('weight_product_stock')) {
-                $weight_product_stock = (int) \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . $TABLE_WEIGHT . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], \eMarket\Core\Valid::inPOST('weight_product_stock')]);
+            if (\eMarket\Valid::inPOST('weight_product_stock')) {
+                $weight_product_stock = (int) \eMarket\Pdo::selectPrepare("SELECT id FROM " . $TABLE_WEIGHT . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], \eMarket\Valid::inPOST('weight_product_stock')]);
             } else {
                 $weight_product_stock = NULL;
             }
 
-            if (\eMarket\Core\Valid::inPOST('length_product_stock')) {
-                $length_product_stock = (int) \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . $TABLE_LENGTH . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], \eMarket\Core\Valid::inPOST('length_product_stock')]);
+            if (\eMarket\Valid::inPOST('length_product_stock')) {
+                $length_product_stock = (int) \eMarket\Pdo::selectPrepare("SELECT id FROM " . $TABLE_LENGTH . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], \eMarket\Valid::inPOST('length_product_stock')]);
             } else {
                 $length_product_stock = NULL;
             }
 
-            if (\eMarket\Core\Valid::inPOST('currency_product_stock')) {
-                $currency_product_stock = (int) \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . $TABLE_CURRENCIES . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], \eMarket\Core\Valid::inPOST('currency_product_stock')]);
+            if (\eMarket\Valid::inPOST('currency_product_stock')) {
+                $currency_product_stock = (int) \eMarket\Pdo::selectPrepare("SELECT id FROM " . $TABLE_CURRENCIES . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], \eMarket\Valid::inPOST('currency_product_stock')]);
             } else {
                 $currency_product_stock = NULL;
             }
 
-            if (\eMarket\Core\Valid::inPOST('weight_value_product_stock')) {
-                $weight_value_product_stock = \eMarket\Core\Valid::inPOST('weight_value_product_stock');
+            if (\eMarket\Valid::inPOST('weight_value_product_stock')) {
+                $weight_value_product_stock = \eMarket\Valid::inPOST('weight_value_product_stock');
             } else {
                 $weight_value_product_stock = NULL;
             }
 
-            if (\eMarket\Core\Valid::inPOST('value_length_product_stock')) {
-                $value_length_product_stock = \eMarket\Core\Valid::inPOST('value_length_product_stock');
+            if (\eMarket\Valid::inPOST('value_length_product_stock')) {
+                $value_length_product_stock = \eMarket\Valid::inPOST('value_length_product_stock');
             } else {
                 $value_length_product_stock = NULL;
             }
 
-            if (\eMarket\Core\Valid::inPOST('value_width_product_stock')) {
-                $value_width_product_stock = \eMarket\Core\Valid::inPOST('value_width_product_stock');
+            if (\eMarket\Valid::inPOST('value_width_product_stock')) {
+                $value_width_product_stock = \eMarket\Valid::inPOST('value_width_product_stock');
             } else {
                 $value_width_product_stock = NULL;
             }
             
-            if (\eMarket\Core\Valid::inPOST('value_height_product_stock')) {
-                $value_height_product_stock = \eMarket\Core\Valid::inPOST('value_height_product_stock');
+            if (\eMarket\Valid::inPOST('value_height_product_stock')) {
+                $value_height_product_stock = \eMarket\Valid::inPOST('value_height_product_stock');
             } else {
                 $value_height_product_stock = NULL;
             }
             
-            if (\eMarket\Core\Valid::inPOST('min_quantity_product_stock')) {
-                $min_quantity_product_stock = \eMarket\Core\Valid::inPOST('min_quantity_product_stock');
+            if (\eMarket\Valid::inPOST('min_quantity_product_stock')) {
+                $min_quantity_product_stock = \eMarket\Valid::inPOST('min_quantity_product_stock');
             } else {
                 $min_quantity_product_stock = NULL;
             }
 
             // Получаем последний id и увеличиваем его на 1
-            $id_max = \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . $TABLE_PRODUCTS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+            $id_max = \eMarket\Pdo::selectPrepare("SELECT id FROM " . $TABLE_PRODUCTS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max) + 1;
 
             // добавляем запись для всех вкладок
             for ($x = 0; $x < $LANG_COUNT; $x++) {
-                \eMarket\Core\Pdo::inPrepare("INSERT INTO " . $TABLE_PRODUCTS .
+                \eMarket\Pdo::inPrepare("INSERT INTO " . $TABLE_PRODUCTS .
                         " SET id=?, name=?, language=?, parent_id=?, date_added=?, date_available=?, model=?, price=?, currency=?, quantity=?, unit=?, keyword=?, tags=?, description=?, tax=?, manufacturer=?, vendor_code=?, vendor_code_value=?, weight=?, weight_value=?, dimension=?, lenght=?, width=?, height=?, min_quantity=?", [
-                    $id, \eMarket\Core\Valid::inPOST('name_product_stock_' . $x), lang('#lang_all')[$x], $parent_id, date("Y-m-d H:i:s"), $date_available, \eMarket\Core\Valid::inPOST('model_product_stock'), \eMarket\Core\Valid::inPOST('price_product_stock'), $currency_product_stock, \eMarket\Core\Valid::inPOST('quantity_product_stock'), $unit_product_stock, \eMarket\Core\Valid::inPOST('keyword_product_stock_' . $x), \eMarket\Core\Valid::inPOST('tags_product_stock_' . $x), \eMarket\Core\Valid::inPOST('description_product_stock_' . $x),
-                    $tax_product_stock, $manufacturers_product_stock, $vendor_codes_product_stock, \eMarket\Core\Valid::inPOST('vendor_code_value_product_stock'), $weight_product_stock, $weight_value_product_stock, $length_product_stock, $value_length_product_stock, $value_width_product_stock, $value_height_product_stock, $min_quantity_product_stock
+                    $id, \eMarket\Valid::inPOST('name_product_stock_' . $x), lang('#lang_all')[$x], $parent_id, date("Y-m-d H:i:s"), $date_available, \eMarket\Valid::inPOST('model_product_stock'), \eMarket\Valid::inPOST('price_product_stock'), $currency_product_stock, \eMarket\Valid::inPOST('quantity_product_stock'), $unit_product_stock, \eMarket\Valid::inPOST('keyword_product_stock_' . $x), \eMarket\Valid::inPOST('tags_product_stock_' . $x), \eMarket\Valid::inPOST('description_product_stock_' . $x),
+                    $tax_product_stock, $manufacturers_product_stock, $vendor_codes_product_stock, \eMarket\Valid::inPOST('vendor_code_value_product_stock'), $weight_product_stock, $weight_value_product_stock, $length_product_stock, $value_length_product_stock, $value_width_product_stock, $value_height_product_stock, $min_quantity_product_stock
                 ]);
             }
             // Выводим сообщение об успехе
@@ -636,100 +636,100 @@ final class Eac {
         $TABLE_CURRENCIES = $TABLES[8];
 
         // Если нажали на кнопку Добавить товар
-        if (\eMarket\Core\Valid::inPOST('edit_product')) {
+        if (\eMarket\Valid::inPOST('edit_product')) {
 
             // Формат даты после Datepicker
-            if (\eMarket\Core\Valid::inPOST('date_available_product_stock_edit')) {
-                $date_available = date('Y-m-d', strtotime(\eMarket\Core\Valid::inPOST('date_available_product_stock_edit')));
+            if (\eMarket\Valid::inPOST('date_available_product_stock_edit')) {
+                $date_available = date('Y-m-d', strtotime(\eMarket\Valid::inPOST('date_available_product_stock_edit')));
             } else {
 
                 $date_available = NULL;
             }
 
-            if (\eMarket\Core\Valid::inPOST('view_product_stock_edit')) {
+            if (\eMarket\Valid::inPOST('view_product_stock_edit')) {
                 $view_product = 1;
             } else {
                 $view_product = 0;
             }
 
-            if (\eMarket\Core\Valid::inPOST('tax_product_stock_edit')) {
-                $tax_product_stock = (int) \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . $TABLE_TAXES . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], \eMarket\Core\Valid::inPOST('tax_product_stock_edit')]);
+            if (\eMarket\Valid::inPOST('tax_product_stock_edit')) {
+                $tax_product_stock = (int) \eMarket\Pdo::selectPrepare("SELECT id FROM " . $TABLE_TAXES . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], \eMarket\Valid::inPOST('tax_product_stock_edit')]);
             } else {
                 $tax_product_stock = NULL;
             }
 
-            if (\eMarket\Core\Valid::inPOST('unit_product_stock_edit')) {
-                $unit_product_stock = (int) \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . $TABLE_UNITS . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], \eMarket\Core\Valid::inPOST('unit_product_stock_edit')]);
+            if (\eMarket\Valid::inPOST('unit_product_stock_edit')) {
+                $unit_product_stock = (int) \eMarket\Pdo::selectPrepare("SELECT id FROM " . $TABLE_UNITS . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], \eMarket\Valid::inPOST('unit_product_stock_edit')]);
             } else {
                 $unit_product_stock = NULL;
             }
 
-            if (\eMarket\Core\Valid::inPOST('manufacturers_product_stock_edit')) {
-                $manufacturers_product_stock = (int) \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . $TABLE_MANUFACTURERS . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], \eMarket\Core\Valid::inPOST('manufacturers_product_stock_edit')]);
+            if (\eMarket\Valid::inPOST('manufacturers_product_stock_edit')) {
+                $manufacturers_product_stock = (int) \eMarket\Pdo::selectPrepare("SELECT id FROM " . $TABLE_MANUFACTURERS . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], \eMarket\Valid::inPOST('manufacturers_product_stock_edit')]);
             } else {
                 $manufacturers_product_stock = NULL;
             }
 
-            if (\eMarket\Core\Valid::inPOST('vendor_codes_product_stock_edit')) {
-                $vendor_codes_product_stock = (int) \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . $TABLE_VENDOR_CODES . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], \eMarket\Core\Valid::inPOST('vendor_codes_product_stock_edit')]);
+            if (\eMarket\Valid::inPOST('vendor_codes_product_stock_edit')) {
+                $vendor_codes_product_stock = (int) \eMarket\Pdo::selectPrepare("SELECT id FROM " . $TABLE_VENDOR_CODES . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], \eMarket\Valid::inPOST('vendor_codes_product_stock_edit')]);
             } else {
                 $vendor_codes_product_stock = NULL;
             }
 
-            if (\eMarket\Core\Valid::inPOST('weight_product_stock_edit')) {
-                $weight_product_stock = (int) \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . $TABLE_WEIGHT . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], \eMarket\Core\Valid::inPOST('weight_product_stock_edit')]);
+            if (\eMarket\Valid::inPOST('weight_product_stock_edit')) {
+                $weight_product_stock = (int) \eMarket\Pdo::selectPrepare("SELECT id FROM " . $TABLE_WEIGHT . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], \eMarket\Valid::inPOST('weight_product_stock_edit')]);
             } else {
                 $weight_product_stock = NULL;
             }
 
-            if (\eMarket\Core\Valid::inPOST('length_product_stock_edit')) {
-                $length_product_stock = (int) \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . $TABLE_LENGTH . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], \eMarket\Core\Valid::inPOST('length_product_stock_edit')]);
+            if (\eMarket\Valid::inPOST('length_product_stock_edit')) {
+                $length_product_stock = (int) \eMarket\Pdo::selectPrepare("SELECT id FROM " . $TABLE_LENGTH . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], \eMarket\Valid::inPOST('length_product_stock_edit')]);
             } else {
                 $length_product_stock = NULL;
             }
 
-            if (\eMarket\Core\Valid::inPOST('currency_product_stock_edit')) {
-                $currency_product_stock = (int) \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . $TABLE_CURRENCIES . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], \eMarket\Core\Valid::inPOST('currency_product_stock_edit')]);
+            if (\eMarket\Valid::inPOST('currency_product_stock_edit')) {
+                $currency_product_stock = (int) \eMarket\Pdo::selectPrepare("SELECT id FROM " . $TABLE_CURRENCIES . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], \eMarket\Valid::inPOST('currency_product_stock_edit')]);
             } else {
                 $currency_product_stock = NULL;
             }
             
-            if (\eMarket\Core\Valid::inPOST('weight_value_product_stock_edit')) {
-                $weight_value_product_stock = \eMarket\Core\Valid::inPOST('weight_value_product_stock_edit');
+            if (\eMarket\Valid::inPOST('weight_value_product_stock_edit')) {
+                $weight_value_product_stock = \eMarket\Valid::inPOST('weight_value_product_stock_edit');
             } else {
                 $weight_value_product_stock = NULL;
             }
 
-            if (\eMarket\Core\Valid::inPOST('value_length_product_stock_edit')) {
-                $value_length_product_stock = \eMarket\Core\Valid::inPOST('value_length_product_stock_edit');
+            if (\eMarket\Valid::inPOST('value_length_product_stock_edit')) {
+                $value_length_product_stock = \eMarket\Valid::inPOST('value_length_product_stock_edit');
             } else {
                 $value_length_product_stock = NULL;
             }
 
-            if (\eMarket\Core\Valid::inPOST('value_width_product_stock_edit')) {
-                $value_width_product_stock = \eMarket\Core\Valid::inPOST('value_width_product_stock_edit');
+            if (\eMarket\Valid::inPOST('value_width_product_stock_edit')) {
+                $value_width_product_stock = \eMarket\Valid::inPOST('value_width_product_stock_edit');
             } else {
                 $value_width_product_stock = NULL;
             }
             
-            if (\eMarket\Core\Valid::inPOST('value_height_product_stock_edit')) {
-                $value_height_product_stock = \eMarket\Core\Valid::inPOST('value_height_product_stock_edit');
+            if (\eMarket\Valid::inPOST('value_height_product_stock_edit')) {
+                $value_height_product_stock = \eMarket\Valid::inPOST('value_height_product_stock_edit');
             } else {
                 $value_height_product_stock = NULL;
             }        
             
-            if (\eMarket\Core\Valid::inPOST('min_quantity_product_stock_edit')) {
-                $min_quantity_product_stock = \eMarket\Core\Valid::inPOST('min_quantity_product_stock_edit');
+            if (\eMarket\Valid::inPOST('min_quantity_product_stock_edit')) {
+                $min_quantity_product_stock = \eMarket\Valid::inPOST('min_quantity_product_stock_edit');
             } else {
                 $min_quantity_product_stock = NULL;
             }            
 
             // добавляем запись для всех вкладок
             for ($x = 0; $x < $LANG_COUNT; $x++) {
-                \eMarket\Core\Pdo::inPrepare("UPDATE " . $TABLE_PRODUCTS .
+                \eMarket\Pdo::inPrepare("UPDATE " . $TABLE_PRODUCTS .
                         " SET name=?, parent_id=?, last_modified=?, date_available=?, model=?, price=?, currency=?, quantity=?, unit=?, keyword=?, tags=?, description=?, tax=?, manufacturer=?, vendor_code=?, vendor_code_value=?, weight=?, weight_value=?, dimension=?, lenght=?, width=?, height=?, min_quantity=? WHERE id=? AND language=?", [
-                    \eMarket\Core\Valid::inPOST('name_product_stock_edit_' . $x), $parent_id, date("Y-m-d H:i:s"), $date_available, \eMarket\Core\Valid::inPOST('model_product_stock_edit'), \eMarket\Core\Valid::inPOST('price_product_stock_edit'), $currency_product_stock, \eMarket\Core\Valid::inPOST('quantity_product_stock_edit'), $unit_product_stock, \eMarket\Core\Valid::inPOST('keyword_product_stock_edit_' . $x), \eMarket\Core\Valid::inPOST('tags_product_stock_edit_' . $x), \eMarket\Core\Valid::inPOST('description_product_stock_edit_' . $x),
-                    $tax_product_stock, $manufacturers_product_stock, $vendor_codes_product_stock, \eMarket\Core\Valid::inPOST('vendor_code_value_product_stock_edit'), $weight_product_stock, $weight_value_product_stock, $length_product_stock, $value_length_product_stock, $value_width_product_stock, $value_height_product_stock, $min_quantity_product_stock, \eMarket\Core\Valid::inPOST('edit_product'), lang('#lang_all')[$x]
+                    \eMarket\Valid::inPOST('name_product_stock_edit_' . $x), $parent_id, date("Y-m-d H:i:s"), $date_available, \eMarket\Valid::inPOST('model_product_stock_edit'), \eMarket\Valid::inPOST('price_product_stock_edit'), $currency_product_stock, \eMarket\Valid::inPOST('quantity_product_stock_edit'), $unit_product_stock, \eMarket\Valid::inPOST('keyword_product_stock_edit_' . $x), \eMarket\Valid::inPOST('tags_product_stock_edit_' . $x), \eMarket\Valid::inPOST('description_product_stock_edit_' . $x),
+                    $tax_product_stock, $manufacturers_product_stock, $vendor_codes_product_stock, \eMarket\Valid::inPOST('vendor_code_value_product_stock_edit'), $weight_product_stock, $weight_value_product_stock, $length_product_stock, $value_length_product_stock, $value_width_product_stock, $value_height_product_stock, $min_quantity_product_stock, \eMarket\Valid::inPOST('edit_product'), lang('#lang_all')[$x]
                 ]);
             }
             // Выводим сообщение об успехе

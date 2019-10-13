@@ -4,13 +4,13 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-$cart_info = \eMarket\Other\Cart::info();
+$cart_info = \eMarket\Cart::info();
 
-$products = \eMarket\Other\Products::productData(\eMarket\Core\Valid::inGET('id'))[0];
-$product_category = \eMarket\Other\Products::productCategories($products['parent_id']);
-$product_price = \eMarket\Other\Products::productPrice($products['price'], $CURRENCIES, 1);
-$categories_name = \eMarket\Core\Pdo::getCell("SELECT name FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], \eMarket\Core\Valid::inGET('category_id')]);
-$category_parent_id = \eMarket\Core\Pdo::getCell("SELECT parent_id FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], \eMarket\Core\Valid::inGET('category_id')]);
+$products = \eMarket\Products::productData(\eMarket\Valid::inGET('id'))[0];
+$product_category = \eMarket\Products::productCategories($products['parent_id']);
+$product_price = \eMarket\Products::productPrice($products['price'], $CURRENCIES, 1);
+$categories_name = \eMarket\Pdo::getCell("SELECT name FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], \eMarket\Valid::inGET('category_id')]);
+$category_parent_id = \eMarket\Pdo::getCell("SELECT parent_id FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], \eMarket\Valid::inGET('category_id')]);
 
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
 $JS_END = __DIR__;

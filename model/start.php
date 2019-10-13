@@ -14,7 +14,7 @@ $TIME_START = microtime(1);
 require_once('vendor/autoload.php');
 
 //АВТОЗАГРУЗКА ФУНКЦИЙ
-foreach (\eMarket\Core\Tree::filesTree(getenv('DOCUMENT_ROOT') . '/model/functions/') as $path) {
+foreach (\eMarket\Tree::filesTree(getenv('DOCUMENT_ROOT') . '/model/functions/') as $path) {
     require_once($path);
 }
 
@@ -22,39 +22,39 @@ foreach (\eMarket\Core\Tree::filesTree(getenv('DOCUMENT_ROOT') . '/model/functio
 require_once('router_lang.php');
 
 //Если это панель администратора
-if (\eMarket\Core\Set::path() == 'admin') {
+if (\eMarket\Set::path() == 'admin') {
     require_once('configure/configure.php');
     // Загружаем авторизацию Административной части
-    if (\eMarket\Core\Valid::inGET('route') != 'login') {
-        $TOKEN = \eMarket\Core\Autorize::sessionAdmin();
+    if (\eMarket\Valid::inGET('route') != 'login') {
+        $TOKEN = \eMarket\Autorize::sessionAdmin();
     }
     // Данные по текущей валюте
-    $CURRENCIES = \eMarket\Core\Set::currencyDefault();
+    $CURRENCIES = \eMarket\Set::currencyDefault();
 }
 
 // Если это каталог
-if (\eMarket\Core\Set::path() == 'catalog') {
+if (\eMarket\Set::path() == 'catalog') {
     require_once('configure/configure.php');
 
     // Загружаем авторизацию Каталога
-    if (\eMarket\Core\Autorize::sessionCatalog() == TRUE) {
-        $CUSTOMER = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']])[0];
+    if (\eMarket\Autorize::sessionCatalog() == TRUE) {
+        $CUSTOMER = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']])[0];
     } else {
         $CUSTOMER = FALSE;
     }
     // Данные по текущей валюте
-    $CURRENCIES = \eMarket\Core\Set::currencyDefault();
+    $CURRENCIES = \eMarket\Set::currencyDefault();
 
     // Инициализация корзины
-    \eMarket\Other\Cart::init();
+    \eMarket\Cart::init();
 
     // Инициализация ECB
-    $ecb_init = \eMarket\Core\Ecb::init($_SESSION['cart'], $CURRENCIES);
+    $ecb_init = \eMarket\Ecb::init($_SESSION['cart'], $CURRENCIES);
 }
 
 // Считаем количество языков
 $LANG_COUNT = count(lang('#lang_all'));
 
 //unset($_SESSION['cart']);
-//\eMarket\Other\Debug::trace($ecb_init);
+//\eMarket\Debug::trace($ecb_init);
 ?>

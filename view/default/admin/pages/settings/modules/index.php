@@ -10,9 +10,9 @@
 
         <div class="panel-heading">
             <!--Выводим уведомление об успешном действии-->
-            <?php \eMarket\Other\Messages::alert(); ?>
+            <?php \eMarket\Messages::alert(); ?>
             <h3 class="panel-title">
-                <div class="pull-left"><span class="settings_back"><button type="button" onClick='location.href = "?route=settings"' class="btn btn-primary btn-xs"><span class="back glyphicon glyphicon-share-alt"></span></button></span><span class="settings_name"><?php echo lang('title_' . \eMarket\Core\Set::titleDir() . '_index') ?></span></div>
+                <div class="pull-left"><span class="settings_back"><button type="button" onClick='location.href = "?route=settings"' class="btn btn-primary btn-xs"><span class="back glyphicon glyphicon-share-alt"></span></button></span><span class="settings_name"><?php echo lang('title_' . \eMarket\Set::titleDir() . '_index') ?></span></div>
                 <div class="clearfix"></div>
             </h3>
         </div>
@@ -21,7 +21,7 @@
             <ul class="nav nav-tabs">
                 <?php
                 foreach ($_SESSION['MODULES_INFO'] as $type => $name) {
-                    if (\eMarket\Core\Valid::inGET('active') == $type OR ( !\eMarket\Core\Valid::inGET('active') && $type == 'payment')) {
+                    if (\eMarket\Valid::inGET('active') == $type OR ( !\eMarket\Valid::inGET('active') && $type == 'payment')) {
                         $class = '<li class="active">';
                     } else {
                         $class = '<li>';
@@ -35,13 +35,13 @@
             <div class="tab-content">
                 <?php
                 foreach ($_SESSION['MODULES_INFO'] as $type => $name) {
-                    if (\eMarket\Core\Valid::inGET('active') == $type OR ( !\eMarket\Core\Valid::inGET('active') && $type == 'payment')) {
+                    if (\eMarket\Valid::inGET('active') == $type OR ( !\eMarket\Valid::inGET('active') && $type == 'payment')) {
                         $class_tab = 'tab-pane fade in active';
                     } else {
                         $class_tab = 'tab-pane fade';
                     }
-                    $installed_filter = \eMarket\Other\Func::filterArrayToKey($installed, 'type', $type, 'name');
-                    $installed_filter_active = \eMarket\Other\Func::filterArrayToKey($installed_active, 'type', $type, 'name');
+                    $installed_filter = \eMarket\Func::filterArrayToKey($installed, 'type', $type, 'name');
+                    $installed_filter_active = \eMarket\Func::filterArrayToKey($installed_active, 'type', $type, 'name');
                     ?>
                     <div id="<?php echo $type ?>_modules" class="<?php echo $class_tab ?>">
 

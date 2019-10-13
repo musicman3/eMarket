@@ -4,7 +4,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-namespace eMarket\Other;
+namespace eMarket;
 
 /**
  * Класс для вспомогательных функций
@@ -60,7 +60,7 @@ class Func {
      * 
      * $val = 2; - это ключ ячейки Город [2] из которого берется значение Города для нового одномерного массива
      *
-     * $mass = \eMarket\Other\Func::filterArrayToKey($array, $value_key, $name_key, $val);
+     * $mass = \eMarket\Func::filterArrayToKey($array, $value_key, $name_key, $val);
      * 
      * на выходе получаем сортированный массив
      * 
@@ -113,7 +113,7 @@ class Func {
       [1] => 1
       )
      * 
-     * Использовать так: $multiselect = \eMarket\Other\Func::arrayExplode($array, '-');
+     * Использовать так: $multiselect = \eMarket\Func::arrayExplode($array, '-');
      * 
      * @param array $array (исходный одномерный массив с разделителем)
      * @param string $delimiter (разделитель)

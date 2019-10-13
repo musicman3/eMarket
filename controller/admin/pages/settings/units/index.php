@@ -6,27 +6,27 @@
 
 // 
 // Если нажали на кнопку Добавить
-if (\eMarket\Core\Valid::inPOST('add')) {
+if (\eMarket\Valid::inPOST('add')) {
 
     // Если есть установка по-умолчанию
-    if (\eMarket\Core\Valid::inPOST('default_unit')) {
+    if (\eMarket\Valid::inPOST('default_unit')) {
         $default_unit = 1;
     } else {
         $default_unit = 0;
     }
 
     // Получаем последний id и увеличиваем его на 1
-    $id_max = \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . TABLE_UNITS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+    $id_max = \eMarket\Pdo::selectPrepare("SELECT id FROM " . TABLE_UNITS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
     $id = intval($id_max) + 1;
 
     // Оставляем один экземпляр значения по-умолчанию
     if ($id > 1 && $default_unit != 0) {
-        \eMarket\Core\Pdo::inPrepare("UPDATE " . TABLE_UNITS . " SET default_unit=?", [0]);
+        \eMarket\Pdo::inPrepare("UPDATE " . TABLE_UNITS . " SET default_unit=?", [0]);
     }
 
     // добавляем запись для всех вкладок
     for ($x = 0; $x < $LANG_COUNT; $x++) {
-        \eMarket\Core\Pdo::inPrepare("INSERT INTO " . TABLE_UNITS . " SET id=?, name=?, language=?, unit=?, default_unit=?", [$id, \eMarket\Core\Valid::inPOST('name_units_' . $x), lang('#lang_all')[$x], \eMarket\Core\Valid::inPOST('unit_units_' . $x), $default_unit]);
+        \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_UNITS . " SET id=?, name=?, language=?, unit=?, default_unit=?", [$id, \eMarket\Valid::inPOST('name_units_' . $x), lang('#lang_all')[$x], \eMarket\Valid::inPOST('unit_units_' . $x), $default_unit]);
     }
 
     // Выводим сообщение об успехе
@@ -34,22 +34,22 @@ if (\eMarket\Core\Valid::inPOST('add')) {
 }
 
 // Если нажали на кнопку Редактировать
-if (\eMarket\Core\Valid::inPOST('edit')) {
+if (\eMarket\Valid::inPOST('edit')) {
 
     // Если есть установка по-умолчанию
-    if (\eMarket\Core\Valid::inPOST('default_unit_edit')) {
+    if (\eMarket\Valid::inPOST('default_unit_edit')) {
         $default_unit = 1;
     } else {
         $default_unit = 0;
     }
     // Оставляем один экземпляр значения по-умолчанию
     if ($default_unit != 0) {
-        \eMarket\Core\Pdo::inPrepare("UPDATE " . TABLE_UNITS . " SET default_unit=?", [0]);
+        \eMarket\Pdo::inPrepare("UPDATE " . TABLE_UNITS . " SET default_unit=?", [0]);
     }
 
     for ($x = 0; $x < $LANG_COUNT; $x++) {
         // обновляем запись
-        \eMarket\Core\Pdo::inPrepare("UPDATE " . TABLE_UNITS . " SET name=?, unit=?, default_unit=? WHERE id=? AND language=?", [\eMarket\Core\Valid::inPOST('name_units_edit_' . $x), \eMarket\Core\Valid::inPOST('unit_units_edit_' . $x), $default_unit, \eMarket\Core\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
+        \eMarket\Pdo::inPrepare("UPDATE " . TABLE_UNITS . " SET name=?, unit=?, default_unit=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_units_edit_' . $x), \eMarket\Valid::inPOST('unit_units_edit_' . $x), $default_unit, \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
     }
 
     // Выводим сообщение об успехе
@@ -57,18 +57,18 @@ if (\eMarket\Core\Valid::inPOST('edit')) {
 }
 
 // Если нажали на кнопку Удалить
-if (\eMarket\Core\Valid::inPOST('delete')) {
+if (\eMarket\Valid::inPOST('delete')) {
 
     // Удаляем
-    \eMarket\Core\Pdo::inPrepare("DELETE FROM " . TABLE_UNITS . " WHERE id=?", [\eMarket\Core\Valid::inPOST('delete')]);
+    \eMarket\Pdo::inPrepare("DELETE FROM " . TABLE_UNITS . " WHERE id=?", [\eMarket\Valid::inPOST('delete')]);
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
 }
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
-$lines = \eMarket\Core\Pdo::getColRow("SELECT id, name, unit, default_unit FROM " . TABLE_UNITS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
-$lines_on_page = \eMarket\Core\Set::linesOnPage();
-$navigate = \eMarket\Core\Navigation::getLink(count($lines), $lines_on_page);
+$lines = \eMarket\Pdo::getColRow("SELECT id, name, unit, default_unit FROM " . TABLE_UNITS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+$lines_on_page = \eMarket\Set::linesOnPage();
+$navigate = \eMarket\Navigation::getLink(count($lines), $lines_on_page);
 $start = $navigate[0];
 $finish = $navigate[1];
 

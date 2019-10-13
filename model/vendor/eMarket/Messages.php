@@ -5,7 +5,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-namespace eMarket\Other;
+namespace eMarket;
 
 /**
  * Класс для работы сообщениями или уведомлениями
@@ -22,22 +22,22 @@ class Messages {
      */
     public static function alert() {
         
-        if (\eMarket\Core\Valid::inPOST('add') OR \eMarket\Core\Valid::inPOST('edit')OR \eMarket\Core\Valid::inPOST('delete') OR \eMarket\Core\Valid::inPOST('idsx_paste_key')) {
+        if (\eMarket\Valid::inPOST('add') OR \eMarket\Valid::inPOST('edit')OR \eMarket\Valid::inPOST('delete') OR \eMarket\Valid::inPOST('idsx_paste_key')) {
             $_SESSION['message_marker'] = 'ok';
         }
 
         // При POST и GET по ajax + обновление страницы ШАГ 3 (обновление редиректом)
         if (isset($_SESSION['message_marker']) && $_SESSION['message_marker'] == 'ok_3') {
             if (isset($_SESSION['message'])) {
-                require_once (ROOT . '/view/' . \eMarket\Core\Set::template() . '/layouts/alert.php');
+                require_once (ROOT . '/view/' . \eMarket\Set::template() . '/layouts/alert.php');
             }
             unset($_SESSION['message_marker']);
             unset($_SESSION['message']);
         }
         // При POST и GET по ajax + обновление страницы ШАГ 4 (обновление по ajax)
-        if (\eMarket\Core\Valid::inGET('modify')) {
+        if (\eMarket\Valid::inGET('modify')) {
             if (isset($_SESSION['message'])) {
-                require_once (ROOT . '/view/' . \eMarket\Core\Set::template() . '/layouts/alert.php');
+                require_once (ROOT . '/view/' . \eMarket\Set::template() . '/layouts/alert.php');
             }
         }
 
@@ -51,7 +51,7 @@ class Messages {
         }
         // Если вызываем самостоятельно
         if (isset($_SESSION['message'][3]) && $_SESSION['message'][3] == TRUE) {
-            require_once (ROOT . '/view/' . \eMarket\Core\Set::template() . '/layouts/alert.php');
+            require_once (ROOT . '/view/' . \eMarket\Set::template() . '/layouts/alert.php');
             unset($_SESSION['message']);
         }
     }
@@ -68,7 +68,7 @@ class Messages {
         $mail = new \PHPMailer\PHPMailer\PHPMailer();
         $mail->CharSet = 'UTF-8';
 
-        $basic_settings = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_BASIC_SETTINGS . "", [])[0];
+        $basic_settings = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_BASIC_SETTINGS . "", [])[0];
 
         if ($basic_settings['smtp_status'] == 0) {
             $mail->isSendmail();

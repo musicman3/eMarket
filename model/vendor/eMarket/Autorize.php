@@ -4,7 +4,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-namespace eMarket\Core;
+namespace eMarket;
 
 /**
  * Класс для авторизации пользователей
@@ -23,11 +23,11 @@ class Autorize {
     public static function sessionAdmin() {
 
         // ЕСЛИ В АДМИНИСТРАТИВНОЙ ПАНЕЛИ
-        if (\eMarket\Core\Set::path() == 'admin' && \eMarket\Core\Set::titleDir() != 'login') {
+        if (\eMarket\Set::path() == 'admin' && \eMarket\Set::titleDir() != 'login') {
 
             session_start();
 
-            if (isset($_SESSION['session_start']) && (time() - $_SESSION['session_start']) / 60 > \eMarket\Core\Set::sessionExprTime()) { // Если истекло время сеанса
+            if (isset($_SESSION['session_start']) && (time() - $_SESSION['session_start']) / 60 > \eMarket\Set::sessionExprTime()) { // Если истекло время сеанса
                 unset($_SESSION['login']);    //удаляем текущую сессию
                 unset($_SESSION['pass']);
                 unset($_SESSION['session_start']);
@@ -42,7 +42,7 @@ class Autorize {
             } else {
                 $TOKEN = $_SESSION['pass']; // создаем токен для ajax и пр.
                 //Язык авторизованного администратора
-                $_SESSION['DEFAULT_LANGUAGE'] = \eMarket\Core\Pdo::selectPrepare("SELECT language FROM " . TABLE_ADMINISTRATORS . " WHERE login=? AND password=?", [$_SESSION['login'], $_SESSION['pass']]);
+                $_SESSION['DEFAULT_LANGUAGE'] = \eMarket\Pdo::selectPrepare("SELECT language FROM " . TABLE_ADMINISTRATORS . " WHERE login=? AND password=?", [$_SESSION['login'], $_SESSION['pass']]);
 
                 return $TOKEN;
             }
@@ -56,10 +56,10 @@ class Autorize {
      */
     public static function sessionCatalog() {
 
-        if (\eMarket\Core\Set::path() == 'catalog') {
+        if (\eMarket\Set::path() == 'catalog') {
 
             session_start();
-            if (isset($_SESSION['customer_session_start']) && (time() - $_SESSION['customer_session_start']) / 60 > \eMarket\Core\Set::sessionExprTime()) { // Если истекло время сеанса
+            if (isset($_SESSION['customer_session_start']) && (time() - $_SESSION['customer_session_start']) / 60 > \eMarket\Set::sessionExprTime()) { // Если истекло время сеанса
                 unset($_SESSION['password_customer']);
                 unset($_SESSION['email_customer']);
                 unset($_SESSION['customer_session_start']);

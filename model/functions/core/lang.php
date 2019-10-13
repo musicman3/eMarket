@@ -18,23 +18,23 @@ function lang($a = null, $b = null) {
     
     // Язык по-умолчанию
     if ($lang_default == null) {
-        \eMarket\Core\Lang::defaultLang();
+        \eMarket\Lang::defaultLang();
         $lang_default = 'true';
     }
 
     //Устанавливаем $lang_all
     if ($lang_all == null) {
-        $lang_all = \eMarket\Core\Lang::lang($_SESSION['DEFAULT_LANGUAGE'], 'all');
+        $lang_all = \eMarket\Lang::lang($_SESSION['DEFAULT_LANGUAGE'], 'all');
     }
 
     //Устанавливаем $lang_trans
     if ($lang_trans == null) {
-        $lang_trans = \eMarket\Core\Lang::lang($_SESSION['DEFAULT_LANGUAGE'], 'translate');
+        $lang_trans = \eMarket\Lang::lang($_SESSION['DEFAULT_LANGUAGE'], 'translate');
     }
 
     //Устанавливаем $lang_var
     if ($lang_var == null) {
-        $lang_var = \eMarket\Core\Lang::lang($_SESSION['DEFAULT_LANGUAGE']);
+        $lang_var = \eMarket\Lang::lang($_SESSION['DEFAULT_LANGUAGE']);
     }
 
     //Если присутствует маркер #lang_all, то выводим $lang_all

@@ -11,20 +11,20 @@ require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 
 // ФОРМИРУЕМ ДАННЫЕ ДЛЯ ФАЙЛА КОНФИГУРАЦИИ
 $ROOT = getenv('DOCUMENT_ROOT');
-$crypt_method = \eMarket\Core\Valid::inPOST('crypt_method');
-$db_family = \eMarket\Core\Valid::inPOST('database_family');
-$db_name = \eMarket\Core\Valid::inPOST('database_name');
-$db_port = \eMarket\Core\Valid::inPOST('database_port');
-$db_pref = \eMarket\Core\Valid::inPOST('database_prefix');
-$db_type = \eMarket\Core\Valid::inPOST('database_type');
-$hash_method = \eMarket\Core\Valid::inPOST('hash_method');
-$http = 'http://' . \eMarket\Core\Valid::inSERVER('HTTP_HOST') . '/';
-$lng = strtolower(\eMarket\Core\Valid::inPOST('language'));
-$login_admin = \eMarket\Core\Valid::inPOST('login_admin');
-$login_db = \eMarket\Core\Valid::inPOST('login_db');
-$password_admin = \eMarket\Core\Valid::inPOST('password_admin');
-$password_db = \eMarket\Core\Valid::inPOST('password_db');
-$serv_db = \eMarket\Core\Valid::inPOST('server_db');
+$crypt_method = \eMarket\Valid::inPOST('crypt_method');
+$db_family = \eMarket\Valid::inPOST('database_family');
+$db_name = \eMarket\Valid::inPOST('database_name');
+$db_port = \eMarket\Valid::inPOST('database_port');
+$db_pref = \eMarket\Valid::inPOST('database_prefix');
+$db_type = \eMarket\Valid::inPOST('database_type');
+$hash_method = \eMarket\Valid::inPOST('hash_method');
+$http = 'http://' . \eMarket\Valid::inSERVER('HTTP_HOST') . '/';
+$lng = strtolower(\eMarket\Valid::inPOST('language'));
+$login_admin = \eMarket\Valid::inPOST('login_admin');
+$login_db = \eMarket\Valid::inPOST('login_db');
+$password_admin = \eMarket\Valid::inPOST('password_admin');
+$password_db = \eMarket\Valid::inPOST('password_db');
+$serv_db = \eMarket\Valid::inPOST('server_db');
 // Данные по таблицам
 $tab_admin = $db_pref . 'administrators';
 $tab_basic_settings = $db_pref . 'basic_settings';
@@ -119,12 +119,12 @@ if ($db_family == 'myisam') {
     $buffer = str_ireplace('ENGINE=InnoDB', 'ENGINE=MyISAM', $buffer);
 }
 
-\eMarket\Core\Pdo::getExec($buffer);
+\eMarket\Pdo::getExec($buffer);
 
-$password_admin_hash = \eMarket\Core\Autorize::passwordHash($password_admin);
+$password_admin_hash = \eMarket\Autorize::passwordHash($password_admin);
 
-if (\eMarket\Core\Valid::inPOST('login_admin') && \eMarket\Core\Valid::inPOST('password_admin')) {
-    \eMarket\Core\Pdo::inPrepare("INSERT INTO " . TABLE_ADMINISTRATORS . "  SET login=?, password=?, permission=?, language=?", [$login_admin, $password_admin_hash, 'admin', $lng]);
+if (\eMarket\Valid::inPOST('login_admin') && \eMarket\Valid::inPOST('password_admin')) {
+    \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_ADMINISTRATORS . "  SET login=?, password=?, permission=?, language=?", [$login_admin, $password_admin_hash, 'admin', $lng]);
 }
 
 // СОЗДАЕМ .HTACCESS

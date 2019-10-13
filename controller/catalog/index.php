@@ -8,8 +8,8 @@
 require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 /* ------------------------------------------ */
 
-if (\eMarket\Core\Valid::inGET('route') != '') {
-    require_once (ROOT . '/controller/catalog/pages/' . \eMarket\Core\Valid::inGET('route') . '/index.php');
+if (\eMarket\Valid::inGET('route') != '') {
+    require_once (ROOT . '/controller/catalog/pages/' . \eMarket\Valid::inGET('route') . '/index.php');
 } else {
     require_once (ROOT . '/controller/catalog/pages/catalog/index.php');
 }

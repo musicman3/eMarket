@@ -4,7 +4,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-namespace eMarket\Other;
+namespace eMarket;
 
 /**
  * Класс для Ajax методов
@@ -49,7 +49,7 @@ class Ajax {
                 function AjaxSuccess(data) {
                     setTimeout(function () {
                         if (url === undefined) {
-                            document.location.href = '<?php echo \eMarket\Core\Valid::inSERVER('REQUEST_URI') ?>';
+                            document.location.href = '<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>';
                         } else {
                             document.location.href = url;
                         }
@@ -80,7 +80,7 @@ class Ajax {
                 function AjaxSuccess(data) {
                     setTimeout(function () {
                         if (url === undefined) {
-                            document.location.href = '<?php echo \eMarket\Core\Valid::inSERVER('REQUEST_URI') ?>';
+                            document.location.href = '<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>';
                         } else {
                             document.location.href = url;
                         }
@@ -111,7 +111,7 @@ class Ajax {
                 function AjaxSuccess(data) {
                     setTimeout(function () {
                         if (url === undefined) {
-                            document.location.href = '<?php echo \eMarket\Core\Valid::inSERVER('REQUEST_URI') ?>';
+                            document.location.href = '<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>';
                         } else {
                             document.location.href = url;
                         }
@@ -132,7 +132,7 @@ class Ajax {
      */
     public static function fileUpload($url, $dir, $resize_param) {
 
-        $resize_max = \eMarket\Other\Files::imgResizeMax($resize_param);
+        $resize_max = \eMarket\Files::imgResizeMax($resize_param);
 
         ?>
 
@@ -311,7 +311,7 @@ class Ajax {
      */
     public static function fileUploadProduct($url, $dir, $resize_param) {
 
-        $resize_max = \eMarket\Other\Files::imgResizeMax($resize_param);
+        $resize_max = \eMarket\Files::imgResizeMax($resize_param);
 
         ?>
 
@@ -504,7 +504,7 @@ class Ajax {
                 // Обновление страницы
                 function AjaxSuccess(data) {
                     setTimeout(function () {
-                        document.location.href = '<?php echo \eMarket\Core\Valid::inSERVER('REQUEST_URI') ?>';
+                        document.location.href = '<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>';
                     }, 100);
                 }
             }
@@ -521,7 +521,7 @@ class Ajax {
                 // Обновление страницы
                 function AjaxSuccess(data) {
                     setTimeout(function () {
-                        document.location.href = '<?php echo \eMarket\Core\Valid::inSERVER('REQUEST_URI') ?>';
+                        document.location.href = '<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>';
                     }, 100);
                 }
             }
@@ -539,7 +539,7 @@ class Ajax {
                 // Обновление страницы
                 function AjaxSuccess(data) {
                     setTimeout(function () {
-                        document.location.href = '<?php echo \eMarket\Core\Valid::inSERVER('REQUEST_URI') ?>';
+                        document.location.href = '<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>';
                     }, 100);
                 }
             }

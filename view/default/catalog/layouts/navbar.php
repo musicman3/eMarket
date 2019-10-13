@@ -34,7 +34,7 @@
                 </li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-credit-card"></i><span class="hidden-sm"> <?php echo lang('navbar_currencies') ?></span> <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <?php foreach (\eMarket\Core\Set::currenciesData() as $value) { ?>
+                        <?php foreach (\eMarket\Set::currenciesData() as $value) { ?>
                             <li><a href="<?php echo '/?route=catalog&currency_default=' . $value[1] ?>"><?php echo $value[0] ?></a></li>
                         <?php } ?>
                     </ul>
@@ -53,13 +53,13 @@
                         </ul>
 		<?php } ?>
 		    </li>
-                <?php if (\eMarket\Other\Cart::totalQuantity() == 0) { ?>
-                    <li class="nav"><a href="#" class="disabled"><i class="glyphicon glyphicon-shopping-cart"></i> <?php echo \eMarket\Other\Cart::totalQuantity() . ' ' . lang('navbar_pcs') ?></a></li>
+                <?php if (\eMarket\Cart::totalQuantity() == 0) { ?>
+                    <li class="nav"><a href="#" class="disabled"><i class="glyphicon glyphicon-shopping-cart"></i> <?php echo \eMarket\Cart::totalQuantity() . ' ' . lang('navbar_pcs') ?></a></li>
                 <?php } else { ?>
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-shopping-cart"></i> <?php echo \eMarket\Other\Cart::totalQuantity() . ' ' . lang('navbar_pcs') ?> <span class="caret"></span></a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-shopping-cart"></i> <?php echo \eMarket\Cart::totalQuantity() . ' ' . lang('navbar_pcs') ?> <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#" class="disabled"><?php echo \eMarket\Other\Cart::totalQuantity() . ' ' . lang('navbar_pcs') . ' (' . \eMarket\Other\Products::productPrice(\eMarket\Other\Cart::totalPrice(), $CURRENCIES, 1) . ')' ?></a></li>
+                            <li><a href="#" class="disabled"><?php echo \eMarket\Cart::totalQuantity() . ' ' . lang('navbar_pcs') . ' (' . \eMarket\Products::productPrice(\eMarket\Cart::totalPrice(), $CURRENCIES, 1) . ')' ?></a></li>
                             <li class="divider"></li>
                             <li><a href="/?route=cart">View Cart</a></li>
                         </ul>

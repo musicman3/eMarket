@@ -12,9 +12,9 @@ for ($i = $start; $i < $finish; $i++) {
         $count_lang = $LANG_COUNT;
 
         for ($x = 0; $x < $count_lang; $x++) {
-            $name_edit_temp[$x][$modal_id] = \eMarket\Core\Pdo::selectPrepare("SELECT name FROM " . TABLE_TAXES . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]]);
+            $name_edit_temp[$x][$modal_id] = \eMarket\Pdo::selectPrepare("SELECT name FROM " . TABLE_TAXES . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]]);
         }
-        $code_edit_temp[$modal_id] = \eMarket\Core\Pdo::selectPrepare("SELECT rate FROM " . TABLE_TAXES . " WHERE id=?", [$modal_id]);
+        $code_edit_temp[$modal_id] = \eMarket\Pdo::selectPrepare("SELECT rate FROM " . TABLE_TAXES . " WHERE id=?", [$modal_id]);
         // ПАРАМЕТРЫ ДЛЯ ПЕРЕДАЧИ В МОДАЛ
         $name_edit = json_encode($name_edit_temp); // Имя
         $code_edit = json_encode($code_edit_temp); // Короткое имя

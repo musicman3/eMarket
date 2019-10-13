@@ -19,13 +19,13 @@
                             <td class="text-left">
                                 <form id="quantity_product" name="quantity_product" action="javascript:void(null);" onsubmit="quantityProduct(<?php echo $value['id'] ?>, $('#number_<?php echo $value['id'] ?>').val())">
                                     <button class="btn btn-primary btn-sm" type="button" onclick="pcsProduct('minus', <?php echo $value['id'] ?>)"><span class="glyphicon glyphicon-minus"></span></button>
-                                    <input id="number_<?php echo $value['id'] ?>" type="number" min="1" value="<?php echo \eMarket\Other\Cart::productQuantity($value['id']) ?>" class="quantity">
+                                    <input id="number_<?php echo $value['id'] ?>" type="number" min="1" value="<?php echo \eMarket\Cart::productQuantity($value['id']) ?>" class="quantity">
                                     <button class="btn btn-primary btn-sm" type="button" onclick="pcsProduct('plus', <?php echo $value['id'] ?>)"><span class="glyphicon glyphicon-plus"></span></button>
                                     <button class="btn btn-primary btn-sm" type="submit"><span class="glyphicon glyphicon-refresh"></span></button>
                                     <button class="btn btn-primary btn-sm" type="button" onclick="deleteProduct(<?php echo $value['id'] ?>)"><span class="glyphicon glyphicon-trash"></span></button>
                                 </form>
                             </td>
-                            <td class="text-right"><?php echo \eMarket\Other\Products::productPrice($value['price'] * \eMarket\Other\Cart::productQuantity($value['id']), $CURRENCIES, 1) ?></td>
+                            <td class="text-right"><?php echo \eMarket\Products::productPrice($value['price'] * \eMarket\Cart::productQuantity($value['id']), $CURRENCIES, 1) ?></td>
                         </tr>
                     <?php } ?>
                 </tbody>
@@ -71,7 +71,7 @@
                     <tbody>
                         <tr>
                             <td class="text-right"><strong><?php echo lang('total') ?>:</strong></td>
-                            <td class="text-right"><?php echo \eMarket\Other\Products::productPrice(\eMarket\Other\Cart::totalPrice(), $CURRENCIES, 1) ?></td>
+                            <td class="text-right"><?php echo \eMarket\Products::productPrice(\eMarket\Cart::totalPrice(), $CURRENCIES, 1) ?></td>
                         </tr>
                     </tbody>
                 </table>

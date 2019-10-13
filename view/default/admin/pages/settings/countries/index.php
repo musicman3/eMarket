@@ -10,7 +10,7 @@
 <!-- КОНЕЦ Модальное окно "Добавить" -->
 
 <!-- Модальное окно "Редактировать" -->
-<?php require(ROOT . '/view/' . \eMarket\Core\Set::template() . '/admin/pages/settings/countries/modal/edit.php') ?>
+<?php require(ROOT . '/view/' . \eMarket\Set::template() . '/admin/pages/settings/countries/modal/edit.php') ?>
 <!-- КОНЕЦ Модальное окно "Редактировать" -->
 
 <div id="ajax">
@@ -18,9 +18,9 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <!--Выводим уведомление об успешном действии-->
-                <?php \eMarket\Other\Messages::alert(); ?>
+                <?php \eMarket\Messages::alert(); ?>
                 <h3 class="panel-title">
-                    <div class="pull-left"><span class="settings_back"><button type="button" onClick='location.href = "?route=settings"' class="btn btn-primary btn-xs"><span class="back glyphicon glyphicon-share-alt"></span></button></span><span class="settings_name"><?php echo lang('title_' . \eMarket\Core\Set::titleDir() . '_index') ?></span></div>
+                    <div class="pull-left"><span class="settings_back"><button type="button" onClick='location.href = "?route=settings"' class="btn btn-primary btn-xs"><span class="back glyphicon glyphicon-share-alt"></span></button></span><span class="settings_name"><?php echo lang('title_' . \eMarket\Set::titleDir() . '_index') ?></span></div>
                     <div class="clearfix"></div>
                 </h3>
             </div>
@@ -96,7 +96,7 @@
                                 <td><?php echo $lines[$start][1] ?></td>
                                 <td class="al-text"><?php echo $lines[$start][2] ?></td>
                                 <td class="al-text"><?php echo $lines[$start][3] ?></td>
-                                <td class="al-text"><img src='/view/<?php echo \eMarket\Core\Set::template() ?>/admin/images/worldflags/<?php echo strtolower($lines[$start][2]) ?>.png'></td>
+                                <td class="al-text"><img src='/view/<?php echo \eMarket\Set::template() ?>/admin/images/worldflags/<?php echo strtolower($lines[$start][2]) ?>.png'></td>
                                 <td class="al-text-w">
                                     <form id="form_delete<?php echo $lines[$start][0] ?>" name="form_delete" action="javascript:void(null);" onsubmit="callDelete('<?php echo $lines[$start][0] ?>')" enctype="multipart/form-data">
                                         <input hidden name="delete" value="<?php echo $lines[$start][0] ?>">

@@ -31,5 +31,5 @@
 <?php
 }
 // Подгружаем Ajax Добавить, Редактировать, Удалить
-\eMarket\Other\Ajax::action('');
+\eMarket\Ajax::action('');
 ?>

@@ -5,7 +5,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-namespace eMarket\Core;
+namespace eMarket;
 
 /**
  * Языковой класс
@@ -29,11 +29,11 @@ final class Lang {
 
         if ($lang == null) {
             //Получаем массив со списком путей к языковым файлам движка
-            $engine_path_array = \eMarket\Core\Tree::filesTree(getenv('DOCUMENT_ROOT') . '/language/' . $default_language . '/' . \eMarket\Core\Set::path());
+            $engine_path_array = \eMarket\Tree::filesTree(getenv('DOCUMENT_ROOT') . '/language/' . $default_language . '/' . \eMarket\Set::path());
 
             // Получаем список путей к языковым файлам модулей
             $modules_path = getenv('DOCUMENT_ROOT') . '/modules/';
-            $_SESSION['MODULES_INFO'] = \eMarket\Core\Tree::allDirForPath($modules_path, 'true');
+            $_SESSION['MODULES_INFO'] = \eMarket\Tree::allDirForPath($modules_path, 'true');
 
             // Готовим массив со списком путей к языковым файлам модулей
             $modules_path_array = [];
@@ -91,21 +91,21 @@ final class Lang {
     public static function defaultLang() {
 
         //Если пользователь не авторизован, то устанавливаем язык по умолчанию
-        if (!isset($_SESSION['DEFAULT_LANGUAGE']) && \eMarket\Core\Set::path() != 'install') {
+        if (!isset($_SESSION['DEFAULT_LANGUAGE']) && \eMarket\Set::path() != 'install') {
             $_SESSION['DEFAULT_LANGUAGE'] = DEFAULT_LANGUAGE;
         }
 
         //Если первый раз в инсталляторе, то устанавливаем язык по умолчанию Russian
-        if (!\eMarket\Core\Valid::inPOST('language') && \eMarket\Core\Set::path() == 'install') {
+        if (!\eMarket\Valid::inPOST('language') && \eMarket\Set::path() == 'install') {
             $_SESSION['DEFAULT_LANGUAGE'] = 'russian';
         }
 
         //Если переключили язык не авторизованно или в инсталляторе
-        if (\eMarket\Core\Valid::inPOST('language')) {
-            $_SESSION['DEFAULT_LANGUAGE'] = \eMarket\Core\Valid::inPOST('language');
+        if (\eMarket\Valid::inPOST('language')) {
+            $_SESSION['DEFAULT_LANGUAGE'] = \eMarket\Valid::inPOST('language');
         }
-        if (\eMarket\Core\Valid::inGET('language')) {
-            $_SESSION['DEFAULT_LANGUAGE'] = \eMarket\Core\Valid::inGET('language');
+        if (\eMarket\Valid::inGET('language')) {
+            $_SESSION['DEFAULT_LANGUAGE'] = \eMarket\Valid::inGET('language');
         }
     }
 

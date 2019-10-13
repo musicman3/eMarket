@@ -8,7 +8,7 @@
 <script type="text/javascript" language="javascript">
     $('#breadcrumb').append('<li class="selected"><a href="/"><?php echo lang('breadcrumb_home') ?></a></li>');
 
-<?php if (\eMarket\Core\Valid::inGET('route') == 'products') { ?>
+<?php if (\eMarket\Valid::inGET('route') == 'products') { ?>
         function breadcrumb() {
             var breadcrumbid = $('div#data_breadcrumb').data('breadcrumbid');
             var breadcrumbparentid = $('div#data_breadcrumb').data('breadcrumbparentid');
@@ -19,7 +19,7 @@
                     $('#breadcrumb').append('<li class="selected"><a href="/?route=listing&category_id=' + breadcrumbid[x] + '&parent_id=' + breadcrumbparentid[x] + '">' + breadcrumbname[x] + '</a></li>');
                 }
             }
-            $('#breadcrumb').append('<li class="selected"><a href="/?route=listing&category_id=<?php echo \eMarket\Core\Valid::inGET('category_id') ?>&parent_id=<?php echo \eMarket\Core\Valid::inGET('parent_id') ?>"><?php echo $categories_name ?></a></li>');
+            $('#breadcrumb').append('<li class="selected"><a href="/?route=listing&category_id=<?php echo \eMarket\Valid::inGET('category_id') ?>&parent_id=<?php echo \eMarket\Valid::inGET('parent_id') ?>"><?php echo $categories_name ?></a></li>');
             $('#breadcrumb').append('<li class="selected"><?php echo $products['name'] ?></li>');
         }
 
@@ -27,7 +27,7 @@
             breadcrumb();
         });
 
-<?php } elseif (\eMarket\Core\Valid::inGET('route') == 'listing') {
+<?php } elseif (\eMarket\Valid::inGET('route') == 'listing') {
     ?>
         function breadcrumb() {
             var breadcrumbid = $('div#data_breadcrumb').data('breadcrumbid');
@@ -51,7 +51,7 @@
             var breadcrumbparentid = $('div#data_breadcrumb').data('breadcrumbparentid');
             var breadcrumbname = $('div#data_breadcrumb').data('breadcrumbname');
 
-            $('#breadcrumb').append('<li class="selected"><?php echo \eMarket\Core\Set::titleCatalog('false') ?></li>');
+            $('#breadcrumb').append('<li class="selected"><?php echo \eMarket\Set::titleCatalog('false') ?></li>');
         }
 
         $(document).ready(function () {

@@ -5,7 +5,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-namespace eMarket\Core;
+namespace eMarket;
 
 /**
  * Движок ECB (Easy Calculated Block) v.1.0
@@ -42,7 +42,7 @@ final class Ecb {
         
         $new_array = [];
         foreach ($cart as $value) {
-            $products = \eMarket\Other\Products::productData($value['id'])[0];
+            $products = \eMarket\Products::productData($value['id'])[0];
             $value = array_merge($value, ['price' => $products['price']], ['currencies' => $CURRENCIES[0]]);
             array_push($new_array, $value);
         }
