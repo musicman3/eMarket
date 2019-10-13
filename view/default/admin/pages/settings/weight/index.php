@@ -17,7 +17,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <!--Выводим уведомление об успешном действии-->
-                    <?php $MESSAGES->alert(); ?>
+                    <?php \eMarket\Other\Messages::alert(); ?>
                     <h3 class="panel-title">
                         <div class="pull-left"><span class="settings_back"><button type="button" onClick='location.href = "?route=settings"' class="btn btn-primary btn-xs"><span class="back glyphicon glyphicon-share-alt"></span></button></span><span class="settings_name"><?php echo lang('title_' . \eMarket\Core\Set::titleDir() . '_index') ?></span></div>
                         <div class="clearfix"></div>

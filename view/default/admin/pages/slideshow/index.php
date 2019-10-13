@@ -22,7 +22,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <!--Выводим уведомление об успешном действии-->
-                    <?php $MESSAGES->alert(); ?>
+                    <?php \eMarket\Other\Messages::alert(); ?>
                     <h3 class="panel-title">
                         <div class="pull-left"><a href="#settings" class="btn btn-primary btn-xs" data-toggle="modal"><span class="back glyphicon glyphicon-wrench"></span></a> <?php echo lang('title_' . \eMarket\Core\Set::titleDir() . '_index') ?></div>
                         <div class="clearfix"></div>

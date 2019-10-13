@@ -6,7 +6,7 @@
 
 ?>
 <!--Выводим уведомление об успешном действии-->
-<?php $MESSAGES->alert(); ?>
+<?php \eMarket\Other\Messages::alert(); ?>
 <h1><?php echo lang('register_account') ?></h1>
 
 <div id="register" class="contentText">

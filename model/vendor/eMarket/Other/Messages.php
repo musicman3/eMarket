@@ -20,7 +20,7 @@ class Messages {
      * Уведомления об ошибках, успехе и т.п.
      *
      */
-    public function alert() {
+    public static function alert() {
         
         if (\eMarket\Core\Valid::inPOST('add') OR \eMarket\Core\Valid::inPOST('edit')OR \eMarket\Core\Valid::inPOST('delete') OR \eMarket\Core\Valid::inPOST('idsx_paste_key')) {
             $_SESSION['message_marker'] = 'ok';
@@ -63,7 +63,7 @@ class Messages {
      * @param string $subject (текст темы E-Mail)
      * @param string $message (Сообщение в html)
      */
-    public function sendMail($email_to, $subject, $message) {
+    public static function sendMail($email_to, $subject, $message) {
         
         $mail = new \PHPMailer\PHPMailer\PHPMailer();
         $mail->CharSet = 'UTF-8';

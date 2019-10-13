@@ -16,7 +16,7 @@ if (\eMarket\Core\Valid::inPOST('email')) {
         \eMarket\Core\Pdo::inPrepare("INSERT INTO " . TABLE_CUSTOMERS_ACTIVATION . " SET id=?, activation_code=?", [$id, $activation_code]);
         
         $link = HTTP_SERVER . '?route=login&activation_code=' . $activation_code;
-        $MESSAGES->sendMail(\eMarket\Core\Valid::inPOST('email'), lang('email_registration_subject'), sprintf(lang('email_registration_message'), $link, $link));
+        \eMarket\Other\Messages::sendMail(\eMarket\Core\Valid::inPOST('email'), lang('email_registration_subject'), sprintf(lang('email_registration_message'), $link, $link));
         
         $_SESSION['message'] = ['success', lang('messages_registration_complete'), 7000, TRUE];
     } else {

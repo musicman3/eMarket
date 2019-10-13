@@ -11,7 +11,7 @@
 
         <div class="panel-heading">
             <!--Выводим уведомление об успешном действии-->
-            <?php $MESSAGES->alert(); ?>
+            <?php \eMarket\Other\Messages::alert(); ?>
             <h3 class="panel-title">
                 <div class="pull-left"><span class="settings_back"><button type="button" onClick='location.href = "?route=settings/modules&active=<?php echo \eMarket\Core\Valid::inGET('type') ?>"' class="btn btn-primary btn-xs"><span class="back glyphicon glyphicon-share-alt"></span></button></span><span class="settings_name"><?php echo lang('modules_' . \eMarket\Core\Valid::inGET('type') . '_' . \eMarket\Core\Valid::inGET('name') . '_name') ?></span></div>
                 <div class="clearfix"></div>

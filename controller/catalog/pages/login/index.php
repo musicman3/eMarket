@@ -29,7 +29,7 @@ if (\eMarket\Core\Valid::inPOST('email_for_recovery')) {
         \eMarket\Core\Pdo::inPrepare("INSERT INTO " . TABLE_PASSWORD_RECOVERY . " SET customer_id=?, recovery_code=?, recovery_code_created=?", [$customer_id, $recovery_code, date("Y-m-d H:i:s")]);
 
         $link = HTTP_SERVER . '?route=recoverypass&recovery_code=' . $recovery_code;
-        $MESSAGES->sendMail(\eMarket\Core\Valid::inPOST('email_for_recovery'), lang('email_recovery_password_subject'), sprintf(lang('email_recovery_password_message'), $link, $link));
+        \eMarket\Other\Messages::sendMail(\eMarket\Core\Valid::inPOST('email_for_recovery'), lang('email_recovery_password_subject'), sprintf(lang('email_recovery_password_message'), $link, $link));
 
         $_SESSION['message'] = ['success', lang('password_recovery_message_success'), 7000, TRUE];
     } elseif ($customer_id != FALSE && $recovery_check != FALSE) { // Если произведен повторный запрос
@@ -37,7 +37,7 @@ if (\eMarket\Core\Valid::inPOST('email_for_recovery')) {
         \eMarket\Core\Pdo::inPrepare("UPDATE " . TABLE_PASSWORD_RECOVERY . " SET recovery_code=?, recovery_code_created=? WHERE customer_id=?", [$recovery_code, date("Y-m-d H:i:s"), $customer_id]);
         
         $link = HTTP_SERVER . '?route=recoverypass&recovery_code=' . $recovery_code;
-        $MESSAGES->sendMail(\eMarket\Core\Valid::inPOST('email_for_recovery'), lang('email_recovery_password_subject'), sprintf(lang('email_recovery_password_message'), $link, $link));
+        \eMarket\Other\Messages::sendMail(\eMarket\Core\Valid::inPOST('email_for_recovery'), lang('email_recovery_password_subject'), sprintf(lang('email_recovery_password_message'), $link, $link));
 
         $_SESSION['message'] = ['success', lang('password_recovery_message_success'), 7000, TRUE];
     } else { // Если нет такого пользователя

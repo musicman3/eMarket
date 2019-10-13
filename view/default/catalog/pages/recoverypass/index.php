@@ -5,7 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
 <!--Выводим уведомление об успешном действии-->
-<?php $MESSAGES->alert(); ?>
+<?php \eMarket\Other\Messages::alert(); ?>
 
 <?php if (isset($customer_id) && $customer_id != FALSE) { ?>
     <h1><?php echo lang('password_recovery') ?></h1>
