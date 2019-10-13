@@ -90,8 +90,6 @@ final class Lang {
      *
      */
     public static function defaultLang() {
-        
-        $VALID = new \eMarket\Core\Valid;
 
         //Если пользователь не авторизован, то устанавливаем язык по умолчанию
         if (!isset($_SESSION['DEFAULT_LANGUAGE']) && \eMarket\Core\Set::path() != 'install') {
@@ -99,16 +97,16 @@ final class Lang {
         }
 
         //Если первый раз в инсталляторе, то устанавливаем язык по умолчанию Russian
-        if (!$VALID->inPOST('language') && \eMarket\Core\Set::path() == 'install') {
+        if (!\eMarket\Core\Valid::inPOST('language') && \eMarket\Core\Set::path() == 'install') {
             $_SESSION['DEFAULT_LANGUAGE'] = 'russian';
         }
 
         //Если переключили язык не авторизованно или в инсталляторе
-        if ($VALID->inPOST('language')) {
-            $_SESSION['DEFAULT_LANGUAGE'] = $VALID->inPOST('language');
+        if (\eMarket\Core\Valid::inPOST('language')) {
+            $_SESSION['DEFAULT_LANGUAGE'] = \eMarket\Core\Valid::inPOST('language');
         }
-        if ($VALID->inGET('language')) {
-            $_SESSION['DEFAULT_LANGUAGE'] = $VALID->inGET('language');
+        if (\eMarket\Core\Valid::inGET('language')) {
+            $_SESSION['DEFAULT_LANGUAGE'] = \eMarket\Core\Valid::inGET('language');
         }
     }
 

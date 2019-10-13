@@ -6,23 +6,23 @@
 
 // 
 // Получаем zones_id
-if ($VALID->inPOST('zone_id')) {
-    $zones_id = (int) $VALID->inPOST('zone_id');
+if (\eMarket\Core\Valid::inPOST('zone_id')) {
+    $zones_id = (int) \eMarket\Core\Valid::inPOST('zone_id');
 }
 
-if ($VALID->inGET('zone_id')) {
-    $zones_id = (int) $VALID->inGET('zone_id');
+if (\eMarket\Core\Valid::inGET('zone_id')) {
+    $zones_id = (int) \eMarket\Core\Valid::inGET('zone_id');
 }
 
 // Если нажали на кнопку Добавить
-if ($VALID->inPOST('add')) {
+if (\eMarket\Core\Valid::inPOST('add')) {
 
     // Очищаем страны и регионы из этой зоны
     \eMarket\Core\Pdo::inPrepare("DELETE FROM " . TABLE_ZONES_VALUE . " WHERE zones_id=?", [$zones_id]);
 
-    if (empty($VALID->inPOST('multiselect')) == FALSE) {
+    if (empty(\eMarket\Core\Valid::inPOST('multiselect')) == FALSE) {
         // Создаем многомерный массив из одномерного, разбитого на части разделителем "-"
-        $multiselect = $FUNC->arrayExplode($VALID->inPOST('multiselect'), '-');
+        $multiselect = $FUNC->arrayExplode(\eMarket\Core\Valid::inPOST('multiselect'), '-');
         // Добавляем выбранные в мультиселекте данные
         for ($x = 0; $x < count($multiselect); $x++) {
             \eMarket\Core\Pdo::inPrepare("INSERT INTO " . TABLE_ZONES_VALUE . " SET country_id=?, regions_id=?, zones_id=?", [$multiselect[$x][0], $multiselect[$x][1], $zones_id]);

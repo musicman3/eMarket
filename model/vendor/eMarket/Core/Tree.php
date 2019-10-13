@@ -22,6 +22,7 @@ class Tree {
      * @return array $files (список файлов)
      */
     public function filesTree($dir) {
+        
         $handle = opendir($dir) or die("Error: Can't open directory $dir");
         $files = [];
         $subfiles = [];
@@ -51,6 +52,7 @@ class Tree {
      * @param string|null $rename опционально (префикс к имени файла)
      */
     public function filesDirAction($dir, $new_dir = null, $rename = null) {
+        
         $files = glob($dir . '*');
         foreach ($files as $file) {
             if (is_file($file) && file_exists($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
@@ -95,7 +97,6 @@ class Tree {
      * @return array $array_cat2 (массив всех предков для breadcrumb)
      */
     public function categories($sql, $id = null, $array_cat2 = [], $parent_id = 0, $marker = null) {
-        $VALID = new \eMarket\Core\Valid;
 
         $array_cat = [];
         foreach ($sql as $value) {
@@ -118,7 +119,7 @@ class Tree {
         }
 
         foreach ($array_cat[$parent_id] as $value) {
-            if ($value->id == $VALID->inGET('category_id') OR in_array($value->id, $array_cat2)) {
+            if ($value->id == \eMarket\Core\Valid::inGET('category_id') OR in_array($value->id, $array_cat2)) {
                 echo '<li class="collapsable open" id="' . $value->id . '"><a href="?route=listing&category_id=' . $value->id . '&parent_id=' . $value->parent_id . '">' . $value->name . '</a>';
             } else {
                 echo '<li class="expandable" id="' . $value->id . '"><a href="?route=listing&category_id=' . $value->id . '&parent_id=' . $value->parent_id . '">' . $value->name . '</a>';

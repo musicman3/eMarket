@@ -22,7 +22,7 @@ class Valid {
      * @param array|string $name (массив или строка $name)
      * @return array|string $name (массив или строка $name)
      */
-    public function inPOST($name) {
+    public static function inPOST($name) {
         if (filter_input(INPUT_POST, $name, FILTER_DEFAULT, FILTER_FORCE_ARRAY) == TRUE) {
             return (isset($_POST[$name])) ? $_POST[$name] : null;
         }
@@ -34,7 +34,7 @@ class Valid {
      * @param array|string $name (массив или строка $name)
      * @return array|string $name (массив или строка $name)
      */
-    public function inGET($name) {
+    public static function inGET($name) {
         if (filter_input(INPUT_GET, $name, FILTER_DEFAULT, FILTER_FORCE_ARRAY) == TRUE) {
             return (isset($_GET[$name])) ? $_GET[$name] : null;
         }
@@ -46,7 +46,7 @@ class Valid {
      * @param string $name (строка $name)
      * @return string $name (строка $name)
      */
-    public function inSERVER($name) {
+    public static function inSERVER($name) {
         if (filter_input(INPUT_SERVER, $name, FILTER_DEFAULT, FILTER_FORCE_ARRAY) == TRUE) {
             return (isset($_SERVER[$name])) ? $_SERVER[$name] : null;
         }
@@ -58,7 +58,7 @@ class Valid {
      * @param string $name (строка $name)
      * @return string $name (строка $name)
      */
-    public function inCOOKIE($name) {
+    public static function inCOOKIE($name) {
         if (filter_input(INPUT_COOKIE, $name) == TRUE) {
             return (isset($_COOKIE[$name])) ? $_COOKIE[$name] : null;
         }

@@ -15,7 +15,7 @@
             <form id="form_add" name="form_add" action="javascript:void(null);" onsubmit="callAdd()">
                 <div class="panel-body">
                     <input type="hidden" name="add" value="ok" />
-                    <input hidden name="country_id" value="<?php echo $VALID->inGET('country_id') ?>">
+                    <input hidden name="country_id" value="<?php echo \eMarket\Core\Valid::inGET('country_id') ?>">
 
                     <!-- Языковые панели -->
                     <?php require_once(ROOT . '/view/' . \eMarket\Core\Set::template() . '/layouts/lang_tabs_add.php') ?>

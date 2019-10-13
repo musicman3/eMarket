@@ -6,8 +6,8 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 // 
 //Переключаем язык в Административной панели
-if ($VALID->inGET('language') && \eMarket\Core\Set::path() == 'admin') {
-    \eMarket\Core\Pdo::inPrepare("UPDATE " . TABLE_ADMINISTRATORS . " SET language=? WHERE login=? AND password=?", [$VALID->inGET('language'), $_SESSION['login'], $_SESSION['pass']]);
+if (\eMarket\Core\Valid::inGET('language') && \eMarket\Core\Set::path() == 'admin') {
+    \eMarket\Core\Pdo::inPrepare("UPDATE " . TABLE_ADMINISTRATORS . " SET language=? WHERE login=? AND password=?", [\eMarket\Core\Valid::inGET('language'), $_SESSION['login'], $_SESSION['pass']]);
     header('Location: ?route=dashboard'); // переадресация
 }
 ?>

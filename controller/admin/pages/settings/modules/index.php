@@ -8,8 +8,8 @@
 $installed = \eMarket\Core\Pdo::getColAssoc("SELECT name, type FROM " . TABLE_MODULES . "", []);
 $installed_active = \eMarket\Core\Pdo::getColAssoc("SELECT name, type FROM " . TABLE_MODULES . " WHERE active=?", [1]);
 
-if ($VALID->inPOST('add')) {
-    $module = explode('_', $VALID->inPOST('add'));
+if (\eMarket\Core\Valid::inPOST('add')) {
+    $module = explode('_', \eMarket\Core\Valid::inPOST('add'));
     \eMarket\Core\Pdo::inPrepare("INSERT INTO " . TABLE_MODULES . " SET name=?, type=?, page=?, position=?, sort=?, install=?, active=?, default_module=?", [$module[1], $module[0], NULL, NULL, NULL, 1, 1, 0]);
     
     //Загружаем БД из файла
@@ -19,8 +19,8 @@ if ($VALID->inPOST('add')) {
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
 }
 
-if ($VALID->inPOST('delete')) {
-    $module = explode('_', $VALID->inPOST('delete'));
+if (\eMarket\Core\Valid::inPOST('delete')) {
+    $module = explode('_', \eMarket\Core\Valid::inPOST('delete'));
     // Удаляем
     \eMarket\Core\Pdo::inPrepare("DELETE FROM " . TABLE_MODULES . " WHERE name=? AND type=?", [$module[1], $module[0]]);
     \eMarket\Core\Pdo::inPrepare("DROP TABLE " . DB_PREFIX . 'modules_' . $module[0] . '_' . $module[1], []);
@@ -28,15 +28,15 @@ if ($VALID->inPOST('delete')) {
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
 }
 
-if ($VALID->inPOST('edit')) {
+if (\eMarket\Core\Valid::inPOST('edit')) {
 
-    if ($VALID->inPOST('switch') == 'on') {
+    if (\eMarket\Core\Valid::inPOST('switch') == 'on') {
         $active = 1;
     }
-    if (!$VALID->inPOST('switch')) {
+    if (!\eMarket\Core\Valid::inPOST('switch')) {
         $active = 0;
     }
-    $module = explode('_', $VALID->inPOST('edit'));
+    $module = explode('_', \eMarket\Core\Valid::inPOST('edit'));
     \eMarket\Core\Pdo::inPrepare("UPDATE " . TABLE_MODULES . " SET active=? WHERE name=? AND type=?", [$active, $module[1], $module[0]]);
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];

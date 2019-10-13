@@ -80,16 +80,15 @@ class Cart {
      *
      */
     public static function init() {
-        $VALID = new \eMarket\Core\Valid;
-
+        
         if (\eMarket\Core\Set::path() == 'catalog') {
-            if ($VALID->inGET('add_to_cart')) {
-                if (!$VALID->inGET('add_quantity')) {
+            if (\eMarket\Core\Valid::inGET('add_to_cart')) {
+                if (!\eMarket\Core\Valid::inGET('add_quantity')) {
                     $add_quantity = 1;
                 } else {
-                    $add_quantity = $VALID->inGET('add_quantity');
+                    $add_quantity = \eMarket\Core\Valid::inGET('add_quantity');
                 }
-                self::addProduct($VALID->inGET('add_to_cart'), $add_quantity);
+                self::addProduct(\eMarket\Core\Valid::inGET('add_to_cart'), $add_quantity);
             }
             self::deleteProduct();
             self::editProductQuantity();
@@ -136,12 +135,11 @@ class Cart {
      * 
      */
     public static function deleteProduct() {
-        $VALID = new \eMarket\Core\Valid;
-
-        if ($VALID->inGET('delete_product') && isset($_SESSION['cart'])) {
+        
+        if (\eMarket\Core\Valid::inGET('delete_product') && isset($_SESSION['cart'])) {
             $array_new = [];
             foreach ($_SESSION['cart'] as $value) {
-                if ($value['id'] != $VALID->inGET('delete_product')) {
+                if ($value['id'] != \eMarket\Core\Valid::inGET('delete_product')) {
                     array_push($array_new, $value);
                 }
             }
@@ -154,13 +152,12 @@ class Cart {
      * 
      */
     public static function editProductQuantity() {
-        $VALID = new \eMarket\Core\Valid;
-
-        if ($VALID->inGET('quantity_product_id') && isset($_SESSION['cart'])) {
+        
+        if (\eMarket\Core\Valid::inGET('quantity_product_id') && isset($_SESSION['cart'])) {
             $count = 0;
             foreach ($_SESSION['cart'] as $value) {
-                if ($value['id'] == $VALID->inGET('quantity_product_id') && $VALID->inGET('pcs_product') != 'true') {
-                    $_SESSION['cart'][$count]['quantity'] = $VALID->inGET('pcs_product');
+                if ($value['id'] == \eMarket\Core\Valid::inGET('quantity_product_id') && \eMarket\Core\Valid::inGET('pcs_product') != 'true') {
+                    $_SESSION['cart'][$count]['quantity'] = \eMarket\Core\Valid::inGET('pcs_product');
                 }
                 $count++;
             }

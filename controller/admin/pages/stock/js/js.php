@@ -48,7 +48,7 @@ if (isset($_SESSION['buffer'])) {
                 {token_ajax: token,
                     ids: ids.join()});
         // Повторный вызов функции для нормального обновления страницы
-        jQuery.get('<?php echo $VALID->inSERVER('REQUEST_URI') ?>',
+        jQuery.get('<?php echo \eMarket\Core\Valid::inSERVER('REQUEST_URI') ?>',
                 {}, // id родительской категории
                 AjaxSuccess);
         function AjaxSuccess(data) {
@@ -427,7 +427,7 @@ if (isset($_SESSION['buffer'])) {
                                 // Обновление страницы
                                 function AjaxSuccess(data) {
                                     setTimeout(function () {
-                                        document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
+                                        document.location.href = '<?php echo \eMarket\Core\Valid::inSERVER('REQUEST_URI') ?>';
                                     }, 100);
                                     $("#sort-list").sortable();
                                 }
@@ -510,7 +510,7 @@ if (isset($_SESSION['buffer'])) {
         // Обновление страницы
         function AjaxSuccess(data) {
             setTimeout(function () {
-                document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
+                document.location.href = '<?php echo \eMarket\Core\Valid::inSERVER('REQUEST_URI') ?>';
             }, 100);
             $("#sort-list").sortable();
         }
@@ -572,7 +572,7 @@ if (isset($_SESSION['buffer'])) {
         // Обновление страницы
         function AjaxSuccess(data) {
             setTimeout(function () {
-                document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
+                document.location.href = '<?php echo \eMarket\Core\Valid::inSERVER('REQUEST_URI') ?>';
             }, 100);
             $("#sort-list").sortable();
         }
@@ -601,7 +601,7 @@ if (isset($_SESSION['buffer'])) {
         // Обновление страницы
         function AjaxSuccess(data) {
             setTimeout(function () {
-                document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
+                document.location.href = '<?php echo \eMarket\Core\Valid::inSERVER('REQUEST_URI') ?>';
             }, 100);
             $("#sort-list").sortable();
         }

@@ -6,7 +6,7 @@
 
 session_start();
 
-if ($VALID->inGET('logout') == 'ok') {
+if (\eMarket\Core\Valid::inGET('logout') == 'ok') {
     //удаляем текущую сессию
     unset($_SESSION['login']);
     unset($_SESSION['pass']);
@@ -19,7 +19,7 @@ if (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
 }
 
 // если логин или пароль не верные, то готовим уведомление
-if (isset($_SESSION['login_error']) == TRUE && $VALID->inPOST('login') && $VALID->inPOST('pass')) {
+if (isset($_SESSION['login_error']) == TRUE && \eMarket\Core\Valid::inPOST('login') && \eMarket\Core\Valid::inPOST('pass')) {
     $login_error = $_SESSION['login_error'];
     //удаляем текущую сессию
     unset($_SESSION['login']);
@@ -28,22 +28,22 @@ if (isset($_SESSION['login_error']) == TRUE && $VALID->inPOST('login') && $VALID
     $login_error = '';
 }
 
-if ($VALID->inPOST('install') == 'ok') {
+if (\eMarket\Core\Valid::inPOST('install') == 'ok') {
     session_destroy();    //удаляем текущую сессию
     session_start();
 }
 
-if ($VALID->inPOST('autorize') == 'ok') {
+if (\eMarket\Core\Valid::inPOST('autorize') == 'ok') {
     //Ищем авторизованного администратора
-    $HASH = \eMarket\Core\Pdo::selectPrepare("SELECT password FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [$VALID->inPOST('login')]);
-    if (!password_verify($VALID->inPOST('pass'), $HASH)) {    //Если проверка не удалась:
+    $HASH = \eMarket\Core\Pdo::selectPrepare("SELECT password FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [\eMarket\Core\Valid::inPOST('login')]);
+    if (!password_verify(\eMarket\Core\Valid::inPOST('pass'), $HASH)) {    //Если проверка не удалась:
         //удаляем текущую сессию
         unset($_SESSION['login']);
         unset($_SESSION['pass']);
         $_SESSION['default_language'] = DEFAULT_LANGUAGE;
         $_SESSION['login_error'] = lang('login_error');
     } else {
-        $_SESSION['login'] = $VALID->inPOST('login');
+        $_SESSION['login'] = \eMarket\Core\Valid::inPOST('login');
         $_SESSION['pass'] = $HASH;
         header('Location: ?route=dashboard');    // Если все успешно, то редирект в административную часть
     }

@@ -6,10 +6,10 @@
 
 // 
 // Если нажали на кнопку Добавить
-if ($VALID->inPOST('add')) {
+if (\eMarket\Core\Valid::inPOST('add')) {
 
     // Если есть установка по-умолчанию
-    if ($VALID->inPOST('default_unit')) {
+    if (\eMarket\Core\Valid::inPOST('default_unit')) {
         $default_unit = 1;
     } else {
         $default_unit = 0;
@@ -26,7 +26,7 @@ if ($VALID->inPOST('add')) {
 
     // добавляем запись для всех вкладок
     for ($x = 0; $x < $LANG_COUNT; $x++) {
-        \eMarket\Core\Pdo::inPrepare("INSERT INTO " . TABLE_UNITS . " SET id=?, name=?, language=?, unit=?, default_unit=?", [$id, $VALID->inPOST('name_units_' . $x), lang('#lang_all')[$x], $VALID->inPOST('unit_units_' . $x), $default_unit]);
+        \eMarket\Core\Pdo::inPrepare("INSERT INTO " . TABLE_UNITS . " SET id=?, name=?, language=?, unit=?, default_unit=?", [$id, \eMarket\Core\Valid::inPOST('name_units_' . $x), lang('#lang_all')[$x], \eMarket\Core\Valid::inPOST('unit_units_' . $x), $default_unit]);
     }
 
     // Выводим сообщение об успехе
@@ -34,10 +34,10 @@ if ($VALID->inPOST('add')) {
 }
 
 // Если нажали на кнопку Редактировать
-if ($VALID->inPOST('edit')) {
+if (\eMarket\Core\Valid::inPOST('edit')) {
 
     // Если есть установка по-умолчанию
-    if ($VALID->inPOST('default_unit_edit')) {
+    if (\eMarket\Core\Valid::inPOST('default_unit_edit')) {
         $default_unit = 1;
     } else {
         $default_unit = 0;
@@ -49,7 +49,7 @@ if ($VALID->inPOST('edit')) {
 
     for ($x = 0; $x < $LANG_COUNT; $x++) {
         // обновляем запись
-        \eMarket\Core\Pdo::inPrepare("UPDATE " . TABLE_UNITS . " SET name=?, unit=?, default_unit=? WHERE id=? AND language=?", [$VALID->inPOST('name_units_edit_' . $x), $VALID->inPOST('unit_units_edit_' . $x), $default_unit, $VALID->inPOST('edit'), lang('#lang_all')[$x]]);
+        \eMarket\Core\Pdo::inPrepare("UPDATE " . TABLE_UNITS . " SET name=?, unit=?, default_unit=? WHERE id=? AND language=?", [\eMarket\Core\Valid::inPOST('name_units_edit_' . $x), \eMarket\Core\Valid::inPOST('unit_units_edit_' . $x), $default_unit, \eMarket\Core\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
     }
 
     // Выводим сообщение об успехе
@@ -57,10 +57,10 @@ if ($VALID->inPOST('edit')) {
 }
 
 // Если нажали на кнопку Удалить
-if ($VALID->inPOST('delete')) {
+if (\eMarket\Core\Valid::inPOST('delete')) {
 
     // Удаляем
-    \eMarket\Core\Pdo::inPrepare("DELETE FROM " . TABLE_UNITS . " WHERE id=?", [$VALID->inPOST('delete')]);
+    \eMarket\Core\Pdo::inPrepare("DELETE FROM " . TABLE_UNITS . " WHERE id=?", [\eMarket\Core\Valid::inPOST('delete')]);
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
 }

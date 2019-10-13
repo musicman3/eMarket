@@ -21,8 +21,7 @@ class Ajax {
      * @param string $url (url страницы обработки)
      */
     public function action($url) {
-        $VALID = new \eMarket\Core\Valid;
-
+        
         ?>
         <!-- Модальное окно "Добавить" -->
         <script type="text/javascript">
@@ -50,7 +49,7 @@ class Ajax {
                 function AjaxSuccess(data) {
                     setTimeout(function () {
                         if (url === undefined) {
-                            document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
+                            document.location.href = '<?php echo \eMarket\Core\Valid::inSERVER('REQUEST_URI') ?>';
                         } else {
                             document.location.href = url;
                         }
@@ -81,7 +80,7 @@ class Ajax {
                 function AjaxSuccess(data) {
                     setTimeout(function () {
                         if (url === undefined) {
-                            document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
+                            document.location.href = '<?php echo \eMarket\Core\Valid::inSERVER('REQUEST_URI') ?>';
                         } else {
                             document.location.href = url;
                         }
@@ -112,7 +111,7 @@ class Ajax {
                 function AjaxSuccess(data) {
                     setTimeout(function () {
                         if (url === undefined) {
-                            document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
+                            document.location.href = '<?php echo \eMarket\Core\Valid::inSERVER('REQUEST_URI') ?>';
                         } else {
                             document.location.href = url;
                         }
@@ -494,8 +493,7 @@ class Ajax {
      * @param string $url (url страницы обработки)
      */
     public function сart($url) {
-        $VALID = new \eMarket\Core\Valid;
-
+        
         ?>
         <!-- Добавить товар -->
         <script type="text/javascript">
@@ -510,7 +508,7 @@ class Ajax {
                 // Обновление страницы
                 function AjaxSuccess(data) {
                     setTimeout(function () {
-                        document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
+                        document.location.href = '<?php echo \eMarket\Core\Valid::inSERVER('REQUEST_URI') ?>';
                     }, 100);
                 }
             }
@@ -527,7 +525,7 @@ class Ajax {
                 // Обновление страницы
                 function AjaxSuccess(data) {
                     setTimeout(function () {
-                        document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
+                        document.location.href = '<?php echo \eMarket\Core\Valid::inSERVER('REQUEST_URI') ?>';
                     }, 100);
                 }
             }
@@ -545,7 +543,7 @@ class Ajax {
                 // Обновление страницы
                 function AjaxSuccess(data) {
                     setTimeout(function () {
-                        document.location.href = '<?php echo $VALID->inSERVER('REQUEST_URI') ?>';
+                        document.location.href = '<?php echo \eMarket\Core\Valid::inSERVER('REQUEST_URI') ?>';
                     }, 100);
                 }
             }

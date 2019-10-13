@@ -59,8 +59,8 @@ $manufacturers_all = \eMarket\Core\Pdo::getColRow("SELECT name, id FROM " . TABL
 // КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 // 
 // Устанавливаем родительскую категорию при навигации назад-вперед
-if ($VALID->inGET('parent_id_temp')) {
-    $parent_id = $VALID->inGET('parent_id_temp');
+if (\eMarket\Core\Valid::inGET('parent_id_temp')) {
+    $parent_id = \eMarket\Core\Valid::inGET('parent_id_temp');
 }
 
 $lines_on_page = \eMarket\Core\Set::linesOnPage();

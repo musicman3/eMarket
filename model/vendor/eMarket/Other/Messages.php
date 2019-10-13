@@ -22,9 +22,7 @@ class Messages {
      */
     public function alert() {
         
-        $VALID = new \eMarket\Core\Valid;
-
-        if ($VALID->inPOST('add') OR $VALID->inPOST('edit')OR $VALID->inPOST('delete') OR $VALID->inPOST('idsx_paste_key')) {
+        if (\eMarket\Core\Valid::inPOST('add') OR \eMarket\Core\Valid::inPOST('edit')OR \eMarket\Core\Valid::inPOST('delete') OR \eMarket\Core\Valid::inPOST('idsx_paste_key')) {
             $_SESSION['message_marker'] = 'ok';
         }
 
@@ -37,7 +35,7 @@ class Messages {
             unset($_SESSION['message']);
         }
         // При POST и GET по ajax + обновление страницы ШАГ 4 (обновление по ajax)
-        if ($VALID->inGET('modify')) {
+        if (\eMarket\Core\Valid::inGET('modify')) {
             if (isset($_SESSION['message'])) {
                 require_once (ROOT . '/view/' . \eMarket\Core\Set::template() . '/layouts/alert.php');
             }

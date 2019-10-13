@@ -6,7 +6,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 // Если нажали на кнопку Удалить
-if ($VALID->inPOST('delete') == 'delete' && file_exists(ROOT . '/model/work/errors.log')) {
+if (\eMarket\Core\Valid::inPOST('delete') == 'delete' && file_exists(ROOT . '/model/work/errors.log')) {
     // удаляем лог
     unlink(ROOT . '/model/work/errors.log');
 

@@ -42,16 +42,14 @@ class Set {
      * @return array $currency
      */
     public static function currencyDefault() {
-        
-        $VALID = new \eMarket\Core\Valid;
 
         if (!isset($_SESSION['currency_default_catalog'])) {
             $currency = \eMarket\Core\Pdo::getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND default_value=?", [lang('#lang_all')[0], 1])[0];
             $_SESSION['currency_default_catalog'] = $currency[0];
-        } elseif (isset($_SESSION['currency_default_catalog']) && !$VALID->inGET('currency_default')) {
+        } elseif (isset($_SESSION['currency_default_catalog']) && !\eMarket\Core\Valid::inGET('currency_default')) {
             $currency = \eMarket\Core\Pdo::getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], $_SESSION['currency_default_catalog']])[0];
-        } elseif (isset($_SESSION['currency_default_catalog']) && $VALID->inGET('currency_default')) {
-            $currency = \eMarket\Core\Pdo::getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], $VALID->inGET('currency_default')])[0];
+        } elseif (isset($_SESSION['currency_default_catalog']) && \eMarket\Core\Valid::inGET('currency_default')) {
+            $currency = \eMarket\Core\Pdo::getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], \eMarket\Core\Valid::inGET('currency_default')])[0];
             $_SESSION['currency_default_catalog'] = $currency[0];
         }
 
@@ -64,16 +62,15 @@ class Set {
      * @return string $path
      */
     public static function canonicalPathCatalog() {
-        $VALID = new \eMarket\Core\Valid;
-
-        $path_temp = $VALID->inSERVER('REQUEST_URI');
-        if ($VALID->inSERVER('REQUEST_URI') == '/') {
+        
+        $path_temp = \eMarket\Core\Valid::inSERVER('REQUEST_URI');
+        if (\eMarket\Core\Valid::inSERVER('REQUEST_URI') == '/') {
             $path_temp = '';
         }
         $path = HTTP_SERVER . $path_temp;
 
-        if (strrpos($VALID->inSERVER('REQUEST_URI'), '?route') == true) {
-            $path_temp = HTTP_SERVER . str_replace('/?route', '?route', $VALID->inSERVER('REQUEST_URI'));
+        if (strrpos(\eMarket\Core\Valid::inSERVER('REQUEST_URI'), '?route') == true) {
+            $path_temp = HTTP_SERVER . str_replace('/?route', '?route', \eMarket\Core\Valid::inSERVER('REQUEST_URI'));
             $path = str_replace('index.php', '', $path_temp);
         }
 
@@ -86,11 +83,10 @@ class Set {
      * @return string $path
      */
     public static function path() {
-        $VALID = new \eMarket\Core\Valid;
-
-        if (strrpos($VALID->inSERVER('REQUEST_URI'), 'controller/admin/') == true) {
+        
+        if (strrpos(\eMarket\Core\Valid::inSERVER('REQUEST_URI'), 'controller/admin/') == true) {
             $path = 'admin';
-        } elseif (strrpos($VALID->inSERVER('REQUEST_URI'), 'controller/install/') == true) {
+        } elseif (strrpos(\eMarket\Core\Valid::inSERVER('REQUEST_URI'), 'controller/install/') == true) {
             $path = 'install';
         } else {
             $path = 'catalog';
@@ -105,11 +101,10 @@ class Set {
      * @return string $title_dir
      */
     public static function titleDir() {
-        $VALID = new \eMarket\Core\Valid;
-
-        $title_dir = str_replace('/', '_', $VALID->inGET('route'));
-        if ($VALID->inGET('object') != '') {
-            $title_dir = $title_dir . '_page_' . $VALID->inGET('object');
+        
+        $title_dir = str_replace('/', '_', \eMarket\Core\Valid::inGET('route'));
+        if (\eMarket\Core\Valid::inGET('object') != '') {
+            $title_dir = $title_dir . '_page_' . \eMarket\Core\Valid::inGET('object');
         }
         
         if ($title_dir == '' && self::path() == 'catalog') {
@@ -131,7 +126,6 @@ class Set {
      * @return string $title
      */
     public static function titleCatalog($marker = null) {
-        $VALID = new \eMarket\Core\Valid;
         
         if ($marker == 'false'){
             $sign = '';
@@ -139,18 +133,18 @@ class Set {
         if ($marker == null){
             $sign = ': ';
         }
-        $title = $sign . lang('title_' . basename($VALID->inGET('route')) . '_index');
+        $title = $sign . lang('title_' . basename(\eMarket\Core\Valid::inGET('route')) . '_index');
         
-        if (basename($VALID->inGET('route')) == '' && self::path() == 'catalog') {
+        if (basename(\eMarket\Core\Valid::inGET('route')) == '' && self::path() == 'catalog') {
             $title = '';
         }
         
-        if (basename($VALID->inGET('route')) == 'listing' && self::path() == 'catalog') {
-            $title = $sign . \eMarket\Core\Pdo::getCell("SELECT name FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], $VALID->inGET('category_id')]);
+        if (basename(\eMarket\Core\Valid::inGET('route')) == 'listing' && self::path() == 'catalog') {
+            $title = $sign . \eMarket\Core\Pdo::getCell("SELECT name FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], \eMarket\Core\Valid::inGET('category_id')]);
         }
         
-        if (basename($VALID->inGET('route')) == 'products' && self::path() == 'catalog') {
-            $title = $sign . \eMarket\Core\Pdo::getCell("SELECT name FROM " . TABLE_PRODUCTS . " WHERE language=? AND id=?", [lang('#lang_all')[0], $VALID->inGET('id')]);
+        if (basename(\eMarket\Core\Valid::inGET('route')) == 'products' && self::path() == 'catalog') {
+            $title = $sign . \eMarket\Core\Pdo::getCell("SELECT name FROM " . TABLE_PRODUCTS . " WHERE language=? AND id=?", [lang('#lang_all')[0], \eMarket\Core\Valid::inGET('id')]);
         }
         
         return $title;
@@ -207,6 +201,7 @@ class Set {
      * @return string $ipaddress
      */
     public static function ipAdress() {
+        
         $ipaddress = '';
         if (getenv('HTTP_CLIENT_IP')) {
             $ipaddress = getenv('HTTP_CLIENT_IP');

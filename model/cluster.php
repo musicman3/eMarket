@@ -12,7 +12,6 @@ require_once('vendor/autoload.php');
 $AUTORIZE = new eMarket\Core\Autorize;
 $NAVIGATION = new eMarket\Core\Navigation;
 $TREE = new eMarket\Core\Tree;
-$VALID = new eMarket\Core\Valid;
 $VIEW = new eMarket\Core\View;
 
 //СОЗДАЕМ ОБЪЕКТЫ OTHER

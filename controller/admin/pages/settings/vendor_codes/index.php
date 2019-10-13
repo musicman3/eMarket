@@ -5,10 +5,10 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 // 
 // Если нажали на кнопку Добавить
-if ($VALID->inPOST('add')) {
+if (\eMarket\Core\Valid::inPOST('add')) {
 
     // Если есть установка по-умолчанию
-    if ($VALID->inPOST('default_vendor_code')) {
+    if (\eMarket\Core\Valid::inPOST('default_vendor_code')) {
         $default_vendor_code = 1;
     } else {
         $default_vendor_code = 0;
@@ -25,7 +25,7 @@ if ($VALID->inPOST('add')) {
 
     // добавляем запись для всех вкладок
     for ($x = 0; $x < $LANG_COUNT; $x++) {
-        \eMarket\Core\Pdo::inPrepare("INSERT INTO " . TABLE_VENDOR_CODES . " SET id=?, name=?, language=?, vendor_code=?, default_vendor_code=?", [$id, $VALID->inPOST('name_vendor_codes_' . $x), lang('#lang_all')[$x], $VALID->inPOST('vendor_code_' . $x), $default_vendor_code]);
+        \eMarket\Core\Pdo::inPrepare("INSERT INTO " . TABLE_VENDOR_CODES . " SET id=?, name=?, language=?, vendor_code=?, default_vendor_code=?", [$id, \eMarket\Core\Valid::inPOST('name_vendor_codes_' . $x), lang('#lang_all')[$x], \eMarket\Core\Valid::inPOST('vendor_code_' . $x), $default_vendor_code]);
     }
 
     // Выводим сообщение об успехе
@@ -33,10 +33,10 @@ if ($VALID->inPOST('add')) {
 }
 
 // Если нажали на кнопку Редактировать
-if ($VALID->inPOST('edit')) {
+if (\eMarket\Core\Valid::inPOST('edit')) {
 
     // Если есть установка по-умолчанию
-    if ($VALID->inPOST('default_vendor_code_edit')) {
+    if (\eMarket\Core\Valid::inPOST('default_vendor_code_edit')) {
         $default_vendor_code = 1;
     } else {
         $default_vendor_code = 0;
@@ -49,7 +49,7 @@ if ($VALID->inPOST('edit')) {
 
     for ($x = 0; $x < $LANG_COUNT; $x++) {
         // обновляем запись
-        \eMarket\Core\Pdo::inPrepare("UPDATE " . TABLE_VENDOR_CODES . " SET name=?, vendor_code=?, default_vendor_code=? WHERE id=? AND language=?", [$VALID->inPOST('name_vendor_codes_edit_' . $x), $VALID->inPOST('vendor_code_edit_' . $x), $default_vendor_code, $VALID->inPOST('edit'), lang('#lang_all')[$x]]);
+        \eMarket\Core\Pdo::inPrepare("UPDATE " . TABLE_VENDOR_CODES . " SET name=?, vendor_code=?, default_vendor_code=? WHERE id=? AND language=?", [\eMarket\Core\Valid::inPOST('name_vendor_codes_edit_' . $x), \eMarket\Core\Valid::inPOST('vendor_code_edit_' . $x), $default_vendor_code, \eMarket\Core\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
     }
 
     // Выводим сообщение об успехе
@@ -57,10 +57,10 @@ if ($VALID->inPOST('edit')) {
 }
 
 // Если нажали на кнопку Удалить
-if ($VALID->inPOST('delete')) {
+if (\eMarket\Core\Valid::inPOST('delete')) {
 
     // Удаляем
-    \eMarket\Core\Pdo::inPrepare("DELETE FROM " . TABLE_VENDOR_CODES . " WHERE id=?", [$VALID->inPOST('delete')]);
+    \eMarket\Core\Pdo::inPrepare("DELETE FROM " . TABLE_VENDOR_CODES . " WHERE id=?", [\eMarket\Core\Valid::inPOST('delete')]);
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
 }

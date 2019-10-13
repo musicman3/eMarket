@@ -55,7 +55,7 @@
                                                 <input hidden name="route" value="settings/countries/regions">
                                                 <input hidden name="start" value="<?php echo $start ?>">
                                                 <input hidden name="finish" value="<?php echo $finish ?>">
-                                                <input hidden name="country_id" value="<?php echo $VALID->inGET('country_id') ?>">
+                                                <input hidden name="country_id" value="<?php echo \eMarket\Core\Valid::inGET('country_id') ?>">
                                                 <div class="left"><button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
                                             <?php } ?>
                                         </form>
@@ -65,7 +65,7 @@
                                                 <input hidden name="route" value="settings/countries/regions">
                                                 <input hidden name="start2" value="<?php echo $start ?>">
                                                 <input hidden name="finish2" value="<?php echo $finish ?>">
-                                                <input hidden name="country_id" value="<?php echo $VALID->inGET('country_id') ?>">
+                                                <input hidden name="country_id" value="<?php echo \eMarket\Core\Valid::inGET('country_id') ?>">
                                                 <div class="left"><button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
                                             <?php } ?>
                                         </form>
@@ -88,7 +88,7 @@
                                         <td class="al-text-w">
                                             <form id="form_delete<?php echo $lines[$start][0] ?>" name="form_delete" action="javascript:void(null);" onsubmit="callDelete('<?php echo $lines[$start][0] ?>')" enctype="multipart/form-data">
                                                 <input hidden name="delete" value="<?php echo $lines[$start][0] ?>">
-                                                <input hidden name="country_id" value="<?php echo $VALID->inGET('country_id') ?>">
+                                                <input hidden name="country_id" value="<?php echo \eMarket\Core\Valid::inGET('country_id') ?>">
                                                 <div class="right">
                                                     <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button>
                                                 </div>

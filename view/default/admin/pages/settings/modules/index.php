@@ -21,7 +21,7 @@
             <ul class="nav nav-tabs">
                 <?php
                 foreach ($_SESSION['MODULES_INFO'] as $type => $name) {
-                    if ($VALID->inGET('active') == $type OR ( !$VALID->inGET('active') && $type == 'payment')) {
+                    if (\eMarket\Core\Valid::inGET('active') == $type OR ( !\eMarket\Core\Valid::inGET('active') && $type == 'payment')) {
                         $class = '<li class="active">';
                     } else {
                         $class = '<li>';
@@ -35,7 +35,7 @@
             <div class="tab-content">
                 <?php
                 foreach ($_SESSION['MODULES_INFO'] as $type => $name) {
-                    if ($VALID->inGET('active') == $type OR ( !$VALID->inGET('active') && $type == 'payment')) {
+                    if (\eMarket\Core\Valid::inGET('active') == $type OR ( !\eMarket\Core\Valid::inGET('active') && $type == 'payment')) {
                         $class_tab = 'tab-pane fade in active';
                     } else {
                         $class_tab = 'tab-pane fade';

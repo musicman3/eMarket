@@ -6,9 +6,9 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 // 
 // КОЛИЧЕСТВО СТРОК НА СТРАНИЦЕ
-if ($VALID->inPOST('lines_on_page')) {
+if (\eMarket\Core\Valid::inPOST('lines_on_page')) {
 
-    \eMarket\Core\Pdo::inPrepare("UPDATE " . TABLE_BASIC_SETTINGS . " SET lines_on_page=?", [$VALID->inPOST('lines_on_page')]);
+    \eMarket\Core\Pdo::inPrepare("UPDATE " . TABLE_BASIC_SETTINGS . " SET lines_on_page=?", [\eMarket\Core\Valid::inPOST('lines_on_page')]);
 
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
@@ -17,9 +17,9 @@ if ($VALID->inPOST('lines_on_page')) {
 }
 
 // ВРЕМЯ СЕССИИ АДМИНИСТРАТОРА
-if ($VALID->inPOST('session_expr_time')) {
+if (\eMarket\Core\Valid::inPOST('session_expr_time')) {
 
-    \eMarket\Core\Pdo::inPrepare("UPDATE " . TABLE_BASIC_SETTINGS . " SET session_expr_time=?", [$VALID->inPOST('session_expr_time')]);
+    \eMarket\Core\Pdo::inPrepare("UPDATE " . TABLE_BASIC_SETTINGS . " SET session_expr_time=?", [\eMarket\Core\Valid::inPOST('session_expr_time')]);
 
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
@@ -29,12 +29,12 @@ if ($VALID->inPOST('session_expr_time')) {
 
 // ОТЛАДОЧНАЯ ИНФОРМАЦИЯ
 $debug = \eMarket\Core\Pdo::getCell("SELECT debug FROM " . TABLE_BASIC_SETTINGS . "", []);
-if ($VALID->inPOST('debug')) {
+if (\eMarket\Core\Valid::inPOST('debug')) {
 
-    if ($VALID->inPOST('debug') == lang('debug_on')) {
+    if (\eMarket\Core\Valid::inPOST('debug') == lang('debug_on')) {
         $debug_set = 1;
     }
-    if ($VALID->inPOST('debug') == lang('debug_off')) {
+    if (\eMarket\Core\Valid::inPOST('debug') == lang('debug_off')) {
         $debug_set = 0;
     }
 
@@ -49,9 +49,9 @@ if ($VALID->inPOST('debug')) {
 
 // E-Mail
 $email = \eMarket\Core\Pdo::getCell("SELECT email FROM " . TABLE_BASIC_SETTINGS . "", []);
-if ($VALID->inPOST('email')) {
+if (\eMarket\Core\Valid::inPOST('email')) {
 
-    \eMarket\Core\Pdo::inPrepare("UPDATE " . TABLE_BASIC_SETTINGS . " SET email=?", [$VALID->inPOST('email')]);
+    \eMarket\Core\Pdo::inPrepare("UPDATE " . TABLE_BASIC_SETTINGS . " SET email=?", [\eMarket\Core\Valid::inPOST('email')]);
 
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
@@ -61,9 +61,9 @@ if ($VALID->inPOST('email')) {
 
 // E-Mail Имя отправителя
 $email_name = \eMarket\Core\Pdo::getCell("SELECT email_name FROM " . TABLE_BASIC_SETTINGS . "", []);
-if ($VALID->inPOST('email_name')) {
+if (\eMarket\Core\Valid::inPOST('email_name')) {
 
-    \eMarket\Core\Pdo::inPrepare("UPDATE " . TABLE_BASIC_SETTINGS . " SET email_name=?", [$VALID->inPOST('email_name')]);
+    \eMarket\Core\Pdo::inPrepare("UPDATE " . TABLE_BASIC_SETTINGS . " SET email_name=?", [\eMarket\Core\Valid::inPOST('email_name')]);
 
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
@@ -73,11 +73,11 @@ if ($VALID->inPOST('email_name')) {
 
 // SMTP статус
 $smtp_status = \eMarket\Core\Pdo::getCell("SELECT smtp_status FROM " . TABLE_BASIC_SETTINGS . "", []);
-if ($VALID->inPOST('smtp_status')) {
-    if ($VALID->inPOST('smtp_status') == 'on') {
+if (\eMarket\Core\Valid::inPOST('smtp_status')) {
+    if (\eMarket\Core\Valid::inPOST('smtp_status') == 'on') {
         $smtp_status_set = 1;
     }
-    if ($VALID->inPOST('smtp_status') == 'off') {
+    if (\eMarket\Core\Valid::inPOST('smtp_status') == 'off') {
         $smtp_status_set = 0;
     }
 
@@ -91,12 +91,12 @@ if ($VALID->inPOST('smtp_status')) {
 
 // SMTP авторизация
 $smtp_auth = \eMarket\Core\Pdo::getCell("SELECT smtp_auth FROM " . TABLE_BASIC_SETTINGS . "", []);
-if ($VALID->inPOST('smtp_auth')) {
+if (\eMarket\Core\Valid::inPOST('smtp_auth')) {
 
-    if ($VALID->inPOST('smtp_auth') == lang('debug_on')) {
+    if (\eMarket\Core\Valid::inPOST('smtp_auth') == lang('debug_on')) {
         $smtp_auth_set = 1;
     }
-    if ($VALID->inPOST('smtp_auth') == lang('debug_off')) {
+    if (\eMarket\Core\Valid::inPOST('smtp_auth') == lang('debug_off')) {
         $smtp_auth_set = 0;
     }
 
@@ -110,9 +110,9 @@ if ($VALID->inPOST('smtp_auth')) {
 
 // Хост E-Mail
 $host_email = \eMarket\Core\Pdo::getCell("SELECT host_email FROM " . TABLE_BASIC_SETTINGS . "", []);
-if ($VALID->inPOST('host_email')) {
+if (\eMarket\Core\Valid::inPOST('host_email')) {
 
-    \eMarket\Core\Pdo::inPrepare("UPDATE " . TABLE_BASIC_SETTINGS . " SET host_email=?", [$VALID->inPOST('host_email')]);
+    \eMarket\Core\Pdo::inPrepare("UPDATE " . TABLE_BASIC_SETTINGS . " SET host_email=?", [\eMarket\Core\Valid::inPOST('host_email')]);
 
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
@@ -122,9 +122,9 @@ if ($VALID->inPOST('host_email')) {
 
 // Логин E-Mail
 $username_email = \eMarket\Core\Pdo::getCell("SELECT username_email FROM " . TABLE_BASIC_SETTINGS . "", []);
-if ($VALID->inPOST('username_email')) {
+if (\eMarket\Core\Valid::inPOST('username_email')) {
 
-    \eMarket\Core\Pdo::inPrepare("UPDATE " . TABLE_BASIC_SETTINGS . " SET username_email=?", [$VALID->inPOST('username_email')]);
+    \eMarket\Core\Pdo::inPrepare("UPDATE " . TABLE_BASIC_SETTINGS . " SET username_email=?", [\eMarket\Core\Valid::inPOST('username_email')]);
 
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
@@ -134,9 +134,9 @@ if ($VALID->inPOST('username_email')) {
 
 // Пароль E-Mail
 $password_email = \eMarket\Core\Pdo::getCell("SELECT password_email FROM " . TABLE_BASIC_SETTINGS . "", []);
-if ($VALID->inPOST('password_email')) {
+if (\eMarket\Core\Valid::inPOST('password_email')) {
 
-    \eMarket\Core\Pdo::inPrepare("UPDATE " . TABLE_BASIC_SETTINGS . " SET password_email=?", [$VALID->inPOST('password_email')]);
+    \eMarket\Core\Pdo::inPrepare("UPDATE " . TABLE_BASIC_SETTINGS . " SET password_email=?", [\eMarket\Core\Valid::inPOST('password_email')]);
 
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
@@ -146,9 +146,9 @@ if ($VALID->inPOST('password_email')) {
 
 // Защищенное соединение SMTP E-Mail
 $smtp_secure = \eMarket\Core\Pdo::getCell("SELECT smtp_secure FROM " . TABLE_BASIC_SETTINGS . "", []);
-if ($VALID->inPOST('smtp_secure')) {
+if (\eMarket\Core\Valid::inPOST('smtp_secure')) {
 
-    \eMarket\Core\Pdo::inPrepare("UPDATE " . TABLE_BASIC_SETTINGS . " SET smtp_secure=?", [$VALID->inPOST('smtp_secure')]);
+    \eMarket\Core\Pdo::inPrepare("UPDATE " . TABLE_BASIC_SETTINGS . " SET smtp_secure=?", [\eMarket\Core\Valid::inPOST('smtp_secure')]);
 
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
@@ -158,9 +158,9 @@ if ($VALID->inPOST('smtp_secure')) {
 
 // Порт SMTP E-Mail
 $smtp_port = \eMarket\Core\Pdo::getCell("SELECT smtp_port FROM " . TABLE_BASIC_SETTINGS . "", []);
-if ($VALID->inPOST('smtp_port')) {
+if (\eMarket\Core\Valid::inPOST('smtp_port')) {
 
-    \eMarket\Core\Pdo::inPrepare("UPDATE " . TABLE_BASIC_SETTINGS . " SET smtp_port=?", [$VALID->inPOST('smtp_port')]);
+    \eMarket\Core\Pdo::inPrepare("UPDATE " . TABLE_BASIC_SETTINGS . " SET smtp_port=?", [\eMarket\Core\Valid::inPOST('smtp_port')]);
 
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];

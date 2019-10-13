@@ -19,7 +19,7 @@
         <meta name="owner" content="eMarket" />
         <meta name="copyright" content="Copyright © 2018 by eMarket Team. All right reserved." />
         <!-- Автогенерация Title" -->
-        <title><?php echo lang('title_' . \eMarket\Core\Set::titleDir() . '_' . basename($VALID->inSERVER('PHP_SELF'), '.php')) ?></title>
+        <title><?php echo lang('title_' . \eMarket\Core\Set::titleDir() . '_' . basename(\eMarket\Core\Valid::inSERVER('PHP_SELF'), '.php')) ?></title>
 
         <link href="/ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
         <link href="/ext/bootstrap/css/normalize.css" rel="stylesheet" media="screen" />

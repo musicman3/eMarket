@@ -8,17 +8,17 @@
 require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 /* ------------------------------------------ */
 
-if ($VALID->inGET('file_configure_not_found')) {
+if (\eMarket\Core\Valid::inGET('file_configure_not_found')) {
     $message = 'file_configure_not_found';
 }
-if ($VALID->inGET('server_db_error')) {
+if (\eMarket\Core\Valid::inGET('server_db_error')) {
     $message = 'server_db_error';
 }
-if ($VALID->inGET('file_not_found')) {
+if (\eMarket\Core\Valid::inGET('file_not_found')) {
     $message = 'file_not_found';
 }
-if ($VALID->inGET('error_message')) {
-    $error_message = $VALID->inGET('error_message');
+if (\eMarket\Core\Valid::inGET('error_message')) {
+    $error_message = \eMarket\Core\Valid::inGET('error_message');
     if (strrpos($error_message, 'php_network_getaddresses') == TRUE) {
         $error_message = lang('database_server_error');
     }

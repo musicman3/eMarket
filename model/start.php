@@ -19,7 +19,7 @@ require_once('router_lang.php');
 if (\eMarket\Core\Set::path() == 'admin') {
     require_once('configure/configure.php');
     // Загружаем авторизацию Административной части
-    if ($VALID->inGET('route') != 'login') {
+    if (\eMarket\Core\Valid::inGET('route') != 'login') {
         $TOKEN = $AUTORIZE->sessionAdmin();
     }
     // Данные по текущей валюте

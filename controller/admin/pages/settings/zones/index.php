@@ -10,10 +10,10 @@ require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 /* ------------------------------------------ */
 // 
 //Сохраняем сессию с URL текущей страницы
-$_SESSION['zone_page'] = $VALID->inSERVER('REQUEST_URI');
+$_SESSION['zone_page'] = \eMarket\Core\Valid::inSERVER('REQUEST_URI');
 
 // Если нажали на кнопку Добавить
-if ($VALID->inPOST('add')) {
+if (\eMarket\Core\Valid::inPOST('add')) {
 
     // Получаем последний id и увеличиваем его на 1
     $id_max = \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . TABLE_ZONES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
@@ -21,7 +21,7 @@ if ($VALID->inPOST('add')) {
 
     // добавляем запись для всех вкладок
     for ($x = 0; $x < $LANG_COUNT; $x++) {
-        \eMarket\Core\Pdo::inPrepare("INSERT INTO " . TABLE_ZONES . " SET id=?, name=?, note=?, language=?", [$id, $VALID->inPOST('name_zones_' . $x), $VALID->inPOST('note_zones'), lang('#lang_all')[$x]]);
+        \eMarket\Core\Pdo::inPrepare("INSERT INTO " . TABLE_ZONES . " SET id=?, name=?, note=?, language=?", [$id, \eMarket\Core\Valid::inPOST('name_zones_' . $x), \eMarket\Core\Valid::inPOST('note_zones'), lang('#lang_all')[$x]]);
     }
 
     // Выводим сообщение об успехе
@@ -29,11 +29,11 @@ if ($VALID->inPOST('add')) {
 }
 
 // Если нажали на кнопку Редактировать
-if ($VALID->inPOST('edit')) {
+if (\eMarket\Core\Valid::inPOST('edit')) {
 
     for ($x = 0; $x < $LANG_COUNT; $x++) {
         // обновляем запись
-        \eMarket\Core\Pdo::inPrepare("UPDATE " . TABLE_ZONES . " SET name=?, note=? WHERE id=? AND language=?", [$VALID->inPOST('name_zones_edit_' . $x), $VALID->inPOST('note_zones_edit'), $VALID->inPOST('edit'), lang('#lang_all')[$x]]);
+        \eMarket\Core\Pdo::inPrepare("UPDATE " . TABLE_ZONES . " SET name=?, note=? WHERE id=? AND language=?", [\eMarket\Core\Valid::inPOST('name_zones_edit_' . $x), \eMarket\Core\Valid::inPOST('note_zones_edit'), \eMarket\Core\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
     }
 
     // Выводим сообщение об успехе
@@ -41,11 +41,11 @@ if ($VALID->inPOST('edit')) {
 }
 
 // Если нажали на кнопку Удалить
-if ($VALID->inPOST('delete')) {
+if (\eMarket\Core\Valid::inPOST('delete')) {
 
     // Удаляем
-    \eMarket\Core\Pdo::inPrepare("DELETE FROM " . TABLE_ZONES . " WHERE id=?", [$VALID->inPOST('delete')]);
-    \eMarket\Core\Pdo::inPrepare("DELETE FROM " . TABLE_ZONES_VALUE . " WHERE zones_id=?", [$VALID->inPOST('delete')]);
+    \eMarket\Core\Pdo::inPrepare("DELETE FROM " . TABLE_ZONES . " WHERE id=?", [\eMarket\Core\Valid::inPOST('delete')]);
+    \eMarket\Core\Pdo::inPrepare("DELETE FROM " . TABLE_ZONES_VALUE . " WHERE zones_id=?", [\eMarket\Core\Valid::inPOST('delete')]);
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
 }

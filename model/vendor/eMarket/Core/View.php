@@ -33,19 +33,17 @@ class View {
      * @return string $str (роутинг на view)
      */
     public function routingAdmin() {
-
-        $VALID = new \eMarket\Core\Valid;
         
-        if ($VALID->inGET('object') != '') {
-            $page = $VALID->inGET('object') . '.php';
+        if (\eMarket\Core\Valid::inGET('object') != '') {
+            $page = \eMarket\Core\Valid::inGET('object') . '.php';
         }
 
-        if (!$VALID->inGET('object') OR $VALID->inGET('object') == '') {
+        if (!\eMarket\Core\Valid::inGET('object') OR \eMarket\Core\Valid::inGET('object') == '') {
             $page = 'index.php';
         }
 
-        if ($VALID->inGET('route') != '') {
-            $str = str_replace('controller', 'view/' . \eMarket\Core\Set::template(), getenv('DOCUMENT_ROOT') . '/controller/' . \eMarket\Core\Set::path() . '/pages/' . $VALID->inGET('route') . '/' . $page);
+        if (\eMarket\Core\Valid::inGET('route') != '') {
+            $str = str_replace('controller', 'view/' . \eMarket\Core\Set::template(), getenv('DOCUMENT_ROOT') . '/controller/' . \eMarket\Core\Set::path() . '/pages/' . \eMarket\Core\Valid::inGET('route') . '/' . $page);
         } else {
             $str = str_replace('controller', 'view/' . \eMarket\Core\Set::template(), getenv('DOCUMENT_ROOT') . '/controller/' . \eMarket\Core\Set::path() . '/pages/dashboard/index.php');
         }
@@ -62,10 +60,9 @@ class View {
      * @return string $str (роутинг на view)
      */
     public function routingCatalog() {
-
-        $VALID = new \eMarket\Core\Valid;
-        if ($VALID->inGET('route') != '') {
-            $str = str_replace('controller', 'view/' . \eMarket\Core\Set::template(), getenv('DOCUMENT_ROOT') . '/controller/' . \eMarket\Core\Set::path() . '/pages/' . $VALID->inGET('route') . '/index.php');
+        
+        if (\eMarket\Core\Valid::inGET('route') != '') {
+            $str = str_replace('controller', 'view/' . \eMarket\Core\Set::template(), getenv('DOCUMENT_ROOT') . '/controller/' . \eMarket\Core\Set::path() . '/pages/' . \eMarket\Core\Valid::inGET('route') . '/index.php');
         } else {
             $str = str_replace('controller', 'view/' . \eMarket\Core\Set::template(), getenv('DOCUMENT_ROOT') . '/controller/' . \eMarket\Core\Set::path() . '/pages/catalog/index.php');
         }

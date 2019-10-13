@@ -11,20 +11,20 @@ require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 
 // ФОРМИРУЕМ ДАННЫЕ ДЛЯ ФАЙЛА КОНФИГУРАЦИИ
 $ROOT = getenv('DOCUMENT_ROOT');
-$crypt_method = $VALID->inPOST('crypt_method');
-$db_family = $VALID->inPOST('database_family');
-$db_name = $VALID->inPOST('database_name');
-$db_port = $VALID->inPOST('database_port');
-$db_pref = $VALID->inPOST('database_prefix');
-$db_type = $VALID->inPOST('database_type');
-$hash_method = $VALID->inPOST('hash_method');
-$http = 'http://' . $VALID->inSERVER('HTTP_HOST') . '/';
-$lng = strtolower($VALID->inPOST('language'));
-$login_admin = $VALID->inPOST('login_admin');
-$login_db = $VALID->inPOST('login_db');
-$password_admin = $VALID->inPOST('password_admin');
-$password_db = $VALID->inPOST('password_db');
-$serv_db = $VALID->inPOST('server_db');
+$crypt_method = \eMarket\Core\Valid::inPOST('crypt_method');
+$db_family = \eMarket\Core\Valid::inPOST('database_family');
+$db_name = \eMarket\Core\Valid::inPOST('database_name');
+$db_port = \eMarket\Core\Valid::inPOST('database_port');
+$db_pref = \eMarket\Core\Valid::inPOST('database_prefix');
+$db_type = \eMarket\Core\Valid::inPOST('database_type');
+$hash_method = \eMarket\Core\Valid::inPOST('hash_method');
+$http = 'http://' . \eMarket\Core\Valid::inSERVER('HTTP_HOST') . '/';
+$lng = strtolower(\eMarket\Core\Valid::inPOST('language'));
+$login_admin = \eMarket\Core\Valid::inPOST('login_admin');
+$login_db = \eMarket\Core\Valid::inPOST('login_db');
+$password_admin = \eMarket\Core\Valid::inPOST('password_admin');
+$password_db = \eMarket\Core\Valid::inPOST('password_db');
+$serv_db = \eMarket\Core\Valid::inPOST('server_db');
 // Данные по таблицам
 $tab_admin = $db_pref . 'administrators';
 $tab_basic_settings = $db_pref . 'basic_settings';
@@ -123,7 +123,7 @@ if ($db_family == 'myisam') {
 
 $password_admin_hash = $AUTORIZE->passwordHash($password_admin);
 
-if ($VALID->inPOST('login_admin') && $VALID->inPOST('password_admin')) {
+if (\eMarket\Core\Valid::inPOST('login_admin') && \eMarket\Core\Valid::inPOST('password_admin')) {
     \eMarket\Core\Pdo::inPrepare("INSERT INTO " . TABLE_ADMINISTRATORS . "  SET login=?, password=?, permission=?, language=?", [$login_admin, $password_admin_hash, 'admin', $lng]);
 }
 

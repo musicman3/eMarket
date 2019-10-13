@@ -24,7 +24,6 @@ class Files {
      */
     public function imgUpload($TABLE, $dir, $resize_param) {
 
-        $VALID = new \eMarket\Core\Valid;
         $TREE = new \eMarket\Core\Tree;
         $FUNC = new \eMarket\Other\Func;
 
@@ -38,13 +37,13 @@ class Files {
         $count_files = count($files);
 
         // Если открываем модальное окно, то очищаются папки временных файлов изображений
-        if ($VALID->inPOST('file_upload') == 'empty') {
+        if (\eMarket\Core\Valid::inPOST('file_upload') == 'empty') {
             $TREE->filesDirAction(ROOT . '/uploads/temp/originals/');
             $TREE->filesDirAction(ROOT . '/uploads/temp/thumbnail/');
             $TREE->filesDirAction(ROOT . '/uploads/temp/files/');
         }
         // Если нажали на кнопку Добавить
-        if ($VALID->inPOST('add')) {
+        if (\eMarket\Core\Valid::inPOST('add')) {
             // Делаем ресайз
             if ($count_files > 0) {
                 self::imgResize($dir, $files, $prefix, $resize_param);
@@ -70,8 +69,8 @@ class Files {
                     $general_image_add = explode(',', $image_list, -1)[0];
                 }
                 // Назначаем "Главное изображение" в модальном окне "Добавить"
-                if ($VALID->inPOST('general_image_add')) {
-                    $general_image_add = $prefix . $VALID->inPOST('general_image_add');
+                if (\eMarket\Core\Valid::inPOST('general_image_add')) {
+                    $general_image_add = $prefix . \eMarket\Core\Valid::inPOST('general_image_add');
                 }
                 // Перемещаем оригинальные файлы из временной папки в постоянную
                 $TREE->filesDirAction(ROOT . '/uploads/temp/originals/', ROOT . '/uploads/images/' . $dir . '/originals/');
@@ -82,9 +81,9 @@ class Files {
         }
 
         // Если нажали на кнопку Редактировать
-        if ($VALID->inPOST('edit')) {
+        if (\eMarket\Core\Valid::inPOST('edit')) {
 
-            $id = $VALID->inPOST('edit');
+            $id = \eMarket\Core\Valid::inPOST('edit');
 
             // Делаем ресайз
             self::imgResize($dir, $files, $prefix, $resize_param);
@@ -103,12 +102,12 @@ class Files {
                 $general_image_edit = explode(',', $image_list, -1)[0];
             }
             // Назначаем "Главное изображение" в модальном окне "Редактировать"
-            if ($VALID->inPOST('general_image_edit')) {
-                $general_image_edit = $VALID->inPOST('general_image_edit');
+            if (\eMarket\Core\Valid::inPOST('general_image_edit')) {
+                $general_image_edit = \eMarket\Core\Valid::inPOST('general_image_edit');
             }
             // Назначаем "Главное изображение" для нового не сохраненного изображения в модальном окне "Редактировать"
-            if ($VALID->inPOST('general_image_edit_new')) {
-                $general_image_edit = $prefix . $VALID->inPOST('general_image_edit_new');
+            if (\eMarket\Core\Valid::inPOST('general_image_edit_new')) {
+                $general_image_edit = $prefix . \eMarket\Core\Valid::inPOST('general_image_edit_new');
             }
 
             // Перемещаем оригинальные файлы из временной папки в постоянную
@@ -122,9 +121,9 @@ class Files {
             }
 
             // Выборочное удаление изображений в модальном окне "Редактировать"
-            if ($VALID->inPOST('delete_image')) {
+            if (\eMarket\Core\Valid::inPOST('delete_image')) {
                 // Получаем массив удаляемых изображений
-                $delete_image_arr = explode(',', $VALID->inPOST('delete_image'), -1);
+                $delete_image_arr = explode(',', \eMarket\Core\Valid::inPOST('delete_image'), -1);
 
                 // Получаем массив изображений из БД
                 $image_list_arr = explode(',', \eMarket\Core\Pdo::selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), -1);
@@ -155,8 +154,8 @@ class Files {
         }
 
         // Если нажали на кнопку Удалить
-        if ($VALID->inPOST('delete')) {
-            $idx = $FUNC->deleteEmptyInArray($VALID->inPOST('delete'));
+        if (\eMarket\Core\Valid::inPOST('delete')) {
+            $idx = $FUNC->deleteEmptyInArray(\eMarket\Core\Valid::inPOST('delete'));
 
             for ($i = 0; $i < count($idx); $i++) {
                 if (strstr($idx[$i], '_', true) != 'product') {
@@ -177,8 +176,8 @@ class Files {
         }
 
         // Выборочное удаление изображений в модальном окне "Добавить"
-        if ($VALID->inPOST('delete_new_image') == 'ok' && $VALID->inPOST('delete_image')) {
-            $id = $VALID->inPOST('delete_image');
+        if (\eMarket\Core\Valid::inPOST('delete_new_image') == 'ok' && \eMarket\Core\Valid::inPOST('delete_image')) {
+            $id = \eMarket\Core\Valid::inPOST('delete_image');
 
             // Удаляем файлы
             $FUNC->deleteFile(ROOT . '/uploads/temp/files/' . $id);
@@ -195,7 +194,6 @@ class Files {
      */
     public function imgUploadProduct($TABLE, $dir, $resize_param) {
 
-        $VALID = new \eMarket\Core\Valid;
         $TREE = new \eMarket\Core\Tree;
         $FUNC = new \eMarket\Other\Func;
 
@@ -209,13 +207,13 @@ class Files {
         $count_files = count($files);
 
         // Если открываем модальное окно, то очищаются папки временных файлов изображений
-        if ($VALID->inPOST('file_upload') == 'empty') {
+        if (\eMarket\Core\Valid::inPOST('file_upload') == 'empty') {
             $TREE->filesDirAction(ROOT . '/uploads/temp/originals/');
             $TREE->filesDirAction(ROOT . '/uploads/temp/thumbnail/');
             $TREE->filesDirAction(ROOT . '/uploads/temp/files/');
         }
         // Если нажали на кнопку Добавить
-        if ($VALID->inPOST('add_product')) {
+        if (\eMarket\Core\Valid::inPOST('add_product')) {
             // Делаем ресайз
             if ($count_files > 0) {
                 self::imgResize($dir, $files, $prefix, $resize_param);
@@ -241,8 +239,8 @@ class Files {
                     $general_image_add = explode(',', $image_list, -1)[0];
                 }
                 // Назначаем "Главное изображение" в модальном окне "Добавить"
-                if ($VALID->inPOST('general_image_add_product')) {
-                    $general_image_add = $prefix . $VALID->inPOST('general_image_add_product');
+                if (\eMarket\Core\Valid::inPOST('general_image_add_product')) {
+                    $general_image_add = $prefix . \eMarket\Core\Valid::inPOST('general_image_add_product');
                 }
                 // Перемещаем оригинальные файлы из временной папки в постоянную
                 $TREE->filesDirAction(ROOT . '/uploads/temp/originals/', ROOT . '/uploads/images/' . $dir . '/originals/');
@@ -253,9 +251,9 @@ class Files {
         }
 
         // Если нажали на кнопку Редактировать
-        if ($VALID->inPOST('edit_product')) {
+        if (\eMarket\Core\Valid::inPOST('edit_product')) {
 
-            $id = $VALID->inPOST('edit_product');
+            $id = \eMarket\Core\Valid::inPOST('edit_product');
 
             // Делаем ресайз
             self::imgResize($dir, $files, $prefix, $resize_param);
@@ -274,12 +272,12 @@ class Files {
                 $general_image_edit = explode(',', $image_list, -1)[0];
             }
             // Назначаем "Главное изображение" в модальном окне "Редактировать"
-            if ($VALID->inPOST('general_image_edit_product')) {
-                $general_image_edit = $VALID->inPOST('general_image_edit_product');
+            if (\eMarket\Core\Valid::inPOST('general_image_edit_product')) {
+                $general_image_edit = \eMarket\Core\Valid::inPOST('general_image_edit_product');
             }
             // Назначаем "Главное изображение" для нового не сохраненного изображения в модальном окне "Редактировать"
-            if ($VALID->inPOST('general_image_edit_new_product')) {
-                $general_image_edit = $prefix . $VALID->inPOST('general_image_edit_new_product');
+            if (\eMarket\Core\Valid::inPOST('general_image_edit_new_product')) {
+                $general_image_edit = $prefix . \eMarket\Core\Valid::inPOST('general_image_edit_new_product');
             }
 
             // Перемещаем оригинальные файлы из временной папки в постоянную
@@ -293,9 +291,9 @@ class Files {
             }
 
             // Выборочное удаление изображений в модальном окне "Редактировать"
-            if ($VALID->inPOST('delete_image_product')) {
+            if (\eMarket\Core\Valid::inPOST('delete_image_product')) {
                 // Получаем массив удаляемых изображений
-                $delete_image_arr = explode(',', $VALID->inPOST('delete_image_product'), -1);
+                $delete_image_arr = explode(',', \eMarket\Core\Valid::inPOST('delete_image_product'), -1);
 
                 // Получаем массив изображений из БД
                 $image_list_arr = explode(',', \eMarket\Core\Pdo::selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), -1);
@@ -326,8 +324,8 @@ class Files {
         }
 
         // Если нажали на кнопку Удалить
-        if ($VALID->inPOST('delete')) {
-            $idx = $FUNC->deleteEmptyInArray($VALID->inPOST('delete'));
+        if (\eMarket\Core\Valid::inPOST('delete')) {
+            $idx = $FUNC->deleteEmptyInArray(\eMarket\Core\Valid::inPOST('delete'));
 
             for ($i = 0; $i < count($idx); $i++) {
                 if (strstr($idx[$i], '_', true) == 'product') {
@@ -349,8 +347,8 @@ class Files {
         }
 
         // Выборочное удаление изображений в модальном окне "Добавить"
-        if ($VALID->inPOST('delete_new_image_product') == 'ok' && $VALID->inPOST('delete_image_product')) {
-            $id = $VALID->inPOST('delete_image_product');
+        if (\eMarket\Core\Valid::inPOST('delete_new_image_product') == 'ok' && \eMarket\Core\Valid::inPOST('delete_image_product')) {
+            $id = \eMarket\Core\Valid::inPOST('delete_image_product');
 
             // Удаляем файлы
             $FUNC->deleteFile(ROOT . '/uploads/temp/files/' . $id);
@@ -371,7 +369,7 @@ class Files {
         // Делаем ресайз
         $IMAGE = new \claviska\SimpleImage;
         $FUNC = new \eMarket\Other\Func;
-        $VALID = new \eMarket\Core\Valid;
+        
         $resize_max = self::imgResizeMax($resize_param);
 
         foreach ($files as $file) {
@@ -392,16 +390,16 @@ class Files {
                         $IMAGE->fromFile(ROOT . '/uploads/temp/files/' . basename($file))
                                 ->autoOrient()
                                 ->bestFit($value[0], $value[1]); // ширина, высота
-                        if ($VALID->inPOST('effect-edit-product') == 'effect-sepia' OR $VALID->inPOST('effect-add-product') == 'effect-sepia') {
+                        if (\eMarket\Core\Valid::inPOST('effect-edit-product') == 'effect-sepia' OR \eMarket\Core\Valid::inPOST('effect-add-product') == 'effect-sepia') {
                             $IMAGE->sepia();
                         }
-                        if ($VALID->inPOST('effect-edit-product') == 'effect-black-white' OR $VALID->inPOST('effect-add-product') == 'effect-black-white') {
+                        if (\eMarket\Core\Valid::inPOST('effect-edit-product') == 'effect-black-white' OR \eMarket\Core\Valid::inPOST('effect-add-product') == 'effect-black-white') {
                             $IMAGE->desaturate();
                         }
-                        if ($VALID->inPOST('effect-edit-product') == 'effect-blur-1' OR $VALID->inPOST('effect-add-product') == 'effect-blur-1') {
+                        if (\eMarket\Core\Valid::inPOST('effect-edit-product') == 'effect-blur-1' OR \eMarket\Core\Valid::inPOST('effect-add-product') == 'effect-blur-1') {
                             $IMAGE->blur('selective', 1);
                         }
-                        if ($VALID->inPOST('effect-edit-product') == 'effect-blur-2' OR $VALID->inPOST('effect-add-product') == 'effect-blur-2') {
+                        if (\eMarket\Core\Valid::inPOST('effect-edit-product') == 'effect-blur-2' OR \eMarket\Core\Valid::inPOST('effect-add-product') == 'effect-blur-2') {
                             $IMAGE->blur('selective', 2);
                         }
                         $IMAGE->toFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $prefix . basename($file));
@@ -435,13 +433,12 @@ class Files {
      */
     public function imgThumbAndSize($resize_param) {
 
-        $VALID = new \eMarket\Core\Valid;
         $IMAGE = new \claviska\SimpleImage;
         $resize_max = self::imgResizeMax($resize_param);
 
         // Если получили запрос на получение данных по изображению
-        if ($VALID->inPOST('image_data')) {
-            $file = $VALID->inPOST('image_data');
+        if (\eMarket\Core\Valid::inPOST('image_data')) {
+            $file = \eMarket\Core\Valid::inPOST('image_data');
 
             // Массив с данными по оригинальному изображению
             $image_data = getimagesize(ROOT . '/uploads/temp/files/' . $file);
@@ -457,16 +454,16 @@ class Files {
                 $IMAGE->fromFile(ROOT . '/uploads/temp/files/' . $file)
                         ->autoOrient()
                         ->bestFit($resize_param[0][0], $resize_param[0][1]); // ширина, высота
-                if ($VALID->inPOST('effect_edit') == 'effect-sepia' OR $VALID->inPOST('effect_add') == 'effect-sepia') {
+                if (\eMarket\Core\Valid::inPOST('effect_edit') == 'effect-sepia' OR \eMarket\Core\Valid::inPOST('effect_add') == 'effect-sepia') {
                     $IMAGE->sepia();
                 }
-                if ($VALID->inPOST('effect_edit') == 'effect-black-white' OR $VALID->inPOST('effect_add') == 'effect-black-white') {
+                if (\eMarket\Core\Valid::inPOST('effect_edit') == 'effect-black-white' OR \eMarket\Core\Valid::inPOST('effect_add') == 'effect-black-white') {
                     $IMAGE->desaturate();
                 }
-                if ($VALID->inPOST('effect_edit') == 'effect-blur-1' OR $VALID->inPOST('effect_add') == 'effect-blur-1') {
+                if (\eMarket\Core\Valid::inPOST('effect_edit') == 'effect-blur-1' OR \eMarket\Core\Valid::inPOST('effect_add') == 'effect-blur-1') {
                     $IMAGE->blur('selective', 1);
                 }
-                if ($VALID->inPOST('effect_edit') == 'effect-blur-2' OR $VALID->inPOST('effect_add') == 'effect-blur-2') {
+                if (\eMarket\Core\Valid::inPOST('effect_edit') == 'effect-blur-2' OR \eMarket\Core\Valid::inPOST('effect_add') == 'effect-blur-2') {
                     $IMAGE->blur('selective', 2);
                 }
                 $IMAGE->toFile(ROOT . '/uploads/temp/thumbnail/' . $file);

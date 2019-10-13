@@ -6,10 +6,10 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 // 
 // Если нажали на кнопку Добавить
-if ($VALID->inPOST('add')) {
+if (\eMarket\Core\Valid::inPOST('add')) {
 
     // Если есть установка по-умолчанию
-    if ($VALID->inPOST('default_weight')) {
+    if (\eMarket\Core\Valid::inPOST('default_weight')) {
         $default_weight = 1;
     } else {
         $default_weight = 0;
@@ -27,18 +27,18 @@ if ($VALID->inPOST('add')) {
         $value_weight_all = \eMarket\Core\Pdo::getColAssoc("SELECT id, value_weight, language FROM " . TABLE_WEIGHT, []);
         $count_value_weight_all = count($value_weight_all);
         for ($x = 0; $x < $count_value_weight_all; $x++) {
-            \eMarket\Core\Pdo::inPrepare("UPDATE " . TABLE_WEIGHT . " SET value_weight=? WHERE id=? AND language=?", [($value_weight_all[$x]['value_weight'] / $VALID->inPOST('value_weight')), $value_weight_all[$x]['id'], $value_weight_all[$x]['language']]);
+            \eMarket\Core\Pdo::inPrepare("UPDATE " . TABLE_WEIGHT . " SET value_weight=? WHERE id=? AND language=?", [($value_weight_all[$x]['value_weight'] / \eMarket\Core\Valid::inPOST('value_weight')), $value_weight_all[$x]['id'], $value_weight_all[$x]['language']]);
         }
         
         // добавляем запись для всех вкладок
         for ($x = 0; $x < $LANG_COUNT; $x++) {
-            \eMarket\Core\Pdo::inPrepare("INSERT INTO " . TABLE_WEIGHT . " SET id=?, name=?, language=?, code=?, value_weight=?, default_weight=?", [$id, $VALID->inPOST('name_weight_' . $x), lang('#lang_all')[$x], $VALID->inPOST('code_weight_' . $x), 1, $default_weight]);
+            \eMarket\Core\Pdo::inPrepare("INSERT INTO " . TABLE_WEIGHT . " SET id=?, name=?, language=?, code=?, value_weight=?, default_weight=?", [$id, \eMarket\Core\Valid::inPOST('name_weight_' . $x), lang('#lang_all')[$x], \eMarket\Core\Valid::inPOST('code_weight_' . $x), 1, $default_weight]);
         }
     } else {
 
         // добавляем запись для всех вкладок
         for ($x = 0; $x < $LANG_COUNT; $x++) {
-            \eMarket\Core\Pdo::inPrepare("INSERT INTO " . TABLE_WEIGHT . " SET id=?, name=?, language=?, code=?, value_weight=?, default_weight=?", [$id, $VALID->inPOST('name_weight_' . $x), lang('#lang_all')[$x], $VALID->inPOST('code_weight_' . $x), $VALID->inPOST('value_weight'), $default_weight]);
+            \eMarket\Core\Pdo::inPrepare("INSERT INTO " . TABLE_WEIGHT . " SET id=?, name=?, language=?, code=?, value_weight=?, default_weight=?", [$id, \eMarket\Core\Valid::inPOST('name_weight_' . $x), lang('#lang_all')[$x], \eMarket\Core\Valid::inPOST('code_weight_' . $x), \eMarket\Core\Valid::inPOST('value_weight'), $default_weight]);
         }
     }
     // Выводим сообщение об успехе
@@ -46,10 +46,10 @@ if ($VALID->inPOST('add')) {
 }
 
 // Если нажали на кнопку Редактировать
-if ($VALID->inPOST('edit')) {
+if (\eMarket\Core\Valid::inPOST('edit')) {
 
     // Если есть установка по-умолчанию
-    if ($VALID->inPOST('default_weight_edit')) {
+    if (\eMarket\Core\Valid::inPOST('default_weight_edit')) {
         $default_weight = 1;
     } else {
         $default_weight = 0;
@@ -63,18 +63,18 @@ if ($VALID->inPOST('edit')) {
         $value_weight_all = \eMarket\Core\Pdo::getColAssoc("SELECT id, value_weight, language FROM " . TABLE_WEIGHT, []);
         $count_value_weight_all = count($value_weight_all);
         for ($x = 0; $x < $count_value_weight_all; $x++) {
-            \eMarket\Core\Pdo::inPrepare("UPDATE " . TABLE_WEIGHT . " SET value_weight=? WHERE id=? AND language=?", [($value_weight_all[$x]['value_weight'] / $VALID->inPOST('value_weight_edit')), $value_weight_all[$x]['id'], $value_weight_all[$x]['language']]);
+            \eMarket\Core\Pdo::inPrepare("UPDATE " . TABLE_WEIGHT . " SET value_weight=? WHERE id=? AND language=?", [($value_weight_all[$x]['value_weight'] / \eMarket\Core\Valid::inPOST('value_weight_edit')), $value_weight_all[$x]['id'], $value_weight_all[$x]['language']]);
         }
 
         for ($x = 0; $x < $LANG_COUNT; $x++) {
             // обновляем запись
-            \eMarket\Core\Pdo::inPrepare("UPDATE " . TABLE_WEIGHT . " SET name=?, code=?, value_weight=?, default_weight=? WHERE id=? AND language=?", [$VALID->inPOST('name_weight_edit_' . $x), $VALID->inPOST('code_weight_edit_' . $x), 1, $default_weight, $VALID->inPOST('edit'), lang('#lang_all')[$x]]);
+            \eMarket\Core\Pdo::inPrepare("UPDATE " . TABLE_WEIGHT . " SET name=?, code=?, value_weight=?, default_weight=? WHERE id=? AND language=?", [\eMarket\Core\Valid::inPOST('name_weight_edit_' . $x), \eMarket\Core\Valid::inPOST('code_weight_edit_' . $x), 1, $default_weight, \eMarket\Core\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
         }
     } else {
 
         for ($x = 0; $x < $LANG_COUNT; $x++) {
             // обновляем запись
-            \eMarket\Core\Pdo::inPrepare("UPDATE " . TABLE_WEIGHT . " SET name=?, code=?, value_weight=?, default_weight=? WHERE id=? AND language=?", [$VALID->inPOST('name_weight_edit_' . $x), $VALID->inPOST('code_weight_edit_' . $x), $VALID->inPOST('value_weight_edit'), $default_weight, $VALID->inPOST('edit'), lang('#lang_all')[$x]]);
+            \eMarket\Core\Pdo::inPrepare("UPDATE " . TABLE_WEIGHT . " SET name=?, code=?, value_weight=?, default_weight=? WHERE id=? AND language=?", [\eMarket\Core\Valid::inPOST('name_weight_edit_' . $x), \eMarket\Core\Valid::inPOST('code_weight_edit_' . $x), \eMarket\Core\Valid::inPOST('value_weight_edit'), $default_weight, \eMarket\Core\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
         }
     }
     // Выводим сообщение об успехе
@@ -82,10 +82,10 @@ if ($VALID->inPOST('edit')) {
 }
 
 // Если нажали на кнопку Удалить
-if ($VALID->inPOST('delete')) {
+if (\eMarket\Core\Valid::inPOST('delete')) {
 
     // Удаляем
-    \eMarket\Core\Pdo::inPrepare("DELETE FROM " . TABLE_WEIGHT . " WHERE id=?", [$VALID->inPOST('delete')]);
+    \eMarket\Core\Pdo::inPrepare("DELETE FROM " . TABLE_WEIGHT . " WHERE id=?", [\eMarket\Core\Valid::inPOST('delete')]);
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
 }

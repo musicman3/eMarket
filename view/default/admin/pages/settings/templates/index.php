@@ -54,7 +54,7 @@
                         <select name="layout_pages_templates" id="layout_pages_templates" class="input-sm form-control" onchange="selectPage(event)">
                             <option><?php echo lang('all_pages_template') ?></option>
                             <?php
-                            if (!$VALID->inGET('layout_pages_templates')) {
+                            if (!\eMarket\Core\Valid::inGET('layout_pages_templates')) {
                                 $select_page = 'catalog';
                             }
                             foreach ($layout_pages as $path) {
