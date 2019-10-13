@@ -42,7 +42,7 @@ if (\eMarket\Core\Valid::inPOST('edit')) {
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
 }
 
-//$DEBUG->trace($payment_installed);
+//\eMarket\Other\Debug::trace($payment_installed);
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
 $JS_END = __DIR__;
 ?>

@@ -158,7 +158,7 @@ if (\eMarket\Core\Valid::inGET('layout_header') OR \eMarket\Core\Valid::inGET('l
         }
     }
 }
-//$DEBUG->trace($layout_pages);
+//\eMarket\Other\Debug::trace($layout_pages);
 //
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
 $JS_END = __DIR__;

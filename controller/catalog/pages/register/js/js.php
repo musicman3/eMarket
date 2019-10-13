@@ -4,7 +4,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-$AJAX->сart('');
+\eMarket\Other\Ajax::сart('');
 
 ?>
 <script type="text/javascript">

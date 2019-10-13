@@ -76,7 +76,7 @@
             require_once($JS_END . '/js/js.php');
         }
         // Выводим отладочную информацию
-        $DEBUG->info($TIME_START);
+        \eMarket\Other\Debug::info($TIME_START);
 
         ?>
     </body>

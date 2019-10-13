@@ -98,7 +98,7 @@
         }
 
         // Выводим отладочную информацию
-        $DEBUG->info($TIME_START);
+        \eMarket\Other\Debug::info($TIME_START);
         ?>
         <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/ext/simpleeqh/simpleeqh.js"></script>

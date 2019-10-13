@@ -20,7 +20,7 @@ class Debug {
      *
      * @param array $var (массив для отображения)
      */
-    public function trace($var) {
+    public static function trace($var) {
         static $int = 0;
         echo '<pre><b>' . $int . '</b> ';
         print_r($var);
@@ -33,7 +33,7 @@ class Debug {
      *
      * @param string $time_start (начальное время)
      */
-    public function info($time_start) {
+    public static function info($time_start) {
         
         $val = \eMarket\Core\Pdo::getCell("SELECT debug FROM " . TABLE_BASIC_SETTINGS . "", []);
         if ($val == 1) {
@@ -42,7 +42,7 @@ class Debug {
             $totaltime = round(($tend - $time_start), 2);
             // Результат на экран
             echo lang('debug_page_generation_time') . " " . $totaltime . " " . lang('debug_sec') . "<br>";
-            echo lang('debug_db_queries') . " " . $PDO::$query_count . " " . lang('debug_pcs') . "<br><br>";
+            echo lang('debug_db_queries') . " " . \eMarket\Core\Pdo::$query_count . " " . lang('debug_pcs') . "<br><br>";
         }
     }
 

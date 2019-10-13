@@ -20,7 +20,7 @@ class Ajax {
      *
      * @param string $url (url страницы обработки)
      */
-    public function action($url) {
+    public static function action($url) {
         
         ?>
         <!-- Модальное окно "Добавить" -->
@@ -130,7 +130,7 @@ class Ajax {
      * @param string $dir (директория для файлов)
      * @param array $resize_param (параметры ресайза)
      */
-    public function fileUpload($url, $dir, $resize_param) {
+    public static function fileUpload($url, $dir, $resize_param) {
 
         $FILES = new \eMarket\Other\Files;
 
@@ -311,7 +311,7 @@ class Ajax {
      * @param string $dir (директория для файлов)
      * @param array $resize_param (параметры ресайза)
      */
-    public function fileUploadProduct($url, $dir, $resize_param) {
+    public static function fileUploadProduct($url, $dir, $resize_param) {
 
         $FILES = new \eMarket\Other\Files;
 
@@ -492,7 +492,7 @@ class Ajax {
      *
      * @param string $url (url страницы обработки)
      */
-    public function сart($url) {
+    public static function сart($url) {
         
         ?>
         <!-- Добавить товар -->

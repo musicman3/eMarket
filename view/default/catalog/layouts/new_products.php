@@ -37,7 +37,7 @@
     <?php
 }
 
-$AJAX->сart('');
+\eMarket\Other\Ajax::сart('');
 
 ?>
 <script type="text/javascript" language="javascript">

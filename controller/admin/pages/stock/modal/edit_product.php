@@ -122,7 +122,7 @@ for ($i = $start; $i < $finish; $i++) {
     }
 }
 
-//$DEBUG->trace($units_edit_temp_product);
+//\eMarket\Other\Debug::trace($units_edit_temp_product);
 
 if (!isset($modal_id_product)) {
     $modal_id_product = 'false';

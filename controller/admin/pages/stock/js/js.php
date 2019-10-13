@@ -690,7 +690,7 @@ if (isset($_SESSION['buffer'])) {
 <script src="/ext/fastmd5/md5.min.js"></script>
 <?php
 // Подгружаем jQuery File Upload
-$AJAX->fileUpload('?route=stock', 'categories', $resize_param);
-$AJAX->fileUploadProduct('?route=stock', 'products', $resize_param_product);
+\eMarket\Other\Ajax::fileUpload('?route=stock', 'categories', $resize_param);
+\eMarket\Other\Ajax::fileUploadProduct('?route=stock', 'products', $resize_param_product);
 
 ?>

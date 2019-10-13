@@ -5,6 +5,6 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 // Подгружаем Ajax Добавить, Редактировать, Удалить
-$AJAX->action('?route=settings/modules');
+\eMarket\Other\Ajax::action('?route=settings/modules');
 
 ?>

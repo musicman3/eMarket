@@ -13,8 +13,6 @@ $NAVIGATION = new eMarket\Core\Navigation;
 $TREE = new eMarket\Core\Tree;
 
 //СОЗДАЕМ ОБЪЕКТЫ OTHER
-$AJAX = new eMarket\Other\Ajax;
-$DEBUG = new eMarket\Other\Debug;
 $FILES = new eMarket\Other\Files;
 
 //АВТОЗАГРУЗЧИК ФУНКЦИЙ

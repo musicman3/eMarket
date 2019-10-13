@@ -6,5 +6,5 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 // Подгружаем Ajax Добавить, Редактировать, Удалить
-$AJAX->action('?route=error_log');
+\eMarket\Other\Ajax::action('?route=error_log');
 ?>

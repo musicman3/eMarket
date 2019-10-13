@@ -50,5 +50,5 @@ if (\eMarket\Core\Set::path() == 'catalog') {
 $LANG_COUNT = count(lang('#lang_all'));
 
 //unset($_SESSION['cart']);
-//$DEBUG->trace($ecb_init);
+//\eMarket\Other\Debug::trace($ecb_init);
 ?>

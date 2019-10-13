@@ -5,7 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 // Подгружаем Ajax Добавить, Редактировать, Удалить
-$AJAX->action('?route=settings/basic_settings');
+\eMarket\Other\Ajax::action('?route=settings/basic_settings');
 ?>
 
 <script type="text/javascript">

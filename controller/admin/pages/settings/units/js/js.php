@@ -36,6 +36,6 @@
 <?php
 }
 // Подгружаем Ajax Добавить, Редактировать, Удалить
-$AJAX->action('');
+\eMarket\Other\Ajax::action('');
 ?>
 

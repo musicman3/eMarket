@@ -102,6 +102,6 @@ foreach (\eMarket\Core\View::layoutRouting('content') as $path) {
 <?php
 }
 
-$AJAX->сart('');
+\eMarket\Other\Ajax::сart('');
 
 ?>
