@@ -18,11 +18,17 @@ final class Ecb {
 
     /**
      * Инициализация ECB
-     * @param 1
-     * @return array array()
+     * @param array $cart (данные из корзины)
+     * @return array $output_price (итоговая стоимость в корзине)
      */
-    public function init() {
-        //echo ('test');
+    public function init($cart) {
+        $input_price = self::inputPrice($cart);
+        $product_sale_block = self::productSaleBlock($input_price);
+        $total_sale_block = self::totalSaleBlock($product_sale_block);
+        $shipping_block = self::totalSaleBlock($total_sale_block);
+        $checkout_block = self::totalSaleBlock($shipping_block);
+        $output_price = self::outputPrice($checkout_block);
+        return $output_price;
     }
 
     /**
@@ -30,7 +36,7 @@ final class Ecb {
      * @param array $cart (данные из корзины)
      * @return array $output (выходные данные)
      */
-    public function inputPrice($cart) {
+    private function inputPrice($cart) {
         //echo ($output);
     }
 
@@ -39,7 +45,7 @@ final class Ecb {
      * @param array $input (данные из inputPrice)
      * @return array $output (выходные данные)
      */
-    public function productSaleBlock($input) {
+    private function productSaleBlock($input) {
         //echo ($output);
     }
 
@@ -48,7 +54,7 @@ final class Ecb {
      * @param array $input (данные из productSaleBlock)
      * @return array $output (выходные данные)
      */
-    public function totalSaleBlock($input) {
+    private function totalSaleBlock($input) {
         //echo ($output);
     }
 
@@ -57,7 +63,7 @@ final class Ecb {
      * @param array $input (данные из totalSaleBlock)
      * @return array $output (выходные данные)
      */
-    public function shippingBlock($input) {
+    private function shippingBlock($input) {
         //echo ($output);
     }
 
@@ -66,7 +72,7 @@ final class Ecb {
      * @param array $input (данные из shippingBlock)
      * @return array $output (выходные данные)
      */
-    public function checkoutBlock($input) {
+    private function checkoutBlock($input) {
         //echo ($output);
     }
 
@@ -75,7 +81,7 @@ final class Ecb {
      * @param array $input (данные из checkoutBlock)
      * @return array $output (выходные данные)
      */
-    public function outputPrice($input) {
+    private function outputPrice($input) {
         //echo ($output);
     }
 
