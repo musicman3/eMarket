@@ -4,13 +4,19 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+//ПОДКЛЮЧАЕМ ЛОГ
 error_reporting(-1);
 ini_set('error_log', __DIR__ . '/work/errors.log');
+//ВРЕМЯ ФОРМИРОВАНИЯ СТРАНИЦЫ
+$TIME_START = microtime(1);
 
-$TIME_START = microtime(1); // Засекаем начальное время 
-//
-// Автозагрузка
-require_once('cluster.php');
+//АВТОЗАГРУЗКА КЛАССОВ
+require_once('vendor/autoload.php');
+
+//АВТОЗАГРУЗКА ФУНКЦИЙ
+foreach (\eMarket\Core\Tree::filesTree(getenv('DOCUMENT_ROOT') . '/model/functions/') as $path) {
+    require_once($path);
+}
 
 // Загружаем языковой роутер
 require_once('router_lang.php');
@@ -41,7 +47,7 @@ if (\eMarket\Core\Set::path() == 'catalog') {
 
     // Инициализация корзины
     \eMarket\Other\Cart::init();
-    
+
     // Инициализация ECB
     $ecb_init = \eMarket\Core\Ecb::init($_SESSION['cart'], $CURRENCIES);
 }
