@@ -41,11 +41,14 @@ if ($SET->path() == 'catalog') {
 
     // Инициализация корзины
     $CART->init();
+    
+    // Инициализация ECB
+    $ecb_init = $ECB->init($_SESSION['cart'], $CURRENCIES);
 }
 
 // Считаем количество языков
 $LANG_COUNT = count(lang('#lang_all'));
 
 //unset($_SESSION['cart']);
-//$DEBUG->trace($CUSTOMER);
+//$DEBUG->trace($ecb_init);
 ?>

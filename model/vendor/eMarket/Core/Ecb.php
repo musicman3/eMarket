@@ -19,25 +19,35 @@ final class Ecb {
     /**
      * Инициализация ECB
      * @param array $cart (данные из корзины)
+     * @param string $CURRENCIES (валюта)
      * @return array $output_price (итоговая стоимость в корзине)
      */
-    public function init($cart) {
-        $input_price = self::inputPrice($cart);
+    public function init($cart, $CURRENCIES) {
+        return $input_price = self::inputPrice($cart, $CURRENCIES);
         $product_sale_block = self::productSaleBlock($input_price);
         $total_sale_block = self::totalSaleBlock($product_sale_block);
         $shipping_block = self::totalSaleBlock($total_sale_block);
         $checkout_block = self::totalSaleBlock($shipping_block);
         $output_price = self::outputPrice($checkout_block);
-        return $output_price;
+        //return $output_price;
     }
 
     /**
      * Блок формирования входящей стоимости
      * @param array $cart (данные из корзины)
+     * @param string $CURRENCIES (валюта)
      * @return array $output (выходные данные)
      */
-    private function inputPrice($cart) {
-        //echo ($output);
+    private function inputPrice($cart, $CURRENCIES) {
+        
+        $PRODUCTS = new \eMarket\Other\Products;
+        $new_array = [];
+        foreach ($cart as $value) {
+            $products = $PRODUCTS->productData($value['id'])[0];
+            $value = array_merge($value, ['price' => $products['price']], ['currencies' => $CURRENCIES[0]]);
+            array_push($new_array, $value);
+        }
+        return $new_array;
     }
 
     /**
