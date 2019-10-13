@@ -22,7 +22,7 @@ class Files {
      * @param string $dir (директория для загружаемых изображений)
      * @param array $resize_param (параметры ресайза)
      */
-    public function imgUpload($TABLE, $dir, $resize_param) {
+    public static function imgUpload($TABLE, $dir, $resize_param) {
         
         // Если получили запрос на получение данных по изображению
         self::imgThumbAndSize($resize_param);
@@ -189,7 +189,7 @@ class Files {
      * @param string $dir (директория для загружаемых изображений)
      * @param array $resize_param (параметры ресайза)
      */
-    public function imgUploadProduct($TABLE, $dir, $resize_param) {
+    public static function imgUploadProduct($TABLE, $dir, $resize_param) {
 
         // Если получили запрос на получение данных по изображению
         self::imgThumbAndSize($resize_param);
@@ -358,7 +358,7 @@ class Files {
      * @param string $prefix (префикс к названию файлов)
      * @param array $resize_param (параметры ресайза)
      */
-    public function imgResize($dir, $files, $prefix, $resize_param) {
+    public static function imgResize($dir, $files, $prefix, $resize_param) {
 
         // Делаем ресайз
         $IMAGE = new \claviska\SimpleImage;
@@ -411,7 +411,7 @@ class Files {
      * @param array $resize_param (параметры ресайза)
      * @return array $resize_max (параметры ресайза для максимального качества)
      */
-    public function imgResizeMax($resize_param) {
+    public static function imgResizeMax($resize_param) {
 
         $count_image_max = count($resize_param);
         $resize_max = [];
@@ -424,7 +424,7 @@ class Files {
      *
      * @param array $resize_param (параметры ресайза)
      */
-    public function imgThumbAndSize($resize_param) {
+    public static function imgThumbAndSize($resize_param) {
 
         $IMAGE = new \claviska\SimpleImage;
         $resize_max = self::imgResizeMax($resize_param);

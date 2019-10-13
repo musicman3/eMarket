@@ -132,9 +132,7 @@ class Ajax {
      */
     public static function fileUpload($url, $dir, $resize_param) {
 
-        $FILES = new \eMarket\Other\Files;
-
-        $resize_max = $FILES->imgResizeMax($resize_param);
+        $resize_max = \eMarket\Other\Files::imgResizeMax($resize_param);
 
         ?>
 
@@ -313,9 +311,7 @@ class Ajax {
      */
     public static function fileUploadProduct($url, $dir, $resize_param) {
 
-        $FILES = new \eMarket\Other\Files;
-
-        $resize_max = $FILES->imgResizeMax($resize_param);
+        $resize_max = \eMarket\Other\Files::imgResizeMax($resize_param);
 
         ?>
 

@@ -25,8 +25,6 @@ final class Eac {
      */
     public function start($TABLES, $TOKEN, $resize_param, $resize_param_product) {
 
-        $FILES = new \eMarket\Other\Files;
-
         // Устанавливаем parent_id родительской категории
         $parent_id = self::parentIdStart($TABLES[0]);
 
@@ -43,10 +41,10 @@ final class Eac {
         self::editProduct($TABLES, $parent_id);
 
         // Загручик изображений категорий (ВСТАВЛЯТЬ ПЕРЕД УДАЛЕНИЕМ)
-        $FILES->imgUpload($TABLES[0], 'categories', $resize_param);
+        \eMarket\Other\Files::imgUpload($TABLES[0], 'categories', $resize_param);
 
         // Загручик изображений товаров (ВСТАВЛЯТЬ ПЕРЕД УДАЛЕНИЕМ)
-        $FILES->imgUploadProduct($TABLES[1], 'products', $resize_param_product);
+        \eMarket\Other\Files::imgUploadProduct($TABLES[1], 'products', $resize_param_product);
 
         $idsx_real_parent_id = $parent_id; //для отправки в JS
         // Если нажали на кнопку Удалить

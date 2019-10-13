@@ -40,7 +40,7 @@ array_push($resize_param, ['125', '94']); // ширина, высота
 //array_push($resize_param, ['525','394']);
 //array_push($resize_param, ['850','638']);
 
-$FILES->imgUpload(TABLE_MANUFACTURERS, 'manufacturers', $resize_param);
+\eMarket\Other\Files::imgUpload(TABLE_MANUFACTURERS, 'manufacturers', $resize_param);
 
 // Если нажали на кнопку Удалить
 if (\eMarket\Core\Valid::inPOST('delete')) {

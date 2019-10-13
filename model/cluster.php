@@ -7,10 +7,6 @@
 // 
 //АВТОЗАГРУЗЧИК КЛАССОВ
 require_once('vendor/autoload.php');
-//
-
-//СОЗДАЕМ ОБЪЕКТЫ OTHER
-$FILES = new eMarket\Other\Files;
 
 //АВТОЗАГРУЗЧИК ФУНКЦИЙ
 //Получаем список путей к файлам функций
