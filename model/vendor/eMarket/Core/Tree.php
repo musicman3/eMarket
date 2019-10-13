@@ -21,7 +21,7 @@ class Tree {
      * @param string $dir (путь к директории с файлами)
      * @return array $files (список файлов)
      */
-    public function filesTree($dir) {
+    public static function filesTree($dir) {
         
         $handle = opendir($dir) or die("Error: Can't open directory $dir");
         $files = [];
@@ -31,7 +31,7 @@ class Tree {
                 if (is_dir($dir . '/' . $file)) {
 
                     // Получим список файлов вложенной папки...  
-                    $subfiles = $this->filesTree($dir . '/' . $file);
+                    $subfiles = self::filesTree($dir . '/' . $file);
 
                     // ...и добавим их к общему списку  
                     $files = array_merge($files, $subfiles);
@@ -51,7 +51,7 @@ class Tree {
      * @param string|null $new_dir опционально (директория для перемещения)
      * @param string|null $rename опционально (префикс к имени файла)
      */
-    public function filesDirAction($dir, $new_dir = null, $rename = null) {
+    public static function filesDirAction($dir, $new_dir = null, $rename = null) {
         
         $files = glob($dir . '*');
         foreach ($files as $file) {
@@ -72,7 +72,7 @@ class Tree {
      * @param string $marker (если true, то выдает ассоциированный массив с подкаталогами)
      * @return array (массив директорий)
      */
-    public function allDirForPath($path, $marker = null) {
+    public static function allDirForPath($path, $marker = null) {
         
         $level_1 = array_values(array_diff(scandir($path), ['..', '.']));
         if ($marker == 'true') {
@@ -96,7 +96,7 @@ class Tree {
      * @param string $marker (маркер для добавления класса в первый ul)
      * @return array $array_cat2 (массив всех предков для breadcrumb)
      */
-    public function categories($sql, $id = null, $array_cat2 = [], $parent_id = 0, $marker = null) {
+    public static function categories($sql, $id = null, $array_cat2 = [], $parent_id = 0, $marker = null) {
 
         $array_cat = [];
         foreach ($sql as $value) {

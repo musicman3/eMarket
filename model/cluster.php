@@ -8,15 +8,13 @@
 //АВТОЗАГРУЗЧИК КЛАССОВ
 require_once('vendor/autoload.php');
 //
-//СОЗДАЕМ ОБЪЕКТЫ CORE
-$TREE = new eMarket\Core\Tree;
 
 //СОЗДАЕМ ОБЪЕКТЫ OTHER
 $FILES = new eMarket\Other\Files;
 
 //АВТОЗАГРУЗЧИК ФУНКЦИЙ
 //Получаем список путей к файлам функций
-foreach ($TREE->filesTree(getenv('DOCUMENT_ROOT') . '/model/functions/') as $path) {
+foreach (\eMarket\Core\Tree::filesTree(getenv('DOCUMENT_ROOT') . '/model/functions/') as $path) {
     require_once($path);
 }
 ?>

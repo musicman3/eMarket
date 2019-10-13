@@ -8,7 +8,7 @@
 <div class="panel panel-default">
     <div class="panel-heading"><?php echo lang('categories_name') ?></div>
     <div class="panel-body category_block">
-        <?php $categories_and_breadcrumb = $TREE->categories($sql, \eMarket\Core\Valid::inGET('category_id')); ?>
+        <?php $categories_and_breadcrumb = \eMarket\Core\Tree::categories($sql, \eMarket\Core\Valid::inGET('category_id')); ?>
     </div>
 </div>
 <?php if ($categories_and_breadcrumb != 0) { ?>

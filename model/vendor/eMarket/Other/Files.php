@@ -23,8 +23,6 @@ class Files {
      * @param array $resize_param (параметры ресайза)
      */
     public function imgUpload($TABLE, $dir, $resize_param) {
-
-        $TREE = new \eMarket\Core\Tree;
         
         // Если получили запрос на получение данных по изображению
         self::imgThumbAndSize($resize_param);
@@ -37,9 +35,9 @@ class Files {
 
         // Если открываем модальное окно, то очищаются папки временных файлов изображений
         if (\eMarket\Core\Valid::inPOST('file_upload') == 'empty') {
-            $TREE->filesDirAction(ROOT . '/uploads/temp/originals/');
-            $TREE->filesDirAction(ROOT . '/uploads/temp/thumbnail/');
-            $TREE->filesDirAction(ROOT . '/uploads/temp/files/');
+            \eMarket\Core\Tree::filesDirAction(ROOT . '/uploads/temp/originals/');
+            \eMarket\Core\Tree::filesDirAction(ROOT . '/uploads/temp/thumbnail/');
+            \eMarket\Core\Tree::filesDirAction(ROOT . '/uploads/temp/files/');
         }
         // Если нажали на кнопку Добавить
         if (\eMarket\Core\Valid::inPOST('add')) {
@@ -72,7 +70,7 @@ class Files {
                     $general_image_add = $prefix . \eMarket\Core\Valid::inPOST('general_image_add');
                 }
                 // Перемещаем оригинальные файлы из временной папки в постоянную
-                $TREE->filesDirAction(ROOT . '/uploads/temp/originals/', ROOT . '/uploads/images/' . $dir . '/originals/');
+                \eMarket\Core\Tree::filesDirAction(ROOT . '/uploads/temp/originals/', ROOT . '/uploads/images/' . $dir . '/originals/');
 
                 // Обновляем запись для всех вкладок
                 \eMarket\Core\Pdo::inPrepare("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [$image_list, $general_image_add, $id]);
@@ -110,7 +108,7 @@ class Files {
             }
 
             // Перемещаем оригинальные файлы из временной папки в постоянную
-            $TREE->filesDirAction(ROOT . '/uploads/temp/originals/', ROOT . '/uploads/images/' . $dir . '/originals/');
+            \eMarket\Core\Tree::filesDirAction(ROOT . '/uploads/temp/originals/', ROOT . '/uploads/images/' . $dir . '/originals/');
 
             // Обновляем запись
             if (isset($general_image_edit)) {
@@ -193,8 +191,6 @@ class Files {
      */
     public function imgUploadProduct($TABLE, $dir, $resize_param) {
 
-        $TREE = new \eMarket\Core\Tree;
-        
         // Если получили запрос на получение данных по изображению
         self::imgThumbAndSize($resize_param);
 
@@ -206,9 +202,9 @@ class Files {
 
         // Если открываем модальное окно, то очищаются папки временных файлов изображений
         if (\eMarket\Core\Valid::inPOST('file_upload') == 'empty') {
-            $TREE->filesDirAction(ROOT . '/uploads/temp/originals/');
-            $TREE->filesDirAction(ROOT . '/uploads/temp/thumbnail/');
-            $TREE->filesDirAction(ROOT . '/uploads/temp/files/');
+            \eMarket\Core\Tree::filesDirAction(ROOT . '/uploads/temp/originals/');
+            \eMarket\Core\Tree::filesDirAction(ROOT . '/uploads/temp/thumbnail/');
+            \eMarket\Core\Tree::filesDirAction(ROOT . '/uploads/temp/files/');
         }
         // Если нажали на кнопку Добавить
         if (\eMarket\Core\Valid::inPOST('add_product')) {
@@ -241,7 +237,7 @@ class Files {
                     $general_image_add = $prefix . \eMarket\Core\Valid::inPOST('general_image_add_product');
                 }
                 // Перемещаем оригинальные файлы из временной папки в постоянную
-                $TREE->filesDirAction(ROOT . '/uploads/temp/originals/', ROOT . '/uploads/images/' . $dir . '/originals/');
+                \eMarket\Core\Tree::filesDirAction(ROOT . '/uploads/temp/originals/', ROOT . '/uploads/images/' . $dir . '/originals/');
 
                 // Обновляем запись для всех вкладок
                 \eMarket\Core\Pdo::inPrepare("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [$image_list, $general_image_add, $id]);
@@ -279,7 +275,7 @@ class Files {
             }
 
             // Перемещаем оригинальные файлы из временной папки в постоянную
-            $TREE->filesDirAction(ROOT . '/uploads/temp/originals/', ROOT . '/uploads/images/' . $dir . '/originals/');
+            \eMarket\Core\Tree::filesDirAction(ROOT . '/uploads/temp/originals/', ROOT . '/uploads/images/' . $dir . '/originals/');
 
             // Обновляем запись
             if (isset($general_image_edit)) {

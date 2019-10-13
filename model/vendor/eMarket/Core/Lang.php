@@ -26,15 +26,14 @@ final class Lang {
     public static function lang($default_language, $marker = null) {
 
         static $lang = null, $lang_trans = null, $lang_all = null;
-        $TREE = new \eMarket\Core\Tree;
 
         if ($lang == null) {
             //Получаем массив со списком путей к языковым файлам движка
-            $engine_path_array = $TREE->filesTree(getenv('DOCUMENT_ROOT') . '/language/' . $default_language . '/' . \eMarket\Core\Set::path());
+            $engine_path_array = \eMarket\Core\Tree::filesTree(getenv('DOCUMENT_ROOT') . '/language/' . $default_language . '/' . \eMarket\Core\Set::path());
 
             // Получаем список путей к языковым файлам модулей
             $modules_path = getenv('DOCUMENT_ROOT') . '/modules/';
-            $_SESSION['MODULES_INFO'] = $TREE->allDirForPath($modules_path, 'true');
+            $_SESSION['MODULES_INFO'] = \eMarket\Core\Tree::allDirForPath($modules_path, 'true');
 
             // Готовим массив со списком путей к языковым файлам модулей
             $modules_path_array = [];
