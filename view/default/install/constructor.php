@@ -29,7 +29,7 @@
     <body>
         <?php
         // ЗАГРУЖАЕМ ТЕЛО HTML СТРАНИЦЫ
-        require_once($VIEW->routing());
+        require_once(\eMarket\Core\View::routing());
 
         // ЗАГРУЖАЕМ FOOTER
         require_once (getenv('DOCUMENT_ROOT') . '/controller/install/footer.php');

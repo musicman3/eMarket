@@ -20,7 +20,7 @@ class View {
      *
      * @return string $str (роутинг на view)
      */
-    public function routing() {
+    public static function routing() {
 
         $str = str_replace('controller', 'view/' . \eMarket\Core\Set::template(), getenv('SCRIPT_FILENAME'));
 
@@ -32,7 +32,7 @@ class View {
      *
      * @return string $str (роутинг на view)
      */
-    public function routingAdmin() {
+    public static function routingAdmin() {
         
         if (\eMarket\Core\Valid::inGET('object') != '') {
             $page = \eMarket\Core\Valid::inGET('object') . '.php';
@@ -59,7 +59,7 @@ class View {
      *
      * @return string $str (роутинг на view)
      */
-    public function routingCatalog() {
+    public static function routingCatalog() {
         
         if (\eMarket\Core\Valid::inGET('route') != '') {
             $str = str_replace('controller', 'view/' . \eMarket\Core\Set::template(), getenv('DOCUMENT_ROOT') . '/controller/' . \eMarket\Core\Set::path() . '/pages/' . \eMarket\Core\Valid::inGET('route') . '/index.php');
@@ -79,7 +79,7 @@ class View {
      * @param string $position (позиция)
      * @return array $array_out (массив настроек позиций для конкретного пути)
      */
-    public function layoutRouting($position) {
+    public static function layoutRouting($position) {
 
         $array_pos_temp = \eMarket\Core\Pdo::getColRow("SELECT url, value FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND page=? AND template_name=? ORDER BY sort ASC", [\eMarket\Core\Set::path(), \eMarket\Core\Set::titleDir(), \eMarket\Core\Set::template()]);
         if (count($array_pos_temp) > 0) {

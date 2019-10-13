@@ -51,7 +51,7 @@
 
 <?php
 // ПОДКЛЮЧАЕМ КОНТЕНТ
-foreach ($VIEW->layoutRouting('content') as $path) {
+foreach (\eMarket\Core\View::layoutRouting('content') as $path) {
     require_once (ROOT . $path);
 }
 ?>

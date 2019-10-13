@@ -50,12 +50,12 @@
 
         <?php
         // ЗАГРУЖАЕМ HEADER
-        foreach ($VIEW->layoutRouting('header') as $path) {
+        foreach (\eMarket\Core\View::layoutRouting('header') as $path) {
             require_once (ROOT . $path);
         }
 
         // ЗАГРУЖАЕМ ТЕЛО HTML СТРАНИЦЫ
-        require_once($VIEW->routingAdmin());
+        require_once(\eMarket\Core\View::routingAdmin());
 
         ?>
 
@@ -66,7 +66,7 @@
 
         <?php
         // ЗАГРУЖАЕМ FOOTER
-        foreach ($VIEW->layoutRouting('footer') as $path) {
+        foreach (\eMarket\Core\View::layoutRouting('footer') as $path) {
             require_once (ROOT . $path);
         }
 

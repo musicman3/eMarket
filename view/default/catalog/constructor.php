@@ -33,7 +33,7 @@
 
         <?php
         // ЗАГРУЖАЕМ HEADER
-        foreach ($VIEW->layoutRouting('header') as $path) {
+        foreach (\eMarket\Core\View::layoutRouting('header') as $path) {
             require_once (ROOT . $path);
         }
         ?>
@@ -44,14 +44,14 @@
 
                 <?php
                 // ПРОВЕРЯЕМ НАЛИЧИЕ БОКСА В РАЗМЕТКЕ
-                $COUNT_BOX_LEFT = count($VIEW->layoutRouting('boxes-left'));
+                $COUNT_BOX_LEFT = count(\eMarket\Core\View::layoutRouting('boxes-left'));
 
                 if ($COUNT_BOX_LEFT != 0) {
                     ?>
 
                     <div id="bodyContent" class="col-md-10 col-md-push-2">
                         <?php
-                        require_once($VIEW->routingCatalog());
+                        require_once(\eMarket\Core\View::routingCatalog());
                         ?>
                     </div>
 
@@ -59,7 +59,7 @@
 
                     <div id="bodyContent" class="col-xs-12">
                         <?php
-                        require_once($VIEW->routingCatalog());
+                        require_once(\eMarket\Core\View::routingCatalog());
                         ?>
                     </div>
 
@@ -72,7 +72,7 @@
                     <div id="columnLeft" class="col-md-2 col-xs-12 col-md-pull-10">
                         <?php
                         // ЗАГРУЖАЕМ БОКСЫ
-                        foreach ($VIEW->layoutRouting('boxes-left') as $path) {
+                        foreach (\eMarket\Core\View::layoutRouting('boxes-left') as $path) {
                             require_once (ROOT . $path);
                         }
                         ?>
@@ -86,7 +86,7 @@
 
         <?php
         // ЗАГРУЖАЕМ FOOTER
-        foreach ($VIEW->layoutRouting('footer') as $path) {
+        foreach (\eMarket\Core\View::layoutRouting('footer') as $path) {
             require_once (ROOT . $path);
         }
 
