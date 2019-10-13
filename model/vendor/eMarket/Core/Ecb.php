@@ -27,56 +27,56 @@ final class Ecb {
 
     /**
      * Блок формирования входящей стоимости
-     * @param 1
-     * @return array array()
+     * @param array $cart (данные из корзины)
+     * @return array $output (выходные данные)
      */
-    public function inputPrice() {
-        //echo ('test');
+    public function inputPrice($cart) {
+        //echo ($output);
     }
 
     /**
      * Блок формирования скидки на товар
-     * @param 1
-     * @return array array()
+     * @param array $input (данные из inputPrice)
+     * @return array $output (выходные данные)
      */
-    public function productSaleBlock() {
-        //echo ('test');
+    public function productSaleBlock($input) {
+        //echo ($output);
     }
 
     /**
      * Блок формирования итоговой скидки на заказ
-     * @param 1
-     * @return array array()
+     * @param array $input (данные из productSaleBlock)
+     * @return array $output (выходные данные)
      */
-    public function totalSaleBlock() {
-        //echo ('test');
+    public function totalSaleBlock($input) {
+        //echo ($output);
     }
 
     /**
      * Блок формирования стоимости доставки
-     * @param 1
-     * @return array array()
+     * @param array $input (данные из totalSaleBlock)
+     * @return array $output (выходные данные)
      */
-    public function shippingBlock() {
-        //echo ('test');
+    public function shippingBlock($input) {
+        //echo ($output);
     }
 
     /**
      * Блок формирования оплаты
-     * @param 1
-     * @return array array()
+     * @param array $input (данные из shippingBlock)
+     * @return array $output (выходные данные)
      */
-    public function checkoutBlock() {
-        //echo ('test');
+    public function checkoutBlock($input) {
+        //echo ($output);
     }
 
     /**
      * Блок формирования исходящей стоимости
-     * @param 1
-     * @return array array()
+     * @param array $input (данные из checkoutBlock)
+     * @return array $output (выходные данные)
      */
-    public function outputPrice() {
-        //echo ('test');
+    public function outputPrice($input) {
+        //echo ($output);
     }
 
 }
