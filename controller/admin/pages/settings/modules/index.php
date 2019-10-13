@@ -5,8 +5,6 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-
-//$MODULES->init();
 $installed = $PDO->getColAssoc("SELECT name, type FROM " . TABLE_MODULES . "", []);
 $installed_active = $PDO->getColAssoc("SELECT name, type FROM " . TABLE_MODULES . " WHERE active=?", [1]);
 
