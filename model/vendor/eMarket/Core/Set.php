@@ -31,9 +31,8 @@ class Set {
      * @return array $currencies
      */
     public function currenciesData() {
-        $PDO = new \eMarket\Core\Pdo;
-
-        $currencies = $PDO->getColRow("SELECT name, id FROM " . TABLE_CURRENCIES . " WHERE language=?", [lang('#lang_all')[0]]);
+        
+        $currencies = \eMarket\Core\Pdo::getColRow("SELECT name, id FROM " . TABLE_CURRENCIES . " WHERE language=?", [lang('#lang_all')[0]]);
         return $currencies;
     }
 
@@ -43,16 +42,16 @@ class Set {
      * @return array $currency
      */
     public function currencyDefault() {
-        $PDO = new \eMarket\Core\Pdo;
+        
         $VALID = new \eMarket\Core\Valid;
 
         if (!isset($_SESSION['currency_default_catalog'])) {
-            $currency = $PDO->getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND default_value=?", [lang('#lang_all')[0], 1])[0];
+            $currency = \eMarket\Core\Pdo::getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND default_value=?", [lang('#lang_all')[0], 1])[0];
             $_SESSION['currency_default_catalog'] = $currency[0];
         } elseif (isset($_SESSION['currency_default_catalog']) && !$VALID->inGET('currency_default')) {
-            $currency = $PDO->getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], $_SESSION['currency_default_catalog']])[0];
+            $currency = \eMarket\Core\Pdo::getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], $_SESSION['currency_default_catalog']])[0];
         } elseif (isset($_SESSION['currency_default_catalog']) && $VALID->inGET('currency_default')) {
-            $currency = $PDO->getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], $VALID->inGET('currency_default')])[0];
+            $currency = \eMarket\Core\Pdo::getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], $VALID->inGET('currency_default')])[0];
             $_SESSION['currency_default_catalog'] = $currency[0];
         }
 
@@ -133,7 +132,7 @@ class Set {
      */
     public function titleCatalog($marker = null) {
         $VALID = new \eMarket\Core\Valid;
-        $PDO = new \eMarket\Core\Pdo;
+        
         if ($marker == 'false'){
             $sign = '';
         }
@@ -147,11 +146,11 @@ class Set {
         }
         
         if (basename($VALID->inGET('route')) == 'listing' && self::path() == 'catalog') {
-            $title = $sign . $PDO->getCell("SELECT name FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], $VALID->inGET('category_id')]);
+            $title = $sign . \eMarket\Core\Pdo::getCell("SELECT name FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], $VALID->inGET('category_id')]);
         }
         
         if (basename($VALID->inGET('route')) == 'products' && self::path() == 'catalog') {
-            $title = $sign . $PDO->getCell("SELECT name FROM " . TABLE_PRODUCTS . " WHERE language=? AND id=?", [lang('#lang_all')[0], $VALID->inGET('id')]);
+            $title = $sign . \eMarket\Core\Pdo::getCell("SELECT name FROM " . TABLE_PRODUCTS . " WHERE language=? AND id=?", [lang('#lang_all')[0], $VALID->inGET('id')]);
         }
         
         return $title;
@@ -163,8 +162,8 @@ class Set {
      * @return string $lines_on_page
      */
     public function linesOnPage() {
-        $PDO = new \eMarket\Core\Pdo;
-        $lines_on_page = $PDO->selectPrepare("SELECT lines_on_page FROM " . TABLE_BASIC_SETTINGS, []);
+        
+        $lines_on_page = \eMarket\Core\Pdo::selectPrepare("SELECT lines_on_page FROM " . TABLE_BASIC_SETTINGS, []);
         return $lines_on_page;
     }
 
@@ -174,8 +173,8 @@ class Set {
      * @return string $session_expr_time
      */
     public function sessionExprTime() {
-        $PDO = new \eMarket\Core\Pdo;
-        $session_expr_time = $PDO->selectPrepare("SELECT session_expr_time FROM " . TABLE_BASIC_SETTINGS, []);
+        
+        $session_expr_time = \eMarket\Core\Pdo::selectPrepare("SELECT session_expr_time FROM " . TABLE_BASIC_SETTINGS, []);
         return $session_expr_time;
     }
 
@@ -234,11 +233,10 @@ class Set {
      * @return string $breadcrumb (массив breadcrumb в виде названия)
      */
     public function breadcrumbName($breadcrumb_array) {
-        $PDO = new \eMarket\Core\Pdo;
         
         $breadcrumb = [];
         foreach ($breadcrumb_array as $value) {
-            $name = $PDO->getCell("SELECT name FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], $value]);
+            $name = \eMarket\Core\Pdo::getCell("SELECT name FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], $value]);
             array_push ($breadcrumb, $name);
         }
 
@@ -252,11 +250,10 @@ class Set {
      * @return string $breadcrumb (массив breadcrumb в виде parent_id)
      */
     public function breadcrumbParentId($breadcrumb_array) {
-        $PDO = new \eMarket\Core\Pdo;
         
         $breadcrumb = [];
         foreach ($breadcrumb_array as $value) {
-            $name = $PDO->getCell("SELECT parent_id FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], $value]);
+            $name = \eMarket\Core\Pdo::getCell("SELECT parent_id FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], $value]);
             array_push ($breadcrumb, $name);
         }
 

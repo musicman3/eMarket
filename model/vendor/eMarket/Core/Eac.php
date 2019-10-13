@@ -90,7 +90,6 @@ final class Eac {
      */
     private function parentIdStart($TABLE_CATEGORIES) {
 
-        $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
 
         // Устанавливаем родительскую категорию
@@ -101,7 +100,7 @@ final class Eac {
 
         // Устанавливаем родительскую категорию при переходе на уровень выше
         if ($VALID->inGET('parent_up')) {
-            $parent_id = $PDO->selectPrepare("SELECT parent_id FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$VALID->inGET('parent_up')]);
+            $parent_id = \eMarket\Core\Pdo::selectPrepare("SELECT parent_id FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$VALID->inGET('parent_up')]);
         }
 
         // Устанавливаем родительскую категорию при переходе на уровень ниже
@@ -119,7 +118,6 @@ final class Eac {
      */
     private function sortList($TABLE_CATEGORIES, $TOKEN) {
 
-        $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
         $FUNC = new \eMarket\Other\Func;
 
@@ -134,7 +132,7 @@ final class Eac {
             $count_sort_array_id = count($sort_array_id); // Получаем количество значений в массиве
 
             for ($i = 0; $i < $count_sort_array_id; $i++) {
-                $sort_category = $PDO->selectPrepare("SELECT sort_category FROM " . $TABLE_CATEGORIES . " WHERE id=? AND language=? ORDER BY id ASC", [$sort_array_id[$i], lang('#lang_all')[0]]);
+                $sort_category = \eMarket\Core\Pdo::selectPrepare("SELECT sort_category FROM " . $TABLE_CATEGORIES . " WHERE id=? AND language=? ORDER BY id ASC", [$sort_array_id[$i], lang('#lang_all')[0]]);
                 array_push($sort_array_category, $sort_category); // Добавляем данные в массив sort_category
                 arsort($sort_array_category); // Сортируем массив со списком sort_category
             }
@@ -143,7 +141,7 @@ final class Eac {
 
             for ($i = 0; $i < $count_sort_array_id; $i++) {
 
-                $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET sort_category=? WHERE id=?", [(int) $sort_array_final[$sort_array_id[$i]], (int) $sort_array_id[$i]]);
+                \eMarket\Core\Pdo::inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET sort_category=? WHERE id=?", [(int) $sort_array_final[$sort_array_id[$i]], (int) $sort_array_id[$i]]);
             }
         }
     }
@@ -155,7 +153,6 @@ final class Eac {
      */
     private function addCategory($TABLE_CATEGORIES, $parent_id) {
 
-        $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
         $LANG_COUNT = count(lang('#lang_all'));
 
@@ -168,16 +165,16 @@ final class Eac {
             }
 
             // Получаем последний sort_category в текущем parent_id и увеличиваем его на 1
-            $sort_max = $PDO->selectPrepare("SELECT sort_category FROM " . $TABLE_CATEGORIES . " WHERE language=? AND parent_id=? ORDER BY sort_category DESC", [lang('#lang_all')[0], $parent_id]);
+            $sort_max = \eMarket\Core\Pdo::selectPrepare("SELECT sort_category FROM " . $TABLE_CATEGORIES . " WHERE language=? AND parent_id=? ORDER BY sort_category DESC", [lang('#lang_all')[0], $parent_id]);
             $sort_category = intval($sort_max) + 1;
 
             // Получаем последний id и увеличиваем его на 1
-            $id_max = $PDO->selectPrepare("SELECT id FROM " . $TABLE_CATEGORIES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+            $id_max = \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . $TABLE_CATEGORIES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max) + 1;
 
             // добавляем запись для всех вкладок
             for ($x = 0; $x < $LANG_COUNT; $x++) {
-                $PDO->inPrepare("INSERT INTO " . $TABLE_CATEGORIES . " SET id=?, name=?, sort_category=?, language=?, parent_id=?, date_added=?, status=?", [$id, $VALID->inPOST('name_categories_stock_' . $x), $sort_category, lang('#lang_all')[$x], $parent_id, date("Y-m-d H:i:s"), $view_cat]);
+                \eMarket\Core\Pdo::inPrepare("INSERT INTO " . $TABLE_CATEGORIES . " SET id=?, name=?, sort_category=?, language=?, parent_id=?, date_added=?, status=?", [$id, $VALID->inPOST('name_categories_stock_' . $x), $sort_category, lang('#lang_all')[$x], $parent_id, date("Y-m-d H:i:s"), $view_cat]);
             }
             // Выводим сообщение об успехе
             $_SESSION['message'] = ['success', lang('action_completed_successfully')];
@@ -190,7 +187,6 @@ final class Eac {
      */
     private function editCategory($TABLE_CATEGORIES) {
 
-        $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
         $LANG_COUNT = count(lang('#lang_all'));
 
@@ -198,7 +194,7 @@ final class Eac {
 
             for ($x = 0; $x < $LANG_COUNT; $x++) {
                 // обновляем запись
-                $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET name=?, last_modified=? WHERE id=? AND language=?", [$VALID->inPOST('name_categories_stock_edit_' . $x), date("Y-m-d H:i:s"), $VALID->inPOST('edit'), lang('#lang_all')[$x]]);
+                \eMarket\Core\Pdo::inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET name=?, last_modified=? WHERE id=? AND language=?", [$VALID->inPOST('name_categories_stock_edit_' . $x), date("Y-m-d H:i:s"), $VALID->inPOST('edit'), lang('#lang_all')[$x]]);
             }
             // Выводим сообщение об успехе
             $_SESSION['message'] = ['success', lang('action_completed_successfully')];
@@ -214,7 +210,6 @@ final class Eac {
      */
     private function delete($TABLE_CATEGORIES, $TABLE_PRODUCTS, $parent_id) {
 
-        $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
         $FUNC = new \eMarket\Other\Func;
 
@@ -233,14 +228,14 @@ final class Eac {
                     for ($x = 0; $x < $count_keys; $x++) {
 
                         //Удаляем товар  
-                        $PDO->inPrepare("DELETE FROM " . $TABLE_PRODUCTS . " WHERE parent_id=?", [$keys[$x]]);
+                        \eMarket\Core\Pdo::inPrepare("DELETE FROM " . $TABLE_PRODUCTS . " WHERE parent_id=?", [$keys[$x]]);
 
                         //Удаляем подкатегории
-                        $PDO->inPrepare("DELETE FROM " . $TABLE_CATEGORIES . " WHERE parent_id=?", [$keys[$x]]);
+                        \eMarket\Core\Pdo::inPrepare("DELETE FROM " . $TABLE_CATEGORIES . " WHERE parent_id=?", [$keys[$x]]);
                     }
 
                     //Удаляем основную категорию    
-                    $PDO->inPrepare("DELETE FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$idx[$i]]);
+                    \eMarket\Core\Pdo::inPrepare("DELETE FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$idx[$i]]);
 
                     //Удаляем из буффера, если есть
                     if (isset($_SESSION['buffer']['cat']) && $_SESSION['buffer']['cat'] != FALSE) {
@@ -253,7 +248,7 @@ final class Eac {
                     // Это товар
                     $id_prod = explode('product_', $idx[$i]);
                     //Удаляем основной товар
-                    $PDO->inPrepare("DELETE FROM " . $TABLE_PRODUCTS . " WHERE id=?", [$id_prod[1]]);
+                    \eMarket\Core\Pdo::inPrepare("DELETE FROM " . $TABLE_PRODUCTS . " WHERE id=?", [$id_prod[1]]);
 
                     //Удаляем из буффера, если есть
                     if (isset($_SESSION['buffer']['prod']) && $_SESSION['buffer']['prod'] != FALSE) {
@@ -342,7 +337,6 @@ final class Eac {
      */
     private function paste($TABLE_CATEGORIES, $TABLE_PRODUCTS, $parent_id) {
 
-        $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
 
         //Вставляем вырезанные категории    
@@ -366,16 +360,16 @@ final class Eac {
                 // Это категория
                 if (isset($_SESSION['buffer']['cat'][$buf]) && count($_SESSION['buffer']['cat']) > 0) {
                     // Получаем последний sort_category в текущем parent_id и увеличиваем его на 1
-                    $sort_max = $PDO->selectPrepare("SELECT sort_category FROM " . $TABLE_CATEGORIES . " WHERE language=? AND parent_id=? ORDER BY sort_category DESC", [lang('#lang_all')[0], $parent_id_real]);
+                    $sort_max = \eMarket\Core\Pdo::selectPrepare("SELECT sort_category FROM " . $TABLE_CATEGORIES . " WHERE language=? AND parent_id=? ORDER BY sort_category DESC", [lang('#lang_all')[0], $parent_id_real]);
                     $sort_category = intval($sort_max) + 1;
                     // Обновляем данные
-                    $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET parent_id=?, sort_category=? WHERE id=?", [$parent_id_real, $sort_category, $_SESSION['buffer']['cat'][$buf]]);
+                    \eMarket\Core\Pdo::inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET parent_id=?, sort_category=? WHERE id=?", [$parent_id_real, $sort_category, $_SESSION['buffer']['cat'][$buf]]);
                 }
 
                 if (isset($_SESSION['buffer']['prod'][$buf]) && count($_SESSION['buffer']['prod']) > 0) {
                     // Это товар
                     // Обновляем данные
-                    $PDO->inPrepare("UPDATE " . $TABLE_PRODUCTS . " SET parent_id=? WHERE id=?", [$parent_id_real, $_SESSION['buffer']['prod'][$buf]]);
+                    \eMarket\Core\Pdo::inPrepare("UPDATE " . $TABLE_PRODUCTS . " SET parent_id=? WHERE id=?", [$parent_id_real, $_SESSION['buffer']['prod'][$buf]]);
                 }
             }
             unset($_SESSION['buffer']); // очищаем буфер обмена
@@ -402,7 +396,6 @@ final class Eac {
      */
     private function status($TABLE_CATEGORIES, $TABLE_PRODUCTS, $parent_id) {
 
-        $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
         $FUNC = new \eMarket\Other\Func;
 
@@ -436,10 +429,10 @@ final class Eac {
                                 or ( $VALID->inPOST('idsx_statusOff_key') == 'statusOff')) {
 
                             // Это категория
-                            $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET status=? WHERE parent_id=?", [$status, $keys[$x]]);
+                            \eMarket\Core\Pdo::inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET status=? WHERE parent_id=?", [$status, $keys[$x]]);
 
                             // Это товар
-                            $PDO->inPrepare("UPDATE " . $TABLE_PRODUCTS . " SET status=? WHERE parent_id=?", [$status, $keys[$x]]);
+                            \eMarket\Core\Pdo::inPrepare("UPDATE " . $TABLE_PRODUCTS . " SET status=? WHERE parent_id=?", [$status, $keys[$x]]);
 
                             if ($parent_id_real > 0) {
                                 $parent_id = $parent_id_real; // Возвращаемся в свою директорию после "Вырезать"
@@ -450,7 +443,7 @@ final class Eac {
                     //Обновляем статус основной категории
                     if (($VALID->inPOST('idsx_statusOn_key') == 'statusOn')
                             or ( $VALID->inPOST('idsx_statusOff_key') == 'statusOff')) {
-                        $PDO->inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET status=? WHERE id=?", [$status, $idx[$i]]);
+                        \eMarket\Core\Pdo::inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET status=? WHERE id=?", [$status, $idx[$i]]);
                     }
                 } else {
                     // Это товар
@@ -458,7 +451,7 @@ final class Eac {
                     if (($VALID->inPOST('idsx_statusOn_key') == 'statusOn')
                             or ( $VALID->inPOST('idsx_statusOff_key') == 'statusOff')) {
                         $id_prod = explode('product_', $idx[$i]);
-                        $PDO->inPrepare("UPDATE " . $TABLE_PRODUCTS . " SET status=? WHERE id=?", [$status, $id_prod[1]]);
+                        \eMarket\Core\Pdo::inPrepare("UPDATE " . $TABLE_PRODUCTS . " SET status=? WHERE id=?", [$status, $id_prod[1]]);
                     }
                 }
             }
@@ -480,14 +473,12 @@ final class Eac {
      */
     private function dataParentId($TABLE_CATEGORIES, $idx) {
 
-        $PDO = new \eMarket\Core\Pdo;
-
         // Устанавливаем родительскую категорию
-        $parent_id = $PDO->selectPrepare("SELECT parent_id FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$idx]);
+        $parent_id = \eMarket\Core\Pdo::selectPrepare("SELECT parent_id FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$idx]);
         // Устанавливаем родительскую категорию родительской категории
-        $parent_id_up = $PDO->selectPrepare("SELECT parent_id FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$parent_id]);
+        $parent_id_up = \eMarket\Core\Pdo::selectPrepare("SELECT parent_id FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$parent_id]);
         // считаем одинаковые parent_id
-        $parent_id_num = $PDO->getColRow("SELECT id FROM " . $TABLE_CATEGORIES . " WHERE parent_id=?", [$parent_id]);
+        $parent_id_num = \eMarket\Core\Pdo::getColRow("SELECT id FROM " . $TABLE_CATEGORIES . " WHERE parent_id=?", [$parent_id]);
         // если меньше 2-х значений, то устанавливаем parent_id как родительский родительского
         if (count($parent_id_num) < 2) {
             $parent_id = $parent_id_up;
@@ -504,10 +495,8 @@ final class Eac {
      */
     private function dataKeys($TABLE_CATEGORIES, $idx) {
 
-        $PDO = new \eMarket\Core\Pdo;
-
         //Выбираем данные из БД
-        $data_cat = $PDO->inPrepare("SELECT id, parent_id FROM " . $TABLE_CATEGORIES);
+        $data_cat = \eMarket\Core\Pdo::inPrepare("SELECT id, parent_id FROM " . $TABLE_CATEGORIES);
 
         $category = $idx; // id родителя
         $categories = [];
@@ -531,7 +520,6 @@ final class Eac {
      */
     private function addProduct($TABLES, $parent_id) {
 
-        $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
         $LANG_COUNT = count(lang('#lang_all'));
 
@@ -562,43 +550,43 @@ final class Eac {
             }
 
             if ($VALID->inPOST('tax_product_stock')) {
-                $tax_product_stock = (int) $PDO->selectPrepare("SELECT id FROM " . $TABLE_TAXES . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('tax_product_stock')]);
+                $tax_product_stock = (int) \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . $TABLE_TAXES . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('tax_product_stock')]);
             } else {
                 $tax_product_stock = NULL;
             }
 
             if ($VALID->inPOST('unit_product_stock')) {
-                $unit_product_stock = (int) $PDO->selectPrepare("SELECT id FROM " . $TABLE_UNITS . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('unit_product_stock')]);
+                $unit_product_stock = (int) \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . $TABLE_UNITS . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('unit_product_stock')]);
             } else {
                 $unit_product_stock = NULL;
             }
 
             if ($VALID->inPOST('manufacturers_product_stock')) {
-                $manufacturers_product_stock = (int) $PDO->selectPrepare("SELECT id FROM " . $TABLE_MANUFACTURERS . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('manufacturers_product_stock')]);
+                $manufacturers_product_stock = (int) \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . $TABLE_MANUFACTURERS . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('manufacturers_product_stock')]);
             } else {
                 $manufacturers_product_stock = NULL;
             }
 
             if ($VALID->inPOST('vendor_codes_product_stock')) {
-                $vendor_codes_product_stock = (int) $PDO->selectPrepare("SELECT id FROM " . $TABLE_VENDOR_CODES . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('vendor_codes_product_stock')]);
+                $vendor_codes_product_stock = (int) \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . $TABLE_VENDOR_CODES . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('vendor_codes_product_stock')]);
             } else {
                 $vendor_codes_product_stock = NULL;
             }
 
             if ($VALID->inPOST('weight_product_stock')) {
-                $weight_product_stock = (int) $PDO->selectPrepare("SELECT id FROM " . $TABLE_WEIGHT . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('weight_product_stock')]);
+                $weight_product_stock = (int) \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . $TABLE_WEIGHT . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('weight_product_stock')]);
             } else {
                 $weight_product_stock = NULL;
             }
 
             if ($VALID->inPOST('length_product_stock')) {
-                $length_product_stock = (int) $PDO->selectPrepare("SELECT id FROM " . $TABLE_LENGTH . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('length_product_stock')]);
+                $length_product_stock = (int) \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . $TABLE_LENGTH . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('length_product_stock')]);
             } else {
                 $length_product_stock = NULL;
             }
 
             if ($VALID->inPOST('currency_product_stock')) {
-                $currency_product_stock = (int) $PDO->selectPrepare("SELECT id FROM " . $TABLE_CURRENCIES . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('currency_product_stock')]);
+                $currency_product_stock = (int) \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . $TABLE_CURRENCIES . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('currency_product_stock')]);
             } else {
                 $currency_product_stock = NULL;
             }
@@ -634,12 +622,12 @@ final class Eac {
             }
 
             // Получаем последний id и увеличиваем его на 1
-            $id_max = $PDO->selectPrepare("SELECT id FROM " . $TABLE_PRODUCTS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+            $id_max = \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . $TABLE_PRODUCTS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max) + 1;
 
             // добавляем запись для всех вкладок
             for ($x = 0; $x < $LANG_COUNT; $x++) {
-                $PDO->inPrepare("INSERT INTO " . $TABLE_PRODUCTS .
+                \eMarket\Core\Pdo::inPrepare("INSERT INTO " . $TABLE_PRODUCTS .
                         " SET id=?, name=?, language=?, parent_id=?, date_added=?, date_available=?, model=?, price=?, currency=?, quantity=?, unit=?, keyword=?, tags=?, description=?, tax=?, manufacturer=?, vendor_code=?, vendor_code_value=?, weight=?, weight_value=?, dimension=?, lenght=?, width=?, height=?, min_quantity=?", [
                     $id, $VALID->inPOST('name_product_stock_' . $x), lang('#lang_all')[$x], $parent_id, date("Y-m-d H:i:s"), $date_available, $VALID->inPOST('model_product_stock'), $VALID->inPOST('price_product_stock'), $currency_product_stock, $VALID->inPOST('quantity_product_stock'), $unit_product_stock, $VALID->inPOST('keyword_product_stock_' . $x), $VALID->inPOST('tags_product_stock_' . $x), $VALID->inPOST('description_product_stock_' . $x),
                     $tax_product_stock, $manufacturers_product_stock, $vendor_codes_product_stock, $VALID->inPOST('vendor_code_value_product_stock'), $weight_product_stock, $weight_value_product_stock, $length_product_stock, $value_length_product_stock, $value_width_product_stock, $value_height_product_stock, $min_quantity_product_stock
@@ -657,7 +645,6 @@ final class Eac {
      */
     private function editProduct($TABLES, $parent_id) {
 
-        $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
         $LANG_COUNT = count(lang('#lang_all'));
 
@@ -688,43 +675,43 @@ final class Eac {
             }
 
             if ($VALID->inPOST('tax_product_stock_edit')) {
-                $tax_product_stock = (int) $PDO->selectPrepare("SELECT id FROM " . $TABLE_TAXES . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('tax_product_stock_edit')]);
+                $tax_product_stock = (int) \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . $TABLE_TAXES . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('tax_product_stock_edit')]);
             } else {
                 $tax_product_stock = NULL;
             }
 
             if ($VALID->inPOST('unit_product_stock_edit')) {
-                $unit_product_stock = (int) $PDO->selectPrepare("SELECT id FROM " . $TABLE_UNITS . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('unit_product_stock_edit')]);
+                $unit_product_stock = (int) \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . $TABLE_UNITS . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('unit_product_stock_edit')]);
             } else {
                 $unit_product_stock = NULL;
             }
 
             if ($VALID->inPOST('manufacturers_product_stock_edit')) {
-                $manufacturers_product_stock = (int) $PDO->selectPrepare("SELECT id FROM " . $TABLE_MANUFACTURERS . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('manufacturers_product_stock_edit')]);
+                $manufacturers_product_stock = (int) \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . $TABLE_MANUFACTURERS . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('manufacturers_product_stock_edit')]);
             } else {
                 $manufacturers_product_stock = NULL;
             }
 
             if ($VALID->inPOST('vendor_codes_product_stock_edit')) {
-                $vendor_codes_product_stock = (int) $PDO->selectPrepare("SELECT id FROM " . $TABLE_VENDOR_CODES . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('vendor_codes_product_stock_edit')]);
+                $vendor_codes_product_stock = (int) \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . $TABLE_VENDOR_CODES . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('vendor_codes_product_stock_edit')]);
             } else {
                 $vendor_codes_product_stock = NULL;
             }
 
             if ($VALID->inPOST('weight_product_stock_edit')) {
-                $weight_product_stock = (int) $PDO->selectPrepare("SELECT id FROM " . $TABLE_WEIGHT . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('weight_product_stock_edit')]);
+                $weight_product_stock = (int) \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . $TABLE_WEIGHT . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('weight_product_stock_edit')]);
             } else {
                 $weight_product_stock = NULL;
             }
 
             if ($VALID->inPOST('length_product_stock_edit')) {
-                $length_product_stock = (int) $PDO->selectPrepare("SELECT id FROM " . $TABLE_LENGTH . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('length_product_stock_edit')]);
+                $length_product_stock = (int) \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . $TABLE_LENGTH . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('length_product_stock_edit')]);
             } else {
                 $length_product_stock = NULL;
             }
 
             if ($VALID->inPOST('currency_product_stock_edit')) {
-                $currency_product_stock = (int) $PDO->selectPrepare("SELECT id FROM " . $TABLE_CURRENCIES . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('currency_product_stock_edit')]);
+                $currency_product_stock = (int) \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . $TABLE_CURRENCIES . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], $VALID->inPOST('currency_product_stock_edit')]);
             } else {
                 $currency_product_stock = NULL;
             }
@@ -761,7 +748,7 @@ final class Eac {
 
             // добавляем запись для всех вкладок
             for ($x = 0; $x < $LANG_COUNT; $x++) {
-                $PDO->inPrepare("UPDATE " . $TABLE_PRODUCTS .
+                \eMarket\Core\Pdo::inPrepare("UPDATE " . $TABLE_PRODUCTS .
                         " SET name=?, parent_id=?, last_modified=?, date_available=?, model=?, price=?, currency=?, quantity=?, unit=?, keyword=?, tags=?, description=?, tax=?, manufacturer=?, vendor_code=?, vendor_code_value=?, weight=?, weight_value=?, dimension=?, lenght=?, width=?, height=?, min_quantity=? WHERE id=? AND language=?", [
                     $VALID->inPOST('name_product_stock_edit_' . $x), $parent_id, date("Y-m-d H:i:s"), $date_available, $VALID->inPOST('model_product_stock_edit'), $VALID->inPOST('price_product_stock_edit'), $currency_product_stock, $VALID->inPOST('quantity_product_stock_edit'), $unit_product_stock, $VALID->inPOST('keyword_product_stock_edit_' . $x), $VALID->inPOST('tags_product_stock_edit_' . $x), $VALID->inPOST('description_product_stock_edit_' . $x),
                     $tax_product_stock, $manufacturers_product_stock, $vendor_codes_product_stock, $VALID->inPOST('vendor_code_value_product_stock_edit'), $weight_product_stock, $weight_value_product_stock, $length_product_stock, $value_length_product_stock, $value_width_product_stock, $value_height_product_stock, $min_quantity_product_stock, $VALID->inPOST('edit_product'), lang('#lang_all')[$x]

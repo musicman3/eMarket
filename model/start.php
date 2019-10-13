@@ -32,7 +32,7 @@ if ($SET->path() == 'catalog') {
 
     // Загружаем авторизацию Каталога
     if ($AUTORIZE->sessionCatalog() == TRUE) {
-        $CUSTOMER = $PDO->getColAssoc("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']])[0];
+        $CUSTOMER = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']])[0];
     } else {
         $CUSTOMER = FALSE;
     }

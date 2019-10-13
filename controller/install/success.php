@@ -119,12 +119,12 @@ if ($db_family == 'myisam') {
     $buffer = str_ireplace('ENGINE=InnoDB', 'ENGINE=MyISAM', $buffer);
 }
 
-$PDO->getExec($buffer);
+\eMarket\Core\Pdo::getExec($buffer);
 
 $password_admin_hash = $AUTORIZE->passwordHash($password_admin);
 
 if ($VALID->inPOST('login_admin') && $VALID->inPOST('password_admin')) {
-    $PDO->inPrepare("INSERT INTO " . TABLE_ADMINISTRATORS . "  SET login=?, password=?, permission=?, language=?", [$login_admin, $password_admin_hash, 'admin', $lng]);
+    \eMarket\Core\Pdo::inPrepare("INSERT INTO " . TABLE_ADMINISTRATORS . "  SET login=?, password=?, permission=?, language=?", [$login_admin, $password_admin_hash, 'admin', $lng]);
 }
 
 // СОЗДАЕМ .HTACCESS

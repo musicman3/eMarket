@@ -67,11 +67,11 @@ class Messages {
      */
     public function sendMail($email_to, $subject, $message) {
 
-        $PDO = new \eMarket\Core\Pdo;
+        
         $mail = new \PHPMailer\PHPMailer\PHPMailer();
         $mail->CharSet = 'UTF-8';
 
-        $basic_settings = $PDO->getColAssoc("SELECT * FROM " . TABLE_BASIC_SETTINGS . "", [])[0];
+        $basic_settings = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_BASIC_SETTINGS . "", [])[0];
 
         if ($basic_settings['smtp_status'] == 0) {
             $mail->isSendmail();

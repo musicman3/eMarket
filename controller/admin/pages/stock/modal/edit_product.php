@@ -12,7 +12,7 @@ for ($i = $start; $i < $finish; $i++) {
         $count_lang = $LANG_COUNT;
 
         for ($x = 0; $x < $count_lang; $x++) {
-            $query_lang = $PDO->getRow("SELECT name, description, keyword, tags FROM " . TABLE_PRODUCTS . " WHERE id=? and language=?", [$modal_id_product, lang('#lang_all')[$x]]);
+            $query_lang = \eMarket\Core\Pdo::getRow("SELECT name, description, keyword, tags FROM " . TABLE_PRODUCTS . " WHERE id=? and language=?", [$modal_id_product, lang('#lang_all')[$x]]);
             $name_edit_temp_product[$x][$modal_id_product] = $query_lang[0];
             $description_edit_temp_product[$x][$modal_id_product] = $query_lang[1];
             $keyword_edit_temp_product[$x][$modal_id_product] = $query_lang[2];
@@ -20,13 +20,13 @@ for ($i = $start; $i < $finish; $i++) {
         }
 
         // Цена
-        $query = $PDO->getRow("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
+        $query = \eMarket\Core\Pdo::getRow("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
         $price_edit_temp_product[$modal_id_product] = $query[12];
 
         // Валюта
         $currency[$modal_id_product] = $query[13];
         foreach ($currency as $val) {
-            $currency_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT name FROM " . TABLE_CURRENCIES . " WHERE id=? and language=?", [$val, lang('#lang_all')[0]]);
+            $currency_edit_temp_product[$modal_id_product] = \eMarket\Core\Pdo::selectPrepare("SELECT name FROM " . TABLE_CURRENCIES . " WHERE id=? and language=?", [$val, lang('#lang_all')[0]]);
         }
 
         // Количество
@@ -35,7 +35,7 @@ for ($i = $start; $i < $finish; $i++) {
         // Единицы измерения
         $units[$modal_id_product] = $query[16];
         foreach ($units as $val) {
-            $units_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT name FROM " . TABLE_UNITS . " WHERE id=? and language=?", [$val, lang('#lang_all')[0]]);
+            $units_edit_temp_product[$modal_id_product] = \eMarket\Core\Pdo::selectPrepare("SELECT name FROM " . TABLE_UNITS . " WHERE id=? and language=?", [$val, lang('#lang_all')[0]]);
         }
 
         // Модель
@@ -44,7 +44,7 @@ for ($i = $start; $i < $finish; $i++) {
         // Производитель
         $manufacturer[$modal_id_product] = $query[19];
         foreach ($manufacturer as $val) {
-            $manufacturers_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT name FROM " . TABLE_MANUFACTURERS . " WHERE id=? and language=?", [$val, lang('#lang_all')[0]]);
+            $manufacturers_edit_temp_product[$modal_id_product] = \eMarket\Core\Pdo::selectPrepare("SELECT name FROM " . TABLE_MANUFACTURERS . " WHERE id=? and language=?", [$val, lang('#lang_all')[0]]);
         }
 
         // Дата поступления
@@ -53,7 +53,7 @@ for ($i = $start; $i < $finish; $i++) {
         // Налог
         $tax[$modal_id_product] = $query[14];
         foreach ($tax as $val) {
-            $tax_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT name FROM " . TABLE_TAXES . " WHERE id=? and language=?", [$val, lang('#lang_all')[0]]);
+            $tax_edit_temp_product[$modal_id_product] = \eMarket\Core\Pdo::selectPrepare("SELECT name FROM " . TABLE_TAXES . " WHERE id=? and language=?", [$val, lang('#lang_all')[0]]);
         }
 
         // Значение идентификатора
@@ -62,7 +62,7 @@ for ($i = $start; $i < $finish; $i++) {
         // Идентификатор
         $vendor_code[$modal_id_product] = $query[22];
         foreach ($vendor_code as $val) {
-            $vendor_code_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT name FROM " . TABLE_VENDOR_CODES . " WHERE id=? and language=?", [$val, lang('#lang_all')[0]]);
+            $vendor_code_edit_temp_product[$modal_id_product] = \eMarket\Core\Pdo::selectPrepare("SELECT name FROM " . TABLE_VENDOR_CODES . " WHERE id=? and language=?", [$val, lang('#lang_all')[0]]);
         }
         
         // Значение Веса
@@ -71,7 +71,7 @@ for ($i = $start; $i < $finish; $i++) {
         // Вес
         $weight[$modal_id_product] = $query[24];
         foreach ($weight as $val) {
-            $weight_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT name FROM " . TABLE_WEIGHT . " WHERE id=? and language=?", [$val, lang('#lang_all')[0]]);
+            $weight_edit_temp_product[$modal_id_product] = \eMarket\Core\Pdo::selectPrepare("SELECT name FROM " . TABLE_WEIGHT . " WHERE id=? and language=?", [$val, lang('#lang_all')[0]]);
         }
         
         // Минимальное количество
@@ -80,7 +80,7 @@ for ($i = $start; $i < $finish; $i++) {
         // Ед. изм. длины
         $dimension[$modal_id_product] = $query[27];
         foreach ($dimension as $val) {
-            $dimension_edit_temp_product[$modal_id_product] = $PDO->selectPrepare("SELECT name FROM " . TABLE_LENGTH . " WHERE id=? and language=?", [$val, lang('#lang_all')[0]]);
+            $dimension_edit_temp_product[$modal_id_product] = \eMarket\Core\Pdo::selectPrepare("SELECT name FROM " . TABLE_LENGTH . " WHERE id=? and language=?", [$val, lang('#lang_all')[0]]);
         }
         
         // Длина

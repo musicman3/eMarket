@@ -23,7 +23,7 @@ class Autorize {
     public function sessionAdmin() {
 
         $SET = new \eMarket\Core\Set;
-        $PDO = new \eMarket\Core\Pdo;
+        
         // ЕСЛИ В АДМИНИСТРАТИВНОЙ ПАНЕЛИ
         if ($SET->path() == 'admin' && $SET->titleDir() != 'login') {
 
@@ -44,7 +44,7 @@ class Autorize {
             } else {
                 $TOKEN = $_SESSION['pass']; // создаем токен для ajax и пр.
                 //Язык авторизованного администратора
-                $_SESSION['DEFAULT_LANGUAGE'] = $PDO->selectPrepare("SELECT language FROM " . TABLE_ADMINISTRATORS . " WHERE login=? AND password=?", [$_SESSION['login'], $_SESSION['pass']]);
+                $_SESSION['DEFAULT_LANGUAGE'] = \eMarket\Core\Pdo::selectPrepare("SELECT language FROM " . TABLE_ADMINISTRATORS . " WHERE login=? AND password=?", [$_SESSION['login'], $_SESSION['pass']]);
 
                 return $TOKEN;
             }

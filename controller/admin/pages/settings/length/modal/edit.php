@@ -11,11 +11,11 @@ for ($i = $start; $i < $finish; $i++) {
         $count_lang = $LANG_COUNT;
 
         for ($x = 0; $x < $count_lang; $x++) {
-            $query_lang = $PDO->getRow("SELECT name, code FROM " . TABLE_LENGTH . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]]);
+            $query_lang = \eMarket\Core\Pdo::getRow("SELECT name, code FROM " . TABLE_LENGTH . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]]);
             $name_edit_temp[$x][$modal_id] = $query_lang[0];
             $code_edit_temp[$x][$modal_id] = $query_lang[1];
         }
-        $query = $PDO->getRow("SELECT value_length, default_length FROM " . TABLE_LENGTH . " WHERE id=?", [$modal_id]);
+        $query = \eMarket\Core\Pdo::getRow("SELECT value_length, default_length FROM " . TABLE_LENGTH . " WHERE id=?", [$modal_id]);
         $value_length_edit_temp[$modal_id] = (float) $query[0];
         $status_length_edit_temp[$modal_id] = (int) $query[1];
         // ПАРАМЕТРЫ ДЛЯ ПЕРЕДАЧИ В МОДАЛ

@@ -22,9 +22,9 @@ class Products {
      * @return array $product (массив с данными по товару)
      */
     public static function viewNew($count) {
-        $PDO = new \eMarket\Core\Pdo;
+        
 
-        $product = $PDO->getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE language=? ORDER BY id DESC LIMIT " . $count . "", [lang('#lang_all')[0]]);
+        $product = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE language=? ORDER BY id DESC LIMIT " . $count . "", [lang('#lang_all')[0]]);
         return $product;
     }
 
@@ -35,9 +35,9 @@ class Products {
      * @return array $product (данные по товару)
      */
     public static function productData($id) {
-        $PDO = new \eMarket\Core\Pdo;
+        
 
-        $product = $PDO->getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE language=? AND id=?", [lang('#lang_all')[0], $id]);
+        $product = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE language=? AND id=?", [lang('#lang_all')[0], $id]);
         return $product;
     }
 
@@ -59,9 +59,9 @@ class Products {
      * @return array $product (данные по категории)
      */
     public static function productCategories($id) {
-        $PDO = new \eMarket\Core\Pdo;
+        
 
-        $categories = $PDO->getCell("SELECT name FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], $id]);
+        $categories = \eMarket\Core\Pdo::getCell("SELECT name FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], $id]);
         return $categories;
     }
 

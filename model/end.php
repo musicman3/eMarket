@@ -20,5 +20,5 @@ if ($SET->path() == 'install') {
     require_once(getenv('DOCUMENT_ROOT') . '/view/' . $SET->template() . '/install/constructor.php');
 }
 //Закрываем соединение с БД
-$PDO->connect('end');
+\eMarket\Core\Pdo::connect('end');
 ?>

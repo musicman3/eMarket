@@ -24,7 +24,6 @@ class Files {
      */
     public function imgUpload($TABLE, $dir, $resize_param) {
 
-        $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
         $TREE = new \eMarket\Core\Tree;
         $FUNC = new \eMarket\Other\Func;
@@ -57,7 +56,7 @@ class Files {
             if ($count_files > 0) {
 
                 // Получаем последний id и увеличиваем его на 1
-                $id_max = $PDO->selectPrepare("SELECT id FROM " . $TABLE . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+                $id_max = \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . $TABLE . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
                 $id = intval($id_max);
 
                 $image_list = '';
@@ -78,7 +77,7 @@ class Files {
                 $TREE->filesDirAction(ROOT . '/uploads/temp/originals/', ROOT . '/uploads/images/' . $dir . '/originals/');
 
                 // Обновляем запись для всех вкладок
-                $PDO->inPrepare("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [$image_list, $general_image_add, $id]);
+                \eMarket\Core\Pdo::inPrepare("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [$image_list, $general_image_add, $id]);
             }
         }
 
@@ -93,7 +92,7 @@ class Files {
             // Составляем новый список файлов изображений
             $files = glob(ROOT . '/uploads/temp/originals/*');
 
-            $image_list = $PDO->selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]);
+            $image_list = \eMarket\Core\Pdo::selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]);
             foreach ($files as $file) {
                 if (is_file($file) && file_exists($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
                     $image_list .= basename($file) . ',';
@@ -117,9 +116,9 @@ class Files {
 
             // Обновляем запись
             if (isset($general_image_edit)) {
-                $PDO->inPrepare("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [$image_list, $general_image_edit, $id]);
+                \eMarket\Core\Pdo::inPrepare("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [$image_list, $general_image_edit, $id]);
             } else {
-                $PDO->inPrepare("UPDATE " . $TABLE . " SET logo=? WHERE id=?", [$image_list, $id]);
+                \eMarket\Core\Pdo::inPrepare("UPDATE " . $TABLE . " SET logo=? WHERE id=?", [$image_list, $id]);
             }
 
             // Выборочное удаление изображений в модальном окне "Редактировать"
@@ -128,7 +127,7 @@ class Files {
                 $delete_image_arr = explode(',', $VALID->inPOST('delete_image'), -1);
 
                 // Получаем массив изображений из БД
-                $image_list_arr = explode(',', $PDO->selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), -1);
+                $image_list_arr = explode(',', \eMarket\Core\Pdo::selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), -1);
                 $image_list_new = '';
                 foreach ($image_list_arr as $key => $file) {
                     if (!in_array($file, $delete_image_arr)) {
@@ -140,17 +139,17 @@ class Files {
                         }
                         $FUNC->deleteFile(ROOT . '/uploads/images/' . $dir . '/originals/' . $file);
                         // Если удаляемая картинка является главной, то устанавливаем маркер
-                        if ($file == $PDO->selectPrepare("SELECT logo_general FROM " . $TABLE . " WHERE id=?", [$id])) {
-                            $PDO->inPrepare("UPDATE " . $TABLE . " SET logo_general=? WHERE id=?", [NULL, $id]);
+                        if ($file == \eMarket\Core\Pdo::selectPrepare("SELECT logo_general FROM " . $TABLE . " WHERE id=?", [$id])) {
+                            \eMarket\Core\Pdo::inPrepare("UPDATE " . $TABLE . " SET logo_general=? WHERE id=?", [NULL, $id]);
                             $logo_general_update = 'ok';
                         }
                     }
                 }
                 if (isset($logo_general_update) && empty($image_list_new) == FALSE) {
                     // Если есть маркер, то устанавливаем новую первую картинку по списку главной
-                    $PDO->inPrepare("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [$image_list_new, explode(',', $image_list_new, -1)[0], $id]);
+                    \eMarket\Core\Pdo::inPrepare("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [$image_list_new, explode(',', $image_list_new, -1)[0], $id]);
                 } else {
-                    $PDO->inPrepare("UPDATE " . $TABLE . " SET logo=? WHERE id=?", [$image_list_new, $id]);
+                    \eMarket\Core\Pdo::inPrepare("UPDATE " . $TABLE . " SET logo=? WHERE id=?", [$image_list_new, $id]);
                 }
             }
         }
@@ -163,7 +162,7 @@ class Files {
                 if (strstr($idx[$i], '_', true) != 'product') {
                     $id = $idx[$i];
 
-                    $logo_delete = explode(',', $PDO->selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), -1);
+                    $logo_delete = explode(',', \eMarket\Core\Pdo::selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), -1);
                     if (count($logo_delete) > 0) {
                         foreach ($logo_delete as $file) {
                             // Удаляем файлы
@@ -196,7 +195,6 @@ class Files {
      */
     public function imgUploadProduct($TABLE, $dir, $resize_param) {
 
-        $PDO = new \eMarket\Core\Pdo;
         $VALID = new \eMarket\Core\Valid;
         $TREE = new \eMarket\Core\Tree;
         $FUNC = new \eMarket\Other\Func;
@@ -229,7 +227,7 @@ class Files {
             if ($count_files > 0) {
 
                 // Получаем последний id
-                $id_max = $PDO->selectPrepare("SELECT id FROM " . $TABLE . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+                $id_max = \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . $TABLE . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
                 $id = intval($id_max);
 
                 $image_list = '';
@@ -250,7 +248,7 @@ class Files {
                 $TREE->filesDirAction(ROOT . '/uploads/temp/originals/', ROOT . '/uploads/images/' . $dir . '/originals/');
 
                 // Обновляем запись для всех вкладок
-                $PDO->inPrepare("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [$image_list, $general_image_add, $id]);
+                \eMarket\Core\Pdo::inPrepare("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [$image_list, $general_image_add, $id]);
             }
         }
 
@@ -265,7 +263,7 @@ class Files {
             // Составляем новый список файлов изображений
             $files = glob(ROOT . '/uploads/temp/originals/*');
 
-            $image_list = $PDO->selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]);
+            $image_list = \eMarket\Core\Pdo::selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]);
             foreach ($files as $file) {
                 if (is_file($file) && file_exists($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
                     $image_list .= basename($file) . ',';
@@ -289,9 +287,9 @@ class Files {
 
             // Обновляем запись
             if (isset($general_image_edit)) {
-                $PDO->inPrepare("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [$image_list, $general_image_edit, $id]);
+                \eMarket\Core\Pdo::inPrepare("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [$image_list, $general_image_edit, $id]);
             } else {
-                $PDO->inPrepare("UPDATE " . $TABLE . " SET logo=? WHERE id=?", [$image_list, $id]);
+                \eMarket\Core\Pdo::inPrepare("UPDATE " . $TABLE . " SET logo=? WHERE id=?", [$image_list, $id]);
             }
 
             // Выборочное удаление изображений в модальном окне "Редактировать"
@@ -300,7 +298,7 @@ class Files {
                 $delete_image_arr = explode(',', $VALID->inPOST('delete_image_product'), -1);
 
                 // Получаем массив изображений из БД
-                $image_list_arr = explode(',', $PDO->selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), -1);
+                $image_list_arr = explode(',', \eMarket\Core\Pdo::selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), -1);
                 $image_list_new = '';
                 foreach ($image_list_arr as $key => $file) {
                     if (!in_array($file, $delete_image_arr)) {
@@ -312,17 +310,17 @@ class Files {
                         }
                         $FUNC->deleteFile(ROOT . '/uploads/images/' . $dir . '/originals/' . $file);
                         // Если удаляемая картинка является главной, то устанавливаем маркер
-                        if ($file == $PDO->selectPrepare("SELECT logo_general FROM " . $TABLE . " WHERE id=?", [$id])) {
-                            $PDO->inPrepare("UPDATE " . $TABLE . " SET logo_general=? WHERE id=?", [NULL, $id]);
+                        if ($file == \eMarket\Core\Pdo::selectPrepare("SELECT logo_general FROM " . $TABLE . " WHERE id=?", [$id])) {
+                            \eMarket\Core\Pdo::inPrepare("UPDATE " . $TABLE . " SET logo_general=? WHERE id=?", [NULL, $id]);
                             $logo_general_update = 'ok';
                         }
                     }
                 }
                 if (isset($logo_general_update) && empty($image_list_new) == FALSE) {
                     // Если есть маркер, то устанавливаем новую первую картинку по списку главной
-                    $PDO->inPrepare("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [$image_list_new, explode(',', $image_list_new, -1)[0], $id]);
+                    \eMarket\Core\Pdo::inPrepare("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [$image_list_new, explode(',', $image_list_new, -1)[0], $id]);
                 } else {
-                    $PDO->inPrepare("UPDATE " . $TABLE . " SET logo=? WHERE id=?", [$image_list_new, $id]);
+                    \eMarket\Core\Pdo::inPrepare("UPDATE " . $TABLE . " SET logo=? WHERE id=?", [$image_list_new, $id]);
                 }
             }
         }
@@ -336,7 +334,7 @@ class Files {
                     // Это товар
                     $id = explode('product_', $idx[$i]);
 
-                    $logo_delete = explode(',', $PDO->selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id[1]]), -1);
+                    $logo_delete = explode(',', \eMarket\Core\Pdo::selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id[1]]), -1);
                     if (count($logo_delete) > 0) {
                         foreach ($logo_delete as $file) {
                             // Удаляем файлы

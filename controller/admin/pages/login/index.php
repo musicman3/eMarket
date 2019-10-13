@@ -35,7 +35,7 @@ if ($VALID->inPOST('install') == 'ok') {
 
 if ($VALID->inPOST('autorize') == 'ok') {
     //Ищем авторизованного администратора
-    $HASH = $PDO->selectPrepare("SELECT password FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [$VALID->inPOST('login')]);
+    $HASH = \eMarket\Core\Pdo::selectPrepare("SELECT password FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [$VALID->inPOST('login')]);
     if (!password_verify($VALID->inPOST('pass'), $HASH)) {    //Если проверка не удалась:
         //удаляем текущую сессию
         unset($_SESSION['login']);

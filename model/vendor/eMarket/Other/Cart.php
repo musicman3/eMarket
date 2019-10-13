@@ -64,12 +64,11 @@ class Cart {
      * @return string $total_price (количества товара)
      */
     public static function totalPrice() {
-        $PDO = new \eMarket\Core\Pdo;
-
+        
         $total_price = 0;
         if (isset($_SESSION['cart'])) {
             foreach ($_SESSION['cart'] as $value) {
-                $price = $PDO->getCell("SELECT price FROM " . TABLE_PRODUCTS . " WHERE id=? AND language=?", [$value['id'], lang('#lang_all')[0]]);
+                $price = \eMarket\Core\Pdo::getCell("SELECT price FROM " . TABLE_PRODUCTS . " WHERE id=? AND language=?", [$value['id'], lang('#lang_all')[0]]);
                 $total_price = $total_price + $price * $value['quantity'];
             }
         }
@@ -104,12 +103,11 @@ class Cart {
      * @return array $cart (информация о товарах в корзине)
      */
     public static function info() {
-        $PDO = new \eMarket\Core\Pdo;
-
+        
         $cart_info = [];
         if (isset($_SESSION['cart'])) {
             foreach ($_SESSION['cart'] as $value) {
-                $product = $PDO->getColAssoc("SELECT id, name, logo_general, price FROM " . TABLE_PRODUCTS . " WHERE language=? AND id=?", [lang('#lang_all')[0], $value['id']]);
+                $product = \eMarket\Core\Pdo::getColAssoc("SELECT id, name, logo_general, price FROM " . TABLE_PRODUCTS . " WHERE language=? AND id=?", [lang('#lang_all')[0], $value['id']]);
                 array_push($cart_info, $product[0]);
             }
         }
