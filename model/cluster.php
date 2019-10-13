@@ -9,7 +9,6 @@
 require_once('vendor/autoload.php');
 //
 //СОЗДАЕМ ОБЪЕКТЫ CORE
-$AUTORIZE = new eMarket\Core\Autorize;
 $NAVIGATION = new eMarket\Core\Navigation;
 $TREE = new eMarket\Core\Tree;
 $VIEW = new eMarket\Core\View;

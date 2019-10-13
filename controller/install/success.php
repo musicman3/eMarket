@@ -121,7 +121,7 @@ if ($db_family == 'myisam') {
 
 \eMarket\Core\Pdo::getExec($buffer);
 
-$password_admin_hash = $AUTORIZE->passwordHash($password_admin);
+$password_admin_hash = \eMarket\Core\Autorize::passwordHash($password_admin);
 
 if (\eMarket\Core\Valid::inPOST('login_admin') && \eMarket\Core\Valid::inPOST('password_admin')) {
     \eMarket\Core\Pdo::inPrepare("INSERT INTO " . TABLE_ADMINISTRATORS . "  SET login=?, password=?, permission=?, language=?", [$login_admin, $password_admin_hash, 'admin', $lng]);

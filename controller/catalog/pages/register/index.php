@@ -8,7 +8,7 @@ if (\eMarket\Core\Valid::inPOST('email')) {
 
     $user_email = \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . TABLE_CUSTOMERS . " WHERE email=?", [\eMarket\Core\Valid::inPOST('email')]);
     if ($user_email == NULL) {
-        $password_hash = $AUTORIZE->passwordHash(\eMarket\Core\Valid::inPOST('password'));
+        $password_hash = \eMarket\Core\Autorize::passwordHash(\eMarket\Core\Valid::inPOST('password'));
         \eMarket\Core\Pdo::inPrepare("INSERT INTO " . TABLE_CUSTOMERS . " SET firstname=?, lastname=?, date_account_created=?, email=?, telephone=?, ip_address=?, password=?", [\eMarket\Core\Valid::inPOST('firstname'), \eMarket\Core\Valid::inPOST('lastname'), date("Y-m-d H:i:s"), \eMarket\Core\Valid::inPOST('email'), \eMarket\Core\Valid::inPOST('telephone'), \eMarket\Core\Set::ipAdress(), $password_hash]);
         
         $id = \eMarket\Core\Pdo::lastInsertId();

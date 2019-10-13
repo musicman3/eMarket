@@ -13,7 +13,7 @@ if (\eMarket\Core\Valid::inGET('recovery_code')) {
         if ($recovery_code_created + (3 * 24 * 60 * 60) > time()) {
             \eMarket\Core\Pdo::inPrepare("DELETE FROM " . TABLE_PASSWORD_RECOVERY . " WHERE customer_id=?", [$customer_id]);
             
-            $password_hash = $AUTORIZE->passwordHash(\eMarket\Core\Valid::inPOST('password'));
+            $password_hash = \eMarket\Core\Autorize::passwordHash(\eMarket\Core\Valid::inPOST('password'));
             \eMarket\Core\Pdo::inPrepare("UPDATE " . TABLE_CUSTOMERS . " SET password=? WHERE id=?", [$password_hash, $customer_id]);
             $_SESSION['message'] = ['success', lang('messages_recovery_password_complete'), 7000, TRUE];
         } else {

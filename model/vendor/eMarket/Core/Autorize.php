@@ -20,7 +20,7 @@ class Autorize {
      *
      * @return string $str ($TOKEN)
      */
-    public function sessionAdmin() {
+    public static function sessionAdmin() {
 
         // ЕСЛИ В АДМИНИСТРАТИВНОЙ ПАНЕЛИ
         if (\eMarket\Core\Set::path() == 'admin' && \eMarket\Core\Set::titleDir() != 'login') {
@@ -54,7 +54,7 @@ class Autorize {
      *
      * @return string $str ($TOKEN)
      */
-    public function sessionCatalog() {
+    public static function sessionCatalog() {
 
         if (\eMarket\Core\Set::path() == 'catalog') {
 
@@ -81,7 +81,7 @@ class Autorize {
      * @param string $password (входящий пароль)
      * @return string $password_hash (хэшированный пароль)
      */
-    public function passwordHash($password) {
+    public static function passwordHash($password) {
 
         if (HASH_METHOD == 'PASSWORD_DEFAULT') {
             $options = ['cost' => 10]; // Уровень сложности

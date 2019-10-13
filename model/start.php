@@ -20,7 +20,7 @@ if (\eMarket\Core\Set::path() == 'admin') {
     require_once('configure/configure.php');
     // Загружаем авторизацию Административной части
     if (\eMarket\Core\Valid::inGET('route') != 'login') {
-        $TOKEN = $AUTORIZE->sessionAdmin();
+        $TOKEN = \eMarket\Core\Autorize::sessionAdmin();
     }
     // Данные по текущей валюте
     $CURRENCIES = \eMarket\Core\Set::currencyDefault();
@@ -31,7 +31,7 @@ if (\eMarket\Core\Set::path() == 'catalog') {
     require_once('configure/configure.php');
 
     // Загружаем авторизацию Каталога
-    if ($AUTORIZE->sessionCatalog() == TRUE) {
+    if (\eMarket\Core\Autorize::sessionCatalog() == TRUE) {
         $CUSTOMER = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']])[0];
     } else {
         $CUSTOMER = FALSE;
