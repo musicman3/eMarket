@@ -24,7 +24,7 @@ class Navigation {
      * @param string $transfer (используется трансфер)
      * @return array array($start, $finish)
      */
-    public function getLink($count_lines, $lines_on_page, int $transfer = null) {
+    public static function getLink($count_lines, $lines_on_page, int $transfer = null) {
 
         $start = 0; // устанавливаем страницу в ноль при заходе
         $finish = $lines_on_page;
@@ -77,7 +77,7 @@ class Navigation {
      * @param string $transfer (используется трансфер)
      * @return array array($start, $finish)
      */
-    public function postLink($count_lines, $lines_on_page, int $transfer = null) {
+    public static function postLink($count_lines, $lines_on_page, int $transfer = null) {
 
         $start = 0; // устанавливаем страницу в ноль при заходе
         $finish = $lines_on_page;

@@ -51,7 +51,7 @@ $regions = \eMarket\Core\Pdo::getColRow("SELECT country_id, regions_id FROM " . 
 $lines_temp = \eMarket\Core\Pdo::getColRow("SELECT country_id FROM " . TABLE_ZONES_VALUE . " WHERE zones_id=?", [$zones_id]);
 $lines = array_values(array_unique($lines_temp, SORT_REGULAR)); // Выбираем по 1 экземпляру стран и сбрасываем ключи массива
 $lines_on_page = \eMarket\Core\Set::linesOnPage();
-$navigate = $NAVIGATION->getLink(count($lines), $lines_on_page);
+$navigate = \eMarket\Core\Navigation::getLink(count($lines), $lines_on_page);
 $start = $navigate[0];
 $finish = $navigate[1];
 

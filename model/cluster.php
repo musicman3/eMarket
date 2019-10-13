@@ -9,7 +9,6 @@
 require_once('vendor/autoload.php');
 //
 //СОЗДАЕМ ОБЪЕКТЫ CORE
-$NAVIGATION = new eMarket\Core\Navigation;
 $TREE = new eMarket\Core\Tree;
 
 //СОЗДАЕМ ОБЪЕКТЫ OTHER

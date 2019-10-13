@@ -93,7 +93,7 @@ if (\eMarket\Core\Valid::inPOST('delete')) {
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 $lines = \eMarket\Core\Pdo::getColRow("SELECT id, name, code, iso_4217, value, default_value FROM " . TABLE_CURRENCIES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
 $lines_on_page = \eMarket\Core\Set::linesOnPage();
-$navigate = $NAVIGATION->getLink(count($lines), $lines_on_page);
+$navigate = \eMarket\Core\Navigation::getLink(count($lines), $lines_on_page);
 $start = $navigate[0];
 $finish = $navigate[1];
 

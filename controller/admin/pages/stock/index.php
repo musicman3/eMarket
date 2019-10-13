@@ -74,7 +74,7 @@ $count_lines_prod = count($lines_prod);  //считаем количество �
 $arr_merge = \eMarket\Other\Func::arrayMergeOriginKey('cat', 'prod', $lines_cat, $lines_prod);
 $count_lines_merge = $count_lines_cat + $count_lines_prod; // Считаем общее количество строк в категории
 
-$navigate = $NAVIGATION->getLink($count_lines_merge, $lines_on_page, 1);
+$navigate = \eMarket\Core\Navigation::getLink($count_lines_merge, $lines_on_page, 1);
 $start = $navigate[0];
 $finish = $navigate[1];
 

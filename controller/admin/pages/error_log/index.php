@@ -22,7 +22,7 @@ if (file_exists(ROOT . '/model/work/errors.log')) { // Если файл сущ�
     $lines = [];
 }
 $lines_on_page = \eMarket\Core\Set::linesOnPage();
-$navigate = $NAVIGATION->postLink(count($lines), $lines_on_page);
+$navigate = \eMarket\Core\Navigation::postLink(count($lines), $lines_on_page);
 $start = $navigate[0];
 $finish = $navigate[1];
 
