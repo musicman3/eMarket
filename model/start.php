@@ -40,10 +40,10 @@ if ($SET->path() == 'catalog') {
     $CURRENCIES = $SET->currencyDefault();
 
     // Инициализация корзины
-    $CART->init();
+    \eMarket\Other\Cart::init();
     
     // Инициализация ECB
-    $ecb_init = $ECB->init($_SESSION['cart'], $CURRENCIES);
+    $ecb_init = \eMarket\Core\Ecb::init($_SESSION['cart'], $CURRENCIES);
 }
 
 // Считаем количество языков

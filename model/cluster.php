@@ -23,12 +23,6 @@ $DEBUG = new eMarket\Other\Debug;
 $FILES = new eMarket\Other\Files;
 $FUNC = new eMarket\Other\Func;
 $MESSAGES = new eMarket\Other\Messages;
-//
-if ($SET->path() == 'catalog') {
-    $CART = new eMarket\Other\Cart;
-    $ECB = new eMarket\Core\Ecb;
-    $PRODUCTS = new eMarket\Other\Products;
-}
 
 
 //АВТОЗАГРУЗЧИК ФУНКЦИЙ

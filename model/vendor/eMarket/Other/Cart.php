@@ -21,7 +21,7 @@ class Cart {
      * @param string $id (ID товара)
      * @param string $quantity (количество добавляемых товаров)
      */
-    public function addProduct($id, $quantity = null) {
+    public static function addProduct($id, $quantity = null) {
         $FUNC = new \eMarket\Other\Func;
 
         $count = 0;
@@ -47,7 +47,7 @@ class Cart {
      *
      * @return string $total_quantity (количества товара)
      */
-    public function totalQuantity() {
+    public static function totalQuantity() {
 
         $total_quantity = 0;
         if (isset($_SESSION['cart'])) {
@@ -63,7 +63,7 @@ class Cart {
      *
      * @return string $total_price (количества товара)
      */
-    public function totalPrice() {
+    public static function totalPrice() {
         $PDO = new \eMarket\Core\Pdo;
 
         $total_price = 0;
@@ -80,7 +80,7 @@ class Cart {
      * Инициализация корзины на страницы
      *
      */
-    public function init() {
+    public static function init() {
         $VALID = new \eMarket\Core\Valid;
         $SET = new \eMarket\Core\Set;
 
@@ -103,7 +103,7 @@ class Cart {
      *
      * @return array $cart (информация о товарах в корзине)
      */
-    public function info() {
+    public static function info() {
         $PDO = new \eMarket\Core\Pdo;
 
         $cart_info = [];
@@ -121,7 +121,7 @@ class Cart {
      * @param string $id (ID товара в корзине)
      * @return string $total_quantity (количество товара)
      */
-    public function productQuantity($id) {
+    public static function productQuantity($id) {
 
         $product_quantity = 0;
         if (isset($_SESSION['cart'])) {
@@ -138,7 +138,7 @@ class Cart {
      * Удаляем товар из корзины
      * 
      */
-    public function deleteProduct() {
+    public static function deleteProduct() {
         $VALID = new \eMarket\Core\Valid;
 
         if ($VALID->inGET('delete_product') && isset($_SESSION['cart'])) {
@@ -156,7 +156,7 @@ class Cart {
      * Меняем количество товара в корзине
      * 
      */
-    public function editProductQuantity() {
+    public static function editProductQuantity() {
         $VALID = new \eMarket\Core\Valid;
 
         if ($VALID->inGET('quantity_product_id') && isset($_SESSION['cart'])) {

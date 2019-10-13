@@ -16,14 +16,14 @@
             <div class="row button">
                 <div class="col-xs-6"><button type="button" class="btn btn-default"><?php echo $product_price ?></button></div>
                 <div class="col-xs-6 text-right">
-                    <?php if ($CART->productQuantity($products['id']) > 0) { ?>
+                    <?php if (\eMarket\Other\Cart::productQuantity($products['id']) > 0) { ?>
                         <form id="quantity_product" name="quantity_product" action="javascript:void(null);" onsubmit="quantityProduct(<?php echo $products['id'] ?>, $('#number_<?php echo $products['id'] ?>').val())">
                         <?php } else { ?>
                             <form id="quantity_product" name="quantity_product" action="javascript:void(null);" onsubmit="addToCart(<?php echo $products['id'] ?>, $('#number_<?php echo $products['id'] ?>').val())">
                             <?php } ?>
                             <button class="btn btn-primary" type="button" onclick="pcsProduct('minus', <?php echo $products['id'] ?>)"><span class="glyphicon glyphicon-minus"></span></button>
-                            <?php if ($CART->productQuantity($products['id']) > 0) { ?>
-                                <input id="number_<?php echo $products['id'] ?>" type="number" min="1" value="<?php echo $CART->productQuantity($products['id']) ?>" class="quantity">
+                            <?php if (\eMarket\Other\Cart::productQuantity($products['id']) > 0) { ?>
+                                <input id="number_<?php echo $products['id'] ?>" type="number" min="1" value="<?php echo \eMarket\Other\Cart::productQuantity($products['id']) ?>" class="quantity">
                             <?php } else { ?>
                                 <input id="number_<?php echo $products['id'] ?>" type="number" min="1" value="1" class="quantity">
                             <?php } ?>

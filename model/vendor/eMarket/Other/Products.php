@@ -21,7 +21,7 @@ class Products {
      * @param string $count (количество новых товаров)
      * @return array $product (массив с данными по товару)
      */
-    public function viewNew($count) {
+    public static function viewNew($count) {
         $PDO = new \eMarket\Core\Pdo;
 
         $product = $PDO->getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE language=? ORDER BY id DESC LIMIT " . $count . "", [lang('#lang_all')[0]]);
@@ -34,7 +34,7 @@ class Products {
      * @param string $id (id товара)
      * @return array $product (данные по товару)
      */
-    public function productData($id) {
+    public static function productData($id) {
         $PDO = new \eMarket\Core\Pdo;
 
         $product = $PDO->getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE language=? AND id=?", [lang('#lang_all')[0], $id]);
@@ -47,7 +47,7 @@ class Products {
      * @param string $products_new_count (ячейка со списком изображений товара)
      * @return array $image (названия изображений в массиве)
      */
-    public function viewNewImages($products_new_count) {
+    public static function viewNewImages($products_new_count) {
         $image = explode(',', $products_new_count[6], -1);
         return $image;
     }
@@ -58,7 +58,7 @@ class Products {
      * @param string $id (id категории)
      * @return array $product (данные по категории)
      */
-    public function productCategories($id) {
+    public static function productCategories($id) {
         $PDO = new \eMarket\Core\Pdo;
 
         $categories = $PDO->getCell("SELECT name FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], $id]);
@@ -73,7 +73,7 @@ class Products {
      * @param string $format (выводить стоимость в форматированном виде: 0 - полное наим., 1- сокращ. наим., 2 - знак валюты, 3 - ISO код)
      * @return array $price (данные по стоимости)
      */
-    public function productPrice($price, $CURRENCIES, $format = null) {
+    public static function productPrice($price, $CURRENCIES, $format = null) {
         
         if ($format == 0) {
             if ($CURRENCIES[8] == 'left') {

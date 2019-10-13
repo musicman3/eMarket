@@ -53,13 +53,13 @@
                         </ul>
 		<?php } ?>
 		    </li>
-                <?php if ($CART->totalQuantity() == 0) { ?>
-                    <li class="nav"><a href="#" class="disabled"><i class="glyphicon glyphicon-shopping-cart"></i> <?php echo $CART->totalQuantity() . ' ' . lang('navbar_pcs') ?></a></li>
+                <?php if (\eMarket\Other\Cart::totalQuantity() == 0) { ?>
+                    <li class="nav"><a href="#" class="disabled"><i class="glyphicon glyphicon-shopping-cart"></i> <?php echo \eMarket\Other\Cart::totalQuantity() . ' ' . lang('navbar_pcs') ?></a></li>
                 <?php } else { ?>
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-shopping-cart"></i> <?php echo $CART->totalQuantity() . ' ' . lang('navbar_pcs') ?> <span class="caret"></span></a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-shopping-cart"></i> <?php echo \eMarket\Other\Cart::totalQuantity() . ' ' . lang('navbar_pcs') ?> <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#" class="disabled"><?php echo $CART->totalQuantity() . ' ' . lang('navbar_pcs') . ' (' . $PRODUCTS->productPrice($CART->totalPrice(), $CURRENCIES, 1) . ')' ?></a></li>
+                            <li><a href="#" class="disabled"><?php echo \eMarket\Other\Cart::totalQuantity() . ' ' . lang('navbar_pcs') . ' (' . \eMarket\Other\Products::productPrice(\eMarket\Other\Cart::totalPrice(), $CURRENCIES, 1) . ')' ?></a></li>
                             <li class="divider"></li>
                             <li><a href="/?route=cart">View Cart</a></li>
                         </ul>
