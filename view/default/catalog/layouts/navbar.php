@@ -34,7 +34,7 @@
                 </li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-credit-card"></i><span class="hidden-sm"> <?php echo lang('navbar_currencies') ?></span> <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <?php foreach ($SET->currenciesData() as $value) { ?>
+                        <?php foreach (\eMarket\Core\Set::currenciesData() as $value) { ?>
                             <li><a href="<?php echo '/?route=catalog&currency_default=' . $value[1] ?>"><?php echo $value[0] ?></a></li>
                         <?php } ?>
                     </ul>

@@ -20,11 +20,11 @@
         <meta name="copyright" content="Copyright © 2018 by eMarket Team. All right reserved." />
 
         <!-- Автогенерация Title" -->
-        <title><?php echo lang('title_' . $SET->titleDir() . '_index') ?></title>
+        <title><?php echo lang('title_' . \eMarket\Core\Set::titleDir() . '_index') ?></title>
 
         <link href="/ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
         <link href="/ext/bootstrap/css/normalize.css" rel="stylesheet" media="screen" />
-        <link rel="stylesheet" type="text/css" href="/view/<?php echo $SET->template() ?>/admin/style.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="/view/<?php echo \eMarket\Core\Set::template() ?>/admin/style.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="/ext/contextmenu/css/contextmenu.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="/ext/jquery/ui/jquery-ui.min.css" media="screen" />
         <link rel="stylesheet" href="/ext/bootstrap/css/bootstrap-multiselect.css" type="text/css"/>
@@ -40,10 +40,10 @@
         </script>
 
         <?php
-        if (isset($_SESSION['login']) && isset($_SESSION['pass']) && file_exists(ROOT . '/view/' . $SET->template() . '/admin/nav.css')) {
+        if (isset($_SESSION['login']) && isset($_SESSION['pass']) && file_exists(ROOT . '/view/' . \eMarket\Core\Set::template() . '/admin/nav.css')) {
 
             ?>
-            <link rel="stylesheet" type="text/css" href="/view/<?php echo $SET->template() ?>/admin/nav.css" media="screen" />
+            <link rel="stylesheet" type="text/css" href="/view/<?php echo \eMarket\Core\Set::template() ?>/admin/nav.css" media="screen" />
         <?php } ?>
     </head>
     <body>

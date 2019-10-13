@@ -12,7 +12,7 @@
             <!--Выводим уведомление об успешном действии-->
             <?php $MESSAGES->alert(); ?>
             <h3 class="panel-title">
-                <div class="pull-left"><span class="settings_back"><button type="button" onClick='location.href = "?route=settings"' class="btn btn-primary btn-xs"><span class="back glyphicon glyphicon-share-alt"></span></button></span><span class="settings_name"><?php echo lang('title_' . $SET->titleDir() . '_index') ?></span></div>
+                <div class="pull-left"><span class="settings_back"><button type="button" onClick='location.href = "?route=settings"' class="btn btn-primary btn-xs"><span class="back glyphicon glyphicon-share-alt"></span></button></span><span class="settings_name"><?php echo lang('title_' . \eMarket\Core\Set::titleDir() . '_index') ?></span></div>
                 <div class="clearfix"></div>
             </h3>
         </div>
@@ -33,13 +33,13 @@
                         <div class="form-group">
                             <div class="col-sm-3 text-left"><label class="control-label"><?php echo lang('lines_on_page') ?></label></div>
                             <div class="col-sm-9">
-                                <input type="text" name="lines_on_page" class="form-control" value="<?php echo $SET->linesOnPage() ?>" required />
+                                <input type="text" name="lines_on_page" class="form-control" value="<?php echo \eMarket\Core\Set::linesOnPage() ?>" required />
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-3 text-left"><label class=""><?php echo lang('session_expr_time') ?> <span data-toggle="tooltip" data-placement="right" data-original-title="<?php echo lang('session_expr_time_help') ?>" class="glyphicon glyphicon-question-sign"></span></label></div>
                             <div class="col-sm-9">
-                                <input type="text" name="session_expr_time" class="form-control" value="<?php echo $SET->sessionExprTime() ?>" required />
+                                <input type="text" name="session_expr_time" class="form-control" value="<?php echo \eMarket\Core\Set::sessionExprTime() ?>" required />
                             </div>
                         </div>
                         <div class="form-group">

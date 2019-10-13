@@ -13,7 +13,7 @@ if ($VALID->inPOST('lines_on_page')) {
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
     // Считываем значение
-    $lines_on_page = $SET->linesOnPage();
+    $lines_on_page = \eMarket\Core\Set::linesOnPage();
 }
 
 // ВРЕМЯ СЕССИИ АДМИНИСТРАТОРА
@@ -24,7 +24,7 @@ if ($VALID->inPOST('session_expr_time')) {
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
     // Считываем значение
-    $session_expr_time = $SET->sessionExprTime();
+    $session_expr_time = \eMarket\Core\Set::sessionExprTime();
 }
 
 // ОТЛАДОЧНАЯ ИНФОРМАЦИЯ

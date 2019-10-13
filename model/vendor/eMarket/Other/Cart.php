@@ -81,9 +81,8 @@ class Cart {
      */
     public static function init() {
         $VALID = new \eMarket\Core\Valid;
-        $SET = new \eMarket\Core\Set;
 
-        if ($SET->path() == 'catalog') {
+        if (\eMarket\Core\Set::path() == 'catalog') {
             if ($VALID->inGET('add_to_cart')) {
                 if (!$VALID->inGET('add_quantity')) {
                     $add_quantity = 1;

@@ -22,14 +22,12 @@ class Autorize {
      */
     public function sessionAdmin() {
 
-        $SET = new \eMarket\Core\Set;
-        
         // ЕСЛИ В АДМИНИСТРАТИВНОЙ ПАНЕЛИ
-        if ($SET->path() == 'admin' && $SET->titleDir() != 'login') {
+        if (\eMarket\Core\Set::path() == 'admin' && \eMarket\Core\Set::titleDir() != 'login') {
 
             session_start();
 
-            if (isset($_SESSION['session_start']) && (time() - $_SESSION['session_start']) / 60 > $SET->sessionExprTime()) { // Если истекло время сеанса
+            if (isset($_SESSION['session_start']) && (time() - $_SESSION['session_start']) / 60 > \eMarket\Core\Set::sessionExprTime()) { // Если истекло время сеанса
                 unset($_SESSION['login']);    //удаляем текущую сессию
                 unset($_SESSION['pass']);
                 unset($_SESSION['session_start']);
@@ -58,11 +56,10 @@ class Autorize {
      */
     public function sessionCatalog() {
 
-        $SET = new \eMarket\Core\Set;
-        if ($SET->path() == 'catalog') {
+        if (\eMarket\Core\Set::path() == 'catalog') {
 
             session_start();
-            if (isset($_SESSION['customer_session_start']) && (time() - $_SESSION['customer_session_start']) / 60 > $SET->sessionExprTime()) { // Если истекло время сеанса
+            if (isset($_SESSION['customer_session_start']) && (time() - $_SESSION['customer_session_start']) / 60 > \eMarket\Core\Set::sessionExprTime()) { // Если истекло время сеанса
                 unset($_SESSION['password_customer']);
                 unset($_SESSION['email_customer']);
                 unset($_SESSION['customer_session_start']);

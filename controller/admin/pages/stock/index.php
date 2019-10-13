@@ -63,7 +63,7 @@ if ($VALID->inGET('parent_id_temp')) {
     $parent_id = $VALID->inGET('parent_id_temp');
 }
 
-$lines_on_page = $SET->linesOnPage();
+$lines_on_page = \eMarket\Core\Set::linesOnPage();
 // получаем отсортированное по sort_category содержимое в виде массива для отображения на странице и сортируем в обратном порядке
 $lines_cat = \eMarket\Core\Pdo::getColRow("SELECT id, name, parent_id, status FROM " . TABLE_CATEGORIES . " WHERE parent_id=? AND language=? ORDER BY sort_category DESC", [$parent_id, lang('#lang_all')[0]]);
 $count_lines_cat = count($lines_cat);  //считаем количество строк

@@ -20,7 +20,7 @@ class Set {
      *
      * @return string $template
      */
-    public function template() {
+    public static function template() {
         $template = 'default';
         return $template;
     }
@@ -30,7 +30,7 @@ class Set {
      *
      * @return array $currencies
      */
-    public function currenciesData() {
+    public static function currenciesData() {
         
         $currencies = \eMarket\Core\Pdo::getColRow("SELECT name, id FROM " . TABLE_CURRENCIES . " WHERE language=?", [lang('#lang_all')[0]]);
         return $currencies;
@@ -41,7 +41,7 @@ class Set {
      *
      * @return array $currency
      */
-    public function currencyDefault() {
+    public static function currencyDefault() {
         
         $VALID = new \eMarket\Core\Valid;
 
@@ -63,7 +63,7 @@ class Set {
      *
      * @return string $path
      */
-    public function canonicalPathCatalog() {
+    public static function canonicalPathCatalog() {
         $VALID = new \eMarket\Core\Valid;
 
         $path_temp = $VALID->inSERVER('REQUEST_URI');
@@ -85,7 +85,7 @@ class Set {
      *
      * @return string $path
      */
-    public function path() {
+    public static function path() {
         $VALID = new \eMarket\Core\Valid;
 
         if (strrpos($VALID->inSERVER('REQUEST_URI'), 'controller/admin/') == true) {
@@ -104,7 +104,7 @@ class Set {
      *
      * @return string $title_dir
      */
-    public function titleDir() {
+    public static function titleDir() {
         $VALID = new \eMarket\Core\Valid;
 
         $title_dir = str_replace('/', '_', $VALID->inGET('route'));
@@ -130,7 +130,7 @@ class Set {
      * @param string $marker (маркер для указания знака)
      * @return string $title
      */
-    public function titleCatalog($marker = null) {
+    public static function titleCatalog($marker = null) {
         $VALID = new \eMarket\Core\Valid;
         
         if ($marker == 'false'){
@@ -161,7 +161,7 @@ class Set {
      *
      * @return string $lines_on_page
      */
-    public function linesOnPage() {
+    public static function linesOnPage() {
         
         $lines_on_page = \eMarket\Core\Pdo::selectPrepare("SELECT lines_on_page FROM " . TABLE_BASIC_SETTINGS, []);
         return $lines_on_page;
@@ -172,7 +172,7 @@ class Set {
      *
      * @return string $session_expr_time
      */
-    public function sessionExprTime() {
+    public static function sessionExprTime() {
         
         $session_expr_time = \eMarket\Core\Pdo::selectPrepare("SELECT session_expr_time FROM " . TABLE_BASIC_SETTINGS, []);
         return $session_expr_time;
@@ -185,7 +185,7 @@ class Set {
      * @param string $id (идентификатор id)
      * @param string (если не нужно Selected, то указываем FALSE)
      */
-    public function viewSelect($value, $id = null, $selected = null) {
+    public static function viewSelect($value, $id = null, $selected = null) {
 
         $count_value = count($value);
         for ($x = 0; $x < $count_value; $x++) {
@@ -206,7 +206,7 @@ class Set {
      *
      * @return string $ipaddress
      */
-    public function ipAdress() {
+    public static function ipAdress() {
         $ipaddress = '';
         if (getenv('HTTP_CLIENT_IP')) {
             $ipaddress = getenv('HTTP_CLIENT_IP');
@@ -232,7 +232,7 @@ class Set {
      * @param array $breadcrumb_array (массив breadcrumb в виде id)
      * @return string $breadcrumb (массив breadcrumb в виде названия)
      */
-    public function breadcrumbName($breadcrumb_array) {
+    public static function breadcrumbName($breadcrumb_array) {
         
         $breadcrumb = [];
         foreach ($breadcrumb_array as $value) {
@@ -249,7 +249,7 @@ class Set {
      * @param array $breadcrumb_array (массив breadcrumb в виде id)
      * @return string $breadcrumb (массив breadcrumb в виде parent_id)
      */
-    public function breadcrumbParentId($breadcrumb_array) {
+    public static function breadcrumbParentId($breadcrumb_array) {
         
         $breadcrumb = [];
         foreach ($breadcrumb_array as $value) {

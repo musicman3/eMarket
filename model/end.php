@@ -8,16 +8,16 @@
 //Загружаем HTML
 //
 //ВЫВОД ТОЛЬКО В АДМИНКЕ
-if ($SET->path() == 'admin') {
-    require_once(getenv('DOCUMENT_ROOT') . '/view/' . $SET->template() . '/admin/constructor.php');
+if (\eMarket\Core\Set::path() == 'admin') {
+    require_once(getenv('DOCUMENT_ROOT') . '/view/' . \eMarket\Core\Set::template() . '/admin/constructor.php');
 }
 //ВЫВОД ТОЛЬКО В КАТАЛОГЕ
-if ($SET->path() == 'catalog') {
-    require_once(getenv('DOCUMENT_ROOT') . '/view/' . $SET->template() . '/catalog/constructor.php');
+if (\eMarket\Core\Set::path() == 'catalog') {
+    require_once(getenv('DOCUMENT_ROOT') . '/view/' . \eMarket\Core\Set::template() . '/catalog/constructor.php');
 }
 //ВЫВОД ТОЛЬКО В КАТАЛОГЕ
-if ($SET->path() == 'install') {
-    require_once(getenv('DOCUMENT_ROOT') . '/view/' . $SET->template() . '/install/constructor.php');
+if (\eMarket\Core\Set::path() == 'install') {
+    require_once(getenv('DOCUMENT_ROOT') . '/view/' . \eMarket\Core\Set::template() . '/install/constructor.php');
 }
 //Закрываем соединение с БД
 \eMarket\Core\Pdo::connect('end');

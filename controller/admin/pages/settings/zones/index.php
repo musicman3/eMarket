@@ -52,7 +52,7 @@ if ($VALID->inPOST('delete')) {
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 $lines = \eMarket\Core\Pdo::getColRow("SELECT id, name, note FROM " . TABLE_ZONES . " WHERE language=? ORDER BY name", [lang('#lang_all')[0]]);
-$lines_on_page = $SET->linesOnPage();
+$lines_on_page = \eMarket\Core\Set::linesOnPage();
 $navigate = $NAVIGATION->getLink(count($lines), $lines_on_page);
 $start = $navigate[0];
 $finish = $navigate[1];

@@ -9,7 +9,7 @@
 <div id="header" class="container-fluid">
     <div class="row">
 	<div class="col-sm-4">
-	    <a href="/"><img src="/view/<?php echo $SET->template() ?>/catalog/images/emarket.png" alt="" class="logo img-responsive pull-left"></a>
+	    <a href="/"><img src="/view/<?php echo \eMarket\Core\Set::template() ?>/catalog/images/emarket.png" alt="" class="logo img-responsive pull-left"></a>
 	</div>
 	<div class="col-sm-8">
 	    <div class="searchbox-margin">

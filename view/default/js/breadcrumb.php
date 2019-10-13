@@ -51,7 +51,7 @@
             var breadcrumbparentid = $('div#data_breadcrumb').data('breadcrumbparentid');
             var breadcrumbname = $('div#data_breadcrumb').data('breadcrumbname');
 
-            $('#breadcrumb').append('<li class="selected"><?php echo $SET->titleCatalog('false') ?></li>');
+            $('#breadcrumb').append('<li class="selected"><?php echo \eMarket\Core\Set::titleCatalog('false') ?></li>');
         }
 
         $(document).ready(function () {

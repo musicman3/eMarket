@@ -9,7 +9,7 @@ if ($VALID->inPOST('email')) {
     $user_email = \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$VALID->inPOST('email')]);
     if ($user_email == NULL) {
         $password_hash = $AUTORIZE->passwordHash($VALID->inPOST('password'));
-        \eMarket\Core\Pdo::inPrepare("INSERT INTO " . TABLE_CUSTOMERS . " SET firstname=?, lastname=?, date_account_created=?, email=?, telephone=?, ip_address=?, password=?", [$VALID->inPOST('firstname'), $VALID->inPOST('lastname'), date("Y-m-d H:i:s"), $VALID->inPOST('email'), $VALID->inPOST('telephone'), $SET->ipAdress(), $password_hash]);
+        \eMarket\Core\Pdo::inPrepare("INSERT INTO " . TABLE_CUSTOMERS . " SET firstname=?, lastname=?, date_account_created=?, email=?, telephone=?, ip_address=?, password=?", [$VALID->inPOST('firstname'), $VALID->inPOST('lastname'), date("Y-m-d H:i:s"), $VALID->inPOST('email'), $VALID->inPOST('telephone'), \eMarket\Core\Set::ipAdress(), $password_hash]);
         
         $id = \eMarket\Core\Pdo::lastInsertId();
         $activation_code = $FUNC->getToken(64);

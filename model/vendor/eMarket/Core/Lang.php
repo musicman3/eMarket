@@ -27,11 +27,10 @@ final class Lang {
 
         static $lang = null, $lang_trans = null, $lang_all = null;
         $TREE = new \eMarket\Core\Tree;
-        $SET = new \eMarket\Core\Set;
 
         if ($lang == null) {
             //Получаем массив со списком путей к языковым файлам движка
-            $engine_path_array = $TREE->filesTree(getenv('DOCUMENT_ROOT') . '/language/' . $default_language . '/' . $SET->path());
+            $engine_path_array = $TREE->filesTree(getenv('DOCUMENT_ROOT') . '/language/' . $default_language . '/' . \eMarket\Core\Set::path());
 
             // Получаем список путей к языковым файлам модулей
             $modules_path = getenv('DOCUMENT_ROOT') . '/modules/';
@@ -91,17 +90,16 @@ final class Lang {
      *
      */
     public static function defaultLang() {
-
-        $SET = new \eMarket\Core\Set;
+        
         $VALID = new \eMarket\Core\Valid;
 
         //Если пользователь не авторизован, то устанавливаем язык по умолчанию
-        if (!isset($_SESSION['DEFAULT_LANGUAGE']) && $SET->path() != 'install') {
+        if (!isset($_SESSION['DEFAULT_LANGUAGE']) && \eMarket\Core\Set::path() != 'install') {
             $_SESSION['DEFAULT_LANGUAGE'] = DEFAULT_LANGUAGE;
         }
 
         //Если первый раз в инсталляторе, то устанавливаем язык по умолчанию Russian
-        if (!$VALID->inPOST('language') && $SET->path() == 'install') {
+        if (!$VALID->inPOST('language') && \eMarket\Core\Set::path() == 'install') {
             $_SESSION['DEFAULT_LANGUAGE'] = 'russian';
         }
 

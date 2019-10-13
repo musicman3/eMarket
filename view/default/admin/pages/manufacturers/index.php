@@ -10,7 +10,7 @@
 <!-- КОНЕЦ Модальное окно "Добавить" -->
 
 <!-- Модальное окно "Редактировать" -->
-<?php require(ROOT . '/view/' . $SET->template() . '/admin/pages/manufacturers/modal/edit.php') ?>
+<?php require(ROOT . '/view/' . \eMarket\Core\Set::template() . '/admin/pages/manufacturers/modal/edit.php') ?>
 <!-- КОНЕЦ Модальное окно "Редактировать" -->
 
 <div id="ajax">
@@ -20,7 +20,7 @@
                     <!--Выводим уведомление об успешном действии-->
                     <?php $MESSAGES->alert(); ?>
                     <h3 class="panel-title">
-                        <div class="pull-left"><?php echo lang('title_' . $SET->titleDir() . '_index') ?></div>
+                        <div class="pull-left"><?php echo lang('title_' . \eMarket\Core\Set::titleDir() . '_index') ?></div>
                         <div class="clearfix"></div>
                     </h3>
                 </div>

@@ -8,7 +8,7 @@
 require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 /* ------------------------------------------ */
 //Если не переключали язык
-if (!$VALID->inPOST('language') && $SET->path() == 'install') {
+if (!$VALID->inPOST('language') && \eMarket\Core\Set::path() == 'install') {
     $DEFAULT_LANGUAGE = 'russian';
 }
 //Если переключили язык

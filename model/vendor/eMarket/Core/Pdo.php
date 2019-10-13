@@ -26,8 +26,7 @@ final class Pdo {
      */
     public static function connect($a = null) {
         static $connect = null;
-
-        $SET = new \eMarket\Core\Set;
+        
         self::$query_count++; //Считаем запросы к БД
 
         if (isset($a) && $a == 'end') {
@@ -40,7 +39,7 @@ final class Pdo {
                 $connect = new \PDO(DB_TYPE . ':host=' . DB_SERVER . ';dbname=' . DB_NAME, DB_USERNAME, DB_PASSWORD, [\PDO::ATTR_ERRMODE => \PDO::ERRMODE_WARNING, \PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4"]);
             } catch (PDOException $error) {
                 // Если ошибка соединения с БД в инсталляторе, то переадресуем на страницу ошибки
-                if ($SET->path() == 'install') {
+                if (\eMarket\Core\Set::path() == 'install') {
                     header('Location: /controller/install/error.php?server_db_error=true&error_message=' . $error->getMessage());
                 } else {
                     //Выводим на экран, если не в инсталляторе

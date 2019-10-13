@@ -20,7 +20,7 @@ if ($VALID->inGET('layout_pages_templates')) {
 if ($VALID->inGET('name_templates')) {
     $select_template = $VALID->inGET('name_templates');
 } else {
-    $select_template = $SET->template();
+    $select_template = \eMarket\Core\Set::template();
 }
 
 

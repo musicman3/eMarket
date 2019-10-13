@@ -19,11 +19,11 @@
         <meta name="owner" content="eMarket" />
         <meta name="copyright" content="Copyright © 2018 by eMarket Team. All right reserved." />
         <!-- Автогенерация Title" -->
-        <title><?php echo lang('title_' . $SET->titleDir() . '_' . basename($VALID->inSERVER('PHP_SELF'), '.php')) ?></title>
+        <title><?php echo lang('title_' . \eMarket\Core\Set::titleDir() . '_' . basename($VALID->inSERVER('PHP_SELF'), '.php')) ?></title>
 
         <link href="/ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
         <link href="/ext/bootstrap/css/normalize.css" rel="stylesheet" media="screen" />
-        <link rel="stylesheet" type="text/css" href="/view/<?php echo $SET->template() ?>/install/style.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="/view/<?php echo \eMarket\Core\Set::template() ?>/install/style.css" media="screen" />
         <script type="text/javascript" src="/ext/jquery/jquery.min.js"></script>
     </head>
     <body>
@@ -33,7 +33,7 @@
 
         // ЗАГРУЖАЕМ FOOTER
         require_once (getenv('DOCUMENT_ROOT') . '/controller/install/footer.php');
-        require_once (getenv('DOCUMENT_ROOT') . '/view/' . $SET->template() . '/install/footer.php');
+        require_once (getenv('DOCUMENT_ROOT') . '/view/' . \eMarket\Core\Set::template() . '/install/footer.php');
 
         ?>
 

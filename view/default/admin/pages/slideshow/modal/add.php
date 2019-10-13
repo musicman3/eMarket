@@ -10,13 +10,13 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header"><div class="pull-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Заполните карточку слайдов" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
-                <h4 class="modal-title"><?php echo lang('title_' . $SET->titleDir() . '_index') ?></h4>
+                <h4 class="modal-title"><?php echo lang('title_' . \eMarket\Core\Set::titleDir() . '_index') ?></h4>
             </div>
             <form id="form_add" name="form_add" action="javascript:void(null);" onsubmit="callAdd()">
                 <div class="panel-body">
 
                     <!-- Языковые панели -->
-                    <?php require_once(ROOT . '/view/' . $SET->template() . '/layouts/lang_tabs_add.php') ?>
+                    <?php require_once(ROOT . '/view/' . \eMarket\Core\Set::template() . '/layouts/lang_tabs_add.php') ?>
 
                     <div class="tab-content">
                         <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade in active">

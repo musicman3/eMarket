@@ -6,7 +6,7 @@
 
 ?>
 <!-- Модальное окно "Настройки" -->
-<?php require(ROOT . '/view/' . $SET->template() . '/admin/pages/slideshow/modal/settings.php') ?>
+<?php require(ROOT . '/view/' . \eMarket\Core\Set::template() . '/admin/pages/slideshow/modal/settings.php') ?>
 <!-- КОНЕЦ Модальное окно "Настройки" -->
 
 <!-- Модальное окно "Добавить" -->
@@ -14,7 +14,7 @@
 <!-- КОНЕЦ Модальное окно "Добавить" -->
 
 <!-- Модальное окно "Редактировать" -->
-<?php require(ROOT . '/view/' . $SET->template() . '/admin/pages/slideshow/modal/edit.php') ?>
+<?php require(ROOT . '/view/' . \eMarket\Core\Set::template() . '/admin/pages/slideshow/modal/edit.php') ?>
 <!-- КОНЕЦ Модальное окно "Редактировать" -->
 
 <div id="ajax">
@@ -24,7 +24,7 @@
                     <!--Выводим уведомление об успешном действии-->
                     <?php $MESSAGES->alert(); ?>
                     <h3 class="panel-title">
-                        <div class="pull-left"><a href="#settings" class="btn btn-primary btn-xs" data-toggle="modal"><span class="back glyphicon glyphicon-wrench"></span></a> <?php echo lang('title_' . $SET->titleDir() . '_index') ?></div>
+                        <div class="pull-left"><a href="#settings" class="btn btn-primary btn-xs" data-toggle="modal"><span class="back glyphicon glyphicon-wrench"></span></a> <?php echo lang('title_' . \eMarket\Core\Set::titleDir() . '_index') ?></div>
                         <div class="clearfix"></div>
                     </h3>
                 </div>

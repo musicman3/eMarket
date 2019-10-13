@@ -16,18 +16,18 @@ require_once('cluster.php');
 require_once('router_lang.php');
 
 //Если это панель администратора
-if ($SET->path() == 'admin') {
+if (\eMarket\Core\Set::path() == 'admin') {
     require_once('configure/configure.php');
     // Загружаем авторизацию Административной части
     if ($VALID->inGET('route') != 'login') {
         $TOKEN = $AUTORIZE->sessionAdmin();
     }
     // Данные по текущей валюте
-    $CURRENCIES = $SET->currencyDefault();
+    $CURRENCIES = \eMarket\Core\Set::currencyDefault();
 }
 
 // Если это каталог
-if ($SET->path() == 'catalog') {
+if (\eMarket\Core\Set::path() == 'catalog') {
     require_once('configure/configure.php');
 
     // Загружаем авторизацию Каталога
@@ -37,7 +37,7 @@ if ($SET->path() == 'catalog') {
         $CUSTOMER = FALSE;
     }
     // Данные по текущей валюте
-    $CURRENCIES = $SET->currencyDefault();
+    $CURRENCIES = \eMarket\Core\Set::currencyDefault();
 
     // Инициализация корзины
     \eMarket\Other\Cart::init();

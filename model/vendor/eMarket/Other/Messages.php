@@ -21,7 +21,7 @@ class Messages {
      *
      */
     public function alert() {
-        $SET = new \eMarket\Core\Set;
+        
         $VALID = new \eMarket\Core\Valid;
 
         if ($VALID->inPOST('add') OR $VALID->inPOST('edit')OR $VALID->inPOST('delete') OR $VALID->inPOST('idsx_paste_key')) {
@@ -31,7 +31,7 @@ class Messages {
         // При POST и GET по ajax + обновление страницы ШАГ 3 (обновление редиректом)
         if (isset($_SESSION['message_marker']) && $_SESSION['message_marker'] == 'ok_3') {
             if (isset($_SESSION['message'])) {
-                require_once (ROOT . '/view/' . $SET->template() . '/layouts/alert.php');
+                require_once (ROOT . '/view/' . \eMarket\Core\Set::template() . '/layouts/alert.php');
             }
             unset($_SESSION['message_marker']);
             unset($_SESSION['message']);
@@ -39,7 +39,7 @@ class Messages {
         // При POST и GET по ajax + обновление страницы ШАГ 4 (обновление по ajax)
         if ($VALID->inGET('modify')) {
             if (isset($_SESSION['message'])) {
-                require_once (ROOT . '/view/' . $SET->template() . '/layouts/alert.php');
+                require_once (ROOT . '/view/' . \eMarket\Core\Set::template() . '/layouts/alert.php');
             }
         }
 
@@ -53,7 +53,7 @@ class Messages {
         }
         // Если вызываем самостоятельно
         if (isset($_SESSION['message'][3]) && $_SESSION['message'][3] == TRUE) {
-            require_once (ROOT . '/view/' . $SET->template() . '/layouts/alert.php');
+            require_once (ROOT . '/view/' . \eMarket\Core\Set::template() . '/layouts/alert.php');
             unset($_SESSION['message']);
         }
     }
@@ -66,7 +66,6 @@ class Messages {
      * @param string $message (Сообщение в html)
      */
     public function sendMail($email_to, $subject, $message) {
-
         
         $mail = new \PHPMailer\PHPMailer\PHPMailer();
         $mail->CharSet = 'UTF-8';
