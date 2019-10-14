@@ -40,13 +40,13 @@ final class Ecb {
      */
     private static function inputPrice($cart, $CURRENCIES) {
         
-        $new_array = [];
+        $output = [];
         foreach ($cart as $value) {
             $products = \eMarket\Products::productData($value['id'])[0];
             $value = array_merge($value, ['price' => $products['price']], ['currencies' => $CURRENCIES[0]]);
-            array_push($new_array, $value);
+            array_push($output, $value);
         }
-        return $new_array;
+        return $output;
     }
 
     /**
