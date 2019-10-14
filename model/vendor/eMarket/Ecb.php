@@ -20,15 +20,16 @@ final class Ecb {
      * Инициализация ECB
      * @param array $cart (данные из корзины)
      * @param string $CURRENCIES (валюта)
+     * @param array $input_product_sales (данные о скидках на товары)
      * @return array $output_price (итоговая стоимость в корзине)
      */
-    public static function init($cart, $CURRENCIES) {
-        return $input_price = self::inputPrice($cart, $CURRENCIES);
-        $product_sale_block = self::productSaleBlock($input_price);
-        $total_sale_block = self::totalSaleBlock($product_sale_block);
-        $shipping_block = self::totalSaleBlock($total_sale_block);
-        $checkout_block = self::totalSaleBlock($shipping_block);
-        $output_price = self::outputPrice($checkout_block);
+    public static function init($cart, $CURRENCIES, $input_product_sales) {
+        $input_price = self::inputPrice($cart, $CURRENCIES);
+        return $product_sale_block = self::productSaleBlock($input_price, $input_product_sales);
+        //$total_sale_block = self::totalSaleBlock($product_sale_block);
+        //$shipping_block = self::totalSaleBlock($total_sale_block);
+        //$checkout_block = self::totalSaleBlock($shipping_block);
+        //$output_price = self::outputPrice($checkout_block);
         //return $output_price;
     }
 
@@ -36,26 +37,36 @@ final class Ecb {
      * Блок формирования входящей стоимости
      * @param array $cart (данные из корзины)
      * @param string $CURRENCIES (валюта)
-     * @return array $output (выходные данные)
+     * @return array $cart_data (выходные данные)
      */
     private static function inputPrice($cart, $CURRENCIES) {
-        
-        $output = [];
+
+        $cart_data = [];
         foreach ($cart as $value) {
             $products = \eMarket\Products::productData($value['id'])[0];
             $value = array_merge($value, ['price' => $products['price']], ['currencies' => $CURRENCIES[0]]);
-            array_push($output, $value);
+            array_push($cart_data, $value);
         }
-        return $output;
+        return $cart_data;
     }
 
     /**
      * Блок формирования скидки на товар
-     * @param array $input (данные из inputPrice)
+     * @param array $cart_data (данные из inputPrice)
+     * @param array $input_product_sales (данные о скидках на товары)
      * @return array $output (выходные данные)
      */
-    private static function productSaleBlock($input) {
-        //echo ($output);
+    private static function productSaleBlock($cart_data, $input_product_sales) {
+        $x = 0;
+        foreach ($cart_data as $cart) {
+            foreach ($input_product_sales as $sale) {
+                if ($cart['id'] == $sale['product_id']) {
+                    $cart_data[$x] = array_merge($cart_data[$x], ['productSale_' . $sale['id'] => $sale['sale']]);
+                }
+            }
+            $x++;
+        }
+        return $cart_data;
     }
 
     /**
