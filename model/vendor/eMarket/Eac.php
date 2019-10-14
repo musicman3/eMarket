@@ -21,9 +21,9 @@ final class Eac {
      * @param string $TOKEN (токен)
      * @param array $resize_param (параметры ресайза)
      * @param array $resize_param_product (параметры ресайза фото товаров)
-     * @return array array($idsx_real_parent_id, $parent_id)
+     * @return array [$idsx_real_parent_id, $parent_id]
      */
-    public function start($TABLES, $TOKEN, $resize_param, $resize_param_product) {
+    public static function init($TABLES, $TOKEN, $resize_param, $resize_param_product) {
 
         // Устанавливаем parent_id родительской категории
         $parent_id = self::parentIdStart($TABLES[0]);
@@ -78,7 +78,7 @@ final class Eac {
             $parent_id = $parent_id_status;
         }
 
-        return array($idsx_real_parent_id, $parent_id);
+        return [$idsx_real_parent_id, $parent_id];
     }
 
     /**
@@ -86,7 +86,7 @@ final class Eac {
      * @param string $TABLE_CATEGORIES (название таблицы категорий)
      * @return string $parent_id (идентификатор родительской категории)
      */
-    private function parentIdStart($TABLE_CATEGORIES) {
+    private static function parentIdStart($TABLE_CATEGORIES) {
 
         // Устанавливаем родительскую категорию
         $parent_id = \eMarket\Valid::inPOST('parent_id');
@@ -112,7 +112,7 @@ final class Eac {
      * @param string $TABLE_CATEGORIES (название таблицы категорий)
      * @param string $TOKEN (токен)
      */
-    private function sortList($TABLE_CATEGORIES, $TOKEN) {
+    private static function sortList($TABLE_CATEGORIES, $TOKEN) {
 
         // если сортируем категории мышкой
         if (\eMarket\Valid::inPOST('token_ajax') == $TOKEN && \eMarket\Valid::inPOST('ids')) {
@@ -144,7 +144,7 @@ final class Eac {
      * @param string $TABLE_CATEGORIES (название таблицы категорий)
      * @param string $parent_id (идентификатор родительской категории)
      */
-    private function addCategory($TABLE_CATEGORIES, $parent_id) {
+    private static function addCategory($TABLE_CATEGORIES, $parent_id) {
         
         $LANG_COUNT = count(lang('#lang_all'));
 
@@ -177,7 +177,7 @@ final class Eac {
      * Редактировать категорию в EAC
      * @param string $TABLE_CATEGORIES (название таблицы категорий)
      */
-    private function editCategory($TABLE_CATEGORIES) {
+    private static function editCategory($TABLE_CATEGORIES) {
 
         $LANG_COUNT = count(lang('#lang_all'));
 
@@ -199,7 +199,7 @@ final class Eac {
      * @param string $parent_id (идентификатор родительской категории)
      * @return string $parent_id (идентификатор родительской категории)
      */
-    private function delete($TABLE_CATEGORIES, $TABLE_PRODUCTS, $parent_id) {
+    private static function delete($TABLE_CATEGORIES, $TABLE_PRODUCTS, $parent_id) {
 
         if (\eMarket\Valid::inPOST('delete')) {
 
@@ -265,7 +265,7 @@ final class Eac {
      * @param string $parent_id (идентификатор родительской категории)
      * @return string $parent_id (идентификатор родительской категории)
      */
-    private function cut($TABLE_CATEGORIES, $parent_id) {
+    private static function cut($TABLE_CATEGORIES, $parent_id) {
 
         if (\eMarket\Valid::inPOST('idsx_cut_marker') == 'cut') { // очищаем буфер обмена, если он был заполнен, при нажатии Вырезать
             unset($_SESSION['buffer']);
@@ -320,7 +320,7 @@ final class Eac {
      * @param string $parent_id (идентификатор родительской категории)
      * @return string $parent_id (идентификатор родительской категории)
      */
-    private function paste($TABLE_CATEGORIES, $TABLE_PRODUCTS, $parent_id) {
+    private static function paste($TABLE_CATEGORIES, $TABLE_PRODUCTS, $parent_id) {
 
         //Вставляем вырезанные категории    
         if (\eMarket\Valid::inPOST('idsx_paste_key') == 'paste' && isset($_SESSION['buffer']) == TRUE) {
@@ -377,7 +377,7 @@ final class Eac {
      * @param string $parent_id (идентификатор родительской категории)
      * @return string $parent_id (идентификатор родительской категории)
      */
-    private function status($TABLE_CATEGORIES, $TABLE_PRODUCTS, $parent_id) {
+    private static function status($TABLE_CATEGORIES, $TABLE_PRODUCTS, $parent_id) {
 
         if ((\eMarket\Valid::inPOST('idsx_statusOn_key') == 'statusOn')
                 or ( \eMarket\Valid::inPOST('idsx_statusOff_key') == 'statusOff')) {
@@ -451,7 +451,7 @@ final class Eac {
      * @param string $idx (идентификатор)
      * @return string $parent_id (идентификатор родительской категории)
      */
-    private function dataParentId($TABLE_CATEGORIES, $idx) {
+    private static function dataParentId($TABLE_CATEGORIES, $idx) {
 
         // Устанавливаем родительскую категорию
         $parent_id = \eMarket\Pdo::selectPrepare("SELECT parent_id FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$idx]);
@@ -473,7 +473,7 @@ final class Eac {
      * @param string $idx (идентификатор)
      * @return array $keys
      */
-    private function dataKeys($TABLE_CATEGORIES, $idx) {
+    private static function dataKeys($TABLE_CATEGORIES, $idx) {
 
         //Выбираем данные из БД
         $data_cat = \eMarket\Pdo::inPrepare("SELECT id, parent_id FROM " . $TABLE_CATEGORIES);
@@ -498,7 +498,7 @@ final class Eac {
      * @param array $TABLES (названия таблиц)
      * @param string $parent_id (идентификатор родительской категории)
      */
-    private function addProduct($TABLES, $parent_id) {
+    private static function addProduct($TABLES, $parent_id) {
         
         $LANG_COUNT = count(lang('#lang_all'));
 
@@ -622,7 +622,7 @@ final class Eac {
      * @param array $TABLES (названия таблиц)
      * @param string $parent_id (идентификатор родительской категории)
      */
-    private function editProduct($TABLES, $parent_id) {
+    private static function editProduct($TABLES, $parent_id) {
 
         $LANG_COUNT = count(lang('#lang_all'));
 

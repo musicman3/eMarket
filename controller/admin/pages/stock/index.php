@@ -5,8 +5,6 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-$EAC = new eMarket\Eac;
-
 $resize_param = [];
 array_push($resize_param, ['125', '94']); // ширина, высота
 //
@@ -30,7 +28,7 @@ $TABLES = [
     TABLE_CURRENCIES
 ];
 // Загружаем движок EAC
-$EAC_ENGINE = $EAC->start($TABLES, $TOKEN, $resize_param, $resize_param_product);
+$EAC_ENGINE = \eMarket\Eac::init($TABLES, $TOKEN, $resize_param, $resize_param_product);
 $idsx_real_parent_id = $EAC_ENGINE[0];
 $parent_id = $EAC_ENGINE[1];
 
