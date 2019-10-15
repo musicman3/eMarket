@@ -200,7 +200,7 @@ CREATE TABLE emkt_products (
         viewed int default '0',
         download_file varchar(256),
         downloads_stat int default '0',
-        sale varchar(256),
+        discount varchar(256),
 	PRIMARY KEY (id, language))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
