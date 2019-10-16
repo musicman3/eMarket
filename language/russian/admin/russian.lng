@@ -122,6 +122,7 @@ debug_pcs = шт.
 ;MODULES
 payment_modules = Оплата
 shipping_modules = Доставка
+discount_modules = Скидки
 cart_modules = Корзина
 other_modules = Другое
 installed_modules = Установленные модули

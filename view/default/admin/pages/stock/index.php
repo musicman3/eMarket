@@ -11,11 +11,11 @@
 <?php require_once('modal/add_product.php') ?>
 
 <!-- Модальное окно "Редактировать категорию" -->
-<?php require_once(ROOT . '/view/' . \eMarket\Set::template() . '/admin/pages/stock/modal/edit.php') ?>
+<?php require_once('modal/edit.php') ?>
 <!-- КОНЕЦ Модальное окно "Редактировать" -->
 
 <!-- Модальное окно "Редактировать товар" -->
-<?php require_once(ROOT . '/view/' . \eMarket\Set::template() . '/admin/pages/stock/modal/edit_product.php') ?>
+<?php require_once('modal/edit_product.php') ?>
 <!-- КОНЕЦ Модальное окно "Редактировать" -->
 
 <div id="ajax">

@@ -121,6 +121,7 @@ debug_pcs = pcs.
 ;MODULES
 payment_modules = Payment
 shipping_modules = Shipping
+discount_modules = Discount
 cart_modules = Cart
 other_modules = Other
 installed_modules = Installed modules
