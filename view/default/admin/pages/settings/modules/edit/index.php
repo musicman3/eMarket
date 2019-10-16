@@ -3,7 +3,6 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-
 ?>
 
 <div id="settings_modules" class="container-fluid">
@@ -35,11 +34,12 @@
                 <?php require_once (ROOT . '/modules/' . \eMarket\Valid::inGET('type') . '/' . \eMarket\Valid::inGET('name') . '/controller/admin.php'); ?>
 
             </div>
-
-            <div class="modal-footer">
-                <button type="button" onClick='location.href = "?route=settings/modules&active=<?php echo \eMarket\Valid::inGET('type') ?>"' class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-floppy-remove"></span> <?php echo lang('cancel') ?></button>
-                <button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button>
-            </div>
+            <?php if ($BUTTON_FLAG == 'on') { ?>
+                <div class="modal-footer">
+                    <button type="button" onClick='location.href = "?route=settings/modules&active=<?php echo \eMarket\Valid::inGET('type') ?>"' class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-floppy-remove"></span> <?php echo lang('cancel') ?></button>
+                    <button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button>
+                </div>
+            <?php } ?>
         </form>
 
     </div>
