@@ -254,6 +254,26 @@ class Set {
 
         return $breadcrumb;
     }      
+    
+    /**
+     * Получаем путь к папке модуля
+     *
+     * @return string (путь к папке с модулем)
+     */
+    public static function modulesPath() {
+
+        return ROOT . '/modules/' . \eMarket\Valid::inGET('type') . '/' . \eMarket\Valid::inGET('name');
+    }
+    
+    /**
+     * Получаем название базы данных модуля
+     *
+     * @return string (название базы данных модуля)
+     */
+    public static function moduleDatabase() {
+
+        return DB_PREFIX . 'modules_' . \eMarket\Valid::inGET('type') . '_' . \eMarket\Valid::inGET('name');
+    }     
 
 }
 
