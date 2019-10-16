@@ -96,6 +96,11 @@
             //то подгружаем JS.PHP файл
             require_once($JS_END . '/js/js.php');
         }
+        //Если существует $JS_MOD_END
+        if (isset($JS_MOD_END)) {
+            //то подгружаем JS.PHP файл
+            require_once($JS_MOD_END . '/js/js.php');
+        }
 
         // Выводим отладочную информацию
         \eMarket\Debug::info($TIME_START);
