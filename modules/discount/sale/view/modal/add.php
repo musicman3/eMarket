@@ -24,7 +24,7 @@
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="input-sm form-control" placeholder="<?php echo lang('name_full') ?>" type="text" name="name_weight_0" id="name_weight_0" required />
+                                    <input class="input-sm form-control" placeholder="<?php echo lang('modules_discount_sale_admin_name') ?>" type="text" name="name_weight_0" id="name_weight_0" required />
                                 </div>
                             </div>
                         </div>
@@ -38,7 +38,7 @@
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo lang('name_full') ?>" type="text" name="name_weight_<?php echo $x ?>" id="name_weight_<?php echo $x ?>" required />
+                                            <input class="input-sm form-control" placeholder="<?php echo lang('modules_discount_sale_admin_name') ?>" type="text" name="name_weight_<?php echo $x ?>" id="name_weight_<?php echo $x ?>" required />
                                         </div>
                                     </div>
                                 </div>
@@ -50,19 +50,19 @@
                         <div class="col-left form-group">
                             <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                <input class="input-sm form-control" placeholder="Дата начала" type="text" name="start_date" id="start_date" autocomplete="off" />
+                                <input class="input-sm form-control" placeholder="<?php echo lang('modules_discount_sale_admin_sale_start_date') ?>" type="text" name="start_date" id="start_date" autocomplete="off" />
                             </div>
                         </div>
                         <div class="col-left form-group">
                             <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                <input class="input-sm form-control" placeholder="Дата окончания" type="text" name="end_date" id="end_date" autocomplete="off" />
+                                <input class="input-sm form-control" placeholder="<?php echo lang('modules_discount_sale_admin_sale_end_date') ?>" type="text" name="end_date" id="end_date" autocomplete="off" />
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                <input class="input-sm form-control" placeholder="<?php echo lang('value') ?>" type="text" name="value_weight" pattern="\d+(\.\d{0,7})?" id="value_weight" required />
+                                <input class="input-sm form-control" placeholder="<?php echo lang('modules_discount_sale_admin_value') ?>" type="text" name="sale_value" pattern="\d+(\.\d{0,7})?" id="sale_value" required />
                             </div>
                         </div>
                         <div class="form-group">
