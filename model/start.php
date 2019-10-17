@@ -18,12 +18,11 @@ foreach (\eMarket\Tree::filesTree(getenv('DOCUMENT_ROOT') . '/model/functions/')
     require_once($path);
 }
 
-// Загружаем языковой роутер
-require_once('router_lang.php');
+require_once('configure/configure.php');
 
 //Если это панель администратора
 if (\eMarket\Set::path() == 'admin') {
-    require_once('configure/configure.php');
+
     // Загружаем авторизацию Административной части
     if (\eMarket\Valid::inGET('route') != 'login') {
         $TOKEN = \eMarket\Autorize::sessionAdmin();
@@ -34,7 +33,6 @@ if (\eMarket\Set::path() == 'admin') {
 
 // Если это каталог
 if (\eMarket\Set::path() == 'catalog') {
-    require_once('configure/configure.php');
 
     // Загружаем авторизацию Каталога
     if (\eMarket\Autorize::sessionCatalog() == TRUE) {
@@ -51,13 +49,14 @@ if (\eMarket\Set::path() == 'catalog') {
     // Инициализация ECB
     //$product_sales = [['id' => '1', 'product_id' =>'1', 'sale' =>'5'],['id' => '2', 'product_id' =>'1', 'sale' =>'25'],['id' => '3', 'product_id' =>'2', 'sale' =>'15']];
     //$ecb_init = \eMarket\Ecb::init($_SESSION['cart'], $CURRENCIES, $product_sales);
-    
     //\eMarket\Debug::trace($ecb_init);
 }
+
+// Загружаем языковой роутер
+require_once('router_lang.php');
 
 // Считаем количество языков
 $LANG_COUNT = count(lang('#lang_all'));
 
 //unset($_SESSION['cart']);
-
 ?>

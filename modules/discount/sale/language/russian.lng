@@ -11,7 +11,7 @@ modules_discount_sale_version = 1.0
 [admin]
 
 ;TITLE
-modules_discount_sale_admin_select_no = --- НЕТ ---
+modules_discount_sale_admin_name = Название распродажи
 
 [catalog]
 

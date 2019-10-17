@@ -27,12 +27,6 @@
                                     <input class="input-sm form-control" placeholder="<?php echo lang('name_full') ?>" type="text" name="name_weight_0" id="name_weight_0" required />
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="input-group has-error">
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                                    <input class="input-sm form-control" placeholder="<?php echo lang('name_little') ?>" type="text" name="code_weight_0" id="code_weight_0" required />
-                                </div>
-                            </div>
                         </div>
 
                         <?php
@@ -47,28 +41,34 @@
                                             <input class="input-sm form-control" placeholder="<?php echo lang('name_full') ?>" type="text" name="name_weight_<?php echo $x ?>" id="name_weight_<?php echo $x ?>" required />
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <div class="input-group has-error">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo lang('name_little') ?>" type="text" name="code_weight_<?php echo $x ?>" id="code_weight_<?php echo $x ?>" required />
-                                        </div>
-                                    </div>
                                 </div>
 
-                            <?php }
+                            <?php
+                            }
                         }
                         ?>
-
+                        <div class="col-left form-group">
+                            <div class="input-group has-success">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                <input class="input-sm form-control" placeholder="Дата начала" type="text" name="start_date" id="start_date" autocomplete="off" />
+                            </div>
+                        </div>
+                        <div class="col-left form-group">
+                            <div class="input-group has-success">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                <input class="input-sm form-control" placeholder="Дата окончания" type="text" name="end_date" id="end_date" autocomplete="off" />
+                            </div>
+                        </div>
                         <div class="form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
                                 <input class="input-sm form-control" placeholder="<?php echo lang('value') ?>" type="text" name="value_weight" pattern="\d+(\.\d{0,7})?" id="value_weight" required />
                             </div>
                         </div>
-                            <div class="form-group">
-                                <input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="default_weight" id="default_weight" type="checkbox" checked>
-                                <label for="default_weight"><?php echo lang('default_set') ?> </label>
-                            </div>
+                        <div class="form-group">
+                            <input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="default_weight" id="default_weight" type="checkbox" checked>
+                            <label for="default_weight"><?php echo lang('default_set') ?> </label>
+                        </div>
                     </div>
                 </div>
 
