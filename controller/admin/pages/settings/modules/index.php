@@ -38,8 +38,6 @@ if (\eMarket\Valid::inPOST('edit')) {
     }
     $module = explode('_', \eMarket\Valid::inPOST('edit'));
     \eMarket\Pdo::inPrepare("UPDATE " . TABLE_MODULES . " SET active=? WHERE name=? AND type=?", [$active, $module[1], $module[0]]);
-    // Выводим сообщение об успехе
-    $_SESSION['message'] = ['success', lang('action_completed_successfully')];
 }
 
 //\eMarket\Debug::trace($payment_installed);

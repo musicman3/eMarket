@@ -16,31 +16,24 @@
                 <div class="clearfix"></div>
             </h3>
         </div>
-
-        <form id="form_edit" name="form_edit" action="javascript:void(null);" onsubmit="callEdit('?route=settings/modules&active=<?php echo \eMarket\Valid::inGET('type') ?>')" enctype="multipart/form-data">
-            <div class="panel-body">
+        <div class="panel-body">
+            <form id="form_edit" name="form_edit" enctype="multipart/form-data">
                 <input id="edit" type="hidden" name="edit" value="<?php echo \eMarket\Valid::inGET('type') . '_' . \eMarket\Valid::inGET('name') ?>" />
                 <div class="pull-right">
                     <input hidden type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('button_on') ?>" data-off-text="<?php echo lang('button_off') ?>" name="switch" id="switch" <?php echo $switch ?>>
                 </div>
-                <div class="pull-left">
-                    <div class="text-left"><?php echo lang('modules_name') ?> <?php echo lang('modules_' . \eMarket\Valid::inGET('type') . '_' . \eMarket\Valid::inGET('name') . '_name') ?></div>
-                    <div class="text-left"><?php echo lang('modules_author') ?> <?php echo lang('modules_' . \eMarket\Valid::inGET('type') . '_' . \eMarket\Valid::inGET('name') . '_author') ?></div>
-                    <div class="text-left"><?php echo lang('modules_version') ?> <?php echo lang('modules_' . \eMarket\Valid::inGET('type') . '_' . \eMarket\Valid::inGET('name') . '_version') ?></div>
-                </div>
-                <div class="clearfix"></div></br>
-
-                <!--Выводим данные из модуля-->
-                <?php require_once (ROOT . '/modules/' . \eMarket\Valid::inGET('type') . '/' . \eMarket\Valid::inGET('name') . '/controller/admin.php'); ?>
-
+            </form>
+            <div class="pull-left">
+                <div class="text-left"><?php echo lang('modules_name') ?> <?php echo lang('modules_' . \eMarket\Valid::inGET('type') . '_' . \eMarket\Valid::inGET('name') . '_name') ?></div>
+                <div class="text-left"><?php echo lang('modules_author') ?> <?php echo lang('modules_' . \eMarket\Valid::inGET('type') . '_' . \eMarket\Valid::inGET('name') . '_author') ?></div>
+                <div class="text-left"><?php echo lang('modules_version') ?> <?php echo lang('modules_' . \eMarket\Valid::inGET('type') . '_' . \eMarket\Valid::inGET('name') . '_version') ?></div>
             </div>
-            <?php if ($BUTTON_FLAG == 'on') { ?>
-                <div class="modal-footer">
-                    <button type="button" onClick='location.href = "?route=settings/modules&active=<?php echo \eMarket\Valid::inGET('type') ?>"' class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-floppy-remove"></span> <?php echo lang('cancel') ?></button>
-                    <button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button>
-                </div>
-            <?php } ?>
-        </form>
+            <div class="clearfix"></div></br>
+
+            <!--Выводим данные из модуля-->
+            <?php require_once (ROOT . '/modules/' . \eMarket\Valid::inGET('type') . '/' . \eMarket\Valid::inGET('name') . '/controller/admin.php'); ?>
+
+        </div>
 
     </div>
 </div>

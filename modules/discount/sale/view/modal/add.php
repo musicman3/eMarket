@@ -11,9 +11,9 @@
             <div class="modal-header"><div class="pull-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Сокращенное наименование указывается любыми символами" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
                 <h4 class="modal-title"><?php echo lang('title_' . \eMarket\Set::titleDir() . '_index') ?></h4>
             </div>
-            <form id="form_add" name="form_add" action="javascript:void(null);" onsubmit="callAdd()">
+            <form id="form_add_mod" name="form_add_mod" action="javascript:void(null);" onsubmit="callAdd('form_add_mod')">
                 <div class="panel-body">
-                    <input type="hidden" name="add" value="ok" />
+                    <input type="hidden" name="add_mod" value="ok" />
 
                     <!-- Языковые панели -->
                     <?php require_once(ROOT . '/view/' . \eMarket\Set::template() . '/layouts/lang_tabs_add.php') ?>
@@ -24,7 +24,7 @@
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="input-sm form-control" placeholder="<?php echo lang('modules_discount_sale_admin_name') ?>" type="text" name="name_weight_0" id="name_weight_0" required />
+                                    <input class="input-sm form-control" placeholder="<?php echo lang('modules_discount_sale_admin_name') ?>" type="text" name="name_module_0" id="name_module_0" required />
                                 </div>
                             </div>
                         </div>
@@ -38,7 +38,7 @@
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo lang('modules_discount_sale_admin_name') ?>" type="text" name="name_weight_<?php echo $x ?>" id="name_weight_<?php echo $x ?>" required />
+                                            <input class="input-sm form-control" placeholder="<?php echo lang('modules_discount_sale_admin_name') ?>" type="text" name="name_module_<?php echo $x ?>" id="name_module_<?php echo $x ?>" required />
                                         </div>
                                     </div>
                                 </div>
@@ -66,8 +66,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="default_weight" id="default_weight" type="checkbox" checked>
-                            <label for="default_weight"><?php echo lang('default_set') ?> </label>
+                            <input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="default_module" id="default_module" type="checkbox" checked>
+                            <label for="default_module"><?php echo lang('default_set') ?> </label>
                         </div>
                     </div>
                 </div>
