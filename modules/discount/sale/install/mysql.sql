@@ -11,5 +11,6 @@ CREATE TABLE emkt_modules_discount_sale (
         sale_value decimal(3,2),
 	date_start datetime,
         date_end datetime,
+        default_set int(1),
 	PRIMARY KEY (id, language))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

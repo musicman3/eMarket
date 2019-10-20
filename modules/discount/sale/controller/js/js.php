@@ -4,6 +4,12 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
+
+<!-- Инициализация bootstrap-switch -->
+<script type="text/javascript">
+    $('#default_module').bootstrapSwitch();
+</script>
+
 <!-- Bootstrap Datepicker" -->
 <script type="text/javascript" src="/ext/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
 <link href="/ext/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
@@ -17,9 +23,7 @@
         calendarWeeks: true
     });
 </script>
-<script type="text/javascript">
-    $('#default_weight').bootstrapSwitch();
-</script>
+
 <?php if (isset($name_edit)) { ?>
     <!-- Загрузка данных в модальное окно -->
     <script type="text/javascript">

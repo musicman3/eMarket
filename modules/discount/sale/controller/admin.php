@@ -23,13 +23,20 @@ if (\eMarket\Valid::inPOST('add_mod')) {
         $end_date = NULL;
     }
 
+    // Если есть установка по-умолчанию
+    if (\eMarket\Valid::inPOST('default_module')) {
+        $default_value = 1;
+    } else {
+        $default_value = 0;
+    }
+
     // Получаем последний id и увеличиваем его на 1
     $id_max = \eMarket\Pdo::selectPrepare("SELECT id FROM " . $DATABASE . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
     $id = intval($id_max) + 1;
 
     // добавляем запись для всех вкладок
     for ($x = 0; $x < $LANG_COUNT; $x++) {
-        \eMarket\Pdo::inPrepare("INSERT INTO " . $DATABASE . " SET id=?, name=?, language=?, sale_value=?, date_start=?, date_end=?", [$id, \eMarket\Valid::inPOST('name_module_' . $x), lang('#lang_all')[$x], \eMarket\Valid::inPOST('sale_value'), $start_date, $end_date]);
+        \eMarket\Pdo::inPrepare("INSERT INTO " . $DATABASE . " SET id=?, name=?, language=?, sale_value=?, date_start=?, date_end=?, default_set=?", [$id, \eMarket\Valid::inPOST('name_module_' . $x), lang('#lang_all')[$x], \eMarket\Valid::inPOST('sale_value'), $start_date, $end_date, $default_value]);
     }
 
     // Выводим сообщение об успехе

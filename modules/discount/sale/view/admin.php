@@ -61,10 +61,10 @@
             </tr>
             <?php if ($lines == TRUE) { ?>
                 <tr class="border">
-                    <th><?php echo lang('name_full') ?></th>
-                    <th class="al-text"><?php echo lang('name_little') ?></th>
-                    <th class="al-text"><?php echo lang('value') ?></th>
-                    <th class="al-text"><?php echo lang('default') ?></th>
+                    <th><?php echo lang('modules_discount_sale_admin_name') ?></th>
+                    <th class="al-text"><?php echo lang('modules_discount_sale_admin_value') ?></th>
+                    <th class="al-text"><?php echo lang('modules_discount_sale_admin_sale_start_date') ?></th>
+                    <th class="al-text"><?php echo lang('modules_discount_sale_admin_sale_end_date') ?></th>
                     <th class="al-text-w"></th>
                 </tr>
             <?php } ?>
