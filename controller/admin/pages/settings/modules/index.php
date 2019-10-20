@@ -10,7 +10,7 @@ $installed_active = \eMarket\Pdo::getColAssoc("SELECT name, type FROM " . TABLE_
 
 if (\eMarket\Valid::inPOST('add')) {
     $module = explode('_', \eMarket\Valid::inPOST('add'));
-    \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_MODULES . " SET name=?, type=?, page=?, position=?, sort=?, install=?, active=?, default_module=?", [$module[1], $module[0], NULL, NULL, NULL, 1, 1, 0]);
+    \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_MODULES . " SET name=?, type=?, page=?, position=?, sort=?, install=?, active=?", [$module[1], $module[0], NULL, NULL, NULL, 1, 1]);
     
     //Загружаем БД из файла
     \eMarket\Pdo::dbInstall(ROOT . '/modules/' . $module[0] . '/' . $module[1] . '/install/');
