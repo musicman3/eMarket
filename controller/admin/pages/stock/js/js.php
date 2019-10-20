@@ -679,6 +679,7 @@ if (isset($_SESSION['buffer'])) {
         autoclose: true,
         updateViewDate: false,
         clearBtn: true,
+        startDate: '+1d',
         calendarWeeks: true
     });
 </script>
