@@ -74,12 +74,8 @@
                 <tr>
                     <td><?php echo $lines[$start][1] ?></td>
                     <td class="al-text"><?php echo $lines[$start][2] ?></td>
-                    <td class="al-text"><?php echo (float) $lines[$start][3] ?></td>
-                    <?php if ($lines[$start][4] == 1) { ?>
-                        <td class="al-text"><?php echo lang('confirm-yes') ?></td>
-                    <?php } else { ?>
-                        <td class="al-text"><?php echo lang('confirm-no') ?></td>
-                    <?php } ?>
+                    <td class="al-text"><?php echo \eMarket\Set::dateLocale($lines[$start][3]); ?></td>
+                    <td class="al-text"><?php echo \eMarket\Set::dateLocale($lines[$start][4]); ?></td>
                     <td class="al-text-w">
                         <form id="form_delete<?php echo $lines[$start][0] ?>" name="form_delete" action="javascript:void(null);" onsubmit="callDelete('<?php echo $lines[$start][0] ?>')" enctype="multipart/form-data">
                             <input hidden name="delete" value="<?php echo $lines[$start][0] ?>">

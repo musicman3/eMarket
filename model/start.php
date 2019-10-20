@@ -55,6 +55,9 @@ if (\eMarket\Set::path() == 'catalog') {
 // Загружаем языковой роутер
 require_once('router_lang.php');
 
+//Устанавливаем локаль
+setlocale(LC_ALL, lang('language_locale'));
+
 // Считаем количество языков
 $LANG_COUNT = count(lang('#lang_all'));
 

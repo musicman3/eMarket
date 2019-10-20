@@ -31,7 +31,7 @@ class Set {
      * @return array $currencies
      */
     public static function currenciesData() {
-        
+
         $currencies = \eMarket\Pdo::getColRow("SELECT name, id FROM " . TABLE_CURRENCIES . " WHERE language=?", [lang('#lang_all')[0]]);
         return $currencies;
     }
@@ -62,7 +62,7 @@ class Set {
      * @return string $path
      */
     public static function canonicalPathCatalog() {
-        
+
         $path_temp = \eMarket\Valid::inSERVER('REQUEST_URI');
         if (\eMarket\Valid::inSERVER('REQUEST_URI') == '/') {
             $path_temp = '';
@@ -83,7 +83,7 @@ class Set {
      * @return string $path
      */
     public static function path() {
-        
+
         if (strrpos(\eMarket\Valid::inSERVER('REQUEST_URI'), 'controller/admin/') == true) {
             $path = 'admin';
         } elseif (strrpos(\eMarket\Valid::inSERVER('REQUEST_URI'), 'controller/install/') == true) {
@@ -101,12 +101,12 @@ class Set {
      * @return string $title_dir
      */
     public static function titleDir() {
-        
+
         $title_dir = str_replace('/', '_', \eMarket\Valid::inGET('route'));
         if (\eMarket\Valid::inGET('object') != '') {
             $title_dir = $title_dir . '_page_' . \eMarket\Valid::inGET('object');
         }
-        
+
         if ($title_dir == '' && self::path() == 'catalog') {
             $title_dir = '';
         }
@@ -126,27 +126,27 @@ class Set {
      * @return string $title
      */
     public static function titleCatalog($marker = null) {
-        
-        if ($marker == 'false'){
+
+        if ($marker == 'false') {
             $sign = '';
         }
-        if ($marker == null){
+        if ($marker == null) {
             $sign = ': ';
         }
         $title = $sign . lang('title_' . basename(\eMarket\Valid::inGET('route')) . '_index');
-        
+
         if (basename(\eMarket\Valid::inGET('route')) == '' && self::path() == 'catalog') {
             $title = '';
         }
-        
+
         if (basename(\eMarket\Valid::inGET('route')) == 'listing' && self::path() == 'catalog') {
             $title = $sign . \eMarket\Pdo::getCell("SELECT name FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], \eMarket\Valid::inGET('category_id')]);
         }
-        
+
         if (basename(\eMarket\Valid::inGET('route')) == 'products' && self::path() == 'catalog') {
             $title = $sign . \eMarket\Pdo::getCell("SELECT name FROM " . TABLE_PRODUCTS . " WHERE language=? AND id=?", [lang('#lang_all')[0], \eMarket\Valid::inGET('id')]);
         }
-        
+
         return $title;
     }
 
@@ -156,7 +156,7 @@ class Set {
      * @return string $lines_on_page
      */
     public static function linesOnPage() {
-        
+
         $lines_on_page = \eMarket\Pdo::selectPrepare("SELECT lines_on_page FROM " . TABLE_BASIC_SETTINGS, []);
         return $lines_on_page;
     }
@@ -167,7 +167,7 @@ class Set {
      * @return string $session_expr_time
      */
     public static function sessionExprTime() {
-        
+
         $session_expr_time = \eMarket\Pdo::selectPrepare("SELECT session_expr_time FROM " . TABLE_BASIC_SETTINGS, []);
         return $session_expr_time;
     }
@@ -184,7 +184,6 @@ class Set {
         $count_value = count($value);
         for ($x = 0; $x < $count_value; $x++) {
             if (isset($value[$x][1]) && $value[$x][1] == 1 && $selected != FALSE && $id != null) {
-
                 ?>
                 <!-- Строка Select по умолчанию-->
                 <option value="<?php echo $id ?>" selected><?php echo $value[$x][0] ?></option>
@@ -201,7 +200,7 @@ class Set {
      * @return string $ipaddress
      */
     public static function ipAdress() {
-        
+
         $ipaddress = '';
         if (getenv('HTTP_CLIENT_IP')) {
             $ipaddress = getenv('HTTP_CLIENT_IP');
@@ -220,7 +219,7 @@ class Set {
         }
         return $ipaddress;
     }
-    
+
     /**
      * Получаем названия для Breadcrumb
      *
@@ -228,16 +227,16 @@ class Set {
      * @return string $breadcrumb (массив breadcrumb в виде названия)
      */
     public static function breadcrumbName($breadcrumb_array) {
-        
+
         $breadcrumb = [];
         foreach ($breadcrumb_array as $value) {
             $name = \eMarket\Pdo::getCell("SELECT name FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], $value]);
-            array_push ($breadcrumb, $name);
+            array_push($breadcrumb, $name);
         }
 
         return $breadcrumb;
-    }    
-    
+    }
+
     /**
      * Получаем parent_id для Breadcrumb
      *
@@ -245,16 +244,16 @@ class Set {
      * @return string $breadcrumb (массив breadcrumb в виде parent_id)
      */
     public static function breadcrumbParentId($breadcrumb_array) {
-        
+
         $breadcrumb = [];
         foreach ($breadcrumb_array as $value) {
             $name = \eMarket\Pdo::getCell("SELECT parent_id FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], $value]);
-            array_push ($breadcrumb, $name);
+            array_push($breadcrumb, $name);
         }
 
         return $breadcrumb;
-    }      
-    
+    }
+
     /**
      * Получаем путь к папке модуля
      *
@@ -264,7 +263,7 @@ class Set {
 
         return ROOT . '/modules/' . \eMarket\Valid::inGET('type') . '/' . \eMarket\Valid::inGET('name');
     }
-    
+
     /**
      * Получаем название базы данных модуля
      *
@@ -273,8 +272,21 @@ class Set {
     public static function moduleDatabase() {
 
         return DB_PREFIX . 'modules_' . \eMarket\Valid::inGET('type') . '_' . \eMarket\Valid::inGET('name');
-    }     
+    }
+
+    /**
+     * Форматированная дата
+     *
+     * @return string|FALSE форматированная дата
+     */
+    public static function dateLocale($date, $format = null) {
+        if ($format != null) {
+            return strftime($format, date('U', strtotime($date)));
+        } else {
+            return strftime('%x', date('U', strtotime($date)));
+        }
+        return FALSE;
+    }
 
 }
-
 ?>
