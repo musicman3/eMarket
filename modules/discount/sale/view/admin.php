@@ -25,7 +25,7 @@
     <table class="table table-hover">
         <thead>
             <tr>
-                <th colspan="4">
+                <th colspan="5">
                     <?php if ($lines == TRUE) { ?>
                         <div class="page"><?php echo lang('s') ?> <?php echo $start + 1 ?> <?php echo lang('po') ?> <?php echo $finish ?> ( <?php echo lang('iz') ?> <?php echo count($lines); ?> )</div>
                         <?php
@@ -65,6 +65,7 @@
                     <th class="al-text"><?php echo lang('modules_discount_sale_admin_value') ?></th>
                     <th class="al-text"><?php echo lang('modules_discount_sale_admin_sale_start_date') ?></th>
                     <th class="al-text"><?php echo lang('modules_discount_sale_admin_sale_end_date') ?></th>
+                    <th class="al-text"><?php echo lang('default') ?></th>
                     <th class="al-text-w"></th>
                 </tr>
             <?php } ?>
@@ -76,6 +77,11 @@
                     <td class="al-text"><?php echo $lines[$start][2] ?></td>
                     <td class="al-text"><?php echo \eMarket\Set::dateLocale($lines[$start][3]); ?></td>
                     <td class="al-text"><?php echo \eMarket\Set::dateLocale($lines[$start][4]); ?></td>
+                    <?php if ($lines[$start][5] == 1) { ?>
+                        <td class="al-text"><?php echo lang('confirm-yes') ?></td>
+                    <?php } else { ?>
+                        <td class="al-text"><?php echo lang('confirm-no') ?></td>
+                    <?php } ?>
                     <td class="al-text-w">
                         <form id="form_delete<?php echo $lines[$start][0] ?>" name="form_delete" action="javascript:void(null);" onsubmit="callDelete('<?php echo $lines[$start][0] ?>')" enctype="multipart/form-data">
                             <input hidden name="delete" value="<?php echo $lines[$start][0] ?>">
