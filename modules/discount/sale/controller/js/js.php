@@ -15,10 +15,19 @@
 <link href="/ext/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
 <script type="text/javascript" src="/ext/bootstrap-datepicker/locales/bootstrap-datepicker.<?php echo lang('meta-language') ?>.min.js"></script>
 <script type="text/javascript">
-    $('#start_date, #start_date_edit, #end_date, #end_date_edit').datepicker({
+    $('#start_date, #start_date_edit').datepicker({
         language: "<?php echo lang('meta-language') ?>",
         autoclose: true,
         updateViewDate: false,
+        startDate: '0d',
+        clearBtn: true,
+        calendarWeeks: true
+    });
+        $('#end_date, #end_date_edit').datepicker({
+        language: "<?php echo lang('meta-language') ?>",
+        autoclose: true,
+        updateViewDate: false,
+        startDate: '+1d',
         clearBtn: true,
         calendarWeeks: true
     });

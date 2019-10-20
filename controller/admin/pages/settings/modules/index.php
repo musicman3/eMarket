@@ -40,7 +40,6 @@ if (\eMarket\Valid::inPOST('edit')) {
     \eMarket\Pdo::inPrepare("UPDATE " . TABLE_MODULES . " SET active=? WHERE name=? AND type=?", [$active, $module[1], $module[0]]);
 }
 
-//\eMarket\Debug::trace($payment_installed);
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
 $JS_END = __DIR__;
 ?>
