@@ -12,14 +12,12 @@ if (\eMarket\Valid::inPOST('add_mod')) {
     if (\eMarket\Valid::inPOST('start_date')) {
         $start_date = date('Y-m-d', strtotime(\eMarket\Valid::inPOST('start_date')));
     } else {
-
         $start_date = NULL;
     }
     // Формат даты после Datepicker
     if (\eMarket\Valid::inPOST('end_date')) {
         $end_date = date('Y-m-d', strtotime(\eMarket\Valid::inPOST('end_date')));
     } else {
-
         $end_date = NULL;
     }
 
@@ -39,6 +37,14 @@ if (\eMarket\Valid::inPOST('add_mod')) {
         \eMarket\Pdo::inPrepare("INSERT INTO " . $DATABASE . " SET id=?, name=?, language=?, sale_value=?, date_start=?, date_end=?, default_set=?", [$id, \eMarket\Valid::inPOST('name_module_' . $x), lang('#lang_all')[$x], \eMarket\Valid::inPOST('sale_value'), $start_date, $end_date, $default_value]);
     }
 
+    // Выводим сообщение об успехе
+    $_SESSION['message'] = ['success', lang('action_completed_successfully')];
+}
+
+// Если нажали на кнопку Удалить
+if (\eMarket\Valid::inPOST('delete')) {
+    // Удаляем
+    \eMarket\Pdo::inPrepare("DELETE FROM " . $DATABASE . " WHERE id=?", [\eMarket\Valid::inPOST('delete')]);
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
 }

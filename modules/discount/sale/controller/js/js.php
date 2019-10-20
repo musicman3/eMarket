@@ -19,7 +19,7 @@
         language: "<?php echo lang('meta-language') ?>",
         autoclose: true,
         updateViewDate: false,
-        startDate: '0d',
+        startDate: '+1d',
         clearBtn: true,
         calendarWeeks: true
     });
@@ -27,7 +27,7 @@
         language: "<?php echo lang('meta-language') ?>",
         autoclose: true,
         updateViewDate: false,
-        startDate: '+1d',
+        startDate: '+2d',
         clearBtn: true,
         calendarWeeks: true
     });
