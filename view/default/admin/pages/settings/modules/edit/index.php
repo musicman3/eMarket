@@ -17,10 +17,10 @@
             </h3>
         </div>
         <div class="panel-body">
-            <form id="form_edit" name="form_edit" enctype="multipart/form-data">
-                <input id="edit" type="hidden" name="edit" value="<?php echo \eMarket\Valid::inGET('type') . '_' . \eMarket\Valid::inGET('name') ?>" />
+            <form id="form_edit_active" name="form_edit_active" enctype="multipart/form-data">
+                <input id="edit_active" type="hidden" name="edit_active" value="<?php echo \eMarket\Valid::inGET('type') . '_' . \eMarket\Valid::inGET('name') ?>" />
                 <div class="pull-right">
-                    <input hidden type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('button_on') ?>" data-off-text="<?php echo lang('button_off') ?>" name="switch" id="switch" <?php echo $switch ?>>
+                    <input hidden type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('button_on') ?>" data-off-text="<?php echo lang('button_off') ?>" name="switch_active" id="switch_active" <?php echo $switch_active ?>>
                 </div>
             </form>
             <div class="pull-left">

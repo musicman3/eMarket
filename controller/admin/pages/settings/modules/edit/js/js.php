@@ -13,12 +13,12 @@
 
 <!-- Инициализация bootstrap-switch -->
 <script type="text/javascript">
-    $('#switch').bootstrapSwitch();
+    $('#switch_active').bootstrapSwitch();
 </script>
 <!-- Отправка данных при переключении bootstrap-switch -->
 <script type="text/javascript">
-    $('#switch').on('switchChange.bootstrapSwitch', function (event, state) {
-        var msg = $('#form_edit').serialize();
+    $('#switch_active').on('switchChange.bootstrapSwitch', function (event, state) {
+        var msg = $('#form_edit_active').serialize();
         // Установка синхронного запроса для jQuery.ajax
         jQuery.ajaxSetup({async: false});
         jQuery.ajax({

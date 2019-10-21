@@ -8,9 +8,9 @@
 $active = \eMarket\Pdo::getCellFalse("SELECT active FROM " . TABLE_MODULES . " WHERE type=? AND name=?", [\eMarket\Valid::inGET('type'), \eMarket\Valid::inGET('name')])[0];
 
 if ($active == 1){
-    $switch = 'checked';
+    $switch_active = 'checked';
 }else{
-    $switch = '';
+    $switch_active = '';
 }
 
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
