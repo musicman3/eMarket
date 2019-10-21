@@ -13,7 +13,7 @@
             </div>
             <form id="form_add_mod" name="form_add_mod" action="javascript:void(null);" onsubmit="callAdd('form_add_mod')">
                 <div class="panel-body">
-                    <input type="hidden" name="add_mod" value="ok" />
+                    <input type="hidden" name="add" value="ok" />
 
                     <!-- Языковые панели -->
                     <?php require_once(ROOT . '/view/' . \eMarket\Set::template() . '/layouts/lang_tabs_add.php') ?>
@@ -48,15 +48,15 @@
                         }
                         ?>
                         <div class="col-left form-group">
-                            <div class="input-group has-success">
+                            <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                <input class="input-sm form-control" placeholder="<?php echo lang('modules_discount_sale_admin_sale_start_date') ?>" type="text" name="start_date" id="start_date" autocomplete="off" />
+                                <input class="input-sm form-control" placeholder="<?php echo lang('modules_discount_sale_admin_sale_start_date') ?>" type="text" name="start_date" id="start_date" autocomplete="off" required />
                             </div>
                         </div>
                         <div class="col-left form-group">
-                            <div class="input-group has-success">
+                            <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                <input class="input-sm form-control" placeholder="<?php echo lang('modules_discount_sale_admin_sale_end_date') ?>" type="text" name="end_date" id="end_date" autocomplete="off" />
+                                <input class="input-sm form-control" placeholder="<?php echo lang('modules_discount_sale_admin_sale_end_date') ?>" type="text" name="end_date" id="end_date" autocomplete="off" required />
                             </div>
                         </div>
                         <div class="form-group">

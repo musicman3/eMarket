@@ -7,7 +7,7 @@
 
 $DATABASE = \eMarket\Set::moduleDatabase();
 
-if (\eMarket\Valid::inPOST('add_mod')) {
+if (\eMarket\Valid::inPOST('add')) {
     // Формат даты после Datepicker
     if (\eMarket\Valid::inPOST('start_date')) {
         $start_date = date('Y-m-d', strtotime(\eMarket\Valid::inPOST('start_date')));
