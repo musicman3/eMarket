@@ -8,6 +8,7 @@
 <!-- Инициализация bootstrap-switch -->
 <script type="text/javascript">
     $('#default_module').bootstrapSwitch();
+    $('#default_module_edit').bootstrapSwitch();
 </script>
 
 <!-- Bootstrap Datepicker" -->

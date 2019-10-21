@@ -27,13 +27,7 @@ require(\eMarket\Set::modulesPath() . '/controller/modal/edit.php');
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="input-sm form-control" type="text" name="name_weight_edit_0" id="name_weight_edit_0" required />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="input-group has-error">
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="input-sm form-control" type="text" name="code_weight_edit_0" id="code_weight_edit_0" required />
+                                    <input class="input-sm form-control" type="text" name="name_module_edit_0" id="name_module_edit_0" required />
                                 </div>
                             </div>
                         </div>
@@ -47,13 +41,7 @@ require(\eMarket\Set::modulesPath() . '/controller/modal/edit.php');
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" type="text" name="name_weight_edit_<?php echo $x ?>" id="name_weight_edit_<?php echo $x ?>" required />
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="input-group has-error">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" type="text" name="code_weight_edit_<?php echo $x ?>" id="code_weight_edit_<?php echo $x ?>" required />
+                                            <input class="input-sm form-control" type="text" name="name_module_edit_<?php echo $x ?>" id="name_module_edit_<?php echo $x ?>" required />
                                         </div>
                                     </div>
                                 </div>
@@ -63,15 +51,27 @@ require(\eMarket\Set::modulesPath() . '/controller/modal/edit.php');
                         }
                         ?>
 
-                        <div class="form-group">
-                            <div class="input-group has-error">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                <input class="input-sm form-control" type="text" name="value_weight_edit" pattern="\d+(\.\d{0,7})?" id="value_weight_edit" required />
+                        <div class="col-left form-group">
+                            <div class="input-group has-success">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                <input class="input-sm form-control" type="text" name="start_date_edit" id="start_date_edit" autocomplete="off" />
+                            </div>
+                        </div>
+                        <div class="col-left form-group">
+                            <div class="input-group has-success">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                <input class="input-sm form-control" type="text" name="end_date_edit" id="end_date_edit" autocomplete="off" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="default_weight_edit" id="default_weight_edit" type="checkbox">
-                            <label for="default_weight_edit"><?php echo lang('default_set') ?> </label>
+                            <div class="input-group has-error">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
+                                <input class="input-sm form-control" type="text" name="sale_value_edit" pattern="\d+(\.\d{0,2})?" id="sale_value_edit" required />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="default_module_edit" id="default_module_edit" type="checkbox" checked>
+                            <label for="default_module_edit"><?php echo lang('default_set') ?> </label>
                         </div>
                     </div>
                 </div>
