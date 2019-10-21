@@ -57,6 +57,14 @@
             replaceClass('.database_name', false);
         }
     });
+    
+    $('#password_db').on('input', function () {
+        if ($('#password_db').val() !== '') {
+            replaceClass('.password_db', true);
+        } else {
+            replaceClass('.password_db', false);
+        }
+    });
 
     $('#email').on('input', function () {
         var email = $('#email').val();
