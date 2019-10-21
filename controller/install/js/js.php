@@ -26,6 +26,9 @@
     if ($('#database_name').val() !== '') {
         replaceClass('.database_name', true);
     }
+    if ($('#password_db').val() !== '') {
+        replaceClass('.password_db', true);
+    }
 
     if ($('#email').val().match(/^[a-zA-Zа-яА-Я_\d][-a-zA-Zа-яА-Я0-9_\.\d]*\@[a-zA-Zа-яА-Я\d][-a-zA-Zа-яА-Я\.\d]*\.[a-zA-Zа-яА-Я]{2,4}$/)) {
         replaceClass('.email', true);

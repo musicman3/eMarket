@@ -100,9 +100,9 @@
 
                     <div class="row">
                         <div class="col-left form-group">
-                            <div class="input-group has-success">
+                            <div class="input-group has-error password_db">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-hdd"></span></span>
-                                <input class="input-sm form-control" placeholder="<?php echo lang('password_db') ?>" type="password" name="password_db" />
+                                <input class="input-sm form-control" id="password_db" placeholder="<?php echo lang('password_db') ?>" type="password" name="password_db" />
                             </div>
                         </div>
                         <div class="col-left form-group">
