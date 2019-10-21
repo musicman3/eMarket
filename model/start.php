@@ -18,11 +18,10 @@ foreach (\eMarket\Tree::filesTree(getenv('DOCUMENT_ROOT') . '/model/functions/')
     require_once($path);
 }
 
-require_once('configure/configure.php');
-
 //Если это панель администратора
 if (\eMarket\Set::path() == 'admin') {
-
+    require_once('configure/configure.php');
+    
     // Загружаем авторизацию Административной части
     if (\eMarket\Valid::inGET('route') != 'login') {
         $TOKEN = \eMarket\Autorize::sessionAdmin();
@@ -33,7 +32,8 @@ if (\eMarket\Set::path() == 'admin') {
 
 // Если это каталог
 if (\eMarket\Set::path() == 'catalog') {
-
+    require_once('configure/configure.php');
+    
     // Загружаем авторизацию Каталога
     if (\eMarket\Autorize::sessionCatalog() == TRUE) {
         $CUSTOMER = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']])[0];
