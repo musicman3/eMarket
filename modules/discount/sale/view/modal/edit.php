@@ -54,13 +54,13 @@ require(\eMarket\Set::modulesPath() . '/controller/modal/edit.php');
                         <div class="col-left form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                <input class="input-sm form-control" type="text" name="start_date_edit" id="start_date_edit" autocomplete="off" required/>
+                                <input class="input-sm form-control" type="text" name="start_date_edit" id="start_date_edit" autocomplete="off" />
                             </div>
                         </div>
                         <div class="col-left form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                <input class="input-sm form-control" type="text" name="end_date_edit" id="end_date_edit" autocomplete="off" required/>
+                                <input class="input-sm form-control" type="text" name="end_date_edit" id="end_date_edit" autocomplete="off" />
                             </div>
                         </div>
                         <div class="form-group">

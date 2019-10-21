@@ -20,16 +20,16 @@
         language: "<?php echo lang('meta-language') ?>",
         autoclose: true,
         updateViewDate: false,
-        startDate: '+0d',
         clearBtn: true,
+        startDate: '+0d',
         calendarWeeks: true
     });
-        $('#end_date, #end_date_edit').datepicker({
+    $('#end_date, #end_date_edit').datepicker({
         language: "<?php echo lang('meta-language') ?>",
         autoclose: true,
         updateViewDate: false,
-        startDate: '+1d',
         clearBtn: true,
+        startDate: '+1d',
         calendarWeeks: true
     });
 </script>
@@ -38,29 +38,39 @@
     <!-- Загрузка данных в модальное окно -->
     <script type="text/javascript">
         $('#edit').on('show.bs.modal', function (event) {
-            $('#default_weight_edit').bootstrapSwitch('destroy', true);
+            $('#default_module_edit').bootstrapSwitch('destroy', true);
             var button = $(event.relatedTarget);
             var modal_id = button.data('edit'); // Получаем ID из data-edit при клике на кнопку редактирования
+            if (modal_id === undefined) {
+                modal_id = $('#js_edit').val();
+            }
             // Получаем массивы данных
             var name_edit = $('div#ajax_data').data('name');
-            var code_edit = $('div#ajax_data').data('code');
-            var value_weight_edit = $('div#ajax_data').data('weight');
-            var status = $('div#ajax_data').data('status');
+            var value_edit = $('div#ajax_data').data('value');
+            var start_edit = $('div#ajax_data').data('start');
+            var end_edit = $('div#ajax_data').data('end');
+            var default_edit = $('div#ajax_data').data('default');
 
             // Ищем id и добавляем данные
             for (x = 0; x < name_edit.length; x++) {
-                $('#name_weight_edit_' + x).val(name_edit[x][modal_id]);
-                $('#code_weight_edit_' + x).val(code_edit[x][modal_id]);
+                $('#name_module_edit_' + x).val(name_edit[x][modal_id]);
             }
 
-            $('#value_weight_edit').val(value_weight_edit[modal_id]);
+            $('#sale_value_edit').val(value_edit[modal_id]);
             $('#js_edit').val(modal_id);
+
+            // Устанавливаем Datepicker
+            if (button.data('edit') !== undefined) {
+                $('#start_date_edit').datepicker('update', new Date(start_edit[modal_id]));
+                $('#end_date_edit').datepicker('update', new Date(end_edit[modal_id]));
+            }
+
             // Меняем значение чекбокса
-            $('#default_weight_edit').prop('checked', status[modal_id]);
-            $('#default_weight_edit').bootstrapSwitch();
+            $('#default_module_edit').prop('checked', default_edit[modal_id]);
+            $('#default_module_edit').bootstrapSwitch();
         });
     </script>
-<?php
+    <?php
 }
 ?>
 

@@ -17,9 +17,10 @@
     <!--Скрытый div для передачи данных-->
     <div id="ajax_data" class='hidden'
          data-name='<?php echo $name_edit ?>'
-         data-code='<?php echo $code_edit ?>'
-         data-weight='<?php echo $value_weight_edit ?>'
-         data-status='<?php echo $status_weight_edit ?>'
+         data-value='<?php echo $sale_value_edit ?>'
+         data-start='<?php echo $date_start_edit ?>'
+         data-end='<?php echo $date_end_edit ?>'
+         data-default='<?php echo $default_set_edit ?>'
          ></div>
 
     <table class="table table-hover">

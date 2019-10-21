@@ -196,7 +196,7 @@ if (isset($_SESSION['buffer'])) {
                                 if (date_available_edit[modal_id] === null) {
                                     $('#date_available_product_stock_edit').datepicker('update', '');
                                 } else {
-                                    $('#date_available_product_stock_edit').datepicker('update', new Date(date_available_edit[modal_id].replace(/-/g, ',')));
+                                    $('#date_available_product_stock_edit').datepicker('update', new Date(date_available_edit[modal_id]));
                                 }
 
                                 $('#tax_product_stock_edit').val(tax_edit[modal_id]);
@@ -217,7 +217,6 @@ if (isset($_SESSION['buffer'])) {
                             });
 
                             $('#edit_product').modal('show');
-                            //alert(modal_edit .split('product_')[1]);
 
                         } else {
 
