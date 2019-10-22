@@ -16,6 +16,7 @@
 <link href="/ext/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
 <script type="text/javascript" src="/ext/bootstrap-datepicker/locales/bootstrap-datepicker.<?php echo lang('meta-language') ?>.min.js"></script>
 <script type="text/javascript">
+    //Инициализация
     $('#start_date, #start_date_edit').datepicker({
         language: "<?php echo lang('meta-language') ?>",
         autoclose: true,
@@ -32,7 +33,7 @@
         startDate: '+1d',
         calendarWeeks: true
     });
-    // Умный календарь
+    //Умный календарь
     $('#start_date_edit').datepicker()
             .on('changeDate', function (e) {
                 var day_start = new Date($('#start_date_edit').datepicker('getDate'));
@@ -67,7 +68,7 @@
                     $('#end_date').datepicker('setStartDate', new Date(day_start.setDate(day_start.getDate() + 1)));
                 }
             });
-
+    //Очищаем при закрытии модала
     $('#add, #edit').on('hidden.bs.modal', function (event) {
         $('#start_date, #start_date_edit, #end_date, #end_date_edit').datepicker('clearDates');
     });
