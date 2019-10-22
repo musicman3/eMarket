@@ -32,6 +32,19 @@
         startDate: '+1d',
         calendarWeeks: true
     });
+    // Умный календарь
+    $('#start_date_edit').datepicker()
+            .on('changeDate', function (e) {
+                var day = new Date($('#start_date_edit').datepicker('getDate'));
+                $('#end_date_edit').datepicker('setStartDate', new Date(day.setDate(day.getDate() + 1)));
+                $('#end_date_edit').datepicker('setDate', new Date(day.setDate(day.getDate())));
+            });
+    $('#end_date_edit').datepicker()
+            .on('show', function (e) {
+                var day = new Date($('#start_date_edit').datepicker('getDate'));
+                $('#end_date_edit').datepicker('setStartDate', new Date(day.setDate(day.getDate() + 1)));
+                $('#end_date_edit').datepicker('setDate', new Date(day.setDate(day.getDate())));
+            });
 </script>
 
 <?php if (isset($name_edit)) { ?>
@@ -61,8 +74,8 @@
 
             // Устанавливаем Datepicker
             if (button.data('edit') !== undefined) {
-                $('#start_date_edit').datepicker('update', new Date(start_edit[modal_id]));
-                $('#end_date_edit').datepicker('update', new Date(end_edit[modal_id]));
+                $('#start_date_edit').datepicker('setDate', new Date(start_edit[modal_id]));
+                $('#end_date_edit').datepicker('setDate', new Date(end_edit[modal_id]));
             }
 
             // Меняем значение чекбокса

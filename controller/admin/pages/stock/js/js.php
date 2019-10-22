@@ -194,9 +194,9 @@ if (isset($_SESSION['buffer'])) {
                                 $('#manufacturers_product_stock_edit').val(manufacturers_edit[modal_id]);
 
                                 if (date_available_edit[modal_id] === null) {
-                                    $('#date_available_product_stock_edit').datepicker('update', '');
+                                    $('#date_available_product_stock_edit').datepicker('setDate', '');
                                 } else {
-                                    $('#date_available_product_stock_edit').datepicker('update', new Date(date_available_edit[modal_id]));
+                                    $('#date_available_product_stock_edit').datepicker('setDate', new Date(date_available_edit[modal_id]));
                                 }
 
                                 $('#tax_product_stock_edit').val(tax_edit[modal_id]);
