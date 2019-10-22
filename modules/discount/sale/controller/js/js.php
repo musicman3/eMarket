@@ -67,6 +67,10 @@
                     $('#end_date').datepicker('setStartDate', new Date(day_start.setDate(day_start.getDate() + 1)));
                 }
             });
+
+    $('#add, #edit').on('hidden.bs.modal', function (event) {
+        $('#start_date, #start_date_edit, #end_date, #end_date_edit').datepicker('clearDates');
+    });
 </script>
 
 <?php if (isset($name_edit)) { ?>
