@@ -5,7 +5,7 @@
 /**
  * Двухдиапазонный выбор с автоматическим ограничением к bootstrap-datepicker
  *
- * @package Smart
+ * @package SmartDatepicker
  * @author eMarket
  * 
  */
