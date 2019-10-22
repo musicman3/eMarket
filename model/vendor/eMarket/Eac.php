@@ -642,7 +642,6 @@ final class Eac {
             if (\eMarket\Valid::inPOST('date_available_product_stock_edit')) {
                 $date_available = date('Y-m-d', strtotime(\eMarket\Valid::inPOST('date_available_product_stock_edit')));
             } else {
-
                 $date_available = NULL;
             }
 
