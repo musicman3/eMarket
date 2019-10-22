@@ -44,9 +44,12 @@
             });
     $('#end_date_edit').datepicker()
             .on('show', function (e) {
-                var day = new Date($('#start_date_edit').datepicker('getDate'));
-                $('#end_date_edit').datepicker('setStartDate', new Date(day.setDate(day.getDate() + 1)));
-                $('#end_date_edit').datepicker('setDate', new Date(day.setDate(day.getDate())));
+                var day_start = new Date($('#start_date_edit').datepicker('getDate'));
+                var day_end = new Date($('#end_date_edit').datepicker('getDate'));
+                if (day_start.setDate(day_start.getDate()) <= day_end.setDate(day_end.getDate())) {
+                    $('#end_date_edit').datepicker('setStartDate', new Date(day_start.setDate(day_start.getDate() + 1)));
+                    $('#end_date_edit').datepicker('setDate', new Date(day_start.setDate(day_start.getDate())));
+                }
             });
 </script>
 
