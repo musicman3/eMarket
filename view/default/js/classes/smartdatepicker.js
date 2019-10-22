@@ -3,7 +3,7 @@
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 /**
- * Двухдиапазонный выбор с автоматическим ограничением к bootstrap-datepicker
+ * Двухдиапазонный выбор с автоматическим ограничением для bootstrap-datepicker
  *
  * @package SmartDatepicker
  * @author eMarket
