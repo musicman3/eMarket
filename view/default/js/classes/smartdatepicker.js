@@ -9,16 +9,24 @@
  * @author eMarket
  * 
  */
-class Smart {
+class SmartDatepicker {
+    /**
+     * Конструктор
+     *
+     * @param meta string (meta для языка)
+     */
+    constructor(meta) {
+        this.meta = meta;
+        this.datepicker();
+    }
     /**
      * Двухдиапазонный календарь с автоматическим ограничением
      *
-     * @param lang string (meta для языка)
      */
-    datepicker(lang) {
+    datepicker() {
         //Инициализация
         $('#start_date, #start_date_edit').datepicker({
-            language: lang,
+            language: this.meta,
             autoclose: true,
             updateViewDate: false,
             clearBtn: true,
@@ -26,7 +34,7 @@ class Smart {
             calendarWeeks: true
         });
         $('#end_date, #end_date_edit').datepicker({
-            language: lang,
+            language: this.meta,
             autoclose: true,
             updateViewDate: false,
             clearBtn: true,

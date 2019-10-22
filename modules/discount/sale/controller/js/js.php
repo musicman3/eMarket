@@ -19,7 +19,7 @@
 
 <!-- Smart Datepicker" -->
 <script type="text/javascript">
-    new Smart().datepicker ('<?php echo lang('meta-language') ?>');
+    new SmartDatepicker('<?php echo lang('meta-language') ?>');
 </script>
 
 <?php if (isset($name_edit)) { ?>
