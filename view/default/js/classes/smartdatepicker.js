@@ -62,7 +62,6 @@ class SmartDatepicker {
             if (day_start.setDate(day_start.getDate()) >= day_end.setDate(day_end.getDate())) {
                 $(end).datepicker('setStartDate', new Date(day_start.setDate(day_start.getDate() + 1)));
                 $(end).datepicker('setDate', new Date(day_start.setDate(day_start.getDate())));
-
             }
         });
         $(end).datepicker().on('show', function (e) {
