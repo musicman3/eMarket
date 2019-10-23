@@ -80,6 +80,7 @@
                             <input hidden name="route" value="settings/modules/edit">
                             <input hidden name="type" value="<?php echo \eMarket\Valid::inGET('type') ?>">
                             <input hidden name="name" value="<?php echo \eMarket\Valid::inGET('name') ?>">
+                            <input hidden name="module_path" value="stock">
                             <button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-cog"></span></button>
                         </form>
                     </td>
