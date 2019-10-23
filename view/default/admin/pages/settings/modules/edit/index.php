@@ -31,7 +31,7 @@
             <div class="clearfix"></div></br>
 
             <!--Выводим данные из модуля-->
-            <?php require_once (\eMarket\View::routingModules()); ?>
+            <?php require_once (\eMarket\View::routingModules('controller') . '/index.php'); ?>
 
         </div>
 

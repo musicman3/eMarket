@@ -77,16 +77,16 @@ class View {
     /**
      * Роутинг данных для модулей
      *
+     * @param string $path (маркер пути)
      * @return string $str (роутинг для модулей)
      */
-    public static function routingModules() {
+    public static function routingModules($path) {
 
         if (\eMarket\Valid::inGET('path')) {
-            $str = ROOT . '/modules/' . \eMarket\Valid::inGET('type') . '/' . \eMarket\Valid::inGET('name') . '/controller/' . \eMarket\Set::path() . '/' . \eMarket\Valid::inGET('path') . '/index.php';
+            return \eMarket\Set::modulesPath() . '/' . $path . '/' . \eMarket\Set::path() . '/' . \eMarket\Valid::inGET('path');
         } else {
-            $str = ROOT . '/modules/' . \eMarket\Valid::inGET('type') . '/' . \eMarket\Valid::inGET('name') . '/controller/' . \eMarket\Set::path() . '/index.php';
+            return \eMarket\Set::modulesPath() . '/' . $path . '/' . \eMarket\Set::path();
         }
-        return $str;
     }
 
     /**
