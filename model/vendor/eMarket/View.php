@@ -35,11 +35,11 @@ class View {
      */
     public static function routingAdmin() {
 
-        if (\eMarket\Valid::inGET('object') != '') {
-            $page = \eMarket\Valid::inGET('object') . '.php';
+        if (\eMarket\Valid::inGET('route_file') != '') {
+            $page = \eMarket\Valid::inGET('route_file') . '.php';
         }
 
-        if (!\eMarket\Valid::inGET('object') OR \eMarket\Valid::inGET('object') == '') {
+        if (!\eMarket\Valid::inGET('route_file') OR \eMarket\Valid::inGET('route_file') == '') {
             $page = 'index.php';
         }
 
