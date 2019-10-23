@@ -82,8 +82,8 @@ class View {
      */
     public static function routingModules($path) {
 
-        if (\eMarket\Valid::inGET('path')) {
-            return \eMarket\Set::modulesPath() . '/' . $path . '/' . \eMarket\Set::path() . '/' . \eMarket\Valid::inGET('path');
+        if (\eMarket\Valid::inGET('module_path')) {
+            return \eMarket\Set::modulesPath() . '/' . $path . '/' . \eMarket\Set::path() . '/' . \eMarket\Valid::inGET('module_path');
         } else {
             return \eMarket\Set::modulesPath() . '/' . $path . '/' . \eMarket\Set::path();
         }
