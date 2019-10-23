@@ -77,7 +77,7 @@ class View {
     /**
      * Роутинг данных для модулей
      *
-     * @param string $path (маркер пути)
+     * @param string $path (маркер пути controller/view)
      * @return string $str (роутинг для модулей)
      */
     public static function routingModules($path) {
