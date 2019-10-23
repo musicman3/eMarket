@@ -1,4 +1,5 @@
 <?php
+
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -33,7 +34,7 @@ class View {
      * @return string $str (роутинг на view)
      */
     public static function routingAdmin() {
-        
+
         if (\eMarket\Valid::inGET('object') != '') {
             $page = \eMarket\Valid::inGET('object') . '.php';
         }
@@ -60,7 +61,7 @@ class View {
      * @return string $str (роутинг на view)
      */
     public static function routingCatalog() {
-        
+
         if (\eMarket\Valid::inGET('route') != '') {
             $str = str_replace('controller', 'view/' . \eMarket\Set::template(), getenv('DOCUMENT_ROOT') . '/controller/' . \eMarket\Set::path() . '/pages/' . \eMarket\Valid::inGET('route') . '/index.php');
         } else {
@@ -71,6 +72,21 @@ class View {
         } else {
             return false;
         }
+    }
+
+    /**
+     * Роутинг данных для модулей
+     *
+     * @return string $str (роутинг для модулей)
+     */
+    public static function routingModules() {
+
+        if (\eMarket\Valid::inGET('path')) {
+            $str = ROOT . '/modules/' . \eMarket\Valid::inGET('type') . '/' . \eMarket\Valid::inGET('name') . '/controller/' . \eMarket\Set::path() . '/' . \eMarket\Valid::inGET('path') . '/index.php';
+        } else {
+            $str = ROOT . '/modules/' . \eMarket\Valid::inGET('type') . '/' . \eMarket\Valid::inGET('name') . '/controller/' . \eMarket\Set::path() . '/index.php';
+        }
+        return $str;
     }
 
     /**
