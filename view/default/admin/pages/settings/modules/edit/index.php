@@ -31,7 +31,7 @@
             <div class="clearfix"></div></br>
 
             <!--Выводим данные из модуля-->
-            <?php require_once (ROOT . '/modules/' . \eMarket\Valid::inGET('type') . '/' . \eMarket\Valid::inGET('name') . '/controller/admin.php'); ?>
+            <?php require_once (ROOT . '/modules/' . \eMarket\Valid::inGET('type') . '/' . \eMarket\Valid::inGET('name') . '/controller/admin/index.php'); ?>
 
         </div>
 

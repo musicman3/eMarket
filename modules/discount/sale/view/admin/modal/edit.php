@@ -4,7 +4,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-require(\eMarket\Set::modulesPath() . '/controller/modal/edit.php');
+require(\eMarket\Set::modulesPath() . '/controller/admin/modal/edit.php');
 ?>
 
 <!-- Модальное окно "Изменить" -->

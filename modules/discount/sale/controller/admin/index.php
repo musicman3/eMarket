@@ -100,5 +100,5 @@ $finish = $navigate[1];
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
 $JS_MOD_END = __DIR__;
 // Загружаем разметку модуля
-require_once (__DIR__ . '../../view/admin.php');
+require_once (__DIR__ . '../../../view/admin/index.php');
 ?>

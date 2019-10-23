@@ -26,7 +26,7 @@
     <table class="table table-hover">
         <thead>
             <tr>
-                <th colspan="5">
+                <th colspan="6">
                     <?php if ($lines == TRUE) { ?>
                         <div class="page"><?php echo lang('s') ?> <?php echo $start + 1 ?> <?php echo lang('po') ?> <?php echo $finish ?> ( <?php echo lang('iz') ?> <?php echo count($lines); ?> )</div>
                         <?php
@@ -62,6 +62,7 @@
             </tr>
             <?php if ($lines == TRUE) { ?>
                 <tr class="border">
+                    <th class="sortleft"></th>
                     <th><?php echo lang('modules_discount_sale_admin_name') ?></th>
                     <th class="al-text"><?php echo lang('modules_discount_sale_admin_value') ?></th>
                     <th class="al-text"><?php echo lang('modules_discount_sale_admin_sale_start_date') ?></th>
@@ -74,6 +75,14 @@
         <tbody>
             <?php for ($start; $start < $finish; $start++) { ?>
                 <tr>
+                    <td class="sortleft">
+                        <form>
+                            <input hidden name="route" value="settings/modules/edit">
+                            <input hidden name="type" value="<?php echo \eMarket\Valid::inGET('type') ?>">
+                            <input hidden name="name" value="<?php echo \eMarket\Valid::inGET('name') ?>">
+                            <button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-cog"></span></button>
+                        </form>
+                    </td>
                     <td><?php echo $lines[$start][1] ?></td>
                     <td class="al-text"><?php echo $lines[$start][2] ?></td>
                     <td class="al-text"><?php echo \eMarket\Set::dateLocale($lines[$start][3]); ?></td>
