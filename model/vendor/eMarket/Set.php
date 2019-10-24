@@ -103,8 +103,8 @@ class Set {
     public static function titleDir() {
 
         $title_dir = str_replace('/', '_', \eMarket\Valid::inGET('route'));
-        if (\eMarket\Valid::inGET('object') != '') {
-            $title_dir = $title_dir . '_page_' . \eMarket\Valid::inGET('object');
+        if (\eMarket\Valid::inGET('route_file') != '') {
+            $title_dir = $title_dir . '_page_' . \eMarket\Valid::inGET('route_file');
         }
 
         if ($title_dir == '' && self::path() == 'catalog') {
