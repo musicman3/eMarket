@@ -120,7 +120,7 @@ class Set {
     }
 
     /**
-     * Текущая директория
+     * Генератор титлов
      *
      * @return string $title
      */
@@ -128,9 +128,15 @@ class Set {
 
         if (self::path() == 'install') {
             $title = lang('title_' . \eMarket\Set::titleDir() . '_' . basename(\eMarket\Valid::inSERVER('PHP_SELF'), '.php'));
-        } else {
-            $title = lang('title_' . \eMarket\Set::titleDir() . '_index');
+            return $title;
         }
+
+        if (\eMarket\Valid::inGET('route') == 'settings/modules/edit') {
+            $title = lang('modules_' . \eMarket\Valid::inGET('type') . '_' . \eMarket\Valid::inGET('name') . '_name');
+            return $title;
+        }
+        $title = lang('title_' . \eMarket\Set::titleDir() . '_index');
+
         return $title;
     }
 
