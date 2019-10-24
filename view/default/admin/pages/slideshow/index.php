@@ -24,7 +24,7 @@
                     <!--Выводим уведомление об успешном действии-->
                     <?php \eMarket\Messages::alert(); ?>
                     <h3 class="panel-title">
-                        <div class="pull-left"><a href="#settings" class="btn btn-primary btn-xs" data-toggle="modal"><span class="back glyphicon glyphicon-wrench"></span></a> <?php echo lang('title_' . \eMarket\Set::titleDir() . '_index') ?></div>
+                        <div class="pull-left"><a href="#settings" class="btn btn-primary btn-xs" data-toggle="modal"><span class="back glyphicon glyphicon-wrench"></span></a> <?php echo \eMarket\Set::titlePageGenerator() ?></div>
                         <div class="clearfix"></div>
                     </h3>
                 </div>

@@ -120,6 +120,21 @@ class Set {
     }
 
     /**
+     * Текущая директория
+     *
+     * @return string $title
+     */
+    public static function titlePageGenerator() {
+
+        if (self::path() == 'install') {
+            $title = lang('title_' . \eMarket\Set::titleDir() . '_' . basename(\eMarket\Valid::inSERVER('PHP_SELF'), '.php'));
+        } else {
+            $title = lang('title_' . \eMarket\Set::titleDir() . '_index');
+        }
+        return $title;
+    }
+
+    /**
      * Название раздела в каталоге
      *
      * @param string $marker (маркер для указания знака)
