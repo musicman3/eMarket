@@ -143,7 +143,7 @@ class Set {
     /**
      * Генератор путей родительских разделов
      *
-     * @return string $title
+     * @return string $output
      */
     public static function parentPartitionGenerator() {
 
