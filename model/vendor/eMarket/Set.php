@@ -169,7 +169,7 @@ class Set {
         if (\eMarket\Valid::inGET('route')) {
             $input = explode('/', \eMarket\Valid::inGET('route'));
             array_pop($input);
-            $output = implode('/', $input);
+            $output = '?route=' . implode('/', $input);
 
             return $output;
         }

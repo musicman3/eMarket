@@ -16,7 +16,7 @@
                     <!--Выводим уведомление об успешном действии-->
                     <?php \eMarket\Messages::alert(); ?>
                     <h3 class="panel-title">
-                        <div class="pull-left"><span class="settings_back"><a class="btn btn-primary btn-xs" href="<?php echo $_SESSION['zone_page'] ?>"><span class="back glyphicon glyphicon-share-alt"></span></a></span><span class="settings_name"><?php echo \eMarket\Set::titlePageGenerator() ?></span></div>
+                        <div class="pull-left"><span class="settings_back"><a class="btn btn-primary btn-xs" href="<?php echo \eMarket\Set::parentPartitionGenerator() ?>"><span class="back glyphicon glyphicon-share-alt"></span></a></span><span class="settings_name"><?php echo \eMarket\Set::titlePageGenerator() ?></span></div>
                         <div class="clearfix"></div>
                     </h3>
                 </div>

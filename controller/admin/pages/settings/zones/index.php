@@ -9,8 +9,6 @@
 require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 /* ------------------------------------------ */
 // 
-//Сохраняем сессию с URL текущей страницы
-$_SESSION['zone_page'] = \eMarket\Valid::inSERVER('REQUEST_URI');
 
 // Если нажали на кнопку Добавить
 if (\eMarket\Valid::inPOST('add')) {

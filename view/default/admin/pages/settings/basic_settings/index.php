@@ -12,7 +12,7 @@
             <!--Выводим уведомление об успешном действии-->
             <?php \eMarket\Messages::alert(); ?>
             <h3 class="panel-title">
-                <div class="pull-left"><span class="settings_back"><button type="button" onClick='location.href = "?route=settings"' class="btn btn-primary btn-xs"><span class="back glyphicon glyphicon-share-alt"></span></button></span><span class="settings_name"><?php echo \eMarket\Set::titlePageGenerator() ?></span></div>
+                <div class="pull-left"><span class="settings_back"><button type="button" onClick='location.href = "<?php echo \eMarket\Set::parentPartitionGenerator() ?>"' class="btn btn-primary btn-xs"><span class="back glyphicon glyphicon-share-alt"></span></button></span><span class="settings_name"><?php echo \eMarket\Set::titlePageGenerator() ?></span></div>
                 <div class="clearfix"></div>
             </h3>
         </div>
