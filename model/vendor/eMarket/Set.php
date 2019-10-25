@@ -141,6 +141,41 @@ class Set {
     }
 
     /**
+     * Генератор путей родительских разделов
+     *
+     * @return string $title
+     */
+    public static function parentPartitionGenerator() {
+
+        if (\eMarket\Valid::inGET('route') == 'settings/modules/edit' && \eMarket\Valid::inGET('module_path')) {
+            $input = explode('/', \eMarket\Valid::inGET('module_path'));
+            array_pop($input);
+            $module_path = implode('/', $input);
+
+            if ($module_path != '') {
+                $output = '?route=settings/modules/edit&type=' . \eMarket\Valid::inGET('type') . '&name=' . \eMarket\Valid::inGET('name') . '&module_path=' . $module_path;
+                return $output;
+            } else {
+                $output = '?route=settings/modules/edit&type=' . \eMarket\Valid::inGET('type') . '&name=' . \eMarket\Valid::inGET('name');
+                return $output;
+            }
+        }
+
+        if (\eMarket\Valid::inGET('route') == 'settings/modules/edit' && !\eMarket\Valid::inGET('module_path')) {
+            $output = '?route=settings/modules&active=' . \eMarket\Valid::inGET('type');
+            return $output;
+        }
+
+        if (\eMarket\Valid::inGET('route')) {
+            $input = explode('/', \eMarket\Valid::inGET('route'));
+            array_pop($input);
+            $output = implode('/', $input);
+
+            return $output;
+        }
+    }
+
+    /**
      * Название раздела в каталоге
      *
      * @param string $marker (маркер для указания знака)
