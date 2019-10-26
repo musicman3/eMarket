@@ -1,4 +1,5 @@
 <?php
+
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -15,7 +16,13 @@ if (\eMarket\Valid::inGET('logout') == 'ok') {
 
 if (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
     //Ищем авторизованного администратора
-    header('Location: ?route=dashboard');    // Если все успешно, то редирект в административную часть
+    if (isset($_SESSION['session_page'])) {
+        $session_page = $_SESSION['session_page'];
+        unset($_SESSION['session_page']);
+        header('Location: ' . $session_page);
+    } else {
+        header('Location: ?route=dashboard');    // Если все успешно, то редирект в административную часть
+    }
 }
 
 // если логин или пароль не верные, то готовим уведомление
@@ -45,7 +52,13 @@ if (\eMarket\Valid::inPOST('autorize') == 'ok') {
     } else {
         $_SESSION['login'] = \eMarket\Valid::inPOST('login');
         $_SESSION['pass'] = $HASH;
-        header('Location: ?route=dashboard');    // Если все успешно, то редирект в административную часть
+        if (isset($_SESSION['session_page'])) {
+            $session_page = $_SESSION['session_page'];
+            unset($_SESSION['session_page']);
+            header('Location: ' . $session_page);
+        } else {
+            header('Location: ?route=dashboard');    // Если все успешно, то редирект в административную часть
+        }
     }
 }
 

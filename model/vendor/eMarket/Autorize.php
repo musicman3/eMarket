@@ -31,6 +31,7 @@ class Autorize {
                 unset($_SESSION['login']);    //удаляем текущую сессию
                 unset($_SESSION['pass']);
                 unset($_SESSION['session_start']);
+                $_SESSION['session_page'] = \eMarket\Valid::inSERVER('REQUEST_URI');
                 header('Location: ?route=login'); // переадресация на LOGIN
             }
             $_SESSION['session_start'] = time();
@@ -38,6 +39,7 @@ class Autorize {
             if (!isset($_SESSION['login'])) { // Если нет пользователя
                 unset($_SESSION['login']);    //удаляем текущую сессию
                 unset($_SESSION['pass']);
+                $_SESSION['session_page'] = \eMarket\Valid::inSERVER('REQUEST_URI');
                 header('Location: ?route=login'); // переадресация на LOGIN
             } else {
                 $TOKEN = $_SESSION['pass']; // создаем токен для ajax и пр.
