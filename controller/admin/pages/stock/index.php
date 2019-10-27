@@ -32,6 +32,22 @@ $EAC_ENGINE = \eMarket\Eac::init($TABLES, $TOKEN, $resize_param, $resize_param_p
 $idsx_real_parent_id = $EAC_ENGINE[0];
 $parent_id = $EAC_ENGINE[1];
 
+// Формируем распродажу для выпадающего списка
+$installed_active = \eMarket\Pdo::getCell("SELECT id FROM " . TABLE_MODULES . " WHERE name=? AND type=? AND active=?", ['sale', 'discount', 1]);
+$sales = '';
+$sale_default = '0';
+if ($installed_active != '') {
+    $sales_all = \eMarket\Pdo::getColAssoc("SELECT id, name FROM " . DB_PREFIX . 'modules_discount_sale' . " WHERE language=?", [lang('#lang_all')[0]]);
+}
+$sales_flag = 0;
+
+if ($installed_active != '' && isset($sales_all) && count($sales_all) > 0) {
+    $sales_flag = 1;
+    foreach ($sales_all as $val) {
+        $sales .= $val['id'] . ': ' . "'" . $val['name'] . "', ";
+    }
+    $sale_default = \eMarket\Pdo::getCell("SELECT id FROM " . DB_PREFIX . 'modules_discount_sale' . " WHERE language=? AND default_set=?", [lang('#lang_all')[0], 1]);
+}
 // Формируем массив Валюта для выпадающего списка
 $currencies_all = \eMarket\Pdo::getColRow("SELECT name, default_value, id FROM " . TABLE_CURRENCIES . " WHERE language=?", [lang('#lang_all')[0]]);
 
