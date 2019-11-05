@@ -92,6 +92,16 @@ $navigate = \eMarket\Navigation::getLink($count_lines_merge, $lines_on_page, 1);
 $start = $navigate[0];
 $finish = $navigate[1];
 
+// Параметры для JS
+if (!isset($idsx_real_parent_id)) {
+    $idsx_real_parent_id = '';
+}
+
+if (isset($_SESSION['buffer'])) {
+    $ses_verify = count($_SESSION['buffer']);
+} else {
+    $ses_verify = '0';
+}
 // КОНЕЦ-> КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
 $JS_END = __DIR__;

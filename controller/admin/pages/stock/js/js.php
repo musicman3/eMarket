@@ -4,15 +4,6 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-if (!isset($idsx_real_parent_id)) {
-    $idsx_real_parent_id = '';
-}
-
-if (isset($_SESSION['buffer'])) {
-    $ses_verify = count($_SESSION['buffer']);
-} else {
-    $ses_verify = '0';
-}
 ?>
 <!-- /Сортировка мышкой -->
 <script type="text/javascript">
@@ -491,6 +482,8 @@ if (isset($_SESSION['buffer'])) {
                         key: {
                             name: "<?php echo lang('button_sale_on') ?>",
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
+                                 // Значение выбранного селекта
+                                var selected_id = $('select[name="context-menu-input-saleOn"] option:selected').val();
                                 // Установка синхронного запроса для jQuery.ajax
                                 jQuery.ajaxSetup({async: false});
                                 // Отправка данных по каждой выделенной строке
