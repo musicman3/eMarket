@@ -1,4 +1,5 @@
 <?php
+
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -33,7 +34,7 @@ final class Eac {
 
         // Если нажали на кнопку Редактировать
         self::editCategory($TABLES[0]);
-        
+
         // Если нажали на кнопку Добавить Товар
         self::addProduct($TABLES, $parent_id);
 
@@ -58,6 +59,9 @@ final class Eac {
 
         // Если нажали на кнопку Скрыть/Отобразить
         $parent_id_status = self::status($TABLES[0], $TABLES[1], $parent_id);
+
+        // Если нажали на кнопку Распродажа
+        $parent_id_status = self::sale($TABLES[0], $TABLES[1], $parent_id);
 
         // Сортировка мышкой EAC
         self::sortList($TABLES[0], $TOKEN);
@@ -145,7 +149,7 @@ final class Eac {
      * @param string $parent_id (идентификатор родительской категории)
      */
     private static function addCategory($TABLE_CATEGORIES, $parent_id) {
-        
+
         $LANG_COUNT = count(lang('#lang_all'));
 
         if (\eMarket\Valid::inPOST('add')) {
@@ -379,18 +383,18 @@ final class Eac {
      */
     private static function status($TABLE_CATEGORIES, $TABLE_PRODUCTS, $parent_id) {
 
-        if ((\eMarket\Valid::inPOST('idsx_statusOn_key') == 'statusOn')
-                or ( \eMarket\Valid::inPOST('idsx_statusOff_key') == 'statusOff')) {
+        if ((\eMarket\Valid::inPOST('idsx_statusOn_key') == 'On')
+                or ( \eMarket\Valid::inPOST('idsx_statusOff_key') == 'Off')) {
 
             $parent_id_real = (int) \eMarket\Valid::inPOST('idsx_real_parent_id'); // получить значение из JS
 
-            if (\eMarket\Valid::inPOST('idsx_statusOn_key') == 'statusOn') {
+            if (\eMarket\Valid::inPOST('idsx_statusOn_key') == 'On') {
                 // Если в массиве пустое значение, то собираем новый массив без этого значения со сбросом ключей
                 $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('idsx_statusOn_id'));
                 $status = 1;
             }
 
-            if (\eMarket\Valid::inPOST('idsx_statusOff_key') == 'statusOff') {
+            if (\eMarket\Valid::inPOST('idsx_statusOff_key') == 'Off') {
                 // Если в массиве пустое значение, то собираем новый массив без этого значения со сбросом ключей
                 $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('idsx_statusOff_id'));
                 $status = 0;
@@ -405,8 +409,8 @@ final class Eac {
                     for ($x = 0; $x < $count_keys; $x++) {
 
                         //Обновляем статус подкатегорий
-                        if ((\eMarket\Valid::inPOST('idsx_statusOn_key') == 'statusOn')
-                                or ( \eMarket\Valid::inPOST('idsx_statusOff_key') == 'statusOff')) {
+                        if ((\eMarket\Valid::inPOST('idsx_statusOn_key') == 'On')
+                                or ( \eMarket\Valid::inPOST('idsx_statusOff_key') == 'Off')) {
 
                             // Это категория
                             \eMarket\Pdo::inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET status=? WHERE parent_id=?", [$status, $keys[$x]]);
@@ -421,17 +425,97 @@ final class Eac {
                     }
 
                     //Обновляем статус основной категории
-                    if ((\eMarket\Valid::inPOST('idsx_statusOn_key') == 'statusOn')
-                            or ( \eMarket\Valid::inPOST('idsx_statusOff_key') == 'statusOff')) {
+                    if ((\eMarket\Valid::inPOST('idsx_statusOn_key') == 'On')
+                            or ( \eMarket\Valid::inPOST('idsx_statusOff_key') == 'Off')) {
                         \eMarket\Pdo::inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET status=? WHERE id=?", [$status, $idx[$i]]);
                     }
                 } else {
                     // Это товар
                     //Обновляем статус основного товара
-                    if ((\eMarket\Valid::inPOST('idsx_statusOn_key') == 'statusOn')
-                            or ( \eMarket\Valid::inPOST('idsx_statusOff_key') == 'statusOff')) {
+                    if ((\eMarket\Valid::inPOST('idsx_statusOn_key') == 'On')
+                            or ( \eMarket\Valid::inPOST('idsx_statusOff_key') == 'Off')) {
                         $id_prod = explode('product_', $idx[$i]);
                         \eMarket\Pdo::inPrepare("UPDATE " . $TABLE_PRODUCTS . " SET status=? WHERE id=?", [$status, $id_prod[1]]);
+                    }
+                }
+            }
+        }
+
+        // Если parrent_id является массивом, то
+        if (is_array($parent_id) == TRUE) {
+            $parent_id = 0;
+        }
+
+        return $parent_id;
+    }
+
+    /**
+     * Скидка в EAC
+     * @param string $TABLE_CATEGORIES (название таблицы категорий)
+     * @param string $TABLE_PRODUCTS (название таблицы товаров)
+     * @param string $parent_id (идентификатор родительской категории)
+     * @return string $parent_id (идентификатор родительской категории)
+     */
+    private static function sale($TABLE_CATEGORIES, $TABLE_PRODUCTS, $parent_id) {
+
+        if ((\eMarket\Valid::inPOST('idsx_saleOn_key') == 'On')
+                or ( \eMarket\Valid::inPOST('idsx_saleOff_key') == 'Off')) {
+
+            $parent_id_real = (int) \eMarket\Valid::inPOST('idsx_real_parent_id'); // получить значение из JS
+
+            if (\eMarket\Valid::inPOST('idsx_saleOn_key') == 'On') {
+                // Если в массиве пустое значение, то собираем новый массив без этого значения со сбросом ключей
+                $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('idsx_saleOn_id'));
+            }
+
+            if (\eMarket\Valid::inPOST('idsx_saleOff_key') == 'Off') {
+                // Если в массиве пустое значение, то собираем новый массив без этого значения со сбросом ключей
+                $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('idsx_saleOff_id'));
+            }
+
+            if (\eMarket\Valid::inPOST('sale') == 'Off') {
+                $discount = '';
+            } else {
+                $discount = \eMarket\Valid::inPOST('sale');
+            }
+
+            for ($i = 0; $i < count($idx); $i++) {
+                if (strstr($idx[$i], '_', true) != 'product') {
+                    // Это категория
+                    $parent_id = self::dataParentId($TABLE_CATEGORIES, $idx[$i]);
+                    $keys = self::dataKeys($TABLE_CATEGORIES, $idx[$i]);
+
+                    $count_keys = count($keys); // Получаем количество значений в массиве
+                    for ($x = 0; $x < $count_keys; $x++) {
+
+                        //Обновляем статус подкатегорий
+                        if ((\eMarket\Valid::inPOST('idsx_saleOn_key') == 'On')
+                                or ( \eMarket\Valid::inPOST('idsx_saleOff_key') == 'Off')) {
+
+                            // Это категория
+                            \eMarket\Pdo::inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET discount=? WHERE parent_id=?", [$discount, $keys[$x]]);
+
+                            // Это товар
+                            \eMarket\Pdo::inPrepare("UPDATE " . $TABLE_PRODUCTS . " SET discount=? WHERE parent_id=?", [$discount, $keys[$x]]);
+
+                            if ($parent_id_real > 0) {
+                                $parent_id = $parent_id_real; // Возвращаемся в свою директорию после "Вырезать"
+                            }
+                        }
+                    }
+
+                    //Обновляем статус основной категории
+                    if ((\eMarket\Valid::inPOST('idsx_saleOn_key') == 'On')
+                            or ( \eMarket\Valid::inPOST('idsx_saleOff_key') == 'Off')) {
+                        \eMarket\Pdo::inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET discount=? WHERE id=?", [$discount, $idx[$i]]);
+                    }
+                } else {
+                    // Это товар
+                    //Обновляем статус основного товара
+                    if ((\eMarket\Valid::inPOST('idsx_saleOn_key') == 'On')
+                            or ( \eMarket\Valid::inPOST('idsx_saleOff_key') == 'Off')) {
+                        $id_prod = explode('product_', $idx[$i]);
+                        \eMarket\Pdo::inPrepare("UPDATE " . $TABLE_PRODUCTS . " SET discount=? WHERE id=?", [$discount, $id_prod[1]]);
                     }
                 }
             }
@@ -499,7 +583,7 @@ final class Eac {
      * @param string $parent_id (идентификатор родительской категории)
      */
     private static function addProduct($TABLES, $parent_id) {
-        
+
         $LANG_COUNT = count(lang('#lang_all'));
 
         $TABLE_PRODUCTS = $TABLES[1];
@@ -587,13 +671,13 @@ final class Eac {
             } else {
                 $value_width_product_stock = NULL;
             }
-            
+
             if (\eMarket\Valid::inPOST('value_height_product_stock')) {
                 $value_height_product_stock = \eMarket\Valid::inPOST('value_height_product_stock');
             } else {
                 $value_height_product_stock = NULL;
             }
-            
+
             if (\eMarket\Valid::inPOST('min_quantity_product_stock')) {
                 $min_quantity_product_stock = \eMarket\Valid::inPOST('min_quantity_product_stock');
             } else {
@@ -692,7 +776,7 @@ final class Eac {
             } else {
                 $currency_product_stock = NULL;
             }
-            
+
             if (\eMarket\Valid::inPOST('weight_value_product_stock_edit')) {
                 $weight_value_product_stock = \eMarket\Valid::inPOST('weight_value_product_stock_edit');
             } else {
@@ -710,18 +794,18 @@ final class Eac {
             } else {
                 $value_width_product_stock = NULL;
             }
-            
+
             if (\eMarket\Valid::inPOST('value_height_product_stock_edit')) {
                 $value_height_product_stock = \eMarket\Valid::inPOST('value_height_product_stock_edit');
             } else {
                 $value_height_product_stock = NULL;
-            }        
-            
+            }
+
             if (\eMarket\Valid::inPOST('min_quantity_product_stock_edit')) {
                 $min_quantity_product_stock = \eMarket\Valid::inPOST('min_quantity_product_stock_edit');
             } else {
                 $min_quantity_product_stock = NULL;
-            }            
+            }
 
             // добавляем запись для всех вкладок
             for ($x = 0; $x < $LANG_COUNT; $x++) {

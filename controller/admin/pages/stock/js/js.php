@@ -263,7 +263,7 @@
                                 jQuery.post('?route=stock',
                                         {idsx_statusOn_id: idArray,
                                             idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
-                                            idsx_statusOn_key: itemKey});
+                                            idsx_statusOn_key: 'On'});
                                 // Отправка запроса для обновления страницы
                                 jQuery.get('?route=stock',
                                         {parent_down: <?php echo $parent_id ?>},
@@ -304,7 +304,7 @@
                                 jQuery.post('?route=stock',
                                         {idsx_statusOff_id: idArray,
                                             idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
-                                            idsx_statusOff_key: itemKey});
+                                            idsx_statusOff_key: 'Off'});
                                 // Отправка запроса для обновления страницы
                                 jQuery.get('?route=stock',
                                         {parent_down: <?php echo $parent_id ?>},
@@ -465,7 +465,7 @@
                     },
 
                     "items": {
-                        "saleOn": {
+                        "sale": {
                             type: 'select',
                             options: {<?php echo $sales ?>},
                             selected: <?php echo $sale_default ?>,
@@ -479,11 +479,11 @@
 
                         "sep11": "---------",
 
-                        key: {
+                        'saleOn': {
                             name: "<?php echo lang('button_sale_on') ?>",
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
-                                 // Значение выбранного селекта
-                                var selected_id = $('select[name="context-menu-input-saleOn"] option:selected').val();
+                                // Значение выбранного селекта
+                                var selected_id = $('select[name="context-menu-input-sale"] option:selected').val();
                                 // Установка синхронного запроса для jQuery.ajax
                                 jQuery.ajaxSetup({async: false});
                                 // Отправка данных по каждой выделенной строке
@@ -495,7 +495,8 @@
                                 jQuery.post('?route=stock',
                                         {idsx_saleOn_id: idArray,
                                             idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
-                                            idsx_saleOn_key: itemKey});
+                                            sale: selected_id,
+                                            idsx_saleOn_key: 'On'});
                                 // Отправка запроса для обновления страницы
                                 jQuery.get('?route=stock',
                                         {parent_down: <?php echo $parent_id ?>},
@@ -531,6 +532,8 @@
                                 }
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
+                                // Значение выбранного селекта
+                                var selected_id = $('select[name="context-menu-input-sale"] option:selected').val();
                                 // Установка синхронного запроса для jQuery.ajax
                                 jQuery.ajaxSetup({async: false});
                                 // Отправка данных по каждой выделенной строке
@@ -542,7 +545,8 @@
                                 jQuery.post('?route=stock',
                                         {idsx_saleOff_id: idArray,
                                             idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
-                                            idsx_saleOff_key: itemKey});
+                                            sale: 'Off',
+                                            idsx_saleOff_key: 'Off'});
                                 // Отправка запроса для обновления страницы
                                 jQuery.get('?route=stock',
                                         {parent_down: <?php echo $parent_id ?>},
