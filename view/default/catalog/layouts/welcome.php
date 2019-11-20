@@ -9,8 +9,9 @@
 <div class="contentText">
     <?php if ($CUSTOMER == FALSE) { ?>
         <h4><?php echo sprintf(lang('welcome_name'), lang('welcome_guest')) ?></h4>
+        <p>The default shopping cart comes with Jquery UI, Grid960, Fancybox and BxGallery, in this demo those have been replaced by Boostrap and Bootstrap 3 Lightbox making it lighter, faster and responsive.</p>
     <?php } else { ?>
         <h4><?php echo sprintf(lang('welcome_name'), $CUSTOMER['firstname']) ?></h4>
+        <p> </p>
     <?php } ?>
-    <p>The default shopping cart comes with Jquery UI, Grid960, Fancybox and BxGallery, in this demo those have been replaced by Boostrap and Bootstrap 3 Lightbox making it lighter, faster and responsive.</p>
 </div>
