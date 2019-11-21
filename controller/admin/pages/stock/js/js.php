@@ -545,7 +545,7 @@
                                 jQuery.post('?route=stock',
                                         {idsx_saleOff_id: idArray,
                                             idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
-                                            sale: 'Off',
+                                            sale: selected_id,
                                             idsx_saleOff_key: 'Off'});
                                 // Отправка запроса для обновления страницы
                                 jQuery.get('?route=stock',

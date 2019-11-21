@@ -466,17 +466,14 @@ final class Eac {
             if (\eMarket\Valid::inPOST('idsx_saleOn_key') == 'On') {
                 // Если в массиве пустое значение, то собираем новый массив без этого значения со сбросом ключей
                 $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('idsx_saleOn_id'));
+                $discount = \eMarket\Valid::inPOST('sale');
             }
 
             if (\eMarket\Valid::inPOST('idsx_saleOff_key') == 'Off') {
                 // Если в массиве пустое значение, то собираем новый массив без этого значения со сбросом ключей
                 $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('idsx_saleOff_id'));
-            }
-
-            if (\eMarket\Valid::inPOST('sale') == 'Off') {
                 $discount = '';
-            } else {
-                $discount = \eMarket\Valid::inPOST('sale');
+                $discount_id = \eMarket\Valid::inPOST('sale');
             }
 
             for ($i = 0; $i < count($idx); $i++) {
@@ -489,8 +486,7 @@ final class Eac {
                     for ($x = 0; $x < $count_keys; $x++) {
 
                         //Обновляем статус подкатегорий
-                        if ((\eMarket\Valid::inPOST('idsx_saleOn_key') == 'On')
-                                or ( \eMarket\Valid::inPOST('idsx_saleOff_key') == 'Off')) {
+                        if (\eMarket\Valid::inPOST('idsx_saleOn_key') == 'On') {
 
                             // Это категория
                             \eMarket\Pdo::inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET discount=? WHERE parent_id=?", [$discount, $keys[$x]]);
@@ -502,20 +498,48 @@ final class Eac {
                                 $parent_id = $parent_id_real; // Возвращаемся в свою директорию после "Вырезать"
                             }
                         }
+                        if (\eMarket\Valid::inPOST('idsx_saleOff_key') == 'Off') {
+
+                            // Это категория
+                            \eMarket\Pdo::inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET discount=? WHERE parent_id=? AND discount=?", [$discount, $keys[$x]], $discount_id);
+
+                            // Это товар
+                            \eMarket\Pdo::inPrepare("UPDATE " . $TABLE_PRODUCTS . " SET discount=? WHERE parent_id=? AND discount=?", [$discount, $keys[$x], $discount_id]);
+
+                            if ($parent_id_real > 0) {
+                                $parent_id = $parent_id_real; // Возвращаемся в свою директорию после "Вырезать"
+                            }
+                        }
                     }
 
                     //Обновляем статус основной категории
-                    if ((\eMarket\Valid::inPOST('idsx_saleOn_key') == 'On')
-                            or ( \eMarket\Valid::inPOST('idsx_saleOff_key') == 'Off')) {
+                    if (\eMarket\Valid::inPOST('idsx_saleOn_key') == 'On') {
                         \eMarket\Pdo::inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET discount=? WHERE id=?", [$discount, $idx[$i]]);
+                    }
+                    if (\eMarket\Valid::inPOST('idsx_saleOff_key') == 'Off') {
+                        \eMarket\Pdo::inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET discount=? WHERE id=? AND discount=?", [$discount, $idx[$i], $discount_id]);
                     }
                 } else {
                     // Это товар
                     //Обновляем статус основного товара
-                    if ((\eMarket\Valid::inPOST('idsx_saleOn_key') == 'On')
-                            or ( \eMarket\Valid::inPOST('idsx_saleOff_key') == 'Off')) {
+                    if (\eMarket\Valid::inPOST('idsx_saleOn_key') == 'On') {
                         $id_prod = explode('product_', $idx[$i]);
-                        \eMarket\Pdo::inPrepare("UPDATE " . $TABLE_PRODUCTS . " SET discount=? WHERE id=?", [$discount, $id_prod[1]]);
+                        $discount_str_temp = \eMarket\Pdo::getCell("SELECT discount FROM " . $TABLE_PRODUCTS . " WHERE id=?", [$id_prod[1]]);
+                        $discount_str_explode_temp = explode(',', $discount_str_temp);
+                        $discount_str_explode = \eMarket\Func::deleteEmptyInArray($discount_str_explode_temp);
+                        if (!in_array($discount, $discount_str_explode)) {
+                            array_push($discount_str_explode, $discount);
+                        }
+                        $discount_str_implode = implode(',', $discount_str_explode);
+                        \eMarket\Pdo::inPrepare("UPDATE " . $TABLE_PRODUCTS . " SET discount=? WHERE id=?", [$discount_str_implode, $id_prod[1]]);
+                    }
+                    if (\eMarket\Valid::inPOST('idsx_saleOff_key') == 'Off') {
+                        $id_prod = explode('product_', $idx[$i]);
+                        $discount_str_temp = \eMarket\Pdo::getCell("SELECT discount FROM " . $TABLE_PRODUCTS . " WHERE id=?", [$id_prod[1]]);
+                        $discount_str_explode_temp = explode(',', $discount_str_temp);
+                        $discount_str_explode = \eMarket\Func::deleteValInArray(\eMarket\Func::deleteEmptyInArray($discount_str_explode_temp), [$discount_id]);
+                        $discount_str_implode = implode(',', $discount_str_explode);
+                        \eMarket\Pdo::inPrepare("UPDATE " . $TABLE_PRODUCTS . " SET discount=? WHERE id=?", [$discount_str_implode, $id_prod[1]]);
                     }
                 }
             }
