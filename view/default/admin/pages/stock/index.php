@@ -231,7 +231,7 @@
                                             <div class="context-one" id="product_<?php echo $arr_merge['prod'][$start . 'a'][0] ?>"><?php echo $arr_merge['prod'][$start . 'a'][1] ?></div>
                                         </td>
                                         <?php if ($arr_merge['prod'][$start . 'a'][4] != '' && $arr_merge['prod'][$start . 'a'][4] != NULL) { ?>
-                                        <td class="sortleft"><span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="<?php echo \eMarket\Set::productSaleTooltip($arr_merge['prod'][$start . 'a'][4]) ?>" class="glyphicon glyphicon-tag text-primary"> </span></td>
+                                            <td class="sortleft"><span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="<?php echo \eMarket\Set::productSaleTooltip($arr_merge['prod'][$start . 'a'][4]) ?>" class="glyphicon glyphicon-tag text-primary"> </span></td>
                                         <?php } else { ?>
                                             <td class="sortleft-m"><span class="glyphicon glyphicon-tag"> </span></td>
                                         <?php } ?>
