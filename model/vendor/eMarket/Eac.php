@@ -532,6 +532,8 @@ final class Eac {
                         }
                         $discount_str_implode = implode(',', $discount_str_explode);
                         \eMarket\Pdo::inPrepare("UPDATE " . $TABLE_PRODUCTS . " SET discount=? WHERE id=?", [$discount_str_implode, $id_prod[1]]);
+                        // Выводим сообщение об успехе
+                        $_SESSION['message'] = ['success', lang('action_completed_successfully')];
                     }
                     if (\eMarket\Valid::inPOST('idsx_saleOff_key') == 'Off') {
                         $id_prod = explode('product_', $idx[$i]);
@@ -540,6 +542,8 @@ final class Eac {
                         $discount_str_explode = \eMarket\Func::deleteValInArray(\eMarket\Func::deleteEmptyInArray($discount_str_explode_temp), [$discount_id]);
                         $discount_str_implode = implode(',', $discount_str_explode);
                         \eMarket\Pdo::inPrepare("UPDATE " . $TABLE_PRODUCTS . " SET discount=? WHERE id=?", [$discount_str_implode, $id_prod[1]]);
+                        // Выводим сообщение об успехе
+                        $_SESSION['message'] = ['success', lang('action_completed_successfully')];
                     }
                 }
             }

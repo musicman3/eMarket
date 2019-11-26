@@ -3,7 +3,6 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-
 ?>
 <!-- /Сортировка мышкой -->
 <script type="text/javascript">
@@ -499,7 +498,8 @@
                                             idsx_saleOn_key: 'On'});
                                 // Отправка запроса для обновления страницы
                                 jQuery.get('?route=stock',
-                                        {parent_down: <?php echo $parent_id ?>},
+                                        {parent_down: <?php echo $parent_id ?>,
+                                            modify: 'update_ok'},
                                         AjaxSuccess);
                                 // Обновление страницы
                                 function AjaxSuccess(data) {
@@ -549,7 +549,8 @@
                                             idsx_saleOff_key: 'Off'});
                                 // Отправка запроса для обновления страницы
                                 jQuery.get('?route=stock',
-                                        {parent_down: <?php echo $parent_id ?>},
+                                        {parent_down: <?php echo $parent_id ?>,
+                                            modify: 'update_ok'},
                                         AjaxSuccess);
                                 // Обновление страницы
                                 function AjaxSuccess(data) {
@@ -568,7 +569,7 @@
                 },
 
                 "sep13": "---------",
-                
+
                 "quit": {name: "<?php echo lang('menu_exit') ?>", icon: function () {
                         return 'context-menu-icon glyphicon-remove';
                     }}
