@@ -20,80 +20,60 @@ for ($i = $start; $i < $finish; $i++) {
         }
 
         // Цена
-        $query = \eMarket\Pdo::getRow("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product]);
-        $price_edit_temp_product[$modal_id_product] = $query[12];
+        $query = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product])[0];
+
+        $price_edit_temp_product[$modal_id_product] = $query['price'];
 
         // Валюта
-        $currency[$modal_id_product] = $query[13];
-        foreach ($currency as $val) {
-            $currency_edit_temp_product[$modal_id_product] = \eMarket\Pdo::selectPrepare("SELECT name FROM " . TABLE_CURRENCIES . " WHERE id=? and language=?", [$val, lang('#lang_all')[0]]);
-        }
-
+        $currency_edit_temp_product[$modal_id_product] = \eMarket\Pdo::selectPrepare("SELECT name FROM " . TABLE_CURRENCIES . " WHERE id=? and language=?", [$query['currency'], lang('#lang_all')[0]]);
+        
         // Количество
-        $quantity_edit_temp_product[$modal_id_product] = $query[15];
+        $quantity_edit_temp_product[$modal_id_product] = $query['quantity'];
 
         // Единицы измерения
-        $units[$modal_id_product] = $query[16];
-        foreach ($units as $val) {
-            $units_edit_temp_product[$modal_id_product] = \eMarket\Pdo::selectPrepare("SELECT name FROM " . TABLE_UNITS . " WHERE id=? and language=?", [$val, lang('#lang_all')[0]]);
-        }
+        $units_edit_temp_product[$modal_id_product] = \eMarket\Pdo::selectPrepare("SELECT name FROM " . TABLE_UNITS . " WHERE id=? and language=?", [$query['unit'], lang('#lang_all')[0]]);
 
         // Модель
-        $model_edit_temp_product[$modal_id_product] = $query[17];
+        $model_edit_temp_product[$modal_id_product] = $query['model'];
 
         // Производитель
-        $manufacturer[$modal_id_product] = $query[19];
-        foreach ($manufacturer as $val) {
-            $manufacturers_edit_temp_product[$modal_id_product] = \eMarket\Pdo::selectPrepare("SELECT name FROM " . TABLE_MANUFACTURERS . " WHERE id=? and language=?", [$val, lang('#lang_all')[0]]);
-        }
+        $manufacturers_edit_temp_product[$modal_id_product] = \eMarket\Pdo::selectPrepare("SELECT name FROM " . TABLE_MANUFACTURERS . " WHERE id=? and language=?", [$query['manufacturer'], lang('#lang_all')[0]]);
 
         // Дата поступления
-        $date_available_edit_temp_product[$modal_id_product] = $query[18];
+        $date_available_edit_temp_product[$modal_id_product] = $query['date_available'];
 
         // Налог
-        $tax[$modal_id_product] = $query[14];
-        foreach ($tax as $val) {
-            $tax_edit_temp_product[$modal_id_product] = \eMarket\Pdo::selectPrepare("SELECT name FROM " . TABLE_TAXES . " WHERE id=? and language=?", [$val, lang('#lang_all')[0]]);
-        }
+        $tax_edit_temp_product[$modal_id_product] = \eMarket\Pdo::selectPrepare("SELECT name FROM " . TABLE_TAXES . " WHERE id=? and language=?", [$query['tax'], lang('#lang_all')[0]]);
 
         // Значение идентификатора
-        $vendor_code_value_edit_temp_product[$modal_id_product] = $query[23];
+        $vendor_code_value_edit_temp_product[$modal_id_product] = $query['vendor_code_value'];
 
         // Идентификатор
-        $vendor_code[$modal_id_product] = $query[22];
-        foreach ($vendor_code as $val) {
-            $vendor_code_edit_temp_product[$modal_id_product] = \eMarket\Pdo::selectPrepare("SELECT name FROM " . TABLE_VENDOR_CODES . " WHERE id=? and language=?", [$val, lang('#lang_all')[0]]);
-        }
+        $vendor_code_edit_temp_product[$modal_id_product] = \eMarket\Pdo::selectPrepare("SELECT name FROM " . TABLE_VENDOR_CODES . " WHERE id=? and language=?", [$query['vendor_code'], lang('#lang_all')[0]]);
         
         // Значение Веса
-        $weight_value_edit_temp_product[$modal_id_product] = $query[25];
+        $weight_value_edit_temp_product[$modal_id_product] = $query['weight_value'];
 
         // Вес
-        $weight[$modal_id_product] = $query[24];
-        foreach ($weight as $val) {
-            $weight_edit_temp_product[$modal_id_product] = \eMarket\Pdo::selectPrepare("SELECT name FROM " . TABLE_WEIGHT . " WHERE id=? and language=?", [$val, lang('#lang_all')[0]]);
-        }
+        $weight_edit_temp_product[$modal_id_product] = \eMarket\Pdo::selectPrepare("SELECT name FROM " . TABLE_WEIGHT . " WHERE id=? and language=?", [$query['weight'], lang('#lang_all')[0]]);
         
         // Минимальное количество
-        $min_quantity_edit_temp_product[$modal_id_product] = $query[26];
+        $min_quantity_edit_temp_product[$modal_id_product] = $query['min_quantity'];
 
         // Ед. изм. длины
-        $dimension[$modal_id_product] = $query[27];
-        foreach ($dimension as $val) {
-            $dimension_edit_temp_product[$modal_id_product] = \eMarket\Pdo::selectPrepare("SELECT name FROM " . TABLE_LENGTH . " WHERE id=? and language=?", [$val, lang('#lang_all')[0]]);
-        }
+        $dimension_edit_temp_product[$modal_id_product] = \eMarket\Pdo::selectPrepare("SELECT name FROM " . TABLE_LENGTH . " WHERE id=? and language=?", [$query['dimension'], lang('#lang_all')[0]]);
         
         // Длина
-        $lenght_edit_temp_product[$modal_id_product] = $query[28];
+        $lenght_edit_temp_product[$modal_id_product] = $query['lenght'];
         
         // Ширина
-        $width_edit_temp_product[$modal_id_product] = $query[29];
+        $width_edit_temp_product[$modal_id_product] = $query['width'];
         
         // Высота
-        $height_edit_temp_product[$modal_id_product] = $query[30];
+        $height_edit_temp_product[$modal_id_product] = $query['height'];
 
-        $logo_edit_temp_product[$modal_id_product] = explode(',', $query[6], -1);
-        $logo_general_edit_temp_product[$modal_id_product] = $query[7];
+        $logo_edit_temp_product[$modal_id_product] = explode(',', $query['logo'], -1);
+        $logo_general_edit_temp_product[$modal_id_product] = $query['logo_general'];
         // ПАРАМЕТРЫ ДЛЯ ПЕРЕДАЧИ В МОДАЛ
         $name_edit_product = json_encode($name_edit_temp_product); // Имя
         $description_edit_product = json_encode($description_edit_temp_product); // Описание

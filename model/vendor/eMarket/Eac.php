@@ -61,7 +61,7 @@ final class Eac {
         $parent_id_status = self::status($TABLES[0], $TABLES[1], $parent_id);
 
         // Если нажали на кнопку Распродажа
-        $parent_id_status = self::sale($TABLES[0], $TABLES[1], $parent_id);
+        $parent_id_sale = self::sale($TABLES[0], $TABLES[1], $parent_id);
 
         // Сортировка мышкой EAC
         self::sortList($TABLES[0], $TOKEN);
@@ -80,6 +80,10 @@ final class Eac {
 
         if ($parent_id_status != $parent_id) {
             $parent_id = $parent_id_status;
+        }
+        
+        if ($parent_id_sale != $parent_id) {
+            $parent_id = $parent_id_sale;
         }
 
         return [$idsx_real_parent_id, $parent_id];
