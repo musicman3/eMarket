@@ -19,9 +19,10 @@ for ($i = $start; $i < $finish; $i++) {
             $tags_edit_temp_product[$x][$modal_id_product] = $query_lang[3];
         }
 
-        // Цена
+        // Общий запрос
         $query = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product])[0];
-
+        
+        // Цена
         $price_edit_temp_product[$modal_id_product] = $query['price'];
 
         // Валюта
