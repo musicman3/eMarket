@@ -503,8 +503,6 @@ final class Eac {
                                 }
                                 $discount_str_implode = implode(',', $discount_str_explode);
                                 \eMarket\Pdo::inPrepare("UPDATE " . $TABLE_PRODUCTS . " SET discount=? WHERE id=?", [$discount_str_implode, $discount_id_arr]);
-                                // Выводим сообщение об успехе
-                                $_SESSION['message'] = ['success', lang('action_completed_successfully')];
                             }
 
                             if ($parent_id_real > 0) {
@@ -521,8 +519,6 @@ final class Eac {
                                 $discount_str_explode = \eMarket\Func::deleteValInArray(\eMarket\Func::deleteEmptyInArray($discount_str_explode_temp), [$discount_id]);
                                 $discount_str_implode = implode(',', $discount_str_explode);
                                 \eMarket\Pdo::inPrepare("UPDATE " . $TABLE_PRODUCTS . " SET discount=? WHERE id=?", [$discount_str_implode, $discount_id_arr]);
-                                // Выводим сообщение об успехе
-                                $_SESSION['message'] = ['success', lang('action_completed_successfully')];
                             }
                             if ($parent_id_real > 0) {
                                 $parent_id = $parent_id_real; // Возвращаемся в свою директорию после "Вырезать"

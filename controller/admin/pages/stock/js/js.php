@@ -498,8 +498,7 @@
                                             idsx_saleOn_key: 'On'});
                                 // Отправка запроса для обновления страницы
                                 jQuery.get('?route=stock',
-                                        {parent_down: <?php echo $parent_id ?>,
-                                            modify: 'update_ok'},
+                                        {parent_down: <?php echo $parent_id ?>},
                                         AjaxSuccess);
                                 // Обновление страницы
                                 function AjaxSuccess(data) {
@@ -549,8 +548,7 @@
                                             idsx_saleOff_key: 'Off'});
                                 // Отправка запроса для обновления страницы
                                 jQuery.get('?route=stock',
-                                        {parent_down: <?php echo $parent_id ?>,
-                                            modify: 'update_ok'},
+                                        {parent_down: <?php echo $parent_id ?>},
                                         AjaxSuccess);
                                 // Обновление страницы
                                 function AjaxSuccess(data) {
