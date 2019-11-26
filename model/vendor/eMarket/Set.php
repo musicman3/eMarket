@@ -35,6 +35,24 @@ class Set {
         $currencies = \eMarket\Pdo::getColRow("SELECT name, id FROM " . TABLE_CURRENCIES . " WHERE language=?", [lang('#lang_all')[0]]);
         return $currencies;
     }
+    
+    /**
+     * Данные по тултипу для скидки на товар
+     *
+     * @param string $discount (данные по скидкам в строке через запятую)
+     * @return string $text
+     */
+    public static function productSaleTooltip($discount) {
+        
+        $discount_str_explode_temp = explode(',', $discount);
+        $discount_str_explode = \eMarket\Func::deleteEmptyInArray($discount_str_explode_temp);
+        $text = '';
+        foreach ($discount_str_explode as $id){
+            $text .= \eMarket\Pdo::getCell("SELECT name FROM " . DB_PREFIX . 'modules_discount_sale' . "  WHERE language=? AND id=?", [lang('#lang_all')[0], $id]) . '<br>';
+        }
+
+        return $text;
+    }    
 
     /**
      * Данные по основной валюте
