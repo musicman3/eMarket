@@ -194,7 +194,8 @@
                                             <?php } else { ?>
                                                 <div class="context-one" id="<?php echo $arr_merge['cat'][$start][0] ?>"><?php echo $arr_merge['cat'][$start][1] ?></div>
                                             <?php } ?>
-                                        </td>	 
+                                        </td>	
+                                        <td class="sortleft-m"></td>
                                     </tr>
 
                                     <?php
