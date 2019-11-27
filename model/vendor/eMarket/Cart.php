@@ -1,4 +1,5 @@
 <?php
+
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -22,7 +23,7 @@ class Cart {
      * @param string $quantity (количество добавляемых товаров)
      */
     public static function addProduct($id, $quantity = null) {
-        
+
         $count = 0;
         if (!isset($_SESSION['cart']) OR count($_SESSION['cart']) == 0) {
             $_SESSION['cart'] = [['id' => $id, 'quantity' => $quantity]];
@@ -33,10 +34,11 @@ class Cart {
                 if ($value['id'] == $id) {
                     $_SESSION['cart'][$count]['quantity'] = $_SESSION['cart'][$count]['quantity'] + $quantity;
                 }
-                if ($value['id'] != $id && count($id_count) == 0) {
-                    array_push($_SESSION['cart'], ['id' => $id, 'quantity' => $quantity]);
-                }
+
                 $count++;
+            }
+            if ($value['id'] != $id && count($id_count) == 0) {
+                array_push($_SESSION['cart'], ['id' => $id, 'quantity' => $quantity]);
             }
         }
     }
@@ -63,7 +65,7 @@ class Cart {
      * @return string $total_price (количества товара)
      */
     public static function totalPrice() {
-        
+
         $total_price = 0;
         if (isset($_SESSION['cart'])) {
             foreach ($_SESSION['cart'] as $value) {
@@ -79,7 +81,7 @@ class Cart {
      *
      */
     public static function init() {
-        
+
         if (\eMarket\Set::path() == 'catalog') {
             if (\eMarket\Valid::inGET('add_to_cart')) {
                 if (!\eMarket\Valid::inGET('add_quantity')) {
@@ -100,7 +102,7 @@ class Cart {
      * @return array $cart (информация о товарах в корзине)
      */
     public static function info() {
-        
+
         $cart_info = [];
         if (isset($_SESSION['cart'])) {
             foreach ($_SESSION['cart'] as $value) {
@@ -134,7 +136,7 @@ class Cart {
      * 
      */
     public static function deleteProduct() {
-        
+
         if (\eMarket\Valid::inGET('delete_product') && isset($_SESSION['cart'])) {
             $array_new = [];
             foreach ($_SESSION['cart'] as $value) {
@@ -151,7 +153,7 @@ class Cart {
      * 
      */
     public static function editProductQuantity() {
-        
+
         if (\eMarket\Valid::inGET('quantity_product_id') && isset($_SESSION['cart'])) {
             $count = 0;
             foreach ($_SESSION['cart'] as $value) {

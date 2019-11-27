@@ -62,4 +62,5 @@ setlocale(LC_ALL, lang('language_locale'));
 $LANG_COUNT = count(lang('#lang_all'));
 
 //unset($_SESSION['cart']);
+//\eMarket\Debug::trace($_SESSION['cart']);
 ?>
