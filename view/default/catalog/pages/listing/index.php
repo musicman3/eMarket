@@ -79,7 +79,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                         </div>
                         <div class="clearfix"></div>
                         <div class="row button">
-                            <div class="col-xs-6"><button type="button" class="btn btn-default"><?php echo \eMarket\Products::productPrice($value['price'], $CURRENCIES, 1) ?></button></div>
+                            <div class="col-xs-6"><?php echo \eMarket\Modules\Discount\Sale::interface([$value['id'], $value['price'], $value['discount']], $CURRENCIES) ?></div>
                             <div class="col-xs-6 text-right">
                                 <form id="form_add_to_cart" name="form_add_to_cart" action="javascript:void(null);" onsubmit="addToCart(<?php echo $value['id'] ?>, 'true')">
                                     <button type="submit" class="btn btn-primary"><?php echo lang('buy_now') ?></button>

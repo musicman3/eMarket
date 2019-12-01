@@ -14,7 +14,7 @@
             <div class="col-xs-8"> </div>
             <div class="clearfix"></div>
             <div class="row button">
-                <div class="col-xs-6"><button type="button" class="btn btn-default"><?php echo $product_price ?></button></div>
+                <div class="col-xs-6"><?php echo \eMarket\Modules\Discount\Sale::interface([$products['id'], $products['price'], $products['discount']], $CURRENCIES) ?></div>
                 <div class="col-xs-6 text-right">
                     <?php if (\eMarket\Cart::productQuantity($products['id']) > 0) { ?>
                         <form id="quantity_product" name="quantity_product" action="javascript:void(null);" onsubmit="quantityProduct(<?php echo $products['id'] ?>, $('#number_<?php echo $products['id'] ?>').val())">

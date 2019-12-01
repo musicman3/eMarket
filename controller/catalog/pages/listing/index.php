@@ -4,6 +4,6 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-$products = \eMarket\Pdo::getColAssoc("SELECT id, name, logo_general, price FROM " . TABLE_PRODUCTS . " WHERE language=? AND parent_id=? ORDER BY date_added DESC", [lang('#lang_all')[0], \eMarket\Valid::inGET('category_id')]);
+$products = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE language=? AND parent_id=? ORDER BY date_added DESC", [lang('#lang_all')[0], \eMarket\Valid::inGET('category_id')]);
 $categories_name = \eMarket\Pdo::getCell("SELECT name FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], \eMarket\Valid::inGET('category_id')]);
 ?>
