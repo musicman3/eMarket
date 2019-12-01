@@ -139,7 +139,7 @@ class Tree {
     /**
      * Автозагрузка файлов классов для модулей
      *
-     * @return array $return_array (список классов модулей)
+     * @return array $return_array (список путей к классам модулей)
      */
     public static function modulesClasses() {
 
