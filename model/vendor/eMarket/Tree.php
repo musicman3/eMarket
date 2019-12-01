@@ -135,6 +135,30 @@ class Tree {
         }
         return $array_cat2;
     }
+    
+    /**
+     * Автозагрузка файлов классов для модулей
+     *
+     * @return array $return_array (список классов модулей)
+     */
+    public static function modulesClasses() {
+
+        $list_cat = self::allDirForPath(getenv('DOCUMENT_ROOT') . '/modules/', 'true');
+        $return_array = [];
+
+        foreach ($list_cat as $key => $val) {
+            foreach ($val as $val_2) {
+                if (file_exists(getenv('DOCUMENT_ROOT') . '/modules/' . $key . '/' . $val_2 . '/model/classes/')) {
+                    $list_val = self::allDirForPath(getenv('DOCUMENT_ROOT') . '/modules/' . $key . '/' . $val_2 . '/model/classes/');
+                    foreach ($list_val as $val_files) {
+                        array_push($return_array, getenv('DOCUMENT_ROOT') . '/modules/' . $key . '/' . $val_2 . '/model/classes/' . $val_files);
+                    }
+                }
+            }
+        }
+
+        return $return_array;
+    }    
 
 }
 

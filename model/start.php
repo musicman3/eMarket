@@ -10,18 +10,23 @@ ini_set('error_log', __DIR__ . '/work/errors.log');
 //ВРЕМЯ ФОРМИРОВАНИЯ СТРАНИЦЫ
 $TIME_START = microtime(1);
 
-//АВТОЗАГРУЗКА КЛАССОВ
+//АВТОЗАГРУЗКА БАЗОВЫХ КЛАССОВ
 require_once('vendor/autoload.php');
 
-//АВТОЗАГРУЗКА ФУНКЦИЙ
+//АВТОЗАГРУЗКА БАЗОВЫХ ФУНКЦИЙ
 foreach (\eMarket\Tree::filesTree(getenv('DOCUMENT_ROOT') . '/model/functions/') as $path) {
+    require_once($path);
+}
+
+//АВТОЗАГРУЗКА КЛАССОВ МОДУЛЕЙ
+foreach (\eMarket\Tree::modulesClasses() as $path) {
     require_once($path);
 }
 
 //Если это панель администратора
 if (\eMarket\Set::path() == 'admin') {
     require_once('configure/configure.php');
-    
+
     // Загружаем авторизацию Административной части
     if (\eMarket\Valid::inGET('route') != 'login') {
         $TOKEN = \eMarket\Autorize::sessionAdmin();
@@ -33,7 +38,7 @@ if (\eMarket\Set::path() == 'admin') {
 // Если это каталог
 if (\eMarket\Set::path() == 'catalog') {
     require_once('configure/configure.php');
-    
+
     // Загружаем авторизацию Каталога
     if (\eMarket\Autorize::sessionCatalog() == TRUE) {
         $CUSTOMER = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']])[0];
