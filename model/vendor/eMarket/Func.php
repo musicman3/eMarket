@@ -1,4 +1,5 @@
 <?php
+
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -221,6 +222,42 @@ class Func {
         } else {
             return FALSE;
         }
+    }
+
+    /**
+     * Функция сброса именованных ключей ассоциированного массива
+     * 
+     * На входе:
+     * 
+     * 0 Array
+      (
+      [0] => Array
+      (
+      [id] => 3
+      [price] => 2
+      )
+     * 
+     * На выходе:
+     * 
+     * 0 Array
+      (
+      [0] => Array
+      (
+      [0] => 3
+      [1] => 2
+      )
+     *
+     * @param array $input (исходный массив)
+     * @return array $output (итоговый массив)
+     */
+    public static function resetKeyAssocArray($input) {
+
+        $output = [];
+        foreach ($input as $val) {
+            array_push($output, array_values($val));
+        }
+        
+        return $output;
     }
 
     /**
