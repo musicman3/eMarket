@@ -207,17 +207,17 @@
                                     <tr class="sort-list">
 
                                         <!-- Вырезанные товары "АКТИВНЫЕ" -->
-                                        <?php if (isset($_SESSION['buffer']['prod']) == true && in_array($arr_merge['prod'][$start . 'a']['id'], $_SESSION['buffer']['prod']) == true && $arr_merge['prod'][$start . 'a']['status'] == 1) { ?>
+                                        <?php if (isset($_SESSION['buffer']['prod']) == true && in_array($arr_merge['prod'][$start . 'a'][0], $_SESSION['buffer']['prod']) == true && $arr_merge['prod'][$start . 'a'][3] == 1) { ?>
                                             <td class="sortleft-m"></td>    
                                             <td class="sortleft"><div><a href="#" class="btn btn-success btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-shopping-cart"> </span></a></div></td>
 
                                             <!-- Вырезанные товары "НЕ АКТИВНЫЕ" -->
-                                        <?php } elseif (isset($_SESSION['buffer']['prod']) == true && in_array($arr_merge['prod'][$start . 'a']['id'], $_SESSION['buffer']['prod']) == true && $arr_merge['prod'][$start . 'a']['status'] == 0) { ?>
+                                        <?php } elseif (isset($_SESSION['buffer']['prod']) == true && in_array($arr_merge['prod'][$start . 'a'][0], $_SESSION['buffer']['prod']) == true && $arr_merge['prod'][$start . 'a'][3] == 0) { ?>
                                             <td class="sortleft-m"></td>    
                                             <td class="sortleft"><div><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-shopping-cart"> </span></a></div></td>
 
                                             <!-- Если товар НЕ АКТИВЕН -->
-                                        <?php } elseif ($arr_merge['prod'][$start . 'a']['status'] == 0) { ?>
+                                        <?php } elseif ($arr_merge['prod'][$start . 'a'][3] == 0) { ?>
                                             <td class="sortleft-m"></td>    
                                             <td class="sortleft"><div><a href="#" class="btn btn-default btn-xs" role="button" aria-disabled="true"><span class="glyphicon glyphicon-shopping-cart"> </span></a></div></td>
                                         <?php } else { ?>
@@ -227,12 +227,12 @@
                                             <td class="sortleft"><div><a href="#" class="btn btn-success btn-xs" role="button" aria-disabled="true"><span class="glyphicon glyphicon-shopping-cart"> </span></a></div></td>
                                             <!-- ВЫБРАННЫЕ СТРОКИ -->
                                         <?php } ?>
-                                        <td class="context-one option" id="product_<?php echo $arr_merge['prod'][$start . 'a']['id'] ?>"><span class="inactive" style="display: none;"></span>
-                                            <div class="pull-left" id="product_<?php echo $arr_merge['prod'][$start . 'a']['id'] ?>"><?php echo $arr_merge['prod'][$start . 'a']['name'] ?></div>
+                                        <td class="context-one option" id="product_<?php echo $arr_merge['prod'][$start . 'a'][0] ?>"><span class="inactive" style="display: none;"></span>
+                                            <div class="pull-left" id="product_<?php echo $arr_merge['prod'][$start . 'a'][0] ?>"><?php echo $arr_merge['prod'][$start . 'a'][1] ?></div>
                                             <div class="pull-right"><?php echo \eMarket\Ecb::totalSaleBlock($lines_prod, $CURRENCIES, 1, $start) ?></div>
                                         </td>
-                                        <?php if ($arr_merge['prod'][$start . 'a']['discount'] != '' && $arr_merge['prod'][$start . 'a']['discount'] != NULL) { ?>
-                                            <td class="sortleft"><span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="<?php echo \eMarket\Set::productSaleTooltip($arr_merge['prod'][$start . 'a']['discount']) ?>" class="glyphicon glyphicon-tag text-primary"> </span></td>
+                                        <?php if ($arr_merge['prod'][$start . 'a'][4] != '' && $arr_merge['prod'][$start . 'a'][4] != NULL) { ?>
+                                            <td class="sortleft"><span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="<?php echo \eMarket\Set::productSaleTooltip($arr_merge['prod'][$start . 'a'][4]) ?>" class="glyphicon glyphicon-tag text-primary"> </span></td>
                                         <?php } else { ?>
                                             <td class="sortleft-m"><span class="glyphicon glyphicon-tag"> </span></td>
                                         <?php } ?>
