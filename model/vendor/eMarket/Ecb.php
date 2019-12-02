@@ -85,7 +85,7 @@ final class Ecb {
         // Модуль eMarket\Modules\Discount\Sale
         $price_with_sale = \eMarket\Modules\Discount\Sale::interface($input);
         if ($input['price'] != $price_with_sale) {
-            return '<del>' . \eMarket\Products::productPrice($input['price'], $CURRENCIES, $marker) . '</del><br><span class="label label-' . $class . '">' . \eMarket\Products::productPrice($price_with_sale, $CURRENCIES, $marker) . '</span>';
+            return '<del>' . \eMarket\Products::productPrice($input['price'], $CURRENCIES, $marker) . '</del> <span class="label label-' . $class . '">' . \eMarket\Products::productPrice($price_with_sale, $CURRENCIES, $marker) . '</span>';
         }
 
         return \eMarket\Products::productPrice($input['price'], $CURRENCIES, $marker);
