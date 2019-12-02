@@ -229,7 +229,7 @@
                                         <?php } ?>
                                         <td class="context-one option" id="product_<?php echo $arr_merge['prod'][$start . 'a'][0] ?>"><span class="inactive" style="display: none;"></span>
                                             <div class="pull-left"><?php echo $arr_merge['prod'][$start . 'a'][1] ?></div>
-                                            <div class="pull-right"><?php echo \eMarket\Ecb::totalSaleBlock($lines_prod, $CURRENCIES, 1, $start) ?></div>
+                                            <div class="pull-right"><?php echo \eMarket\Ecb::totalSaleBlock($lines_prod[$start], $CURRENCIES, 1) ?></div>
                                         </td>
                                         <?php if ($arr_merge['prod'][$start . 'a'][4] != '' && $arr_merge['prod'][$start . 'a'][4] != NULL) { ?>
                                             <td class="sortleft"><span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="<?php echo \eMarket\Set::productSaleTooltip($arr_merge['prod'][$start . 'a'][4]) ?>" class="glyphicon glyphicon-tag text-primary"> </span></td>
