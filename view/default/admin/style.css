@@ -57,7 +57,7 @@ body {background:#e4e4da;font-family: 'Open Sans';background-image:url('images/s
 .table > tbody > tr > td.option, .table > tbody > tr > td.options {padding:0px;}
 .table .pleft {vertical-align: middle;width: 70%;}
 .table .pright {vertical-align: middle;width: 7%;}
-div.context-one {padding:5px;}
+div.context-one, .table > tbody > tr > td.context-one {padding:5px;}
 .al-text {text-align: center;}
 .al-text-w {text-align: center;width: 150px;}
 .products .row {margin-left: 0;margin-right: 0;}
