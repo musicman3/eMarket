@@ -74,8 +74,8 @@ final class Ecb {
      * @param array $input (данные из productSaleBlock)
      * @return array $output (выходные данные)
      */
-    private static function totalSaleBlock($input) {
-        //echo ($output);
+    public static function totalSaleBlock($input, $CURRENCIES) {
+        return \eMarket\Modules\Discount\Sale::interface($input, $CURRENCIES);
     }
 
     /**
