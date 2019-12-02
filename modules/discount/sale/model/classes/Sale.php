@@ -26,11 +26,13 @@ class Sale {
     /**
      * Выходные данные для внутреннего интерфейса калькулятора
      *
-     * @param array $input (массив с входящими значениями id, price, discount)
+     * @param array $input (массив с входящими значениями по товару)
+     * @param string $CURRENCIES (валюта)
+     * @param string $class (класс bootstrap для отображения скидки)
      * @return array $output (массив с выодящими значениями id, price, discount)
      */
-    public static function interface($input, $CURRENCIES) {
-
+    public static function interface($input) {
+        
         if ($input['discount'] != '' && $input['discount'] != NULL) {
 
             $explode_id = explode(',', $input['discount']);
@@ -50,11 +52,11 @@ class Sale {
             }
 
             if ($this_time > $date_start && $this_time < $date_end) {
-                return '<del>' . \eMarket\Products::productPrice($input['price'], $CURRENCIES, 1) . '</del><br><span class="label label-danger">' . \eMarket\Products::productPrice($price, $CURRENCIES, 1) . '</span>';
+                return $price;
             }
-            return \eMarket\Products::productPrice($input['price'], $CURRENCIES, 1);
+            return $input['price'];
         }
-        return \eMarket\Products::productPrice($input['price'], $CURRENCIES, 1);
+        return $input['price'];
     }
 
 }

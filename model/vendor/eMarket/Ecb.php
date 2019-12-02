@@ -71,11 +71,23 @@ final class Ecb {
 
     /**
      * Блок формирования итоговой скидки на заказ
-     * @param array $input (данные из productSaleBlock)
-     * @return array $output (выходные данные)
+     * @param array $input (массив с входящими значениями по товару)
+     * @param string $CURRENCIES (валюта)
+     * @param string $class (класс bootstrap для отображения скидки)
+     * @return string (выходные данные в виде форматированной стоимости)
      */
-    public static function totalSaleBlock($input, $CURRENCIES) {
-        return \eMarket\Modules\Discount\Sale::interface($input, $CURRENCIES);
+    public static function totalSaleBlock($input, $CURRENCIES, $class = null) {
+
+        if ($class == null) {
+            $class = 'danger';
+        }
+        // Модуль eMarket\Modules\Discount\Sale
+        $price_with_sale = \eMarket\Modules\Discount\Sale::interface($input);
+        if ($input['price'] != $price_with_sale) {
+            return '<del>' . \eMarket\Products::productPrice($input['price'], $CURRENCIES, 1) . '</del><br><span class="label label-' . $class . '">' . \eMarket\Products::productPrice($price_with_sale, $CURRENCIES, 1) . '</span>';
+        }
+
+        return \eMarket\Products::productPrice($input['price'], $CURRENCIES, 1);
     }
 
     /**
