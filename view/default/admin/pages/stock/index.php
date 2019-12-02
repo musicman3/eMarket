@@ -68,7 +68,7 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th colspan="5">
+                                <th colspan="4">
                                     <?php
                                     // Счетчик в навигации
                                     if ($finish == $count_lines_merge && ($finish - $start) <= $lines_on_page OR $finish == $lines_on_page) {
@@ -228,9 +228,9 @@
                                             <!-- ВЫБРАННЫЕ СТРОКИ -->
                                         <?php } ?>
                                         <td class="option" id="product_<?php echo $arr_merge['prod'][$start . 'a']['id'] ?>"><span class="inactive" style="display: none;"></span>
-                                            <div class="context-one" id="product_<?php echo $arr_merge['prod'][$start . 'a']['id'] ?>"><?php echo $arr_merge['prod'][$start . 'a']['name'] ?></div>
+                                            <div class="pull-left context-one" id="product_<?php echo $arr_merge['prod'][$start . 'a']['id'] ?>"><?php echo $arr_merge['prod'][$start . 'a']['name'] ?></div>
+                                            <div class="pull-right context-one"><?php echo \eMarket\Ecb::totalSaleBlock($lines_prod, $CURRENCIES, 1, $start) ?></div>
                                         </td>
-                                        <td><?php echo \eMarket\Ecb::totalSaleBlock($lines_prod, $CURRENCIES, 1, $start) ?></td>
                                         <?php if ($arr_merge['prod'][$start . 'a']['discount'] != '' && $arr_merge['prod'][$start . 'a']['discount'] != NULL) { ?>
                                             <td class="sortleft"><span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="<?php echo \eMarket\Set::productSaleTooltip($arr_merge['prod'][$start . 'a']['discount']) ?>" class="glyphicon glyphicon-tag text-primary"> </span></td>
                                         <?php } else { ?>
