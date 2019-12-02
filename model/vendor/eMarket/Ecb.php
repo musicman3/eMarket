@@ -88,7 +88,7 @@ final class Ecb {
 
             // Если административная часть
             if ($input[$count]['price'] != $price_with_sale[0]) {
-                return '<del>' . \eMarket\Products::productPrice($input[$count]['price'], $CURRENCIES, $marker) . '</del> <span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="' . $price_with_sale[1] . '" class="label label-' . $class . '">' . \eMarket\Products::productPrice($price_with_sale[0], $CURRENCIES, $marker) . '</span>';
+                return '<span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="' . $price_with_sale[1] . '" class="label label-' . $class . '">' . \eMarket\Products::productPrice($price_with_sale[0], $CURRENCIES, $marker) . '</span> <del>' . \eMarket\Products::productPrice($input[$count]['price'], $CURRENCIES, $marker) . '</del>';
             }
             return \eMarket\Products::productPrice($input[$count]['price'], $CURRENCIES, $marker);
         }
