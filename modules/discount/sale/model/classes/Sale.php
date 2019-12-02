@@ -27,9 +27,7 @@ class Sale {
      * Выходные данные для внутреннего интерфейса калькулятора
      *
      * @param array $input (массив с входящими значениями по товару)
-     * @param string $CURRENCIES (валюта)
-     * @param string $class (класс bootstrap для отображения скидки)
-     * @return array $output (массив с выодящими значениями id, price, discount)
+     * @return string (выходные данные по цене)
      */
     public static function interface($input) {
         
