@@ -227,9 +227,9 @@
                                             <td class="sortleft"><div><a href="#" class="btn btn-success btn-xs" role="button" aria-disabled="true"><span class="glyphicon glyphicon-shopping-cart"> </span></a></div></td>
                                             <!-- ВЫБРАННЫЕ СТРОКИ -->
                                         <?php } ?>
-                                        <td class="option" id="product_<?php echo $arr_merge['prod'][$start . 'a']['id'] ?>"><span class="inactive" style="display: none;"></span>
-                                            <div class="pull-left context-one" id="product_<?php echo $arr_merge['prod'][$start . 'a']['id'] ?>"><?php echo $arr_merge['prod'][$start . 'a']['name'] ?></div>
-                                            <div class="pull-right context-one"><?php echo \eMarket\Ecb::totalSaleBlock($lines_prod, $CURRENCIES, 1, $start) ?></div>
+                                        <td class="context-one option" id="product_<?php echo $arr_merge['prod'][$start . 'a']['id'] ?>"><span class="inactive" style="display: none;"></span>
+                                            <div class="pull-left" id="product_<?php echo $arr_merge['prod'][$start . 'a']['id'] ?>"><?php echo $arr_merge['prod'][$start . 'a']['name'] ?></div>
+                                            <div class="pull-right"><?php echo \eMarket\Ecb::totalSaleBlock($lines_prod, $CURRENCIES, 1, $start) ?></div>
                                         </td>
                                         <?php if ($arr_merge['prod'][$start . 'a']['discount'] != '' && $arr_merge['prod'][$start . 'a']['discount'] != NULL) { ?>
                                             <td class="sortleft"><span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="<?php echo \eMarket\Set::productSaleTooltip($arr_merge['prod'][$start . 'a']['discount']) ?>" class="glyphicon glyphicon-tag text-primary"> </span></td>
