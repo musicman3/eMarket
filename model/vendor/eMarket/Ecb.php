@@ -100,7 +100,7 @@ final class Ecb {
             if ($input['price'] != $price_with_sale[0]) {
                 return '<del>' . \eMarket\Products::productPrice($input['price'], $CURRENCIES, $marker) . '</del><br><span class="label label-' . $class . '">' . \eMarket\Products::productPrice($price_with_sale[0], $CURRENCIES, $marker) . '</span>';
             }
-            return \eMarket\Products::productPrice($input['price'], $CURRENCIES, $marker);
+            return \eMarket\Products::productPrice($input['price'], $CURRENCIES, $marker) . '<br><br>';
         }
     }
 
