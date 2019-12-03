@@ -518,8 +518,6 @@
                             }
                         },
 
-                        "sep12": "---------",
-
                         "saleOff": {
                             name: "<?php echo lang('button_sale_off') ?>",
                             icon: function () {
@@ -565,7 +563,7 @@
                             }
                         },
 
-                        "sep13": "---------",
+                        "sep12": "---------",
 
                         "saleOffAll": {
                             name: "<?php echo lang('button_sale_off_all') ?>",
@@ -613,7 +611,7 @@
                     }
                 },
 
-                "sep14": "---------",
+                "sep13": "---------",
                 
                 "quit": {name: "<?php echo lang('menu_exit') ?>", icon: function () {
                         return 'context-menu-icon glyphicon-remove';
