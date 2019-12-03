@@ -79,32 +79,9 @@ final class Ecb {
      */
     public static function totalSaleBlock($input, $CURRENCIES, $marker, $class = null) {
 
-        if ($class == null) {
-            $class = 'danger';
-        }
         // Модуль eMarket\Modules\Discount\Sale
-        if (\eMarket\Set::path() == 'admin') {
-            $price_with_sale = \eMarket\Modules\Discount\Sale::interface($input);
-
-            // Если административная часть
-            if ($input['price'] != $price_with_sale[0] && $price_with_sale[2] <= 1) {
-                return '<span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="' . $price_with_sale[1] . '" class="label label-' . $class . '">' . \eMarket\Products::productPrice($price_with_sale[0], $CURRENCIES, $marker) . '</span> <del>' . \eMarket\Products::productPrice($input['price'], $CURRENCIES, $marker) . '</del>';
-            }
-            if ($input['price'] != $price_with_sale[0] && $price_with_sale[2] > 1) {
-                return '<span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="' . lang('modules_discount_sale_admin_tooltip_warning') . $price_with_sale[1] . '" class="label label-warning"><u>' . \eMarket\Products::productPrice($price_with_sale[0], $CURRENCIES, $marker) . '</u></span> <del>' . \eMarket\Products::productPrice($input['price'], $CURRENCIES, $marker) . '</del>';
-            }
-            return \eMarket\Products::productPrice($input['price'], $CURRENCIES, $marker);
-        }
-
-        if (\eMarket\Set::path() == 'catalog') {
-            $price_with_sale = \eMarket\Modules\Discount\Sale::interface($input);
-
-            // Если каталог
-            if ($input['price'] != $price_with_sale[0]) {
-                return '<del>' . \eMarket\Products::productPrice($input['price'], $CURRENCIES, $marker) . '</del><br><span class="label label-' . $class . '">' . \eMarket\Products::productPrice($price_with_sale[0], $CURRENCIES, $marker) . '</span>';
-            }
-            return \eMarket\Products::productPrice($input['price'], $CURRENCIES, $marker) . '<br><br>';
-        }
+        $sale = \eMarket\Modules\Discount\Sale::interface($input, $CURRENCIES, $marker, $class = null);
+        return $sale;
     }
 
     /**

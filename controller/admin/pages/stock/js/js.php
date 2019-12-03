@@ -563,11 +563,57 @@
                                     $("#sort-list").sortable();
                                 }
                             }
+                        },
+
+                        "sep13": "---------",
+
+                        "saleOffAll": {
+                            name: "<?php echo lang('button_sale_off_all') ?>",
+                            icon: function () {
+                                return 'context-menu-icon glyphicon-flash';
+                            },
+                            disabled: function () {
+                                // Делаем не активным пункт меню, если нет строк
+                                if ($('div#ajax_data').data('name') === undefined || $('div#ajax_data').data('nameproduct') === undefined) {
+                                    return true;
+                                }
+                            },
+                            callback: function (itemKey, opt, rootMenu, originalEvent) {
+                                // Значение выбранного селекта
+                                var selected_id = $('select[name="context-menu-input-sale"] option:selected').val();
+                                // Установка синхронного запроса для jQuery.ajax
+                                jQuery.ajaxSetup({async: false});
+                                // Отправка данных по каждой выделенной строке
+                                var idArray = [];
+                                $(".option").each(function (i) {
+                                    if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
+                                        idArray[i] = this.id;
+                                });
+                                jQuery.post('?route=stock',
+                                        {idsx_saleOffAll_id: idArray,
+                                            idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
+                                            idsx_saleOffAll_key: 'OffAll'});
+                                // Отправка запроса для обновления страницы
+                                jQuery.get('?route=stock',
+                                        {parent_down: <?php echo $parent_id ?>},
+                                        AjaxSuccess);
+                                // Обновление страницы
+                                function AjaxSuccess(data) {
+                                    setTimeout(function () {
+                                        $('#fileupload-edit').fileupload('destroy');
+                                        $('#fileupload-add').fileupload('destroy');
+                                        $('#fileupload-edit-product').fileupload('destroy');
+                                        $('#fileupload-add-product').fileupload('destroy');
+                                        $('#ajax').html(data);
+                                    }, 100);
+                                    $("#sort-list").sortable();
+                                }
+                            }
                         }
                     }
                 },
 
-                "sep13": "---------",
+                "sep14": "---------",
                 
                 "quit": {name: "<?php echo lang('menu_exit') ?>", icon: function () {
                         return 'context-menu-icon glyphicon-remove';

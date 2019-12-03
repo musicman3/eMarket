@@ -82,15 +82,14 @@ $lines_on_page = \eMarket\Set::linesOnPage();
 $lines_cat = \eMarket\Pdo::getColRow("SELECT id, name, parent_id, status FROM " . TABLE_CATEGORIES . " WHERE parent_id=? AND language=? ORDER BY sort_category DESC", [$parent_id, lang('#lang_all')[0]]);
 $count_lines_cat = count($lines_cat);  //считаем количество строк
 
-// Порядок первых 4-х SELECT id, name, parent_id, status не менять!!!
-$lines_prod = \eMarket\Pdo::getColAssoc("SELECT id, name, parent_id, status, discount, price FROM " . TABLE_PRODUCTS . " WHERE parent_id=? AND language=? ORDER BY id DESC", [$parent_id, lang('#lang_all')[0]]);
+// Получаем данные по товарам
+$lines_prod = \eMarket\Pdo::getColRow("SELECT id, name, parent_id, status, discount, price FROM " . TABLE_PRODUCTS . " WHERE parent_id=? AND language=? ORDER BY id DESC", [$parent_id, lang('#lang_all')[0]]);
 
-// Сброс ключей ассоциативного массива
-$lines_prod_format = \eMarket\Func::resetKeyAssocArray($lines_prod);
+$count_lines_prod = count($lines_prod);  //считаем количество строк
 
-$count_lines_prod = count($lines_prod_format);  //считаем количество строк
+$arr_merge = \eMarket\Func::arrayMergeOriginKey('cat', 'prod', $lines_cat, $lines_prod);
 
-$arr_merge = \eMarket\Func::arrayMergeOriginKey('cat', 'prod', $lines_cat, $lines_prod_format);
+//\eMarket\Debug::trace($arr_merge);
 $count_lines_merge = $count_lines_cat + $count_lines_prod; // Считаем общее количество строк в категории
 
 $navigate = \eMarket\Navigation::getLink($count_lines_merge, $lines_on_page, 1);

@@ -61,6 +61,7 @@ button_on = ON
 button_off = OFF
 button_sale_on = Add to Sale
 button_sale_off = Remove from Sale
+button_sale_off_all = Remove all sales
 button_sale = Sale
 cut = Cut
 paste = Paste

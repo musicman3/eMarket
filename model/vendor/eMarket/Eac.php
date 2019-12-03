@@ -81,7 +81,7 @@ final class Eac {
         if ($parent_id_status != $parent_id) {
             $parent_id = $parent_id_status;
         }
-        
+
         if ($parent_id_sale != $parent_id) {
             $parent_id = $parent_id_sale;
         }
@@ -463,7 +463,8 @@ final class Eac {
     private static function sale($TABLE_CATEGORIES, $TABLE_PRODUCTS, $parent_id) {
 
         if ((\eMarket\Valid::inPOST('idsx_saleOn_key') == 'On')
-                or ( \eMarket\Valid::inPOST('idsx_saleOff_key') == 'Off')) {
+                or ( \eMarket\Valid::inPOST('idsx_saleOff_key') == 'Off')
+                or ( \eMarket\Valid::inPOST('idsx_saleOffAll_key') == 'OffAll')) {
 
             $parent_id_real = (int) \eMarket\Valid::inPOST('idsx_real_parent_id'); // получить значение из JS
 
@@ -476,6 +477,13 @@ final class Eac {
             if (\eMarket\Valid::inPOST('idsx_saleOff_key') == 'Off') {
                 // Если в массиве пустое значение, то собираем новый массив без этого значения со сбросом ключей
                 $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('idsx_saleOff_id'));
+                $discount = '';
+                $discount_id = \eMarket\Valid::inPOST('sale');
+            }
+
+            if (\eMarket\Valid::inPOST('idsx_saleOffAll_key') == 'OffAll') {
+                // Если в массиве пустое значение, то собираем новый массив без этого значения со сбросом ключей
+                $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('idsx_saleOffAll_id'));
                 $discount = '';
                 $discount_id = \eMarket\Valid::inPOST('sale');
             }
@@ -524,6 +532,17 @@ final class Eac {
                                 $parent_id = $parent_id_real; // Возвращаемся в свою директорию после "Вырезать"
                             }
                         }
+                        if (\eMarket\Valid::inPOST('idsx_saleOffAll_key') == 'OffAll') {
+                            // Это товар
+                            $discount_id_array = \eMarket\Pdo::getCol("SELECT id FROM " . $TABLE_PRODUCTS . " WHERE language=? AND parent_id=?", [lang('#lang_all')[0], $keys[$x]]);
+
+                            foreach ($discount_id_array as $discount_id_arr) {
+                                \eMarket\Pdo::inPrepare("UPDATE " . $TABLE_PRODUCTS . " SET discount=? WHERE id=?", ['', $discount_id_arr]);
+                            }
+                            if ($parent_id_real > 0) {
+                                $parent_id = $parent_id_real; // Возвращаемся в свою директорию после "Вырезать"
+                            }
+                        }
                     }
                 } else {
                     // Это товар
@@ -546,6 +565,10 @@ final class Eac {
                         $discount_str_explode = \eMarket\Func::deleteValInArray(\eMarket\Func::deleteEmptyInArray($discount_str_explode_temp), [$discount_id]);
                         $discount_str_implode = implode(',', $discount_str_explode);
                         \eMarket\Pdo::inPrepare("UPDATE " . $TABLE_PRODUCTS . " SET discount=? WHERE id=?", [$discount_str_implode, $id_prod[1]]);
+                    }
+                    if (\eMarket\Valid::inPOST('idsx_saleOffAll_key') == 'OffAll') {
+                        $id_prod = explode('product_', $idx[$i]);
+                        \eMarket\Pdo::inPrepare("UPDATE " . $TABLE_PRODUCTS . " SET discount=? WHERE id=?", ['', $id_prod[1]]);
                     }
                 }
             }

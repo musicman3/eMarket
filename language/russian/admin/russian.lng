@@ -61,6 +61,7 @@ button_on = ВКЛ.
 button_off = ВЫКЛ.
 button_sale_on = Добавить в распродажу
 button_sale_off = Убрать из распродажи
+button_sale_off_all = Убрать все распродажи
 button_sale = Распродажа
 cut = Вырезать
 paste = Вставить
