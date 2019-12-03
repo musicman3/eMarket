@@ -15,6 +15,7 @@ modules_discount_sale_admin_name = Sale name
 modules_discount_sale_admin_sale_start_date = Sale start date
 modules_discount_sale_admin_sale_end_date = Sale end date
 modules_discount_sale_admin_value = Percent value (%)
+modules_discount_sale_admin_tooltip_warning = There are several discounts for this product at the same time:<br>
 
 [catalog]
 

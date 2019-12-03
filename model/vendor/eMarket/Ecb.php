@@ -87,8 +87,11 @@ final class Ecb {
             $price_with_sale = \eMarket\Modules\Discount\Sale::interface($input);
 
             // Если административная часть
-            if ($input['price'] != $price_with_sale[0]) {
+            if ($input['price'] != $price_with_sale[0] && $price_with_sale[2] <= 1) {
                 return '<span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="' . $price_with_sale[1] . '" class="label label-' . $class . '">' . \eMarket\Products::productPrice($price_with_sale[0], $CURRENCIES, $marker) . '</span> <del>' . \eMarket\Products::productPrice($input['price'], $CURRENCIES, $marker) . '</del>';
+            }
+            if ($input['price'] != $price_with_sale[0] && $price_with_sale[2] > 1) {
+                return '<span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="' . lang('modules_discount_sale_admin_tooltip_warning') . $price_with_sale[1] . '" class="label label-warning"><u>' . \eMarket\Products::productPrice($price_with_sale[0], $CURRENCIES, $marker) . '</u></span> <del>' . \eMarket\Products::productPrice($input['price'], $CURRENCIES, $marker) . '</del>';
             }
             return \eMarket\Products::productPrice($input['price'], $CURRENCIES, $marker);
         }

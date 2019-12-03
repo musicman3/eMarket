@@ -36,6 +36,7 @@ class Sale {
             $explode_id = explode(',', $input['discount']);
             $discount_out = 0;
             $discount_name_out = '';
+            $discount_count = 0;
             foreach ($explode_id as $val) {
                 $discount = \eMarket\Pdo::getCell("SELECT sale_value FROM " . DB_PREFIX . 'modules_discount_sale' . " WHERE language=? AND id=?", [lang('#lang_all')[0], $val]);
                 $discount_name = \eMarket\Pdo::getCell("SELECT name FROM " . DB_PREFIX . 'modules_discount_sale' . " WHERE language=? AND id=?", [lang('#lang_all')[0], $val]);
@@ -47,11 +48,12 @@ class Sale {
                 if ($this_time > $date_start && $this_time < $date_end) {
                     $discount_out = $discount_out + $discount;
                     $discount_name_out .= $discount_name . '<br>';
+                    $discount_count++;
                 }
             }
             $price = $input['price'] / 100 * (100 - $discount_out);
 
-            return [$price, $discount_name_out];
+            return [$price, $discount_name_out, $discount_count];
         }
         return [$input['price']];
     }
