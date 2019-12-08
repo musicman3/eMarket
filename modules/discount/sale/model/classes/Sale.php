@@ -24,7 +24,7 @@ namespace eMarket\Modules\Discount;
 class Sale {
 
         /**
-     * Выходные данные для внутреннего интерфейса калькулятора
+     * Данные по статусу модуля
      *
      * @return string|FALSE (данные по статусу модуля)
      */
