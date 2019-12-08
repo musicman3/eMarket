@@ -15,7 +15,7 @@
 namespace eMarket\Modules\Discount;
 
 /**
- * Класс для валидации данных
+ * Класс модуля скидок
  *
  * @package Sale
  * @author eMarket
