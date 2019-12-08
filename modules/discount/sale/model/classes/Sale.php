@@ -23,6 +23,16 @@ namespace eMarket\Modules\Discount;
  */
 class Sale {
 
+        /**
+     * Выходные данные для внутреннего интерфейса калькулятора
+     *
+     * @return string|FALSE (данные по статусу модуля)
+     */
+    public static function status() {
+        $module_active = \eMarket\Pdo::getCellFalse("SELECT active FROM " . TABLE_MODULES . " WHERE name=? AND type=?", ['sale', 'discount']);
+        return $module_active;
+    }
+    
     /**
      * Выходные данные для внутреннего интерфейса калькулятора
      *

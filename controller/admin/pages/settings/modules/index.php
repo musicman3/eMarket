@@ -22,6 +22,7 @@ if (\eMarket\Valid::inPOST('add')) {
 if (\eMarket\Valid::inPOST('delete')) {
     $module = explode('_', \eMarket\Valid::inPOST('delete'));
     // Удаляем
+    \eMarket\Pdo::inPrepare("UPDATE " . TABLE_PRODUCTS . " SET discount=?", ['']);
     \eMarket\Pdo::inPrepare("DELETE FROM " . TABLE_MODULES . " WHERE name=? AND type=?", [$module[1], $module[0]]);
     \eMarket\Pdo::inPrepare("DROP TABLE " . DB_PREFIX . 'modules_' . $module[0] . '_' . $module[1], []);
     // Выводим сообщение об успехе
