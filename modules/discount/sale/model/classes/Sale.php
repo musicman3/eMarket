@@ -49,7 +49,7 @@ class Sale {
             $price_val = $input['price'];
         }
 
-        if ($discount_val != '' && $discount_val != NULL) {
+        if ($discount_val != '' && $discount_val != NULL && self::status() == 1) {
 
             $explode_id = explode(',', $discount_val);
             $discount_out = 0;
