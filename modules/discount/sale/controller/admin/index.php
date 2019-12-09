@@ -84,7 +84,18 @@ if (\eMarket\Valid::inPOST('edit')) {
 
 // Если нажали на кнопку Удалить
 if (\eMarket\Valid::inPOST('delete')) {
+    
     // Удаляем
+    $discount_id_array = \eMarket\Pdo::getCol("SELECT id FROM " . TABLE_PRODUCTS . " WHERE language=?", [lang('#lang_all')[0]]);
+
+    foreach ($discount_id_array as $discount_id_arr) {
+        $discount_str_temp = \eMarket\Pdo::getCell("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$discount_id_arr]);
+        $discount_str_explode_temp = explode(',', $discount_str_temp);
+        $discount_str_explode = \eMarket\Func::deleteValInArray(\eMarket\Func::deleteEmptyInArray($discount_str_explode_temp), [\eMarket\Valid::inPOST('delete')]);
+        $discount_str_implode = implode(',', $discount_str_explode);
+        \eMarket\Pdo::inPrepare("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [$discount_str_implode, $discount_id_arr]);
+    }
+
     \eMarket\Pdo::inPrepare("DELETE FROM " . $DATABASE . " WHERE id=?", [\eMarket\Valid::inPOST('delete')]);
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
