@@ -213,6 +213,10 @@ final class Eac {
 
             // Если в массиве пустое значение, то собираем новый массив без этого значения со сбросом ключей
             $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('delete'));
+            
+            if (is_array($idx) == FALSE){
+                $idx = [];
+            }
 
             for ($i = 0; $i < count($idx); $i++) {
                 if (strstr($idx[$i], '_', true) != 'product') {
@@ -282,6 +286,11 @@ final class Eac {
         if ((\eMarket\Valid::inPOST('idsx_cut_key') == 'cut')) {
             // Если в массиве пустое значение, то собираем новый массив без этого значения со сбросом ключей
             $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('idsx_cut_id'));
+            
+            if (is_array($idx) == FALSE){
+                $idx = [];
+            }
+            
             for ($i = 0; $i < count($idx); $i++) {
 
                 $parent_id_real = (int) \eMarket\Valid::inPOST('idsx_real_parent_id'); // получить значение из JS
@@ -403,6 +412,11 @@ final class Eac {
                 $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('idsx_statusOff_id'));
                 $status = 0;
             }
+            
+            if (is_array($idx) == FALSE){
+                $idx = [];
+            }
+            
             for ($i = 0; $i < count($idx); $i++) {
                 if (strstr($idx[$i], '_', true) != 'product') {
                     // Это категория
@@ -486,6 +500,10 @@ final class Eac {
                 $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('idsx_saleOffAll_id'));
                 $discount = '';
                 $discount_id = \eMarket\Valid::inPOST('sale');
+            }
+            
+            if (is_array($idx) == FALSE){
+                $idx = [];
             }
 
             for ($i = 0; $i < count($idx); $i++) {
