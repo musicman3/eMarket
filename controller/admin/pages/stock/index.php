@@ -35,18 +35,32 @@ $parent_id = $EAC_ENGINE[1];
 // Формируем распродажу для выпадающего списка
 $installed_active = \eMarket\Pdo::getCell("SELECT id FROM " . TABLE_MODULES . " WHERE name=? AND type=? AND active=?", ['sale', 'discount', 1]);
 $sales = '';
-$sale_default = '0';
+$sale_default = 0;
 if ($installed_active != '') {
-    $sales_all = \eMarket\Pdo::getColAssoc("SELECT id, name FROM " . DB_PREFIX . 'modules_discount_sale' . " WHERE language=?", [lang('#lang_all')[0]]);
+    $sales_all = \eMarket\Pdo::getColAssoc("SELECT id, name, default_set FROM " . DB_PREFIX . 'modules_discount_sale' . " WHERE language=?", [lang('#lang_all')[0]]);
 }
 $sales_flag = 0;
 
 if ($installed_active != '' && isset($sales_all) && count($sales_all) > 0) {
     $sales_flag = 1;
+    $this_time = time();
+    $select_array = [];
+
     foreach ($sales_all as $val) {
-        $sales .= $val['id'] . ': ' . "'" . $val['name'] . "', ";
+        $date_start = \eMarket\Pdo::getCell("SELECT UNIX_TIMESTAMP (date_start) FROM " . DB_PREFIX . 'modules_discount_sale' . " WHERE id=?", [$val['id']]);
+        $date_end = \eMarket\Pdo::getCell("SELECT UNIX_TIMESTAMP (date_end) FROM " . DB_PREFIX . 'modules_discount_sale' . " WHERE id=?", [$val['id']]);
+        if ($this_time < $date_end) {
+            $sales .= $val['id'] . ': ' . "'" . $val['name'] . "', ";
+            array_push($select_array, $val['id']);
+            if ($val['default_set'] == 1) {
+                $sale_default = $val['id'];
+            }
+        }
     }
-    $sale_default = \eMarket\Pdo::getCell("SELECT id FROM " . DB_PREFIX . 'modules_discount_sale' . " WHERE language=? AND default_set=?", [lang('#lang_all')[0], 1]);
+
+    if ($sale_default == 0) {
+        $sale_default = $select_array[0];
+    }
 }
 // Формируем массив Валюта для выпадающего списка
 $currencies_all = \eMarket\Pdo::getColRow("SELECT name, default_value, id FROM " . TABLE_CURRENCIES . " WHERE language=?", [lang('#lang_all')[0]]);
@@ -81,7 +95,6 @@ $lines_on_page = \eMarket\Set::linesOnPage();
 // получаем отсортированное по sort_category содержимое в виде массива для отображения на странице и сортируем в обратном порядке
 $lines_cat = \eMarket\Pdo::getColRow("SELECT id, name, parent_id, status FROM " . TABLE_CATEGORIES . " WHERE parent_id=? AND language=? ORDER BY sort_category DESC", [$parent_id, lang('#lang_all')[0]]);
 $count_lines_cat = count($lines_cat);  //считаем количество строк
-
 // Получаем данные по товарам
 $lines_prod = \eMarket\Pdo::getColRow("SELECT id, name, parent_id, status, discount, price FROM " . TABLE_PRODUCTS . " WHERE parent_id=? AND language=? ORDER BY id DESC", [$parent_id, lang('#lang_all')[0]]);
 

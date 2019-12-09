@@ -84,7 +84,7 @@ if (\eMarket\Valid::inPOST('edit')) {
 
 // Если нажали на кнопку Удалить
 if (\eMarket\Valid::inPOST('delete')) {
-    
+
     // Удаляем
     $discount_id_array = \eMarket\Pdo::getCol("SELECT id FROM " . TABLE_PRODUCTS . " WHERE language=?", [lang('#lang_all')[0]]);
 
@@ -102,11 +102,13 @@ if (\eMarket\Valid::inPOST('delete')) {
 }
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
-$lines = \eMarket\Pdo::getColRow("SELECT id, name, sale_value, date_start, date_end, default_set FROM " . $DATABASE . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+$lines = \eMarket\Pdo::getColRow("SELECT id, name, sale_value, date_start, date_end, default_set, UNIX_TIMESTAMP (date_end) FROM " . $DATABASE . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
 $lines_on_page = \eMarket\Set::linesOnPage();
 $navigate = \eMarket\Navigation::getLink(count($lines), $lines_on_page);
 $start = $navigate[0];
 $finish = $navigate[1];
+
+$this_time = time();
 
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
 $JS_MOD_END = __DIR__;
