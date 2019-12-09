@@ -45,8 +45,8 @@
                             <input hidden name="route" value="settings/modules/edit">
                             <input hidden name="start" value="<?php echo $start ?>">
                             <input hidden name="finish" value="<?php echo $finish ?>">
-                            <input hidden name="type" value="discount">
-                            <input hidden name="name" value="sale">
+                            <input hidden name="type" value="<?php echo \eMarket\Valid::inGET('type') ?>">
+                            <input hidden name="name" value="<?php echo \eMarket\Valid::inGET('name') ?>">
                             <div class="left"><button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
                         <?php } ?>
                     </form>
