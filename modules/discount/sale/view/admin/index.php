@@ -94,7 +94,7 @@
                         <td class="al-text"><?php echo lang('confirm-yes') ?></td>
                     <?php } else { ?>
                         <td class="al-text"><?php echo lang('confirm-no') ?></td>
-    <?php } ?>
+                    <?php } ?>
                     <td class="al-text-w">
                         <form id="form_delete<?php echo $lines[$start][0] ?>" name="form_delete" action="javascript:void(null);" onsubmit="callDelete('<?php echo $lines[$start][0] ?>')" enctype="multipart/form-data">
                             <input hidden name="delete" value="<?php echo $lines[$start][0] ?>">
@@ -108,7 +108,7 @@
                         </div>
                     </td>
                 </tr>
-<?php } ?>
+            <?php } ?>
         </tbody>
     </table>
 </div>

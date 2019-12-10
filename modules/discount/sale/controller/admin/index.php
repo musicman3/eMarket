@@ -5,7 +5,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-$DATABASE = \eMarket\Set::moduleDatabase();
+$MODULE_DB = \eMarket\Set::moduleDatabase();
 
 // Если нажали на кнопку Добавить
 if (\eMarket\Valid::inPOST('add')) {
@@ -30,17 +30,17 @@ if (\eMarket\Valid::inPOST('add')) {
     }
 
     // Получаем последний id и увеличиваем его на 1
-    $id_max = \eMarket\Pdo::selectPrepare("SELECT id FROM " . $DATABASE . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+    $id_max = \eMarket\Pdo::selectPrepare("SELECT id FROM " . $MODULE_DB . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
     $id = intval($id_max) + 1;
 
     // Оставляем один экземпляр значения по-умолчанию
     if ($id > 1 && $default_value != 0) {
-        \eMarket\Pdo::inPrepare("UPDATE " . $DATABASE . " SET default_set=?", [0]);
+        \eMarket\Pdo::inPrepare("UPDATE " . $MODULE_DB . " SET default_set=?", [0]);
     }
 
     // добавляем запись для всех вкладок
     for ($x = 0; $x < $LANG_COUNT; $x++) {
-        \eMarket\Pdo::inPrepare("INSERT INTO " . $DATABASE . " SET id=?, name=?, language=?, sale_value=?, date_start=?, date_end=?, default_set=?", [$id, \eMarket\Valid::inPOST('name_module_' . $x), lang('#lang_all')[$x], \eMarket\Valid::inPOST('sale_value'), $start_date, $end_date, $default_value]);
+        \eMarket\Pdo::inPrepare("INSERT INTO " . $MODULE_DB . " SET id=?, name=?, language=?, sale_value=?, date_start=?, date_end=?, default_set=?", [$id, \eMarket\Valid::inPOST('name_module_' . $x), lang('#lang_all')[$x], \eMarket\Valid::inPOST('sale_value'), $start_date, $end_date, $default_value]);
     }
 
     // Выводим сообщение об успехе
@@ -70,12 +70,12 @@ if (\eMarket\Valid::inPOST('edit')) {
 
     // Оставляем один экземпляр значения по-умолчанию
     if ($default_value != 0) {
-        \eMarket\Pdo::inPrepare("UPDATE " . $DATABASE . " SET default_set=?", [0]);
+        \eMarket\Pdo::inPrepare("UPDATE " . $MODULE_DB . " SET default_set=?", [0]);
     }
 
     // добавляем запись для всех вкладок
     for ($x = 0; $x < $LANG_COUNT; $x++) {
-        \eMarket\Pdo::inPrepare("UPDATE " . $DATABASE . " SET name=?, sale_value=?, date_start=?, date_end=?, default_set=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_module_edit_' . $x), \eMarket\Valid::inPOST('sale_value_edit'), $start_date_edit, $end_date_edit, $default_value, \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
+        \eMarket\Pdo::inPrepare("UPDATE " . $MODULE_DB . " SET name=?, sale_value=?, date_start=?, date_end=?, default_set=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_module_edit_' . $x), \eMarket\Valid::inPOST('sale_value_edit'), $start_date_edit, $end_date_edit, $default_value, \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
     }
 
     // Выводим сообщение об успехе
@@ -96,13 +96,13 @@ if (\eMarket\Valid::inPOST('delete')) {
         \eMarket\Pdo::inPrepare("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [$discount_str_implode, $discount_id_arr]);
     }
 
-    \eMarket\Pdo::inPrepare("DELETE FROM " . $DATABASE . " WHERE id=?", [\eMarket\Valid::inPOST('delete')]);
+    \eMarket\Pdo::inPrepare("DELETE FROM " . $MODULE_DB . " WHERE id=?", [\eMarket\Valid::inPOST('delete')]);
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
 }
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
-$lines = \eMarket\Pdo::getColRow("SELECT id, name, sale_value, date_start, date_end, default_set, UNIX_TIMESTAMP (date_end) FROM " . $DATABASE . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+$lines = \eMarket\Pdo::getColRow("SELECT id, name, sale_value, date_start, date_end, default_set, UNIX_TIMESTAMP (date_end) FROM " . $MODULE_DB . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
 $lines_on_page = \eMarket\Set::linesOnPage();
 $navigate = \eMarket\Navigation::getLink(count($lines), $lines_on_page);
 $start = $navigate[0];
