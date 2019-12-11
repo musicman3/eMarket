@@ -11,11 +11,11 @@ for ($i = $start; $i < $finish; $i++) {
         $count_lang = $LANG_COUNT;
 
         for ($x = 0; $x < $count_lang; $x++) {
-            $query_lang = \eMarket\Pdo::getRow("SELECT name FROM " . $DATABASE . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]]);
+            $query_lang = \eMarket\Pdo::getRow("SELECT name FROM " . $MODULE_DB . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]]);
             $name_edit_temp[$x][$modal_id] = $query_lang[0];
         }
         
-        $query = \eMarket\Pdo::getRow("SELECT sale_value, date_start, date_end, default_set FROM " . $DATABASE . " WHERE id=?", [$modal_id]);
+        $query = \eMarket\Pdo::getRow("SELECT sale_value, date_start, date_end, default_set FROM " . $MODULE_DB . " WHERE id=?", [$modal_id]);
         $sale_value_edit_temp[$modal_id] = (float) $query[0];
         $date_start_edit_temp[$modal_id] = $query[1];
         $date_end_edit_temp[$modal_id] = $query[2];

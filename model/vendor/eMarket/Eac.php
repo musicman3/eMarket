@@ -111,6 +111,11 @@ final class Eac {
         if (\eMarket\Valid::inGET('parent_down')) {
             $parent_id = \eMarket\Valid::inGET('parent_down');
         }
+        
+        // Устанавливаем родительскую категорию при навигации ВЛЕВО/ВПРАВО
+        if (\eMarket\Valid::inGET('parent_id_temp')) {
+            $parent_id = \eMarket\Valid::inGET('parent_id_temp');
+        }
 
         return $parent_id;
     }
