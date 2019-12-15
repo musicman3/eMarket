@@ -54,9 +54,9 @@ class Navigation {
             return array($start, $finish);
         }
         // Если нажали на кнопку назад GET
-        if ($count_lines > $lines_on_page && \eMarket\Valid::inGET('finish2')) {
-            $finish = \eMarket\Valid::inGET('start2'); // пересчитываем количество строк на странице
-            $start = \eMarket\Valid::inGET('start2') - $lines_on_page; // задаем значение счетчика
+        if ($count_lines > $lines_on_page && \eMarket\Valid::inGET('backfinish')) {
+            $finish = \eMarket\Valid::inGET('backstart'); // пересчитываем количество строк на странице
+            $start = \eMarket\Valid::inGET('backstart') - $lines_on_page; // задаем значение счетчика
             if ($start < 0) {
                 $start = 0;
             }
@@ -107,9 +107,9 @@ class Navigation {
             return array($start, $finish);
         }
         // Если нажали на кнопку назад POST
-        if ($count_lines > $lines_on_page && \eMarket\Valid::inPOST('finish2')) {
-            $finish = \eMarket\Valid::inPOST('start2'); // пересчитываем количество строк на странице
-            $start = \eMarket\Valid::inPOST('start2') - $lines_on_page; // задаем значение счетчика
+        if ($count_lines > $lines_on_page && \eMarket\Valid::inPOST('backfinish')) {
+            $finish = \eMarket\Valid::inPOST('backstart'); // пересчитываем количество строк на странице
+            $start = \eMarket\Valid::inPOST('backstart') - $lines_on_page; // задаем значение счетчика
             if ($start < 0) {
                 $start = 0;
             }

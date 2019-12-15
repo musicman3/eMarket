@@ -54,8 +54,8 @@
                     <form>
                         <?php if (count($lines) > $lines_on_page) { ?>
                             <input hidden name="route" value="settings/modules/edit">
-                            <input hidden name="start2" value="<?php echo $start ?>">
-                            <input hidden name="finish2" value="<?php echo $finish ?>">
+                            <input hidden name="backstart" value="<?php echo $start ?>">
+                            <input hidden name="backfinish" value="<?php echo $finish ?>">
                             <input hidden name="type" value="<?php echo \eMarket\Valid::inGET('type') ?>">
                             <input hidden name="name" value="<?php echo \eMarket\Valid::inGET('name') ?>">
                             <div class="left"><button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>

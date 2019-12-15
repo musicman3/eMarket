@@ -95,8 +95,8 @@
                                     <form>
                                         <?php if ($count_lines_merge > $lines_on_page) { ?>
                                             <input hidden name="route" value="stock">
-                                            <input hidden name="start2" value="<?php echo $start ?>">
-                                            <input hidden name="finish2" value="<?php echo $finish ?>">
+                                            <input hidden name="backstart" value="<?php echo $start ?>">
+                                            <input hidden name="backfinish" value="<?php echo $finish ?>">
                                             <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
                                             <div class="left"><button type="submit" class="btn btn-primary btn-xs"  action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
                                         <?php } ?>
