@@ -68,20 +68,44 @@ final class Ecb {
         }
         return $cart_data;
     }
-
+    
     /**
-     * Блок формирования итоговой скидки на заказ
+     * Блок вывода цены с учетом скидки
+     * 
      * @param array $input (массив с входящими значениями по товару)
      * @param string $CURRENCIES (валюта)
      * @param string $marker (маркер для \eMarket\Products::productPrice для вывода названия валюты)
      * @param string $class (класс bootstrap для отображения скидки)
      * @return string (выходные данные в виде форматированной стоимости)
      */
-    public static function totalSaleBlock($input, $CURRENCIES, $marker, $class = null) {
+    public static function priceInterface($input, $CURRENCIES, $marker, $class = null) {
 
-        // Модуль eMarket\Modules\Discount\Sale
-        $sale = \eMarket\Modules\Discount\Sale::interface($input, $CURRENCIES, $marker, $class = null);
-        return $sale;
+        if ($class == null) {
+            $class = 'danger';
+        }
+        //Модуль скидки \eMarket\Modules\Discount\Sale
+        $price_with_sale = \eMarket\Modules\Discount\Sale::dataInterface($input);
+
+        if (\eMarket\Set::path() == 'admin') {
+            $price_val = $input[5];
+
+            if ($price_val != $price_with_sale[0] && $price_with_sale[2] == 1) {
+                return '<span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="' . $price_with_sale[1] . '" class="label label-' . $class . '">' . \eMarket\Products::productPrice($price_with_sale[0], $CURRENCIES, $marker) . '</span> <del>' . \eMarket\Products::productPrice($price_val, $CURRENCIES, $marker) . '</del>';
+            }
+            if ($price_val != $price_with_sale[0] && $price_with_sale[2] > 1) {
+                return '<span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="' . lang('modules_discount_sale_admin_tooltip_warning') . $price_with_sale[1] . '" class="label label-warning"><u>' . \eMarket\Products::productPrice($price_with_sale[0], $CURRENCIES, $marker) . '</u></span> <del>' . \eMarket\Products::productPrice($price_val, $CURRENCIES, $marker) . '</del>';
+            }
+            return \eMarket\Products::productPrice($price_val, $CURRENCIES, $marker);
+        }
+
+        if (\eMarket\Set::path() == 'catalog') {
+            $price_val = $input['price'];
+
+            if ($price_val != $price_with_sale[0]) {
+                return '<del>' . \eMarket\Products::productPrice($price_val, $CURRENCIES, $marker) . '</del><br><span class="label label-' . $class . '">' . \eMarket\Products::productPrice($price_with_sale[0], $CURRENCIES, $marker) . '</span>';
+            }
+            return \eMarket\Products::productPrice($price_val, $CURRENCIES, $marker) . '<br><br>';
+        }
     }
 
     /**
