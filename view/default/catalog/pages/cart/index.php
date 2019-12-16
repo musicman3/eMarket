@@ -33,7 +33,7 @@
             </table>
         </div>
         
-        <div id="accordion" class="panel-group">
+<!--        <div id="accordion" class="panel-group">
 	    <div class="panel panel-default">
 		<div class="panel-heading">
 		    <h6 class="panel-title"><a data-parent="#accordion" data-toggle="collapse" class="accordion-toggle" href="#collapse-voucher">Подарочный сертификат <span class="glyphicon glyphicon-triangle-bottom"></span></a></h6>
@@ -64,7 +64,21 @@
 		    </div>
 		</div>
 	    </div>
-        </div>
+        </div>-->
+        
+	<div class="input-group">
+	    <input type="text" class="form-control" id="input-coupon" placeholder="Введиде № подарочного сертификата" value="" name="coupon">
+	    <span class="input-group-btn">
+		<input type="button" class="btn btn-primary" data-loading-text="Loading..." id="button-voucher" value="Применить">
+	    </span>
+	</div><br/>
+
+	<div class="input-group">
+	    <input type="text" class="form-control" id="input-coupon" placeholder="Введиде № дисконтной карты" value="" name="coupon">
+	    <span class="input-group-btn">
+		<input type="button" class="btn btn-primary" data-loading-text="Loading..." id="button-coupon" value="Применить">
+	    </span>
+	</div><br/>
 
         <div class="row">
             <div class="col-sm-4 col-sm-offset-8">
