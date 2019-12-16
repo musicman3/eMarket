@@ -25,7 +25,7 @@
                                     <button class="btn btn-primary btn-sm" type="button" onclick="deleteProduct(<?php echo $value['id'] ?>)"><span class="glyphicon glyphicon-trash"></span></button>
                                 </form>
                             </td>
-                            <td class="text-right"><?php echo \eMarket\Products::productPrice($value['price'] * \eMarket\Cart::productQuantity($value['id']), $CURRENCIES, 1) ?></td>
+                            <td class="text-right"><?php echo \eMarket\Ecb::priceCartInterface($value, $CURRENCIES, 1) ?></td>
                         </tr>
                     <?php } ?>
                 </tbody>
@@ -71,7 +71,7 @@
                     <tbody>
                         <tr>
                             <td class="text-right"><strong><?php echo lang('total') ?>:</strong></td>
-                            <td class="text-right"><?php echo \eMarket\Products::productPrice(\eMarket\Cart::totalPrice(), $CURRENCIES, 1) ?></td>
+                            <td class="text-right"><?php echo \eMarket\Ecb::totalPriceCartInterface($CURRENCIES, 1) ?></td>
                         </tr>
                     </tbody>
                 </table>
