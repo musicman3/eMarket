@@ -3,7 +3,6 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-
 ?>
 
 <h1><?php echo lang('shopping_cart') ?></h1>
@@ -32,57 +31,57 @@
                 </tbody>
             </table>
         </div>
-        
-<!--        <div id="accordion" class="panel-group">
-	    <div class="panel panel-default">
-		<div class="panel-heading">
-		    <h6 class="panel-title"><a data-parent="#accordion" data-toggle="collapse" class="accordion-toggle" href="#collapse-voucher">Подарочный сертификат <span class="glyphicon glyphicon-triangle-bottom"></span></a></h6>
-		</div>
-		<div class="panel-collapse collapse" id="collapse-voucher">
-		    <div class="panel-body">
-			<div class="input-group">
-			    <input type="text" class="form-control" id="input-voucher" placeholder="Введите № сертификата" value="" name="voucher">
-			    <span class="input-group-btn">
-				<input type="submit" class="btn btn-primary" data-loading-text="Loading..." id="button-voucher" value="Применить">
-			    </span>
-			</div>
-		    </div>
-		</div>
-	    </div>
-	    <div class="panel panel-default">
-		<div class="panel-heading">
-		    <h6 class="panel-title"><a data-parent="#accordion" data-toggle="collapse" class="accordion-toggle" href="#collapse-coupon">Дисконтная карта <span class="glyphicon glyphicon-triangle-bottom"></span></a></h6>
-		</div>
-		<div class="panel-collapse collapse" id="collapse-coupon">
-		    <div class="panel-body">
-			<div class="input-group">
-			    <input type="text" class="form-control" id="input-coupon" placeholder="Введиде № карты" value="" name="coupon">
-			    <span class="input-group-btn">
-				<input type="button" class="btn btn-primary" data-loading-text="Loading..." id="button-coupon" value="Применить">
-			    </span>
-			</div>
-		    </div>
-		</div>
-	    </div>
-        </div>-->
-        
-	<div class="input-group">
-	    <input type="text" class="form-control" id="input-coupon" placeholder="Введиде № подарочного сертификата" value="" name="coupon">
-	    <span class="input-group-btn">
-		<input type="button" class="btn btn-primary" data-loading-text="Loading..." id="button-voucher" value="Применить">
-	    </span>
-	</div><br/>
 
-	<div class="input-group">
-	    <input type="text" class="form-control" id="input-coupon" placeholder="Введиде № дисконтной карты" value="" name="coupon">
-	    <span class="input-group-btn">
-		<input type="button" class="btn btn-primary" data-loading-text="Loading..." id="button-coupon" value="Применить">
-	    </span>
-	</div><br/>
-
+        <!--        <div id="accordion" class="panel-group">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h6 class="panel-title"><a data-parent="#accordion" data-toggle="collapse" class="accordion-toggle" href="#collapse-voucher">Подарочный сертификат <span class="glyphicon glyphicon-triangle-bottom"></span></a></h6>
+                        </div>
+                        <div class="panel-collapse collapse" id="collapse-voucher">
+                            <div class="panel-body">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="input-voucher" placeholder="Введите № сертификата" value="" name="voucher">
+                                    <span class="input-group-btn">
+                                        <input type="submit" class="btn btn-primary" data-loading-text="Loading..." id="button-voucher" value="Применить">
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h6 class="panel-title"><a data-parent="#accordion" data-toggle="collapse" class="accordion-toggle" href="#collapse-coupon">Дисконтная карта <span class="glyphicon glyphicon-triangle-bottom"></span></a></h6>
+                        </div>
+                        <div class="panel-collapse collapse" id="collapse-coupon">
+                            <div class="panel-body">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="input-coupon" placeholder="Введиде № карты" value="" name="coupon">
+                                    <span class="input-group-btn">
+                                        <input type="button" class="btn btn-primary" data-loading-text="Loading..." id="button-coupon" value="Применить">
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
         <div class="row">
             <div class="col-sm-4 col-sm-offset-8">
                 <table class="table table-bordered">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="input-coupon" placeholder="№ подарочного сертификата" value="" name="coupon">
+                        <span class="input-group-btn">
+                            <input type="button" class="btn btn-primary" data-loading-text="Loading..." id="button-voucher" value="Применить">
+                        </span>
+                    </div><br/>
+
+
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="input-coupon" placeholder="№ дисконтной карты" value="" name="coupon">
+                        <span class="input-group-btn">
+                            <input type="button" class="btn btn-primary" data-loading-text="Loading..." id="button-coupon" value="Применить">
+                        </span>
+                    </div><br/>
+
                     <tbody>
                         <tr>
                             <td class="text-right"><strong><?php echo lang('total') ?>:</strong></td>
@@ -92,36 +91,36 @@
                 </table>
             </div>
         </div>
-        
+
         <div id="accordions" class="panel-group">
-	    <div class="panel panel-default">
-		<div class="panel-heading">
-		    <h6 class="panel-title"><a data-parent="#accordions" data-toggle="collapse" class="accordion-toggle" href="#collapse-devilery">Способ доставки <span class="glyphicon glyphicon-triangle-bottom"></span></a></h6>
-		</div>
-		<div class="panel-collapse collapse" id="collapse-devilery">
-		    <div class="panel-body">
-			<div class="form-check">
-			    <input class="form-check-input" type="radio">
-			    <label class="form-check-label">Энергия</label>
-			</div>
-		    </div>
-		</div>
-	    </div>
-	    <div class="panel panel-default">
-		<div class="panel-heading">
-		    <h6 class="panel-title"><a data-parent="#accordions" data-toggle="collapse" class="accordion-toggle" href="#collapse-checkout">Способ оплаты <span class="glyphicon glyphicon-triangle-bottom"></span></a></h6>
-		</div>
-		<div class="panel-collapse collapse" id="collapse-checkout">
-		    <div class="panel-body">
-			<div class="form-check">
-			    <input class="form-check-input" type="radio">
-			    <label class="form-check-label">В пункте самовывоза</label>
-			</div>
-		    </div>
-		</div>
-	    </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h6 class="panel-title"><a data-parent="#accordions" data-toggle="collapse" class="accordion-toggle" href="#collapse-devilery">Способ доставки <span class="glyphicon glyphicon-triangle-bottom"></span></a></h6>
+                </div>
+                <div class="panel-collapse collapse" id="collapse-devilery">
+                    <div class="panel-body">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio">
+                            <label class="form-check-label">Энергия</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h6 class="panel-title"><a data-parent="#accordions" data-toggle="collapse" class="accordion-toggle" href="#collapse-checkout">Способ оплаты <span class="glyphicon glyphicon-triangle-bottom"></span></a></h6>
+                </div>
+                <div class="panel-collapse collapse" id="collapse-checkout">
+                    <div class="panel-body">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio">
+                            <label class="form-check-label">В пункте самовывоза</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        
+
         <div class="input-group-btn button">
             <div class="pull-left"><a class="btn btn-primary" href="/"><?php echo lang('сheckout_click') ?></a></div>
             <div class="pull-right"><a class="btn btn-primary" href="/"><?php echo lang('сheckout') ?></a></div>
