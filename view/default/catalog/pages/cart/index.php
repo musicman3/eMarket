@@ -11,12 +11,19 @@
         <div class="table-responsive">
             <table class="table table-bordered">
                 <tbody>
+		    <tr>
+			<td class="text-center"> </td>
+			<td class="text-center"><strong>Товар</strong></td>
+                        <td class="text-center"><strong>Цена</strong></td>
+                        <td class="text-center"><strong>Количество</strong></td>
+                        <td class="text-center"><strong>Сумма</strong></td>
+                    </tr>
                     <?php foreach ($cart_info as $value) { ?>
                         <tr>
                             <td class="text-center"><a href="/?route=products&id=<?php echo $value['id'] ?>"><img src="/uploads/images/products/resize_0/<?php echo $value['logo_general'] ?>" alt="<?php echo $value['name'] ?>" class="img-thumbnail"></a></td>
-                            <td class="text-left"><a href="/?route=products&id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></td>
-                            <td class="text-left"><?php echo \eMarket\Ecb::priceInterface($value, $CURRENCIES, 1) ?></td>
-                            <td class="text-left">
+                            <td class="text-center"><a href="/?route=products&id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></td>
+                            <td class="text-center"><?php echo \eMarket\Ecb::priceInterface($value, $CURRENCIES, 1) ?></td>
+                            <td class="text-center">
                                 <form id="quantity_product" name="quantity_product" action="javascript:void(null);" onsubmit="quantityProduct(<?php echo $value['id'] ?>, $('#number_<?php echo $value['id'] ?>').val())">
                                     <button class="btn btn-primary btn-sm" type="button" onclick="pcsProduct('minus', <?php echo $value['id'] ?>)"><span class="glyphicon glyphicon-minus"></span></button>
                                     <input id="number_<?php echo $value['id'] ?>" type="number" min="1" value="<?php echo \eMarket\Cart::productQuantity($value['id']) ?>" class="quantity">
@@ -25,45 +32,13 @@
                                     <button class="btn btn-primary btn-sm" type="button" onclick="deleteProduct(<?php echo $value['id'] ?>)"><span class="glyphicon glyphicon-trash"></span></button>
                                 </form>
                             </td>
-                            <td class="text-right"><?php echo \eMarket\Ecb::priceCartInterface($value, $CURRENCIES, 1) ?></td>
+                            <td class="text-center"><?php echo \eMarket\Ecb::priceCartInterface($value, $CURRENCIES, 1) ?></td>
                         </tr>
                     <?php } ?>
                 </tbody>
             </table>
         </div>
 
-        <!--        <div id="accordion" class="panel-group">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h6 class="panel-title"><a data-parent="#accordion" data-toggle="collapse" class="accordion-toggle" href="#collapse-voucher">Подарочный сертификат <span class="glyphicon glyphicon-triangle-bottom"></span></a></h6>
-                        </div>
-                        <div class="panel-collapse collapse" id="collapse-voucher">
-                            <div class="panel-body">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id="input-voucher" placeholder="Введите № сертификата" value="" name="voucher">
-                                    <span class="input-group-btn">
-                                        <input type="submit" class="btn btn-primary" data-loading-text="Loading..." id="button-voucher" value="Применить">
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h6 class="panel-title"><a data-parent="#accordion" data-toggle="collapse" class="accordion-toggle" href="#collapse-coupon">Дисконтная карта <span class="glyphicon glyphicon-triangle-bottom"></span></a></h6>
-                        </div>
-                        <div class="panel-collapse collapse" id="collapse-coupon">
-                            <div class="panel-body">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id="input-coupon" placeholder="Введиде № карты" value="" name="coupon">
-                                    <span class="input-group-btn">
-                                        <input type="button" class="btn btn-primary" data-loading-text="Loading..." id="button-coupon" value="Применить">
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>-->
         <div class="row">
             <div class="col-sm-4 col-sm-offset-8">
                 <table class="table table-bordered">
