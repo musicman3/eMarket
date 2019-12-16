@@ -45,15 +45,6 @@ final class Ecb {
             return \eMarket\Products::productPrice($price_val, $CURRENCIES, $marker);
         }
 
-        if (\eMarket\Set::titleDir() == 'cart') {
-            $price_val = $input['price'];
-
-            if ($price_val != $price_with_sale[0]) {
-                return '<del>' . \eMarket\Products::productPrice($price_val * \eMarket\Cart::productQuantity($input['id'], $CURRENCIES, 1), $CURRENCIES, $marker) . '</del><br><span class="label label-' . $class . '">' . \eMarket\Products::productPrice($price_with_sale[0] * \eMarket\Cart::productQuantity($input['id'], $CURRENCIES, 1), $CURRENCIES, $marker) . '</span>';
-            }
-            return \eMarket\Products::productPrice($price_val * \eMarket\Cart::productQuantity($input['id'], $CURRENCIES, 1), $CURRENCIES, $marker) . '<br><br>';
-        }
-
         if (\eMarket\Set::path() == 'catalog') {
             $price_val = $input['price'];
 
