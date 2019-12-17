@@ -14,34 +14,30 @@
 
             <div class="panel-body">
 
-                <div id="accordions" class="panel-group">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h6 class="panel-title"><a data-parent="#accordions" data-toggle="collapse" class="accordion-toggle" href="#collapse-devilery">Способ доставки <span class="glyphicon glyphicon-triangle-bottom"></span></a></h6>
-                        </div>
-                        <div class="panel-collapse collapse" id="collapse-devilery">
-                            <div class="panel-body">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio">
-                                    <label class="form-check-label">Энергия</label>
-                                </div>
-                            </div>
-                        </div>
+                <div class="form-group">
+                    <label for="shipping">Доставка</label>
+                    <div class="input-group has-success">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                        <select name="shipping" id="shipping" class="input-sm form-control">
+                            <option value="1">Самовывоз</option>
+                            <option value="2">EMS</option>
+                        </select>
                     </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h6 class="panel-title"><a data-parent="#accordions" data-toggle="collapse" class="accordion-toggle" href="#collapse-checkout">Способ оплаты <span class="glyphicon glyphicon-triangle-bottom"></span></a></h6>
-                        </div>
-                        <div class="panel-collapse collapse" id="collapse-checkout">
-                            <div class="panel-body">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio">
-                                    <label class="form-check-label">В пункте самовывоза</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <small id="shipping_method" class="form-text text-muted">Пожалуйста, выберите удобный для Вас вид доставки</small>
                 </div>
+
+                <div class="form-group">
+                    <label for="payment">Оплата</label>
+                    <div class="input-group has-success">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                        <select name="payment" id="payment" class="input-sm form-control">
+                            <option value="1">Наличными в офисе</option>
+                            <option value="2">VISA/MASTERCARD</option>
+                        </select>
+                    </div>
+                    <small id="payment_method" class="form-text text-muted">Пожалуйста, выберите удобный для Вас вид оплаты</small>
+                </div>
+
             </div> 
             <div class="modal-footer">
                 <button type="button" class="btn btn btn-primary" data-toggle="modal" data-target="#cart"><span class="glyphicon glyphicon-ok"></span> Завершить</button>
