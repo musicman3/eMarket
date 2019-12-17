@@ -59,7 +59,7 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-shopping-cart"></i> <?php echo \eMarket\Cart::totalQuantity() . ' ' . lang('navbar_pcs') ?> <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#" class="disabled"><?php echo \eMarket\Cart::totalQuantity() . ' ' . lang('navbar_pcs') . ' (' . \eMarket\Products::productPrice(\eMarket\Cart::totalPrice(), $CURRENCIES, 1) . ')' ?></a></li>
+                            <li><a href="#" class="disabled"><?php echo \eMarket\Ecb::totalPriceCartInterface($CURRENCIES, 1) ?></a></li>
                             <li class="divider"></li>
                             <li><a href="/?route=cart">View Cart</a></li>
                         </ul>
