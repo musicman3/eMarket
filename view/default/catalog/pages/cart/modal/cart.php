@@ -43,11 +43,11 @@
                     </div>
                 </div>
 
-                <div class="input-group-btn button">
-                    <div class="pull-right">
+           
+                    <div class="modal-footer">
                         <button type="button" class="btn btn btn-primary" data-toggle="modal" data-target="#cart"><span class="glyphicon glyphicon-ok"></span> Завершить</button>
                     </div>
-                </div>
+               
                 
             </div> 
         </div>
