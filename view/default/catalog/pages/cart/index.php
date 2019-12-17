@@ -4,6 +4,9 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
+<!-- Модальное окно "Добавить" -->
+<?php require_once('modal/cart.php') ?>
+<!-- КОНЕЦ Модальное окно "Добавить" -->
 
 <h1><?php echo lang('shopping_cart') ?></h1>
 <?php if ($cart_info == true) { ?>
@@ -11,9 +14,9 @@
         <div class="table-responsive">
             <table class="table table-bordered">
                 <tbody>
-		    <tr>
-			<td class="text-center"> </td>
-			<td class="text-center"><strong>Товар</strong></td>
+                    <tr>
+                        <td class="text-center"> </td>
+                        <td class="text-center"><strong>Товар</strong></td>
                         <td class="text-center"><strong>Цена</strong></td>
                         <td class="text-center"><strong>Количество</strong></td>
                         <td class="text-center"><strong>Сумма</strong></td>
@@ -43,14 +46,6 @@
             <div class="col-sm-4 col-sm-offset-8">
                 <table class="table table-bordered">
                     <div class="input-group">
-                        <input type="text" class="form-control" id="input-coupon" placeholder="№ подарочного сертификата" value="" name="coupon">
-                        <span class="input-group-btn">
-                            <input type="button" class="btn btn-primary" data-loading-text="Loading..." id="button-voucher" value="Применить">
-                        </span>
-                    </div><br/>
-
-
-                    <div class="input-group">
                         <input type="text" class="form-control" id="input-coupon" placeholder="№ дисконтной карты" value="" name="coupon">
                         <span class="input-group-btn">
                             <input type="button" class="btn btn-primary" data-loading-text="Loading..." id="button-coupon" value="Применить">
@@ -67,46 +62,18 @@
             </div>
         </div>
 
-        <div id="accordions" class="panel-group">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h6 class="panel-title"><a data-parent="#accordions" data-toggle="collapse" class="accordion-toggle" href="#collapse-devilery">Способ доставки <span class="glyphicon glyphicon-triangle-bottom"></span></a></h6>
-                </div>
-                <div class="panel-collapse collapse" id="collapse-devilery">
-                    <div class="panel-body">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio">
-                            <label class="form-check-label">Энергия</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h6 class="panel-title"><a data-parent="#accordions" data-toggle="collapse" class="accordion-toggle" href="#collapse-checkout">Способ оплаты <span class="glyphicon glyphicon-triangle-bottom"></span></a></h6>
-                </div>
-                <div class="panel-collapse collapse" id="collapse-checkout">
-                    <div class="panel-body">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio">
-                            <label class="form-check-label">В пункте самовывоза</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="input-group-btn button">
-            <div class="pull-left"><a class="btn btn-primary" href="/"><?php echo lang('сheckout_click') ?></a></div>
-            <div class="pull-right"><a class="btn btn-primary" href="/"><?php echo lang('сheckout') ?></a></div>
-        </div>
-    </div>
-<?php } else { ?>
-    <div id="cart" class="contentText">
-        <div class="well well-sm">
-            <div class="btn-group">
-                <div class="btn"><?php echo lang('shopping_cart_empty') ?></div>
+            <div class="pull-right">
+                <button type="button" class="btn btn btn-primary" data-toggle="modal" data-target="#cart"><span class="glyphicon glyphicon-share-alt"></span> <?php echo lang('сheckout') ?></button>
             </div>
         </div>
-    </div>
-<?php } ?>
+        
+    <?php } else { ?>
+        <div id="cart" class="contentText">
+            <div class="well well-sm">
+                <div class="btn-group">
+                    <div class="btn"><?php echo lang('shopping_cart_empty') ?></div>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
