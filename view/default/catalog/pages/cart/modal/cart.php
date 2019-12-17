@@ -15,6 +15,18 @@
             <div class="panel-body">
 
                 <div class="form-group">
+                    <label for="address">Адрес доставки</label>
+                    <div class="input-group has-success">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                        <select name="address" id="address" class="input-sm form-control">
+                            <option value="1">Российская Федерация, г. Москва, ул. 1-я Юбилейная д. 1 кв. 1</option>
+                            <option value="1">Российская Федерация, г. Москва, ул. 2-я Юбилейная д. 1 кв. 1</option>
+                        </select>
+                    </div>
+                    <small id="address_method" class="form-text text-muted">Пожалуйста, выберите удобный для Вас адрес доставки</small>
+                </div>
+
+                <div class="form-group">
                     <label for="shipping">Доставка</label>
                     <div class="input-group has-success">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
@@ -23,7 +35,7 @@
                             <option value="2">EMS</option>
                         </select>
                     </div>
-                    <small id="shipping_method" class="form-text text-muted">Пожалуйста, выберите удобный для Вас вид доставки</small>
+                    <small id="shipping_method" class="form-text text-muted">Пожалуйста, выберите удобный для Вас метод доставки</small>
                 </div>
 
                 <div class="form-group">
@@ -35,7 +47,7 @@
                             <option value="2">VISA/MASTERCARD</option>
                         </select>
                     </div>
-                    <small id="payment_method" class="form-text text-muted">Пожалуйста, выберите удобный для Вас вид оплаты</small>
+                    <small id="payment_method" class="form-text text-muted">Пожалуйста, выберите удобный для Вас метод оплаты</small>
                 </div>
 
             </div> 
