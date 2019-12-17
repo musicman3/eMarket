@@ -83,7 +83,3 @@ nav .disabled {pointer-events: none;}
 #register fieldset, #forgotpass fieldset {min-width: 0;padding: 0;margin: 0;border: 0;}
 #register legend, #login legend, #forgotpass legend {font-size: 14px;text-transform: uppercase;padding: 5px 0px 5px;display: block;width: 100%;margin-bottom: 20px;color: #666;border: 0;border-bottom-color: currentcolor;border-bottom-style: none;border-bottom-width: 0px;border-bottom: 1px solid #e5e5e5;}
 .modal-content .tooltip-inner {font-family: 'Open Sans';max-width:400px;}
-
-.modal-body, .panel-body, .input-sm {font-size: 14px;}
-.modal-content {font-weight:normal;}
-.modal-header {background-color: #f5f5f5;padding: 10px 15px;border-top-left-radius: 3px;border-top-right-radius: 3px;}
