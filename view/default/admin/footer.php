@@ -57,8 +57,4 @@ $(function() {
 });
 </script>
 
-<script type="text/javascript">
-    $('[data-toggle=confirmation]').confirmation();
-</script>
-
 <?php } ?>

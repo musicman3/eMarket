@@ -11,6 +11,7 @@ title_login_index = Autorization
 title_register_index = Registration
 title_cart_index = Cart
 title_recoverypass_index = Password Recovery
+title_address_book_index = Address Book
 
 ;DEBUG
 debug_page_generation_time = Page generation time:
@@ -26,6 +27,7 @@ sale = Sale
 recommended = Recommended
 articles = Articles
 my_account = My account
+my_address_book = Address Book
 
 ;PAGES
 description_product = Description

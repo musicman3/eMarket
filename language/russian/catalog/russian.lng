@@ -11,6 +11,7 @@ title_login_index = Авторизация
 title_register_index = Регистрация
 title_cart_index = Корзина
 title_recoverypass_index = Восстановление пароля
+title_address_book_index = Адресная книга
 
 
 ;DEBUG
@@ -27,6 +28,7 @@ sale = Распродажа
 recommended = Рекомендуемые
 articles = Статьи
 my_account = Личный кабинет
+my_address_book = Адресная книга
 
 ;PAGES
 description_product = Описание товара

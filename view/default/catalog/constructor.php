@@ -28,7 +28,7 @@
         <link rel="stylesheet" type="text/css" href="/view/<?php echo \eMarket\Set::template() ?>/catalog/style.css" media="screen" />
         <script type="text/javascript" src="/ext/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/ext/jquery/ui/jquery.ui.touch-punch.min.js"></script>
-        
+
         <!-- Всплывающие подсказки" -->
         <script type="text/javascript">
             $(function () {
@@ -46,7 +46,6 @@
         ?>
 
         <div id="bodyWrapper" class="container-fluid">
-
             <div class="row">
 
                 <?php
@@ -88,7 +87,6 @@
                 <?php } ?>
 
             </div>
-
         </div>
 
         <?php
@@ -96,8 +94,19 @@
         foreach (\eMarket\View::layoutRouting('footer') as $path) {
             require_once (ROOT . $path);
         }
+        ?>
 
+        <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/ext/bootstrap/js/bootstrap-confirmation.min.js"></script>
+        <script type="text/javascript" src="/ext/simpleeqh/simpleeqh.js"></script>
+        <script type="text/javascript" src="/ext/jstree/jstree.min.js"></script>
+        <?php require_once (ROOT . '/view/' . \eMarket\Set::template() . '/js/breadcrumb.php') ?>
 
+        <script type="text/javascript">
+            $('[data-toggle=confirmation]').confirmation();
+        </script>
+
+        <?php
         //Если существует $JS_END
         if (isset($JS_END)) {
             //то подгружаем JS.PHP файл
@@ -112,9 +121,5 @@
         // Выводим отладочную информацию
         \eMarket\Debug::info($TIME_START);
         ?>
-        <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="/ext/simpleeqh/simpleeqh.js"></script>
-        <script type="text/javascript" src="/ext/jstree/jstree.min.js"></script>
-        <?php require_once (ROOT . '/view/' . \eMarket\Set::template() . '/js/breadcrumb.php') ?>
     </body>
 </html>

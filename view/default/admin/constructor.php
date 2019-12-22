@@ -3,7 +3,6 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-
 ?>
 
 <!doctype html>
@@ -41,7 +40,6 @@
 
         <?php
         if (isset($_SESSION['login']) && isset($_SESSION['pass']) && file_exists(ROOT . '/view/' . \eMarket\Set::template() . '/admin/nav.css')) {
-
             ?>
             <link rel="stylesheet" type="text/css" href="/view/<?php echo \eMarket\Set::template() ?>/admin/nav.css" media="screen" />
         <?php } ?>
@@ -57,19 +55,22 @@
         // ЗАГРУЖАЕМ ТЕЛО HTML СТРАНИЦЫ
         require_once(\eMarket\View::routingAdmin());
 
+        // ЗАГРУЖАЕМ FOOTER
+        foreach (\eMarket\View::layoutRouting('footer') as $path) {
+            require_once (ROOT . $path);
+        }
         ?>
 
         <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/ext/bootstrap/js/bootstrap-confirmation.min.js"></script>
         <script type="text/javascript" src="/ext/contextmenu/js/contextmenu.js"></script>
         <script type="text/javascript" src="/ext/bootstrap/js/bootstrap-multiselect.js"></script>
+        
+        <script type="text/javascript">
+            $('[data-toggle=confirmation]').confirmation();
+        </script>
 
         <?php
-        // ЗАГРУЖАЕМ FOOTER
-        foreach (\eMarket\View::layoutRouting('footer') as $path) {
-            require_once (ROOT . $path);
-        }
-
         //Если существует $JS_END
         if (isset($JS_END)) {
             //то подгружаем JS.PHP файл
@@ -82,7 +83,6 @@
         }
         // Выводим отладочную информацию
         \eMarket\Debug::info($TIME_START);
-
         ?>
     </body>
 </html>

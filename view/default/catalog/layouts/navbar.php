@@ -47,8 +47,8 @@
                             <li><a href="/?route=login&logout=ok"><?php echo lang('navbar_logout') ?></a></li>
                             <li class="divider"></li>
                             <li><a href="#">My Account</a></li>
-                            <li><a href="#">My Orders</a></li>
-                            <li><a href="#">My Address Book</a></li>
+                            <li><a href="">My Orders</a></li>
+                            <li><a href="/?route=address_book"><?php echo lang('my_address_book') ?></a></li>
                             <li><a href="#">My Password</a></li>
                         </ul>
 		<?php } ?>
