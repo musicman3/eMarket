@@ -35,7 +35,7 @@
         <tbody>
             <tr>
                 <td>123</td>
-                <th class="al-text">Да</td>
+                <td class="al-text">Да</td>
                 <td class="al-text-w">
                     <form id="form_delete1" name="form_delete" action="javascript:void(null);" onsubmit="callDelete('1')" enctype="multipart/form-data">
                         <input hidden name="delete" value="1">
