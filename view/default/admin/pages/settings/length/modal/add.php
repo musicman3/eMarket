@@ -55,7 +55,8 @@
                                     </div>
                                 </div>
 
-                            <?php }
+                            <?php
+                            }
                         }
                         ?>
 
@@ -65,10 +66,10 @@
                                 <input class="input-sm form-control" placeholder="<?php echo lang('value') ?>" type="text" pattern="\d+(\.\d{0,7})?" name="value_length" id="value_length" required />
                             </div>
                         </div>
-                            <div class="form-group">
-                                <input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="default_length" id="default_length" type="checkbox" checked>
-                                <label for="default_length"><?php echo lang('default_set') ?> </label>
-                            </div>
+                        <div class="form-group">
+                            <input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="default_length" id="default_length" type="checkbox" checked>
+                            <label for="default_length"><?php echo lang('default_set') ?> </label>
+                        </div>
                     </div>
                 </div>
 

@@ -58,6 +58,10 @@
                             <input class="input-sm form-control" placeholder="Введите адрес доставки" type="text" name="address"  id="address" required />
                         </div>
                     </div>
+                    <div class="form-group">
+                        <input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="default" id="default" type="checkbox" checked>
+                        <label for="default"><?php echo lang('default_set') ?> </label>
+                    </div>
 
                 </div>
                 <div class="modal-footer">

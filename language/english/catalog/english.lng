@@ -35,6 +35,8 @@ button_delete = Delete
 button_edit = Edit
 cancel = Cancel
 save = Save
+confirm-no-switch = NO
+confirm-yes-switch = YES
 
 ;PAGES
 description_product = Description
@@ -50,6 +52,7 @@ new_customer = New Customer
 sign_in = Sign in
 continue = Continue
 default = Default
+default_set = Default Set
 e_mail = E-Mail
 telephone = Telephone
 password = Enter password

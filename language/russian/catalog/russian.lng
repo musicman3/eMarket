@@ -36,6 +36,8 @@ button_delete = Удалить
 button_edit = Редактировать
 cancel = Отмена
 save = Сохранить
+confirm-no-switch = НЕТ
+confirm-yes-switch = ДА
 
 ;PAGES
 description_product = Описание товара
@@ -52,6 +54,7 @@ sign_in = Войти
 continue = Продолжить
 e_mail = E-Mail
 default = По умолчанию
+default_set = Установить по умолчанию
 telephone = Телефон
 password = Введите пароль
 confirm_password = Подтвердите пароль
