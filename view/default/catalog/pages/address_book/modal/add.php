@@ -58,13 +58,6 @@
                             <input class="input-sm form-control" placeholder="Введите адрес доставки" type="text" name="address"  id="address" required />
                         </div>
                     </div>
-                    <div class="form-group">
-                        <small class="form-text text-muted">Телефон</small>
-                        <div class="input-group has-error">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                            <input class="input-sm form-control" placeholder="Введите номер телефона" type="text" name="phone"  id="phone" required />
-                        </div>
-                    </div>
 
                 </div>
                 <div class="modal-footer">
