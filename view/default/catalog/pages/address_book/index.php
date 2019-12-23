@@ -12,16 +12,14 @@
     <table class="table table-hover">
         <thead>
             <tr>
-                <th colspan="4">
+                <th colspan="2">
                 </th>
                 <th>
                     <div class="right"><a href="#add" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
                 </th>
             </tr>
             <tr class="border">
-                <th><?php echo lang('name_full') ?></th>
-                <th class="al-text"><?php echo lang('name_little') ?></th>
-                <th class="al-text"><?php echo lang('value') ?></th>
+                <th><?php echo lang('shipping_address') ?></th>
                 <th class="al-text"><?php echo lang('default') ?></th>
                 <th class="al-text-w"></th>
             </tr>
@@ -29,10 +27,7 @@
         <tbody>
             <tr>
                 <td>123</td>
-                <td class="al-text">1236</td>
-                <td class="al-text">23654</td>
-                <td class="al-text"><?php echo lang('confirm-yes') ?></td>
-
+                <th class="al-text">Да</td>
                 <td class="al-text-w">
                     <form id="form_delete1" name="form_delete" action="javascript:void(null);" onsubmit="callDelete('1')" enctype="multipart/form-data">
                         <input hidden name="delete" value="1">

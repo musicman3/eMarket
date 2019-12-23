@@ -27,7 +27,6 @@ sale = Sale
 recommended = Recommended
 articles = Articles
 my_account = My account
-my_address_book = Address Book
 
 ;PAGES
 description_product = Description
@@ -42,6 +41,7 @@ regular_customer = Regular customer
 new_customer = New Customer
 sign_in = Sign in
 continue = Continue
+default = Default
 e_mail = E-Mail
 telephone = Telephone
 password = Enter password
@@ -56,6 +56,10 @@ last_name = Last Name
 privacy_statement_agree = I have read and agreed to your <a href="%s" target="_blank" class="agree">privacy statement</a>.
 this_page_is_not_available = This page is not available!
 enter_a_new_password = Enter a new password
+
+;ADDRESS BOOK
+my_address_book = Address Book
+shipping_address = Shipping Address
 
 ;BREADCRUMB
 breadcrumb_home = Home

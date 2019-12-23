@@ -28,7 +28,7 @@ sale = Распродажа
 recommended = Рекомендуемые
 articles = Статьи
 my_account = Личный кабинет
-my_address_book = Адресная книга
+
 
 ;PAGES
 description_product = Описание товара
@@ -44,6 +44,7 @@ new_customer = Новый покупатель
 sign_in = Войти
 continue = Продолжить
 e_mail = E-Mail
+default = По умолчанию
 telephone = Телефон
 password = Введите пароль
 confirm_password = Подтвердите пароль
@@ -60,6 +61,10 @@ enter_a_new_password = Введите новый пароль
 
 ;BREADCRUMB
 breadcrumb_home = Главная
+
+;ADDRESS BOOK
+my_address_book = Адресная книга
+shipping_address = Адрес доставки
 
 ;OTHER
 buy_now = Купить
