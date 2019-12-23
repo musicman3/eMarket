@@ -28,6 +28,14 @@ recommended = Recommended
 articles = Articles
 my_account = My account
 
+;BUTTONS
+button_add = Add
+button_cancel = Cancel
+button_delete = Delete
+button_edit = Edit
+cancel = Cancel
+save = Save
+
 ;PAGES
 description_product = Description
 shopping_cart = Cart

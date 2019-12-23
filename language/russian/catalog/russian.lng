@@ -29,6 +29,13 @@ recommended = Рекомендуемые
 articles = Статьи
 my_account = Личный кабинет
 
+;BUTTONS
+button_add = Добавить
+button_cancel = Отмена
+button_delete = Удалить
+button_edit = Редактировать
+cancel = Отмена
+save = Сохранить
 
 ;PAGES
 description_product = Описание товара

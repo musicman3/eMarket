@@ -16,9 +16,53 @@
                     <input type="hidden" name="add" value="ok" />
 
                     <div class="form-group">
+                        <small class="form-text text-muted">Страна</small>
+                        <div class="input-group has-success">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                            <select name="countries" id="countries" class="input-sm form-control">
+                                <?php foreach ($countries_data as $val) { ?>
+                                    <option value="<?php echo $val['id'] ?>"><?php echo $val['name'] ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <small class="form-text text-muted">Регион</small>
+                        <div class="input-group has-success">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                            <select name="regions" id="regions" class="input-sm form-control">
+                                <?php foreach ($regions_data as $val) { ?>
+                                    <option value="<?php echo $val['id'] ?>"><?php echo $val['name'] ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <small class="form-text text-muted">Город</small>
                         <div class="input-group has-error">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                            <input class="input-sm form-control" placeholder="<?php echo lang('name_little') ?>" type="text" name="unit_units" id="unit_units" required />
+                            <input class="input-sm form-control" placeholder="Введите название Вашего города" type="text" name="city"  id="city" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <small class="form-text text-muted">Почтовый код</small>
+                        <div class="input-group has-error">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                            <input class="input-sm form-control" placeholder="Введите почтовый код" type="text" name="zip"  id="zip" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <small class="form-text text-muted">Адрес доставки</small>
+                        <div class="input-group has-error">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                            <input class="input-sm form-control" placeholder="Введите адрес доставки" type="text" name="address"  id="address" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <small class="form-text text-muted">Телефон</small>
+                        <div class="input-group has-error">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                            <input class="input-sm form-control" placeholder="Введите номер телефона" type="text" name="phone"  id="phone" required />
                         </div>
                     </div>
 
