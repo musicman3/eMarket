@@ -1,0 +1,34 @@
+<?php
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
+  |  https://github.com/musicman3/eMarket  |
+  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+?>
+<!-- Модальное окно "Добавить" -->
+<div id="add" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header"><div class="pull-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Сокращенное наименование указывается любыми символами" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
+                <h4 class="modal-title"><?php echo \eMarket\Set::titlePageGenerator() ?></h4>
+            </div>
+            <form id="form_add" name="form_add" action="javascript:void(null);" onsubmit="callAdd()">
+                <div class="panel-body">
+                    <input type="hidden" name="add" value="ok" />
+
+                    <div class="form-group">
+                        <div class="input-group has-error">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                            <input class="input-sm form-control" placeholder="<?php echo lang('name_little') ?>" type="text" name="unit_units" id="unit_units" required />
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary btn-xs" type="button" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-remove"></span> <?php echo lang('cancel') ?></button>
+                    <button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- КОНЕЦ Модальное окно "Добавить" -->
