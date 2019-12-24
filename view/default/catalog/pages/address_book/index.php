@@ -39,7 +39,11 @@
                     ?>
                     <tr>
                         <td><img src="/view/<?php echo \eMarket\Set::template() ?>/admin/images/worldflags/<?php echo strtolower($country_name[$val['countries_id']][0]) ?>.png" alt="<?php echo $country_name[$val['countries_id']][1] ?>" title="<?php echo $country_name[$val['countries_id']][1] ?>" width="16" height="10" /> <?php echo $val['zip'] . ', ' . $val['city'] . ', ' . $val['address'] ?></td>
-                        <td class="al-text">Да</td>
+                        <?php if ($val['default'] == 1){ ?>
+                        <td class="al-text"><?php echo lang('confirm-yes') ?></td>
+                        <?php } else { ?>
+                        <td class="al-text"><?php echo lang('confirm-no') ?></td>
+                        <?php } ?>
                         <td class="al-text-w">
                             <form id="form_delete1" name="form_delete" action="javascript:void(null);" onsubmit="callDelete('1')" enctype="multipart/form-data">
                                 <input hidden name="delete" value="1">
