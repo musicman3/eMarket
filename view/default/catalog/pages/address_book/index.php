@@ -33,22 +33,29 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>123</td>
-                <td class="al-text">Да</td>
-                <td class="al-text-w">
-                    <form id="form_delete1" name="form_delete" action="javascript:void(null);" onsubmit="callDelete('1')" enctype="multipart/form-data">
-                        <input hidden name="delete" value="1">
-                        <div class="right">
-                            <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button>
-                        </div>
-                    </form>
-                    <!--Вызов модального окна для редактирования-->
-                    <div class="left">
-                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#edit" data-edit="1"><span class="glyphicon glyphicon-edit"></span></button>
-                    </div>
-                </td>
-            </tr>
+            <?php
+            if ($adress_array_data_temp != FALSE) {
+                foreach (json_decode($adress_array_data_temp, 1) as $val) {
+                    ?>
+                    <tr>
+                        <td><img src="/view/<?php echo \eMarket\Set::template() ?>/admin/images/worldflags/<?php echo strtolower($country_name[$val['countries_id']][0]) ?>.png" alt="<?php echo $country_name[$val['countries_id']][1] ?>" title="<?php echo $country_name[$val['countries_id']][1] ?>" width="16" height="10" /> <?php echo $val['zip'] . ', ' . $val['city'] . ', ' . $val['address'] ?></td>
+                        <td class="al-text">Да</td>
+                        <td class="al-text-w">
+                            <form id="form_delete1" name="form_delete" action="javascript:void(null);" onsubmit="callDelete('1')" enctype="multipart/form-data">
+                                <input hidden name="delete" value="1">
+                                <div class="right">
+                                    <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button>
+                                </div>
+                            </form>
+                            <!--Вызов модального окна для редактирования-->
+                            <div class="left">
+                                <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#edit" data-edit="1"><span class="glyphicon glyphicon-edit"></span></button>
+                            </div>
+                        </td>
+                    </tr>
+                <?php }
+            }
+            ?>
 
         </tbody>
     </table>

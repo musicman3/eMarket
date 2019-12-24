@@ -16,16 +16,6 @@ CREATE TABLE emkt_administrators (
 PRIMARY KEY (login))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-DROP TABLE IF EXISTS emkt_adress_card;
-CREATE TABLE emkt_adress_card (
-	id int NOT NULL,
-	name varchar(256),
-	language varchar(64),
-        adress varchar(2048),
-        default_adress int NOT NULL,
-	PRIMARY KEY (id, language))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 DROP TABLE IF EXISTS emkt_basic_settings;
 CREATE TABLE emkt_basic_settings (
 	id int NOT NULL auto_increment,
@@ -89,6 +79,7 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 DROP TABLE IF EXISTS emkt_customers;
 CREATE TABLE emkt_customers (
         id int NOT NULL auto_increment,
+        address_book json,
         gender char(1),
         firstname varchar(32) NOT NULL,
         lastname varchar(32) NOT NULL,
