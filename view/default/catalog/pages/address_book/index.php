@@ -44,7 +44,7 @@
                             <form id="form_delete1" name="form_delete" action="javascript:void(null);" onsubmit="callDelete('1')" enctype="multipart/form-data">
                                 <input hidden name="delete" value="1">
                                 <div class="right">
-                                    <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-toggle="confirmation" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button>
+                                    <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button>
                                 </div>
                             </form>
                             <!--Вызов модального окна для редактирования-->
