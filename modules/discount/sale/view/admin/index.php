@@ -13,7 +13,6 @@
 <!-- КОНЕЦ Модальное окно "Редактировать" -->
 
 
-<div class="panel-body">
     <!--Скрытый div для передачи данных-->
     <div id="ajax_data" class='hidden'
          data-name='<?php echo $name_edit ?>'
@@ -111,4 +110,3 @@
             <?php } ?>
         </tbody>
     </table>
-</div>
