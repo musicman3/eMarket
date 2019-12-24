@@ -53,14 +53,14 @@
 
                                 <th>
                                 
-                                    <div class="right"><a href="#add" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
+                                    <div class="b-right"><a href="#add" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
                                 
                                     <form>
                                         <?php if (count($lines) > $lines_on_page) { ?>
                                             <input hidden name="route" value="settings/currencies">
                                             <input hidden name="start" value="<?php echo $start ?>">
                                             <input hidden name="finish" value="<?php echo $finish ?>">
-                                            <div class="left"><button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
+                                            <div class="b-left"><button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
                                         <?php } ?>
                                     </form>
 
@@ -69,7 +69,7 @@
                                             <input hidden name="route" value="settings/currencies">
                                             <input hidden name="backstart" value="<?php echo $start ?>">
                                             <input hidden name="backfinish" value="<?php echo $finish ?>">
-                                            <div class="left"><button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
+                                            <div class="b-left"><button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
                                         <?php } ?>
                                     </form>
 
@@ -101,12 +101,12 @@
                                     <td class="al-text-w">
                                         <form id="form_delete<?php echo $lines[$start][0] ?>" name="form_delete" action="javascript:void(null);" onsubmit="callDelete('<?php echo $lines[$start][0] ?>')" enctype="multipart/form-data">
                                             <input hidden name="delete" value="<?php echo $lines[$start][0] ?>">
-                                            <div class="right">
+                                            <div class="b-right">
                                                 <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button>
                                             </div>
                                         </form>
                                         <!--Вызов модального окна для редактирования-->
-                                        <div class="left">
+                                        <div class="b-left">
                                             <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#edit" data-edit="<?php echo $lines[$start][0] ?>"><span class="glyphicon glyphicon-edit"></span></button>
                                         </div>
                                     </td>

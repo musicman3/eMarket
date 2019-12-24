@@ -31,14 +31,14 @@
 
                                     <form id="form_delete_log" name="form_delete_log" action="javascript:void(null);" onsubmit="callDelete('_log')" enctype="multipart/form-data">
                                         <input hidden name="delete" value="delete">
-                                        <div class="right"><button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button></div>
+                                        <div class="b-right"><button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button></div>
                                     </form>
                                     
                                     <form>
                                         <?php if (count($lines) > $lines_on_page) { ?>
                                             <input hidden name="start" value="<?php echo $start ?>">
                                             <input hidden name="finish" value="<?php echo $finish ?>">
-                                            <div class="left"><button type="submit" class="btn btn-primary btn-xs" formmethod="post"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
+                                            <div class="b-left"><button type="submit" class="btn btn-primary btn-xs" formmethod="post"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
                                         <?php } ?>
                                     </form>
 
@@ -46,7 +46,7 @@
                                         <?php if (count($lines) > $lines_on_page) { ?>
                                             <input hidden name="backstart" value="<?php echo $start ?>">
                                             <input hidden name="backfinish" value="<?php echo $finish ?>">
-                                            <div class="left"><button type="submit" class="btn btn-primary btn-xs" formmethod="post"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
+                                            <div class="b-left"><button type="submit" class="btn btn-primary btn-xs" formmethod="post"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
                                         <?php } ?>
                                     </form>
 

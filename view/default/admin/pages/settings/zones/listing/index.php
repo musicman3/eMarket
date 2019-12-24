@@ -45,7 +45,7 @@
                                             <input hidden name="start" value="<?php echo $start ?>">
                                             <input hidden name="finish" value="<?php echo $finish ?>">
                                             <input hidden name="zone_id" value="<?php echo $zones_id ?>">
-                                            <div class="left"><button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
+                                            <div class="b-left"><button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
                                         <?php } ?>
                                     </form>
 
@@ -55,7 +55,7 @@
                                             <input hidden name="backstart" value="<?php echo $start ?>">
                                             <input hidden name="backfinish" value="<?php echo $finish ?>">
                                             <input hidden name="zone_id" value="<?php echo $zones_id ?>">
-                                            <div class="left"><button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
+                                            <div class="b-left"><button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
                                         <?php } ?>
                                     </form>
 
