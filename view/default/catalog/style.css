@@ -86,8 +86,8 @@ nav .disabled {pointer-events: none;}
 .modal-body, .panel-body, .input-sm {font-size: 14px;}
 .modal-content {font-weight:normal;}
 .modal-header {background-color: #f5f5f5;padding: 10px 15px;border-top-left-radius: 6px;border-top-right-radius: 6px;}
-.b-page {display: inline-block;float: left;}
+.page {display: inline-block;float: left;}
 .b-right {display: inline-block;float: right;}
-.b-left {display: inline-block;float: right;}
+.b-left {display: inline-block;float: right; padding-right:10px;}
 .al-text-w {text-align: center;width: 85px;}
 .al-text {text-align: center;}
