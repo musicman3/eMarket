@@ -38,6 +38,9 @@ cancel = Отмена
 save = Сохранить
 confirm-no-switch = НЕТ
 confirm-yes-switch = ДА
+confirm-del = Удалить?
+confirm-no = Нет
+confirm-yes = Да
 
 ;PAGES
 description_product = Описание товара

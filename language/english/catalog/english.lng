@@ -37,6 +37,9 @@ cancel = Cancel
 save = Save
 confirm-no-switch = NO
 confirm-yes-switch = YES
+confirm-del = Delete?
+confirm-no = No
+confirm-yes = Yes
 
 ;PAGES
 description_product = Description
