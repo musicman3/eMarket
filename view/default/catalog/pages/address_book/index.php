@@ -23,7 +23,7 @@
                 <th colspan="2">
                 </th>
                 <th>
-                    <div class="right"><a href="#add" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
+                    <div class="b-right"><a href="#add" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
                 </th>
             </tr>
             <tr class="border">
@@ -43,12 +43,12 @@
                         <td class="al-text-w">
                             <form id="form_delete1" name="form_delete" action="javascript:void(null);" onsubmit="callDelete('1')" enctype="multipart/form-data">
                                 <input hidden name="delete" value="1">
-                                <div class="right">
+                                <div class="b-right">
                                     <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button>
                                 </div>
                             </form>
                             <!--Вызов модального окна для редактирования-->
-                            <div class="left">
+                            <div class="b-left">
                                 <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#edit" data-edit="1"><span class="glyphicon glyphicon-edit"></span></button>
                             </div>
                         </td>
