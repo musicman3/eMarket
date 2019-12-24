@@ -37,7 +37,7 @@
 
                                 <th>
                                 
-                                    <div class="right"><a href="#add" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-pencil"></span></a></div>
+                                    <div class="b-right"><a href="#add" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-pencil"></span></a></div>
                                 
                                     <form>
                                         <?php if (count($lines) > $lines_on_page) { ?>
