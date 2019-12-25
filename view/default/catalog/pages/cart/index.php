@@ -67,6 +67,7 @@
                 <button type="button" class="btn btn btn-primary" data-toggle="modal" data-target="#cart"><span class="glyphicon glyphicon-share-alt"></span> <?php echo lang('сheckout') ?></button>
             </div>
         </div>
+    </div>
         
     <?php } else { ?>
         <div id="cart" class="contentText">
@@ -77,4 +78,3 @@
             </div>
         </div>
     <?php } ?>
-    </div>
