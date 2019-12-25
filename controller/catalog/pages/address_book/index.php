@@ -63,7 +63,7 @@ if (\eMarket\Valid::inPOST('delete')) {
     } else {
         $address_data = json_decode($address_data_json, 1);
     }
-    $number = (int)\eMarket\Valid::inPOST('delete') - 1;
+    $number = (int)\eMarket\Valid::inPOST('delete');
     unset($address_data[$number]);
     array_values($address_data);
 
