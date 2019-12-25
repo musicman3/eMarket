@@ -39,17 +39,17 @@ if (\eMarket\Valid::inPOST('add')) {
     } else {
         $address_data = json_decode($address_data_json, 1);
     }
-    
+
     $address_array = ['countries_id' => \eMarket\Valid::inPOST('countries'),
         'regions_id' => \eMarket\Valid::inPOST('regions'),
         'city' => \eMarket\Valid::inPOST('city'),
         'zip' => \eMarket\Valid::inPOST('zip'),
         'address' => \eMarket\Valid::inPOST('address'),
         'default' => $default];
-    
+
     array_push($address_data, $address_array);
 
-    \eMarket\Pdo::inPrepare("UPDATE " . TABLE_CUSTOMERS . " SET address_book=? WHERE email=?", [json_encode(array_reverse($address_data)), $_SESSION['email_customer']]);
+    \eMarket\Pdo::inPrepare("UPDATE " . TABLE_CUSTOMERS . " SET address_book=? WHERE email=?", [json_encode($address_data), $_SESSION['email_customer']]);
 
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
@@ -66,13 +66,11 @@ if (\eMarket\Valid::inPOST('delete')) {
     $number = (int) \eMarket\Valid::inPOST('delete');
     if ($address_data[$number]['default'] == 1 && count($address_data) > 1) {
         unset($address_data[$number]);
-        $address_data_out_temp = array_values($address_data);
-        $address_data_out = array_reverse($address_data_out_temp);
+        $address_data_out = array_values($address_data);
         $address_data_out[0]['default'] = 1;
     } else {
         unset($address_data[$number]);
-        $address_data_out_temp = array_values($address_data);
-        $address_data_out = array_reverse($address_data_out_temp);
+        $address_data_out = array_values($address_data);
     }
 
     \eMarket\Pdo::inPrepare("UPDATE " . TABLE_CUSTOMERS . " SET address_book=? WHERE email=?", [json_encode($address_data_out), $_SESSION['email_customer']]);
@@ -81,7 +79,7 @@ if (\eMarket\Valid::inPOST('delete')) {
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
 }
 //$jsondata = \eMarket\Pdo::getCellFalse("SELECT JSON_EXTRACT(address_book, '$[*].zip', '$[0].address') FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']]);
-//\eMarket\Debug::trace(json_decode($address_data_json, 1));
+\eMarket\Debug::trace(json_decode($address_data_json, 1));
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
 $JS_END = __DIR__;
 ?>
