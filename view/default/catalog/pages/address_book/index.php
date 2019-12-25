@@ -34,11 +34,11 @@
         </thead>
         <tbody>
             <?php
-            if ($adress_array_data_temp != FALSE) {
-                foreach (json_decode($adress_array_data_temp, 1) as $val) {
+            if ($adress_data_json != FALSE) {
+                foreach (json_decode($adress_data_json, 1) as $val) {
                     ?>
                     <tr>
-                        <td><img src="/view/<?php echo \eMarket\Set::template() ?>/admin/images/worldflags/<?php echo strtolower($country_name[$val['countries_id']][0]) ?>.png" alt="<?php echo $country_name[$val['countries_id']][1] ?>" title="<?php echo $country_name[$val['countries_id']][1] ?>" width="16" height="10" /> <?php echo $val['zip'] . ', ' . $val['city'] . ', ' . $val['address'] ?></td>
+                        <td><img src="/view/<?php echo \eMarket\Set::template() ?>/admin/images/worldflags/<?php echo strtolower($countries_data[$val['countries_id']][0]) ?>.png" alt="<?php echo $countries_data[$val['countries_id']][1] ?>" title="<?php echo $countries_data[$val['countries_id']][1] ?>" width="16" height="10" /> <?php echo $val['zip'] . ', ' . $val['city'] . ', ' . $val['address'] ?></td>
                         <?php if ($val['default'] == 1){ ?>
                         <td class="al-text"><?php echo lang('confirm-yes') ?></td>
                         <?php } else { ?>
