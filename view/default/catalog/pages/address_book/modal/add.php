@@ -20,7 +20,7 @@
                         <div class="input-group has-success">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
                             <select name="countries" id="countries" class="input-sm form-control">
-                                <?php foreach ($countries_data as $val) { ?>
+                                <?php foreach ($countries_array as $val) { ?>
                                     <option value="<?php echo $val['id'] ?>"><?php echo $val['name'] ?></option>
                                 <?php } ?>
                             </select>
@@ -59,7 +59,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="default" id="default" type="checkbox" checked>
+                        <input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="default" id="default" checked>
                         <label for="default"><?php echo lang('default_set') ?> </label>
                     </div>
 

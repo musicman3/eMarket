@@ -17,12 +17,13 @@ if ($CUSTOMER == FALSE) {
 }
 
 $countries_array = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_COUNTRIES . " WHERE language=? ORDER BY name ASC", [lang('#lang_all')[0]]);
+$regions_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_REGIONS . " WHERE language=? AND country_id=? ORDER BY name ASC", [lang('#lang_all')[0], $countries_array[0]['id']]);
 
 foreach ($countries_array as $val){
     $countries_data[$val['id']] = [$val['alpha_2'], $val['name']];
 }
 
-$adress_data_json = \eMarket\Pdo::getCellFalse("SELECT address_book FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']]);
+$address_data_json = \eMarket\Pdo::getCellFalse("SELECT address_book FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']]);
 
 // Если нажали на кнопку Добавить
 if (\eMarket\Valid::inPOST('add')) {
@@ -33,29 +34,47 @@ if (\eMarket\Valid::inPOST('add')) {
         $default = 0;
     }
 
-    if ($adress_data_json == FALSE) {
-        $adress_data = [];
+    if ($address_data_json == FALSE) {
+        $address_data = [];
     } else {
-        $adress_data = json_decode($adress_data_json, 1);
+        $address_data = json_decode($address_data_json, 1);
     }
 
-    $adress_array = ['countries_id' => \eMarket\Valid::inPOST('countries'),
+    $address_array = ['countries_id' => \eMarket\Valid::inPOST('countries'),
         'regions_id' => \eMarket\Valid::inPOST('regions'),
         'city' => \eMarket\Valid::inPOST('city'),
         'zip' => \eMarket\Valid::inPOST('zip'),
         'address' => \eMarket\Valid::inPOST('address'),
         'default' => $default];
 
-    array_push($adress_data, $adress_array);
+    array_push($address_data, $address_array);
 
-    \eMarket\Pdo::inPrepare("UPDATE " . TABLE_CUSTOMERS . " SET address_book=? WHERE email=?", [json_encode($adress_data), $_SESSION['email_customer']]);
+    \eMarket\Pdo::inPrepare("UPDATE " . TABLE_CUSTOMERS . " SET address_book=? WHERE email=?", [json_encode($address_data), $_SESSION['email_customer']]);
 
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
 }
 
+// Если нажали на кнопку Удалить
+if (\eMarket\Valid::inPOST('delete')) {
+
+    if ($address_data_json == FALSE) {
+        $address_data = [];
+    } else {
+        $address_data = json_decode($address_data_json, 1);
+    }
+    $number = (int)\eMarket\Valid::inPOST('delete') - 1;
+    unset($address_data[$number]);
+    array_values($address_data);
+
+    \eMarket\Pdo::inPrepare("UPDATE " . TABLE_CUSTOMERS . " SET address_book=? WHERE email=?", [json_encode($address_data), $_SESSION['email_customer']]);
+
+    // Выводим сообщение об успехе
+    $_SESSION['message'] = ['success', lang('action_completed_successfully')];
+
+}
 //$jsondata = \eMarket\Pdo::getCellFalse("SELECT JSON_EXTRACT(address_book, '$[*].zip', '$[0].address') FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']]);
-//\eMarket\Debug::trace(json_decode($jsondata));
+//\eMarket\Debug::trace($address_data);
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
 $JS_END = __DIR__;
 ?>
