@@ -16,7 +16,6 @@
 <?php \eMarket\Messages::alert(); ?>
 <h1><?php echo lang('my_address_book') ?></h1>
 
-<div class="panel-body">
     <table class="table table-hover">
         <thead>
             <tr>
@@ -26,7 +25,7 @@
                     <div class="b-right"><a href="#add" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
                 </th>
             </tr>
-            <tr class="border">
+            <tr>
                 <th><?php echo lang('shipping_address') ?></th>
                 <th class="al-text"><?php echo lang('default') ?></th>
                 <th class="al-text-w"></th>
@@ -63,4 +62,3 @@
 
         </tbody>
     </table>
-</div>
