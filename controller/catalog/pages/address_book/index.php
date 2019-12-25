@@ -81,7 +81,7 @@ if (\eMarket\Valid::inPOST('delete')) {
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
 }
 //$jsondata = \eMarket\Pdo::getCellFalse("SELECT JSON_EXTRACT(address_book, '$[*].zip', '$[0].address') FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']]);
-\eMarket\Debug::trace(json_decode($address_data_json, 1));
+//\eMarket\Debug::trace(json_decode($address_data_json, 1));
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
 $JS_END = __DIR__;
 ?>
