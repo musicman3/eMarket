@@ -64,8 +64,7 @@
                 $("#regions_edit").append($('<option value="' + result[x]['id'] + '">' + result[x]['name'] + '</option>'));
             }
         }
-        
-        
+        // Выбираем регион при переключении страны
         $('#countries_edit').change(function (event) {
             jQuery.post('<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>',
                     {countries_select: $("#countries_edit").val()},
