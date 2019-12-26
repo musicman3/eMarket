@@ -28,7 +28,7 @@ require(ROOT . '/controller/catalog/pages/cart/modal/cart.php');
                                     ?>
                                     <option selected value="<?php echo $x ?>"><?php echo $val['zip'] . ', ' . $val['countries_name'] . ', ' . $val['regions_name'] . ', ' . $val['city'] . ', ' . $val['address'] ?></option>
                                 <?php } else { ?>
-                                    <option selected value="<?php echo $x ?>"><?php echo $val['zip'] . ', ' . $val['countries_name'] . ', ' . $val['regions_name'] . ', ' . $val['city'] . ', ' . $val['address'] ?></option>
+                                    <option value="<?php echo $x ?>"><?php echo $val['zip'] . ', ' . $val['countries_name'] . ', ' . $val['regions_name'] . ', ' . $val['city'] . ', ' . $val['address'] ?></option>
                                     <?php
                                     $x++;
                                 }
