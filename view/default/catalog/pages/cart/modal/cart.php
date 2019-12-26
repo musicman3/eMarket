@@ -22,7 +22,7 @@ require(ROOT . '/controller/catalog/pages/cart/modal/cart.php');
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
                         <select name="address" id="address" class="input-sm form-control">
                             <?php
-                            $x = 0;
+                            $x = 1;
                             foreach ($address_data as $val) {
                                 if ($val['default'] == 1) {
                                     ?>
