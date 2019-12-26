@@ -20,9 +20,7 @@
                         <div class="input-group has-success">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
                             <select name="countries" id="countries" class="input-sm form-control">
-                                <?php foreach ($countries_array as $val) { ?>
-                                    <option value="<?php echo $val['id'] ?>"><?php echo $val['name'] ?></option>
-                                <?php } ?>
+                                <option value=""></option>
                             </select>
                         </div>
                     </div>
@@ -31,9 +29,7 @@
                         <div class="input-group has-success">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
                             <select name="regions" id="regions" class="input-sm form-control">
-                                <?php foreach ($regions_data as $val) { ?>
-                                    <option value="<?php echo $val['id'] ?>"><?php echo $val['name'] ?></option>
-                                <?php } ?>
+                                <option value=""></option>
                             </select>
                         </div>
                     </div>

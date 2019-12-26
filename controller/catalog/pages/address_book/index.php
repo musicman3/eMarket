@@ -5,22 +5,18 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-// JSON ECHO
-if (\eMarket\Valid::inPOST('countries_select')) {
-    $regions_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_REGIONS . " WHERE language=? AND country_id=? ORDER BY name ASC", [lang('#lang_all')[0], \eMarket\Valid::inPOST('countries_select')]);
-    echo json_encode($regions_data);
-    exit;
-}
-
 if ($CUSTOMER == FALSE) {
     header('Location: ?route=login'); // переадресация на LOGIN
 }
+// JSON ECHO
+if (\eMarket\Valid::inPOST('countries_select')) {
+    $regions_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_REGIONS . " WHERE language=? AND country_id=? ORDER BY name ASC", [lang('#lang_all')[0], \eMarket\Valid::inPOST('countries_select')]);
+    echo str_replace("'", "&#8216;", json_encode($regions_data));
+    exit;
+}
 
 $countries_array = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_COUNTRIES . " WHERE language=? ORDER BY name ASC", [lang('#lang_all')[0]]);
-
 $countries_data_json = str_replace("'", "&#8216;", json_encode($countries_array));
-
-$regions_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_REGIONS . " WHERE language=? AND country_id=? ORDER BY name ASC", [lang('#lang_all')[0], $countries_array[0]['id']]);
 
 foreach ($countries_array as $val) {
     $countries_data[$val['id']] = [$val['alpha_2'], $val['name']];

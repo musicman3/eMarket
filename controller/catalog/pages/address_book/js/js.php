@@ -14,25 +14,51 @@
     $('#default_edit').bootstrapSwitch();
 </script>
 
+<!-- Загрузка данных в модальное окно Добавить -->
 <script type = "text/javascript">
-    $('#countries').change(function (event) {
+    $('#add').on('show.bs.modal', function (event) {
+        // Получаем массивы данных
+        var countries = $('div#ajax_data').data('countries');
+
+        $("#countries").empty();
+
+        //Устанавливаем Страну
+        for (x = 0; x < countries.length; x++) {
+            $("#countries").append($('<option value="' + countries[x]['id'] + '">' + countries[x]['name'] + '</option>'));
+        }
+
+        // Устанавливаем Регион
         jQuery.post('<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>',
-                {countries_select: $("#countries").val()},
+                {countries_select: countries[0]['id']},
                 AjaxSuccess);
         // Обновление страницы
         function AjaxSuccess(data) {
-            var result = $.parseJSON(data);
+            var regions = $.parseJSON(data);
             $("#regions").empty();
 
-            for (x = 0; x < result.length; x++) {
-                $("#regions").append($('<option value="' + result[x]['id'] + '">' + result[x]['name'] + '</option>'));
+            for (x = 0; x < regions.length; x++) {
+                $("#regions").append($('<option value="' + regions[x]['id'] + '">' + regions[x]['name'] + '</option>'));
             }
-
         }
+
+        $('#countries').change(function (event) {
+            jQuery.post('<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>',
+                    {countries_select: $("#countries").val()},
+                    AjaxSuccess);
+            // Обновление страницы
+            function AjaxSuccess(data) {
+                var result = $.parseJSON(data);
+                $("#regions").empty();
+
+                for (x = 0; x < result.length; x++) {
+                    $("#regions").append($('<option value="' + result[x]['id'] + '">' + result[x]['name'] + '</option>'));
+                }
+            }
+        });
     });
 </script>
 
-<!-- Загрузка данных в модальное окно -->
+<!-- Загрузка данных в модальное окно Редактировать -->
 <script type="text/javascript">
     $('#edit').on('show.bs.modal', function (event) {
         $('#default_edit').bootstrapSwitch('destroy', true);
@@ -70,6 +96,7 @@
                 }
             }
         }
+
         // Выбираем регион при переключении страны
         $('#countries_edit').change(function (event) {
             jQuery.post('<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>',
