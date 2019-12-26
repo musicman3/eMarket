@@ -3,6 +3,9 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+
+// Подгружаем Ajax Добавить, Редактировать, Удалить
+\eMarket\Ajax::action('');
 ?>
 <link rel="stylesheet" href="/ext/bootstrap-switch/css/bootstrap-switch.min.css" type="text/css"/>
 <script type="text/javascript" src="/ext/bootstrap-switch/js/bootstrap-switch.min.js"></script>
@@ -28,7 +31,6 @@
         }
     });
 </script>
-
 
 <!-- Загрузка данных в модальное окно -->
 <script type="text/javascript">
@@ -84,14 +86,10 @@
         $('#city_edit').val(edit_data[modal_id]['city']);
         $('#zip_edit').val(edit_data[modal_id]['zip']);
         $('#address_edit').val(edit_data[modal_id]['address']);
-        $('#js_edit').val(modal_id);
+        $('#js_edit').val(modal_id + 1);
 
         // Меняем значение чекбокса
         $('#default_edit').prop('checked', edit_data[modal_id]['default']);
         $('#default_edit').bootstrapSwitch();
     });
 </script>
-<?php
-// Подгружаем Ajax Добавить, Редактировать, Удалить
-\eMarket\Ajax::action('');
-?>

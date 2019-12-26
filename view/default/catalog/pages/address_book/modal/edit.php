@@ -14,7 +14,7 @@
             </div>
             <form id="form_edit" name="form_edit" action="javascript:void(null);" onsubmit="callEdit()">
                 <div class="panel-body">
-                    <input type="hidden" name="edit" value="ok" />
+                    <input id="js_edit" type="hidden" name="edit" value="" />
 
                     <div class="form-group">
                         <small class="form-text text-muted">Страна</small>
