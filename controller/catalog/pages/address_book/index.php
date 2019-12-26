@@ -37,7 +37,7 @@ if (\eMarket\Valid::inPOST('add')) {
     if ($address_data_json == FALSE) {
         $address_data = [];
     } else {
-        $address_data = array_reverse(json_decode($address_data_json, 1));
+        $address_data = json_decode($address_data_json, 1);
     }
 
     $address_array = ['countries_id' => \eMarket\Valid::inPOST('countries'),
@@ -47,7 +47,7 @@ if (\eMarket\Valid::inPOST('add')) {
         'address' => \eMarket\Valid::inPOST('address'),
         'default' => $default];
 
-    array_push($address_data, $address_array);
+    array_unshift($address_data, $address_array);
 
     \eMarket\Pdo::inPrepare("UPDATE " . TABLE_CUSTOMERS . " SET address_book=? WHERE email=?", [json_encode($address_data), $_SESSION['email_customer']]);
 
