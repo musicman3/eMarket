@@ -3,6 +3,8 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+
+require(ROOT . '/controller/catalog/pages/cart/modal/cart.php');
 ?>
 <!-- Модальное окно "Корзина" -->
 <div id="cart" class="modal fade" tabindex="-1">
@@ -19,8 +21,19 @@
                     <div class="input-group has-success">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
                         <select name="address" id="address" class="input-sm form-control">
-                            <option value="1">Российская Федерация, г. Москва, ул. 1-я Юбилейная д. 1 кв. 1</option>
-                            <option value="1">Российская Федерация, г. Москва, ул. 2-я Юбилейная д. 1 кв. 1</option>
+                            <?php
+                            $x = 0;
+                            foreach ($address_data as $val) {
+                                if ($val['default'] == 1) {
+                                    ?>
+                                    <option selected value="<?php echo $x ?>"><?php echo $val['zip'] . ', ' . $val['countries_name'] . ', ' . $val['regions_name'] . ', ' . $val['city'] . ', ' . $val['address'] ?></option>
+                                <?php } else { ?>
+                                    <option selected value="<?php echo $x ?>"><?php echo $val['zip'] . ', ' . $val['countries_name'] . ', ' . $val['regions_name'] . ', ' . $val['city'] . ', ' . $val['address'] ?></option>
+                                    <?php
+                                    $x++;
+                                }
+                            }
+                                ?>
                         </select>
                     </div>
                     <small id="address_method" class="form-text text-muted">Пожалуйста, выберите удобный для Вас адрес доставки</small>

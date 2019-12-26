@@ -40,10 +40,10 @@
         <?php
         if ($address_data_json != FALSE) {
             $x = 1;
-            foreach (json_decode($address_data_json, 1) as $val) {
+            foreach ($address_data as $val) {
                 ?>
                 <tr>
-                    <td><img src="/view/<?php echo \eMarket\Set::template() ?>/admin/images/worldflags/<?php echo strtolower($countries_data[$val['countries_id']][0]) ?>.png" alt="<?php echo $countries_data[$val['countries_id']][1] ?>" title="<?php echo $countries_data[$val['countries_id']][1] ?>" width="16" height="10" /> <?php echo $val['zip'] . ', ' . $val['city'] . ', ' . $val['address'] ?></td>
+                    <td><img src="/view/<?php echo \eMarket\Set::template() ?>/admin/images/worldflags/<?php echo strtolower($val['alpha_2']) ?>.png" alt="<?php echo $val['countries_name'] . ', ' . $val['regions_name'] ?>" title="<?php echo $val['countries_name'] . ', ' . $val['regions_name'] ?>" width="16" height="10" /> <?php echo $val['zip'] . ', ' . $val['city'] . ', ' . $val['address'] ?></td>
                     <?php if ($val['default'] == 1) { ?>
                         <td class="al-text"><?php echo lang('confirm-yes') ?></td>
                     <?php } else { ?>

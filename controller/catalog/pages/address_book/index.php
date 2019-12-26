@@ -30,6 +30,18 @@ if ($address_data_json == FALSE) {
     $address_data = json_decode($address_data_json, 1);
 }
 
+$x = 0;
+foreach ($address_data as $address_val) {
+    $countries_array = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_COUNTRIES . " WHERE language=? AND id=? ORDER BY name ASC", [lang('#lang_all')[0], $address_val['countries_id']])[0];
+    $regions_array = \eMarket\Pdo::getColAssoc("SELECT id, name FROM " . TABLE_REGIONS . " WHERE language=? AND id=? ORDER BY name ASC", [lang('#lang_all')[0], $address_val['regions_id']])[0];
+    if ($address_val['countries_id'] == $countries_array['id']) {
+        $address_data[$x]['countries_name'] = $countries_array['name'];
+        $address_data[$x]['alpha_2'] = $countries_array['alpha_2'];
+        $address_data[$x]['regions_name'] = $regions_array['name'];
+    }
+    $x++;
+}
+
 // Если нажали на кнопку Добавить
 if (\eMarket\Valid::inPOST('add')) {
 // Если есть установка по-умолчанию
