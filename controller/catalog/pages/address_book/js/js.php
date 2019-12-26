@@ -64,6 +64,23 @@
                 $("#regions_edit").append($('<option value="' + result[x]['id'] + '">' + result[x]['name'] + '</option>'));
             }
         }
+        
+        
+        $('#countries_edit').change(function (event) {
+            jQuery.post('<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>',
+                    {countries_select: $("#countries_edit").val()},
+                    AjaxSuccess);
+            // Обновление страницы
+            function AjaxSuccess(data) {
+                var result = $.parseJSON(data);
+                $("#regions_edit").empty();
+
+                for (x = 0; x < result.length; x++) {
+                    $("#regions_edit").append($('<option value="' + result[x]['id'] + '">' + result[x]['name'] + '</option>'));
+                }
+
+            }
+        });
 
         $('#city_edit').val(edit_data[modal_id]['city']);
         $('#zip_edit').val(edit_data[modal_id]['zip']);
