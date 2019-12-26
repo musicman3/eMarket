@@ -42,9 +42,9 @@
         // Получаем массивы данных
         var edit_data = $('div#ajax_data').data('json');
         var countries = $('div#ajax_data').data('countries');
-        
+
         $("#countries_edit").empty();
-        
+
         //Устанавливаем Страну
         for (x = 0; x < countries.length; x++) {
             if (countries[x]['id'] === edit_data[modal_id]['countries_id']) {
@@ -59,11 +59,15 @@
                 AjaxSuccess);
         // Обновление страницы
         function AjaxSuccess(data) {
-            var result = $.parseJSON(data);
+            var regions = $.parseJSON(data);
             $("#regions_edit").empty();
 
-            for (x = 0; x < result.length; x++) {
-                $("#regions_edit").append($('<option value="' + result[x]['id'] + '">' + result[x]['name'] + '</option>'));
+            for (x = 0; x < regions.length; x++) {
+                if (regions[x]['id'] === edit_data[modal_id]['regions_id']) {
+                    $("#regions_edit").append($('<option selected value="' + regions[x]['id'] + '">' + regions[x]['name'] + '</option>'));
+                } else {
+                    $("#regions_edit").append($('<option value="' + regions[x]['id'] + '">' + regions[x]['name'] + '</option>'));
+                }
             }
         }
         // Выбираем регион при переключении страны
@@ -73,15 +77,19 @@
                     AjaxSuccess);
             // Обновление страницы
             function AjaxSuccess(data) {
-                var result = $.parseJSON(data);
+                var regions = $.parseJSON(data);
                 $("#regions_edit").empty();
 
-                for (x = 0; x < result.length; x++) {
-                    $("#regions_edit").append($('<option value="' + result[x]['id'] + '">' + result[x]['name'] + '</option>'));
+                for (x = 0; x < regions.length; x++) {
+                    if (regions[x]['id'] === edit_data[modal_id]['regions_id']) {
+                        $("#regions_edit").append($('<option selected value="' + regions[x]['id'] + '">' + regions[x]['name'] + '</option>'));
+                    } else {
+                        $("#regions_edit").append($('<option value="' + regions[x]['id'] + '">' + regions[x]['name'] + '</option>'));
+                    }
                 }
             }
         });
-        
+
         //Устанавливаем данные в поля
         $('#city_edit').val(edit_data[modal_id]['city']);
         $('#zip_edit').val(edit_data[modal_id]['zip']);
