@@ -9,12 +9,17 @@
 <!-- КОНЕЦ Модальное окно "Добавить" -->
 
 <!-- Модальное окно "Редактировать" -->
-<?php //require_once('modal/edit.php') ?>
+<?php require_once('modal/edit.php') ?>
 <!-- КОНЕЦ Модальное окно "Редактировать" -->
 
 <!--Выводим уведомление об успешном действии-->
 <?php \eMarket\Messages::alert(); ?>
 <h1><?php echo lang('my_address_book') ?></h1>
+
+<div id="ajax_data" class='hidden'
+     data-json='<?php echo $address_data_json ?>'
+     data-countries='<?php echo $countries_data_json ?>'
+     ></div>
 
 <table class="table table-hover">
     <thead>
