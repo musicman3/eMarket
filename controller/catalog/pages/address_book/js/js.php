@@ -47,11 +47,11 @@
                     AjaxSuccess);
             // Обновление страницы
             function AjaxSuccess(data) {
-                var result = $.parseJSON(data);
+                var regions = $.parseJSON(data);
                 $("#regions").empty();
 
-                for (x = 0; x < result.length; x++) {
-                    $("#regions").append($('<option value="' + result[x]['id'] + '">' + result[x]['name'] + '</option>'));
+                for (x = 0; x < regions.length; x++) {
+                    $("#regions").append($('<option value="' + regions[x]['id'] + '">' + regions[x]['name'] + '</option>'));
                 }
             }
         });
