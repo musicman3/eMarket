@@ -37,7 +37,7 @@ if (\eMarket\Valid::inPOST('add')) {
     if ($address_data_json == FALSE) {
         $address_data = [];
     } else {
-        $address_data = json_decode($address_data_json, 1);
+        $address_data = array_reverse(json_decode($address_data_json, 1));
     }
 
     $address_array = ['countries_id' => \eMarket\Valid::inPOST('countries'),
@@ -63,7 +63,7 @@ if (\eMarket\Valid::inPOST('delete')) {
     } else {
         $address_data = json_decode($address_data_json, 1);
     }
-    $number = (int) \eMarket\Valid::inPOST('delete');
+    $number = (int) \eMarket\Valid::inPOST('delete') - 1;
     if ($address_data[$number]['default'] == 1 && count($address_data) > 1) {
         unset($address_data[$number]);
         $address_data_out = array_values($address_data);
