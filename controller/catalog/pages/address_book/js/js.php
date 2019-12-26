@@ -77,10 +77,10 @@
                 for (x = 0; x < result.length; x++) {
                     $("#regions_edit").append($('<option value="' + result[x]['id'] + '">' + result[x]['name'] + '</option>'));
                 }
-
             }
         });
-
+        
+        //Устанавливаем данные в поля
         $('#city_edit').val(edit_data[modal_id]['city']);
         $('#zip_edit').val(edit_data[modal_id]['zip']);
         $('#address_edit').val(edit_data[modal_id]['address']);
