@@ -40,7 +40,7 @@
                 $("#regions").append($('<option value="' + regions[x]['id'] + '">' + regions[x]['name'] + '</option>'));
             }
         }
-
+        // Если выбрали страну, то загружаем новые регионы
         $('#countries').change(function (event) {
             jQuery.post('<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>',
                     {countries_select: $("#countries").val()},
@@ -97,7 +97,7 @@
             }
         }
 
-        // Выбираем регион при переключении страны
+        // Если выбрали страну, то загружаем новые регионы
         $('#countries_edit').change(function (event) {
             jQuery.post('<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>',
                     {countries_select: $("#countries_edit").val()},
