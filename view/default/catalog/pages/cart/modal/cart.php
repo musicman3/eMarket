@@ -24,16 +24,11 @@ require(ROOT . '/controller/catalog/pages/cart/modal/cart.php');
                             <?php
                             $x = 1;
                             foreach ($address_data as $val) {
-                                if ($val['default'] == 1) {
-                                    ?>
-                                    <option selected value="<?php echo $x ?>"><?php echo $val['zip'] . ', ' . $val['countries_name'] . ', ' . $val['regions_name'] . ', ' . $val['city'] . ', ' . $val['address'] ?></option>
-                                <?php } else { ?>
-                                    <option value="<?php echo $x ?>"><?php echo $val['zip'] . ', ' . $val['countries_name'] . ', ' . $val['regions_name'] . ', ' . $val['city'] . ', ' . $val['address'] ?></option>
-                                    <?php
-                                    $x++;
-                                }
-                            }
                                 ?>
+                                <option <?php echo $val['selected'] ?>value="<?php echo $x ?>"><?php echo $val['zip'] . ', ' . $val['countries_name'] . ', ' . $val['regions_name'] . ', ' . $val['city'] . ', ' . $val['address'] ?></option>
+                                <?php $x++;
+                            }
+                            ?>
                         </select>
                     </div>
                     <small id="address_method" class="form-text text-muted">Пожалуйста, выберите удобный для Вас адрес доставки</small>

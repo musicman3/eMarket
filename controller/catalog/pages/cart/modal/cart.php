@@ -21,7 +21,13 @@ foreach ($address_data as $address_val) {
     if ($address_val['countries_id'] == $countries_array['id']) {
         $address_data[$x]['countries_name'] = $countries_array['name'];
         $address_data[$x]['regions_name'] = $regions_array['name'];
+        if ($address_val['default'] == 1) {
+            $address_data[$x]['selected'] = 'selected ';
+        } else {
+            $address_data[$x]['selected'] = '';
+        }
     }
+
     $x++;
 }
 ?>
