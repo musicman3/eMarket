@@ -1,4 +1,5 @@
 <?php
+
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -23,7 +24,7 @@ class Files {
      * @param array $resize_param (параметры ресайза)
      */
     public static function imgUpload($TABLE, $dir, $resize_param) {
-        
+
         // Если получили запрос на получение данных по изображению
         self::imgThumbAndSize($resize_param);
 
@@ -153,19 +154,20 @@ class Files {
         // Если нажали на кнопку Удалить
         if (\eMarket\Valid::inPOST('delete')) {
             $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('delete'));
+            if (is_countable($idx)) {
+                for ($i = 0; $i < count($idx); $i++) {
+                    if (strstr($idx[$i], '_', true) != 'product') {
+                        $id = $idx[$i];
 
-            for ($i = 0; $i < count($idx); $i++) {
-                if (strstr($idx[$i], '_', true) != 'product') {
-                    $id = $idx[$i];
-
-                    $logo_delete = explode(',', \eMarket\Pdo::selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), -1);
-                    if (count($logo_delete) > 0) {
-                        foreach ($logo_delete as $file) {
-                            // Удаляем файлы
-                            foreach ($resize_param as $key => $value) {
-                                \eMarket\Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $file);
+                        $logo_delete = explode(',', \eMarket\Pdo::selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), -1);
+                        if (count($logo_delete) > 0) {
+                            foreach ($logo_delete as $file) {
+                                // Удаляем файлы
+                                foreach ($resize_param as $key => $value) {
+                                    \eMarket\Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $file);
+                                }
+                                \eMarket\Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/originals/' . $file);
                             }
-                            \eMarket\Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/originals/' . $file);
                         }
                     }
                 }
@@ -362,7 +364,7 @@ class Files {
 
         // Делаем ресайз
         $IMAGE = new \claviska\SimpleImage;
-        
+
         $resize_max = self::imgResizeMax($resize_param);
 
         foreach ($files as $file) {

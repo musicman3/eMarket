@@ -71,6 +71,7 @@ if (\eMarket\Valid::inPOST('add')) {
 
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
+    exit;
 }
 
 // Если нажали на кнопку Добавить
@@ -103,6 +104,7 @@ if (\eMarket\Valid::inPOST('edit')) {
 
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
+    exit;
 }
 
 // Если нажали на кнопку Удалить
@@ -128,6 +130,7 @@ if (\eMarket\Valid::inPOST('delete')) {
 
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
+    exit;
 }
 //$jsondata = \eMarket\Pdo::getCellFalse("SELECT JSON_EXTRACT(address_book, '$[*].zip', '$[0].address') FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']]);
 //\eMarket\Debug::trace($countries_array_id);

@@ -20,6 +20,7 @@ if (\eMarket\Valid::inPOST('add')) {
 
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
+    exit;
 }
 
 // Если нажали на кнопку Редактировать
@@ -32,6 +33,7 @@ if (\eMarket\Valid::inPOST('edit')) {
 
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
+    exit;
 }
 
 // Если нажали на кнопку Удалить
@@ -41,6 +43,7 @@ if (\eMarket\Valid::inPOST('delete')) {
     \eMarket\Pdo::inPrepare("DELETE FROM " . TABLE_TAXES . " WHERE id=?", [\eMarket\Valid::inPOST('delete')]);
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
+    exit;
 }
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ

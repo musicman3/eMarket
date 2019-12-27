@@ -17,6 +17,7 @@ if (\eMarket\Valid::inPOST('add')) {
 
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
+    exit;
 }
 
 if (\eMarket\Valid::inPOST('delete')) {
@@ -27,6 +28,7 @@ if (\eMarket\Valid::inPOST('delete')) {
     \eMarket\Pdo::inPrepare("DROP TABLE " . DB_PREFIX . 'modules_' . $module[0] . '_' . $module[1], []);
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
+    exit;
 }
 
 if (\eMarket\Valid::inPOST('edit_active')) {
