@@ -120,6 +120,7 @@ navbar_pcs = шт.
 navbar_languages = Языки
 navbar_currencies = Валюты
 navbar_logout = Выйти
+navbar_view_cart = Перейти в корзину
 
 ;REGISTER
 password_check = Пароль и подтверждение пароля не совпадают

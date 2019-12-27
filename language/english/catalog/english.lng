@@ -119,6 +119,7 @@ navbar_pcs = pcs.
 navbar_languages = Languages
 navbar_currencies = Currencies
 navbar_logout = Выйти
+navbar_view_cart = View Cart
 
 ;REGISTER
 password_check = Confirmation password error

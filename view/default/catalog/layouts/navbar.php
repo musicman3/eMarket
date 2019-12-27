@@ -62,7 +62,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="#" class="disabled"><?php echo \eMarket\Ecb::totalPriceCartInterface($CURRENCIES, 1) ?></a></li>
                             <li class="divider"></li>
-                            <li><a href="/?route=cart">View Cart</a></li>
+                            <li><a href="/?route=cart"><?php echo lang('navbar_view_cart') ?></a></li>
                         </ul>
                     </li>
                 <?php } ?>
