@@ -51,8 +51,9 @@
                             <li><a href="/?route=address_book"><?php echo lang('my_address_book') ?></a></li>
                             <li><a href="#">My Password</a></li>
                         </ul>
-		<?php } ?>
 		    </li>
+		<?php } ?>
+
                 <?php if (\eMarket\Cart::totalQuantity() == 0) { ?>
                     <li class="nav"><a href="#" class="disabled"><i class="glyphicon glyphicon-shopping-cart"></i> <?php echo \eMarket\Cart::totalQuantity() . ' ' . lang('navbar_pcs') ?></a></li>
                 <?php } else { ?>
