@@ -44,14 +44,13 @@
 
         <div class="row">
             <div class="col-sm-4 col-sm-offset-8">
+		<div class="input-group">
+		    <input type="text" class="form-control" id="input-coupon" placeholder="№ дисконтной карты" value="" name="discount_card">
+		    <span class="input-group-btn">
+			<input type="button" class="btn btn-primary" data-loading-text="Loading..." id="button-discount-card" value="Применить">
+		    </span>
+		</div><br/>
                 <table class="table table-bordered">
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="input-coupon" placeholder="№ дисконтной карты" value="" name="discount_card">
-                        <span class="input-group-btn">
-                            <input type="button" class="btn btn-primary" data-loading-text="Loading..." id="button-discount-card" value="Применить">
-                        </span>
-                    </div><br/>
-
                     <tbody>
                         <tr>
                             <td class="text-right"><strong><?php echo lang('total') ?>:</strong></td>
