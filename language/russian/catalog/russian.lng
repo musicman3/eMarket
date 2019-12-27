@@ -82,6 +82,8 @@ shipping_address = Адрес доставки
 ;OTHER
 buy_now = Купить
 add_to_cart = В корзину
+action_completed_successfully = Действие успешно выполнено!
+action_failed = Действие не выполнено!
 
 ;MESSAGES
 messages_email_is_busy = Этот E-Mail уже занят! Пожалуйста, укажите другой E-Mail.
