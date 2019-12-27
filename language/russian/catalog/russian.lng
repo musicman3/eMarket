@@ -83,7 +83,7 @@ address_book_zip_placeholder = Введите почтовый код
 address_book_address_placeholder = Введите адрес доставки
 
 ;CART
-cart_shipping_address = Shipping address
+cart_shipping_address = Адрес доставки
 cart_shipping_address_small = Пожалуйста, выберите удобный для Вас адрес доставки
 cart_shipping_method = Доставка
 cart_shipping_method_small = Пожалуйста, выберите удобный для Вас метод доставки
