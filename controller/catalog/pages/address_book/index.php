@@ -117,8 +117,14 @@ if (\eMarket\Valid::inPOST('delete')) {
         unset($address_data[$number]);
         $address_data_out = array_values($address_data);
     }
+    
+    if (count($address_data_out) == 0){
+        $address_data_out_table = NULL;
+    }else{
+        $address_data_out_table = json_encode($address_data_out);
+    }
 
-    \eMarket\Pdo::inPrepare("UPDATE " . TABLE_CUSTOMERS . " SET address_book=? WHERE email=?", [json_encode($address_data_out), $_SESSION['email_customer']]);
+    \eMarket\Pdo::inPrepare("UPDATE " . TABLE_CUSTOMERS . " SET address_book=? WHERE email=?", [$address_data_out_table, $_SESSION['email_customer']]);
 
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
