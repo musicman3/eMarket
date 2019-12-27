@@ -10,4 +10,4 @@ language_code = ru-RU
 language_locale = ru_RU.UTF-8
 meta-language = ru
 currency_separator = .
-currency_group_separator = &nbsp;
+currency_group_separator = " "
