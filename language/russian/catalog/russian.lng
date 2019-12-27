@@ -13,7 +13,6 @@ title_cart_index = Корзина
 title_recoverypass_index = Восстановление пароля
 title_address_book_index = Адресная книга
 
-
 ;DEBUG
 debug_page_generation_time = Время генерации страницы:
 debug_db_queries = Запросов к БД:
@@ -46,9 +45,6 @@ confirm-yes = Да
 description_product = Описание товара
 shopping_cart = Корзина
 сheckout_click = Купить в 1 клик
-сheckout = Оформить заказ
-shopping_cart_empty = В корзине нет товаров
-total = Итого
 listing_no = В этой категории нет товаров
 login_to_account = Авторизация
 regular_customer = Постоянный клиент
@@ -85,6 +81,25 @@ address_book_shipping_address = Адрес доставки
 address_book_city_placeholder = Введите название Вашего города
 address_book_zip_placeholder = Введите почтовый код
 address_book_address_placeholder = Введите адрес доставки
+
+;CART
+cart_shipping_address = Shipping address
+cart_shipping_address_small = Пожалуйста, выберите удобный для Вас адрес доставки
+cart_shipping_method = Доставка
+cart_shipping_method_small = Пожалуйста, выберите удобный для Вас метод доставки
+cart_payment_method = Оплата
+cart_payment_method_small = Пожалуйста, выберите удобный для Вас метод оплаты
+cart_complete_button = Завершить
+cart_product = Товар
+cart_price = Цена
+cart_quantity = Количество
+cart_amount = Сумма
+cart_total = Итого
+cart_shopping_cart_empty = В корзине нет товаров
+cart_сheckout = Оформить заказ
+cart_discount_card_number = Номер дисконтной карты
+cart_discount_card_number = Номер дисконтной карты
+cart_discount_card_apply = Применить
 
 ;OTHER
 buy_now = Купить

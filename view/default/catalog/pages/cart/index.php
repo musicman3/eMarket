@@ -16,10 +16,10 @@
                 <tbody>
                     <tr>
                         <td class="text-center"> </td>
-                        <td class="text-center"><strong>Товар</strong></td>
-                        <td class="text-center"><strong>Цена</strong></td>
-                        <td class="text-center"><strong>Количество</strong></td>
-                        <td class="text-center"><strong>Сумма</strong></td>
+                        <td class="text-center"><strong><?php echo lang('cart_product') ?></strong></td>
+                        <td class="text-center"><strong><?php echo lang('cart_price') ?></strong></td>
+                        <td class="text-center"><strong><?php echo lang('cart_quantity') ?></strong></td>
+                        <td class="text-center"><strong><?php echo lang('cart_amount') ?></strong></td>
                     </tr>
                     <?php foreach ($cart_info as $value) { ?>
                         <tr>
@@ -45,15 +45,15 @@
         <div class="row">
             <div class="col-sm-4 col-sm-offset-8">
 		<div class="input-group">
-		    <input type="text" class="form-control" id="input-coupon" placeholder="№ дисконтной карты" value="" name="discount_card">
+		    <input type="text" class="form-control" id="input-coupon" placeholder="<?php echo lang('cart_discount_card_number') ?>" value="" name="discount_card">
 		    <span class="input-group-btn">
-			<input type="button" class="btn btn-primary" data-loading-text="Loading..." id="button-discount-card" value="Применить">
+			<input type="button" class="btn btn-primary" data-loading-text="Loading..." id="button-discount-card" value="<?php echo lang('cart_discount_card_apply') ?>">
 		    </span>
 		</div><br/>
                 <table class="table table-bordered">
                     <tbody>
                         <tr>
-                            <td class="text-right"><strong><?php echo lang('total') ?>:</strong></td>
+                            <td class="text-right"><strong><?php echo lang('cart_total') ?>:</strong></td>
                             <td class="text-right"><?php echo \eMarket\Ecb::totalPriceCartInterface($CURRENCIES, 1) ?></td>
                         </tr>
                     </tbody>
@@ -64,11 +64,11 @@
         <div class="input-group-btn button">
             <div class="pull-right">
                 <?php if (isset($_SESSION['email_customer']) && $address_data_json != FALSE) { ?>
-                    <button type="button" class="btn btn btn-primary" data-toggle="modal" data-target="#cart"><span class="glyphicon glyphicon-share-alt"></span> <?php echo lang('сheckout') ?></button>
+                    <button type="button" class="btn btn btn-primary" data-toggle="modal" data-target="#cart"><span class="glyphicon glyphicon-share-alt"></span> <?php echo lang('cart_сheckout') ?></button>
                 <?php } elseif (isset($_SESSION['email_customer']) && $address_data_json == FALSE) { ?>
-                    <button type="button" class="btn btn btn-primary" onClick='location.href = "/?route=address_book"'><span class="glyphicon glyphicon-share-alt"></span> <?php echo lang('сheckout') ?></button>
+                    <button type="button" class="btn btn btn-primary" onClick='location.href = "/?route=address_book"'><span class="glyphicon glyphicon-share-alt"></span> <?php echo lang('cart_сheckout') ?></button>
                 <?php } else { ?>
-                    <button type="button" class="btn btn btn-primary" onClick='location.href = "/?route=login"'><span class="glyphicon glyphicon-share-alt"></span> <?php echo lang('сheckout') ?></button>
+                    <button type="button" class="btn btn btn-primary" onClick='location.href = "/?route=login"'><span class="glyphicon glyphicon-share-alt"></span> <?php echo lang('cart_сheckout') ?></button>
                 <?php } ?>
             </div>
         </div>
@@ -77,7 +77,7 @@
     <div id="cart" class="contentText">
         <div class="well well-sm">
             <div class="btn-group">
-                <div class="btn"><?php echo lang('shopping_cart_empty') ?></div>
+                <div class="btn"><?php echo lang('cart_shopping_cart_empty') ?></div>
             </div>
         </div>
     </div>

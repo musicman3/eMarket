@@ -45,9 +45,6 @@ confirm-yes = Yes
 description_product = Description
 shopping_cart = Cart
 сheckout_click = Buy in one click
-сheckout = Checkout
-shopping_cart_empty = Shopping cart is empty
-total = Total
 listing_no = There are no products in this category.
 login_to_account = Autorization
 regular_customer = Regular customer
@@ -81,6 +78,24 @@ address_book_shipping_address = Shipping address
 address_book_city_placeholder = Enter name of your city
 address_book_zip_placeholder = Enter postal code
 address_book_address_placeholder = Enter shipping address
+
+;CART
+cart_shipping_address = Shipping address
+cart_shipping_address_small = Please, enter your shipping address
+cart_shipping_method = Shipping
+cart_shipping_method_small = Please, enter your shipping method
+cart_payment_method = Payment
+cart_payment_method_small = Please, enter your payment method
+cart_complete_button = Complete
+cart_product = Product
+cart_price = Price
+cart_quantity = Quantity
+cart_amount = Amount
+cart_total = Total
+cart_shopping_cart_empty = Shopping cart is empty
+cart_сheckout = Checkout
+cart_discount_card_number = Discount card number
+cart_discount_card_apply = Apply
 
 ;BREADCRUMB
 breadcrumb_home = Home

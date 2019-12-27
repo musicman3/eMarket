@@ -17,7 +17,7 @@ require(ROOT . '/controller/catalog/pages/cart/modal/cart.php');
             <div class="panel-body">
 
                 <div class="form-group">
-                    <label for="address">Адрес доставки</label>
+                    <label for="address"><?php echo lang('cart_shipping_address') ?></label>
                     <div class="input-group has-success">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
                         <select name="address" id="address" class="input-sm form-control">
@@ -31,11 +31,11 @@ require(ROOT . '/controller/catalog/pages/cart/modal/cart.php');
                             ?>
                         </select>
                     </div>
-                    <small id="address_method" class="form-text text-muted">Пожалуйста, выберите удобный для Вас адрес доставки</small>
+                    <small id="address_method" class="form-text text-muted"><?php echo lang('cart_shipping_address_small') ?></small>
                 </div>
 
                 <div class="form-group">
-                    <label for="shipping">Доставка</label>
+                    <label for="shipping"><?php echo lang('cart_shipping_method') ?></label>
                     <div class="input-group has-success">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
                         <select name="shipping" id="shipping" class="input-sm form-control">
@@ -43,11 +43,11 @@ require(ROOT . '/controller/catalog/pages/cart/modal/cart.php');
                             <option value="2">EMS</option>
                         </select>
                     </div>
-                    <small id="shipping_method" class="form-text text-muted">Пожалуйста, выберите удобный для Вас метод доставки</small>
+                    <small id="shipping_method" class="form-text text-muted"><?php echo lang('cart_shipping_method_small') ?></small>
                 </div>
 
                 <div class="form-group">
-                    <label for="payment">Оплата</label>
+                    <label for="payment"><?php echo lang('cart_payment_method') ?></label>
                     <div class="input-group has-success">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
                         <select name="payment" id="payment" class="input-sm form-control">
@@ -55,12 +55,12 @@ require(ROOT . '/controller/catalog/pages/cart/modal/cart.php');
                             <option value="2">VISA/MASTERCARD</option>
                         </select>
                     </div>
-                    <small id="payment_method" class="form-text text-muted">Пожалуйста, выберите удобный для Вас метод оплаты</small>
+                    <small id="payment_method" class="form-text text-muted"><?php echo lang('cart_payment_method_small') ?></small>
                 </div>
 
             </div> 
             <div class="modal-footer">
-                <button type="button" class="btn btn btn-primary" data-toggle="modal" data-target="#cart"><span class="glyphicon glyphicon-ok"></span> Завершить</button>
+                <button type="button" class="btn btn btn-primary" data-toggle="modal" data-target="#cart"><span class="glyphicon glyphicon-ok"></span> <?php echo lang('cart_complete_button') ?></button>
             </div>
         </div>
     </div>
