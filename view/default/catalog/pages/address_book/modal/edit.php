@@ -17,7 +17,7 @@
                     <input id="js_edit" type="hidden" name="edit" value="" />
 
                     <div class="form-group">
-                        <small class="form-text text-muted">Страна</small>
+                        <small class="form-text text-muted"><?php echo lang('address_book_country') ?></small>
                         <div class="input-group has-success">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
                             <select name="countries_edit" id="countries_edit" class="input-sm form-control">
@@ -26,7 +26,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <small class="form-text text-muted">Регион</small>
+                        <small class="form-text text-muted"><?php echo lang('address_book_region') ?></small>
                         <div class="input-group has-success">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
                             <select name="regions_edit" id="regions_edit" class="input-sm form-control">
@@ -35,21 +35,21 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <small class="form-text text-muted">Город</small>
+                        <small class="form-text text-muted"><?php echo lang('address_book_city') ?></small>
                         <div class="input-group has-error">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
                             <input class="input-sm form-control" placeholder="Введите название Вашего города" type="text" name="city_edit"  id="city_edit" required />
                         </div>
                     </div>
                     <div class="form-group">
-                        <small class="form-text text-muted">Почтовый код</small>
+                        <small class="form-text text-muted"><?php echo lang('address_book_zip') ?></small>
                         <div class="input-group has-error">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
                             <input class="input-sm form-control" placeholder="Введите почтовый код" type="text" name="zip_edit"  id="zip_edit" required />
                         </div>
                     </div>
                     <div class="form-group">
-                        <small class="form-text text-muted">Адрес доставки</small>
+                        <small class="form-text text-muted"><?php echo lang('address_book_shipping_address') ?></small>
                         <div class="input-group has-error">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
                             <input class="input-sm form-control" placeholder="Введите адрес доставки" type="text" name="address_edit"  id="address_edit" required />

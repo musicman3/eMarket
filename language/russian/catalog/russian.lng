@@ -77,7 +77,14 @@ breadcrumb_home = Главная
 
 ;ADDRESS BOOK
 my_address_book = Адресная книга
-shipping_address = Адрес доставки
+address_book_country = Страна
+address_book_region = Регион
+address_book_city = Город
+address_book_zip = Почтовый код / ZIP
+address_book_shipping_address = Адрес доставки
+address_book_city_placeholder = Введите название Вашего города
+address_book_zip_placeholder = Введите почтовый код
+address_book_address_placeholder = Введите адрес доставки
 
 ;OTHER
 buy_now = Купить

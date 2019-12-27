@@ -73,7 +73,14 @@ enter_a_new_password = Enter a new password
 
 ;ADDRESS BOOK
 my_address_book = Address Book
-shipping_address = Shipping Address
+address_book_country = Country
+address_book_region = Region
+address_book_city = City
+address_book_zip = Postal code / ZIP
+address_book_shipping_address = Shipping address
+address_book_city_placeholder = Enter name of your city
+address_book_zip_placeholder = Enter postal code
+address_book_address_placeholder = Enter shipping address
 
 ;BREADCRUMB
 breadcrumb_home = Home

@@ -31,7 +31,7 @@
             </th>
         </tr>
         <tr>
-            <th><?php echo lang('shipping_address') ?></th>
+            <th><?php echo lang('address_book_shipping_address') ?></th>
             <th class="al-text"><?php echo lang('default') ?></th>
             <th class="al-text-w"></th>
         </tr>
