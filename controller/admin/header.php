@@ -68,7 +68,7 @@ $menu[$menu_help][1] = array('#', 'locale.png', lang('menu_languages'), '', 'tru
 
 //Вывод языков
 for ($lng = 0; $lng < count(lang('#lang_all')); $lng++) {
-    $submenu[$menu_help][1][$lng] = array('?route=dashboard&language=' . lang('#lang_all')[$lng], '/admin/images/langflags/' . lang('#lang_all')[$lng] . '.png', lang('language_name', lang('#lang_all')[$lng]));
+    $submenu[$menu_help][1][$lng] = array(\eMarket\Set::langCurrencyPath() . '&language=' . lang('#lang_all')[$lng], '/admin/images/langflags/' . lang('#lang_all')[$lng] . '.png', lang('language_name', lang('#lang_all')[$lng]));
 }
 
 $menu[$menu_help][2] = array('/', 'home.png', lang('menu_catalog'), 'target="_blank"', 'false'); // В отдельном окне

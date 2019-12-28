@@ -35,7 +35,7 @@ class Set {
         $currencies = \eMarket\Pdo::getColRow("SELECT name, id FROM " . TABLE_CURRENCIES . " WHERE language=?", [lang('#lang_all')[0]]);
         return $currencies;
     }
-    
+
     /**
      * Данные по тултипу для скидки на товар
      *
@@ -43,16 +43,16 @@ class Set {
      * @return string $text
      */
     public static function productSaleTooltip($discount) {
-        
+
         $discount_str_explode_temp = explode(',', $discount);
         $discount_str_explode = \eMarket\Func::deleteEmptyInArray($discount_str_explode_temp);
         $text = '';
-        foreach ($discount_str_explode as $id){
+        foreach ($discount_str_explode as $id) {
             $text .= \eMarket\Pdo::getCell("SELECT name FROM " . DB_PREFIX . 'modules_discount_sale' . "  WHERE language=? AND id=?", [lang('#lang_all')[0], $id]) . '<br>';
         }
 
         return $text;
-    }    
+    }
 
     /**
      * Данные по основной валюте
@@ -336,6 +336,32 @@ class Set {
     public static function modulesPath() {
 
         return ROOT . '/modules/' . \eMarket\Valid::inGET('type') . '/' . \eMarket\Valid::inGET('name');
+    }
+
+    /**
+     * Получаем путь для переключателя языков и валют
+     *
+     * @return string (путь для переключателя языков и валют)
+     */
+    public static function langCurrencyPath() {
+
+        if (\eMarket\Valid::inSERVER('REQUEST_URI') == '/') {
+            $url_request = HTTP_SERVER . '?route=catalog';
+        } elseif (\eMarket\Valid::inSERVER('REQUEST_URI') == '/controller/admin/') {
+            $url_request = HTTP_SERVER . 'controller/admin/?route=dashboard';
+        } else {
+            $url_request = \eMarket\Valid::inSERVER('REQUEST_URI');
+        }
+
+        if (\eMarket\Valid::inGET('language')) {
+            $url_request = \eMarket\Func::deleteGet($url_request, 'language');
+        }
+
+        if (\eMarket\Valid::inGET('currency_default')) {
+            $url_request = \eMarket\Func::deleteGet($url_request, 'currency_default');
+        }
+
+        return $url_request;
     }
 
     /**
