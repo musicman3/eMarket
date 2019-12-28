@@ -6,12 +6,11 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 // Формируем данные по адресам
+$address_data = [];
 if (isset($_SESSION['email_customer'])) {
     $address_data_json = \eMarket\Pdo::getCellFalse("SELECT address_book FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']]);
 
-    if ($address_data_json == FALSE) {
-        $address_data = [];
-    } else {
+    if ($address_data_json != FALSE) {
         $address_data = json_decode($address_data_json, 1);
     }
 
