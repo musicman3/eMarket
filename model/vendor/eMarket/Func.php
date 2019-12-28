@@ -299,7 +299,6 @@ class Func {
     /**
      * Функция удаления GET-параметра
      *
-     * @param string $str (строка с GET-запросом)
      * @param string $key (параметр, который необходимо удалить)
      * @return string $url (исходящая строка)
      */
