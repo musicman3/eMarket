@@ -354,11 +354,11 @@ class Set {
         }
 
         if (\eMarket\Valid::inGET('language')) {
-            $url_request = \eMarket\Func::deleteGet($url_request, 'language');
+            $url_request = \eMarket\Func::deleteGet('language');
         }
 
         if (\eMarket\Valid::inGET('currency_default')) {
-            $url_request = \eMarket\Func::deleteGet($url_request, 'currency_default');
+            $url_request = \eMarket\Func::deleteGet('currency_default');
         }
 
         return $url_request;

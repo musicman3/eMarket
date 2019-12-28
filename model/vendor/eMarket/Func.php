@@ -303,10 +303,10 @@ class Func {
      * @param string $key (параметр, который необходимо удалить)
      * @return string $url (исходящая строка)
      */
-    public static function deleteGet($str, $key) {
+    public static function deleteGet($key) {
         parse_str(\eMarket\Valid::inSERVER('QUERY_STRING'), $vars);
-        $url = strtok($str, '?') . http_build_query(array_diff_key($vars, array($key => '')));
-        return str_replace('/route=', '/?route=', $url);
+        $url = http_build_query(array_diff_key($vars, array($key => '')));
+        return '?' . $url;
     }
 
 }
