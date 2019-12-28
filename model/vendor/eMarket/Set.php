@@ -209,7 +209,7 @@ class Set {
         }
         $title = $sign . lang('title_' . basename(\eMarket\Valid::inGET('route')) . '_index');
 
-        if (basename(\eMarket\Valid::inGET('route')) == '' && self::path() == 'catalog') {
+        if (basename(\eMarket\Valid::inGET('route')) == '' && self::path() == 'catalog' OR basename(\eMarket\Valid::inGET('route')) == 'catalog' && self::path() == 'catalog') {
             $title = '';
         }
 

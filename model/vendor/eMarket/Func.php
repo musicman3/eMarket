@@ -256,7 +256,7 @@ class Func {
         foreach ($input as $val) {
             array_push($output, array_values($val));
         }
-        
+
         return $output;
     }
 
@@ -294,6 +294,19 @@ class Func {
         }
 
         return $token;
+    }
+    
+    /**
+     * Функция удаления GET-параметра
+     *
+     * @param string $str (строка с GET-запросом)
+     * @param string $key (параметр, который необходимо удалить)
+     * @return string $url (исходящая строка)
+     */
+    public static function deleteGet($str, $key) {
+        parse_str(\eMarket\Valid::inSERVER('QUERY_STRING'), $vars);
+        $url = strtok($str, '?') . http_build_query(array_diff_key($vars, array($key => '')));
+        return str_replace('/route=', '/?route=', $url);
     }
 
 }
