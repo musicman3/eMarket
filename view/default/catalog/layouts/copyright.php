@@ -7,5 +7,6 @@
 ?>
 
 <div class="container-fluid">
+    <hr>
     <p class="footer text-center">Copyright © 2018-<?php echo date('Y') ?> | eMarket Design</p>
 </div>
