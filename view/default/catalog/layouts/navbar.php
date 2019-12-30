@@ -28,7 +28,7 @@
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-globe"></i><span class="hidden-sm"> <?php echo lang('navbar_languages') ?></span> <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <?php foreach (lang('#lang_all') as $value) { ?>
-                            <li><a href="<?php echo $url_request . '&language=' . $value ?>"><?php echo lang('language_name', $value) ?></a></li>
+                            <li><a href="<?php echo $url_request . '&language=' . $value ?>"><img src="/view/<?php echo \eMarket\Set::template() ?>/admin/images/langflags/<?php echo $value ?>.png"> <?php echo lang('language_name', $value) ?></a></li>
                         <?php } ?>
                     </ul>
                 </li>
