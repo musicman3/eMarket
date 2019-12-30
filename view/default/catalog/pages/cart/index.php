@@ -66,9 +66,9 @@
                 <?php if (isset($_SESSION['email_customer']) && $address_data_json != FALSE) { ?>
                     <button type="button" class="btn btn btn-primary" data-toggle="modal" data-target="#cart"><span class="glyphicon glyphicon-share-alt"></span> <?php echo lang('cart_сheckout') ?></button>
                 <?php } elseif (isset($_SESSION['email_customer']) && $address_data_json == FALSE) { ?>
-                    <button type="button" class="btn btn btn-primary" onClick='location.href = "/?route=address_book"'><span class="glyphicon glyphicon-share-alt"></span> <?php echo lang('cart_сheckout') ?></button>
+                    <button type="button" class="btn btn btn-primary" onClick='location.href = "/?route=address_book&redirect=cart"'><span class="glyphicon glyphicon-share-alt"></span> <?php echo lang('cart_сheckout') ?></button>
                 <?php } else { ?>
-                    <button type="button" class="btn btn btn-primary" onClick='location.href = "/?route=login"'><span class="glyphicon glyphicon-share-alt"></span> <?php echo lang('cart_сheckout') ?></button>
+                    <button type="button" class="btn btn btn-primary" onClick='location.href = "/?route=login&redirect=cart"'><span class="glyphicon glyphicon-share-alt"></span> <?php echo lang('cart_сheckout') ?></button>
                 <?php } ?>
             </div>
         </div>

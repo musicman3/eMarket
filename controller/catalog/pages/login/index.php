@@ -35,7 +35,7 @@ if (\eMarket\Valid::inPOST('email_for_recovery')) {
     } elseif ($customer_id != FALSE && $recovery_check != FALSE) { // Если произведен повторный запрос
         $recovery_code = \eMarket\Func::getToken(64);
         \eMarket\Pdo::inPrepare("UPDATE " . TABLE_PASSWORD_RECOVERY . " SET recovery_code=?, recovery_code_created=? WHERE customer_id=?", [$recovery_code, date("Y-m-d H:i:s"), $customer_id]);
-        
+
         $link = HTTP_SERVER . '?route=recoverypass&recovery_code=' . $recovery_code;
         \eMarket\Messages::sendMail(\eMarket\Valid::inPOST('email_for_recovery'), lang('email_recovery_password_subject'), sprintf(lang('email_recovery_password_message'), $link, $link));
 
@@ -58,7 +58,11 @@ if (\eMarket\Valid::inPOST('email')) {
     } else {
         $_SESSION['password_customer'] = $HASH;
         $_SESSION['email_customer'] = \eMarket\Valid::inPOST('email');
-        header('Location: ' . HTTP_SERVER);
+        if (\eMarket\Valid::inGET('redirect') == 'cart') {
+            header('Location: ?route=cart');
+        } else {
+            header('Location: ' . HTTP_SERVER);
+        }
     }
 }
 ?>
