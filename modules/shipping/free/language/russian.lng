@@ -4,16 +4,16 @@
 ;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
 
 [all]
-modules_shipping_pickup_name = Pickup
-modules_shipping_pickup_author = eMarket
-modules_shipping_pickup_version = 1.0
+modules_shipping_free_name = Бесплатная доставка
+modules_shipping_free_author = eMarket
+modules_shipping_free_version = 1.0
 
 [admin]
 
 ;TITLE
-modules_shipping_pickup_admin_test = Test
+modules_shipping_free_admin_test = Тест
 
 [catalog]
 
 ;TITLE
-modules_shipping_pickup_catalog_test = Test
+modules_shipping_free_catalog_test = Тест
