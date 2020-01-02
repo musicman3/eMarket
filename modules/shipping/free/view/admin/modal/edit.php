@@ -11,67 +11,36 @@ require(\eMarket\View::routingModules('controller') . '/modal/edit.php');
 <div id="edit" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header"><div class="pull-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Ставка указывается в формате: 10.00" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
+            <div class="modal-header"><div class="pull-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Сокращенное наименование указывается любыми символами" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
                 <h4 class="modal-title"><?php echo \eMarket\Set::titlePageGenerator() ?></h4>
             </div>
             <form id="form_edit" name="form_edit" action="javascript:void(null);" onsubmit="callEdit()">
                 <div class="panel-body">
                     <input id="js_edit" type="hidden" name="edit" value="" />
 
-                    <!-- Языковые панели -->
-                    <?php require_once(ROOT . '/view/' . \eMarket\Set::template() . '/layouts/lang_tabs_edit.php') ?>
-
                     <!-- Содержимое языковых панелей -->
                     <div class="tab-content">
-                        <div id="<?php echo lang('#lang_all')[0] . $modal_id ?>" class="tab-pane fade in active">
-                            <div class="form-group">
-                                <div class="input-group has-error">
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="input-sm form-control" type="text" name="name_module_edit_0" id="name_module_edit_0" required />
-                                </div>
+                        <div class="form-group">
+                            <label for="zone_edit">Зона доставки</label>
+                            <div class="input-group has-success">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                                <select name="zone_edit" id="zone_edit" class="input-sm form-control">
+                                    <?php
+                                    foreach ($zones as $val) {
+                                        ?>
+                                        <option value="<?php echo $val['id'] ?>"><?php echo $val['name'] ?></option>
+                                        <?php
+                                    }
+                                    ?>
+                                </select>
                             </div>
-                        </div>
-
-                        <?php
-                        if ($LANG_COUNT > 1) {
-                            for ($x = 1; $x < $LANG_COUNT; $x++) {
-                                ?>
-
-                                <div id="<?php echo lang('#lang_all')[$x] . $modal_id ?>" class="tab-pane fade">
-                                    <div class="form-group">
-                                        <div class="input-group has-error">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" type="text" name="name_module_edit_<?php echo $x ?>" id="name_module_edit_<?php echo $x ?>" required />
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <?php
-                            }
-                        }
-                        ?>
-
-                        <div class="col-left form-group">
-                            <div class="input-group has-error">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                <input class="input-sm form-control" type="text" name="start_date_edit" id="start_date_edit" autocomplete="off" />
-                            </div>
+                            <small id="zone_action_edit" class="form-text text-muted">Выберите зону доставки</small>
                         </div>
                         <div class="col-left form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                <input class="input-sm form-control" type="text" name="end_date_edit" id="end_date_edit" autocomplete="off" />
+                                <input class="input-sm form-control" placeholder="Минимальная сумма заказа для бесплатной доставки" type="text" name="minimum_price_edit" id="minimum_price_edit" autocomplete="off" required />
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="input-group has-error">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                <input class="input-sm form-control" type="text" name="sale_value_edit" pattern="\d+(\.\d{0,2})?" id="sale_value_edit" required />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="default_module_edit" id="default_module_edit" type="checkbox" checked>
-                            <label for="default_module_edit"><?php echo lang('default_set') ?> </label>
                         </div>
                     </div>
                 </div>
