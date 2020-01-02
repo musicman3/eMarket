@@ -83,8 +83,8 @@
                                 <tr>
                                     <td class="sortleft">
                                         <form method="get">
-                                            <input hidden name="zone_id" value="<?php echo $lines[$start][0] ?>">
                                             <input hidden name="route" value="settings/zones/listing">
+                                            <input hidden name="zone_id" value="<?php echo $lines[$start][0] ?>">
                                             <button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-cog"></span></button>
                                         </form>
                                     </td>

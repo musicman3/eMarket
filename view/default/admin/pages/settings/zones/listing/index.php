@@ -76,7 +76,7 @@
 
                                 ?>
                                 <tr>
-                                    <td class="sortleft"><a class="btn btn-primary btn-xs" href="#" ><span data-toggle="tooltip" data-html="true" data-placement="right" data-original-title="<?php echo $text_arr[$count] ?>" class="glyphicon glyphicon-eye-open"></span></a></td>
+                                    <td class="sortleft"><span data-toggle="tooltip" data-html="true" data-placement="right" data-original-title="<?php echo $text_arr[$count] ?>" class="btn btn-primary btn-xs glyphicon glyphicon-eye-open"></span></td>
                                     <td><?php echo \eMarket\Func::filterArrayToKey($name_country, 0, $lines[$start][0], 1)[0] ?></td>
                                     <td> </td>
                                 </tr>
