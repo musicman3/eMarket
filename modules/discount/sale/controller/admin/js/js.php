@@ -47,10 +47,15 @@
             $('#sale_value_edit').val(value_edit[modal_id]);
             $('#js_edit').val(modal_id);
 
-            // Устанавливаем Datepicker
+            // Устанавливаем SmartDatepicker
+            var day_start = new Date(start_edit[modal_id]);
             if (button.data('edit') !== undefined) {
-                $('#start_date_edit').datepicker('setDate', new Date(start_edit[modal_id]));
+                $('#start_date_edit').datepicker('setDate', day_start);
                 $('#end_date_edit').datepicker('setDate', new Date(end_edit[modal_id]));
+                if (day_start.setDate(day_start.getDate()) < new Date()) {
+                    $('#start_date_edit').datepicker('setStartDate', new Date());
+                    $('#start_date_edit').datepicker('setDate', new Date());
+                }
             }
 
             // Меняем значение чекбокса
