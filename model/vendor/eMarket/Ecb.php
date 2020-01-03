@@ -119,14 +119,13 @@ final class Ecb {
     }
 
     /**
-     * Блок формирования стоимости доставки
-     * @param array $input (данные из totalSaleBlock)
-     * @return array $output (выходные данные)
+     * Список зон, для которых доступна доставка покупателю
+     * @return array $output (выходные данные в виде id зон)
      */
-    public static function shippingBlock() {
+    public static function shippingZonesAvailable() {
         $data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE install=? AND active=? AND type=?", [1, 1, 'shipping']);
 
-        $modules_data = []; // Данные по всем модулям доставки (инсталлированным и активным)
+        $modules_data = [];
         foreach ($data as $module) {
             $mod_array = \eMarket\Pdo::getColAssoc("SELECT * FROM " . DB_PREFIX . 'modules_shipping_' . $module['name'], []);
             array_push($modules_data, $mod_array);
@@ -139,20 +138,20 @@ final class Ecb {
         } else {
             $address_data = json_decode($address_data_json, 1);
         }
-        //return $modules_data[0];
-        $array_return = [];
+
+        $output = [];
         foreach ($address_data as $val) {
             $data_reg = \eMarket\Pdo::getCellFalse("SELECT zones_id FROM " . TABLE_ZONES_VALUE . " WHERE regions_id=?", [$val['regions_id']]);
-         
+
             if ($data_reg != FALSE) {
                 foreach ($modules_data[0] as $mod_data) {
                     if ($mod_data['shipping_zone'] == $data_reg) {
-                        array_push($array_return, $data_reg);
+                        array_push($output, $data_reg);
                     }
                 }
             }
         }
-        return $array_return;
+        return $output;
     }
 
     /**
