@@ -10280,7 +10280,7 @@ INSERT INTO emkt_zones VALUES (1, 'Moskow', null, 'english');
 INSERT INTO emkt_zones VALUES (1, 'Москва', null, 'russian');
 
 /* ЗАГРУЗКА ЗНАЧЕНИЙ ЗОН */
-INSERT INTO emkt_zones_value VALUES (1, 175, 29, 1);
+INSERT INTO emkt_zones_value VALUES (1, 175, 2869, 1);
 
 /* ЗАГРУЗКА НАЛОГОВ */
 INSERT INTO emkt_taxes VALUES (1, 'VAT', 'english', '20.00');

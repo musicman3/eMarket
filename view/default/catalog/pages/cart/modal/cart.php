@@ -25,7 +25,7 @@ require(ROOT . '/controller/catalog/pages/cart/modal/cart.php');
                             $x = 1;
                             foreach ($address_data as $val) {
                                 ?>
-                                <option <?php echo $val['selected'] ?>value="<?php echo $x ?>"><?php echo $val['zip'] . ', ' . $val['countries_name'] . ', ' . $val['regions_name'] . ', ' . $val['city'] . ', ' . $val['address'] ?></option>
+                                <option <?php echo $val['selected'] ?>value="<?php echo $x ?> " data-regions="<?php echo $val['regions_id'] ?>"><?php echo $val['zip'] . ', ' . $val['countries_name'] . ', ' . $val['regions_name'] . ', ' . $val['city'] . ', ' . $val['address'] ?></option>
                                 <?php $x++;
                             }
                             ?>

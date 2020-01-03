@@ -123,8 +123,36 @@ final class Ecb {
      * @param array $input (данные из totalSaleBlock)
      * @return array $output (выходные данные)
      */
-    private static function shippingBlock($input) {
-        //echo ($output);
+    public static function shippingBlock() {
+        $data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE install=? AND active=? AND type=?", [1, 1, 'shipping']);
+
+        $modules_data = []; // Данные по всем модулям доставки (инсталлированным и активным)
+        foreach ($data as $module) {
+            $mod_array = \eMarket\Pdo::getColAssoc("SELECT * FROM " . DB_PREFIX . 'modules_shipping_' . $module['name'], []);
+            array_push($modules_data, $mod_array);
+        }
+
+        $address_data_json = \eMarket\Pdo::getCellFalse("SELECT address_book FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']]);
+
+        if ($address_data_json == FALSE) {
+            $address_data = [];
+        } else {
+            $address_data = json_decode($address_data_json, 1);
+        }
+        //return $modules_data[0];
+        $array_return = [];
+        foreach ($address_data as $val) {
+            $data_reg = \eMarket\Pdo::getCellFalse("SELECT zones_id FROM " . TABLE_ZONES_VALUE . " WHERE regions_id=?", [$val['regions_id']]);
+         
+            if ($data_reg != FALSE) {
+                foreach ($modules_data[0] as $mod_data) {
+                    if ($mod_data['shipping_zone'] == $data_reg) {
+                        array_push($array_return, $data_reg);
+                    }
+                }
+            }
+        }
+        return $array_return;
     }
 
     /**

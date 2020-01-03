@@ -7,7 +7,7 @@
 
 $cart_info = \eMarket\Cart::info();
 
-//\eMarket\Debug::trace($address_data);
+//\eMarket\Debug::trace(\eMarket\Ecb::shippingBlock());
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
 $JS_END = __DIR__;
 ?>
