@@ -6,7 +6,7 @@
 DROP TABLE IF EXISTS emkt_modules_shipping_free;
 CREATE TABLE emkt_modules_shipping_free (
 	id int NOT NULL auto_increment,
-        minimum_price decimal(4,2),
+        minimum_price decimal(12,2),
         shipping_zone int(1),
 	PRIMARY KEY (id))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
