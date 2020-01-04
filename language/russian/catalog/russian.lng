@@ -100,6 +100,7 @@ cart_сheckout = Оформить заказ
 cart_discount_card_number = Номер дисконтной карты
 cart_discount_card_number = Номер дисконтной карты
 cart_discount_card_apply = Применить
+cart_shipping_is_not_available = Доставка в этот регион не доступна
 
 ;OTHER
 buy_now = Купить

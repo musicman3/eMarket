@@ -96,6 +96,7 @@ cart_shopping_cart_empty = Shopping cart is empty
 cart_сheckout = Checkout
 cart_discount_card_number = Discount card number
 cart_discount_card_apply = Apply
+cart_shipping_is_not_available = Shipping to this region is not available
 
 ;BREADCRUMB
 breadcrumb_home = Home

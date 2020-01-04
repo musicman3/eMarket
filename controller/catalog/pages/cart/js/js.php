@@ -20,9 +20,13 @@
             var shipping_method = $.parseJSON(data);
             $("#shipping_method").empty();
 
-            for (x = 0; x < shipping_method.length; x++) {
-                $("#shipping_method").append($('<option value="' + shipping_method[x][0] + '">' + shipping_method[x][1] + '</option>'));
-            }
+            if (shipping_method.length < 1) {
+                    $("#shipping_method").append($('<option value="no"><?php echo lang('cart_shipping_is_not_available') ?></option>'));
+                } else {
+                    for (x = 0; x < shipping_method.length; x++) {
+                        $("#shipping_method").append($('<option value="' + shipping_method[x][0] + '">' + shipping_method[x][1] + '</option>'));
+                    }
+                }
         }
         // Если выбрали адрес, то загружаем методы доставки
         $('#address').change(function (event) {
@@ -34,8 +38,12 @@
                 var shipping_method = $.parseJSON(data);
                 $("#shipping_method").empty();
 
-                for (x = 0; x < shipping_method.length; x++) {
-                    $("#shipping_method").append($('<option value="' + shipping_method[x][0] + '">' + shipping_method[x][1] + '</option>'));
+                if (shipping_method.length < 1) {
+                    $("#shipping_method").append($('<option value="no"><?php echo lang('cart_shipping_is_not_available') ?></option>'));
+                } else {
+                    for (x = 0; x < shipping_method.length; x++) {
+                        $("#shipping_method").append($('<option value="' + shipping_method[x][0] + '">' + shipping_method[x][1] + '</option>'));
+                    }
                 }
             }
         });
