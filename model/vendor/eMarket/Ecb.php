@@ -152,7 +152,7 @@ final class Ecb {
                     } else {
                         $minimum_price = 0;
                     }
-                    if ($mod_data['shipping_zone'] == $data_reg && $minimum_price < self::totalPriceCartWithSale()) {
+                    if ($mod_data['shipping_zone'] == $data_reg && $minimum_price <= self::totalPriceCartWithSale()) {
                         array_push($output, $data_reg);
                     }
                 }
