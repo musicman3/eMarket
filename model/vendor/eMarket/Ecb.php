@@ -81,19 +81,11 @@ final class Ecb {
     }
 
     /**
-     * Блок вывода цены в корзине с учетом скидки
+     * Данные цены в корзине с учетом скидки
      * 
-     * @param array $input (массив с входящими значениями по товару)
-     * @param string $CURRENCIES (валюта)
-     * @param string $marker (маркер для \eMarket\Products::productPrice для вывода названия валюты)
-     * @param string $class (класс bootstrap для отображения скидки)
      * @return string (выходные данные в виде форматированной стоимости)
      */
-    public static function totalPriceCartInterface($CURRENCIES, $marker, $class = null) {
-
-        if ($class == null) {
-            $class = 'danger';
-        }
+    public static function totalPriceCartWithSale() {
 
         $total_price_with_sale = 0;
         if (isset($_SESSION['cart'])) {
@@ -108,9 +100,26 @@ final class Ecb {
                 }
             }
         }
+        return $total_price_with_sale;
+    }
 
+    /**
+     * Блок вывода цены в корзине с учетом скидки
+     * 
+     * @param array $input (массив с входящими значениями по товару)
+     * @param string $CURRENCIES (валюта)
+     * @param string $marker (маркер для \eMarket\Products::productPrice для вывода названия валюты)
+     * @param string $class (класс bootstrap для отображения скидки)
+     * @return string (выходные данные в виде форматированной стоимости)
+     */
+    public static function totalPriceCartInterface($CURRENCIES, $marker, $class = null) {
 
+        $total_price_with_sale = self::totalPriceCartWithSale();
         $price_val = \eMarket\Cart::totalPrice();
+
+        if ($class == null) {
+            $class = 'danger';
+        }
 
         if ($price_val != $total_price_with_sale) {
             return '<del>' . \eMarket\Products::productPrice($price_val, $CURRENCIES, $marker) . '</del><br><span class="label label-' . $class . '">' . \eMarket\Products::productPrice($total_price_with_sale, $CURRENCIES, $marker) . '</span>';
@@ -122,7 +131,7 @@ final class Ecb {
      * Список зон, для которых доступна доставка покупателю
      * @return array $output (выходные данные в виде id зон)
      */
-    public static function shippingZonesAvailable() {
+    public static function shippingZonesAvailable($region) {
         $data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE install=? AND active=? AND type=?", [1, 1, 'shipping']);
 
         $modules_data = [];
@@ -131,26 +140,52 @@ final class Ecb {
             array_push($modules_data, $mod_array);
         }
 
-        $address_data_json = \eMarket\Pdo::getCellFalse("SELECT address_book FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']]);
+        $output = [];
+        $data_reg = \eMarket\Pdo::getCellFalse("SELECT zones_id FROM " . TABLE_ZONES_VALUE . " WHERE regions_id=?", [$region]);
 
-        if ($address_data_json == FALSE) {
-            $address_data = [];
-        } else {
-            $address_data = json_decode($address_data_json, 1);
+        if ($data_reg != FALSE) {
+            foreach ($modules_data[0] as $mod_data) {
+                if (isset($mod_data['minimum_price'])) {
+                    $minimum_price = $mod_data['minimum_price'];
+                } else {
+                    $minimum_price = 0;
+                }
+                if ($mod_data['shipping_zone'] == $data_reg && $minimum_price < self::totalPriceCartWithSale()) {
+                    array_push($output, $data_reg);
+                }
+            }
         }
 
-        $output = [];
-        foreach ($address_data as $val) {
-            $data_reg = \eMarket\Pdo::getCellFalse("SELECT zones_id FROM " . TABLE_ZONES_VALUE . " WHERE regions_id=?", [$val['regions_id']]);
+        return $output;
+    }
 
-            if ($data_reg != FALSE) {
-                foreach ($modules_data[0] as $mod_data) {
-                    if ($mod_data['shipping_zone'] == $data_reg) {
-                        array_push($output, $data_reg);
+    /**
+     * Список модулей доставки, для которых доступна доставка покупателю
+     * @return array $output (выходные данные в виде id зон)
+     */
+    public static function shippingModulesAvailable($region) {
+        $data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE install=? AND active=? AND type=?", [1, 1, 'shipping']);
+        $shipping_available = self::shippingZonesAvailable($region);
+
+        $modules_data = [];
+        foreach ($data as $module) {
+            $mod_array = \eMarket\Pdo::getColAssoc("SELECT * FROM " . DB_PREFIX . 'modules_shipping_' . $module['name'], []);
+            array_push($modules_data, [$module['name'] => $mod_array]);
+        }
+        $output = [];
+
+        foreach ($data as $val) {
+            foreach ($modules_data as $data_arr) {
+                foreach ($data_arr[$val['name']] as $data_name) {
+                    if (in_array($data_name['shipping_zone'], $shipping_available)) {
+                        if (!in_array($val['name'], $output)) {
+                            array_push($output, $val['name']);
+                        }
                     }
                 }
             }
         }
+
         return $output;
     }
 
