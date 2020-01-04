@@ -63,6 +63,7 @@ nav .disabled {pointer-events: none;}
 .category_block a:hover {color: #23527c;text-decoration: none;}
 #new_products .grid-group-item, #categories_listing .grid-group-item, #listing .grid-group-item {margin-bottom: 20px;}
 #new_products .productHolder, #listing .productHolder, #categories_listing .categoriesHolder {border: 1px solid #dddddd;padding: 10px;border-radius: 4px;}
+#new_products .button, #listing .button, #products .button {display: flex;align-items: center;}
 #products .list-group-item {border: none;margin-bottom: 20px;}
 #products .list-group-item img {padding: 0 0 15px 0;}
 #products .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {color: #ffffff;background: #428bca;border-color: #337ab7;}
