@@ -23,6 +23,15 @@ if (\eMarket\Valid::inPOST('add')) {
     exit;
 }
 
+// Если нажали на кнопку Редактировать
+if (\eMarket\Valid::inPOST('edit')) {
+    \eMarket\Pdo::inPrepare("UPDATE " . $MODULE_DB . " SET minimum_price=?, shipping_zone=? WHERE id=?", [\eMarket\Valid::inPOST('minimum_price_edit'), \eMarket\Valid::inPOST('zone_edit'), \eMarket\Valid::inPOST('edit')]);
+
+    // Выводим сообщение об успехе
+    $_SESSION['message'] = ['success', lang('action_completed_successfully')];
+    exit;
+}
+
 // Если нажали на кнопку Добавить
 if (\eMarket\Valid::inPOST('delete')) {
         // Удаляем Страну и Регионы
