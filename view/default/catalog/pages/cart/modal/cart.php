@@ -36,7 +36,7 @@ require(ROOT . '/controller/catalog/pages/cart/modal/cart.php');
 
                 <div class="form-group">
                     <label for="shipping_method"><?php echo lang('cart_shipping_method') ?></label>
-                    <div class="input-group has-success">
+                    <div id="shipping_method_class" class="input-group has-success">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
                         <select name="shipping_method" id="shipping_method" class="input-sm form-control">
                             <option value=""></option>
