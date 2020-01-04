@@ -38,7 +38,7 @@ require(\eMarket\View::routingModules('controller') . '/modal/edit.php');
                         </div>
                         <div class="col-left form-group">
                             <div class="input-group has-error">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
                                 <input class="input-sm form-control" placeholder="Минимальная сумма заказа для бесплатной доставки" type="text" name="minimum_price_edit" id="minimum_price_edit" autocomplete="off" required />
                             </div>
                         </div>
