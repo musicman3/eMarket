@@ -10,10 +10,8 @@ $installed_active = \eMarket\Pdo::getColAssoc("SELECT name, type FROM " . TABLE_
 
 if (\eMarket\Valid::inPOST('add')) {
     $module = explode('_', \eMarket\Valid::inPOST('add'));
-    \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_MODULES . " SET name=?, type=?, page=?, position=?, sort=?, install=?, active=?", [$module[1], $module[0], NULL, NULL, NULL, 1, 1]);
-
-    //Загружаем БД из файла
-    \eMarket\Pdo::dbInstall(ROOT . '/modules/' . $module[0] . '/' . $module[1] . '/install/');
+    $namespace = '\eMarket\Modules\\' . ucfirst($module[0]) . '\\' . ucfirst($module[1]);
+    $namespace::install($module);
 
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
@@ -22,12 +20,9 @@ if (\eMarket\Valid::inPOST('add')) {
 
 if (\eMarket\Valid::inPOST('delete')) {
     $module = explode('_', \eMarket\Valid::inPOST('delete'));
-    // Удаляем
-    if ($module[1] == 'sale' && $module[0] == 'discount') {
-        \eMarket\Pdo::inPrepare("UPDATE " . TABLE_PRODUCTS . " SET discount=?", ['']);
-    }
-    \eMarket\Pdo::inPrepare("DELETE FROM " . TABLE_MODULES . " WHERE name=? AND type=?", [$module[1], $module[0]]);
-    \eMarket\Pdo::inPrepare("DROP TABLE " . DB_PREFIX . 'modules_' . $module[0] . '_' . $module[1], []);
+    $namespace = '\eMarket\Modules\\' . ucfirst($module[0]) . '\\' . ucfirst($module[1]);
+    $namespace::uninstall($module);
+
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
     exit;
