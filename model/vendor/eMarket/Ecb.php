@@ -106,7 +106,6 @@ final class Ecb {
     /**
      * Блок вывода цены в корзине с учетом скидки
      * 
-     * @param array $input (массив с входящими значениями по товару)
      * @param string $CURRENCIES (валюта)
      * @param string $marker (маркер для \eMarket\Products::productPrice для вывода названия валюты)
      * @param string $class (класс bootstrap для отображения скидки)
@@ -129,6 +128,7 @@ final class Ecb {
 
     /**
      * Список зон, для которых доступна доставка покупателю
+     * @param array $region (номера регинов)
      * @return array $output (выходные данные в виде id зон)
      */
     public static function shippingZonesAvailable($region) {
@@ -164,6 +164,7 @@ final class Ecb {
 
     /**
      * Список модулей доставки, для которых доступна доставка покупателю
+     * @param array $region (номера регинов)
      * @return array $output (выходные данные в виде id зон)
      */
     public static function shippingModulesAvailable($region) {
