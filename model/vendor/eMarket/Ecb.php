@@ -51,7 +51,7 @@ final class Ecb {
             if ($price_val != $price_with_sale[0]) {
                 return '<del>' . \eMarket\Products::productPrice($price_val, $CURRENCIES, $marker) . '</del><br><span class="label label-' . $class . '">' . \eMarket\Products::productPrice($price_with_sale[0], $CURRENCIES, $marker) . '</span>';
             }
-            return \eMarket\Products::productPrice($price_val, $CURRENCIES, $marker) . '<br><br>';
+            return \eMarket\Products::productPrice($price_val, $CURRENCIES, $marker);
         }
     }
 
@@ -77,7 +77,7 @@ final class Ecb {
         if ($price_val != $price_with_sale[0]) {
             return '<del>' . \eMarket\Products::productPrice($price_val * \eMarket\Cart::productQuantity($input['id'], $CURRENCIES, 1), $CURRENCIES, $marker) . '</del><br><span class="label label-' . $class . '">' . \eMarket\Products::productPrice($price_with_sale[0] * \eMarket\Cart::productQuantity($input['id'], $CURRENCIES, 1), $CURRENCIES, $marker) . '</span>';
         }
-        return \eMarket\Products::productPrice($price_val * \eMarket\Cart::productQuantity($input['id'], $CURRENCIES, 1), $CURRENCIES, $marker) . '<br><br>';
+        return \eMarket\Products::productPrice($price_val * \eMarket\Cart::productQuantity($input['id'], $CURRENCIES, 1), $CURRENCIES, $marker);
     }
 
     /**
@@ -124,7 +124,7 @@ final class Ecb {
         if ($price_val != $total_price_with_sale) {
             return '<del>' . \eMarket\Products::productPrice($price_val, $CURRENCIES, $marker) . '</del><br><span class="label label-' . $class . '">' . \eMarket\Products::productPrice($total_price_with_sale, $CURRENCIES, $marker) . '</span>';
         }
-        return \eMarket\Products::productPrice($price_val, $CURRENCIES, $marker) . '<br><br>';
+        return \eMarket\Products::productPrice($price_val, $CURRENCIES, $marker);
     }
 
     /**
