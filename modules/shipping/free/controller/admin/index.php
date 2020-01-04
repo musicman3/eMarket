@@ -32,7 +32,7 @@ if (\eMarket\Valid::inPOST('edit')) {
     exit;
 }
 
-// Если нажали на кнопку Добавить
+// Если нажали на кнопку Удалить
 if (\eMarket\Valid::inPOST('delete')) {
         // Удаляем Страну и Регионы
     \eMarket\Pdo::inPrepare("DELETE FROM " . $MODULE_DB . " WHERE id=?", [\eMarket\Valid::inPOST('delete')]);
