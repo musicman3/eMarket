@@ -25,7 +25,7 @@ require(ROOT . '/controller/catalog/pages/cart/modal/cart.php');
                             $x = 1;
                             foreach ($address_data as $val) {
                                 ?>
-                                <option <?php echo $val['selected'] ?>value="<?php echo $x ?> " data-regions="<?php echo $val['regions_id'] ?>"><?php echo $val['zip'] . ', ' . $val['countries_name'] . ', ' . $val['regions_name'] . ', ' . $val['city'] . ', ' . $val['address'] ?></option>
+                                <option <?php echo $val['selected'] ?>value="<?php echo $x ?>" data-regions="<?php echo $val['regions_id'] ?>"><?php echo $val['zip'] . ', ' . $val['countries_name'] . ', ' . $val['regions_name'] . ', ' . $val['city'] . ', ' . $val['address'] ?></option>
                                 <?php $x++;
                             }
                             ?>
@@ -35,12 +35,11 @@ require(ROOT . '/controller/catalog/pages/cart/modal/cart.php');
                 </div>
 
                 <div class="form-group">
-                    <label for="shipping"><?php echo lang('cart_shipping_method') ?></label>
+                    <label for="shipping_method"><?php echo lang('cart_shipping_method') ?></label>
                     <div class="input-group has-success">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                        <select name="shipping" id="shipping" class="input-sm form-control">
-                            <option value="1">Самовывоз</option>
-                            <option value="2">EMS</option>
+                        <select name="shipping_method" id="shipping_method" class="input-sm form-control">
+                            <option value=""></option>
                         </select>
                     </div>
                     <small id="shipping_method" class="form-text text-muted"><?php echo lang('cart_shipping_method_small') ?></small>

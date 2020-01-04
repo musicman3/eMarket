@@ -144,14 +144,17 @@ final class Ecb {
         $data_reg = \eMarket\Pdo::getCellFalse("SELECT zones_id FROM " . TABLE_ZONES_VALUE . " WHERE regions_id=?", [$region]);
 
         if ($data_reg != FALSE) {
-            foreach ($modules_data[0] as $mod_data) {
-                if (isset($mod_data['minimum_price'])) {
-                    $minimum_price = $mod_data['minimum_price'];
-                } else {
-                    $minimum_price = 0;
-                }
-                if ($mod_data['shipping_zone'] == $data_reg && $minimum_price < self::totalPriceCartWithSale()) {
-                    array_push($output, $data_reg);
+            foreach ($modules_data as $mod_data_ext) {
+                foreach ($mod_data_ext as $mod_data) {
+                    // Если есть минимальная цена для включения модуля
+                    if (isset($mod_data['minimum_price'])) {
+                        $minimum_price = $mod_data['minimum_price'];
+                    } else {
+                        $minimum_price = 0;
+                    }
+                    if ($mod_data['shipping_zone'] == $data_reg && $minimum_price < self::totalPriceCartWithSale()) {
+                        array_push($output, $data_reg);
+                    }
                 }
             }
         }
@@ -176,10 +179,12 @@ final class Ecb {
 
         foreach ($data as $val) {
             foreach ($modules_data as $data_arr) {
-                foreach ($data_arr[$val['name']] as $data_name) {
-                    if (in_array($data_name['shipping_zone'], $shipping_available)) {
-                        if (!in_array($val['name'], $output)) {
-                            array_push($output, $val['name']);
+                if (isset($data_arr[$val['name']])) {
+                    foreach ($data_arr[$val['name']] as $data_name) {
+                        if (in_array($data_name['shipping_zone'], $shipping_available)) {
+                            if (!in_array($val['name'], $output)) {
+                                array_push($output, $val['name']);
+                            }
                         }
                     }
                 }
