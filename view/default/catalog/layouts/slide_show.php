@@ -15,12 +15,12 @@
         <div class="carousel-inner" role="listbox" >
             <div class="item active">
 		<a href="#">
-		    <img src="http://www.make-sign.com/uploads/201714834/ImgScroll/ba201709141552443132191.jpg" alt="" class="center-block" >
+		    <img src="" class="center-block" >
 		</a>
 	    </div>
             <div class="item">
 		<a href="#">
-		    <img class="center-block" src="https://armored.com.ua/files/img_front/main-5.jpg">
+		    <img src="" class="center-block">
 		</a>
 	    </div>
         </div>
