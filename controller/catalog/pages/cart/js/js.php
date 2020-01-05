@@ -34,14 +34,17 @@
                 $("#shipping_method").empty();
 
                 if (shipping_method.length < 1) {
+                    // Если нет доставки
                     $("#shipping_method").append($('<option value="no"><?php echo lang('cart_shipping_is_not_available') ?></option>'));
                     replaceClass('#shipping_method_class', false);
                 } else {
                     for (x = 0; x < shipping_method.length; x++) {
+                        //Если минимальная стоимость заказа ниже указанной
                         if (shipping_method[x]['chanel_total_price'] < shipping_method[x]['chanel_minimum_price']) {
-                            $("#shipping_method").append($('<option value="no">Бесплатная доставка не доступна. Мин. сумма заказа: ' + shipping_method[x]['chanel_minimum_price_format'] + '</option>'));
+                            $("#shipping_method").append($('<option value="no">' + shipping_method[x]['chanel_name'] + ' <?php echo lang('cart_shipping_is_not_available_and_min_price') ?> ' + shipping_method[x]['chanel_minimum_price_format'] + '</option>'));
                             replaceClass('#shipping_method_class', false);
                         } else {
+                            // Если есть доставка
                             $("#shipping_method").append($('<option value="' + shipping_method[x]['chanel_module'] + '">' + shipping_method[x]['chanel_name'] + '</option>'));
                             replaceClass('#shipping_method_class', true);
                         }
