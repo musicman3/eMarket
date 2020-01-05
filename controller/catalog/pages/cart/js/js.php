@@ -24,7 +24,7 @@
 
         // Устанавливаем методы доставки
         jQuery.post('<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>',
-                {shipping_method_json: $(':selected', '#address').data('regions')},
+                {shipping_region_json: $(':selected', '#address').data('regions')},
                 AjaxSuccess);
         // Обновление страницы
         function AjaxSuccess(data) {
@@ -36,7 +36,7 @@
                 replaceClass('#shipping_method_class', false);
             } else {
                 for (x = 0; x < shipping_method.length; x++) {
-                    $("#shipping_method").append($('<option value="' + shipping_method[x][0] + '">' + shipping_method[x][1] + '</option>'));
+                    $("#shipping_method").append($('<option value="' + shipping_method[x]['chanel_module'] + '">' + shipping_method[x]['chanel_name'] + '</option>'));
                     replaceClass('#shipping_method_class', true);
                 }
             }
@@ -44,7 +44,7 @@
         // Если выбрали адрес, то загружаем методы доставки
         $('#address').change(function (event) {
             jQuery.post('<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>',
-                    {shipping_method_json: $(':selected', this).data('regions')},
+                    {shipping_region_json: $(':selected', this).data('regions')},
                     AjaxSuccess);
             // Обновление страницы
             function AjaxSuccess(data) {
@@ -56,7 +56,7 @@
                     replaceClass('#shipping_method_class', false);
                 } else {
                     for (x = 0; x < shipping_method.length; x++) {
-                        $("#shipping_method").append($('<option value="' + shipping_method[x][0] + '">' + shipping_method[x][1] + '</option>'));
+                        $("#shipping_method").append($('<option value="' + shipping_method[x]['chanel_module'] + '">' + shipping_method[x]['chanel_name'] + '</option>'));
                         replaceClass('#shipping_method_class', true);
                     }
                 }

@@ -6,15 +6,26 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 // JSON ECHO
-if (\eMarket\Valid::inPOST('shipping_method_json')) {
-    $module = \eMarket\Ecb::shippingModulesAvailable(\eMarket\Valid::inPOST('shipping_method_json'));
-    $name_module_arr = [];
-    $x = 0;
-    foreach ($module as $name) {
-        $name_module_arr[$x] = [$name, lang('modules_shipping_' . $name . '_name')];
-        $x++;
+if (\eMarket\Valid::inPOST('shipping_region_json')) {
+    $zones_id = \eMarket\Shipping::shippingZonesAvailable(\eMarket\Valid::inPOST('shipping_region_json')); // список id зон, в которых находится регион
+    $modules_names = \eMarket\Shipping::shippingModulesAvailable($zones_id); // данные в виде названия модулей
+    $modules_data = \eMarket\Shipping::loadData($zones_id, $modules_names);
+    $interface_data = [];
+    foreach ($modules_data as $data) {
+
+        // Интерфейс для модулей доставки
+        $interface = [
+            'chanel_module' => $data['chanel_module'],
+            'chanel_name' => $data['chanel_name'],
+            'chanel_minimum_price' => $data['chanel_minimum_price'],
+            'chanel_shipping_price' => $data['chanel_shipping_price'],
+            'chanel_tax' => $data['chanel_tax'],
+            'chanel_image' => $data['chanel_image']
+        ];
+
+        array_push($interface_data, $interface);
     }
-    echo str_replace("'", "&#8216;", json_encode($name_module_arr));
+    echo str_replace("'", "&#8216;", json_encode($interface_data));
     exit;
 }
 
