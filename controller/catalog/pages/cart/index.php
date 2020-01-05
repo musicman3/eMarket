@@ -17,8 +17,11 @@ if (\eMarket\Valid::inPOST('shipping_region_json')) {
         $interface = [
             'chanel_module' => $data['chanel_module'],
             'chanel_name' => $data['chanel_name'],
+            'chanel_total_price' => $data['chanel_total_price'],
             'chanel_minimum_price' => $data['chanel_minimum_price'],
+            'chanel_minimum_price_format' => $data['chanel_minimum_price_format'],
             'chanel_shipping_price' => $data['chanel_shipping_price'],
+            'chanel_shipping_price_format' => $data['chanel_shipping_price_format'],
             'chanel_tax' => $data['chanel_tax'],
             'chanel_image' => $data['chanel_image']
         ];

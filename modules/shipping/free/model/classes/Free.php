@@ -54,26 +54,32 @@ class Free {
      */
     public static function load($zones_id) {
 
-        $counter = 0;
+        $interface_data_all = [];
+        $CURRENCIES = \eMarket\Set::currencyDefault();
+        
         foreach ($zones_id as $zone) {
             $data = \eMarket\Pdo::getColAssoc("SELECT minimum_price FROM " . DB_PREFIX . 'modules_shipping_free' . " WHERE shipping_zone=?", [$zone])[0];
-
-            // Логика обработки
-            if (\eMarket\Ecb::totalPriceCartWithSale() >= $data['minimum_price']) {
-                
-                // Интерфейс для модулей доставки
-                $interface = [
-                    'chanel_module' => 'free',
-                    'chanel_name' => lang('modules_shipping_free_name'),
-                    'chanel_minimum_price' => $data['minimum_price'],
-                    'chanel_shipping_price' => '',
-                    'chanel_tax' => '',
-                    'chanel_image' => ''
-                    ];
-                $counter++;
-            }
+            
+            // Интерфейс для модулей доставки
+            $interface_data = [
+                'chanel_module' => 'free',
+                'chanel_name' => lang('modules_shipping_free_name'),
+                'chanel_total_price' => \eMarket\Ecb::totalPriceCartWithSale(),
+                'chanel_minimum_price' => $data['minimum_price'],
+                'chanel_minimum_price_format' => \eMarket\Products::productPrice($data['minimum_price'], $CURRENCIES, 1),
+                'chanel_shipping_price' => '',
+                'chanel_shipping_price_format' => '',
+                'chanel_tax' => '',
+                'chanel_image' => ''
+            ];
+            array_push($interface_data_all, $interface_data);
         }
-        if ($counter > 0) {
+        // Логика обработки
+        // Выбираем массив с наименьшей minimum_price
+        if (count($interface_data_all) > 0) {
+            $chanel_minimum_price = array_column($interface_data_all, 'chanel_minimum_price');
+            array_multisort($chanel_minimum_price, SORT_DESC, $interface_data_all);
+            $interface = $interface_data_all[0];
             return $interface;
         } else {
             return FALSE;

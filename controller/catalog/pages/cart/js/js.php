@@ -22,29 +22,11 @@
         }
         }
 
-        // Устанавливаем методы доставки
-        jQuery.post('<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>',
-                {shipping_region_json: $(':selected', '#address').data('regions')},
-                AjaxSuccess);
-        // Обновление страницы
-        function AjaxSuccess(data) {
-            var shipping_method = $.parseJSON(data);
-            $("#shipping_method").empty();
-
-            if (shipping_method.length < 1) {
-                $("#shipping_method").append($('<option value="no"><?php echo lang('cart_shipping_is_not_available') ?></option>'));
-                replaceClass('#shipping_method_class', false);
-            } else {
-                for (x = 0; x < shipping_method.length; x++) {
-                    $("#shipping_method").append($('<option value="' + shipping_method[x]['chanel_module'] + '">' + shipping_method[x]['chanel_name'] + '</option>'));
-                    replaceClass('#shipping_method_class', true);
-                }
-            }
-        }
-        // Если выбрали адрес, то загружаем методы доставки
-        $('#address').change(function (event) {
+        //Функция получения данных для модулей доставки
+        function shippingData() {
+            // Устанавливаем методы доставки
             jQuery.post('<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>',
-                    {shipping_region_json: $(':selected', this).data('regions')},
+                    {shipping_region_json: $(':selected', '#address').data('regions')},
                     AjaxSuccess);
             // Обновление страницы
             function AjaxSuccess(data) {
@@ -56,11 +38,25 @@
                     replaceClass('#shipping_method_class', false);
                 } else {
                     for (x = 0; x < shipping_method.length; x++) {
-                        $("#shipping_method").append($('<option value="' + shipping_method[x]['chanel_module'] + '">' + shipping_method[x]['chanel_name'] + '</option>'));
-                        replaceClass('#shipping_method_class', true);
+                        if (shipping_method[x]['chanel_total_price'] < shipping_method[x]['chanel_minimum_price']) {
+                            $("#shipping_method").append($('<option value="no">Бесплатная доставка не доступна. Мин. сумма заказа: ' + shipping_method[x]['chanel_minimum_price_format'] + '</option>'));
+                            replaceClass('#shipping_method_class', false);
+                        } else {
+                            $("#shipping_method").append($('<option value="' + shipping_method[x]['chanel_module'] + '">' + shipping_method[x]['chanel_name'] + '</option>'));
+                            replaceClass('#shipping_method_class', true);
+                        }
                     }
                 }
             }
+        }
+
+        // Получаем данные по доставке
+        shippingData();
+
+        // Если выбрали адрес, то загружаем методы доставки
+        $('#address').change(function (event) {
+            // Получаем данные по доставке
+            shippingData();
         });
     });
 </script>
