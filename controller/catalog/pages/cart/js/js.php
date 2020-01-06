@@ -42,6 +42,13 @@
                         }
                     }
                 }
+                // Делаем не активной кнопку завершения заказа, если селекты не валидны
+                if ($("#address_class").attr("class") !== 'input-group has-success' || $("#shipping_method_class").attr("class") !== 'input-group has-success' || $("#payment_method_class").attr("class") !== 'input-group has-success') {
+                    $("#complete").attr("disabled", "disabled");
+                } else {
+                    ($("#address_class").attr("class") !== 'input-group has-success' || $("#shipping_method_class").attr("class") !== 'input-group has-success' || $("#payment_method_class").attr("class") !== 'input-group has-success');
+                    $("#complete").removeAttr("disabled");
+                }
             }
         }
 

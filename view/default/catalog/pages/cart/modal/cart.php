@@ -18,7 +18,7 @@ require(ROOT . '/controller/catalog/pages/cart/modal/cart.php');
 
                 <div class="form-group">
                     <label for="address"><?php echo lang('cart_shipping_address') ?></label>
-                    <div class="input-group has-success">
+                    <div id="address_class" class="input-group has-success">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
                         <select name="address" id="address" class="input-sm form-control">
                             <?php
@@ -31,7 +31,7 @@ require(ROOT . '/controller/catalog/pages/cart/modal/cart.php');
                             ?>
                         </select>
                     </div>
-                    <small id="address_method" class="form-text text-muted"><?php echo lang('cart_shipping_address_small') ?></small>
+                    <small class="form-text text-muted"><?php echo lang('cart_shipping_address_small') ?></small>
                 </div>
 
                 <div class="form-group">
@@ -42,24 +42,24 @@ require(ROOT . '/controller/catalog/pages/cart/modal/cart.php');
                             <option value=""></option>
                         </select>
                     </div>
-                    <small id="shipping_method" class="form-text text-muted"><?php echo lang('cart_shipping_method_small') ?></small>
+                    <small class="form-text text-muted"><?php echo lang('cart_shipping_method_small') ?></small>
                 </div>
 
                 <div class="form-group">
-                    <label for="payment"><?php echo lang('cart_payment_method') ?></label>
-                    <div class="input-group has-success">
+                    <label for="payment_method"><?php echo lang('cart_payment_method') ?></label>
+                    <div id="payment_method_class" class="input-group has-success">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                        <select name="payment" id="payment" class="input-sm form-control">
+                        <select name="payment_method" id="payment_method" class="input-sm form-control">
                             <option value="1">Наличными в офисе</option>
                             <option value="2">VISA/MASTERCARD</option>
                         </select>
                     </div>
-                    <small id="payment_method" class="form-text text-muted"><?php echo lang('cart_payment_method_small') ?></small>
+                    <small class="form-text text-muted"><?php echo lang('cart_payment_method_small') ?></small>
                 </div>
 
             </div> 
             <div class="modal-footer">
-                <button type="button" class="btn btn btn-primary" data-toggle="modal" data-target="#cart"><span class="glyphicon glyphicon-ok"></span> <?php echo lang('cart_complete_button') ?></button>
+                <button id="complete" type="button" class="btn btn btn-primary" data-toggle="modal" data-target="#cart"><span class="glyphicon glyphicon-ok"></span> <?php echo lang('cart_complete_button') ?></button>
             </div>
         </div>
     </div>
