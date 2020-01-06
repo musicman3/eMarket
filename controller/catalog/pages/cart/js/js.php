@@ -31,7 +31,7 @@
                     for (x = 0; x < shipping_method.length; x++) {
                         //Если минимальная стоимость заказа ниже указанной
                         if (shipping_method[x]['chanel_total_price'] < shipping_method[x]['chanel_minimum_price']) {
-                            $("#shipping_method").append($('<option value="no">' + shipping_method[x]['chanel_name'] + ' <?php echo lang('cart_shipping_is_not_available_and_min_price') ?> ' + shipping_method[x]['chanel_minimum_price_format'] + '</option>'));
+                            $("#shipping_method").append($('<option value="no">' + shipping_method[x]['chanel_name'] + '<?php echo lang('cart_shipping_is_not_available_and_min_price') ?> ' + shipping_method[x]['chanel_minimum_price_format'] + '</option>'));
                             $('#shipping_method_class').removeClass('has-success');
                             $('#shipping_method_class').addClass('has-error');
                         } else {
