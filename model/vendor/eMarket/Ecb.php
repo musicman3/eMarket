@@ -25,8 +25,6 @@ final class Ecb {
      * @return string (выходные данные в виде форматированной стоимости)
      */
     public static function priceInterface($input, $marker, $class = null) {
-        
-        $CURRENCIES = \eMarket\Set::currencyDefault();
 
         if ($class == null) {
             $class = 'danger';
@@ -65,8 +63,6 @@ final class Ecb {
      * @return string (выходные данные в виде форматированной стоимости)
      */
     public static function priceCartInterface($input, $marker, $class = null) {
-        
-        $CURRENCIES = \eMarket\Set::currencyDefault();
 
         if ($class == null) {
             $class = 'danger';
@@ -113,8 +109,6 @@ final class Ecb {
      * @return string (выходные данные в виде форматированной стоимости)
      */
     public static function totalPriceCartInterface($marker, $class = null) {
-        
-        $CURRENCIES = \eMarket\Set::currencyDefault();
 
         $total_price_with_sale = self::totalPriceCartWithSale();
         $price_val = \eMarket\Cart::totalPrice();
