@@ -31,8 +31,6 @@ if (\eMarket\Set::path() == 'admin') {
     if (\eMarket\Valid::inGET('route') != 'login') {
         $TOKEN = \eMarket\Autorize::sessionAdmin();
     }
-    // Данные по текущей валюте
-    $CURRENCIES = \eMarket\Set::currencyDefault();
 }
 
 // Если это каталог
@@ -45,16 +43,9 @@ if (\eMarket\Set::path() == 'catalog') {
     } else {
         $CUSTOMER = FALSE;
     }
-    // Данные по текущей валюте
-    $CURRENCIES = \eMarket\Set::currencyDefault();
 
     // Инициализация корзины
     \eMarket\Cart::init();
-
-    // Инициализация ECB
-    //$product_sales = [['id' => '1', 'product_id' =>'1', 'sale' =>'5'],['id' => '2', 'product_id' =>'1', 'sale' =>'25'],['id' => '3', 'product_id' =>'2', 'sale' =>'15']];
-    //$ecb_init = \eMarket\Ecb::init($_SESSION['cart'], $CURRENCIES, $product_sales);
-    //\eMarket\Debug::trace($ecb_init);
 }
 
 // Загружаем языковой роутер

@@ -55,7 +55,6 @@ class Free {
     public static function load($zones_id) {
 
         $interface_data_all = [];
-        $CURRENCIES = \eMarket\Set::currencyDefault();
         
         foreach ($zones_id as $zone) {
             $data = \eMarket\Pdo::getColAssoc("SELECT minimum_price FROM " . DB_PREFIX . 'modules_shipping_free' . " WHERE shipping_zone=?", [$zone])[0];
@@ -66,7 +65,7 @@ class Free {
                 'chanel_name' => lang('modules_shipping_free_name'),
                 'chanel_total_price' => \eMarket\Ecb::totalPriceCartWithSale(),
                 'chanel_minimum_price' => $data['minimum_price'],
-                'chanel_minimum_price_format' => \eMarket\Products::productPrice($data['minimum_price'], $CURRENCIES, 1),
+                'chanel_minimum_price_format' => \eMarket\Products::productPrice($data['minimum_price'], 1),
                 'chanel_shipping_price' => '',
                 'chanel_shipping_price_format' => '',
                 'chanel_tax' => '',

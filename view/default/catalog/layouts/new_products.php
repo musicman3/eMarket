@@ -18,7 +18,7 @@
                         <h5 class="text-center grid-item-heading"><a href="/?route=products&category_id=<?php echo $value['parent_id']; ?>&parent_id=<?php echo $category_parent_id[$x]; ?>&id=<?php echo $value['id']; ?>"><?php echo $value['name']; ?></a></h5>
                         <div class="clearfix"></div>
                         <div class="row button">
-                            <div class="col-xs-6"><?php echo \eMarket\Ecb::priceInterface($value, $CURRENCIES, 1) ?></div>
+                            <div class="col-xs-6"><?php echo \eMarket\Ecb::priceInterface($value, 1) ?></div>
 
                             <div class="col-xs-6 text-right">
                                 <form id="form_add_to_cart" name="form_add_to_cart" action="javascript:void(null);" onsubmit="addToCart(<?php echo $value['id'] ?>, 'true')">

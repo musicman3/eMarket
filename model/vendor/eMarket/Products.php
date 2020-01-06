@@ -69,11 +69,12 @@ class Products {
      * Данные стоимости товара
      *
      * @param string $price (цена)
-     * @param array $CURRENCIES (данные по валюте)
      * @param string $format (выводить стоимость в форматированном виде: 0 - полное наим., 1- сокращ. наим., 2 - знак валюты, 3 - ISO код)
      * @return array $price (данные по стоимости)
      */
-    public static function productPrice($price, $CURRENCIES, $format = null) {
+    public static function productPrice($price, $format = null) {
+        
+        $CURRENCIES = \eMarket\Set::currencyDefault();
         
         if ($format == 0) {
             if ($CURRENCIES[8] == 'left') {

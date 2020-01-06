@@ -25,7 +25,7 @@
                         <tr>
                             <td class="text-center"><a href="/?route=products&id=<?php echo $value['id'] ?>"><img src="/uploads/images/products/resize_0/<?php echo $value['logo_general'] ?>" alt="<?php echo $value['name'] ?>" class="img-thumbnail"></a></td>
                             <td class="text-center"><a href="/?route=products&id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></td>
-                            <td class="text-center"><?php echo \eMarket\Ecb::priceInterface($value, $CURRENCIES, 1) ?></td>
+                            <td class="text-center"><?php echo \eMarket\Ecb::priceInterface($value, 1) ?></td>
                             <td class="text-center">
                                 <form id="quantity_product" name="quantity_product" action="javascript:void(null);" onsubmit="quantityProduct(<?php echo $value['id'] ?>, $('#number_<?php echo $value['id'] ?>').val())">
                                     <button class="btn btn-primary btn-sm" type="button" onclick="pcsProduct('minus', <?php echo $value['id'] ?>)"><span class="glyphicon glyphicon-minus"></span></button>
@@ -35,7 +35,7 @@
                                     <button class="btn btn-primary btn-sm" type="button" onclick="deleteProduct(<?php echo $value['id'] ?>)"><span class="glyphicon glyphicon-trash"></span></button>
                                 </form>
                             </td>
-                            <td class="text-center"><?php echo \eMarket\Ecb::priceCartInterface($value, $CURRENCIES, 1) ?></td>
+                            <td class="text-center"><?php echo \eMarket\Ecb::priceCartInterface($value, 1) ?></td>
                         </tr>
                     <?php } ?>
                 </tbody>
@@ -54,7 +54,7 @@
                     <tbody>
                         <tr>
                             <td class="text-right"><strong><?php echo lang('cart_total') ?>:</strong></td>
-                            <td class="text-right"><?php echo \eMarket\Ecb::totalPriceCartInterface($CURRENCIES, 1) ?></td>
+                            <td class="text-right"><?php echo \eMarket\Ecb::totalPriceCartInterface(1) ?></td>
                         </tr>
                     </tbody>
                 </table>
