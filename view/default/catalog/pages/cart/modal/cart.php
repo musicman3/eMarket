@@ -56,7 +56,10 @@ require(ROOT . '/controller/catalog/pages/cart/modal/cart.php');
                     </div>
                     <small class="form-text text-muted"><?php echo lang('cart_payment_method_small') ?></small>
                 </div>
-
+                
+                <div id="shipping_price" class="form-group text-right"></div>
+                <div id="total_price_modal" class="pull-right label label-danger"></div>
+                
             </div> 
             <div class="modal-footer">
                 <button id="complete" type="button" class="btn btn btn-primary" data-toggle="modal" data-target="#cart"><span class="glyphicon glyphicon-ok"></span> <?php echo lang('cart_complete_button') ?></button>
