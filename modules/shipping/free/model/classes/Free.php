@@ -50,7 +50,7 @@ class Free {
      * Загрузка данных по модулю
      *
      * @param array $zones_id (данные по используемым зонам)
-     * @return array|FALSE $output (выходные данные)
+     * @return array|FALSE $interface (выходные данные)
      */
     public static function load($zones_id) {
 
