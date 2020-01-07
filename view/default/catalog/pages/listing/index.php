@@ -43,28 +43,28 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
             $('#listing .item').addClass('col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item');
         }
         if (getCookie('cookie_list') === 'list') {
-            $('#listing .itg').removeClass('active');
-            $('#listing .itl').addClass('active');
+            $('#listing .item-grid').removeClass('active');
+            $('#listing .item-list').addClass('active');
         }
         if (getCookie('cookie_list') === 'grid') {
-            $('#listing .itl').removeClass('active');
-            $('#listing .itg').addClass('active');
+            $('#listing .item-list').removeClass('active');
+            $('#listing .item-grid').addClass('active');
         }
 
         $('#list').click(function (event) {
             event.preventDefault();
             $('#listing .item').removeClass('col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item');
             $('#listing .item').addClass('col-xs-12 list-group-item');
-            $('#listing .itg').removeClass('active');
-            $('#listing .itl').addClass('active');
+            $('#listing .item-grid').removeClass('active');
+            $('#listing .item-list').addClass('active');
             setCookie('cookie_list', 'list', 30);
         });
         $('#grid').click(function (event) {
             event.preventDefault();
             $('#listing .item').removeClass('col-xs-12 list-group-item');
             $('#listing .item').addClass('col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item');
-            $('#listing .itl').removeClass('active');
-            $('#listing .itg').addClass('active');
+            $('#listing .item-list').removeClass('active');
+            $('#listing .item-grid').addClass('active');
             setCookie('cookie_list', 'grid', 30);
         });
     });
@@ -83,8 +83,8 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
 		</ul>
 	    </div>
             <div class="btn-group pull-right">
-                <a href="#" id="grid" class="btn btn-default itg active"><span class="glyphicon glyphicon-th"></span></a>
-                <a href="#" id="list" class="btn btn-default itl"><span class="glyphicon glyphicon-th-list"></span></a>
+                <a href="#" id="grid" class="btn btn-default item-grid active"><span class="glyphicon glyphicon-th"></span></a>
+                <a href="#" id="list" class="btn btn-default item-list"><span class="glyphicon glyphicon-th-list"></span></a>
             </div>
         </div>
 
