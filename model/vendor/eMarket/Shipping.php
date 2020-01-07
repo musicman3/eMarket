@@ -98,6 +98,38 @@ final class Shipping {
         return $modules_data;
     }
 
+    /**
+     * Фильтрация данных модуля
+     * 
+     * @param array $interface_data_all (входной массив данных)
+     * @return array $interface (выходные данные)
+     */
+    public static function filterData($interface_data_all) {
+
+        if (count($interface_data_all) > 0) {
+            // Выбираем массивы с наименьшей chanel_minimum_price
+            $chanel_minimum_price = array_column($interface_data_all, 'chanel_minimum_price');
+            array_multisort($chanel_minimum_price, SORT_DESC, $interface_data_all);
+
+            $interface_minimum_price = [];
+            foreach ($interface_data_all as $val) {
+                if ($val['chanel_minimum_price'] == $interface_data_all[0]['chanel_minimum_price']) {
+                    array_push($interface_minimum_price, $val);
+                }
+            }
+
+            // Выбираем итоговый массив с наименьшей chanel_shipping_price
+            $chanel_minimum_shipping_price = array_column($interface_minimum_price, 'chanel_shipping_price');
+            array_multisort($chanel_minimum_shipping_price, SORT_DESC, $interface_minimum_price);
+
+            $interface = $interface_minimum_price[0];
+
+            return $interface;
+        } else {
+            return FALSE;
+        }
+    }
+
 }
 
 ?>

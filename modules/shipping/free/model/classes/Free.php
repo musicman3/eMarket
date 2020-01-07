@@ -55,10 +55,10 @@ class Free {
     public static function load($zones_id) {
 
         $interface_data_all = [];
-        
+
         foreach ($zones_id as $zone) {
             $data = \eMarket\Pdo::getColAssoc("SELECT minimum_price FROM " . DB_PREFIX . 'modules_shipping_free' . " WHERE shipping_zone=?", [$zone])[0];
-            
+
             // Интерфейс для модулей доставки
             $interface_data = [
                 'chanel_module' => 'free',
@@ -76,16 +76,7 @@ class Free {
             ];
             array_push($interface_data_all, $interface_data);
         }
-        // Логика обработки
-        // Выбираем массив с наименьшей minimum_price
-        if (count($interface_data_all) > 0) {
-            $chanel_minimum_price = array_column($interface_data_all, 'chanel_minimum_price');
-            array_multisort($chanel_minimum_price, SORT_DESC, $interface_data_all);
-            $interface = $interface_data_all[0];
-            return $interface;
-        } else {
-            return FALSE;
-        }
+        return \eMarket\Shipping::filterData($interface_data_all);
     }
 
 }
