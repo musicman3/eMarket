@@ -83,7 +83,7 @@ final class Shipping {
      * 
      * @param array $zones_id (данные по доступным зонам доставки для региона)
      * @param array $modules_names (данные по доступным именам модулей доставки для региона)
-     * @return array $output (выходные данные)
+     * @return array $modules_data (выходные данные)
      */
     public static function loadData($zones_id, $modules_names) {
 
