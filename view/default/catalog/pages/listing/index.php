@@ -63,11 +63,19 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
 <?php if ($products == true) { ?>
     <div id="listing" class="contentText">
         <div class="well well-sm">
-            <div class="btn-group">
+	    <div class="btn-group">
+		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Sort By <span class="caret"></span></button>
+		<ul class="dropdown-menu text-right">
+		    <li><a href="#">По названию</a></li>
+		    <li><a href="#">По цене</a></li>
+		</ul>
+	    </div>
+            <div class="btn-group pull-right">
                 <a href="#" id="grid" class="btn btn-default"><span class="glyphicon glyphicon-th"></span></a>
                 <a href="#" id="list" class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span></a>
             </div>
         </div>
+
         <div class="row">
             <?php foreach ($products as $value) { ?>
                 <div class="item col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item">
@@ -90,6 +98,16 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                 </div>
             <?php } ?>  
         </div>
+
+        <div class="well well-sm">
+	    <div class="result-inner btn-group">Showing 1 to 8 of 10 (2 Pages)</div>
+	    <div class="pagination-inner pull-right">
+		<ul class="pagination">
+		    <li class="active"><span>1</span></li>
+		    <li><a href="#">2</a></li>
+		</ul>
+	    </div>
+	</div>
     </div>
 <?php } else { ?>
     <div id="listing" class="contentText">
