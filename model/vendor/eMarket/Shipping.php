@@ -102,7 +102,7 @@ final class Shipping {
      * Фильтрация данных модуля
      * 
      * @param array $interface_data_all (входной массив данных)
-     * @return array $interface (выходные данные)
+     * @return array|FALSE $interface (выходные данные)
      */
     public static function filterData($interface_data_all) {
 
