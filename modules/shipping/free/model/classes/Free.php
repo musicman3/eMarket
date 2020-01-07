@@ -76,7 +76,8 @@ class Free {
             ];
             array_push($interface_data_all, $interface_data);
         }
-        return \eMarket\Shipping::filterData($interface_data_all);
+        $interface = \eMarket\Shipping::filterData($interface_data_all);
+        return $interface;
     }
 
 }
