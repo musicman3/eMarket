@@ -10,7 +10,7 @@ $MODULE_DB = \eMarket\Set::moduleDatabase();
 $zones = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_ZONES . " WHERE language=?", [lang('#lang_all')[0]]);
 
 $zones_name = [];
-foreach ($zones as $val){
+foreach ($zones as $val) {
     $zones_name[$val['id']] = $val['name'];
 }
 
@@ -34,8 +34,8 @@ if (\eMarket\Valid::inPOST('edit')) {
 
 // Если нажали на кнопку Удалить
 if (\eMarket\Valid::inPOST('delete')) {
-        // Удаляем Страну и Регионы
     \eMarket\Pdo::inPrepare("DELETE FROM " . $MODULE_DB . " WHERE id=?", [\eMarket\Valid::inPOST('delete')]);
+    
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
     exit;
