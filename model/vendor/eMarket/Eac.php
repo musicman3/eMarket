@@ -111,7 +111,7 @@ final class Eac {
         if (\eMarket\Valid::inGET('parent_down')) {
             $parent_id = \eMarket\Valid::inGET('parent_down');
         }
-        
+
         // Устанавливаем родительскую категорию при навигации ВЛЕВО/ВПРАВО
         if (\eMarket\Valid::inGET('parent_id_temp')) {
             $parent_id = \eMarket\Valid::inGET('parent_id_temp');
@@ -135,19 +135,16 @@ final class Eac {
 
             $sort_array_category = []; // Массив со списком sort_category под сортировку
 
-            $count_sort_array_id = count($sort_array_id); // Получаем количество значений в массиве
-
-            for ($i = 0; $i < $count_sort_array_id; $i++) {
-                $sort_category = \eMarket\Pdo::selectPrepare("SELECT sort_category FROM " . $TABLE_CATEGORIES . " WHERE id=? AND language=? ORDER BY id ASC", [$sort_array_id[$i], lang('#lang_all')[0]]);
+            foreach ($sort_array_id as $val) {
+                $sort_category = \eMarket\Pdo::selectPrepare("SELECT sort_category FROM " . $TABLE_CATEGORIES . " WHERE id=? AND language=? ORDER BY id ASC", [$val, lang('#lang_all')[0]]);
                 array_push($sort_array_category, $sort_category); // Добавляем данные в массив sort_category
                 arsort($sort_array_category); // Сортируем массив со списком sort_category
             }
             // Создаем финальный массив из двух массивов
             $sort_array_final = array_combine($sort_array_id, $sort_array_category);
 
-            for ($i = 0; $i < $count_sort_array_id; $i++) {
-
-                \eMarket\Pdo::inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET sort_category=? WHERE id=?", [(int) $sort_array_final[$sort_array_id[$i]], (int) $sort_array_id[$i]]);
+            foreach ($sort_array_id as $val) {
+                \eMarket\Pdo::inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET sort_category=? WHERE id=?", [(int) $sort_array_final[$val], (int) $val]);
             }
         }
     }
@@ -218,8 +215,8 @@ final class Eac {
 
             // Если в массиве пустое значение, то собираем новый массив без этого значения со сбросом ключей
             $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('delete'));
-            
-            if (is_array($idx) == FALSE){
+
+            if (is_array($idx) == FALSE) {
                 $idx = [];
             }
 
@@ -291,11 +288,11 @@ final class Eac {
         if ((\eMarket\Valid::inPOST('idsx_cut_key') == 'cut')) {
             // Если в массиве пустое значение, то собираем новый массив без этого значения со сбросом ключей
             $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('idsx_cut_id'));
-            
-            if (is_array($idx) == FALSE){
+
+            if (is_array($idx) == FALSE) {
                 $idx = [];
             }
-            
+
             for ($i = 0; $i < count($idx); $i++) {
 
                 $parent_id_real = (int) \eMarket\Valid::inPOST('idsx_real_parent_id'); // получить значение из JS
@@ -417,11 +414,11 @@ final class Eac {
                 $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('idsx_statusOff_id'));
                 $status = 0;
             }
-            
-            if (is_array($idx) == FALSE){
+
+            if (is_array($idx) == FALSE) {
                 $idx = [];
             }
-            
+
             for ($i = 0; $i < count($idx); $i++) {
                 if (strstr($idx[$i], '_', true) != 'product') {
                     // Это категория
@@ -506,8 +503,8 @@ final class Eac {
                 $discount = '';
                 $discount_id = \eMarket\Valid::inPOST('sale');
             }
-            
-            if (is_array($idx) == FALSE){
+
+            if (is_array($idx) == FALSE) {
                 $idx = [];
             }
 

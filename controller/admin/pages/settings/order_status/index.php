@@ -81,19 +81,17 @@ if (\eMarket\Valid::inPOST('token_ajax') == $TOKEN && \eMarket\Valid::inPOST('id
 
     $sort_array_order_status = []; // Массив со списком sort под сортировку
 
-    $count_sort_array_id = count($sort_array_id); // Получаем количество значений в массиве
-
-    for ($i = 0; $i < $count_sort_array_id; $i++) {
-        $sort_order_status = \eMarket\Pdo::selectPrepare("SELECT sort FROM " . TABLE_ORDER_STATUS . " WHERE id=? AND language=? ORDER BY id ASC", [$sort_array_id[$i], lang('#lang_all')[0]]);
+    foreach ($sort_array_id as $val) {
+        $sort_order_status = \eMarket\Pdo::selectPrepare("SELECT sort FROM " . TABLE_ORDER_STATUS . " WHERE id=? AND language=? ORDER BY id ASC", [$val, lang('#lang_all')[0]]);
         array_push($sort_array_order_status, $sort_order_status); // Добавляем данные в массив sort
         arsort($sort_array_order_status); // Сортируем массив со списком sort
     }
     // Создаем финальный массив из двух массивов
     $sort_array_final = array_combine($sort_array_id, $sort_array_order_status);
 
-    for ($i = 0; $i < $count_sort_array_id; $i++) {
+    foreach ($sort_array_id as $val) {
 
-        \eMarket\Pdo::inPrepare("UPDATE " . TABLE_ORDER_STATUS . " SET sort=? WHERE id=?", [(int) $sort_array_final[$sort_array_id[$i]], (int) $sort_array_id[$i]]);
+        \eMarket\Pdo::inPrepare("UPDATE " . TABLE_ORDER_STATUS . " SET sort=? WHERE id=?", [(int) $sort_array_final[$val], (int) $val]);
     }
 }
 
