@@ -3,15 +3,32 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-
 ?>
 <!-- /Сортировка мышкой -->
 <script type="text/javascript">
     $(document).ready(function () {
+        var start = function (e, ui) {
+            let $originals = ui.helper.children();
+            ui.placeholder.children().each(function (index) {
+                $(this).width($originals.eq(index).width());
+            });
+        };
+
+        var helper = function (e, tr) {
+            let $helper = tr.clone();
+            let $originals = tr.children();
+            $helper.children().each(function (index) {
+                $(this).width($originals.eq(index).outerWidth(true));
+            });
+            return $helper;
+        };
+
         $("#sort-list").sortable({
             items: 'tr.sort-list',
             handle: 'td.sortyes',
             axis: "y",
+            helper: helper,
+            start: start,
             over: function (event, ui) {
                 ui.helper.css("opacity", "0.7"),
                         ui.helper.css("background-color", "#F5F5F5");
@@ -612,7 +629,7 @@
                 },
 
                 "sep13": "---------",
-                
+
                 "quit": {name: "<?php echo lang('menu_exit') ?>", icon: function () {
                         return 'context-menu-icon glyphicon-remove';
                     }}
