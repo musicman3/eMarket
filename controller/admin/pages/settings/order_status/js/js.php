@@ -9,6 +9,66 @@
 <script type="text/javascript">
     $('#default_order_status').bootstrapSwitch();
 </script>
+<!-- /Сортировка мышкой -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        var start = function (e, ui) {
+            let $originals = ui.helper.children();
+            ui.placeholder.children().each(function (index) {
+                $(this).width($originals.eq(index).width());
+            });
+        };
+
+        var helper = function (e, tr) {
+            let $helper = tr.clone();
+            let $originals = tr.children();
+            $helper.children().each(function (index) {
+                $(this).width($originals.eq(index).outerWidth(true));
+            });
+            return $helper;
+        };
+
+        $("#sort-list").sortable({
+            items: 'tr.sort-list',
+            handle: '.sortyes',
+            axis: "y",
+            helper: helper,
+            start: start,
+            over: function (event, ui) {
+                ui.helper.css("opacity", "0.7"),
+                        ui.helper.css("background-color", "#F5F5F5");
+            },
+            beforeStop: function (event, ui) {
+                ui.helper.css("opacity", "1.0"),
+                        ui.helper.css("background-color", "");
+            },
+            stop: function (event, ui) {
+                sortList();
+            }
+        });
+    });
+
+    function sortList() {
+        var ids = [];
+        var token = '<?php echo $TOKEN ?>';
+        $("#sort-list tr").each(function () {
+            ids[ids.length] = $(this).attr('unitid');
+        });
+        // Установка синхронного запроса для jQuery.ajax
+        jQuery.ajaxSetup({async: false});
+        jQuery.post('?route=settings/order_status',
+                {token_ajax: token,
+                    ids: ids.join()});
+        // Повторный вызов функции для нормального обновления страницы
+        jQuery.get('<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>',
+                {}, // id родительской категории
+                AjaxSuccess);
+        function AjaxSuccess(data) {
+            $('#ajax').html(data);
+        }
+    }
+</script>
+
 <?php if (isset($name_edit)) { ?>
     <!-- Загрузка данных в модальное окно -->
     <script type="text/javascript">
@@ -31,7 +91,7 @@
             $('#default_order_status_edit').bootstrapSwitch();
         });
     </script>
-<?php
+    <?php
 }
 // Подгружаем Ajax Добавить, Редактировать, Удалить
 \eMarket\Ajax::action('');

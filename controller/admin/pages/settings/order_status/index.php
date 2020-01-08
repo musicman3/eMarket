@@ -72,8 +72,32 @@ if (\eMarket\Valid::inPOST('delete')) {
     exit;
 }
 
+        // если сортируем категории мышкой
+        if (\eMarket\Valid::inPOST('token_ajax') == $TOKEN && \eMarket\Valid::inPOST('ids')) {
+            $sort_array_id_ajax = explode(',', \eMarket\Valid::inPOST('ids')); // Массив со списком id под сортировку
+            // Если в массиве пустое значение, то собираем новый массив без этого значения со сбросом ключей
+            $sort_array_id = \eMarket\Func::deleteEmptyInArray($sort_array_id_ajax);
+
+            $sort_array_category = []; // Массив со списком sort_category под сортировку
+
+            $count_sort_array_id = count($sort_array_id); // Получаем количество значений в массиве
+
+            for ($i = 0; $i < $count_sort_array_id; $i++) {
+                $sort_category = \eMarket\Pdo::selectPrepare("SELECT sort FROM " . TABLE_ORDER_STATUS . " WHERE id=? AND language=? ORDER BY id ASC", [$sort_array_id[$i], lang('#lang_all')[0]]);
+                array_push($sort_array_category, $sort_category); // Добавляем данные в массив sort_category
+                arsort($sort_array_category); // Сортируем массив со списком sort_category
+            }
+            // Создаем финальный массив из двух массивов
+            $sort_array_final = array_combine($sort_array_id, $sort_array_category);
+
+            for ($i = 0; $i < $count_sort_array_id; $i++) {
+
+                \eMarket\Pdo::inPrepare("UPDATE " . TABLE_ORDER_STATUS . " SET sort=? WHERE id=?", [(int) $sort_array_final[$sort_array_id[$i]], (int) $sort_array_id[$i]]);
+            }
+        }
+
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
-$lines = \eMarket\Pdo::getColRow("SELECT id, name, default_order_status, sort FROM " . TABLE_ORDER_STATUS . " WHERE language=? ORDER BY sort ASC", [lang('#lang_all')[0]]);
+$lines = \eMarket\Pdo::getColRow("SELECT id, name, default_order_status, sort FROM " . TABLE_ORDER_STATUS . " WHERE language=? ORDER BY sort DESC", [lang('#lang_all')[0]]);
 $lines_on_page = \eMarket\Set::linesOnPage();
 $navigate = \eMarket\Navigation::getLink(count($lines), $lines_on_page);
 $start = $navigate[0];

@@ -34,7 +34,7 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th colspan="2">
+                                <th colspan="3">
                                     <?php if ($lines == TRUE) { ?>
                                         <div class="page"><?php echo lang('s') ?> <?php echo $start + 1 ?> <?php echo lang('po') ?> <?php echo $finish ?> ( <?php echo lang('iz') ?> <?php echo count($lines); ?> )</div>
                                         <?php
@@ -71,15 +71,17 @@
                             </tr>
                             <?php if ($lines == TRUE) { ?>
                                 <tr class="border">
+                                    <td  class="sortleft-m"><div></div></td>
                                     <th><?php echo lang('order_status_name') ?></th>
                                     <th class="al-text"><?php echo lang('default') ?></th>
                                     <th class="al-text-w"></th>
                                 </tr>
                             <?php } ?>
                         </thead>
-                        <tbody>
+                        <tbody id="sort-list">
                             <?php for ($start; $start < $finish; $start++) { ?>
-                                <tr>
+                                <tr class="sort-list" unitid="<?php echo $lines[$start][0] ?>">
+                                    <td class="sortyes sortleft-m"><div><span class="glyphicon glyphicon-move"> </span></div></td> 
                                     <td><?php echo $lines[$start][1] ?></td>
                                     <?php if ($lines[$start][2] == 1) { ?>
                                         <td class="al-text"><?php echo lang('confirm-yes') ?></td>
