@@ -71,7 +71,7 @@
                             </tr>
                             <?php if ($lines == TRUE) { ?>
                                 <tr class="border">
-                                    <td  class="sortleft-m"><div></div></td>
+                                    <th class="sortleft-m"><div></div></th>
                                     <th><?php echo lang('order_status_name') ?></th>
                                     <th class="al-text"><?php echo lang('default') ?></th>
                                     <th class="al-text-w"></th>
