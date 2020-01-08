@@ -143,6 +143,16 @@ CREATE TABLE emkt_modules (
 	PRIMARY KEY (id))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+DROP TABLE IF EXISTS emkt_order_status;
+CREATE TABLE emkt_order_status (
+	id int NOT NULL,
+	name varchar(256),
+	language varchar(64),
+        default_order_status int NOT NULL,
+        sort int NOT NULL,
+	PRIMARY KEY (id, language))
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 DROP TABLE IF EXISTS emkt_password_recovery;
 CREATE TABLE emkt_password_recovery (
         id int NOT NULL auto_increment,

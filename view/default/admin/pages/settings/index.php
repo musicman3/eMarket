@@ -58,7 +58,7 @@
                                 <div class="settings"><a href="?route=settings/currencies" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-euro glyph-xs"> </span></a><?php echo lang('title_settings_currencies_index') ?></div>
                             </td>
                             <td>
-                                <div class="settings"><a href="#" class="btn btn-default btn-xs disabled"><span class="glyphicon glyphicon-pushpin glyph-xs"> </span></a>Состояние заказа</div>
+                                <div class="settings"><a href="?route=settings/order_status" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pushpin glyph-xs"> </span></a><?php echo lang('title_settings_order_status_index') ?></div>
                             </td>
                         </tr>
                         <tr>

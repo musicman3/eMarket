@@ -18,6 +18,7 @@ title_settings_currencies_index = Валюты
 title_settings_index = Настройки
 title_settings_length_index = Длина
 title_settings_modules_index = Модули
+title_settings_order_status_index = Статус заказа
 title_settings_taxes_index = Налоги
 title_settings_templates_index = Компоновка шаблонов
 title_settings_units_index = Единицы измерения
@@ -156,6 +157,9 @@ basic_settings_email_name = Имя отправителя
 ;MANUFACTURERS
 manufacturer = Производитель
 site = Сайт
+
+;ORDER STATUS
+order_status_name = Статус заказа
 
 ;CURRENCIES
 currency_symbol = Символ валюты
