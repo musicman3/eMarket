@@ -1,4 +1,5 @@
 <?php
+
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -23,7 +24,7 @@ if (\eMarket\Valid::inPOST('add')) {
     if ($id > 1 && $default_order_status != 0) {
         \eMarket\Pdo::inPrepare("UPDATE " . TABLE_ORDER_STATUS . " SET default_order_status=?", [0]);
     }
-    
+
     // Получаем последний sort и увеличиваем его на 1
     $id_max_sort = \eMarket\Pdo::selectPrepare("SELECT sort FROM " . TABLE_ORDER_STATUS . " WHERE language=? ORDER BY sort DESC", [lang('#lang_all')[0]]);
     $id_sort = intval($id_max_sort) + 1;
@@ -72,29 +73,29 @@ if (\eMarket\Valid::inPOST('delete')) {
     exit;
 }
 
-        // если сортируем категории мышкой
-        if (\eMarket\Valid::inPOST('token_ajax') == $TOKEN && \eMarket\Valid::inPOST('ids')) {
-            $sort_array_id_ajax = explode(',', \eMarket\Valid::inPOST('ids')); // Массив со списком id под сортировку
-            // Если в массиве пустое значение, то собираем новый массив без этого значения со сбросом ключей
-            $sort_array_id = \eMarket\Func::deleteEmptyInArray($sort_array_id_ajax);
+// если сортируем мышкой
+if (\eMarket\Valid::inPOST('token_ajax') == $TOKEN && \eMarket\Valid::inPOST('ids')) {
+    $sort_array_id_ajax = explode(',', \eMarket\Valid::inPOST('ids')); // Массив со списком id под сортировку
+    // Если в массиве пустое значение, то собираем новый массив без этого значения со сбросом ключей
+    $sort_array_id = \eMarket\Func::deleteEmptyInArray($sort_array_id_ajax);
 
-            $sort_array_category = []; // Массив со списком sort_category под сортировку
+    $sort_array_order_status = []; // Массив со списком sort под сортировку
 
-            $count_sort_array_id = count($sort_array_id); // Получаем количество значений в массиве
+    $count_sort_array_id = count($sort_array_id); // Получаем количество значений в массиве
 
-            for ($i = 0; $i < $count_sort_array_id; $i++) {
-                $sort_category = \eMarket\Pdo::selectPrepare("SELECT sort FROM " . TABLE_ORDER_STATUS . " WHERE id=? AND language=? ORDER BY id ASC", [$sort_array_id[$i], lang('#lang_all')[0]]);
-                array_push($sort_array_category, $sort_category); // Добавляем данные в массив sort_category
-                arsort($sort_array_category); // Сортируем массив со списком sort_category
-            }
-            // Создаем финальный массив из двух массивов
-            $sort_array_final = array_combine($sort_array_id, $sort_array_category);
+    for ($i = 0; $i < $count_sort_array_id; $i++) {
+        $sort_order_status = \eMarket\Pdo::selectPrepare("SELECT sort FROM " . TABLE_ORDER_STATUS . " WHERE id=? AND language=? ORDER BY id ASC", [$sort_array_id[$i], lang('#lang_all')[0]]);
+        array_push($sort_array_order_status, $sort_order_status); // Добавляем данные в массив sort
+        arsort($sort_array_order_status); // Сортируем массив со списком sort
+    }
+    // Создаем финальный массив из двух массивов
+    $sort_array_final = array_combine($sort_array_id, $sort_array_order_status);
 
-            for ($i = 0; $i < $count_sort_array_id; $i++) {
+    for ($i = 0; $i < $count_sort_array_id; $i++) {
 
-                \eMarket\Pdo::inPrepare("UPDATE " . TABLE_ORDER_STATUS . " SET sort=? WHERE id=?", [(int) $sort_array_final[$sort_array_id[$i]], (int) $sort_array_id[$i]]);
-            }
-        }
+        \eMarket\Pdo::inPrepare("UPDATE " . TABLE_ORDER_STATUS . " SET sort=? WHERE id=?", [(int) $sort_array_final[$sort_array_id[$i]], (int) $sort_array_id[$i]]);
+    }
+}
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 $lines = \eMarket\Pdo::getColRow("SELECT id, name, default_order_status, sort FROM " . TABLE_ORDER_STATUS . " WHERE language=? ORDER BY sort DESC", [lang('#lang_all')[0]]);
@@ -105,5 +106,4 @@ $finish = $navigate[1];
 
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
 $JS_END = __DIR__;
-
 ?>
