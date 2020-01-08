@@ -44,15 +44,13 @@
     });
     function sortList() {
         var ids = [];
-        var token = '<?php echo $TOKEN ?>';
         $("#sort-list tr").each(function () {
             ids[ids.length] = $(this).attr('unitid');
         });
         // Установка синхронного запроса для jQuery.ajax
         jQuery.ajaxSetup({async: false});
         jQuery.post('?route=stock',
-                {token_ajax: token,
-                    ids: ids.join()});
+                {ids: ids.join()});
         // Повторный вызов функции для нормального обновления страницы
         jQuery.get('<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>',
                 {}, // id родительской категории

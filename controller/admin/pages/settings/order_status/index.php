@@ -74,7 +74,7 @@ if (\eMarket\Valid::inPOST('delete')) {
 }
 
 // если сортируем мышкой
-if (\eMarket\Valid::inPOST('token_ajax') == $TOKEN && \eMarket\Valid::inPOST('ids')) {
+if (\eMarket\Valid::inPOST('ids')) {
     $sort_array_id_ajax = explode(',', \eMarket\Valid::inPOST('ids')); // Массив со списком id под сортировку
     // Если в массиве пустое значение, то собираем новый массив без этого значения со сбросом ключей
     $sort_array_id = \eMarket\Func::deleteEmptyInArray($sort_array_id_ajax);

@@ -29,7 +29,7 @@ if (\eMarket\Set::path() == 'admin') {
 
     // Загружаем авторизацию Административной части
     if (\eMarket\Valid::inGET('route') != 'login') {
-        $TOKEN = \eMarket\Autorize::sessionAdmin();
+        \eMarket\Autorize::sessionAdmin();
     }
 }
 

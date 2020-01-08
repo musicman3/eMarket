@@ -18,7 +18,7 @@ class Autorize {
     /**
      * Авторизация сессиями для Административной панели
      *
-     * @return string $str ($TOKEN)
+     * @return string TRUE
      */
     public static function sessionAdmin() {
 
@@ -42,11 +42,10 @@ class Autorize {
                 $_SESSION['session_page'] = \eMarket\Valid::inSERVER('REQUEST_URI');
                 header('Location: ?route=login'); // переадресация на LOGIN
             } else {
-                $TOKEN = $_SESSION['pass']; // создаем токен для ajax и пр.
                 //Язык авторизованного администратора
                 $_SESSION['DEFAULT_LANGUAGE'] = \eMarket\Pdo::selectPrepare("SELECT language FROM " . TABLE_ADMINISTRATORS . " WHERE login=? AND password=?", [$_SESSION['login'], $_SESSION['pass']]);
 
-                return $TOKEN;
+                return TRUE;
             }
         }
     }
@@ -54,7 +53,7 @@ class Autorize {
     /**
      * Авторизация сессиями для Каталога
      *
-     * @return string $str ($TOKEN)
+     * @return string TRUE|FALSE
      */
     public static function sessionCatalog() {
 

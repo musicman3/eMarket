@@ -19,12 +19,11 @@ final class Eac {
     /**
      * Инициализация EAC
      * @param array $TABLES (названия таблиц)
-     * @param string $TOKEN (токен)
      * @param array $resize_param (параметры ресайза)
      * @param array $resize_param_product (параметры ресайза фото товаров)
      * @return array [$idsx_real_parent_id, $parent_id]
      */
-    public static function init($TABLES, $TOKEN, $resize_param, $resize_param_product) {
+    public static function init($TABLES, $resize_param, $resize_param_product) {
 
         // Устанавливаем parent_id родительской категории
         $parent_id = self::parentIdStart($TABLES[0]);
@@ -64,7 +63,7 @@ final class Eac {
         $parent_id_sale = self::sale($TABLES[0], $TABLES[1], $parent_id);
 
         // Сортировка мышкой EAC
-        self::sortList($TABLES[0], $TOKEN);
+        self::sortList($TABLES[0]);
 
         if ($parent_id_delete != $parent_id) {
             $parent_id = $parent_id_delete;
@@ -123,12 +122,11 @@ final class Eac {
     /**
      * Сортировка мышкой в EAC
      * @param string $TABLE_CATEGORIES (название таблицы категорий)
-     * @param string $TOKEN (токен)
      */
-    private static function sortList($TABLE_CATEGORIES, $TOKEN) {
+    private static function sortList($TABLE_CATEGORIES) {
 
         // если сортируем категории мышкой
-        if (\eMarket\Valid::inPOST('token_ajax') == $TOKEN && \eMarket\Valid::inPOST('ids')) {
+        if (\eMarket\Valid::inPOST('ids')) {
             $sort_array_id_ajax = explode(',', \eMarket\Valid::inPOST('ids')); // Массив со списком id под сортировку
             // Если в массиве пустое значение, то собираем новый массив без этого значения со сбросом ключей
             $sort_array_id = \eMarket\Func::deleteEmptyInArray($sort_array_id_ajax);
