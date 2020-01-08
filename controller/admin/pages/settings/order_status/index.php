@@ -73,7 +73,7 @@ if (\eMarket\Valid::inPOST('delete')) {
 }
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
-$lines = \eMarket\Pdo::getColRow("SELECT id, name, default_order_status, sort FROM " . TABLE_ORDER_STATUS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+$lines = \eMarket\Pdo::getColRow("SELECT id, name, default_order_status, sort FROM " . TABLE_ORDER_STATUS . " WHERE language=? ORDER BY sort ASC", [lang('#lang_all')[0]]);
 $lines_on_page = \eMarket\Set::linesOnPage();
 $navigate = \eMarket\Navigation::getLink(count($lines), $lines_on_page);
 $start = $navigate[0];
