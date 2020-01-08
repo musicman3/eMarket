@@ -10341,10 +10341,10 @@ INSERT INTO emkt_units VALUES (2, 'Упаковка', 'russian', 'уп.', '0');
 /* ЗАГРУЗКА СТАТУСОВ ЗАКАЗА */
 INSERT INTO emkt_order_status VALUES (1, 'Delivered', 'english', '0', '1');
 INSERT INTO emkt_order_status VALUES (1, 'Доставлен', 'russian', '0', '1');
-INSERT INTO emkt_order_status VALUES (2, 'Processing', 'english', '1', '2');
-INSERT INTO emkt_order_status VALUES (2, 'Обрабатывается', 'russian', '1', '2');
-INSERT INTO emkt_order_status VALUES (3, 'Pending payment', 'english', '0', '3');
-INSERT INTO emkt_order_status VALUES (3, 'Ожидает оплаты', 'russian', '0', '3');
+INSERT INTO emkt_order_status VALUES (2, 'Processing', 'english', '0', '2');
+INSERT INTO emkt_order_status VALUES (2, 'Обрабатывается', 'russian', '0', '2');
+INSERT INTO emkt_order_status VALUES (3, 'Pending payment', 'english', '1', '3');
+INSERT INTO emkt_order_status VALUES (3, 'Ожидает оплаты', 'russian', '1', '3');
 INSERT INTO emkt_order_status VALUES (4, 'Paid', 'english', '0', '4');
 INSERT INTO emkt_order_status VALUES (4, 'Оплачен', 'russian', '0', '4');
 
