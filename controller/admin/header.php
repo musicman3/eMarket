@@ -34,7 +34,7 @@ $menu[$menu_sales][1] = array('#', 'glyphicon glyphicon-import', 'Возврат
 //МАРКЕТИНГ
 $level[$menu_marketing] = array('#', 'Маркетинг', 'true');
 
-$menu[$menu_marketing][0] = array('#', 'glyphicon glyphicon-tags', 'Распродажи', '', 'false');
+$menu[$menu_marketing][0] = array('#', 'glyphicon glyphicon-tag', 'Распродажи', '', 'false');
 $menu[$menu_marketing][1] = array('#', 'glyphicon glyphicon-bullhorn', 'Рекомендуемые', '', 'false');
 $menu[$menu_marketing][2] = array('#', 'glyphicon glyphicon-gift', 'Купоны', '', 'false');
 $menu[$menu_marketing][3] = array('#', 'glyphicon glyphicon-picture', 'Баннеры', '', 'false');
@@ -52,8 +52,8 @@ $menu[$menu_count_linesparty][1] = array('#', 'glyphicon glyphicon-user', 'Фи�
 //ИНСТРУМЕНТЫ
 $level[$menu_tools] = array('#', lang('menu_tools'), 'true');
 
-$menu[$menu_tools][0] = array('?route=error_log', 'glyphicon glyphicon-alert', lang('menu_error_log'), '', 'false');
-$menu[$menu_tools][1] = array('#', 'glyphicon glyphicon-folder-open', 'Файловый менеджер', '', 'false');
+$menu[$menu_tools][0] = array('?route=error_log', 'glyphicon glyphicon-exclamation-sign', lang('menu_error_log'), '', 'false');
+$menu[$menu_tools][1] = array('#', 'glyphicon glyphicon-folder-close', 'Файловый менеджер', '', 'false');
 $menu[$menu_tools][2] = array('#', 'glyphicon glyphicon-compressed', 'Бэкап', '', 'false');
 $menu[$menu_tools][3] = array('#', 'glyphicon glyphicon-hdd', 'Информация о сервере', '', 'false');
 $menu[$menu_tools][4] = array('#', 'glyphicon glyphicon-eye-open', 'Кто в онлайне', '', 'false');
