@@ -14,7 +14,6 @@
             <div class="form-group">
                 <label for="zone">Модуль доставки</label>
                 <div class="input-group">
-
                     <select id="example-buttonClass-buttonTitle-selectAllJustVisible-xss-html-collapseOptGroupsByDefault-buttonText-selectAllText-collapsedClickableOptGroups-includeSelectAllOption" multiple="multiple">
                         <option value="free">Бесплатная доставка</option>
                         <option value="robokassa">Robokassa</option>

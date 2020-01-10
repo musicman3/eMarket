@@ -6,7 +6,7 @@
 ?>
 
 <div id="settings_modules" class="container-fluid">
-    <div class="panel panel-default">
+    <div class="panel panel-default shadow-element">
 
         <div class="panel-heading">
             <!--Выводим уведомление об успешном действии-->
