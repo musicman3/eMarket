@@ -9,8 +9,6 @@
 
         <input type="hidden" name="add" value="ok" />
 
-        <!-- Содержимое языковых панелей -->
-        <div class="tab-content">
             <div class="form-group">
                 <label for="zone">Модуль доставки</label>
                 <div class="input-group">
@@ -32,8 +30,6 @@
                 </div>
                 <small id="zone_action" class="form-text text-muted">Выберите статус заказа</small>
             </div>
-        </div>
- 
 
     <div class="text-right">
         <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button>
