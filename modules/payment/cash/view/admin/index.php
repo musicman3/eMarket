@@ -6,7 +6,7 @@
 ?>
 
 <form id="form_add_mod" name="form_add_mod" action="javascript:void(null);" onsubmit="callAdd('form_add_mod')">
-    <div class="panel-body">
+
         <input type="hidden" name="add" value="ok" />
 
         <!-- Содержимое языковых панелей -->
@@ -33,10 +33,9 @@
                 <small id="zone_action" class="form-text text-muted">Выберите статус заказа</small>
             </div>
         </div>
-    </div>
+ 
 
     <div class="modal-footer">
-        <button class="btn btn-primary btn-xs" type="button" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-remove"></span> <?php echo lang('cancel') ?></button>
         <button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button>
     </div>
 
