@@ -35,8 +35,8 @@
         </div>
  
 
-    <div class="modal-footer">
-        <button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button>
+    <div class="text-right">
+        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button>
     </div>
 
 </form>
