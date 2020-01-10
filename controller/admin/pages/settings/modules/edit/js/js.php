@@ -30,9 +30,8 @@
 </script>    
 
 <script type="text/javascript">
-    function callSaveMod() {
+    function callSaveMod(url) {
         var msg = $('#form_save_mod').serialize();
-        var url = '<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>';
         // Установка синхронного запроса для jQuery.ajax
         jQuery.ajaxSetup({async: false});
         jQuery.ajax({

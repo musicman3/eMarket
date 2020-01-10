@@ -4,6 +4,19 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
+<!-- Модальное окно "Добавить" -->
+<?php require_once('modal/add.php') ?>
+<!-- КОНЕЦ Модальное окно "Добавить" -->
+
+<!-- Модальное окно "Редактировать" -->
+<?php require_once('modal/edit.php') ?>
+<!-- КОНЕЦ Модальное окно "Редактировать" -->
+
+<!--Скрытый div для передачи данных-->
+<div id="ajax_data" class='hidden'
+     data-price='<?php echo $minimum_price_edit ?>'
+     data-zone='<?php echo $shipping_zone_edit ?>'
+     ></div>
 
 <table class="table table-hover">
     <thead>

@@ -54,11 +54,11 @@ class Free {
         $interface_data_all = [];
 
         foreach ($zones_id as $zone) {
-            $data = \eMarket\Pdo::getColAssoc("SELECT minimum_price FROM " . DB_PREFIX . 'modules_shipping_free' . " WHERE shipping_zone=?", [$zone])[0];
+            $data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . DB_PREFIX . 'modules_shipping_free' . " WHERE shipping_zone=?", [$zone])[0];
 
             // Интерфейс для модулей доставки
             $interface_data = [
-                'chanel_module' => 'free',
+                'chanel_id' => $data['id'],
                 'chanel_name' => lang('modules_shipping_free_name'),
                 'chanel_total_price' => \eMarket\Ecb::totalPriceCartWithSale(),
                 'chanel_total_price_format' => \eMarket\Products::productPrice(\eMarket\Ecb::totalPriceCartWithSale(), 1),

@@ -5,9 +5,9 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
 
-<form id="form_save_mod" name="form_save_mod" action="javascript:void(null);" onsubmit="callSaveMod()">
+<form id="form_save_mod" name="form_save_mod" action="javascript:void(null);" onsubmit="callSaveMod('<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>')">
 
-        <input type="hidden" name="add" value="ok" />
+        <input type="hidden" name="save" value="ok" />
 
             <div class="form-group">
                 <label for="shipping_method">Модуль доставки</label>
@@ -24,8 +24,8 @@
                 <div class="input-group has-success">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
                     <select name="order_status" id="order_status" class="input-sm form-control">
-                        <option value="pending">Ожидает оплаты</option>
-                        <option value="payment">Оплачено</option>
+                        <option value="1">Ожидает оплаты</option>
+                        <option value="2">Оплачено</option>
                     </select>
                 </div>
                 <small id="order_status_action" class="form-text text-muted">Выберите статус заказа</small>

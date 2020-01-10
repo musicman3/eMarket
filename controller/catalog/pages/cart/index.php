@@ -15,7 +15,7 @@ if (\eMarket\Valid::inPOST('shipping_region_json')) {
 
         // Интерфейс для модулей доставки
         $interface = [
-            'chanel_module' => $data['chanel_module'],
+            'chanel_id' => $data['chanel_id'],
             'chanel_name' => $data['chanel_name'],
             'chanel_total_price' => $data['chanel_total_price'],
             'chanel_total_price_format' => $data['chanel_total_price_format'],
