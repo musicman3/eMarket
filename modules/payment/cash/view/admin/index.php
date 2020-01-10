@@ -10,14 +10,14 @@
         <input type="hidden" name="add" value="ok" />
 
             <div class="form-group">
-                <label for="multiselect">Модуль доставки</label>
+                <label for="shipping_method">Модуль доставки</label>
                 <div class="input-group">
-                    <select id="multiselect" name="multiselect[]" multiple="multiple">
+                    <select id="shipping_method" name="multiselect[]" multiple="multiple">
                         <option value="free">Бесплатная доставка</option>
                         <option value="free_2">Самовывоз</option>
                     </select>
                 </div>
-                <small id="multiselect_action" class="form-text text-muted">Выберите модуль доставки</small>
+                <small id="shipping_method_action" class="form-text text-muted">Выберите модуль доставки</small>
             </div>
             <div class="form-group">
                 <label for="order_status">Статус заказа</label>
@@ -28,7 +28,7 @@
                         <option value="payment">Оплачено</option>
                     </select>
                 </div>
-                <small id="zone_action" class="form-text text-muted">Выберите статус заказа</small>
+                <small id="order_status_action" class="form-text text-muted">Выберите статус заказа</small>
             </div>
 
     <div class="text-right">
