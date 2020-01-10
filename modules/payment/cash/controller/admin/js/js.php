@@ -7,7 +7,7 @@
 <!--Мультиселект-->
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#shipping_value').multiselect({
+        $('#multiselect').multiselect({
             //Выбирать группы
             enableClickableOptGroups: true,
             enableCollapsibleOptGroups: true,
