@@ -5,19 +5,19 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
 
-<form id="form_add_mod" name="form_add_mod" action="javascript:void(null);" onsubmit="callAdd('form_add_mod')">
+<form id="form_save_mod" name="form_save_mod" action="javascript:void(null);" onsubmit="callSaveMod()">
 
         <input type="hidden" name="add" value="ok" />
 
             <div class="form-group">
-                <label for="zone">Модуль доставки</label>
+                <label for="shipping_value">Модуль доставки</label>
                 <div class="input-group">
-                    <select id="example-buttonClass-buttonTitle-selectAllJustVisible-xss-html-collapseOptGroupsByDefault-buttonText-selectAllText-collapsedClickableOptGroups-includeSelectAllOption" multiple="multiple">
+                    <select id="multiselect" name="multiselect[]" multiple="multiple">
                         <option value="free">Бесплатная доставка</option>
-                        <option value="robokassa">Robokassa</option>
+                        <option value="free_2">Самовывоз</option>
                     </select>
                 </div>
-                <small id="zone_action" class="form-text text-muted">Выберите модуль доставки</small>
+                <small id="shipping_value_action" class="form-text text-muted">Выберите модуль доставки</small>
             </div>
             <div class="form-group">
                 <label for="order_status">Статус заказа</label>

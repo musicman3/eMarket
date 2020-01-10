@@ -28,3 +28,27 @@
         });
     });
 </script>    
+
+<script type="text/javascript">
+    function callSaveMod() {
+        var msg = $('#form_save_mod').serialize();
+        var url = '<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>';
+        // Установка синхронного запроса для jQuery.ajax
+        jQuery.ajaxSetup({async: false});
+        jQuery.ajax({
+            type: 'POST',
+            url: url,
+            data: msg
+        });
+        // Отправка запроса для обновления страницы
+        jQuery.get(url,
+                {modify: 'update_ok'},
+                AjaxSuccess);
+        // Обновление страницы
+        function AjaxSuccess(data) {
+            setTimeout(function () {
+                document.location.href = url;
+            }, 100);
+        }
+    }
+</script>

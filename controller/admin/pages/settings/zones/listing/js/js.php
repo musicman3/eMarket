@@ -9,7 +9,7 @@
 <!--Мультиселект-->
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#example-selectAllJustVisible-buttonClass-buttonTitle-xss-html-collapseOptGroupsByDefault-buttonText-selectAllText-filterPlaceholder-collapsedClickableOptGroups-enableFiltering-enableCaseInsensitiveFiltering-includeSelectAllOption').multiselect({
+        $('#multiselect').multiselect({
             //Выбирать группы
             enableClickableOptGroups: true,
             enableCollapsibleOptGroups: true,
