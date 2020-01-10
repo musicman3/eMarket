@@ -6,7 +6,7 @@
 DROP TABLE IF EXISTS emkt_modules_payment_cash;
 CREATE TABLE emkt_modules_payment_cash (
 	id int NOT NULL auto_increment,
-        sort varchar(5),
-	zones_id int(64),
+        order_status int DEFAULT '1' NOT NULL,
+        shipping_module varchar(256),
 	PRIMARY KEY (id))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

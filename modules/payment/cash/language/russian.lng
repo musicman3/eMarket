@@ -4,14 +4,14 @@
 ;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
 
 [all]
-modules_payment_cash_name = Наличными
+modules_payment_cash_name = Оплата наличными
 modules_payment_cash_author = eMarket
 modules_payment_cash_version = 1.0
 
 [admin]
 
 ;TITLE
-modules_payment_cash_admin_select_no = --- НЕТ ---
+modules_payment_cash_admin_test = Тест
 
 [catalog]
 

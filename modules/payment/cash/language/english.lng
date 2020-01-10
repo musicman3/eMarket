@@ -11,7 +11,7 @@ modules_payment_cash_version = 1.0
 [admin]
 
 ;TITLE
-modules_payment_cash_admin_select_no = --- NO ---
+modules_payment_cash_admin_test = Test
 
 [catalog]
 
