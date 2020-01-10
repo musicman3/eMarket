@@ -109,7 +109,7 @@ final class Shipping {
         if (count($interface_data_all) > 0) {
             // Выбираем массивы с наименьшей chanel_minimum_price
             $chanel_minimum_price = array_column($interface_data_all, 'chanel_minimum_price');
-            array_multisort($chanel_minimum_price, SORT_DESC, $interface_data_all);
+            array_multisort($chanel_minimum_price, SORT_ASC, $interface_data_all);
 
             $interface_minimum_price = [];
             foreach ($interface_data_all as $val) {
@@ -120,7 +120,7 @@ final class Shipping {
 
             // Выбираем итоговый массив с наименьшей chanel_shipping_price
             $chanel_minimum_shipping_price = array_column($interface_minimum_price, 'chanel_shipping_price');
-            array_multisort($chanel_minimum_shipping_price, SORT_DESC, $interface_minimum_price);
+            array_multisort($chanel_minimum_shipping_price, SORT_ASC, $interface_minimum_price);
 
             $interface = $interface_minimum_price[0];
 
