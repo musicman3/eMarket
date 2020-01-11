@@ -17,7 +17,7 @@ namespace eMarket;
 final class Payment {
 
     /**
-     * Список модулей оплаты, которые доступны для указанного метода доставки
+     * Список модулей оплаты, которые доступны
      * @return array $output (выходные данные в виде названия модулей)
      */
     public static function paymentModulesAvailable() {

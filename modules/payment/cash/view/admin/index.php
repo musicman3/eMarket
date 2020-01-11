@@ -13,8 +13,14 @@
         <label for="shipping_method"><?php echo lang('modules_payment_cash_admin_shipping_method') ?></label>
         <div class="input-group">
             <select id="shipping_method" name="multiselect[]" multiple="multiple">
-                <?php foreach ($shipping_method as $val) { ?>
-                    <option value="<?php echo $val['name'] ?>"><?php echo lang('modules_shipping_' . $val['name'] . '_name') ?></option>
+                <?php foreach ($shipping_method as $val) {
+                    if (in_array($val['name'], $shipping_val)) {
+                        $selected_shipping = 'selected ';
+                    } else {
+                        $selected_shipping = '';
+                    }
+                    ?>
+                    <option <?php echo $selected_shipping ?>value="<?php echo $val['name'] ?>"><?php echo lang('modules_shipping_' . $val['name'] . '_name') ?></option>
                 <?php } ?>
             </select>
         </div>
