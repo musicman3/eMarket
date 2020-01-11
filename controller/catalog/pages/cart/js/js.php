@@ -8,12 +8,10 @@
 ?>
 
 <!-- Загрузка данных в модальное окно Корзина -->
-
 <script type = "text/javascript">
     $('#cart').on('show.bs.modal', function (event) {
         //Функция получения данных для модулей доставки
         function shippingData() {
-            // Устанавливаем методы доставки
             jQuery.post('<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>',
                     {shipping_region_json: $(':selected', '#address').data('regions')},
                     AjaxSuccess);
@@ -59,7 +57,6 @@
 
         //Функция получения данных для модулей оплаты
         function paymentData() {
-            // Устанавливаем методы доставки
             jQuery.post('<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>',
                     {payment_shipping_json: $(':selected', '#shipping_method').val()},
                     AjaxSuccess);
@@ -91,8 +88,9 @@
             }
         }
 
-        // Получаем данные
+        // Получаем данные по доставке
         shippingData();
+        // Получаем данные по оплате
         setTimeout(function () {
             paymentData();
         }, 100);
@@ -105,7 +103,7 @@
         });
         // Если выбрали доставку, то перезагружаем методы оплаты
         $('#shipping_method').change(function (event) {
-            // Получаем данные по доставке
+            // Получаем данные по оплате
             paymentData();
         });
     });
