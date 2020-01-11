@@ -100,8 +100,9 @@
             // Получаем данные по доставке
             shippingData();
             // Получаем данные по оплате
-            paymentData();
-
+            setTimeout(function () {
+                paymentData();
+            }, 5);
         });
 
     });
