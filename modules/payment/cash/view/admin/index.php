@@ -14,7 +14,7 @@
         <div class="input-group">
             <select id="shipping_method" name="multiselect[]" multiple="multiple">
                 <?php foreach ($shipping_method as $val) {
-                    if (in_array($val['name'], $shipping_val)) {
+                    if (is_array($shipping_val) && in_array($val['name'], $shipping_val)) {
                         $selected_shipping = 'selected ';
                     } else {
                         $selected_shipping = '';

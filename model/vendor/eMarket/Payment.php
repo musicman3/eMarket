@@ -25,7 +25,10 @@ final class Payment {
 
         $output = [];
         foreach ($data as $module) {
-            array_push($output, $module['name']);
+            $shipping_val = \eMarket\Pdo::getCellFalse("SELECT shipping_module  FROM " . DB_PREFIX . 'modules_payment_' . $module['name'], []);
+            if ($shipping_val != FALSE && $shipping_val != NULL) {
+                array_push($output, $module['name']);
+            }
         }
 
         return $output;
@@ -43,7 +46,7 @@ final class Payment {
         foreach ($modules_names as $name) {
             $namespace = '\eMarket\Modules\Payment\\' . ucfirst($name);
             $load = $namespace::load();
-                array_push($modules_data, $load);
+            array_push($modules_data, $load);
         }
         return $modules_data;
     }

@@ -60,7 +60,7 @@
                 var payment_method = $.parseJSON(data);
                 $("#payment_method").empty();
 
-                if ($("#shipping_method_class").attr("class") !== 'input-group has-success') {
+                if ($("#shipping_method_class").attr("class") !== 'input-group has-success' || payment_method.length < 1) {
                     // Если нет оплаты
                     $("#payment_method").append($('<option value="no"><?php echo lang('cart_payment_is_not_available') ?></option>'));
                     $('#payment_method_class').removeClass('has-success');
