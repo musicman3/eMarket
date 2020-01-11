@@ -17,8 +17,7 @@ namespace eMarket;
 final class Payment {
 
     /**
-     * Список зон, для которых доступна доставка покупателю
-     * @param array $region (номера регинов)
+     * Список модулей оплаты, которые доступны для указанного метода доставки
      * @return array $output (выходные данные в виде названия модулей)
      */
     public static function paymentModulesAvailable() {
@@ -35,7 +34,7 @@ final class Payment {
     /**
      * Загрузка данных с модулей оплаты
      * 
-     * @param array $modules_names (данные по доступным именам модулей доставки для региона)
+     * @param array $modules_names (данные по доступным именам модулей доставки)
      * @return array $modules_data (выходные данные)
      */
     public static function loadData($modules_names) {

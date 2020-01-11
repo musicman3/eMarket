@@ -50,7 +50,7 @@ class Cash {
      */
     public static function load() {
 
-        // Интерфейс для модулей доставки
+        // Интерфейс для модулей оплаты
         $interface = [
             'chanel_module_name' => 'cash',
             'chanel_name' => lang('modules_payment_cash_name'),
