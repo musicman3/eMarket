@@ -70,7 +70,7 @@
 
                 if (payment_method.length < 1) {
                     // Если нет оплаты
-                    $("#payment_method").append($('<option value="no"><?php echo lang('cart_shipping_is_not_available') ?></option>'));
+                    $("#payment_method").append($('<option value="no"><?php echo lang('cart_payment_is_not_available') ?></option>'));
                     $('#payment_method_class').removeClass('has-success');
                     $('#payment_method_class').addClass('has-error');
                 } else {

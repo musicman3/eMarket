@@ -44,9 +44,7 @@ final class Payment {
         foreach ($modules_names as $name) {
             $namespace = '\eMarket\Modules\Payment\\' . ucfirst($name);
             $load = $namespace::load();
-            if ($load != FALSE) {
                 array_push($modules_data, $load);
-            }
         }
         return $modules_data;
     }

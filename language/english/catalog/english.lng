@@ -97,6 +97,7 @@ cart_сheckout = Checkout
 cart_discount_card_number = Discount card number
 cart_discount_card_apply = Apply
 cart_shipping_is_not_available = Shipping to this region is not available
+cart_payment_is_not_available = Payment for this shipping method is not available.
 cart_shipping_is_not_available_and_min_price = . Min. order price:
 cart_shipping_price = Shipping price:
 cart_total_to_pay = Total to pay:
