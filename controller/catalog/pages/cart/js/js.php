@@ -71,9 +71,9 @@
                         $("#payment_method").append($('<option value="' + payment_val['chanel_module_name'] + '">' + payment_val['chanel_name'] + '</option>'));
                         $('#payment_method_class').removeClass('has-error');
                         $('#payment_method_class').addClass('has-success');
-                        buttonClass();
                     }
                 }
+                buttonClass();
 
             }
         }
