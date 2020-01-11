@@ -60,7 +60,7 @@
                 var payment_method = $.parseJSON(data);
                 $("#payment_method").empty();
 
-                if (payment_method.length < 1) {
+                if ($("#shipping_method_class").attr("class") !== 'input-group has-success') {
                     // Если нет оплаты
                     $("#payment_method").append($('<option value="no"><?php echo lang('cart_payment_is_not_available') ?></option>'));
                     $('#payment_method_class').removeClass('has-success');
@@ -74,7 +74,6 @@
                         buttonClass();
                     }
                 }
-
             }
         }
 
@@ -90,21 +89,16 @@
         // Получаем данные по доставке
         shippingData();
         // Получаем данные по оплате
-        setTimeout(function () {
-            paymentData();
-        }, 100);
-
+        paymentData();
 
         // Если выбрали адрес, то перезагружаем методы доставки
-        $('#address').change(function (event) {
+        $('#address, #shipping_method').change(function (event) {
             // Получаем данные по доставке
             shippingData();
-        });
-        // Если выбрали доставку, то перезагружаем методы оплаты
-        $('#shipping_method').change(function (event) {
             // Получаем данные по оплате
             paymentData();
         });
+
     });
 </script>
 
