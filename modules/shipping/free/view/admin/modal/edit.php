@@ -21,7 +21,7 @@ require(\eMarket\View::routingModules('controller') . '/modal/edit.php');
                     <!-- Содержимое языковых панелей -->
                     <div class="tab-content">
                         <div class="form-group">
-                            <label for="zone_edit">Зона доставки</label>
+                            <label for="zone_edit"><?php echo lang('modules_shipping_free_admin_shipping_zone') ?></label>
                             <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
                                 <select name="zone_edit" id="zone_edit" class="input-sm form-control">
@@ -34,12 +34,12 @@ require(\eMarket\View::routingModules('controller') . '/modal/edit.php');
                                     ?>
                                 </select>
                             </div>
-                            <small id="zone_action_edit" class="form-text text-muted">Выберите зону доставки</small>
+                            <small id="zone_action_edit" class="form-text text-muted"><?php echo lang('modules_shipping_free_admin_shipping_zone_select') ?></small>
                         </div>
                         <div class="col-left form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                <input class="input-sm form-control" placeholder="Минимальная сумма заказа для бесплатной доставки" type="text" name="minimum_price_edit" id="minimum_price_edit" autocomplete="off" required />
+                                <input class="input-sm form-control" placeholder="" type="text" name="minimum_price_edit" id="minimum_price_edit" autocomplete="off" required />
                             </div>
                         </div>
                     </div>

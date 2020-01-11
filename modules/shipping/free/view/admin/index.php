@@ -61,8 +61,8 @@
         </tr>
         <?php if ($lines == TRUE) { ?>
             <tr class="border">
-                <th>Зона доставки</th>
-                <th class="al-text">Минимальная сумма заказа</th>
+                <th><?php echo lang('modules_shipping_free_admin_shipping_zone') ?></th>
+                <th class="al-text"><?php echo lang('modules_shipping_free_admin_minimum_order_price') ?></th>
                 <th class="al-text-w"></th>
             </tr>
         <?php } ?>

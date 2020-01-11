@@ -11,7 +11,10 @@ modules_payment_cash_version = 1.0
 [admin]
 
 ;TITLE
-modules_payment_cash_admin_test = Тест
+modules_payment_cash_admin_shipping_method = Метод доставки
+modules_payment_cash_admin_order_status = Статус заказа
+modules_payment_cash_admin_shipping_method_select = Выберите метод доставки
+modules_payment_cash_admin_order_status_select = Выберите статус заказа
 
 [catalog]
 

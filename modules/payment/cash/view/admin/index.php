@@ -10,7 +10,7 @@
     <input type="hidden" name="save" value="ok" />
 
     <div class="form-group">
-        <label for="shipping_method">Модуль доставки</label>
+        <label for="shipping_method"><?php echo lang('modules_payment_cash_admin_shipping_method') ?></label>
         <div class="input-group">
             <select id="shipping_method" name="multiselect[]" multiple="multiple">
                 <?php foreach ($shipping_method as $val) { ?>
@@ -18,10 +18,10 @@
                 <?php } ?>
             </select>
         </div>
-        <small id="shipping_method_action" class="form-text text-muted">Выберите модуль доставки</small>
+        <small id="shipping_method_action" class="form-text text-muted"><?php echo lang('modules_payment_cash_admin_shipping_method_select') ?></small>
     </div>
     <div class="form-group">
-        <label for="order_status">Статус заказа</label>
+        <label for="order_status"><?php echo lang('modules_payment_cash_admin_order_status') ?></label>
         <div class="input-group has-success">
             <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
             <select name="order_status" id="order_status" class="input-sm form-control">
@@ -37,7 +37,7 @@
                 <?php } ?>
             </select>
         </div>
-        <small id="order_status_action" class="form-text text-muted">Выберите статус заказа</small>
+        <small id="order_status_action" class="form-text text-muted"><?php echo lang('modules_payment_cash_admin_order_status_select') ?></small>
     </div>
 
     <div class="text-right">
