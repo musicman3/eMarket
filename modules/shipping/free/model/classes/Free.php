@@ -59,6 +59,7 @@ class Free {
                 // Интерфейс для модулей доставки
                 $interface_data = [
                     'chanel_id' => $data['id'],
+                    'chanel_module_name' => 'free',
                     'chanel_name' => lang('modules_shipping_free_name'),
                     'chanel_total_price' => \eMarket\Ecb::totalPriceCartWithSale(),
                     'chanel_total_price_format' => \eMarket\Products::productPrice(\eMarket\Ecb::totalPriceCartWithSale(), 1),

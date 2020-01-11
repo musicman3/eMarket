@@ -46,12 +46,20 @@ class Cash {
     /**
      * Загрузка данных по модулю
      *
-     * @param array $zones_id (данные по используемым зонам)
-     * @return array|FALSE $interface (выходные данные)
+     * @return array $interface (выходные данные)
      */
-    public static function load($zones_id) {
+    public static function load() {
 
+        // Интерфейс для модулей доставки
+        $interface = [
+            'chanel_module_name' => 'cash',
+            'chanel_name' => lang('modules_payment_cash_name'),
+            'chanel_payment_price' => 0,
+            'chanel_payment_currency' => '',
+            'chanel_image' => ''
+        ];
 
+        return $interface;
     }
 
 }

@@ -39,7 +39,7 @@ require(ROOT . '/controller/catalog/pages/cart/modal/cart.php');
                     <div id="shipping_method_class" class="input-group has-success">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
                         <select name="shipping_method" id="shipping_method" class="input-sm form-control">
-                            <option value=""></option>
+                            <option value="" data-shipping=""></option>
                         </select>
                     </div>
                     <small class="form-text text-muted"><?php echo lang('cart_shipping_method_small') ?></small>
@@ -50,8 +50,7 @@ require(ROOT . '/controller/catalog/pages/cart/modal/cart.php');
                     <div id="payment_method_class" class="input-group has-success">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
                         <select name="payment_method" id="payment_method" class="input-sm form-control">
-                            <option value="1">Наличными в офисе</option>
-                            <option value="2">VISA/MASTERCARD</option>
+                            <option value=""></option>
                         </select>
                     </div>
                     <small class="form-text text-muted"><?php echo lang('cart_payment_method_small') ?></small>

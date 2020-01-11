@@ -5,7 +5,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-// JSON ECHO
+// JSON ECHO SHIPPING
 if (\eMarket\Valid::inPOST('shipping_region_json')) {
     $zones_id = \eMarket\Shipping::shippingZonesAvailable(\eMarket\Valid::inPOST('shipping_region_json')); // список id зон, в которых находится регион
     $modules_names = \eMarket\Shipping::shippingModulesAvailable($zones_id); // данные в виде названия модулей
@@ -16,6 +16,7 @@ if (\eMarket\Valid::inPOST('shipping_region_json')) {
         // Интерфейс для модулей доставки
         $interface = [
             'chanel_id' => $data['chanel_id'],
+            'chanel_module_name' => $data['chanel_module_name'],
             'chanel_name' => $data['chanel_name'],
             'chanel_total_price' => $data['chanel_total_price'],
             'chanel_total_price_format' => $data['chanel_total_price_format'],
@@ -26,6 +27,29 @@ if (\eMarket\Valid::inPOST('shipping_region_json')) {
             'chanel_total_price_with_shipping' => $data['chanel_total_price_with_shipping'],
             'chanel_total_price_with_shipping_format' => $data['chanel_total_price_with_shipping_format'],
             'chanel_tax' => $data['chanel_tax'],
+            'chanel_image' => $data['chanel_image']
+        ];
+
+        array_push($interface_data, $interface);
+    }
+    echo str_replace("'", "&#8216;", json_encode($interface_data));
+    exit;
+}
+
+// JSON ECHO PAYMENT
+if (\eMarket\Valid::inPOST('payment_shipping_json')) {
+    $modules_names = \eMarket\Payment::paymentModulesAvailable(); // данные в виде названия модулей
+    $modules_data = \eMarket\Payment::loadData($modules_names);
+    
+    $interface_data = [];
+    foreach ($modules_data as $data) {
+
+        // Интерфейс для модулей доставки
+        $interface = [
+            'chanel_module_name' => $data['chanel_module_name'],
+            'chanel_name' => $data['chanel_name'],
+            'chanel_payment_price' => $data['chanel_payment_price'],
+            'chanel_payment_currency' => $data['chanel_payment_currency'],
             'chanel_image' => $data['chanel_image']
         ];
 
