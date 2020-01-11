@@ -74,6 +74,7 @@
                         buttonClass();
                     }
                 }
+
             }
         }
 
@@ -89,7 +90,10 @@
         // Получаем данные по доставке
         shippingData();
         // Получаем данные по оплате
-        paymentData();
+        setTimeout(function () {
+            paymentData();
+        }, 300);
+
 
         // Если выбрали адрес, то перезагружаем методы доставки
         $('#address, #shipping_method').change(function (event) {
@@ -97,6 +101,7 @@
             shippingData();
             // Получаем данные по оплате
             paymentData();
+
         });
 
     });
