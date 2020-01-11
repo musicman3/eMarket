@@ -46,12 +46,7 @@
                         }
                     }
                 }
-                // Делаем не активной кнопку завершения заказа, если селекты не валидны
-                if ($("#address_class").attr("class") !== 'input-group has-success' || $("#shipping_method_class").attr("class") !== 'input-group has-success' || $("#payment_method_class").attr("class") !== 'input-group has-success') {
-                    $("#complete").attr("disabled", "disabled");
-                } else {
-                    $("#complete").removeAttr("disabled");
-                }
+                buttonClass();
             }
         }
 
@@ -76,15 +71,19 @@
                         $("#payment_method").append($('<option value="' + payment_val['chanel_module_name'] + '">' + payment_val['chanel_name'] + '</option>'));
                         $('#payment_method_class').removeClass('has-error');
                         $('#payment_method_class').addClass('has-success');
-
+                        buttonClass();
                     }
                 }
-                // Делаем не активной кнопку завершения заказа, если селекты не валидны
-                if ($("#address_class").attr("class") !== 'input-group has-success' || $("#shipping_method_class").attr("class") !== 'input-group has-success' || $("#payment_method_class").attr("class") !== 'input-group has-success') {
-                    $("#complete").attr("disabled", "disabled");
-                } else {
-                    $("#complete").removeAttr("disabled");
-                }
+
+            }
+        }
+
+        function buttonClass() {
+            // Делаем не активной кнопку завершения заказа, если селекты не валидны
+            if ($("#address_class").attr("class") !== 'input-group has-success' || $("#shipping_method_class").attr("class") !== 'input-group has-success' || $("#payment_method_class").attr("class") !== 'input-group has-success') {
+                $("#complete").attr("disabled", "disabled");
+            } else {
+                $("#complete").removeAttr("disabled");
             }
         }
 
