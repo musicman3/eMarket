@@ -33,7 +33,7 @@
             <select name="order_status" id="order_status" class="input-sm form-control">
                 <?php
                 foreach ($order_status as $val) {
-                    if ($val['default_order_status'] == 1) {
+                    if ($val['id'] == $order_status_selected) {
                         $selected = 'selected ';
                     } else {
                         $selected = '';
