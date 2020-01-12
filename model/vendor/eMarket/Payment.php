@@ -22,7 +22,7 @@ final class Payment {
      * @return array $output (выходные данные в виде названия модулей)
      */
     public static function paymentModulesAvailable($name) {
-        $data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE install=? AND active=? AND type=?", [1, 1, 'payment']);
+        $data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE active=? AND type=?", [1, 'payment']);
 
         $output = [];
         foreach ($data as $payment_module) {

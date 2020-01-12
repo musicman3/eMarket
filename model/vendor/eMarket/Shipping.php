@@ -22,7 +22,7 @@ final class Shipping {
      * @return array $output (выходные данные в виде id зон, в которых находится регион)
      */
     public static function shippingZonesAvailable($region) {
-        $data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE install=? AND active=? AND type=?", [1, 1, 'shipping']);
+        $data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE active=? AND type=?", [1, 'shipping']);
 
         $modules_data = [];
         foreach ($data as $module) {
@@ -52,7 +52,7 @@ final class Shipping {
      * @return array $output (выходные данные в виде названия модулей)
      */
     public static function shippingModulesAvailable($shipping_zones_id_available) {
-        $data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE install=? AND active=? AND type=?", [1, 1, 'shipping']);
+        $data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE active=? AND type=?", [1, 'shipping']);
 
         $modules_data = [];
         foreach ($data as $module) {
