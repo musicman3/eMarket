@@ -122,16 +122,6 @@ final class Ecb {
         }
         return \eMarket\Products::productPrice($price_val, $marker);
     }
-
-    /**
-     * Блок формирования оплаты
-     * @param array $input (данные из shippingBlock)
-     * @return array $output (выходные данные)
-     */
-    private static function checkoutBlock($input) {
-        //echo ($output);
-    }
-
 }
 
 ?>
