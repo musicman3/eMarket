@@ -38,7 +38,7 @@ if (\eMarket\Valid::inPOST('shipping_region_json')) {
 
 // JSON ECHO PAYMENT
 if (\eMarket\Valid::inPOST('payment_shipping_json')) {
-    $modules_names = \eMarket\Payment::paymentModulesAvailable(); // данные в виде названия модулей
+    $modules_names = \eMarket\Payment::paymentModulesAvailable(\eMarket\Valid::inPOST('payment_shipping_json')); // данные в виде названия модулей
     $modules_data = \eMarket\Payment::loadData($modules_names);
     
     $interface_data = [];

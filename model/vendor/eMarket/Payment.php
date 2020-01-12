@@ -17,20 +17,20 @@ namespace eMarket;
 final class Payment {
 
     /**
-     * Список модулей оплаты, которые доступны
+     * Список модулей оплаты, которые доступны для выбранного модуля доставки
+     * @param string $name (название выбранного модуля доставки)
      * @return array $output (выходные данные в виде названия модулей)
      */
-    public static function paymentModulesAvailable() {
+    public static function paymentModulesAvailable($name) {
         $data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE install=? AND active=? AND type=?", [1, 1, 'payment']);
 
         $output = [];
-        foreach ($data as $module) {
-            $shipping_val = \eMarket\Pdo::getCellFalse("SELECT shipping_module  FROM " . DB_PREFIX . 'modules_payment_' . $module['name'], []);
-            if ($shipping_val != FALSE && $shipping_val != NULL) {
-                array_push($output, $module['name']);
+        foreach ($data as $payment_module) {
+            $shipping_val = json_decode(\eMarket\Pdo::getCellFalse("SELECT shipping_module FROM " . DB_PREFIX . 'modules_payment_' . $payment_module['name'], []), 1);
+            if (is_array($shipping_val) && in_array($name, $shipping_val) && !in_array($payment_module['name'], $output)) {
+                array_push($output, $payment_module['name']);
             }
         }
-
         return $output;
     }
 
