@@ -154,7 +154,7 @@ CREATE TABLE emkt_orders (
   id int NOT NULL auto_increment,
   customer_id int NOT NULL,
   address_book json,
-  orders_status_history json
+  orders_status_history json,
   orders_products json,
   orders_total json,
   orders_transactions_history json,
