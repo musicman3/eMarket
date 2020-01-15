@@ -149,6 +149,24 @@ CREATE TABLE emkt_order_status (
 	PRIMARY KEY (id, language))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+DROP TABLE IF EXISTS emkt_orders;
+CREATE TABLE emkt_orders (
+  id int NOT NULL auto_increment,
+  customer_id int NOT NULL,
+  address_book json,
+  orders_status_history json
+  orders_products json,
+  orders_total json,
+  orders_transactions_history json,
+  orders_transactions_status json,
+  customer_ip_address varchar(30),
+  payment_method varchar(255) NOT NULL,
+  shipping_method varchar(255) NOT NULL,
+  last_modified datetime,
+  date_purchased datetime,
+PRIMARY KEY (id))
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 DROP TABLE IF EXISTS emkt_password_recovery;
 CREATE TABLE emkt_password_recovery (
         id int NOT NULL auto_increment,
