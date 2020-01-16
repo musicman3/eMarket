@@ -29,9 +29,7 @@
                         </div>
                     </div>
                 </div>
-            <?php $x++;
-            
-            } ?>
+            <?php $x++; } ?>
         </div>
     </div>
 <?php }
