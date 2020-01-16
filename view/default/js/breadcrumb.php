@@ -45,6 +45,16 @@
         $(document).ready(function () {
             breadcrumb();
         });
+<?php } elseif (\eMarket\Valid::inGET('route') == '') { ?>
+        function breadcrumb() {
+            var breadcrumbid = $('div#data_breadcrumb').data('breadcrumbid');
+            var breadcrumbparentid = $('div#data_breadcrumb').data('breadcrumbparentid');
+            var breadcrumbname = $('div#data_breadcrumb').data('breadcrumbname');
+        }
+
+        $(document).ready(function () {
+            breadcrumb();
+        });
 <?php } else { ?>
         function breadcrumb() {
             var breadcrumbid = $('div#data_breadcrumb').data('breadcrumbid');
