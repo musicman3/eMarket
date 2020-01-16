@@ -135,7 +135,7 @@ class Set {
         }
 
         if ($title_dir == '' && self::path() == 'catalog') {
-            $title_dir = '';
+            $title_dir = 'catalog';
         }
         if ($title_dir == '' && self::path() == 'admin') {
             $title_dir = 'dashboard';
