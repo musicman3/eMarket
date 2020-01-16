@@ -4,4 +4,6 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+$slide_show = 0;
+
 ?>

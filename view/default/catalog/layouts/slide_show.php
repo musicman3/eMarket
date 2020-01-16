@@ -6,6 +6,7 @@
 
 ?>
 
+<?php if ($slide_show == true) { ?>
 <div class="container-fluid">
     <div id="Carousel" class="carousel slide hidden-xs" data-interval="5000" data-pause="hover" data-ride="carousel" data-wrap="true">
         <ol class="carousel-indicators">
@@ -32,3 +33,4 @@
         </a>
     </div>
 </div>
+<?php } ?>
