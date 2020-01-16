@@ -34,8 +34,7 @@
             } ?>
         </div>
     </div>
-    <?php
-}
+<?php }
 
 \eMarket\Ajax::сart('');
 
