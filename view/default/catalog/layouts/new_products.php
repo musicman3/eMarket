@@ -39,6 +39,6 @@
 ?>
 <script type="text/javascript" language="javascript">
     $(window).load(function () {
-        $(".grid-item-heading").simpleEQH();
+        $(".item-heading").simpleEQH();
     });
 </script>
