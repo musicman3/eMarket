@@ -10380,9 +10380,9 @@ INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name
 INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/catalog/layouts/slide_show.php', 'catalog', 'header', 'all', 'default', '3');
 INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/catalog/layouts/copyright.php', 'catalog', 'footer', 'all', 'default', '0');
 INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/catalog/layouts/categories.php', 'catalog', 'boxes-left', 'all', 'default', '0');
-INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/catalog/layouts/welcome.php', 'catalog', 'content', 'all', 'default', '0');
-INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/catalog/layouts/categories_listing.php', 'catalog', 'content', 'all', 'default', '1');
-INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/catalog/layouts/new_products.php', 'catalog', 'content', 'all', 'default', '2');
+INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/catalog/layouts/welcome.php', 'catalog', 'content-basket', 'all', 'default', '0');
+INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/catalog/layouts/categories_listing.php', 'catalog', 'content-basket', 'all', 'default', '1');
+INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/catalog/layouts/new_products.php', 'catalog', 'content-basket', 'all', 'default', '2');
 /* CATALOG */
 INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/catalog/layouts/navbar.php', 'catalog', 'header', 'catalog', 'default', '0');
 INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/catalog/layouts/logo_search.php', 'catalog', 'header', 'catalog', 'default', '1');
@@ -10403,26 +10403,6 @@ INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name
 INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/catalog/layouts/welcome.php', 'catalog', 'content-basket', 'listing', 'default', '0');
 INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/catalog/layouts/categories_listing.php', 'catalog', 'content', 'listing', 'default', '1');
 INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/catalog/layouts/new_products.php', 'catalog', 'content-basket', 'listing', 'default', '2');
-/* PRODUCTS */
-INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/catalog/layouts/navbar.php', 'catalog', 'header', 'products', 'default', '0');
-INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/catalog/layouts/logo_search.php', 'catalog', 'header', 'products', 'default', '1');
-INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/catalog/layouts/breadcrumb.php', 'catalog', 'header', 'products', 'default', '2');
-INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/catalog/layouts/slide_show.php', 'catalog', 'header', 'products', 'default', '3');
-INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/catalog/layouts/copyright.php', 'catalog', 'footer', 'products', 'default', '0');
-INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/catalog/layouts/categories.php', 'catalog', 'boxes-left', 'products', 'default', '0');
-INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/catalog/layouts/welcome.php', 'catalog', 'content-basket', 'products', 'default', '0');
-INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/catalog/layouts/categories_listing.php', 'catalog', 'content-basket', 'products', 'default', '1');
-INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/catalog/layouts/new_products.php', 'catalog', 'content-basket', 'products', 'default', '2');
-/* CART */
-INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/catalog/layouts/navbar.php', 'catalog', 'header', 'cart', 'default', '0');
-INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/catalog/layouts/logo_search.php', 'catalog', 'header', 'cart', 'default', '1');
-INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/catalog/layouts/breadcrumb.php', 'catalog', 'header', 'cart', 'default', '2');
-INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/catalog/layouts/slide_show.php', 'catalog', 'header', 'cart', 'default', '3');
-INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/catalog/layouts/copyright.php', 'catalog', 'footer', 'cart', 'default', '0');
-INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/catalog/layouts/categories.php', 'catalog', 'boxes-left', 'cart', 'default', '0');
-INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/catalog/layouts/welcome.php', 'catalog', 'content-basket', 'cart', 'default', '0');
-INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/catalog/layouts/categories_listing.php', 'catalog', 'content-basket', 'cart', 'default', '1');
-INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/catalog/layouts/new_products.php', 'catalog', 'content-basket', 'cart', 'default', '2');
 /* SAMPLES */
 INSERT INTO emkt_categories (id, name, language, parent_id, logo, date_added, last_modified, sort_category, status, logo_general) VALUES
 (2, 'Notebooks', 'english', 0, NULL, '2019-10-08 23:22:18', '2019-10-09 00:04:05', 2, 1, NULL),

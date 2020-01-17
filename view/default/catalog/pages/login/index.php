@@ -4,7 +4,12 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+// ПОДКЛЮЧАЕМ КОНТЕНТ
+foreach (\eMarket\View::layoutRouting('content') as $path) {
+    require_once (ROOT . $path);
+}
 ?>
+
 <!-- Модальное окно -->
 <?php require_once('modal/recovery_password.php') ?>
 <!-- КОНЕЦ Модальное окно -->

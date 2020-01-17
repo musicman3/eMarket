@@ -3,7 +3,13 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+
+// ПОДКЛЮЧАЕМ КОНТЕНТ
+foreach (\eMarket\View::layoutRouting('content') as $path) {
+    require_once (ROOT . $path);
+}
 ?>
+
 <!-- Модальное окно "Добавить" -->
 <?php require_once('modal/cart.php') ?>
 <!-- КОНЕЦ Модальное окно "Добавить" -->
