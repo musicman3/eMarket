@@ -52,7 +52,7 @@
                         <input hidden name="route" value="settings/templates">
                         <input type="hidden" name="name_templates" value="<?php echo $select_template ?>" />
                         <select name="layout_pages_templates" id="layout_pages_templates" class="input-sm form-control" onchange="selectPage(event)">
-                            <option><?php echo lang('all_pages_template') ?></option>
+                            <option value="all"><?php echo lang('all_pages_template') ?></option>
                             <?php
                             if (!\eMarket\Valid::inGET('layout_pages_templates')) {
                                 $select_page = 'catalog';
@@ -62,7 +62,7 @@
                                     if ($path == $select_page) {
 
                                         ?>
-                                        <option selected><?php echo $path ?></option>
+                                        <option value="<?php echo $path ?>" selected><?php echo $path ?></option>
                                     <?php } else {
 
                                         ?>

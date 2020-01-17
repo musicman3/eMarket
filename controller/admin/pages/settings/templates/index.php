@@ -54,7 +54,7 @@ if ($layout_header_temp == NULL && $layout_header_basket_temp == NULL) { // ЕС
 }
 
 if (\eMarket\Valid::inGET('layout_header') OR \eMarket\Valid::inGET('layout_header_basket')) {
-    if (\eMarket\Valid::inGET('page') == 'Все страницы') {
+    if (\eMarket\Valid::inGET('page') == 'all') {
         $select_page = 'all';
 
         // ОЧИЩАЕМ ВСЕ СЛОИ ДЛЯ ШАБЛОНА
