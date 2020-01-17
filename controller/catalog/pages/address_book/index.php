@@ -7,6 +7,7 @@
 
 if ($CUSTOMER == FALSE) {
     header('Location: ?route=login'); // переадресация на LOGIN
+    exit;
 }
 // JSON ECHO
 if (\eMarket\Valid::inPOST('countries_select')) {

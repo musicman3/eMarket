@@ -33,6 +33,7 @@ class Autorize {
                 unset($_SESSION['session_start']);
                 $_SESSION['session_page'] = \eMarket\Valid::inSERVER('REQUEST_URI');
                 header('Location: ?route=login'); // переадресация на LOGIN
+                exit;
             }
             $_SESSION['session_start'] = time();
 
@@ -41,6 +42,7 @@ class Autorize {
                 unset($_SESSION['pass']);
                 $_SESSION['session_page'] = \eMarket\Valid::inSERVER('REQUEST_URI');
                 header('Location: ?route=login'); // переадресация на LOGIN
+                exit;
             } else {
                 //Язык авторизованного администратора
                 $_SESSION['DEFAULT_LANGUAGE'] = \eMarket\Pdo::selectPrepare("SELECT language FROM " . TABLE_ADMINISTRATORS . " WHERE login=? AND password=?", [$_SESSION['login'], $_SESSION['pass']]);
