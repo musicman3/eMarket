@@ -13,56 +13,59 @@ require(ROOT . '/controller/catalog/pages/cart/modal/cart.php');
             <div class="modal-header"><div class="pull-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Сокращенное наименование указывается любыми символами" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
                 <h4 class="modal-title"><?php echo \eMarket\Set::titlePageGenerator() ?></h4>
             </div>
+            <form id="form_add" name="form_add" action="javascript:void(null);" onsubmit="callAdd()">
+                <div class="panel-body">
+                    <input type="hidden" name="add" value="ok" />
 
-            <div class="panel-body">
-
-                <div class="form-group">
-                    <label for="address"><?php echo lang('cart_shipping_address') ?></label>
-                    <div id="address_class" class="input-group has-success">
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                        <select name="address" id="address" class="input-sm form-control">
-                            <?php
-                            $x = 1;
-                            foreach ($address_data as $val) {
+                    <div class="form-group">
+                        <label for="address"><?php echo lang('cart_shipping_address') ?></label>
+                        <div id="address_class" class="input-group has-success">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                            <select name="address" id="address" class="input-sm form-control">
+                                <?php
+                                $x = 1;
+                                foreach ($address_data as $val) {
+                                    ?>
+                                    <option <?php echo $val['selected'] ?>value="<?php echo $x ?>" data-regions="<?php echo $val['regions_id'] ?>"><?php echo $val['zip'] . ', ' . $val['countries_name'] . ', ' . $val['regions_name'] . ', ' . $val['city'] . ', ' . $val['address'] ?></option>
+                                    <?php
+                                    $x++;
+                                }
                                 ?>
-                                <option <?php echo $val['selected'] ?>value="<?php echo $x ?>" data-regions="<?php echo $val['regions_id'] ?>"><?php echo $val['zip'] . ', ' . $val['countries_name'] . ', ' . $val['regions_name'] . ', ' . $val['city'] . ', ' . $val['address'] ?></option>
-                                <?php $x++;
-                            }
-                            ?>
-                        </select>
+                            </select>
+                        </div>
+                        <small class="form-text text-muted"><?php echo lang('cart_shipping_address_small') ?></small>
                     </div>
-                    <small class="form-text text-muted"><?php echo lang('cart_shipping_address_small') ?></small>
-                </div>
 
-                <div class="form-group">
-                    <label for="shipping_method"><?php echo lang('cart_shipping_method') ?></label>
-                    <div id="shipping_method_class" class="input-group has-success">
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                        <select name="shipping_method" id="shipping_method" class="input-sm form-control">
-                            <option value="" data-shipping=""></option>
-                        </select>
+                    <div class="form-group">
+                        <label for="shipping_method"><?php echo lang('cart_shipping_method') ?></label>
+                        <div id="shipping_method_class" class="input-group has-success">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                            <select name="shipping_method" id="shipping_method" class="input-sm form-control">
+                                <option value="" data-shipping=""></option>
+                            </select>
+                        </div>
+                        <small class="form-text text-muted"><?php echo lang('cart_shipping_method_small') ?></small>
                     </div>
-                    <small class="form-text text-muted"><?php echo lang('cart_shipping_method_small') ?></small>
-                </div>
 
-                <div class="form-group">
-                    <label for="payment_method"><?php echo lang('cart_payment_method') ?></label>
-                    <div id="payment_method_class" class="input-group has-success">
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                        <select name="payment_method" id="payment_method" class="input-sm form-control">
-                            <option value=""></option>
-                        </select>
+                    <div class="form-group">
+                        <label for="payment_method"><?php echo lang('cart_payment_method') ?></label>
+                        <div id="payment_method_class" class="input-group has-success">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                            <select name="payment_method" id="payment_method" class="input-sm form-control">
+                                <option value=""></option>
+                            </select>
+                        </div>
+                        <small class="form-text text-muted"><?php echo lang('cart_payment_method_small') ?></small>
                     </div>
-                    <small class="form-text text-muted"><?php echo lang('cart_payment_method_small') ?></small>
+
+                    <div id="shipping_price" class="form-group text-right"></div>
+                    <div id="total_price_modal" class="pull-right label label-danger"></div>
+
+                </div> 
+                <div class="modal-footer">
+                    <button id="complete" type="button" class="btn btn btn-primary" data-toggle="modal" data-target="#cart"><span class="glyphicon glyphicon-ok"></span> <?php echo lang('cart_complete_button') ?></button>
                 </div>
-                
-                <div id="shipping_price" class="form-group text-right"></div>
-                <div id="total_price_modal" class="pull-right label label-danger"></div>
-                
-            </div> 
-            <div class="modal-footer">
-                <button id="complete" type="button" class="btn btn btn-primary" data-toggle="modal" data-target="#cart"><span class="glyphicon glyphicon-ok"></span> <?php echo lang('cart_complete_button') ?></button>
-            </div>
+            </form>
         </div>
     </div>
 </div>
