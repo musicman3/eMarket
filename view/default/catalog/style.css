@@ -26,7 +26,6 @@ body {font-family: 'Open Sans';}
 @keyframes anime-H3 { from { opacity: 0; transform: translateX(-2000px); } to { opacity: 1; transform: translateX(0); } }
 @keyframes anime-P { from { opacity: 0; transform: translateX(2000px); } to { opacity: 1; transform: translateX(0); } }
 .panel-heading {padding:5px 10px;}
-.panel-default > .panel-heading {color:#428bca;}
 .panel-body {padding:10px;}
 #bodyContent h1 {color: #03539a;margin-top: 3px;font-size: 24px;}
 #bodyContent h4 {font-size:20px;}
