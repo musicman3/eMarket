@@ -8,5 +8,5 @@
 
 <div class="container-fluid">
     <hr>
-    <p class="footer text-center">Copyright © 2018-<?php echo date('Y') ?> | eMarket Design</p>
+    <p class="footer text-center">Copyright © 2018-<?php echo date('Y') ?>, <a target=_blank href="https://github.com/musicman3/eMarket">eMarket Team</a>. All rights reserved.</p>
 </div>
