@@ -68,7 +68,7 @@ nav .disabled {pointer-events: none;}
 #products .nav-tabs > li > a {line-height: 1;}
 #listing .list-group-item {border: none;padding: 0px 15px;margin-bottom: 20px;}
 #listing .list-group-item img {float: left;margin: 0 10px 10px 0;}
-#listing .list-group-item .item-text {text-align: justify;margin-bottom: 20px;}
+#listing .list-group-item .item-text {text-align: justify;margin-bottom: 10px;}
 #listing .list-group-item .caption {margin-top:-10px;}
 #listing .grid-group-item .item-heading {text-align: center;}
 #listing .grid-group-item .item-text {display: none;}
