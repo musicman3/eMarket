@@ -50,7 +50,7 @@ if (\eMarket\Valid::inPOST('payment_shipping_json')) {
             'chanel_name' => $data['chanel_name'],
             'chanel_payment_price' => $data['chanel_payment_price'],
             'chanel_payment_currency' => $data['chanel_payment_currency'],
-            'chanel_callback_page' => $data['chanel_callback_page'],
+            'chanel_callback_url' => $data['chanel_callback_url'],
             'chanel_image' => $data['chanel_image']
         ];
 

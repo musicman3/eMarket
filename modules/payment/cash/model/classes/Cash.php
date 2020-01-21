@@ -56,7 +56,7 @@ class Cash {
             'chanel_name' => lang('modules_payment_cash_name'),
             'chanel_payment_price' => 0,
             'chanel_payment_currency' => '',
-            'chanel_callback_page' => '',
+            'chanel_callback_url' => '?route=success',
             'chanel_image' => ''
         ];
 
