@@ -56,7 +56,7 @@ class Cash {
             'chanel_name' => lang('modules_payment_cash_name'),
             'chanel_payment_price' => 0,
             'chanel_payment_currency' => '',
-            'chanel_callback_url' => '?route=success',
+            'chanel_callback_url' => '?route=success', // ?route=success&redirect=https://w3s.webmoney.ru/asp/XMLInvoice.asp
             'chanel_image' => ''
         ];
 
