@@ -13,7 +13,7 @@ require(ROOT . '/controller/catalog/pages/cart/modal/cart.php');
             <div class="modal-header"><div class="pull-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Сокращенное наименование указывается любыми символами" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
                 <h4 class="modal-title"><?php echo \eMarket\Set::titlePageGenerator() ?></h4>
             </div>
-            <form id="form_cart" name="form_cart" action="javascript:void(null);" onsubmit="callSuccess()">
+            <form id="form_cart" name="form_cart" action="javascript:void(null);" onsubmit="callResult()">
                 <div class="panel-body">
                     <input type="hidden" name="add" value="ok" />
 
@@ -60,12 +60,10 @@ require(ROOT . '/controller/catalog/pages/cart/modal/cart.php');
 
                     <div id="shipping_price" class="form-group text-right"></div>
                     <div id="total_price_modal" class="pull-right label label-danger"></div>
-                    
-                    <input type="hidden" name="add" value="ok" />
 
                 </div> 
                 <div class="modal-footer">
-                    <button id="complete" type="button" class="btn btn btn-primary" data-toggle="modal" data-target="#cart"><span class="glyphicon glyphicon-ok"></span> <?php echo lang('cart_complete_button') ?></button>
+                    <button id="complete" type="submit" class="btn btn btn-primary"><span class="glyphicon glyphicon-ok"></span> <?php echo lang('cart_complete_button') ?></button>
                 </div>
             </form>
         </div>

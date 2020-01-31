@@ -7,6 +7,32 @@
 \eMarket\Ajax::сart('');
 ?>
 
+<script type="text/javascript">
+    function callResult() {
+        var msg = $('#form_cart').serialize();
+        // Установка синхронного запроса для jQuery.ajax
+        jQuery.ajaxSetup({async: false});
+        jQuery.ajax({
+            type: 'POST',
+            url: '?route=result',
+            data: msg,
+            beforeSend: function () {
+                $('#cart').modal('hide');
+            }
+        });
+        // Отправка запроса для обновления страницы
+        jQuery.get('?route=result',
+                {modify: 'update_ok'},
+                AjaxSuccess);
+        // Обновление страницы
+        function AjaxSuccess(data) {
+            setTimeout(function () {
+                document.location.href = '?route=result';
+            }, 100);
+        }
+    }
+</script>
+
 <!-- Загрузка данных в модальное окно Корзина -->
 <script type = "text/javascript">
     $('#cart').on('show.bs.modal', function (event) {
