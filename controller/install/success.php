@@ -36,6 +36,7 @@ $tab_customers_activation = $db_pref . 'customers_activation';
 $tab_length = $db_pref . 'length';
 $tab_manufacturers = $db_pref . 'manufacturers';
 $tab_modules = $db_pref . 'modules';
+$tab_orders = $db_pref . 'orders';
 $tab_order_status = $db_pref . 'order_status';
 $tab_products = $db_pref . 'products';
 $tab_password_recovery = $db_pref . 'password_recovery';
@@ -74,6 +75,7 @@ $config = '<?php' . "\n" .
         '  define(\'TABLE_MANUFACTURERS\', \'' . $tab_manufacturers . '\');' . "\n" .
         '  define(\'TABLE_MODULES\', \'' . $tab_modules . '\');' . "\n" .
         '  define(\'TABLE_ORDER_STATUS\', \'' . $tab_order_status . '\');' . "\n" .
+        '  define(\'TABLE_ORDERS\', \'' . $tab_orders . '\');' . "\n" .
         '  define(\'TABLE_PRODUCTS\', \'' . $tab_products . '\');' . "\n" .
         '  define(\'TABLE_PASSWORD_RECOVERY\', \'' . $tab_password_recovery . '\');' . "\n" .
         '  define(\'TABLE_REGIONS\', \'' . $tab_regions . '\');' . "\n" .
