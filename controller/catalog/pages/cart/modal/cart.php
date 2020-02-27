@@ -31,4 +31,6 @@ if (isset($_SESSION['email_customer'])) {
         $x++;
     }
 }
+
+$orders_products = json_encode($_SESSION['cart']);
 ?>

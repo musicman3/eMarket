@@ -16,6 +16,9 @@ require(ROOT . '/controller/catalog/pages/cart/modal/cart.php');
             <form id="form_cart" name="form_cart" action="javascript:void(null);" onsubmit="callResult()">
                 <div class="panel-body">
                     <input type="hidden" name="add" value="ok" />
+                    <input type="hidden" name="customer_id" value='<?php echo 1 ?>' />
+                    <input type="hidden" name="orders_products" value='<?php echo $orders_products ?>' />
+                    <input type="hidden" id="orders_total" name="orders_total" value="" />
 
                     <div class="form-group">
                         <label for="address"><?php echo lang('cart_shipping_address') ?></label>
