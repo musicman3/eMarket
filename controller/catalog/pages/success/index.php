@@ -12,6 +12,8 @@ if (\eMarket\Valid::inPOST('add')) {
             . ", orders_transactions_history=?, customer_ip_address=?, payment_method=?, shipping_method=?, last_modified=?, date_purchased=?",
             [\eMarket\Valid::inPOST('customer_id'), \eMarket\Valid::inPOST('address'), 4, eMarket\Valid::inPOST('orders_products'), eMarket\Valid::inPOST('orders_total'),
                 NULL, NULL, \eMarket\Valid::inPOST('payment_method'), \eMarket\Valid::inPOST('shipping_method'), NULL, NULL]);
+    
+    unset($_SESSION['cart']);
 }
 
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
