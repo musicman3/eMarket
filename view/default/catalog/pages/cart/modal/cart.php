@@ -13,12 +13,13 @@ require(ROOT . '/controller/catalog/pages/cart/modal/cart.php');
             <div class="modal-header"><div class="pull-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Сокращенное наименование указывается любыми символами" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
                 <h4 class="modal-title"><?php echo \eMarket\Set::titlePageGenerator() ?></h4>
             </div>
-            <form id="form_cart" name="form_cart" action="javascript:void(null);" onsubmit="callResult()">
+            <form id="form_cart" name="form_cart" action="javascript:void(null);" onsubmit="callSuccess()">
                 <div class="panel-body">
                     <input type="hidden" name="add" value="ok" />
                     <input type="hidden" name="customer_id" value='<?php echo 1 ?>' />
                     <input type="hidden" name="orders_products" value='<?php echo $orders_products ?>' />
                     <input type="hidden" id="orders_total" name="orders_total" value="" />
+                    <input type="hidden" id="callback_url" name="callback_url" value="" />
 
                     <div class="form-group">
                         <label for="address"><?php echo lang('cart_shipping_address') ?></label>

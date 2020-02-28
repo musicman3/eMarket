@@ -8,26 +8,27 @@
 ?>
 
 <script type="text/javascript">
-    function callResult() {
+    function callSuccess() {
         var msg = $('#form_cart').serialize();
+        var url = $('#callback_url').val();
         // Установка синхронного запроса для jQuery.ajax
         jQuery.ajaxSetup({async: false});
         jQuery.ajax({
             type: 'POST',
-            url: '?route=result',
+            url: '?route=success',
             data: msg,
             beforeSend: function () {
                 $('#cart').modal('hide');
             }
         });
         // Отправка запроса для обновления страницы
-        jQuery.get('?route=result',
+        jQuery.get(url,
                 {modify: 'update_ok'},
                 AjaxSuccess);
         // Обновление страницы
         function AjaxSuccess(data) {
             setTimeout(function () {
-                document.location.href = '?route=result';
+                document.location.href = url;
             }, 100);
         }
     }
@@ -100,6 +101,7 @@
                         $("#payment_method").append($('<option value="' + payment_val['chanel_module_name'] + '">' + payment_val['chanel_name'] + '</option>'));
                         $('#payment_method_class').removeClass('has-error');
                         $('#payment_method_class').addClass('has-success');
+                        $('#callback_url').val(payment_val['chanel_callback_url']);
                     }
                 }
                 buttonClass();
