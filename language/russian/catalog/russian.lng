@@ -12,6 +12,7 @@ title_register_index = Регистрация
 title_cart_index = Корзина
 title_recoverypass_index = Восстановление пароля
 title_address_book_index = Адресная книга
+title_success_index = Заказ успешно завершен
 
 ;DEBUG
 debug_page_generation_time = Время генерации страницы:

@@ -12,6 +12,7 @@ title_register_index = Registration
 title_cart_index = Cart
 title_recoverypass_index = Password Recovery
 title_address_book_index = Address Book
+title_success_index = Order completed successfully
 
 ;DEBUG
 debug_page_generation_time = Page generation time:
