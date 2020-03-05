@@ -17,7 +17,7 @@ require(ROOT . '/controller/catalog/pages/cart/modal/cart.php');
                 <div class="panel-body">
                     <input type="hidden" name="add" value="ok" />
                     <input type="hidden" name="customer_id" value='<?php echo 1 ?>' />
-                    <input type="hidden" name="orders_products" value='<?php echo $orders_products ?>' />
+                    <input type="hidden" name="products_order" value='<?php echo $products_order ?>' />
                     <input type="hidden" id="orders_total" name="orders_total" value="" />
                     <input type="hidden" id="callback_url" name="callback_url" value="" />
 
