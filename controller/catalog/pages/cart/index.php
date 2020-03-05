@@ -32,7 +32,7 @@ if (\eMarket\Valid::inPOST('shipping_region_json')) {
 
         array_push($interface_data, $interface);
     }
-    echo str_replace("'", "&#8216;", json_encode($interface_data));
+    echo \eMarket\Func::escape_sign(json_encode($interface_data));
     exit;
 }
 
@@ -56,7 +56,7 @@ if (\eMarket\Valid::inPOST('payment_shipping_json')) {
 
         array_push($interface_data, $interface);
     }
-    echo str_replace("'", "&#8216;", json_encode($interface_data));
+    echo \eMarket\Func::escape_sign(json_encode($interface_data));
     exit;
 }
 

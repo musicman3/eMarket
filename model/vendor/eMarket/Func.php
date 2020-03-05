@@ -382,6 +382,23 @@ class Func {
         $url = http_build_query(array_diff_key($vars, array($key => '')));
         return '?' . $url;
     }
+    
+    /**
+     * Функция пдля экранирования специальных символов
+     *
+     * @param string $string (строка для экранирования символов)
+     * @return string $output (токен)
+     */
+    public static function escape_sign($string) {
+        
+        //перечень символов и замен в массиве
+        $symbols = ["'"];
+        $escape = ["&#8216;"];
+        
+        $output = str_replace($symbols, $escape, $string);
+
+        return $output;
+    }    
 
 }
 

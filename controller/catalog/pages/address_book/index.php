@@ -12,12 +12,12 @@ if ($CUSTOMER == FALSE) {
 // JSON ECHO
 if (\eMarket\Valid::inPOST('countries_select')) {
     $regions_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_REGIONS . " WHERE language=? AND country_id=? ORDER BY name ASC", [lang('#lang_all')[0], \eMarket\Valid::inPOST('countries_select')]);
-    echo str_replace("'", "&#8216;", json_encode($regions_data));
+    echo \eMarket\Func::escape_sign(json_encode($regions_data));
     exit;
 }
 
 $countries_array = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_COUNTRIES . " WHERE language=? ORDER BY name ASC", [lang('#lang_all')[0]]);
-$countries_data_json = str_replace("'", "&#8216;", json_encode($countries_array));
+$countries_data_json = \eMarket\Func::escape_sign(json_encode($countries_array));
 
 foreach ($countries_array as $val) {
     $countries_data[$val['id']] = [$val['alpha_2'], $val['name']];
