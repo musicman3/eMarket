@@ -354,7 +354,7 @@ class Func {
     /**
      * Функция получения случайного буквенно-цифрового токена
      *
-     * @param string $length (длина токена)
+     * @param string $length (длина токена, цифрами)
      * @return string $token (токен)
      */
     public static function getToken($length) {
@@ -384,7 +384,7 @@ class Func {
     }
     
     /**
-     * Функция пдля экранирования специальных символов
+     * Функция для экранирования специальных символов
      *
      * @param string $string (строка для экранирования символов)
      * @return string $output (токен)

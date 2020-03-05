@@ -18,6 +18,7 @@ $db_port = \eMarket\Valid::inPOST('database_port');
 $db_pref = \eMarket\Valid::inPOST('database_prefix');
 $db_type = \eMarket\Valid::inPOST('database_type');
 $hash_method = \eMarket\Valid::inPOST('hash_method');
+$salt = \eMarket\Func::getToken(32);
 $http = 'http://' . \eMarket\Valid::inSERVER('HTTP_HOST') . '/';
 $lng = strtolower(\eMarket\Valid::inPOST('language'));
 $login_admin = \eMarket\Valid::inPOST('login_admin');
@@ -63,6 +64,7 @@ $config = '<?php' . "\n" .
         '  define(\'DB_TYPE\', \'' . $db_type . '\');' . "\n" .
         '  define(\'HASH_METHOD\', \'' . $hash_method . '\');' . "\n" .
         '  define(\'CRYPT_METHOD\', \'' . $crypt_method . '\');' . "\n" .
+        '  define(\'SALT\', \'' . $salt . '\');' . "\n" .
         '  define(\'DEFAULT_LANGUAGE\', \'' . $lng . '\');' . "\n" .
         '  define(\'TABLE_ADMINISTRATORS\', \'' . $tab_admin . '\');' . "\n" .
         '  define(\'TABLE_BASIC_SETTINGS\', \'' . $tab_basic_settings . '\');' . "\n" .
