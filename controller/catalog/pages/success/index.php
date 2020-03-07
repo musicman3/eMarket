@@ -6,9 +6,9 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 // Если добавлен новый заказ
-if (\eMarket\Valid::inPOST('add') && password_verify(\eMarket\Valid::inPOST('orders_total'), \eMarket\Valid::inPOST('total_hash')) && password_verify(\eMarket\Valid::inPOST('products_order'), \eMarket\Valid::inPOST('order_hash'))) {
-    
-    $address_all = json_decode(\eMarket\Pdo::getCellFalse("SELECT address_book FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']]), 1);
+if (\eMarket\Valid::inPOST('add') && password_verify(\eMarket\Valid::inPOST('orders_total') . \eMarket\Valid::inPOST('products_order'), \eMarket\Valid::inPOST('hash'))) {
+    $customer = \eMarket\Pdo::getColAssoc("SELECT id, address_book FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']])[0];
+    $address_all = json_decode($customer['address_book'], 1);
     //Выбираем адрес
     $address = json_encode($address_all[\eMarket\Valid::inPOST('address') - 1]);
     
@@ -17,7 +17,7 @@ if (\eMarket\Valid::inPOST('add') && password_verify(\eMarket\Valid::inPOST('ord
 
     \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_ORDERS . " SET customer_id=?, address_book=?, orders_status_history=?, products_order=?, orders_total=?"
             . ", orders_transactions_history=?, customer_ip_address=?, payment_method=?, shipping_method=?, last_modified=?, date_purchased=?",
-            [\eMarket\Valid::inPOST('customer_id'), $address, $orders_status_history, eMarket\Valid::inPOST('products_order'), eMarket\Valid::inPOST('orders_total'),
+            [$customer['id'], $address, $orders_status_history, eMarket\Valid::inPOST('products_order'), eMarket\Valid::inPOST('orders_total'),
                 NULL, NULL, \eMarket\Valid::inPOST('payment_method'), \eMarket\Valid::inPOST('shipping_method'), NULL, NULL]);
     
     unset($_SESSION['cart']);

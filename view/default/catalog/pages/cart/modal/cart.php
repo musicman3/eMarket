@@ -16,12 +16,10 @@ require(ROOT . '/controller/catalog/pages/cart/modal/cart.php');
             <form id="form_cart" name="form_cart" action="javascript:void(null);" onsubmit="callSuccess()">
                 <div class="panel-body">
                     <input type="hidden" name="add" value="ok" />
-                    <input type="hidden" name="customer_id" value='<?php echo 1 ?>' />
-                    <input type="hidden" name="products_order" value='<?php echo $products_order ?>' />
+                    <input type="hidden" id="products_order" name="products_order" value='<?php echo $products_order ?>' />
                     <input type="hidden" id="orders_total" name="orders_total" value="" />
                     <input type="hidden" id="callback_url" name="callback_url" value="" />
-                    <input type="hidden" id="total_hash" name="total_hash" value="" />
-                    <input type="hidden" id="order_hash" name="order_hash" value="<?php echo $order_hash ?>" />
+                    <input type="hidden" id="hash" name="hash" value="" />
 
                     <div class="form-group">
                         <label for="address"><?php echo lang('cart_shipping_address') ?></label>
