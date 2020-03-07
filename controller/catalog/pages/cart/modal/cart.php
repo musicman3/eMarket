@@ -31,6 +31,9 @@ if (isset($_SESSION['email_customer'])) {
         $x++;
     }
 }
-
-$products_order = json_encode($_SESSION['cart']);
+if (isset($_SESSION['cart'])) {
+    $products_order = json_encode($_SESSION['cart']);
+} else {
+    $products_order = '';
+}
 ?>
