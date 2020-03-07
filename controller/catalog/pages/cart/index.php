@@ -28,6 +28,7 @@ if (\eMarket\Valid::inPOST('shipping_region_json')) {
             'chanel_total_price_with_shipping_format' => $data['chanel_total_price_with_shipping_format'],
             'chanel_tax' => $data['chanel_tax'],
             'chanel_image' => $data['chanel_image'],
+            // Хэш стоимости с учетом доставки
             'chanel_hash_total_price_with_shipping' => \eMarket\Autorize::passwordHash($data['chanel_total_price_with_shipping'])
         ];
 

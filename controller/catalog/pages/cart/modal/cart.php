@@ -36,4 +36,5 @@ if (isset($_SESSION['cart'])) {
 } else {
     $products_order = '';
 }
+$order_hash = \eMarket\Autorize::passwordHash($products_order);
 ?>

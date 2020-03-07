@@ -6,7 +6,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 // Если добавлен новый заказ
-if (\eMarket\Valid::inPOST('add') && password_verify(\eMarket\Valid::inPOST('orders_total'), \eMarket\Valid::inPOST('hash_data'))) {
+if (\eMarket\Valid::inPOST('add') && password_verify(\eMarket\Valid::inPOST('orders_total'), \eMarket\Valid::inPOST('total_hash')) && password_verify(\eMarket\Valid::inPOST('products_order'), \eMarket\Valid::inPOST('order_hash'))) {
     
     $address_all = json_decode(\eMarket\Pdo::getCellFalse("SELECT address_book FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']]), 1);
     //Выбираем адрес

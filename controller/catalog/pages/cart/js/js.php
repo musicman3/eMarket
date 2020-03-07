@@ -64,7 +64,7 @@
                             $('#shipping_price').html('<?php echo lang('cart_shipping_price') ?> <b>' + shipping_val['chanel_shipping_price_format'] + '</b>');
                             $('#total_price_modal').html('<h5><?php echo lang('cart_total_to_pay') ?> ' + shipping_val['chanel_total_price_with_shipping_format'] + '</h5>');
                             $('#orders_total').val(shipping_val['chanel_total_price_with_shipping']);
-                            $('#hash_data').val(shipping_val['chanel_hash_total_price_with_shipping']);
+                            $('#total_hash').val(shipping_val['chanel_hash_total_price_with_shipping']);
                         } else {
                             // Если есть доставка
                             $("#shipping_method").append($('<option value="' + shipping_val['chanel_module_name'] + '" data-shipping="' + shipping_val['chanel_id'] + '">' + shipping_val['chanel_name'] + '</option>'));
@@ -73,7 +73,7 @@
                             $('#shipping_price').html('<?php echo lang('cart_shipping_price') ?> <b>' + shipping_val['chanel_shipping_price_format'] + '</b>');
                             $('#total_price_modal').html('<h5><?php echo lang('cart_total_to_pay') ?> ' + shipping_val['chanel_total_price_with_shipping_format'] + '</h5>');
                             $('#orders_total').val(shipping_val['chanel_total_price_with_shipping']);
-                            $('#hash_data').val(shipping_val['chanel_hash_total_price_with_shipping']);
+                            $('#total_hash').val(shipping_val['chanel_hash_total_price_with_shipping']);
                         }
                     }
                 }
