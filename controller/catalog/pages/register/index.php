@@ -9,7 +9,7 @@ if (\eMarket\Valid::inPOST('email')) {
     $user_email = \eMarket\Pdo::selectPrepare("SELECT id FROM " . TABLE_CUSTOMERS . " WHERE email=?", [\eMarket\Valid::inPOST('email')]);
     if ($user_email == NULL) {
         $password_hash = \eMarket\Autorize::passwordHash(\eMarket\Valid::inPOST('password'));
-        \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_CUSTOMERS . " SET firstname=?, lastname=?, date_account_created=?, email=?, telephone=?, ip_address=?, password=?", [\eMarket\Valid::inPOST('firstname'), \eMarket\Valid::inPOST('lastname'), date("Y-m-d H:i:s"), \eMarket\Valid::inPOST('email'), \eMarket\Valid::inPOST('telephone'), \eMarket\Set::ipAdress(), $password_hash]);
+        \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_CUSTOMERS . " SET firstname=?, lastname=?, date_account_created=?, email=?, telephone=?, ip_address=?, password=?", [\eMarket\Valid::inPOST('firstname'), \eMarket\Valid::inPOST('lastname'), date("Y-m-d H:i:s"), \eMarket\Valid::inPOST('email'), \eMarket\Valid::inPOST('telephone'), \eMarket\Set::ipAddress(), $password_hash]);
         
         $id = \eMarket\Pdo::lastInsertId();
         $activation_code = \eMarket\Func::getToken(64);

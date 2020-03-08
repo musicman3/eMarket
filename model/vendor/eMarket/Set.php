@@ -282,7 +282,7 @@ class Set {
      *
      * @return string $ipaddress
      */
-    public static function ipAdress() {
+    public static function ipAddress() {
 
         $ipaddress = '';
         if (getenv('HTTP_CLIENT_IP')) {
