@@ -6,7 +6,7 @@
 
 $cart_info = \eMarket\Cart::info();
 
-$products = \eMarket\Products::productData(\eMarket\Valid::inGET('id'))[0];
+$products = \eMarket\Products::productData(\eMarket\Valid::inGET('id'));
 $product_category = \eMarket\Products::productCategories($products['parent_id']);
 $categories_name = \eMarket\Pdo::getCell("SELECT name FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], \eMarket\Valid::inGET('category_id')]);
 $category_parent_id = \eMarket\Pdo::getCell("SELECT parent_id FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], \eMarket\Valid::inGET('category_id')]);

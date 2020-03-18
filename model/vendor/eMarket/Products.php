@@ -37,7 +37,7 @@ class Products {
     public static function productData($id) {
         
 
-        $product = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE language=? AND id=?", [lang('#lang_all')[0], $id]);
+        $product = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE language=? AND id=?", [lang('#lang_all')[0], $id])[0];
         return $product;
     }
 

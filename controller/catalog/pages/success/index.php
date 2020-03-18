@@ -11,15 +11,32 @@ if (\eMarket\Valid::inPOST('add') && password_verify(\eMarket\Valid::inPOST('ord
     $address_all = json_decode($customer['address_book'], 1);
     //Выбираем адрес
     $address = json_encode($address_all[\eMarket\Valid::inPOST('address') - 1]);
-    
+
     $orders_status_history_json = \eMarket\Pdo::getCellFalse("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE default_order_status=? AND language=?", [1, lang('#lang_all')[0]]);
     $orders_status_history = json_encode([$orders_status_history_json]);
-
-    \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_ORDERS . " SET customer_id=?, address_book=?, orders_status_history=?, products_order=?, order_total=?"
-            . ", orders_transactions_history=?, customer_ip_address=?, payment_method=?, shipping_method=?, last_modified=?, date_purchased=?",
-            [$customer['id'], $address, $orders_status_history, eMarket\Valid::inPOST('products_order'), eMarket\Valid::inPOST('order_total'),
-                NULL, \eMarket\Set::ipAddress(), \eMarket\Valid::inPOST('payment_method'), \eMarket\Valid::inPOST('shipping_method'), NULL, date("Y-m-d H:i:s")]);
     
+    //Формируем данные по заказу
+    $cart = json_decode(\eMarket\Valid::inPOST('products_order'), 1);
+    $invoice = [];
+
+    foreach ($cart as $value) {
+        $product_data = \eMarket\Products::productData($value['id']);
+        $data = [
+            'name' => $product_data['name'],
+            'price' => \eMarket\Products::productPrice($product_data['price'], 1),
+            'quantity' => $value['quantity'],
+            'amount' => \eMarket\Products::productPrice($product_data['price'] * $value['quantity'], 1),
+        ];
+        array_push($invoice, $data);
+    }
+
+    array_unshift($invoice, ['total' => \eMarket\Products::productPrice(\eMarket\Valid::inPOST('order_total'), 1)]);
+
+    \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_ORDERS . " SET customer_id=?, address_book=?, orders_status_history=?, products_order=?, order_total=?, invoice=?"
+            . ", orders_transactions_history=?, customer_ip_address=?, payment_method=?, shipping_method=?, last_modified=?, date_purchased=?",
+            [$customer['id'], $address, $orders_status_history, \eMarket\Valid::inPOST('products_order'), \eMarket\Valid::inPOST('order_total'), json_encode($invoice),
+                NULL, \eMarket\Set::ipAddress(), \eMarket\Valid::inPOST('payment_method'), \eMarket\Valid::inPOST('shipping_method'), NULL, date("Y-m-d H:i:s")]);
+
     unset($_SESSION['cart']);
 }
 
