@@ -21,10 +21,12 @@ if (\eMarket\Valid::inPOST('add') && password_verify(\eMarket\Valid::inPOST('ord
 
     foreach ($cart as $value) {
         $product_data = \eMarket\Products::productData($value['id']);
+        $unit = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_UNITS . " WHERE id=? AND language=?", [$product_data['unit'], lang('#lang_all')[0]])[0];
         $data = [
             'name' => $product_data['name'],
             'price' => \eMarket\Products::productPrice($product_data['price'], 1),
             'quantity' => $value['quantity'],
+            'unit' => $unit['unit'],
             'amount' => \eMarket\Products::productPrice($product_data['price'] * $value['quantity'], 1),
         ];
         array_push($invoice, $data);
