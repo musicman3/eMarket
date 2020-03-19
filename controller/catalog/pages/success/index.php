@@ -30,6 +30,9 @@ if (\eMarket\Valid::inPOST('add') && password_verify(\eMarket\Valid::inPOST('ord
             'amount' => \eMarket\Products::productPrice($product_data['price'] * $value['quantity'], 1),
         ];
         array_push($invoice, $data);
+        
+        //Вычитаем товар со склада
+        \eMarket\Pdo::inPrepare("UPDATE " . TABLE_PRODUCTS . " SET quantity=quantity- " . $value['quantity'] . " WHERE id=?", [$value['id']]);
     }
 
     array_unshift($invoice, ['total' => \eMarket\Products::productPrice(\eMarket\Valid::inPOST('order_total'), 1)]);
@@ -38,7 +41,7 @@ if (\eMarket\Valid::inPOST('add') && password_verify(\eMarket\Valid::inPOST('ord
             . ", orders_transactions_history=?, customer_ip_address=?, payment_method=?, shipping_method=?, last_modified=?, date_purchased=?",
             [$customer['id'], $address, $orders_status_history, \eMarket\Valid::inPOST('products_order'), \eMarket\Valid::inPOST('order_total'), json_encode($invoice),
                 NULL, \eMarket\Set::ipAddress(), \eMarket\Valid::inPOST('payment_method'), \eMarket\Valid::inPOST('shipping_method'), NULL, date("Y-m-d H:i:s")]);
-
+    
     unset($_SESSION['cart']);
 }
 
