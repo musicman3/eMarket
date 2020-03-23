@@ -36,7 +36,7 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th colspan="2">
+                                <th colspan="6">
                                     <?php if ($lines == TRUE) { ?>
                                         <div class="page"><?php echo lang('s') ?> <?php echo $start + 1 ?> <?php echo lang('po') ?> <?php echo $finish ?> ( <?php echo lang('iz') ?> <?php echo count($lines); ?> )</div>
                                         <?php
@@ -53,7 +53,7 @@
                                 
                                     <form>
                                         <?php if (count($lines) > $lines_on_page) { ?>
-                                            <input hidden name="route" value="manufacturers">
+                                            <input hidden name="route" value="orders">
                                             <input hidden name="start" value="<?php echo $start ?>">
                                             <input hidden name="finish" value="<?php echo $finish ?>">
                                             <div class="b-left"><button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
@@ -62,7 +62,7 @@
 
                                     <form>
                                         <?php if (count($lines) > $lines_on_page) { ?>
-                                            <input hidden name="route" value="manufacturers">
+                                            <input hidden name="route" value="orders">
                                             <input hidden name="backstart" value="<?php echo $start ?>">
                                             <input hidden name="backfinish" value="<?php echo $finish ?>">
                                             <div class="b-left"><button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
@@ -73,8 +73,12 @@
                             </tr>
                             <?php if ($lines == TRUE) { ?>
                                 <tr class="border">
-                                    <th><?php echo lang('manufacturer') ?></th>
-                                    <th class="al-text"><?php echo lang('site') ?></th>
+                                    <th>№ заказа</th>
+                                    <th class="al-text">Клиент</th>
+                                    <th class="al-text">Итого</th>
+                                    <th class="al-text">Дата добавления</th>
+                                    <th class="al-text">Дата изменения</th>
+                                    <th class="al-text">Статус</th>
                                     <th class="al-text-w"></th>
                                 </tr>
                             <?php } ?>
@@ -83,6 +87,10 @@
                             <?php for ($start; $start < $finish; $start++) { ?>
                                 <tr>
                                     <td><?php echo $lines[$start][1] ?></td>
+                                    <td class="al-text"><?php echo $lines[$start][3] ?></td>
+                                    <td class="al-text"><?php echo $lines[$start][3] ?></td>
+                                    <td class="al-text"><?php echo $lines[$start][3] ?></td>
+                                    <td class="al-text"><?php echo $lines[$start][3] ?></td>
                                     <td class="al-text"><?php echo $lines[$start][3] ?></td>
                                     <td class="al-text-w">
                                         <form id="form_delete<?php echo $lines[$start][0] ?>" name="form_delete" action="javascript:void(null);" onsubmit="callDelete('<?php echo $lines[$start][0] ?>')" enctype="multipart/form-data">
