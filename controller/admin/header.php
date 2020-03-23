@@ -28,7 +28,7 @@ $menu[$menu_market][4] = array('?route=settings', 'glyphicon glyphicon-cog', lan
 //ПРОДАЖИ
 $level[$menu_sales] = array('#', 'Продажи', 'true');
 
-$menu[$menu_sales][0] = array('#', 'glyphicon glyphicon-shopping-cart', 'Заказы', '', 'false');
+$menu[$menu_sales][0] = array('?route=orders', 'glyphicon glyphicon-shopping-cart', lang('title_orders_index'), '', 'false');
 $menu[$menu_sales][1] = array('#', 'glyphicon glyphicon-import', 'Возвраты', '', 'false');
 
 //МАРКЕТИНГ

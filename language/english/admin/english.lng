@@ -11,6 +11,7 @@ title_dashboard_index = Administration Panel
 title_error_log_index = Error log
 title_login_index = Login page
 title_manufacturers_index = Manufacturers
+title_orders_index = Orders
 title_settings_basic_settings_index = Basic settings
 title_settings_countries_index = Countries
 title_settings_countries_regions_index = Regions
