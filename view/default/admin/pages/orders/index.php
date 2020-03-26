@@ -86,7 +86,7 @@
                         <tbody>
                             <?php for ($start; $start < $finish; $start++) { ?>
                                 <tr>
-                                    <td><?php echo $lines[$start][1] ?></td>
+                                    <td><?php echo $lines[$start][0] ?></td>
                                     <td class="al-text"><?php echo $lines[$start][3] ?></td>
                                     <td class="al-text"><?php echo \eMarket\Products::productPrice($lines[$start][5], 1) ?></td>
                                     <td class="al-text"><?php echo \eMarket\Set::dateLocale($lines[$start][12], '%c') ?></td>
