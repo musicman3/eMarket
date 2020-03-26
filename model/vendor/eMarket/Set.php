@@ -389,6 +389,9 @@ class Set {
      * @return string|FALSE форматированная дата
      */
     public static function dateLocale($date, $format = null) {
+        if ($date == NULL){
+            return '';
+        }
         if ($format != null) {
             return strftime($format, date('U', strtotime($date)));
         } else {
