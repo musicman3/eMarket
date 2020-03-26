@@ -89,8 +89,8 @@
                                     <td><?php echo $lines[$start][0] ?></td>
                                     <td class="al-text"><?php echo $lines[$start][3] ?></td>
                                     <td class="al-text"><?php echo \eMarket\Products::productPrice($lines[$start][5], 1) ?></td>
-                                    <td class="al-text"><?php echo \eMarket\Set::dateLocale($lines[$start][12], '%c') ?></td>
-                                    <td class="al-text"><?php echo $lines[$start][11] ?></td>
+                                    <td class="al-text"><?php echo \eMarket\Set::dateLocale($lines[$start][13], '%c') ?></td>
+                                    <td class="al-text"><?php echo $lines[$start][12] ?></td>
                                     <td class="al-text"><?php echo json_decode($lines[$start][3], 1)[0] ?></td>
                                     <td class="al-text-w">
                                         <form id="form_delete<?php echo $lines[$start][0] ?>" name="form_delete" action="javascript:void(null);" onsubmit="callDelete('<?php echo $lines[$start][0] ?>')" enctype="multipart/form-data">

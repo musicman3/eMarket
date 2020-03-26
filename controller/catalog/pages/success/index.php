@@ -35,9 +35,9 @@ if (\eMarket\Valid::inPOST('add') && password_verify(\eMarket\Valid::inPOST('ord
         \eMarket\Pdo::inPrepare("UPDATE " . TABLE_PRODUCTS . " SET quantity=quantity- " . $value['quantity'] . " WHERE id=?", [$value['id']]);
     }
 
-    \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_ORDERS . " SET customer_id=?, address_book=?, orders_status_history=?, products_order=?, order_total=?, invoice=?"
+    \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_ORDERS . " SET customer_id=?, address_book=?, orders_status_history=?, products_order=?, order_total=?, currency=?, invoice=?"
             . ", orders_transactions_history=?, customer_ip_address=?, payment_method=?, shipping_method=?, last_modified=?, date_purchased=?",
-            [$customer['id'], $address, $orders_status_history, \eMarket\Valid::inPOST('products_order'), \eMarket\Valid::inPOST('order_total'), json_encode($invoice),
+            [$customer['id'], $address, $orders_status_history, \eMarket\Valid::inPOST('products_order'), \eMarket\Valid::inPOST('order_total'), $_SESSION['currency_default_catalog'], json_encode($invoice),
                 NULL, \eMarket\Set::ipAddress(), \eMarket\Valid::inPOST('payment_method'), \eMarket\Valid::inPOST('shipping_method'), NULL, date("Y-m-d H:i:s")]);
     
     unset($_SESSION['cart']);

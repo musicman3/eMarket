@@ -157,6 +157,7 @@ CREATE TABLE emkt_orders (
   orders_status_history json,
   products_order json,
   order_total json,
+  currency int,
   invoice json,
   orders_transactions_history json,
   customer_ip_address varchar(30),
