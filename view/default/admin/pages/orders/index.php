@@ -6,11 +6,11 @@
 
 ?>
 <!-- Модальное окно "Добавить" -->
-<?php require_once('modal/add.php') ?>
+<?php //require_once('modal/add.php') ?>
 <!-- КОНЕЦ Модальное окно "Добавить" -->
 
 <!-- Модальное окно "Редактировать" -->
-<?php require_once('modal/edit.php') ?>
+<?php //require_once('modal/edit.php') ?>
 <!-- КОНЕЦ Модальное окно "Редактировать" -->
 
 <div id="ajax">
@@ -88,10 +88,10 @@
                                 <tr>
                                     <td><?php echo $lines[$start][1] ?></td>
                                     <td class="al-text"><?php echo $lines[$start][3] ?></td>
-                                    <td class="al-text"><?php echo $lines[$start][3] ?></td>
-                                    <td class="al-text"><?php echo $lines[$start][3] ?></td>
-                                    <td class="al-text"><?php echo $lines[$start][3] ?></td>
-                                    <td class="al-text"><?php echo $lines[$start][3] ?></td>
+                                    <td class="al-text"><?php echo \eMarket\Products::productPrice($lines[$start][5], 1) ?></td>
+                                    <td class="al-text"><?php echo \eMarket\Set::dateLocale($lines[$start][12], '%c') ?></td>
+                                    <td class="al-text"><?php echo $lines[$start][11] ?></td>
+                                    <td class="al-text"><?php echo json_decode($lines[$start][3], 1)[0] ?></td>
                                     <td class="al-text-w">
                                         <form id="form_delete<?php echo $lines[$start][0] ?>" name="form_delete" action="javascript:void(null);" onsubmit="callDelete('<?php echo $lines[$start][0] ?>')" enctype="multipart/form-data">
                                             <input hidden name="delete" value="<?php echo $lines[$start][0] ?>">

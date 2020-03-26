@@ -47,14 +47,14 @@ array_push($resize_param, ['125', '94']); // ширина, высота
 // Если нажали на кнопку Удалить
 if (\eMarket\Valid::inPOST('delete')) {
     // Удаляем запись
-    \eMarket\Pdo::inPrepare("DELETE FROM " . TABLE_MANUFACTURERS . " WHERE id=?", [\eMarket\Valid::inPOST('delete')]);
+    \eMarket\Pdo::inPrepare("DELETE FROM " . TABLE_ORDERS . " WHERE id=?", [\eMarket\Valid::inPOST('delete')]);
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
     exit;
 }
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
-$lines = \eMarket\Pdo::getColRow("SELECT id, name, logo, site FROM " . TABLE_MANUFACTURERS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+$lines = \eMarket\Pdo::getColRow("SELECT * FROM " . TABLE_ORDERS . " ORDER BY id DESC", []);
 $lines_on_page = \eMarket\Set::linesOnPage();
 $navigate = \eMarket\Navigation::getLink(count($lines), $lines_on_page);
 $start = $navigate[0];
