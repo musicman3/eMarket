@@ -8,9 +8,19 @@
 // Если добавлен новый заказ
 if (\eMarket\Valid::inPOST('add') && password_verify(\eMarket\Valid::inPOST('order_total') . \eMarket\Valid::inPOST('products_order') . \eMarket\Valid::inPOST('shipping_method'), \eMarket\Valid::inPOST('hash'))) {
     $customer = \eMarket\Pdo::getColAssoc("SELECT id, address_book, gender, firstname, lastname, middle_name, email, fax, telephone FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']])[0];
+    // Готовим данные по адресу
     $address_all = json_decode($customer['address_book'], 1);
-    //Выбираем адрес
-    $address = json_encode($address_all[\eMarket\Valid::inPOST('address') - 1]);
+    $address_data = $address_all[\eMarket\Valid::inPOST('address') - 1];
+    $region = \eMarket\Pdo::getCellFalse("SELECT name FROM " . TABLE_REGIONS . " WHERE id=? AND language=?", [$address_data['regions_id'], lang('#lang_all')[0]]);
+    $country = \eMarket\Pdo::getCellFalse("SELECT name FROM " . TABLE_COUNTRIES . " WHERE id=? AND language=?", [$address_data['countries_id'], lang('#lang_all')[0]]);
+    
+    unset($address_data['default']);
+    unset($address_data['regions_id']);
+    unset($address_data['countries_id']);
+    
+    $address_data['region'] = $region;
+    $address_data['country'] = $country;
+    $address = json_encode($address_data);
     $customer['address_book'] = $address;
 
     $orders_status_history_json = \eMarket\Pdo::getCellFalse("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE default_order_status=? AND language=?", [1, lang('#lang_all')[0]]);
