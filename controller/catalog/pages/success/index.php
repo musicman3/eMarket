@@ -20,8 +20,7 @@ if (\eMarket\Valid::inPOST('add') && password_verify(\eMarket\Valid::inPOST('ord
     
     $address_data['region'] = $region;
     $address_data['country'] = $country;
-    $address = json_encode($address_data);
-    $customer['address_book'] = $address;
+    $customer['address_book'] = json_encode($address_data);
 
     $orders_status_history_json = \eMarket\Pdo::getCellFalse("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE default_order_status=? AND language=?", [1, lang('#lang_all')[0]]);
     $orders_status_history = json_encode([$orders_status_history_json]);
