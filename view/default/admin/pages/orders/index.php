@@ -87,7 +87,7 @@
                             <?php for ($start; $start < $finish; $start++) { ?>
                                 <tr>
                                     <td><?php echo $lines[$start][0] ?></td>
-                                    <td class="al-text"><?php echo $lines[$start][2] ?></td>
+                                    <td class="al-text"><?php echo json_decode($lines[$start][1], 1)['firstname'] . ' ' . json_decode($lines[$start][1], 1)['lastname'] ?></td>
                                     <td class="al-text"><?php echo \eMarket\Products::productPrice($lines[$start][4], 1) ?></td>
                                     <td class="al-text"><?php echo \eMarket\Set::dateLocale($lines[$start][12], '%c') ?></td>
                                     <td class="al-text"><?php echo \eMarket\Set::dateLocale($lines[$start][11], '%c') ?></td>
