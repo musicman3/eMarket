@@ -19,7 +19,6 @@ if (\eMarket\Valid::inPOST('add')) {
 
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
-    exit;
 }
 
 // Если нажали на кнопку Редактировать
@@ -31,18 +30,7 @@ if (\eMarket\Valid::inPOST('edit')) {
 
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
-    exit;
 }
-
-// Загручик изображений (ВСТАВЛЯТЬ ПЕРЕД УДАЛЕНИЕМ)
-$resize_param = [];
-array_push($resize_param, ['125', '94']); // ширина, высота
-//array_push($resize_param, ['200','150']);
-//array_push($resize_param, ['325','244']);
-//array_push($resize_param, ['525','394']);
-//array_push($resize_param, ['850','638']);
-
-\eMarket\Files::imgUpload(TABLE_MANUFACTURERS, 'manufacturers', $resize_param);
 
 // Если нажали на кнопку Удалить
 if (\eMarket\Valid::inPOST('delete')) {
@@ -50,7 +38,6 @@ if (\eMarket\Valid::inPOST('delete')) {
     \eMarket\Pdo::inPrepare("DELETE FROM " . TABLE_ORDERS . " WHERE id=?", [\eMarket\Valid::inPOST('delete')]);
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
-    exit;
 }
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
