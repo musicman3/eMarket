@@ -24,10 +24,6 @@
         }
         $('#site_manufacturers_edit').val(site_edit[modal_id]);
         $('#js_edit').val(modal_id);
-
-        // Подгружаем изображения
-        getImageToEdit(logo_general_edit, logo_edit, modal_id);
-
     });
 </script>
 <?php

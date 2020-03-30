@@ -3,8 +3,7 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-require(ROOT . '/controller/admin/pages/manufacturers/modal/edit.php');
-
+//require(ROOT . '/controller/admin/pages/orders/modal/edit.php');
 ?>
 
 <!-- Модальное окно "Изменить" -->
@@ -17,68 +16,58 @@ require(ROOT . '/controller/admin/pages/manufacturers/modal/edit.php');
             <form id="form_edit" name="form_edit" action="javascript:void(null);" onsubmit="callEdit()">
                 <div class="panel-body">
                     <input id="js_edit" type="hidden" name="edit" value="" />
-                    <input id="delete_image" type="hidden" name="delete_image" value="">
-                    <input id="general_image_edit" type="hidden" name="general_image_edit" value="">
-                    <input id="general_image_edit_new" type="hidden" name="general_image_edit_new" value="">
-
-                    <!-- Языковые панели -->
-                    <?php require_once(ROOT . '/view/' . \eMarket\Set::template() . '/layouts/lang_tabs_edit.php') ?>
-
-                    <!-- Содержимое языковых панелей -->
+                    <!-- Панели формы -->
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#panel_edit_1">Описание</a></li>
+                        <li><a data-toggle="tab" href="#panel_edit_2">Товары</a></li>
+                        <li><a data-toggle="tab" href="#panel_edit_3">История транзакций</a></li>
+                        <li><a data-toggle="tab" href="#panel_edit_4">История статусов</a></li>
+                    </ul>
+                    <!-- Содержимое панелей формы-->
                     <div class="tab-content">
-                        <div id="<?php echo lang('#lang_all')[0] . $modal_id ?>" class="tab-pane fade in active">
-                            <div class="form-group">
-                                <div class="input-group has-error">
+
+                        <!-- Содержимое панели Описание -->
+                        <div id="panel_edit_1" class="tab-pane fade in active">
+                            <div class="col-left form-group">
+                                <div><small class="form-text text-muted">Значение идентификатора товара</small></div>
+                                <div class="input-group has-success">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="input-sm form-control" type="text" name="name_manufacturers_edit_0" id="name_manufacturers_edit_0" required />
+                                    <input class="input-sm form-control" placeholder="ABC123" type="text" name="vendor_code_value_product_stock_edit" id="vendor_code_value_product_stock_edit" />
                                 </div>
                             </div>
                         </div>
 
-                        <?php
-                        if ($LANG_COUNT > 1) {
-                            for ($x = 1; $x < $LANG_COUNT; $x++) {
-
-                                ?>
-
-                                <div id="<?php echo lang('#lang_all')[$x] . $modal_id ?>" class="tab-pane fade">
-                                    <div class="form-group">
-                                        <div class="input-group has-error">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" type="text" name="name_manufacturers_edit_<?php echo $x ?>" id="name_manufacturers_edit_<?php echo $x ?>" required />
-                                        </div>
-                                    </div>
+                        <!-- Содержимое панели Товары -->
+                        <div id="panel_edit_2" class="tab-pane fade">
+                            <div class="col-left form-group">
+                                <div><small class="form-text text-muted">Значение идентификатора товара</small></div>
+                                <div class="input-group has-success">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+                                    <input class="input-sm form-control" placeholder="ABC125" type="text" name="vendor_code_value_product_stock_edit" id="vendor_code_value_product_stock_edit" />
                                 </div>
-
-                                <?php
-                            }
-                        }
-
-                        ?>
-
-                        <div class="form-group">
-                            <div class="input-group has-success">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
-                                <input class="input-sm form-control" placeholder="<?php echo lang('site') ?>" type="text" name="site_manufacturers_edit" id="site_manufacturers_edit" />
                             </div>
                         </div>
                         
-                        <!-- Выводим сообщения -->
-                        <div id="alert_messages_edit"></div>
-                        
-                        <!-- ЗАГРУЗКА jQuery-File-Upload -->
-                        <div class="form-group">
-                            <span class="btn btn-primary btn-sm fileinput-button">
-                                <i class="glyphicon glyphicon-picture"></i><span> <?php echo lang('button_add_image') ?></span>
-                                <input class="input-sm form-control" id="fileupload-edit" type="file" name="files[]" accept="image/jpeg,image/png,image/gif" multiple>
-                            </span>
-                            <?php echo lang('max') ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>
-                            <br>
-                            <br>
-                            <div id="progress" class="progress">
-                                <div class="progress-bar progress-bar-warning progress-bar-striped active"></div>
+                        <!-- Содержимое панели История транзакций -->
+                        <div id="panel_edit_3" class="tab-pane fade">
+                            <div class="col-left form-group">
+                                <div><small class="form-text text-muted">Значение идентификатора товара</small></div>
+                                <div class="input-group has-success">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+                                    <input class="input-sm form-control" placeholder="ABC125" type="text" name="vendor_code_value_product_stock_edit" id="vendor_code_value_product_stock_edit" />
+                                </div>
                             </div>
-                            <div id="logo-edit" class="text-center"></div>
+                        </div>
+                        
+                        <!-- Содержимое панели История статусов -->
+                        <div id="panel_edit_4" class="tab-pane fade">
+                            <div class="col-left form-group">
+                                <div><small class="form-text text-muted">Значение идентификатора товара</small></div>
+                                <div class="input-group has-success">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+                                    <input class="input-sm form-control" placeholder="ABC125" type="text" name="vendor_code_value_product_stock_edit" id="vendor_code_value_product_stock_edit" />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -6,11 +6,11 @@
 ?>
 
 <!-- Модальное окно "Редактировать" -->
-<?php //require_once('modal/edit.php')  ?>
+<?php require_once('modal/edit.php')  ?>
 <!-- КОНЕЦ Модальное окно "Редактировать" -->
 
 <div id="ajax">
-    <div id="manufacturers" class="container-fluid">
+    <div id="orders" class="container-fluid">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <!--Выводим уведомление об успешном действии-->
