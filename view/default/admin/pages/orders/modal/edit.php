@@ -56,13 +56,40 @@
 
                         <!-- Содержимое панели Товары -->
                         <div id="panel_edit_2" class="tab-pane fade">
-                            <div class="col-left form-group">
-                                <div><small class="form-text text-muted">Значение идентификатора товара</small></div>
-                                <div class="input-group has-success">
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="input-sm form-control" placeholder="ABC125" type="text" name="vendor_code_value_product_stock_edit" id="vendor_code_value_product_stock_edit" />
-                                </div>
-                            </div>
+			    <table class="table table-hover">
+				<thead>
+				    <tr>
+					<th>Товар</th>
+					<th>Цена</th>
+					<th>Кол-во</th>
+					<th>Сумма</th>
+				    </tr>
+				</thead>
+				<tbody>
+				    <tr>
+					<td>111</td>
+					<td>222</td>
+					<td>333</td>
+					<td>444</td>
+				    </tr>
+				</tbody>
+			    </table>
+			    <table class="table table-hover">
+				<tbody>
+				    <tr>
+					<td class="text-right">Стоимость</td>
+					<td class="text-right">22222</td>
+				    </tr>
+				    <tr>
+					<td class="text-right">Доставка</td>
+					<td class="text-right">22222</td>
+				    </tr>
+				    <tr>
+					<td class="text-right">Итого</td>
+					<td class="text-right">22222</td>
+				    </tr>
+				</tbody>
+			    </table>
                         </div>
 
                         <!-- Содержимое панели История транзакций -->
