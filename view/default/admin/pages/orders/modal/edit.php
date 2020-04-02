@@ -7,7 +7,7 @@
 ?>
 
 <!-- Модальное окно "Изменить" -->
-<div id="edit" class="modal fade" tabindex="-1">
+<div id="edit" class="products modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header"><div class="pull-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Ставка указывается в формате: 10.00" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
@@ -28,11 +28,28 @@
 
                         <!-- Содержимое панели Описание -->
                         <div id="panel_edit_1" class="tab-pane fade in active">
-                            <div class="col-left form-group">
-                                <div><small class="form-text text-muted">Значение идентификатора товара</small></div>
-                                <div class="input-group has-success">
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="input-sm form-control" placeholder="ABC123" type="text" name="vendor_code_value_product_stock_edit" id="vendor_code_value_product_stock_edit" />
+                            <div class="row">
+                                <div class="col-left form-group">
+                                    <div class="label label-primary">Клиент</div>
+                                    <div>
+                                        <small class="form-text text-muted">
+                                            Николай Пермяков
+                                            Симферопольский бульвар, дом 1
+                                            Москва
+                                            Российская Федерация
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="col-left form-group">
+                                    <div class="label label-primary">Клиент</div>
+                                    <div>
+                                        <small class="form-text text-muted">
+                                            Николай Пермяков
+                                            Симферопольский бульвар, дом 1
+                                            Москва
+                                            Российская Федерация
+                                        </small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -47,7 +64,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!-- Содержимое панели История транзакций -->
                         <div id="panel_edit_3" class="tab-pane fade">
                             <div class="col-left form-group">
@@ -58,7 +75,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!-- Содержимое панели История статусов -->
                         <div id="panel_edit_4" class="tab-pane fade">
                             <div class="col-left form-group">
