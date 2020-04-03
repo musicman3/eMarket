@@ -56,40 +56,43 @@
 
                         <!-- Содержимое панели Товары -->
                         <div id="panel_edit_2" class="tab-pane fade">
-			    <table class="table table-hover">
-				<thead>
-				    <tr>
-					<th>Товар</th>
-					<th>Цена</th>
-					<th>Кол-во</th>
-					<th>Сумма</th>
-				    </tr>
-				</thead>
-				<tbody>
-				    <tr>
-					<td>111</td>
-					<td>222</td>
-					<td>333</td>
-					<td>444</td>
-				    </tr>
-				</tbody>
-			    </table>
-			    <table class="table table-hover">
-				<tbody>
-				    <tr>
-					<td class="text-right">Стоимость</td>
-					<td class="text-right">22222</td>
-				    </tr>
-				    <tr>
-					<td class="text-right">Доставка</td>
-					<td class="text-right">22222</td>
-				    </tr>
-				    <tr>
-					<td class="text-right">Итого</td>
-					<td class="text-right">22222</td>
-				    </tr>
-				</tbody>
-			    </table>
+			    <div class="table-responsive">
+
+				<table class="table table-bordered">
+				    <tbody>
+					<tr>
+					    <td class="text-center"><strong>Товар</strong></td>
+					    <td class="text-center"><strong>Цена</strong></td>
+					    <td class="text-center"><strong>Кол-во</strong></td>
+					    <td class="text-center"><strong>Сумма</strong></td>
+					</tr>
+					<tr>
+					    <td class="text-center">111</td>
+					    <td class="text-center">222</td>
+					    <td class="text-center">333</td>
+					    <td class="text-center">444</td>
+					</tr>
+				    </tbody>
+				</table>
+
+				<table class="table table-bordered">
+				    <tbody>
+					<tr>
+					    <td class="text-right"><strong>Стоимость:</strong></td>
+					    <td class="text-right">111</td>
+					</tr>
+					<tr>
+					    <td class="text-right"><strong>Доставка:</strong></td>
+					    <td class="text-right">222</td>
+					</tr>
+					<tr>
+					    <td class="text-right"><strong>Итого:</strong></td>
+					    <td class="text-right">333</td>
+					</tr>
+				    </tbody>
+				</table>
+
+			    </div>
                         </div>
 
                         <!-- Содержимое панели История транзакций -->
