@@ -56,43 +56,45 @@
 
                         <!-- Содержимое панели Товары -->
                         <div id="panel_edit_2" class="tab-pane fade">
-			    <div class="table-responsive">
+                            <div class="table-responsive">
 
-				<table class="table table-bordered">
-				    <tbody>
-					<tr>
-					    <td class="text-center"><strong>Товар</strong></td>
-					    <td class="text-center"><strong>Цена</strong></td>
-					    <td class="text-center"><strong>Кол-во</strong></td>
-					    <td class="text-center"><strong>Сумма</strong></td>
-					</tr>
-					<tr>
-					    <td class="text-center">111</td>
-					    <td class="text-center">222</td>
-					    <td class="text-center">333</td>
-					    <td class="text-center">444</td>
-					</tr>
-				    </tbody>
-				</table>
+                                <table class="table table-radius">
+                                    <thead>
+                                        <tr class="bg-primary">
+                                            <td class="text-left">Товар</td>
+                                            <td class="text-center">Цена</td>
+                                            <td class="text-center">Кол-во</td>
+                                            <td class="text-right">Сумма</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="bg-success">
+                                            <td class="text-left"><small>111</small></td>
+                                            <td class="text-center"><small>222</small></td>
+                                            <td class="text-center"><small>333</small></td>
+                                            <td class="text-right"><small>444</small></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
 
-				<table class="table table-bordered">
-				    <tbody>
-					<tr>
-					    <td class="text-right"><strong>Стоимость:</strong></td>
-					    <td class="text-right">111</td>
-					</tr>
-					<tr>
-					    <td class="text-right"><strong>Доставка:</strong></td>
-					    <td class="text-right">222</td>
-					</tr>
-					<tr>
-					    <td class="text-right"><strong>Итого:</strong></td>
-					    <td class="text-right">333</td>
-					</tr>
-				    </tbody>
-				</table>
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-right">Стоимость:</td>
+                                            <td class="text-right"><small>444</small></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-right">Доставка:</td>
+                                            <td class="text-right"><small>444</small></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-right">Итого:</td>
+                                            <td class="text-right"><small>444</small></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
 
-			    </div>
+                            </div>
                         </div>
 
                         <!-- Содержимое панели История транзакций -->
