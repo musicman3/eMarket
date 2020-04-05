@@ -103,5 +103,5 @@ div.context-one, .table > tbody > tr > td.context-one {padding:5px;}
 #settings_templates .input-sm {padding: 0 10px;}
 .settings_back {margin-bottom: 3px;padding: 0 5px 5px 5px;border: 1px solid #ddd;border-radius: 4px 0 0 4px;}
 .settings_name {padding: 0 5px 5px 5px;border: 1px solid #ddd;border-radius: 0 4px 4px 0;}
-#settings_modules .table-radius {overflow: hidden;border-top-left-radius: 4px;border-top-right-radius: 4px;}
+.table-radius {overflow: hidden;border-top-left-radius: 4px;border-top-right-radius: 4px;}
 .shadow-element {box-shadow: 0 5px 15px rgba(0,0,0,.5);}
