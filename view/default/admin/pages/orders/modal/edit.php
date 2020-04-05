@@ -61,10 +61,10 @@
                                 <table class="table">
                                     <thead>
                                         <tr class="bg-primary">
-                                            <td class="text-left">Товар</td>
-                                            <td class="text-center">Цена</td>
-                                            <td class="text-center">Кол-во</td>
-                                            <td class="text-right">Сумма</td>
+                                            <td class="text-left"><small>Товар</small></td>
+                                            <td class="text-center"><small>Цена</small></td>
+                                            <td class="text-center"><small>Кол-во</small></td>
+                                            <td class="text-right"><small>Сумма</small></td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -80,16 +80,16 @@
                                 <table class="table">
                                     <tbody>
                                         <tr>
-                                            <td class="text-right">Стоимость:</td>
+                                            <td class="text-right"><small>Стоимость:</small></td>
                                             <td class="text-right"><small>444</small></td>
                                         </tr>
                                         <tr>
-                                            <td class="text-right">Доставка:</td>
+                                            <td class="text-right"><small>Доставка:</small></td>
                                             <td class="text-right"><small>444</small></td>
                                         </tr>
                                         <tr>
-                                            <td class="text-right">Итого:</td>
-                                            <td class="text-right"><small>444</small></td>
+                                            <td class="text-right"><div class="label label-danger">Итого:</div></td>
+                                            <td class="text-right"><small class="label label-danger">444</small></td>
                                         </tr>
                                     </tbody>
                                 </table>
