@@ -58,7 +58,7 @@
                         <div id="panel_edit_2" class="tab-pane fade">
                             <div class="table-responsive">
 
-                                <table class="table table-radius">
+                                <table class="table">
                                     <thead>
                                         <tr class="bg-primary">
                                             <td class="text-left">Товар</td>
