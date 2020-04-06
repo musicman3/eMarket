@@ -78,7 +78,7 @@
                                     <div>
                                         <small class="form-text text-muted">
                                             <span class="glyphicon glyphicon-time"></span> Оплачен: 22.08.2015 15:32:18<br>
-                                            <span class="glyphicon glyphicon-time"></span> Комментарии: 0
+                                            <span class="glyphicon glyphicon-comment"></span> Комментарии: 0
                                         </small>
                                     </div>
                                 </div>
