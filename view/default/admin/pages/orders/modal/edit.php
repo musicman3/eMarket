@@ -120,10 +120,10 @@
                                     </thead>
                                     <tbody>
                                         <tr class="bg-success">
-                                            <td class="text-left"><small>111</small></td>
-                                            <td class="text-center"><small>222</small></td>
-                                            <td class="text-center"><small>333</small></td>
-                                            <td class="text-right"><small>444</small></td>
+                                            <td class="text-left"><small>HP EliteBook 840 G6</small></td>
+                                            <td class="text-center"><small>30 000.00 руб.</small></td>
+                                            <td class="text-center"><small>1</small></td>
+                                            <td class="text-right"><small>30 000.00 руб.</small></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -132,15 +132,15 @@
                                     <tbody>
                                         <tr>
                                             <td class="text-right"><small>Стоимость:</small></td>
-                                            <td class="text-right"><small>444</small></td>
+                                            <td class="text-right"><small>30 000.00 руб.</small></td>
                                         </tr>
                                         <tr>
                                             <td class="text-right"><small>Доставка:</small></td>
-                                            <td class="text-right"><small>444</small></td>
+                                            <td class="text-right"><small>1 000.00 руб.</small></td>
                                         </tr>
                                         <tr>
                                             <td class="text-right"><div class="label label-danger">Итого:</div></td>
-                                            <td class="text-right"><small class="label label-danger">444</small></td>
+                                            <td class="text-right"><small class="label label-danger">31 000.00 руб.</small></td>
                                         </tr>
                                     </tbody>
                                 </table>
