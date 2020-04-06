@@ -33,21 +33,52 @@
                                     <div class="label label-primary">Клиент</div>
                                     <div>
                                         <small class="form-text text-muted">
-                                            Николай Пермяков
-                                            Симферопольский бульвар, дом 1
-                                            Москва
-                                            Российская Федерация
+                                            <span class="glyphicon glyphicon-user"></span> Николай Пермяков<br>
+                                            <span class="glyphicon glyphicon-phone"></span> 9261234567<br>
+                                            <span class="glyphicon glyphicon-envelope"></span> user@oscommerce.ru
                                         </small>
                                     </div>
                                 </div>
                                 <div class="col-left form-group">
-                                    <div class="label label-primary">Клиент</div>
+                                    <div class="label label-primary">Адрес доставки</div>
                                     <div>
                                         <small class="form-text text-muted">
-                                            Николай Пермяков
-                                            Симферопольский бульвар, дом 1
-                                            Москва
-                                            Российская Федерация
+                                            <span class="glyphicon glyphicon-globe"></span> Российская Федерация<br>
+                                            <span class="glyphicon glyphicon-home"></span> Москва, Симферопольский бульвар, дом 1
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="col-left form-group">
+                                    <div class="label label-primary">Платежный адрес</div>
+                                    <div>
+                                        <small class="form-text text-muted">
+                                            <span class="glyphicon glyphicon-globe"></span> Российская Федерация<br>
+                                            <span class="glyphicon glyphicon-home"></span> Москва, Симферопольский бульвар, дом 1
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="col-left form-group">
+                                    <div class="label label-primary">Метод оплаты</div>
+                                    <div>
+                                        <small class="form-text text-muted">
+                                            <span class="glyphicon glyphicon-credit-card"></span> Наличными при получении
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="col-left form-group">
+                                    <div class="label label-primary">Итого</div>
+                                    <div>
+                                        <small class="form-text text-muted">
+                                            <span class="glyphicon glyphicon-list-alt"></span> 12000 руб.
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="col-left form-group">
+                                    <div class="label label-primary">Статус</div>
+                                    <div>
+                                        <small class="form-text text-muted">
+                                            <span class="glyphicon glyphicon-time"></span> Оплачен: 22.08.2015 15:32:18<br>
+                                            <span class="glyphicon glyphicon-time"></span> Комментарии: 0
                                         </small>
                                     </div>
                                 </div>
