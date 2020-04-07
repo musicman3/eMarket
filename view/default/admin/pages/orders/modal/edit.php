@@ -28,11 +28,11 @@
 
                         <!-- Содержимое панели Описание -->
                         <div id="panel_edit_1" class="tab-pane fade in active">
+			    <div class="table-responsive">
                             <table class="table">
                                 <tbody>
                                     <tr>
                                         <td class="text-left">
-                                            <div class="col-left form-group">
                                                 <div class="label label-primary">Клиент</div>
                                                 <div>
                                                     <small class="form-text text-muted">
@@ -41,22 +41,18 @@
                                                         <span class="glyphicon glyphicon-envelope"></span> user@oscommerce.ru
                                                     </small>
                                                 </div>
-                                            </div>
                                         </td>
                                         <td class="text-left">
-                                            <div class="col-left form-group">
                                                 <div class="label label-primary">Метод оплаты</div>
                                                 <div>
                                                     <small class="form-text text-muted">
                                                         <span class="glyphicon glyphicon-credit-card"></span> Наличными при получении
                                                     </small>
                                                 </div>
-                                            </div>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="text-left">
-                                            <div class="col-left form-group">
                                                 <div class="label label-primary">Адрес доставки</div>
                                                 <div>
                                                     <small class="form-text text-muted">
@@ -64,10 +60,8 @@
                                                         <span class="glyphicon glyphicon-home"></span> Москва, Симферопольский бульвар, дом 1
                                                     </small>
                                                 </div>
-                                            </div>
                                         </td>
                                         <td class="text-left">
-                                            <div class="col-left form-group">
                                                 <div class="label label-primary">Платежный адрес</div>
                                                 <div>
                                                     <small class="form-text text-muted">
@@ -75,12 +69,10 @@
                                                         <span class="glyphicon glyphicon-home"></span> Москва, Симферопольский бульвар, дом 1
                                                     </small>
                                                 </div>
-                                            </div>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="text-left">
-                                            <div class="col-left form-group">
                                                 <div class="label label-primary">Статус</div>
                                                 <div>
                                                     <small class="form-text text-muted">
@@ -88,21 +80,19 @@
                                                         <span class="glyphicon glyphicon-comment"></span> Комментарии: 0
                                                     </small>
                                                 </div>
-                                            </div>
                                         </td>
                                         <td class="text-left">
-                                            <div class="col-left form-group">
                                                 <div class="label label-primary">Итого</div>
                                                 <div>
                                                     <small class="form-text text-muted">
                                                         <span class="glyphicon glyphicon-list-alt"></span> 12000 руб.
                                                     </small>
                                                 </div>
-                                            </div>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
+                            </div>
                         </div>
 
                         <!-- Содержимое панели Товары -->
