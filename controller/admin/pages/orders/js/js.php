@@ -13,16 +13,12 @@
         var modal_id = button.data('edit'); // Получаем ID из data-edit при клике на кнопку редактирования
 
         // Получаем данные из data div
-        var name_edit = $('div#ajax_data').data('name');
-        var site_edit = $('div#ajax_data').data('site');
-        var logo_edit = $('div#ajax_data').data('logo');
-        var logo_general_edit = $('div#ajax_data').data('general');
+        var orders_edit = $('div#ajax_data').data('orders');
+        var customer_data = jQuery.parseJSON(orders_edit[modal_id]['customer_data']);
 
-        // Ищем id и добавляем данные
-        for (x = 0; x < name_edit.length; x++) {
-            $('#name_manufacturers_edit_' + x).val(name_edit[x][modal_id]);
-        }
-        $('#site_manufacturers_edit').val(site_edit[modal_id]);
+        $('#client_name').html(customer_data['firstname'] + ' ' + customer_data['lastname']);
+        $('#client_phone').html(customer_data['telephone']);
+        $('#client_email').html(customer_data['email']);
         $('#js_edit').val(modal_id);
     });
 </script>

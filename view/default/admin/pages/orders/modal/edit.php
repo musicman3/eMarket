@@ -3,7 +3,7 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-//require(ROOT . '/controller/admin/pages/orders/modal/edit.php');
+require(ROOT . '/controller/admin/pages/orders/modal/edit.php');
 ?>
 
 <!-- Модальное окно "Изменить" -->
@@ -36,9 +36,9 @@
                                                 <div class="label label-primary">Клиент</div>
                                                 <div>
                                                     <small class="form-text text-muted">
-                                                        <span class="glyphicon glyphicon-user"></span> Николай Пермяков<br>
-                                                        <span class="glyphicon glyphicon-phone"></span> 9261234567<br>
-                                                        <span class="glyphicon glyphicon-envelope"></span> user@oscommerce.ru
+                                                        <span class="glyphicon glyphicon-user"></span> <span id="client_name"></span><br>
+                                                        <span class="glyphicon glyphicon-phone"></span> <span id="client_phone">9261234567</span><br>
+                                                        <span class="glyphicon glyphicon-envelope"></span> <span id="client_email">user@oscommerce.ru</span>
                                                     </small>
                                                 </div>
                                         </td>
@@ -46,7 +46,7 @@
                                                 <div class="label label-primary">Метод оплаты</div>
                                                 <div>
                                                     <small class="form-text text-muted">
-                                                        <span class="glyphicon glyphicon-credit-card"></span> Наличными при получении
+                                                        <span class="glyphicon glyphicon-credit-card"></span> <span id="order_payment">Наличными при получении</span>
                                                     </small>
                                                 </div>
                                         </td>
@@ -56,8 +56,8 @@
                                                 <div class="label label-primary">Адрес доставки</div>
                                                 <div>
                                                     <small class="form-text text-muted">
-                                                        <span class="glyphicon glyphicon-globe"></span> Российская Федерация<br>
-                                                        <span class="glyphicon glyphicon-home"></span> Москва, Симферопольский бульвар, дом 1
+                                                        <span class="glyphicon glyphicon-globe"></span> <span id="shipping_country">Российская Федерация</span><br>
+                                                        <span class="glyphicon glyphicon-home"></span> <span id="shipping_address">Москва, Симферопольский бульвар, дом 1</span>
                                                     </small>
                                                 </div>
                                         </td>
@@ -65,8 +65,8 @@
                                                 <div class="label label-primary">Платежный адрес</div>
                                                 <div>
                                                     <small class="form-text text-muted">
-                                                        <span class="glyphicon glyphicon-globe"></span> Российская Федерация<br>
-                                                        <span class="glyphicon glyphicon-home"></span> Москва, Симферопольский бульвар, дом 1
+                                                        <span class="glyphicon glyphicon-globe"></span> <span id="payment_country">Российская Федерация</span><br>
+                                                        <span class="glyphicon glyphicon-home"></span> <span id="payment_address">Москва, Симферопольский бульвар, дом 1</span>
                                                     </small>
                                                 </div>
                                         </td>
@@ -76,8 +76,8 @@
                                                 <div class="label label-primary">Статус</div>
                                                 <div>
                                                     <small class="form-text text-muted">
-                                                        <span class="glyphicon glyphicon-time"></span> Оплачен: 22.08.2015 15:32:18<br>
-                                                        <span class="glyphicon glyphicon-comment"></span> Комментарии: 0
+                                                        <span class="glyphicon glyphicon-time"></span> <span id="order_status">Оплачен: 22.08.2015 15:32:18</span><br>
+                                                        <span class="glyphicon glyphicon-comment"></span> <span id="order_comments">Комментарии: 0</span>
                                                     </small>
                                                 </div>
                                         </td>
@@ -85,7 +85,7 @@
                                                 <div class="label label-primary">Итого</div>
                                                 <div>
                                                     <small class="form-text text-muted">
-                                                        <span class="glyphicon glyphicon-list-alt"></span> 12000 руб.
+                                                        <span class="glyphicon glyphicon-list-alt"></span> <span id="description_order_total">12000 руб.</span>
                                                     </small>
                                                 </div>
                                         </td>

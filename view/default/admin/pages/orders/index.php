@@ -23,10 +23,7 @@
             <div class="panel-body">
                 <!--Скрытый div для передачи данных-->
                 <div id="ajax_data" class='hidden'
-                     data-name='<?php echo $name_edit ?>'
-                     data-site='<?php echo $site_edit ?>'
-                     data-logo='<?php echo $logo_edit ?>'
-                     data-general='<?php echo $logo_general ?>'
+                     data-orders='<?php echo $orders_edit ?>'
                      ></div>
 
                 <table class="table table-hover">
