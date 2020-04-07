@@ -14,7 +14,7 @@
 
         // Получаем данные из data div
         var orders_edit = $('div#ajax_data').data('orders');
-        var customer_data = jQuery.parseJSON(orders_edit[modal_id]['customer_data']);
+        var customer_data = $.parseJSON(orders_edit[modal_id]['customer_data']);
 
         $('#client_name').html(customer_data['firstname'] + ' ' + customer_data['lastname']);
         $('#client_phone').html(customer_data['telephone']);
