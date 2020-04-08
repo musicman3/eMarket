@@ -37,8 +37,8 @@ require(ROOT . '/controller/admin/pages/orders/modal/edit.php');
                                                 <div>
                                                     <small class="form-text text-muted">
                                                         <span class="glyphicon glyphicon-user"></span> <span id="client_name"></span><br>
-                                                        <span class="glyphicon glyphicon-phone"></span> <span id="client_phone">9261234567</span><br>
-                                                        <span class="glyphicon glyphicon-envelope"></span> <span id="client_email">user@oscommerce.ru</span>
+                                                        <span class="glyphicon glyphicon-phone"></span> <span id="client_phone"></span><br>
+                                                        <span class="glyphicon glyphicon-envelope"></span> <span id="client_email"></span>
                                                     </small>
                                                 </div>
                                         </td>
@@ -76,8 +76,8 @@ require(ROOT . '/controller/admin/pages/orders/modal/edit.php');
                                                 <div class="label label-primary">Статус</div>
                                                 <div>
                                                     <small class="form-text text-muted">
-                                                        <span class="glyphicon glyphicon-time"></span> <span id="order_status">Оплачен: 22.08.2015 15:32:18</span><br>
-                                                        <span class="glyphicon glyphicon-comment"></span> <span id="order_comments">Комментарии: 0</span>
+                                                        <span class="glyphicon glyphicon-time"></span> Оплачен: <span id="order_date_purchased"></span><br>
+                                                        <span class="glyphicon glyphicon-comment"></span> Комментарии: <span id="order_comments">0</span>
                                                     </small>
                                                 </div>
                                         </td>
@@ -85,7 +85,7 @@ require(ROOT . '/controller/admin/pages/orders/modal/edit.php');
                                                 <div class="label label-primary">Итого</div>
                                                 <div>
                                                     <small class="form-text text-muted">
-                                                        <span class="glyphicon glyphicon-list-alt"></span> <span id="description_order_total">12000 руб.</span>
+                                                        <span class="glyphicon glyphicon-list-alt"></span> <span id="description_order_total"></span>
                                                     </small>
                                                 </div>
                                         </td>
