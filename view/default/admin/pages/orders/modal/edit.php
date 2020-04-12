@@ -56,8 +56,8 @@ require(ROOT . '/controller/admin/pages/orders/modal/edit.php');
                                                 <div class="label label-primary">Адрес доставки</div>
                                                 <div>
                                                     <small class="form-text text-muted">
-                                                        <span class="glyphicon glyphicon-globe"></span> <span id="shipping_country">Российская Федерация</span><br>
-                                                        <span class="glyphicon glyphicon-home"></span> <span id="shipping_address">Москва, Симферопольский бульвар, дом 1</span>
+                                                        <span class="glyphicon glyphicon-globe"></span> <span id="shipping_country"></span><br>
+                                                        <span class="glyphicon glyphicon-home"></span> <span id="shipping_address"></span>
                                                     </small>
                                                 </div>
                                         </td>
@@ -65,8 +65,8 @@ require(ROOT . '/controller/admin/pages/orders/modal/edit.php');
                                                 <div class="label label-primary">Платежный адрес</div>
                                                 <div>
                                                     <small class="form-text text-muted">
-                                                        <span class="glyphicon glyphicon-globe"></span> <span id="payment_country">Российская Федерация</span><br>
-                                                        <span class="glyphicon glyphicon-home"></span> <span id="payment_address">Москва, Симферопольский бульвар, дом 1</span>
+                                                        <span class="glyphicon glyphicon-globe"></span> <span id="payment_country"></span><br>
+                                                        <span class="glyphicon glyphicon-home"></span> <span id="payment_address"></span>
                                                     </small>
                                                 </div>
                                         </td>

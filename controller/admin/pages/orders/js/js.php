@@ -16,12 +16,20 @@
         var customer_data = $.parseJSON(orders_edit['customer_data']);
         var invoice = $.parseJSON(orders_edit['invoice']);
         var order_total = $.parseJSON(orders_edit['order_total']);
+        var address_book = $.parseJSON(customer_data['address_book']);
         // Описание
         $('#client_name').html(customer_data['firstname'] + ' ' + customer_data['lastname']);
         $('#client_phone').html(customer_data['telephone']);
         $('#client_email').html(customer_data['email']);
         $('#order_date_purchased').html(orders_edit['date_purchased']);
         $('#description_order_total').html(order_total['total_with_shipping_format']);
+        
+        $('#shipping_country').html(address_book['zip'] + ', ' + address_book['country'] + ', ' + address_book['region']);
+        $('#shipping_address').html(address_book['city'] + ', ' + address_book['address']);
+        
+        $('#payment_country').html(address_book['zip'] + ', ' + address_book['country'] + ', ' + address_book['region']);
+        $('#payment_address').html(address_book['city'] + ', ' + address_book['address']);
+        
         // Товары
         for (x = 0; x < invoice.length; x++) {
             $("#invoice").append('<tr class="bg-success">\n\
