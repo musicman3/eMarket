@@ -46,16 +46,17 @@ require(ROOT . '/controller/admin/pages/orders/modal/edit.php');
                                                 <div class="label label-primary">Метод оплаты</div>
                                                 <div>
                                                     <small class="form-text text-muted">
-                                                        <span class="glyphicon glyphicon-credit-card"></span> <span id="order_payment">Наличными при получении</span>
+                                                        <span class="glyphicon glyphicon-credit-card"></span> <span id="order_payment"></span>
                                                     </small>
                                                 </div>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="text-left">
-                                                <div class="label label-primary">Адрес доставки</div>
+                                                <div class="label label-primary">Доставка</div>
                                                 <div>
                                                     <small class="form-text text-muted">
+                                                        <span class="glyphicon glyphicon-plane"></span> <span class="label label-success" id="shipping_method"></span><br>
                                                         <span class="glyphicon glyphicon-globe"></span> <span id="shipping_country"></span><br>
                                                         <span class="glyphicon glyphicon-home"></span> <span id="shipping_address"></span>
                                                     </small>
@@ -85,7 +86,7 @@ require(ROOT . '/controller/admin/pages/orders/modal/edit.php');
                                                 <div class="label label-primary">Итого</div>
                                                 <div>
                                                     <small class="form-text text-muted">
-                                                        <span class="glyphicon glyphicon-list-alt"></span> <span id="description_order_total"></span>
+                                                        <span class="glyphicon glyphicon-barcode"></span> <span id="description_order_total"></span>
                                                     </small>
                                                 </div>
                                         </td>
@@ -120,7 +121,7 @@ require(ROOT . '/controller/admin/pages/orders/modal/edit.php');
                                             <td class="text-right"><small id="invoice_order_total"></small></td>
                                         </tr>
                                         <tr>
-                                            <td class="text-right"><small>Доставка:</small></td>
+                                            <td class="text-right"><small class="label label-success" id="invoice_shipping_method"></small></td>
                                             <td class="text-right"><small id="invoice_shipping_price"></small></td>
                                         </tr>
                                         <tr>

@@ -22,6 +22,9 @@
         $('#client_phone').html(customer_data['telephone']);
         $('#client_email').html(customer_data['email']);
         $('#order_date_purchased').html(orders_edit['date_purchased']);
+        $('#order_payment').html(orders_edit['payment_method']);
+        $('#shipping_method').html('<b>' + orders_edit['shipping_method'] + '</b>');
+        $('#invoice_shipping_method').html('<b>' + orders_edit['shipping_method'] + '</b>');
         $('#description_order_total').html(order_total['total_with_shipping_format']);
         
         $('#shipping_country').html(address_book['zip'] + ', ' + address_book['country'] + ', ' + address_book['region']);
