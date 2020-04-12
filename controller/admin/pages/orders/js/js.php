@@ -22,12 +22,12 @@
         $('#client_phone').html(customer_data['telephone']);
         $('#client_email').html(customer_data['email']);
         $('#order_date_purchased').html(orders_edit['date_purchased']);
-        $('#description_order_total').html(invoice['total']);
+        $('#description_order_total').html(order_total['total_with_shipping_format']);
         // Товары
         $('#invoice_product').html(invoice['name']);
         $('#invoice_order_amount').html(invoice['amount']);
         $('#invoice_product_price').html(invoice['price']);
-        $('#invoice_order_quantity').html(invoice['quantity']);
+        $('#invoice_order_quantity').html(invoice['quantity'] + ' ' + invoice['unit']);
         $('#invoice_order_total_with_shipping').html(order_total['total_with_shipping_format']);
         $('#invoice_order_total').html(order_total['total_format']);
         $('#invoice_shipping_price').html(order_total['shipping_price_format']);
