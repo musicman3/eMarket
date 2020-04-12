@@ -108,13 +108,8 @@ require(ROOT . '/controller/admin/pages/orders/modal/edit.php');
                                             <td class="text-right"><small>Сумма</small></td>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr class="bg-success">
-                                            <td class="text-left"><small id="invoice_product"></small></td>
-                                            <td class="text-center"><small id="invoice_product_price"></small></td>
-                                            <td class="text-center"><small id="invoice_order_quantity"></small></td>
-                                            <td class="text-right"><small id="invoice_order_amount"></small></td>
-                                        </tr>
+                                    <tbody id="invoice">
+                  
                                     </tbody>
                                 </table>
 
