@@ -17,6 +17,8 @@ require(ROOT . '/controller/catalog/pages/cart/modal/cart.php');
                 <div class="panel-body">
                     <input type="hidden" name="add" value="ok" />
                     <input type="hidden" id="products_order" name="products_order" value='<?php echo $products_order ?>' />
+                    <input type="hidden" id="order_total_with_shipping" name="order_total_with_shipping" value="" />
+                    <input type="hidden" id="order_shipping_price" name="order_shipping_price" value="" />
                     <input type="hidden" id="order_total" name="order_total" value="" />
                     <input type="hidden" id="callback_url" name="callback_url" value="" />
                     <input type="hidden" id="hash" name="hash" value="" />

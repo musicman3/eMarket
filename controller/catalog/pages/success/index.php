@@ -42,10 +42,18 @@ if (\eMarket\Valid::inPOST('add') && password_verify(\eMarket\Valid::inPOST('ord
         //Вычитаем товар со склада
         \eMarket\Pdo::inPrepare("UPDATE " . TABLE_PRODUCTS . " SET quantity=quantity- " . $value['quantity'] . " WHERE id=?", [$value['id']]);
     }
+    $order_total = [
+        'total_with_shipping' => \eMarket\Valid::inPOST('order_total_with_shipping'),
+        'total_with_shipping_format' => \eMarket\Products::productPrice(\eMarket\Valid::inPOST('order_total_with_shipping'), 1),
+        'total' => \eMarket\Valid::inPOST('order_total'),
+        'total_format' => \eMarket\Products::productPrice(\eMarket\Valid::inPOST('order_total'), 1),
+        'shipping_price' => \eMarket\Valid::inPOST('order_shipping_price'),
+        'shipping_price_format' => \eMarket\Products::productPrice(\eMarket\Valid::inPOST('order_shipping_price'), 1)
+            ];
 
     \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_ORDERS . " SET customer_data=?, orders_status_history=?, products_order=?, order_total=?, currency=?, invoice=?"
             . ", orders_transactions_history=?, customer_ip_address=?, payment_method=?, shipping_method=?, last_modified=?, date_purchased=?",
-            [json_encode($customer), $orders_status_history, \eMarket\Valid::inPOST('products_order'), \eMarket\Valid::inPOST('order_total'), $_SESSION['currency_default_catalog'], json_encode($invoice),
+            [json_encode($customer), $orders_status_history, \eMarket\Valid::inPOST('products_order'), json_encode($order_total), $_SESSION['currency_default_catalog'], json_encode($invoice),
                 NULL, \eMarket\Set::ipAddress(), \eMarket\Valid::inPOST('payment_method'), \eMarket\Valid::inPOST('shipping_method'), NULL, date("Y-m-d H:i:s")]);
     
     unset($_SESSION['cart']);

@@ -110,10 +110,10 @@ require(ROOT . '/controller/admin/pages/orders/modal/edit.php');
                                     </thead>
                                     <tbody>
                                         <tr class="bg-success">
-                                            <td class="text-left"><small>HP EliteBook 840 G6</small></td>
-                                            <td class="text-center"><small>30 000.00 руб.</small></td>
-                                            <td class="text-center"><small>1</small></td>
-                                            <td class="text-right"><small>30 000.00 руб.</small></td>
+                                            <td class="text-left"><small id="invoice_product"></small></td>
+                                            <td class="text-center"><small id="invoice_product_price"></small></td>
+                                            <td class="text-center"><small id="invoice_order_quantity"></small></td>
+                                            <td class="text-right"><small id="invoice_order_amount"></small></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -122,15 +122,15 @@ require(ROOT . '/controller/admin/pages/orders/modal/edit.php');
                                     <tbody>
                                         <tr>
                                             <td class="text-right"><small>Стоимость:</small></td>
-                                            <td class="text-right"><small>30 000.00 руб.</small></td>
+                                            <td class="text-right"><small id="invoice_order_total"></small></td>
                                         </tr>
                                         <tr>
                                             <td class="text-right"><small>Доставка:</small></td>
-                                            <td class="text-right"><small>1 000.00 руб.</small></td>
+                                            <td class="text-right"><small id="invoice_shipping_price"></small></td>
                                         </tr>
                                         <tr>
                                             <td class="text-right"><div class="label label-danger">Итого:</div></td>
-                                            <td class="text-right"><small class="label label-danger">31 000.00 руб.</small></td>
+                                            <td class="text-right"><small class="label label-danger" id="invoice_order_total_with_shipping"></small></td>
                                         </tr>
                                     </tbody>
                                 </table>

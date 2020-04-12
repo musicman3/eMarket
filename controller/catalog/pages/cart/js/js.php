@@ -73,7 +73,9 @@
                             $('#shipping_method_class').addClass('has-success');
                             $('#shipping_price').html('<?php echo lang('cart_shipping_price') ?> <b>' + shipping_val['chanel_shipping_price_format'] + '</b>');
                             $('#total_price_modal').html('<h5><?php echo lang('cart_total_to_pay') ?> ' + shipping_val['chanel_total_price_with_shipping_format'] + '</h5>');
-                            $('#order_total').val(shipping_val['chanel_total_price_with_shipping']);
+                            $('#order_total_with_shipping').val(shipping_val['chanel_total_price_with_shipping']);
+                            $('#order_total').val(shipping_val['chanel_total_price']);
+                            $('#order_shipping_price').val(shipping_val['chanel_shipping_price']);
                             $('#hash').val(shipping_val['chanel_hash_total_price_with_shipping']);
                         }
                     }
