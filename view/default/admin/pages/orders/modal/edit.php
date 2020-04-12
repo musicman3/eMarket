@@ -109,9 +109,7 @@ require(ROOT . '/controller/admin/pages/orders/modal/edit.php');
                                             <td class="text-right"><small>Сумма</small></td>
                                         </tr>
                                     </thead>
-                                    <tbody id="invoice">
-                  
-                                    </tbody>
+                                    <tbody id="invoice"></tbody>
                                 </table>
 
                                 <table class="table">

@@ -10,6 +10,7 @@
 
         var button = $(event.relatedTarget);
         var modal_id = button.data('edit'); // Получаем ID из data-edit при клике на кнопку редактирования
+        $('#invoice').empty();
 
         // Получаем данные из data div
         var orders_edit = $('div#ajax_data').data('orders')[modal_id];
