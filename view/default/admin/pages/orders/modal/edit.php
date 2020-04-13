@@ -28,71 +28,71 @@ require(ROOT . '/controller/admin/pages/orders/modal/edit.php');
 
                         <!-- Содержимое панели Описание -->
                         <div id="panel_edit_1" class="tab-pane fade in active">
-			    <div class="table-responsive">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td class="text-left">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-left">
                                                 <div class="label label-primary">Клиент</div>
                                                 <div>
                                                     <small class="form-text text-muted">
-                                                        <span class="glyphicon glyphicon-user"></span> <span id="client_name"></span><br>
-                                                        <span class="glyphicon glyphicon-phone"></span> <span id="client_phone"></span><br>
-                                                        <span class="glyphicon glyphicon-envelope"></span> <span id="client_email"></span>
+                                                        <span class="glyphicon glyphicon-user"></span> <span id="description_client_name"></span><br>
+                                                        <span class="glyphicon glyphicon-phone"></span> <span id="description_client_phone"></span><br>
+                                                        <span class="glyphicon glyphicon-envelope"></span> <span id="description_client_email"></span>
                                                     </small>
                                                 </div>
-                                        </td>
-                                        <td class="text-left">
+                                            </td>
+                                            <td class="text-left">
                                                 <div class="label label-primary">Метод оплаты</div>
                                                 <div>
                                                     <small class="form-text text-muted">
-                                                        <span class="glyphicon glyphicon-credit-card"></span> <span id="order_payment"></span>
+                                                        <span class="glyphicon glyphicon-credit-card"></span> <span id="description_payment_method"></span>
                                                     </small>
                                                 </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">
                                                 <div class="label label-primary">Доставка</div>
                                                 <div>
                                                     <small class="form-text text-muted">
-                                                        <span class="glyphicon glyphicon-plane"></span> <span class="label label-success" id="shipping_method"></span><br>
-                                                        <span class="glyphicon glyphicon-globe"></span> <span id="shipping_country"></span><br>
-                                                        <span class="glyphicon glyphicon-home"></span> <span id="shipping_address"></span>
+                                                        <span class="glyphicon glyphicon-plane"></span> <span class="label label-success" id="description_shipping_method"></span><br>
+                                                        <span class="glyphicon glyphicon-globe"></span> <span id="description_shipping_country"></span><br>
+                                                        <span class="glyphicon glyphicon-home"></span> <span id="description_shipping_address"></span>
                                                     </small>
                                                 </div>
-                                        </td>
-                                        <td class="text-left">
+                                            </td>
+                                            <td class="text-left">
                                                 <div class="label label-primary">Платежный адрес</div>
                                                 <div>
                                                     <small class="form-text text-muted">
-                                                        <span class="glyphicon glyphicon-globe"></span> <span id="payment_country"></span><br>
-                                                        <span class="glyphicon glyphicon-home"></span> <span id="payment_address"></span>
+                                                        <span class="glyphicon glyphicon-globe"></span> <span id="description_payment_country"></span><br>
+                                                        <span class="glyphicon glyphicon-home"></span> <span id="description_payment_address"></span>
                                                     </small>
                                                 </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">
                                                 <div class="label label-primary">Статус</div>
                                                 <div>
                                                     <small class="form-text text-muted">
-                                                        <span class="glyphicon glyphicon-time"></span> Оплачен: <span id="order_date_purchased"></span><br>
-                                                        <span class="glyphicon glyphicon-comment"></span> Комментарии: <span id="order_comments">0</span>
+                                                        <span class="glyphicon glyphicon-time"></span> Оплачен: <span id="description_date_purchased"></span><br>
+                                                        <span class="glyphicon glyphicon-comment"></span> Комментарии: <span id="description_comments">0</span>
                                                     </small>
                                                 </div>
-                                        </td>
-                                        <td class="text-left">
+                                            </td>
+                                            <td class="text-left">
                                                 <div class="label label-primary">Итого</div>
                                                 <div>
                                                     <small class="form-text text-muted">
                                                         <span class="glyphicon glyphicon-barcode"></span> <span id="description_order_total"></span>
                                                     </small>
                                                 </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
 

@@ -19,22 +19,27 @@
         var order_total = $.parseJSON(orders_edit['order_total']);
         var address_book = $.parseJSON(customer_data['address_book']);
         // Описание
-        $('#client_name').html(customer_data['firstname'] + ' ' + customer_data['lastname']);
-        $('#client_phone').html(customer_data['telephone']);
-        $('#client_email').html(customer_data['email']);
-        $('#order_date_purchased').html(orders_edit['date_purchased']);
-        $('#order_payment').html(orders_edit['payment_method']);
-        $('#shipping_method').html('<b>' + orders_edit['shipping_method'] + '</b>');
-        $('#invoice_shipping_method').html('<b>' + orders_edit['shipping_method'] + '</b>');
+        // #Клиент
+        $('#description_client_name').html(customer_data['firstname'] + ' ' + customer_data['lastname']);
+        $('#description_client_phone').html(customer_data['telephone']);
+        $('#description_client_email').html(customer_data['email']);
+        // #Метод оплаты
+        $('#description_payment_method').html(orders_edit['payment_method']);
+        // #Доставка
+        $('#description_shipping_method').html('<b>' + orders_edit['shipping_method'] + '</b>');
+        $('#description_shipping_country').html(address_book['zip'] + ', ' + address_book['country'] + ', ' + address_book['region']);
+        $('#description_shipping_address').html(address_book['city'] + ', ' + address_book['address']);
+        // #Платежный адрес
+        $('#description_payment_country').html(address_book['zip'] + ', ' + address_book['country'] + ', ' + address_book['region']);
+        $('#description_payment_address').html(address_book['city'] + ', ' + address_book['address']);
+        // #Статус
+        $('#description_date_purchased').html(orders_edit['date_purchased']);
+        // #Итого
         $('#description_order_total').html(order_total['total_with_shipping_format']);
         
-        $('#shipping_country').html(address_book['zip'] + ', ' + address_book['country'] + ', ' + address_book['region']);
-        $('#shipping_address').html(address_book['city'] + ', ' + address_book['address']);
-        
-        $('#payment_country').html(address_book['zip'] + ', ' + address_book['country'] + ', ' + address_book['region']);
-        $('#payment_address').html(address_book['city'] + ', ' + address_book['address']);
-        
         // Товары
+        $('#invoice_shipping_method').html('<b>' + orders_edit['shipping_method'] + '</b>');
+        
         for (x = 0; x < invoice.length; x++) {
             $("#invoice").append('<tr class="bg-success">\n\
                                         <td class="text-left"><small>' + invoice[x]['name'] + '</small></td>\n\
