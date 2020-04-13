@@ -16,6 +16,7 @@ require(ROOT . '/controller/admin/pages/orders/modal/edit.php');
             <form id="form_edit" name="form_edit" action="javascript:void(null);" onsubmit="callEdit()">
                 <div class="panel-body">
                     <input id="js_edit" type="hidden" name="edit" value="" />
+                    <input id="order_id" type="hidden" name="order_id" value="" />
                     <!-- Панели формы -->
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#panel_edit_1">Описание</a></li>
@@ -138,7 +139,7 @@ require(ROOT . '/controller/admin/pages/orders/modal/edit.php');
                                 <div><small class="form-text text-muted">Значение идентификатора товара</small></div>
                                 <div class="input-group has-success">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="input-sm form-control" placeholder="ABC125" type="text" name="vendor_code_value_product_stock_edit" id="vendor_code_value_product_stock_edit" />
+                                    <input class="input-sm form-control" placeholder="ABC125" type="text" name="transaction_history" id="transaction_history" />
                                 </div>
                             </div>
                         </div>
@@ -146,12 +147,17 @@ require(ROOT . '/controller/admin/pages/orders/modal/edit.php');
                         <!-- Содержимое панели История статусов -->
                         <div id="panel_edit_4" class="tab-pane fade">
                             <div class="col-left form-group">
-                                <div><small class="form-text text-muted">Значение идентификатора товара</small></div>
+                                <div class="input-group has-success" id="status_history"></div><br>
                                 <div class="input-group has-success">
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="input-sm form-control" placeholder="ABC125" type="text" name="vendor_code_value_product_stock_edit" id="vendor_code_value_product_stock_edit" />
-                                </div>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                                <select name="status_history_select" id="status_history_select" class="input-sm form-control">
+                                    <?php foreach ($order_status as $value) { ?>
+                                    <option value="<?php echo $value['id'] ?>"><?php echo $value['name'] ?></option>
+                                    <?php } ?>
+                                </select>
                             </div>
+                            </div>
+                            
                         </div>
                     </div>
                 </div>

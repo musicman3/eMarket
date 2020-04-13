@@ -11,6 +11,7 @@
         var button = $(event.relatedTarget);
         var modal_id = button.data('edit'); // Получаем ID из data-edit при клике на кнопку редактирования
         $('#invoice').empty();
+        $('#status_history').empty();
 
         // Получаем данные из data div
         var orders_edit = $('div#ajax_data').data('orders')[modal_id];
@@ -18,6 +19,8 @@
         var invoice = $.parseJSON(orders_edit['invoice']);
         var order_total = $.parseJSON(orders_edit['order_total']);
         var address_book = $.parseJSON(customer_data['address_book']);
+        var history_status = $.parseJSON(orders_edit['orders_status_history']);
+
         // Описание
         // #Клиент
         $('#description_client_name').html(customer_data['firstname'] + ' ' + customer_data['lastname']);
@@ -51,6 +54,12 @@
         $('#invoice_shipping_price').html(order_total['shipping_price_format']);
         $('#invoice_order_total').html(order_total['total_format']);
         $('#invoice_order_total_with_shipping').html(order_total['total_with_shipping_format']);
+        
+        // История статусов
+        for (x = 0; x < history_status.length; x++) {
+            $("#status_history").append('<span class="glyphicon glyphicon-ok"></span> <span class="label label-success">' + history_status[x] + '</span><br>');
+        }
+        
         
         $('#js_edit').val(modal_id);
     });
