@@ -38,8 +38,6 @@
         $('#description_order_total').html(order_total['total_with_shipping_format']);
         
         // Товары
-        $('#invoice_shipping_method').html('<b>' + orders_edit['shipping_method'] + '</b>');
-        
         for (x = 0; x < invoice.length; x++) {
             $("#invoice").append('<tr class="bg-success">\n\
                                         <td class="text-left"><small>' + invoice[x]['name'] + '</small></td>\n\
@@ -48,11 +46,12 @@
                                         <td class="text-right"><small>' + invoice[x]['amount'] + '</small></td>\n\
                                   </tr>');
         }
-
-        $('#invoice_order_total_with_shipping').html(order_total['total_with_shipping_format']);
-        $('#invoice_order_total').html(order_total['total_format']);
+        
+        $('#invoice_shipping_method').html('<b>' + orders_edit['shipping_method'] + '</b>');
         $('#invoice_shipping_price').html(order_total['shipping_price_format']);
-
+        $('#invoice_order_total').html(order_total['total_format']);
+        $('#invoice_order_total_with_shipping').html(order_total['total_with_shipping_format']);
+        
         $('#js_edit').val(modal_id);
     });
 </script>
