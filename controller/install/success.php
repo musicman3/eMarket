@@ -129,6 +129,7 @@ $password_admin_hash = \eMarket\Autorize::passwordHash($password_admin);
 
 if (\eMarket\Valid::inPOST('login_admin') && \eMarket\Valid::inPOST('password_admin')) {
     \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_ADMINISTRATORS . "  SET login=?, password=?, permission=?, language=?", [$login_admin, $password_admin_hash, 'admin', $lng]);
+    \eMarket\Pdo::inPrepare("UPDATE " . TABLE_BASIC_SETTINGS . " SET primary_language=?", [$lng]);
 }
 
 // СОЗДАЕМ .HTACCESS

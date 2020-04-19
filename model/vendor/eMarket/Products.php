@@ -1,4 +1,5 @@
 <?php
+
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -22,7 +23,7 @@ class Products {
      * @return array $product (массив с данными по товару)
      */
     public static function viewNew($count) {
-        
+
 
         $product = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE language=? ORDER BY id DESC LIMIT " . $count . "", [lang('#lang_all')[0]]);
         return $product;
@@ -32,12 +33,16 @@ class Products {
      * Данные по товару
      *
      * @param string $id (id товара)
+     * @param string $language (язык отображения)
      * @return array $product (данные по товару)
      */
-    public static function productData($id) {
-        
+    public static function productData($id, $language = null) {
 
-        $product = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE language=? AND id=?", [lang('#lang_all')[0], $id])[0];
+        if ($language == null) {
+            $language = lang('#lang_all')[0];
+        }
+
+        $product = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=? AND language=?", [$id, $language])[0];
         return $product;
     }
 
@@ -59,7 +64,7 @@ class Products {
      * @return array $product (данные по категории)
      */
     public static function productCategories($id) {
-        
+
 
         $categories = \eMarket\Pdo::getCell("SELECT name FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], $id]);
         return $categories;
@@ -73,9 +78,9 @@ class Products {
      * @return array $price (данные по стоимости)
      */
     public static function productPrice($price, $format = null) {
-        
+
         $CURRENCIES = \eMarket\Set::currencyDefault();
-        
+
         if ($format == 0) {
             if ($CURRENCIES[8] == 'left') {
                 return $price_return = $CURRENCIES[1] . ' ' . number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator'), lang('currency_group_separator'));
@@ -102,7 +107,7 @@ class Products {
                 return $price_return = number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator'), lang('currency_group_separator')) . ' ' . $CURRENCIES[7];
             }
         }
-        
+
         if ($format == 3) {
             if ($CURRENCIES[8] == 'left') {
                 return $price_return = $CURRENCIES[3] . ' ' . number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator'), lang('currency_group_separator'));

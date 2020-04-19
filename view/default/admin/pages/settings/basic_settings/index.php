@@ -23,13 +23,30 @@
                 <li><a data-toggle="tab" href="#email"><?php echo lang('basic_settigs_email') ?></a></li>
             </ul>
 
-	    <!-- Содержимое панелей -->
-	    <div class="tab-content">
-		<!-- Основные настройки -->
-		<div id="general" class="tab-pane fade in active">
-		    <form id="form_add" name="form_add" class="form-horizontal" action="javascript:void(null);" onsubmit="callAdd()">
+            <!-- Содержимое панелей -->
+            <div class="tab-content">
+                <!-- Основные настройки -->
+                <div id="general" class="tab-pane fade in active">
+                    <form id="form_add" name="form_add" class="form-horizontal" action="javascript:void(null);" onsubmit="callAdd()">
                         <input hidden name="add" value="ok">
 
+                        <div class="form-group">
+                            <div class="col-sm-3 text-left"><label class=""><?php echo lang('basic_settings_primary_language') ?></label></div>
+                            <div class="col-sm-9">
+                                <select name="primary_language" id="primary_language" class="input-sm form-control">
+                                    <?php if ($LANG_COUNT == 1) { ?>
+                                        <option value="<?php echo $admin_primary_language ?>" selected><?php echo lang('language_name', $admin_primary_language) ?></option>
+                                    <?php } else { ?>
+                                        <option value="<?php echo $admin_primary_language ?>" selected><?php echo lang('language_name', $admin_primary_language) ?></option>
+                                        <?php foreach ($langs_settings as $langs) { ?>
+                                            <option value="<?php echo $langs ?>"><?php echo lang('language_name', $langs) ?></option>
+                                            <?php
+                                        }
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <div class="col-sm-3 text-left"><label class="control-label"><?php echo lang('lines_on_page') ?></label></div>
                             <div class="col-sm-9">
@@ -57,11 +74,11 @@
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button>
-		    </form>
-		</div>
-		<!-- Настройки E-Mail -->
-		<div id="email" class="tab-pane fade">
-		    <form id="form_email" name="form_email" class="form-horizontal" action="javascript:void(null);" onsubmit="callAdd('form_email')">
+                    </form>
+                </div>
+                <!-- Настройки E-Mail -->
+                <div id="email" class="tab-pane fade">
+                    <form id="form_email" name="form_email" class="form-horizontal" action="javascript:void(null);" onsubmit="callAdd('form_email')">
                         <input hidden name="add" value="ok">
 
                         <div class="form-group">
@@ -144,10 +161,10 @@
                         </div>
 
                         <button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button>
-		    </form>
+                    </form>
 
-		</div>
-	    </div>        
-	</div>
+                </div>
+            </div>        
+        </div>
     </div>
 </div>

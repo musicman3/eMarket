@@ -154,6 +154,7 @@ basic_settings_smtp_port = SMTP Порт
 basic_settings_smtp_use = Использовать SMTP
 basic_settings_email = E-mail отправителя
 basic_settings_email_name = Имя отправителя
+basic_settings_primary_language = Основной язык
 
 ;MANUFACTURERS
 manufacturer = Производитель
