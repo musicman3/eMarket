@@ -53,10 +53,13 @@ if (\eMarket\Valid::inPOST('add') && password_verify(\eMarket\Valid::inPOST('ord
     $order_total = [
         'total_with_shipping' => \eMarket\Valid::inPOST('order_total_with_shipping'),
         'total_with_shipping_format' => \eMarket\Products::productPrice(\eMarket\Valid::inPOST('order_total_with_shipping'), 1),
+        'admin_total_with_shipping_format' => \eMarket\Products::productPrice(\eMarket\Valid::inPOST('order_total_with_shipping'), 1, $primary_language),
         'total' => \eMarket\Valid::inPOST('order_total'),
         'total_format' => \eMarket\Products::productPrice(\eMarket\Valid::inPOST('order_total'), 1),
+        'admin_total_format' => \eMarket\Products::productPrice(\eMarket\Valid::inPOST('order_total'), 1, $primary_language),
         'shipping_price' => \eMarket\Valid::inPOST('order_shipping_price'),
-        'shipping_price_format' => \eMarket\Products::productPrice(\eMarket\Valid::inPOST('order_shipping_price'), 1)
+        'shipping_price_format' => \eMarket\Products::productPrice(\eMarket\Valid::inPOST('order_shipping_price'), 1),
+        'admin_shipping_price_format' => \eMarket\Products::productPrice(\eMarket\Valid::inPOST('order_shipping_price'), 1, $primary_language)
             ];
     
     $payment_method = lang('modules_payment_' . \eMarket\Valid::inPOST('payment_method') . '_name');

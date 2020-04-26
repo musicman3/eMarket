@@ -72,7 +72,7 @@ class Set {
         } else {
             self::$CURRENCIES = FALSE;
         }
-        
+
         if (self::$CURRENCIES == FALSE) {
 
             if (!isset($_SESSION['currency_default_catalog'])) {
@@ -86,6 +86,10 @@ class Set {
             }
 
             self::$CURRENCIES = $currency;
+
+            if ($language != null) {
+                self::$CURRENCIES = FALSE;
+            }
 
             return $currency;
         } else {
