@@ -19,6 +19,8 @@ if (\eMarket\Valid::inPOST('add') && password_verify(\eMarket\Valid::inPOST('ord
     unset($address_data['countries_id']);
     
     $customer['address_book'] = json_encode($address_data);
+    //Основной язык
+    $primary_language = \eMarket\Set::primaryLanguage();
 
     $orders_status_history_json = \eMarket\Pdo::getCellFalse("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE default_order_status=? AND language=?", [1, lang('#lang_all')[0]]);
     $orders_status_history = json_encode([$orders_status_history_json]);
@@ -29,13 +31,19 @@ if (\eMarket\Valid::inPOST('add') && password_verify(\eMarket\Valid::inPOST('ord
 
     foreach ($cart as $value) {
         $product_data = \eMarket\Products::productData($value['id']);
+        $admin_product_data = \eMarket\Products::productData($value['id'], $primary_language);
         $unit = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_UNITS . " WHERE id=? AND language=?", [$product_data['unit'], lang('#lang_all')[0]])[0];
+        $admin_unit = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_UNITS . " WHERE id=? AND language=?", [$product_data['unit'], $primary_language])[0];
         $data = [
+            'quantity' => $value['quantity'],
             'name' => $product_data['name'],
             'price' => \eMarket\Products::productPrice($product_data['price'], 1),
-            'quantity' => $value['quantity'],
             'unit' => $unit['unit'],
             'amount' => \eMarket\Products::productPrice($product_data['price'] * $value['quantity'], 1),
+            'admin_name' => $admin_product_data['name'],
+            'admin_price' => \eMarket\Products::productPrice($admin_product_data['price'], 1, $primary_language),
+            'admin_unit' => $admin_unit['unit'],
+            'admin_amount' => \eMarket\Products::productPrice($admin_product_data['price'] * $value['quantity'], 1, $primary_language),
         ];
         array_push($invoice, $data);
         

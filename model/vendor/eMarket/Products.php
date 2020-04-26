@@ -75,49 +75,54 @@ class Products {
      *
      * @param string $price (цена)
      * @param string $format (выводить стоимость в форматированном виде: 0 - полное наим., 1- сокращ. наим., 2 - знак валюты, 3 - ISO код)
+     * @param string $language (язык для отображения)
      * @return array $price (данные по стоимости)
      */
-    public static function productPrice($price, $format = null) {
+    public static function productPrice($price, $format = null, $language = null) {
 
-        $CURRENCIES = \eMarket\Set::currencyDefault();
+        if ($language == null) {
+            $CURRENCIES = \eMarket\Set::currencyDefault();
+        } else {
+            $CURRENCIES = \eMarket\Set::currencyDefault($language);
+        }
 
         if ($format == 0) {
             if ($CURRENCIES[8] == 'left') {
-                return $price_return = $CURRENCIES[1] . ' ' . number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator'), lang('currency_group_separator'));
+                return $price_return = $CURRENCIES[1] . ' ' . number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language));
             }
             if ($CURRENCIES[8] == 'right') {
-                return $price_return = number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator'), lang('currency_group_separator')) . ' ' . $CURRENCIES[1];
+                return $price_return = number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language)) . ' ' . $CURRENCIES[1];
             }
         }
 
         if ($format == 1) {
             if ($CURRENCIES[8] == 'left') {
-                return $price_return = $CURRENCIES[2] . ' ' . number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator'), lang('currency_group_separator'));
+                return $price_return = $CURRENCIES[2] . ' ' . number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language));
             }
             if ($CURRENCIES[8] == 'right') {
-                return $price_return = number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator'), lang('currency_group_separator')) . ' ' . $CURRENCIES[2];
+                return $price_return = number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language)) . ' ' . $CURRENCIES[2];
             }
         }
 
         if ($format == 2) {
             if ($CURRENCIES[8] == 'left') {
-                return $price_return = $CURRENCIES[7] . ' ' . number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator'), lang('currency_group_separator'));
+                return $price_return = $CURRENCIES[7] . ' ' . number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language));
             }
             if ($CURRENCIES[8] == 'right') {
-                return $price_return = number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator'), lang('currency_group_separator')) . ' ' . $CURRENCIES[7];
+                return $price_return = number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language)) . ' ' . $CURRENCIES[7];
             }
         }
 
         if ($format == 3) {
             if ($CURRENCIES[8] == 'left') {
-                return $price_return = $CURRENCIES[3] . ' ' . number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator'), lang('currency_group_separator'));
+                return $price_return = $CURRENCIES[3] . ' ' . number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language));
             }
             if ($CURRENCIES[8] == 'right') {
-                return $price_return = number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator'), lang('currency_group_separator')) . ' ' . $CURRENCIES[3];
+                return $price_return = number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language)) . ' ' . $CURRENCIES[3];
             }
         }
 
-        return number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator'), lang('currency_group_separator'));
+        return number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language));
     }
 
 }

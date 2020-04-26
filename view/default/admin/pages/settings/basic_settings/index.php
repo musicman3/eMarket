@@ -35,9 +35,9 @@
                             <div class="col-sm-9">
                                 <select name="primary_language" id="primary_language" class="input-sm form-control">
                                     <?php if ($LANG_COUNT == 1) { ?>
-                                        <option value="<?php echo $admin_primary_language ?>" selected><?php echo lang('language_name', $admin_primary_language) ?></option>
+                                        <option value="<?php echo $primary_language ?>" selected><?php echo lang('language_name', $primary_language) ?></option>
                                     <?php } else { ?>
-                                        <option value="<?php echo $admin_primary_language ?>" selected><?php echo lang('language_name', $admin_primary_language) ?></option>
+                                        <option value="<?php echo $primary_language ?>" selected><?php echo lang('language_name', $primary_language) ?></option>
                                         <?php foreach ($langs_settings as $langs) { ?>
                                             <option value="<?php echo $langs ?>"><?php echo lang('language_name', $langs) ?></option>
                                             <?php

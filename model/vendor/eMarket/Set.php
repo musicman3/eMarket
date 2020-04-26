@@ -16,6 +16,9 @@ namespace eMarket;
 class Set {
 
     public static $CURRENCIES = FALSE;
+    public static $primary_language = FALSE;
+    public static $lines_on_page = FALSE;
+    public static $session_expr_time = FALSE;
 
     /**
      * Название текущего шаблона
@@ -59,19 +62,26 @@ class Set {
     /**
      * Данные по основной валюте
      *
+     * @param string $language (язык)
      * @return array $currency
      */
-    public static function currencyDefault() {
+    public static function currencyDefault($language = null) {
 
+        if ($language == null) {
+            $language = lang('#lang_all')[0];
+        } else {
+            self::$CURRENCIES = FALSE;
+        }
+        
         if (self::$CURRENCIES == FALSE) {
 
             if (!isset($_SESSION['currency_default_catalog'])) {
-                $currency = \eMarket\Pdo::getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND default_value=?", [lang('#lang_all')[0], 1])[0];
+                $currency = \eMarket\Pdo::getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND default_value=?", [$language, 1])[0];
                 $_SESSION['currency_default_catalog'] = $currency[0];
             } elseif (isset($_SESSION['currency_default_catalog']) && !\eMarket\Valid::inGET('currency_default')) {
-                $currency = \eMarket\Pdo::getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], $_SESSION['currency_default_catalog']])[0];
+                $currency = \eMarket\Pdo::getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND id=?", [$language, $_SESSION['currency_default_catalog']])[0];
             } elseif (isset($_SESSION['currency_default_catalog']) && \eMarket\Valid::inGET('currency_default')) {
-                $currency = \eMarket\Pdo::getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], \eMarket\Valid::inGET('currency_default')])[0];
+                $currency = \eMarket\Pdo::getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND id=?", [$language, \eMarket\Valid::inGET('currency_default')])[0];
                 $_SESSION['currency_default_catalog'] = $currency[0];
             }
 
@@ -240,8 +250,11 @@ class Set {
      */
     public static function linesOnPage() {
 
-        $lines_on_page = \eMarket\Pdo::selectPrepare("SELECT lines_on_page FROM " . TABLE_BASIC_SETTINGS, []);
-        return $lines_on_page;
+        if (self::$lines_on_page == FALSE) {
+            self::$lines_on_page = \eMarket\Pdo::selectPrepare("SELECT lines_on_page FROM " . TABLE_BASIC_SETTINGS, []);
+        }
+
+        return self::$lines_on_page;
     }
 
     /**
@@ -251,8 +264,11 @@ class Set {
      */
     public static function sessionExprTime() {
 
-        $session_expr_time = \eMarket\Pdo::selectPrepare("SELECT session_expr_time FROM " . TABLE_BASIC_SETTINGS, []);
-        return $session_expr_time;
+        if (self::$session_expr_time == FALSE) {
+            self::$session_expr_time = \eMarket\Pdo::selectPrepare("SELECT session_expr_time FROM " . TABLE_BASIC_SETTINGS, []);
+        }
+
+        return self::$session_expr_time;
     }
 
     /**
@@ -374,6 +390,20 @@ class Set {
     }
 
     /**
+     * Получаем основной язык
+     *
+     * @return string (основной язык)
+     */
+    public static function primaryLanguage() {
+
+        if (self::$primary_language == FALSE) {
+            self::$primary_language = \eMarket\Pdo::getCell("SELECT primary_language FROM " . TABLE_BASIC_SETTINGS . "", []);
+        }
+
+        return self::$primary_language;
+    }
+
+    /**
      * Получаем название базы данных модуля
      *
      * @return string (название базы данных модуля)
@@ -389,7 +419,7 @@ class Set {
      * @return string|FALSE форматированная дата
      */
     public static function dateLocale($date, $format = null) {
-        if ($date == NULL){
+        if ($date == NULL) {
             return '';
         }
         if ($format != null) {

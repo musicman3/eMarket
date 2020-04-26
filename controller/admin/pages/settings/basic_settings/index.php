@@ -42,16 +42,16 @@ if (\eMarket\Valid::inPOST('debug')) {
     $debug = \eMarket\Pdo::getCell("SELECT debug FROM " . TABLE_BASIC_SETTINGS . "", []);
 }
 
-// ОТЛАДОЧНАЯ ИНФОРМАЦИЯ
-$admin_primary_language = \eMarket\Pdo::getCell("SELECT primary_language FROM " . TABLE_BASIC_SETTINGS . "", []);
-$langs_settings = \eMarket\Func::deleteValInArray(lang('#lang_all'), [$admin_primary_language]);
+// ОСНОВНОЙ ЯЗЫК
+$primary_language = \eMarket\Set::primaryLanguage();
+$langs_settings = \eMarket\Func::deleteValInArray(lang('#lang_all'), [$primary_language]);
 
 if (\eMarket\Valid::inPOST('primary_language')) {
 
     \eMarket\Pdo::inPrepare("UPDATE " . TABLE_BASIC_SETTINGS . " SET primary_language=?", [\eMarket\Valid::inPOST('primary_language')]);
 
     // Считываем значение
-    $admin_primary_language = \eMarket\Pdo::getCell("SELECT primary_language FROM " . TABLE_BASIC_SETTINGS . "", []);
+    $primary_language = \eMarket\Set::primaryLanguage();
 }
 
 
