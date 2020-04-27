@@ -15,7 +15,7 @@ if (\eMarket\Valid::inPOST('edit')) {
     $status_history_data = json_decode(\eMarket\Pdo::getCellFalse("SELECT orders_status_history FROM " . TABLE_ORDERS . " WHERE id=?", [\eMarket\Valid::inPOST('edit')]), 1);
     array_push($status_history_data['customer'], $customer_status_history_select);
     array_push($status_history_data['admin'], $admin_status_history_select);
-    \eMarket\Pdo::inPrepare("UPDATE " . TABLE_ORDERS . " SET orders_status_history=? WHERE id=?", [json_encode($status_history_data), \eMarket\Valid::inPOST('edit')]);
+    \eMarket\Pdo::inPrepare("UPDATE " . TABLE_ORDERS . " SET orders_status_history=?, last_modified=? WHERE id=?", [json_encode($status_history_data), date("Y-m-d H:i:s"), \eMarket\Valid::inPOST('edit')]);
 
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
