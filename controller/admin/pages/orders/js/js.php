@@ -19,7 +19,7 @@
         var invoice = $.parseJSON(orders_edit['invoice']);
         var order_total = $.parseJSON(orders_edit['order_total']);
         var address_book = $.parseJSON(customer_data['address_book']);
-        var history_status = $.parseJSON(orders_edit['orders_status_history']);
+        var history_status = $.parseJSON(orders_edit['orders_status_history'])['admin'];
 
         // Описание
         // #Клиент

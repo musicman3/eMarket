@@ -13,18 +13,22 @@ if (\eMarket\Valid::inPOST('add') && password_verify(\eMarket\Valid::inPOST('ord
     $address_data = $address_all[\eMarket\Valid::inPOST('address') - 1];
     $address_data['region'] = \eMarket\Pdo::getCellFalse("SELECT name FROM " . TABLE_REGIONS . " WHERE id=? AND language=?", [$address_data['regions_id'], lang('#lang_all')[0]]);
     $address_data['country'] = \eMarket\Pdo::getCellFalse("SELECT name FROM " . TABLE_COUNTRIES . " WHERE id=? AND language=?", [$address_data['countries_id'], lang('#lang_all')[0]]);
-    
+
     unset($address_data['default']);
     unset($address_data['regions_id']);
     unset($address_data['countries_id']);
-    
+
     $customer['address_book'] = json_encode($address_data);
     //Основной язык
     $primary_language = \eMarket\Set::primaryLanguage();
 
-    $orders_status_history_json = \eMarket\Pdo::getCellFalse("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE default_order_status=? AND language=?", [1, lang('#lang_all')[0]]);
-    $orders_status_history = json_encode([$orders_status_history_json]);
-    
+    $customer_orders_status_history_json = \eMarket\Pdo::getCellFalse("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE default_order_status=? AND language=?", [1, lang('#lang_all')[0]]);
+    $admin_orders_status_history_json = \eMarket\Pdo::getCellFalse("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE default_order_status=? AND language=?", [1, $primary_language]);
+    $orders_status_history = json_encode([
+        'admin' => [$admin_orders_status_history_json],
+        'customer' => [$customer_orders_status_history_json]
+    ]);
+
     //Формируем данные по заказу
     $cart = json_decode(\eMarket\Valid::inPOST('products_order'), 1);
     $invoice = [];
@@ -46,9 +50,6 @@ if (\eMarket\Valid::inPOST('add') && password_verify(\eMarket\Valid::inPOST('ord
             'admin_amount' => \eMarket\Products::productPrice($admin_product_data['price'] * $value['quantity'], 1, $primary_language),
         ];
         array_push($invoice, $data);
-        
-        //Вычитаем товар со склада
-        \eMarket\Pdo::inPrepare("UPDATE " . TABLE_PRODUCTS . " SET quantity=quantity- " . $value['quantity'] . " WHERE id=?", [$value['id']]);
     }
     $order_total = [
         'total_with_shipping' => \eMarket\Valid::inPOST('order_total_with_shipping'),
@@ -60,8 +61,8 @@ if (\eMarket\Valid::inPOST('add') && password_verify(\eMarket\Valid::inPOST('ord
         'shipping_price' => \eMarket\Valid::inPOST('order_shipping_price'),
         'shipping_price_format' => \eMarket\Products::productPrice(\eMarket\Valid::inPOST('order_shipping_price'), 1),
         'admin_shipping_price_format' => \eMarket\Products::productPrice(\eMarket\Valid::inPOST('order_shipping_price'), 1, $primary_language)
-            ];
-    
+    ];
+
     $payment_method = lang('modules_payment_' . \eMarket\Valid::inPOST('payment_method') . '_name');
     $shipping_method = lang('modules_shipping_' . \eMarket\Valid::inPOST('shipping_method') . '_name');
 
@@ -69,7 +70,10 @@ if (\eMarket\Valid::inPOST('add') && password_verify(\eMarket\Valid::inPOST('ord
             . ", orders_transactions_history=?, customer_ip_address=?, payment_method=?, shipping_method=?, last_modified=?, date_purchased=?",
             [json_encode($customer), $orders_status_history, \eMarket\Valid::inPOST('products_order'), json_encode($order_total), $_SESSION['currency_default_catalog'], json_encode($invoice),
                 NULL, \eMarket\Set::ipAddress(), $payment_method, $shipping_method, NULL, date("Y-m-d H:i:s")]);
-    
+
+    //Вычитаем товар со склада
+    \eMarket\Pdo::inPrepare("UPDATE " . TABLE_PRODUCTS . " SET quantity=quantity- " . $value['quantity'] . " WHERE id=?", [$value['id']]);
+
     unset($_SESSION['cart']);
 }
 
