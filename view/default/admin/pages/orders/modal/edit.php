@@ -136,11 +136,7 @@ require(ROOT . '/controller/admin/pages/orders/modal/edit.php');
                         <!-- Содержимое панели История транзакций -->
                         <div id="panel_edit_3" class="tab-pane fade">
                             <div class="col-left form-group">
-                                <div><small class="form-text text-muted">Значение идентификатора товара</small></div>
-                                <div class="input-group has-success">
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="input-sm form-control" placeholder="ABC125" type="text" name="transaction_history" id="transaction_history" />
-                                </div>
+
                             </div>
                         </div>
 
