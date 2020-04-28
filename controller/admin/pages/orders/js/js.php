@@ -20,6 +20,8 @@
         var order_total = $.parseJSON(orders_edit['order_total']);
         var address_book = $.parseJSON(customer_data['address_book']);
         var history_status = $.parseJSON(orders_edit['orders_status_history'])['admin'];
+        var shipping_method = $.parseJSON(orders_edit['shipping_method'])['admin'];
+        var payment_method = $.parseJSON(orders_edit['payment_method'])['admin'];
 
         // Описание
         // #Клиент
@@ -27,16 +29,16 @@
         $('#description_client_phone').html(customer_data['telephone']);
         $('#description_client_email').html(customer_data['email']);
         // #Метод оплаты
-        $('#description_payment_method').html(orders_edit['payment_method']);
+        $('#description_payment_method').html(payment_method);
         // #Доставка
-        $('#description_shipping_method').html('<b>' + orders_edit['shipping_method'] + '</b>');
+        $('#description_shipping_method').html('<b>' + shipping_method + '</b>');
         $('#description_shipping_country').html(address_book['zip'] + ', ' + address_book['country'] + ', ' + address_book['region']);
         $('#description_shipping_address').html(address_book['city'] + ', ' + address_book['address']);
         // #Платежный адрес
         $('#description_payment_country').html(address_book['zip'] + ', ' + address_book['country'] + ', ' + address_book['region']);
         $('#description_payment_address').html(address_book['city'] + ', ' + address_book['address']);
         // #Статус
-        $('#description_date_purchased').html(orders_edit['date_purchased']);
+        $('#description_date_purchased').html(history_status[0] + ': ' + orders_edit['date_purchased']);
         // #Итого
         $('#description_order_total').html(order_total['admin_total_with_shipping_format']);
         

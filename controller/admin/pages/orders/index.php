@@ -13,8 +13,8 @@ if (\eMarket\Valid::inPOST('edit')) {
     $customer_status_history_select = \eMarket\Pdo::getCellFalse("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE language=? AND id=?", [lang('#lang_all')[0], \eMarket\Valid::inPOST('status_history_select')]);
     $admin_status_history_select = \eMarket\Pdo::getCellFalse("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE language=? AND id=?", [$primary_language, \eMarket\Valid::inPOST('status_history_select')]);
     $status_history_data = json_decode(\eMarket\Pdo::getCellFalse("SELECT orders_status_history FROM " . TABLE_ORDERS . " WHERE id=?", [\eMarket\Valid::inPOST('edit')]), 1);
-    array_push($status_history_data['customer'], $customer_status_history_select);
-    array_push($status_history_data['admin'], $admin_status_history_select);
+    array_unshift($status_history_data['customer'], $customer_status_history_select);
+    array_unshift($status_history_data['admin'], $admin_status_history_select);
     \eMarket\Pdo::inPrepare("UPDATE " . TABLE_ORDERS . " SET orders_status_history=?, last_modified=? WHERE id=?", [json_encode($status_history_data), date("Y-m-d H:i:s"), \eMarket\Valid::inPOST('edit')]);
 
     // Выводим сообщение об успехе

@@ -25,9 +25,7 @@ final class Lang {
      */
     public static function lang($default_language, $marker = null) {
 
-        static $lang = null, $lang_trans = null, $lang_all = null;
-
-        if ($lang == null) {
+        if ($marker == null) {
             //Получаем массив со списком путей к языковым файлам движка
             $engine_path_array = \eMarket\Tree::filesTree(getenv('DOCUMENT_ROOT') . '/language/' . $default_language . '/' . \eMarket\Set::path());
 
@@ -54,7 +52,7 @@ final class Lang {
             }
         }
 
-        if ($lang_all == null OR $lang_trans == null) {
+        if ($marker == 'all' OR $marker == 'translate') {
 
             //Получение списка языков
             $lang_all = []; // массив с языками

@@ -78,7 +78,7 @@ require(ROOT . '/controller/admin/pages/orders/modal/edit.php');
                                                 <div class="label label-primary">Статус</div>
                                                 <div>
                                                     <small class="form-text text-muted">
-                                                        <span class="glyphicon glyphicon-time"></span> Оплачен: <span id="description_date_purchased"></span><br>
+                                                        <span class="glyphicon glyphicon-time"></span> <span id="description_date_purchased"></span><br>
                                                         <span class="glyphicon glyphicon-comment"></span> Комментарии: <span id="description_comments">0</span>
                                                     </small>
                                                 </div>
