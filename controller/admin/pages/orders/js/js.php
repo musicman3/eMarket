@@ -47,7 +47,7 @@
             $("#invoice").append('<tr class="bg-success">\n\
                                         <td class="text-left"><small>' + invoice[x]['admin_name'] + '</small></td>\n\
                                         <td class="text-center"><small>' + invoice[x]['admin_price'] + '</small></td>\n\
-                                        <td class="text-center"><small>' + invoice[x]['quantity'] + ' ' + invoice[x]['unit'] + '</small></td>\n\
+                                        <td class="text-center"><small>' + invoice[x]['quantity'] + ' ' + invoice[x]['admin_unit'] + '</small></td>\n\
                                         <td class="text-right"><small>' + invoice[x]['admin_amount'] + '</small></td>\n\
                                   </tr>');
         }
