@@ -52,7 +52,7 @@
                                   </tr>');
         }
         
-        $('#invoice_shipping_method').html('<b>' + orders_edit['shipping_method'] + '</b>');
+        $('#invoice_shipping_method').html('<b>' + shipping_method + '</b>');
         $('#invoice_shipping_price').html(order_total['admin_shipping_price_format']);
         $('#invoice_order_total').html(order_total['admin_total_format']);
         $('#invoice_order_total_with_shipping').html(order_total['admin_total_with_shipping_format']);
