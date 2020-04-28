@@ -38,29 +38,44 @@ if (\eMarket\Valid::inPOST('add') && password_verify(\eMarket\Valid::inPOST('ord
         $admin_product_data = \eMarket\Products::productData($value['id'], $primary_language);
         $unit = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_UNITS . " WHERE id=? AND language=?", [$product_data['unit'], lang('#lang_all')[0]])[0];
         $admin_unit = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_UNITS . " WHERE id=? AND language=?", [$product_data['unit'], $primary_language])[0];
+        
         $data = [
-            'quantity' => $value['quantity'],
-            'name' => $product_data['name'],
-            'price' => \eMarket\Products::productPrice($product_data['price'], 1),
-            'unit' => $unit['unit'],
-            'amount' => \eMarket\Products::productPrice($product_data['price'] * $value['quantity'], 1),
-            'admin_name' => $admin_product_data['name'],
-            'admin_price' => \eMarket\Products::productPrice($admin_product_data['price'], 1, $primary_language),
-            'admin_unit' => $admin_unit['unit'],
-            'admin_amount' => \eMarket\Products::productPrice($admin_product_data['price'] * $value['quantity'], 1, $primary_language),
+            'admin' => [
+                'name' => $admin_product_data['name'],
+                'price' => \eMarket\Products::productPrice($admin_product_data['price'], 1, $primary_language),
+                'unit' => $admin_unit['unit'],
+                'amount' => \eMarket\Products::productPrice($admin_product_data['price'] * $value['quantity'], 1, $primary_language)
+            ],
+            'customer' => [
+                'name' => $product_data['name'],
+                'price' => \eMarket\Products::productPrice($product_data['price'], 1),
+                'unit' => $unit['unit'],
+                'amount' => \eMarket\Products::productPrice($product_data['price'] * $value['quantity'], 1)
+            ],
+            'data' => [
+                'quantity' => $value['quantity']
+            ]
         ];
+        
         array_push($invoice, $data);
     }
+    
     $order_total = [
-        'total_with_shipping' => \eMarket\Valid::inPOST('order_total_with_shipping'),
-        'total_with_shipping_format' => \eMarket\Products::productPrice(\eMarket\Valid::inPOST('order_total_with_shipping'), 1),
-        'admin_total_with_shipping_format' => \eMarket\Products::productPrice(\eMarket\Valid::inPOST('order_total_with_shipping'), 1, $primary_language),
-        'total' => \eMarket\Valid::inPOST('order_total'),
-        'total_format' => \eMarket\Products::productPrice(\eMarket\Valid::inPOST('order_total'), 1),
-        'admin_total_format' => \eMarket\Products::productPrice(\eMarket\Valid::inPOST('order_total'), 1, $primary_language),
-        'shipping_price' => \eMarket\Valid::inPOST('order_shipping_price'),
-        'shipping_price_format' => \eMarket\Products::productPrice(\eMarket\Valid::inPOST('order_shipping_price'), 1),
-        'admin_shipping_price_format' => \eMarket\Products::productPrice(\eMarket\Valid::inPOST('order_shipping_price'), 1, $primary_language)
+        'admin' => [
+            'total_with_shipping_format' => \eMarket\Products::productPrice(\eMarket\Valid::inPOST('order_total_with_shipping'), 1, $primary_language),
+            'total_format' => \eMarket\Products::productPrice(\eMarket\Valid::inPOST('order_total'), 1, $primary_language),
+            'shipping_price_format' => \eMarket\Products::productPrice(\eMarket\Valid::inPOST('order_shipping_price'), 1, $primary_language)
+        ],
+        'customer' => [
+            'total_with_shipping_format' => \eMarket\Products::productPrice(\eMarket\Valid::inPOST('order_total_with_shipping'), 1),
+            'total_format' => \eMarket\Products::productPrice(\eMarket\Valid::inPOST('order_total'), 1),
+            'shipping_price_format' => \eMarket\Products::productPrice(\eMarket\Valid::inPOST('order_shipping_price'), 1)
+        ],
+        'data' => [
+            'total_with_shipping' => \eMarket\Valid::inPOST('order_total_with_shipping'),
+            'total' => \eMarket\Valid::inPOST('order_total'),
+            'shipping_price' => \eMarket\Valid::inPOST('order_shipping_price'),
+        ]
     ];
 
     $admin_payment_method = lang('modules_payment_' . \eMarket\Valid::inPOST('payment_method') . '_name', $primary_language, 'all');
