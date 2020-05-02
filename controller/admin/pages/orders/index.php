@@ -11,8 +11,8 @@ if (\eMarket\Valid::inPOST('edit')) {
     $primary_language = \eMarket\Set::primaryLanguage();
     // Сохраняем статус
     $order_data = \eMarket\Pdo::getColAssoc("SELECT orders_status_history, customer_data FROM " . TABLE_ORDERS . " WHERE id=?", [\eMarket\Valid::inPOST('edit')])[0];
-    $customer_data = json_decode($order_data['customer_data'], 1);
-    $customer_status_history_select = \eMarket\Pdo::getCellFalse("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE language=? AND id=?", [$customer_data['language'], \eMarket\Valid::inPOST('status_history_select')]);
+    $customer_language = json_decode($order_data['customer_data'], 1)['language'];
+    $customer_status_history_select = \eMarket\Pdo::getCellFalse("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE language=? AND id=?", [$customer_language, \eMarket\Valid::inPOST('status_history_select')]);
     $admin_status_history_select = \eMarket\Pdo::getCellFalse("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE language=? AND id=?", [$primary_language, \eMarket\Valid::inPOST('status_history_select')]);
 
     $status_history_data = json_decode($order_data['orders_status_history'], 1);
@@ -22,7 +22,7 @@ if (\eMarket\Valid::inPOST('edit')) {
         array_unshift($status_history_data, [
             'customer' => [
                 'status' => $customer_status_history_select,
-                'date' => \eMarket\Set::dateLocale($date, '%c', $customer_data['language'])
+                'date' => \eMarket\Set::dateLocale($date, '%c', $customer_language)
             ],
             'admin' => [
                 'status' => $admin_status_history_select,
