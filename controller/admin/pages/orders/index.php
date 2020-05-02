@@ -15,11 +15,11 @@ if (\eMarket\Valid::inPOST('edit')) {
     $customer_status_history_select = \eMarket\Pdo::getCellFalse("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE language=? AND id=?", [$customer_language, \eMarket\Valid::inPOST('status_history_select')]);
     $admin_status_history_select = \eMarket\Pdo::getCellFalse("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE language=? AND id=?", [$primary_language, \eMarket\Valid::inPOST('status_history_select')]);
 
-    $status_history_data = json_decode($order_data['orders_status_history'], 1);
+    $orders_status_history = json_decode($order_data['orders_status_history'], 1);
 
-    if ($status_history_data[0]['admin']['status'] != $admin_status_history_select) {
+    if ($orders_status_history[0]['admin']['status'] != $admin_status_history_select) {
         $date = date("Y-m-d H:i:s");
-        array_unshift($status_history_data, [
+        array_unshift($orders_status_history, [
             'customer' => [
                 'status' => $customer_status_history_select,
                 'date' => \eMarket\Set::dateLocale($date, '%c', $customer_language)
@@ -28,7 +28,7 @@ if (\eMarket\Valid::inPOST('edit')) {
                 'status' => $admin_status_history_select,
                 'date' => \eMarket\Set::dateLocale($date, '%c', $primary_language)
         ]]);
-        \eMarket\Pdo::inPrepare("UPDATE " . TABLE_ORDERS . " SET orders_status_history=?, last_modified=? WHERE id=?", [json_encode($status_history_data), $date, \eMarket\Valid::inPOST('edit')]);
+        \eMarket\Pdo::inPrepare("UPDATE " . TABLE_ORDERS . " SET orders_status_history=?, last_modified=? WHERE id=?", [json_encode($orders_status_history), $date, \eMarket\Valid::inPOST('edit')]);
     } else {
         exit;
     }
