@@ -19,15 +19,24 @@ if (\eMarket\Valid::inPOST('add') && password_verify(\eMarket\Valid::inPOST('ord
     unset($address_data['countries_id']);
 
     $customer['address_book'] = json_encode($address_data);
+    $customer['language'] = $_SESSION['DEFAULT_LANGUAGE'];
     //Основной язык
     $primary_language = \eMarket\Set::primaryLanguage();
 
-    $customer_orders_status_history_json = \eMarket\Pdo::getCellFalse("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE default_order_status=? AND language=?", [1, lang('#lang_all')[0]]);
-    $admin_orders_status_history_json = \eMarket\Pdo::getCellFalse("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE default_order_status=? AND language=?", [1, $primary_language]);
-    $orders_status_history = json_encode([
-        'admin' => [$admin_orders_status_history_json],
-        'customer' => [$customer_orders_status_history_json]
-    ]);
+    $customer_orders_status_history = \eMarket\Pdo::getCellFalse("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE default_order_status=? AND language=?", [1, lang('#lang_all')[0]]);
+    $admin_orders_status_history = \eMarket\Pdo::getCellFalse("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE default_order_status=? AND language=?", [1, $primary_language]);
+    $date = date("Y-m-d H:i:s");
+    $orders_status_history_data = [[
+        'admin' => [
+            'status' => $admin_orders_status_history,
+            'date' => \eMarket\Set::dateLocale($date, '%c', $primary_language)
+        ],
+        'customer' => [
+            'status' => $customer_orders_status_history,
+            'date' => \eMarket\Set::dateLocale($date, '%c')
+        ]
+    ]];
+    $orders_status_history = json_encode($orders_status_history_data);
 
     //Формируем данные по заказу
     $cart = json_decode(\eMarket\Valid::inPOST('products_order'), 1);

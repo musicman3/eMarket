@@ -7,16 +7,31 @@
 
 // Если нажали на кнопку Редактировать
 if (\eMarket\Valid::inPOST('edit')) {
-    
+
     $primary_language = \eMarket\Set::primaryLanguage();
     // Сохраняем статус
-    $customer_status_history_select = \eMarket\Pdo::getCellFalse("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE language=? AND id=?", [lang('#lang_all')[0], \eMarket\Valid::inPOST('status_history_select')]);
+    $order_data = \eMarket\Pdo::getColAssoc("SELECT orders_status_history, customer_data FROM " . TABLE_ORDERS . " WHERE id=?", [\eMarket\Valid::inPOST('edit')])[0];
+    $customer_data = json_decode($order_data['customer_data'], 1);
+    $customer_status_history_select = \eMarket\Pdo::getCellFalse("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE language=? AND id=?", [$customer_data['language'], \eMarket\Valid::inPOST('status_history_select')]);
     $admin_status_history_select = \eMarket\Pdo::getCellFalse("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE language=? AND id=?", [$primary_language, \eMarket\Valid::inPOST('status_history_select')]);
-    $status_history_data = json_decode(\eMarket\Pdo::getCellFalse("SELECT orders_status_history FROM " . TABLE_ORDERS . " WHERE id=?", [\eMarket\Valid::inPOST('edit')]), 1);
-    array_unshift($status_history_data['customer'], $customer_status_history_select);
-    array_unshift($status_history_data['admin'], $admin_status_history_select);
-    \eMarket\Pdo::inPrepare("UPDATE " . TABLE_ORDERS . " SET orders_status_history=?, last_modified=? WHERE id=?", [json_encode($status_history_data), date("Y-m-d H:i:s"), \eMarket\Valid::inPOST('edit')]);
 
+    $status_history_data = json_decode($order_data['orders_status_history'], 1);
+
+    if ($status_history_data[0]['admin']['status'] != $admin_status_history_select[$primary_language]) {
+        $date = date("Y-m-d H:i:s");
+        array_unshift($status_history_data, [
+            'customer' => [
+                'status' => $customer_status_history_select,
+                'date' => \eMarket\Set::dateLocale($date, '%c', $customer_data['language'])
+            ],
+            'admin' => [
+                'status' => $admin_status_history_select,
+                'date' => \eMarket\Set::dateLocale($date, '%c', $primary_language)
+        ]]);
+        \eMarket\Pdo::inPrepare("UPDATE " . TABLE_ORDERS . " SET orders_status_history=?, last_modified=? WHERE id=?", [json_encode($status_history_data), $date, \eMarket\Valid::inPOST('edit')]);
+    } else {
+        exit;
+    }
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
 }

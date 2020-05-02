@@ -419,18 +419,36 @@ class Set {
 
     /**
      * Форматированная дата
-     *
+     * 
+     * @param string $format (формат даты вручную)
+     * @param string $language (язык локали)
      * @return string|FALSE форматированная дата
      */
-    public static function dateLocale($date, $format = null) {
+    public static function dateLocale($date, $format = null, $language = null) {
         if ($date == NULL) {
             return '';
         }
+
         if ($format != null) {
-            return strftime($format, date('U', strtotime($date)));
+            if ($language != null) {
+                setlocale(LC_ALL, lang('language_locale', $language));
+            }
+            $output = strftime($format, date('U', strtotime($date)));
+            if ($language != null) {
+                setlocale(LC_ALL, lang('language_locale'));
+            }
+            return $output;
         } else {
-            return strftime('%x', date('U', strtotime($date)));
+            if ($language != null) {
+                setlocale(LC_ALL, lang('language_locale', $language));
+            }
+            $output = strftime('%x', date('U', strtotime($date)));
+            if ($language != null) {
+                setlocale(LC_ALL, lang('language_locale'));
+            }
+            return $output;
         }
+
         return FALSE;
     }
 

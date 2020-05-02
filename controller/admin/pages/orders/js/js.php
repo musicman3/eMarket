@@ -19,7 +19,7 @@
         var invoice = $.parseJSON(orders_edit['invoice']);
         var order_total = $.parseJSON(orders_edit['order_total']);
         var address_book = $.parseJSON(customer_data['address_book']);
-        var history_status = $.parseJSON(orders_edit['orders_status_history'])['admin'];
+        var history_status = $.parseJSON(orders_edit['orders_status_history']);
         var shipping_method = $.parseJSON(orders_edit['shipping_method'])['admin'];
         var payment_method = $.parseJSON(orders_edit['payment_method'])['admin'];
 
@@ -38,7 +38,7 @@
         $('#description_payment_country').html(address_book['zip'] + ', ' + address_book['country'] + ', ' + address_book['region']);
         $('#description_payment_address').html(address_book['city'] + ', ' + address_book['address']);
         // #Статус
-        $('#description_date_purchased').html(history_status[0] + ': ' + orders_edit['date_purchased']);
+        $('#description_date_purchased').html(history_status[0]['admin']['status'] + ': ' + history_status[0]['admin']['date']);
         // #Итого
         $('#description_order_total').html(order_total['admin']['total_with_shipping_format']);
         
@@ -59,7 +59,7 @@
         
         // История статусов
         for (x = 0; x < history_status.length; x++) {
-            $("#status_history").append('<span class="glyphicon glyphicon-ok"></span> <span class="label label-success">' + history_status[x] + '</span><br>');
+            $("#status_history").append('<span class="glyphicon glyphicon-ok"></span><small> ' + history_status[x]['admin']['date'] + ' </small><span class="label label-success">' + history_status[x]['admin']['status'] + '</span><br>');
         }
         
         

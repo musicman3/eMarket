@@ -142,7 +142,7 @@ require(ROOT . '/controller/admin/pages/orders/modal/edit.php');
 
                         <!-- Содержимое панели История статусов -->
                         <div id="panel_edit_4" class="tab-pane fade">
-                            <div class="col-left form-group">
+                            <div class="form-group">
                                 <div class="input-group has-success" id="status_history"></div><br>
                                 <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
