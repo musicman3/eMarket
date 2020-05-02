@@ -36,7 +36,7 @@
                                 <div class="settings"><a href="?route=settings/weight" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-scale glyph-xs"> </span></a><?php echo lang('title_settings_weight_index') ?></div>
                             </td>
                             <td>
-                                <div class="settings"><a href="#" class="btn btn-default btn-xs disabled"><span class="glyphicon glyphicon-comment glyph-xs"> </span></a>Языки</div>
+                                <div class="settings"><a href="?route=settings/templates" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-th-large glyph-xs"> </span></a><?php echo lang('title_settings_templates_index') ?></div>
                             </td>
                         </tr>
                         <tr>
@@ -69,18 +69,18 @@
                                 <div class="settings"><a href="#" class="btn btn-default btn-xs disabled"><span class="glyphicon glyphicon-picture glyph-xs"> </span></a>Изображения</div>
                             </td>
                             <td>
-                                <div class="settings"><a href="?route=settings/templates" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-th-large glyph-xs"> </span></a><?php echo lang('title_settings_templates_index') ?></div>
+                                <div class="settings"><a href="#" class="btn btn-default btn-xs disabled"><span class="glyphicon glyphicon-comment glyph-xs"> </span></a>Языки</div>
                             </td>
                         </tr>  
                         <tr>
                             <td>
-                                <div class="settings"><a href="#" class="btn btn-default btn-xs disabled"><span class="glyphicon glyphicon-book glyph-xs"> </span></a>Адресная книга</div>
+                                <div class="settings"><a href="#" class="btn btn-default btn-xs disabled"><span class="glyphicon glyphicon-question-sign glyph-xs"> </span></a></div>
                             </td>
                             <td>
-                                <div class="settings"><a href="#" class="btn btn-default btn-xs disabled"><span class="glyphicon glyphicon-picture glyph-xs"> </span></a></div>
+                                <div class="settings"><a href="#" class="btn btn-default btn-xs disabled"><span class="glyphicon glyphicon-question-sign glyph-xs"> </span></a></div>
                             </td>
                             <td>
-                                <div class="settings"><a href="#" class="btn btn-default btn-xs disabled"><span class="glyphicon glyphicon-th-large glyph-xs"> </span></a></div>
+                                <div class="settings"><a href="#" class="btn btn-default btn-xs disabled"><span class="glyphicon glyphicon-question-sign glyph-xs"> </span></a></div>
                             </td>
                         </tr> 
                     </tbody>
