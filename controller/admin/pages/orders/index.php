@@ -17,7 +17,7 @@ if (\eMarket\Valid::inPOST('edit')) {
 
     $status_history_data = json_decode($order_data['orders_status_history'], 1);
 
-    if ($status_history_data[0]['admin']['status'] != $admin_status_history_select[$primary_language]) {
+    if ($status_history_data[0]['admin']['status'] != $admin_status_history_select) {
         $date = date("Y-m-d H:i:s");
         array_unshift($status_history_data, [
             'customer' => [
