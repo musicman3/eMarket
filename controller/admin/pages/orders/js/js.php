@@ -22,6 +22,9 @@
         var history_status = $.parseJSON(orders_edit['orders_status_history']);
         var shipping_method = $.parseJSON(orders_edit['shipping_method'])['admin'];
         var payment_method = $.parseJSON(orders_edit['payment_method'])['admin'];
+        
+        // Титл
+        $('#title').html('<?php echo lang('orders_number') ?>: ' + orders_edit['id']);
 
         // Описание
         // #Клиент
