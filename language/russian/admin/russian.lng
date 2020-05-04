@@ -181,3 +181,23 @@ add_product = Добавить товар
 
 ;TEMPLATES
 all_pages_template = Все страницы
+
+;ORDERS
+orders_total = Итого
+orders_status = Статус
+orders_shipping = Доставка
+orders_client = Клиент
+orders_amount = Сумма
+orders_quantity = Количество
+orders_price = Цена
+orders_product = Товар
+orders_products = Товары
+orders_transaction_history = История транзакций
+orders_status_history = История статусов
+orders_description = Описание
+orders_payment_method = Метод оплаты
+orders_billing_address = Платежный адрес
+orders_date_added = Дата добавления
+orders_date_of_change = Дата изменения
+orders_number = № заказа
+orders_subtotal = Стоимость

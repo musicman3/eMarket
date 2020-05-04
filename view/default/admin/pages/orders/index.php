@@ -63,12 +63,12 @@
                         </tr>
                         <?php if ($lines == TRUE) { ?>
                             <tr class="border">
-                                <th>№ заказа</th>
-                                <th class="al-text">Клиент</th>
-                                <th class="al-text">Итого</th>
-                                <th class="al-text">Дата добавления</th>
-                                <th class="al-text">Дата изменения</th>
-                                <th class="al-text">Статус</th>
+                                <th><?php echo lang('orders_number') ?></th>
+                                <th class="al-text"><?php echo lang('orders_client') ?></th>
+                                <th class="al-text"><?php echo lang('orders_total') ?></th>
+                                <th class="al-text"><?php echo lang('orders_date_added') ?></th>
+                                <th class="al-text"><?php echo lang('orders_date_of_change') ?></th>
+                                <th class="al-text"><?php echo lang('orders_status') ?></th>
                                 <th class="al-text-w"></th>
                             </tr>
                         <?php } ?>

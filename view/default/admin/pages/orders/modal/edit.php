@@ -19,10 +19,10 @@ require(ROOT . '/controller/admin/pages/orders/modal/edit.php');
                     <input id="order_id" type="hidden" name="order_id" value="" />
                     <!-- Панели формы -->
                     <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#panel_edit_1">Описание</a></li>
-                        <li><a data-toggle="tab" href="#panel_edit_2">Товары</a></li>
-                        <li><a data-toggle="tab" href="#panel_edit_3">История транзакций</a></li>
-                        <li><a data-toggle="tab" href="#panel_edit_4">История статусов</a></li>
+                        <li class="active"><a data-toggle="tab" href="#panel_edit_1"><?php echo lang('orders_description') ?></a></li>
+                        <li><a data-toggle="tab" href="#panel_edit_2"><?php echo lang('orders_products') ?></a></li>
+                        <li><a data-toggle="tab" href="#panel_edit_3"><?php echo lang('orders_transaction_history') ?></a></li>
+                        <li><a data-toggle="tab" href="#panel_edit_4"><?php echo lang('orders_status_history') ?></a></li>
                     </ul>
                     <!-- Содержимое панелей формы-->
                     <div class="tab-content">
@@ -34,7 +34,7 @@ require(ROOT . '/controller/admin/pages/orders/modal/edit.php');
                                     <tbody>
                                         <tr>
                                             <td class="text-left">
-                                                <div class="label label-primary">Клиент</div>
+                                                <div class="label label-primary"><?php echo lang('orders_client') ?></div>
                                                 <div>
                                                     <small class="form-text text-muted">
                                                         <span class="glyphicon glyphicon-user"></span> <span id="description_client_name"></span><br>
@@ -44,7 +44,7 @@ require(ROOT . '/controller/admin/pages/orders/modal/edit.php');
                                                 </div>
                                             </td>
                                             <td class="text-left">
-                                                <div class="label label-primary">Метод оплаты</div>
+                                                <div class="label label-primary"><?php echo lang('orders_payment_method') ?></div>
                                                 <div>
                                                     <small class="form-text text-muted">
                                                         <span class="glyphicon glyphicon-credit-card"></span> <span id="description_payment_method"></span>
@@ -54,7 +54,7 @@ require(ROOT . '/controller/admin/pages/orders/modal/edit.php');
                                         </tr>
                                         <tr>
                                             <td class="text-left">
-                                                <div class="label label-primary">Доставка</div>
+                                                <div class="label label-primary"><?php echo lang('orders_shipping') ?></div>
                                                 <div>
                                                     <small class="form-text text-muted">
                                                         <span class="glyphicon glyphicon-plane"></span> <span class="label label-success" id="description_shipping_method"></span><br>
@@ -64,27 +64,26 @@ require(ROOT . '/controller/admin/pages/orders/modal/edit.php');
                                                 </div>
                                             </td>
                                             <td class="text-left">
-                                                <div class="label label-primary">Платежный адрес</div>
+                                                <div class="label label-primary"><?php echo lang('orders_billing_address') ?></div>
                                                 <div>
                                                     <small class="form-text text-muted">
-                                                        <span class="glyphicon glyphicon-globe"></span> <span id="description_payment_country"></span><br>
-                                                        <span class="glyphicon glyphicon-home"></span> <span id="description_payment_address"></span>
+                                                        <span class="glyphicon glyphicon-globe"></span> <span id="description_billing_country"></span><br>
+                                                        <span class="glyphicon glyphicon-home"></span> <span id="description_billing_address"></span>
                                                     </small>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="text-left">
-                                                <div class="label label-primary">Статус</div>
+                                                <div class="label label-primary"><?php echo lang('orders_status') ?></div>
                                                 <div>
                                                     <small class="form-text text-muted">
                                                         <span class="glyphicon glyphicon-time"></span> <span id="description_date_purchased"></span><br>
-                                                        <span class="glyphicon glyphicon-comment"></span> Комментарии: <span id="description_comments">0</span>
                                                     </small>
                                                 </div>
                                             </td>
                                             <td class="text-left">
-                                                <div class="label label-primary">Итого</div>
+                                                <div class="label label-primary"><?php echo lang('orders_total') ?></div>
                                                 <div>
                                                     <small class="form-text text-muted">
                                                         <span class="glyphicon glyphicon-barcode"></span> <span id="description_order_total"></span>
@@ -104,10 +103,10 @@ require(ROOT . '/controller/admin/pages/orders/modal/edit.php');
                                 <table class="table table-radius">
                                     <thead>
                                         <tr class="bg-primary">
-                                            <td class="text-left"><small>Товар</small></td>
-                                            <td class="text-center"><small>Цена</small></td>
-                                            <td class="text-center"><small>Кол-во</small></td>
-                                            <td class="text-right"><small>Сумма</small></td>
+                                            <td class="text-left"><small><?php echo lang('orders_product') ?></small></td>
+                                            <td class="text-center"><small><?php echo lang('orders_price') ?></small></td>
+                                            <td class="text-center"><small><?php echo lang('orders_quantity') ?></small></td>
+                                            <td class="text-right"><small><?php echo lang('orders_amount') ?></small></td>
                                         </tr>
                                     </thead>
                                     <tbody id="invoice"></tbody>
@@ -116,7 +115,7 @@ require(ROOT . '/controller/admin/pages/orders/modal/edit.php');
                                 <table class="table">
                                     <tbody>
                                         <tr>
-                                            <td class="text-right"><small>Стоимость:</small></td>
+                                            <td class="text-right"><small><?php echo lang('orders_subtotal') ?>:</small></td>
                                             <td class="text-right"><small id="invoice_order_total"></small></td>
                                         </tr>
                                         <tr>
@@ -124,7 +123,7 @@ require(ROOT . '/controller/admin/pages/orders/modal/edit.php');
                                             <td class="text-right"><small id="invoice_shipping_price"></small></td>
                                         </tr>
                                         <tr>
-                                            <td class="text-right"><div class="label label-danger">Итого:</div></td>
+                                            <td class="text-right"><div class="label label-danger"><?php echo lang('orders_total') ?>:</div></td>
                                             <td class="text-right"><small class="label label-danger" id="invoice_order_total_with_shipping"></small></td>
                                         </tr>
                                     </tbody>

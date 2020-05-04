@@ -35,8 +35,8 @@
         $('#description_shipping_country').html(address_book['zip'] + ', ' + address_book['country'] + ', ' + address_book['region']);
         $('#description_shipping_address').html(address_book['city'] + ', ' + address_book['address']);
         // #Платежный адрес
-        $('#description_payment_country').html(address_book['zip'] + ', ' + address_book['country'] + ', ' + address_book['region']);
-        $('#description_payment_address').html(address_book['city'] + ', ' + address_book['address']);
+        $('#description_billing_country').html(address_book['zip'] + ', ' + address_book['country'] + ', ' + address_book['region']);
+        $('#description_billing_address').html(address_book['city'] + ', ' + address_book['address']);
         // #Статус
         $('#description_date_purchased').html(history_status[0]['admin']['status'] + ': ' + history_status[0]['admin']['date']);
         // #Итого
