@@ -13,6 +13,7 @@ title_cart_index = Cart
 title_recoverypass_index = Password Recovery
 title_address_book_index = Address Book
 title_success_index = Order completed successfully
+title_orders_index = My Orders
 
 ;DEBUG
 debug_page_generation_time = Page generation time:
@@ -143,3 +144,6 @@ email_registration_subject = Registration in the online store eMarket!
 email_registration_message = Click the link below to let us know this is really your email and complete registration. <br><br><a href="%s" target="_blank">%s</a>
 email_recovery_password_subject = Account Access Recovery
 email_recovery_password_message = Click the link below to enter a new password to access your account. <br><br><a href="%s" target="_blank">%s</a>
+
+;ORDERS
+orders_book = Orders book

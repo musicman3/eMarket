@@ -30,7 +30,7 @@
         // #Клиент
         $('#description_client_name').html(customer_data['firstname'] + ' ' + customer_data['lastname']);
         $('#description_client_phone').html(customer_data['telephone']);
-        $('#description_client_email').html(customer_data['email']);
+        $('#description_client_email').html(orders_edit['email']);
         // #Метод оплаты
         $('#description_payment_method').html(payment_method);
         // #Доставка

@@ -77,11 +77,11 @@
                         <?php for ($start; $start < $finish; $start++) { ?>
                             <tr>
                                 <td><?php echo $lines[$start][0] ?></td>
-                                <td class="al-text"><?php echo json_decode($lines[$start][1], 1)['firstname'] . ' ' . json_decode($lines[$start][1], 1)['lastname'] ?></td>
-                                <td class="al-text"><?php echo json_decode($lines[$start][4], 1)['admin']['total_format'] ?></td>
+                                <td class="al-text"><?php echo json_decode($lines[$start][2], 1)['firstname'] . ' ' . json_decode($lines[$start][1], 1)['lastname'] ?></td>
+                                <td class="al-text"><?php echo json_decode($lines[$start][5], 1)['admin']['total_format'] ?></td>
                                 <td class="al-text"><?php echo \eMarket\Set::dateLocale($lines[$start][12], '%c') ?></td>
                                 <td class="al-text"><?php echo \eMarket\Set::dateLocale($lines[$start][11], '%c') ?></td>
-                                <td class="al-text"><?php echo json_decode($lines[$start][2], 1)[0]['admin']['status'] ?></td>
+                                <td class="al-text"><?php echo json_decode($lines[$start][3], 1)[0]['admin']['status'] ?></td>
                                 <td class="al-text-w">
                                     <form id="form_delete<?php echo $lines[$start][0] ?>" name="form_delete" action="javascript:void(null);" onsubmit="callDelete('<?php echo $lines[$start][0] ?>')" enctype="multipart/form-data">
                                         <input hidden name="delete" value="<?php echo $lines[$start][0] ?>">

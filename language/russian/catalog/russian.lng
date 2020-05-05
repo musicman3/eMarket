@@ -13,6 +13,7 @@ title_cart_index = Корзина
 title_recoverypass_index = Восстановление пароля
 title_address_book_index = Адресная книга
 title_success_index = Заказ успешно завершен
+title_orders_index = Мои заказы
 
 ;DEBUG
 debug_page_generation_time = Время генерации страницы:
@@ -144,3 +145,6 @@ email_registration_subject = Регистрация в интернет-мага
 email_registration_message = Нажмите на ссылку, указанную ниже, чтобы подтвердить что это действительно Ваш E-mail и завершить регистрацию. <br><br><a href="%s" target="_blank">%s</a>
 email_recovery_password_subject = Восстановление доступа к аккаунту
 email_recovery_password_message = Нажмите на ссылку, указанную ниже, чтобы указать новый пароль для доступа к аккаунту. <br><br><a href="%s" target="_blank">%s</a>
+
+;ORDERS
+orders_book = Книга заказов

@@ -153,11 +153,11 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 DROP TABLE IF EXISTS emkt_orders;
 CREATE TABLE emkt_orders (
   id int NOT NULL auto_increment,
+  email varchar(128) NOT NULL,
   customer_data json,
   orders_status_history json,
   products_order json,
   order_total json,
-  currency int,
   invoice json,
   orders_transactions_history json,
   customer_ip_address varchar(30),
