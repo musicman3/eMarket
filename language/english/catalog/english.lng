@@ -42,6 +42,9 @@ confirm-yes-switch = YES
 confirm-del = Delete?
 confirm-no = No
 confirm-yes = Yes
+with = Displaying 
+to = to
+of = of
 
 ;PAGES
 description_product = Description

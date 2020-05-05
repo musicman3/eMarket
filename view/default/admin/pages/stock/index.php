@@ -78,7 +78,7 @@
                                     }
                                     ?>
 
-                                    <div class="page"><?php echo lang('s') ?> <?php echo $start + 1 ?> <?php echo lang('po') ?> <?php echo $finish_out ?> ( <?php echo lang('iz') ?> <?php echo $count_lines_merge; ?> )</div>
+                                    <div class="page"><?php echo lang('with') ?> <?php echo $start + 1 ?> <?php echo lang('to') ?> <?php echo $finish_out ?> ( <?php echo lang('of') ?> <?php echo $count_lines_merge; ?> )</div>
 
                                     <!-- Переключаем страницу "ВПЕРЕД" -->
                                     <form>

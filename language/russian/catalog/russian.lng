@@ -42,6 +42,9 @@ confirm-yes-switch = ДА
 confirm-del = Удалить?
 confirm-no = Нет
 confirm-yes = Да
+with = с
+to = по
+of = из
 
 ;PAGES
 description_product = Описание товара
