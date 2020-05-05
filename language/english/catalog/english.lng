@@ -150,3 +150,21 @@ email_recovery_password_message = Click the link below to enter a new password t
 
 ;ORDERS
 orders_book = Orders book
+orders_total = Total
+orders_status = Status
+orders_shipping = Shipping
+orders_client = Client
+orders_amount = Amount
+orders_quantity = Quantity
+orders_price = Price
+orders_product = Product
+orders_products = Products
+orders_transaction_history = Transaction history
+orders_status_history = Status history
+orders_description = Description
+orders_payment_method = Payment method
+orders_billing_address = Billing address
+orders_date_added = Date added
+orders_date_of_change = Date of change
+orders_number = Order No.
+orders_subtotal = Subtotal
