@@ -3,128 +3,68 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-
-// Подгружаем Ajax Добавить, Редактировать, Удалить
-\eMarket\Ajax::action('');
 ?>
-<link rel="stylesheet" href="/ext/bootstrap-switch/css/bootstrap-switch.min.css" type="text/css"/>
-<script type="text/javascript" src="/ext/bootstrap-switch/js/bootstrap-switch.min.js"></script>
-<script type="text/javascript">
-    $('#default').bootstrapSwitch();
-    $('#default_edit').bootstrapSwitch();
-</script>
-
-<!-- Загрузка данных в модальное окно Добавить -->
-<script type = "text/javascript">
-    $('#add').on('show.bs.modal', function (event) {
-        // Получаем массивы данных
-        var countries = $('div#ajax_data').data('countries');
-
-        $("#countries").empty();
-
-        //Устанавливаем Страну
-        for (x = 0; x < countries.length; x++) {
-            $("#countries").append($('<option value="' + countries[x]['id'] + '">' + countries[x]['name'] + '</option>'));
-        }
-
-        // Устанавливаем Регион
-        jQuery.post('<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>',
-                {countries_select: countries[0]['id']},
-                AjaxSuccess);
-        // Обновление страницы
-        function AjaxSuccess(data) {
-            var regions = $.parseJSON(data);
-            $("#regions").empty();
-
-            for (x = 0; x < regions.length; x++) {
-                $("#regions").append($('<option value="' + regions[x]['id'] + '">' + regions[x]['name'] + '</option>'));
-            }
-        }
-        // Если выбрали страну, то загружаем новые регионы
-        $('#countries').change(function (event) {
-            jQuery.post('<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>',
-                    {countries_select: $("#countries").val()},
-                    AjaxSuccess);
-            // Обновление страницы
-            function AjaxSuccess(data) {
-                var regions = $.parseJSON(data);
-                $("#regions").empty();
-
-                for (x = 0; x < regions.length; x++) {
-                    $("#regions").append($('<option value="' + regions[x]['id'] + '">' + regions[x]['name'] + '</option>'));
-                }
-            }
-        });
-    });
-</script>
-
-<!-- Загрузка данных в модальное окно Редактировать -->
+<!-- Загрузка данных в модальное окно -->
 <script type="text/javascript">
     $('#edit').on('show.bs.modal', function (event) {
-        $('#default_edit').bootstrapSwitch('destroy', true);
+
         var button = $(event.relatedTarget);
-        var modal_id = button.data('edit') - 1; // Получаем ID из data-edit при клике на кнопку редактирования
+        var modal_id = button.data('edit'); // Получаем ID из data-edit при клике на кнопку редактирования
+        $('#invoice').empty();
+        $('#status_history').empty();
 
-        // Получаем массивы данных
-        var edit_data = $('div#ajax_data').data('json');
-        var countries = $('div#ajax_data').data('countries');
+        // Получаем данные из data div
+        var orders_edit = $('div#ajax_data').data('orders')[modal_id];
+        var customer_data = $.parseJSON(orders_edit['customer_data']);
+        var invoice = $.parseJSON(orders_edit['invoice']);
+        var order_total = $.parseJSON(orders_edit['order_total']);
+        var address_book = $.parseJSON(customer_data['address_book']);
+        var history_status = $.parseJSON(orders_edit['orders_status_history']);
+        var shipping_method = $.parseJSON(orders_edit['shipping_method'])['customer'];
+        var payment_method = $.parseJSON(orders_edit['payment_method'])['customer'];
+        
+        // Титл
+        $('#title').html('<?php echo lang('orders_number') ?>: ' + orders_edit['id']);
 
-        $("#countries_edit").empty();
-
-        //Устанавливаем Страну
-        for (x = 0; x < countries.length; x++) {
-            if (countries[x]['id'] === edit_data[modal_id]['countries_id']) {
-                $("#countries_edit").append($('<option selected value="' + countries[x]['id'] + '">' + countries[x]['name'] + '</option>'));
-            } else {
-                $("#countries_edit").append($('<option value="' + countries[x]['id'] + '">' + countries[x]['name'] + '</option>'));
-            }
+        // Описание
+        // #Клиент
+        $('#description_client_name').html(customer_data['firstname'] + ' ' + customer_data['lastname']);
+        $('#description_client_phone').html(customer_data['telephone']);
+        $('#description_client_email').html(orders_edit['email']);
+        // #Метод оплаты
+        $('#description_payment_method').html(payment_method);
+        // #Доставка
+        $('#description_shipping_method').html('<b>' + shipping_method + '</b>');
+        $('#description_shipping_country').html(address_book['zip'] + ', ' + address_book['country'] + ', ' + address_book['region']);
+        $('#description_shipping_address').html(address_book['city'] + ', ' + address_book['address']);
+        // #Платежный адрес
+        $('#description_billing_country').html(address_book['zip'] + ', ' + address_book['country'] + ', ' + address_book['region']);
+        $('#description_billing_address').html(address_book['city'] + ', ' + address_book['address']);
+        // #Статус
+        $('#description_date_purchased').html(history_status[0]['customer']['status'] + ': ' + history_status[0]['customer']['date']);
+        // #Итого
+        $('#description_order_total').html(order_total['customer']['total_with_shipping_format']);
+        
+        // Товары
+        for (x = 0; x < invoice.length; x++) {
+            $("#invoice").append('<tr class="bg-success">\n\
+                                        <td class="text-left"><small>' + invoice[x]['customer']['name'] + '</small></td>\n\
+                                        <td class="text-center"><small>' + invoice[x]['customer']['price'] + '</small></td>\n\
+                                        <td class="text-center"><small>' + invoice[x]['data']['quantity'] + ' ' + invoice[x]['customer']['unit'] + '</small></td>\n\
+                                        <td class="text-right"><small>' + invoice[x]['customer']['amount'] + '</small></td>\n\
+                                  </tr>');
         }
-        // Устанавливаем Регион
-        jQuery.post('<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>',
-                {countries_select: edit_data[modal_id]['countries_id']},
-                AjaxSuccess);
-        // Обновление страницы
-        function AjaxSuccess(data) {
-            var regions = $.parseJSON(data);
-            $("#regions_edit").empty();
-
-            for (x = 0; x < regions.length; x++) {
-                if (regions[x]['id'] === edit_data[modal_id]['regions_id']) {
-                    $("#regions_edit").append($('<option selected value="' + regions[x]['id'] + '">' + regions[x]['name'] + '</option>'));
-                } else {
-                    $("#regions_edit").append($('<option value="' + regions[x]['id'] + '">' + regions[x]['name'] + '</option>'));
-                }
-            }
+        
+        $('#invoice_shipping_method').html('<b>' + shipping_method + '</b>');
+        $('#invoice_shipping_price').html(order_total['customer']['shipping_price_format']);
+        $('#invoice_order_total').html(order_total['customer']['total_format']);
+        $('#invoice_order_total_with_shipping').html(order_total['customer']['total_with_shipping_format']);
+        
+        // История статусов
+        for (x = 0; x < history_status.length; x++) {
+            $("#status_history").append('<span class="glyphicon glyphicon-ok"></span><small> ' + history_status[x]['customer']['date'] + ' </small><span class="label label-success">' + history_status[x]['customer']['status'] + '</span><br>');
         }
 
-        // Если выбрали страну, то загружаем новые регионы
-        $('#countries_edit').change(function (event) {
-            jQuery.post('<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>',
-                    {countries_select: $("#countries_edit").val()},
-                    AjaxSuccess);
-            // Обновление страницы
-            function AjaxSuccess(data) {
-                var regions = $.parseJSON(data);
-                $("#regions_edit").empty();
-
-                for (x = 0; x < regions.length; x++) {
-                    if (regions[x]['id'] === edit_data[modal_id]['regions_id']) {
-                        $("#regions_edit").append($('<option selected value="' + regions[x]['id'] + '">' + regions[x]['name'] + '</option>'));
-                    } else {
-                        $("#regions_edit").append($('<option value="' + regions[x]['id'] + '">' + regions[x]['name'] + '</option>'));
-                    }
-                }
-            }
-        });
-
-        //Устанавливаем данные в поля
-        $('#city_edit').val(edit_data[modal_id]['city']);
-        $('#zip_edit').val(edit_data[modal_id]['zip']);
-        $('#address_edit').val(edit_data[modal_id]['address']);
-        $('#js_edit').val(modal_id + 1);
-
-        // Меняем значение чекбокса
-        $('#default_edit').prop('checked', edit_data[modal_id]['default']);
-        $('#default_edit').bootstrapSwitch();
     });
 </script>
+

@@ -10,10 +10,6 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
 }
 ?>
 
-<!-- Модальное окно "Добавить" -->
-<?php require_once('modal/add.php') ?>
-<!-- КОНЕЦ Модальное окно "Добавить" -->
-
 <!-- Модальное окно "Редактировать" -->
 <?php require_once('modal/edit.php') ?>
 <!-- КОНЕЦ Модальное окно "Редактировать" -->
@@ -23,8 +19,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
 <h1><?php echo lang('orders_book') ?></h1>
 
 <div id="ajax_data" class='hidden'
-     data-json='<?php echo $address_data_json ?>'
-     data-countries='<?php echo $countries_data_json ?>'
+     data-orders='<?php echo $orders_edit ?>'
      ></div>
 
 <table class="table table-hover">

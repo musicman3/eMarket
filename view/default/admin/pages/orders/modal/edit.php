@@ -16,7 +16,6 @@ require(ROOT . '/controller/admin/pages/orders/modal/edit.php');
             <form id="form_edit" name="form_edit" action="javascript:void(null);" onsubmit="callEdit()">
                 <div class="panel-body">
                     <input id="js_edit" type="hidden" name="edit" value="" />
-                    <input id="order_id" type="hidden" name="order_id" value="" />
                     <!-- Панели формы -->
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#panel_edit_1"><?php echo lang('orders_description') ?></a></li>

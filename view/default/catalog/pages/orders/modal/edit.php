@@ -3,69 +3,149 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+require(ROOT . '/controller/catalog/pages/orders/modal/edit.php');
 ?>
 
 <!-- Модальное окно "Изменить" -->
-<div id="edit" class="modal fade" tabindex="-1">
+<div id="edit" class="products modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header"><div class="pull-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Сокращенное наименование указывается любыми символами" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
-                <h4 class="modal-title"><?php echo \eMarket\Set::titlePageGenerator() ?></h4>
+            <div class="modal-header"><div class="pull-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Ставка указывается в формате: 10.00" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
+                <h4 class="modal-title" id="title"></h4>
             </div>
-            <form id="form_edit" name="form_edit" action="javascript:void(null);" onsubmit="callEdit()">
-                <div class="panel-body">
-                    <input id="js_edit" type="hidden" name="edit" value="" />
+            <div class="panel-body">
 
-                    <div class="form-group">
-                        <small class="form-text text-muted"><?php echo lang('address_book_country') ?></small>
-                        <div class="input-group has-success">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                            <select name="countries_edit" id="countries_edit" class="input-sm form-control">
-                                    <option value=""></option>
-                            </select>
+                <!-- Панели формы -->
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#panel_edit_1"><?php echo lang('orders_description') ?></a></li>
+                    <li><a data-toggle="tab" href="#panel_edit_2"><?php echo lang('orders_products') ?></a></li>
+                    <li><a data-toggle="tab" href="#panel_edit_3"><?php echo lang('orders_transaction_history') ?></a></li>
+                    <li><a data-toggle="tab" href="#panel_edit_4"><?php echo lang('orders_status_history') ?></a></li>
+                </ul>
+                <!-- Содержимое панелей формы-->
+                <div class="tab-content">
+
+                    <!-- Содержимое панели Описание -->
+                    <div id="panel_edit_1" class="tab-pane fade in active">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td class="text-left">
+                                            <div class="label label-primary"><?php echo lang('orders_client') ?></div>
+                                            <div>
+                                                <small class="form-text text-muted">
+                                                    <span class="glyphicon glyphicon-user"></span> <span id="description_client_name"></span><br>
+                                                    <span class="glyphicon glyphicon-phone"></span> <span id="description_client_phone"></span><br>
+                                                    <span class="glyphicon glyphicon-envelope"></span> <span id="description_client_email"></span>
+                                                </small>
+                                            </div>
+                                        </td>
+                                        <td class="text-left">
+                                            <div class="label label-primary"><?php echo lang('orders_payment_method') ?></div>
+                                            <div>
+                                                <small class="form-text text-muted">
+                                                    <span class="glyphicon glyphicon-credit-card"></span> <span id="description_payment_method"></span>
+                                                </small>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left">
+                                            <div class="label label-primary"><?php echo lang('orders_shipping') ?></div>
+                                            <div>
+                                                <small class="form-text text-muted">
+                                                    <span class="glyphicon glyphicon-plane"></span> <span class="label label-success" id="description_shipping_method"></span><br>
+                                                    <span class="glyphicon glyphicon-globe"></span> <span id="description_shipping_country"></span><br>
+                                                    <span class="glyphicon glyphicon-home"></span> <span id="description_shipping_address"></span>
+                                                </small>
+                                            </div>
+                                        </td>
+                                        <td class="text-left">
+                                            <div class="label label-primary"><?php echo lang('orders_billing_address') ?></div>
+                                            <div>
+                                                <small class="form-text text-muted">
+                                                    <span class="glyphicon glyphicon-globe"></span> <span id="description_billing_country"></span><br>
+                                                    <span class="glyphicon glyphicon-home"></span> <span id="description_billing_address"></span>
+                                                </small>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left">
+                                            <div class="label label-primary"><?php echo lang('orders_status') ?></div>
+                                            <div>
+                                                <small class="form-text text-muted">
+                                                    <span class="glyphicon glyphicon-time"></span> <span id="description_date_purchased"></span><br>
+                                                </small>
+                                            </div>
+                                        </td>
+                                        <td class="text-left">
+                                            <div class="label label-primary"><?php echo lang('orders_total') ?></div>
+                                            <div>
+                                                <small class="form-text text-muted">
+                                                    <span class="glyphicon glyphicon-barcode"></span> <span id="description_order_total"></span>
+                                                </small>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <small class="form-text text-muted"><?php echo lang('address_book_region') ?></small>
-                        <div class="input-group has-success">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                            <select name="regions_edit" id="regions_edit" class="input-sm form-control">
-                                    <option value=""></option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <small class="form-text text-muted"><?php echo lang('address_book_city') ?></small>
-                        <div class="input-group has-error">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                            <input class="input-sm form-control" placeholder="Введите название Вашего города" type="text" name="city_edit"  id="city_edit" required />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <small class="form-text text-muted"><?php echo lang('address_book_zip') ?></small>
-                        <div class="input-group has-error">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                            <input class="input-sm form-control" placeholder="Введите почтовый код" type="text" name="zip_edit"  id="zip_edit" required />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <small class="form-text text-muted"><?php echo lang('address_book_shipping_address') ?></small>
-                        <div class="input-group has-error">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                            <input class="input-sm form-control" placeholder="Введите адрес доставки" type="text" name="address_edit"  id="address_edit" required />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="default_edit" id="default_edit" checked>
-                        <label for="default_edit"><?php echo lang('default_set') ?> </label>
                     </div>
 
+                    <!-- Содержимое панели Товары -->
+                    <div id="panel_edit_2" class="tab-pane fade">
+                        <div class="table-responsive">
+
+                            <table class="table table-radius">
+                                <thead>
+                                    <tr class="bg-primary">
+                                        <td class="text-left"><small><?php echo lang('orders_product') ?></small></td>
+                                        <td class="text-center"><small><?php echo lang('orders_price') ?></small></td>
+                                        <td class="text-center"><small><?php echo lang('orders_quantity') ?></small></td>
+                                        <td class="text-right"><small><?php echo lang('orders_amount') ?></small></td>
+                                    </tr>
+                                </thead>
+                                <tbody id="invoice"></tbody>
+                            </table>
+
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td class="text-right"><small><?php echo lang('orders_subtotal') ?>:</small></td>
+                                        <td class="text-right"><small id="invoice_order_total"></small></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-right"><small class="label label-success" id="invoice_shipping_method"></small></td>
+                                        <td class="text-right"><small id="invoice_shipping_price"></small></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-right"><div class="label label-danger"><?php echo lang('orders_total') ?>:</div></td>
+                                        <td class="text-right"><small class="label label-danger" id="invoice_order_total_with_shipping"></small></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+
+                    <!-- Содержимое панели История транзакций -->
+                    <div id="panel_edit_3" class="tab-pane fade">
+                        <div class="col-left form-group">
+
+                        </div>
+                    </div>
+
+                    <!-- Содержимое панели История статусов -->
+                    <div id="panel_edit_4" class="tab-pane fade">
+                        <div class="form-group">
+                            <div class="input-group has-success" id="status_history"></div><br>
+                        </div>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button class="btn btn-primary btn-xs" type="button" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-remove"></span> <?php echo lang('cancel') ?></button>
-                    <button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button>
-                </div>
-            </form>
+            </div>
+
         </div>
     </div>
 </div>
