@@ -30,7 +30,37 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
 <table class="table table-hover">
     <thead>
         <tr>
-            <th colspan="4"></th>
+            <th colspan="4">
+                <?php if ($lines == TRUE) { ?>
+                    <div class="page"><?php echo lang('s') ?> <?php echo $start + 1 ?> <?php echo lang('po') ?> <?php echo $finish ?> ( <?php echo lang('iz') ?> <?php echo count($lines); ?> )</div>
+                    <?php
+                } else {
+                    ?>
+                    <div><?php echo lang('no_listing') ?></div>
+                <?php } ?>
+            </th>
+
+            <th>
+
+                <form>
+                    <?php if (count($lines) > $lines_on_page) { ?>
+                        <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
+                        <input hidden name="start" value="<?php echo $start ?>">
+                        <input hidden name="finish" value="<?php echo $finish ?>">
+                        <div class="b-left"><button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
+                    <?php } ?>
+                </form>
+
+                <form>
+                    <?php if (count($lines) > $lines_on_page) { ?>
+                        <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
+                        <input hidden name="backstart" value="<?php echo $start ?>">
+                        <input hidden name="backfinish" value="<?php echo $finish ?>">
+                        <div class="b-left"><button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
+                    <?php } ?>
+                </form>
+
+            </th>
         </tr>
         <tr>
             <th><?php echo lang('№ заказа') ?></th>
@@ -42,25 +72,23 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
     </thead>
     <tbody>
         <?php
-        if ($orders_data != FALSE) {
-            $x = 1;
-            foreach ($orders_data as $val) {
+        if ($lines != FALSE) {
+            for ($start; $start < $finish; $start++) {
                 ?>
                 <tr>
-                    <td><?php echo $val['id'] ?></td>
-                    <td class="al-text"><?php echo json_decode($val['order_total'], 1)['customer']['total_with_shipping_format'] ?></td>
-                    <td class="al-text"><?php echo $val['date_purchased'] ?></td>
-                    <td class="al-text"><?php echo json_decode($val['orders_status_history'], 1)[0]['customer']['status'] ?></td>
+                    <td><?php echo $lines[$start]['id'] ?></td>
+                    <td class="al-text"><?php echo json_decode($lines[$start]['order_total'], 1)['customer']['total_with_shipping_format'] ?></td>
+                    <td class="al-text"><?php echo $lines[$start]['date_purchased'] ?></td>
+                    <td class="al-text"><?php echo json_decode($lines[$start]['orders_status_history'], 1)[0]['customer']['status'] ?></td>
 
                     <td class="al-text-w">
                         <!--Вызов модального окна для редактирования-->
                         <div class="b-right">
-                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#edit" data-edit="<?php echo $x ?>"><span class="glyphicon glyphicon-edit"></span></button>
+                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#edit" data-edit="<?php echo $lines[$start]['id'] ?>"><span class="glyphicon glyphicon-edit"></span></button>
                         </div>
                     </td>
                 </tr>
                 <?php
-                $x++;
             }
         }
         ?>

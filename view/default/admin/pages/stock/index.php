@@ -83,7 +83,7 @@
                                     <!-- Переключаем страницу "ВПЕРЕД" -->
                                     <form>
                                         <?php if ($count_lines_merge > $lines_on_page) { ?>
-                                            <input hidden name="route" value="stock">
+                                            <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
                                             <input hidden name="start" value="<?php echo $start ?>">
                                             <input hidden name="finish" value="<?php echo $finish ?>">
                                             <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
@@ -94,7 +94,7 @@
                                     <!-- Переключаем страницу "НАЗАД" -->
                                     <form>
                                         <?php if ($count_lines_merge > $lines_on_page) { ?>
-                                            <input hidden name="route" value="stock">
+                                            <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
                                             <input hidden name="backstart" value="<?php echo $start ?>">
                                             <input hidden name="backfinish" value="<?php echo $finish ?>">
                                             <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
@@ -118,7 +118,7 @@
                                         <!-- Категории "ВВЕРХ" -->
                                         <form>
                                             <div>
-                                                <input hidden name="route" value="stock">
+                                                <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
                                                 <button name="parent_up" value="<?php echo $parent_id ?>" class="btn btn-default btn-xs" title="" action="index.php" formmethod="get"><span class="glyphicon glyphicon-option-horizontal"></span></button>
                                             </div>
                                         </form>
@@ -160,7 +160,7 @@
                                                 <!-- Неактивная категория "ВНИЗ" -->
                                                 <form>
                                                     <div>
-                                                        <input hidden name="route" value="stock">
+                                                        <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
                                                         <button name="parent_down" value="<?php echo $arr_merge['cat'][$start][0] ?>" class="btn btn-default btn-xs" title="<?php echo $arr_merge['cat'][$start][1] ?>" action="index.php" formmethod="get"><span class="glyphicon glyphicon-folder-open"> </span></button>
                                                     </div>
                                                 </form>
@@ -177,7 +177,7 @@
                                                 <!-- Активная категория "ВНИЗ" -->
                                                 <form>
                                                     <div>
-                                                        <input hidden name="route" value="stock">
+                                                        <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
                                                         <button name="parent_down" value="<?php echo $arr_merge['cat'][$start][0] ?>" class="btn btn-primary btn-xs" title="<?php echo $arr_merge['cat'][$start][1] ?>" action="index.php" formmethod="get"><span class="glyphicon glyphicon-folder-open"> </span></button>
                                                     </div>
                                                 </form>
@@ -271,7 +271,7 @@
                                     <!-- Категорий нет "ВВЕРХ" -->
                                     <form>
                                         <div>
-                                            <input hidden name="route" value="stock">
+                                            <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
                                             <button name="parent_up" value="<?php echo $parent_id ?>" class="btn btn-default btn-xs" title="" action="index.php" formmethod="get"><span class="glyphicon glyphicon-option-horizontal"></span></button>
                                         </div>
                                     </form>

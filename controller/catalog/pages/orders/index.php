@@ -10,7 +10,12 @@ if ($CUSTOMER == FALSE) {
     exit;
 }
 
-$orders_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_ORDERS . " WHERE email=? ORDER BY id DESC", [$_SESSION['email_customer']]);
+$lines = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_ORDERS . " WHERE email=? ORDER BY id DESC", [$_SESSION['email_customer']]);
+
+$lines_on_page = \eMarket\Set::linesOnPage();
+$navigate = \eMarket\Navigation::getLink(count($lines), $lines_on_page);
+$start = $navigate[0];
+$finish = $navigate[1];
 
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
 $JS_END = __DIR__;

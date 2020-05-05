@@ -41,7 +41,7 @@
                                 
                                     <form>
                                         <?php if (count($lines) > $lines_on_page) { ?>
-                                            <input hidden name="route" value="settings/zones/listing">
+                                            <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
                                             <input hidden name="start" value="<?php echo $start ?>">
                                             <input hidden name="finish" value="<?php echo $finish ?>">
                                             <input hidden name="zone_id" value="<?php echo $zones_id ?>">
@@ -51,7 +51,7 @@
 
                                     <form>
                                         <?php if (count($lines) > $lines_on_page) { ?>
-                                            <input hidden name="route" value="settings/zones/listing">
+                                            <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
                                             <input hidden name="backstart" value="<?php echo $start ?>">
                                             <input hidden name="backfinish" value="<?php echo $finish ?>">
                                             <input hidden name="zone_id" value="<?php echo $zones_id ?>">
