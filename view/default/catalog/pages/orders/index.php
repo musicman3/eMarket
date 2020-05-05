@@ -58,10 +58,10 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
             </th>
         </tr>
         <tr>
-            <th><?php echo lang('№ заказа') ?></th>
-            <th class="al-text"><?php echo lang('Итого') ?></th>
-            <th class="al-text"><?php echo lang('Дата заказа') ?></th>
-            <th class="al-text"><?php echo lang('Статус') ?></th>
+            <th><?php echo lang('orders_number') ?></th>
+            <th class="al-text"><?php echo lang('orders_total') ?></th>
+            <th class="al-text"><?php echo lang('orders_date_added') ?></th>
+            <th class="al-text"><?php echo lang('orders_status') ?></th>
             <th class="al-text-w"></th>
         </tr>
     </thead>
