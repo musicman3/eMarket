@@ -21,7 +21,6 @@
 
 <!-- Ekko Lightbox" -->
 <script type="text/javascript" src="/ext/ekko-lightbox/ekko-lightbox.min.js"></script>
-<script type="text/javascript" src="/ext/ekko-lightbox/ekko-lightbox.min.js.map"></script>
 <link href="/ext/ekko-lightbox/ekko-lightbox.css" rel="stylesheet">
 <script type="text/javascript">
     $(document).on('click', '[data-toggle="lightbox"]', function (event) {
