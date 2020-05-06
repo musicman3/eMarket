@@ -11,7 +11,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
 ?>
 
 <!-- Модальное окно "Добавить" -->
-<?php require_once('modal/cart.php') ?>
+<?php require_once('modal/add.php') ?>
 <!-- КОНЕЦ Модальное окно "Добавить" -->
 
 <h1><?php echo lang('shopping_cart') ?></h1>
@@ -70,7 +70,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
         <div class="input-group-btn button">
             <div class="pull-right">
                 <?php if (isset($_SESSION['email_customer']) && $address_data_json != FALSE) { ?>
-                    <button type="button" class="btn btn btn-primary" data-toggle="modal" data-target="#cart"><span class="glyphicon glyphicon-share-alt"></span> <?php echo lang('cart_сheckout') ?></button>
+                    <button type="button" class="btn btn btn-primary" data-toggle="modal" data-target="#add"><span class="glyphicon glyphicon-share-alt"></span> <?php echo lang('cart_сheckout') ?></button>
                 <?php } elseif (isset($_SESSION['email_customer']) && $address_data_json == FALSE) { ?>
                     <button type="button" class="btn btn btn-primary" onClick='location.href = "/?route=address_book&redirect=cart"'><span class="glyphicon glyphicon-share-alt"></span> <?php echo lang('cart_сheckout') ?></button>
                 <?php } else { ?>

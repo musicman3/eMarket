@@ -18,7 +18,7 @@
             url: '?route=success',
             data: msg,
             beforeSend: function () {
-                $('#cart').modal('hide');
+                $('#add').modal('hide');
             }
         });
         // Отправка запроса для обновления страницы
@@ -36,7 +36,7 @@
 
 <!-- Загрузка данных в модальное окно Корзина -->
 <script type = "text/javascript">
-    $('#cart').on('show.bs.modal', function (event) {
+    $('#add').on('show.bs.modal', function (event) {
         //Функция получения данных для модулей доставки
         function shippingData() {
             jQuery.post('<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>',

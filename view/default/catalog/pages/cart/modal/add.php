@@ -4,10 +4,10 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-require(ROOT . '/controller/catalog/pages/cart/modal/cart.php');
+require(ROOT . '/controller/catalog/pages/cart/modal/add.php');
 ?>
 <!-- Модальное окно "Корзина" -->
-<div id="cart" class="modal fade" tabindex="-1">
+<div id="add" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header"><div class="pull-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Сокращенное наименование указывается любыми символами" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
