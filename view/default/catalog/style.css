@@ -68,6 +68,7 @@ nav .disabled {pointer-events: none;}
 #products .nav-tabs > li > a {line-height: 1;}
 #edit .nav > li > a, #add .nav > li > a {padding: 5px;}
 #edit .tab-content, #add .tab-content {padding-top: 10px;}
+#edit .pull-right .glyphicon, #add .pull-right .glyphicon {color: #000000;opacity: 0.5}
 @media (min-width:768px){.modal-dialog {width:680px;margin:30px auto;}}
 #listing .list-group-item {border: none;padding: 0px 15px;margin-bottom: 20px;}
 #listing .list-group-item img {float: left;margin: 0 10px 10px 0;}
@@ -97,4 +98,3 @@ nav .disabled {pointer-events: none;}
 .b-left {display: inline-block;float: right; padding-right:10px;}
 .al-text-w {text-align: center;width: 85px;}
 .al-text {text-align: center;}
-.pull-right .glyphicon {color: #000000;opacity: 0.5}
