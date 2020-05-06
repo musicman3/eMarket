@@ -25,8 +25,8 @@ body {font-family: 'Open Sans';}
 .carousel-inner p {font-size: 18px;padding: 20px;animation: anime-P 1.6s ease-out;}
 @keyframes anime-H3 { from { opacity: 0; transform: translateX(-2000px); } to { opacity: 1; transform: translateX(0); } }
 @keyframes anime-P { from { opacity: 0; transform: translateX(2000px); } to { opacity: 1; transform: translateX(0); } }
-/*.panel-heading {padding:5px 10px;}
-.panel-body {padding:10px;}*/
+#layouts-categories .panel-heading {padding:5px 10px;}
+#layouts-categories .panel-body {padding:10px;}
 #bodyContent h1 {color: #03539a;margin-top: 3px;font-size: 24px;}
 #bodyContent h4 {font-size:20px;}
 #bodyContent h5 {font-size:16px;}
