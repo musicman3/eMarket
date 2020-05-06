@@ -64,10 +64,10 @@ nav .disabled {pointer-events: none;}
 #products .list-group-item {border: none;margin-bottom: 20px;}
 #products .list-group-item img {padding: 0 0 15px 0;}
 #products .list-group-item .item-text {text-align: justify;padding: 10px;border: 1px solid #dddddd;border-top: 0;border-bottom-left-radius: 4px;border-bottom-right-radius: 4px;}
-/*#products .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {color: #ffffff;background: #428bca;border-color: #337ab7;}
-#products .nav-tabs > li > a {line-height: 1;}*/
-.nav > li > a {padding: 5px;}
-.tab-content {padding-top: 10px;}
+#products .nav-tabs > li.active > a, #products .nav-tabs > li.active > a:hover, #products .nav-tabs > li.active > a:focus {color: #ffffff;background: #428bca;border-color: #337ab7;}
+#products .nav-tabs > li > a {line-height: 1;}
+#edit .nav > li > a {padding: 5px;}
+#edit .tab-content {padding-top: 10px;}
 @media (min-width:768px){.modal-dialog {width:680px;margin:30px auto;}}
 #listing .list-group-item {border: none;padding: 0px 15px;margin-bottom: 20px;}
 #listing .list-group-item img {float: left;margin: 0 10px 10px 0;}
@@ -97,3 +97,4 @@ nav .disabled {pointer-events: none;}
 .b-left {display: inline-block;float: right; padding-right:10px;}
 .al-text-w {text-align: center;width: 85px;}
 .al-text {text-align: center;}
+.pull-right .glyphicon {color: #000000;opacity: 0.5}
