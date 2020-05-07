@@ -10,13 +10,13 @@
 <div id="products" class="contentText">
     <div class="row">
         <div class="list-group-item">
-            <div class="col-xs-4">
+            <div class="col-xs-5">
                 <a href="/uploads/images/products/resize_4/<?php echo $products['logo_general'] ?>" data-toggle="lightbox" data-gallery="example-gallery" data-type="image">
                     <img src="/uploads/images/products/resize_2/<?php echo $products['logo_general'] ?>" alt="<?php echo $products['name'] ?>" class="img-padding img-responsive center-block">
                 </a>
                 <div class="row">
                     <?php foreach ($images as $val){ ?>
-                    <div class=" col-xs-6 col-md-3">
+                    <div class="col-md-3 col-sm-4 col-xs-6">
                         <a href="/uploads/images/products/resize_4/<?php echo $val ?>" data-toggle="lightbox" data-gallery="example-gallery" data-type="image" class="thumbnail">
                             <img src="/uploads/images/products/resize_1/<?php echo $val ?>" alt="<?php echo $products['name'] ?>">
                         </a>
@@ -24,7 +24,7 @@
                     <?php } ?>
                 </div>
             </div>
-            <div class="col-xs-8"> </div>
+            <div class="col-xs-7"> </div>
             <div class="clearfix"></div>
             <div class="row button">
                 <div class="col-xs-6"><?php echo \eMarket\Ecb::priceInterface($products, 1) ?></div>
