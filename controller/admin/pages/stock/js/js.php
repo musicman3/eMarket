@@ -558,37 +558,37 @@
 
                                 confirmation.onclick = function () {
                                     $('#confirm').modal('hide');
-                                // Значение выбранного селекта
-                                var selected_id = $('select[name="context-menu-input-sale"] option:selected').val();
-                                // Установка синхронного запроса для jQuery.ajax
-                                jQuery.ajaxSetup({async: false});
-                                // Отправка данных по каждой выделенной строке
-                                var idArray = [];
-                                $(".option").each(function (i) {
-                                    if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
-                                        idArray[i] = this.id;
-                                });
-                                jQuery.post('?route=stock',
-                                        {idsx_saleOff_id: idArray,
-                                            idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
-                                            sale: selected_id,
-                                            idsx_saleOff_key: 'Off'});
-                                // Отправка запроса для обновления страницы
-                                jQuery.get('?route=stock',
-                                        {parent_down: <?php echo $parent_id ?>},
-                                        AjaxSuccess);
-                                // Обновление страницы
-                                function AjaxSuccess(data) {
-                                    setTimeout(function () {
-                                        $('#fileupload-edit').fileupload('destroy');
-                                        $('#fileupload-add').fileupload('destroy');
-                                        $('#fileupload-edit-product').fileupload('destroy');
-                                        $('#fileupload-add-product').fileupload('destroy');
-                                        $('#ajax').html(data);
-                                    }, 100);
-                                    $("#sort-list").sortable();
+                                    // Значение выбранного селекта
+                                    var selected_id = $('select[name="context-menu-input-sale"] option:selected').val();
+                                    // Установка синхронного запроса для jQuery.ajax
+                                    jQuery.ajaxSetup({async: false});
+                                    // Отправка данных по каждой выделенной строке
+                                    var idArray = [];
+                                    $(".option").each(function (i) {
+                                        if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
+                                            idArray[i] = this.id;
+                                    });
+                                    jQuery.post('?route=stock',
+                                            {idsx_saleOff_id: idArray,
+                                                idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
+                                                sale: selected_id,
+                                                idsx_saleOff_key: 'Off'});
+                                    // Отправка запроса для обновления страницы
+                                    jQuery.get('?route=stock',
+                                            {parent_down: <?php echo $parent_id ?>},
+                                            AjaxSuccess);
+                                    // Обновление страницы
+                                    function AjaxSuccess(data) {
+                                        setTimeout(function () {
+                                            $('#fileupload-edit').fileupload('destroy');
+                                            $('#fileupload-add').fileupload('destroy');
+                                            $('#fileupload-edit-product').fileupload('destroy');
+                                            $('#fileupload-add-product').fileupload('destroy');
+                                            $('#ajax').html(data);
+                                        }, 100);
+                                        $("#sort-list").sortable();
+                                    }
                                 }
-                            }
                             }
                         },
 
@@ -612,36 +612,36 @@
 
                                 confirmation.onclick = function () {
                                     $('#confirm').modal('hide');
-                                // Значение выбранного селекта
-                                var selected_id = $('select[name="context-menu-input-sale"] option:selected').val();
-                                // Установка синхронного запроса для jQuery.ajax
-                                jQuery.ajaxSetup({async: false});
-                                // Отправка данных по каждой выделенной строке
-                                var idArray = [];
-                                $(".option").each(function (i) {
-                                    if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
-                                        idArray[i] = this.id;
-                                });
-                                jQuery.post('?route=stock',
-                                        {idsx_saleOffAll_id: idArray,
-                                            idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
-                                            idsx_saleOffAll_key: 'OffAll'});
-                                // Отправка запроса для обновления страницы
-                                jQuery.get('?route=stock',
-                                        {parent_down: <?php echo $parent_id ?>},
-                                        AjaxSuccess);
-                                // Обновление страницы
-                                function AjaxSuccess(data) {
-                                    setTimeout(function () {
-                                        $('#fileupload-edit').fileupload('destroy');
-                                        $('#fileupload-add').fileupload('destroy');
-                                        $('#fileupload-edit-product').fileupload('destroy');
-                                        $('#fileupload-add-product').fileupload('destroy');
-                                        $('#ajax').html(data);
-                                    }, 100);
-                                    $("#sort-list").sortable();
+                                    // Значение выбранного селекта
+                                    var selected_id = $('select[name="context-menu-input-sale"] option:selected').val();
+                                    // Установка синхронного запроса для jQuery.ajax
+                                    jQuery.ajaxSetup({async: false});
+                                    // Отправка данных по каждой выделенной строке
+                                    var idArray = [];
+                                    $(".option").each(function (i) {
+                                        if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
+                                            idArray[i] = this.id;
+                                    });
+                                    jQuery.post('?route=stock',
+                                            {idsx_saleOffAll_id: idArray,
+                                                idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
+                                                idsx_saleOffAll_key: 'OffAll'});
+                                    // Отправка запроса для обновления страницы
+                                    jQuery.get('?route=stock',
+                                            {parent_down: <?php echo $parent_id ?>},
+                                            AjaxSuccess);
+                                    // Обновление страницы
+                                    function AjaxSuccess(data) {
+                                        setTimeout(function () {
+                                            $('#fileupload-edit').fileupload('destroy');
+                                            $('#fileupload-add').fileupload('destroy');
+                                            $('#fileupload-edit-product').fileupload('destroy');
+                                            $('#fileupload-add-product').fileupload('destroy');
+                                            $('#ajax').html(data);
+                                        }, 100);
+                                        $("#sort-list").sortable();
+                                    }
                                 }
-                            }
                             }
                         }
                     }
