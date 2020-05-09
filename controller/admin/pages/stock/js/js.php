@@ -432,32 +432,39 @@
                                 }
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
-                                // Установка синхронного запроса для jQuery.ajax
-                                jQuery.ajaxSetup({async: false});
-                                // Отправка данных по каждой выделенной строке
-                                var idArray = [];
-                                $(".option").each(function (i) { // выделенное мышкой
-                                    if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
-                                        idArray[i] = this.id;
-                                });
-                                jQuery.post('?route=stock',
-                                        {delete: idArray,
-                                            parent_down: <?php echo $parent_id ?>});
-                                // Отправка запроса для обновления страницы
-                                jQuery.get('?route=stock',
-                                        {parent_down: <?php echo $parent_id ?>,
-                                            modify: 'ok'},
-                                        AjaxSuccess);
-                                // Обновление страницы
-                                function AjaxSuccess(data) {
-                                    setTimeout(function () {
-                                        $('#fileupload-edit').fileupload('destroy');
-                                        $('#fileupload-add').fileupload('destroy');
-                                        $('#fileupload-edit-product').fileupload('destroy');
-                                        $('#fileupload-add-product').fileupload('destroy');
-                                        $('#ajax').html(data);
-                                    }, 100);
-                                    $("#sort-list").sortable();
+                                $('#confirm').modal('show');
+                                $('#confirm_title').html('<?php echo lang('attention') ?>');
+                                $('#confirm_body').html('<?php echo lang('confirm_delete_product_or_category') ?>');
+
+                                confirmation.onclick = function () {
+                                    $('#confirm').modal('hide');
+                                    // Установка синхронного запроса для jQuery.ajax
+                                    jQuery.ajaxSetup({async: false});
+                                    // Отправка данных по каждой выделенной строке
+                                    var idArray = [];
+                                    $(".option").each(function (i) { // выделенное мышкой
+                                        if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
+                                            idArray[i] = this.id;
+                                    });
+                                    jQuery.post('?route=stock',
+                                            {delete: idArray,
+                                                parent_down: <?php echo $parent_id ?>});
+                                    // Отправка запроса для обновления страницы
+                                    jQuery.get('?route=stock',
+                                            {parent_down: <?php echo $parent_id ?>,
+                                                modify: 'ok'},
+                                            AjaxSuccess);
+                                    // Обновление страницы
+                                    function AjaxSuccess(data) {
+                                        setTimeout(function () {
+                                            $('#fileupload-edit').fileupload('destroy');
+                                            $('#fileupload-add').fileupload('destroy');
+                                            $('#fileupload-edit-product').fileupload('destroy');
+                                            $('#fileupload-add-product').fileupload('destroy');
+                                            $('#ajax').html(data);
+                                        }, 100);
+                                        $("#sort-list").sortable();
+                                    }
                                 }
                             }
                         }
@@ -545,6 +552,12 @@
                                 }
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
+                                $('#confirm').modal('show');
+                                $('#confirm_title').html('<?php echo lang('attention') ?>');
+                                $('#confirm_body').html('<?php echo lang('confirm_delete_sale') ?>');
+
+                                confirmation.onclick = function () {
+                                    $('#confirm').modal('hide');
                                 // Значение выбранного селекта
                                 var selected_id = $('select[name="context-menu-input-sale"] option:selected').val();
                                 // Установка синхронного запроса для jQuery.ajax
@@ -576,6 +589,7 @@
                                     $("#sort-list").sortable();
                                 }
                             }
+                            }
                         },
 
                         "sep12": "---------",
@@ -592,6 +606,12 @@
                                 }
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
+                                $('#confirm').modal('show');
+                                $('#confirm_title').html('<?php echo lang('attention') ?>');
+                                $('#confirm_body').html('<?php echo lang('confirm_delete_sales') ?>');
+
+                                confirmation.onclick = function () {
+                                    $('#confirm').modal('hide');
                                 // Значение выбранного селекта
                                 var selected_id = $('select[name="context-menu-input-sale"] option:selected').val();
                                 // Установка синхронного запроса для jQuery.ajax
@@ -621,6 +641,7 @@
                                     }, 100);
                                     $("#sort-list").sortable();
                                 }
+                            }
                             }
                         }
                     }

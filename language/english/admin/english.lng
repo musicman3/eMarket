@@ -116,6 +116,11 @@ action_failed = Action failed!
 categories_transfer = Transfer with the next page
 download_complete = Download complete!
 image_resize_error = ATTENTION: Some images not added. One of the sides of the image must be at least:
+attention = ATTENTION!
+confirm_delete_product_or_category = Are you sure you want to delete a category or product?
+confirm_delete_sale = Are you sure you want to remove from the sale?
+confirm_delete_sales = Are you sure you want to remove all sales?
+
 
 ;DEBUG
 debug_page_generation_time = Page generation time:

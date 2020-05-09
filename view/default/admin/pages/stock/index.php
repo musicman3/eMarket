@@ -18,6 +18,10 @@
 <?php require_once('modal/edit_product.php') ?>
 <!-- КОНЕЦ Модальное окно "Редактировать" -->
 
+<!-- Модальное окно "Подтверждение" -->
+<?php require_once('modal/confirm.php') ?>
+<!-- КОНЕЦ Модальное окно "Подтверждение" -->
+
 <div id="ajax">
 
     <div id="stock" class="container-fluid">
