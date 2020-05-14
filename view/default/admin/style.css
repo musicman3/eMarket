@@ -65,7 +65,7 @@ div.context-one, .table > tbody > tr > td.context-one {padding:5px;}
 .products .col-right {float: left;width: 250px;}
 .products .col-left-w {float: left;width: 150px;margin-right: 58px;}
 .products .col-right-w {float: left;width: 150px;}
-@media (min-width:768px){.modal-dialog {width:680px;margin:30px auto;}}
+@media (min-width:768px){.modal-md {width:700px;}}
 .settings {float: left;padding-left: 5px;}
 .settings .btn {margin-right: 10px;}
 .modal-content .tooltip-inner {font-family: 'Open Sans';max-width:400px;}
