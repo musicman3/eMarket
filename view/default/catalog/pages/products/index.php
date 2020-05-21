@@ -37,15 +37,17 @@
                             <label>Brand:</label>
                             <span> <?php echo $manufacturer ?></span>
                         </li>
-                    <?php } ?>
+                    <?php } if ($products['model'] != NULL && $products['model'] != FALSE) { ?>
                         <li>
-                        <label>Model:</label>
-                        <span> HP123456B</span>
-                    </li>
-                    <li>
-                        <label>Product Code:</label>
-                        <span> product 20</span>
-                    </li>
+                            <label>Model:</label>
+                            <span> <?php echo $products['model'] ?></span>
+                        </li>
+                    <?php } if ($vendor_code_value != NULL && $vendor_code_value != '') { ?>
+                        <li>
+                            <label><?php echo $vendor_code ?>:</label>
+                            <span> <?php echo $vendor_code_value ?></span>
+                        </li>
+                    <?php } ?>
                     <li>
                         <label>Weight:</label>
                         <span> 20 kg</span>

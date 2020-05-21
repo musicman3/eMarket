@@ -15,6 +15,16 @@ if ($products['manufacturer'] != NULL) {
     $manufacturer = NULL;
 }
 
+if ($products['vendor_code'] != NULL) {
+    $vendor_code = \eMarket\Pdo::getCellFalse("SELECT name FROM " . TABLE_VENDOR_CODES . " WHERE language=? AND id=?", [lang('#lang_all')[0], $products['vendor_code']]);
+} else {
+    $vendor_code = NULL;
+}
+
+if ($vendor_code != NULL && $vendor_code != FALSE){
+    $vendor_code_value = $products['vendor_code_value'];
+}
+
 $images = \eMarket\Func::deleteValInArray(explode(',', $products['logo'], -1), [$products['logo_general']]);
 $product_category = \eMarket\Products::productCategories($products['parent_id']);
 $categories_name = \eMarket\Pdo::getCell("SELECT name FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], \eMarket\Valid::inGET('category_id')]);
