@@ -8,6 +8,13 @@
 $cart_info = \eMarket\Cart::info();
 
 $products = \eMarket\Products::productData(\eMarket\Valid::inGET('id'));
+
+if ($products['manufacturer'] != NULL) {
+    $manufacturer = \eMarket\Pdo::getCellFalse("SELECT name FROM " . TABLE_MANUFACTURERS . " WHERE language=? AND id=?", [lang('#lang_all')[0], $products['manufacturer']]);
+} else {
+    $manufacturer = NULL;
+}
+
 $images = \eMarket\Func::deleteValInArray(explode(',', $products['logo'], -1), [$products['logo_general']]);
 $product_category = \eMarket\Products::productCategories($products['parent_id']);
 $categories_name = \eMarket\Pdo::getCell("SELECT name FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], \eMarket\Valid::inGET('category_id')]);
