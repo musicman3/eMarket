@@ -69,6 +69,8 @@ nav .disabled {pointer-events: none;}
 #products ul li {list-style: none;}
 #products ul {padding: 0;padding-left: 0px;margin: 0;}
 .productpage-price {font-size: 18px;color: #000;font-weight: bold;}
+.productpage-left {padding-left: 0;}
+.productpage-right {padding-right: 0;}
 #edit .nav > li > a, #add .nav > li > a {padding: 5px;}
 #edit .tab-content, #add .tab-content {padding-top: 10px;}
 #edit .pull-right .glyphicon, #add .pull-right .glyphicon {color: #000000;opacity: 0.5}
