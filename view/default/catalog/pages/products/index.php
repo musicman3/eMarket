@@ -10,7 +10,7 @@
 <div id="products" class="contentText">
     <div class="row">
         <div class="list-group-item">
-            <div class="col-xs-5">
+            <div class="col-xs-6">
                 <a href="/uploads/images/products/resize_4/<?php echo $products['logo_general'] ?>" data-toggle="lightbox" data-gallery="example-gallery" data-type="image">
                     <img src="/uploads/images/products/resize_2/<?php echo $products['logo_general'] ?>" alt="<?php echo $products['name'] ?>" class="img-padding img-responsive center-block">
                 </a>
@@ -24,27 +24,45 @@
                     <?php } ?>
                 </div>
             </div>
-            <div class="col-xs-7"> </div>
-            <div class="clearfix"></div>
-            <div class="row button">
-                <div class="col-xs-6"><?php echo \eMarket\Ecb::priceInterface($products, 1) ?></div>
-                <div class="col-xs-6 text-right">
-                    <?php if (\eMarket\Cart::productQuantity($products['id']) > 0) { ?>
-                        <form id="quantity_product" name="quantity_product" action="javascript:void(null);" onsubmit="quantityProduct(<?php echo $products['id'] ?>, $('#number_<?php echo $products['id'] ?>').val())">
-                        <?php } else { ?>
-                            <form id="quantity_product" name="quantity_product" action="javascript:void(null);" onsubmit="addToCart(<?php echo $products['id'] ?>, $('#number_<?php echo $products['id'] ?>').val())">
-                            <?php } ?>
-                            <button class="btn btn-primary" type="button" onclick="pcsProduct('minus', <?php echo $products['id'] ?>)"><span class="glyphicon glyphicon-minus"></span></button>
-                            <?php if (\eMarket\Cart::productQuantity($products['id']) > 0) { ?>
-                                <input id="number_<?php echo $products['id'] ?>" type="number" min="1" value="<?php echo \eMarket\Cart::productQuantity($products['id']) ?>" class="quantity">
-                            <?php } else { ?>
-                                <input id="number_<?php echo $products['id'] ?>" type="number" min="1" value="1" class="quantity">
-                            <?php } ?>
-                            <button class="btn btn-primary" type="button" onclick="pcsProduct('plus', <?php echo $products['id'] ?>)"><span class="glyphicon glyphicon-plus"></span></button>
-                            <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-shopping-cart"></span> <?php echo lang('add_to_cart') ?></button>
-                        </form>
-                </div>
+            <div class="col-xs-6">
+		<ul>
+		    <li>
+			<h2 class="productpage-price"><?php echo \eMarket\Ecb::priceInterface($products, 1) ?></h2>
+		    </li>
+		</ul>
+		<hr>
+		<ul>
+		    <li>
+			<label>Brand:</label>
+			<span>Apple</span>
+		    </li>
+		    <li>
+			<label>Product Code:</label>
+			<span> product 20</span></li>
+		    <li>
+			<label>Availability:</label>
+			<span> In Stock</span>
+		    </li>
+		</ul>
+		<hr>
+		<div>
+		    <?php if (\eMarket\Cart::productQuantity($products['id']) > 0) { ?>
+		    <form id="quantity_product" name="quantity_product" action="javascript:void(null);" onsubmit="quantityProduct(<?php echo $products['id'] ?>, $('#number_<?php echo $products['id'] ?>').val())">
+		    <?php } else { ?>
+			<form id="quantity_product" name="quantity_product" action="javascript:void(null);" onsubmit="addToCart(<?php echo $products['id'] ?>, $('#number_<?php echo $products['id'] ?>').val())">
+			<?php } ?>
+			<button class="btn btn-primary" type="button" onclick="pcsProduct('minus', <?php echo $products['id'] ?>)"><span class="glyphicon glyphicon-minus"></span></button>
+			<?php if (\eMarket\Cart::productQuantity($products['id']) > 0) { ?>
+			<input id="number_<?php echo $products['id'] ?>" type="number" min="1" value="<?php echo \eMarket\Cart::productQuantity($products['id']) ?>" class="quantity">
+			<?php } else { ?>
+			    <input id="number_<?php echo $products['id'] ?>" type="number" min="1" value="1" class="quantity">
+			<?php } ?>
+			<button class="btn btn-primary" type="button" onclick="pcsProduct('plus', <?php echo $products['id'] ?>)"><span class="glyphicon glyphicon-plus"></span></button>
+			<button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-shopping-cart"></span> <?php echo lang('add_to_cart') ?></button>
+		    </form>
+		</div>
             </div>
+            <div class="clearfix"></div>
         </div>
     </div>
     <div class="row">
