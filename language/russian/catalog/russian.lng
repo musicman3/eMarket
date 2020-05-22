@@ -76,6 +76,11 @@ enter_a_new_password = Введите новый пароль
 ;BREADCRUMB
 breadcrumb_home = Главная
 
+;PRODUCT
+product_manufacturer = Производитель:
+product_model = Модель:
+product_weight = Вес:
+
 ;ADDRESS BOOK
 my_address_book = Адресная книга
 address_book_country = Страна

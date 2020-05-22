@@ -33,12 +33,12 @@
                 <ul>
                     <?php if ($manufacturer != NULL && $manufacturer != FALSE) { ?>
                         <li>
-                            <label>Brand:</label>
+                            <label><?php echo lang('product_manufacturer') ?></label>
                             <span> <?php echo $manufacturer ?></span>
                         </li>
                     <?php } if ($products['model'] != NULL && $products['model'] != FALSE) { ?>
                         <li>
-                            <label>Model:</label>
+                            <label><?php echo lang('product_model') ?></label>
                             <span> <?php echo $products['model'] ?></span>
                         </li>
                     <?php } if ($vendor_code_value != NULL && $vendor_code_value != '') { ?>
@@ -48,7 +48,7 @@
                         </li>
                     <?php } if ($weight_value != NULL && $weight_value != '') { ?>
                     <li>
-                        <label>Weight:</label>
+                        <label><?php echo lang('product_weight') ?></label>
                         <span> <?php echo $weight_value . ' ' . $weight ?> </span>
                     </li>
                     <?php } ?>

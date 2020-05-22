@@ -110,6 +110,11 @@ cart_total_to_pay = Total to pay:
 ;BREADCRUMB
 breadcrumb_home = Home
 
+;PRODUCT
+product_manufacturer = Manufacturer:
+product_model = Model:
+product_weight = Weight:
+
 ;OTHER
 buy_now = Buy Now
 add_to_cart = Add to Cart
