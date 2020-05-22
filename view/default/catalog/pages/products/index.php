@@ -23,7 +23,7 @@
                     <?php } ?>
                 </div>
             </div>
-            <div class="col-sm-6 col-xs-12">
+            <div class="col-sm-6 col-xs-12 productpage">
                 <ul>
                     <li>
                         <h2 class="productpage-price"><?php echo \eMarket\Ecb::priceInterface($products, 1) ?></h2>
