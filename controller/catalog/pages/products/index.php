@@ -25,6 +25,16 @@ if ($vendor_code != NULL && $vendor_code != FALSE){
     $vendor_code_value = $products['vendor_code_value'];
 }
 
+if ($products['weight'] != NULL) {
+    $weight = \eMarket\Pdo::getCellFalse("SELECT code FROM " . TABLE_WEIGHT . " WHERE language=? AND id=?", [lang('#lang_all')[0], $products['weight']]);
+} else {
+    $weight = NULL;
+}
+
+if ($weight != NULL && $weight != FALSE){
+    $weight_value = $products['weight_value'];
+}
+
 $images = \eMarket\Func::deleteValInArray(explode(',', $products['logo'], -1), [$products['logo_general']]);
 $product_category = \eMarket\Products::productCategories($products['parent_id']);
 $categories_name = \eMarket\Pdo::getCell("SELECT name FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], \eMarket\Valid::inGET('category_id')]);
