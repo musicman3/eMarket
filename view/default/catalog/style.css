@@ -67,8 +67,8 @@ nav .disabled {pointer-events: none;}
 #products .nav-tabs > li.active > a, #products .nav-tabs > li.active > a:hover, #products .nav-tabs > li.active > a:focus {color: #ffffff;background: #428bca;border-color: #337ab7;}
 #products .nav-tabs > li > a {line-height: 1;}
 #products .quantity {all: unset;-moz-appearance: textfield;width: 38px;text-align: center;vertical-align: middle;border: 1px solid #2e6da4;border-radius: 3px;padding: 6px 0 6px 0;}
-#products ul li {list-style: none;}
-#products ul {padding: 0;padding-left: 0px;margin: 0;}
+#products .productpage ul li {list-style: none;}
+#products .productpage ul {padding: 0;margin: 0;}
 #products .productpage-price {font-size: 18px;color: #000;font-weight: bold;}
 #products .productpage {margin-bottom: 20px;}
 #edit .nav > li > a, #add .nav > li > a {padding: 5px;}
