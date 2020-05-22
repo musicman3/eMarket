@@ -76,7 +76,7 @@ nav .disabled {pointer-events: none;}
 #edit .pull-right .glyphicon, #add .pull-right .glyphicon {color: #000000;opacity: 0.5}
 @media (min-width:768px){.modal-md {width:700px;}}
 #listing .list-group-item {border: none;padding: 0px 15px;margin-bottom: 20px;}
-#listing .list-group-item img {float: left;margin: 0 10px 10px 0;}
+#listing .list-group-item img {float: left;margin: 0 50px 10px 0;}
 #listing .list-group-item .item-text {text-align: justify;margin-bottom: 10px;}
 #listing .list-group-item .caption {margin-top:-10px;}
 #listing .grid-group-item .item-heading {text-align: center;}
@@ -88,6 +88,7 @@ nav .disabled {pointer-events: none;}
 #listing .result-inner {margin: 5px 0 5px 0;}
 #listing .pagination-inner {margin-top: -2px;}
 #listing .pagination {margin: 0}
+#listing .item-text ul li {list-style: none;}
 #cart .button {padding-bottom: 20px;}
 #cart .table-bordered > tbody > tr > td {border:0;vertical-align: middle;}
 #cart .quantity {all: unset;-moz-appearance: textfield;width: 30px;text-align: center;vertical-align: middle;border: 1px solid #2e6da4;border-radius: 3px;padding: 4px 0 4px 0;}
