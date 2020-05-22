@@ -9,7 +9,7 @@
 
 <div id="products" class="contentText">
     <div class="row">
-            <div class="col-sm-6 col-xs-12 productpage-left">
+            <div class="col-sm-6 col-xs-12">
                 <a href="/uploads/images/products/resize_4/<?php echo $products['logo_general'] ?>" data-toggle="lightbox" data-gallery="example-gallery" data-type="image">
                     <img src="/uploads/images/products/resize_2/<?php echo $products['logo_general'] ?>" alt="<?php echo $products['name'] ?>" class="img-padding img-responsive center-block">
                 </a>
@@ -23,7 +23,7 @@
                     <?php } ?>
                 </div>
             </div>
-            <div class="col-sm-6 col-xs-12 productpage-right">
+            <div class="col-sm-6 col-xs-12">
                 <ul>
                     <li>
                         <h2 class="productpage-price"><?php echo \eMarket\Ecb::priceInterface($products, 1) ?></h2>
