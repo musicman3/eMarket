@@ -95,33 +95,8 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                         <a href="/?route=products&category_id=<?php echo \eMarket\Valid::inGET('category_id') ?>&parent_id=<?php echo \eMarket\Valid::inGET('parent_id') ?>&id=<?php echo $value['id'] ?>"><img src="/uploads/images/products/resize_1/<?php echo $value['logo_general'] ?>" alt="<?php echo $value['name'] ?>" class="img-responsive"></a>
                         <div class="caption">
                             <h5 class="item-heading"><a href="/?route=products&category_id=<?php echo \eMarket\Valid::inGET('category_id') ?>&parent_id=<?php echo \eMarket\Valid::inGET('parent_id') ?>&id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></h5>
-                            <div class="item-text">
-				<ul>
-				    <li>
-					<label>Brand:</label>
-					<span> HP</span>
-				    </li>
-				    <li>
-					<label>Model:</label>
-					<span> 480 G6</span>
-				    </li>
-				    <li>
-					<label>Vendor:</label>
-					<span> 67788</span>
-				    </li>
-				    <li>
-					<label>Weight:</label>
-					<span> 20 kg</span>
-				    </li>
-				    <li>
-					<label>Dimension:</label>
-					<span> 110/200/500 (H/L/W)</span>
-				    </li>
-				    <li>
-					<label>Availability:</label>
-					<span> In Stock</span>
-				    </li>
-				</ul>
+                            <div class="item-text"><br />
+				[<label>Brand:</label> HP, <label>Model:</label> 480 G6, <label>Vendor:</label> 67788, <label>Weight:</label> 20 kg, <label>Dimension:</label> 110/200/500 (H/L/W), <label>Availability:</label> In Stock]
                             </div>
                         </div>
                         <div class="clearfix"></div>
