@@ -21,7 +21,7 @@ if ($products['vendor_code'] != NULL) {
     $vendor_code = NULL;
 }
 
-if ($vendor_code != NULL && $vendor_code != FALSE){
+if ($vendor_code != NULL && $vendor_code != FALSE) {
     $vendor_code_value = $products['vendor_code_value'];
 }
 
@@ -31,8 +31,16 @@ if ($products['weight'] != NULL) {
     $weight = NULL;
 }
 
-if ($weight != NULL && $weight != FALSE){
+if ($weight != NULL && $weight != FALSE) {
     $weight_value = $products['weight_value'];
+}
+
+$date_available = \eMarket\Pdo::getCellFalse("SELECT date_available FROM " . TABLE_PRODUCTS . " WHERE language=? AND id=?", [lang('#lang_all')[0], $products['id']]);
+
+if ($date_available != NULL && $date_available != FALSE && strtotime($date_available) > strtotime(date('Y-m-d'))) {
+    $date_available_text = '<span class="label label-warning">' . lang('product_in_stock_from') . ' ' . \eMarket\Set::dateLocale($date_available) . '</span>';
+} else {
+    $date_available_text = '<span class="label label-success">' . lang('product_in_stock') . '</span>';
 }
 
 $images = \eMarket\Func::deleteValInArray(explode(',', $products['logo'], -1), [$products['logo_general']]);

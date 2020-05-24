@@ -420,6 +420,7 @@ class Set {
     /**
      * Форматированная дата
      * 
+     * @param string $date (дата)
      * @param string $format (формат даты вручную)
      * @param string $language (язык локали)
      * @return string|FALSE форматированная дата

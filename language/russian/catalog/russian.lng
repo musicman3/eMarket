@@ -80,6 +80,9 @@ breadcrumb_home = Главная
 product_manufacturer = Производитель:
 product_model = Модель:
 product_weight = Вес:
+product_availability = Наличие:
+product_in_stock_from = на складе с
+product_in_stock = на складе
 
 ;ADDRESS BOOK
 my_address_book = Адресная книга

@@ -57,8 +57,8 @@
                         <span> 110/200/500 (H/L/W)</span>
                     </li>
                     <li>
-                        <label>Availability:</label>
-                        <span> In Stock</span>
+                        <label><?php echo lang('product_availability') ?></label>
+                        <?php echo $date_available_text ?>
                     </li>
                 </ul>
                 <hr>
