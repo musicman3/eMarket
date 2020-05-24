@@ -51,57 +51,58 @@
                         <label><?php echo lang('product_weight') ?></label>
                         <span> <?php echo $weight_value . ' ' . $weight ?> </span>
                     </li>
-                <?php } ?>
-                <li>
-                    <label><?php echo lang('product_dimension') ?></label>
-                    <span> 110(Д) х 200(Ш) х 500(В)</span>
-                </li>
-                <li>
-                    <label><?php echo lang('product_availability') ?></label>
-                    <?php if ($date_available_marker == 'false') { ?>
-                        <span class="label label-warning"><?php echo $date_available_text ?></span>
-                    <?php } else { ?>
-                        <span class="label label-success"><?php echo $date_available_text ?></span>
+                <?php } if ($dimensions != '') { ?>
+                        <li>
+                            <label><?php echo sprintf(lang('product_dimension'), $dimension_name) ?></label>
+                            <span> <?php echo $dimensions ?></span>
+                        </li>
                     <?php } ?>
-                </li>
-            </ul>
-            <hr>
-            <div>
-                <?php if (\eMarket\Cart::productQuantity($products['id']) > 0) { ?>
-                    <form id="quantity_product" name="quantity_product" action="javascript:void(null);" onsubmit="quantityProduct(<?php echo $products['id'] ?>, $('#number_<?php echo $products['id'] ?>').val())">
-                    <?php } else { ?>
-                        <form id="quantity_product" name="quantity_product" action="javascript:void(null);" onsubmit="addToCart(<?php echo $products['id'] ?>, $('#number_<?php echo $products['id'] ?>').val())">
-                        <?php } ?>
-                        <button class="btn btn-primary" type="button" onclick="pcsProduct('minus', <?php echo $products['id'] ?>)"><span class="glyphicon glyphicon-minus"></span></button>
-                        <?php if (\eMarket\Cart::productQuantity($products['id']) > 0) { ?>
-                            <input id="number_<?php echo $products['id'] ?>" type="number" min="1" value="<?php echo \eMarket\Cart::productQuantity($products['id']) ?>" class="quantity">
+                    <li>
+                        <label><?php echo lang('product_availability') ?></label>
+                        <?php if ($date_available_marker == 'false') { ?>
+                            <span class="label label-warning"><?php echo $date_available_text ?></span>
                         <?php } else { ?>
-                            <input id="number_<?php echo $products['id'] ?>" type="number" min="1" value="1" class="quantity">
+                            <span class="label label-success"><?php echo $date_available_text ?></span>
                         <?php } ?>
-                        <button class="btn btn-primary" type="button" onclick="pcsProduct('plus', <?php echo $products['id'] ?>)"><span class="glyphicon glyphicon-plus"></span></button>
-                        <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-shopping-cart"></span> <?php echo lang('add_to_cart') ?></button>
-                    </form>
+                    </li>
+                </ul>
+                <hr>
+                <div>
+                    <?php if (\eMarket\Cart::productQuantity($products['id']) > 0) { ?>
+                        <form id="quantity_product" name="quantity_product" action="javascript:void(null);" onsubmit="quantityProduct(<?php echo $products['id'] ?>, $('#number_<?php echo $products['id'] ?>').val())">
+                        <?php } else { ?>
+                            <form id="quantity_product" name="quantity_product" action="javascript:void(null);" onsubmit="addToCart(<?php echo $products['id'] ?>, $('#number_<?php echo $products['id'] ?>').val())">
+                            <?php } ?>
+                            <button class="btn btn-primary" type="button" onclick="pcsProduct('minus', <?php echo $products['id'] ?>)"><span class="glyphicon glyphicon-minus"></span></button>
+                            <?php if (\eMarket\Cart::productQuantity($products['id']) > 0) { ?>
+                                <input id="number_<?php echo $products['id'] ?>" type="number" min="1" value="<?php echo \eMarket\Cart::productQuantity($products['id']) ?>" class="quantity">
+                            <?php } else { ?>
+                                <input id="number_<?php echo $products['id'] ?>" type="number" min="1" value="1" class="quantity">
+                            <?php } ?>
+                            <button class="btn btn-primary" type="button" onclick="pcsProduct('plus', <?php echo $products['id'] ?>)"><span class="glyphicon glyphicon-plus"></span></button>
+                            <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-shopping-cart"></span> <?php echo lang('add_to_cart') ?></button>
+                        </form>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="list-group-item">
-            <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#panel_description"><?php echo lang('description_product') ?></a></li>
-            </ul>
-            <div class="tab-content">
-                <div id="panel_description" class="tab-pane fade in active">
-                    <div class="item-text"><?php echo $products['description'] ?></div>
+        <div class="row">
+            <div class="list-group-item">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#panel_description"><?php echo lang('description_product') ?></a></li>
+                </ul>
+                <div class="tab-content">
+                    <div id="panel_description" class="tab-pane fade in active">
+                        <div class="item-text"><?php echo $products['description'] ?></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 
-<?php
+    <?php
 // ПОДКЛЮЧАЕМ КОНТЕНТ
-foreach (\eMarket\View::layoutRouting('content') as $path) {
-    require_once (ROOT . $path);
-}
-?>
+    foreach (\eMarket\View::layoutRouting('content') as $path) {
+        require_once (ROOT . $path);
+    }
+    ?>

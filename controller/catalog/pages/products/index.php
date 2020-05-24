@@ -40,11 +40,34 @@ if ($products['date_available'] != NULL && $products['date_available'] != FALSE 
     $date_available_marker = 'true';
     $date_available_text = lang('product_in_stock');
 }
+$dimension_name = \eMarket\Pdo::getCellFalse("SELECT code FROM " . TABLE_LENGTH . " WHERE language=? AND id=?", [lang('#lang_all')[0], $products['dimension']]);
+$dimensions = '';
+$dimension_marker = 0;
 
-if ($products['date_available'] != NULL && $weight != FALSE) {
-    
+if ($products['length'] != NULL && $products['length'] != FALSE) {
+    $dimensions .= $products['length'] . ' (' . lang('product_dimension_length') . ')';
+    $dimension_marker++;
 }
 
+if ($products['width'] != NULL && $products['width'] != FALSE) {
+    if ($dimension_marker > 0) {
+        $dimensions .= ' x ' . $products['width'] . ' (' . lang('product_dimension_width') . ')';
+        $dimension_marker++;
+    } else {
+        $dimensions .= $products['width'] . ' (' . lang('product_dimension_width') . ')';
+        $dimension_marker++;
+    }
+}
+
+if ($products['height'] != NULL && $products['height'] != FALSE) {
+    if ($dimension_marker > 0) {
+        $dimensions .= ' x ' . $products['height'] . ' (' . lang('product_dimension_height') . ')';
+        $dimension_marker++;
+    } else {
+        $dimensions .= $products['height'] . ' (' . lang('product_dimension_height') . ')';
+        $dimension_marker++;
+    }
+}
 
 $images = \eMarket\Func::deleteValInArray(explode(',', $products['logo'], -1), [$products['logo_general']]);
 $product_category = \eMarket\Products::productCategories($products['parent_id']);

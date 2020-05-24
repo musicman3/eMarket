@@ -117,7 +117,10 @@ product_weight = Weight:
 product_availability = Availability:
 product_in_stock_from = in stock from
 product_in_stock = in stock
-product_dimension = Dimension:
+product_dimension = Dimension (%s):
+product_dimension_length = L
+product_dimension_width = W
+product_dimension_height = H
 
 ;OTHER
 buy_now = Buy Now
