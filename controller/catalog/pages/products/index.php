@@ -5,8 +5,6 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-$cart_info = \eMarket\Cart::info();
-
 $products = \eMarket\Products::productData(\eMarket\Valid::inGET('id'));
 
 if ($products['manufacturer'] != NULL) {
@@ -35,15 +33,15 @@ if ($weight != NULL && $weight != FALSE) {
     $weight_value = $products['weight_value'];
 }
 
-$date_available = \eMarket\Pdo::getCellFalse("SELECT date_available FROM " . TABLE_PRODUCTS . " WHERE language=? AND id=?", [lang('#lang_all')[0], $products['id']]);
-
-if ($date_available != NULL && $date_available != FALSE && strtotime($date_available) > strtotime(date('Y-m-d'))) {
+if ($products['date_available'] != NULL && $products['date_available'] != FALSE && strtotime($products['date_available']) > strtotime(date('Y-m-d'))) {
     $date_available_marker = 'false';
-    $date_available_text = lang('product_in_stock_from') . ' ' . \eMarket\Set::dateLocale($date_available);
+    $date_available_text = lang('product_in_stock_from') . ' ' . \eMarket\Set::dateLocale($products['date_available']);
 } else {
     $date_available_marker = 'true';
     $date_available_text = lang('product_in_stock');
 }
+
+
 
 $images = \eMarket\Func::deleteValInArray(explode(',', $products['logo'], -1), [$products['logo_general']]);
 $product_category = \eMarket\Products::productCategories($products['parent_id']);

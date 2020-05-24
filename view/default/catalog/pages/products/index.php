@@ -54,7 +54,7 @@
                 <?php } ?>
                 <li>
                     <label>Dimension:</label>
-                    <span> 110(В) х 200(Ш) х 500(Д)</span>
+                    <span> 110(Д) х 200(Ш) х 500(В)</span>
                 </li>
                 <li>
                     <label><?php echo lang('product_availability') ?></label>
