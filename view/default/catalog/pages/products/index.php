@@ -31,7 +31,12 @@
             </ul>
             <hr>
             <ul>
-                <?php if ($manufacturer != NULL && $manufacturer != FALSE) { ?>
+                <?php if ($vendor_code_value != NULL && $vendor_code_value != '') { ?>
+                    <li>
+                        <label><?php echo $vendor_code ?>:</label>
+                        <span> <?php echo $vendor_code_value ?></span>
+                    </li>
+                <?php } if ($manufacturer != NULL && $manufacturer != FALSE) { ?>
                     <li>
                         <label><?php echo lang('product_manufacturer') ?></label>
                         <span> <?php echo $manufacturer ?></span>
@@ -40,11 +45,6 @@
                     <li>
                         <label><?php echo lang('product_model') ?></label>
                         <span> <?php echo $products['model'] ?></span>
-                    </li>
-                <?php } if ($vendor_code_value != NULL && $vendor_code_value != '') { ?>
-                    <li>
-                        <label><?php echo $vendor_code ?>:</label>
-                        <span> <?php echo $vendor_code_value ?></span>
                     </li>
                 <?php } if ($weight_value != NULL && $weight_value != '') { ?>
                     <li>
