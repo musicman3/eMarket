@@ -32,8 +32,9 @@ if ($products['weight'] != NULL) {
 if ($weight != NULL && $weight != FALSE) {
     $weight_value = $products['weight_value'];
 }
-
-if ($products['date_available'] != NULL && $products['date_available'] != FALSE && strtotime($products['date_available']) > strtotime(date('Y-m-d'))) {
+if ($products['quantity'] != NULL && $products['quantity'] <= 0) {
+    $date_available_text = lang('product_out_of_stock');
+} elseif ($products['date_available'] != NULL && $products['date_available'] != FALSE && strtotime($products['date_available']) > strtotime(date('Y-m-d'))) {
     $date_available_marker = 'false';
     $date_available_text = lang('product_in_stock_from') . ' ' . \eMarket\Set::dateLocale($products['date_available']);
 } else {

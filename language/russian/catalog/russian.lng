@@ -83,6 +83,7 @@ product_weight = Вес:
 product_availability = Наличие:
 product_in_stock_from = на складе с
 product_in_stock = на складе
+product_out_of_stock = нет на складе
 product_dimension = Габаритные размеры (%s):
 product_dimension_length = Д
 product_dimension_width = Ш
