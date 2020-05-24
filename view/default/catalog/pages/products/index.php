@@ -9,76 +9,80 @@
 
 <div id="products" class="contentText">
     <div class="row">
-            <div class="col-sm-6 col-xs-12">
-                <a href="/uploads/images/products/resize_4/<?php echo $products['logo_general'] ?>" data-toggle="lightbox" data-gallery="example-gallery" data-type="image">
-                    <img src="/uploads/images/products/resize_2/<?php echo $products['logo_general'] ?>" alt="<?php echo $products['name'] ?>" class="img-padding img-responsive center-block">
-                </a>
-                <div class="row">
-                    <?php foreach ($images as $val) { ?>
-                        <div class="col-md-3 col-sm-4 col-xs-6">
-                            <a href="/uploads/images/products/resize_4/<?php echo $val ?>" data-toggle="lightbox" data-gallery="example-gallery" data-type="image" class="thumbnail">
-                                <img src="/uploads/images/products/resize_1/<?php echo $val ?>" alt="<?php echo $products['name'] ?>">
-                            </a>
-                        </div>
-                    <?php } ?>
-                </div>
+        <div class="col-sm-6 col-xs-12">
+            <a href="/uploads/images/products/resize_4/<?php echo $products['logo_general'] ?>" data-toggle="lightbox" data-gallery="example-gallery" data-type="image">
+                <img src="/uploads/images/products/resize_2/<?php echo $products['logo_general'] ?>" alt="<?php echo $products['name'] ?>" class="img-padding img-responsive center-block">
+            </a>
+            <div class="row">
+                <?php foreach ($images as $val) { ?>
+                    <div class="col-md-3 col-sm-4 col-xs-6">
+                        <a href="/uploads/images/products/resize_4/<?php echo $val ?>" data-toggle="lightbox" data-gallery="example-gallery" data-type="image" class="thumbnail">
+                            <img src="/uploads/images/products/resize_1/<?php echo $val ?>" alt="<?php echo $products['name'] ?>">
+                        </a>
+                    </div>
+                <?php } ?>
             </div>
-            <div class="col-sm-6 col-xs-12 productpage">
-                <ul>
+        </div>
+        <div class="col-sm-6 col-xs-12 productpage">
+            <ul>
+                <li>
+                    <h2 class="productpage-price"><?php echo \eMarket\Ecb::priceInterface($products, 1) ?></h2>
+                </li>
+            </ul>
+            <hr>
+            <ul>
+                <?php if ($manufacturer != NULL && $manufacturer != FALSE) { ?>
                     <li>
-                        <h2 class="productpage-price"><?php echo \eMarket\Ecb::priceInterface($products, 1) ?></h2>
+                        <label><?php echo lang('product_manufacturer') ?></label>
+                        <span> <?php echo $manufacturer ?></span>
                     </li>
-                </ul>
-                <hr>
-                <ul>
-                    <?php if ($manufacturer != NULL && $manufacturer != FALSE) { ?>
-                        <li>
-                            <label><?php echo lang('product_manufacturer') ?></label>
-                            <span> <?php echo $manufacturer ?></span>
-                        </li>
-                    <?php } if ($products['model'] != NULL && $products['model'] != FALSE) { ?>
-                        <li>
-                            <label><?php echo lang('product_model') ?></label>
-                            <span> <?php echo $products['model'] ?></span>
-                        </li>
-                    <?php } if ($vendor_code_value != NULL && $vendor_code_value != '') { ?>
-                        <li>
-                            <label><?php echo $vendor_code ?>:</label>
-                            <span> <?php echo $vendor_code_value ?></span>
-                        </li>
-                    <?php } if ($weight_value != NULL && $weight_value != '') { ?>
+                <?php } if ($products['model'] != NULL && $products['model'] != FALSE) { ?>
+                    <li>
+                        <label><?php echo lang('product_model') ?></label>
+                        <span> <?php echo $products['model'] ?></span>
+                    </li>
+                <?php } if ($vendor_code_value != NULL && $vendor_code_value != '') { ?>
+                    <li>
+                        <label><?php echo $vendor_code ?>:</label>
+                        <span> <?php echo $vendor_code_value ?></span>
+                    </li>
+                <?php } if ($weight_value != NULL && $weight_value != '') { ?>
                     <li>
                         <label><?php echo lang('product_weight') ?></label>
                         <span> <?php echo $weight_value . ' ' . $weight ?> </span>
                     </li>
+                <?php } ?>
+                <li>
+                    <label>Dimension:</label>
+                    <span> 110(В) х 200(Ш) х 500(Д)</span>
+                </li>
+                <li>
+                    <label><?php echo lang('product_availability') ?></label>
+                    <?php if ($date_available_marker == 'false') { ?>
+                        <span class="label label-warning"><?php echo $date_available_text ?></span>
+                    <?php } else { ?>
+                        <span class="label label-success"><?php echo $date_available_text ?></span>
                     <?php } ?>
-                    <li>
-                        <label>Dimension:</label>
-                        <span> 110/200/500 (H/L/W)</span>
-                    </li>
-                    <li>
-                        <label><?php echo lang('product_availability') ?></label>
-                        <?php echo $date_available_text ?>
-                    </li>
-                </ul>
-                <hr>
-                <div>
-                    <?php if (\eMarket\Cart::productQuantity($products['id']) > 0) { ?>
-                        <form id="quantity_product" name="quantity_product" action="javascript:void(null);" onsubmit="quantityProduct(<?php echo $products['id'] ?>, $('#number_<?php echo $products['id'] ?>').val())">
+                </li>
+            </ul>
+            <hr>
+            <div>
+                <?php if (\eMarket\Cart::productQuantity($products['id']) > 0) { ?>
+                    <form id="quantity_product" name="quantity_product" action="javascript:void(null);" onsubmit="quantityProduct(<?php echo $products['id'] ?>, $('#number_<?php echo $products['id'] ?>').val())">
+                    <?php } else { ?>
+                        <form id="quantity_product" name="quantity_product" action="javascript:void(null);" onsubmit="addToCart(<?php echo $products['id'] ?>, $('#number_<?php echo $products['id'] ?>').val())">
+                        <?php } ?>
+                        <button class="btn btn-primary" type="button" onclick="pcsProduct('minus', <?php echo $products['id'] ?>)"><span class="glyphicon glyphicon-minus"></span></button>
+                        <?php if (\eMarket\Cart::productQuantity($products['id']) > 0) { ?>
+                            <input id="number_<?php echo $products['id'] ?>" type="number" min="1" value="<?php echo \eMarket\Cart::productQuantity($products['id']) ?>" class="quantity">
                         <?php } else { ?>
-                            <form id="quantity_product" name="quantity_product" action="javascript:void(null);" onsubmit="addToCart(<?php echo $products['id'] ?>, $('#number_<?php echo $products['id'] ?>').val())">
-                            <?php } ?>
-                            <button class="btn btn-primary" type="button" onclick="pcsProduct('minus', <?php echo $products['id'] ?>)"><span class="glyphicon glyphicon-minus"></span></button>
-                            <?php if (\eMarket\Cart::productQuantity($products['id']) > 0) { ?>
-                                <input id="number_<?php echo $products['id'] ?>" type="number" min="1" value="<?php echo \eMarket\Cart::productQuantity($products['id']) ?>" class="quantity">
-                            <?php } else { ?>
-                                <input id="number_<?php echo $products['id'] ?>" type="number" min="1" value="1" class="quantity">
-                            <?php } ?>
-                            <button class="btn btn-primary" type="button" onclick="pcsProduct('plus', <?php echo $products['id'] ?>)"><span class="glyphicon glyphicon-plus"></span></button>
-                            <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-shopping-cart"></span> <?php echo lang('add_to_cart') ?></button>
-                        </form>
-                </div>
+                            <input id="number_<?php echo $products['id'] ?>" type="number" min="1" value="1" class="quantity">
+                        <?php } ?>
+                        <button class="btn btn-primary" type="button" onclick="pcsProduct('plus', <?php echo $products['id'] ?>)"><span class="glyphicon glyphicon-plus"></span></button>
+                        <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-shopping-cart"></span> <?php echo lang('add_to_cart') ?></button>
+                    </form>
             </div>
+        </div>
     </div>
     <div class="row">
         <div class="list-group-item">

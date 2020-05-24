@@ -38,9 +38,11 @@ if ($weight != NULL && $weight != FALSE) {
 $date_available = \eMarket\Pdo::getCellFalse("SELECT date_available FROM " . TABLE_PRODUCTS . " WHERE language=? AND id=?", [lang('#lang_all')[0], $products['id']]);
 
 if ($date_available != NULL && $date_available != FALSE && strtotime($date_available) > strtotime(date('Y-m-d'))) {
-    $date_available_text = '<span class="label label-warning">' . lang('product_in_stock_from') . ' ' . \eMarket\Set::dateLocale($date_available) . '</span>';
+    $date_available_marker = 'false';
+    $date_available_text = lang('product_in_stock_from') . ' ' . \eMarket\Set::dateLocale($date_available);
 } else {
-    $date_available_text = '<span class="label label-success">' . lang('product_in_stock') . '</span>';
+    $date_available_marker = 'true';
+    $date_available_text = lang('product_in_stock');
 }
 
 $images = \eMarket\Func::deleteValInArray(explode(',', $products['logo'], -1), [$products['logo_general']]);
