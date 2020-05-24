@@ -41,6 +41,9 @@ if ($products['date_available'] != NULL && $products['date_available'] != FALSE 
     $date_available_text = lang('product_in_stock');
 }
 
+if ($products['date_available'] != NULL && $weight != FALSE) {
+    
+}
 
 
 $images = \eMarket\Func::deleteValInArray(explode(',', $products['logo'], -1), [$products['logo_general']]);

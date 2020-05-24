@@ -65,7 +65,7 @@ for ($i = $start; $i < $finish; $i++) {
         $dimension_edit_temp_product[$modal_id_product] = \eMarket\Pdo::selectPrepare("SELECT name FROM " . TABLE_LENGTH . " WHERE id=? and language=?", [$query['dimension'], lang('#lang_all')[0]]);
         
         // Длина
-        $lenght_edit_temp_product[$modal_id_product] = $query['lenght'];
+        $length_edit_temp_product[$modal_id_product] = $query['length'];
         
         // Ширина
         $width_edit_temp_product[$modal_id_product] = $query['width'];
@@ -94,7 +94,7 @@ for ($i = $start; $i < $finish; $i++) {
         $weight_edit_product = json_encode($weight_edit_temp_product); // Вес
         $min_quantity_edit_product = json_encode($min_quantity_edit_temp_product); // Минимальное количество
         $dimension_edit_product = json_encode($dimension_edit_temp_product); // Ед. изм. длины
-        $lenght_edit_product = json_encode($lenght_edit_temp_product); // Длина
+        $length_edit_product = json_encode($length_edit_temp_product); // Длина
         $width_edit_product = json_encode($width_edit_temp_product); // Ширина
         $height_edit_product = json_encode($height_edit_temp_product); // Высота
         //
@@ -125,7 +125,7 @@ if (!isset($modal_id_product)) {
     $weight_edit_product = ''; // Вес
     $min_quantity_edit_product = ''; // Минимальное количество
     $dimension_edit_product = ''; // Ед. изм. длины
-    $lenght_edit_product = ''; // Длина
+    $length_edit_product = ''; // Длина
     $width_edit_product = ''; // Ширина
     $height_edit_product = ''; // Высота
     $logo_edit_product = ''; // Список изображений

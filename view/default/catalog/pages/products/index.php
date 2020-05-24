@@ -53,7 +53,7 @@
                     </li>
                 <?php } ?>
                 <li>
-                    <label>Dimension:</label>
+                    <label><?php echo lang('product_dimension') ?></label>
                     <span> 110(Д) х 200(Ш) х 500(В)</span>
                 </li>
                 <li>

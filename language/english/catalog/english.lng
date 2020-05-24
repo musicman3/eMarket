@@ -117,6 +117,7 @@ product_weight = Weight:
 product_availability = Availability:
 product_in_stock_from = in stock from
 product_in_stock = in stock
+product_dimension = Dimension:
 
 ;OTHER
 buy_now = Buy Now

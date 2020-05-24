@@ -172,7 +172,7 @@
                                 var weight_edit = $('div#ajax_data').data('weightproduct');
                                 var min_quantity_edit = $('div#ajax_data').data('minquantityproduct');
                                 var dimension_edit = $('div#ajax_data').data('dimensionproduct');
-                                var lenght_edit = $('div#ajax_data').data('lenghtproduct');
+                                var length_edit = $('div#ajax_data').data('lengthproduct');
                                 var width_edit = $('div#ajax_data').data('widthproduct');
                                 var height_edit = $('div#ajax_data').data('heightproduct');
                                 var logo_edit_product = $('div#ajax_data').data('logoproduct');
@@ -203,7 +203,7 @@
                                 $('#weight_product_stock_edit').val(weight_edit[modal_id]);
                                 $('#min_quantity_product_stock_edit').val(min_quantity_edit[modal_id]);
                                 $('#length_product_stock_edit').val(dimension_edit[modal_id]);
-                                $('#value_length_product_stock_edit').val(lenght_edit[modal_id]);
+                                $('#value_length_product_stock_edit').val(length_edit[modal_id]);
                                 $('#value_width_product_stock_edit').val(width_edit[modal_id]);
                                 $('#value_height_product_stock_edit').val(height_edit[modal_id]);
                                 $('#js_edit_product').val(modal_id);
