@@ -859,17 +859,57 @@
 <!--Атрибуты -->
 <script type="text/javascript">
 
+    $('#add').on('show.bs.modal', function (event) {
+        parse_attributes = [];
+        if (sessionStorage.getItem('attributes') !== null) {
+            var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
+        }
+        //alert(parse_attributes.length);
+        //$('.attribute').detach();
+        for (x = 0; x < parse_attributes.length; x++) {
+            var y = x+1;
+            $('.attribute').append(
+                    '<tr>' +
+                    '<td class="sortleft"><button type="submit" class="value-attribute btn btn-primary btn-xs"><span class="glyphicon glyphicon-cog"></span></button></td>' +
+                    '<td>' + parse_attributes[x][0]['value'] + '</td>' +
+                    '<td class="al-text-w">' +
+                    '<div class="b-right"><button id="' + y + '" type="submit" class="delete-attribute btn btn-primary btn-xs" title="<?php echo lang('button_delete') ?>"><span class="glyphicon glyphicon-trash"> </span></button></div>' +
+                    '<div class="b-left"><button id="' + randomize(32) + '" type="submit" class="edit-attribute btn btn-primary btn-xs" title="<?php echo lang('button_edit') ?>"><span class="glyphicon glyphicon-edit"> </span></button></div>' +
+                    '</td>' +
+                    '</tr>'
+                    );
+        }
+    });
+
+    $('#add').on('hidden.bs.modal', function (event) {
+        //alert(parse_attributes.length);
+        $('.attribute').empty();
+    });
+
     $('#add_attribute_button').click(function () {
         $('#add_attribute').modal('hide');
 
+        var attributes_bank = $('#attribute_add').serializeArray();
+        var parse_attributes = [];
+
+        if (sessionStorage.getItem('attributes') !== null) {
+            parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
+            parse_attributes.push(attributes_bank);
+            sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
+        } else {
+            sessionStorage.setItem('attributes', JSON.stringify([attributes_bank]));
+        }
+        
+        var length_attr = parse_attributes.length;
+        
         $('.attribute').append(
-                '<tr>' + 
-                    '<td class="sortleft"><button type="submit" class="value-attribute btn btn-primary btn-xs"><span class="glyphicon glyphicon-cog"></span></button></td>' + 
-                    '<td>' + $('#attribute_<?php echo lang('#lang_all')[0] ?>').val() + '</td>' + 
-                    '<td class="al-text-w">' +
-                        '<div class="b-right"><button type="submit" class="delete-attribute btn btn-primary btn-xs" title="<?php echo lang('button_delete') ?>"><span class="glyphicon glyphicon-trash"> </span></button></div>' + 
-                        '<div class="b-left"><button id="' + randomize(32) + '" type="submit" class="edit-attribute btn btn-primary btn-xs" title="<?php echo lang('button_edit') ?>"><span class="glyphicon glyphicon-edit"> </span></button></div>' + 
-                    '</td>' + 
+                '<tr>' +
+                '<td class="sortleft"><button type="submit" class="value-attribute btn btn-primary btn-xs"><span class="glyphicon glyphicon-cog"></span></button></td>' +
+                '<td>' + attributes_bank[0]['value'] + '</td>' +
+                '<td class="al-text-w">' +
+                '<div class="b-right"><button id="' + length_attr + '" type="submit" class="delete-attribute btn btn-primary btn-xs" title="<?php echo lang('button_delete') ?>"><span class="glyphicon glyphicon-trash"> </span></button></div>' +
+                '<div class="b-left"><button id="' + randomize(32) + '" type="submit" class="edit-attribute btn btn-primary btn-xs" title="<?php echo lang('button_edit') ?>"><span class="glyphicon glyphicon-edit"> </span></button></div>' +
+                '</td>' +
                 '</tr>'
                 );
 
@@ -879,5 +919,12 @@
     $(document).on('click', '.delete-attribute', function () {
         //alert($(this).attr("id"));
         $(this).closest('tr').remove();
+        
+        if (sessionStorage.getItem('attributes') !== null) {
+            var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
+            parse_attributes.splice($(this).attr("id") - 1, 1);
+            sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
+        }
+        
     });
 </script>
