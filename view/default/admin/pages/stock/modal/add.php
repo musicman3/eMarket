@@ -91,7 +91,7 @@
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th colspan="2"></th>
+                                        <th colspan="1"></th>
                                         <th>
                                             <div class="b-right"><a href="#add_attribute" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
                                         </th>

@@ -862,10 +862,8 @@
     $('#add_attribute_button').click(function () {
         $('#add_attribute').modal('hide');
 
-        var random_name = randomize(32);
-
         $('.information_json_plus').append(
-                '<tr><td>' + $('#attribute_<?php echo lang('#lang_all')[0] ?>').val() + '<td><td class="al-text-w"><div class="b-right"><button id="' + random_name + '" type="submit" name="delete_but" class="minus btn btn-primary btn-xs" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button></div></td></tr>'
+                '<tr><td>' + $('#attribute_<?php echo lang('#lang_all')[0] ?>').val() + '</td><td class="al-text-w"><div class="b-right"><button id="' + randomize(32) + '" type="submit" name="delete_but" class="minus btn btn-primary btn-xs" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button></div></td></tr>'
                 );
 
         $('.input-add-attribute').val('');
