@@ -1,4 +1,8 @@
-// Random string generator
+/**
+ * Random generator
+ * @param length {String}
+ * @returns id {String}
+ */
 
 function randomize(length) {
     var id = '';
