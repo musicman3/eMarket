@@ -856,3 +856,27 @@
 \eMarket\Ajax::fileUpload('?route=stock', 'categories', $resize_param);
 \eMarket\Ajax::fileUploadProduct('?route=stock', 'products', $resize_param_product);
 ?>
+
+<!--Атрибуты -->
+<script type="text/javascript">
+    $('.plus').click(function () {
+        var langs = $.parseJSON('<?php echo json_encode(lang('#lang_all')) ?>');
+        var template = '<?php echo \eMarket\Set::template() ?>';
+        var string = '';
+        for (x = 0; x < langs.length; x++) {
+            string = string + '<div class="form-group"><div class="input-group has-success">' +
+                    '<span class="input-group-addon"><img src="/view/' + template + '/admin/images/langflags/' + langs[x] + '.png" alt="' + langs[x] + '" title="' + langs[x] + '" width="16" height="10" /></span>' +
+                    '<input type="text" class="input-sm form-control" name="atribute_val_' + langs[x] + '[]" placeholder="Атрибут">' +
+                    '</div></div>';
+        }
+
+        $('.information_json_plus').before(
+                '<tr><td>' + string + '</td><td><span class="minus btn btn-danger btn-xs glyphicon glyphicon-minus pull-right"></span></td>' +
+                '</tr>'
+                );
+
+    });
+    $(document).on('click', '.minus', function () {
+        $(this).closest('tr').remove();
+    });
+</script>
