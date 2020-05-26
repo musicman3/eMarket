@@ -864,11 +864,11 @@
 
         $('.attribute').append(
                 '<tr>' + 
-                    '<td class="sortleft"><button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-cog"></span></button></td>' + 
+                    '<td class="sortleft"><button type="submit" class="value-attribute btn btn-primary btn-xs"><span class="glyphicon glyphicon-cog"></span></button></td>' + 
                     '<td>' + $('#attribute_<?php echo lang('#lang_all')[0] ?>').val() + '</td>' + 
                     '<td class="al-text-w">' +
-                        '<div class="b-right"><button type="submit" name="delete_but" class="delete btn btn-primary btn-xs" title="<?php echo lang('button_delete') ?>"><span class="glyphicon glyphicon-trash"> </span></button></div>' + 
-                        '<div class="b-left"><button id="' + randomize(32) + '" type="submit" name="edit_but" class="edit btn btn-primary btn-xs" title="<?php echo lang('button_edit') ?>"><span class="glyphicon glyphicon-edit"> </span></button></div>' + 
+                        '<div class="b-right"><button type="submit" class="delete-attribute btn btn-primary btn-xs" title="<?php echo lang('button_delete') ?>"><span class="glyphicon glyphicon-trash"> </span></button></div>' + 
+                        '<div class="b-left"><button id="' + randomize(32) + '" type="submit" class="edit-attribute btn btn-primary btn-xs" title="<?php echo lang('button_edit') ?>"><span class="glyphicon glyphicon-edit"> </span></button></div>' + 
                     '</td>' + 
                 '</tr>'
                 );
@@ -876,7 +876,7 @@
         $('.input-add-attribute').val('');
     });
 
-    $(document).on('click', '.delete', function () {
+    $(document).on('click', '.delete-attribute', function () {
         //alert($(this).attr("id"));
         $(this).closest('tr').remove();
     });
