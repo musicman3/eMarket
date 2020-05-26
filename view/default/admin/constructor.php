@@ -30,6 +30,8 @@
         <script type="text/javascript" src="/ext/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/ext/jquery/ui/jquery-ui.min.js"></script>
         <script type="text/javascript" src="/ext/jquery/ui/jquery.ui.touch-punch.min.js"></script>
+        <script type="text/javascript" src="/ext/fastmd5/md5.min.js"></script>
+        <script type="text/javascript" src="/ext/randomizer/randomizer.js"></script>
 
         <!-- Всплывающие подсказки" -->
         <script type="text/javascript">
