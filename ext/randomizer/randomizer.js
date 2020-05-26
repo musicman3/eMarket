@@ -1,6 +1,6 @@
 /**
- * Random generator
- * @param length {String}
+ * Random generator (генератор случайной строки)
+ * @param length {String} (количество символов)
  * @returns id {String}
  */
 
