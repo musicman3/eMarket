@@ -859,23 +859,16 @@
 
 <!--Атрибуты -->
 <script type="text/javascript">
-    $('.plus').click(function () {
-        var langs = $.parseJSON('<?php echo json_encode(lang('#lang_all')) ?>');
-        var template = '<?php echo \eMarket\Set::template() ?>';
-        var string = '';
-        for (x = 0; x < langs.length; x++) {
-            string = string + '<div class="form-group"><div class="input-group has-success">' +
-                    '<span class="input-group-addon"><img src="/view/' + template + '/admin/images/langflags/' + langs[x] + '.png" alt="' + langs[x] + '" title="' + langs[x] + '" width="16" height="10" /></span>' +
-                    '<input type="text" class="input-sm form-control" name="atribute_val_' + langs[x] + '[]" placeholder="Атрибут">' +
-                    '</div></div>';
-        }
+    $('#add_attribute_button').click(function () {
+        $('#add_attribute').modal('hide');
 
-        $('.information_json_plus').before(
-                '<tr><td>' + string + '</td><td><span class="minus btn btn-danger btn-xs glyphicon glyphicon-minus pull-right"></span></td>' +
-                '</tr>'
+        $('.information_json_plus').append(
+                '<tr><td>' + $('#attribute_<?php echo lang('#lang_all')[0] ?>').val() + '<td><td class="al-text-w"><div class="b-right"><button type="submit" name="delete_but" class="minus btn btn-primary btn-xs" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button></div></td></tr>'
                 );
-
+        
+        $('.input-add-attribute').val('');
     });
+    
     $(document).on('click', '.minus', function () {
         $(this).closest('tr').remove();
     });

@@ -22,6 +22,10 @@
 <?php require_once('modal/confirm.php') ?>
 <!-- КОНЕЦ Модальное окно "Подтверждение" -->
 
+<!-- Модальное окно "Добавить атрибут" -->
+<?php require_once('modal/add_attribute.php') ?>
+<!-- КОНЕЦ Модальное окно "Добавить атрибут" -->
+
 <div id="ajax">
 
     <div id="stock" class="container-fluid">

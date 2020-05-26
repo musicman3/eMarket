@@ -23,10 +23,10 @@
                         <li class="active"><a data-toggle="tab" href="#panel_add_1">Основное</a></li>
                         <li><a data-toggle="tab" href="#panel_add_2">Атрибуты</a></li>
                     </ul>
-                    
+
                     <!-- Содержимое панелей формы-->
                     <div class="tab-content">
-                        
+
                         <!-- Содержимое панели Основное -->
                         <div id="panel_add_1" class="tab-pane fade in active">
                             <!-- Языковые панели -->
@@ -87,14 +87,22 @@
 
                         <!-- Содержимое панели Атрибуты -->
                         <div id="panel_add_2" class="tab-pane fade">
-                            <div class="form-group">
-                                <table class="table">
-                                    <tr class="information_json_plus">
-                                        <td></td>
-                                        <td><span class="plus glyphicon glyphicon-plus btn btn-success btn-xs pull-right"></span></td>
+
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2"></th>
+                                        <th>
+                                            <div class="b-right"><a href="#add_attribute" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
+                                        </th>
                                     </tr>
-                                </table>
-                            </div>
+
+                                </thead>
+
+                                <tbody class="information_json_plus"></tbody>
+
+                            </table>
+
                         </div>
 
                     </div>
