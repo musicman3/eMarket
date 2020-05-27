@@ -920,10 +920,27 @@
         //alert($(this).attr("id"));
         $(this).closest('tr').remove();
         
+        parse_attributes = [];
         if (sessionStorage.getItem('attributes') !== null) {
             var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
             parse_attributes.splice($(this).attr("id") - 1, 1);
             sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
+        }
+
+        //alert(parse_attributes.length);
+        $('.attribute').empty();
+        for (x = 0; x < parse_attributes.length; x++) {
+            var y = x+1;
+            $('.attribute').append(
+                    '<tr>' +
+                    '<td class="sortleft"><button type="submit" class="value-attribute btn btn-primary btn-xs"><span class="glyphicon glyphicon-cog"></span></button></td>' +
+                    '<td>' + parse_attributes[x][0]['value'] + '</td>' +
+                    '<td class="al-text-w">' +
+                    '<div class="b-right"><button id="' + y + '" type="submit" class="delete-attribute btn btn-primary btn-xs" title="<?php echo lang('button_delete') ?>"><span class="glyphicon glyphicon-trash"> </span></button></div>' +
+                    '<div class="b-left"><button id="' + randomize(32) + '" type="submit" class="edit-attribute btn btn-primary btn-xs" title="<?php echo lang('button_edit') ?>"><span class="glyphicon glyphicon-edit"> </span></button></div>' +
+                    '</td>' +
+                    '</tr>'
+                    );
         }
         
     });
