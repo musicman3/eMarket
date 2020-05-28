@@ -26,6 +26,10 @@
 <?php require_once('modal/attribute.php') ?>
 <!-- КОНЕЦ Модальное окно "Атрибуты" -->
 
+<!-- Модальное окно "Атрибуты" -->
+<?php require_once('modal/values_attribute.php') ?>
+<!-- КОНЕЦ Модальное окно "Атрибуты" -->
+
 <div id="ajax">
 
     <div id="stock" class="container-fluid">
