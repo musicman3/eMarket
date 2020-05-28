@@ -859,89 +859,124 @@
 <!--Атрибуты -->
 <script type="text/javascript">
 
-    $('#add').on('show.bs.modal', function (event) {
-        parse_attributes = [];
-        if (sessionStorage.getItem('attributes') !== null) {
-            var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
-        }
-        //alert(parse_attributes.length);
-        //$('.attribute').detach();
-        for (x = 0; x < parse_attributes.length; x++) {
-            var y = x+1;
-            $('.attribute').append(
-                    '<tr>' +
-                    '<td class="sortleft"><button type="submit" class="value-attribute btn btn-primary btn-xs"><span class="glyphicon glyphicon-cog"></span></button></td>' +
-                    '<td>' + parse_attributes[x][0]['value'] + '</td>' +
-                    '<td class="al-text-w">' +
-                    '<div class="b-right"><button id="' + y + '" type="submit" class="delete-attribute btn btn-primary btn-xs" title="<?php echo lang('button_delete') ?>"><span class="glyphicon glyphicon-trash"> </span></button></div>' +
-                    '<div class="b-left"><button id="' + randomize(32) + '" type="submit" class="edit-attribute btn btn-primary btn-xs" title="<?php echo lang('button_edit') ?>"><span class="glyphicon glyphicon-edit"> </span></button></div>' +
-                    '</td>' +
-                    '</tr>'
-                    );
-        }
-    });
-
-    $('#add').on('hidden.bs.modal', function (event) {
-        //alert(parse_attributes.length);
-        $('.attribute').empty();
-    });
-
-    $('#add_attribute_button').click(function () {
-        $('#add_attribute').modal('hide');
-
-        var attributes_bank = $('#attribute_add').serializeArray();
-        var parse_attributes = [];
-
-        if (sessionStorage.getItem('attributes') !== null) {
-            parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
-            parse_attributes.push(attributes_bank);
-            sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
-        } else {
-            sessionStorage.setItem('attributes', JSON.stringify([attributes_bank]));
-        }
-        
-        var length_attr = parse_attributes.length;
-        
+    function add_attribute(id, value) {
         $('.attribute').append(
-                '<tr>' +
-                '<td class="sortleft"><button type="submit" class="value-attribute btn btn-primary btn-xs"><span class="glyphicon glyphicon-cog"></span></button></td>' +
-                '<td>' + attributes_bank[0]['value'] + '</td>' +
+                '<tr id="' + id + '">' +
+                '<td class="sortleft"><button class="value-attribute btn btn-primary btn-xs"><span class="glyphicon glyphicon-cog"></span></button></td>' +
+                '<td>' + value + '</td>' +
                 '<td class="al-text-w">' +
-                '<div class="b-right"><button id="' + length_attr + '" type="submit" class="delete-attribute btn btn-primary btn-xs" title="<?php echo lang('button_delete') ?>"><span class="glyphicon glyphicon-trash"> </span></button></div>' +
-                '<div class="b-left"><button id="' + randomize(32) + '" type="submit" class="edit-attribute btn btn-primary btn-xs" title="<?php echo lang('button_edit') ?>"><span class="glyphicon glyphicon-edit"> </span></button></div>' +
+                '<div class="b-right"><button class="delete-attribute btn btn-primary btn-xs" title="<?php echo lang('button_delete') ?>"><span class="glyphicon glyphicon-trash"> </span></button></div>' +
+                '<div class="b-left"><button class="edit-attribute btn btn-primary btn-xs" title="<?php echo lang('button_edit') ?>"><span class="glyphicon glyphicon-edit"> </span></button></div>' +
                 '</td>' +
                 '</tr>'
                 );
+    }
+
+    // Если открыли главный модал
+    $('#add').on('show.bs.modal', function (event) {
+        var parse_attributes = [];
+        if (sessionStorage.getItem('attributes') !== null) {
+            parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
+        }
+        for (x = 0; x < parse_attributes.length; x++) {
+            var y = x + 1;
+            add_attribute(y, parse_attributes[x][0]['value']);
+        }
+    });
+
+    // Если закрыли главный модал
+    $('#add').on('hidden.bs.modal', function (event) {
+        $('.attribute').empty();
+    });
+
+    // Если закрыли модал атрибутов
+    $('#attribute').on('hidden.bs.modal', function (event) {
+        $('.input-add-attribute').val('');
+    });
+
+    // Сохраняем атрибут
+    $('#save_attribute_button').click(function () {
+        $('#attribute').modal('hide');
+        
+        var attributes_bank = $('#attribute_add').serializeArray();
+        
+        //Если атрибут добавляется
+        if (sessionStorage.getItem('attribute_action') === 'add') {
+            
+            var parse_attributes = [];
+
+            if (sessionStorage.getItem('attributes') !== null) {
+                parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
+                parse_attributes.push(attributes_bank);
+                sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
+            } else {
+                sessionStorage.setItem('attributes', JSON.stringify([attributes_bank]));
+            }
+
+            var length_attr = parse_attributes.length;
+
+            add_attribute(length_attr, attributes_bank[0]['value']);
+        }
+
+        //Если атрибут редактируется
+        if (sessionStorage.getItem('attribute_action') === 'edit') {
+            
+            var id = sessionStorage.getItem('edit_attribute_id');
+            var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
+            
+            parse_attributes[id - 1] = attributes_bank;
+
+            sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
+
+            $('.attribute').empty();
+
+            for (x = 0; x < parse_attributes.length; x++) {
+                var y = x + 1;
+                add_attribute(y, parse_attributes[x][0]['value']);
+            }
+        }
 
         $('.input-add-attribute').val('');
     });
 
-    $(document).on('click', '.delete-attribute', function () {
-        //alert($(this).attr("id"));
-        $(this).closest('tr').remove();
-        
-        parse_attributes = [];
-        if (sessionStorage.getItem('attributes') !== null) {
-            var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
-            parse_attributes.splice($(this).attr("id") - 1, 1);
-            sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
-        }
+    // Добавляем атрибут
+    $(document).on('click', '.add-attribute', function () {
+        sessionStorage.setItem('attribute_action', 'add');
+        $('#attribute').modal('show');
+    });
 
-        //alert(parse_attributes.length);
+    // Удаляем атрибут
+    $(document).on('click', '.delete-attribute', function () {
+        $(this).closest('tr').remove();
+
+        var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
+        parse_attributes.splice($(this).closest('tr').attr('id') - 1, 1);
+        sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
+
         $('.attribute').empty();
         for (x = 0; x < parse_attributes.length; x++) {
-            var y = x+1;
-            $('.attribute').append(
-                    '<tr>' +
-                    '<td class="sortleft"><button type="submit" class="value-attribute btn btn-primary btn-xs"><span class="glyphicon glyphicon-cog"></span></button></td>' +
-                    '<td>' + parse_attributes[x][0]['value'] + '</td>' +
-                    '<td class="al-text-w">' +
-                    '<div class="b-right"><button id="' + y + '" type="submit" class="delete-attribute btn btn-primary btn-xs" title="<?php echo lang('button_delete') ?>"><span class="glyphicon glyphicon-trash"> </span></button></div>' +
-                    '<div class="b-left"><button id="' + randomize(32) + '" type="submit" class="edit-attribute btn btn-primary btn-xs" title="<?php echo lang('button_edit') ?>"><span class="glyphicon glyphicon-edit"> </span></button></div>' +
-                    '</td>' +
-                    '</tr>'
-                    );
+            var y = x + 1;
+            add_attribute(y, parse_attributes[x][0]['value']);
         }
-        
+
+    });
+    // Редактируем атрибут
+    $(document).on('click', '.edit-attribute', function () {
+        var id = $(this).closest('tr').attr('id');
+
+        sessionStorage.setItem('attribute_action', 'edit');
+        sessionStorage.setItem('edit_attribute_id', id);
+
+        $('#attribute').modal('show');
+
+        var parse_attributes = [];
+        if (sessionStorage.getItem('attributes') !== null) {
+            parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'))[id - 1];
+        }
+
+        for (x = 0; x < parse_attributes.length; x++) {
+            $('input[name="' + parse_attributes[x]['name'] + '"]').val(parse_attributes[x]['value']);
+        }
+
     });
 </script>
