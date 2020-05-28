@@ -8,7 +8,7 @@
 <!--Атрибуты -->
 <script type="text/javascript">
 
-    function add_attribute(id, value) {
+    function addAttribute(id, value) {
         $('.attribute').append(
                 '<tr id="' + id + '">' +
                 '<td class="sortleft"><button class="values-attribute btn btn-primary btn-xs"><span class="glyphicon glyphicon-cog"></span></button></td>' +
@@ -31,7 +31,7 @@
 
         for (x = 0; x < parse_attributes.length; x++) {
             var y = x + 1;
-            add_attribute(y, parse_attributes[x][0]['value']);
+            addAttribute(y, parse_attributes[x][0]['value']);
         }
     });
 
@@ -82,7 +82,7 @@
         $('.attribute').empty();
         for (x = 0; x < parse_attributes.length; x++) {
             var y = x + 1;
-            add_attribute(y, parse_attributes[x][0]['value']);
+            addAttribute(y, parse_attributes[x][0]['value']);
         }
 
     });
@@ -91,7 +91,7 @@
     $('#save_attribute_button').click(function () {
         $('#attribute').modal('hide');
 
-        var attributes_bank = $('#attribute_add').serializeArray();
+        var attributes_bank = $('#attribute_add_form').serializeArray();
 
         //Если атрибут добавляется
         if (sessionStorage.getItem('attribute_action') === 'add') {
@@ -108,7 +108,7 @@
 
             var length_attr = parse_attributes.length;
 
-            add_attribute(length_attr, attributes_bank[0]['value']);
+            addAttribute(length_attr, attributes_bank[0]['value']);
         }
 
         //Если атрибут редактируется
@@ -125,7 +125,7 @@
 
             for (x = 0; x < parse_attributes.length; x++) {
                 var y = x + 1;
-                add_attribute(y, parse_attributes[x][0]['value']);
+                addAttribute(y, parse_attributes[x][0]['value']);
             }
         }
 
