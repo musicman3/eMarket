@@ -10,7 +10,7 @@
 
     function addAttribute(id, value) {
         $('.attribute').append(
-                '<tr id="' + id + '">' +
+                '<tr id="attributes_' + id + '">' +
                 '<td class="sortleft"><button class="values-attribute btn btn-primary btn-xs"><span class="glyphicon glyphicon-cog"></span></button></td>' +
                 '<td>' + value + '</td>' +
                 '<td class="al-text-w">' +
@@ -53,7 +53,7 @@
 
     // Редактируем атрибут
     $(document).on('click', '.edit-attribute', function () {
-        var id = $(this).closest('tr').attr('id');
+        var id = $(this).closest('tr').attr('id').split('_')[1];
 
         sessionStorage.setItem('attribute_action', 'edit');
         sessionStorage.setItem('edit_attribute_id', id);
@@ -76,7 +76,7 @@
         $(this).closest('tr').remove();
 
         var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
-        parse_attributes.splice($(this).closest('tr').attr('id') - 1, 1);
+        parse_attributes.splice($(this).closest('tr').attr('id').split('_')[1] - 1, 1);
         sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
 
         $('.attribute').empty();
@@ -107,6 +107,10 @@
             }
 
             var length_attr = parse_attributes.length;
+
+            if (length_attr === 0) {
+                length_attr = 1;
+            }
 
             addAttribute(length_attr, attributes_bank[0]['value']);
         }
