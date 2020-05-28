@@ -875,9 +875,11 @@
     // Если открыли главный модал
     $('#add').on('show.bs.modal', function (event) {
         var parse_attributes = [];
+        
         if (sessionStorage.getItem('attributes') !== null) {
             parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
         }
+        
         for (x = 0; x < parse_attributes.length; x++) {
             var y = x + 1;
             add_attribute(y, parse_attributes[x][0]['value']);
@@ -960,6 +962,7 @@
         }
 
     });
+    
     // Редактируем атрибут
     $(document).on('click', '.edit-attribute', function () {
         var id = $(this).closest('tr').attr('id');
