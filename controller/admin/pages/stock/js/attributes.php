@@ -132,17 +132,3 @@
         $('.input-add-attribute').val('');
     });
 </script>
-
-<!--Значения атрибута -->
-<script type="text/javascript">
-    // Добавляем атрибут
-    $(document).on('click', '.values-attribute', function () {
-        //sessionStorage.setItem('attribute_action', 'add');
-        $('#add').modal('hide');
-        $('#add_values_attribute').modal('show');
-        $('#add_values_attribute').on('hidden.bs.modal', function (event) {
-            $('.attribute').empty();
-            $('#add').modal('show');
-        });
-    });
-</script>
