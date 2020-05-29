@@ -20,17 +20,17 @@
 
                     <!-- Панели формы -->
                     <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#panel_add_1">Описание</a></li>
-                        <li><a data-toggle="tab" href="#panel_add_2">Основное</a></li>
-                        <li><a data-toggle="tab" href="#panel_add_3">Дополнительное</a></li>
-                        <li><a data-toggle="tab" href="#panel_add_4">Изображения</a></li>
+                        <li class="active"><a data-toggle="tab" href="#panel_add_product_1">Описание</a></li>
+                        <li><a data-toggle="tab" href="#panel_add_product_2">Основное</a></li>
+                        <li><a data-toggle="tab" href="#panel_add_product_3">Дополнительное</a></li>
+                        <li><a data-toggle="tab" href="#panel_add_product_4">Изображения</a></li>
                     </ul>
 
                     <!-- Содержимое панелей формы-->
                     <div class="tab-content">
 
                         <!-- Содержимое панели Описание -->
-                        <div id="panel_add_1" class="tab-pane fade in active">
+                        <div id="panel_add_product_1" class="tab-pane fade in active">
 
                             <!-- Языковые панели -->
                             <?php require_once(ROOT . '/view/' . \eMarket\Set::template() . '/layouts/lang_tabs_add_product.php') ?>
@@ -109,7 +109,7 @@
                         </div>
 
                         <!-- Содержимое панели Основное -->
-                        <div id="panel_add_2" class="tab-pane fade">
+                        <div id="panel_add_product_2" class="tab-pane fade">
                             <div class="row">
                                 <div class="col-left form-group">
                                     <div><small class="form-text text-muted">Цена товара</small></div>
@@ -187,7 +187,7 @@
                         </div>
 
                         <!-- Содержимое панели Дополнительное -->
-                        <div id="panel_add_3" class="tab-pane fade">
+                        <div id="panel_add_product_3" class="tab-pane fade">
                             <div class="row">
                                 <div class="col-left form-group">
                                     <div><small class="form-text text-muted">Значение идентификатора товара</small></div>
@@ -268,7 +268,7 @@
                         </div>
 
                         <!-- Содержимое панели Изображения -->
-                        <div id="panel_add_4" class="tab-pane fade">
+                        <div id="panel_add_product_4" class="tab-pane fade">
 
                             <!-- Выводим сообщения -->
                             <div id="alert_messages_add_product"></div>
