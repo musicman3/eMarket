@@ -9,7 +9,7 @@
 <script type="text/javascript">
 
     function addAttribute(id, value) {
-        $('.attribute').append(
+        $('.attribute').prepend(
                 '<tr id="attributes_' + id + '">' +
                 '<td class="sortleft"><button class="values-attribute btn btn-primary btn-xs"><span class="glyphicon glyphicon-cog"></span></button></td>' +
                 '<td>' + value + '</td>' +

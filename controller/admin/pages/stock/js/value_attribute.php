@@ -9,7 +9,7 @@
 <script type="text/javascript">
 
     function addValueAttribute(id, value) {
-        $('.values_attribute').append(
+        $('.values_attribute').prepend(
                 '<tr id="value_attributes_' + id + '">' +
                 '<td>' + value + '</td>' +
                 '<td class="al-text-w">' +
