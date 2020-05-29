@@ -36,16 +36,13 @@
                 addValueAttribute(x + 1, parse_attributes[sessionStorage.getItem('value_attribute_action_id') - 1][0]['data'][x]);
             }
         }
-
-        $('#values_attribute').on('hidden.bs.modal', function (event) {
-            $('.attribute').empty();
-            $('#add').modal('show');
-        });
     });
 
     // Если закрыли модал списка значений атрибута
     $('#values_attribute').on('hidden.bs.modal', function (event) {
         $('.values_attribute').empty();
+        $('.attribute').empty();
+        $('#add').modal('show');
     });
 
     // Если открыли модал добавления значения атрибута
@@ -126,9 +123,9 @@
 
             for (x = 0; x < parse_attributes[sessionStorage.getItem('value_attribute_action_id') - 1].length; x++) {
 
-                    parse_attributes[sessionStorage.getItem('value_attribute_action_id') - 1][x]['data'][sessionStorage.getItem('edit_value_attribute_id') - 1] = value_attributes_bank[x]['value'];
-                    sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
-                
+                parse_attributes[sessionStorage.getItem('value_attribute_action_id') - 1][x]['data'][sessionStorage.getItem('edit_value_attribute_id') - 1] = value_attributes_bank[x]['value'];
+                sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
+
             }
 
             $('.values_attribute').empty();

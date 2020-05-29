@@ -11,7 +11,7 @@
     function addAttribute(id, value) {
         $('.attribute').prepend(
                 '<tr id="attributes_' + id + '">' +
-                '<td class="sortleft"><button class="values-attribute btn btn-primary btn-xs"><span class="glyphicon glyphicon-cog"></span></button></td>' +
+                '<td class="sortleft"><button type="button" class="values-attribute btn btn-primary btn-xs"><span class="glyphicon glyphicon-cog"></span></button></td>' +
                 '<td>' + value + '</td>' +
                 '<td class="al-text-w">' +
                 '<div class="b-right"><button class="delete-attribute btn btn-primary btn-xs" title="<?php echo lang('button_delete') ?>"><span class="glyphicon glyphicon-trash"> </span></button></div>' +

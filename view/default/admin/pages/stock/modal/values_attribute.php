@@ -20,7 +20,7 @@
                             <tr>
                                 <th colspan="1"></th>
                                 <th>
-                                    <div class="b-right"><button class="add-values-attribute btn btn-primary btn-xs"><span class="glyphicon glyphicon-plus"></span></button></div>
+                                    <div class="b-right"><button type="button" class="add-values-attribute btn btn-primary btn-xs"><span class="glyphicon glyphicon-plus"></span></button></div>
                                 </th>
                             </tr>
 
