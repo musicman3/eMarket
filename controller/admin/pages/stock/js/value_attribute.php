@@ -20,7 +20,7 @@
                 );
     }
 
-    // Открываем список значений атрибутов
+    // Если открыли модал списка значений атрибута
     $(document).on('click', '.values-attribute', function () {
         var id = $(this).closest('tr').attr('id').split('_')[1];
         sessionStorage.setItem('value_attribute_action', 'add');
@@ -43,14 +43,14 @@
         });
     });
 
-    // Открываем модал добавления значения атрибута
-    $(document).on('click', '.add-values-attribute', function () {
-        $('#add_values_attribute').modal('show');
-    });
-
-    // Если закрыли модал значения атрибута
+    // Если закрыли модал списка значений атрибута
     $('#values_attribute').on('hidden.bs.modal', function (event) {
         $('.values_attribute').empty();
+    });
+
+    // Если открыли модал добавления значения атрибута
+    $(document).on('click', '.add-values-attribute', function () {
+        $('#add_values_attribute').modal('show');
     });
 
     // Если закрыли модал добавления значения атрибута
@@ -78,7 +78,7 @@
                     sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
                 }
             }
-            
+
             $('.values_attribute').empty();
             for (x = 0; x < parse_attributes[sessionStorage.getItem('value_attribute_action_id') - 1][0]['data'].length; x++) {
                 addValueAttribute(x + 1, parse_attributes[sessionStorage.getItem('value_attribute_action_id') - 1][0]['data'][x]);
