@@ -31,6 +31,11 @@
         var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
         $('#title_values_attribute').html('Атрибут: ' + parse_attributes[sessionStorage.getItem('value_attribute_action_id') - 1][0]['value']);
 
+        if ('data' in parse_attributes[sessionStorage.getItem('value_attribute_action_id') - 1][0] === true) {
+            for (x = 0; x < parse_attributes[sessionStorage.getItem('value_attribute_action_id') - 1][0]['data'].length; x++) {
+                addValueAttribute(x + 1, parse_attributes[sessionStorage.getItem('value_attribute_action_id') - 1][0]['data'][x]);
+            }
+        }
 
         $('#values_attribute').on('hidden.bs.modal', function (event) {
             $('.attribute').empty();
@@ -38,10 +43,19 @@
         });
     });
 
-    // Открываем модал значения атрибута
+    // Открываем модал добавления значения атрибута
     $(document).on('click', '.add-values-attribute', function () {
         $('#add_values_attribute').modal('show');
+    });
 
+    // Если закрыли модал значения атрибута
+    $('#values_attribute').on('hidden.bs.modal', function (event) {
+        $('.values_attribute').empty();
+    });
+
+    // Если закрыли модал добавления значения атрибута
+    $('#add_values_attribute').on('hidden.bs.modal', function (event) {
+        $('.input-add-values-attribute').val('');
     });
 
     // Сохраняем значение атрибута
@@ -64,9 +78,29 @@
                     sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
                 }
             }
+            
+            $('.values_attribute').empty();
+            for (x = 0; x < parse_attributes[sessionStorage.getItem('value_attribute_action_id') - 1][0]['data'].length; x++) {
+                addValueAttribute(x + 1, parse_attributes[sessionStorage.getItem('value_attribute_action_id') - 1][0]['data'][x]);
+            }
+        }
+    });
 
-            addValueAttribute(sessionStorage.getItem('value_attribute_action_id'), value_attributes_bank[0]['value']);
+    // Удаляем значение атрибута
+    $(document).on('click', '.delete-value-attribute', function () {
+        $(this).closest('tr').remove();
 
+        var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
+        //alert(parse_attributes[sessionStorage.getItem('value_attribute_action_id') - 1][0]['data'][0]);
+        for (x = 0; x < parse_attributes[sessionStorage.getItem('value_attribute_action_id') - 1].length; x++) {
+            parse_attributes[sessionStorage.getItem('value_attribute_action_id') - 1][x]['data'].splice($(this).closest('tr').attr('id').split('_')[2] - 1, 1);
+        }
+        sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
+
+        $('.values_attribute').empty();
+
+        for (x = 0; x < parse_attributes[sessionStorage.getItem('value_attribute_action_id') - 1][0]['data'].length; x++) {
+            addValueAttribute(x + 1, parse_attributes[sessionStorage.getItem('value_attribute_action_id') - 1][0]['data'][x]);
         }
 
     });
