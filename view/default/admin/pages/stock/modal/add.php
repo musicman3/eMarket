@@ -93,7 +93,7 @@
                                     <tr>
                                         <th colspan="2"></th>
                                         <th>
-                                            <div class="b-right"><button class="add-attribute btn btn-primary btn-xs"><span class="glyphicon glyphicon-plus"></span></button></div>
+                                            <div class="b-right"><button class="add-attribute btn btn-primary btn-xs" type="button"><span class="glyphicon glyphicon-plus"></span></button></div>
                                         </th>
                                     </tr>
 
