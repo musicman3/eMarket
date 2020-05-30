@@ -58,8 +58,12 @@ if ($installed_active != '' && isset($sales_all) && count($sales_all) > 0) {
         }
     }
 
-    if ($sale_default == 0) {
+    if ($sale_default == 0 && isset($select_array[0])) {
         $sale_default = $select_array[0];
+    }
+    
+    if (!isset($select_array[0])){
+        $sales_flag = 0;
     }
 }
 // Формируем массив Валюта для выпадающего списка
