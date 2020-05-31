@@ -43,13 +43,13 @@ $sales_flag = 0;
 $select_array = [];
 
 if ($installed_active != '' && isset($sales_all) && count($sales_all) > 0) {
-    $sales_flag = 1;
     $this_time = time();
 
     foreach ($sales_all as $val) {
         $date_start = \eMarket\Pdo::getCell("SELECT UNIX_TIMESTAMP (date_start) FROM " . DB_PREFIX . 'modules_discount_sale' . " WHERE id=?", [$val['id']]);
         $date_end = \eMarket\Pdo::getCell("SELECT UNIX_TIMESTAMP (date_end) FROM " . DB_PREFIX . 'modules_discount_sale' . " WHERE id=?", [$val['id']]);
         if ($this_time < $date_end) {
+            $sales_flag = 1;
             $sales .= $val['id'] . ': ' . "'" . $val['name'] . "', ";
             array_push($select_array, $val['id']);
             if ($val['default_set'] == 1) {
@@ -57,10 +57,7 @@ if ($installed_active != '' && isset($sales_all) && count($sales_all) > 0) {
             }
         }
     }
-    
-    if (count($select_array) == 0){
-        $sales_flag = 0;
-    }
+
 }
 // Формируем массив Валюта для выпадающего списка
 $currencies_all = \eMarket\Pdo::getColRow("SELECT name, default_value, id FROM " . TABLE_CURRENCIES . " WHERE language=?", [lang('#lang_all')[0]]);
