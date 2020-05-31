@@ -36,11 +36,12 @@ $parent_id = $EAC_ENGINE[1];
 $installed_active = \eMarket\Pdo::getCell("SELECT id FROM " . TABLE_MODULES . " WHERE name=? AND type=? AND active=?", ['sale', 'discount', 1]);
 $sales = '';
 $sale_default = 0;
+$sales_flag = 0;
+$select_array = [];
+
 if ($installed_active != '') {
     $sales_all = \eMarket\Pdo::getColAssoc("SELECT id, name, default_set FROM " . DB_PREFIX . 'modules_discount_sale' . " WHERE language=?", [lang('#lang_all')[0]]);
 }
-$sales_flag = 0;
-$select_array = [];
 
 if ($installed_active != '' && isset($sales_all) && count($sales_all) > 0) {
     $this_time = time();
