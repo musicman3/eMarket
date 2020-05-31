@@ -40,11 +40,11 @@ if ($installed_active != '') {
     $sales_all = \eMarket\Pdo::getColAssoc("SELECT id, name, default_set FROM " . DB_PREFIX . 'modules_discount_sale' . " WHERE language=?", [lang('#lang_all')[0]]);
 }
 $sales_flag = 0;
+$select_array = [];
 
 if ($installed_active != '' && isset($sales_all) && count($sales_all) > 0) {
     $sales_flag = 1;
     $this_time = time();
-    $select_array = [];
 
     foreach ($sales_all as $val) {
         $date_start = \eMarket\Pdo::getCell("SELECT UNIX_TIMESTAMP (date_start) FROM " . DB_PREFIX . 'modules_discount_sale' . " WHERE id=?", [$val['id']]);
@@ -57,12 +57,8 @@ if ($installed_active != '' && isset($sales_all) && count($sales_all) > 0) {
             }
         }
     }
-
-    if ($sale_default == 0 && isset($select_array[0])) {
-        $sale_default = $select_array[0];
-    }
     
-    if (!isset($select_array[0])){
+    if (count($select_array) == 0){
         $sales_flag = 0;
     }
 }
