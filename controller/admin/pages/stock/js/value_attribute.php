@@ -25,6 +25,7 @@
         var id = $(this).closest('tr').attr('id').split('_')[1];
         sessionStorage.setItem('value_attribute_action', 'add');
         sessionStorage.setItem('value_attribute_action_id', id);
+        sessionStorage.setItem('value_attribute_flag', '1');
         $('#add').modal('hide');
 
         $('#values_attribute').modal('show');
@@ -43,6 +44,7 @@
         $('.values_attribute').empty();
         $('.attribute').empty();
         $('#add').modal('show');
+        sessionStorage.setItem('value_attribute_flag', '0');
     });
 
     // Если открыли модал добавления значения атрибута

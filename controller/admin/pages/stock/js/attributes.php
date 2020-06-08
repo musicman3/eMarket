@@ -38,6 +38,9 @@
     // Если закрыли главный модал
     $('#add').on('hidden.bs.modal', function (event) {
         $('.attribute').empty();
+        if (sessionStorage.getItem('value_attribute_flag') === '0') {
+            clearAttributes();
+        }
     });
 
     // Если закрыли модал атрибутов
