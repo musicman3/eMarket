@@ -21,6 +21,17 @@
                 );
     }
 
+    function clearAttributes() {
+        ['attribute_action',
+            'attributes',
+            'edit_attribute_id',
+            'edit_value_attribute_id',
+            'value_attribute_action',
+            'value_attribute_action_id',
+            'value_attribute_flag'
+        ].forEach((item) => sessionStorage.removeItem(item));
+    }
+
     // Если открыли главный модал
     $('#add').on('show.bs.modal', function (event) {
 
