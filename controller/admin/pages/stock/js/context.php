@@ -369,8 +369,6 @@
                                 $('#confirm_body').html('<?php echo lang('confirm_delete_product_or_category') ?>');
 
                                 confirmation.onclick = function () {
-                                    $('#confirm').modal('hide');
-                                    $('#view_categories_stock').bootstrapSwitch('destroy');
                                     // Установка синхронного запроса для jQuery.ajax
                                     jQuery.ajaxSetup({async: false});
                                     // Отправка данных по каждой выделенной строке
@@ -390,6 +388,8 @@
                                     // Обновление страницы
                                     function AjaxSuccess(data) {
                                         setTimeout(function () {
+                                            $('#confirm').modal('hide');
+                                            $('#view_categories_stock').bootstrapSwitch('destroy');
                                             $('#fileupload-edit').fileupload('destroy');
                                             $('#fileupload-add').fileupload('destroy');
                                             $('#fileupload-edit-product').fileupload('destroy');
