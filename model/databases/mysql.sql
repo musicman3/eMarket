@@ -47,6 +47,7 @@ CREATE TABLE emkt_categories (
 	sort_category int DEFAULT '0' NOT NULL,
 	status int,
         logo_general varchar(128),
+        attributes json,
 	PRIMARY KEY (id, language))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

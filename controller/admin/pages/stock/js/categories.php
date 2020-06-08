@@ -8,6 +8,15 @@
 <!-- Модальное окно "Добавить категорию" -->
 <script type="text/javascript">
     function callAdd() {
+        $('#attributes').val(sessionStorage.getItem('attributes'));
+        ['attribute_action',
+            'attributes',
+            'edit_attribute_id',
+            'edit_value_attribute_id',
+            'value_attribute_action',
+            'value_attribute_action_id'
+        ].forEach((item) => sessionStorage.removeItem(item));
+
         var msg = $('#form_add').serialize();
         // Установка синхронного запроса для jQuery.ajax
         jQuery.ajaxSetup({async: false});

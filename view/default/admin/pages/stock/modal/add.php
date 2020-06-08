@@ -17,6 +17,7 @@
                     <input type="hidden" name="parent_id" value="<?php echo $parent_id ?>" />
                     <input type="hidden" name="add" value="ok" />
                     <input id="general_image_add" type="hidden" name="general_image_add" value="">
+                    <input id="attributes" type="hidden" name="attributes" value="">
 
                     <!-- Панели формы -->
                     <ul class="nav nav-tabs">

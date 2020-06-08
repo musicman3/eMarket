@@ -370,6 +370,7 @@
 
                                 confirmation.onclick = function () {
                                     $('#confirm').modal('hide');
+                                    $('#view_categories_stock').bootstrapSwitch('destroy');
                                     // Установка синхронного запроса для jQuery.ajax
                                     jQuery.ajaxSetup({async: false});
                                     // Отправка данных по каждой выделенной строке

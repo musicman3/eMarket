@@ -172,9 +172,15 @@ final class Eac {
             $id_max = \eMarket\Pdo::selectPrepare("SELECT id FROM " . $TABLE_CATEGORIES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max) + 1;
 
+            if (\eMarket\Valid::inPOST('attributes')) {
+                $attributes = \eMarket\Valid::inPOST('attributes');
+            } else {
+                $attributes = json_encode([]);
+            }
+
             // добавляем запись для всех вкладок
             for ($x = 0; $x < $LANG_COUNT; $x++) {
-                \eMarket\Pdo::inPrepare("INSERT INTO " . $TABLE_CATEGORIES . " SET id=?, name=?, sort_category=?, language=?, parent_id=?, date_added=?, status=?", [$id, \eMarket\Valid::inPOST('name_categories_stock_' . $x), $sort_category, lang('#lang_all')[$x], $parent_id, date("Y-m-d H:i:s"), $view_cat]);
+                \eMarket\Pdo::inPrepare("INSERT INTO " . $TABLE_CATEGORIES . " SET id=?, name=?, sort_category=?, language=?, parent_id=?, date_added=?, status=?, attributes=?", [$id, \eMarket\Valid::inPOST('name_categories_stock_' . $x), $sort_category, lang('#lang_all')[$x], $parent_id, date("Y-m-d H:i:s"), $view_cat, $attributes]);
             }
             // Выводим сообщение об успехе
             $_SESSION['message'] = ['success', lang('action_completed_successfully')];
