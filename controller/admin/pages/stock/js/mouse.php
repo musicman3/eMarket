@@ -57,6 +57,7 @@
                 {}, // id родительской категории
                 AjaxSuccess);
         function AjaxSuccess(data) {
+            $('#view_categories_stock').bootstrapSwitch('destroy');
             $('#fileupload-edit').fileupload('destroy');
             $('#fileupload-add').fileupload('destroy');
             $('#fileupload-edit-product').fileupload('destroy');

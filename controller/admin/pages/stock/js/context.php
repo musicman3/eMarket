@@ -23,6 +23,7 @@
                             ids2: opt.$trigger.attr("id")}), //id строки
                         success: function (data) {
                             setTimeout(function () {
+                                $('#view_categories_stock').bootstrapSwitch('destroy');
                                 $('#fileupload-edit').fileupload('destroy');
                                 $('#fileupload-add').fileupload('destroy');
                                 $('#fileupload-edit-product').fileupload('destroy');
@@ -218,6 +219,7 @@
                                 // Обновление страницы
                                 function AjaxSuccess(data) {
                                     setTimeout(function () {
+                                        $('#view_categories_stock').bootstrapSwitch('destroy');
                                         $('#fileupload-edit').fileupload('destroy');
                                         $('#fileupload-add').fileupload('destroy');
                                         $('#fileupload-edit-product').fileupload('destroy');
@@ -259,6 +261,7 @@
                                 // Обновление страницы
                                 function AjaxSuccess(data) {
                                     setTimeout(function () {
+                                        $('#view_categories_stock').bootstrapSwitch('destroy');
                                         $('#fileupload-edit').fileupload('destroy');
                                         $('#fileupload-add').fileupload('destroy');
                                         $('#fileupload-edit-product').fileupload('destroy');
@@ -307,6 +310,7 @@
                                 // Обновление страницы
                                 function AjaxSuccess(data) {
                                     setTimeout(function () {
+                                        $('#view_categories_stock').bootstrapSwitch('destroy');
                                         $('#fileupload-edit').fileupload('destroy');
                                         $('#fileupload-add').fileupload('destroy');
                                         $('#fileupload-edit-product').fileupload('destroy');
@@ -459,6 +463,7 @@
                                 // Обновление страницы
                                 function AjaxSuccess(data) {
                                     setTimeout(function () {
+                                        $('#view_categories_stock').bootstrapSwitch('destroy');
                                         $('#fileupload-edit').fileupload('destroy');
                                         $('#fileupload-add').fileupload('destroy');
                                         $('#fileupload-edit-product').fileupload('destroy');
@@ -513,6 +518,7 @@
                                     // Обновление страницы
                                     function AjaxSuccess(data) {
                                         setTimeout(function () {
+                                            $('#view_categories_stock').bootstrapSwitch('destroy');
                                             $('#fileupload-edit').fileupload('destroy');
                                             $('#fileupload-add').fileupload('destroy');
                                             $('#fileupload-edit-product').fileupload('destroy');
@@ -566,6 +572,7 @@
                                     // Обновление страницы
                                     function AjaxSuccess(data) {
                                         setTimeout(function () {
+                                            $('#view_categories_stock').bootstrapSwitch('destroy');
                                             $('#fileupload-edit').fileupload('destroy');
                                             $('#fileupload-add').fileupload('destroy');
                                             $('#fileupload-edit-product').fileupload('destroy');

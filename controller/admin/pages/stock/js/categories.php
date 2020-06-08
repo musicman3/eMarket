@@ -65,6 +65,7 @@
         // Обновление страницы
         function AjaxSuccess(data) {
             setTimeout(function () {
+                $('#view_categories_stock').bootstrapSwitch('destroy');
                 $('#fileupload-edit').fileupload('destroy');
                 $('#fileupload-add').fileupload('destroy');
                 $('#fileupload-edit-product').fileupload('destroy');
