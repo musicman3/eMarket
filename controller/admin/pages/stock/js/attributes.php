@@ -23,16 +23,20 @@
 
     // Если открыли главный модал
     $('#add').on('show.bs.modal', function (event) {
-        var parse_attributes = [];
+
+        if (sessionStorage.getItem('value_attribute_flag') === null) {
+            clearAttributes();
+        }
 
         if (sessionStorage.getItem('attributes') !== null) {
             parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
+
+            for (x = 0; x < parse_attributes.length; x++) {
+                var y = x + 1;
+                addAttribute(y, parse_attributes[x][0]['value']);
+            }
         }
 
-        for (x = 0; x < parse_attributes.length; x++) {
-            var y = x + 1;
-            addAttribute(y, parse_attributes[x][0]['value']);
-        }
     });
 
     // Если закрыли главный модал
