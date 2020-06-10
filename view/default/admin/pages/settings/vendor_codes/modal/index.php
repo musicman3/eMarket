@@ -4,37 +4,35 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-require(ROOT . '/controller/admin/pages/settings/vendor_codes/modal/edit.php');
-
 ?>
-
-<!-- Модальное окно "Изменить" -->
-<div id="edit" class="modal fade" tabindex="-1">
+<!-- Модальное окно "Добавить" -->
+<div id="index" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header"><div class="pull-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Ставка указывается в формате: 10.00" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
+            <div class="modal-header"><div class="pull-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Сокращенное наименование указывается любыми символами" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
                 <h4 class="modal-title"><?php echo \eMarket\Set::titlePageGenerator() ?></h4>
             </div>
-            <form id="form_edit" name="form_edit" action="javascript:void(null);" onsubmit="callEdit()">
+            <form id="form_add" name="form_add" action="javascript:void(null);" onsubmit="callAdd()">
                 <div class="panel-body">
-                    <input id="js_edit" type="hidden" name="edit" value="" />
+                    <input type="hidden" id="add" name="add" value="" />
+                    <input type="hidden" id="edit" name="edit" value="" />
 
                     <!-- Языковые панели -->
-                    <?php require_once(ROOT . '/view/' . \eMarket\Set::template() . '/layouts/lang_tabs_edit.php') ?>
+                    <?php require_once(ROOT . '/view/' . \eMarket\Set::template() . '/layouts/lang_tabs_add.php') ?>
 
                     <!-- Содержимое языковых панелей -->
                     <div class="tab-content">
-                        <div id="<?php echo lang('#lang_all')[0] . $modal_id ?>" class="tab-pane fade in active">
+                        <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade in active">
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="input-sm form-control" type="text" name="name_vendor_codes_edit_0" id="name_vendor_codes_edit_0" required />
+                                    <input class="input-sm form-control" placeholder="<?php echo lang('product_vendor_code') ?>" type="text" name="name_vendor_codes_0" id="name_vendor_codes_0" required />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-group has-success">
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                    <input class="input-sm form-control" placeholder="<?php echo lang('name_description') ?>" type="text" name="vendor_code_edit_0" id="vendor_code_edit_0" />
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+                                    <input class="input-sm form-control" placeholder="<?php echo lang('name_description') ?>" type="text" name="vendor_code_0" id="vendor_code_0" />
                                 </div>
                             </div>
                         </div>
@@ -45,17 +43,17 @@ require(ROOT . '/controller/admin/pages/settings/vendor_codes/modal/edit.php');
 
                                 ?>
 
-                                <div id="<?php echo lang('#lang_all')[$x] . $modal_id ?>" class="tab-pane fade">
+                                <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" type="text" name="name_vendor_codes_edit_<?php echo $x ?>" id="name_vendor_codes_edit_<?php echo $x ?>" required />
+                                            <input class="input-sm form-control" placeholder="<?php echo lang('product_vendor_code') ?>" type="text" name="name_vendor_codes_<?php echo $x ?>" id="name_vendor_codes_<?php echo $x ?>" required />
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="input-group has-success">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo lang('name_description') ?>" type="text" name="vendor_code_edit_<?php echo $x ?>" id="vendor_code_edit_<?php echo $x ?>" />
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+                                            <input class="input-sm form-control" placeholder="<?php echo lang('name_description') ?>" type="text" name="vendor_code_<?php echo $x ?>" id="vendor_code_<?php echo $x ?>" />
                                         </div>
                                     </div>
                                 </div>
@@ -66,8 +64,8 @@ require(ROOT . '/controller/admin/pages/settings/vendor_codes/modal/edit.php');
 
                         ?>
                         <div class="form-group">
-                            <input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="default_vendor_code_edit" id="default_vendor_code_edit" type="checkbox" checked>
-                            <label for="default_vendor_code_edit"><?php echo lang('default_set') ?> </label>
+                            <input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="default_vendor_code" id="default_vendor_code" type="checkbox" checked>
+                            <label for="default_vendor_code"><?php echo lang('default_set') ?> </label>
                         </div>
                     </div>
                 </div>
@@ -81,4 +79,4 @@ require(ROOT . '/controller/admin/pages/settings/vendor_codes/modal/edit.php');
         </div>
     </div>
 </div>
-<!-- КОНЕЦ Модальное окно "Изменить" -->
+<!-- КОНЕЦ Модальное окно "Добавить" -->
