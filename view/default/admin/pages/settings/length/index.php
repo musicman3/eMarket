@@ -22,10 +22,10 @@
             <div class="panel-body">
                 <!--Скрытый div для передачи данных-->
                 <div id="ajax_data" class='hidden'
-                     data-name='<?php echo $name_edit ?>'
-                     data-code='<?php echo $code_edit ?>'
-                     data-value='<?php echo $value_length_edit ?>'
-                     data-status='<?php echo $status_length_edit ?>'
+                     data-name='<?php echo $name ?>'
+                     data-code='<?php echo $code ?>'
+                     data-value='<?php echo $value_length ?>'
+                     data-status='<?php echo $status_length ?>'
                      ></div>
 
                 <table class="table table-hover">

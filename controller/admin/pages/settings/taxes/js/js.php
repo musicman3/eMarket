@@ -4,26 +4,35 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
-<?php if (isset($name_edit)) { ?>
+<?php if (isset($name)) { ?>
     <!-- Загрузка данных в модальное окно -->
     <script type="text/javascript">
-        $('#edit').on('show.bs.modal', function (event) {
-            
+        $('#index').on('show.bs.modal', function (event) {
+
             var button = $(event.relatedTarget);
             var modal_id = button.data('edit'); // Получаем ID из data-edit при клике на кнопку редактирования
-            // Получаем массивы данных
-            var name_edit = $('div#ajax_data').data('name');
-            var code_edit = $('div#ajax_data').data('code');
+            if (Number.isInteger(modal_id)) {
+                // Получаем массивы данных
+                var name = $('div#ajax_data').data('name');
+                var code = $('div#ajax_data').data('code');
 
-            // Ищем id и добавляем данные
-            for (x = 0; x < name_edit.length; x++) {
-                $('#name_taxes_edit_' + x).val(name_edit[x][modal_id]);
+                $('#edit').val(modal_id);
+                $('#add').val('');
+
+                // Ищем id и добавляем данные
+                for (x = 0; x < name.length; x++) {
+                    $('#name_taxes_' + x).val(name[x][modal_id]);
+                }
+                $('#rate_taxes').val(code[modal_id]);
+            } else {
+                $('#edit').val('');
+                $('#add').val('ok');
+                //Очищаем поля
+                $('.input-sm').val('');
             }
-            $('#rate_taxes_edit').val(code_edit[modal_id]);
-            $('#js_edit').val(modal_id);
         });
     </script>
-<?php
+    <?php
 }
 // Подгружаем Ajax Добавить, Редактировать, Удалить
 \eMarket\Ajax::action('');

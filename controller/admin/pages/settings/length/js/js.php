@@ -9,7 +9,7 @@
 <script type="text/javascript">
     $('#default_length').bootstrapSwitch();
 </script>
-<?php if (isset($name_edit)) { ?>
+<?php if (isset($name)) { ?>
     <!-- Загрузка данных в модальное окно -->
     <script type="text/javascript">
         $('#index').on('show.bs.modal', function (event) {
@@ -18,21 +18,21 @@
             var modal_id = button.data('edit'); // Получаем ID из data-edit при клике на кнопку редактирования
             if (Number.isInteger(modal_id)) {
                 // Получаем массивы данных
-                var name_edit = $('div#ajax_data').data('name');
-                var code_edit = $('div#ajax_data').data('code');
-                var value_length_edit = $('div#ajax_data').data('value');
+                var name = $('div#ajax_data').data('name');
+                var code = $('div#ajax_data').data('code');
+                var value_length = $('div#ajax_data').data('value');
                 var status = $('div#ajax_data').data('status');
 
                 $('#edit').val(modal_id);
                 $('#add').val('');
 
                 // Ищем id и добавляем данные
-                for (x = 0; x < name_edit.length; x++) {
-                    $('#name_length_' + x).val(name_edit[x][modal_id]);
-                    $('#code_length_' + x).val(code_edit[x][modal_id]);
+                for (x = 0; x < name.length; x++) {
+                    $('#name_length_' + x).val(name[x][modal_id]);
+                    $('#code_length_' + x).val(code[x][modal_id]);
                 }
 
-                $('#value_length').val(value_length_edit[modal_id]);
+                $('#value_length').val(value_length[modal_id]);
                 // Меняем значение чекбокса
                 $('#default_length').prop('checked', status[modal_id]);
                 $('#default_length').bootstrapSwitch();
