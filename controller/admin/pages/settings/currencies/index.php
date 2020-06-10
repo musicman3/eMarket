@@ -50,7 +50,7 @@ if (\eMarket\Valid::inPOST('add')) {
 if (\eMarket\Valid::inPOST('edit')) {
 
     // Если есть установка по-умолчанию
-    if (\eMarket\Valid::inPOST('default_value_currencies_edit')) {
+    if (\eMarket\Valid::inPOST('default_value_currencies')) {
         $default_value = 1;
     } else {
         $default_value = 0;
@@ -64,18 +64,18 @@ if (\eMarket\Valid::inPOST('edit')) {
         $value_all = \eMarket\Pdo::getColAssoc("SELECT id, value, language FROM " . TABLE_CURRENCIES, []);
         $count_value_all = count($value_all);
         for ($x = 0; $x < $count_value_all; $x++) {
-            \eMarket\Pdo::inPrepare("UPDATE " . TABLE_CURRENCIES . " SET value=? WHERE id=? AND language=?", [($value_all[$x]['value'] / \eMarket\Valid::inPOST('value_currencies_edit')), $value_all[$x]['id'], $value_all[$x]['language']]);
+            \eMarket\Pdo::inPrepare("UPDATE " . TABLE_CURRENCIES . " SET value=? WHERE id=? AND language=?", [($value_all[$x]['value'] / \eMarket\Valid::inPOST('value_currencies')), $value_all[$x]['id'], $value_all[$x]['language']]);
         }
 
         for ($x = 0; $x < $LANG_COUNT; $x++) {
             // обновляем запись
-            \eMarket\Pdo::inPrepare("UPDATE " . TABLE_CURRENCIES . " SET name=?, code=?, iso_4217=?, value=?, default_value=?, symbol=?, symbol_position=?, decimal_places=?, last_updated=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_currencies_edit_' . $x), \eMarket\Valid::inPOST('code_currencies_edit_' . $x), \eMarket\Valid::inPOST('iso_4217_currencies_edit'), 1, $default_value, \eMarket\Valid::inPOST('symbol_currencies_edit'), \eMarket\Valid::inPOST('symbol_position_currencies_edit'), \eMarket\Valid::inPOST('decimal_places_currencies_edit'), date("Y-m-d H:i:s"), \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
+            \eMarket\Pdo::inPrepare("UPDATE " . TABLE_CURRENCIES . " SET name=?, code=?, iso_4217=?, value=?, default_value=?, symbol=?, symbol_position=?, decimal_places=?, last_updated=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_currencies_' . $x), \eMarket\Valid::inPOST('code_currencies_' . $x), \eMarket\Valid::inPOST('iso_4217_currencies'), 1, $default_value, \eMarket\Valid::inPOST('symbol_currencies'), \eMarket\Valid::inPOST('symbol_position_currencies'), \eMarket\Valid::inPOST('decimal_places_currencies'), date("Y-m-d H:i:s"), \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
         }
     } else {
 
         for ($x = 0; $x < $LANG_COUNT; $x++) {
             // обновляем запись
-            \eMarket\Pdo::inPrepare("UPDATE " . TABLE_CURRENCIES . " SET name=?, code=?, iso_4217=?, value=?, default_value=?, symbol=?, symbol_position=?, decimal_places=?, last_updated=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_currencies_edit_' . $x), \eMarket\Valid::inPOST('code_currencies_edit_' . $x), \eMarket\Valid::inPOST('iso_4217_currencies_edit'), \eMarket\Valid::inPOST('value_currencies_edit'), $default_value, \eMarket\Valid::inPOST('symbol_currencies_edit'), \eMarket\Valid::inPOST('symbol_position_currencies_edit'), \eMarket\Valid::inPOST('decimal_places_currencies_edit'), date("Y-m-d H:i:s"), \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
+            \eMarket\Pdo::inPrepare("UPDATE " . TABLE_CURRENCIES . " SET name=?, code=?, iso_4217=?, value=?, default_value=?, symbol=?, symbol_position=?, decimal_places=?, last_updated=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_currencies_' . $x), \eMarket\Valid::inPOST('code_currencies_' . $x), \eMarket\Valid::inPOST('iso_4217_currencies'), \eMarket\Valid::inPOST('value_currencies'), $default_value, \eMarket\Valid::inPOST('symbol_currencies'), \eMarket\Valid::inPOST('symbol_position_currencies'), \eMarket\Valid::inPOST('decimal_places_currencies'), date("Y-m-d H:i:s"), \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
         }
     }
     // Выводим сообщение об успехе
@@ -99,6 +99,9 @@ $lines_on_page = \eMarket\Set::linesOnPage();
 $navigate = \eMarket\Navigation::getLink(count($lines), $lines_on_page);
 $start = $navigate[0];
 $finish = $navigate[1];
+
+// Модальное окно
+require_once('modal/index.php');
 
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
 $JS_END = __DIR__;
