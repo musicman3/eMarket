@@ -5,16 +5,12 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 ?>
-<!-- Модальное окно "Добавить" -->
-<?php require_once('modal/add.php') ?>
-<!-- КОНЕЦ Модальное окно "Добавить" -->
-
-<!-- Модальное окно "Редактировать" -->
-<?php require_once('modal/edit.php') ?>
-<!-- КОНЕЦ Модальное окно "Редактировать" -->
+<!-- Модальное окно -->
+<?php require_once('modal/index.php') ?>
+<!-- КОНЕЦ Модальное окно -->
 
 <div id="ajax">
-    <div id="settings_units" class="container-fluid">
+    <div class="container-fluid">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <!--Выводим уведомление об успешном действии-->
@@ -27,9 +23,9 @@
                 <div class="panel-body">
                     <!--Скрытый div для передачи данных-->
                     <div id="ajax_data" class='hidden'
-                         data-name='<?php echo $name_edit ?>'
-                         data-code='<?php echo $code_edit ?>'
-                         data-unit='<?php echo $default_unit_edit ?>'
+                         data-name='<?php echo $name ?>'
+                         data-code='<?php echo $code ?>'
+                         data-unit='<?php echo $default_unit ?>'
                          ></div>
 
                     <table class="table table-hover">
@@ -48,7 +44,7 @@
 
                                 <th>
                                 
-                                    <div class="b-right"><a href="#add" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
+                                    <div class="b-right"><a href="#index" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
                                 
                                     <form>
                                         <?php if (count($lines) > $lines_on_page) { ?>
@@ -98,7 +94,7 @@
                                         </form>
                                         <!--Вызов модального окна для редактирования-->
                                         <div class="b-left">
-                                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#edit" data-edit="<?php echo $lines[$start][0] ?>"><span class="glyphicon glyphicon-edit"></span></button>
+                                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index" data-edit="<?php echo $lines[$start][0] ?>"><span class="glyphicon glyphicon-edit"></span></button>
                                         </div>
                                     </td>
                                 </tr>
