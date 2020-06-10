@@ -3,31 +3,30 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-require(ROOT . '/controller/admin/pages/orders/modal/edit.php');
 ?>
 
 <!-- Модальное окно "Изменить" -->
-<div id="edit" class="products modal fade" tabindex="-1">
+<div id="index" class="products modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header"><div class="pull-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Ставка указывается в формате: 10.00" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
                 <h4 class="modal-title" id="title"></h4>
             </div>
-            <form id="form_edit" name="form_edit" action="javascript:void(null);" onsubmit="callEdit()">
+            <form id="form_add" name="form_add" action="javascript:void(null);" onsubmit="callAdd()">
                 <div class="panel-body">
-                    <input id="js_edit" type="hidden" name="edit" value="" />
+                    <input type="hidden" id="edit" name="edit" value="" />
                     <!-- Панели формы -->
                     <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#panel_edit_1"><?php echo lang('orders_description') ?></a></li>
-                        <li><a data-toggle="tab" href="#panel_edit_2"><?php echo lang('orders_products') ?></a></li>
-                        <li><a data-toggle="tab" href="#panel_edit_3"><?php echo lang('orders_transaction_history') ?></a></li>
-                        <li><a data-toggle="tab" href="#panel_edit_4"><?php echo lang('orders_status_history') ?></a></li>
+                        <li class="active"><a data-toggle="tab" href="#panel_1"><?php echo lang('orders_description') ?></a></li>
+                        <li><a data-toggle="tab" href="#panel_2"><?php echo lang('orders_products') ?></a></li>
+                        <li><a data-toggle="tab" href="#panel_3"><?php echo lang('orders_transaction_history') ?></a></li>
+                        <li><a data-toggle="tab" href="#panel_4"><?php echo lang('orders_status_history') ?></a></li>
                     </ul>
                     <!-- Содержимое панелей формы-->
                     <div class="tab-content">
 
                         <!-- Содержимое панели Описание -->
-                        <div id="panel_edit_1" class="tab-pane fade in active">
+                        <div id="panel_1" class="tab-pane fade in active">
                             <div class="table-responsive">
                                 <table class="table">
                                     <tbody>
@@ -96,7 +95,7 @@ require(ROOT . '/controller/admin/pages/orders/modal/edit.php');
                         </div>
 
                         <!-- Содержимое панели Товары -->
-                        <div id="panel_edit_2" class="tab-pane fade">
+                        <div id="panel_2" class="tab-pane fade">
                             <div class="table-responsive">
 
                                 <table class="table table-radius">
@@ -132,14 +131,14 @@ require(ROOT . '/controller/admin/pages/orders/modal/edit.php');
                         </div>
 
                         <!-- Содержимое панели История транзакций -->
-                        <div id="panel_edit_3" class="tab-pane fade">
+                        <div id="panel_3" class="tab-pane fade">
                             <div class="col-left form-group">
 
                             </div>
                         </div>
 
                         <!-- Содержимое панели История статусов -->
-                        <div id="panel_edit_4" class="tab-pane fade">
+                        <div id="panel_4" class="tab-pane fade">
                             <div class="form-group">
                                 <div class="input-group has-success" id="status_history"></div><br>
                                 <div class="input-group has-success">

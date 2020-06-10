@@ -53,6 +53,9 @@ $navigate = \eMarket\Navigation::getLink(count($lines), $lines_on_page);
 $start = $navigate[0];
 $finish = $navigate[1];
 
+// Модальное окно
+require_once('modal/index.php');
+
 //\eMarket\Debug::trace($unit = \eMarket\Pdo::getColAssoc("SELECT id, name FROM " . TABLE_UNITS . " WHERE language=?", [lang('#lang_all')[0]]));
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
 $JS_END = __DIR__;

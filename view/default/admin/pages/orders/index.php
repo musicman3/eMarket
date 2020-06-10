@@ -5,12 +5,12 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
 
-<!-- Модальное окно "Редактировать" -->
-<?php require_once('modal/edit.php')  ?>
-<!-- КОНЕЦ Модальное окно "Редактировать" -->
+<!-- Модальное окно -->
+<?php require_once('modal/index.php') ?>
+<!-- КОНЕЦ Модальное окно -->
 
 <div id="ajax">
-    <div id="orders" class="container-fluid">
+    <div class="container-fluid">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <!--Выводим уведомление об успешном действии-->
@@ -23,7 +23,7 @@
             <div class="panel-body">
                 <!--Скрытый div для передачи данных-->
                 <div id="ajax_data" class='hidden'
-                     data-orders='<?php echo $orders_edit ?>'
+                     data-orders='<?php echo $orders ?>'
                      ></div>
 
                 <table class="table table-hover">
@@ -91,7 +91,7 @@
                                     </form>
                                     <!--Вызов модального окна для редактирования-->
                                     <div class="b-left">
-                                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#edit" data-edit="<?php echo $lines[$start][0] ?>"><span class="glyphicon glyphicon-edit"></span></button>
+                                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index" data-edit="<?php echo $lines[$start][0] ?>"><span class="glyphicon glyphicon-edit"></span></button>
                                     </div>
                                 </td>
                             </tr>

@@ -6,7 +6,7 @@
 ?>
 <!-- Загрузка данных в модальное окно -->
 <script type="text/javascript">
-    $('#edit').on('show.bs.modal', function (event) {
+    $('#index').on('show.bs.modal', function (event) {
 
         var button = $(event.relatedTarget);
         var modal_id = button.data('edit'); // Получаем ID из data-edit при клике на кнопку редактирования
@@ -14,23 +14,25 @@
         $('#status_history').empty();
 
         // Получаем данные из data div
-        var orders_edit = $('div#ajax_data').data('orders')[modal_id];
-        var customer_data = $.parseJSON(orders_edit['customer_data']);
-        var invoice = $.parseJSON(orders_edit['invoice']);
-        var order_total = $.parseJSON(orders_edit['order_total']);
+        var orders = $('div#ajax_data').data('orders')[modal_id];
+        var customer_data = $.parseJSON(orders['customer_data']);
+        var invoice = $.parseJSON(orders['invoice']);
+        var order_total = $.parseJSON(orders['order_total']);
         var address_book = $.parseJSON(customer_data['address_book']);
-        var history_status = $.parseJSON(orders_edit['orders_status_history']);
-        var shipping_method = $.parseJSON(orders_edit['shipping_method'])['admin'];
-        var payment_method = $.parseJSON(orders_edit['payment_method'])['admin'];
-        
+        var history_status = $.parseJSON(orders['orders_status_history']);
+        var shipping_method = $.parseJSON(orders['shipping_method'])['admin'];
+        var payment_method = $.parseJSON(orders['payment_method'])['admin'];
+
+        $('#edit').val(modal_id);
+
         // Титл
-        $('#title').html('<?php echo lang('orders_number') ?>: ' + orders_edit['id']);
+        $('#title').html('<?php echo lang('orders_number') ?>: ' + orders['id']);
 
         // Описание
         // #Клиент
         $('#description_client_name').html(customer_data['firstname'] + ' ' + customer_data['lastname']);
         $('#description_client_phone').html(customer_data['telephone']);
-        $('#description_client_email').html(orders_edit['email']);
+        $('#description_client_email').html(orders['email']);
         // #Метод оплаты
         $('#description_payment_method').html(payment_method);
         // #Доставка
@@ -44,7 +46,7 @@
         $('#description_date_purchased').html(history_status[0]['admin']['status'] + ': ' + history_status[0]['admin']['date']);
         // #Итого
         $('#description_order_total').html(order_total['admin']['total_with_shipping_format']);
-        
+
         // Товары
         for (x = 0; x < invoice.length; x++) {
             $("#invoice").append('<tr class="bg-success">\n\
@@ -54,19 +56,16 @@
                                         <td class="text-right"><small>' + invoice[x]['admin']['amount'] + '</small></td>\n\
                                   </tr>');
         }
-        
+
         $('#invoice_shipping_method').html('<b>' + shipping_method + '</b>');
         $('#invoice_shipping_price').html(order_total['admin']['shipping_price_format']);
         $('#invoice_order_total').html(order_total['admin']['total_format']);
         $('#invoice_order_total_with_shipping').html(order_total['admin']['total_with_shipping_format']);
-        
+
         // История статусов
         for (x = 0; x < history_status.length; x++) {
             $("#status_history").append('<span class="glyphicon glyphicon-ok"></span><small> ' + history_status[x]['admin']['date'] + ' </small><span class="label label-success">' + history_status[x]['admin']['status'] + '</span><br>');
         }
-        
-        
-        $('#js_edit').val(modal_id);
     });
 </script>
 <?php

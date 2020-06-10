@@ -15,12 +15,12 @@ for ($i = $start; $i < $finish; $i++) {
         $orders_temp[$modal_id] = $query;
 
         // ПАРАМЕТРЫ ДЛЯ ПЕРЕДАЧИ В МОДАЛ
-        $orders_edit = json_encode($orders_temp);
+        $orders = json_encode($orders_temp);
     }
 }
 if (!isset($modal_id)) {
     $modal_id = 'false';
-    $orders_edit = '';
+    $orders = '';
 }
 
 ?>
