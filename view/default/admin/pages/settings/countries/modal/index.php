@@ -1,33 +1,32 @@
 <?php
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
-  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
+  |    GNU GENERAL PUBLIC LICENSE v.3.0    |    
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-require(ROOT . '/controller/admin/pages/settings/countries/modal/edit.php');
 ?>
-
-<!-- Модальное окно "Изменить" -->
-<div id="edit" class="modal fade" tabindex="-1">
+<!-- Модальное окно "Добавить" -->
+<div id="index" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header"><div class="pull-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Ставка указывается в формате: 10.00" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
                 <h4 class="modal-title"><?php echo \eMarket\Set::titlePageGenerator() ?></h4>
             </div>
-            <form id="form_edit" name="form_edit" action="javascript:void(null);" onsubmit="callEdit()">
+            <form id="form_add" name="form_add" action="javascript:void(null);" onsubmit="callAdd()">
                 <div class="panel-body">
-                    <input id="js_edit" type="hidden" name="edit" value="" />
+                    <input type="hidden" id="add" name="add" value="" />
+                    <input type="hidden" id="edit" name="edit" value="" />
 
                     <!-- Языковые панели -->
-                    <?php require_once(ROOT . '/view/' . \eMarket\Set::template() . '/layouts/lang_tabs_edit.php') ?>
+                    <?php require_once(ROOT . '/view/' . \eMarket\Set::template() . '/layouts/lang_tabs_add.php') ?>
 
                     <!-- Содержимое языковых панелей -->
                     <div class="tab-content">
-                        <div id="<?php echo lang('#lang_all')[0] . $modal_id ?>" class="tab-pane fade in active">
+                        <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade in active">
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="input-sm form-control" type="text" name="name_countries_edit_0" id="name_countries_edit_0" required />
+                                    <input class="input-sm form-control" placeholder="<?php echo lang('name_country') ?>" type="text" name="name_countries_0" id="name_countries_0" required />
                                 </div>
                             </div>
                         </div>
@@ -35,13 +34,14 @@ require(ROOT . '/controller/admin/pages/settings/countries/modal/edit.php');
                         <?php
                         if ($LANG_COUNT > 1) {
                             for ($x = 1; $x < $LANG_COUNT; $x++) {
+
                                 ?>
 
-                                <div id="<?php echo lang('#lang_all')[$x] . $modal_id ?>" class="tab-pane fade">
+                                <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" type="text" name="name_countries_edit_<?php echo $x ?>" id="name_countries_edit_<?php echo $x ?>" required />
+                                            <input class="input-sm form-control" placeholder="<?php echo lang('name_country') ?>" type="text" name="name_countries_<?php echo $x ?>" id="name_countries_<?php echo $x ?>" required />
                                         </div>
                                     </div>
                                 </div>
@@ -49,23 +49,24 @@ require(ROOT . '/controller/admin/pages/settings/countries/modal/edit.php');
                                 <?php
                             }
                         }
+
                         ?>
 
                         <div class="form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                <input class="form-control" type="text" name="alpha_2_countries_edit" id="alpha_2_countries_edit" required />
+                                <input class="input-sm form-control" placeholder="<?php echo lang('alpha_2') ?>" type="text" name="alpha_2_countries" id="alpha_2_countries" required />
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                <input class="form-control" type="text" name="alpha_3_countries_edit" id="alpha_3_countries_edit" required />
+                                <input class="input-sm form-control" placeholder="<?php echo lang('alpha_3') ?>" type="text" name="alpha_3_countries" id="alpha_3_countries" required />
                             </div>
                         </div>
                         <div class="form-group">
                             <div><small class="form-text text-muted"><?php echo lang('address_format') ?></small></div>
-                            <textarea class="form-control" placeholder="<?php echo lang('add_address_format') ?>" rows="5" name="address_format_countries_edit" id="address_format_countries_edit"></textarea>
+                            <textarea class="form-control" placeholder="<?php echo lang('add_address_format') ?>" rows="5" name="address_format_countries" id="address_format_countries"></textarea>
                         </div> 
                     </div>
                 </div>
@@ -79,4 +80,4 @@ require(ROOT . '/controller/admin/pages/settings/countries/modal/edit.php');
         </div>
     </div>
 </div>
-<!-- КОНЕЦ Модальное окно "Изменить" -->
+<!-- КОНЕЦ Модальное окно "Добавить" -->

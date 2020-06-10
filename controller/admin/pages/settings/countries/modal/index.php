@@ -12,7 +12,7 @@ for ($i = $start; $i < $finish; $i++) {
         $count_lang = $LANG_COUNT;
 
         for ($x = 0; $x < $count_lang; $x++) {
-            $name_edit_temp[$x][$modal_id] = \eMarket\Pdo::selectPrepare("SELECT name FROM " . TABLE_COUNTRIES . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]]);
+            $name_temp[$x][$modal_id] = \eMarket\Pdo::selectPrepare("SELECT name FROM " . TABLE_COUNTRIES . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]]);
         }
         
         $query = \eMarket\Pdo::getRow("SELECT alpha_2, alpha_3, address_format FROM " . TABLE_COUNTRIES . " WHERE id=?", [$modal_id]);
@@ -21,7 +21,7 @@ for ($i = $start; $i < $finish; $i++) {
         $address_format_temp[$modal_id] = $query[2];
 
         // ПАРАМЕТРЫ ДЛЯ ПЕРЕДАЧИ В МОДАЛ
-        $name_edit = json_encode($name_edit_temp); // Имя
+        $name = json_encode($name_temp); // Имя
         $alpha_2 = json_encode($alpha_2_temp); // Alpha 2
         $alpha_3 = json_encode($alpha_3_temp); // Alpha 3
         $address_format = json_encode($address_format_temp); // Формат адреса
@@ -29,7 +29,7 @@ for ($i = $start; $i < $finish; $i++) {
 }
 if (!isset($modal_id)) {
     $modal_id = 'false';
-    $name_edit = ''; // Имя
+    $name = ''; // Имя
     $alpha_2 = ''; // Alpha 2
     $alpha_3 = ''; // Alpha 3
     $address_format = ''; // Формат адреса
