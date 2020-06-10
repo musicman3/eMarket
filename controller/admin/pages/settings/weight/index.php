@@ -50,7 +50,7 @@ if (\eMarket\Valid::inPOST('add')) {
 if (\eMarket\Valid::inPOST('edit')) {
 
     // Если есть установка по-умолчанию
-    if (\eMarket\Valid::inPOST('default_weight_edit')) {
+    if (\eMarket\Valid::inPOST('default_weight')) {
         $default_weight = 1;
     } else {
         $default_weight = 0;
@@ -64,18 +64,18 @@ if (\eMarket\Valid::inPOST('edit')) {
         $value_weight_all = \eMarket\Pdo::getColAssoc("SELECT id, value_weight, language FROM " . TABLE_WEIGHT, []);
         $count_value_weight_all = count($value_weight_all);
         for ($x = 0; $x < $count_value_weight_all; $x++) {
-            \eMarket\Pdo::inPrepare("UPDATE " . TABLE_WEIGHT . " SET value_weight=? WHERE id=? AND language=?", [($value_weight_all[$x]['value_weight'] / \eMarket\Valid::inPOST('value_weight_edit')), $value_weight_all[$x]['id'], $value_weight_all[$x]['language']]);
+            \eMarket\Pdo::inPrepare("UPDATE " . TABLE_WEIGHT . " SET value_weight=? WHERE id=? AND language=?", [($value_weight_all[$x]['value_weight'] / \eMarket\Valid::inPOST('value_weight')), $value_weight_all[$x]['id'], $value_weight_all[$x]['language']]);
         }
 
         for ($x = 0; $x < $LANG_COUNT; $x++) {
             // обновляем запись
-            \eMarket\Pdo::inPrepare("UPDATE " . TABLE_WEIGHT . " SET name=?, code=?, value_weight=?, default_weight=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_weight_edit_' . $x), \eMarket\Valid::inPOST('code_weight_edit_' . $x), 1, $default_weight, \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
+            \eMarket\Pdo::inPrepare("UPDATE " . TABLE_WEIGHT . " SET name=?, code=?, value_weight=?, default_weight=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_weight_' . $x), \eMarket\Valid::inPOST('code_weight_' . $x), 1, $default_weight, \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
         }
     } else {
 
         for ($x = 0; $x < $LANG_COUNT; $x++) {
             // обновляем запись
-            \eMarket\Pdo::inPrepare("UPDATE " . TABLE_WEIGHT . " SET name=?, code=?, value_weight=?, default_weight=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_weight_edit_' . $x), \eMarket\Valid::inPOST('code_weight_edit_' . $x), \eMarket\Valid::inPOST('value_weight_edit'), $default_weight, \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
+            \eMarket\Pdo::inPrepare("UPDATE " . TABLE_WEIGHT . " SET name=?, code=?, value_weight=?, default_weight=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_weight_' . $x), \eMarket\Valid::inPOST('code_weight_' . $x), \eMarket\Valid::inPOST('value_weight'), $default_weight, \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
         }
     }
     // Выводим сообщение об успехе
@@ -99,6 +99,9 @@ $lines_on_page = \eMarket\Set::linesOnPage();
 $navigate = \eMarket\Navigation::getLink(count($lines), $lines_on_page);
 $start = $navigate[0];
 $finish = $navigate[1];
+
+// Модальное окно
+require_once('modal/index.php');
 
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
 $JS_END = __DIR__;

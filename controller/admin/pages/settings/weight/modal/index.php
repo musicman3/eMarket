@@ -12,26 +12,26 @@ for ($i = $start; $i < $finish; $i++) {
 
         for ($x = 0; $x < $count_lang; $x++) {
             $query_lang = \eMarket\Pdo::getRow("SELECT name, code FROM " . TABLE_WEIGHT . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]]);
-            $name_edit_temp[$x][$modal_id] = $query_lang[0];
-            $code_edit_temp[$x][$modal_id] = $query_lang[1];
+            $name_temp[$x][$modal_id] = $query_lang[0];
+            $code_temp[$x][$modal_id] = $query_lang[1];
         }
         
         $query = \eMarket\Pdo::getRow("SELECT value_weight, default_weight FROM " . TABLE_WEIGHT . " WHERE id=?", [$modal_id]);
-        $value_weight_edit_temp[$modal_id] = (float) $query[0];
-        $status_weight_edit_temp[$modal_id] = (int) $query[1];
+        $value_weight_temp[$modal_id] = (float) $query[0];
+        $status_weight_temp[$modal_id] = (int) $query[1];
         // ПАРАМЕТРЫ ДЛЯ ПЕРЕДАЧИ В МОДАЛ
-        $name_edit = json_encode($name_edit_temp); // Имя
-        $code_edit = json_encode($code_edit_temp); // Короткое имя
-        $value_weight_edit = json_encode($value_weight_edit_temp); // Значение
-        $status_weight_edit = json_encode($status_weight_edit_temp); // Статус
+        $name = json_encode($name_temp); // Имя
+        $code = json_encode($code_temp); // Короткое имя
+        $value_weight = json_encode($value_weight_temp); // Значение
+        $status_weight = json_encode($status_weight_temp); // Статус
     }
 }
 if (!isset($modal_id)) {
     $modal_id = 'false';
-    $name_edit = ''; // Имя
-    $code_edit = ''; // Короткое имя
-    $value_weight_edit = ''; // Значение
-    $status_weight_edit = ''; // Статус
+    $name = ''; // Имя
+    $code = ''; // Короткое имя
+    $value_weight = ''; // Значение
+    $status_weight = ''; // Статус
 }
 
 ?>

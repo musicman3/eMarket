@@ -9,33 +9,45 @@
 <script type="text/javascript">
     $('#default_weight').bootstrapSwitch();
 </script>
-<?php if (isset($name_edit)) { ?>
+<?php if (isset($name)) { ?>
     <!-- Загрузка данных в модальное окно -->
     <script type="text/javascript">
-        $('#edit').on('show.bs.modal', function (event) {
-            $('#default_weight_edit').bootstrapSwitch('destroy', true);
+        $('#index').on('show.bs.modal', function (event) {
+            $('#default_weight').bootstrapSwitch('destroy', true);
             var button = $(event.relatedTarget);
             var modal_id = button.data('edit'); // Получаем ID из data-edit при клике на кнопку редактирования
-            // Получаем массивы данных
-            var name_edit = $('div#ajax_data').data('name');
-            var code_edit = $('div#ajax_data').data('code');
-            var value_weight_edit = $('div#ajax_data').data('weight');
-            var status = $('div#ajax_data').data('status');
+            if (Number.isInteger(modal_id)) {
+                // Получаем массивы данных
+                var name = $('div#ajax_data').data('name');
+                var code = $('div#ajax_data').data('code');
+                var value_weight = $('div#ajax_data').data('weight');
+                var status = $('div#ajax_data').data('status');
 
-            // Ищем id и добавляем данные
-            for (x = 0; x < name_edit.length; x++) {
-                $('#name_weight_edit_' + x).val(name_edit[x][modal_id]);
-                $('#code_weight_edit_' + x).val(code_edit[x][modal_id]);
+                $('#edit').val(modal_id);
+                $('#add').val('');
+
+                // Ищем id и добавляем данные
+                for (x = 0; x < name.length; x++) {
+                    $('#name_weight_' + x).val(name[x][modal_id]);
+                    $('#code_weight_' + x).val(code[x][modal_id]);
+                }
+
+                $('#value_weight').val(value_weight[modal_id]);
+                // Меняем значение чекбокса
+                $('#default_weight').prop('checked', status[modal_id]);
+                $('#default_weight').bootstrapSwitch();
+            } else {
+                $('#edit').val('');
+                $('#add').val('ok');
+                //Очищаем поля
+                $('.input-sm').val('');
+                // Меняем значение чекбокса
+                $('#default_weight').prop('checked', '1');
+                $('#default_weight').bootstrapSwitch();
             }
-
-            $('#value_weight_edit').val(value_weight_edit[modal_id]);
-            $('#js_edit').val(modal_id);
-            // Меняем значение чекбокса
-            $('#default_weight_edit').prop('checked', status[modal_id]);
-            $('#default_weight_edit').bootstrapSwitch();
         });
     </script>
-<?php
+    <?php
 }
 // Подгружаем Ajax Добавить, Редактировать, Удалить
 \eMarket\Ajax::action('');
