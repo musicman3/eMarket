@@ -5,13 +5,13 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
 <!-- Вставляем модальное окно "Добавить категорию" -->
-<?php require_once('modal/add.php') ?>
+<?php require_once('modal/index.php') ?>
 
 <!-- Вставляем модальное окно "Добавить товар" -->
 <?php require_once('modal/add_product.php') ?>
 
 <!-- Модальное окно "Редактировать категорию" -->
-<?php require_once('modal/edit.php') ?>
+<?php //require_once('modal/edit.php') ?>
 <!-- КОНЕЦ Модальное окно "Редактировать" -->
 
 <!-- Модальное окно "Редактировать товар" -->
@@ -36,7 +36,7 @@
 
 <div id="ajax">
 
-    <div id="stock" class="container-fluid">
+    <div class="container-fluid">
         <div class="panel panel-default">
 
             <div class="panel-heading">
@@ -53,8 +53,8 @@
                 <div class="panel-body">
                     <!--Скрытый div для передачи данных-->
                     <div id="ajax_data" class='hidden'
-                         data-name='<?php echo $name_edit ?>'
-                         data-logo='<?php echo $logo_edit ?>'
+                         data-name='<?php echo $name ?>'
+                         data-logo='<?php echo $logo ?>'
                          data-general='<?php echo $logo_general ?>'
                          data-logoproduct='<?php echo $logo_edit_product ?>'
                          data-generalproduct='<?php echo $logo_general_product ?>'

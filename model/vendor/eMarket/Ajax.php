@@ -142,12 +142,11 @@ class Ajax {
                 'use strict';
                 var url = '/uploads/temp/';
 
-                $('#fileupload-add, #fileupload-edit').fileupload({
+                $('#fileupload').fileupload({
                     url: url,
                     dataType: 'json',
                     submit: function (e, data) {
-                        $('#alert_messages_add').empty();
-                        $('#alert_messages_edit').empty();
+                        $('#alert_messages').empty();
                     },
                     done: function (e, data) {
 
@@ -168,19 +167,19 @@ class Ajax {
 
                                     if (this_height < quality_height && this_width < quality_width) {
                                         // Если изображение не соответствует минимальным размерам то выводим сообщение
-                                        if ($('#add').hasClass('in') === true) {
-                                            $('#alert_messages_add').html('<div class="alert alert-danger"><?php echo lang('image_resize_error') ?> ' + quality_width + 'x' + quality_height + '</div>');
+                                        if ($('#add').val() === 'ok') {
+                                            $('#alert_messages').html('<div class="alert alert-danger"><?php echo lang('image_resize_error') ?> ' + quality_width + 'x' + quality_height + '</div>');
                                         }
-                                        if ($('#edit').hasClass('in') === true) {
-                                            $('#alert_messages_edit').html('<div class="alert alert-danger"><?php echo lang('image_resize_error') ?> ' + quality_width + 'x' + quality_height + '</div>');
+                                        if ($('#edit').val() !== '') {
+                                            $('#alert_messages').html('<div class="alert alert-danger"><?php echo lang('image_resize_error') ?> ' + quality_width + 'x' + quality_height + '</div>');
                                         }
                                     } else {
                                         // Если все ок, то выводим изображение
-                                        if ($('#add').hasClass('in') === true) {
-                                            $('<span class="file-upload" id="image_add_new_' + hash_name + '"/>').html('<div class="holder"><img src="/uploads/temp/thumbnail/' + file.name + '" class="thumbnail" id="general_' + hash_name + '" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="deleteImageAddNew_' + hash_name + '" onclick="deleteImageAddNew(\'' + file.name + '\', \'' + hash_name + '\')"><span class="glyphicon glyphicon-trash"></span></button> <button class="btn btn-primary btn-xs" type="button" name="imageGeneralAddNew_' + hash_name + '" onclick="imageGeneralAddNew(\'' + file.name + '\', \'' + hash_name + '\')"><span class="glyphicon glyphicon-star"></span></button></div></div>').appendTo('#logo-add'); // Вставляем лого
+                                        if ($('#add').val() === 'ok') {
+                                            $('<span class="file-upload" id="image_add_new_' + hash_name + '"/>').html('<div class="holder"><img src="/uploads/temp/thumbnail/' + file.name + '" class="thumbnail" id="general_' + hash_name + '" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="deleteImageAddNew_' + hash_name + '" onclick="deleteImageAddNew(\'' + file.name + '\', \'' + hash_name + '\')"><span class="glyphicon glyphicon-trash"></span></button> <button class="btn btn-primary btn-xs" type="button" name="imageGeneralAddNew_' + hash_name + '" onclick="imageGeneralAddNew(\'' + file.name + '\', \'' + hash_name + '\')"><span class="glyphicon glyphicon-star"></span></button></div></div>').appendTo('#logo'); // Вставляем лого
                                         }
-                                        if ($('#edit').hasClass('in') === true) {
-                                            $('<span class="file-upload" id="image_edit_new_' + hash_name + '"/>').html('<div class="holder"><img src="/uploads/temp/thumbnail/' + file.name + '" class="thumbnail" id="general_edit_' + hash_name + '" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="deleteImageEditNew_' + hash_name + '" onclick="deleteImageEditNew(\'' + file.name + '\', \'' + hash_name + '\')"><span class="glyphicon glyphicon-trash"></span></button> <button class="btn btn-primary btn-xs" type="button" name="imageGeneralEditNew_' + hash_name + '" onclick="imageGeneralEditNew(\'' + file.name + '\', \'' + hash_name + '\')"><span class="glyphicon glyphicon-star"></span></button></div></div>').appendTo('#logo-edit'); // Вставляем лого
+                                        if ($('#edit').val() !== '') {
+                                            $('<span class="file-upload" id="image_edit_new_' + hash_name + '"/>').html('<div class="holder"><img src="/uploads/temp/thumbnail/' + file.name + '" class="thumbnail" id="general_edit_' + hash_name + '" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="deleteImageEditNew_' + hash_name + '" onclick="deleteImageEditNew(\'' + file.name + '\', \'' + hash_name + '\')"><span class="glyphicon glyphicon-trash"></span></button> <button class="btn btn-primary btn-xs" type="button" name="imageGeneralEditNew_' + hash_name + '" onclick="imageGeneralEditNew(\'' + file.name + '\', \'' + hash_name + '\')"><span class="glyphicon glyphicon-star"></span></button></div></div>').appendTo('#logo'); // Вставляем лого
                                         }
                                     }
                                 }
@@ -209,21 +208,21 @@ class Ajax {
             });
 
             //Если открыли модальное окно
-            $('#add, #edit').on('show.bs.modal', function (event) {
+            $('#index').on('show.bs.modal', function (event) {
                 // Отправка запроса для очистки временных файлов
-                jQuery.post('<?php echo $url ?>',
+                jQuery.post('',
                         {file_upload: 'empty'});
             });
 
             // Очищаем модальное окно и hidden input при закрытии
-            $('#add, #edit').on('hidden.bs.modal', function (event) {
+            $('#index').on('hidden.bs.modal', function (event) {
                 $('.progress-bar').css('width', 0 + '%');
                 $('.file-upload').detach();
                 $('#delete_image').val('');
                 $('#general_image_edit').val('');
+                $('#general_image_edit_new').val('');
                 $('#general_image_add').val('');
-                $('#alert_messages_add').empty();
-                $('#alert_messages_edit').empty();
+                $('#alert_messages').empty();
                 //$(this).find('form').trigger('reset'); // Очищаем формы
             });
 
@@ -233,7 +232,7 @@ class Ajax {
                 for (x = 0; x < logo_edit[modal_id].length; x++) {
                     var image = logo_edit[modal_id][x];
 
-                    $('<span class="file-upload" id="image_edit_' + x + '"/>').html('<div class="holder"><img src="/uploads/images/<?php echo $dir ?>/resize_0/' + image + '" class="thumbnail" id="general_' + x + '" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="delete_image_' + x + '" onclick="deleteImageEdit(\'' + image + '\', \'' + x + '\')"><span class="glyphicon glyphicon-trash"></span></button> <button class="btn btn-primary btn-xs" type="button" name="image_general_edit' + x + '" onclick="imageGeneralEdit(\'' + image + '\', \'' + x + '\')"><span class="glyphicon glyphicon-star"></span></button></div></div>').appendTo('#logo-edit'); // Вставляем лого
+                    $('<span class="file-upload" id="image_edit_' + x + '"/>').html('<div class="holder"><img src="/uploads/images/<?php echo $dir ?>/resize_0/' + image + '" class="thumbnail" id="general_' + x + '" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="delete_image_' + x + '" onclick="deleteImageEdit(\'' + image + '\', \'' + x + '\')"><span class="glyphicon glyphicon-trash"></span></button> <button class="btn btn-primary btn-xs" type="button" name="image_general_edit' + x + '" onclick="imageGeneralEdit(\'' + image + '\', \'' + x + '\')"><span class="glyphicon glyphicon-star"></span></button></div></div>').appendTo('#logo'); // Вставляем лого
                     // Если это главное изображение, то выделяем его
                     if (logo_general_edit[modal_id] === image) {
                         $('#general_' + x).addClass('img-active');

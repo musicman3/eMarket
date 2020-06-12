@@ -18,7 +18,7 @@
             url: '?route=stock',
             data: msg,
             beforeSend: function (data) {
-                $('#add').modal('hide');
+                $('#index').modal('hide');
                 clearAttributes();
             }
         });
@@ -48,7 +48,7 @@
             url: '?route=stock',
             data: msg,
             beforeSend: function (data) {
-                $('#edit').modal('hide');
+                $('#categories').modal('hide');
             }
         });
         // Отправка запроса для обновления страницы

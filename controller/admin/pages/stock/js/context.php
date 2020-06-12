@@ -24,8 +24,7 @@
                         success: function (data) {
                             setTimeout(function () {
                                 $('#view_categories_stock').bootstrapSwitch('destroy');
-                                $('#fileupload-edit').fileupload('destroy');
-                                $('#fileupload-add').fileupload('destroy');
+                                $('#fileupload').fileupload('destroy');
                                 $('#fileupload-edit-product').fileupload('destroy');
                                 $('#fileupload-add-product').fileupload('destroy');
                                 $('#ajax').html(data);
@@ -56,7 +55,11 @@
                         return 'context-menu-icon glyphicon-folder-open';
                     },
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
-                        $('#add').modal('show');
+                        $('#edit').val('');
+                        $('#add').val('ok');
+                        //Очищаем поля
+                        $('.input-sm').val('');
+                        $('#index').modal('show');
                     }
                 },
 
@@ -78,7 +81,6 @@
                         var modal_edit = opt.$trigger.attr("id");
                         if (modal_edit.search('product_') > -1) {
 
-                            $('#edit_product').on('show.bs.modal', function (event) {
                                 $('.progress-bar').css('width', 0 + '%');
                                 $('.file-upload').detach();
                                 $('#delete_image_product').val('');
@@ -142,32 +144,27 @@
                                 $('#js_edit_product').val(modal_id);
                                 // Подгружаем изображения
                                 getImageToEditProduct(logo_general_edit_product, logo_edit_product, modal_id);
-                            });
+
                             $('#edit_product').modal('show');
                         } else {
-
-                            $('#edit').on('show.bs.modal', function (event) {
-                                $('.progress-bar').css('width', 0 + '%');
-                                $('.file-upload').detach();
-                                $('#delete_image').val('');
-                                $('#general_image_edit').val('');
-                                $('#alert_messages_edit').empty();
                                 // Получаем ID при клике на кнопку редактирования
                                 var modal_id = opt.$trigger.attr("id");
+
                                 // Получаем массивы данных
                                 var name_edit = $('div#ajax_data').data('name');
                                 var logo_edit = $('div#ajax_data').data('logo');
                                 var logo_general_edit = $('div#ajax_data').data('general');
                                 // Ищем id и добавляем данные
                                 for (x = 0; x < name_edit.length; x++) {
-                                    $('#name_categories_stock_edit_' + x).val(name_edit[x][modal_id]);
+                                    $('#name_categories_stock_' + x).val(name_edit[x][modal_id]);
                                 }
-                                $('#js_edit').val(modal_id);
+                                $('#edit').val(modal_id);
+                                $('#add').val('');
                                 // Подгружаем изображения
                                 getImageToEdit(logo_general_edit, logo_edit, modal_id);
-                            });
+
                             // Открываем модальное окно
-                            $('#edit').modal('show');
+                            $('#index').modal('show');
                         }
 
                     }
@@ -220,8 +217,7 @@
                                 function AjaxSuccess(data) {
                                     setTimeout(function () {
                                         $('#view_categories_stock').bootstrapSwitch('destroy');
-                                        $('#fileupload-edit').fileupload('destroy');
-                                        $('#fileupload-add').fileupload('destroy');
+                                        $('#fileupload').fileupload('destroy');
                                         $('#fileupload-edit-product').fileupload('destroy');
                                         $('#fileupload-add-product').fileupload('destroy');
                                         $('#ajax').html(data);
@@ -262,8 +258,7 @@
                                 function AjaxSuccess(data) {
                                     setTimeout(function () {
                                         $('#view_categories_stock').bootstrapSwitch('destroy');
-                                        $('#fileupload-edit').fileupload('destroy');
-                                        $('#fileupload-add').fileupload('destroy');
+                                        $('#fileupload').fileupload('destroy');
                                         $('#fileupload-edit-product').fileupload('destroy');
                                         $('#fileupload-add-product').fileupload('destroy');
                                         $('#ajax').html(data);
@@ -311,8 +306,7 @@
                                 function AjaxSuccess(data) {
                                     setTimeout(function () {
                                         $('#view_categories_stock').bootstrapSwitch('destroy');
-                                        $('#fileupload-edit').fileupload('destroy');
-                                        $('#fileupload-add').fileupload('destroy');
+                                        $('#fileupload').fileupload('destroy');
                                         $('#fileupload-edit-product').fileupload('destroy');
                                         $('#fileupload-add-product').fileupload('destroy');
                                         $('#ajax').html(data);
@@ -394,8 +388,7 @@
                                         setTimeout(function () {
                                             $('#confirm').modal('hide');
                                             $('#view_categories_stock').bootstrapSwitch('destroy');
-                                            $('#fileupload-edit').fileupload('destroy');
-                                            $('#fileupload-add').fileupload('destroy');
+                                            $('#fileupload').fileupload('destroy');
                                             $('#fileupload-edit-product').fileupload('destroy');
                                             $('#fileupload-add-product').fileupload('destroy');
                                             $('#ajax').html(data);
@@ -464,8 +457,7 @@
                                 function AjaxSuccess(data) {
                                     setTimeout(function () {
                                         $('#view_categories_stock').bootstrapSwitch('destroy');
-                                        $('#fileupload-edit').fileupload('destroy');
-                                        $('#fileupload-add').fileupload('destroy');
+                                        $('#fileupload').fileupload('destroy');
                                         $('#fileupload-edit-product').fileupload('destroy');
                                         $('#fileupload-add-product').fileupload('destroy');
                                         $('#ajax').html(data);
@@ -519,8 +511,7 @@
                                     function AjaxSuccess(data) {
                                         setTimeout(function () {
                                             $('#view_categories_stock').bootstrapSwitch('destroy');
-                                            $('#fileupload-edit').fileupload('destroy');
-                                            $('#fileupload-add').fileupload('destroy');
+                                            $('#fileupload').fileupload('destroy');
                                             $('#fileupload-edit-product').fileupload('destroy');
                                             $('#fileupload-add-product').fileupload('destroy');
                                             $('#ajax').html(data);
@@ -573,8 +564,7 @@
                                     function AjaxSuccess(data) {
                                         setTimeout(function () {
                                             $('#view_categories_stock').bootstrapSwitch('destroy');
-                                            $('#fileupload-edit').fileupload('destroy');
-                                            $('#fileupload-add').fileupload('destroy');
+                                            $('#fileupload').fileupload('destroy');
                                             $('#fileupload-edit-product').fileupload('destroy');
                                             $('#fileupload-add-product').fileupload('destroy');
                                             $('#ajax').html(data);

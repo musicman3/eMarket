@@ -17,8 +17,8 @@
 <script src="/ext/jquery_file_upload/js/jquery.fileupload.js"></script>
 <?php
 // Подгружаем jQuery File Upload
-\eMarket\Ajax::fileUpload('?route=stock', 'categories', $resize_param);
-\eMarket\Ajax::fileUploadProduct('?route=stock', 'products', $resize_param_product);
+\eMarket\Ajax::fileUpload('', 'categories', $resize_param);
+\eMarket\Ajax::fileUploadProduct('', 'products', $resize_param_product);
 ?>
 
 <!--Подгружаем Категории -->
