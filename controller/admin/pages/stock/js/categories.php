@@ -36,37 +36,3 @@
         }
     }
 </script>
-
-<!-- Модальное окно "Редактировать категорию" -->
-<script type="text/javascript">
-    function callEdit() {
-        var msg = $('#form_edit').serialize();
-        // Установка синхронного запроса для jQuery.ajax
-        jQuery.ajaxSetup({async: false});
-        jQuery.ajax({
-            type: 'POST',
-            url: '?route=stock',
-            data: msg,
-            beforeSend: function (data) {
-                $('#categories').modal('hide');
-            }
-        });
-        // Отправка запроса для обновления страницы
-        jQuery.get('?route=stock',
-                {parent_down: <?php echo $parent_id ?>,
-                    modify: 'ok'},
-                AjaxSuccess);
-        // Обновление страницы
-        function AjaxSuccess(data) {
-            setTimeout(function () {
-                $('#view_categories_stock').bootstrapSwitch('destroy');
-                $('#fileupload-edit').fileupload('destroy');
-                $('#fileupload-add').fileupload('destroy');
-                $('#fileupload-edit-product').fileupload('destroy');
-                $('#fileupload-add-product').fileupload('destroy');
-                $('#ajax').html(data);
-            }, 100);
-            $("#sort-list").sortable();
-        }
-    }
-</script>
