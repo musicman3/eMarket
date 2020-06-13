@@ -78,17 +78,17 @@ if (\eMarket\Valid::inPOST('add')) {
 // Если нажали на кнопку Добавить
 if (\eMarket\Valid::inPOST('edit')) {
 // Если есть установка по-умолчанию
-    if (\eMarket\Valid::inPOST('default_edit')) {
+    if (\eMarket\Valid::inPOST('default')) {
         $default = 1;
     } else {
         $default = 0;
     }
 
-    $address_array = ['countries_id' => \eMarket\Valid::inPOST('countries_edit'),
-        'regions_id' => \eMarket\Valid::inPOST('regions_edit'),
-        'city' => \eMarket\Valid::inPOST('city_edit'),
-        'zip' => \eMarket\Valid::inPOST('zip_edit'),
-        'address' => \eMarket\Valid::inPOST('address_edit'),
+    $address_array = ['countries_id' => \eMarket\Valid::inPOST('countries'),
+        'regions_id' => \eMarket\Valid::inPOST('regions'),
+        'city' => \eMarket\Valid::inPOST('city'),
+        'zip' => \eMarket\Valid::inPOST('zip'),
+        'address' => \eMarket\Valid::inPOST('address'),
         'default' => $default];
 
     $x = 0;

@@ -10,13 +10,10 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
 }
 ?>
 
-<!-- Модальное окно "Добавить" -->
-<?php require_once('modal/add.php') ?>
-<!-- КОНЕЦ Модальное окно "Добавить" -->
+<!-- Модальное окно -->
+<?php require_once('modal/index.php') ?>
+<!-- КОНЕЦ Модальное окно -->
 
-<!-- Модальное окно "Редактировать" -->
-<?php require_once('modal/edit.php') ?>
-<!-- КОНЕЦ Модальное окно "Редактировать" -->
 
 <!--Выводим уведомление об успешном действии-->
 <?php \eMarket\Messages::alert(); ?>
@@ -33,7 +30,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
             <th colspan="2">
             </th>
             <th>
-                <div class="b-right"><a href="#add" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
+                <div class="b-right"><a href="#index" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
             </th>
         </tr>
         <tr>
@@ -64,7 +61,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                         </form>
                         <!--Вызов модального окна для редактирования-->
                         <div class="b-left">
-                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#edit" data-edit="<?php echo $x ?>"><span class="glyphicon glyphicon-edit"></span></button>
+                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index" data-edit="<?php echo $x ?>"><span class="glyphicon glyphicon-edit"></span></button>
                         </div>
                     </td>
                 </tr>
