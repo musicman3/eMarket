@@ -4,19 +4,11 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
-<!-- Вставляем модальное окно "Добавить категорию" -->
+<!-- Вставляем модальное окно "Категория" -->
 <?php require_once('modal/index.php') ?>
 
-<!-- Вставляем модальное окно "Добавить товар" -->
-<?php require_once('modal/add_product.php') ?>
-
-<!-- Модальное окно "Редактировать категорию" -->
-<?php //require_once('modal/edit.php') ?>
-<!-- КОНЕЦ Модальное окно "Редактировать" -->
-
-<!-- Модальное окно "Редактировать товар" -->
-<?php require_once('modal/edit_product.php') ?>
-<!-- КОНЕЦ Модальное окно "Редактировать" -->
+<!-- Вставляем модальное окно "Товар" -->
+<?php require_once('modal/index_product.php') ?>
 
 <!-- Модальное окно "Подтверждение" -->
 <?php require_once('modal/confirm.php') ?>
@@ -56,29 +48,29 @@
                          data-name='<?php echo $name ?>'
                          data-logo='<?php echo $logo ?>'
                          data-general='<?php echo $logo_general ?>'
-                         data-logoproduct='<?php echo $logo_edit_product ?>'
+                         data-logoproduct='<?php echo $logo_product ?>'
                          data-generalproduct='<?php echo $logo_general_product ?>'
-                         data-nameproduct='<?php echo $name_edit_product ?>'
-                         data-descriptionproduct='<?php echo $description_edit_product ?>'
-                         data-keywordproduct='<?php echo $keyword_edit_product ?>'
-                         data-tagsproduct='<?php echo $tags_edit_product ?>'
-                         data-priceproduct='<?php echo $price_edit_product ?>'
-                         data-currencyproduct='<?php echo $currency_edit_product ?>'
-                         data-quantityproduct='<?php echo $quantity_edit_product ?>'
-                         data-unitsproduct='<?php echo $units_edit_product ?>'
-                         data-modelproduct='<?php echo $model_edit_product ?>'
-                         data-manufacturersproduct='<?php echo $manufacturers_edit_product ?>'
-                         data-dateavailableproduct='<?php echo $date_available_edit_product ?>'
-                         data-taxproduct='<?php echo $tax_edit_product ?>'
-                         data-vendorcodevalueproduct='<?php echo $vendor_code_value_edit_product ?>'
-                         data-vendorcodeproduct='<?php echo $vendor_code_edit_product ?>'
-                         data-weightvalueproduct='<?php echo $weight_value_edit_product ?>'
-                         data-weightproduct='<?php echo $weight_edit_product ?>'
-                         data-minquantityproduct='<?php echo $min_quantity_edit_product ?>'
-                         data-dimensionproduct='<?php echo $dimension_edit_product ?>'
-                         data-lengthproduct='<?php echo $length_edit_product ?>'
-                         data-widthproduct='<?php echo $width_edit_product ?>'
-                         data-heightproduct='<?php echo $height_edit_product ?>'
+                         data-nameproduct='<?php echo $name_product ?>'
+                         data-descriptionproduct='<?php echo $description_product ?>'
+                         data-keywordproduct='<?php echo $keyword_product ?>'
+                         data-tagsproduct='<?php echo $tags_product ?>'
+                         data-priceproduct='<?php echo $price_product ?>'
+                         data-currencyproduct='<?php echo $currency_product ?>'
+                         data-quantityproduct='<?php echo $quantity_product ?>'
+                         data-unitsproduct='<?php echo $units_product ?>'
+                         data-modelproduct='<?php echo $model_product ?>'
+                         data-manufacturersproduct='<?php echo $manufacturers_product ?>'
+                         data-dateavailableproduct='<?php echo $date_available_product ?>'
+                         data-taxproduct='<?php echo $tax_product ?>'
+                         data-vendorcodevalueproduct='<?php echo $vendor_code_value_product ?>'
+                         data-vendorcodeproduct='<?php echo $vendor_code_product ?>'
+                         data-weightvalueproduct='<?php echo $weight_value_product ?>'
+                         data-weightproduct='<?php echo $weight_product ?>'
+                         data-minquantityproduct='<?php echo $min_quantity_product ?>'
+                         data-dimensionproduct='<?php echo $dimension_product ?>'
+                         data-lengthproduct='<?php echo $length_product ?>'
+                         data-widthproduct='<?php echo $width_product ?>'
+                         data-heightproduct='<?php echo $height_product ?>'
                          ></div>
 
                     <table class="table table-hover">

@@ -120,6 +120,7 @@ if (isset($_SESSION['buffer'])) {
 // КОНЕЦ-> КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 // Модальное окно
 require_once('modal/index.php');
+require_once('modal/index_product.php');
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
 $JS_END = __DIR__;
 ?>

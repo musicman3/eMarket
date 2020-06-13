@@ -34,18 +34,17 @@
         ]
     };
     //Если открыли модальное окно #add_product, #edit_product
-    $('#add_product, #edit_product').on('show.bs.modal', function (event) {
+    $('#index_product').on('show.bs.modal', function (event) {
         // Инициализация Summernote
         $('.summernote_add').summernote(summernote_pref);
         $('.summernote_edit').summernote(summernote_pref);
     });
     //Если закрыли модальное окно #add_product, #edit_product
-    $('#add_product, #edit_product').on('hidden.bs.modal', function (event) {
+    $('#index_product').on('hidden.bs.modal', function (event) {
         // Destroy Summernote
         var count_lang = '<?php echo $LANG_COUNT ?>';
         for (var x = 0; x < count_lang; x++) {
             $('#description_product_stock_' + x).summernote('destroy');
-            $('#description_product_stock_edit_' + x).summernote('destroy');
         }
     });
     // Фикс модала в модале

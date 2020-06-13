@@ -6,17 +6,21 @@
 
 ?>
 <!-- Модальное окно "Добавить товар" -->
-<div id="add_product" class="products modal fade" tabindex="-1">
+<div id="index_product" class="products modal fade" tabindex="-1">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header"><div class="pull-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Заполните карточку товара" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
                 <h4 class="modal-title"><?php echo \eMarket\Set::titlePageGenerator() ?></h4>
             </div>
-            <form id="form_add_product" name="form_add_product" action="javascript:void(null);" onsubmit="callAddProduct()">
+            <form id="form_add_product" name="form_add_product" action="javascript:void(null);" onsubmit="callProduct()">
                 <div class="panel-body">
                     <input type="hidden" name="parent_id" value="<?php echo $parent_id ?>" />
-                    <input type="hidden" name="add_product" value="ok" />
+                    <input type="hidden" id="add_product" name="add_product" value="" />
+                    <input type="hidden" id="edit_product" name="edit_product" value="" />
                     <input id="general_image_add_product" type="hidden" name="general_image_add_product" value="">
+                    <input id="delete_image_product" type="hidden" name="delete_image_product" value="" />
+                    <input id="general_image_edit_product" type="hidden" name="general_image_edit_product" value="" />
+                    <input id="general_image_edit_new_product" type="hidden" name="general_image_edit_new_product" value="" />
 
                     <!-- Панели формы -->
                     <ul class="nav nav-tabs">
@@ -122,7 +126,7 @@
                                     <div><small class="form-text text-muted">Тип валюты</small></div>
                                     <div class="input-group has-error">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-euro"></span></span>
-                                        <select name="currency_product_stock" id="currency_product_stock" class="input-sm form-control">
+                                        <select name="currency_product_stock" id="currency_product_stock" class="form-control">
                                             <?php \eMarket\Set::viewSelect($currencies_all) ?>
                                         </select>
                                     </div>
@@ -140,7 +144,7 @@
                                     <div><small class="form-text text-muted">Единица измерения количества</small></div>
                                     <div class="input-group has-error">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-flag"></span></span>
-                                        <select name="unit_product_stock" id="unit_product_stock" class="input-sm form-control">
+                                        <select name="unit_product_stock" id="unit_product_stock" class="form-control">
                                             <?php \eMarket\Set::viewSelect($units_all) ?>
                                         </select>
                                     </div>
@@ -158,7 +162,7 @@
                                     <div><small class="form-text text-muted">Производитель товара</small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-object-align-bottom"></span></span>
-                                        <select name="manufacturers_product_stock" id="manufacturers_product_stock" class="input-sm form-control">
+                                        <select name="manufacturers_product_stock" id="manufacturers_product_stock" class="form-control">
                                             <?php \eMarket\Set::viewSelect($manufacturers_all) ?>
                                         </select>
                                     </div>
@@ -176,7 +180,7 @@
                                     <div><small class="form-text text-muted">Тип налога</small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span></span>
-                                        <select name="tax_product_stock" id="tax_product_stock" class="input-sm form-control">
+                                        <select name="tax_product_stock" id="tax_product_stock" class="form-control">
                                             <?php \eMarket\Set::viewSelect($taxes_all) ?>
                                         </select>
                                     </div>
@@ -200,7 +204,7 @@
                                     <div><small class="form-text text-muted">Тип идентификатора</small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-tag"></span></span>
-                                        <select name="vendor_codes_product_stock" id="vendor_codes_product_stock" class="input-sm form-control">
+                                        <select name="vendor_codes_product_stock" id="vendor_codes_product_stock" class="form-control">
                                             <?php \eMarket\Set::viewSelect($vendor_codes_all) ?>
                                         </select>
                                     </div>
@@ -218,7 +222,7 @@
                                     <div><small class="form-text text-muted">Единица измерения веса</small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-scale"></span></span>
-                                        <select name="weight_product_stock" id="weight_product_stock" class="input-sm form-control">
+                                        <select name="weight_product_stock" id="weight_product_stock" class="form-control">
                                             <?php \eMarket\Set::viewSelect($weight_all) ?>
                                         </select>
                                     </div>
@@ -236,7 +240,7 @@
                                     <div><small class="form-text text-muted">Единица измерения длины</small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-road"></span></span>
-                                        <select name="length_product_stock" id="length_product_stock" class="input-sm form-control">
+                                        <select name="length_product_stock" id="length_product_stock" class="form-control">
                                             <?php \eMarket\Set::viewSelect($length_all) ?>
                                         </select>
                                     </div>
@@ -271,13 +275,13 @@
                         <div id="panel_add_product_4" class="tab-pane fade">
 
                             <!-- Выводим сообщения -->
-                            <div id="alert_messages_add_product"></div>
+                            <div id="alert_messages_product"></div>
 
                             <!-- ЗАГРУЗКА jQuery-File-Upload -->
                             <div class="form-group">
                                 <span class="btn btn-primary btn-sm fileinput-button">
                                     <i class="glyphicon glyphicon-picture"></i><span> <?php echo lang('button_add_image') ?></span>
-                                    <input class="input-sm form-control" id="fileupload-add-product" type="file" name="files[]" accept="image/jpeg,image/png,image/gif" multiple>
+                                    <input class="input-sm form-control" id="fileupload-product" type="file" name="files[]" accept="image/jpeg,image/png,image/gif" multiple>
                                 </span>
                                 <?php echo lang('max') ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>
                                 <br>
@@ -285,7 +289,7 @@
                                 <div><small class="form-text text-muted">Эффекты для обработки изображения</small></div>
                                 <div class="input-group has-success">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-adjust"></span></span>
-                                    <select name="effect-add-product" id="effect-add-product" class="input-sm form-control">
+                                    <select name="effect-product" id="effect-product" class="form-control">
                                         <option value="effect-off" selected>Нет эффектов</option>
                                         <option value="effect-sepia">Сепия</option>
                                         <option value="effect-black-white">Чёрно-белое</option>
@@ -294,10 +298,10 @@
                                     </select>
                                 </div>
                                 <br>
-                                <div id="progress_add_product" class="progress">
+                                <div id="progress_product" class="progress">
                                     <div class="progress-bar progress-bar-warning progress-bar-striped active"></div>
                                 </div>
-                                <div id="logo-add-product" class="text-center"></div>
+                                <div id="logo-product" class="text-center"></div>
                             </div>
                         </div>
 

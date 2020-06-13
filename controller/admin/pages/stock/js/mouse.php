@@ -58,10 +58,8 @@
                 AjaxSuccess);
         function AjaxSuccess(data) {
             $('#view_categories_stock').bootstrapSwitch('destroy');
-            $('#fileupload-edit').fileupload('destroy');
-            $('#fileupload-add').fileupload('destroy');
-            $('#fileupload-edit-product').fileupload('destroy');
-            $('#fileupload-add-product').fileupload('destroy');
+            $('#fileupload').fileupload('destroy');
+            $('#fileupload-product').fileupload('destroy');
             $('#ajax').html(data);
         }
     }

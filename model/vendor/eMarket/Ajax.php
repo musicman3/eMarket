@@ -320,12 +320,11 @@ class Ajax {
                 'use strict';
                 var url = '/uploads/temp/';
 
-                $('#fileupload-add-product, #fileupload-edit-product').fileupload({
+                $('#fileupload-product').fileupload({
                     url: url,
                     dataType: 'json',
                     submit: function (e, data) {
-                        $('#alert_messages_add_product').empty();
-                        $('#alert_messages_edit_product').empty();
+                        $('#alert_messages_product').empty();
                     },
                     done: function (e, data) {
 
@@ -337,8 +336,7 @@ class Ajax {
                                 dataType: 'json',
                                 url: '<?php echo $url ?>',
                                 data: {image_data: file.name,
-                                    effect_edit: $('#effect-edit-product').val(),
-                                    effect_add: $('#effect-add-product').val()},
+                                    effect_edit: $('#effect-product').val()},
                                 success: function (image_size) {
                                     // Вычисляем размеры изображения
                                     var this_width = image_size[0]; // Ширина оригинала
@@ -348,19 +346,19 @@ class Ajax {
 
                                     if (this_height < quality_height && this_width < quality_width) {
                                         // Если изображение не соответствует минимальным размерам то выводим сообщение
-                                        if ($('#add_product').hasClass('in') === true) {
-                                            $('#alert_messages_add_product').html('<div class="alert alert-danger"><?php echo lang('image_resize_error') ?> ' + quality_width + 'x' + quality_height + '</div>');
+                                        if ($('#add_product').val() === 'ok') {
+                                            $('#alert_messages_product').html('<div class="alert alert-danger"><?php echo lang('image_resize_error') ?> ' + quality_width + 'x' + quality_height + '</div>');
                                         }
-                                        if ($('#edit_product').hasClass('in') === true) {
-                                            $('#alert_messages_edit_product').html('<div class="alert alert-danger"><?php echo lang('image_resize_error') ?> ' + quality_width + 'x' + quality_height + '</div>');
+                                        if ($('#edit_product').val() !== '') {
+                                            $('#alert_messages_product').html('<div class="alert alert-danger"><?php echo lang('image_resize_error') ?> ' + quality_width + 'x' + quality_height + '</div>');
                                         }
                                     } else {
                                         // Если все ок, то выводим изображение
-                                        if ($('#add_product').hasClass('in') === true) {
-                                            $('<span class="file-upload" id="image_add_new_product_' + hash_name + '"/>').html('<div class="holder"><img src="/uploads/temp/thumbnail/' + file.name + '?' + Math.random() + '" class="thumbnail" id="general_product_' + hash_name + '" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="deleteImageAddNewProduct_' + hash_name + '" onclick="deleteImageAddNewProduct(\'' + file.name + '\', \'' + hash_name + '\')"><span class="glyphicon glyphicon-trash"></span></button> <button class="btn btn-primary btn-xs" type="button" name="imageGeneralAddNewProduct_' + hash_name + '" onclick="imageGeneralAddNewProduct(\'' + file.name + '\', \'' + hash_name + '\')"><span class="glyphicon glyphicon-star"></span></button></div></div>').appendTo('#logo-add-product'); // Вставляем лого
+                                        if ($('#add_product').val() === 'ok') {
+                                            $('<span class="file-upload" id="image_add_new_product_' + hash_name + '"/>').html('<div class="holder"><img src="/uploads/temp/thumbnail/' + file.name + '?' + Math.random() + '" class="thumbnail" id="general_product_' + hash_name + '" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="deleteImageAddNewProduct_' + hash_name + '" onclick="deleteImageAddNewProduct(\'' + file.name + '\', \'' + hash_name + '\')"><span class="glyphicon glyphicon-trash"></span></button> <button class="btn btn-primary btn-xs" type="button" name="imageGeneralAddNewProduct_' + hash_name + '" onclick="imageGeneralAddNewProduct(\'' + file.name + '\', \'' + hash_name + '\')"><span class="glyphicon glyphicon-star"></span></button></div></div>').appendTo('#logo-product'); // Вставляем лого
                                         }
-                                        if ($('#edit_product').hasClass('in') === true) {
-                                            $('<span class="file-upload" id="image_edit_new_product_' + hash_name + '"/>').html('<div class="holder"><img src="/uploads/temp/thumbnail/' + file.name + '?' + Math.random() + '" class="thumbnail" id="general_edit_product_' + hash_name + '" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="deleteImageEditNewProduct_' + hash_name + '" onclick="deleteImageEditNewProduct(\'' + file.name + '\', \'' + hash_name + '\')"><span class="glyphicon glyphicon-trash"></span></button> <button class="btn btn-primary btn-xs" type="button" name="imageGeneralEditNewProduct_' + hash_name + '" onclick="imageGeneralEditNewProduct(\'' + file.name + '\', \'' + hash_name + '\')"><span class="glyphicon glyphicon-star"></span></button></div></div>').appendTo('#logo-edit-product'); // Вставляем лого
+                                        if ($('#edit_product').val() !== '') {
+                                            $('<span class="file-upload" id="image_edit_new_product_' + hash_name + '"/>').html('<div class="holder"><img src="/uploads/temp/thumbnail/' + file.name + '?' + Math.random() + '" class="thumbnail" id="general_edit_product_' + hash_name + '" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="deleteImageEditNewProduct_' + hash_name + '" onclick="deleteImageEditNewProduct(\'' + file.name + '\', \'' + hash_name + '\')"><span class="glyphicon glyphicon-trash"></span></button> <button class="btn btn-primary btn-xs" type="button" name="imageGeneralEditNewProduct_' + hash_name + '" onclick="imageGeneralEditNewProduct(\'' + file.name + '\', \'' + hash_name + '\')"><span class="glyphicon glyphicon-star"></span></button></div></div>').appendTo('#logo-product'); // Вставляем лого
                                         }
                                     }
                                 }
@@ -389,21 +387,21 @@ class Ajax {
             });
 
             //Если открыли модальное окно
-            $('#add_product, #edit_product').on('show.bs.modal', function (event) {
+            $('#index_product').on('show.bs.modal', function (event) {
                 // Отправка запроса для очистки временных файлов
                 jQuery.post('<?php echo $url ?>',
                         {file_upload: 'empty'});
             });
 
             // Очищаем модальное окно и hidden input при закрытии
-            $('#add_product, #edit_product').on('hidden.bs.modal', function (event) {
+            $('#index_product').on('hidden.bs.modal', function (event) {
                 $('.progress-bar').css('width', 0 + '%');
                 $('.file-upload').detach();
                 $('#delete_image_product').val('');
                 $('#general_image_edit_product').val('');
+                $('#general_image_edit_new_product').val('');
                 $('#general_image_add_product').val('');
-                $('#alert_messages_add_product').empty();
-                $('#alert_messages_edit_product').empty();
+                $('#alert_messages_product').empty();
                 //$(this).find('form').trigger('reset'); // Очищаем формы
             });
 
@@ -413,7 +411,7 @@ class Ajax {
                 for (x = 0; x < logo_edit[modal_id].length; x++) {
                     var image = logo_edit[modal_id][x];
 
-                    $('<span class="file-upload" id="image_edit_product_' + x + '"/>').html('<div class="holder"><img src="/uploads/images/<?php echo $dir ?>/resize_0/' + image + '" class="thumbnail" id="general_product_' + x + '" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="delete_image_product_' + x + '" onclick="deleteImageEditProduct(\'' + image + '\', \'' + x + '\')"><span class="glyphicon glyphicon-trash"></span></button> <button class="btn btn-primary btn-xs" type="button" name="image_general_edit_product' + x + '" onclick="imageGeneralEditProduct(\'' + image + '\', \'' + x + '\')"><span class="glyphicon glyphicon-star"></span></button></div></div>').appendTo('#logo-edit-product'); // Вставляем лого
+                    $('<span class="file-upload" id="image_edit_product_' + x + '"/>').html('<div class="holder"><img src="/uploads/images/<?php echo $dir ?>/resize_0/' + image + '" class="thumbnail" id="general_product_' + x + '" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="delete_image_product_' + x + '" onclick="deleteImageEditProduct(\'' + image + '\', \'' + x + '\')"><span class="glyphicon glyphicon-trash"></span></button> <button class="btn btn-primary btn-xs" type="button" name="image_general_edit_product' + x + '" onclick="imageGeneralEditProduct(\'' + image + '\', \'' + x + '\')"><span class="glyphicon glyphicon-star"></span></button></div></div>').appendTo('#logo-product'); // Вставляем лого
                     // Если это главное изображение, то выделяем его
                     if (logo_general_edit[modal_id] === image) {
                         $('#general_product_' + x).addClass('img-active');
