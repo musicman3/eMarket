@@ -33,7 +33,7 @@
                 $('#edit').val('');
                 $('#add').val('ok');
                 //Очищаем поля
-                $('.input-sm').val('');
+                $(this).find('form').trigger('reset');
             }
         });
     </script>

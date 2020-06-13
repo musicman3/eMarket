@@ -40,7 +40,7 @@
                 $('#edit').val('');
                 $('#add').val('ok');
                 //Очищаем поля
-                $('.input-sm').val('');
+                $(this).find('form').trigger('reset');
                 // Меняем значение чекбокса
                 $('#default_weight').prop('checked', '1');
                 $('#default_weight').bootstrapSwitch();

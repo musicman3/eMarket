@@ -53,7 +53,7 @@
                 $('#edit').val('');
                 $('#add').val('ok');
                 //Очищаем поля
-                $('.input-sm').val('');
+                $(this).find('form').trigger('reset');
                 // Меняем значение чекбокса
                 $('#symbol_position_currencies').val('left').prop('selected', true);
                 $('#default_value_currencies').prop('checked', '1');

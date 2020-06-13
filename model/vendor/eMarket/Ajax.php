@@ -223,7 +223,7 @@ class Ajax {
                 $('#general_image_edit_new').val('');
                 $('#general_image_add').val('');
                 $('#alert_messages').empty();
-                //$(this).find('form').trigger('reset'); // Очищаем формы
+                $(this).find('form').trigger('reset'); // Очищаем формы
             });
 
             // Загрузка изображений в модальное окно "Редактировать"
@@ -402,7 +402,7 @@ class Ajax {
                 $('#general_image_edit_new_product').val('');
                 $('#general_image_add_product').val('');
                 $('#alert_messages_product').empty();
-                //$(this).find('form').trigger('reset'); // Очищаем формы
+                $(this).find('form').trigger('reset'); // Очищаем формы
             });
 
             // Загрузка изображений в модальное окно "Редактировать"

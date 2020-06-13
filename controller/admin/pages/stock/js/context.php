@@ -45,7 +45,7 @@
                         $('#edit_product').val('');
                         $('#add_product').val('ok');
                         //Очищаем поля
-                        $('.input-sm').val('');
+                        $(this).find('form').trigger('reset');
                         $('#index_product').modal('show');
                     }
                 },
@@ -61,7 +61,7 @@
                         $('#edit').val('');
                         $('#add').val('ok');
                         //Очищаем поля
-                        $('.input-sm').val('');
+                        $(this).find('form').trigger('reset');
                         $('#index').modal('show');
                     }
                 },
