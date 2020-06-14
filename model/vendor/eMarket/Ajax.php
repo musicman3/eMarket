@@ -38,7 +38,7 @@ class Ajax {
                     url: '<?php echo $url ?>',
                     data: msg,
                     beforeSend: function () {
-                        $('#add').modal('hide');
+                        $('.modal').modal('hide');
                     }
                 });
                 // Отправка запроса для обновления страницы
@@ -69,7 +69,7 @@ class Ajax {
                     url: '<?php echo $url ?>',
                     data: msg,
                     beforeSend: function () {
-                        $('#edit').modal('hide');
+                        $('.modal').modal('hide');
                     }
                 });
                 // Отправка запроса для обновления страницы
