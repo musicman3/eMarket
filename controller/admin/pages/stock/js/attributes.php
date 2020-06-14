@@ -33,7 +33,7 @@
     }
 
     // Если открыли главный модал
-    $('#add').on('show.bs.modal', function (event) {
+    $('#index').on('show.bs.modal', function (event) {
 
         if (sessionStorage.getItem('value_attribute_flag') === null) {
             clearAttributes();
@@ -51,7 +51,7 @@
     });
 
     // Если закрыли главный модал
-    $('#add').on('hidden.bs.modal', function (event) {
+    $('#index').on('hidden.bs.modal', function (event) {
         $('.attribute').empty();
         if (sessionStorage.getItem('value_attribute_flag') === '0') {
             clearAttributes();
