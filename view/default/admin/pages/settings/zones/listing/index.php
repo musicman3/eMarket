@@ -6,7 +6,7 @@
 
 ?>
 <!-- Модальное окно "Добавить" -->
-<?php require_once('modal/add.php') ?>
+<?php require_once('modal/index.php') ?>
 <!-- КОНЕЦ Модальное окно "Добавить" -->
 
 <div id="ajax">
@@ -37,7 +37,7 @@
 
                                 <th>
                                 
-                                    <div class="b-right"><a href="#add" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-pencil"></span></a></div>
+                                    <div class="b-right"><a href="#index" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-pencil"></span></a></div>
                                 
                                     <form>
                                         <?php if (count($lines) > $lines_on_page) { ?>
