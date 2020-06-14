@@ -11,7 +11,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
 ?>
 
 <!-- Модальное окно "Редактировать" -->
-<?php require_once('modal/edit.php') ?>
+<?php require_once('modal/index.php') ?>
 <!-- КОНЕЦ Модальное окно "Редактировать" -->
 
 <!--Выводим уведомление об успешном действии-->
@@ -79,7 +79,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                     <td class="al-text-w">
                         <!--Вызов модального окна для редактирования-->
                         <div class="b-right">
-                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#edit" data-edit="<?php echo $lines[$start]['id'] ?>"><span class="glyphicon glyphicon-edit"></span></button>
+                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index" data-edit="<?php echo $lines[$start]['id'] ?>"><span class="glyphicon glyphicon-edit"></span></button>
                         </div>
                     </td>
                 </tr>

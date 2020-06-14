@@ -17,6 +17,8 @@ $navigate = \eMarket\Navigation::getLink(count($lines), $lines_on_page);
 $start = $navigate[0];
 $finish = $navigate[1];
 
+require_once('modal/index.php');
+
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
 $JS_END = __DIR__;
 ?>

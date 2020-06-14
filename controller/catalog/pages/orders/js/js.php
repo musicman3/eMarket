@@ -6,7 +6,7 @@
 ?>
 <!-- Загрузка данных в модальное окно -->
 <script type="text/javascript">
-    $('#edit').on('show.bs.modal', function (event) {
+    $('#index').on('show.bs.modal', function (event) {
 
         var button = $(event.relatedTarget);
         var modal_id = button.data('edit'); // Получаем ID из data-edit при клике на кнопку редактирования
