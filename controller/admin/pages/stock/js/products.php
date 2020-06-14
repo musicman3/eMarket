@@ -16,7 +16,7 @@
             url: '?route=stock',
             data: msg,
             beforeSend: function (data) {
-                $('#add_product').modal('hide');
+                $('#index_product').modal('hide');
             }
         });
         // Отправка запроса для обновления страницы

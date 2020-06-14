@@ -33,13 +33,13 @@
             ['misc', ['codeview', 'help']]
         ]
     };
-    //Если открыли модальное окно #add_product, #edit_product
+    //Если открыли модальное окно #index_product
     $('#index_product').on('show.bs.modal', function (event) {
         // Инициализация Summernote
         $('.summernote_add').summernote(summernote_pref);
         $('.summernote_edit').summernote(summernote_pref);
     });
-    //Если закрыли модальное окно #add_product, #edit_product
+    //Если закрыли модальное окно #index_product
     $('#index_product').on('hidden.bs.modal', function (event) {
         // Destroy Summernote
         var count_lang = '<?php echo $LANG_COUNT ?>';
