@@ -26,7 +26,6 @@
         sessionStorage.setItem('value_attribute_action', 'add');
         sessionStorage.setItem('value_attribute_action_id', id);
         sessionStorage.setItem('value_attribute_flag', '1');
-        $('#index').modal('hide');
 
         $('#values_attribute').modal('show');
         var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
