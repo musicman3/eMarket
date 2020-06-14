@@ -57,7 +57,8 @@
                 $('#default_module').prop('checked', default_var[modal_id]);
                 $('#default_module').bootstrapSwitch();
             }
-            if (modal_id === 'add') {
+
+            if (!Number.isInteger(modal_id) && button.data('toggle') === 'modal') {
                 $('#edit').val('');
                 $('#add').val('ok');
                 //Очищаем поля

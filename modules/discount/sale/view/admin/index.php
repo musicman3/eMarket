@@ -32,7 +32,7 @@
 
                 <th>
 
-                    <div class="b-right"><a href="#index" data-edit="add" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
+                    <div class="b-right"><a href="#index" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
 
                     <form>
                         <?php if (count($lines) > $lines_on_page) { ?>
