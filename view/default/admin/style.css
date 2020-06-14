@@ -70,7 +70,7 @@ div.context-one, .table > tbody > tr > td.context-one {padding:5px;}
 .settings .btn {margin-right: 10px;}
 .modal-content .tooltip-inner {font-family: 'Open Sans';max-width:400px;}
 #settings_basic_settings .tooltip-inner {font-family: 'Open Sans';width:200px;}
-.pull-right .glyphicon {color: #000000;opacity: 0.5}
+.modal-header .glyphicon {color: #000000;opacity: 0.5}
 .tab-content {padding-top: 10px;}
 .input-group .data {position: static;}
 .back {transform: scale(-1, 1);}
