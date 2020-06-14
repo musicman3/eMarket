@@ -44,7 +44,7 @@ class SmartDatepicker {
         });
 
         //Очищаем при закрытии модала
-        $('#edit').on('hidden.bs.modal', function (event) {
+        $('#index').on('hidden.bs.modal', function (event) {
             $('#start_date_edit, #end_date_edit').datepicker('clearDates');
         });
     }
