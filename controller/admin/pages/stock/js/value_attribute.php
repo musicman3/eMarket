@@ -26,7 +26,7 @@
         sessionStorage.setItem('value_attribute_action', 'add');
         sessionStorage.setItem('value_attribute_action_id', id);
         sessionStorage.setItem('value_attribute_flag', '1');
-        $('#add').modal('hide');
+        $('#index').modal('hide');
 
         $('#values_attribute').modal('show');
         var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
@@ -43,7 +43,7 @@
     $('#values_attribute').on('hidden.bs.modal', function (event) {
         $('.values_attribute').empty();
         $('.attribute').empty();
-        $('#add').modal('show');
+        $('#index').modal('show');
         sessionStorage.setItem('value_attribute_flag', '0');
     });
 
