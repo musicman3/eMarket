@@ -71,9 +71,9 @@ nav .disabled {pointer-events: none;}
 #products .productpage ul {padding: 0;margin: 0;}
 #products .productpage-price {font-size: 18px;color: #000;font-weight: bold;}
 #products .productpage {margin-bottom: 20px;}
-#edit .nav > li > a, #add .nav > li > a {padding: 5px;}
-#edit .tab-content, #add .tab-content {padding-top: 10px;}
-#edit .pull-right .glyphicon, #add .pull-right .glyphicon {color: #000000;opacity: 0.5}
+#index .nav > li > a {padding: 5px;}
+#index .tab-content {padding-top: 10px;}
+#index .pull-right .glyphicon {color: #000000;opacity: 0.5}
 @media (min-width:768px){.modal-md {width:700px;}}
 #listing .list-group-item {border: none;padding: 0px 15px;margin-bottom: 20px;}
 #listing .list-group-item img {float: left;margin: 0 50px 10px 0;}
