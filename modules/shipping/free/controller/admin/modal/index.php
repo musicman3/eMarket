@@ -10,17 +10,17 @@ for ($i = $start; $i < $finish; $i++) {
         $modal_id = $lines[$i][0]; // ID
         
         $query = \eMarket\Pdo::getRow("SELECT minimum_price, shipping_zone FROM " . $MODULE_DB . " WHERE id=?", [$modal_id]);
-        $minimum_price_edit_temp[$modal_id] = $query[0];
-        $shipping_zone_edit_temp[$modal_id] = $query[1];
+        $minimum_price_temp[$modal_id] = $query[0];
+        $shipping_zone_temp[$modal_id] = $query[1];
         // ПАРАМЕТРЫ ДЛЯ ПЕРЕДАЧИ В МОДАЛ
-        $minimum_price_edit = json_encode($minimum_price_edit_temp);
-        $shipping_zone_edit = json_encode($shipping_zone_edit_temp);
+        $minimum_price = json_encode($minimum_price_temp);
+        $shipping_zone = json_encode($shipping_zone_temp);
     }
 }
 if (!isset($modal_id)) {
     $modal_id = 'false';
-    $minimum_price_edit = '';
-    $shipping_zone_edit = '';
+    $minimum_price = '';
+    $shipping_zone = '';
 }
 
 ?>

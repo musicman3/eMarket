@@ -4,24 +4,30 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-if (isset($shipping_zone_edit)) {
+if (isset($shipping_zone)) {
     ?>
     <!-- Загрузка данных в модальное окно -->
     <script type="text/javascript">
-        $('#edit').on('show.bs.modal', function (event) {
-            $('#default_module_edit').bootstrapSwitch('destroy', true);
+        $('#index').on('show.bs.modal', function (event) {
+            $('#default_module').bootstrapSwitch('destroy', true);
             var button = $(event.relatedTarget);
             var modal_id = button.data('edit'); // Получаем ID из data-edit при клике на кнопку редактирования
-            if (modal_id === undefined) {
-                modal_id = $('#js_edit').val();
-            }
-            // Получаем массивы данных
-            var zone_edit = $('div#ajax_data').data('zone');
-            var minimum_price_edit = $('div#ajax_data').data('price');
+            if (Number.isInteger(modal_id)) {
+                // Получаем массивы данных
+                var zone = $('div#ajax_data').data('zone');
+                var minimum_price = $('div#ajax_data').data('price');
 
-            $('#zone_edit').val(zone_edit[modal_id]);
-            $('#minimum_price_edit').val(minimum_price_edit[modal_id]);
-            $('#js_edit').val(modal_id);
+                $('#zone').val(zone[modal_id]);
+                $('#minimum_price').val(minimum_price[modal_id]);
+                $('#edit').val(modal_id);
+                $('#add').val('');
+            } else {
+                $('#edit').val('');
+                $('#add').val('ok');
+                //Очищаем поля
+                $(this).find('form').trigger('reset');
+
+            }
         });
     </script>
     <?php

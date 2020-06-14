@@ -5,17 +5,17 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
 <!-- Модальное окно "Добавить" -->
-<?php require_once('modal/add.php') ?>
+<?php require_once('modal/index.php') ?>
 <!-- КОНЕЦ Модальное окно "Добавить" -->
 
 <!-- Модальное окно "Редактировать" -->
-<?php require_once('modal/edit.php') ?>
+<?php //require_once('modal/edit.php') ?>
 <!-- КОНЕЦ Модальное окно "Редактировать" -->
 
 <!--Скрытый div для передачи данных-->
 <div id="ajax_data" class='hidden'
-     data-price='<?php echo $minimum_price_edit ?>'
-     data-zone='<?php echo $shipping_zone_edit ?>'
+     data-price='<?php echo $minimum_price ?>'
+     data-zone='<?php echo $shipping_zone ?>'
      ></div>
 
 <table class="table table-hover">
@@ -33,7 +33,7 @@
 
             <th>
 
-                <div class="b-right"><a href="#add" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
+                <div class="b-right"><a href="#index" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
 
                 <form>
                     <?php if (count($lines) > $lines_on_page) { ?>
@@ -83,7 +83,7 @@
                     </form>
                     <!--Вызов модального окна для редактирования-->
                     <div class="b-left">
-                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#edit" data-edit="<?php echo $lines[$start][0] ?>"><span class="glyphicon glyphicon-edit"></span></button>
+                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index" data-edit="<?php echo $lines[$start][0] ?>"><span class="glyphicon glyphicon-edit"></span></button>
                     </div>
                 </td>
             </tr>
