@@ -51,19 +51,19 @@ if (\eMarket\Valid::inPOST('add')) {
 // Если нажали на кнопку Редактировать
 if (\eMarket\Valid::inPOST('edit')) {
     // Формат даты после Datepicker
-    if (\eMarket\Valid::inPOST('start_date_edit')) {
-        $start_date_edit = date('Y-m-d', strtotime(\eMarket\Valid::inPOST('start_date_edit')));
+    if (\eMarket\Valid::inPOST('start_date')) {
+        $start_date = date('Y-m-d', strtotime(\eMarket\Valid::inPOST('start_date')));
     } else {
-        $start_date_edit = NULL;
+        $start_date = NULL;
     }
-    if (\eMarket\Valid::inPOST('end_date_edit')) {
-        $end_date_edit = date('Y-m-d', strtotime(\eMarket\Valid::inPOST('end_date_edit')));
+    if (\eMarket\Valid::inPOST('end_date')) {
+        $end_date = date('Y-m-d', strtotime(\eMarket\Valid::inPOST('end_date')));
     } else {
-        $end_date_edit = NULL;
+        $end_date = NULL;
     }
 
     // Если есть установка по-умолчанию
-    if (\eMarket\Valid::inPOST('default_module_edit')) {
+    if (\eMarket\Valid::inPOST('default_module')) {
         $default_value = 1;
     } else {
         $default_value = 0;
@@ -76,7 +76,7 @@ if (\eMarket\Valid::inPOST('edit')) {
 
     // добавляем запись для всех вкладок
     for ($x = 0; $x < $LANG_COUNT; $x++) {
-        \eMarket\Pdo::inPrepare("UPDATE " . $MODULE_DB . " SET name=?, sale_value=?, date_start=?, date_end=?, default_set=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_module_edit_' . $x), \eMarket\Valid::inPOST('sale_value_edit'), $start_date_edit, $end_date_edit, $default_value, \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
+        \eMarket\Pdo::inPrepare("UPDATE " . $MODULE_DB . " SET name=?, sale_value=?, date_start=?, date_end=?, default_set=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_module_' . $x), \eMarket\Valid::inPOST('sale_value'), $start_date, $end_date, $default_value, \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
     }
 
     // Выводим сообщение об успехе
@@ -112,6 +112,8 @@ $start = $navigate[0];
 $finish = $navigate[1];
 
 $this_time = time();
+
+require(\eMarket\View::routingModules('controller') . '/modal/index.php');
 
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
 $JS_MOD_END = __DIR__;

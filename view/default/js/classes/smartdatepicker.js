@@ -18,7 +18,6 @@ class SmartDatepicker {
     constructor(meta) {
         this.meta = meta;
         this.init();
-        this.view('#start_date_edit', '#end_date_edit');
         this.view('#start_date', '#end_date');
     }
     /**
@@ -26,7 +25,7 @@ class SmartDatepicker {
      *
      */
     init() {
-        $('#start_date, #start_date_edit').datepicker({
+        $('#start_date').datepicker({
             language: this.meta,
             autoclose: true,
             updateViewDate: false,
@@ -34,7 +33,7 @@ class SmartDatepicker {
             startDate: '+0d',
             calendarWeeks: true
         });
-        $('#end_date, #end_date_edit').datepicker({
+        $('#end_date').datepicker({
             language: this.meta,
             autoclose: true,
             updateViewDate: false,
@@ -45,7 +44,7 @@ class SmartDatepicker {
 
         //Очищаем при закрытии модала
         $('#index').on('hidden.bs.modal', function (event) {
-            $('#start_date_edit, #end_date_edit').datepicker('clearDates');
+            $('#start_date, #end_date').datepicker('clearDates');
         });
     }
 

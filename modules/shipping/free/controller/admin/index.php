@@ -25,7 +25,7 @@ if (\eMarket\Valid::inPOST('add')) {
 
 // Если нажали на кнопку Редактировать
 if (\eMarket\Valid::inPOST('edit')) {
-    \eMarket\Pdo::inPrepare("UPDATE " . $MODULE_DB . " SET minimum_price=?, shipping_zone=? WHERE id=?", [\eMarket\Valid::inPOST('minimum_price_edit'), \eMarket\Valid::inPOST('zone_edit'), \eMarket\Valid::inPOST('edit')]);
+    \eMarket\Pdo::inPrepare("UPDATE " . $MODULE_DB . " SET minimum_price=?, shipping_zone=? WHERE id=?", [\eMarket\Valid::inPOST('minimum_price'), \eMarket\Valid::inPOST('zone'), \eMarket\Valid::inPOST('edit')]);
 
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
@@ -47,6 +47,8 @@ $lines_on_page = \eMarket\Set::linesOnPage();
 $navigate = \eMarket\Navigation::getLink(count($lines), $lines_on_page);
 $start = $navigate[0];
 $finish = $navigate[1];
+
+require(\eMarket\View::routingModules('controller') . '/modal/index.php');
 
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
 $JS_MOD_END = __DIR__;

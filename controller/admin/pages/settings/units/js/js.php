@@ -13,10 +13,10 @@
     <!-- Загрузка данных в модальное окно -->
     <script type="text/javascript">
         $('#index').on('show.bs.modal', function (event) {
-            $('#default_unit').bootstrapSwitch('destroy', true);
             var button = $(event.relatedTarget);
             var modal_id = button.data('edit'); // Получаем ID из data-edit при клике на кнопку редактирования
             if (Number.isInteger(modal_id)) {
+                $('#default_unit').bootstrapSwitch('destroy', true);
                 // Получаем массивы данных
                 var name = $('div#ajax_data').data('name');
                 var code = $('div#ajax_data').data('code');
@@ -41,7 +41,6 @@
                 $(this).find('form').trigger('reset');
                 // Меняем значение чекбокса
                 $('#default_unit').prop('checked', '1');
-                $('#default_unit').bootstrapSwitch();
             }
         });
     </script>

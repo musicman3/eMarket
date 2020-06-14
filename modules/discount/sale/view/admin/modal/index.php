@@ -5,7 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
 <!-- Модальное окно "Добавить" -->
-<div id="add" class="modal fade" tabindex="-1">
+<div id="index" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header"><div class="pull-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Сокращенное наименование указывается любыми символами" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
@@ -13,7 +13,8 @@
             </div>
             <form id="form_add_mod" name="form_add_mod" action="javascript:void(null);" onsubmit="callAdd('form_add_mod')">
                 <div class="panel-body">
-                    <input type="hidden" name="add" value="ok" />
+                    <input type="hidden" id="add" name="add" value="" />
+                    <input type="hidden" id="edit" name="edit" value="" />
 
                     <!-- Языковые панели -->
                     <?php require_once(ROOT . '/view/' . \eMarket\Set::template() . '/layouts/lang_tabs_add.php') ?>

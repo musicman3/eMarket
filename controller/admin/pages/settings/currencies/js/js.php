@@ -13,10 +13,10 @@
     <!-- Загрузка данных в модальное окно -->
     <script type="text/javascript">
         $('#index').on('show.bs.modal', function (event) {
-            $('#default_value_currencies').bootstrapSwitch('destroy', true);
             var button = $(event.relatedTarget);
             var modal_id = button.data('edit'); // Получаем ID из data-edit при клике на кнопку редактирования
             if (Number.isInteger(modal_id)) {
+                $('#default_value_currencies').bootstrapSwitch('destroy', true);
                 // Получаем массивы данных
                 var name = $('div#ajax_data').data('name');
                 var code = $('div#ajax_data').data('code');
@@ -57,7 +57,6 @@
                 // Меняем значение чекбокса
                 $('#symbol_position_currencies').val('left').prop('selected', true);
                 $('#default_value_currencies').prop('checked', '1');
-                $('#default_value_currencies').bootstrapSwitch();
             }
         });
     </script>

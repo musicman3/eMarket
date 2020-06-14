@@ -9,7 +9,6 @@ if (isset($shipping_zone)) {
     <!-- Загрузка данных в модальное окно -->
     <script type="text/javascript">
         $('#index').on('show.bs.modal', function (event) {
-            $('#default_module').bootstrapSwitch('destroy', true);
             var button = $(event.relatedTarget);
             var modal_id = button.data('edit'); // Получаем ID из data-edit при клике на кнопку редактирования
             if (Number.isInteger(modal_id)) {

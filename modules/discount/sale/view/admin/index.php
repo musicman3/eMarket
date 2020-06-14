@@ -4,22 +4,17 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
-<!-- Модальное окно "Добавить" -->
-<?php require_once('modal/add.php') ?>
-<!-- КОНЕЦ Модальное окно "Добавить" -->
-
-<!-- Модальное окно "Редактировать" -->
-<?php require_once('modal/edit.php') ?>
-<!-- КОНЕЦ Модальное окно "Редактировать" -->
-
+<!-- Модальное окно -->
+<?php require_once('modal/index.php') ?>
+<!-- КОНЕЦ Модальное окно -->
 
     <!--Скрытый div для передачи данных-->
     <div id="ajax_data" class='hidden'
-         data-name='<?php echo $name_edit ?>'
-         data-value='<?php echo $sale_value_edit ?>'
-         data-start='<?php echo $date_start_edit ?>'
-         data-end='<?php echo $date_end_edit ?>'
-         data-default='<?php echo $default_set_edit ?>'
+         data-name='<?php echo $name ?>'
+         data-value='<?php echo $sale_value ?>'
+         data-start='<?php echo $date_start ?>'
+         data-end='<?php echo $date_end ?>'
+         data-default='<?php echo $default_set ?>'
          ></div>
 
     <table class="table table-hover">
@@ -37,7 +32,7 @@
 
                 <th>
 
-                    <div class="b-right"><a href="#add" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
+                    <div class="b-right"><a href="#index" data-edit="add" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
 
                     <form>
                         <?php if (count($lines) > $lines_on_page) { ?>
@@ -103,7 +98,7 @@
                         </form>
                         <!--Вызов модального окна для редактирования-->
                         <div class="b-left">
-                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#edit" data-edit="<?php echo $lines[$start][0] ?>"><span class="glyphicon glyphicon-edit"></span></button>
+                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index" data-edit="<?php echo $lines[$start][0] ?>"><span class="glyphicon glyphicon-edit"></span></button>
                         </div>
                     </td>
                 </tr>
