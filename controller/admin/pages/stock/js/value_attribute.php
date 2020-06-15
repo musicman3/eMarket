@@ -13,12 +13,33 @@
                 '<tr id="value_attributes_' + id + '">' +
                 '<td>' + value + '</td>' +
                 '<td class="al-text-w">' +
-                '<div class="b-right"><button type="button" class="delete-value-attribute btn btn-primary btn-xs" title="<?php echo lang('button_delete') ?>"><span class="glyphicon glyphicon-trash"> </span></button></div>' +
+                '<div class="b-right"><button type="button" class="delete-value-attribute btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('button_delete') ?>"><span class="glyphicon glyphicon-trash"> </span></button></div>' +
                 '<div class="b-left"><button type="button" class="edit-value-attribute btn btn-primary btn-xs" title="<?php echo lang('button_edit') ?>"><span class="glyphicon glyphicon-edit"> </span></button></div>' +
                 '</td>' +
                 '</tr>'
                 );
     }
+
+    function deleteValueAttribute() {
+        $('.delete-value-attribute').confirmation({
+            onConfirm: function (event) {
+                $(this).closest('tr').remove();
+
+                var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
+
+                for (x = 0; x < parse_attributes[sessionStorage.getItem('value_attribute_action_id') - 1].length; x++) {
+                    parse_attributes[sessionStorage.getItem('value_attribute_action_id') - 1][x]['data'].splice($(this).closest('tr').attr('id').split('_')[2] - 1, 1);
+                }
+                sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
+
+                $('.values_attribute').empty();
+
+                for (x = 0; x < parse_attributes[sessionStorage.getItem('value_attribute_action_id') - 1][0]['data'].length; x++) {
+                    addValueAttribute(x + 1, parse_attributes[sessionStorage.getItem('value_attribute_action_id') - 1][0]['data'][x]);
+                }
+            }});
+    }
+
 
     // Если открыли модал списка значений атрибута
     $(document).on('click', '.values-attribute', function () {
@@ -36,6 +57,8 @@
                 addValueAttribute(x + 1, parse_attributes[sessionStorage.getItem('value_attribute_action_id') - 1][0]['data'][x]);
             }
         }
+        // Загружаем удаление значения атрибута
+        deleteValueAttribute();
     });
 
     // Если закрыли модал списка значений атрибута
@@ -67,25 +90,6 @@
 
         for (x = 0; x < parse_attributes.length; x++) {
             $('input[name="add_values_' + parse_attributes[x]['name'] + '"]').val(parse_attributes[x]['data'][id - 1]);
-        }
-
-    });
-
-    // Удаляем значение атрибута
-    $(document).on('click', '.delete-value-attribute', function () {
-        $(this).closest('tr').remove();
-
-        var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
-
-        for (x = 0; x < parse_attributes[sessionStorage.getItem('value_attribute_action_id') - 1].length; x++) {
-            parse_attributes[sessionStorage.getItem('value_attribute_action_id') - 1][x]['data'].splice($(this).closest('tr').attr('id').split('_')[2] - 1, 1);
-        }
-        sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
-
-        $('.values_attribute').empty();
-
-        for (x = 0; x < parse_attributes[sessionStorage.getItem('value_attribute_action_id') - 1][0]['data'].length; x++) {
-            addValueAttribute(x + 1, parse_attributes[sessionStorage.getItem('value_attribute_action_id') - 1][0]['data'][x]);
         }
 
     });

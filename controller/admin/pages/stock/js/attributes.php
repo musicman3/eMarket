@@ -14,7 +14,7 @@
                 '<td class="sortleft"><button type="button" class="values-attribute btn btn-primary btn-xs"><span class="glyphicon glyphicon-cog"></span></button></td>' +
                 '<td>' + value + '</td>' +
                 '<td class="al-text-w">' +
-                '<div class="b-right"><button type="button" class="delete-attribute btn btn-primary btn-xs" title="<?php echo lang('button_delete') ?>"><span class="glyphicon glyphicon-trash"> </span></button></div>' +
+                '<div class="b-right"><button type="button" class="delete-attribute btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('button_delete') ?>"><span class="glyphicon glyphicon-trash"> </span></button></div>' +
                 '<div class="b-left"><button type="button" class="edit-attribute btn btn-primary btn-xs" title="<?php echo lang('button_edit') ?>"><span class="glyphicon glyphicon-edit"> </span></button></div>' +
                 '</td>' +
                 '</tr>'
@@ -32,6 +32,23 @@
         ].forEach((item) => sessionStorage.removeItem(item));
     }
 
+    function deleteAttribute() {
+        $('.delete-attribute').confirmation({
+            onConfirm: function (event) {
+                $(this).closest('tr').remove();
+
+                var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
+                parse_attributes.splice($(this).closest('tr').attr('id').split('_')[1] - 1, 1);
+                sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
+
+                $('.attribute').empty();
+                for (x = 0; x < parse_attributes.length; x++) {
+                    var y = x + 1;
+                    addAttribute(y, parse_attributes[x][0]['value']);
+                }
+            }});
+    }
+
     // Если открыли главный модал
     $('#index').on('show.bs.modal', function (event) {
 
@@ -47,6 +64,8 @@
                 addAttribute(y, parse_attributes[x][0]['value']);
             }
         }
+        // Загружаем удаление атрибута
+        deleteAttribute();
 
     });
 
@@ -85,22 +104,6 @@
 
         for (x = 0; x < parse_attributes.length; x++) {
             $('input[name="' + parse_attributes[x]['name'] + '"]').val(parse_attributes[x]['value']);
-        }
-
-    });
-
-    // Удаляем атрибут
-    $(document).on('click', '.delete-attribute', function () {
-        $(this).closest('tr').remove();
-
-        var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
-        parse_attributes.splice($(this).closest('tr').attr('id').split('_')[1] - 1, 1);
-        sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
-
-        $('.attribute').empty();
-        for (x = 0; x < parse_attributes.length; x++) {
-            var y = x + 1;
-            addAttribute(y, parse_attributes[x][0]['value']);
         }
 
     });
