@@ -40,7 +40,7 @@
         }
 
         if (sessionStorage.getItem('attributes') !== null) {
-            parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
+            var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
 
             for (x = 0; x < parse_attributes.length; x++) {
                 var y = x + 1;
@@ -131,6 +131,7 @@
             }
 
             addAttribute(length_attr, attributes_bank[0]['value']);
+            sessionStorage.setItem('value_attribute_flag', '0');
         }
 
         //Если атрибут редактируется
