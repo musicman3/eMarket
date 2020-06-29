@@ -80,6 +80,8 @@
     // Если закрыли модал атрибутов
     $('#attribute').on('hidden.bs.modal', function (event) {
         $('.input-add-attribute').val('');
+        // Загружаем удаление атрибута
+        deleteAttribute();
     });
 
     // Добавляем атрибут

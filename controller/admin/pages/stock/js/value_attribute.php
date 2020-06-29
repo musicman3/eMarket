@@ -75,6 +75,8 @@
     // Если закрыли модал добавления значения атрибута
     $('#add_values_attribute').on('hidden.bs.modal', function (event) {
         $('.input-add-values-attribute').val('');
+        // Загружаем удаление значения атрибута
+        deleteValueAttribute();
     });
 
     // Редактируем значения атрибута
