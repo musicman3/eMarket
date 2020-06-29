@@ -52,7 +52,7 @@
     // Если открыли главный модал
     $('#index').on('show.bs.modal', function (event) {
 
-        if (sessionStorage.getItem('value_attribute_flag') === null || sessionStorage.getItem('value_attribute_flag') === '0') {
+        if (sessionStorage.getItem('value_attribute_flag') === null) {
             clearAttributes();
         }
 
