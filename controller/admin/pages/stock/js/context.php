@@ -46,6 +46,7 @@
                         $('#add_product').val('ok');
                         //Очищаем поля
                         $(this).find('form').trigger('reset');
+                        $('.summernote_add').val('');
                         $('#index_product').modal('show');
                     }
                 },
