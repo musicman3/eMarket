@@ -145,7 +145,7 @@
             var id = sessionStorage.getItem('edit_attribute_id');
             var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
 
-            parse_attributes[id - 1] = attributes_bank;
+            parse_attributes[id - 1][0]['value'] = attributes_bank[0]['value'];
 
             sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
 
