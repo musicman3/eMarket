@@ -33,11 +33,6 @@
             ['misc', ['codeview', 'help']]
         ]
     };
-    //Если открыли модальное окно #index_product
-    $('#index_product').on('show.bs.modal', function (event) {
-        // Инициализация Summernote
-        $('.summernote_add').summernote(summernote_pref);
-    });
     //Если закрыли модальное окно #index_product
     $('#index_product').on('hidden.bs.modal', function (event) {
         // Destroy Summernote

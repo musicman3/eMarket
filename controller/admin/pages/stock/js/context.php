@@ -47,6 +47,8 @@
                         //Очищаем поля
                         $(this).find('form').trigger('reset');
                         $('.summernote_add').val('');
+                        // Загружаем настройки Summernote
+                        $('.summernote_add').summernote(summernote_pref);
                         $('#index_product').modal('show');
                     }
                 },
@@ -116,6 +118,8 @@
                             var height_edit = $('div#ajax_data').data('heightproduct');
                             var logo_edit_product = $('div#ajax_data').data('logoproduct');
                             var logo_general_edit_product = $('div#ajax_data').data('generalproduct');
+                            // Загружаем настройки Summernote
+                            $('.summernote_add').summernote(summernote_pref);
                             // Ищем id и добавляем данные
                             for (x = 0; x < name_edit.length; x++) {
                                 $('#name_product_stock_' + x).val(name_edit[x][modal_id]);
