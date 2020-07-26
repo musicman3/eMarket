@@ -91,10 +91,14 @@
         <div class="list-group-item">
             <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#panel_description"><?php echo lang('description_product') ?></a></li>
+                <li><a data-toggle="tab" href="#panel_attribute">Характеристики</a></li>
             </ul>
             <div class="tab-content">
                 <div id="panel_description" class="tab-pane fade in active">
                     <div class="item-text"><?php echo $products['description'] ?></div>
+                </div>
+                <div id="panel_attribute" class="tab-pane fade">
+                    <div class="item-text"> </div>
                 </div>
             </div>
         </div>
