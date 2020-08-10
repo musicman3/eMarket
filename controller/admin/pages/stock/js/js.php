@@ -27,6 +27,9 @@
 <!--Подгружаем Товары -->
 <?php require_once ('products.php') ?>
 
+<!--Подгружаем Группы атрибутов -->
+<?php require_once ('group_attributes.php') ?>
+
 <!--Подгружаем Атрибуты -->
 <?php require_once ('attributes.php') ?>
 

@@ -23,7 +23,6 @@
 
     function clearAttributes() {
         ['attribute_action',
-            'attributes',
             'edit_attribute_id',
             'edit_value_attribute_id',
             'value_attribute_action',
@@ -49,19 +48,22 @@
             }});
     }
 
-    // Если открыли главный модал
-    $('#index').on('show.bs.modal', function (event) {
+    // Если открыли модал списка в группе атрибутов
+    $('#attribute').on('show.bs.modal', function (event) {
 
         if (sessionStorage.getItem('value_attribute_flag') === null) {
             clearAttributes();
         }
+        var group_id = sessionStorage.getItem('group_attribute_id');
 
         if (sessionStorage.getItem('attributes') !== null) {
             var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
 
-            for (x = 0; x < parse_attributes.length; x++) {
+            for (x = 0; x < parse_attributes[group_id].length; x++) {
                 var y = x + 1;
-                addAttribute(y, parse_attributes[x][0]['value']);
+                if (parse_attributes[group_id][x][0] !== undefined) {
+                    addAttribute(y, parse_attributes[group_id][x][0]['value']);
+                }
             }
         }
         // Загружаем удаление атрибута
@@ -69,16 +71,16 @@
 
     });
 
-    // Если закрыли главный модал
-    $('#index').on('hidden.bs.modal', function (event) {
+    // Если закрыли модал списка в группе атрибутов
+    $('#attribute').on('hidden.bs.modal', function (event) {
         $('.attribute').empty();
         if (sessionStorage.getItem('value_attribute_flag') === '0') {
             clearAttributes();
         }
     });
 
-    // Если закрыли модал атрибутов
-    $('#attribute').on('hidden.bs.modal', function (event) {
+    // Если закрыли модал значения атрибута
+    $('#values_attribute').on('hidden.bs.modal', function (event) {
         $('.input-add-attribute').val('');
         // Загружаем удаление атрибута
         deleteAttribute();
@@ -87,21 +89,22 @@
     // Добавляем атрибут
     $(document).on('click', '.add-attribute', function () {
         sessionStorage.setItem('attribute_action', 'add');
-        $('#attribute').modal('show');
+        $('#add_attribute').modal('show');
     });
 
     // Редактируем атрибут
     $(document).on('click', '.edit-attribute', function () {
         var id = $(this).closest('tr').attr('id').split('_')[1];
+        var group_id = sessionStorage.getItem('group_attribute_id');
 
         sessionStorage.setItem('attribute_action', 'edit');
         sessionStorage.setItem('edit_attribute_id', id);
 
-        $('#attribute').modal('show');
+        $('#add_attribute').modal('show');
 
         var parse_attributes = [];
         if (sessionStorage.getItem('attributes') !== null) {
-            parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'))[id - 1];
+            parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'))[group_id][id - 1];
         }
 
         for (x = 0; x < parse_attributes.length; x++) {
@@ -112,9 +115,10 @@
 
     // Сохраняем атрибут
     $('#save_attribute_button').click(function () {
-        $('#attribute').modal('hide');
+        $('#add_attribute').modal('hide');
 
         var attributes_bank = $('#attribute_add_form').serializeArray();
+        var group_id = sessionStorage.getItem('group_attribute_id');
 
         //Если атрибут добавляется
         if (sessionStorage.getItem('attribute_action') === 'add') {
@@ -123,7 +127,7 @@
 
             if (sessionStorage.getItem('attributes') !== null) {
                 parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
-                parse_attributes.push(attributes_bank);
+                parse_attributes[group_id].push(attributes_bank);
                 sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
             } else {
                 sessionStorage.setItem('attributes', JSON.stringify([attributes_bank]));
@@ -145,15 +149,15 @@
             var id = sessionStorage.getItem('edit_attribute_id');
             var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
 
-            parse_attributes[id - 1][0]['value'] = attributes_bank[0]['value'];
+            parse_attributes[group_id][id - 1][0]['value'] = attributes_bank[0]['value'];
 
             sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
 
             $('.attribute').empty();
 
-            for (x = 0; x < parse_attributes.length; x++) {
+            for (x = 0; x < parse_attributes[group_id].length; x++) {
                 var y = x + 1;
-                addAttribute(y, parse_attributes[x][0]['value']);
+                addAttribute(y, parse_attributes[group_id][x][0]['value']);
             }
         }
 
