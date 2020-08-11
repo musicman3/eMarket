@@ -22,6 +22,7 @@
                     <input id="general_image_edit" type="hidden" name="general_image_edit" value="">
                     <input id="general_image_edit_new" type="hidden" name="general_image_edit_new" value="">
                     <input id="attributes" type="hidden" name="attributes" value="">
+                    <input id="group_attributes" type="hidden" name="group_attributes" value="">
 
                     <!-- Панели формы -->
                     <ul class="nav nav-tabs">

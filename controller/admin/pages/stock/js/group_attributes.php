@@ -35,8 +35,9 @@
                 var y = x + 1;
                 addGroupAttribute(y, x);
             }
+        } else {
+            sessionStorage.setItem('attributes', JSON.stringify([]));
         }
-
     });
 
     // Если закрыли главный модал
