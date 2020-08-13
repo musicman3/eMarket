@@ -9,6 +9,7 @@
 <script type="text/javascript">
     function callAdd() {
         $('#attributes').val(sessionStorage.getItem('attributes'));
+        $('#group_attributes').val(sessionStorage.getItem('group_attributes'));
 
         var msg = $('#form_add').serialize();
         // Установка синхронного запроса для jQuery.ajax

@@ -28,12 +28,12 @@
             clearAttributes();
         }
 
-        if (sessionStorage.getItem('attributes') !== null) {
-            var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
+        if (sessionStorage.getItem('attributes') !== null && sessionStorage.getItem('group_attributes') !== null) {
+            var parse_group_attributes = $.parseJSON(sessionStorage.getItem('group_attributes'));
 
-            for (x = 0; x < parse_attributes.length; x++) {
+            for (x = 0; x < parse_group_attributes.length; x++) {
                 var y = x + 1;
-                addGroupAttribute(y, x);
+                addGroupAttribute(y, parse_group_attributes[x][0]['value']);
             }
         } else {
             sessionStorage.setItem('attributes', JSON.stringify([]));
@@ -70,15 +70,19 @@
     $(document).on('click', '#save_group_attributes_button', function () {
         $('#add_group_attributes').modal('hide');
         var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
+        var parse_group_attributes = $.parseJSON(sessionStorage.getItem('group_attributes'));
+        var group_attributes_bank = $('#group_attributes_add_form').serializeArray();
 
         parse_attributes.push([]);
+        parse_group_attributes.push(group_attributes_bank);
         sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
+        sessionStorage.setItem('group_attributes', JSON.stringify(parse_group_attributes));
 
         $('.group-attributes').empty();
 
         for (x = 0; x < parse_attributes.length; x++) {
             var y = x + 1;
-            addGroupAttribute(y, x);
+            addGroupAttribute(y, parse_group_attributes[x][0]['value']);
         }
 
 

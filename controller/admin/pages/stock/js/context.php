@@ -164,12 +164,14 @@
                             var logo_edit = $('div#ajax_data').data('logo');
                             var logo_general_edit = $('div#ajax_data').data('general');
                             var attributes_edit = $('div#ajax_data').data('attributes');
+                             var group_attributes_edit = $('div#ajax_data').data('groupattributes');
 
                             // Ищем id и добавляем данные
                             for (x = 0; x < name_edit.length; x++) {
                                 $('#name_categories_stock_' + x).val(name_edit[x][modal_id]);
                             }
                             $('#attributes').val(attributes_edit);
+                            $('#group_attributes').val(group_attributes_edit);
 
                             $('#edit').val(modal_id);
                             $('#add').val('');
@@ -177,6 +179,7 @@
                             getImageToEdit(logo_general_edit, logo_edit, modal_id);
                             // Подгружаем атрибуты
                             sessionStorage.setItem('attributes', JSON.stringify(attributes_edit[modal_id]));
+                            sessionStorage.setItem('group_attributes', JSON.stringify(group_attributes_edit[modal_id]));
                             sessionStorage.setItem('attribute_action', 'add');
                             sessionStorage.setItem('value_attribute_flag', '0');
                             // Открываем модальное окно

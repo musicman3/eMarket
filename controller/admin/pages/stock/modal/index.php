@@ -14,16 +14,18 @@ for ($i = $start; $i < $finish; $i++) {
         for ($x = 0; $x < $count_lang; $x++) {
             $name_temp[$x][$modal_id] = \eMarket\Pdo::selectPrepare("SELECT name FROM " . TABLE_CATEGORIES . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]]);
         }
-        $query = \eMarket\Pdo::getRow("SELECT logo, logo_general, attributes FROM " . TABLE_CATEGORIES . " WHERE id=?", [$modal_id]);
+        $query = \eMarket\Pdo::getRow("SELECT logo, logo_general, attributes, group_attributes FROM " . TABLE_CATEGORIES . " WHERE id=?", [$modal_id]);
         $logo_temp[$modal_id] = explode(',', $query[0], -1);
         $logo_general_temp[$modal_id] = $query[1];
         $attributes_temp[$modal_id] = json_decode($query[2]);
+        $group_attributes_temp[$modal_id] = json_decode($query[3]);
 
         // ПАРАМЕТРЫ ДЛЯ ПЕРЕДАЧИ В МОДАЛ
         $name = json_encode($name_temp); // Имя
         $logo = json_encode($logo_temp); // Список изображений
         $logo_general = json_encode($logo_general_temp); // Главное изображение
         $attributes = json_encode($attributes_temp); // Атрибуты
+        $group_attributes = json_encode($group_attributes_temp); // Группа атрибутов
     }
 }
 if (!isset($modal_id)) {
@@ -32,6 +34,7 @@ if (!isset($modal_id)) {
     $logo = ''; // Список изображений
     $logo_general = ''; // Главное изображение
     $attributes = ''; // Атрибуты
+    $group_attributes = ''; // Группа атрибутов
 }
 
 ?>
