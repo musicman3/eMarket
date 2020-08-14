@@ -26,17 +26,20 @@
                 $(this).closest('tr').remove();
 
                 var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
+                var group_id = sessionStorage.getItem('group_attribute_id');
 
-                for (x = 0; x < parse_attributes[sessionStorage.getItem('value_attribute_action_id') - 1].length; x++) {
-                    parse_attributes[sessionStorage.getItem('value_attribute_action_id') - 1][x]['data'].splice($(this).closest('tr').attr('id').split('_')[2] - 1, 1);
+                for (x = 0; x < parse_attributes[group_id][sessionStorage.getItem('value_attribute_action_id') - 1].length; x++) {
+                    parse_attributes[group_id][sessionStorage.getItem('value_attribute_action_id') - 1][x]['data'].splice($(this).closest('tr').attr('id').split('_')[2] - 1, 1);
                 }
                 sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
 
                 $('.values_attribute').empty();
 
-                for (x = 0; x < parse_attributes[sessionStorage.getItem('value_attribute_action_id') - 1][0]['data'].length; x++) {
-                    addValueAttribute(x + 1, parse_attributes[sessionStorage.getItem('value_attribute_action_id') - 1][0]['data'][x]);
+                for (x = 0; x < parse_attributes[group_id][sessionStorage.getItem('value_attribute_action_id') - 1][0]['data'].length; x++) {
+                    addValueAttribute(x + 1, parse_attributes[group_id][sessionStorage.getItem('value_attribute_action_id') - 1][0]['data'][x]);
                 }
+                // Загружаем удаление значения атрибута
+                deleteValueAttribute();
             }});
     }
 
@@ -44,13 +47,13 @@
     // Если открыли модал списка значений атрибута
     $(document).on('click', '.values-attribute', function () {
         var id = $(this).closest('tr').attr('id').split('_')[1];
-        var group_ip = sessionStorage.getItem('group_attribute_id');
+        var group_id = sessionStorage.getItem('group_attribute_id');
         sessionStorage.setItem('value_attribute_action', 'add');
         sessionStorage.setItem('value_attribute_action_id', id);
         sessionStorage.setItem('value_attribute_flag', '1');
 
         $('#values_attribute').modal('show');
-        var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'))[group_ip];
+        var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'))[group_id];
         $('#title_values_attribute').html('Атрибут: ' + parse_attributes[sessionStorage.getItem('value_attribute_action_id') - 1][0]['value']);
 
         if ('data' in parse_attributes[sessionStorage.getItem('value_attribute_action_id') - 1][0] === true) {
