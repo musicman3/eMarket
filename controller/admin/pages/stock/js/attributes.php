@@ -131,10 +131,11 @@
 
         //Если атрибут добавляется
         if (sessionStorage.getItem('attribute_action') === 'add') {
-            if (parse_attributes === null) {
+            if (parse_attributes === null || parse_attributes.length === 0) {
                 parse_attributes = [];
                 parse_attributes[group_id] = [];
             }
+            
             parse_attributes[group_id].push(attributes_bank);
             sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
 
