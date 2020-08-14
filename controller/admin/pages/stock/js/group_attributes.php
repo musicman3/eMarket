@@ -21,14 +21,30 @@
                 );
     }
 
+    function deleteGroupAttribute() {
+        $('.delete-group-attribute').confirmation({
+            onConfirm: function (event) {
+                $(this).closest('tr').remove();
+
+                var parse_group_attributes = $.parseJSON(sessionStorage.getItem('group_attributes'));
+                var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
+                parse_group_attributes.splice($(this).closest('tr').attr('id').split('_')[1] - 1, 1);
+                parse_attributes.splice($(this).closest('tr').attr('id').split('_')[1] - 1, 1);
+                sessionStorage.setItem('group_attributes', JSON.stringify(parse_group_attributes));
+                sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
+
+                $('.group-attributes').empty();
+                for (x = 0; x < parse_group_attributes.length; x++) {
+                    var y = x + 1;
+                    addGroupAttribute(y, parse_group_attributes[x][0]['value']);
+                }
+            }});
+    }
+
     // Если открыли главный модал
     $('#index').on('show.bs.modal', function (event) {
 
-        if (sessionStorage.getItem('value_attribute_flag') === null) {
-            clearAttributes();
-        }
-
-        if (sessionStorage.getItem('attributes') !== null && sessionStorage.getItem('group_attributes') !== null) {
+        if (sessionStorage.getItem('group_attributes') !== null) {
             var parse_group_attributes = $.parseJSON(sessionStorage.getItem('group_attributes'));
 
             for (x = 0; x < parse_group_attributes.length; x++) {
@@ -36,8 +52,10 @@
                 addGroupAttribute(y, parse_group_attributes[x][0]['value']);
             }
         } else {
-            sessionStorage.setItem('attributes', JSON.stringify([]));
+            sessionStorage.setItem('group_attributes', JSON.stringify([]));
         }
+        // Загружаем удаление группы атрибутов
+        deleteGroupAttribute();
     });
 
     // Если закрыли главный модал
