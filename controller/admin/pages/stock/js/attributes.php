@@ -37,14 +37,22 @@
                 $(this).closest('tr').remove();
 
                 var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
-                parse_attributes.splice($(this).closest('tr').attr('id').split('_')[1] - 1, 1);
+                var group_id = sessionStorage.getItem('group_attribute_id');
+
+                parse_attributes[group_id].splice($(this).closest('tr').attr('id').split('_')[1] - 1, 1);
+
+                if (parse_attributes[group_id].length === 0) {
+                    parse_attributes = [];
+                }
                 sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
 
                 $('.attribute').empty();
-                for (x = 0; x < parse_attributes.length; x++) {
+                for (x = 0; x < parse_attributes[group_id].length; x++) {
                     var y = x + 1;
-                    addAttribute(y, parse_attributes[x][0]['value']);
+                    addAttribute(y, parse_attributes[group_id][x][0]['value']);
                 }
+                // Загружаем удаление атрибута
+                deleteAttribute();
             }});
     }
 
@@ -119,28 +127,23 @@
 
         var attributes_bank = $('#attribute_add_form').serializeArray();
         var group_id = sessionStorage.getItem('group_attribute_id');
+        var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
 
         //Если атрибут добавляется
         if (sessionStorage.getItem('attribute_action') === 'add') {
-
-            if (sessionStorage.getItem('attributes') !== null) {
-                var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
-                if (parse_attributes[group_id] === undefined) {
-                    parse_attributes[group_id] = [];
-                }
-                parse_attributes[group_id].push(attributes_bank);
-                sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
-            } else {
-                sessionStorage.setItem('attributes', JSON.stringify([attributes_bank]));
+            if (parse_attributes === null) {
+                parse_attributes = [];
+                parse_attributes[group_id] = [];
             }
+            parse_attributes[group_id].push(attributes_bank);
+            sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
 
-            var length_attr = parse_attributes.length;
+            $('.attribute').empty();
 
-            if (length_attr === 0) {
-                length_attr = 1;
+            for (x = 0; x < parse_attributes[group_id].length; x++) {
+                var y = x + 1;
+                addAttribute(y, parse_attributes[group_id][x][0]['value']);
             }
-
-            addAttribute(length_attr, attributes_bank[0]['value']);
             sessionStorage.setItem('value_attribute_flag', '0');
         }
 
@@ -148,7 +151,6 @@
         if (sessionStorage.getItem('attribute_action') === 'edit') {
 
             var id = sessionStorage.getItem('edit_attribute_id');
-            var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
 
             parse_attributes[group_id][id - 1] = attributes_bank;
 

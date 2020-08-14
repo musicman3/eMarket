@@ -38,6 +38,8 @@
                     var y = x + 1;
                     addGroupAttribute(y, parse_group_attributes[x][0]['value']);
                 }
+                // Загружаем удаление группы атрибутов
+                deleteGroupAttribute();
             }});
     }
 
