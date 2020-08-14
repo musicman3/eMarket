@@ -59,9 +59,9 @@
         if (sessionStorage.getItem('attributes') !== null) {
             var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
 
-            for (x = 0; x < parse_attributes[group_id].length; x++) {
-                var y = x + 1;
-                if (parse_attributes[group_id][x][0] !== undefined) {
+            if (parse_attributes[group_id] !== undefined) {
+                for (x = 0; x < parse_attributes[group_id].length; x++) {
+                    var y = x + 1;
                     addAttribute(y, parse_attributes[group_id][x][0]['value']);
                 }
             }
@@ -123,10 +123,11 @@
         //Если атрибут добавляется
         if (sessionStorage.getItem('attribute_action') === 'add') {
 
-            var parse_attributes = [];
-
             if (sessionStorage.getItem('attributes') !== null) {
-                parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
+                var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
+                if (parse_attributes[group_id] === undefined) {
+                    parse_attributes[group_id] = [];
+                }
                 parse_attributes[group_id].push(attributes_bank);
                 sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
             } else {
@@ -149,7 +150,7 @@
             var id = sessionStorage.getItem('edit_attribute_id');
             var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
 
-            parse_attributes[group_id][id - 1][0]['value'] = attributes_bank[0]['value'];
+            parse_attributes[group_id][id - 1] = attributes_bank;
 
             sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
 

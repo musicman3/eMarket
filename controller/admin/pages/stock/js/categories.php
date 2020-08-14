@@ -21,6 +21,11 @@
             beforeSend: function (data) {
                 $('#index').modal('hide');
                 clearAttributes();
+                sessionStorage.removeItem('attributes');
+                sessionStorage.removeItem('group_attribute_id');
+                sessionStorage.removeItem('group_attributes');
+                sessionStorage.removeItem('group_attribute_action');
+                sessionStorage.removeItem('edit_group_attribute_id');
             }
         });
         // Отправка запроса для обновления страницы

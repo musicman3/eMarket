@@ -43,48 +43,81 @@
     // Если закрыли главный модал
     $('#index').on('hidden.bs.modal', function (event) {
         $('.group-attributes').empty();
-        if (sessionStorage.getItem('value_attribute_flag') === '0') {
-            clearAttributes();
-            sessionStorage.removeItem('attributes');
-            sessionStorage.removeItem('group_attribute_id');
-        }
+        clearAttributes();
+        sessionStorage.removeItem('attributes');
+        sessionStorage.removeItem('group_attribute_id');
+        sessionStorage.removeItem('group_attributes');
+        sessionStorage.removeItem('group_attribute_action');
+        sessionStorage.removeItem('edit_group_attribute_id');
     });
 
     // Если открыли модал списка значений группы атрибута
     $(document).on('click', '.values-group-attribute', function () {
         var id = $(this).closest('tr').attr('id').split('_')[1] - 1;
         sessionStorage.setItem('group_attribute_id', id);
+        var parse_group_attributes = $.parseJSON(sessionStorage.getItem('group_attributes'));
 
         $('#attribute').modal('show');
-        //var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
-        $('#title_attribute').html('Группа атрибутов: ' + id);
+        $('#title_attribute').html('Группа атрибутов: ' + parse_group_attributes[id][0]['value']);
 
     });
 
     // Добавляем группу атрибутов
     $(document).on('click', '.add-group-attributes', function () {
         $('#add_group_attributes').modal('show');
+        sessionStorage.setItem('group_attribute_action', 'add');
+    });
+
+    // Редактируем группу атрибутов
+    $(document).on('click', '.edit-group-attribute', function () {
+        var group_id = $(this).closest('tr').attr('id').split('_')[1] - 1;
+        sessionStorage.setItem('edit_group_attribute_id', group_id);
+        sessionStorage.setItem('group_attribute_action', 'edit');
+
+        $('#add_group_attributes').modal('show');
+
+        var parse_group_attributes = $.parseJSON(sessionStorage.getItem('group_attributes'))[group_id];
+
+        for (x = 0; x < parse_group_attributes.length; x++) {
+            $('input[name="' + parse_group_attributes[x]['name'] + '"]').val(parse_group_attributes[x]['value']);
+        }
+
     });
 
     // Сохраняем значение группы атрибутов
     $(document).on('click', '#save_group_attributes_button', function () {
         $('#add_group_attributes').modal('hide');
+        var group_attributes_bank = $('#group_attributes_add_form').serializeArray();
         var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
         var parse_group_attributes = $.parseJSON(sessionStorage.getItem('group_attributes'));
-        var group_attributes_bank = $('#group_attributes_add_form').serializeArray();
 
-        parse_attributes.push([]);
-        parse_group_attributes.push(group_attributes_bank);
-        sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
-        sessionStorage.setItem('group_attributes', JSON.stringify(parse_group_attributes));
+        //Если значение группы атрибутов добавляется
+        if (sessionStorage.getItem('group_attribute_action') === 'add') {
+            parse_group_attributes.push(group_attributes_bank);
+            sessionStorage.setItem('group_attributes', JSON.stringify(parse_group_attributes));
 
-        $('.group-attributes').empty();
+            $('.group-attributes').empty();
 
-        for (x = 0; x < parse_attributes.length; x++) {
-            var y = x + 1;
-            addGroupAttribute(y, parse_group_attributes[x][0]['value']);
+            for (x = 0; x < parse_group_attributes.length; x++) {
+                var y = x + 1;
+                addGroupAttribute(y, parse_group_attributes[x][0]['value']);
+            }
         }
 
+        //Если значение группы атрибутов редактируется
+        if (sessionStorage.getItem('group_attribute_action') === 'edit') {
+            var group_id = sessionStorage.getItem('edit_group_attribute_id');
+
+            parse_group_attributes[group_id] = group_attributes_bank;
+            sessionStorage.setItem('group_attributes', JSON.stringify(parse_group_attributes));
+
+            $('.group-attributes').empty();
+
+            for (x = 0; x < parse_group_attributes.length; x++) {
+                var y = x + 1;
+                addGroupAttribute(y, parse_group_attributes[x][0]['value']);
+            }
+        }
 
     });
 
