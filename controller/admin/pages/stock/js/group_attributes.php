@@ -70,6 +70,12 @@
         sessionStorage.removeItem('group_attribute_action');
         sessionStorage.removeItem('edit_group_attribute_id');
     });
+    
+    // Если закрыли добавление группы атрибутов
+    $('#add_group_attributes').on('hidden.bs.modal', function (event) {
+        // Загружаем удаление группы атрибутов
+        deleteGroupAttribute();
+    });
 
     // Если открыли модал списка значений группы атрибута
     $(document).on('click', '.values-group-attribute', function () {

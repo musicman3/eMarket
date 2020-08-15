@@ -74,6 +74,7 @@
     // Если открыли модал добавления значения атрибута
     $(document).on('click', '.add-values-attribute', function () {
         $('#add_values_attribute').modal('show');
+         sessionStorage.setItem('value_attribute_action', 'add');
     });
 
     // Если закрыли модал добавления значения атрибута
