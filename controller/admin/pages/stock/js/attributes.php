@@ -155,7 +155,13 @@
 
             var id = sessionStorage.getItem('edit_attribute_id');
 
-            parse_attributes[group_id][id - 1] = attributes_bank;
+            for (x = 0; x < attributes_bank.length; x++) {
+                for (y = 0; y < parse_attributes[group_id][id - 1].length; y++) {
+                    if (parse_attributes[group_id][id - 1][x]['name'] === attributes_bank[y]['name']) {
+                        parse_attributes[group_id][id - 1][x]['value'] = attributes_bank[y]['value'];
+                    }
+                }
+            }
 
             sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
 
