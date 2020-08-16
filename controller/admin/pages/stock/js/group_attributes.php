@@ -74,6 +74,7 @@
     // Если закрыли добавление группы атрибутов
     $('#add_group_attributes').on('hidden.bs.modal', function (event) {
         // Загружаем удаление группы атрибутов
+        $('.input-add-group-attributes').val('');
         deleteGroupAttribute();
     });
 
