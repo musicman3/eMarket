@@ -62,31 +62,41 @@
                 {}, // id родительской категории
                 AjaxSuccess);
         function AjaxSuccess(data) {
-            $('#ajax').html(data);
+            $('#default_order_status').bootstrapSwitch('destroy');
         }
     }
 </script>
 
-<?php if (isset($name_edit)) { ?>
+<?php if (isset($name)) { ?>
     <!-- Загрузка данных в модальное окно -->
     <script type="text/javascript">
-        $('#edit').on('show.bs.modal', function (event) {
-            $('#default_order_status_edit').bootstrapSwitch('destroy', true);
+        $('#index').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
             var modal_id = button.data('edit'); // Получаем ID из data-edit при клике на кнопку редактирования
-            // Получаем массивы данных
-            var name_edit = $('div#ajax_data').data('name');
-            var order_status_edit = $('div#ajax_data').data('order_status');
+            if (Number.isInteger(modal_id)) {
+                $('#default_order_status').bootstrapSwitch('destroy', true);
+                // Получаем массивы данных
+                var name_edit = $('div#ajax_data').data('name');
+                var order_status_edit = $('div#ajax_data').data('order_status');
+                
+                $('#edit').val(modal_id);
+                $('#add').val('');
 
-            // Ищем id и добавляем данные
-            for (x = 0; x < name_edit.length; x++) {
-                $('#name_order_status_edit_' + x).val(name_edit[x][modal_id]);
+                // Ищем id и добавляем данные
+                for (x = 0; x < name_edit.length; x++) {
+                    $('#name_order_status_' + x).val(name_edit[x][modal_id]);
+                }
+                // Меняем значение чекбокса
+                $('#default_order_status').prop('checked', order_status_edit[modal_id]);
+                $('#default_order_status').bootstrapSwitch();
+            } else {
+                $('#edit').val('');
+                $('#add').val('ok');
+                //Очищаем поля
+                $(this).find('form').trigger('reset');
+                // Меняем значение чекбокса
+                $('#default_order_status').prop('checked', '1');
             }
-
-            $('#js_edit').val(modal_id);
-            // Меняем значение чекбокса
-            $('#default_order_status_edit').prop('checked', order_status_edit[modal_id]);
-            $('#default_order_status_edit').bootstrapSwitch();
         });
     </script>
     <?php

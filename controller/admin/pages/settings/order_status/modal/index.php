@@ -13,20 +13,20 @@ for ($i = $start; $i < $finish; $i++) {
 
         for ($x = 0; $x < $count_lang; $x++) {
             $query_lang = \eMarket\Pdo::getRow("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]]);
-            $name_edit_temp[$x][$modal_id] = $query_lang[0];
+            $name_temp[$x][$modal_id] = $query_lang[0];
         }
 
-        $default_order_status_edit_temp[$modal_id] = (int) \eMarket\Pdo::selectPrepare("SELECT default_order_status FROM " . TABLE_ORDER_STATUS . " WHERE id=?", [$modal_id]);
+        $default_order_status_temp[$modal_id] = (int) \eMarket\Pdo::selectPrepare("SELECT default_order_status FROM " . TABLE_ORDER_STATUS . " WHERE id=?", [$modal_id]);
 
         // ПАРАМЕТРЫ ДЛЯ ПЕРЕДАЧИ В МОДАЛ
-        $name_edit = json_encode($name_edit_temp); // Имя
-        $default_order_status_edit = json_encode($default_order_status_edit_temp); // Статус
+        $name = json_encode($name_temp); // Имя
+        $default_order_status = json_encode($default_order_status_temp); // Статус
     }
 }
 if (!isset($modal_id)) {
     $modal_id = 'false';
-    $name_edit = ''; // Имя
-    $default_order_status_edit = ''; // Статус
+    $name = ''; // Имя
+    $default_order_status = ''; // Статус
 }
 
 ?>
