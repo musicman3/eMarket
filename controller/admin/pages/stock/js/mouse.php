@@ -24,50 +24,41 @@
             return $helper;
         };
 
-        $("#sort-list").sortable({
-            items: 'tr.sort-list',
-            handle: 'td.sortyes',
-            axis: "y",
-            helper: helper,
-            start: start,
-            over: function (event, ui) {
-                ui.helper.css("opacity", "0.7"),
-                        ui.helper.css("background-color", "#F5F5F5");
-            },
-            beforeStop: function (event, ui) {
-                ui.helper.css("opacity", "1.0"),
-                        ui.helper.css("background-color", "");
-            },
-            stop: function (event, ui) {
-                sortList();
-            }
-        });
-        $(".group-attributes").sortable({
-            items: 'tr.groupattributes',
-            handle: 'td.sortyes-group',
-            axis: "y",
-            helper: helper,
-            start: start,
-            over: function (event, ui) {
-                ui.helper.css("opacity", "0.7"),
-                        ui.helper.css("background-color", "#F5F5F5");
-            },
-            beforeStop: function (event, ui) {
-                ui.helper.css("opacity", "1.0"),
-                        ui.helper.css("background-color", "");
-            },
-            stop: function (event, ui) {
-                sortList2();
-            }
-        });
-        
+        function sortInit(id, items, handle) {
+            $(id).sortable({
+                items: items,
+                handle: handle,
+                axis: "y",
+                helper: helper,
+                start: start,
+                over: function (event, ui) {
+                    ui.helper.css("opacity", "0.7"),
+                            ui.helper.css("background-color", "#F5F5F5");
+                },
+                beforeStop: function (event, ui) {
+                    ui.helper.css("opacity", "1.0"),
+                            ui.helper.css("background-color", "");
+                },
+                stop: function (event, ui) {
+                    if (id === '#sort-list') {
+                        sortList();
+                    }
+                    if (id === '.group-attributes') {
+                        sortGroupAttributes();
+                    }
+                }
+            });
+        }
+        sortInit('#sort-list', 'tr.sort-list', 'td.sortyes');
+        sortInit('.group-attributes', 'tr.groupattributes', 'td.sortyes-group');
+
     });
     function sortList() {
         var ids = [];
         $("#sort-list tr").each(function () {
             ids[ids.length] = $(this).attr('unitid');
         });
-        $('.group-attributes').sortable('option', 'disabled', true );
+        $('.group-attributes').sortable('option', 'disabled', true);
         // Установка синхронного запроса для jQuery.ajax
         jQuery.ajaxSetup({async: false});
         jQuery.post('?route=stock',
@@ -81,11 +72,11 @@
             $('#fileupload').fileupload('destroy');
             $('#fileupload-product').fileupload('destroy');
             $('#ajax').html(data);
-            $('.group-attributes').sortable('option', 'disabled', false );
+            $('.group-attributes').sortable('option', 'disabled', false);
         }
     }
-    function sortList2() {
-        var sortedIDs = $( ".group-attributes" ).sortable( "toArray" );
+    function sortGroupAttributes() {
+        var sortedIDs = $(".group-attributes").sortable("toArray");
         alert(sortedIDs);
     }
 </script>
