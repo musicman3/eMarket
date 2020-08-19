@@ -97,7 +97,7 @@
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th colspan="2"></th>
+                                        <th colspan="3"></th>
                                         <th>
                                             <div class="b-right"><button class="add-group-attributes btn btn-primary btn-xs" type="button"><span class="glyphicon glyphicon-plus"></span></button></div>
                                         </th>

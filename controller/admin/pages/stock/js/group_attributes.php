@@ -11,7 +11,8 @@
     function addGroupAttribute(id, value) {
         $('.group-attributes').prepend(
                 '<tr class="groupattributes" groupid="' + id + '" id="groupattributes_' + id + '">' +
-                '<td class="sortyes-group sortleft"><button type="button" class="values-group-attribute btn btn-primary btn-xs"><span class="glyphicon glyphicon-cog"></span></button></td>' +
+                '<td class="sortyes-group sortleft-m"><div><span class="glyphicon glyphicon-move"> </span></div></td>' +
+                '<td><button type="button" class="values-group-attribute btn btn-primary btn-xs"><span class="glyphicon glyphicon-cog"></span></button></td>' +
                 '<td>' + value + '</td>' +
                 '<td class="al-text-w">' +
                 '<div class="b-right"><button type="button" class="delete-group-attribute btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('button_delete') ?>"><span class="glyphicon glyphicon-trash"> </span></button></div>' +
