@@ -79,10 +79,8 @@
     
     function sortArrayAttributes(array, sort_list) {
         var new_array = [];
-
         sort_list.reverse();
         
-
         for (x = 0; x < array.length; x++) {
             new_array[x] = array[sort_list[x].split('_')[1] - 1];
         }
