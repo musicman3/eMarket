@@ -10,7 +10,7 @@
 
     function addGroupAttribute(id, value) {
         $('.group-attributes').prepend(
-                '<tr class="groupattributes" id="' + id + '">' +
+                '<tr class="groupattributes" id="groupattributes_' + id + '">' +
                 '<td class="sortyes-group sortleft-m"><div><span class="glyphicon glyphicon-move"> </span></div></td>' +
                 '<td><button type="button" class="values-group-attribute btn btn-primary btn-xs"><span class="glyphicon glyphicon-cog"></span></button></td>' +
                 '<td>' + value + '</td>' +

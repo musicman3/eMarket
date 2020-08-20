@@ -81,9 +81,10 @@
         var new_array = [];
 
         sort_list.reverse();
+        
 
         for (x = 0; x < array.length; x++) {
-            new_array[x] = array[sort_list[x] - 1];
+            new_array[x] = array[sort_list[x].split('_')[1] - 1];
         }
 
         return new_array;
