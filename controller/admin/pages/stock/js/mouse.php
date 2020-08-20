@@ -53,6 +53,7 @@
         sortInit('.group-attributes', 'tr.groupattributes', 'td.sortyes-group');
 
     });
+
     function sortList() {
         var ids = [];
         $("#sort-list tr").each(function () {
@@ -75,9 +76,33 @@
             $('.group-attributes').sortable('option', 'disabled', false);
         }
     }
+    
+    function sortArrayAttributes(array, sort_list) {
+        var new_array = [];
+
+        sort_list.reverse();
+
+        for (x = 0; x < array.length; x++) {
+            new_array[x] = array[sort_list[x] - 1];
+        }
+
+        return new_array;
+    }
+
     function sortGroupAttributes() {
         var sortedIDs = $(".group-attributes").sortable("toArray");
-        alert(sortedIDs);
+
+        var parse_group_attributes = $.parseJSON(sessionStorage.getItem('group_attributes'));
+        var sort = sortArrayAttributes(parse_group_attributes, sortedIDs);
+        sessionStorage.setItem('group_attributes', JSON.stringify(sort));
+        
+        var parse_group_attributes_new = $.parseJSON(sessionStorage.getItem('group_attributes'));
+        $('.group-attributes').empty();
+        for (x = 0; x < parse_group_attributes_new.length; x++) {
+            var y = x + 1;
+            addGroupAttribute(y, parse_group_attributes_new[x][0]['value']);
+        }
+
     }
 </script>
 
