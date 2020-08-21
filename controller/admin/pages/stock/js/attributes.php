@@ -10,7 +10,8 @@
 
     function addAttribute(id, value) {
         $('.attribute').prepend(
-                '<tr id="attributes_' + id + '">' +
+                '<tr class="attributes-class" id="attributes_' + id + '">' +
+                '<td class="sortyes-attributes sortleft-m"><div><span class="glyphicon glyphicon-move"> </span></div></td>' +
                 '<td class="sortleft"><button type="button" class="values-attribute btn btn-primary btn-xs"><span class="glyphicon glyphicon-cog"></span></button></td>' +
                 '<td>' + value + '</td>' +
                 '<td class="al-text-w">' +

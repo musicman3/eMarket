@@ -18,7 +18,7 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th colspan="1"></th>
+                                <th colspan="2"></th>
                                 <th>
                                     <div class="b-right"><button type="button" class="add-values-attribute btn btn-primary btn-xs"><span class="glyphicon glyphicon-plus"></span></button></div>
                                 </th>

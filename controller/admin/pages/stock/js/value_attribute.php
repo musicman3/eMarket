@@ -10,7 +10,8 @@
 
     function addValueAttribute(id, value) {
         $('.values_attribute').prepend(
-                '<tr id="value_attributes_' + id + '">' +
+                '<tr class="value-attributes-class" id="value_attributes_' + id + '">' +
+                '<td class="sortyes-value-attributes sortleft-m"><div><span class="glyphicon glyphicon-move"> </span></div></td>' +
                 '<td>' + value + '</td>' +
                 '<td class="al-text-w">' +
                 '<div class="b-right"><button type="button" class="delete-value-attribute btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('button_delete') ?>"><span class="glyphicon glyphicon-trash"> </span></button></div>' +
@@ -74,7 +75,7 @@
     // Если открыли модал добавления значения атрибута
     $(document).on('click', '.add-values-attribute', function () {
         $('#add_values_attribute').modal('show');
-         sessionStorage.setItem('value_attribute_action', 'add');
+        sessionStorage.setItem('value_attribute_action', 'add');
     });
 
     // Если закрыли модал добавления значения атрибута

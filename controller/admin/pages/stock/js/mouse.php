@@ -46,12 +46,19 @@
                     if (id === '.group-attributes') {
                         sortGroupAttributes();
                     }
+                    if (id === '.attribute') {
+                        sortAttributes();
+                    }
+                    if (id === '.values_attribute') {
+                        sortValueAttributes();
+                    }
                 }
             });
         }
         sortInit('#sort-list', 'tr.sort-list', 'td.sortyes');
         sortInit('.group-attributes', 'tr.groupattributes', 'td.sortyes-group');
-
+        sortInit('.attribute', 'tr.attributes-class', 'td.sortyes-attributes');
+        sortInit('.values_attribute', 'tr.value-attributes-class', 'td.sortyes-value-attributes');
     });
 
     function sortList() {
@@ -76,13 +83,13 @@
             $('.group-attributes').sortable('option', 'disabled', false);
         }
     }
-    
-    function sortArrayAttributes(array, sort_list) {
+
+    function sortArrayAttributes(array, sort_list, split) {
         var new_array = [];
         sort_list.reverse();
-        
+
         for (x = 0; x < array.length; x++) {
-            new_array[x] = array[sort_list[x].split('_')[1] - 1];
+            new_array[x] = array[sort_list[x].split('_')[split] - 1];
         }
 
         return new_array;
@@ -92,16 +99,49 @@
         var sortedIDs = $(".group-attributes").sortable("toArray");
 
         var parse_group_attributes = $.parseJSON(sessionStorage.getItem('group_attributes'));
-        var sort = sortArrayAttributes(parse_group_attributes, sortedIDs);
+        var sort = sortArrayAttributes(parse_group_attributes, sortedIDs, 1);
         sessionStorage.setItem('group_attributes', JSON.stringify(sort));
-        
+
         var parse_group_attributes_new = $.parseJSON(sessionStorage.getItem('group_attributes'));
         $('.group-attributes').empty();
         for (x = 0; x < parse_group_attributes_new.length; x++) {
             var y = x + 1;
             addGroupAttribute(y, parse_group_attributes_new[x][0]['value']);
         }
+    }
 
+    function sortAttributes() {
+        var sortedIDs = $(".attribute").sortable("toArray");
+
+        var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
+        var group_id = sessionStorage.getItem('group_attribute_id');
+        var sort = sortArrayAttributes(parse_attributes[group_id], sortedIDs, 1);
+        parse_attributes[group_id] = sort;
+        sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
+
+        var parse_attributes_new = $.parseJSON(sessionStorage.getItem('attributes'));
+        $('.attribute').empty();
+        for (x = 0; x < parse_attributes_new[group_id].length; x++) {
+            var y = x + 1;
+            addAttribute(y, parse_attributes_new[group_id][x][0]['value']);
+        }
+    }
+
+    function sortValueAttributes() {
+        var sortedIDs = $(".values_attribute").sortable("toArray");
+
+        var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
+        var group_id = sessionStorage.getItem('group_attribute_id');
+
+        var sort = sortArrayAttributes(parse_attributes[group_id][sessionStorage.getItem('value_attribute_action_id') - 1][0]['data'], sortedIDs, 2);
+        parse_attributes[group_id][sessionStorage.getItem('value_attribute_action_id') - 1][0]['data'] = sort;
+        sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
+
+        var parse_attributes_new = $.parseJSON(sessionStorage.getItem('attributes'));
+        $('.values_attribute').empty();
+            for (x = 0; x < parse_attributes_new[group_id][sessionStorage.getItem('value_attribute_action_id') - 1][0]['data'].length; x++) {
+                addValueAttribute(x + 1, parse_attributes_new[group_id][sessionStorage.getItem('value_attribute_action_id') - 1][0]['data'][x]);
+            }
     }
 </script>
 
