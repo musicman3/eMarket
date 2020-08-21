@@ -84,12 +84,12 @@
         }
     }
 
-    function sortArrayAttributes(array, sort_list, split) {
+    function sortArrayAttributes(array, sort_list) {
         var new_array = [];
         sort_list.reverse();
 
         for (x = 0; x < array.length; x++) {
-            new_array[x] = array[sort_list[x].split('_')[split] - 1];
+            new_array[x] = array[sort_list[x].split('_')[1] - 1];
         }
 
         return new_array;
@@ -99,7 +99,7 @@
         var sortedIDs = $(".group-attributes").sortable("toArray");
 
         var parse_group_attributes = $.parseJSON(sessionStorage.getItem('group_attributes'));
-        var sort = sortArrayAttributes(parse_group_attributes, sortedIDs, 1);
+        var sort = sortArrayAttributes(parse_group_attributes, sortedIDs);
         sessionStorage.setItem('group_attributes', JSON.stringify(sort));
 
         var parse_group_attributes_new = $.parseJSON(sessionStorage.getItem('group_attributes'));
@@ -115,7 +115,7 @@
 
         var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
         var group_id = sessionStorage.getItem('group_attribute_id');
-        var sort = sortArrayAttributes(parse_attributes[group_id], sortedIDs, 1);
+        var sort = sortArrayAttributes(parse_attributes[group_id], sortedIDs);
         parse_attributes[group_id] = sort;
         sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
 
@@ -132,16 +132,27 @@
 
         var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
         var group_id = sessionStorage.getItem('group_attribute_id');
+        sortedIDs.reverse();
 
-        var sort = sortArrayAttributes(parse_attributes[group_id][sessionStorage.getItem('value_attribute_action_id') - 1][0]['data'], sortedIDs, 2);
-        parse_attributes[group_id][sessionStorage.getItem('value_attribute_action_id') - 1][0]['data'] = sort;
-        sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
+        for (y = 0; y < parse_attributes[group_id][sessionStorage.getItem('value_attribute_action_id') - 1].length; y++) {
 
+            var array = parse_attributes[group_id][sessionStorage.getItem('value_attribute_action_id') - 1][y]['data'];
+            var new_array = [];
+            
+            for (x = 0; x < array.length; x++) {
+                new_array[x] = array[sortedIDs[x].split('_')[2] - 1];
+            }
+
+            parse_attributes[group_id][sessionStorage.getItem('value_attribute_action_id') - 1][y]['data'] = new_array;
+            sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
+        }
+        
         var parse_attributes_new = $.parseJSON(sessionStorage.getItem('attributes'));
         $('.values_attribute').empty();
-            for (x = 0; x < parse_attributes_new[group_id][sessionStorage.getItem('value_attribute_action_id') - 1][0]['data'].length; x++) {
-                addValueAttribute(x + 1, parse_attributes_new[group_id][sessionStorage.getItem('value_attribute_action_id') - 1][0]['data'][x]);
-            }
+        for (x = 0; x < parse_attributes_new[group_id][sessionStorage.getItem('value_attribute_action_id') - 1][0]['data'].length; x++) {
+            addValueAttribute(x + 1, parse_attributes_new[group_id][sessionStorage.getItem('value_attribute_action_id') - 1][0]['data'][x]);
+        }
+
     }
 </script>
 
