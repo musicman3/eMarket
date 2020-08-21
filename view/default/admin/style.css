@@ -48,7 +48,7 @@ body {background:#e4e4da;font-family: 'Open Sans';background-image:url('images/s
 /*input[type=checkbox], input[type=radio] {vertical-align: text-bottom;}*/
 .popover-title {text-align:center;padding:5px 0 5px 0;}
 .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {padding:5px;}
-.sortyes {cursor:move;}
+.sortyes, .sortyes-group, .sortyes-attributes, .sortyes-value-attributes {cursor:move;}
 .table .sortleft {width:30px;vertical-align: middle;text-align: center;}
 .table .sortleft-m {color:#d8d8cf;width:25px;vertical-align: middle;text-align: center;}
 .table .sortleft-mp {opacity:0;width:25px;vertical-align: middle;text-align: center;}
