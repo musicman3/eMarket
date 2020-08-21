@@ -108,6 +108,7 @@
             var y = x + 1;
             addGroupAttribute(y, parse_group_attributes_new[x][0]['value']);
         }
+        deleteGroupAttribute();
     }
 
     function sortAttributes() {
@@ -125,6 +126,7 @@
             var y = x + 1;
             addAttribute(y, parse_attributes_new[group_id][x][0]['value']);
         }
+        deleteAttribute();
     }
 
     function sortValueAttributes() {
@@ -138,7 +140,7 @@
 
             var array = parse_attributes[group_id][sessionStorage.getItem('value_attribute_action_id') - 1][y]['data'];
             var new_array = [];
-            
+
             for (x = 0; x < array.length; x++) {
                 new_array[x] = array[sortedIDs[x].split('_')[2] - 1];
             }
@@ -146,12 +148,13 @@
             parse_attributes[group_id][sessionStorage.getItem('value_attribute_action_id') - 1][y]['data'] = new_array;
             sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
         }
-        
+
         var parse_attributes_new = $.parseJSON(sessionStorage.getItem('attributes'));
         $('.values_attribute').empty();
         for (x = 0; x < parse_attributes_new[group_id][sessionStorage.getItem('value_attribute_action_id') - 1][0]['data'].length; x++) {
             addValueAttribute(x + 1, parse_attributes_new[group_id][sessionStorage.getItem('value_attribute_action_id') - 1][0]['data'][x]);
         }
+        deleteValueAttribute();
 
     }
 </script>
