@@ -28,11 +28,14 @@
                 $(this).closest('tr').remove();
 
                 var parse_group_attributes = $.parseJSON(sessionStorage.getItem('group_attributes'));
-                var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
                 parse_group_attributes.splice($(this).closest('tr').attr('id').split('_')[1] - 1, 1);
-                parse_attributes.splice($(this).closest('tr').attr('id').split('_')[1] - 1, 1);
                 sessionStorage.setItem('group_attributes', JSON.stringify(parse_group_attributes));
-                sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
+
+                if ($.parseJSON(sessionStorage.getItem('attributes')) !== undefined) {
+                    var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
+                    parse_attributes.splice($(this).closest('tr').attr('id').split('_')[1] - 1, 1);
+                    sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
+                }
 
                 $('.group-attributes').empty();
                 for (x = 0; x < parse_group_attributes.length; x++) {
@@ -71,7 +74,7 @@
         sessionStorage.removeItem('group_attribute_action');
         sessionStorage.removeItem('edit_group_attribute_id');
     });
-    
+
     // Если закрыли добавление группы атрибутов
     $('#add_group_attributes').on('hidden.bs.modal', function (event) {
         // Загружаем удаление группы атрибутов
