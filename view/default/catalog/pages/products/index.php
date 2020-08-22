@@ -98,7 +98,23 @@
                     <div class="item-text"><?php echo $products['description'] ?></div>
                 </div>
                 <div id="panel_attribute" class="tab-pane fade">
-                    <div class="item-text"> </div>
+                    <div class="item-text product-attribute">
+
+			<h3>Заводские данные</h3>
+			<table class="table table-striped product-attribute-table">
+			    <tbody>
+				<tr>
+				    <td><span class="product-attribute-specification">Гарантия</span></td>
+				    <td><span class="product-attribute-specification">2 года</span></td>
+				</tr>	
+				<tr>
+				    <td><span class="product-attribute-specification">Страна</span></td>
+				    <td><span class="product-attribute-specification">Китай</span></td>
+				</tr>	
+			    </tbody>
+			</table>
+
+                    </div>
                 </div>
             </div>
         </div>

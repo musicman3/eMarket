@@ -71,6 +71,11 @@ nav .disabled {pointer-events: none;}
 #products .productpage ul {padding: 0;margin: 0;}
 #products .productpage-price {font-size: 18px;color: #000;font-weight: bold;}
 #products .productpage {margin-bottom: 20px;}
+#products .product-attribute h3 {padding-left: 20px;margin-bottom: 14px;font-size: 14px;font-weight: bold;}
+#products .product-attribute-table {margin-bottom: 32px;}
+#products .product-attribute-table td {padding-left: 20px;border-left: 1px solid #dfdfdf;border-top: 1px solid #dfdfdf;border-bottom: 1px solid #dfdfdf;}
+#products .product-attribute-table td:first-child {border-left: 0;}
+#products .product-attribute-specification {display: table-cell;}
 #index .nav > li > a {padding: 5px;}
 #index .tab-content {padding-top: 10px;}
 #index .pull-right .glyphicon {color: #000000;opacity: 0.5}
