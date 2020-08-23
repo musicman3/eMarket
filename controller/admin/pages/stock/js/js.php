@@ -27,14 +27,8 @@
 <!--Подгружаем Товары -->
 <?php require_once ('products.php') ?>
 
-<!--Подгружаем Группы атрибутов -->
-<?php require_once ('group_attributes.php') ?>
-
 <!--Подгружаем Атрибуты -->
 <?php require_once ('attributes.php') ?>
-
-<!--Подгружаем Значения атрибута -->
-<?php require_once ('value_attribute.php') ?>
 
 <!--Подгружаем Summernote -->
 <?php require_once ('summernote.php') ?>

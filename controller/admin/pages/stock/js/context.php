@@ -226,6 +226,8 @@
                                         idArray[i] = this.id;
                                 });
                                 $('.group-attributes').sortable('option', 'disabled', true);
+                                $('.attribute').sortable('option', 'disabled', true);
+                                $('.values_attribute').sortable('option', 'disabled', true);
                                 jQuery.post('?route=stock',
                                         {idsx_statusOn_id: idArray,
                                             idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
@@ -241,6 +243,8 @@
                                     $('#fileupload-product').fileupload('destroy');
                                     $('#ajax').html(data);
                                     $('.group-attributes').sortable('option', 'disabled', false);
+                                    $('.attribute').sortable('option', 'disabled', false);
+                                    $('.values_attributes').sortable('option', 'disabled', false);
                                 }
                             }
                         },
@@ -265,6 +269,8 @@
                                         idArray[i] = this.id;
                                 });
                                 $('.group-attributes').sortable('option', 'disabled', true);
+                                $('.attribute').sortable('option', 'disabled', true);
+                                $('.values_attribute').sortable('option', 'disabled', true);
                                 jQuery.post('?route=stock',
                                         {idsx_statusOff_id: idArray,
                                             idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
@@ -280,6 +286,8 @@
                                     $('#fileupload-product').fileupload('destroy');
                                     $('#ajax').html(data);
                                     $('.group-attributes').sortable('option', 'disabled', false);
+                                    $('.attribute').sortable('option', 'disabled', false);
+                                    $('.values_attributes').sortable('option', 'disabled', false);
                                 }
                             }
                         },
@@ -310,6 +318,8 @@
                                         idArray[i] = this.id;
                                 });
                                 $('.group-attributes').sortable('option', 'disabled', true);
+                                $('.attribute').sortable('option', 'disabled', true);
+                                $('.values_attribute').sortable('option', 'disabled', true);
                                 jQuery.post('?route=stock',
                                         {idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
                                             idsx_cut_id: idArray,
@@ -326,6 +336,8 @@
                                     $('#fileupload-product').fileupload('destroy');
                                     $('#ajax').html(data);
                                     $('.group-attributes').sortable('option', 'disabled', false);
+                                    $('.attribute').sortable('option', 'disabled', false);
+                                    $('.values_attributes').sortable('option', 'disabled', false);
                                 }
                             }
                         },
@@ -387,6 +399,8 @@
                                             idArray[i] = this.id;
                                     });
                                     $('.group-attributes').sortable('option', 'disabled', true);
+                                    $('.attribute').sortable('option', 'disabled', true);
+                                    $('.values_attribute').sortable('option', 'disabled', true);
                                     jQuery.post('?route=stock',
                                             {delete: idArray,
                                                 parent_down: <?php echo $parent_id ?>});
@@ -403,6 +417,8 @@
                                         $('#fileupload-product').fileupload('destroy');
                                         $('#ajax').html(data);
                                         $('.group-attributes').sortable('option', 'disabled', false);
+                                        $('.attribute').sortable('option', 'disabled', false);
+                                        $('.values_attributes').sortable('option', 'disabled', false);
                                     }
                                 }
                             }
@@ -454,6 +470,8 @@
                                         idArray[i] = this.id;
                                 });
                                 $('.group-attributes').sortable('option', 'disabled', true);
+                                $('.attribute').sortable('option', 'disabled', true);
+                                $('.values_attribute').sortable('option', 'disabled', true);
                                 jQuery.post('?route=stock',
                                         {idsx_saleOn_id: idArray,
                                             idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
@@ -470,6 +488,8 @@
                                     $('#fileupload-product').fileupload('destroy');
                                     $('#ajax').html(data);
                                     $('.group-attributes').sortable('option', 'disabled', false);
+                                    $('.attribute').sortable('option', 'disabled', false);
+                                    $('.values_attributes').sortable('option', 'disabled', false);
                                 }
                             },
                             icon: function () {
@@ -506,6 +526,8 @@
                                             idArray[i] = this.id;
                                     });
                                     $('.group-attributes').sortable('option', 'disabled', true);
+                                    $('.attribute').sortable('option', 'disabled', true);
+                                    $('.values_attribute').sortable('option', 'disabled', true);
                                     jQuery.post('?route=stock',
                                             {idsx_saleOff_id: idArray,
                                                 idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
@@ -522,6 +544,8 @@
                                         $('#fileupload-product').fileupload('destroy');
                                         $('#ajax').html(data);
                                         $('.group-attributes').sortable('option', 'disabled', false);
+                                        $('.attribute').sortable('option', 'disabled', false);
+                                        $('.values_attributes').sortable('option', 'disabled', false);
                                     }
                                 }
                             }
@@ -557,7 +581,9 @@
                                         if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                             idArray[i] = this.id;
                                     });
-                                    $('.group-attributes').sortable('option', 'disabled', true );
+                                    $('.group-attributes').sortable('option', 'disabled', true);
+                                    $('.attribute').sortable('option', 'disabled', true);
+                                    $('.values_attribute').sortable('option', 'disabled', true);
                                     jQuery.post('?route=stock',
                                             {idsx_saleOffAll_id: idArray,
                                                 idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
@@ -568,11 +594,13 @@
                                             AjaxSuccess);
                                     // Обновление страницы
                                     function AjaxSuccess(data) {
-                                            $('#view_categories_stock').bootstrapSwitch('destroy');
-                                            $('#fileupload').fileupload('destroy');
-                                            $('#fileupload-product').fileupload('destroy');
-                                            $('#ajax').html(data);
-                                            $('.group-attributes').sortable('option', 'disabled', false );
+                                        $('#view_categories_stock').bootstrapSwitch('destroy');
+                                        $('#fileupload').fileupload('destroy');
+                                        $('#fileupload-product').fileupload('destroy');
+                                        $('#ajax').html(data);
+                                        $('.group-attributes').sortable('option', 'disabled', false);
+                                        $('.attribute').sortable('option', 'disabled', false);
+                                        $('.values_attributes').sortable('option', 'disabled', false);
                                     }
                                 }
                             }

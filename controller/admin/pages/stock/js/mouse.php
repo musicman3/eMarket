@@ -44,13 +44,13 @@
                         sortList();
                     }
                     if (id === '.group-attributes') {
-                        sortGroupAttributes();
+                        GroupAttributes.sortGroupAttributes(lang);
                     }
                     if (id === '.attribute') {
-                        sortAttributes();
+                        Attributes.sortAttributes(lang);
                     }
                     if (id === '.values_attribute') {
-                        sortValueAttributes();
+                        ValuesAttribute.sortValueAttributes(lang);
                     }
                 }
             });
@@ -67,6 +67,8 @@
             ids[ids.length] = $(this).attr('unitid');
         });
         $('.group-attributes').sortable('option', 'disabled', true);
+        $('.attribute').sortable('option', 'disabled', true);
+        $('.values_attribute').sortable('option', 'disabled', true);
         // Установка синхронного запроса для jQuery.ajax
         jQuery.ajaxSetup({async: false});
         jQuery.post('?route=stock',
@@ -81,82 +83,11 @@
             $('#fileupload-product').fileupload('destroy');
             $('#ajax').html(data);
             $('.group-attributes').sortable('option', 'disabled', false);
+            $('.attribute').sortable('option', 'disabled', false);
+            $('.values_attributes').sortable('option', 'disabled', false);
         }
     }
 
-    function sortArrayAttributes(array, sort_list) {
-        var new_array = [];
-        sort_list.reverse();
-
-        for (x = 0; x < array.length; x++) {
-            new_array[x] = array[sort_list[x].split('_')[1] - 1];
-        }
-
-        return new_array;
-    }
-
-    function sortGroupAttributes() {
-        var sortedIDs = $(".group-attributes").sortable("toArray");
-
-        var parse_group_attributes = $.parseJSON(sessionStorage.getItem('group_attributes'));
-        var sort = sortArrayAttributes(parse_group_attributes, sortedIDs);
-        sessionStorage.setItem('group_attributes', JSON.stringify(sort));
-
-        var parse_group_attributes_new = $.parseJSON(sessionStorage.getItem('group_attributes'));
-        $('.group-attributes').empty();
-        for (x = 0; x < parse_group_attributes_new.length; x++) {
-            var y = x + 1;
-            addGroupAttribute(y, parse_group_attributes_new[x][0]['value']);
-        }
-        deleteGroupAttribute();
-    }
-
-    function sortAttributes() {
-        var sortedIDs = $(".attribute").sortable("toArray");
-
-        var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
-        var group_id = sessionStorage.getItem('group_attribute_id');
-        var sort = sortArrayAttributes(parse_attributes[group_id], sortedIDs);
-        parse_attributes[group_id] = sort;
-        sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
-
-        var parse_attributes_new = $.parseJSON(sessionStorage.getItem('attributes'));
-        $('.attribute').empty();
-        for (x = 0; x < parse_attributes_new[group_id].length; x++) {
-            var y = x + 1;
-            addAttribute(y, parse_attributes_new[group_id][x][0]['value']);
-        }
-        deleteAttribute();
-    }
-
-    function sortValueAttributes() {
-        var sortedIDs = $(".values_attribute").sortable("toArray");
-
-        var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
-        var group_id = sessionStorage.getItem('group_attribute_id');
-        sortedIDs.reverse();
-
-        for (y = 0; y < parse_attributes[group_id][sessionStorage.getItem('value_attribute_action_id') - 1].length; y++) {
-
-            var array = parse_attributes[group_id][sessionStorage.getItem('value_attribute_action_id') - 1][y]['data'];
-            var new_array = [];
-
-            for (x = 0; x < array.length; x++) {
-                new_array[x] = array[sortedIDs[x].split('_')[2] - 1];
-            }
-
-            parse_attributes[group_id][sessionStorage.getItem('value_attribute_action_id') - 1][y]['data'] = new_array;
-            sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
-        }
-
-        var parse_attributes_new = $.parseJSON(sessionStorage.getItem('attributes'));
-        $('.values_attribute').empty();
-        for (x = 0; x < parse_attributes_new[group_id][sessionStorage.getItem('value_attribute_action_id') - 1][0]['data'].length; x++) {
-            addValueAttribute(x + 1, parse_attributes_new[group_id][sessionStorage.getItem('value_attribute_action_id') - 1][0]['data'][x]);
-        }
-        deleteValueAttribute();
-
-    }
 </script>
 
 <!-- Выбор мышкой -->
