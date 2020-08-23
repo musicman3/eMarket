@@ -223,7 +223,11 @@ class GroupAttributes {
         }
     }
     
-        static clearAttributes() {
+    /**
+     * Очистка атрибутов
+     *
+     */
+    static clearAttributes() {
         ['attribute_action',
             'edit_attribute_id',
             'edit_value_attribute_id',
