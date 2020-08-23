@@ -18,19 +18,3 @@
     new Attributes(lang);
     new ValuesAttribute(lang);
 </script>
-
-<!--Атрибуты -->
-<script type="text/javascript">
-
-    function clearAttributes() {
-        ['attribute_action',
-            'edit_attribute_id',
-            'edit_value_attribute_id',
-            'value_attribute_action',
-            'value_attribute_action_id',
-            'value_attribute_flag'
-        ].forEach((item) => sessionStorage.removeItem(item));
-    }
-
-
-</script>

@@ -43,7 +43,7 @@ class GroupAttributes {
         // Если закрыли главный модал
         $('#index').on('hidden.bs.modal', function (event) {
             $('.group-attributes').empty();
-            clearAttributes();
+            GroupAttributes.clearAttributes();
             sessionStorage.removeItem('attributes');
             sessionStorage.removeItem('group_attribute_id');
             sessionStorage.removeItem('group_attributes');
@@ -221,5 +221,15 @@ class GroupAttributes {
             var y = x + 1;
             GroupAttributes.addGroupAttribute(y, parse[x][0]['value'], lang);
         }
+    }
+    
+        static clearAttributes() {
+        ['attribute_action',
+            'edit_attribute_id',
+            'edit_value_attribute_id',
+            'value_attribute_action',
+            'value_attribute_action_id',
+            'value_attribute_flag'
+        ].forEach((item) => sessionStorage.removeItem(item));
     }
 }

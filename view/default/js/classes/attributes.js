@@ -26,12 +26,14 @@ class Attributes {
      *@param lang array (Языковые переменные)
      */
     modal(lang) {
+        
+        var groupObject = new GroupAttributes(lang);
 
         // Если открыли модал списка в группе атрибутов
         $('#attribute').on('show.bs.modal', function (event) {
 
             if (sessionStorage.getItem('value_attribute_flag') === null) {
-                clearAttributes();
+                groupObject.clearAttributes();
             }
             var group_id = sessionStorage.getItem('group_attribute_id');
 
@@ -51,7 +53,7 @@ class Attributes {
         $('#attribute').on('hidden.bs.modal', function (event) {
             $('.attribute').empty();
             if (sessionStorage.getItem('value_attribute_flag') === '0') {
-                clearAttributes();
+                groupObject.clearAttributes();
             }
         });
 
