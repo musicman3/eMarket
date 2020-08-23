@@ -10,7 +10,6 @@
 <script type="text/javascript" src="/view/<?php echo \eMarket\Set::template() ?>/js/classes/attributes.js"></script>
 <script type="text/javascript" src="/view/<?php echo \eMarket\Set::template() ?>/js/classes/values_attribute.js"></script>
 
-<!-- Group Attributes" -->
 <?php $lang_for_button = json_encode([lang('confirm-yes'), lang('confirm-no'), lang('button_delete'), lang('button_edit')]); ?>
 <script type="text/javascript">
     var lang = $.parseJSON('<?php echo $lang_for_button ?>');
