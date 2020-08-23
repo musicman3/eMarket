@@ -27,8 +27,6 @@ class Attributes {
      */
     modal(lang) {
 
-
-
         // Если открыли модал списка в группе атрибутов
         $('#attribute').on('show.bs.modal', function (event) {
 
