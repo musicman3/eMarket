@@ -271,7 +271,7 @@
 
                         <!-- Содержимое панели Дополнительное -->
                         <div id="panel_add_product_4" class="tab-pane fade">
-                            <div class="item-text product-attribute">
+                            <div class="product-attribute">
 
                                 <h4>Заводские данные</h4>
                                 <table class="table table-striped product-attribute-table">
