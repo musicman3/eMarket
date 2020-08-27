@@ -20,7 +20,7 @@
             data: msg,
             beforeSend: function (data) {
                 $('#index').modal('hide');
-                clearAttributes();
+                GroupAttributes.clearAttributes();
                 sessionStorage.removeItem('attributes');
                 sessionStorage.removeItem('group_attribute_id');
                 sessionStorage.removeItem('group_attributes');
