@@ -102,10 +102,10 @@
                                             </div>
                                         </div>
 
-        <?php
-    }
-}
-?>
+                                        <?php
+                                    }
+                                }
+                                ?>
 
                             </div>
                         </div>
@@ -125,7 +125,7 @@
                                     <div class="input-group has-error">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-euro"></span></span>
                                         <select name="currency_product_stock" id="currency_product_stock" class="form-control">
-<?php \eMarket\Set::viewSelect($currencies_all) ?>
+                                            <?php \eMarket\Set::viewSelect($currencies_all) ?>
                                         </select>
                                     </div>
                                 </div>
@@ -143,7 +143,7 @@
                                     <div class="input-group has-error">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-flag"></span></span>
                                         <select name="unit_product_stock" id="unit_product_stock" class="form-control">
-<?php \eMarket\Set::viewSelect($units_all) ?>
+                                            <?php \eMarket\Set::viewSelect($units_all) ?>
                                         </select>
                                     </div>
                                 </div>
@@ -161,7 +161,7 @@
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-object-align-bottom"></span></span>
                                         <select name="manufacturers_product_stock" id="manufacturers_product_stock" class="form-control">
-<?php \eMarket\Set::viewSelect($manufacturers_all) ?>
+                                            <?php \eMarket\Set::viewSelect($manufacturers_all) ?>
                                         </select>
                                     </div>
                                 </div>
@@ -179,7 +179,7 @@
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span></span>
                                         <select name="tax_product_stock" id="tax_product_stock" class="form-control">
-<?php \eMarket\Set::viewSelect($taxes_all) ?>
+                                            <?php \eMarket\Set::viewSelect($taxes_all) ?>
                                         </select>
                                     </div>
                                 </div>
@@ -203,7 +203,7 @@
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-tag"></span></span>
                                         <select name="vendor_codes_product_stock" id="vendor_codes_product_stock" class="form-control">
-<?php \eMarket\Set::viewSelect($vendor_codes_all) ?>
+                                            <?php \eMarket\Set::viewSelect($vendor_codes_all) ?>
                                         </select>
                                     </div>
                                 </div>
@@ -221,7 +221,7 @@
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-scale"></span></span>
                                         <select name="weight_product_stock" id="weight_product_stock" class="form-control">
-<?php \eMarket\Set::viewSelect($weight_all) ?>
+                                            <?php \eMarket\Set::viewSelect($weight_all) ?>
                                         </select>
                                     </div>
                                 </div>
@@ -239,7 +239,7 @@
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-road"></span></span>
                                         <select name="length_product_stock" id="length_product_stock" class="form-control">
-<?php \eMarket\Set::viewSelect($length_all) ?>
+                                            <?php \eMarket\Set::viewSelect($length_all) ?>
                                         </select>
                                     </div>
                                 </div>
@@ -273,19 +273,7 @@
                         <div id="panel_add_product_4" class="tab-pane fade">
                             <div class="product-attribute">
 
-                                <h4>Заводские данные</h4>
-                                <table class="table table-striped product-attribute-table">
-                                    <tbody>
-                                        <tr>
-                                            <td><span class="product-attribute-specification">Гарантия</span></td>
-                                            <td><span class="product-attribute-specification">2 года</span></td>
-                                        </tr>	
-                                        <tr>
-                                            <td><span class="product-attribute-specification">Страна</span></td>
-                                            <td><span class="product-attribute-specification">Китай</span></td>
-                                        </tr>	
-                                    </tbody>
-                                </table>
+
 
                             </div>
                         </div>
@@ -302,7 +290,7 @@
                                     <i class="glyphicon glyphicon-picture"></i><span> <?php echo lang('button_add_image') ?></span>
                                     <input class="input-sm form-control" id="fileupload-product" type="file" name="files[]" accept="image/jpeg,image/png,image/gif" multiple>
                                 </span>
-<?php echo lang('max') ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>
+                                <?php echo lang('max') ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>
                                 <br>
                                 <br>
                                 <div><small class="form-text text-muted">Эффекты для обработки изображения</small></div>

@@ -75,6 +75,10 @@ for ($i = $start; $i < $finish; $i++) {
 
         $logo_temp_product[$modal_id_product] = explode(',', $query['logo'], -1);
         $logo_general_temp_product[$modal_id_product] = $query['logo_general'];
+        
+        // Атрибуты
+        $attributes_temp_product[$modal_id_product] = $query['attributes'];
+        
         // ПАРАМЕТРЫ ДЛЯ ПЕРЕДАЧИ В МОДАЛ
         $name_product = json_encode($name_temp_product); // Имя
         $description_product = json_encode($description_temp_product); // Описание
@@ -100,6 +104,7 @@ for ($i = $start; $i < $finish; $i++) {
         //
         $logo_product = json_encode($logo_temp_product); // Список изображений
         $logo_general_product = json_encode($logo_general_temp_product); // Главное изображение
+        $attributes_product = json_encode($attributes_temp_product); // Атрибуты
     }
 }
 
@@ -130,6 +135,7 @@ if (!isset($modal_id_product)) {
     $height_product = ''; // Высота
     $logo_product = ''; // Список изображений
     $logo_general_product = ''; // Главное изображение
+    $attributes_product = ''; // Атрибуты
 }
 
 ?>

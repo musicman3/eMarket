@@ -118,6 +118,7 @@
                             var height_edit = $('div#ajax_data').data('heightproduct');
                             var logo_edit_product = $('div#ajax_data').data('logoproduct');
                             var logo_general_edit_product = $('div#ajax_data').data('generalproduct');
+                            var attributesdata_edit_product = $('div#ajax_data').data('attributesdata');
                             // Загружаем настройки Summernote
                             $('.summernote_add').summernote(summernote_pref);
                             // Ищем id и добавляем данные
@@ -149,6 +150,15 @@
                             $('#value_length_product_stock').val(length_edit[modal_id]);
                             $('#value_width_product_stock').val(width_edit[modal_id]);
                             $('#value_height_product_stock').val(height_edit[modal_id]);
+
+                            // Выводим атрибуты
+                            var group_attributes_data = $.parseJSON(attributesdata_edit_product['group_attributes']);
+                            var attributes_data = $.parseJSON(attributesdata_edit_product['attributes']);
+
+                            for (x = 0; x < group_attributes_data.length; x++) {
+                                addDataAttributes(group_attributes_data[x][0], attributes_data[x], x);
+                            }
+
                             $('#edit_product').val(modal_id);
                             $('#add_product').val('');
                             // Подгружаем изображения

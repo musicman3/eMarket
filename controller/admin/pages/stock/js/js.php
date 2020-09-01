@@ -15,6 +15,7 @@
 <script src = "/ext/jquery_file_upload/js/vendor/jquery.ui.widget.js"></script>
 <script src="/ext/jquery_file_upload/js/jquery.iframe-transport.js"></script>
 <script src="/ext/jquery_file_upload/js/jquery.fileupload.js"></script>
+
 <?php
 // Подгружаем jQuery File Upload
 \eMarket\Ajax::fileUpload('', 'categories', $resize_param);
@@ -41,3 +42,18 @@
 
 <!--Подгружаем Bootstrap Datepicker -->
 <?php require_once ('datepicker.php') ?>
+
+<script type="text/javascript">
+    function addDataAttributes(group_attributes, attributes, x) {
+        $('.product-attribute').prepend(
+                '<h4>' + group_attributes['value'] + '</h4><table class="table table-striped product-attribute-table"><tbody id="table_' + x + '"></tbody></table>'
+                );
+        for (y = 0; y < attributes.length; y++) {
+            $('#table_' + x).prepend(
+                    '<tr><td><span class="product-attribute-specification">' + attributes[y][0]['value'] + '</span></td>' +
+                    '<td><span class="product-attribute-specification">' + attributes[y][0]['data'][0] + '</span></td></tr>'
+                    );
+        }
+
+    }
+</script>
