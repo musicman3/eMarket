@@ -3,38 +3,38 @@
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 /**
- * Атрибуты
+ * Обработка атрибутов
  *
- * @package Attributes
+ * @package AttributesProcessing
  * @author eMarket
  * 
  */
 class AttributesProcessing {
 
     /**
-     * Инициализация для модалов
+     * Добавление данных
      *
      * @param group_attributes array (Группа атрибутов)
      * @param attributes array (Атрибуты)
-     * @param x string (Номер группы атрибутов)
+     * @param group_number string (Номер группы атрибутов)
      */
-    static addDataAttributes(group_attributes, attributes, x) {
+    static addData(group_attributes, attributes, group_number) {
         $('.product-attribute').prepend(
-                '<h4>' + group_attributes['value'] + '</h4><table class="table table-striped product-attribute-table"><tbody id="table_' + x + '"></tbody></table>'
+                '<h4>' + group_attributes['value'] + '</h4><table class="table table-striped product-attribute-table"><tbody id="table_' + group_number + '"></tbody></table>'
                 );
 
         if (attributes !== undefined && attributes !== null) {
             for (var y = 0; y < attributes.length; y++) {
                 if (attributes[y][0]['data'] !== undefined && attributes[y][0]['data'] !== null) {
-                    $('#table_' + x).prepend(
+                    $('#table_' + group_number).prepend(
                             '<tr><td><span class="product-attribute-specification">' + attributes[y][0]['value'] + '</span></td>' +
-                            '<td><span class="product-attribute-specification pull-right"><select id="selectattr_' + x + '_' + y + '"></select></span></td></tr>'
+                            '<td><span class="product-attribute-specification pull-right"><select id="selectattr_' + group_number + '_' + y + '"></select></span></td></tr>'
                             );
 
-                    $('#selectattr_' + x + '_' + y).empty();
+                    $('#selectattr_' + group_number + '_' + y).empty();
                     attributes[y][0]['data'].reverse();
                     $.each(attributes[y][0]['data'], function (i, p) {
-                        $('#selectattr_' + x + '_' + y).append($('<option></option>').val(x + '_' + y + '_' + i).html(p));
+                        $('#selectattr_' + group_number + '_' + y).append($('<option></option>').val(group_number + '_' + y + '_' + i).html(p));
                     });
                 }
             }
