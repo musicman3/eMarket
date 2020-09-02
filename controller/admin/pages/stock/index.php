@@ -58,7 +58,6 @@ if ($installed_active != '' && isset($sales_all) && count($sales_all) > 0) {
             }
         }
     }
-
 }
 // Формируем массив Валюта для выпадающего списка
 $currencies_all = \eMarket\Pdo::getColRow("SELECT name, default_value, id FROM " . TABLE_CURRENCIES . " WHERE language=?", [lang('#lang_all')[0]]);
@@ -107,7 +106,11 @@ $navigate = \eMarket\Navigation::getLink($count_lines_merge, $lines_on_page, 1);
 $start = $navigate[0];
 $finish = $navigate[1];
 
-$attributes_data = json_encode(\eMarket\Pdo::getColAssoc("SELECT attributes, group_attributes FROM " . TABLE_CATEGORIES . " WHERE id=? AND language=?", [$parent_id, lang('#lang_all')[0]])[0]);
+if ($parent_id == 0) {
+    $attributes_data = json_encode([]);
+} else {
+    $attributes_data = json_encode(\eMarket\Pdo::getColAssoc("SELECT attributes, group_attributes FROM " . TABLE_CATEGORIES . " WHERE id=? AND language=?", [$parent_id, lang('#lang_all')[0]])[0]);
+}
 
 // Параметры для JS
 if (!isset($idsx_real_parent_id)) {
