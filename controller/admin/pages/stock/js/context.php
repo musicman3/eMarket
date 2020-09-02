@@ -156,7 +156,7 @@
                             var attributes_data = $.parseJSON(attributesdata_edit_product['attributes']);
 
                             for (x = 0; x < group_attributes_data.length; x++) {
-                                addDataAttributes(group_attributes_data[x][0], attributes_data[x], x);
+                                AttributesProcessing.addDataAttributes(group_attributes_data[x][0], attributes_data[x], x);
                             }
 
                             $('#edit_product').val(modal_id);

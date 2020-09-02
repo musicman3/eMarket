@@ -90,7 +90,7 @@ class Attributes {
                 parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'))[group_id][id - 1];
             }
 
-            for (x = 0; x < parse_attributes.length; x++) {
+            for (var x = 0; x < parse_attributes.length; x++) {
                 $('input[name="' + parse_attributes[x]['name'] + '"]').val(parse_attributes[x]['value']);
             }
 
@@ -198,7 +198,7 @@ class Attributes {
         var new_array = [];
         sort_list.reverse();
 
-        for (x = 0; x < array.length; x++) {
+        for (var x = 0; x < array.length; x++) {
             new_array[x] = array[sort_list[x].split('_')[1] - 1];
         }
 
@@ -235,7 +235,7 @@ class Attributes {
     static add(lang, parse) {
 
         $('.attribute').empty();
-        for (x = 0; x < parse.length; x++) {
+        for (var x = 0; x < parse.length; x++) {
             var y = x + 1;
             Attributes.addAttribute(y, parse[x][0]['value'], lang);
         }

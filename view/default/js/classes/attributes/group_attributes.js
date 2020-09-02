@@ -92,7 +92,7 @@ class GroupAttributes {
 
             var parse_group_attributes = $.parseJSON(sessionStorage.getItem('group_attributes'))[group_id];
 
-            for (x = 0; x < parse_group_attributes.length; x++) {
+            for (var x = 0; x < parse_group_attributes.length; x++) {
                 $('input[name="' + parse_group_attributes[x]['name'] + '"]').val(parse_group_attributes[x]['value']);
             }
 
@@ -182,7 +182,7 @@ class GroupAttributes {
         var new_array = [];
         sort_list.reverse();
 
-        for (x = 0; x < array.length; x++) {
+        for (var x = 0; x < array.length; x++) {
             new_array[x] = array[sort_list[x].split('_')[1] - 1];
         }
 
@@ -217,7 +217,7 @@ class GroupAttributes {
     static add(lang, parse) {
 
         $('.group-attributes').empty();
-        for (x = 0; x < parse.length; x++) {
+        for (var x = 0; x < parse.length; x++) {
             var y = x + 1;
             GroupAttributes.addGroupAttribute(y, parse[x][0]['value'], lang);
         }

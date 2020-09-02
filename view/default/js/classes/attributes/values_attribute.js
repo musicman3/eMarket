@@ -68,7 +68,7 @@ class ValuesAttribute {
 
             var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'))[group_id][sessionStorage.getItem('value_attribute_action_id') - 1];
 
-            for (x = 0; x < parse_attributes.length; x++) {
+            for (var x = 0; x < parse_attributes.length; x++) {
                 $('input[name="add_values_' + parse_attributes[x]['name'] + '"]').val(parse_attributes[x]['data'][id - 1]);
             }
 
@@ -86,7 +86,7 @@ class ValuesAttribute {
             //Если атрибут добавляется
             if (sessionStorage.getItem('value_attribute_action') === 'add') {
 
-                for (x = 0; x < parse_attributes[group_id][sessionStorage.getItem('value_attribute_action_id') - 1].length; x++) {
+                for (var x = 0; x < parse_attributes[group_id][sessionStorage.getItem('value_attribute_action_id') - 1].length; x++) {
                     if ('data' in parse_attributes[group_id][sessionStorage.getItem('value_attribute_action_id') - 1][x] !== true) {
                         parse_attributes[group_id][sessionStorage.getItem('value_attribute_action_id') - 1][x]['data'] = [value_attributes_bank[x]['value']];
                         sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
@@ -102,7 +102,7 @@ class ValuesAttribute {
             //Если атрибут редактируется
             if (sessionStorage.getItem('value_attribute_action') === 'edit') {
 
-                for (x = 0; x < parse_attributes[group_id][sessionStorage.getItem('value_attribute_action_id') - 1].length; x++) {
+                for (var x = 0; x < parse_attributes[group_id][sessionStorage.getItem('value_attribute_action_id') - 1].length; x++) {
 
                     parse_attributes[group_id][sessionStorage.getItem('value_attribute_action_id') - 1][x]['data'][sessionStorage.getItem('edit_value_attribute_id') - 1] = value_attributes_bank[x]['value'];
                     sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
@@ -167,7 +167,7 @@ class ValuesAttribute {
                 var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
                 var group_id = sessionStorage.getItem('group_attribute_id');
 
-                for (x = 0; x < parse_attributes[group_id][sessionStorage.getItem('value_attribute_action_id') - 1].length; x++) {
+                for (var x = 0; x < parse_attributes[group_id][sessionStorage.getItem('value_attribute_action_id') - 1].length; x++) {
                     parse_attributes[group_id][sessionStorage.getItem('value_attribute_action_id') - 1][x]['data'].splice($(this).closest('tr').attr('id').split('_')[2] - 1, 1);
                 }
                 sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
@@ -221,7 +221,7 @@ class ValuesAttribute {
     static add(lang, parse) {
 
         $('.values_attribute').empty();
-        for (x = 0; x < parse.length; x++) {
+        for (var x = 0; x < parse.length; x++) {
             var y = x + 1;
             ValuesAttribute.addValueAttribute(y, parse[x], lang);
         }
