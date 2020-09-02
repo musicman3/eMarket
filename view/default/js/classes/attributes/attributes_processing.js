@@ -28,7 +28,7 @@ class AttributesProcessing {
                 if (attributes[x][0]['data'] !== undefined && attributes[x][0]['data'] !== null) {
                     $('#table_' + group_number).prepend(
                             '<tr><td><span class="product-attribute-specification">' + attributes[x][0]['value'] + '</span></td>' +
-                            '<td><span class="product-attribute-specification pull-right"><select id="selectattr_' + group_number + '_' + x + '"></select></span></td></tr>'
+                            '<td><span class="product-attribute-specification pull-right"><select class="selectattr" id="selectattr_' + group_number + '_' + x + '"></select></span></td></tr>'
                             );
 
                     $('#selectattr_' + group_number + '_' + x).empty();
@@ -39,6 +39,39 @@ class AttributesProcessing {
                 }
             }
         }
-
     }
+
+    /**
+     * Сбор данных из select атрибутов
+     *
+     */
+    static changeData() {
+        var selected_attr = [];
+
+        for (var x = 0; x < $('.selectattr').length; x++) {
+            selected_attr.push($('.selectattr')[x]['selectedOptions'][0]['value']);
+        }
+        return selected_attr;
+    }
+
+    /**
+     * Вывод атрибутов в товаре
+     *
+     */
+    static add() {
+        var attributesdata_edit_product = $('div#ajax_data').data('attributesdata');
+        // Выводим атрибуты
+        var group_attributes_data = $.parseJSON(attributesdata_edit_product['group_attributes']);
+        var attributes_data = $.parseJSON(attributesdata_edit_product['attributes']);
+
+        for (var x = 0; x < group_attributes_data.length; x++) {
+            AttributesProcessing.addData(group_attributes_data[x][0], attributes_data[x], x);
+        }
+
+        $('#selected_attributes').val(JSON.stringify(AttributesProcessing.changeData()));
+        $('.selectattr').change(function () {
+            $('#selected_attributes').val(JSON.stringify(AttributesProcessing.changeData()));
+        });
+    }
+
 }

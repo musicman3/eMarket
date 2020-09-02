@@ -20,6 +20,7 @@
                     <input id="delete_image_product" type="hidden" name="delete_image_product" value="" />
                     <input id="general_image_edit_product" type="hidden" name="general_image_edit_product" value="" />
                     <input id="general_image_edit_new_product" type="hidden" name="general_image_edit_new_product" value="" />
+                    <input id="selected_attributes" type="hidden" name="selected_attributes" value="" />
 
                     <!-- Панели формы -->
                     <ul class="nav nav-tabs">

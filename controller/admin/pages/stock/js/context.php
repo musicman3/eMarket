@@ -42,6 +42,9 @@
                         return 'context-menu-icon glyphicon-shopping-cart';
                     },
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
+                        // Выводим атрибуты
+                        AttributesProcessing.add();
+
                         $('#edit_product').val('');
                         $('#add_product').val('ok');
                         //Очищаем поля
@@ -118,11 +121,10 @@
                             var height_edit = $('div#ajax_data').data('heightproduct');
                             var logo_edit_product = $('div#ajax_data').data('logoproduct');
                             var logo_general_edit_product = $('div#ajax_data').data('generalproduct');
-                            var attributesdata_edit_product = $('div#ajax_data').data('attributesdata');
                             // Загружаем настройки Summernote
                             $('.summernote_add').summernote(summernote_pref);
                             // Ищем id и добавляем данные
-                            for (x = 0; x < name_edit.length; x++) {
+                            for (var x = 0; x < name_edit.length; x++) {
                                 $('#name_product_stock_' + x).val(name_edit[x][modal_id]);
                                 $('#description_product_stock_' + x).summernote('code', description_edit[x][modal_id]);
                                 $('#keyword_product_stock_' + x).val(keyword_edit[x][modal_id]);
@@ -152,12 +154,7 @@
                             $('#value_height_product_stock').val(height_edit[modal_id]);
 
                             // Выводим атрибуты
-                            var group_attributes_data = $.parseJSON(attributesdata_edit_product['group_attributes']);
-                            var attributes_data = $.parseJSON(attributesdata_edit_product['attributes']);
-
-                            for (x = 0; x < group_attributes_data.length; x++) {
-                                AttributesProcessing.addData(group_attributes_data[x][0], attributes_data[x], x);
-                            }
+                            AttributesProcessing.add();
 
                             $('#edit_product').val(modal_id);
                             $('#add_product').val('');
@@ -177,7 +174,7 @@
                             var group_attributes_edit = $('div#ajax_data').data('groupattributes');
 
                             // Ищем id и добавляем данные
-                            for (x = 0; x < name_edit.length; x++) {
+                            for (var x = 0; x < name_edit.length; x++) {
                                 $('#name_categories_stock_' + x).val(name_edit[x][modal_id]);
                             }
                             $('#attributes').val(attributes_edit);
