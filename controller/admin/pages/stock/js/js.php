@@ -54,13 +54,13 @@
                 if (attributes[y][0]['data'] !== undefined && attributes[y][0]['data'] !== null) {
                     $('#table_' + x).prepend(
                             '<tr><td><span class="product-attribute-specification">' + attributes[y][0]['value'] + '</span></td>' +
-                            '<td><span class="product-attribute-specification"><select id="select_attr_' + x + '"></select></span></td></tr>'
+                            '<td><span class="product-attribute-specification pull-right"><select id="select_attr_' + x + '_' + y + '"></select></span></td></tr>'
                             );
-
-                    $('#select_attr_' + x).empty();
+                    
+                    $('#select_attr_' + x + '_' + y).empty();
                     attributes[y][0]['data'].reverse();
                     $.each(attributes[y][0]['data'], function (i, p) {
-                        $('#select_attr_' + x).append($('<option></option>').val(p).html(p));
+                        $('#select_attr_' + x + '_' + y).append($('<option></option>').val(p).html(p));
                     });
                 }
             }
