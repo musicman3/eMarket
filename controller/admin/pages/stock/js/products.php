@@ -36,6 +36,5 @@
     // Если закрыли главный модал
         $('#index_product').on('hidden.bs.modal', function (event) {
             $('.product-attribute').empty();
-            $('#selected_attributes').val('');
         });
 </script>
