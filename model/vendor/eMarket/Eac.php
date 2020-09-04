@@ -381,7 +381,7 @@ final class Eac {
                 if (isset($_SESSION['buffer']['prod'][$buf]) && count($_SESSION['buffer']['prod']) > 0) {
                     // Это товар
                     // Обновляем данные
-                    \eMarket\Pdo::inPrepare("UPDATE " . $TABLE_PRODUCTS . " SET parent_id=? WHERE id=?", [$parent_id_real, $_SESSION['buffer']['prod'][$buf]]);
+                    \eMarket\Pdo::inPrepare("UPDATE " . $TABLE_PRODUCTS . " SET parent_id=?, attributes=? WHERE id=?", [$parent_id_real, json_encode([]), $_SESSION['buffer']['prod'][$buf]]);
                 }
             }
             unset($_SESSION['buffer']); // очищаем буфер обмена

@@ -32,9 +32,9 @@
             $("#sort-list").sortable();
         }
     }
-    
+
     // Если закрыли главный модал
-        $('#index_product').on('hidden.bs.modal', function (event) {
-            $('.product-attribute').empty();
-        });
+    $('#index_product').on('hidden.bs.modal', function (event) {
+        $('.product-attribute').empty();
+    });
 </script>
