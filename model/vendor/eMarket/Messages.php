@@ -22,7 +22,7 @@ class Messages {
      */
     public static function alert() {
         
-        if (\eMarket\Valid::inPOST('add') OR \eMarket\Valid::inPOST('edit')OR \eMarket\Valid::inPOST('delete') OR \eMarket\Valid::inPOST('idsx_paste_key')) {
+        if (\eMarket\Valid::inPOST('add') OR \eMarket\Valid::inPOST('add_product') OR \eMarket\Valid::inPOST('edit') OR \eMarket\Valid::inPOST('edit_product') OR \eMarket\Valid::inPOST('delete') OR \eMarket\Valid::inPOST('idsx_paste_key')) {
             $_SESSION['message_marker'] = 'ok';
         }
 
