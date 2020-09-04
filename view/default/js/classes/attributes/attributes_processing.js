@@ -22,7 +22,7 @@ class AttributesProcessing {
         $('.product-attribute').prepend(
                 '<h4>' + group_attributes['value'] + '</h4><table class="table table-striped product-attribute-table"><tbody id="table_' + group_number + '"></tbody></table>'
                 );
-        
+
         var selected = $.parseJSON($('#selected_attributes').val());
         var selected_array = [];
         for (var x = 0; x < selected.length; x++) {
@@ -49,9 +49,8 @@ class AttributesProcessing {
                     $('#selectattr_' + group_number + '_' + x).empty();
                     attributes[x][0]['data'].reverse();
                     $.each(attributes[x][0]['data'], function (i, p) {
-
                         $('#selectattr_' + group_number + '_' + x).append($('<option></option>').val(group_number + '_' + x + '_' + i).html(p));
-                        if (i === Number(new_arr[x][2])) {
+                        if (new_arr.length !== 0 && i === Number(new_arr[x][2])) {
                             $('#selectattr_' + group_number + '_' + x + ' option[value=' + group_number + '_' + x + '_' + i + ']').prop('selected', true);
                         }
                     });
