@@ -31,11 +31,9 @@ class AttributesProcessing {
         var new_arr = [];
         for (var x = 0; x < selected_array.length; x++) {
             if (Number(selected_array[x][0]) === group_number) {
-                new_arr.push(selected_array[x]);
-
+                new_arr.unshift(selected_array[x]);
             }
         }
-        new_arr.reverse();
 
         if (attributes !== undefined && attributes !== null) {
             for (var x = 0; x < attributes.length; x++) {
