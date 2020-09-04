@@ -42,6 +42,7 @@
                         return 'context-menu-icon glyphicon-shopping-cart';
                     },
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
+                        $('#selected_attributes').val(JSON.stringify([]));
                         // Выводим атрибуты
                         AttributesProcessing.add();
 
