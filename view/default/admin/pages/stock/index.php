@@ -81,7 +81,7 @@
                          data-lengthproduct='<?php echo $length_product ?>'
                          data-widthproduct='<?php echo $width_product ?>'
                          data-heightproduct='<?php echo $height_product ?>'
-                         data-attributes='<?php echo $attributes_product ?>'
+                         data-attributesselected='<?php echo $attributes_product ?>'
                          data-attributesdata='<?php echo $attributes_data ?>'
                          ></div>
 

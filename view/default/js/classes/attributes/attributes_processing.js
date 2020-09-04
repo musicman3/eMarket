@@ -23,7 +23,7 @@ class AttributesProcessing {
                 '<h4>' + group_attributes['value'] + '</h4><table class="table table-striped product-attribute-table"><tbody id="table_' + group_number + '"></tbody></table>'
                 );
         
-        var selected = ["1_1_1", "1_0_0", "0_1_0", "0_0_1"];
+        var selected = $.parseJSON($('#selected_attributes').val());
         var selected_array = [];
         for (var x = 0; x < selected.length; x++) {
             selected_array[x] = selected[x].split('_');

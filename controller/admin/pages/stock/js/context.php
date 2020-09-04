@@ -121,6 +121,8 @@
                             var height_edit = $('div#ajax_data').data('heightproduct');
                             var logo_edit_product = $('div#ajax_data').data('logoproduct');
                             var logo_general_edit_product = $('div#ajax_data').data('generalproduct');
+                            var selected_attributes_edit = $('div#ajax_data').data('attributesselected');
+                            
                             // Загружаем настройки Summernote
                             $('.summernote_add').summernote(summernote_pref);
                             // Ищем id и добавляем данные
@@ -152,6 +154,7 @@
                             $('#value_length_product_stock').val(length_edit[modal_id]);
                             $('#value_width_product_stock').val(width_edit[modal_id]);
                             $('#value_height_product_stock').val(height_edit[modal_id]);
+                            $('#selected_attributes').val(JSON.stringify(selected_attributes_edit[modal_id]));
 
                             // Выводим атрибуты
                             AttributesProcessing.add();

@@ -77,7 +77,7 @@ for ($i = $start; $i < $finish; $i++) {
         $logo_general_temp_product[$modal_id_product] = $query['logo_general'];
         
         // Атрибуты
-        $attributes_temp_product[$modal_id_product] = $query['attributes'];
+        $attributes_temp_product[$modal_id_product] = json_decode($query['attributes'], 1);
         
         // ПАРАМЕТРЫ ДЛЯ ПЕРЕДАЧИ В МОДАЛ
         $name_product = json_encode($name_temp_product); // Имя
