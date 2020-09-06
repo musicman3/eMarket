@@ -34,5 +34,5 @@
     new AttributesProcessing();
     // Выводим атрибуты
     $('#selected_attributes').val('<?php echo $products['attributes'] ?>');
-    AttributesProcessing.add('true');
+    AttributesProcessing.add();
 </script>

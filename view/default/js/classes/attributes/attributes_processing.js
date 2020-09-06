@@ -20,54 +20,52 @@ class AttributesProcessing {
      * @param marker string (маркер)
      */
     static addData(group_attributes, attributes, group_number, marker) {
-        $('.product-attribute').prepend(
-                '<h4>' + group_attributes['value'] + '</h4><table class="table table-striped product-attribute-table"><tbody id="table_' + group_number + '"></tbody></table>'
-                );
-
         var selected = $.parseJSON($('#selected_attributes').val());
         var selected_array = [];
+        var out_array = [];
+
         for (var x = 0; x < selected.length; x++) {
             selected_array[x] = selected[x].split('_');
         }
-        var new_arr = [];
+
         for (var x = 0; x < selected_array.length; x++) {
             if (Number(selected_array[x][0]) === group_number) {
-                new_arr.unshift(selected_array[x]);
+                out_array.unshift(selected_array[x]);
             }
         }
 
         if (attributes !== undefined && attributes !== null) {
+            $('.product-attribute').prepend('<h4>' + group_attributes['value'] + '</h4><table class="table table-striped product-attribute-table"><tbody id="table_' + group_number + '"></tbody></table>');
             for (var x = 0; x < attributes.length; x++) {
                 if (attributes[x][0]['data'] !== undefined && attributes[x][0]['data'] !== null) {
-                    
-                    if (marker === 'true') {
-                        $('#table_' + group_number).prepend(
-                                '<tr><td><span class="product-attribute-specification">' + attributes[x][0]['value'] + '</span></td>' +
-                                '<td width="30%"><div class="selectattr" id="selectattr_' + group_number + '_' + x + '"></div></td></tr>'
-                                );
-                        attributes[x][0]['data'].reverse();
-                        $.each(attributes[x][0]['data'], function (i, p) {
-                            if (new_arr.length !== 0 && i === Number(new_arr[x][2])) {
-                                $('#selectattr_' + group_number + '_' + x).html(p);
-                            }
-                        });
-
-                    } else {
-                        
+                    if (marker === 'admin') {
                         $('#table_' + group_number).prepend(
                                 '<tr><td><span class="product-attribute-specification">' + attributes[x][0]['value'] + '</span></td>' +
                                 '<td width="30%"><div class="input-group has-success"><span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>' +
                                 '<select class="form-control selectattr" id="selectattr_' + group_number + '_' + x + '"></select></div></td></tr>'
                                 );
-
                         $('#selectattr_' + group_number + '_' + x).empty();
                         attributes[x][0]['data'].reverse();
                         $.each(attributes[x][0]['data'], function (i, p) {
                             $('#selectattr_' + group_number + '_' + x).append($('<option></option>').val(group_number + '_' + x + '_' + i).html(p));
-                            if (new_arr.length !== 0 && i === Number(new_arr[x][2])) {
+                            if (out_array.length !== 0 && i === Number(out_array[x][2])) {
                                 $('#selectattr_' + group_number + '_' + x + ' option[value=' + group_number + '_' + x + '_' + i + ']').prop('selected', true);
                             }
                         });
+
+                    } else {
+                        if (out_array.length !== 0) {
+                            $('#table_' + group_number).prepend(
+                                    '<tr><td><span class="product-attribute-specification">' + attributes[x][0]['value'] + '</span></td>' +
+                                    '<td width="30%"><div class="selectattr" id="selectattr_' + group_number + '_' + x + '"></div></td></tr>'
+                                    );
+                            attributes[x][0]['data'].reverse();
+                            $.each(attributes[x][0]['data'], function (i, p) {
+                                if (i === Number(out_array[x][2])) {
+                                    $('#selectattr_' + group_number + '_' + x).html(p);
+                                }
+                            });
+                        }
                     }
                 }
             }

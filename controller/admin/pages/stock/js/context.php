@@ -44,7 +44,7 @@
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
                         $('#selected_attributes').val(JSON.stringify([]));
                         // Выводим атрибуты
-                        AttributesProcessing.add();
+                        AttributesProcessing.add('admin');
 
                         $('#edit_product').val('');
                         $('#add_product').val('ok');
@@ -158,7 +158,7 @@
                             $('#selected_attributes').val(JSON.stringify(selected_attributes_edit[modal_id]));
 
                             // Выводим атрибуты
-                            AttributesProcessing.add();
+                            AttributesProcessing.add('admin');
 
                             $('#edit_product').val(modal_id);
                             $('#add_product').val('');
