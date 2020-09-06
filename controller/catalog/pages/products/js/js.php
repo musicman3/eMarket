@@ -28,3 +28,11 @@
         $(this).ekkoLightbox();
     });
 </script>
+
+<script type="text/javascript" src="/view/<?php echo \eMarket\Set::template() ?>/js/classes/attributes/attributes_processing.js"></script>
+<script type="text/javascript">
+    new AttributesProcessing();
+    // Выводим атрибуты
+    $('#selected_attributes').val('<?php echo $products['attributes'] ?>');
+    AttributesProcessing.add('true');
+</script>

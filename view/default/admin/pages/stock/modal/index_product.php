@@ -270,13 +270,9 @@
                             </div>
                         </div>
 
-                        <!-- Содержимое панели Дополнительное -->
+                        <!-- Содержимое панели Характеристики -->
                         <div id="panel_add_product_4" class="tab-pane fade">
-                            <div class="product-attribute">
-
-
-
-                            </div>
+                            <div class="product-attribute"></div>
                         </div>
 
                         <!-- Содержимое панели Изображения -->

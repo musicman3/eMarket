@@ -17,8 +17,9 @@ class AttributesProcessing {
      * @param group_attributes array (Группа атрибутов)
      * @param attributes array (Атрибуты)
      * @param group_number string (Номер группы атрибутов)
+     * @param marker string (маркер)
      */
-    static addData(group_attributes, attributes, group_number) {
+    static addData(group_attributes, attributes, group_number, marker) {
         $('.product-attribute').prepend(
                 '<h4>' + group_attributes['value'] + '</h4><table class="table table-striped product-attribute-table"><tbody id="table_' + group_number + '"></tbody></table>'
                 );
@@ -38,20 +39,36 @@ class AttributesProcessing {
         if (attributes !== undefined && attributes !== null) {
             for (var x = 0; x < attributes.length; x++) {
                 if (attributes[x][0]['data'] !== undefined && attributes[x][0]['data'] !== null) {
-                    $('#table_' + group_number).prepend(
-                            '<tr><td><span class="product-attribute-specification">' + attributes[x][0]['value'] + '</span></td>' +
-                            '<td><div class="input-group has-success"><span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>' +
-                            '<select class="form-control selectattr" id="selectattr_' + group_number + '_' + x + '"></select></div></td></tr>'
-                            );
+                    
+                    if (marker === 'true') {
+                        $('#table_' + group_number).prepend(
+                                '<tr><td><span class="product-attribute-specification">' + attributes[x][0]['value'] + '</span></td>' +
+                                '<td><div class="selectattr" id="selectattr_' + group_number + '_' + x + '"></div></td></tr>'
+                                );
+                        attributes[x][0]['data'].reverse();
+                        $.each(attributes[x][0]['data'], function (i, p) {
+                            if (new_arr.length !== 0 && i === Number(new_arr[x][2])) {
+                                $('#selectattr_' + group_number + '_' + x).html(p);
+                            }
+                        });
 
-                    $('#selectattr_' + group_number + '_' + x).empty();
-                    attributes[x][0]['data'].reverse();
-                    $.each(attributes[x][0]['data'], function (i, p) {
-                        $('#selectattr_' + group_number + '_' + x).append($('<option></option>').val(group_number + '_' + x + '_' + i).html(p));
-                        if (new_arr.length !== 0 && i === Number(new_arr[x][2])) {
-                            $('#selectattr_' + group_number + '_' + x + ' option[value=' + group_number + '_' + x + '_' + i + ']').prop('selected', true);
-                        }
-                    });
+                    } else {
+                        
+                        $('#table_' + group_number).prepend(
+                                '<tr><td><span class="product-attribute-specification">' + attributes[x][0]['value'] + '</span></td>' +
+                                '<td><div class="input-group has-success"><span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>' +
+                                '<select class="form-control selectattr" id="selectattr_' + group_number + '_' + x + '"></select></div></td></tr>'
+                                );
+
+                        $('#selectattr_' + group_number + '_' + x).empty();
+                        attributes[x][0]['data'].reverse();
+                        $.each(attributes[x][0]['data'], function (i, p) {
+                            $('#selectattr_' + group_number + '_' + x).append($('<option></option>').val(group_number + '_' + x + '_' + i).html(p));
+                            if (new_arr.length !== 0 && i === Number(new_arr[x][2])) {
+                                $('#selectattr_' + group_number + '_' + x + ' option[value=' + group_number + '_' + x + '_' + i + ']').prop('selected', true);
+                            }
+                        });
+                    }
                 }
             }
         }
@@ -72,16 +89,21 @@ class AttributesProcessing {
 
     /**
      * Вывод атрибутов в товаре
+     * @param marker string (маркер)
      *
      */
-    static add() {
+    static add(marker = null) {
         var attributesdata_edit_product = $('div#ajax_data').data('attributesdata');
         // Выводим атрибуты
         var group_attributes_data = $.parseJSON(attributesdata_edit_product['group_attributes']);
         var attributes_data = $.parseJSON(attributesdata_edit_product['attributes']);
 
         for (var x = 0; x < group_attributes_data.length; x++) {
-            AttributesProcessing.addData(group_attributes_data[x][0], attributes_data[x], x);
+            if (marker === null) {
+                AttributesProcessing.addData(group_attributes_data[x][0], attributes_data[x], x);
+            } else {
+                AttributesProcessing.addData(group_attributes_data[x][0], attributes_data[x], x, marker);
+            }
         }
 
         $('#selected_attributes').val(JSON.stringify(AttributesProcessing.changeData()));

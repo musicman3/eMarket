@@ -73,8 +73,15 @@ if ($products['height'] != NULL && $products['height'] != FALSE) {
 
 $images = \eMarket\Func::deleteValInArray(explode(',', $products['logo'], -1), [$products['logo_general']]);
 $product_category = \eMarket\Products::productCategories($products['parent_id']);
-$categories_name = \eMarket\Pdo::getCell("SELECT name FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], \eMarket\Valid::inGET('category_id')]);
-$category_parent_id = \eMarket\Pdo::getCell("SELECT parent_id FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], \eMarket\Valid::inGET('category_id')]);
+$categories_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], \eMarket\Valid::inGET('category_id')])[0];
+$categories_name = $categories_data['name'];
+$category_parent_id = $categories_data['parent_id'];
+
+if (\eMarket\Valid::inGET('category_id') == 0) {
+    $attributes_data = json_encode([]);
+} else {
+    $attributes_data = json_encode(['attributes' => $categories_data['attributes'], 'group_attributes' => $categories_data['group_attributes']]);
+}
 
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
 $JS_END = __DIR__;
