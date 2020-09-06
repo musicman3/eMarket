@@ -43,7 +43,7 @@ class AttributesProcessing {
                     if (marker === 'true') {
                         $('#table_' + group_number).prepend(
                                 '<tr><td><span class="product-attribute-specification">' + attributes[x][0]['value'] + '</span></td>' +
-                                '<td><div class="selectattr" id="selectattr_' + group_number + '_' + x + '"></div></td></tr>'
+                                '<td width="30%"><div class="selectattr" id="selectattr_' + group_number + '_' + x + '"></div></td></tr>'
                                 );
                         attributes[x][0]['data'].reverse();
                         $.each(attributes[x][0]['data'], function (i, p) {
@@ -56,7 +56,7 @@ class AttributesProcessing {
                         
                         $('#table_' + group_number).prepend(
                                 '<tr><td><span class="product-attribute-specification">' + attributes[x][0]['value'] + '</span></td>' +
-                                '<td><div class="input-group has-success"><span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>' +
+                                '<td width="30%"><div class="input-group has-success"><span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>' +
                                 '<select class="form-control selectattr" id="selectattr_' + group_number + '_' + x + '"></select></div></td></tr>'
                                 );
 
