@@ -50,12 +50,6 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
 
         <div class="row">
             <div class="col-sm-4 col-sm-offset-8">
-		<div class="input-group">
-		    <input type="text" class="form-control" id="input-coupon" placeholder="<?php echo lang('cart_discount_card_number') ?>" value="" name="discount_card">
-		    <span class="input-group-btn">
-			<input type="button" class="btn btn-primary" data-loading-text="Loading..." id="button-discount-card" value="<?php echo lang('cart_discount_card_apply') ?>">
-		    </span>
-		</div><br/>
                 <table class="table table-bordered">
                     <tbody>
                         <tr>
