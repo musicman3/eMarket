@@ -35,7 +35,7 @@ class AttributesProcessing {
         }
 
         if (attributes !== undefined && attributes !== null) {
-            $('.product-attribute').prepend('<h4>' + group_attributes['value'] + '</h4><table class="table table-responsive table-striped product-attribute-table"><tbody id="table_' + group_number + '"></tbody></table>');
+            $('.product-attribute').prepend('<h4>' + group_attributes['value'] + '</h4><table class="table table-striped product-attribute-table"><tbody id="table_' + group_number + '"></tbody></table>');
             for (var x = 0; x < attributes.length; x++) {
                 if (attributes[x][0]['data'] !== undefined && attributes[x][0]['data'] !== null) {
                     if (marker === 'admin') {
