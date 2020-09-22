@@ -154,7 +154,7 @@ password_recovery_message_failed = Пожалуйста, введите корр
 
 ;WELCOME
 welcome_name = Добро пожаловать %s!
-welcome_text = Интернет магазин по умолчанию поставляется с Boostrap и Bootstrap 3 Lightbox, что делает его легче, быстрее и отзывчивее.
+welcome_text = Интернет магазин по умолчанию поставляется с Boostrap 3 и Bootstrap Lightbox, что делает его легче, быстрее и отзывчивее.
 welcome_guest = Гость
 
 ;E-MAIL MESSAGES

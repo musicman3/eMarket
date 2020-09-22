@@ -153,7 +153,7 @@ password_recovery_message_failed = Please, enter correct E-Mail
 
 ;WELCOME
 welcome_name = Welcome %s!
-welcome_text = The default shopping cart comes with by Boostrap and Bootstrap 3 Lightbox making it lighter, faster and responsive.
+welcome_text = The default shopping cart comes with by Boostrap 3 and Bootstrap Lightbox making it lighter, faster and responsive.
 welcome_guest = Guest
 
 ;E-MAIL MESSAGES
