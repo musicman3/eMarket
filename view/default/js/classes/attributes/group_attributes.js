@@ -110,7 +110,7 @@ class GroupAttributes {
 
                 var arr = GroupAttributes.sortList(parse_group_attributes).reverse();
                 var randomizer = new Randomizer();
-                group_attributes_bank.push({uuid: randomizer.uuidv4(), sort: String(Number(arr[0]['sort']) + 1)});
+                group_attributes_bank.push({uuid: randomizer.uuid(), sort: String(Number(arr[0]['sort']) + 1)});
                 parse_group_attributes.push(group_attributes_bank);
                 sessionStorage.setItem('group_attributes', JSON.stringify(parse_group_attributes));
                 GroupAttributes.add(lang, parse_group_attributes);
