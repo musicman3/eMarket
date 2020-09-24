@@ -125,7 +125,8 @@ class AttributesProcessing {
         var arr = [];
 
         for (var x = 0; x < parse_group_attributes.length; x++) {
-            arr.push({id: x, sort: parse_group_attributes[x][2]['sort']});
+            var sort_id = parse_group_attributes[x].length - 1 ;
+            arr.push({id: x, sort: parse_group_attributes[x][sort_id]['sort']});
         }
 
         arr.sort(function (a, b) {

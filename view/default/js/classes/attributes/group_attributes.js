@@ -166,7 +166,8 @@ class GroupAttributes {
                 var arr = GroupAttributes.sortList(parse_group_attributes);
 
                 for (var x = 0; x < parse_group_attributes.length; x++) {
-                    parse_group_attributes[arr[x]['id']][2]['sort'] = String(x);
+                    var sort_id = parse_group_attributes[x].length - 1 ;
+                    parse_group_attributes[arr[x]['id']][sort_id]['sort'] = String(x);
                 }
 
                 sessionStorage.setItem('group_attributes', JSON.stringify(parse_group_attributes));
@@ -194,9 +195,10 @@ class GroupAttributes {
     static sort(array, sort_list) {
 
         sort_list.reverse();
-
+        
         for (var x = 0; x < array.length; x++) {
-            array[sort_list[x].split('_')[1] - 1][2]['sort'] = String(x);
+            var sort_id = array[x].length - 1 ;
+            array[sort_list[x].split('_')[1] - 1][sort_id]['sort'] = String(x);
         }
 
         return array;
@@ -214,7 +216,8 @@ class GroupAttributes {
         var arr = [];
 
         for (var x = 0; x < parse_group_attributes.length; x++) {
-            arr.push({id: x, sort: parse_group_attributes[x][2]['sort']});
+            var sort_id = parse_group_attributes[x].length - 1 ;
+            arr.push({id: x, sort: parse_group_attributes[x][sort_id]['sort']});
         }
 
         arr.sort(function (a, b) {
