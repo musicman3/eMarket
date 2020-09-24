@@ -4,8 +4,7 @@
 
   - PHP >= 7.3
   - MySQL >= 5.7
-  - JS & JQuery
-  - Bootstrap 3
+  - Javascript >= ES6
   - HTML 5
   
 ### Intro  
