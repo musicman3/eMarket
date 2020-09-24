@@ -162,9 +162,11 @@ class GroupAttributes {
 
                 var parse_group_attributes = $.parseJSON(sessionStorage.getItem('group_attributes'));
                 parse_group_attributes.splice($(this).closest('tr').attr('id').split('_')[1] - 1, 1);
+                
+                var arr = GroupAttributes.sortList(parse_group_attributes);
 
                 for (var x = 0; x < parse_group_attributes.length; x++) {
-                    parse_group_attributes[x][2]['sort'] = String(x);
+                    parse_group_attributes[arr[x]['id']][2]['sort'] = String(x);
                 }
 
                 sessionStorage.setItem('group_attributes', JSON.stringify(parse_group_attributes));
