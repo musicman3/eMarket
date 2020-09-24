@@ -95,12 +95,14 @@ class AttributesProcessing {
         // Выводим атрибуты
         var group_attributes_data = $.parseJSON(attributesdata_edit_product['group_attributes']);
         var attributes_data = $.parseJSON(attributesdata_edit_product['attributes']);
-
+        var arr = AttributesProcessing.sortList(group_attributes_data);
+        
         for (var x = 0; x < group_attributes_data.length; x++) {
+            var arr_id = arr[x]['id'];
             if (marker === null) {
-                AttributesProcessing.addData(group_attributes_data[x][0], attributes_data[x], x);
+                AttributesProcessing.addData(group_attributes_data[arr_id][0], attributes_data[arr_id], arr_id);
             } else {
-                AttributesProcessing.addData(group_attributes_data[x][0], attributes_data[x], x, marker);
+                AttributesProcessing.addData(group_attributes_data[arr_id][0], attributes_data[arr_id], arr_id, marker);
             }
         }
 
@@ -109,5 +111,25 @@ class AttributesProcessing {
             $('#selected_attributes').val(JSON.stringify(AttributesProcessing.changeData()));
         });
     }
+    
+    /**
+     * Листинг для сортировки
+     * 
+     * @param parse_group_attributes array (Входящий массив)
+     *
+     */
+    static sortList(parse_group_attributes) {
+
+        var arr = [];
+
+        for (var x = 0; x < parse_group_attributes.length; x++) {
+            arr.push({id: x, sort: parse_group_attributes[x][2]['sort']});
+        }
+
+        arr.sort(function (a, b) {
+            return a.sort - b.sort;
+        });
+        return arr;
+    }    
 
 }

@@ -107,6 +107,10 @@ class GroupAttributes {
 
             //Если значение группы атрибутов добавляется
             if (sessionStorage.getItem('group_attribute_action') === 'add') {
+
+                var arr = GroupAttributes.sortList(parse_group_attributes).reverse();
+
+                group_attributes_bank.push({sort: String(Number(arr[0]['sort']) + 1)});
                 parse_group_attributes.push(group_attributes_bank);
                 sessionStorage.setItem('group_attributes', JSON.stringify(parse_group_attributes));
                 GroupAttributes.add(lang, parse_group_attributes);
@@ -179,14 +183,34 @@ class GroupAttributes {
      *
      */
     static sort(array, sort_list) {
-        var new_array = [];
+
         sort_list.reverse();
 
         for (var x = 0; x < array.length; x++) {
-            new_array[x] = array[sort_list[x].split('_')[1] - 1];
+            array[sort_list[x].split('_')[1] - 1][2]['sort'] = String(x);
         }
 
-        return new_array;
+        return array;
+    }
+
+    /**
+     * Листинг для сортировки
+     * 
+     * @param parse_group_attributes array (Входящий массив)
+     *
+     */
+    static sortList(parse_group_attributes) {
+
+        var arr = [];
+
+        for (var x = 0; x < parse_group_attributes.length; x++) {
+            arr.push({id: x, sort: parse_group_attributes[x][2]['sort']});
+        }
+
+        arr.sort(function (a, b) {
+            return a.sort - b.sort;
+        });
+        return arr;
     }
 
     /**
@@ -216,13 +240,14 @@ class GroupAttributes {
      */
     static add(lang, parse) {
 
+        var arr = GroupAttributes.sortList(parse);
+
         $('.group-attributes').empty();
         for (var x = 0; x < parse.length; x++) {
-            var y = x + 1;
-            GroupAttributes.addGroupAttribute(y, parse[x][0]['value'], lang);
+            GroupAttributes.addGroupAttribute(arr[x]['id'] + 1, parse[arr[x]['id']][0]['value'], lang);
         }
     }
-    
+
     /**
      * Очистка атрибутов
      *
