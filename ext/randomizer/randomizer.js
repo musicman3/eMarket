@@ -12,12 +12,13 @@
 class Randomizer {
 
     /**
-     * Random generator by Waruyama (генератор случайной строки)
+     * Random generator uid (генератор случайной строки)
+     * @author Waruyama
      * @param length {String} (количество символов)
      * @returns id {String}
      */
 
-    static randomizeGenerator(length) {
+    uid(length) {
         var id = '';
         var rdm62;
         while (length--) {
@@ -30,11 +31,12 @@ class Randomizer {
     }
 
     /**
-     * UUID 4 generator by broofa (генератор UUID 4 RFC 4122)
+     * UUID 4 generator (генератор UUID 4 RFC 4122)
+     * @author Robert Kieffer http://www.broofa.com
      * @returns id {String}
      */
 
-    uuid() {
+    uuid4() {
         return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
             (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16));
     }
