@@ -162,6 +162,11 @@ class GroupAttributes {
 
                 var parse_group_attributes = $.parseJSON(sessionStorage.getItem('group_attributes'));
                 parse_group_attributes.splice($(this).closest('tr').attr('id').split('_')[1] - 1, 1);
+
+                for (var x = 0; x < parse_group_attributes.length; x++) {
+                    parse_group_attributes[x][2]['sort'] = String(x);
+                }
+
                 sessionStorage.setItem('group_attributes', JSON.stringify(parse_group_attributes));
 
                 if ($.parseJSON(sessionStorage.getItem('attributes')) !== undefined) {
@@ -169,6 +174,7 @@ class GroupAttributes {
                     parse_attributes.splice($(this).closest('tr').attr('id').split('_')[1] - 1, 1);
                     sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
                 }
+
                 GroupAttributes.add(lang, parse_group_attributes);
                 // Загружаем удаление группы атрибутов
                 GroupAttributes.deleteGroupAttribute(lang);
