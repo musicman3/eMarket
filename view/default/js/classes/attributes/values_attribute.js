@@ -13,7 +13,7 @@ class ValuesAttribute {
     /**
      * Конструктор
      *
-     * @param lang json (Языковые переменные)
+     * @param lang {Json} (Языковые переменные)
      */
     constructor(lang) {
         this.modal(lang);
@@ -23,7 +23,7 @@ class ValuesAttribute {
     /**
      * Инициализация для модалов
      *
-     *@param lang array (Языковые переменные)
+     *@param lang {Array} (Языковые переменные)
      */
     modal(lang) {
 
@@ -46,7 +46,7 @@ class ValuesAttribute {
     /**
      * Инициализация для кликов
      *
-     *@param lang array (Языковые переменные)
+     *@param lang {Array} (Языковые переменные)
      */
     click(lang) {
 
@@ -136,9 +136,9 @@ class ValuesAttribute {
     /**
      * Отображение значений атрибутов
      *
-     * @param id string (id строки)
-     * @param value string (значение строки)
-     * @param lang array (Языковые переменные)
+     * @param id {String} (id строки)
+     * @param value {String} (значение строки)
+     * @param lang {Array} (Языковые переменные)
      */
     static addValueAttribute(id, value, lang) {
         $('.values_attribute').prepend(
@@ -156,7 +156,7 @@ class ValuesAttribute {
     /**
      * Удаление значений атрибутов
      * 
-     * @param lang array (Языковые переменные)
+     * @param lang {Array} (Языковые переменные)
      *
      */
     static deleteValueAttribute(lang) {
@@ -181,7 +181,7 @@ class ValuesAttribute {
     /**
      * Сортировка значений атрибутов
      * 
-     * @param lang array (Языковые переменные)
+     * @param lang {Array} (Языковые переменные)
      *
      */
     static sortValueAttributes(lang) {
@@ -214,8 +214,8 @@ class ValuesAttribute {
     /**
      * Добавление значений атрибутов
      * 
-     * @param lang array (Языковые переменные)
-     * @param parse array (Данные по атрибутам)
+     * @param lang {Array} (Языковые переменные)
+     * @param parse {Array} (Данные по атрибутам)
      *
      */
     static add(lang, parse) {

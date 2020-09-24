@@ -13,7 +13,7 @@ class GroupAttributes {
     /**
      * Конструктор
      *
-     * @param lang json (Языковые переменные)
+     * @param lang {Json} (Языковые переменные)
      */
     constructor(lang) {
         this.modal(lang);
@@ -23,7 +23,7 @@ class GroupAttributes {
     /**
      * Инициализация для модалов
      *
-     *@param lang array (Языковые переменные)
+     *@param lang {Array} (Языковые переменные)
      */
     modal(lang) {
 
@@ -62,7 +62,7 @@ class GroupAttributes {
     /**
      * Инициализация для кликов
      *
-     *@param lang array (Языковые переменные)
+     *@param lang {Array} (Языковые переменные)
      */
     click(lang) {
         // Если открыли модал списка значений группы атрибута
@@ -109,8 +109,8 @@ class GroupAttributes {
             if (sessionStorage.getItem('group_attribute_action') === 'add') {
 
                 var arr = GroupAttributes.sortList(parse_group_attributes).reverse();
-
-                group_attributes_bank.push({sort: String(Number(arr[0]['sort']) + 1)});
+                var randomizer = new Randomizer();
+                group_attributes_bank.push({uuid: randomizer.uuidv4(), sort: String(Number(arr[0]['sort']) + 1)});
                 parse_group_attributes.push(group_attributes_bank);
                 sessionStorage.setItem('group_attributes', JSON.stringify(parse_group_attributes));
                 GroupAttributes.add(lang, parse_group_attributes);
@@ -131,9 +131,9 @@ class GroupAttributes {
     /**
      * Отображение группы атрибутов
      *
-     * @param id string (id строки)
-     * @param value string (значение строки)
-     * @param lang array (Языковые переменные)
+     * @param id {String} (id строки)
+     * @param value {String} (значение строки)
+     * @param lang {Array} (Языковые переменные)
      */
     static addGroupAttribute(id, value, lang) {
         $('.group-attributes').prepend(
@@ -152,7 +152,7 @@ class GroupAttributes {
     /**
      * Удаление группы атрибутов
      * 
-     * @param lang array (Языковые переменные)
+     * @param lang {Array} (Языковые переменные)
      *
      */
     static deleteGroupAttribute(lang) {
@@ -186,8 +186,9 @@ class GroupAttributes {
     /**
      * Сортировка массива атрибутов
      * 
-     * @param array array (Входящий массив)
-     * @param sort_list string (Массив сортировки)
+     * @param array {Array} (Входящий массив)
+     * @param sort_list {String} (Массив сортировки)
+     * @returns {Array} (вспомогательный массив для сортировки)
      *
      */
     static sort(array, sort_list) {
@@ -204,7 +205,8 @@ class GroupAttributes {
     /**
      * Листинг для сортировки
      * 
-     * @param parse_group_attributes array (Входящий массив)
+     * @param parse_group_attributes {Array} (Входящий массив)
+     * @returns {Array}
      *
      */
     static sortList(parse_group_attributes) {
@@ -224,7 +226,7 @@ class GroupAttributes {
     /**
      * Сортировка группы атрибутов
      * 
-     * @param lang array (Языковые переменные)
+     * @param lang {Array} (Языковые переменные)
      *
      */
     static sortGroupAttributes(lang) {
@@ -242,8 +244,8 @@ class GroupAttributes {
     /**
      * Добавление атрибутов
      * 
-     * @param lang array (Языковые переменные)
-     * @param parse array (Данные по атрибутам)
+     * @param lang {Array} (Языковые переменные)
+     * @param parse {Array} (Данные по атрибутам)
      *
      */
     static add(lang, parse) {

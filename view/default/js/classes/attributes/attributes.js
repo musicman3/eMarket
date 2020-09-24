@@ -13,7 +13,7 @@ class Attributes {
     /**
      * Конструктор
      *
-     * @param lang json (Языковые переменные)
+     * @param lang {Json} (Языковые переменные)
      */
     constructor(lang) {
         this.modal(lang);
@@ -23,7 +23,7 @@ class Attributes {
     /**
      * Инициализация для модалов
      *
-     *@param lang array (Языковые переменные)
+     *@param lang {Array} (Языковые переменные)
      */
     modal(lang) {
 
@@ -66,7 +66,7 @@ class Attributes {
     /**
      * Инициализация для кликов
      *
-     *@param lang array (Языковые переменные)
+     *@param lang {Array} (Языковые переменные)
      */
     click(lang) {
         // Добавляем атрибут
@@ -143,9 +143,9 @@ class Attributes {
     /**
      * Отображение атрибутов
      *
-     * @param id string (id строки)
-     * @param value string (значение строки)
-     * @param lang array (Языковые переменные)
+     * @param id {String} (id строки)
+     * @param value {String} (значение строки)
+     * @param lang {Array} (Языковые переменные)
      */
     static addAttribute(id, value, lang) {
         $('.attribute').prepend(
@@ -164,7 +164,7 @@ class Attributes {
     /**
      * Удаление атрибутов
      * 
-     * @param lang array (Языковые переменные)
+     * @param lang {Array} (Языковые переменные)
      *
      */
     static deleteAttribute(lang) {
@@ -190,8 +190,9 @@ class Attributes {
     /**
      * Сортировка массива атрибутов
      * 
-     * @param array array (Входящий массив)
-     * @param sort_list string (Массив сортировки)
+     * @param array {Array} (Входящий массив)
+     * @param sort_list {String} (Массив сортировки)
+     * @returns {Array}
      *
      */
     static sort(array, sort_list) {
@@ -208,7 +209,7 @@ class Attributes {
     /**
      * Сортировка атрибутов
      * 
-     * @param lang array (Языковые переменные)
+     * @param lang {Array} (Языковые переменные)
      *
      */
     static sortAttributes(lang) {
@@ -228,8 +229,8 @@ class Attributes {
     /**
      * Добавление атрибутов
      * 
-     * @param lang array (Языковые переменные)
-     * @param parse array (Данные по атрибутам)
+     * @param lang {Array} (Языковые переменные)
+     * @param parse {Array} (Данные по атрибутам)
      *
      */
     static add(lang, parse) {

@@ -14,10 +14,10 @@ class AttributesProcessing {
     /**
      * Добавление данных
      *
-     * @param group_attributes array (Группа атрибутов)
-     * @param attributes array (Атрибуты)
-     * @param group_number string (Номер группы атрибутов)
-     * @param marker string (маркер)
+     * @param group_attributes {Array} (Группа атрибутов)
+     * @param attributes {Array} (Атрибуты)
+     * @param group_number {String} (Номер группы атрибутов)
+     * @param marker {String} (маркер)
      */
     static addData(group_attributes, attributes, group_number, marker) {
         var selected = $.parseJSON($('#selected_attributes').val());
@@ -74,6 +74,7 @@ class AttributesProcessing {
 
     /**
      * Сбор данных из select атрибутов
+     * @returns {Array}
      *
      */
     static changeData() {
@@ -87,7 +88,7 @@ class AttributesProcessing {
 
     /**
      * Вывод атрибутов в товаре
-     * @param marker string (маркер)
+     * @param marker {String} (маркер)
      *
      */
     static add(marker = null) {
@@ -115,7 +116,8 @@ class AttributesProcessing {
     /**
      * Листинг для сортировки
      * 
-     * @param parse_group_attributes array (Входящий массив)
+     * @param parse_group_attributes {Array} (Входящий массив)
+     * @returns {Array}
      *
      */
     static sortList(parse_group_attributes) {
