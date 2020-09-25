@@ -109,8 +109,14 @@ class GroupAttributes {
             if (sessionStorage.getItem('group_attribute_action') === 'add') {
 
                 var arr = GroupAttributes.sortList(parse_group_attributes).reverse();
+                if (arr.length === 0) {
+                    var sort_number = 1;
+                } else {
+                    var sort_number = Number(arr[0]['sort']) + 1;
+                }
                 var randomizer = new Randomizer();
-                group_attributes_bank.push({uid: randomizer.uid(24), sort: String(Number(arr[0]['sort']) + 1)});
+                group_attributes_bank.push({uid: randomizer.uid(24), sort: String(sort_number)});
+                
                 parse_group_attributes.push(group_attributes_bank);
                 sessionStorage.setItem('group_attributes', JSON.stringify(parse_group_attributes));
                 GroupAttributes.add(lang, parse_group_attributes);
@@ -162,11 +168,11 @@ class GroupAttributes {
 
                 var parse_group_attributes = $.parseJSON(sessionStorage.getItem('group_attributes'));
                 parse_group_attributes.splice($(this).closest('tr').attr('id').split('_')[1] - 1, 1);
-                
+
                 var arr = GroupAttributes.sortList(parse_group_attributes);
 
                 for (var x = 0; x < parse_group_attributes.length; x++) {
-                    var sort_id = parse_group_attributes[x].length - 1 ;
+                    var sort_id = parse_group_attributes[x].length - 1;
                     parse_group_attributes[arr[x]['id']][sort_id]['sort'] = String(x);
                 }
 
@@ -195,9 +201,9 @@ class GroupAttributes {
     static sort(array, sort_list) {
 
         sort_list.reverse();
-        
+
         for (var x = 0; x < array.length; x++) {
-            var sort_id = array[x].length - 1 ;
+            var sort_id = array[x].length - 1;
             array[sort_list[x].split('_')[1] - 1][sort_id]['sort'] = String(x);
         }
 
@@ -216,7 +222,7 @@ class GroupAttributes {
         var arr = [];
 
         for (var x = 0; x < parse_group_attributes.length; x++) {
-            var sort_id = parse_group_attributes[x].length - 1 ;
+            var sort_id = parse_group_attributes[x].length - 1;
             arr.push({id: x, sort: parse_group_attributes[x][sort_id]['sort']});
         }
 

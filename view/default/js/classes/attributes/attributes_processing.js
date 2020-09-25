@@ -29,7 +29,7 @@ class AttributesProcessing {
         }
 
         for (var x = 0; x < selected_array.length; x++) {
-            if (Number(selected_array[x][0]) === group_number) {
+            if (selected_array[x][0] === group_number) {
                 out_array.unshift(selected_array[x]);
             }
         }
@@ -101,9 +101,9 @@ class AttributesProcessing {
         for (var x = 0; x < group_attributes_data.length; x++) {
             var arr_id = arr[x]['id'];
             if (marker === null) {
-                AttributesProcessing.addData(group_attributes_data[arr_id][0], attributes_data[arr_id], arr_id);
+                AttributesProcessing.addData(group_attributes_data[arr_id][0], attributes_data[arr_id], arr[x]['uid']);
             } else {
-                AttributesProcessing.addData(group_attributes_data[arr_id][0], attributes_data[arr_id], arr_id, marker);
+                AttributesProcessing.addData(group_attributes_data[arr_id][0], attributes_data[arr_id], arr[x]['uid'], marker);
             }
         }
 
@@ -126,7 +126,7 @@ class AttributesProcessing {
 
         for (var x = 0; x < parse_group_attributes.length; x++) {
             var sort_id = parse_group_attributes[x].length - 1 ;
-            arr.push({id: x, sort: parse_group_attributes[x][sort_id]['sort']});
+            arr.push({id: x, sort: parse_group_attributes[x][sort_id]['sort'], uid: parse_group_attributes[x][sort_id]['uid']});
         }
 
         arr.sort(function (a, b) {
