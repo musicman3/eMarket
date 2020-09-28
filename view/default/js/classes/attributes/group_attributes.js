@@ -226,6 +226,7 @@ class GroupAttributes {
             'attributes',
             'level_1',
             'level_2',
+            'level_3',
             'action'
         ].forEach((item) => sessionStorage.removeItem(item));
     }
