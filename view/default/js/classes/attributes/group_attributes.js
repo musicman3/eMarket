@@ -29,15 +29,16 @@ class GroupAttributes {
 
         // Если открыли главный модал
         $('#index').on('show.bs.modal', function (event) {
+            var jsdata = new JsData();
 
-            if (sessionStorage.getItem('group_attributes') !== null) {
-                var parse_group_attributes = $.parseJSON(sessionStorage.getItem('group_attributes'));
-                GroupAttributes.add(lang, parse_group_attributes);
+            if (sessionStorage.getItem('attributes') !== null) {
+                var parse_attributes = jsdata.selectParentUids('false', $.parseJSON(sessionStorage.getItem('attributes')));
+                GroupAttributes.add(lang, parse_attributes);
             } else {
-                sessionStorage.setItem('group_attributes', JSON.stringify([]));
+                sessionStorage.setItem('attributes', JSON.stringify([]));
             }
             // Загружаем удаление группы атрибутов
-            GroupAttributes.deleteGroupAttribute(lang);
+            GroupAttributes.deleteValue(lang);
         });
 
         // Если закрыли главный модал
@@ -46,7 +47,6 @@ class GroupAttributes {
             GroupAttributes.clearAttributes();
             sessionStorage.removeItem('attributes');
             sessionStorage.removeItem('group_attribute_id');
-            sessionStorage.removeItem('group_attributes');
             sessionStorage.removeItem('group_attribute_action');
             sessionStorage.removeItem('edit_group_attribute_id');
         });
@@ -55,7 +55,7 @@ class GroupAttributes {
         $('#add_group_attributes').on('hidden.bs.modal', function (event) {
             // Загружаем удаление группы атрибутов
             $('.input-add-group-attributes').val('');
-            GroupAttributes.deleteGroupAttribute(lang);
+            GroupAttributes.deleteValue(lang);
         });
     }
 
@@ -67,13 +67,13 @@ class GroupAttributes {
     click(lang) {
         // Если открыли модал списка значений группы атрибута
         $(document).on('click', '.values-group-attribute', function () {
-            var parse_group_attributes = $.parseJSON(sessionStorage.getItem('group_attributes'));
             var jsdata = new JsData();
-            var group_id = jsdata.selectUid($(this).closest('tr').attr('id').split('_')[1], parse_group_attributes, 'true');
+            var parse_attributes = jsdata.selectParentUids('false', $.parseJSON(sessionStorage.getItem('attributes')));
+            var group_id = $(this).closest('tr').attr('id').split('_')[1];
             sessionStorage.setItem('group_attribute_id', group_id);
 
             $('#attribute').modal('show');
-            $('#title_attribute').html('Группа атрибутов: ' + parse_group_attributes[group_id][0]['value']);
+            $('#title_attribute').html('Группа атрибутов: ' + jsdata.selectUid(group_id, parse_attributes)[0]['value']);
 
         });
 
@@ -85,10 +85,11 @@ class GroupAttributes {
 
         // Редактируем группу атрибутов
         $(document).on('click', '.edit-group-attribute', function () {
-            var parse_group_attributes = $.parseJSON(sessionStorage.getItem('group_attributes'));
             var jsdata = new JsData();
+            var parse_attributes = jsdata.selectParentUids('false', $.parseJSON(sessionStorage.getItem('attributes')));
             var group_id = $(this).closest('tr').attr('id').split('_')[1];
-            var group_string = jsdata.selectUid(group_id, parse_group_attributes);
+            var group_string = jsdata.selectUid(group_id, parse_attributes);
+
             sessionStorage.setItem('edit_group_attribute_id', group_id);
             sessionStorage.setItem('group_attribute_action', 'edit');
 
@@ -103,24 +104,25 @@ class GroupAttributes {
         $(document).on('click', '#save_group_attributes_button', function () {
             $('#add_group_attributes').modal('hide');
             var group_attributes_bank = $('#group_attributes_add_form').serializeArray();
-            var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
-            var parse_group_attributes = $.parseJSON(sessionStorage.getItem('group_attributes'));
             var jsdata = new JsData();
+            var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
 
             //Если значение группы атрибутов добавляется
             if (sessionStorage.getItem('group_attribute_action') === 'add') {
-                var parse_group_attributes_add = jsdata.add(group_attributes_bank, parse_group_attributes);
+                var parse_attributes_add = jsdata.add(group_attributes_bank, parse_attributes);
 
-                sessionStorage.setItem('group_attributes', JSON.stringify(parse_group_attributes_add));
-                GroupAttributes.add(lang, parse_group_attributes_add);
+                sessionStorage.setItem('attributes', JSON.stringify(parse_attributes_add));
+                var parse_attributes_view = jsdata.selectParentUids('false', $.parseJSON(sessionStorage.getItem('attributes')));
+                GroupAttributes.add(lang, parse_attributes_view);
             }
 
             //Если значение группы атрибутов редактируется
             if (sessionStorage.getItem('group_attribute_action') === 'edit') {
                 var group_id = sessionStorage.getItem('edit_group_attribute_id');
-                var parse_group_attributes_edit = jsdata.editUid(group_id, parse_group_attributes, group_attributes_bank);
-                sessionStorage.setItem('group_attributes', JSON.stringify(parse_group_attributes_edit));
-                GroupAttributes.add(lang, parse_group_attributes_edit);
+                var parse_attributes_edit = jsdata.editUid(group_id, parse_attributes, group_attributes_bank);
+                sessionStorage.setItem('attributes', JSON.stringify(parse_attributes_edit));
+                var parse_attributes_view = jsdata.selectParentUids('false', $.parseJSON(sessionStorage.getItem('attributes')));
+                GroupAttributes.add(lang, parse_attributes_view);
             }
 
         });
@@ -133,7 +135,7 @@ class GroupAttributes {
      * @param value {String} (значение строки)
      * @param lang {Array} (Языковые переменные)
      */
-    static addGroupAttribute(id, value, lang) {
+    static addValue(id, value, lang) {
         $('.group-attributes').prepend(
                 '<tr class="groupattributes" id="groupattributes_' + id + '">' +
                 '<td class="sortyes-group sortleft-m"><div><span class="glyphicon glyphicon-move"> </span></div></td>' +
@@ -153,27 +155,21 @@ class GroupAttributes {
      * @param lang {Array} (Языковые переменные)
      *
      */
-    static deleteGroupAttribute(lang) {
+    static deleteValue(lang) {
         $('.delete-group-attribute').confirmation({
             onConfirm: function (event) {
                 $(this).closest('tr').remove();
 
-                var parse_group_attributes = $.parseJSON(sessionStorage.getItem('group_attributes'));
                 var jsdata = new JsData();
+                var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
 
-                var parse_group_attributes_delete = jsdata.deleteUid($(this).closest('tr').attr('id').split('_')[1], parse_group_attributes);
+                var parse_attributes_delete = jsdata.deleteUid($(this).closest('tr').attr('id').split('_')[1], parse_attributes);
+                sessionStorage.setItem('attributes', JSON.stringify(parse_attributes_delete));
 
-                sessionStorage.setItem('group_attributes', JSON.stringify(parse_group_attributes_delete));
-
-                if ($.parseJSON(sessionStorage.getItem('attributes')) !== undefined) {
-                    var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
-                    parse_attributes.splice($(this).closest('tr').attr('id').split('_')[1] - 1, 1);
-                    sessionStorage.setItem('attributes', JSON.stringify(parse_attributes));
-                }
-
-                GroupAttributes.add(lang, parse_group_attributes_delete);
+                var parse_attributes_add = jsdata.selectParentUids('false', $.parseJSON(sessionStorage.getItem('attributes')));
+                GroupAttributes.add(lang, parse_attributes_add);
                 // Загружаем удаление группы атрибутов
-                GroupAttributes.deleteGroupAttribute(lang);
+                GroupAttributes.deleteValue(lang);
             }
         });
     }
@@ -184,18 +180,21 @@ class GroupAttributes {
      * @param lang {Array} (Языковые переменные)
      *
      */
-    static sortGroupAttributes(lang) {
+    static sort(lang) {
         var sortedIDs = $(".group-attributes").sortable("toArray").reverse();
 
-        var parse_group_attributes = $.parseJSON(sessionStorage.getItem('group_attributes'));
-
         var jsdata = new JsData();
-        var sort = jsdata.sortToListUid(sortedIDs, parse_group_attributes);
+        var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
+        var parse_attributes_sort = jsdata.selectParentUids('false', $.parseJSON(sessionStorage.getItem('attributes')));
+        var sort = jsdata.sortToListUid(sortedIDs, parse_attributes_sort);
 
-        sessionStorage.setItem('group_attributes', JSON.stringify(sort));
+        var sorted = jsdata.replaceUids(sort, parse_attributes);
 
-        GroupAttributes.add(lang, sort);
-        GroupAttributes.deleteGroupAttribute(lang);
+        sessionStorage.setItem('attributes', JSON.stringify(sorted));
+        var parse_attributes_add = jsdata.selectParentUids('false', $.parseJSON(sessionStorage.getItem('attributes')));
+
+        GroupAttributes.add(lang, parse_attributes_add);
+        GroupAttributes.deleteValue(lang);
     }
 
     /**
@@ -208,12 +207,13 @@ class GroupAttributes {
     static add(lang, parse) {
 
         var jsdata = new JsData();
-        var parse_group_attributes_sort = jsdata.sort(parse);
+        var parse_attributes_sort = jsdata.sort(parse);
 
         $('.group-attributes').empty();
-        for (var x = 0; x < parse.length; x++) {
-            GroupAttributes.addGroupAttribute(parse_group_attributes_sort[x][2]['uid'], parse_group_attributes_sort[x][0]['value'], lang);
-        }
+        parse.forEach((string, index) => {
+            var sort_id = string.length - 1;
+            GroupAttributes.addValue(parse_attributes_sort[index][sort_id].uid, parse_attributes_sort[index][0].value, lang);
+        });
     }
 
     /**

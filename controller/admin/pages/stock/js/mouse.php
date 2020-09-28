@@ -44,13 +44,13 @@
                         sortList();
                     }
                     if (id === '.group-attributes') {
-                        GroupAttributes.sortGroupAttributes(lang);
+                        GroupAttributes.sort(lang);
                     }
                     if (id === '.attribute') {
-                        Attributes.sortAttributes(lang);
+                        Attributes.sort(lang);
                     }
                     if (id === '.values_attribute') {
-                        ValuesAttribute.sortValueAttributes(lang);
+                        ValuesAttribute.sort(lang);
                     }
                 }
             });

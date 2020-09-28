@@ -177,16 +177,10 @@ final class Eac {
             } else {
                 $attributes = json_encode([]);
             }
-            
-            if (\eMarket\Valid::inPOST('group_attributes')) {
-                $group_attributes = \eMarket\Valid::inPOST('group_attributes');
-            } else {
-                $group_attributes = json_encode([]);
-            }
 
             // добавляем запись для всех вкладок
             for ($x = 0; $x < $LANG_COUNT; $x++) {
-                \eMarket\Pdo::inPrepare("INSERT INTO " . $TABLE_CATEGORIES . " SET id=?, name=?, sort_category=?, language=?, parent_id=?, date_added=?, status=?, attributes=?, group_attributes=?", [$id, \eMarket\Valid::inPOST('name_categories_stock_' . $x), $sort_category, lang('#lang_all')[$x], $parent_id, date("Y-m-d H:i:s"), $view_cat, $attributes, $group_attributes]);
+                \eMarket\Pdo::inPrepare("INSERT INTO " . $TABLE_CATEGORIES . " SET id=?, name=?, sort_category=?, language=?, parent_id=?, date_added=?, status=?, attributes=?", [$id, \eMarket\Valid::inPOST('name_categories_stock_' . $x), $sort_category, lang('#lang_all')[$x], $parent_id, date("Y-m-d H:i:s"), $view_cat, $attributes]);
             }
             // Выводим сообщение об успехе
             $_SESSION['message'] = ['success', lang('action_completed_successfully')];
@@ -205,7 +199,7 @@ final class Eac {
 
             for ($x = 0; $x < $LANG_COUNT; $x++) {
                 // обновляем запись
-                \eMarket\Pdo::inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET name=?, last_modified=?, attributes=?, group_attributes=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_categories_stock_' . $x), date("Y-m-d H:i:s"), \eMarket\Valid::inPOST('attributes'), \eMarket\Valid::inPOST('group_attributes'), \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
+                \eMarket\Pdo::inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET name=?, last_modified=?, attributes=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_categories_stock_' . $x), date("Y-m-d H:i:s"), \eMarket\Valid::inPOST('attributes'), \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
             }
             // Выводим сообщение об успехе
             $_SESSION['message'] = ['success', lang('action_completed_successfully')];

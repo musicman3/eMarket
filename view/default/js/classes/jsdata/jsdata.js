@@ -21,19 +21,22 @@ class JsData {
      *
      */
     add(data, array, parent = null) {
+        var jsdata = new JsData();
 
-        if (array.length === 0) {
+        if (parent === null) {
+            parent = 'false';
+        }
+
+        var array_length = jsdata.selectParentUids(parent, array).length;
+
+        if (array_length === 0) {
             var sort_number = 0;
         } else {
-            var sort_number = array.length;
+            var sort_number = array_length;
         }
 
         var randomizer = new Randomizer();
-        if (parent === null) {
-            data.push({uid: randomizer.uid(24), sort: sort_number, parent: 'false'});
-        } else {
-            data.push({uid: randomizer.uid(24), sort: sort_number, parent: parent});
-        }
+        data.push({uid: randomizer.uid(24), sort: sort_number, parent: parent});
         array.push(data);
 
         return array;
@@ -47,24 +50,23 @@ class JsData {
      *
      */
     sort(input) {
-
         var sort_helper = [];
         var output = [];
 
-        for (var x = 0; x < input.length; x++) {
-            var sort_id = input[x].length - 1;
-            sort_helper.push({id: x, sort: Number(input[x][sort_id]['sort'])});
-        }
+        input.forEach((string, index) => {
+            var sort_id = string.length - 1;
+            sort_helper.push({id: index, sort: string[sort_id].sort});
+        });
 
         sort_helper.sort(function (a, b) {
             return a.sort - b.sort;
         });
 
-        for (var x = 0; x < input.length; x++) {
-            var sort_id = input[x].length - 1;
-            input[sort_helper[x]['id']][sort_id]['sort'] = x;
-            output.push(input[sort_helper[x]['id']]);
-        }
+        input.forEach((string, index) => {
+            var sort_id = string.length - 1;
+            input[sort_helper[index].id][sort_id].sort = index;
+            output.push(input[sort_helper[index].id]);
+        });
 
         return output;
     }
@@ -80,13 +82,26 @@ class JsData {
     deleteUid(uid, array) {
         var jsdata = new JsData();
 
-        for (var x = 0; x < array.length; x++) {
-            var sort_id = array[x].length - 1;
-            if (array[x][sort_id]['uid'] === uid) {
-                array.splice(x, 1);
+        array.forEach((string, index) => {
+            var data = string.length - 1;
+            if (string[data].uid === uid) {
+                array.splice(index, 1);
+                var parent_uids = jsdata.selectParentUids(string[data].parent, array);
+                var parent_uids_sort = jsdata.sort(parent_uids);
+                array = jsdata.replaceUids(parent_uids_sort, array);
+                parent_uids = jsdata.buildTree(array, uid);
+
+                parent_uids.forEach((item) => {
+                    array.forEach((item_parent, index) => {
+                        var data = item_parent.length - 1;
+                        if (item_parent[data].uid === item) {
+                            array.splice(index, 1);
+                        }
+                    });
+                });
             }
-        }
-        return jsdata.sort(array);
+        });
+        return array;
     }
 
     /**
@@ -100,14 +115,14 @@ class JsData {
      */
     editUid(uid, array, data) {
 
-        for (var x = 0; x < array.length; x++) {
-            var sort_id = array[x].length - 1;
-            if (array[x][sort_id]['uid'] === uid) {
-                var temp_data = array[x][sort_id];
+        array.forEach((string, index) => {
+            var sort_id = string.length - 1;
+            if (string[sort_id].uid === uid) {
+                var temp_data = string[sort_id];
                 data.push(temp_data);
-                array[x] = data;
+                array[index] = data;
             }
-        }
+        });
         return array;
     }
 
@@ -116,27 +131,68 @@ class JsData {
      * 
      * @param uid {String} (uid для выбора)
      * @param array {Array} (Входной массив)
-     * @param flag {String} (флаг для возврата id в массиве)
+     * @param flag {String} (флаг)
      * @returns {Array}
      *
      */
     selectUid(uid, array, flag = null) {
-
-        for (var x = 0; x < array.length; x++) {
-            var sort_id = array[x].length - 1;
-            if (array[x][sort_id]['uid'] === uid) {
-                if (flag === null) {
-                    return array[x];
-                } else {
-                    return x;
+        var string = null;
+        
+        array.forEach((item, index) => {
+            var sort_id = item.length - 1;
+            if (item[sort_id].uid === uid) {
+                string = item;
+                if (flag !== null) {
+                    string = index;
                 }
             }
-        }
-        return null;
+        });
+        return string;
     }
 
     /**
-     * Выбор строки из массива по uid
+     * Выбор строк из массива по parent
+     * 
+     * @param parent {String} (parent для выбора)
+     * @param array {Array} (Входной массив)
+     * @returns {Array}
+     *
+     */
+    selectParentUids(parent, array) {
+        var output = [];
+        
+        array.forEach((string) => {
+            var sort_id = string.length - 1;
+            if (string[sort_id].parent === parent) {
+                output.push(string);
+            }
+        });
+        return output;
+    }
+
+    /**
+     * Замена строк из массива по uids
+     * 
+     * @param uids_array {String} (Новый массив для замены)
+     * @param array {Array} (Входной массив)
+     * @returns {Array}
+     *
+     */
+    replaceUids(uids_array, array) {
+
+        array.forEach((string, index) => {
+            var sort_id = string.length - 1;
+             uids_array.forEach((item) => {
+                if (string[sort_id].uid === item[sort_id].uid) {
+                    array[index] = item;
+                }
+            });
+        });
+        return array;
+    }
+
+    /**
+     * Сортировка по указанному списку uids
      * 
      * @param uids {Array} (uids для выбора)
      * @param array {Array} (Входной массив)
@@ -144,15 +200,43 @@ class JsData {
      *
      */
     sortToListUid(uids, array) {
-
         var jsdata = new JsData();
         var output = array;
-        for (var x = 0; x < uids.length; x++) {
-            var sort_id = array[x].length - 1;
-            var id = jsdata.selectUid(uids[x].split('_')[1], array, 'true');
-            output[id][sort_id]['sort'] = x;
-        }
+        
+        uids.forEach((item, index) => {
+            var sort_id = array[index].length - 1;
+            var id = jsdata.selectUid(item.split('_')[1], array, 'true');
+            output[id][sort_id].sort = index;
+        });
         return output;
+    }
+
+    /**
+     * Построение дерева по parent
+     * 
+     * @param array {Array} (Входной массив)
+     * @param parent {String} (parent)
+     * @returns {Array}
+     *
+     */
+    buildTree(array, parent) {
+        parent = parent || null;
+        let result = [];
+        var jsdata = new JsData();
+
+        array.forEach((item) => {
+            var sort_id = item.length - 1;
+            if (item[sort_id].parent === parent) {
+                result.push(item[sort_id].uid);
+                item[sort_id].children = jsdata.buildTree(array, item[sort_id].id);
+
+                if (!item[sort_id].children.length) {
+                    delete item[sort_id].children;
+                }
+            }
+        });
+
+        return result;
     }
 
 }

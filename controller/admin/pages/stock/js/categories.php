@@ -9,7 +9,6 @@
 <script type="text/javascript">
     function callAdd() {
         $('#attributes').val(sessionStorage.getItem('attributes'));
-        $('#group_attributes').val(sessionStorage.getItem('group_attributes'));
 
         var msg = $('#form_add').serialize();
         // Установка синхронного запроса для jQuery.ajax
@@ -23,7 +22,6 @@
                 GroupAttributes.clearAttributes();
                 sessionStorage.removeItem('attributes');
                 sessionStorage.removeItem('group_attribute_id');
-                sessionStorage.removeItem('group_attributes');
                 sessionStorage.removeItem('group_attribute_action');
                 sessionStorage.removeItem('edit_group_attribute_id');
             }

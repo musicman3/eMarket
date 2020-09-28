@@ -190,7 +190,6 @@
                             getImageToEdit(logo_general_edit, logo_edit, modal_id);
                             // Подгружаем атрибуты
                             sessionStorage.setItem('attributes', JSON.stringify(attributes_edit[modal_id]));
-                            sessionStorage.setItem('group_attributes', JSON.stringify(group_attributes_edit[modal_id]));
                             sessionStorage.setItem('attribute_action', 'add');
                             sessionStorage.setItem('value_attribute_flag', '0');
                             // Открываем модальное окно
