@@ -192,9 +192,7 @@
                             sessionStorage.setItem('attributes', JSON.stringify(attributes_edit[modal_id]));
                             // Открываем модальное окно
                             $('#index').modal('show');
-
                         }
-
                     }
                 },
 
