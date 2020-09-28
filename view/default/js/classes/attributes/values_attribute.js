@@ -30,10 +30,7 @@ class ValuesAttribute {
         // Если открыли модал списка в группе атрибутов
         $('#values_attribute').on('show.bs.modal', function (event) {
 
-            if (sessionStorage.getItem('value_attribute_flag') === null) {
-                ValuesAttribute.clearAttributes();
-            }
-            var group_id = sessionStorage.getItem('attribute_id');
+            var group_id = sessionStorage.getItem('level_2');
 
             if (sessionStorage.getItem('attributes') !== null) {
                 var jsdata = new JsData();
@@ -70,19 +67,19 @@ class ValuesAttribute {
         // Если открыли модал добавления значения атрибута
         $(document).on('click', '.add-values-attribute', function () {
             $('#add_values_attribute').modal('show');
-            sessionStorage.setItem('value_attribute_action', 'add');
+            sessionStorage.setItem('action', 'add');
         });
 
         // Редактируем значения атрибута
         $(document).on('click', '.edit-value-attribute', function () {
             var id = $(this).closest('tr').attr('id').split('_')[1];
-            var group_id = sessionStorage.getItem('attribute_id');
+            var group_id = sessionStorage.getItem('level_2');
             var jsdata = new JsData();
             var parse_attributes = jsdata.selectParentUids(group_id, $.parseJSON(sessionStorage.getItem('attributes')));
             var group_string = jsdata.selectUid(id, parse_attributes);
 
-            sessionStorage.setItem('value_attribute_action', 'edit');
-            sessionStorage.setItem('edit_value_attribute_id', id);
+            sessionStorage.setItem('action', 'edit');
+            sessionStorage.setItem('level_3', id);
 
             $('#add_values_attribute').modal('show');
 
@@ -98,12 +95,12 @@ class ValuesAttribute {
             $('#add_values_attribute').modal('hide');
 
             var attributes_bank = $('#add_values_attribute_form').serializeArray();
-            var group_id = sessionStorage.getItem('attribute_id');
+            var group_id = sessionStorage.getItem('level_2');
             var jsdata = new JsData();
             var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
 
             //Если атрибут добавляется
-            if (sessionStorage.getItem('value_attribute_action') === 'add') {
+            if (sessionStorage.getItem('action') === 'add') {
 
                 var parse_attributes_add = jsdata.add(attributes_bank, parse_attributes, group_id);
 
@@ -113,9 +110,9 @@ class ValuesAttribute {
             }
 
             //Если атрибут редактируется
-            if (sessionStorage.getItem('value_attribute_action') === 'edit') {
+            if (sessionStorage.getItem('action') === 'edit') {
 
-                var id = sessionStorage.getItem('edit_value_attribute_id');
+                var id = sessionStorage.getItem('level_3');
 
                 var parse_attributes_edit = jsdata.editUid(id, parse_attributes, attributes_bank);
                 sessionStorage.setItem('attributes', JSON.stringify(parse_attributes_edit));
@@ -161,7 +158,7 @@ class ValuesAttribute {
                 $(this).closest('tr').remove();
 
                 var jsdata = new JsData();
-                var group_id = sessionStorage.getItem('attribute_id');
+                var group_id = sessionStorage.getItem('level_2');
                 var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
 
                 var parse_attributes_delete = jsdata.deleteUid($(this).closest('tr').attr('id').split('_')[1], parse_attributes);
@@ -183,7 +180,7 @@ class ValuesAttribute {
     static sort(lang) {
         var sortedIDs = $(".values_attribute").sortable("toArray").reverse();
 
-        var group_id = sessionStorage.getItem('attribute_id');
+        var group_id = sessionStorage.getItem('level_2');
         var jsdata = new JsData();
         var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
         var parse_attributes_sort = jsdata.selectParentUids(group_id, $.parseJSON(sessionStorage.getItem('attributes')));

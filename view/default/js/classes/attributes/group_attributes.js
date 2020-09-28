@@ -45,10 +45,6 @@ class GroupAttributes {
         $('#index').on('hidden.bs.modal', function (event) {
             $('.group-attributes').empty();
             GroupAttributes.clearAttributes();
-            sessionStorage.removeItem('attributes');
-            sessionStorage.removeItem('group_attribute_id');
-            sessionStorage.removeItem('group_attribute_action');
-            sessionStorage.removeItem('edit_group_attribute_id');
         });
 
         // Если закрыли добавление группы атрибутов
@@ -70,7 +66,7 @@ class GroupAttributes {
             var jsdata = new JsData();
             var parse_attributes = jsdata.selectParentUids('false', $.parseJSON(sessionStorage.getItem('attributes')));
             var group_id = $(this).closest('tr').attr('id').split('_')[1];
-            sessionStorage.setItem('group_attribute_id', group_id);
+            sessionStorage.setItem('level_1', group_id);
 
             $('#attribute').modal('show');
             $('#title_attribute').html('Группа атрибутов: ' + jsdata.selectUid(group_id, parse_attributes)[0]['value']);
@@ -80,7 +76,7 @@ class GroupAttributes {
         // Добавляем группу атрибутов
         $(document).on('click', '.add-group-attributes', function () {
             $('#add_group_attributes').modal('show');
-            sessionStorage.setItem('group_attribute_action', 'add');
+            sessionStorage.setItem('action', 'add');
         });
 
         // Редактируем группу атрибутов
@@ -90,8 +86,8 @@ class GroupAttributes {
             var group_id = $(this).closest('tr').attr('id').split('_')[1];
             var group_string = jsdata.selectUid(group_id, parse_attributes);
 
-            sessionStorage.setItem('edit_group_attribute_id', group_id);
-            sessionStorage.setItem('group_attribute_action', 'edit');
+            sessionStorage.setItem('edit_level_1', group_id);
+            sessionStorage.setItem('action', 'edit');
 
             $('#add_group_attributes').modal('show');
 
@@ -108,7 +104,7 @@ class GroupAttributes {
             var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
 
             //Если значение группы атрибутов добавляется
-            if (sessionStorage.getItem('group_attribute_action') === 'add') {
+            if (sessionStorage.getItem('action') === 'add') {
                 var parse_attributes_add = jsdata.add(group_attributes_bank, parse_attributes);
 
                 sessionStorage.setItem('attributes', JSON.stringify(parse_attributes_add));
@@ -117,8 +113,8 @@ class GroupAttributes {
             }
 
             //Если значение группы атрибутов редактируется
-            if (sessionStorage.getItem('group_attribute_action') === 'edit') {
-                var group_id = sessionStorage.getItem('edit_group_attribute_id');
+            if (sessionStorage.getItem('action') === 'edit') {
+                var group_id = sessionStorage.getItem('edit_level_1');
                 var parse_attributes_edit = jsdata.editUid(group_id, parse_attributes, group_attributes_bank);
                 sessionStorage.setItem('attributes', JSON.stringify(parse_attributes_edit));
                 var parse_attributes_view = jsdata.selectParentUids('false', $.parseJSON(sessionStorage.getItem('attributes')));
@@ -182,16 +178,17 @@ class GroupAttributes {
      */
     static sort(lang) {
         var sortedIDs = $(".group-attributes").sortable("toArray").reverse();
-
+        
+        var group_id = 'false';
         var jsdata = new JsData();
         var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
-        var parse_attributes_sort = jsdata.selectParentUids('false', $.parseJSON(sessionStorage.getItem('attributes')));
+        var parse_attributes_sort = jsdata.selectParentUids(group_id, $.parseJSON(sessionStorage.getItem('attributes')));
         var sort = jsdata.sortToListUid(sortedIDs, parse_attributes_sort);
 
         var sorted = jsdata.replaceUids(sort, parse_attributes);
 
         sessionStorage.setItem('attributes', JSON.stringify(sorted));
-        var parse_attributes_add = jsdata.selectParentUids('false', $.parseJSON(sessionStorage.getItem('attributes')));
+        var parse_attributes_add = jsdata.selectParentUids(group_id, $.parseJSON(sessionStorage.getItem('attributes')));
 
         GroupAttributes.add(lang, parse_attributes_add);
         GroupAttributes.deleteValue(lang);
@@ -221,12 +218,15 @@ class GroupAttributes {
      *
      */
     static clearAttributes() {
-        ['attribute_action',
-            'edit_attribute_id',
+        ['edit_attribute_id',
             'edit_value_attribute_id',
             'value_attribute_action',
             'value_attribute_action_id',
-            'value_attribute_flag'
+            'value_attribute_flag',
+            'attributes',
+            'level_1',
+            'level_2',
+            'action'
         ].forEach((item) => sessionStorage.removeItem(item));
     }
 }
