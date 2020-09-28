@@ -86,7 +86,7 @@ class GroupAttributes {
             var group_id = $(this).closest('tr').attr('id').split('_')[1];
             var group_string = jsdata.selectUid(group_id, parse_attributes);
 
-            sessionStorage.setItem('edit_level_1', group_id);
+            sessionStorage.setItem('level_1', group_id);
             sessionStorage.setItem('action', 'edit');
 
             $('#add_group_attributes').modal('show');
@@ -114,7 +114,7 @@ class GroupAttributes {
 
             //Если значение группы атрибутов редактируется
             if (sessionStorage.getItem('action') === 'edit') {
-                var group_id = sessionStorage.getItem('edit_level_1');
+                var group_id = sessionStorage.getItem('level_1');
                 var parse_attributes_edit = jsdata.editUid(group_id, parse_attributes, group_attributes_bank);
                 sessionStorage.setItem('attributes', JSON.stringify(parse_attributes_edit));
                 var parse_attributes_view = jsdata.selectParentUids('false', $.parseJSON(sessionStorage.getItem('attributes')));
@@ -218,12 +218,7 @@ class GroupAttributes {
      *
      */
     static clearAttributes() {
-        ['edit_attribute_id',
-            'edit_value_attribute_id',
-            'value_attribute_action',
-            'value_attribute_action_id',
-            'value_attribute_flag',
-            'attributes',
+        ['attributes',
             'level_1',
             'level_2',
             'level_3',

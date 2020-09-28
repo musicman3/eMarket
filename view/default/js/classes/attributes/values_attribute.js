@@ -46,7 +46,6 @@ class ValuesAttribute {
         // Если закрыли модал списка значений атрибута
         $('#values_attribute').on('hidden.bs.modal', function (event) {
             $('.values_attribute').empty();
-            sessionStorage.setItem('value_attribute_flag', '0');
         });
 
         // Если закрыли модал добавления значения атрибута

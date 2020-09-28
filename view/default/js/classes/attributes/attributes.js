@@ -89,7 +89,7 @@ class Attributes {
             var group_string = jsdata.selectUid(id, parse_attributes);
 
             sessionStorage.setItem('action', 'edit');
-            sessionStorage.setItem('edit_attribute_id', id);
+            sessionStorage.setItem('level_2', id);
 
             $('#add_attribute').modal('show');
 
@@ -114,7 +114,6 @@ class Attributes {
                 var parse_attributes_add = jsdata.add(attributes_bank, parse_attributes, group_id);
 
                 sessionStorage.setItem('attributes', JSON.stringify(parse_attributes_add));
-                sessionStorage.setItem('value_attribute_flag', '0');
                 var parse_attributes_view = jsdata.selectParentUids(group_id, $.parseJSON(sessionStorage.getItem('attributes')));
                 Attributes.add(lang, parse_attributes_view);
             }
@@ -122,7 +121,7 @@ class Attributes {
             //Если атрибут редактируется
             if (sessionStorage.getItem('action') === 'edit') {
 
-                var id = sessionStorage.getItem('edit_attribute_id');
+                var id = sessionStorage.getItem('level_2');
 
                 var parse_attributes_edit = jsdata.editUid(id, parse_attributes, attributes_bank);
                 sessionStorage.setItem('attributes', JSON.stringify(parse_attributes_edit));
