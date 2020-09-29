@@ -20,12 +20,8 @@ class JsData {
      * @returns {Array}
      *
      */
-    add(data, array, parent = null) {
+    add(data, array, parent) {
         var jsdata = new JsData();
-
-        if (parent === null) {
-            parent = 'false';
-        }
 
         var array_length = jsdata.selectParentUids(parent, array).length;
 

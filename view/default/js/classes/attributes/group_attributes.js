@@ -89,28 +89,29 @@ class GroupAttributes {
         // Сохраняем значение группы атрибутов
         $(document).on('click', '#save_group_attributes_button', function () {
             $('#add_group_attributes').modal('hide');
+            
             var attributes_bank = $('#group_attributes_add_form').serializeArray();
+            var data_id = 'false';
             var jsdata = new JsData();
             var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
 
-            //Если значение группы атрибутов добавляется
             if (sessionStorage.getItem('action') === 'add') {
-                var parse_attributes_add = jsdata.add(attributes_bank, parse_attributes);
+                var parse_attributes_add = jsdata.add(attributes_bank, parse_attributes, data_id);
 
                 sessionStorage.setItem('attributes', JSON.stringify(parse_attributes_add));
-                var parse_attributes_view = jsdata.selectParentUids('false', $.parseJSON(sessionStorage.getItem('attributes')));
+                var parse_attributes_view = jsdata.selectParentUids(data_id, $.parseJSON(sessionStorage.getItem('attributes')));
                 GroupAttributes.add(lang, parse_attributes_view);
             }
 
-            //Если значение группы атрибутов редактируется
             if (sessionStorage.getItem('action') === 'edit') {
-                var data_id = sessionStorage.getItem('level_1');
-                var parse_attributes_edit = jsdata.editUid(data_id, parse_attributes, attributes_bank);
+                var id = sessionStorage.getItem('level_1');
+                var parse_attributes_edit = jsdata.editUid(id, parse_attributes, attributes_bank);
                 sessionStorage.setItem('attributes', JSON.stringify(parse_attributes_edit));
-                var parse_attributes_view = jsdata.selectParentUids('false', $.parseJSON(sessionStorage.getItem('attributes')));
+                var parse_attributes_view = jsdata.selectParentUids(data_id, $.parseJSON(sessionStorage.getItem('attributes')));
                 GroupAttributes.add(lang, parse_attributes_view);
             }
-
+            
+            $('.input-add-group-attributes').val('');
         });
     }
 

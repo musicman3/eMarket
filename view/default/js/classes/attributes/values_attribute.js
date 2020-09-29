@@ -79,7 +79,6 @@ class ValuesAttribute {
 
         // Сохраняем значение атрибута
         $(document).on('click', '#save_add_values_attribute', function () {
-
             $('#add_values_attribute').modal('hide');
 
             var attributes_bank = $('#add_values_attribute_form').serializeArray();
@@ -87,9 +86,7 @@ class ValuesAttribute {
             var jsdata = new JsData();
             var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
 
-            //Если атрибут добавляется
             if (sessionStorage.getItem('action') === 'add') {
-
                 var parse_attributes_add = jsdata.add(attributes_bank, parse_attributes, data_id);
 
                 sessionStorage.setItem('attributes', JSON.stringify(parse_attributes_add));
@@ -97,11 +94,8 @@ class ValuesAttribute {
                 ValuesAttribute.add(lang, parse_attributes_view);
             }
 
-            //Если атрибут редактируется
             if (sessionStorage.getItem('action') === 'edit') {
-
                 var id = sessionStorage.getItem('level_3');
-
                 var parse_attributes_edit = jsdata.editUid(id, parse_attributes, attributes_bank);
                 sessionStorage.setItem('attributes', JSON.stringify(parse_attributes_edit));
                 var parse_attributes_view = jsdata.selectParentUids(data_id, $.parseJSON(sessionStorage.getItem('attributes')));
@@ -109,7 +103,6 @@ class ValuesAttribute {
             }
 
             $('.input-add-values-attribute').val('');
-           
         });
 
     }
