@@ -54,8 +54,8 @@ class JsData {
         var output = [];
 
         input.forEach((string, index) => {
-            var sort_id = string.length - 1;
-            sort_helper.push({id: index, sort: string[sort_id].sort});
+            var data_id = string.length - 1;
+            sort_helper.push({id: index, sort: string[data_id].sort});
         });
 
         sort_helper.sort(function (a, b) {
@@ -63,8 +63,8 @@ class JsData {
         });
 
         input.forEach((string, index) => {
-            var sort_id = string.length - 1;
-            input[sort_helper[index].id][sort_id].sort = index;
+            var data_id = string.length - 1;
+            input[sort_helper[index].id][data_id].sort = index;
             output.push(input[sort_helper[index].id]);
         });
 
@@ -116,9 +116,9 @@ class JsData {
     editUid(uid, array, data) {
 
         array.forEach((string, index) => {
-            var sort_id = string.length - 1;
-            if (string[sort_id].uid === uid) {
-                var temp_data = string[sort_id];
+            var data_id = string.length - 1;
+            if (string[data_id].uid === uid) {
+                var temp_data = string[data_id];
                 data.push(temp_data);
                 array[index] = data;
             }
@@ -139,8 +139,8 @@ class JsData {
         var string = null;
 
         array.forEach((item, index) => {
-            var sort_id = item.length - 1;
-            if (item[sort_id].uid === uid) {
+            var data_id = item.length - 1;
+            if (item[data_id].uid === uid) {
                 string = item;
                 if (flag !== null) {
                     string = index;
@@ -162,8 +162,8 @@ class JsData {
         var output = [];
 
         array.forEach((string) => {
-            var sort_id = string.length - 1;
-            if (string[sort_id].parent === parent) {
+            var data_id = string.length - 1;
+            if (string[data_id].parent === parent) {
                 output.push(string);
             }
         });
@@ -181,9 +181,9 @@ class JsData {
     replaceUids(uids_array, array) {
 
         array.forEach((string, index) => {
-            var sort_id = string.length - 1;
+            var data_id = string.length - 1;
             uids_array.forEach((item) => {
-                if (string[sort_id].uid === item[sort_id].uid) {
+                if (string[data_id].uid === item[data_id].uid) {
                     array[index] = item;
                 }
             });
@@ -204,9 +204,9 @@ class JsData {
         var output = array;
 
         uids.forEach((item, index) => {
-            var sort_id = array[index].length - 1;
+            var data_id = array[index].length - 1;
             var id = jsdata.selectUid(item.split('_')[1], array, 'true');
-            output[id][sort_id].sort = index;
+            output[id][data_id].sort = index;
         });
         return output;
     }
@@ -225,10 +225,10 @@ class JsData {
         var jsdata = new JsData();
 
         array.forEach((item) => {
-            var sort_id = item.length - 1;
-            if (item[sort_id].parent === uid) {
-                result.push(item[sort_id].uid);
-                var recursive = jsdata.buildTree(array, item[sort_id].uid);
+            var data_id = item.length - 1;
+            if (item[data_id].parent === uid) {
+                result.push(item[data_id].uid);
+                var recursive = jsdata.buildTree(array, item[data_id].uid);
                 recursive.forEach((rec) => {
                     result.push(rec);
                 });
