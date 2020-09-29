@@ -30,14 +30,11 @@ class Attributes {
         // Если открыли модал списка в группе атрибутов
         $('#attribute').on('show.bs.modal', function (event) {
 
+            var jsdata = new JsData();
             var data_id = sessionStorage.getItem('level_1');
+            var parse_attributes = jsdata.selectParentUids(data_id, $.parseJSON(sessionStorage.getItem('attributes')));
 
-            if (sessionStorage.getItem('attributes') !== null) {
-                var jsdata = new JsData();
-                var parse_attributes = jsdata.selectParentUids(data_id, $.parseJSON(sessionStorage.getItem('attributes')));
-
-                Attributes.add(lang, parse_attributes);
-            }
+            Attributes.add(lang, parse_attributes);
             // Загружаем удаление атрибута
             Attributes.deleteValue(lang);
 
@@ -72,7 +69,7 @@ class Attributes {
             $('#values_attribute').modal('show');
             $('#title_values_attribute').html('Значение группы атрибутов: ' + jsdata.selectUid(data_id, parse_attributes)[0]['value']);
         });
-        
+
         // Добавляем атрибут
         $(document).on('click', '.add-attribute', function () {
             sessionStorage.setItem('action', 'add');

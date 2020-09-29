@@ -29,14 +29,12 @@ class GroupAttributes {
 
         // Если открыли главный модал
         $('#index').on('show.bs.modal', function (event) {
-            var jsdata = new JsData();
 
-            if (sessionStorage.getItem('attributes') !== null) {
-                var parse_attributes = jsdata.selectParentUids('false', $.parseJSON(sessionStorage.getItem('attributes')));
-                GroupAttributes.add(lang, parse_attributes);
-            } else {
-                sessionStorage.setItem('attributes', JSON.stringify([]));
-            }
+            var jsdata = new JsData();
+            var data_id = 'false';
+            var parse_attributes = jsdata.selectParentUids(data_id, $.parseJSON(sessionStorage.getItem('attributes')));
+            
+            GroupAttributes.add(lang, parse_attributes);
             // Загружаем удаление группы атрибутов
             GroupAttributes.deleteValue(lang);
         });
@@ -89,7 +87,7 @@ class GroupAttributes {
         // Сохраняем значение группы атрибутов
         $(document).on('click', '#save_group_attributes_button', function () {
             $('#add_group_attributes').modal('hide');
-            
+
             var attributes_bank = $('#group_attributes_add_form').serializeArray();
             var data_id = 'false';
             var jsdata = new JsData();
@@ -110,7 +108,7 @@ class GroupAttributes {
                 var parse_attributes_view = jsdata.selectParentUids(data_id, $.parseJSON(sessionStorage.getItem('attributes')));
                 GroupAttributes.add(lang, parse_attributes_view);
             }
-            
+
             $('.input-add-group-attributes').val('');
         });
     }
@@ -170,7 +168,7 @@ class GroupAttributes {
      */
     static sort(lang) {
         var sortedIDs = $(".group-attributes").sortable("toArray").reverse();
-        
+
         var data_id = 'false';
         var jsdata = new JsData();
         var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));

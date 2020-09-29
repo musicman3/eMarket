@@ -29,15 +29,12 @@ class ValuesAttribute {
 
         // Если открыли модал списка в группе атрибутов
         $('#values_attribute').on('show.bs.modal', function (event) {
-
+            
+            var jsdata = new JsData();
             var data_id = sessionStorage.getItem('level_2');
+            var parse_attributes = jsdata.selectParentUids(data_id, $.parseJSON(sessionStorage.getItem('attributes')));
 
-            if (sessionStorage.getItem('attributes') !== null) {
-                var jsdata = new JsData();
-                var parse_attributes = jsdata.selectParentUids(data_id, $.parseJSON(sessionStorage.getItem('attributes')));
-
-                ValuesAttribute.add(lang, parse_attributes);
-            }
+            ValuesAttribute.add(lang, parse_attributes);
             // Загружаем удаление атрибута
             ValuesAttribute.deleteValue(lang);
 
