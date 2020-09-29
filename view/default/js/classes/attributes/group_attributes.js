@@ -148,12 +148,13 @@ class GroupAttributes {
                 $(this).closest('tr').remove();
 
                 var jsdata = new JsData();
+                var data_id = 'false';
                 var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
 
                 var parse_attributes_delete = jsdata.deleteUid($(this).closest('tr').attr('id').split('_')[1], parse_attributes);
                 sessionStorage.setItem('attributes', JSON.stringify(parse_attributes_delete));
 
-                var parse_attributes_add = jsdata.selectParentUids('false', $.parseJSON(sessionStorage.getItem('attributes')));
+                var parse_attributes_add = jsdata.selectParentUids(data_id, $.parseJSON(sessionStorage.getItem('attributes')));
                 GroupAttributes.add(lang, parse_attributes_add);
                 // Загружаем удаление группы атрибутов
                 GroupAttributes.deleteValue(lang);
