@@ -137,7 +137,7 @@ class JsData {
      */
     selectUid(uid, array, flag = null) {
         var string = null;
-        
+
         array.forEach((item, index) => {
             var sort_id = item.length - 1;
             if (item[sort_id].uid === uid) {
@@ -160,7 +160,7 @@ class JsData {
      */
     selectParentUids(parent, array) {
         var output = [];
-        
+
         array.forEach((string) => {
             var sort_id = string.length - 1;
             if (string[sort_id].parent === parent) {
@@ -182,7 +182,7 @@ class JsData {
 
         array.forEach((string, index) => {
             var sort_id = string.length - 1;
-             uids_array.forEach((item) => {
+            uids_array.forEach((item) => {
                 if (string[sort_id].uid === item[sort_id].uid) {
                     array[index] = item;
                 }
@@ -202,7 +202,7 @@ class JsData {
     sortToListUid(uids, array) {
         var jsdata = new JsData();
         var output = array;
-        
+
         uids.forEach((item, index) => {
             var sort_id = array[index].length - 1;
             var id = jsdata.selectUid(item.split('_')[1], array, 'true');
@@ -215,27 +215,26 @@ class JsData {
      * Построение дерева по parent
      * 
      * @param array {Array} (Входной массив)
-     * @param parent {String} (parent)
+     * @param uid {String} (uid)
      * @returns {Array}
      *
      */
-    buildTree(array, parent) {
-        parent = parent || null;
+    buildTree(array, uid) {
+        uid = uid || null;
         let result = [];
         var jsdata = new JsData();
 
         array.forEach((item) => {
             var sort_id = item.length - 1;
-            if (item[sort_id].parent === parent) {
+            if (item[sort_id].parent === uid) {
                 result.push(item[sort_id].uid);
-                item[sort_id].children = jsdata.buildTree(array, item[sort_id].id);
-
-                if (!item[sort_id].children.length) {
-                    delete item[sort_id].children;
-                }
+                var recursive = jsdata.buildTree(array, item[sort_id].uid);
+                recursive.forEach((rec) => {
+                    result.push(rec);
+                });
             }
         });
-
+       
         return result;
     }
 
