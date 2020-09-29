@@ -97,7 +97,7 @@ class AttributesProcessing {
         var group_attributes_data = $.parseJSON(attributesdata_edit_product['group_attributes']);
         var attributes_data = $.parseJSON(attributesdata_edit_product['attributes']);
         var arr = AttributesProcessing.sortList(group_attributes_data);
-        
+
         for (var x = 0; x < group_attributes_data.length; x++) {
             var arr_id = arr[x]['id'];
             if (marker === null) {
@@ -112,7 +112,7 @@ class AttributesProcessing {
             $('#selected_attributes').val(JSON.stringify(AttributesProcessing.changeData()));
         });
     }
-    
+
     /**
      * Листинг для сортировки
      * 
@@ -125,7 +125,7 @@ class AttributesProcessing {
         var arr = [];
 
         for (var x = 0; x < parse_group_attributes.length; x++) {
-            var sort_id = parse_group_attributes[x].length - 1 ;
+            var sort_id = parse_group_attributes[x].length - 1;
             arr.push({id: x, sort: parse_group_attributes[x][sort_id]['sort'], uid: parse_group_attributes[x][sort_id]['uid']});
         }
 
@@ -134,5 +134,27 @@ class AttributesProcessing {
         });
         return arr;
     }    
+
+    /**
+     * Отображение данных в окне редактирования атрибутов
+     * @param id {String} (id)
+     * @param uid {String} (uid)
+     * @param name {String} (name)
+     * @returns {Array}
+     *
+     */
+    clickEdit(id, uid, name) {
+        var jsdata = new JsData();
+
+        var parse_attributes = jsdata.selectParentUids(uid, $.parseJSON(sessionStorage.getItem('attributes')));
+        var uid_string = jsdata.selectUid(id, parse_attributes);
+
+        sessionStorage.setItem('action', 'edit');
+        sessionStorage.setItem(name, id);
+
+        for (var x = 0; x < uid_string.length - 1; x++) {
+            $('input[name="' + uid_string[x]['name'] + '"]').val(uid_string[x]['value']);
+        }
+    }
 
 }

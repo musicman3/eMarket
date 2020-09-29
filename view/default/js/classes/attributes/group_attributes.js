@@ -73,27 +73,17 @@ class GroupAttributes {
 
         });
 
-        // Добавляем группу атрибутов
+        // Добавляем значение группы атрибутов
         $(document).on('click', '.add-group-attributes', function () {
             $('#add_group_attributes').modal('show');
             sessionStorage.setItem('action', 'add');
         });
 
-        // Редактируем группу атрибутов
+        // Редактируем значение группы атрибутов
         $(document).on('click', '.edit-group-attribute', function () {
-            var jsdata = new JsData();
-            var parse_attributes = jsdata.selectParentUids('false', $.parseJSON(sessionStorage.getItem('attributes')));
-            var data_id = $(this).closest('tr').attr('id').split('_')[1];
-            var group_string = jsdata.selectUid(data_id, parse_attributes);
-
-            sessionStorage.setItem('level_1', data_id);
-            sessionStorage.setItem('action', 'edit');
-
             $('#add_group_attributes').modal('show');
-
-            for (var x = 0; x < group_string.length - 1; x++) {
-                $('input[name="' + group_string[x]['name'] + '"]').val(group_string[x]['value']);
-            }
+            var processing = new AttributesProcessing();
+            processing.clickEdit($(this).closest('tr').attr('id').split('_')[1], 'false', 'level_1');
         });
 
         // Сохраняем значение группы атрибутов

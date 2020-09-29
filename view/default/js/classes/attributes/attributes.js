@@ -82,20 +82,9 @@ class Attributes {
 
         // Редактируем атрибут
         $(document).on('click', '.edit-attribute', function () {
-            var id = $(this).closest('tr').attr('id').split('_')[1];
-            var data_id = sessionStorage.getItem('level_1');
-            var jsdata = new JsData();
-            var parse_attributes = jsdata.selectParentUids(data_id, $.parseJSON(sessionStorage.getItem('attributes')));
-            var group_string = jsdata.selectUid(id, parse_attributes);
-
-            sessionStorage.setItem('action', 'edit');
-            sessionStorage.setItem('level_2', id);
-
             $('#add_attribute').modal('show');
-
-            for (var x = 0; x < group_string.length - 1; x++) {
-                $('input[name="' + group_string[x]['name'] + '"]').val(group_string[x]['value']);
-            }
+            var processing = new AttributesProcessing();
+            processing.clickEdit($(this).closest('tr').attr('id').split('_')[1], sessionStorage.getItem('level_1'), 'level_2');
 
         });
 

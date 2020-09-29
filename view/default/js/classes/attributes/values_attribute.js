@@ -63,7 +63,7 @@ class ValuesAttribute {
      */
     click(lang) {
 
-        // Если открыли модал добавления значения атрибута
+        // Добавляем значение атрибута
         $(document).on('click', '.add-values-attribute', function () {
             $('#add_values_attribute').modal('show');
             sessionStorage.setItem('action', 'add');
@@ -71,20 +71,9 @@ class ValuesAttribute {
 
         // Редактируем значения атрибута
         $(document).on('click', '.edit-value-attribute', function () {
-            var id = $(this).closest('tr').attr('id').split('_')[1];
-            var data_id = sessionStorage.getItem('level_2');
-            var jsdata = new JsData();
-            var parse_attributes = jsdata.selectParentUids(data_id, $.parseJSON(sessionStorage.getItem('attributes')));
-            var group_string = jsdata.selectUid(id, parse_attributes);
-
-            sessionStorage.setItem('action', 'edit');
-            sessionStorage.setItem('level_3', id);
-
             $('#add_values_attribute').modal('show');
-
-            for (var x = 0; x < group_string.length - 1; x++) {
-                $('input[name="' + group_string[x]['name'] + '"]').val(group_string[x]['value']);
-            }
+            var processing = new AttributesProcessing();
+            processing.clickEdit($(this).closest('tr').attr('id').split('_')[1], sessionStorage.getItem('level_2'), 'level_3');
 
         });
 
