@@ -30,11 +30,11 @@ class ValuesAttribute {
         // Если открыли модал списка в группе атрибутов
         $('#values_attribute').on('show.bs.modal', function (event) {
 
-            var group_id = sessionStorage.getItem('level_2');
+            var data_id = sessionStorage.getItem('level_2');
 
             if (sessionStorage.getItem('attributes') !== null) {
                 var jsdata = new JsData();
-                var parse_attributes = jsdata.selectParentUids(group_id, $.parseJSON(sessionStorage.getItem('attributes')));
+                var parse_attributes = jsdata.selectParentUids(data_id, $.parseJSON(sessionStorage.getItem('attributes')));
 
                 ValuesAttribute.add(lang, parse_attributes);
             }
@@ -72,9 +72,9 @@ class ValuesAttribute {
         // Редактируем значения атрибута
         $(document).on('click', '.edit-value-attribute', function () {
             var id = $(this).closest('tr').attr('id').split('_')[1];
-            var group_id = sessionStorage.getItem('level_2');
+            var data_id = sessionStorage.getItem('level_2');
             var jsdata = new JsData();
-            var parse_attributes = jsdata.selectParentUids(group_id, $.parseJSON(sessionStorage.getItem('attributes')));
+            var parse_attributes = jsdata.selectParentUids(data_id, $.parseJSON(sessionStorage.getItem('attributes')));
             var group_string = jsdata.selectUid(id, parse_attributes);
 
             sessionStorage.setItem('action', 'edit');
@@ -94,17 +94,17 @@ class ValuesAttribute {
             $('#add_values_attribute').modal('hide');
 
             var attributes_bank = $('#add_values_attribute_form').serializeArray();
-            var group_id = sessionStorage.getItem('level_2');
+            var data_id = sessionStorage.getItem('level_2');
             var jsdata = new JsData();
             var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
 
             //Если атрибут добавляется
             if (sessionStorage.getItem('action') === 'add') {
 
-                var parse_attributes_add = jsdata.add(attributes_bank, parse_attributes, group_id);
+                var parse_attributes_add = jsdata.add(attributes_bank, parse_attributes, data_id);
 
                 sessionStorage.setItem('attributes', JSON.stringify(parse_attributes_add));
-                var parse_attributes_view = jsdata.selectParentUids(group_id, $.parseJSON(sessionStorage.getItem('attributes')));
+                var parse_attributes_view = jsdata.selectParentUids(data_id, $.parseJSON(sessionStorage.getItem('attributes')));
                 ValuesAttribute.add(lang, parse_attributes_view);
             }
 
@@ -115,7 +115,7 @@ class ValuesAttribute {
 
                 var parse_attributes_edit = jsdata.editUid(id, parse_attributes, attributes_bank);
                 sessionStorage.setItem('attributes', JSON.stringify(parse_attributes_edit));
-                var parse_attributes_view = jsdata.selectParentUids(group_id, $.parseJSON(sessionStorage.getItem('attributes')));
+                var parse_attributes_view = jsdata.selectParentUids(data_id, $.parseJSON(sessionStorage.getItem('attributes')));
                 ValuesAttribute.add(lang, parse_attributes_view);
             }
 
@@ -157,13 +157,13 @@ class ValuesAttribute {
                 $(this).closest('tr').remove();
 
                 var jsdata = new JsData();
-                var group_id = sessionStorage.getItem('level_2');
+                var data_id = sessionStorage.getItem('level_2');
                 var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
 
                 var parse_attributes_delete = jsdata.deleteUid($(this).closest('tr').attr('id').split('_')[1], parse_attributes);
                 sessionStorage.setItem('attributes', JSON.stringify(parse_attributes_delete));
 
-                var parse_attributes_add = jsdata.selectParentUids(group_id, $.parseJSON(sessionStorage.getItem('attributes')));
+                var parse_attributes_add = jsdata.selectParentUids(data_id, $.parseJSON(sessionStorage.getItem('attributes')));
                 ValuesAttribute.add(lang, parse_attributes_add);
                 // Загружаем удаление атрибута
                 ValuesAttribute.deleteValue(lang);
@@ -179,16 +179,16 @@ class ValuesAttribute {
     static sort(lang) {
         var sortedIDs = $(".values_attribute").sortable("toArray").reverse();
 
-        var group_id = sessionStorage.getItem('level_2');
+        var data_id = sessionStorage.getItem('level_2');
         var jsdata = new JsData();
         var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
-        var parse_attributes_sort = jsdata.selectParentUids(group_id, $.parseJSON(sessionStorage.getItem('attributes')));
+        var parse_attributes_sort = jsdata.selectParentUids(data_id, $.parseJSON(sessionStorage.getItem('attributes')));
         var sort = jsdata.sortToListUid(sortedIDs, parse_attributes_sort);
 
         var sorted = jsdata.replaceUids(sort, parse_attributes);
 
         sessionStorage.setItem('attributes', JSON.stringify(sorted));
-        var parse_attributes_add = jsdata.selectParentUids(group_id, $.parseJSON(sessionStorage.getItem('attributes')));
+        var parse_attributes_add = jsdata.selectParentUids(data_id, $.parseJSON(sessionStorage.getItem('attributes')));
 
         ValuesAttribute.add(lang, parse_attributes_add);
         ValuesAttribute.deleteValue(lang);
