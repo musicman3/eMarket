@@ -90,7 +90,7 @@ if (\eMarket\Valid::inGET('parent_id_temp')) {
 
 $lines_on_page = \eMarket\Set::linesOnPage();
 // получаем отсортированное по sort_category содержимое в виде массива для отображения на странице и сортируем в обратном порядке
-$lines_cat = \eMarket\Pdo::getColRow("SELECT id, name, parent_id, status, attributes, group_attributes FROM " . TABLE_CATEGORIES . " WHERE parent_id=? AND language=? ORDER BY sort_category DESC", [$parent_id, lang('#lang_all')[0]]);
+$lines_cat = \eMarket\Pdo::getColRow("SELECT id, name, parent_id, status, attributes FROM " . TABLE_CATEGORIES . " WHERE parent_id=? AND language=? ORDER BY sort_category DESC", [$parent_id, lang('#lang_all')[0]]);
 $count_lines_cat = count($lines_cat);  //считаем количество строк
 // Получаем данные по товарам
 $lines_prod = \eMarket\Pdo::getColRow("SELECT id, name, parent_id, status, discount, price, attributes FROM " . TABLE_PRODUCTS . " WHERE parent_id=? AND language=? ORDER BY id DESC", [$parent_id, lang('#lang_all')[0]]);

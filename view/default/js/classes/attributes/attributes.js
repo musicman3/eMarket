@@ -62,16 +62,15 @@ class Attributes {
      *@param lang {Array} (Языковые переменные)
      */
     click(lang) {
-         // Если открыли модал списка значений группы атрибута
+        // Если открыли модал списка значений группы атрибута
         $(document).on('click', '.values-attribute', function () {
             var jsdata = new JsData();
             var data_id = $(this).closest('tr').attr('id').split('_')[1];
-            var parse_attributes = jsdata.selectParentUids(data_id, $.parseJSON(sessionStorage.getItem('attributes')));
+            var parse_attributes = jsdata.selectParentUids(sessionStorage.getItem('level_1'), $.parseJSON(sessionStorage.getItem('attributes')));
             sessionStorage.setItem('level_2', data_id);
 
             $('#values_attribute').modal('show');
-            var parse_attributes_title = jsdata.selectParentUids(sessionStorage.getItem('level_1'), $.parseJSON(sessionStorage.getItem('attributes')));
-            $('#title_values_attribute').html('Значение группы атрибутов: ' + jsdata.selectUid(sessionStorage.getItem('level_2'), parse_attributes_title)[0]['value']);
+            $('#title_values_attribute').html('Значение группы атрибутов: ' + jsdata.selectUid(data_id, parse_attributes)[0]['value']);
         });
         
         // Добавляем атрибут

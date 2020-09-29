@@ -64,8 +64,8 @@ class GroupAttributes {
         // Если открыли модал списка значений группы атрибута
         $(document).on('click', '.values-group-attribute', function () {
             var jsdata = new JsData();
-            var parse_attributes = jsdata.selectParentUids('false', $.parseJSON(sessionStorage.getItem('attributes')));
             var data_id = $(this).closest('tr').attr('id').split('_')[1];
+            var parse_attributes = jsdata.selectParentUids('false', $.parseJSON(sessionStorage.getItem('attributes')));
             sessionStorage.setItem('level_1', data_id);
 
             $('#attribute').modal('show');
