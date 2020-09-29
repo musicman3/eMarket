@@ -175,14 +175,12 @@
                             var logo_edit = $('div#ajax_data').data('logo');
                             var logo_general_edit = $('div#ajax_data').data('general');
                             var attributes_edit = $('div#ajax_data').data('attributes');
-                            var group_attributes_edit = $('div#ajax_data').data('groupattributes');
 
                             // Ищем id и добавляем данные
                             for (var x = 0; x < name_edit.length; x++) {
                                 $('#name_categories_stock_' + x).val(name_edit[x][modal_id]);
                             }
                             $('#attributes').val(attributes_edit);
-                            $('#group_attributes').val(group_attributes_edit);
 
                             $('#edit').val(modal_id);
                             $('#add').val('');

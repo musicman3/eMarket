@@ -109,7 +109,7 @@ $finish = $navigate[1];
 if ($parent_id == 0) {
     $attributes_data = json_encode([]);
 } else {
-    $attributes_data = json_encode(\eMarket\Pdo::getColAssoc("SELECT attributes, group_attributes FROM " . TABLE_CATEGORIES . " WHERE id=? AND language=?", [$parent_id, lang('#lang_all')[0]])[0]);
+    $attributes_data = json_encode(\eMarket\Pdo::getColAssoc("SELECT attributes FROM " . TABLE_CATEGORIES . " WHERE id=? AND language=?", [$parent_id, lang('#lang_all')[0]])[0]);
 }
 
 // Параметры для JS

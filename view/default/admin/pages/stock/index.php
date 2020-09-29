@@ -57,7 +57,6 @@
                          data-logo='<?php echo $logo ?>'
                          data-general='<?php echo $logo_general ?>'
                          data-attributes='<?php echo $attributes ?>'
-                         data-groupattributes='<?php echo $group_attributes ?>'
                          data-logoproduct='<?php echo $logo_product ?>'
                          data-generalproduct='<?php echo $logo_general_product ?>'
                          data-nameproduct='<?php echo $name_product ?>'
