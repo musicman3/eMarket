@@ -80,7 +80,7 @@ $category_parent_id = $categories_data['parent_id'];
 if (\eMarket\Valid::inGET('category_id') == 0) {
     $attributes_data = json_encode([]);
 } else {
-    $attributes_data = json_encode(['attributes' => $categories_data['attributes']]);
+    $attributes_data = json_encode($categories_data['attributes']);
 }
 
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
