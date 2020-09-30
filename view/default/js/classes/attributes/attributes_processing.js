@@ -34,6 +34,7 @@ class AttributesProcessing {
      */
     static add(marker = null) {
         var jsdata = new JsData();
+        var attributesprocessing = new AttributesProcessing();
 
         var data = $.parseJSON($.parseJSON($('div#ajax_data').data('attributesdata')));
         var group_attributes_data = jsdata.sort(jsdata.selectParentUids('false', data));
@@ -43,13 +44,8 @@ class AttributesProcessing {
             var data_id = level_1.length - 1;
             var level_2 = jsdata.sort(jsdata.selectParentUids(level_1[data_id]['uid'], data));
 
-            var recursive_data = jsdata.buildTree(data, level_1[data_id]['uid']);
-            var mark = 'false';
-            recursive_data.forEach((recurs) => {
-                if (selected.includes(recurs) === true) {
-                    mark = 'true';
-                }
-            });
+            var mark = attributesprocessing.checkSelect(data, selected, level_1[data_id]['uid']);
+
 
             if (marker === 'admin' && level_2[0] !== undefined) {
                 $('.product-attribute').prepend('<h4>' + level_1[0]['value'] + '</h4><table class="table table-striped product-attribute-table"><tbody id="table_' + level_1[data_id]['uid'] + '"></tbody></table>');
@@ -60,6 +56,7 @@ class AttributesProcessing {
             }
 
             level_2.forEach((item2, index) => {
+                var mark = attributesprocessing.checkSelect(data, selected, item2[data_id]['uid']);
                 var level_3 = jsdata.sort(jsdata.selectParentUids(item2[data_id]['uid'], data));
                 if (marker === 'admin') {
                     $('#table_' + level_1[data_id]['uid']).prepend(
@@ -117,6 +114,27 @@ class AttributesProcessing {
         for (var x = 0; x < uid_string.length - 1; x++) {
             $('input[name="' + uid_string[x]['name'] + '"]').val(uid_string[x]['value']);
         }
+    }
+
+    /**
+     * Проверка по выбранным значениям
+     * @param data {Array} (Входящий массив)
+     * @param selected {Array} (Массив с выбранными значениями)
+     * @param uid {String} (uid)
+     * @returns {Array}
+     *
+     */
+    checkSelect(data, selected, uid) {
+        var jsdata = new JsData();
+
+        var recursive_data = jsdata.buildTree(data, uid);
+        var mark = 'false';
+        recursive_data.forEach((recurs) => {
+            if (selected.includes(recurs) === true) {
+                mark = 'true';
+            }
+        });
+        return mark;
     }
 
 }
