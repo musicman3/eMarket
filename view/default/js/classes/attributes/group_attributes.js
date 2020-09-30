@@ -33,7 +33,7 @@ class GroupAttributes {
             var jsdata = new JsData();
             var data_id = 'false';
             var parse_attributes = jsdata.selectParentUids(data_id, $.parseJSON(sessionStorage.getItem('attributes')));
-            
+
             GroupAttributes.add(lang, parse_attributes);
             // Загружаем удаление группы атрибутов
             GroupAttributes.deleteValue(lang);
@@ -168,17 +168,8 @@ class GroupAttributes {
      */
     static sort(lang) {
         var sortedIDs = $(".group-attributes").sortable("toArray").reverse();
-
-        var data_id = 'false';
-        var jsdata = new JsData();
-        var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
-        var parse_attributes_sort = jsdata.selectParentUids(data_id, $.parseJSON(sessionStorage.getItem('attributes')));
-        var sort = jsdata.sortToListUid(sortedIDs, parse_attributes_sort);
-
-        var sorted = jsdata.replaceUids(sort, parse_attributes);
-
-        sessionStorage.setItem('attributes', JSON.stringify(sorted));
-        var parse_attributes_add = jsdata.selectParentUids(data_id, $.parseJSON(sessionStorage.getItem('attributes')));
+        var processing = new AttributesProcessing();
+        var parse_attributes_add = processing.sorted(sortedIDs, 'false');
 
         GroupAttributes.add(lang, parse_attributes_add);
         GroupAttributes.deleteValue(lang);

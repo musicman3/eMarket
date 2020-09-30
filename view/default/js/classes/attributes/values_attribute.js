@@ -157,17 +157,8 @@ class ValuesAttribute {
      */
     static sort(lang) {
         var sortedIDs = $(".values_attribute").sortable("toArray").reverse();
-
-        var data_id = sessionStorage.getItem('level_2');
-        var jsdata = new JsData();
-        var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
-        var parse_attributes_sort = jsdata.selectParentUids(data_id, $.parseJSON(sessionStorage.getItem('attributes')));
-        var sort = jsdata.sortToListUid(sortedIDs, parse_attributes_sort);
-
-        var sorted = jsdata.replaceUids(sort, parse_attributes);
-
-        sessionStorage.setItem('attributes', JSON.stringify(sorted));
-        var parse_attributes_add = jsdata.selectParentUids(data_id, $.parseJSON(sessionStorage.getItem('attributes')));
+        var processing = new AttributesProcessing();
+        var parse_attributes_add = processing.sorted(sortedIDs, sessionStorage.getItem('level_2'));
 
         ValuesAttribute.add(lang, parse_attributes_add);
         ValuesAttribute.deleteValue(lang);

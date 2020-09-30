@@ -63,7 +63,7 @@ class AttributesProcessing {
                     } else {
                         var light = 'has-error';
                     }
-                    
+
                     $('#table_' + level_1[data_id]['uid']).prepend(
                             '<tr><td class="attribute"><span class="product-attribute-specification">' + item[0]['value'] + '</span></td>' +
                             '<td class="selector"><div class="input-group ' + light + '"><span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>' +
@@ -103,7 +103,6 @@ class AttributesProcessing {
      * @param id {String} (id)
      * @param uid {String} (uid)
      * @param name {String} (name)
-     * @returns {Array}
      *
      */
     clickEdit(id, uid, name) {
@@ -118,6 +117,27 @@ class AttributesProcessing {
         for (var x = 0; x < uid_string.length - 1; x++) {
             $('input[name="' + uid_string[x]['name'] + '"]').val(uid_string[x]['value']);
         }
+    }
+
+    /**
+     * Сортировка
+     * @param sortedIDs {Array} (список сортировки)
+     * @param data_id {String} (data_id)
+     * @returns {Array}
+     *
+     */
+    sorted(sortedIDs, data_id) {
+        var jsdata = new JsData();
+        var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
+        var parse_attributes_sort = jsdata.selectParentUids(data_id, $.parseJSON(sessionStorage.getItem('attributes')));
+        var sort = jsdata.sortToListUid(sortedIDs, parse_attributes_sort);
+
+        var sorted = jsdata.replaceUids(sort, parse_attributes);
+
+        sessionStorage.setItem('attributes', JSON.stringify(sorted));
+        var parse_attributes_add = jsdata.selectParentUids(data_id, $.parseJSON(sessionStorage.getItem('attributes')));
+        
+        return parse_attributes_add;
     }
 
     /**
