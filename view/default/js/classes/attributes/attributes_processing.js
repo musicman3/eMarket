@@ -17,9 +17,11 @@ class AttributesProcessing {
      */
     static changeData() {
         var selected_attr = [];
-
+        
         for (var x = 0; x < $('.selectattr').length; x++) {
-            selected_attr.push($('.selectattr')[x]['selectedOptions'][0]['value']);
+            if ($('.selectattr')[x]['selectedOptions'].length > 0) {
+                selected_attr.push($('.selectattr')[x]['selectedOptions'][0]['value']);
+            }
         }
 
         return selected_attr;
