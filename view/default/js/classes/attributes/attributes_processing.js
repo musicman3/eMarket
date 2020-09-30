@@ -19,7 +19,7 @@ class AttributesProcessing {
         var selected_attr = [];
         
         for (var x = 0; x < $('.selectattr').length; x++) {
-            if ($('.selectattr')[x]['selectedOptions'].length > 0) {
+            if ($('.selectattr')[x]['selectedOptions'] !== undefined && $('.selectattr')[x]['selectedOptions'].length > 0) {
                 selected_attr.push($('.selectattr')[x]['selectedOptions'][0]['value']);
             }
         }
