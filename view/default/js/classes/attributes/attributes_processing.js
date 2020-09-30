@@ -44,19 +44,19 @@ class AttributesProcessing {
             var data_id = level_1.length - 1;
             var level_2 = jsdata.sort(jsdata.selectParentUids(level_1[data_id]['uid'], data));
 
-            var mark = attributesprocessing.checkSelect(data, selected, level_1[data_id]['uid']);
+            var check = attributesprocessing.checkSelect(data, selected, level_1[data_id]['uid']);
 
 
             if (marker === 'admin' && level_2[0] !== undefined) {
                 $('.product-attribute').prepend('<h4>' + level_1[0]['value'] + '</h4><table class="table table-striped product-attribute-table"><tbody id="table_' + level_1[data_id]['uid'] + '"></tbody></table>');
             } else {
-                if (mark === 'true') {
+                if (check === 'true') {
                     $('.product-attribute').prepend('<h4>' + level_1[0]['value'] + '</h4><table class="table table-striped product-attribute-table"><tbody id="table_' + level_1[data_id]['uid'] + '"></tbody></table>');
                 }
             }
 
             level_2.forEach((item2, index) => {
-                var mark = attributesprocessing.checkSelect(data, selected, item2[data_id]['uid']);
+                var check = attributesprocessing.checkSelect(data, selected, item2[data_id]['uid']);
                 var level_3 = jsdata.sort(jsdata.selectParentUids(item2[data_id]['uid'], data));
                 if (marker === 'admin') {
                     $('#table_' + level_1[data_id]['uid']).prepend(
@@ -72,7 +72,7 @@ class AttributesProcessing {
                         }
                     });
                 } else {
-                    if (mark === 'true') {
+                    if (check === 'true') {
                         $('#table_' + level_1[data_id]['uid']).prepend(
                                 '<tr><td class="attribute"><span class="product-attribute-specification">' + item2[0]['value'] + '</span></td>' +
                                 '<td class="selector"><div class="selectattr" id="selectattr_' + item2[data_id]['uid'] + '"></div></td></tr>'
