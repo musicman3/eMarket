@@ -29,7 +29,7 @@ class AttributesProcessing {
 
     /**
      * Вывод атрибутов в товаре
-     * @param marker {String} (маркер)
+     * @param marker {String} (маркер admin/catalog)
      *
      */
     static add(marker = null) {
@@ -91,7 +91,6 @@ class AttributesProcessing {
                     }
                 }
             });
-
         });
 
         $('#selected_attributes').val(JSON.stringify(AttributesProcessing.changeData()));
