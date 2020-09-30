@@ -46,7 +46,6 @@ class AttributesProcessing {
 
             var check = attributesprocessing.checkSelect(data, selected, level_1[data_id]['uid']);
 
-
             if (marker === 'admin' && level_2[0] !== undefined) {
                 $('.product-attribute').prepend('<h4>' + level_1[0]['value'] + '</h4><table class="table table-striped product-attribute-table"><tbody id="table_' + level_1[data_id]['uid'] + '"></tbody></table>');
             } else {
@@ -55,31 +54,31 @@ class AttributesProcessing {
                 }
             }
 
-            level_2.forEach((item2, index) => {
-                var check = attributesprocessing.checkSelect(data, selected, item2[data_id]['uid']);
-                var level_3 = jsdata.sort(jsdata.selectParentUids(item2[data_id]['uid'], data));
+            level_2.forEach((item, index) => {
+                var check = attributesprocessing.checkSelect(data, selected, item[data_id]['uid']);
+                var level_3 = jsdata.sort(jsdata.selectParentUids(item[data_id]['uid'], data));
                 if (marker === 'admin') {
                     $('#table_' + level_1[data_id]['uid']).prepend(
-                            '<tr><td class="attribute"><span class="product-attribute-specification">' + item2[0]['value'] + '</span></td>' +
+                            '<tr><td class="attribute"><span class="product-attribute-specification">' + item[0]['value'] + '</span></td>' +
                             '<td class="selector"><div class="input-group has-success"><span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>' +
-                            '<select class="form-control selectattr" id="selectattr_' + item2[data_id]['uid'] + '"></select></div></td></tr>'
+                            '<select class="form-control selectattr" id="selectattr_' + item[data_id]['uid'] + '"></select></div></td></tr>'
                             );
-                    $('#selectattr_' + item2[data_id]['uid']).empty();
+                    $('#selectattr_' + item[data_id]['uid']).empty();
                     level_3.forEach((string, i) => {
-                        $('#selectattr_' + item2[data_id]['uid']).prepend($('<option></option>').val(string[data_id]['uid']).html(string[0]['value']));
+                        $('#selectattr_' + item[data_id]['uid']).prepend($('<option></option>').val(string[data_id]['uid']).html(string[0]['value']));
                         if (selected.length !== 0 && selected.includes(string[data_id]['uid']) === true) {
-                            $('#selectattr_' + item2[data_id]['uid'] + ' option[value=' + string[data_id]['uid'] + ']').prop('selected', true);
+                            $('#selectattr_' + item[data_id]['uid'] + ' option[value=' + string[data_id]['uid'] + ']').prop('selected', true);
                         }
                     });
                 } else {
                     if (check === 'true') {
                         $('#table_' + level_1[data_id]['uid']).prepend(
-                                '<tr><td class="attribute"><span class="product-attribute-specification">' + item2[0]['value'] + '</span></td>' +
-                                '<td class="selector"><div class="selectattr" id="selectattr_' + item2[data_id]['uid'] + '"></div></td></tr>'
+                                '<tr><td class="attribute"><span class="product-attribute-specification">' + item[0]['value'] + '</span></td>' +
+                                '<td class="selector"><div class="selectattr" id="selectattr_' + item[data_id]['uid'] + '"></div></td></tr>'
                                 );
                         level_3.forEach((string, i) => {
                             if (selected.length !== 0 && selected.includes(string[data_id]['uid']) === true) {
-                                $('#selectattr_' + item2[data_id]['uid']).html(string[0]['value']);
+                                $('#selectattr_' + item[data_id]['uid']).html(string[0]['value']);
                             }
                         });
                     }
@@ -129,8 +128,8 @@ class AttributesProcessing {
 
         var recursive_data = jsdata.buildTree(data, uid);
         var mark = 'false';
-        recursive_data.forEach((recurs) => {
-            if (selected.includes(recurs) === true) {
+        recursive_data.forEach((item) => {
+            if (selected.includes(item) === true) {
                 mark = 'true';
             }
         });
