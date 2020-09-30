@@ -17,7 +17,7 @@ class AttributesProcessing {
      */
     static changeData() {
         var selected_attr = [];
-        
+
         for (var x = 0; x < $('.selectattr').length; x++) {
             if ($('.selectattr')[x]['selectedOptions'] !== undefined && $('.selectattr')[x]['selectedOptions'].length > 0) {
                 selected_attr.push($('.selectattr')[x]['selectedOptions'][0]['value']);
@@ -41,12 +41,23 @@ class AttributesProcessing {
 
         group_attributes_data.forEach((level_1) => {
             var data_id = level_1.length - 1;
-            if (marker === 'admin') {
+            var level_2 = jsdata.sort(jsdata.selectParentUids(level_1[data_id]['uid'], data));
+
+            var recursive_data = jsdata.buildTree(data, level_1[data_id]['uid']);
+            var mark = 'false';
+            recursive_data.forEach((recurs) => {
+                if (selected.includes(recurs) === true) {
+                    mark = 'true';
+                }
+            });
+
+            if (marker === 'admin' && level_2[0] !== undefined) {
                 $('.product-attribute').prepend('<h4>' + level_1[0]['value'] + '</h4><table class="table table-striped product-attribute-table"><tbody id="table_' + level_1[data_id]['uid'] + '"></tbody></table>');
             } else {
-                $('.product-attribute').prepend('<h4>' + level_1[0]['value'] + '</h4><table class="table table-striped product-attribute-table"><tbody id="table_' + level_1[data_id]['uid'] + '"></tbody></table>');
+                if (mark === 'true') {
+                    $('.product-attribute').prepend('<h4>' + level_1[0]['value'] + '</h4><table class="table table-striped product-attribute-table"><tbody id="table_' + level_1[data_id]['uid'] + '"></tbody></table>');
+                }
             }
-            var level_2 = jsdata.sort(jsdata.selectParentUids(level_1[data_id]['uid'], data));
 
             level_2.forEach((item2, index) => {
                 var level_3 = jsdata.sort(jsdata.selectParentUids(item2[data_id]['uid'], data));
@@ -56,7 +67,6 @@ class AttributesProcessing {
                             '<td class="selector"><div class="input-group has-success"><span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>' +
                             '<select class="form-control selectattr" id="selectattr_' + item2[data_id]['uid'] + '"></select></div></td></tr>'
                             );
-
                     $('#selectattr_' + item2[data_id]['uid']).empty();
                     level_3.forEach((string, i) => {
                         $('#selectattr_' + item2[data_id]['uid']).prepend($('<option></option>').val(string[data_id]['uid']).html(string[0]['value']));
@@ -65,17 +75,20 @@ class AttributesProcessing {
                         }
                     });
                 } else {
-                    $('#table_' + level_1[data_id]['uid']).prepend(
-                            '<tr><td class="attribute"><span class="product-attribute-specification">' + item2[0]['value'] + '</span></td>' +
-                            '<td class="selector"><div class="selectattr" id="selectattr_' + item2[data_id]['uid'] + '"></div></td></tr>'
-                            );
-                    level_3.forEach((string, i) => {
-                        if (selected.length !== 0 && selected.includes(string[data_id]['uid']) === true) {
-                            $('#selectattr_' + item2[data_id]['uid']).html(string[0]['value']);
-                        }
-                    });
+                    if (mark === 'true') {
+                        $('#table_' + level_1[data_id]['uid']).prepend(
+                                '<tr><td class="attribute"><span class="product-attribute-specification">' + item2[0]['value'] + '</span></td>' +
+                                '<td class="selector"><div class="selectattr" id="selectattr_' + item2[data_id]['uid'] + '"></div></td></tr>'
+                                );
+                        level_3.forEach((string, i) => {
+                            if (selected.length !== 0 && selected.includes(string[data_id]['uid']) === true) {
+                                $('#selectattr_' + item2[data_id]['uid']).html(string[0]['value']);
+                            }
+                        });
+                    }
                 }
             });
+
         });
 
         $('#selected_attributes').val(JSON.stringify(AttributesProcessing.changeData()));
