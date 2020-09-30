@@ -34,7 +34,6 @@ class AttributesProcessing {
      */
     static add(marker = null) {
         var jsdata = new JsData();
-        var attributesprocessing = new AttributesProcessing();
 
         var data = $.parseJSON($.parseJSON($('div#ajax_data').data('attributesdata')));
         var group_attributes_data = jsdata.sort(jsdata.selectParentUids('false', data));
@@ -44,7 +43,7 @@ class AttributesProcessing {
             var data_id = level_1.length - 1;
             var level_2 = jsdata.sort(jsdata.selectParentUids(level_1[data_id]['uid'], data));
 
-            var check = attributesprocessing.checkSelect(data, selected, level_1[data_id]['uid']);
+            var check = AttributesProcessing.checkSelect(data, selected, level_1[data_id]['uid']);
 
             if (marker === 'admin' && level_2[0] !== undefined) {
                 $('.product-attribute').prepend('<h4>' + level_1[0]['value'] + '</h4><table class="table table-striped product-attribute-table"><tbody id="table_' + level_1[data_id]['uid'] + '"></tbody></table>');
@@ -55,7 +54,7 @@ class AttributesProcessing {
             }
 
             level_2.forEach((item, index) => {
-                var check = attributesprocessing.checkSelect(data, selected, item[data_id]['uid']);
+                var check = AttributesProcessing.checkSelect(data, selected, item[data_id]['uid']);
                 var level_3 = jsdata.sort(jsdata.selectParentUids(item[data_id]['uid'], data));
                 if (marker === 'admin') {
 
@@ -129,7 +128,7 @@ class AttributesProcessing {
      * @returns {Array}
      *
      */
-    checkSelect(data, selected, uid) {
+    static checkSelect(data, selected, uid) {
         var jsdata = new JsData();
 
         var recursive_data = jsdata.buildTree(data, uid);
