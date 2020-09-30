@@ -64,6 +64,7 @@ class AttributesProcessing {
                     } else {
                         var light = 'has-error';
                     }
+                    
                     $('#table_' + level_1[data_id]['uid']).prepend(
                             '<tr><td class="attribute"><span class="product-attribute-specification">' + item[0]['value'] + '</span></td>' +
                             '<td class="selector"><div class="input-group ' + light + '"><span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>' +
