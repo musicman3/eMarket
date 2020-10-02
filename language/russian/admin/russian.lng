@@ -31,6 +31,10 @@ title_stock_index = Склад
 
 ;КНОПКИ МЕНЮ
 menu_catalog = Каталог товаров
+menu_market = Магазин
+menu_sellings = Продажи
+menu_clients = Клиенты
+menu_refunds = Возвраты
 menu_error_log = Лог ошибок
 menu_exit = Выход
 menu_extra = Дополнительно

@@ -34,8 +34,13 @@ class AttributesProcessing {
      */
     static add(marker = null) {
         var jsdata = new JsData();
-
-        var data = $.parseJSON($.parseJSON($('div#ajax_data').data('attributesdata')));
+        
+        if ($('div#ajax_data').data('attributesdata').length === 0) {
+            var data = [];
+        } else {
+            var data = $.parseJSON($.parseJSON($('div#ajax_data').data('attributesdata')));
+        }
+        
         var group_attributes_data = jsdata.sort(jsdata.selectParentUids('false', data));
         var selected = $.parseJSON($('#selected_attributes').val());
 
@@ -136,7 +141,7 @@ class AttributesProcessing {
 
         sessionStorage.setItem('attributes', JSON.stringify(sorted));
         var parse_attributes_add = jsdata.selectParentUids(data_id, $.parseJSON(sessionStorage.getItem('attributes')));
-        
+
         return parse_attributes_add;
     }
 

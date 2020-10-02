@@ -31,6 +31,10 @@ title_stock_index = Stock
 
 ;MENU_BUTTONS
 menu_catalog = Catalog
+menu_market = Market
+menu_sellings = Sellings
+menu_clients = Clients
+menu_refunds = Refunds
 menu_error_log = Error log
 menu_exit = Exit
 menu_extra = Extra

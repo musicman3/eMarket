@@ -32,6 +32,9 @@ class GroupAttributes {
 
             var jsdata = new JsData();
             var data_id = 'false';
+            if (sessionStorage.getItem('attributes') === null){
+                sessionStorage.setItem('attributes', '[]');
+            }
             var parse_attributes = jsdata.selectParentUids(data_id, $.parseJSON(sessionStorage.getItem('attributes')));
 
             GroupAttributes.add(lang, parse_attributes);
