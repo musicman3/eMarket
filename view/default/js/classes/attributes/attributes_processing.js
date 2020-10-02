@@ -34,13 +34,12 @@ class AttributesProcessing {
      */
     static add(marker = null) {
         var jsdata = new JsData();
-        
-        if ($('div#ajax_data').data('attributesdata').length === 0) {
-            var data = [];
-        } else {
-            var data = $.parseJSON($.parseJSON($('div#ajax_data').data('attributesdata')));
+
+        var data = $('div#ajax_data').data('attributesdata');
+        if (data.length > 0) {
+            data = $.parseJSON($.parseJSON(data));
         }
-        
+
         var group_attributes_data = jsdata.sort(jsdata.selectParentUids('false', data));
         var selected = $.parseJSON($('#selected_attributes').val());
 
