@@ -9,7 +9,7 @@
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header"><div class="pull-right"><a href="#" ><span data-toggle="tooltip" data-placement="left" data-original-title="Заполните карточку категорий" class="glyphicon glyphicon-question-sign"></span></a>&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
-                <h4 class="modal-title">Название атрибута</h4>
+                <h4 class="modal-title"><?php echo lang('stock_tittle_specification_name') ?></h4>
             </div>
             <form id="attribute_add_form">
             <div class="panel-body">

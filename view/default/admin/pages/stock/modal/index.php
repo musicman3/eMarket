@@ -26,8 +26,8 @@
 
                     <!-- Панели формы -->
                     <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#panel_add_1">Основное</a></li>
-                        <li><a data-toggle="tab" href="#panel_add_2">Характеристики</a></li>
+                        <li class="active"><a data-toggle="tab" href="#panel_add_1"><?php echo lang('stock_basic') ?></a></li>
+                        <li><a data-toggle="tab" href="#panel_add_2"><?php echo lang('stock_specification') ?></a></li>
                     </ul>
 
                     <!-- Содержимое панелей формы-->

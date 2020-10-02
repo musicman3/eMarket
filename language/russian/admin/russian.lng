@@ -205,3 +205,10 @@ orders_date_added = Дата добавления
 orders_date_of_change = Дата изменения
 orders_number = № заказа
 orders_subtotal = Стоимость
+
+;STOCK
+stock_tittle_specification_group_name = Название группы характеристик
+stock_tittle_specification_name = Название характеристики
+stock_tittle_specification_value = Значение характеристики
+stock_basic = Основное
+stock_specification = Характеристики

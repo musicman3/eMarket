@@ -67,7 +67,7 @@ class GroupAttributes {
             sessionStorage.setItem('level_1', data_id);
 
             $('#attribute').modal('show');
-            $('#title_attribute').html('Группа атрибутов: ' + jsdata.selectUid(data_id, parse_attributes)[0]['value']);
+            $('#title_attribute').html(jsdata.selectUid(data_id, parse_attributes)[0]['value']);
 
         });
 
@@ -190,7 +190,11 @@ class GroupAttributes {
         $('.group-attributes').empty();
         parse.forEach((string, index) => {
             var sort_id = string.length - 1;
-            GroupAttributes.addValue(parse_attributes_sort[index][sort_id].uid, parse_attributes_sort[index][0].value, lang);
+            string.forEach((item, i) => {
+                if (item.name === 'group_attributes_' + lang[4]) {
+                    GroupAttributes.addValue(parse_attributes_sort[index][sort_id].uid, parse_attributes_sort[index][i].value, lang);
+                }
+            });
         });
     }
 

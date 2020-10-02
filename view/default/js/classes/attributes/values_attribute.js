@@ -29,7 +29,7 @@ class ValuesAttribute {
 
         // Если открыли модал списка в группе атрибутов
         $('#values_attribute').on('show.bs.modal', function (event) {
-            
+
             var jsdata = new JsData();
             var data_id = sessionStorage.getItem('level_2');
             var parse_attributes = jsdata.selectParentUids(data_id, $.parseJSON(sessionStorage.getItem('attributes')));
@@ -179,7 +179,11 @@ class ValuesAttribute {
         $('.values_attribute').empty();
         parse.forEach((string, index) => {
             var sort_id = string.length - 1;
-            ValuesAttribute.addValue(parse_attributes_sort[index][sort_id].uid, parse_attributes_sort[index][0].value, lang);
+            string.forEach((item, i) => {
+                if (item.name === 'add_values_attribute_' + lang[4]) {
+                    ValuesAttribute.addValue(parse_attributes_sort[index][sort_id].uid, parse_attributes_sort[index][i].value, lang);
+                }
+            });
         });
     }
 }

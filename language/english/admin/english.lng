@@ -205,3 +205,10 @@ orders_date_added = Date added
 orders_date_of_change = Date of change
 orders_number = Order No.
 orders_subtotal = Subtotal
+
+;STOCK
+stock_tittle_specification_group_name = Specification group name
+stock_tittle_specification name = Specification name
+stock_tittle_specification_value = Specification value
+stock_basic = Basic
+stock_specification = Specification

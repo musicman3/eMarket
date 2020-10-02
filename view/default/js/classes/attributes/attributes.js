@@ -67,7 +67,7 @@ class Attributes {
             sessionStorage.setItem('level_2', data_id);
 
             $('#values_attribute').modal('show');
-            $('#title_values_attribute').html('Значение группы атрибутов: ' + jsdata.selectUid(data_id, parse_attributes)[0]['value']);
+            $('#title_values_attribute').html(jsdata.selectUid(data_id, parse_attributes)[0]['value']);
         });
 
         // Добавляем атрибут
@@ -189,7 +189,11 @@ class Attributes {
         $('.attribute').empty();
         parse.forEach((string, index) => {
             var sort_id = string.length - 1;
-            Attributes.addValue(parse_attributes_sort[index][sort_id].uid, parse_attributes_sort[index][0].value, lang);
+            string.forEach((item, i) => {
+                if (item.name === 'attribute_' + lang[4]) {
+                    Attributes.addValue(parse_attributes_sort[index][sort_id].uid, parse_attributes_sort[index][i].value, lang);
+                }
+            });
         });
     }
 }
