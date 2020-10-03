@@ -47,7 +47,6 @@ to = to
 of = of
 
 ;PAGES
-description_product = Description
 shopping_cart = Cart
 сheckout_click = Buy in one click
 listing_no = There are no products in this category.
@@ -122,6 +121,8 @@ product_dimension = Dimension (%s):
 product_dimension_length = L
 product_dimension_width = W
 product_dimension_height = H
+product_specification = Specification
+product_description = Description
 
 ;OTHER
 buy_now = Buy Now

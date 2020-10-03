@@ -47,7 +47,6 @@ to = по
 of = из
 
 ;PAGES
-description_product = Описание
 shopping_cart = Корзина
 сheckout_click = Купить в 1 клик
 listing_no = В этой категории нет товаров
@@ -88,6 +87,8 @@ product_dimension = Габаритные размеры (%s):
 product_dimension_length = Д
 product_dimension_width = Ш
 product_dimension_height = В
+product_specification = Характеристики
+product_description = Описание
 
 ;ADDRESS BOOK
 my_address_book = Адресная книга

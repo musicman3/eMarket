@@ -90,8 +90,8 @@
     <div class="row">
         <div class="list-group-item">
             <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#panel_description"><?php echo lang('description_product') ?></a></li>
-                <li><a data-toggle="tab" href="#panel_attribute">Характеристики</a></li>
+                <li class="active"><a data-toggle="tab" href="#panel_description"><?php echo lang('product_description') ?></a></li>
+                <li><a data-toggle="tab" href="#panel_attribute"><?php echo lang('product_specification') ?></a></li>
             </ul>
             <div class="tab-content">
                 <div id="panel_description" class="tab-pane fade in active">
