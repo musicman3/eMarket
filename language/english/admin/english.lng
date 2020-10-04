@@ -28,6 +28,7 @@ title_settings_weight_index = Weight
 title_settings_zones_index = Zones
 title_settings_zones_listing_index = Countries and regions
 title_stock_index = Stock
+title_clients_index = Clients
 
 ;MENU_BUTTONS
 menu_catalog = Catalog

@@ -45,7 +45,7 @@ $menu[$menu_marketing][7] = array('#', 'glyphicon glyphicon-stats', 'Отчет�
 //КОНТРАГЕНТЫ
 $level[$menu_count_linesparty] = array('#', lang('menu_clients'), 'true');
 
-$menu[$menu_count_linesparty][0] = array('#', 'glyphicon glyphicon glyphicon-user', lang('menu_clients'), '', 'false');
+$menu[$menu_count_linesparty][0] = array('?route=clients', 'glyphicon glyphicon glyphicon-user', lang('menu_clients'), '', 'false');
 
 //ИНСТРУМЕНТЫ
 $level[$menu_tools] = array('#', lang('menu_tools'), 'true');
