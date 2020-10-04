@@ -10,7 +10,7 @@
     <div class="container-fluid">
 	<div class="welcome text-center">
 	    <?php echo lang('index-title') ?>
-	    <div class="welcome_logo">eMarket <small>v0.3.5</small></div>
+	    <div class="welcome_logo">eMarket <small>v0.3.6</small></div>
 	    <div class="welcome_description"><?php echo lang('index-text') ?></div>
 	</div>
     </div>
