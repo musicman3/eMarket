@@ -408,6 +408,26 @@ class Set {
     }
 
     /**
+     * Переключение класса при смене статуса
+     *
+     * @param string $status (статус из БД)
+     * @param string $class (класс для переключения)
+     * @return string (класс)
+     */
+    public static function statusSwithClass($status, $class = null) {
+        
+        if ($class == null) {
+            $class = 'danger';
+        }
+
+        if ($status == 0) {
+            return $class;
+        } else {
+            return '';
+        }
+    }
+
+    /**
      * Получаем название базы данных модуля
      *
      * @return string (название базы данных модуля)

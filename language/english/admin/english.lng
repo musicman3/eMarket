@@ -58,6 +58,7 @@ confirm-del = Delete?
 confirm-no = No
 confirm-yes = Yes
 confirm-install = Install?
+confirm-status = Change status?
 confirm-no-switch = NO
 confirm-yes-switch = YES
 save = Save
@@ -249,3 +250,9 @@ stock_product_sepia_effect = Sepia
 stock_product_black_and_white_effect = Black and white
 stock_product_blur1_effect = Blur 1
 stock_product_blur2_effect = Blur 2
+
+;CUSTOMERS
+customers_firstname = Firstname
+customers_lastname = Lastname
+customers_email = Email
+customers_date_created = Date created

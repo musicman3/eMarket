@@ -6,25 +6,21 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 // Если нажали на кнопку Редактировать
-if (\eMarket\Valid::inPOST('edit')) {
+if (\eMarket\Valid::inPOST('status')) {
 
-    for ($x = 0; $x < $LANG_COUNT; $x++) {
-        \eMarket\Pdo::inPrepare("UPDATE " . TABLE_MANUFACTURERS . " SET name=?, site=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_manufacturers_' . $x), \eMarket\Valid::inPOST('site_manufacturers'), \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
+    $status_data = \eMarket\Pdo::getCell("SELECT status FROM " . TABLE_CUSTOMERS . " WHERE id=?", [\eMarket\Valid::inPOST('status')]);
+
+    if ($status_data == 0) {
+        $status = 1;
+    } else {
+        $status = 0;
     }
+    
+    \eMarket\Pdo::inPrepare("UPDATE " . TABLE_CUSTOMERS . " SET status=? WHERE id=?", [$status, \eMarket\Valid::inPOST('status')]);
 
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
 }
-
-// Загручик изображений (ВСТАВЛЯТЬ ПЕРЕД УДАЛЕНИЕМ)
-$resize_param = [];
-array_push($resize_param, ['125', '94']); // ширина, высота
-//array_push($resize_param, ['200','150']);
-//array_push($resize_param, ['325','244']);
-//array_push($resize_param, ['525','394']);
-//array_push($resize_param, ['850','638']);
-
-\eMarket\Files::imgUpload(TABLE_MANUFACTURERS, 'manufacturers', $resize_param);
 
 // Если нажали на кнопку Удалить
 if (\eMarket\Valid::inPOST('delete')) {
@@ -41,10 +37,6 @@ $navigate = \eMarket\Navigation::getLink(count($lines), $lines_on_page);
 $start = $navigate[0];
 $finish = $navigate[1];
 
-// Модальное окно
-require_once('modal/index.php');
-
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
 $JS_END = __DIR__;
-
 ?>

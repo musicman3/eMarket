@@ -4,9 +4,6 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
-<!-- Модальное окно -->
-<?php require_once('modal/index.php') ?>
-<!-- КОНЕЦ Модальное окно -->
 
 <div id="ajax">
     <div class="container-fluid">
@@ -20,13 +17,6 @@
                 </h3>
             </div>
             <div class="panel-body">
-                <!--Скрытый div для передачи данных-->
-                <div id="ajax_data" class='hidden'
-                     data-name='<?php echo $name ?>'
-                     data-site='<?php echo $site ?>'
-                     data-logo='<?php echo $logo ?>'
-                     data-general='<?php echo $logo_general ?>'
-                     ></div>
 
                 <table class="table table-hover">
                     <thead>
@@ -65,17 +55,17 @@
                         </tr>
                         <?php if ($lines == TRUE) { ?>
                             <tr class="border">
-                                <th>Имя</th>
-                                <th class="al-text">Фамилия</th>
-                                <th class="al-text">Дата создания</th>
-                                <th class="al-text">E-Mail</th>
+                                <th><?php echo lang('customers_firstname') ?></th>
+                                <th class="al-text"><?php echo lang('customers_lastname') ?></th>
+                                <th class="al-text"><?php echo lang('customers_date_created') ?></th>
+                                <th class="al-text"><?php echo lang('customers_email') ?></th>
                                 <th class="al-text-w"></th>
                             </tr>
                         <?php } ?>
                     </thead>
                     <tbody>
                         <?php for ($start; $start < $finish; $start++) { ?>
-                            <tr>
+                            <tr class="<?php echo \eMarket\Set::statusSwithClass($lines[$start][18]) ?>">
                                 <td><?php echo $lines[$start][3] ?></td>
                                 <td class="al-text"><?php echo $lines[$start][4] ?></td>
                                 <td class="al-text"><?php echo \eMarket\Set::dateLocale($lines[$start][6]) ?></td>
@@ -89,7 +79,12 @@
                                     </form>
                                     <!--Вызов модального окна для редактирования-->
                                     <div class="b-left">
-                                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index" data-edit="<?php echo $lines[$start][0] ?>"><span class="glyphicon glyphicon-edit"></span></button>
+                                        <form id="form_status<?php echo $lines[$start][0] ?>" name="form_status" action="javascript:void(null);" onsubmit="callAdd('form_status<?php echo $lines[$start][0] ?>')" enctype="multipart/form-data">
+                                            <input hidden name="status" value="<?php echo $lines[$start][0] ?>">
+                                            <div class="b-right">
+                                                <button type="submit" name="status_but" class="btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-status') ?>"><span class="glyphicon glyphicon-off"> </span></button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </td>
                             </tr>

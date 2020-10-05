@@ -1,4 +1,5 @@
 <?php
+
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -62,7 +63,13 @@ class Autorize {
         if (\eMarket\Set::path() == 'catalog') {
 
             session_start();
-            if (isset($_SESSION['customer_session_start']) && (time() - $_SESSION['customer_session_start']) / 60 > \eMarket\Set::sessionExprTime()) { // Если истекло время сеанса
+            if (isset($_SESSION['email_customer'])) {
+                $status = \eMarket\Pdo::getCellFalse("SELECT status FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']]);
+            } else {
+                $status = null;
+            }
+
+            if (isset($_SESSION['customer_session_start']) && (time() - $_SESSION['customer_session_start']) / 60 > \eMarket\Set::sessionExprTime() OR $status == 0) { // Если истекло время сеанса или пользователь отключен
                 unset($_SESSION['password_customer']);
                 unset($_SESSION['email_customer']);
                 unset($_SESSION['customer_session_start']);
