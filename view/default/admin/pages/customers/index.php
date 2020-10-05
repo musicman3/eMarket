@@ -71,14 +71,12 @@
                                 <td class="al-text"><?php echo \eMarket\Set::dateLocale($lines[$start][6]) ?></td>
                                 <td class="al-text"><?php echo $lines[$start][11] ?></td>
                                 <td class="al-text-w">
-                                    <div class="b-left">
-                                        <form id="form_status<?php echo $lines[$start][0] ?>" name="form_status" action="javascript:void(null);" onsubmit="callAdd('form_status<?php echo $lines[$start][0] ?>')" enctype="multipart/form-data">
-                                            <input hidden name="status" value="<?php echo $lines[$start][0] ?>">
-                                            <div class="b-right">
-                                                <button type="submit" name="status_but" class="btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-status') ?>"><span class="glyphicon glyphicon-off"> </span></button>
-                                            </div>
-                                        </form>
-                                    </div>
+                                    <form id="form_status<?php echo $lines[$start][0] ?>" name="form_status" action="javascript:void(null);" onsubmit="callAdd('form_status<?php echo $lines[$start][0] ?>')" enctype="multipart/form-data">
+                                        <input hidden name="status" value="<?php echo $lines[$start][0] ?>">
+                                        <div class="b-right">
+                                            <button type="submit" name="status_but" class="btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-status') ?>"><span class="glyphicon glyphicon-off"> </span></button>
+                                        </div>
+                                    </form>
                                 </td>
                             </tr>
                         <?php } ?>
