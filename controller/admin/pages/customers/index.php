@@ -22,14 +22,6 @@ if (\eMarket\Valid::inPOST('status')) {
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
 }
 
-// Если нажали на кнопку Удалить
-if (\eMarket\Valid::inPOST('delete')) {
-    // Удаляем запись
-    \eMarket\Pdo::inPrepare("DELETE FROM " . TABLE_CUSTOMERS . " WHERE id=?", [\eMarket\Valid::inPOST('delete')]);
-    // Выводим сообщение об успехе
-    $_SESSION['message'] = ['success', lang('action_completed_successfully')];
-}
-
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 $lines = \eMarket\Pdo::getColRow("SELECT * FROM " . TABLE_CUSTOMERS . " ORDER BY id DESC", []);
 $lines_on_page = \eMarket\Set::linesOnPage();
