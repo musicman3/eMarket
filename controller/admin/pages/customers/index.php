@@ -5,7 +5,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-// Если нажали на кнопку Изменить статус
+// Если нажали на кнопку Статус
 if (\eMarket\Valid::inPOST('status')) {
 
     $status_data = \eMarket\Pdo::getCell("SELECT status FROM " . TABLE_CUSTOMERS . " WHERE id=?", [\eMarket\Valid::inPOST('status')]);
@@ -18,6 +18,14 @@ if (\eMarket\Valid::inPOST('status')) {
     
     \eMarket\Pdo::inPrepare("UPDATE " . TABLE_CUSTOMERS . " SET status=? WHERE id=?", [$status, \eMarket\Valid::inPOST('status')]);
 
+    // Выводим сообщение об успехе
+    $_SESSION['message'] = ['success', lang('action_completed_successfully')];
+}
+
+// Если нажали на кнопку Удалить
+if (\eMarket\Valid::inPOST('delete')) {
+    // Удаляем запись
+    \eMarket\Pdo::inPrepare("DELETE FROM " . TABLE_CUSTOMERS . " WHERE id=?", [\eMarket\Valid::inPOST('delete')]);
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
 }
