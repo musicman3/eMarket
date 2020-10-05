@@ -46,7 +46,7 @@ body {background:#e4e4da;font-family: 'Open Sans';background-image:url('images/s
 .b-left {display: inline-block;float: right; padding-right:10px;}
 .add-xs {font-size:14px;display: inline-block;float: right; padding-right:5px;padding-left:5px;}
 /*input[type=checkbox], input[type=radio] {vertical-align: text-bottom;}*/
-.popover-title {text-align:center;padding:5px 0 5px 0;}
+.popover-title {text-align:center;padding:5px;}
 .table > tbody > tr > td.selector {width: 30%;}
 .table > tbody > tr > td.attribute {vertical-align: middle;}
 .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {padding:5px;}
