@@ -43,9 +43,9 @@ $menu[$menu_marketing][6] = array('#', 'glyphicon glyphicon-comment', 'Отзы�
 $menu[$menu_marketing][7] = array('#', 'glyphicon glyphicon-stats', 'Отчеты', '', 'false');
 
 //КОНТРАГЕНТЫ
-$level[$menu_count_linesparty] = array('#', lang('menu_clients'), 'true');
+$level[$menu_count_linesparty] = array('#', lang('menu_customers'), 'true');
 
-$menu[$menu_count_linesparty][0] = array('?route=clients', 'glyphicon glyphicon glyphicon-user', lang('menu_clients'), '', 'false');
+$menu[$menu_count_linesparty][0] = array('?route=customers', 'glyphicon glyphicon glyphicon-user', lang('menu_customers'), '', 'false');
 
 //ИНСТРУМЕНТЫ
 $level[$menu_tools] = array('#', lang('menu_tools'), 'true');

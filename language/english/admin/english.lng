@@ -28,13 +28,13 @@ title_settings_weight_index = Weight
 title_settings_zones_index = Zones
 title_settings_zones_listing_index = Countries and regions
 title_stock_index = Stock
-title_clients_index = Clients
+title_customers_index = Customers
 
 ;MENU_BUTTONS
 menu_catalog = Catalog
 menu_market = Market
 menu_sellings = Sellings
-menu_clients = Clients
+menu_customers = Customers
 menu_refunds = Refunds
 menu_error_log = Error log
 menu_exit = Exit

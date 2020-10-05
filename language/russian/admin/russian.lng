@@ -28,13 +28,13 @@ title_settings_weight_index = Вес
 title_settings_zones_index = Зоны
 title_settings_zones_listing_index = Страны и регионы
 title_stock_index = Склад
-title_clients_index = Клиенты
+title_customers_index = Клиенты
 
 ;КНОПКИ МЕНЮ
 menu_catalog = Каталог товаров
 menu_market = Магазин
 menu_sellings = Продажи
-menu_clients = Клиенты
+menu_customers = Клиенты
 menu_refunds = Возвраты
 menu_error_log = Лог ошибок
 menu_exit = Выход
