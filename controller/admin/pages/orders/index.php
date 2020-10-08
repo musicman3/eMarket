@@ -49,7 +49,8 @@ $order_status = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_ORDER_STATUS 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 $lines = \eMarket\Pdo::getColRow("SELECT * FROM " . TABLE_ORDERS . " ORDER BY id DESC", []);
 $lines_on_page = \eMarket\Set::linesOnPage();
-$navigate = \eMarket\Navigation::getLink(count($lines), $lines_on_page);
+$count_lines = count($lines);
+$navigate = \eMarket\Navigation::getLink($count_lines, $lines_on_page);
 $start = $navigate[0];
 $finish = $navigate[1];
 

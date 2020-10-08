@@ -60,7 +60,8 @@ if (\eMarket\Valid::inPOST('delete')) {
 
 $lines = \eMarket\Pdo::getColRow("SELECT id, region_code, name FROM " . TABLE_REGIONS . " WHERE country_id=? AND language=? ORDER BY name", [$country_id, lang('#lang_all')[0]]);
 $lines_on_page = \eMarket\Set::linesOnPage();
-$navigate = \eMarket\Navigation::getLink(count($lines), $lines_on_page);
+$count_lines = count($lines);
+$navigate = \eMarket\Navigation::getLink($count_lines, $lines_on_page);
 $start = $navigate[0];
 $finish = $navigate[1];
 

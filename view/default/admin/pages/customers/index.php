@@ -23,7 +23,7 @@
                         <tr>
                             <th colspan="4">
                                 <?php if ($lines == TRUE) { ?>
-                                    <div class="page"><?php echo lang('with') ?> <?php echo $start + 1 ?> <?php echo lang('to') ?> <?php echo $finish ?> ( <?php echo lang('of') ?> <?php echo count($lines); ?> )</div>
+                                    <div class="page"><?php echo lang('with') ?> <?php echo $start + 1 ?> <?php echo lang('to') ?> <?php echo $finish ?> ( <?php echo lang('of') ?> <?php echo $count_lines; ?> )</div>
                                     <?php
                                 } else {
                                     ?>
@@ -34,7 +34,7 @@
                             <th>
 
                                 <form>
-                                    <?php if (count($lines) > $lines_on_page) { ?>
+                                    <?php if ($count_lines > $lines_on_page) { ?>
                                         <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
                                         <input hidden name="start" value="<?php echo $start ?>">
                                         <input hidden name="finish" value="<?php echo $finish ?>">
@@ -43,7 +43,7 @@
                                 </form>
 
                                 <form>
-                                    <?php if (count($lines) > $lines_on_page) { ?>
+                                    <?php if ($count_lines > $lines_on_page) { ?>
                                         <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
                                         <input hidden name="backstart" value="<?php echo $start ?>">
                                         <input hidden name="backfinish" value="<?php echo $finish ?>">

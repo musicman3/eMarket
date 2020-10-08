@@ -13,7 +13,8 @@ if ($CUSTOMER == FALSE) {
 $lines = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_ORDERS . " WHERE email=? ORDER BY id DESC", [$_SESSION['email_customer']]);
 
 $lines_on_page = \eMarket\Set::linesOnPage();
-$navigate = \eMarket\Navigation::getLink(count($lines), $lines_on_page);
+$count_lines = count($lines);
+$navigate = \eMarket\Navigation::getLink($count_lines, $lines_on_page);
 $start = $navigate[0];
 $finish = $navigate[1];
 

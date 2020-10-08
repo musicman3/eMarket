@@ -24,7 +24,7 @@
                         <thead>
                             <tr>
                                 <th>
-                                    <div class="page"><?php echo lang('with') ?> <?php echo $start + 1 ?> <?php echo lang('to') ?> <?php echo $finish ?> ( <?php echo lang('of') ?> <?php echo count($lines); ?> )</div>
+                                    <div class="page"><?php echo lang('with') ?> <?php echo $start + 1 ?> <?php echo lang('to') ?> <?php echo $finish ?> ( <?php echo lang('of') ?> <?php echo $count_lines; ?> )</div>
                                 </th>
 
                                 <th>
@@ -35,7 +35,7 @@
                                     </form>
                                     
                                     <form>
-                                        <?php if (count($lines) > $lines_on_page) { ?>
+                                        <?php if ($count_lines > $lines_on_page) { ?>
                                             <input hidden name="start" value="<?php echo $start ?>">
                                             <input hidden name="finish" value="<?php echo $finish ?>">
                                             <div class="b-left"><button type="submit" class="btn btn-primary btn-xs" formmethod="post"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
@@ -43,7 +43,7 @@
                                     </form>
 
                                     <form>
-                                        <?php if (count($lines) > $lines_on_page) { ?>
+                                        <?php if ($count_lines > $lines_on_page) { ?>
                                             <input hidden name="backstart" value="<?php echo $start ?>">
                                             <input hidden name="backfinish" value="<?php echo $finish ?>">
                                             <div class="b-left"><button type="submit" class="btn btn-primary btn-xs" formmethod="post"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
