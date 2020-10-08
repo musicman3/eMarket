@@ -48,23 +48,22 @@
                                 <!--Вызов модального окна для добавления-->
                                 <div class="b-right"><a href="#index" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
                             
-                                <form>
-                                    <?php if ($count_lines > $lines_on_page) { ?>
+                                <?php if ($count_lines > $lines_on_page) { ?>
+                                    <form>
                                         <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
                                         <input hidden name="start" value="<?php echo $start ?>">
                                         <input hidden name="finish" value="<?php echo $finish ?>">
                                         <div class="b-left"><button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
-                                    <?php } ?>
-                                </form>
+                                    </form>
 
-                                <form>
-                                    <?php if ($count_lines > $lines_on_page) { ?>
+                                    <form>
                                         <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
                                         <input hidden name="backstart" value="<?php echo $start ?>">
                                         <input hidden name="backfinish" value="<?php echo $finish ?>">
                                         <div class="b-left"><button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
-                                    <?php } ?>
-                                </form>
+
+                                    </form>
+                                <?php } ?>
 
                             </th>
                         </tr>
