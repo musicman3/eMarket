@@ -17,9 +17,5 @@ for ($i = $start; $i < $finish; $i++) {
         $orders_edit = json_encode($orders_temp);
     }
 }
-if (!isset($modal_id)) {
-    $modal_id = 'false';
-    $orders_edit = '';
-}
 
 ?>

@@ -18,9 +18,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
 <?php \eMarket\Messages::alert(); ?>
 <h1><?php echo lang('orders_book') ?></h1>
 
-<div id="ajax_data" class='hidden'
-     data-orders='<?php echo $orders_edit ?>'
-     ></div>
+<div id="ajax_data" class='hidden' data-orders='<?php echo $orders_edit ?>'></div>
 
 <table class="table table-hover">
     <thead>
