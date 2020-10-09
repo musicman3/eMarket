@@ -52,35 +52,9 @@
             <?php if ($lines_cat == TRUE OR $lines_prod == TRUE) { ?>
                 <div class="panel-body">
                     <!--Скрытый div для передачи данных-->
-                    <div id="ajax_data" class='hidden'
-                         data-name='<?php echo $name ?>'
-                         data-logo='<?php echo $logo ?>'
-                         data-general='<?php echo $logo_general ?>'
-                         data-attributes='<?php echo $attributes ?>'
-                         data-logoproduct='<?php echo $logo_product ?>'
-                         data-generalproduct='<?php echo $logo_general_product ?>'
-                         data-nameproduct='<?php echo $name_product ?>'
-                         data-descriptionproduct='<?php echo $description_product ?>'
-                         data-keywordproduct='<?php echo $keyword_product ?>'
-                         data-tagsproduct='<?php echo $tags_product ?>'
-                         data-priceproduct='<?php echo $price_product ?>'
-                         data-currencyproduct='<?php echo $currency_product ?>'
-                         data-quantityproduct='<?php echo $quantity_product ?>'
-                         data-unitsproduct='<?php echo $units_product ?>'
-                         data-modelproduct='<?php echo $model_product ?>'
-                         data-manufacturersproduct='<?php echo $manufacturers_product ?>'
-                         data-dateavailableproduct='<?php echo $date_available_product ?>'
-                         data-taxproduct='<?php echo $tax_product ?>'
-                         data-vendorcodevalueproduct='<?php echo $vendor_code_value_product ?>'
-                         data-vendorcodeproduct='<?php echo $vendor_code_product ?>'
-                         data-weightvalueproduct='<?php echo $weight_value_product ?>'
-                         data-weightproduct='<?php echo $weight_product ?>'
-                         data-minquantityproduct='<?php echo $min_quantity_product ?>'
-                         data-dimensionproduct='<?php echo $dimension_product ?>'
-                         data-lengthproduct='<?php echo $length_product ?>'
-                         data-widthproduct='<?php echo $width_product ?>'
-                         data-heightproduct='<?php echo $height_product ?>'
-                         data-attributesselected='<?php echo $attributes_product ?>'
+                    <div id="ajax_data" class='hidden' 
+                         data-jsondataproduct='<?php echo $json_data_product ?>'
+                         data-jsondatacategory='<?php echo $json_data_category ?>'
                          data-attributesdata='<?php echo $attributes_data ?>'
                          ></div>
 
@@ -88,16 +62,8 @@
                         <thead>
                             <tr>
                                 <th colspan="4">
-                                    <?php
-                                    // Счетчик в навигации
-                                    if ($finish == $count_lines_merge && ($finish - $start) <= $lines_on_page OR $finish == $lines_on_page) {
-                                        $finish_out = $finish;
-                                    } else {
-                                        $finish_out = $finish - 1;
-                                    }
-                                    ?>
 
-                                    <div class="page"><?php echo lang('with') ?> <?php echo $start + 1 ?> <?php echo lang('to') ?> <?php echo $finish_out ?> ( <?php echo lang('of') ?> <?php echo $count_lines_merge; ?> )</div>
+                                    <div class="page"><?php echo lang('with') ?> <?php echo $start + 1 ?> <?php echo lang('to') ?> <?php echo \eMarket\Navigation::counter($start, $finish, $count_lines_merge, $lines_on_page) ?> ( <?php echo lang('of') ?> <?php echo $count_lines_merge; ?> )</div>
 
                                     <!-- Переключаем страницу "ВПЕРЕД" -->
                                     <?php if ($count_lines_merge > $lines_on_page) { ?>

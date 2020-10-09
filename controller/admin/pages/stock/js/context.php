@@ -82,7 +82,7 @@
                     },
                     disabled: function () {
                         // Делаем не активным пункт меню, если нет строк
-                        if ($('div#ajax_data').data('name') === undefined || $('div#ajax_data').data('nameproduct') === undefined) {
+                        if ($('div#ajax_data').data('jsondataproduct')['name'] === undefined && $('div#ajax_data').data('jsondatacategory')['name'] === undefined) {
                             return true;
                         }
                     },
@@ -99,63 +99,40 @@
                             // Получаем ID при клике на кнопку редактирования
                             var modal_id = modal_edit.split('product_')[1];
                             // Получаем массивы данных
-                            var name_edit = $('div#ajax_data').data('nameproduct');
-                            var description_edit = $('div#ajax_data').data('descriptionproduct');
-                            var keyword_edit = $('div#ajax_data').data('keywordproduct');
-                            var tags_edit = $('div#ajax_data').data('tagsproduct');
-                            var price_edit = $('div#ajax_data').data('priceproduct');
-                            var currency_edit = $('div#ajax_data').data('currencyproduct');
-                            var quantity_edit = $('div#ajax_data').data('quantityproduct');
-                            var unit_edit = $('div#ajax_data').data('unitsproduct');
-                            var model_edit = $('div#ajax_data').data('modelproduct');
-                            var manufacturers_edit = $('div#ajax_data').data('manufacturersproduct');
-                            var date_available_edit = $('div#ajax_data').data('dateavailableproduct');
-                            var tax_edit = $('div#ajax_data').data('taxproduct');
-                            var vendor_code_value_edit = $('div#ajax_data').data('vendorcodevalueproduct');
-                            var vendor_code_edit = $('div#ajax_data').data('vendorcodeproduct');
-                            var weight_value_edit = $('div#ajax_data').data('weightvalueproduct');
-                            var weight_edit = $('div#ajax_data').data('weightproduct');
-                            var min_quantity_edit = $('div#ajax_data').data('minquantityproduct');
-                            var dimension_edit = $('div#ajax_data').data('dimensionproduct');
-                            var length_edit = $('div#ajax_data').data('lengthproduct');
-                            var width_edit = $('div#ajax_data').data('widthproduct');
-                            var height_edit = $('div#ajax_data').data('heightproduct');
-                            var logo_edit_product = $('div#ajax_data').data('logoproduct');
-                            var logo_general_edit_product = $('div#ajax_data').data('generalproduct');
-                            var selected_attributes_edit = $('div#ajax_data').data('attributesselected');
-                            
+                            var json_data = $('div#ajax_data').data('jsondataproduct');
+
                             // Загружаем настройки Summernote
                             $('.summernote_add').summernote(summernote_pref);
                             // Ищем id и добавляем данные
-                            for (var x = 0; x < name_edit.length; x++) {
-                                $('#name_product_stock_' + x).val(name_edit[x][modal_id]);
-                                $('#description_product_stock_' + x).summernote('code', description_edit[x][modal_id]);
-                                $('#keyword_product_stock_' + x).val(keyword_edit[x][modal_id]);
-                                $('#tags_product_stock_' + x).val(tags_edit[x][modal_id]);
+                            for (var x = 0; x < json_data['name'].length; x++) {
+                                $('#name_product_stock_' + x).val(json_data['name'][x][modal_id]);
+                                $('#description_product_stock_' + x).summernote('code', json_data['description'][x][modal_id]);
+                                $('#keyword_product_stock_' + x).val(json_data['keyword'][x][modal_id]);
+                                $('#tags_product_stock_' + x).val(json_data['tags'][x][modal_id]);
                             }
-                            $('#price_product_stock').val(price_edit[modal_id]);
-                            $('#currency_product_stock').val(currency_edit[modal_id]);
-                            $('#quantity_product_stock').val(quantity_edit[modal_id]);
-                            $('#unit_product_stock').val(unit_edit[modal_id]);
-                            $('#model_product_stock').val(model_edit[modal_id]);
-                            $('#manufacturers_product_stock').val(manufacturers_edit[modal_id]);
-                            if (date_available_edit[modal_id] === null) {
+                            $('#price_product_stock').val(json_data['price'][modal_id]);
+                            $('#currency_product_stock').val(json_data['currency'][modal_id]);
+                            $('#quantity_product_stock').val(json_data['quantity'][modal_id]);
+                            $('#unit_product_stock').val(json_data['units'][modal_id]);
+                            $('#model_product_stock').val(json_data['model'][modal_id]);
+                            $('#manufacturers_product_stock').val(json_data['manufacturers'][modal_id]);
+                            if (json_data['date_available'][modal_id] === null) {
                                 $('#date_available_product_stock').datepicker('setDate', '');
                             } else {
-                                $('#date_available_product_stock').datepicker('setDate', new Date(date_available_edit[modal_id]));
+                                $('#date_available_product_stock').datepicker('setDate', new Date(json_data['date_available'][modal_id]));
                             }
 
-                            $('#tax_product_stock').val(tax_edit[modal_id]);
-                            $('#vendor_code_value_product_stock').val(vendor_code_value_edit[modal_id]);
-                            $('#vendor_codes_product_stock').val(vendor_code_edit[modal_id]);
-                            $('#weight_value_product_stock').val(weight_value_edit[modal_id]);
-                            $('#weight_product_stock').val(weight_edit[modal_id]);
-                            $('#min_quantity_product_stock').val(min_quantity_edit[modal_id]);
-                            $('#length_product_stock').val(dimension_edit[modal_id]);
-                            $('#value_length_product_stock').val(length_edit[modal_id]);
-                            $('#value_width_product_stock').val(width_edit[modal_id]);
-                            $('#value_height_product_stock').val(height_edit[modal_id]);
-                            $('#selected_attributes').val(JSON.stringify(selected_attributes_edit[modal_id]));
+                            $('#tax_product_stock').val(json_data['tax'][modal_id]);
+                            $('#vendor_code_value_product_stock').val(json_data['vendor_code_value'][modal_id]);
+                            $('#vendor_codes_product_stock').val(json_data['vendor_code'][modal_id]);
+                            $('#weight_value_product_stock').val(json_data['weight_value'][modal_id]);
+                            $('#weight_product_stock').val(json_data['weight'][modal_id]);
+                            $('#min_quantity_product_stock').val(json_data['min_quantity'][modal_id]);
+                            $('#length_product_stock').val(json_data['dimension'][modal_id]);
+                            $('#value_length_product_stock').val(json_data['length'][modal_id]);
+                            $('#value_width_product_stock').val(json_data['width'][modal_id]);
+                            $('#value_height_product_stock').val(json_data['height'][modal_id]);
+                            $('#selected_attributes').val(JSON.stringify(json_data['attributes'][modal_id]));
 
                             // Выводим атрибуты
                             AttributesProcessing.add('admin');
@@ -163,7 +140,7 @@
                             $('#edit_product').val(modal_id);
                             $('#add_product').val('');
                             // Подгружаем изображения
-                            getImageToEditProduct(logo_general_edit_product, logo_edit_product, modal_id);
+                            getImageToEditProduct(json_data['logo_general'], json_data['logo'], modal_id);
 
                             $('#index_product').modal('show');
                         } else {
@@ -171,23 +148,20 @@
                             var modal_id = opt.$trigger.attr("id");
 
                             // Получаем массивы данных
-                            var name_edit = $('div#ajax_data').data('name');
-                            var logo_edit = $('div#ajax_data').data('logo');
-                            var logo_general_edit = $('div#ajax_data').data('general');
-                            var attributes_edit = $('div#ajax_data').data('attributes');
+                            var json_data = $('div#ajax_data').data('jsondatacategory');
 
                             // Ищем id и добавляем данные
-                            for (var x = 0; x < name_edit.length; x++) {
-                                $('#name_categories_stock_' + x).val(name_edit[x][modal_id]);
+                            for (var x = 0; x < json_data['name'].length; x++) {
+                                $('#name_categories_stock_' + x).val(json_data['name'][x][modal_id]);
                             }
-                            $('#attributes').val(attributes_edit);
+                            $('#attributes').val(json_data['attributes']);
 
                             $('#edit').val(modal_id);
                             $('#add').val('');
                             // Подгружаем изображения
-                            getImageToEdit(logo_general_edit, logo_edit, modal_id);
+                            getImageToEdit(json_data['logo_general'], json_data['logo'], modal_id);
                             // Подгружаем атрибуты
-                            sessionStorage.setItem('attributes', JSON.stringify(attributes_edit[modal_id]));
+                            sessionStorage.setItem('attributes', JSON.stringify(json_data['attributes'][modal_id]));
                             // Открываем модальное окно
                             $('#index').modal('show');
                         }
@@ -203,7 +177,7 @@
                     },
                     disabled: function () {
                         // Делаем не активным пункт меню, если нет строк
-                        if ($('div#ajax_data').data('name') === undefined && $('div#ajax_data').data('nameproduct') === undefined && session === '0') {
+                        if ($('div#ajax_data').data('jsondataproduct')['name'] === undefined && $('div#ajax_data').data('jsondatacategory')['name'] === undefined && session === '0') {
                             return true;
                         }
                     },
@@ -216,7 +190,7 @@
                             },
                             disabled: function () {
                                 // Делаем не активным пункт меню, если нет строк
-                                if ($('div#ajax_data').data('name') === undefined || $('div#ajax_data').data('nameproduct') === undefined) {
+                                if ($('div#ajax_data').data('jsondataproduct')['name'] === undefined && $('div#ajax_data').data('jsondatacategory')['name'] === undefined) {
                                     return true;
                                 }
                             },
@@ -259,7 +233,7 @@
                             },
                             disabled: function () {
                                 // Делаем не активным пункт меню, если нет строк
-                                if ($('div#ajax_data').data('name') === undefined || $('div#ajax_data').data('nameproduct') === undefined) {
+                                if ($('div#ajax_data').data('jsondataproduct')['name'] === undefined && $('div#ajax_data').data('jsondatacategory')['name'] === undefined) {
                                     return true;
                                 }
                             },
@@ -305,7 +279,7 @@
                             },
                             disabled: function () {
                                 // Делаем не активным пункт меню, если нет строк
-                                if ($('div#ajax_data').data('name') === undefined || $('div#ajax_data').data('nameproduct') === undefined) {
+                                if ($('div#ajax_data').data('jsondataproduct')['name'] === undefined && $('div#ajax_data').data('jsondatacategory')['name'] === undefined) {
                                     return true;
                                 }
                             },
@@ -384,7 +358,7 @@
                             },
                             disabled: function () {
                                 // Делаем не активным пункт меню, если нет строк
-                                if ($('div#ajax_data').data('name') === undefined || $('div#ajax_data').data('nameproduct') === undefined) {
+                                if ($('div#ajax_data').data('jsondataproduct')['name'] === undefined && $('div#ajax_data').data('jsondatacategory')['name'] === undefined) {
                                     return true;
                                 }
                             },
@@ -452,7 +426,7 @@
                             selected: <?php echo $sale_default ?>,
                             disabled: function () {
                                 // Делаем не активным пункт меню, если нет строк
-                                if ($('div#ajax_data').data('name') === undefined || $('div#ajax_data').data('nameproduct') === undefined) {
+                                if ($('div#ajax_data').data('jsondataproduct')['name'] === undefined && $('div#ajax_data').data('jsondatacategory')['name'] === undefined) {
                                     return true;
                                 }
                             }
@@ -508,7 +482,7 @@
                             },
                             disabled: function () {
                                 // Делаем не активным пункт меню, если нет строк
-                                if ($('div#ajax_data').data('name') === undefined || $('div#ajax_data').data('nameproduct') === undefined) {
+                                if ($('div#ajax_data').data('jsondataproduct')['name'] === undefined && $('div#ajax_data').data('jsondatacategory')['name'] === undefined) {
                                     return true;
                                 }
                             },
@@ -564,7 +538,7 @@
                             },
                             disabled: function () {
                                 // Делаем не активным пункт меню, если нет строк
-                                if ($('div#ajax_data').data('name') === undefined || $('div#ajax_data').data('nameproduct') === undefined) {
+                                if ($('div#ajax_data').data('jsondataproduct')['name'] === undefined && $('div#ajax_data').data('jsondatacategory')['name'] === undefined) {
                                     return true;
                                 }
                             },
