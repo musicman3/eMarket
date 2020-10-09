@@ -9,43 +9,39 @@
 <script type="text/javascript">
     $('#default_unit').bootstrapSwitch();
 </script>
-<?php if (isset($name)) { ?>
-    <!-- Загрузка данных в модальное окно -->
-    <script type="text/javascript">
-        $('#index').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget);
-            var modal_id = button.data('edit'); // Получаем ID из data-edit при клике на кнопку редактирования
-            if (Number.isInteger(modal_id)) {
-                $('#default_unit').bootstrapSwitch('destroy', true);
-                // Получаем массивы данных
-                var name = $('div#ajax_data').data('name');
-                var code = $('div#ajax_data').data('code');
-                var unit = $('div#ajax_data').data('unit');
+<!-- Загрузка данных в модальное окно -->
+<script type="text/javascript">
+    $('#index').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        var modal_id = button.data('edit'); // Получаем ID из data-edit при клике на кнопку редактирования
+        if (Number.isInteger(modal_id)) {
+            $('#default_unit').bootstrapSwitch('destroy', true);
+            // Получаем массивы данных
+            var json_data = $('div#ajax_data').data('jsondata');
 
-                $('#edit').val(modal_id);
-                $('#add').val('');
+            $('#edit').val(modal_id);
+            $('#add').val('');
 
-                // Ищем id и добавляем данные
-                for (x = 0; x < name.length; x++) {
-                    $('#name_units_' + x).val(name[x][modal_id]);
-                    $('#unit_units_' + x).val(code[x][modal_id]);
-                }
-
-                // Меняем значение чекбокса
-                $('#default_unit').prop('checked', unit[modal_id]);
-                $('#default_unit').bootstrapSwitch();
-            } else {
-                $('#edit').val('');
-                $('#add').val('ok');
-                //Очищаем поля
-                $(this).find('form').trigger('reset');
-                // Меняем значение чекбокса
-                $('#default_unit').prop('checked', '1');
+            // Ищем id и добавляем данные
+            for (x = 0; x < json_data['name'].length; x++) {
+                $('#name_units_' + x).val(json_data['name'][x][modal_id]);
+                $('#unit_units_' + x).val(json_data['code'][x][modal_id]);
             }
-        });
-    </script>
-    <?php
-}
+
+            // Меняем значение чекбокса
+            $('#default_unit').prop('checked', json_data['default'][modal_id]);
+            $('#default_unit').bootstrapSwitch();
+        } else {
+            $('#edit').val('');
+            $('#add').val('ok');
+            //Очищаем поля
+            $(this).find('form').trigger('reset');
+            // Меняем значение чекбокса
+            $('#default_unit').prop('checked', '1');
+        }
+    });
+</script>
+<?php
 // Подгружаем Ajax Добавить, Редактировать, Удалить
 \eMarket\Ajax::action('');
 ?>

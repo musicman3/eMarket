@@ -21,11 +21,7 @@
             </div>
             <div class="panel-body">
                 <!--Скрытый div для передачи данных-->
-                <div id="ajax_data" class='hidden'
-                     data-name='<?php echo $name ?>'
-                     data-code='<?php echo $code ?>'
-                     data-vendor='<?php echo $default_vendor_code ?>'
-                     ></div>
+                <div id="ajax_data" class='hidden' data-jsondata='<?php echo $json_data ?>'></div>
 
                 <table class="table table-hover">
                     <thead>

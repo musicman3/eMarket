@@ -11,26 +11,28 @@ for ($i = $start; $i < $finish; $i++) {
         $count_lang = $LANG_COUNT;
 
         for ($x = 0; $x < $count_lang; $x++) {
-            $query_lang = $name_temp[$x][$modal_id] = \eMarket\Pdo::getRow("SELECT name, code FROM " . TABLE_CURRENCIES . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]]);
-            $name_temp[$x][$modal_id] = $query_lang[0];
-            $code_temp[$x][$modal_id] = $query_lang[1];
+            $query_lang = \eMarket\Pdo::getRow("SELECT name, code FROM " . TABLE_CURRENCIES . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]]);
+            $name[$x][$modal_id] = $query_lang[0];
+            $code[$x][$modal_id] = $query_lang[1];
         }
         $query = \eMarket\Pdo::getRow("SELECT iso_4217, value, symbol, symbol_position, decimal_places, default_value FROM " . TABLE_CURRENCIES . " WHERE id=?", [$modal_id]);
-        $iso_4217_temp[$modal_id] = $query[0];
-        $value_temp[$modal_id] = (float) $query[1];
-        $symbol_temp[$modal_id] = $query[2];
-        $symbol_position_temp[$modal_id] = $query[3];
-        $decimal_places_temp[$modal_id] = (float) $query[4];
-        $status_value_temp[$modal_id] = (int) $query[5];
-        // ПАРАМЕТРЫ ДЛЯ ПЕРЕДАЧИ В МОДАЛ
-        $name = json_encode($name_temp); // Имя
-        $code = json_encode($code_temp); // Короткое имя
-        $iso_4217 = json_encode($iso_4217_temp); // iso 4217
-        $value = json_encode($value_temp); // Значение
-        $symbol = json_encode($symbol_temp); // Символ
-        $symbol_position = json_encode($symbol_position_temp); // Позиция символа
-        $decimal_places = json_encode($decimal_places_temp); // Кол-во десятичных знаков
-        $status_value = json_encode($status_value_temp); // Статус
+        $iso_4217[$modal_id] = $query[0];
+        $value[$modal_id] = (float) $query[1];
+        $symbol[$modal_id] = $query[2];
+        $symbol_position[$modal_id] = $query[3];
+        $decimal_places[$modal_id] = (float) $query[4];
+        $status[$modal_id] = (int) $query[5];
+        
+        $json_data = json_encode([
+            'name' => $name,
+            'code' => $code,
+            'iso_4217' => $iso_4217,
+            'value' => $value,
+            'symbol' => $symbol,
+            'symbol_position' => $symbol_position,
+            'decimal_places' => $decimal_places,
+            'status' => $status
+        ]);
     }
 }
 if (!isset($modal_id)) {

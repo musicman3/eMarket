@@ -22,9 +22,7 @@
             </div>
             <div class="panel-body">
                 <!--Скрытый div для передачи данных-->
-                <div id="ajax_data" class='hidden'
-                     data-orders='<?php echo $orders ?>'
-                     ></div>
+                <div id="ajax_data" class='hidden' data-orders='<?php echo $orders ?>'></div>
 
                 <table class="table table-hover">
                     <thead>
