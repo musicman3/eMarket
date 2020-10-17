@@ -16,7 +16,7 @@ $menu_exit = '5'; //ВЫХОД
 //МАГАЗИН
 // параметры 1 уровня: [0] - url, [1] - Название, [2] - наличие подменю
 // параметры 2 уровня: [0] - url, [1] - картинка, [2] - Название, [3] - наличие target="_blank", [4] - наличие подменю
-// параметры 3 уровня: [0] - url, [1] - картинка, [2] - Название
+// параметры 3 уровня: [0] - url, [1] - картинка, [2] - Название, [3] - наличие target="_blank",
 $level[$menu_market] = array('#', lang('menu_market'), 'true');
 
 $menu[$menu_market][0] = array('?route=stock', 'glyphicon glyphicon-barcode', lang('title_stock_index'), '', 'false');
@@ -60,7 +60,7 @@ $menu[$menu_tools][0] = array('?route=error_log', 'glyphicon glyphicon-exclamati
 $level[$menu_help] = array('#', lang('menu_help'), 'true');
 
 $menu[$menu_help][0] = array('#', 'glyphicon glyphicon-equalizer', lang('menu_extra'), '', 'true');
-$submenu[$menu_help][0][0] = array('#', 'glyphicon glyphicon-triangle-right', lang('menu_support'));
+$submenu[$menu_help][0][0] = array('http://emarketforum.com', 'glyphicon glyphicon-triangle-right', lang('menu_support'), 'target="_blank"');
 
 $menu[$menu_help][1] = array('#', 'glyphicon glyphicon-globe', lang('menu_languages'), '', 'true');
 

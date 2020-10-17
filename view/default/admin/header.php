@@ -64,7 +64,7 @@ if (isset($_SESSION['login']) && isset($_SESSION['pass'])) { // Выводим �
                                                         ?>
                                                         <li>
                                                             <!-- выводим данные 3 уровня меню -->
-                                                            <a href="<?php echo $submenu[$i][$x][$y][0]; ?>"><span class="<?php echo $submenu[$i][$x][$y][1]; ?>"></span> <?php echo $submenu[$i][$x][$y][2]; ?> </a>
+                                                            <a <?php echo $submenu[$i][$x][$y][3]; ?> href="<?php echo $submenu[$i][$x][$y][0]; ?>"><span class="<?php echo $submenu[$i][$x][$y][1]; ?>"></span> <?php echo $submenu[$i][$x][$y][2]; ?> </a>
                                                         </li><?php } ?>
                                                 </ul><?php } ?>
                                                 
