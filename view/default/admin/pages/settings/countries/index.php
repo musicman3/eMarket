@@ -21,6 +21,18 @@
                 </h3>
             </div>
             <div class="panel-body">
+		    <div class="pull-left">
+			<form name="quick_find" action="#" method="get" class="form-horizontal">
+			    <div class="input-group">
+				<input type="search" name="keywords" required="" placeholder="<?php echo lang('search_name') ?>" class="form-control">
+				<span class="input-group-btn">
+				    <button type="submit" class="btn btn-primary">
+					<span class="glyphicon glyphicon-search"></span>
+				    </button>
+				</span>
+			    </div>
+			</form>
+		    </div>
                 <!--Скрытый div для передачи данных-->
                 <div id="ajax_data" class='hidden' data-jsondata='<?php echo $json_data ?>'></div>
 
