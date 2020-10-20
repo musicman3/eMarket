@@ -66,7 +66,7 @@ $menu[$menu_help][1] = array('#', 'glyphicon glyphicon-globe', lang('menu_langua
 
 //Вывод языков
 for ($lng = 0; $lng < count(lang('#lang_all')); $lng++) {
-    $submenu[$menu_help][1][$lng] = array(\eMarket\Set::langCurrencyPath() . '&language=' . lang('#lang_all')[$lng], 'glyphicon glyphicon-triangle-right', lang('language_name', lang('#lang_all')[$lng]));
+    $submenu[$menu_help][1][$lng] = array(\eMarket\Set::langCurrencyPath() . '&language=' . lang('#lang_all')[$lng], 'glyphicon glyphicon-triangle-right', lang('language_name', lang('#lang_all')[$lng]), '');
 }
 
 $menu[$menu_help][2] = array('/', 'glyphicon glyphicon-home', lang('menu_catalog'), 'target="_blank"', 'false'); // В отдельном окне
