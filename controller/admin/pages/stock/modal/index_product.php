@@ -106,6 +106,8 @@ for ($i = $start; $i < $finish; $i++) {
             'logo_general' => $logo_general_product,
             'attributes' => $attributes_product,
         ]);
+    } else {
+        $json_data_product = json_encode([]);
     }
 }
 ?>

@@ -26,6 +26,8 @@ for ($i = $start; $i < $finish; $i++) {
             'logo_general' => $logo_general,
             'attributes' => $attributes
         ]);
+    } else {
+        $json_data_category = json_encode([]);
     }
 }
 ?>
