@@ -57,9 +57,9 @@ $menu[$menu_tools][0] = array('?route=error_log', 'glyphicon glyphicon-exclamati
 //$menu[$menu_tools][3] = array('#', 'glyphicon glyphicon-hdd', 'Информация о сервере', '', 'false');
 
 //ПОМОЩЬ
-$level[$menu_help] = array('#', lang('menu_help'), 'true');
+$level[$menu_help] = array('#', lang('menu_extra'), 'true');
 
-$menu[$menu_help][0] = array('#', 'glyphicon glyphicon-equalizer', lang('menu_extra'), '', 'true');
+$menu[$menu_help][0] = array('#', 'glyphicon glyphicon-equalizer', lang('menu_help'), '', 'true');
 $submenu[$menu_help][0][0] = array('http://emarketforum.com', 'glyphicon glyphicon-triangle-right', lang('menu_support'), 'target="_blank"');
 
 $menu[$menu_help][1] = array('#', 'glyphicon glyphicon-globe', lang('menu_languages'), '', 'true');
