@@ -17,7 +17,7 @@
                     $.ajax({
                         method: 'POST',
                         dataType: 'text',
-                        url: '?route=stock',
+                        url: '?route=stock2',
                         data: ({
                             itemName: itemKey, //название ключа из меню (edit, delete, copy и т.п.)
                             ids2: opt.$trigger.attr("id")}), //id строки
@@ -26,7 +26,6 @@
                                 $('#view_categories_stock').bootstrapSwitch('destroy');
                                 $('#fileupload').fileupload('destroy');
                                 $('#fileupload-product').fileupload('destroy');
-                                $('#ajax').html(data);
                             }, 1000);
                         }
                     });
@@ -40,6 +39,13 @@
                     name: "<?php echo lang('add_product') ?>",
                     icon: function () {
                         return 'context-menu-icon glyphicon-shopping-cart';
+                    },
+                    disabled: function () {
+                        let params = (new URL(document.location)).searchParams;
+                        // Делаем не активным пункт меню, если нет строк
+                        if (params.get('search') !== null) {
+                            return true;
+                        }
                     },
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
                         $('#selected_attributes').val(JSON.stringify([]));
@@ -63,6 +69,13 @@
                     name: "<?php echo lang('add_category') ?>",
                     icon: function () {
                         return 'context-menu-icon glyphicon-folder-open';
+                    },
+                    disabled: function () {
+                        let params = (new URL(document.location)).searchParams;
+                        // Делаем не активным пункт меню, если нет строк
+                        if (params.get('search') !== null) {
+                            return true;
+                        }
                     },
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
                         $('#edit').val('');
@@ -304,7 +317,7 @@
                                             parent_down: <?php echo $parent_id ?>,
                                             idsx_cut_key: itemKey});
                                 // Отправка запроса для обновления страницы
-                                jQuery.get('?route=stock',
+                                jQuery.get('<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>',
                                         {parent_down: <?php echo $parent_id ?>},
                                         AjaxSuccess);
                                 // Обновление страницы
@@ -326,7 +339,9 @@
                             },
                             disabled: function () {
                                 // Делаем не активным пункт меню, если нет строк
-                                if (session === '0') {
+                                let params = (new URL(document.location)).searchParams;
+                                // Делаем не активным пункт меню, если нет строк
+                                if (session === '0' || params.get('search') !== null) {
                                     return true;
                                 }
                             },
@@ -338,13 +353,19 @@
                                             parent_down: <?php echo $parent_id ?>,
                                             idsx_paste_key: itemKey});
                                 // Отправка запроса для обновления страницы
-                                jQuery.get('?route=stock',
+                                jQuery.get('<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>',
                                         {parent_down: <?php echo $parent_id ?>,
                                             modify: 'update_ok'},
                                         AjaxSuccess);
                                 // Обновление страницы
                                 function AjaxSuccess(data) {
-                                    document.location.href = '<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>';
+                                    $('#view_categories_stock').bootstrapSwitch('destroy');
+                                    $('#fileupload').fileupload('destroy');
+                                    $('#fileupload-product').fileupload('destroy');
+                                    $('#ajax').html(data);
+                                    $('.group-attributes').sortable('option', 'disabled', false);
+                                    $('.attribute').sortable('option', 'disabled', false);
+                                    $('.values_attributes').sortable('option', 'disabled', false);
                                 }
                             }
                         },
@@ -414,7 +435,7 @@
                     disabled: function () {
                         // Делаем не активным пункт меню, если нет строк
                         var sale = '<?php echo $sales_flag ?>';
-                        if (sale === '0') {
+                        if (sale === '0' || $('div#ajax_data').data('jsondataproduct')['name'] === undefined && $('div#ajax_data').data('jsondatacategory')['name'] === undefined) {
                             return true;
                         }
                     },

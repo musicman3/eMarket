@@ -6,6 +6,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 // собираем данные для отображения в Редактировании товаров
+$json_data_product = json_encode([]);
 for ($i = $start; $i < $finish; $i++) {
     if (isset($arr_merge['prod'][$i . 'a'][0]) == TRUE) {
 
@@ -106,8 +107,6 @@ for ($i = $start; $i < $finish; $i++) {
             'logo_general' => $logo_general_product,
             'attributes' => $attributes_product,
         ]);
-    } else {
-        $json_data_product = json_encode([]);
     }
 }
 ?>

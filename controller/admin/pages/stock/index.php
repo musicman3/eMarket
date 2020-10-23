@@ -80,21 +80,21 @@ $vendor_codes_all = \eMarket\Pdo::getColRow("SELECT name, default_vendor_code, i
 // Формируем массив Производитель измерения для выпадающего списка
 $manufacturers_all = \eMarket\Pdo::getColRow("SELECT name, id FROM " . TABLE_MANUFACTURERS . " WHERE language=?", [lang('#lang_all')[0]]);
 
-
-// КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
-// 
 // Устанавливаем родительскую категорию при навигации назад-вперед
 if (\eMarket\Valid::inGET('parent_id_temp')) {
     $parent_id = \eMarket\Valid::inGET('parent_id_temp');
 }
 
+// КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 $lines_on_page = \eMarket\Set::linesOnPage();
-// получаем отсортированное по sort_category содержимое в виде массива для отображения на странице и сортируем в обратном порядке
-$lines_cat = \eMarket\Pdo::getColRow("SELECT id, name, parent_id, status, attributes FROM " . TABLE_CATEGORIES . " WHERE parent_id=? AND language=? ORDER BY sort_category DESC", [$parent_id, lang('#lang_all')[0]]);
+if (\eMarket\Valid::inGET('search')) {
+    $lines_cat = \eMarket\Pdo::getColRow("SELECT id, name, parent_id, status, attributes FROM " . TABLE_CATEGORIES . " WHERE name LIKE ? AND language=? ORDER BY sort_category DESC", [\eMarket\Valid::inGET('search') . '%', lang('#lang_all')[0]]);
+    $lines_prod = \eMarket\Pdo::getColRow("SELECT id, name, parent_id, status, discount, price, attributes FROM " . TABLE_PRODUCTS . " WHERE name LIKE ? AND language=? ORDER BY id DESC", [\eMarket\Valid::inGET('search') . '%', lang('#lang_all')[0]]);
+} else {
+    $lines_cat = \eMarket\Pdo::getColRow("SELECT id, name, parent_id, status, attributes FROM " . TABLE_CATEGORIES . " WHERE parent_id=? AND language=? ORDER BY sort_category DESC", [$parent_id, lang('#lang_all')[0]]);
+    $lines_prod = \eMarket\Pdo::getColRow("SELECT id, name, parent_id, status, discount, price, attributes FROM " . TABLE_PRODUCTS . " WHERE parent_id=? AND language=? ORDER BY id DESC", [$parent_id, lang('#lang_all')[0]]);
+}
 $count_lines_cat = count($lines_cat);  //считаем количество строк
-// Получаем данные по товарам
-$lines_prod = \eMarket\Pdo::getColRow("SELECT id, name, parent_id, status, discount, price, attributes FROM " . TABLE_PRODUCTS . " WHERE parent_id=? AND language=? ORDER BY id DESC", [$parent_id, lang('#lang_all')[0]]);
-
 $count_lines_prod = count($lines_prod);  //считаем количество строк
 
 $arr_merge = \eMarket\Func::arrayMergeOriginKey('cat', 'prod', $lines_cat, $lines_prod);

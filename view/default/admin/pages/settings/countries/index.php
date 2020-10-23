@@ -3,7 +3,6 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-
 ?>
 <!-- Модальное окно -->
 <?php require_once('modal/index.php') ?>
@@ -21,18 +20,6 @@
                 </h3>
             </div>
             <div class="panel-body">
-		    <div class="pull-left">
-			<form name="quick_find" action="#" method="get" class="form-horizontal">
-			    <div class="input-group">
-				<input type="search" name="keywords" required="" placeholder="<?php echo lang('search_name') ?>" class="form-control">
-				<span class="input-group-btn">
-				    <button type="submit" class="btn btn-primary">
-					<span class="glyphicon glyphicon-search"></span>
-				    </button>
-				</span>
-			    </div>
-			</form>
-		    </div>
                 <!--Скрытый div для передачи данных-->
                 <div id="ajax_data" class='hidden' data-jsondata='<?php echo $json_data ?>'></div>
 
@@ -44,17 +31,16 @@
                                     <div class="page"><?php echo lang('with') ?> <?php echo $start + 1 ?> <?php echo lang('to') ?> <?php echo $finish ?> ( <?php echo lang('of') ?> <?php echo $count_lines; ?> )</div>
                                     <?php
                                 } else {
-
                                     ?>
                                     <div><?php echo lang('no_listing') ?></div>
                                 <?php } ?>
                             </th>
 
                             <th>
-                            
+
                                 <!--Вызов модального окна для добавления-->
                                 <div class="b-right"><a href="#index" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
-                            
+
                                 <?php if ($count_lines > $lines_on_page) { ?>
                                     <form>
                                         <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">

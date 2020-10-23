@@ -49,14 +49,28 @@
                     <div class="clearfix"></div>
                 </h3>
             </div>
+            <!--Скрытый div для передачи данных-->
+            <div id="ajax_data" class='hidden' 
+                 data-jsondataproduct='<?php echo $json_data_product ?>'
+                 data-jsondatacategory='<?php echo $json_data_category ?>'
+                 data-attributesdata='<?php echo $attributes_data ?>'>
+            </div>
             <?php if ($lines_cat == TRUE OR $lines_prod == TRUE) { ?>
                 <div class="panel-body">
-                    <!--Скрытый div для передачи данных-->
-                    <div id="ajax_data" class='hidden' 
-                         data-jsondataproduct='<?php echo $json_data_product ?>'
-                         data-jsondatacategory='<?php echo $json_data_category ?>'
-                         data-attributesdata='<?php echo $attributes_data ?>'
-                         ></div>
+                    <div class="pull-left">
+                        <form>
+                            <div class="input-group">
+                                <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
+                                <input type="search" id="search" name="search" placeholder="<?php echo lang('search') ?>" class="form-control">
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-primary">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+
 
                     <table class="table table-hover">
                         <thead>
@@ -88,7 +102,7 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody id="sort-list">
+                        <tbody id="<?php echo \eMarket\Set::sorties('info') ?> sort-list">
 
                             <?php
                             if ($parent_id > 0) {
@@ -118,26 +132,34 @@
                                 if ($start < $count_lines_cat) {
                                     ?>
 
-                                    <tr class="sort-list" unitid="<?php echo $arr_merge['cat'][$start][0] ?>">
+                                    <tr class="<?php echo \eMarket\Set::sorties('info') ?> sort-list" unitid="<?php echo $arr_merge['cat'][$start][0] ?>">
 
                                         <!-- Вырезанные категории "АКТИВНЫЕ" -->
-                                        <?php if (isset($_SESSION['buffer']['cat']) == true && in_array($arr_merge['cat'][$start][0], $_SESSION['buffer']['cat']) == true && $arr_merge['cat'][$start][3] == 1) { ?>
-                                            <td class="sortyes sortleft-m"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
+                                        <?php
+                                        if (isset($_SESSION['buffer']['cat']) == true && in_array($arr_merge['cat'][$start][0], $_SESSION['buffer']['cat']) == true && $arr_merge['cat'][$start][3] == 1) {
+                                            echo \eMarket\Set::sorties();
+                                            ?>    
                                             <td class="sortleft"><div><a href="#" class="btn btn-primary btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-folder-open"> </span></a></div></td>
 
                                             <!-- Вырезанные категории "НЕ АКТИВНЫЕ" -->
-                                        <?php } elseif (isset($_SESSION['buffer']['cat']) == true && in_array($arr_merge['cat'][$start][0], $_SESSION['buffer']['cat']) == true && $arr_merge['cat'][$start][3] == 0) { ?>
-                                            <td class="sortyes sortleft-m"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
+                                            <?php
+                                        } elseif (isset($_SESSION['buffer']['cat']) == true && in_array($arr_merge['cat'][$start][0], $_SESSION['buffer']['cat']) == true && $arr_merge['cat'][$start][3] == 0) {
+                                            echo \eMarket\Set::sorties();
+                                            ?>    
                                             <td class="sortleft"><div><a href="#" class="btn btn-default btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-folder-open"> </span></a></div></td>
 
                                             <!-- Категория для трансфера -->
-                                        <?php } elseif ($transfer == $lines_on_page + 1) { ?>
-                                            <td class="sortyes sortleft-m"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
+                                            <?php
+                                        } elseif ($transfer == $lines_on_page + 1) {
+                                            echo \eMarket\Set::sorties();
+                                            ?>    
                                             <td class="sortleft"><div><a href="#" class="btn btn-primary btn-xs disabled" role="button" aria-disabled="true"><span class="glyphicon glyphicon-transfer"> </span></a></div></td>
 
                                             <!-- Если категория НЕ АКТИВНА -->
-                                        <?php } elseif ($arr_merge['cat'][$start][3] == 0) { ?>
-                                            <td class="sortyes sortleft-m"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
+                                            <?php
+                                        } elseif ($arr_merge['cat'][$start][3] == 0) {
+                                            echo \eMarket\Set::sorties();
+                                            ?>    
                                             <td class="sortleft">
 
                                                 <!-- Неактивная категория "ВНИЗ" -->
@@ -154,7 +176,7 @@
                                         } else {
                                             ?>
                                             <!-- Если категория АКТИВНА -->
-                                            <td class="sortyes sortleft-m"><div><span class="glyphicon glyphicon-move"> </span></div></td>    
+                                            <?php echo \eMarket\Set::sorties() ?>    
                                             <td class="sortleft">
 
                                                 <!-- Активная категория "ВНИЗ" -->
@@ -187,7 +209,7 @@
                                 // ВЫВОДИМ ТОВАРЫ
                                 if ($start >= $count_lines_cat && $transfer < $lines_on_page + 1) {
                                     ?>
-                                    <tr class="sort-list">
+                                    <tr class="<?php echo \eMarket\Set::sorties('info') ?> sort-list">
 
                                         <!-- Вырезанные товары "АКТИВНЫЕ" -->
                                         <?php if (isset($_SESSION['buffer']['prod']) == true && in_array($arr_merge['prod'][$start . 'a'][0], $_SESSION['buffer']['prod']) == true && $arr_merge['prod'][$start . 'a'][3] == 1) { ?>
@@ -238,6 +260,19 @@
                 ?>
 
                 <div class="panel-body">
+                    <div class="pull-left">
+                        <form>
+                            <div class="input-group">
+                                <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
+                                <input type="search" id="search" name="search" placeholder="<?php echo lang('search') ?>" class="form-control">
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-primary">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
                     <table class="table table-hover">
                         <thead>
                             <tr>
@@ -248,7 +283,6 @@
                         </thead>
                         <tbody>
                             <tr class="sortno">
-                                <td  class="sortleft-m"></td>
                                 <td class="sortleft">
 
                                     <!-- Категорий нет "ВВЕРХ" -->
@@ -261,6 +295,7 @@
 
                                 </td>
                                 <td class="options"><div class="context-one"><?php echo lang('no_listing') ?></div></td>
+                                <td></td>
                             </tr>
                         </tbody>
                     </table>
@@ -269,6 +304,19 @@
             } else {
                 ?>
                 <div class="panel-body">
+                    <div class="pull-left">
+                        <form>
+                            <div class="input-group">
+                                <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
+                                <input type="search" id="search" name="search" placeholder="<?php echo lang('search') ?>" class="form-control">
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-primary">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
                     <table class="table table-hover">
                         <thead>
                             <tr>
@@ -279,9 +327,10 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td  class="sortleft-m"></td>
-                                <td class="sortleft"></td>
+
                                 <td class="options"><div class="context-one"><?php echo lang('no_listing') ?></div></td>
+                                <td></td>
+                                <td></td>
                             </tr>
                         </tbody>
                     </table>

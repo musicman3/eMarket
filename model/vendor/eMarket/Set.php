@@ -408,6 +408,28 @@ class Set {
     }
 
     /**
+     * Сортировка при поиске
+     *
+     * @param string $class (класс bootstrap)
+     * @return string (данные html)
+     */
+    public static function sorties($class = null) {
+
+        if ($class != null && \eMarket\Valid::inGET('search')) {
+            return $class;
+        }
+
+        if ($class == null && !\eMarket\Valid::inGET('search')) {
+            return '<td class="sortyes sortleft-m"><div><span class="glyphicon glyphicon-move"> </span></div></td>';
+        }
+        
+        if ($class == null && \eMarket\Valid::inGET('search')) {
+            return '<td class="sortleft-m"></td> ';
+        }
+
+    }
+
+    /**
      * Переключение класса при смене статуса
      *
      * @param string $status (статус из БД)
@@ -415,7 +437,7 @@ class Set {
      * @return string (класс)
      */
     public static function statusSwithClass($status, $class = null) {
-        
+
         if ($class == null) {
             $class = 'danger';
         }
