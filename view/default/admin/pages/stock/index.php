@@ -283,6 +283,7 @@
                         </thead>
                         <tbody>
                             <tr class="sortno">
+				<td class="sortleft-m"> </td>
                                 <td class="sortleft">
 
                                     <!-- Категорий нет "ВВЕРХ" -->
