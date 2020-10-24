@@ -16,7 +16,7 @@
         </div>
         <div class="panel-body">
 
-            <div class="pull-left form-group">
+            <div class="form-inline">
                 <div class="input-group has-error">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-th-large"></span></span>
                     <form method="get" name="select_template" action="index.php">
@@ -43,9 +43,7 @@
                         </select>
                     </form>
                 </div>
-            </div>
 
-            <div class="pull-left form-group">
                 <div class="input-group has-error">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
                     <form method="get" name="select_page">
@@ -78,7 +76,7 @@
                 </div>
             </div>
 
-            <div class="clearfix"></div>
+            <div class="clearfix"></br></div>
             <div class="center-block">
                 <ul id="sortable1" class="connectedSortable block-ul" style="width:66%">
                     <li class="sortno border bg-primary">header &nbsp;<span class="glyphicon glyphicon-resize-horizontal"></span></li>
