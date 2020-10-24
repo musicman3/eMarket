@@ -17,7 +17,7 @@
                     $.ajax({
                         method: 'POST',
                         dataType: 'text',
-                        url: '?route=stock2',
+                        url: '?route=stock',
                         data: ({
                             itemName: itemKey, //название ключа из меню (edit, delete, copy и т.п.)
                             ids2: opt.$trigger.attr("id")}), //id строки
