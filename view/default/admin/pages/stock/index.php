@@ -102,7 +102,7 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody id="<?php echo \eMarket\Set::sorties('info') ?> sort-list">
+                        <tbody id="sort-list">
 
                             <?php
                             if ($parent_id > 0) {
