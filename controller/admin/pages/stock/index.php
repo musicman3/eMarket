@@ -106,12 +106,6 @@ $navigate = \eMarket\Navigation::getLink($count_lines_merge, $lines_on_page, 1);
 $start = $navigate[0];
 $finish = $navigate[1];
 
-if ($parent_id == 0) {
-    $attributes_data = json_encode([]);
-} else {
-    $attributes_data = json_encode(\eMarket\Pdo::getColAssoc("SELECT attributes FROM " . TABLE_CATEGORIES . " WHERE id=? AND language=?", [$parent_id, lang('#lang_all')[0]])[0]['attributes']);
-}
-
 // Параметры для JS
 if (!isset($idsx_real_parent_id)) {
     $idsx_real_parent_id = '';

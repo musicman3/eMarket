@@ -148,7 +148,7 @@
                             $('#selected_attributes').val(JSON.stringify(json_data['attributes'][modal_id]));
 
                             // Выводим атрибуты
-                            AttributesProcessing.add('admin');
+                            AttributesProcessing.add('admin', json_data['attributes_data'][modal_id]);
 
                             $('#edit_product').val(modal_id);
                             $('#add_product').val('');

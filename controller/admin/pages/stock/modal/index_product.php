@@ -81,6 +81,14 @@ for ($i = $start; $i < $finish; $i++) {
         // Атрибуты
         $attributes_product[$modal_id_product] = json_decode($query['attributes'], 1);
 
+        $parent_id = $query['parent_id'];
+
+        if ($parent_id == 0) {
+            $attributes_data[$modal_id_product] = json_encode([]);
+        } else {
+            $attributes_data[$modal_id_product] = json_encode(\eMarket\Pdo::getColAssoc("SELECT attributes FROM " . TABLE_CATEGORIES . " WHERE id=? AND language=?", [$parent_id, lang('#lang_all')[0]])[0]['attributes']);
+        }
+
         $json_data_product = json_encode([
             'name' => $name_product,
             'description' => $description_product,
@@ -106,6 +114,7 @@ for ($i = $start; $i < $finish; $i++) {
             'logo' => $logo_product,
             'logo_general' => $logo_general_product,
             'attributes' => $attributes_product,
+            'attributes_data' => $attributes_data
         ]);
     }
 }

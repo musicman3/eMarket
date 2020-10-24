@@ -52,8 +52,7 @@
             <!--Скрытый div для передачи данных-->
             <div id="ajax_data" class='hidden' 
                  data-jsondataproduct='<?php echo $json_data_product ?>'
-                 data-jsondatacategory='<?php echo $json_data_category ?>'
-                 data-attributesdata='<?php echo $attributes_data ?>'>
+                 data-jsondatacategory='<?php echo $json_data_category ?>'>
             </div>
             <?php if ($lines_cat == TRUE OR $lines_prod == TRUE) { ?>
                 <div class="panel-body">

@@ -99,8 +99,6 @@
                 </div>
                 <!-- Содержимое панели Характеристики -->
                 <input id="selected_attributes" type="hidden" name="selected_attributes" value="" />
-                <!--Скрытый div для передачи данных-->
-                <div id="ajax_data" class='hidden' data-attributesdata='<?php echo $attributes_data ?>'></div>
                 <div id="panel_attribute" class="tab-pane fade">
                     <div class="item-text product-attribute"></div>
                 </div>

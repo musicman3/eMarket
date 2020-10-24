@@ -30,12 +30,12 @@ class AttributesProcessing {
     /**
      * Вывод атрибутов в товаре
      * @param marker {String} (маркер admin/catalog)
+     * @param data {String} (данные по атрибутам)
      *
      */
-    static add(marker = null) {
+    static add(marker, data) {
         var jsdata = new JsData();
 
-        var data = $('div#ajax_data').data('attributesdata');
         if (data.length > 0) {
             data = $.parseJSON($.parseJSON(data));
         }
