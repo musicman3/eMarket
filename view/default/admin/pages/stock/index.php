@@ -109,7 +109,7 @@
                                 ?>
 
                                 <tr class="sortno">
-                                    <td  class="sortleft-m"><div></div></td>
+                                    <td  class="sortleft-m"></td>
                                     <td colspan="2" align="left">
 
                                         <!-- Категории "ВВЕРХ" -->
@@ -242,7 +242,7 @@
                                             <td class="sortleft"><span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="<?php echo \eMarket\Set::productSaleTooltip($arr_merge['prod'][$start . 'a'][4]) ?>" class="glyphicon glyphicon-tags text-primary"> </span></td>
 
                                         <?php } else { ?>
-                                            <td class="sortleft-m"><span class="glyphicon glyphicon-tag"> </span></td>
+                                            <td class="sortleft-m"><span class="glyphicon glyphicon-tag"></span></td>
                                         <?php } ?>
                                     </tr>
 
@@ -283,7 +283,7 @@
                         </thead>
                         <tbody>
                             <tr class="sortno">
-				<td class="sortleft-m"> </td>
+				<td class="sortleft-m"></td>
                                 <td class="sortleft">
 
                                     <!-- Категорий нет "ВВЕРХ" -->
