@@ -107,3 +107,4 @@ div.context-one, .table > tbody > tr > td.context-one {padding:5px;}
 .shadow-element {box-shadow: 0 5px 15px rgba(0,0,0,.5);}
 #panel_add_product_4 .product-attribute h4 {font-size: 15px;font-weight: bold;}
 #panel_add_product_4 .product-attribute-table td {padding-left: 10px;}
+.offset-0 {padding-left: 0;padding-right: 0;}

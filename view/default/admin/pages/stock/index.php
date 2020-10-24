@@ -57,7 +57,7 @@
             </div>
             <?php if ($lines_cat == TRUE OR $lines_prod == TRUE) { ?>
                 <div class="panel-body">
-                    <div class="pull-left">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 offset-0">
                         <form>
                             <div class="input-group">
                                 <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
@@ -260,7 +260,7 @@
                 ?>
 
                 <div class="panel-body">
-                    <div class="pull-left">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 offset-0">
                         <form>
                             <div class="input-group">
                                 <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
@@ -305,7 +305,7 @@
             } else {
                 ?>
                 <div class="panel-body">
-                    <div class="pull-left">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 offset-0">
                         <form>
                             <div class="input-group">
                                 <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
