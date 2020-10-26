@@ -11,7 +11,6 @@
 <?php if (\eMarket\Valid::inGET('route') == 'products') { ?>
         function breadcrumb() {
             var breadcrumbid = $('div#data_breadcrumb').data('breadcrumbid');
-            var breadcrumbparentid = $('div#data_breadcrumb').data('breadcrumbparentid');
             var breadcrumbname = $('div#data_breadcrumb').data('breadcrumbname');
 
             if (breadcrumbid.length > 0) {
