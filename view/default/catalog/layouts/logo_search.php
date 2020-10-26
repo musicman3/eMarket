@@ -13,8 +13,8 @@
         <div class="col-sm-8">
             <div class="searchbox-margin">
                 <form>
+                    <input hidden name="route" value="listing">
                     <div class="input-group">
-                        <input hidden name="route" value="listing">
                         <input type="search" id="search" name="search" placeholder="<?php echo lang('search_name') ?>" class="form-control">
                         <span class="input-group-btn">
                             <button type="submit" class="btn btn-primary">
