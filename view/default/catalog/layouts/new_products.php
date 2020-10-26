@@ -14,8 +14,8 @@
             foreach ($products_new as $value) { ?>
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item">
                     <div class="productHolder">
-                        <a href="/?route=products&category_id=<?php echo $value['parent_id']; ?>&parent_id=<?php echo $category_parent_id[$x]; ?>&id=<?php echo $value['id']; ?>"><img src="/uploads/images/products/resize_1/<?php echo $value['logo_general']; ?>" alt="<?php echo $value['name']; ?>" class="img-responsive center-block"></a>
-                        <h5 class="text-center item-heading"><a href="/?route=products&category_id=<?php echo $value['parent_id']; ?>&parent_id=<?php echo $category_parent_id[$x]; ?>&id=<?php echo $value['id']; ?>"><?php echo $value['name']; ?></a></h5>
+                        <a href="/?route=products&category_id=<?php echo $value['parent_id'] ?>&id=<?php echo $value['id'] ?>"><img src="/uploads/images/products/resize_1/<?php echo $value['logo_general'] ?>" alt="<?php echo $value['name']; ?>" class="img-responsive center-block"></a>
+                        <h5 class="text-center item-heading"><a href="/?route=products&category_id=<?php echo $value['parent_id'] ?>&id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></h5>
                         <div class="clearfix"></div>
                         <div class="row button">
                             <div class="col-xs-6"><?php echo \eMarket\Ecb::priceInterface($value, 1) ?></div>

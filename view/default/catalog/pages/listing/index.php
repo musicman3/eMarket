@@ -11,65 +11,6 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
 
 ?>
 
-<script type="text/javascript" language="javascript">
-    $(window).load(function () {
-        $(".item-heading").simpleEQH();
-    });
-</script>
-
-<!-- Функция для установки Cookie -->
-<script type="text/javascript">
-    function setCookie(key, value, days) {
-        var expires = new Date();
-        expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
-        document.cookie = key + '=' + value + ';expires=' + expires.toUTCString();
-    }
-
-    function getCookie(key) {
-        var keyValue = document.cookie.match('(^|;) ?' + key + '=([^;]*)(;|$)');
-        return keyValue ? keyValue[2] : null;
-    }
-</script>
-
-<script type="text/javascript" language="javascript">
-    $(document).ready(function () {
-
-        if (getCookie('cookie_list') === 'list') {
-            $('#listing .item').removeClass('col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item');
-            $('#listing .item').addClass('col-xs-12 list-group-item');
-        }
-        if (getCookie('cookie_list') === 'grid') {
-            $('#listing .item').removeClass('col-xs-12 list-group-item');
-            $('#listing .item').addClass('col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item');
-        }
-        if (getCookie('cookie_list') === 'list') {
-            $('#listing .item-grid').removeClass('active');
-            $('#listing .item-list').addClass('active');
-        }
-        if (getCookie('cookie_list') === 'grid') {
-            $('#listing .item-list').removeClass('active');
-            $('#listing .item-grid').addClass('active');
-        }
-
-        $('#list').click(function (event) {
-            event.preventDefault();
-            $('#listing .item').removeClass('col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item');
-            $('#listing .item').addClass('col-xs-12 list-group-item');
-            $('#listing .item-grid').removeClass('active');
-            $('#listing .item-list').addClass('active');
-            setCookie('cookie_list', 'list', 30);
-        });
-        $('#grid').click(function (event) {
-            event.preventDefault();
-            $('#listing .item').removeClass('col-xs-12 list-group-item');
-            $('#listing .item').addClass('col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item');
-            $('#listing .item-list').removeClass('active');
-            $('#listing .item-grid').addClass('active');
-            setCookie('cookie_list', 'grid', 30);
-        });
-    });
-</script>
-
 <h1><?php echo $categories_name ?></h1>
 
 <?php if ($products == true) { ?>
@@ -92,9 +33,9 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
             <?php foreach ($products as $value) { ?>
                 <div class="item col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item">
                     <div class="productHolder">
-                        <a href="/?route=products&category_id=<?php echo \eMarket\Valid::inGET('category_id') ?>&parent_id=<?php echo \eMarket\Valid::inGET('parent_id') ?>&id=<?php echo $value['id'] ?>"><img src="/uploads/images/products/resize_1/<?php echo $value['logo_general'] ?>" alt="<?php echo $value['name'] ?>" class="img-responsive"></a>
+                        <a href="/?route=products&category_id=<?php echo $value['parent_id'] ?>&id=<?php echo $value['id'] ?>"><img src="/uploads/images/products/resize_1/<?php echo $value['logo_general'] ?>" alt="<?php echo $value['name'] ?>" class="img-responsive"></a>
                         <div class="caption">
-                            <h5 class="item-heading"><a href="/?route=products&category_id=<?php echo \eMarket\Valid::inGET('category_id') ?>&parent_id=<?php echo \eMarket\Valid::inGET('parent_id') ?>&id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></h5>
+                            <h5 class="item-heading"><a href="/?route=products&category_id=<?php echo $value['parent_id'] ?>&id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></h5>
                             <div class="item-text"><br />
 				[<label>Brand:</label> HP, <label>Model:</label> 480 G6, <label>Vendor:</label> 67788, <label>Weight:</label> 20 kg, <label>Dimension:</label> 110/200/500 (H/L/W), <label>Availability:</label> In Stock]
                             </div>
@@ -133,7 +74,5 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
     </div>
 <?php
 }
-
-\eMarket\Ajax::сart('');
 
 ?>

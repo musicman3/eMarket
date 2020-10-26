@@ -14,7 +14,6 @@
 <?php if ($categories_and_breadcrumb != 0) { ?>
     <div id="data_breadcrumb" class="hidden"
          data-breadcrumbid='<?php echo json_encode(array_reverse($categories_and_breadcrumb)) ?>'
-         data-breadcrumbparentid='<?php echo json_encode(\eMarket\Set::breadcrumbParentId(array_reverse($categories_and_breadcrumb))) ?>'
          data-breadcrumbname='<?php echo json_encode(\eMarket\Set::breadcrumbName(array_reverse($categories_and_breadcrumb))) ?>'>
     </div>
 <?php } ?>

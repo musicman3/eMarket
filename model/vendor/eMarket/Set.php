@@ -341,23 +341,6 @@ class Set {
     }
 
     /**
-     * Получаем parent_id для Breadcrumb
-     *
-     * @param array $breadcrumb_array (массив breadcrumb в виде id)
-     * @return string $breadcrumb (массив breadcrumb в виде parent_id)
-     */
-    public static function breadcrumbParentId($breadcrumb_array) {
-
-        $breadcrumb = [];
-        foreach ($breadcrumb_array as $value) {
-            $name = \eMarket\Pdo::getCell("SELECT parent_id FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], $value]);
-            array_push($breadcrumb, $name);
-        }
-
-        return $breadcrumb;
-    }
-
-    /**
      * Получаем путь к папке модуля
      *
      * @return string (путь к папке с модулем)

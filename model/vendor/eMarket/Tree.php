@@ -120,9 +120,9 @@ class Tree {
 
         foreach ($array_cat[$parent_id] as $value) {
             if ($value->id == \eMarket\Valid::inGET('category_id') OR in_array($value->id, $array_cat2)) {
-                echo '<li class="collapsable open" id="' . $value->id . '"><a href="?route=listing&category_id=' . $value->id . '&parent_id=' . $value->parent_id . '">' . $value->name . '</a>';
+                echo '<li class="collapsable open" id="' . $value->id . '"><a href="?route=listing&category_id=' . $value->id . '">' . $value->name . '</a>';
             } else {
-                echo '<li class="expandable" id="' . $value->id . '"><a href="?route=listing&category_id=' . $value->id . '&parent_id=' . $value->parent_id . '">' . $value->name . '</a>';
+                echo '<li class="expandable" id="' . $value->id . '"><a href="?route=listing&category_id=' . $value->id . '">' . $value->name . '</a>';
             }
             self::categories($sql, null, $array_cat2, $value->id, TRUE);
             echo '</li>';
