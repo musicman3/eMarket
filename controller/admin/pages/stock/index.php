@@ -117,6 +117,12 @@ if (isset($_SESSION['buffer'])) {
 } else {
     $ses_verify = '0';
 }
+
+if ($parent_id == 0) {
+    $attributes_category = json_encode([]);
+} else {
+    $attributes_category = json_encode(\eMarket\Pdo::getColAssoc("SELECT attributes FROM " . TABLE_CATEGORIES . " WHERE id=? AND language=?", [$parent_id, lang('#lang_all')[0]])[0]['attributes']);
+}
 // КОНЕЦ-> КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 // Модальное окно
 require_once('modal/index.php');

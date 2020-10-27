@@ -50,7 +50,7 @@
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
                         $('#selected_attributes').val(JSON.stringify([]));
                         // Выводим атрибуты
-                        AttributesProcessing.add('admin', []);
+                        AttributesProcessing.add('admin', <?php echo json_encode($attributes_category) ?>);
 
                         $('#edit_product').val('');
                         $('#add_product').val('ok');
