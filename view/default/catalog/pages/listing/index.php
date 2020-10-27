@@ -39,7 +39,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                             <div class="item-text"><br />
 				<label>Vendor:</label> 67788, 
 				<label>Brand:</label> HP, 
-				<?php if ($value['model'] != NULL && $value['model'] != FALSE) { ?><label><?php echo lang('product_model') ?></label> <?php echo  $value['model'] ?>,<?php } ?>
+				<?php if ($value['model'] != NULL && $value['model'] != FALSE) { ?><label><?php echo lang('product_model') ?></label> <?php echo $value['model'] ?>,<?php } ?>
 				<label>Weight:</label> 20 kg, 
 				<label>Dimension:</label> 110/200/500 (H/L/W), 
 				<label>Availability:</label> In Stock
