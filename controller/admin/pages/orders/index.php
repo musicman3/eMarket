@@ -47,7 +47,13 @@ if (\eMarket\Valid::inPOST('delete')) {
 $order_status = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_ORDER_STATUS . " WHERE language=? ORDER BY sort DESC", [lang('#lang_all')[0]]);
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
-$lines = \eMarket\Pdo::getColRow("SELECT * FROM " . TABLE_ORDERS . " ORDER BY id DESC", []);
+$search = '%' . \eMarket\Valid::inGET('search') . '%';
+if (\eMarket\Valid::inGET('search')) {
+    $lines = \eMarket\Pdo::getColRow("SELECT * FROM " . TABLE_ORDERS . " WHERE id LIKE? OR email LIKE? ORDER BY id DESC", [$search, $search]);
+} else {
+    $lines = \eMarket\Pdo::getColRow("SELECT * FROM " . TABLE_ORDERS . " ORDER BY id DESC", []);
+}
+
 $lines_on_page = \eMarket\Set::linesOnPage();
 $count_lines = count($lines);
 $navigate = \eMarket\Navigation::getLink($count_lines, $lines_on_page);

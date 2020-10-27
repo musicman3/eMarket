@@ -24,10 +24,24 @@
                 <!--Скрытый div для передачи данных-->
                 <div id="ajax_data" class='hidden' data-orders='<?php echo $orders ?>'></div>
 
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 offset-0">
+                    <form>
+                        <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
+                        <div class="input-group">
+                            <input type="search" id="search" name="search" placeholder="<?php echo lang('search') ?>" class="form-control">
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-primary">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th colspan="6">
+                            <th colspan="7">
                                 <?php if ($lines == TRUE) { ?>
                                     <div class="page"><?php echo lang('with') ?> <?php echo $start + 1 ?> <?php echo lang('to') ?> <?php echo $finish ?> ( <?php echo lang('of') ?> <?php echo $count_lines; ?> )</div>
                                     <?php
@@ -62,6 +76,7 @@
                             <tr class="border">
                                 <th><?php echo lang('orders_number') ?></th>
                                 <th class="al-text"><?php echo lang('orders_client') ?></th>
+                                <th class="al-text"><?php echo lang('orders_email') ?></th>
                                 <th class="al-text"><?php echo lang('orders_total') ?></th>
                                 <th class="al-text"><?php echo lang('orders_date_added') ?></th>
                                 <th class="al-text"><?php echo lang('orders_date_of_change') ?></th>
@@ -75,6 +90,7 @@
                             <tr>
                                 <td><?php echo $lines[$start][0] ?></td>
                                 <td class="al-text"><?php echo json_decode($lines[$start][2], 1)['firstname'] . ' ' . json_decode($lines[$start][2], 1)['lastname'] ?></td>
+                                <td class="al-text"><?php echo $lines[$start][1] ?></td>
                                 <td class="al-text"><?php echo json_decode($lines[$start][5], 1)['admin']['total_format'] ?></td>
                                 <td class="al-text"><?php echo \eMarket\Set::dateLocale($lines[$start][12], '%c') ?></td>
                                 <td class="al-text"><?php echo \eMarket\Set::dateLocale($lines[$start][11], '%c') ?></td>

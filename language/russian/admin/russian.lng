@@ -211,6 +211,7 @@ orders_date_added = Дата добавления
 orders_date_of_change = Дата изменения
 orders_number = № заказа
 orders_subtotal = Стоимость
+orders_email = E-mail
 
 ;STOCK
 stock_tittle_specification_group_name = Название группы характеристик

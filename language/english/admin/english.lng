@@ -211,6 +211,7 @@ orders_date_added = Date added
 orders_date_of_change = Date of change
 orders_number = Order No.
 orders_subtotal = Subtotal
+orders_email = E-mail
 
 ;STOCK
 stock_tittle_specification_group_name = Specification group name

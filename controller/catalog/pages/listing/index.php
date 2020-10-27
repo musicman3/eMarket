@@ -5,9 +5,9 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-
+$search = '%' . \eMarket\Valid::inGET('search') . '%';
 if (\eMarket\Valid::inGET('search')) {
-    $products = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE (name LIKE? OR description LIKE?) AND language=? AND status=? ORDER BY id DESC", ['%' . \eMarket\Valid::inGET('search') . '%', '%' . \eMarket\Valid::inGET('search') . '%', lang('#lang_all')[0], 1]);
+    $products = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE (name LIKE? OR description LIKE?) AND language=? AND status=? ORDER BY id DESC", [$search, $search, lang('#lang_all')[0], 1]);
 } else {
     $products = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE language=? AND parent_id=? AND status=? ORDER BY id DESC", [lang('#lang_all')[0], \eMarket\Valid::inGET('category_id'), 1]);
 }
