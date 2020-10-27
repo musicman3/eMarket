@@ -31,7 +31,12 @@ if (\eMarket\Valid::inPOST('delete')) {
 }
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
-$lines = \eMarket\Pdo::getColRow("SELECT * FROM " . TABLE_CUSTOMERS . " ORDER BY id DESC", []);
+$search = '%' . \eMarket\Valid::inGET('search') . '%';
+if (\eMarket\Valid::inGET('search')) {
+    $lines = \eMarket\Pdo::getColRow("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE firstname LIKE? OR lastname LIKE? OR middle_name LIKE? OR email LIKE? ORDER BY id DESC", [$search, $search, $search, $search]);
+} else {
+    $lines = \eMarket\Pdo::getColRow("SELECT * FROM " . TABLE_CUSTOMERS . " ORDER BY id DESC", []);
+}
 $lines_on_page = \eMarket\Set::linesOnPage();
 $count_lines = count($lines);
 $navigate = \eMarket\Navigation::getLink($count_lines, $lines_on_page);
