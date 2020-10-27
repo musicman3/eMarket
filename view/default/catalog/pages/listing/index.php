@@ -37,7 +37,12 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                         <div class="caption">
                             <h5 class="item-heading"><a href="/?route=products&category_id=<?php echo $value['parent_id'] ?>&id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></h5>
                             <div class="item-text"><br />
-				[<label>Brand:</label> HP, <label>Model:</label> 480 G6, <label>Vendor:</label> 67788, <label>Weight:</label> 20 kg, <label>Dimension:</label> 110/200/500 (H/L/W), <label>Availability:</label> In Stock]
+				<label>Vendor:</label> 67788, 
+				<label>Brand:</label> HP, 
+				<?php if ($value['model'] != NULL && $value['model'] != FALSE) { ?><label><?php echo lang('product_model') ?></label> <?php echo  $value['model'] ?>,<?php } ?>
+				<label>Weight:</label> 20 kg, 
+				<label>Dimension:</label> 110/200/500 (H/L/W), 
+				<label>Availability:</label> In Stock
                             </div>
                         </div>
                         <div class="clearfix"></div>
