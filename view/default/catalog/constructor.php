@@ -8,10 +8,10 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="<?php echo lang('meta-language') ?>">
     <head>
-        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="robots" content="noindex,nofollow" />
+        <meta name="robots" content="index,follow" />
         <meta name="generator" content="HippoEDIT, Netbeans, Notepad++" />
         <meta name="classification" content="software" />
         <meta name="author" content="eMarket" />
