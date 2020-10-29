@@ -54,10 +54,10 @@ nav .disabled {pointer-events: none;}
 .category_block ul li {list-style: none;}
 .category_block ul li:last-child {border-bottom: none;}
 .category_block .hitarea {float: right;}
-.category_block .hitarea.expandable-hitarea {height: 20px;width: 20px;z-index: 9;text-align: right;cursor: pointer;position: static;}
-.category_block .hitarea.collapsable-hitarea {height: 20px;width: 20px;z-index: 9;text-align: right;cursor: pointer;position: static;}
-.category_block .hitarea.expandable-hitarea:before {font-family: 'Glyphicons Halflings';content: '\002b';color: #4586bd;opacity: 0.7;font-size: 10px;vertical-align: middle;}
-.category_block .hitarea.collapsable-hitarea:before {font-family: 'Glyphicons Halflings';content: '\2212';color: #4586bd;opacity: 0.7;font-size: 10px;vertical-align: middle;}
+.category_block .hitarea.expandable-hitarea {cursor: pointer;}
+.category_block .hitarea.collapsable-hitarea {cursor: pointer;}
+.category_block .hitarea.expandable-hitarea:before {font-family: 'Glyphicons Halflings';content: '\002b';color: #4586bd;opacity: 0.7;font-size: 10px;}
+.category_block .hitarea.collapsable-hitarea:before {font-family: 'Glyphicons Halflings';content: '\2212';color: #4586bd;opacity: 0.7;font-size: 10px;}
 #new_products .grid-group-item, #categories_listing .grid-group-item, #categories_index .grid-group-item, #listing .grid-group-item {margin-bottom: 20px;}
 #new_products .productHolder, #listing .productHolder, #categories_listing .categoriesHolder, #categories_index .categoriesHolder {border: 1px solid #dddddd;padding: 10px;border-radius: 4px;}
 #new_products .button, #listing .button, #products .button {display: flex;align-items: center;}
