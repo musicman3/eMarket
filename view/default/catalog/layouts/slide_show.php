@@ -18,11 +18,19 @@
 		<a href="#">
 		    <img src="" class="center-block" >
 		</a>
+		<div class="carousel-caption">
+		    <h3> </h3>
+		    <p> </p>
+		</div>
 	    </div>
             <div class="item">
 		<a href="#">
 		    <img src="" class="center-block">
 		</a>
+		<div class="carousel-caption">
+		    <h3> </h3>
+		    <p> </p>
+		</div>
 	    </div>
         </div>
         <a class="carousel-control left" href="#Carousel" data-slide="prev">
