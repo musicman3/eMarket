@@ -24,7 +24,7 @@
         <link href="/ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
         <link href="/ext/bootstrap/css/normalize.css" rel="stylesheet" media="screen" />
         <link rel="stylesheet" type="text/css" href="/view/<?php echo \eMarket\Set::template() ?>/admin/style.css" media="screen" />
-        <link rel="stylesheet" type="text/css" href="/ext/contextmenu/css/contextmenu.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="/ext/contextmenu/css/jquery.contextMenu.min.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="/ext/jquery/ui/jquery-ui.min.css" media="screen" />
         <link rel="stylesheet" href="/ext/bootstrap/css/bootstrap-multiselect.css" type="text/css"/>
         <script type="text/javascript" src="/ext/jquery/jquery.min.js"></script>
@@ -65,7 +65,7 @@
 
         <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/ext/bootstrap/js/bootstrap-confirmation.min.js"></script>
-        <script type="text/javascript" src="/ext/contextmenu/js/contextmenu.js"></script>
+        <script type="text/javascript" src="/ext/contextmenu/js/jquery.contextMenu.min.js"></script>
         <script type="text/javascript" src="/ext/bootstrap/js/bootstrap-multiselect.js"></script>
         
         <script type="text/javascript">
