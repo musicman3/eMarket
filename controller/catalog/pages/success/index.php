@@ -110,6 +110,12 @@ if (\eMarket\Valid::inPOST('add') && password_verify(\eMarket\Valid::inPOST('ord
     \eMarket\Pdo::inPrepare("UPDATE " . TABLE_PRODUCTS . " SET quantity=quantity- " . $value['quantity'] . " WHERE id=?", [$value['id']]);
 
     unset($_SESSION['cart']);
+    
+    $customer_order_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_ORDERS . " WHERE email=? ORDER BY id DESC", [$_SESSION['email_customer']])[0];
+    
+    $email_subject = sprintf(lang('email_order_success_subject'), $customer_order_data['id'], $customer_orders_status_history);
+    $email_message = sprintf(lang('email_order_success_message'), $customer_order_data['id'], mb_strtolower($customer_orders_status_history), HTTP_SERVER . '?route=success', HTTP_SERVER . '?route=success');
+    \eMarket\Messages::sendMail($_SESSION['email_customer'], $email_subject, $email_message);
 }
 
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>

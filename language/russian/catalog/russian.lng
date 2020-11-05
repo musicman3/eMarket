@@ -165,6 +165,8 @@ email_registration_subject = Регистрация в интернет-мага
 email_registration_message = Нажмите на ссылку, указанную ниже, чтобы подтвердить что это действительно Ваш E-mail и завершить регистрацию. <br><br><a href="%s" target="_blank">%s</a>
 email_recovery_password_subject = Восстановление доступа к аккаунту
 email_recovery_password_message = Нажмите на ссылку, указанную ниже, чтобы указать новый пароль для доступа к аккаунту. <br><br><a href="%s" target="_blank">%s</a>
+email_order_success_subject = Заказ №%s успешно оформлен (%s).
+email_order_success_message = Уважаемый покупатель. Спасибо за покупку в интернет-магазине eMarket. Ваш заказ №%s успешно оформлен. <br><br>Статус заказа: %s. <br><br>Подробности заказа можно посмотреть в Вашем личном кабинете: <a href="%s" target="_blank">%s</a>
 
 ;ORDERS
 orders_book = Книга заказов
