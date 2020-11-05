@@ -12,10 +12,11 @@ for ($i = $start; $i < $finish; $i++) {
         
         $query = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_ORDERS . " WHERE id=?", [$modal_id])[0];
         $query['date_purchased'] = \eMarket\Set::dateLocale($query['date_purchased'], '%c');
+        
         $orders[$modal_id] = $query;
 
         // ПАРАМЕТРЫ ДЛЯ ПЕРЕДАЧИ В МОДАЛ
-        $orders = json_encode($orders);
+        $json_data = json_encode($orders);
     }
 }
 

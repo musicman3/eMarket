@@ -22,7 +22,7 @@
             </div>
             <div class="panel-body">
                 <!--Скрытый div для передачи данных-->
-                <div id="ajax_data" class='hidden' data-orders='<?php echo $orders ?>'></div>
+                <div id="ajax_data" class='hidden' data-orders='<?php echo $json_data ?>'></div>
 
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 offset-0">
                     <form>
