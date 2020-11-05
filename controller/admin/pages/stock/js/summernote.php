@@ -7,8 +7,8 @@
 
 <!-- Summernote" -->
 <script type="text/javascript" src="/ext/summernote/summernote.min.js"></script>
-<link href="/ext/summernote/summernote.css" rel="stylesheet">
-<script src="/ext/summernote/lang/summernote-<?php echo lang('language_code') ?>.js"></script>
+<link href="/ext/summernote/summernote.min.css" rel="stylesheet">
+<script src="/ext/summernote/lang/summernote-<?php echo lang('language_code') ?>.min.js"></script>
 <script type="text/javascript">
 
     // Настройка Summernote

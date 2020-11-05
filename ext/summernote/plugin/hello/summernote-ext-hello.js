@@ -1,5 +1,4 @@
 (function(factory) {
-  /* global define */
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
     define(['jquery'], factory);
@@ -35,7 +34,7 @@
             self.$panel.hide(500);
             // invoke insertText method with 'hello' on editor module.
             context.invoke('editor.insertText', 'hello');
-          }
+          },
         });
 
         // create jQuery object from button instance.
@@ -47,12 +46,14 @@
       this.events = {
         // This will be called after modules are initialized.
         'summernote.init': function(we, e) {
+          // eslint-disable-next-line
           console.log('summernote initialized', we, e);
         },
         // This will be called when user releases a key on editable.
         'summernote.keyup': function(we, e) {
+          // eslint-disable-next-line
           console.log('summernote keyup', we, e);
-        }
+        },
       };
 
       // This method will be called when editor is initialized by $('..').summernote();
@@ -64,7 +65,7 @@
           height: 100,
           left: '50%',
           top: '50%',
-          background: 'red'
+          background: 'red',
         }).hide();
 
         this.$panel.appendTo('body');
@@ -76,6 +77,6 @@
         this.$panel.remove();
         this.$panel = null;
       };
-    }
+    },
   });
 }));
