@@ -251,6 +251,7 @@ stock_product_sepia_effect = Сепия
 stock_product_black_and_white_effect = Чёрно-белое
 stock_product_blur1_effect = Размытие 1
 stock_product_blur2_effect = Размытие 2
+stock_product_create_description = Создайте описание товара с помощью этого редактора...
 
 ;CUSTOMERS
 customers_firstname = Имя

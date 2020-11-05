@@ -251,6 +251,7 @@ stock_product_sepia_effect = Sepia
 stock_product_black_and_white_effect = Black and white
 stock_product_blur1_effect = Blur 1
 stock_product_blur2_effect = Blur 2
+stock_product_create_description = Create a product description with this editor...
 
 ;CUSTOMERS
 customers_firstname = Firstname

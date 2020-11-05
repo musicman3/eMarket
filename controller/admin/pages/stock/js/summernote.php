@@ -17,7 +17,7 @@
         dialogsInBody: true,
         dialogsFade: true,
         height: '100px',
-        placeholder: 'Создайте описание товара с помощью этого редактора...',
+        placeholder: '<?php echo lang('stock_product_create_description') ?>',
         toolbar: [
             ['fullscreen ', ['fullscreen']],
             ['style', ['style']],
