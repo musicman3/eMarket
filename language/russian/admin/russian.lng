@@ -212,6 +212,8 @@ orders_date_of_change = Дата изменения
 orders_number = № заказа
 orders_subtotal = Стоимость
 orders_email = E-mail
+orders_change_status_subject = Статус заказа №%s успешно изменен (%s).
+orders_change_status_message = Уважаемый покупатель. Статус Вашего заказа №%s изменен. <br><br>Новый статус заказа: %s. <br><br>Подробности заказа можно посмотреть в Вашем личном кабинете: <a href="%s" target="_blank">%s</a>
 
 ;STOCK
 stock_tittle_specification_group_name = Название группы характеристик

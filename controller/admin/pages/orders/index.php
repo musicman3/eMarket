@@ -10,7 +10,7 @@ if (\eMarket\Valid::inPOST('edit')) {
 
     $primary_language = \eMarket\Set::primaryLanguage();
     // Сохраняем статус
-    $order_data = \eMarket\Pdo::getColAssoc("SELECT orders_status_history, customer_data FROM " . TABLE_ORDERS . " WHERE id=?", [\eMarket\Valid::inPOST('edit')])[0];
+    $order_data = \eMarket\Pdo::getColAssoc("SELECT orders_status_history, customer_data, email FROM " . TABLE_ORDERS . " WHERE id=?", [\eMarket\Valid::inPOST('edit')])[0];
     $customer_language = json_decode($order_data['customer_data'], 1)['language'];
     $customer_status_history_select = \eMarket\Pdo::getCellFalse("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE language=? AND id=?", [$customer_language, \eMarket\Valid::inPOST('status_history_select')]);
     $admin_status_history_select = \eMarket\Pdo::getCellFalse("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE language=? AND id=?", [$primary_language, \eMarket\Valid::inPOST('status_history_select')]);
@@ -29,6 +29,10 @@ if (\eMarket\Valid::inPOST('edit')) {
                 'date' => \eMarket\Set::dateLocale($date, '%c', $primary_language)
         ]]);
         \eMarket\Pdo::inPrepare("UPDATE " . TABLE_ORDERS . " SET orders_status_history=?, last_modified=? WHERE id=?", [json_encode($orders_status_history), $date, \eMarket\Valid::inPOST('edit')]);
+
+        $email_subject = sprintf(lang('orders_change_status_subject'), \eMarket\Valid::inPOST('edit'), $customer_status_history_select);
+        $email_message = sprintf(lang('orders_change_status_message'), \eMarket\Valid::inPOST('edit'), mb_strtolower($customer_status_history_select), HTTP_SERVER . '?route=success', HTTP_SERVER . '?route=success');
+        \eMarket\Messages::sendMail($order_data['email'], $email_subject, $email_message);
     } else {
         exit;
     }
