@@ -5,6 +5,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 // собираем данные для отображения в Редактировании
+$json_data = json_encode([]);
 for ($i = $start; $i < $finish; $i++) {
     if (isset($lines[$i][0]) == TRUE) {
 
