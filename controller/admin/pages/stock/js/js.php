@@ -42,5 +42,3 @@
 
 <!--Подгружаем Bootstrap Datepicker -->
 <?php require_once ('datepicker.php') ?>
-
-</script>
