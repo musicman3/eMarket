@@ -208,7 +208,7 @@
                                 // ВЫВОДИМ ТОВАРЫ
                                 if ($start >= $count_lines_cat && $transfer < $lines_on_page + 1) {
                                     ?>
-                                    <tr class="<?php echo \eMarket\Set::sorties('info') ?> sort-list">
+                                    <tr>
 
                                         <!-- Вырезанные товары "АКТИВНЫЕ" -->
                                         <?php if (isset($_SESSION['buffer']['prod']) == true && in_array($arr_merge['prod'][$start . 'a'][0], $_SESSION['buffer']['prod']) == true && $arr_merge['prod'][$start . 'a'][3] == 1) { ?>
