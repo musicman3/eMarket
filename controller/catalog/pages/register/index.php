@@ -24,6 +24,9 @@ if (\eMarket\Valid::inPOST('email')) {
     }
 }
 
+// Модальное окно
+require_once('modal/privacy_policy.php');
+
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
 $JS_END = __DIR__;
 

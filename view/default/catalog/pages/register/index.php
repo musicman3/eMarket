@@ -10,6 +10,10 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
 }
 ?>
 
+<!-- Модальное окно -->
+<?php require_once('modal/privacy_policy.php') ?>
+<!-- КОНЕЦ Модальное окно -->
+
 <!--Выводим уведомление об успешном действии-->
 <?php
 \eMarket\Messages::alert();
@@ -20,30 +24,30 @@ if (!\eMarket\Valid::inPOST('email')) {
     <div id="register" class="contentText">
         <form enctype="multipart/form-data" method="post" action="" onchange="validate()">
             <fieldset id="account">
-                <legend><?php echo lang('personal_details') ?></legend>
+                <legend><?php echo lang('register_personal_details') ?></legend>
                 <div class="input-group has-error firstname">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                    <input class="form-control" type="text" placeholder="<?php echo lang('first_name') ?>" minlength="1" id="input-firstname" value="" name="firstname" required>
+                    <input class="form-control" type="text" placeholder="<?php echo lang('register_first_name') ?>" minlength="1" id="input-firstname" value="" name="firstname" required>
                 </div>
                 <br>
                 <div class="input-group has-error lastname">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                    <input class="form-control" type="text" placeholder="<?php echo lang('last_name') ?>" minlength="1" id="input-lastname" value="" name="lastname" required>
+                    <input class="form-control" type="text" placeholder="<?php echo lang('register_last_name') ?>" minlength="1" id="input-lastname" value="" name="lastname" required>
                 </div>
                 <br>
                 <div class="input-group has-error email">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-                    <input class="form-control" type="email" placeholder="<?php echo lang('e_mail') ?>" id="input-email" value="" name="email" required>
+                    <input class="form-control" type="email" placeholder="<?php echo lang('register_e_mail') ?>" id="input-email" value="" name="email" required>
                 </div>
                 <br>
                 <div class="input-group has-success">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-phone-alt"></span></span>
-                    <input class="form-control" type="tel" placeholder="<?php echo lang('telephone') ?>" id="input-telephone" value="" name="telephone">
+                    <input class="form-control" type="tel" placeholder="<?php echo lang('register_telephone') ?>" id="input-telephone" value="" name="telephone">
                 </div>
                 <br>
             </fieldset>
             <fieldset>
-                <legend><?php echo lang('details_password') ?></legend>
+                <legend><?php echo lang('register_details_password') ?></legend>
                 <div class="input-group has-error password">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
                     <input class="form-control" type="password" minlength="7" maxlength="40" placeholder="<?php echo lang('password') ?>" id="input-password" value="" name="password" required>
@@ -55,8 +59,8 @@ if (!\eMarket\Valid::inPOST('email')) {
                 </div>
                 <br>
             </fieldset>
-            <div class="text-right"><?php echo lang('privacy_statement_agree') ?>
-                <input type="checkbox" value="1" name="agree">&nbsp;
+            <div class="text-right"><?php echo sprintf(lang('register_privacy_statement_agree'), '#privacy_policy') ?>
+                <input type="checkbox" name="agree_privacy_policy" required>&nbsp;
                 <input class="btn btn-primary" type="submit" value="<?php echo lang('continue') ?>">
             </div>
             <br>
