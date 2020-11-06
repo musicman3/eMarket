@@ -65,6 +65,7 @@ forgot_your_password = Forgot your password?
 login_description = By creating an account you will be able to take advantage of this store by shopping faster, be kept up to date on the status of an order, and keep track of the orders you have made.
 this_page_is_not_available = This page is not available!
 enter_a_new_password = Enter a new password
+e_mail = E-Mail
 
 ;ADDRESS BOOK
 my_address_book = Address Book
