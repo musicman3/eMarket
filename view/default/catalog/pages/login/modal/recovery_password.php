@@ -10,7 +10,7 @@
         <div class="modal-content">
 	    <div class="modal-header">
 		<div class="pull-right"><button class="close" type="button" data-dismiss="modal">×</button></div>
-                <h4 class="modal-title"><?php echo lang('password_recovery') ?></h4>
+                <h4 class="modal-title"><?php echo lang('register_password_recovery') ?></h4>
             </div>
             <form enctype="multipart/form-data" method="post" action="">
 		<div class="modal-body">

@@ -148,11 +148,13 @@ navbar_logout = Выйти
 navbar_view_cart = View Cart
 
 ;REGISTER
-password_check = Confirmation password error
-email_check = Please, enter correct E-Mail
-password_recovery = Password recovery
-password_recovery_message_success = Password recovery message sent to your E-Mail
-password_recovery_message_failed = Please, enter correct E-Mail
+register_password_check = Confirmation password error
+register_email_check = Please, enter correct E-Mail
+register_password_recovery = Password recovery
+register_password_recovery_message_success = Password recovery message sent to your E-Mail
+register_password_recovery_message_failed = Please, enter correct E-Mail
+register_problem_message = Dear Customer. Something went wrong. Please enter correct information and try again. If you still have problems with registration, please contact us to resolve this issue.
+register_complete_message = Dear Customer. You have just registered in our online store. We hope that the purchases made with us will be successful and profitable for you. To complete the registration, check your E-Mail and confirm the registration operation by clicking on the link in the letter.
 
 ;WELCOME
 welcome_name = Welcome %s!

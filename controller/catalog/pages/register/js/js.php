@@ -71,13 +71,13 @@
         var confirm = $('#input-confirm').get(0);
         var email = $('#input-email').get(0);
         if ($('#input-password').val() !== $('#input-confirm').val()) {
-            confirm.setCustomValidity("<?php echo lang('password_check') ?>");
+            confirm.setCustomValidity("<?php echo lang('register_password_check') ?>");
         } else {
             confirm.setCustomValidity('');
         }
         //Если email не соответствует типу
         if (!$('#input-email').val().match(/^[a-zA-Zа-яА-Я_\d][-a-zA-Zа-яА-Я0-9_\.\d]*\@[a-zA-Zа-яА-Я\d][-a-zA-Zа-яА-Я\.\d]*\.[a-zA-Zа-яА-Я]{2,4}$/)) {
-            email.setCustomValidity("<?php echo lang('email_check') ?>");
+            email.setCustomValidity("<?php echo lang('register_email_check') ?>");
         } else {
             email.setCustomValidity('');
         }

@@ -14,7 +14,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
 <?php \eMarket\Messages::alert(); ?>
 
 <?php if (isset($customer_id) && $customer_id != FALSE) { ?>
-    <h1><?php echo lang('password_recovery') ?></h1>
+    <h1><?php echo lang('register_password_recovery') ?></h1>
     <div id="forgotpass" class="contentText">
         <form enctype="multipart/form-data" method="post" action="" onchange="validate()">
             <fieldset>

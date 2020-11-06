@@ -31,7 +31,7 @@ if (\eMarket\Valid::inPOST('email_for_recovery')) {
         $link = HTTP_SERVER . '?route=recoverypass&recovery_code=' . $recovery_code;
         \eMarket\Messages::sendMail(\eMarket\Valid::inPOST('email_for_recovery'), lang('email_recovery_password_subject'), sprintf(lang('email_recovery_password_message'), $link, $link));
 
-        $_SESSION['message'] = ['success', lang('password_recovery_message_success'), 7000, TRUE];
+        $_SESSION['message'] = ['success', lang('register_password_recovery_message_success'), 7000, TRUE];
     } elseif ($customer_id != FALSE && $recovery_check != FALSE) { // Если произведен повторный запрос
         $recovery_code = \eMarket\Func::getToken(64);
         \eMarket\Pdo::inPrepare("UPDATE " . TABLE_PASSWORD_RECOVERY . " SET recovery_code=?, recovery_code_created=? WHERE customer_id=?", [$recovery_code, date("Y-m-d H:i:s"), $customer_id]);
@@ -39,9 +39,9 @@ if (\eMarket\Valid::inPOST('email_for_recovery')) {
         $link = HTTP_SERVER . '?route=recoverypass&recovery_code=' . $recovery_code;
         \eMarket\Messages::sendMail(\eMarket\Valid::inPOST('email_for_recovery'), lang('email_recovery_password_subject'), sprintf(lang('email_recovery_password_message'), $link, $link));
 
-        $_SESSION['message'] = ['success', lang('password_recovery_message_success'), 7000, TRUE];
+        $_SESSION['message'] = ['success', lang('register_password_recovery_message_success'), 7000, TRUE];
     } else { // Если нет такого пользователя
-        $_SESSION['message'] = ['danger', lang('password_recovery_message_failed'), 7000, TRUE];
+        $_SESSION['message'] = ['danger', lang('register_password_recovery_message_failed'), 7000, TRUE];
     }
 }
 

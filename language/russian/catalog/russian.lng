@@ -149,11 +149,13 @@ navbar_logout = Выйти
 navbar_view_cart = Перейти в корзину
 
 ;REGISTER
-password_check = Пароль и подтверждение пароля не совпадают
-email_check = Пожалуйста, введите корректный E-Mail
-password_recovery = Восстановление пароля
-password_recovery_message_success = Сообщение для восстановления пароля отправлено на Ваш E-mail
-password_recovery_message_failed = Пожалуйста, введите корректный E-Mail
+register_password_check = Пароль и подтверждение пароля не совпадают
+register_email_check = Пожалуйста, введите корректный E-Mail
+register_password_recovery = Восстановление пароля
+register_password_recovery_message_success = Сообщение для восстановления пароля отправлено на Ваш E-mail
+register_password_recovery_message_failed = Пожалуйста, введите корректный E-Mail
+register_problem_message = Уважаемый клиент. Что то пошло не так. Пожалуйста, укажите верные данные и попробуйте заново. Если проблемы с регистрацией остаются, то свяжитесь в нами для решения этого вопроса.
+register_complete_message = Уважаемый клиент. Вы только что зарегистрировались в нашем интернет-магазине. Мы надеемся что покупки, совершенные с нами, окажутся для Вас удачными и выгодными. Для завершения регистрации проверьте свой E-Mail и подтвердите операцию регистрации, нажав на ссылку в письме.
 
 ;WELCOME
 welcome_name = Добро пожаловать %s!

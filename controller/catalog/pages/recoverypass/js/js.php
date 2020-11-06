@@ -32,7 +32,7 @@
     function validate() {
         var confirm = $('#input-confirm').get(0);
         if ($('#input-password').val() !== $('#input-confirm').val()) {
-            confirm.setCustomValidity("<?php echo lang('password_check') ?>");
+            confirm.setCustomValidity("<?php echo lang('register_password_check') ?>");
         } else {
             confirm.setCustomValidity('');
         }
