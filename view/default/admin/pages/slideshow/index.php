@@ -39,7 +39,9 @@
                                 <th>
                                 
                                     <div class="b-right"><a href="#add" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
-                                
+
+				    <div class="b-left"><button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index"><span class="glyphicon glyphicon-cog"></span></button></div>
+
                                     <form>
                                             <div class="b-left"><button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
                                     </form>
