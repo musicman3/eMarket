@@ -20,9 +20,9 @@
         <div class="collapse navbar-collapse" id="bs-navbar-collapse-core-nav">
             <ul class="nav navbar-nav navbar-left">
                 <li><a href="/"><i class="glyphicon glyphicon-home"></i><span class="hidden-sm"> <?php echo lang('breadcrumb_home') ?></span></a></li>
-                <li><a href="#"><i class="glyphicon glyphicon-certificate"></i><span class="hidden-sm">  <?php echo lang('sale') ?></span></a></li>
+                <!--<li><a href="#"><i class="glyphicon glyphicon-certificate"></i><span class="hidden-sm">  <?php echo lang('sale') ?></span></a></li>
                 <li><a href="#"><i class="glyphicon glyphicon-fire"></i><span class="hidden-sm"> <?php echo lang('recommended') ?></span></a></li>
-                <li><a href="#"><i class="glyphicon glyphicon-comment"></i><span class="hidden-sm"> <?php echo lang('articles') ?></span></a></li>
+                <li><a href="#"><i class="glyphicon glyphicon-comment"></i><span class="hidden-sm"> <?php echo lang('articles') ?></span></a></li>-->
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-globe"></i><span class="hidden-sm"> <?php echo lang('navbar_languages') ?></span> <span class="caret"></span></a>
