@@ -17,10 +17,12 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
     <div id="listing" class="contentText">
         <div class="well well-sm">
 	    <div class="btn-group">
-		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Sort By <span class="caret"></span></button>
+		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Сортировать <span class="caret"></span></button>
 		<ul class="dropdown-menu text-right">
-		    <li><a href="#">По названию</a></li>
-		    <li><a href="#">По цене</a></li>
+                    <li><a href="<?php echo $sort_url ?>&sort=id">По умолчанию</a></li>
+		    <li><a href="<?php echo $sort_url ?>&sort=name">По названию</a></li>
+		    <li><a href="<?php echo $sort_url ?>&sort=min">Цена (по убыванию)</a></li>
+                    <li><a href="<?php echo $sort_url ?>&sort=max">Цена (по возрастанию)</a></li>
 		</ul>
 	    </div>
             <div class="btn-group pull-right">

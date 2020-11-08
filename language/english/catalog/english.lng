@@ -118,6 +118,8 @@ product_dimension_width = W
 product_dimension_height = H
 product_specification = Specification
 product_description = Description
+product_not_found = Product not found
+product_not_found_message = Sorry. Product not found.
 
 ;OTHER
 buy_now = Buy Now

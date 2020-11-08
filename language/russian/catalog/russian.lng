@@ -84,6 +84,8 @@ product_dimension_width = Ш
 product_dimension_height = В
 product_specification = Характеристики
 product_description = Описание
+product_not_found = Товар не найден
+product_not_found_message = Извините. Товар не найден.
 
 ;ADDRESS BOOK
 my_address_book = Адресная книга
