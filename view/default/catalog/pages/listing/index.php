@@ -8,7 +8,6 @@
 foreach (\eMarket\View::layoutRouting('content') as $path) {
     require_once (ROOT . $path);
 }
-
 ?>
 
 <?php if (\eMarket\Valid::inGET('search')) { ?><h1><?php echo lang('listing_search'); ?></h1><?php } else { ?><h1><?php echo $categories_name ?></h1><?php } ?>
@@ -16,15 +15,19 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
 <?php if ($products == true) { ?>
     <div id="listing" class="contentText">
         <div class="well well-sm">
-	    <div class="btn-group">
-		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Сортировать <span class="caret"></span></button>
-		<ul class="dropdown-menu text-right">
+            <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Сортировать <span class="caret"></span></button>
+                <ul class="dropdown-menu text-right">
                     <li><a href="<?php echo $sort_url ?>&sort=id">По умолчанию</a></li>
-		    <li><a href="<?php echo $sort_url ?>&sort=name">По названию</a></li>
-		    <li><a href="<?php echo $sort_url ?>&sort=min">Цена (по убыванию)</a></li>
+                    <li><a href="<?php echo $sort_url ?>&sort=name">По названию</a></li>
+                    <li><a href="<?php echo $sort_url ?>&sort=min">Цена (по убыванию)</a></li>
                     <li><a href="<?php echo $sort_url ?>&sort=max">Цена (по возрастанию)</a></li>
-		</ul>
-	    </div>
+                </ul>
+                <div class="form-group">
+                    <input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="show_in_stock" id="show_in_stock" type="checkbox" checked>
+                    <label for="show_in_stock"><?php echo lang('default_set') ?> </label>
+                </div>
+            </div>
             <div class="btn-group pull-right">
                 <a href="#" id="grid" class="btn btn-default item-grid active"><span class="glyphicon glyphicon-th"></span></a>
                 <a href="#" id="list" class="btn btn-default item-list"><span class="glyphicon glyphicon-th-list"></span></a>
@@ -39,12 +42,12 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                         <div class="caption">
                             <h5 class="item-heading"><a href="/?route=products&category_id=<?php echo $value['parent_id'] ?>&id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></h5>
                             <div class="item-text"><br />
-				<label>Vendor:</label> 67788, 
-				<label><?php echo lang('product_manufacturer') ?></label> HP, 
-				<?php if ($value['model'] != NULL && $value['model'] != FALSE) { ?><label><?php echo lang('product_model') ?></label> <?php echo $value['model'] ?>,<?php } ?>
-				<label><?php echo lang('product_weight') ?></label> 20 kg, 
-				<label><?php echo sprintf(lang('product_dimension'), '') ?></label> 110/200/500 (H/L/W), 
-				<label><?php echo lang('product_availability') ?></label> In Stock
+                                <label>Vendor:</label> 67788, 
+                                <label><?php echo lang('product_manufacturer') ?></label> HP, 
+                                <?php if ($value['model'] != NULL && $value['model'] != FALSE) { ?><label><?php echo lang('product_model') ?></label> <?php echo $value['model'] ?>,<?php } ?>
+                                <label><?php echo lang('product_weight') ?></label> 20 kg, 
+                                <label><?php echo sprintf(lang('product_dimension'), '') ?></label> 110/200/500 (H/L/W), 
+                                <label><?php echo lang('product_availability') ?></label> In Stock
                             </div>
                         </div>
                         <div class="clearfix"></div>
@@ -62,24 +65,27 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
         </div>
 
         <div class="well well-sm">
-	    <div class="result-inner btn-group">Showing 1 to 8 of 10 (2 Pages)</div>
-	    <div class="pagination-inner pull-right">
-		<ul class="pagination">
-		    <li class="active"><span>1</span></li>
-		    <li><a href="#">2</a></li>
-		</ul>
-	    </div>
-	</div>
+            <div class="result-inner btn-group">Showing 1 to 8 of 10 (2 Pages)</div>
+            <div class="pagination-inner pull-right">
+                <ul class="pagination">
+                    <li class="active"><span>1</span></li>
+                    <li><a href="#">2</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
 <?php } else { ?>
     <div id="listing" class="contentText">
         <div class="well well-sm">
             <div class="btn-group">
-                <div class="btn"><?php if (\eMarket\Valid::inGET('search')) { echo lang('listing_no_search'); } else { echo lang('listing_no'); } ?></div>
+                <div class="btn"><?php if (\eMarket\Valid::inGET('search')) {
+        echo lang('listing_no_search');
+    } else {
+        echo lang('listing_no');
+    } ?></div>
             </div>
         </div>
     </div>
-<?php
+    <?php
 }
-
 ?>
