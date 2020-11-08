@@ -23,10 +23,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                     <li><a href="<?php echo $sort_url ?>&sort=min">Цена (по убыванию)</a></li>
                     <li><a href="<?php echo $sort_url ?>&sort=max">Цена (по возрастанию)</a></li>
                 </ul>
-                <div class="form-group">
-                    <input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="show_in_stock" id="show_in_stock" type="checkbox" checked>
-                    <label for="show_in_stock"><?php echo lang('default_set') ?> </label>
-                </div>
+                &nbsp;&nbsp;<input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="normal" data-label-text="Наличие" data-label-width='auto' data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="show_in_stock" id="show_in_stock" type="checkbox" checked>
             </div>
             <div class="btn-group pull-right">
                 <a href="#" id="grid" class="btn btn-default item-grid active"><span class="glyphicon glyphicon-th"></span></a>
