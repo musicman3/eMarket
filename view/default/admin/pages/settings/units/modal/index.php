@@ -60,7 +60,7 @@
                         } ?>
                         
                         <div class="form-group">
-                            <input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="default_unit" id="default_unit" type="checkbox" checked>
+                            <input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="default_unit" id="default_unit" checked>
                             <label for="default_unit"><?php echo lang('default_set') ?> </label>
                         </div>
                     </div>
