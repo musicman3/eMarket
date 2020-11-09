@@ -8,14 +8,6 @@
 
 <nav class="navbar navbar-inverse navbar-no-corners navbar-no-margin" role="navigation">
     <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse-core-nav">
-                <span class="sr-only">Toggle Navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
 
         <div class="collapse navbar-collapse" id="bs-navbar-collapse-core-nav">
             <ul class="nav navbar-nav navbar-left">
@@ -25,14 +17,14 @@
                 <li><a href="#"><i class="glyphicon glyphicon-comment"></i><span class="hidden-sm"> <?php echo lang('articles') ?></span></a></li>-->
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-globe"></i><span class="hidden-sm"> <?php echo lang('navbar_languages') ?></span> <span class="caret"></span></a>
+                <li class="dropdown"><a data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-globe"></i><span class="hidden-sm"> <?php echo lang('navbar_languages') ?></span> <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <?php foreach (lang('#lang_all') as $value) { ?>
                             <li><a href="<?php echo $url_request . '&language=' . $value ?>"><img src="/view/<?php echo \eMarket\Set::template() ?>/admin/images/langflags/<?php echo $value ?>.png"> <?php echo lang('language_name', $value) ?></a></li>
                         <?php } ?>
                     </ul>
                 </li>
-                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-credit-card"></i><span class="hidden-sm"> <?php echo lang('navbar_currencies') ?></span> <span class="caret"></span></a>
+                <li class="dropdown"><a data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-credit-card"></i><span class="hidden-sm"> <?php echo lang('navbar_currencies') ?></span> <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <?php foreach (\eMarket\Set::currenciesData() as $value) { ?>
                             <li><a href="<?php echo $url_request . '&currency_default=' . $value[1] ?>"><?php echo $value[0] ?></a></li>

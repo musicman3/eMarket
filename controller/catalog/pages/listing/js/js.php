@@ -10,6 +10,24 @@
 <script type="text/javascript" src="/ext/bootstrap-switch/js/bootstrap-switch.min.js"></script>
 <script type="text/javascript">
     $('#show_in_stock').bootstrapSwitch();
+    if (document.getElementById('show_in_stock').checked) {
+        $("#sort_0").attr("href", "<?php echo $sort_url ?>&sort=id&change=on");
+        $("#sort_1").attr("href", "<?php echo $sort_url ?>&sort=name&change=on");
+        $("#sort_2").attr("href", "<?php echo $sort_url ?>&sort=min&change=on");
+        $("#sort_3").attr("href", "<?php echo $sort_url ?>&sort=max&change=on");
+    } else {
+        $("#sort_0").attr("href", "<?php echo $sort_url ?>&sort=id&change=off");
+        $("#sort_1").attr("href", "<?php echo $sort_url ?>&sort=name&change=off");
+        $("#sort_2").attr("href", "<?php echo $sort_url ?>&sort=min&change=off");
+        $("#sort_3").attr("href", "<?php echo $sort_url ?>&sort=max&change=off");
+    }
+    $('#show_in_stock').on('switchChange.bootstrapSwitch', function (event, state) {
+    if (document.getElementById('show_in_stock').checked) {
+        document.location.href = '<?php echo \eMarket\Func::deleteGet('change') ?>&change=on';
+    } else {
+        document.location.href = '<?php echo \eMarket\Func::deleteGet('change') ?>&change=off';
+    }
+    });
 </script>
 
 <script type="text/javascript" language="javascript">

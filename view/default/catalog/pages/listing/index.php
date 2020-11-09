@@ -18,12 +18,12 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
             <div class="btn-group">
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Сортировать <span class="caret"></span></button>
                 <ul class="dropdown-menu text-right">
-                    <li><a href="<?php echo $sort_url ?>&sort=id">По умолчанию</a></li>
-                    <li><a href="<?php echo $sort_url ?>&sort=name">По названию</a></li>
-                    <li><a href="<?php echo $sort_url ?>&sort=min">Цена (по убыванию)</a></li>
-                    <li><a href="<?php echo $sort_url ?>&sort=max">Цена (по возрастанию)</a></li>
+                    <li><a id="sort_0" href="<?php echo $sort_url ?>&sort=id">По умолчанию</a></li>
+                    <li><a id="sort_1" href="<?php echo $sort_url ?>&sort=name">По названию</a></li>
+                    <li><a id="sort_2" href="<?php echo $sort_url ?>&sort=min">Цена (по убыванию)</a></li>
+                    <li><a id="sort_3" href="<?php echo $sort_url ?>&sort=max">Цена (по возрастанию)</a></li>
                 </ul>
-                &nbsp;&nbsp;<input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="normal" data-label-text="Наличие" data-label-width='auto' data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="show_in_stock" id="show_in_stock" type="checkbox" checked>
+                &nbsp;&nbsp;<input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="normal" data-on-text="Все" data-off-text="В наличии" data-handle-width="80" name="show_in_stock" id="show_in_stock" type="checkbox"<?php echo $checked_stock ?>>
             </div>
             <div class="btn-group pull-right">
                 <a href="#" id="grid" class="btn btn-default item-grid active"><span class="glyphicon glyphicon-th"></span></a>

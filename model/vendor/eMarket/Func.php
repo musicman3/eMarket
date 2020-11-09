@@ -374,15 +374,24 @@ class Func {
     /**
      * Функция удаления GET-параметра
      *
-     * @param string $key (параметр, который необходимо удалить)
+     * @param string|array $key (параметр, который необходимо удалить)
      * @return string $url (исходящая строка)
      */
     public static function deleteGet($key) {
+        if (!is_array($key)) {
+            $array = [$key => ''];
+        } else {
+            $array = [];
+            foreach ($key as $val) {
+                $array[$val] = '';
+            }
+        }
+
         parse_str(\eMarket\Valid::inSERVER('QUERY_STRING'), $vars);
-        $url = http_build_query(array_diff_key($vars, array($key => '')));
+        $url = http_build_query(array_diff_key($vars, $array));
         return '?' . $url;
     }
-    
+
     /**
      * Функция для экранирования специальных символов
      *
@@ -390,15 +399,15 @@ class Func {
      * @return string $output (токен)
      */
     public static function escape_sign($string) {
-        
+
         //перечень символов и замен в массиве
         $symbols = ["'"];
         $escape = ["&#8216;"];
-        
+
         $output = str_replace($symbols, $escape, $string);
 
         return $output;
-    }    
+    }
 
 }
 
