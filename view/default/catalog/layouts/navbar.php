@@ -3,11 +3,18 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-
 ?>
 
 <nav class="navbar navbar-inverse navbar-no-corners navbar-no-margin" role="navigation">
     <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse-core-nav">
+                <span class="sr-only">Toggle Navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
 
         <div class="collapse navbar-collapse" id="bs-navbar-collapse-core-nav">
             <ul class="nav navbar-nav navbar-left">
@@ -31,10 +38,10 @@
                         <?php } ?>
                     </ul>
                 </li>
-		<?php if ($CUSTOMER == FALSE) { ?>
-		    <li><a href="/?route=login"><i class="glyphicon glyphicon-user"></i><span class="hidden-sm"> <?php echo lang('login_to_account') ?></span></a></li>
-		<?php } else { ?>
-		    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-user"></i><span class="hidden-sm"> <?php echo lang('my_account') ?></span> <span class="caret"></span></a>
+                <?php if ($CUSTOMER == FALSE) { ?>
+                    <li><a href="/?route=login"><i class="glyphicon glyphicon-user"></i><span class="hidden-sm"> <?php echo lang('login_to_account') ?></span></a></li>
+                <?php } else { ?>
+                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-user"></i><span class="hidden-sm"> <?php echo lang('my_account') ?></span> <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="/?route=login&logout=ok"><?php echo lang('navbar_logout') ?></a></li>
                             <li class="divider"></li>
@@ -43,8 +50,8 @@
                             <li><a href="/?route=address_book"><?php echo lang('my_address_book') ?></a></li>
                             <li><a href="#">My Password</a></li>
                         </ul>
-		    </li>
-		<?php } ?>
+                    </li>
+                <?php } ?>
 
                 <?php if (\eMarket\Cart::totalQuantity() == 0) { ?>
                     <li class="nav"><a href="#" class="disabled"><i class="glyphicon glyphicon-shopping-cart"></i> <?php echo \eMarket\Cart::totalQuantity() . ' ' . lang('navbar_pcs') ?></a></li>
