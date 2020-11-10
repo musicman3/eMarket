@@ -18,10 +18,10 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
             <div class="btn-group">
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Сортировать <span class="caret"></span></button>
                 <ul class="dropdown-menu text-right">
-                    <li><a id="sort_0" href="<?php echo $sort_url ?>&sort=id">По умолчанию</a></li>
-                    <li><a id="sort_1" href="<?php echo $sort_url ?>&sort=name">По названию</a></li>
-                    <li><a id="sort_2" href="<?php echo $sort_url ?>&sort=min">Цена (по убыванию)</a></li>
-                    <li><a id="sort_3" href="<?php echo $sort_url ?>&sort=max">Цена (по возрастанию)</a></li>
+                    <li><a id="default" class="sorting">По умолчанию</a></li>
+                    <li><a id="name" class="sorting">По названию</a></li>
+                    <li><a id="down" class="sorting">Цена (по убыванию)</a></li>
+                    <li><a id="up" class="sorting">Цена (по возрастанию)</a></li>
                 </ul>
                 &nbsp;&nbsp;<input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="normal" data-label-text="Отобразить" data-label-width='auto' data-on-text="Все" data-off-text="В наличии" data-handle-width="80" name="show_in_stock" id="show_in_stock"<?php echo $checked_stock ?>>
             </div>
@@ -31,7 +31,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
             </div>
         </div>
 
-        <div class="row">
+        <div id="ajax" class="row">
             <?php foreach ($products as $value) { ?>
                 <div class="item col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item">
                     <div class="productHolder">
