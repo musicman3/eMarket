@@ -6,11 +6,11 @@
 ?>
 
 <!--Атрибуты -->
-<script type="text/javascript" src="/view/<?php echo \eMarket\Set::template() ?>/js/classes/attributes/group_attributes.js"></script>
-<script type="text/javascript" src="/view/<?php echo \eMarket\Set::template() ?>/js/classes/attributes/attributes.js"></script>
-<script type="text/javascript" src="/view/<?php echo \eMarket\Set::template() ?>/js/classes/attributes/values_attribute.js"></script>
-<script type="text/javascript" src="/view/<?php echo \eMarket\Set::template() ?>/js/classes/attributes/attributes_processing.js"></script>
-<script type="text/javascript" src="/view/<?php echo \eMarket\Set::template() ?>/js/classes/jsdata/jsdata.js"></script>
+<script type="text/javascript" src="/model/js/classes/attributes/group_attributes.js"></script>
+<script type="text/javascript" src="/model/js/classes/attributes/attributes.js"></script>
+<script type="text/javascript" src="/model/js/classes/attributes/values_attribute.js"></script>
+<script type="text/javascript" src="/model/js/classes/attributes/attributes_processing.js"></script>
+<script type="text/javascript" src="/model/js/classes/jsdata/jsdata.js"></script>
 
 <?php $lang_for_button = json_encode([
     lang('confirm-yes'), 

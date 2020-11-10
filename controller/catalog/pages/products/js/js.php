@@ -29,8 +29,8 @@
     });
 </script>
 
-<script type="text/javascript" src="/view/<?php echo \eMarket\Set::template() ?>/js/classes/attributes/attributes_processing.js"></script>
-<script type="text/javascript" src="/view/<?php echo \eMarket\Set::template() ?>/js/classes/jsdata/jsdata.js"></script>
+<script type="text/javascript" src="/model/js/classes/attributes/attributes_processing.js"></script>
+<script type="text/javascript" src="/model/js/classes/jsdata/jsdata.js"></script>
 <script type="text/javascript">
     new AttributesProcessing();
     // Выводим атрибуты
