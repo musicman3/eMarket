@@ -28,10 +28,15 @@ if (\eMarket\Valid::inGET('sort') == 'name') {
 
 if (\eMarket\Valid::inGET('search')) {
     $search = '%' . \eMarket\Valid::inGET('search') . '%';
-    $products = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE (name LIKE? OR description LIKE?) AND language=? AND status=? " . $sort_parameter, [$search, $search, lang('#lang_all')[0], 1]);
+    $lines = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE (name LIKE? OR description LIKE?) AND language=? AND status=? " . $sort_parameter, [$search, $search, lang('#lang_all')[0], 1]);
 } else {
-    $products = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE language=? AND parent_id=? AND status=? " . $sort_parameter, [lang('#lang_all')[0], \eMarket\Valid::inGET('category_id'), 1]);
+    $lines = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE language=? AND parent_id=? AND status=? " . $sort_parameter, [lang('#lang_all')[0], \eMarket\Valid::inGET('category_id'), 1]);
 }
+$lines_on_page = \eMarket\Set::linesOnPage();
+$count_lines = count($lines);
+$navigate = \eMarket\Navigation::getLink($count_lines, $lines_on_page);
+$start = $navigate[0];
+$finish = $navigate[1];
 
 $categories_name = \eMarket\Pdo::getCell("SELECT name FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], \eMarket\Valid::inGET('category_id')]);
 

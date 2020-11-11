@@ -24,7 +24,6 @@ class ProductsListing {
     static init() {
         // При загрузке страницы
         $(document).ready(function () {
-            sessionStorage.removeItem('sort_id');
             ProductsListing.initGrid();
 
             $('#list').click(function () {
@@ -63,6 +62,29 @@ class ProductsListing {
 
             ProductsListing.getData(sort_id, change);
         });
+
+        // Обработка списка сортировки
+        $('.navigation').click(function (event) {
+            if (document.getElementById('show_in_stock').checked) {
+                var change = 'on';
+            } else {
+                var change = 'off';
+            }
+            if (sessionStorage.getItem('sort_id') === null) {
+                sort_id = 'default';
+            } else {
+                var sort_id = sessionStorage.getItem('sort_id');
+            }
+            var prev = $('div#nav_data').data('prev');
+            var next = $('div#nav_data').data('next');
+          
+            if (event.target.id === 'prev') {
+                ProductsListing.getData(sort_id, change, null, null, prev, next);
+            }
+            if (event.target.id === 'next') {
+                ProductsListing.getData(sort_id, change, prev, next);
+            }
+        });
     }
 
     /**
@@ -82,19 +104,27 @@ class ProductsListing {
      * Отправка данных на сервер
      * @param sort_id {String} (значение sort)
      * @param change {String} (Значение change)
+     * @param start {String} (Значение start)
+     * @param finish {String} (Значение finish)
+     * @param backstart {String} (Значение backstart)
+     * @param backfinish {String} (Значение backfinish)
      *
      */
-    static getData(sort_id, change) {
+    static getData(sort_id, change, start = null, finish = null, backstart = null, backfinish = null) {
         jQuery.get(window.location.href,
                 {sort: sort_id,
-                    change: change},
+                    change: change,
+                    start: start,
+                    finish: finish,
+                    backstart: backstart,
+                    backfinish: backfinish},
                 AjaxSuccess);
         // Обновление страницы
         function AjaxSuccess(data) {
             $('#listing').replaceWith($(data).find('#listing'));
             $('#show_in_stock').bootstrapSwitch();
             new ProductsListing();
-        }
+    }
     }
 
     /**
