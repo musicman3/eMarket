@@ -15,15 +15,19 @@ if (\eMarket\Valid::inGET('change') == 'on' OR !\eMarket\Valid::inGET('change'))
 
 if (!\eMarket\Valid::inGET('sort') OR \eMarket\Valid::inGET('sort') == 'default') {
     $sort_parameter = $qnt_flag . 'ORDER BY id DESC';
+    $sort_name = 'По умолчанию';
 }
 if (\eMarket\Valid::inGET('sort') == 'down') {
     $sort_parameter = $qnt_flag . 'ORDER BY price DESC';
+    $sort_name = 'По названию';
 }
 if (\eMarket\Valid::inGET('sort') == 'up') {
     $sort_parameter = $qnt_flag . 'ORDER BY price ASC';
+    $sort_name = 'Цена (по убыванию)';
 }
 if (\eMarket\Valid::inGET('sort') == 'name') {
     $sort_parameter = $qnt_flag . 'ORDER BY name ASC';
+    $sort_name = 'Цена (по возрастанию)';
 }
 
 if (\eMarket\Valid::inGET('search')) {
