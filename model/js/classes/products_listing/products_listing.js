@@ -94,7 +94,6 @@ class ProductsListing {
             $('#listing').replaceWith($(data).find('#listing'));
             $('#show_in_stock').bootstrapSwitch();
             new ProductsListing();
-            ProductsListing.initGrid();
         }
     }
 
