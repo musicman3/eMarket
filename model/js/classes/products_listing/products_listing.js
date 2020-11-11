@@ -91,8 +91,10 @@ class ProductsListing {
                 AjaxSuccess);
         // Обновление страницы
         function AjaxSuccess(data) {
-            $('#ajax').replaceWith($(data).find('#ajax'));
+            $('#listing').replaceWith($(data).find('#listing'));
             ProductsListing.initGrid();
+            $('#show_in_stock').bootstrapSwitch();
+            new ProductsListing();
         }
     }
 
