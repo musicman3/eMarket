@@ -75,7 +75,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
     <div id="listing" class="contentText">
         <div class="well well-sm">
 	    <div class="btn-group">
-		<div class="btn">
+		<div class="no">
 		    <?php
 		    if (\eMarket\Valid::inGET('search')) {
 			echo lang('listing_no_search');
