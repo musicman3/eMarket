@@ -85,8 +85,8 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                 &nbsp;&nbsp;<input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="normal" data-label-text="Отобразить" data-label-width='auto' data-on-text="Все" data-off-text="В наличии" data-handle-width="80" name="show_in_stock" id="show_in_stock"<?php echo $checked_stock ?>>
             </div>
             <div class="btn-group pull-right">
-                <a href="#" id="grid" class="btn btn-default item-grid active"><span class="glyphicon glyphicon-th"></span></a>
-                <a href="#" id="list" class="btn btn-default item-list"><span class="glyphicon glyphicon-th-list"></span></a>
+                <a id="grid" class="btn btn-default item-grid active"><span class="glyphicon glyphicon-th"></span></a>
+                <a id="list" class="btn btn-default item-list"><span class="glyphicon glyphicon-th-list"></span></a>
             </div>
         </div>
         <div class="well well-sm">

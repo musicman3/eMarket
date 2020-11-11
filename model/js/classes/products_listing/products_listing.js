@@ -70,10 +70,10 @@ class ProductsListing {
      *
      */
     static initGrid() {
-        if (sessionStorage.getItem('grid_list') === 'list' || sessionStorage.getItem('grid_list') === null) {
+        if (sessionStorage.getItem('grid_list') === 'list') {
             ProductsListing.setList();
         }
-        if (sessionStorage.getItem('grid_list') === 'grid') {
+        if (sessionStorage.getItem('grid_list') === 'grid' || sessionStorage.getItem('grid_list') === null) {
             ProductsListing.setGrid();
         }
     }
