@@ -74,32 +74,14 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
 <?php } else { ?>
     <div id="listing" class="contentText">
         <div class="well well-sm">
-            <div class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Сортировать <span class="caret"></span></button>
-                <ul class="dropdown-menu text-right">
-                    <li><a id="default" class="sorting">По умолчанию</a></li>
-                    <li><a id="name" class="sorting">По названию</a></li>
-                    <li><a id="down" class="sorting">Цена (по убыванию)</a></li>
-                    <li><a id="up" class="sorting">Цена (по возрастанию)</a></li>
-                </ul>
-                &nbsp;&nbsp;<input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="normal" data-label-text="Отобразить" data-label-width='auto' data-on-text="Все" data-off-text="В наличии" data-handle-width="80" name="show_in_stock" id="show_in_stock"<?php echo $checked_stock ?>>
-            </div>
-            <div class="btn-group pull-right">
-                <a id="grid" class="btn btn-default item-grid active"><span class="glyphicon glyphicon-th"></span></a>
-                <a id="list" class="btn btn-default item-list"><span class="glyphicon glyphicon-th-list"></span></a>
-            </div>
-        </div>
-        <div class="well well-sm">
             <div>
-                <div>
-                    <?php
-                    if (\eMarket\Valid::inGET('search')) {
-                        echo lang('listing_no_search');
-                    } else {
-                        echo lang('listing_no');
-                    }
-                    ?>
-                </div>
+                <?php
+                if (\eMarket\Valid::inGET('search')) {
+                    echo lang('listing_no_search');
+                } else {
+                    echo lang('listing_no');
+                }
+                ?>
             </div>
         </div>
     </div>
