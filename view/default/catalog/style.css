@@ -94,7 +94,7 @@ nav .disabled {pointer-events: none;}
 #listing .pagination {margin: 0}
 #listing .item-text ul li {list-style: none;}
 #listing .check-box {margin:8px 0 0 0;}
-#listing .no {padding: 6px 12px;}
+#listing .no {padding: 7px 12px;}
 #cart .button {padding-bottom: 20px;}
 #cart .table-bordered > tbody > tr > td {border:0;vertical-align: middle;}
 #cart .quantity {all: unset;-moz-appearance: textfield;width: 30px;text-align: center;vertical-align: middle;border: 1px solid #2e6da4;border-radius: 3px;padding: 4px 0 4px 0;}
