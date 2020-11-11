@@ -92,9 +92,9 @@ class ProductsListing {
         // Обновление страницы
         function AjaxSuccess(data) {
             $('#listing').replaceWith($(data).find('#listing'));
-            ProductsListing.initGrid();
             $('#show_in_stock').bootstrapSwitch();
             new ProductsListing();
+            ProductsListing.initGrid();
         }
     }
 
@@ -108,7 +108,7 @@ class ProductsListing {
         $('#listing .item-grid').removeClass('active');
         $('#listing .item-list').addClass('active');
     }
-    
+
     /**
      * Отображение сеткой
      *
