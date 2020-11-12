@@ -12,6 +12,11 @@ if (\eMarket\Valid::inGET('change') == 'on' OR!\eMarket\Valid::inGET('change')) 
     $checked_stock = '';
     $qnt_flag = 'AND quantity>0 ';
 }
+if (!\eMarket\Valid::inGET('sort')) {
+    $sort_flag = 'on';
+} else {
+    $sort_flag = 'off';
+}
 
 if (!\eMarket\Valid::inGET('sort') OR \eMarket\Valid::inGET('sort') == 'default') {
     $sort_parameter = $qnt_flag . 'ORDER BY id DESC';

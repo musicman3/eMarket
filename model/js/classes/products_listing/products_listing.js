@@ -24,6 +24,9 @@ class ProductsListing {
     static init() {
         // При загрузке страницы
         $(document).ready(function () {
+            if ($('div#nav_data').data('sortflag') === 'on') {
+                sessionStorage.removeItem('sort_id');
+            }
             ProductsListing.initGrid();
 
             $('#list').click(function () {
@@ -77,7 +80,7 @@ class ProductsListing {
             }
             var prev = $('div#nav_data').data('prev');
             var next = $('div#nav_data').data('next');
-          
+
             if (event.target.id === 'prev') {
                 ProductsListing.getData(sort_id, change, null, null, prev, next);
             }

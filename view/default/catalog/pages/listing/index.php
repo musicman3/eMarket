@@ -69,6 +69,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
             <div id="nav_data" class='hidden' 
                  data-prev='<?php echo $navigate[0] ?>'
                  data-next='<?php echo $navigate[1] ?>'
+                 data-sortflag='<?php echo $sort_flag ?>'
                  ></div>
             <div class="result-inner btn-group"><?php echo lang('with') ?> <?php echo $navigate[0] + 1 ?> <?php echo lang('to') ?> <?php echo $navigate[1] ?> ( <?php echo lang('of') ?> <?php echo $count_lines ?> )</div>
 
