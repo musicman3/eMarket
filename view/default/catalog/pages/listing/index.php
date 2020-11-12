@@ -19,13 +19,13 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                 <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-sort"></span> &nbsp;<?php echo $sort_name ?></button>
                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></button>
                 <ul class="dropdown-menu text-right">
-                    <li><a id="default" class="sorting">По умолчанию</a></li>
-                    <li><a id="name" class="sorting">По названию</a></li>
-                    <li><a id="down" class="sorting">Цена (по убыванию)</a></li>
-                    <li><a id="up" class="sorting">Цена (по возрастанию)</a></li>
+                    <li><a id="default" class="sorting"><?php echo lang('listing_sort_by_default') ?></a></li>
+                    <li><a id="name" class="sorting"><?php echo lang('listing_sort_by_name') ?></a></li>
+                    <li><a id="down" class="sorting"><?php echo lang('listing_sort_by_price_desc') ?></a></li>
+                    <li><a id="up" class="sorting"><?php echo lang('listing_sort_by_price_asc') ?></a></li>
                 </ul>
 
-                &nbsp;&nbsp;<input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="normal" data-label-text="Отобразить" data-label-width='auto' data-on-text="Все" data-off-text="В наличии" data-handle-width="80" name="show_in_stock" id="show_in_stock"<?php echo $checked_stock ?>>
+                &nbsp;&nbsp;<input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="normal" data-label-text="<?php echo lang('button-view-switch') ?>" data-label-width='auto' data-on-text="<?php echo lang('button-all-switch') ?>" data-off-text="<?php echo lang('button-instock-switch') ?>" data-handle-width="80" name="show_in_stock" id="show_in_stock"<?php echo $checked_stock ?>>
             </div>
 
             <div class="btn-group pull-right">
@@ -70,20 +70,20 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                  data-prev='<?php echo $navigate[0] ?>'
                  data-next='<?php echo $navigate[1] ?>'
                  ></div>
-            <div class="result-inner btn-group">Показано с <?php echo $navigate[0] + 1 ?> по <?php echo $navigate[1] ?> ( из <?php echo $count_lines ?> )</div>
+            <div class="result-inner btn-group"><?php echo lang('listing_shown') ?> <?php echo lang('with') ?> <?php echo $navigate[0] + 1 ?> <?php echo lang('to') ?> <?php echo $navigate[1] ?> ( <?php echo lang('of') ?> <?php echo $count_lines ?> )</div>
 
             <div class="btn-group  pull-right" role="group">
                 <?php if ($navigate[0] > 0) { ?> 
-                    <button id="prev" type="button" class="btn btn-default navigation"><span aria-hidden="true">&larr;</span> Назад</button> 
+                    <button id="prev" type="button" class="btn btn-default navigation"><span aria-hidden="true">&larr;</span> <?php echo lang('button_previous') ?></button> 
                 <?php } else { ?> 
-                    <a id="prev" class="btn btn-default disabled" role="button"><span aria-hidden="true">&larr;</span> Назад</a> 
+                    <a id="prev" class="btn btn-default disabled" role="button"><span aria-hidden="true">&larr;</span> <?php echo lang('button_previous') ?></a> 
                     <?php
                 }
                 if ($navigate[1] != $count_lines) {
                     ?> 
-                    <button id="next" type="button" class="btn btn-default navigation">Вперед <span aria-hidden="true">&rarr;</span></button> 
+                    <button id="next" type="button" class="btn btn-default navigation"><?php echo lang('button_next') ?> <span aria-hidden="true">&rarr;</span></button> 
                 <?php } else { ?> 
-                    <a id="next" class="btn btn-default disabled" role="button">Вперед <span aria-hidden="true">&rarr;</span></a> 
+                    <a id="next" class="btn btn-default disabled" role="button"><?php echo lang('button_next') ?> <span aria-hidden="true">&rarr;</span></a> 
                 <?php } ?>
             </div>
         </div>

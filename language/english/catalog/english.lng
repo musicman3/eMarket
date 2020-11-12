@@ -35,8 +35,13 @@ button_add = Add
 button_cancel = Cancel
 button_delete = Delete
 button_edit = Edit
+button_next = Next
+button_previous = Previous
 cancel = Cancel
 save = Save
+button-view-switch = View
+button-all-switch = All
+button-instock-switch = In Stock
 confirm-no-switch = NO
 confirm-yes-switch = YES
 confirm-del = Delete?
@@ -49,9 +54,6 @@ of = of
 ;PAGES
 shopping_cart = Cart
 сheckout_click = Buy in one click
-listing_no = There are no products in this category.
-listing_no_search = Products not found
-listing_search = Search results
 login_to_account = Autorization
 regular_customer = Regular customer
 new_customer = New Customer
@@ -66,6 +68,36 @@ login_description = By creating an account you will be able to take advantage of
 this_page_is_not_available = This page is not available!
 enter_a_new_password = Enter a new password
 e_mail = E-Mail
+
+;BREADCRUMB
+breadcrumb_home = Home
+
+;PRODUCT
+product_manufacturer = Manufacturer:
+product_model = Model:
+product_weight = Weight:
+product_availability = Availability:
+product_in_stock_from = in stock from
+product_in_stock = in stock
+product_out_of_stock = out of stock
+product_dimension = Dimension (%s):
+product_dimension_length = L
+product_dimension_width = W
+product_dimension_height = H
+product_specification = Specification
+product_description = Description
+product_not_found = Product not found
+product_not_found_message = Sorry. Product not found.
+
+;LISTING
+listing_no = There are no products in this category.
+listing_no_search = Products not found
+listing_search = Search results
+listing_sort_by_default = By default
+listing_sort_by_name = By name
+listing_sort_by_price_asc = Price (ascending)
+listing_sort_by_price_desc = Price (descending)
+listing_shown = Shown
 
 ;ADDRESS BOOK
 my_address_book = Address Book
@@ -100,26 +132,6 @@ cart_payment_is_not_available = Payment for this shipping method is not availabl
 cart_shipping_is_not_available_and_min_price = . Min. order price:
 cart_shipping_price = Shipping price:
 cart_total_to_pay = Total to pay:
-
-;BREADCRUMB
-breadcrumb_home = Home
-
-;PRODUCT
-product_manufacturer = Manufacturer:
-product_model = Model:
-product_weight = Weight:
-product_availability = Availability:
-product_in_stock_from = in stock from
-product_in_stock = in stock
-product_out_of_stock = out of stock
-product_dimension = Dimension (%s):
-product_dimension_length = L
-product_dimension_width = W
-product_dimension_height = H
-product_specification = Specification
-product_description = Description
-product_not_found = Product not found
-product_not_found_message = Sorry. Product not found.
 
 ;OTHER
 buy_now = Buy Now

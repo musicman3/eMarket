@@ -35,8 +35,13 @@ button_add = Добавить
 button_cancel = Отмена
 button_delete = Удалить
 button_edit = Редактировать
+button_next = Вперед
+button_previous = Назад
 cancel = Отмена
 save = Сохранить
+button-view-switch = Отобразить
+button-all-switch = Все
+button-instock-switch = В наличии
 confirm-no-switch = НЕТ
 confirm-yes-switch = ДА
 confirm-del = Удалить?
@@ -49,9 +54,6 @@ of = из
 ;PAGES
 shopping_cart = Корзина
 сheckout_click = Купить в 1 клик
-listing_no = В этой категории нет товаров
-listing_no_search = Подходящих товаров не найдено
-listing_search = Результаты поиска
 login_to_account = Авторизация
 regular_customer = Постоянный клиент
 new_customer = Новый покупатель
@@ -87,6 +89,16 @@ product_description = Описание
 product_not_found = Товар не найден
 product_not_found_message = Извините. Товар не найден.
 
+;LISTING
+listing_no = В этой категории нет товаров
+listing_no_search = Подходящих товаров не найдено
+listing_search = Результаты поиска
+listing_sort_by_default = По умолчанию
+listing_sort_by_name = По названию
+listing_sort_by_price_asc = Цена (по возрастанию)
+listing_sort_by_price_desc = Цена (по убыванию)
+listing_shown = Показано
+
 ;ADDRESS BOOK
 my_address_book = Адресная книга
 address_book_country = Страна
@@ -113,7 +125,6 @@ cart_amount = Сумма
 cart_total = Итого
 cart_shopping_cart_empty = В корзине нет товаров
 cart_сheckout = Оформить заказ
-cart_discount_card_number = Номер дисконтной карты
 cart_discount_card_number = Номер дисконтной карты
 cart_discount_card_apply = Применить
 cart_shipping_is_not_available = Доставка в этот регион не доступна
