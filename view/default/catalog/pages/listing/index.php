@@ -73,8 +73,8 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
             <div class="result-inner btn-group">Показано с <?php echo $navigate[0] + 1 ?> по <?php echo $navigate[1] ?> ( из <?php echo $count_lines ?> )</div>
 
             <div class="btn-group  pull-right" role="group">
-                <button id="prev" type="button" class="btn btn-default navigation"><span aria-hidden="true">&larr;</span> Назад</button>
-                <button id="next" type="button" class="btn btn-default navigation">Вперед <span aria-hidden="true">&rarr;</span></button>
+                <?php if ($navigate[0] > 0) { ?> <button id="prev" type="button" class="btn btn-default navigation"><span aria-hidden="true">&larr;</span> Назад</button> <?php } else { ?> <a id="prev" class="btn btn-default disabled" role="button"><span aria-hidden="true">&larr;</span> Назад</a> <?php } ?>
+                <?php if ($navigate[1] != $count_lines) { ?> <button id="next" type="button" class="btn btn-default navigation">Вперед <span aria-hidden="true">&rarr;</span></button> <?php } else { ?> <a id="next" class="btn btn-default disabled" role="button"><span aria-hidden="true">&larr;</span>Вперед </a> <?php } ?>
             </div>
         </div>
     </div>
