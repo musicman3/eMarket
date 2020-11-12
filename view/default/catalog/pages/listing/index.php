@@ -25,7 +25,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                     <li><a id="up" class="sorting"><?php echo lang('listing_sort_by_price_asc') ?></a></li>
                 </ul>
 
-                &nbsp;&nbsp;<input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="normal" data-label-text="<?php echo lang('button-view-switch') ?>" data-label-width='auto' data-on-text="<?php echo lang('button-all-switch') ?>" data-off-text="<?php echo lang('button-instock-switch') ?>" data-handle-width="80" name="show_in_stock" id="show_in_stock"<?php echo $checked_stock ?>>
+                &nbsp;&nbsp;<input class="check-box" hidden type="checkbox" data-off-color="success" data-size="normal" data-label-text="<?php echo lang('button-view-switch') ?>" data-label-width='auto' data-on-text="<?php echo lang('button-all-switch') ?>" data-off-text="<?php echo lang('button-instock-switch') ?>" data-handle-width="80" name="show_in_stock" id="show_in_stock"<?php echo $checked_stock ?>>
             </div>
 
             <div class="btn-group pull-right">
@@ -35,19 +35,31 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
         </div>
 
         <div class="row">
-            <?php for ($start; $start < $finish; $start++) { ?>
+            <?php
+            for ($start; $start < $finish; $start++) {
+                $instock = \eMarket\Products::inStock($lines[$start]['date_available'], $lines[$start]['quantity']);
+                $manufacturer = \eMarket\Products::nameToId($lines[$start]['manufacturer'], TABLE_MANUFACTURERS, 'name');
+                ?>
                 <div class="item col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item">
                     <div class="productHolder">
                         <a href="/?route=products&category_id=<?php echo $lines[$start]['parent_id'] ?>&id=<?php echo $lines[$start]['id'] ?>"><img src="/uploads/images/products/resize_1/<?php echo $lines[$start]['logo_general'] ?>" alt="<?php echo $lines[$start]['name'] ?>" class="img-responsive"></a>
                         <div class="caption">
                             <h5 class="item-heading"><a href="/?route=products&category_id=<?php echo $lines[$start]['parent_id'] ?>&id=<?php echo $lines[$start]['id'] ?>"><?php echo $lines[$start]['name'] ?></a></h5>
                             <div class="item-text"><br />
-                                <label>Vendor:</label> 67788, 
-                                <label><?php echo lang('product_manufacturer') ?></label> HP, 
-                                <?php if ($lines[$start]['model'] != NULL && $lines[$start]['model'] != FALSE) { ?><label><?php echo lang('product_model') ?></label> <?php echo $lines[$start]['model'] ?>,<?php } ?>
-                                <label><?php echo lang('product_weight') ?></label> 20 kg, 
-                                <label><?php echo sprintf(lang('product_dimension'), '') ?></label> 110/200/500 (H/L/W), 
-                                <label><?php echo lang('product_availability') ?></label> In Stock
+                                <?php if ($manufacturer != NULL && $manufacturer != FALSE) { ?>
+                                    <label><?php echo lang('product_manufacturer') ?></label> <?php echo $manufacturer ?><br> 
+                                <?php } if ($lines[$start]['model'] != NULL && $lines[$start]['model'] != FALSE) { ?>
+                                    <label><?php echo lang('product_model') ?></label> 
+                                    <?php echo $lines[$start]['model'] ?><br>
+                                <?php } ?>
+                                <label><?php echo lang('product_availability') ?></label>
+                                <?php if ($instock['date_available_marker'] == 'false') { ?>
+                                    <span class="label label-warning"><?php echo $instock['date_available_text'] ?></span>
+                                <?php } elseif ($lines[$start]['quantity'] != NULL && $lines[$start]['quantity'] <= 0) { ?>
+                                    <span class="label label-danger"><?php echo $instock['date_available_text'] ?></span>
+                                <?php } else { ?>
+                                    <span class="label label-success"><?php echo $instock['date_available_text'] ?></span>
+                                <?php } ?>
                             </div>
                         </div>
                         <div class="clearfix"></div>

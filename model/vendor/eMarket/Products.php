@@ -43,7 +43,7 @@ class Products {
         }
 
         $product = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=? AND language=? AND status=?", [$id, $language, 1]);
-        
+
         if (count($product) > 0) {
             return $product[0];
         } else {
@@ -60,6 +60,44 @@ class Products {
     public static function viewNewImages($products_new_count) {
         $image = explode(',', $products_new_count[6], -1);
         return $image;
+    }
+
+    /**
+     * Вывод имени по id
+     *
+     * @param string $id (id в таблице)
+     * @param string $db (таблица)
+     * @param string $column (колонка)
+     * @return string $output (название)
+     */
+    public static function nameToId($id, $db, $column) {
+        if ($id != NULL) {
+            $output = \eMarket\Pdo::getCellFalse("SELECT " . $column . " FROM " . $db . " WHERE language=? AND id=?", [lang('#lang_all')[0], $id]);
+        } else {
+            $output = NULL;
+        }
+        return $output;
+    }
+
+    /**
+     * Товар на складе
+     *
+     * @param string $date_available (id в таблице)
+     * @param string $quantity (количество)
+     * @return array (выходной массив)
+     */
+    public static function inStock($date_available, $quantity) {
+        if ($date_available != NULL && $date_available != FALSE && strtotime($date_available) > strtotime(date('Y-m-d'))) {
+            $date_available_marker = 'false';
+            $date_available_text = lang('product_in_stock_from') . ' ' . \eMarket\Set::dateLocale($date_available);
+        } elseif ($quantity != NULL && $quantity <= 0) {
+            $date_available_text = lang('product_out_of_stock');
+            $date_available_marker = 'true';
+        } else {
+            $date_available_marker = 'true';
+            $date_available_text = lang('product_in_stock');
+        }
+        return ['date_available_marker' => $date_available_marker, 'date_available_text' => $date_available_text];
     }
 
     /**
