@@ -305,7 +305,6 @@
 
                                 </td>
                                 <td class="options"><div class="context-one"><?php echo lang('no_listing') ?></div></td>
-                                <td></td>
                             </tr>
                         </tbody>
                     </table>
@@ -337,10 +336,9 @@
                         </thead>
                         <tbody>
                             <tr>
-
+				<td class="sortleft-m"></td>
+				<td class="sortleft-m"></td>
                                 <td class="options"><div class="context-one"><?php echo lang('no_listing') ?></div></td>
-                                <td></td>
-                                <td></td>
                             </tr>
                         </tbody>
                     </table>
