@@ -150,7 +150,7 @@ messages_recovery_password_failed = Password not changed! Your password has expi
 navbar_pcs = pcs.
 navbar_languages = Languages
 navbar_currencies = Currencies
-navbar_logout = Выйти
+navbar_logout = Logout
 navbar_view_cart = View Cart
 
 ;REGISTER
