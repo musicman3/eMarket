@@ -205,3 +205,6 @@ orders_date_added = Дата добавления
 orders_date_of_change = Дата изменения
 orders_number = № заказа
 orders_subtotal = Стоимость
+
+;SUCCESS
+success_text = Заказ успешно завершен

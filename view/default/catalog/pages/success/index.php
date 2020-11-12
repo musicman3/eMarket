@@ -12,4 +12,4 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
 
 <!--Выводим уведомление об успешном действии-->
 <?php \eMarket\Messages::alert(); ?>
-<h1>Успешное завершение заказа</h1>
+<h1><?php echo lang('success_text') ?></h1>
