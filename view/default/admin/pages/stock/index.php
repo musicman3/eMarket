@@ -79,13 +79,18 @@
                                     <div class="page"><?php echo lang('with') ?> <?php echo $start + 1 ?> <?php echo lang('to') ?> <?php echo \eMarket\Navigation::counter($start, $finish, $count_lines_merge, $lines_on_page) ?> ( <?php echo lang('of') ?> <?php echo $count_lines_merge; ?> )</div>
 
                                     <!-- Переключаем страницу "ВПЕРЕД" -->
-                                    <?php if ($count_lines_merge > $lines_on_page) { ?>
                                         <form>
                                             <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
                                             <input hidden name="start" value="<?php echo $start ?>">
                                             <input hidden name="finish" value="<?php echo $finish ?>">
                                             <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
-                                            <div class="b-right"><button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
+                                            <div class="b-right">
+					    <?php if ($finish != $count_lines_merge) { ?>
+						<button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button>
+					    <?php } else { ?>
+						<a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-right"></span></a>
+					    <?php } ?>
+					</div>
                                         </form>
 
                                         <!-- Переключаем страницу "НАЗАД" -->
@@ -94,9 +99,14 @@
                                             <input hidden name="backstart" value="<?php echo $start ?>">
                                             <input hidden name="backfinish" value="<?php echo $finish ?>">
                                             <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
-                                            <div class="b-left"><button type="submit" class="btn btn-primary btn-xs"  action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
+                                            <div class="b-left">
+					    <?php if ($start > 0) { ?>
+						<button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button>
+					    <?php } else { ?>
+						<a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-left"></span></a>
+					    <?php } ?>
+					</div>
                                         </form>
-                                    <?php } ?>
 
                                 </th>
                             </tr>

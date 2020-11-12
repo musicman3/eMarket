@@ -33,19 +33,29 @@
                                     <div class="b-right"><button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button></div>
                                 </form>
 
-                                <?php if ($count_lines > $lines_on_page) { ?>
                                     <form>
                                         <input hidden name="start" value="<?php echo $start ?>">
                                         <input hidden name="finish" value="<?php echo $finish ?>">
-                                        <div class="b-left"><button type="submit" class="btn btn-primary btn-xs" formmethod="post"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
+                                        <div class="b-left">
+					    <?php if ($finish != $count_lines) { ?>
+						<button type="submit" class="btn btn-primary btn-xs" formmethod="post"><span class="glyphicon glyphicon-chevron-right"></span></button>
+					    <?php } else { ?>
+						<a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-right"></span></a>
+					    <?php } ?>
+					</div>
                                     </form>
 
                                     <form>
                                         <input hidden name="backstart" value="<?php echo $start ?>">
                                         <input hidden name="backfinish" value="<?php echo $finish ?>">
-                                        <div class="b-left"><button type="submit" class="btn btn-primary btn-xs" formmethod="post"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
+                                        <div class="b-left">
+					    <?php if ($start > 0) { ?>
+						<button type="submit" class="btn btn-primary btn-xs" formmethod="post"><span class="glyphicon glyphicon-chevron-left"></span></button>
+					    <?php } else { ?>
+						<a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-left"></span></a>
+					    <?php } ?>
+					</div>
                                     </form>
-                                <?php } ?>
 
                             </th>
                         </tr>

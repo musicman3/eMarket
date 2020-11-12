@@ -41,7 +41,6 @@
                                 <!--Вызов модального окна для добавления-->
                                 <div class="b-right"><a href="#index" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
 
-                                <?php if ($count_lines > $lines_on_page) { ?>
                                     <form>
                                         <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
                                         <input hidden name="start" value="<?php echo $start ?>">
@@ -67,7 +66,6 @@
 					    <?php } ?>
 					</div>
                                     </form>
-                                <?php } ?>
 
                             </th>
                         </tr>

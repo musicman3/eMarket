@@ -41,13 +41,18 @@
 
                                 <div class="b-right"><a href="#index" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
 
-                                <?php if ($count_lines > $lines_on_page) { ?>
                                     <form>
                                         <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
                                         <input hidden name="start" value="<?php echo $start ?>">
                                         <input hidden name="finish" value="<?php echo $finish ?>">
                                         <input hidden name="country_id" value="<?php echo \eMarket\Valid::inGET('country_id') ?>">
-                                        <div class="b-left"><button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
+                                        <div class="b-left">
+					    <?php if ($finish != $count_lines) { ?>
+						<button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button>
+					    <?php } else { ?>
+						<a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-right"></span></a>
+					    <?php } ?>
+					</div>
                                     </form>
 
                                     <form>
@@ -55,9 +60,14 @@
                                         <input hidden name="backstart" value="<?php echo $start ?>">
                                         <input hidden name="backfinish" value="<?php echo $finish ?>">
                                         <input hidden name="country_id" value="<?php echo \eMarket\Valid::inGET('country_id') ?>">
-                                        <div class="b-left"><button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
+                                        <div class="b-left">
+					    <?php if ($start > 0) { ?>
+						<button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button>
+					    <?php } else { ?>
+						<a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-left"></span></a>
+					    <?php } ?>
+					</div>
                                     </form>
-                                <?php } ?>
 
                             </th>
                         </tr>
