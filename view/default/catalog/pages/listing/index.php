@@ -70,7 +70,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                  data-prev='<?php echo $navigate[0] ?>'
                  data-next='<?php echo $navigate[1] ?>'
                  ></div>
-            <div class="result-inner btn-group"><?php echo lang('listing_shown') ?> <?php echo lang('with') ?> <?php echo $navigate[0] + 1 ?> <?php echo lang('to') ?> <?php echo $navigate[1] ?> ( <?php echo lang('of') ?> <?php echo $count_lines ?> )</div>
+            <div class="result-inner btn-group"><?php echo lang('with') ?> <?php echo $navigate[0] + 1 ?> <?php echo lang('to') ?> <?php echo $navigate[1] ?> ( <?php echo lang('of') ?> <?php echo $count_lines ?> )</div>
 
             <div class="btn-group  pull-right" role="group">
                 <?php if ($navigate[0] > 0) { ?> 

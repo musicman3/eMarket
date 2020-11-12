@@ -97,7 +97,6 @@ listing_sort_by_default = By default
 listing_sort_by_name = By name
 listing_sort_by_price_asc = Price (ascending)
 listing_sort_by_price_desc = Price (descending)
-listing_shown = Shown
 
 ;ADDRESS BOOK
 my_address_book = Address Book
