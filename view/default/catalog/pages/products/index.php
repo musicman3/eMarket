@@ -115,7 +115,11 @@ if ($products != FALSE) {
     <h1><?php echo lang('product_not_found') ?></h1>
     
     <div id="products" class="contentText">
-        <div class="row"><?php echo lang('product_not_found_message') ?></div>
+        <div class="well well-sm">
+            <div class="no">
+		<?php echo lang('product_not_found_message') ?>
+	    </div>
+	</div>
     </div>
     <?php
 }

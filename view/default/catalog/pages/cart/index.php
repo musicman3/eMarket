@@ -76,8 +76,8 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
 <?php } else { ?>
     <div id="cart" class="contentText">
         <div class="well well-sm">
-            <div class="btn-group">
-                <div class="btn"><?php echo lang('cart_shopping_cart_empty') ?></div>
+            <div class="no">
+                <?php echo lang('cart_shopping_cart_empty') ?>
             </div>
         </div>
     </div>
