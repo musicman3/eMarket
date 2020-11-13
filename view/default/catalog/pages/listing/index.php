@@ -37,7 +37,6 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
         <div class="row">
             <?php
             for ($start; $start < $finish; $start++) {
-                $instock = \eMarket\Products::inStock($lines[$start]['date_available'], $lines[$start]['quantity']);
                 $manufacturer = \eMarket\Products::nameToId($lines[$start]['manufacturer'], TABLE_MANUFACTURERS, 'name');
                 ?>
                 <div class="item col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item">
@@ -53,13 +52,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                                     <?php echo $lines[$start]['model'] ?><br>
                                 <?php } ?>
                                 <label><?php echo lang('product_availability') ?></label>
-                                <?php if ($instock['date_available_marker'] == 'false') { ?>
-                                    <span class="label label-warning"><?php echo $instock['date_available_text'] ?></span>
-                                <?php } elseif ($lines[$start]['quantity'] != NULL && $lines[$start]['quantity'] <= 0) { ?>
-                                    <span class="label label-danger"><?php echo $instock['date_available_text'] ?></span>
-                                <?php } else { ?>
-                                    <span class="label label-success"><?php echo $instock['date_available_text'] ?></span>
-                                <?php } ?>
+                                <?php echo \eMarket\Products::inStock($lines[$start]['date_available'], $lines[$start]['quantity']); ?>
                             </div>
                         </div>
                         <div class="clearfix"></div>
