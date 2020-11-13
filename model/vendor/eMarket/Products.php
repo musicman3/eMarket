@@ -103,7 +103,7 @@ class Products {
         } elseif ($quantity != NULL && $quantity <= 0) {
             return '<span class="label label-danger">' . $date_available_text . '</span>';
         } else {
-            '<span class="label label-success">' . $date_available_text . '</span>';
+            return '<span class="label label-success">' . $date_available_text . '</span>';
         }
     }
 
