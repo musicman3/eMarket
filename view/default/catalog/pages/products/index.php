@@ -61,13 +61,7 @@ if ($products != FALSE) {
                     <?php } ?>
                     <li>
                         <label><?php echo lang('product_availability') ?></label>
-                        <?php if ($instock['date_available_marker'] == 'false') { ?>
-                            <span class="label label-warning"><?php echo $instock['date_available_text'] ?></span>
-                        <?php } elseif ($products['quantity'] != NULL && $products['quantity'] <= 0) { ?>
-                            <span class="label label-danger"><?php echo $instock['date_available_text'] ?></span>
-                        <?php } else { ?>
-                            <span class="label label-success"><?php echo $instock['date_available_text'] ?></span>
-                        <?php } ?>
+                        <?php echo \eMarket\Products::inStock($products['date_available'], $products['quantity']); ?>
                     </li>
                 </ul>
                 <hr>
