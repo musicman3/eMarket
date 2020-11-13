@@ -12,7 +12,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
 
 <?php if (\eMarket\Valid::inGET('search')) { ?><h1><?php echo lang('listing_search'); ?></h1><?php } else { ?><h1><?php echo $categories_name ?></h1><?php } ?>
 
-<?php if ($lines[$start] == true) { ?>
+<?php if ($count_lines > 0) { ?>
     <div id="listing" class="contentText">
         <div class="well well-sm">
             <div class="btn-group">
