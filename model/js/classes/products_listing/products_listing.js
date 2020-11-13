@@ -66,7 +66,7 @@ class ProductsListing {
             ProductsListing.getData(sort_id, change);
         });
 
-        // Обработка списка сортировки
+        // Обработка навигационных кнопок
         $('.navigation').click(function (event) {
             if (document.getElementById('show_in_stock').checked) {
                 var change = 'on';
