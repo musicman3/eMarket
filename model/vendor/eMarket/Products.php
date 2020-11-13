@@ -97,14 +97,7 @@ class Products {
             $date_available_marker = 'true';
             $date_available_text = lang('product_in_stock');
         }
-
-        if ($date_available_marker == 'false') {
-            return '<span class="label label-warning">' . $date_available_text . '</span>';
-        } elseif ($quantity != NULL && $quantity <= 0) {
-            return '<span class="label label-danger">' . $date_available_text . '</span>';
-        } else {
-            '<span class="label label-success">' . $date_available_text . '</span>';
-        }
+        return ['date_available_marker' => $date_available_marker, 'date_available_text' => $date_available_text];
     }
 
     /**
@@ -176,4 +169,5 @@ class Products {
     }
 
 }
+
 ?>

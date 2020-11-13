@@ -21,6 +21,8 @@ if ($weight != NULL && $weight != FALSE) {
     $weight_value = $products['weight_value'];
 }
 
+$instock = \eMarket\Products::inStock($products['date_available'], $products['quantity']);
+
 $dimension_name = \eMarket\Pdo::getCellFalse("SELECT code FROM " . TABLE_LENGTH . " WHERE language=? AND id=?", [lang('#lang_all')[0], $products['dimension']]);
 $dimensions = '';
 $dimension_marker = 0;
