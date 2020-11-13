@@ -59,8 +59,8 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                         <div class="row button">
                             <div class="col-xs-6"><?php echo \eMarket\Ecb::priceInterface($lines[$start], 1) ?></div>
                             <div class="col-xs-6 text-right">
-                                <form id="form_add_to_cart" name="form_add_to_cart" action="javascript:void(null);" onsubmit="addToCart(<?php echo $lines[$start]['id'] ?>, 'true')">
-                                    <button type="submit" class="btn btn-primary"><?php echo lang('buy_now') ?></button>
+                                <form id="form_add_to_cart" name="form_add_to_cart" action="javascript:void(null);" onsubmit="ProductsListing.addToCart(<?php echo $lines[$start]['id'] ?>, 'true')">
+                                    <button id="cart_<?php echo $lines[$start]['id'] ?>" type="submit" data-content="<?php echo lang('listing_product_added_to_cart') ?>" data-placement="left" class="btn btn-primary"><?php echo lang('buy_now') ?></button>
                                 </form>
                             </div>
                         </div>

@@ -151,4 +151,33 @@ class ProductsListing {
         $('#listing .item-list').removeClass('active');
         $('#listing .item-grid').addClass('active');
     }
+
+    /**
+     * Добавить товар в корзину
+     * @param id {String} (id товара)
+     * @param pcs {String} (количество)
+     *
+     */
+    static addToCart(id, pcs) {
+        // Установка синхронного запроса для jQuery.ajax
+        jQuery.ajaxSetup({async: false});
+        jQuery.get(window.location.href,
+                {add_to_cart: id,
+                    quantity_product_id: id,
+                    pcs_product: pcs},
+                AjaxSuccess);
+        // Обновление страницы
+        function AjaxSuccess(data) {
+            $('#cart_bar').replaceWith($(data).find('#cart_bar'));
+            $('#cart_' + id).popover('show');
+            $('#show_in_stock').bootstrapSwitch();
+            
+            setTimeout(function () {
+                $('#cart_' + id).popover('hide');
+            }, 3000);
+
+            new ProductsListing();
+        }
+    }
+
 }

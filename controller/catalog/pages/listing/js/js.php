@@ -4,7 +4,6 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-\eMarket\Ajax::сart('');
 ?>
 <link rel="stylesheet" href="/ext/bootstrap-switch/css/bootstrap-switch.min.css" type="text/css"/>
 <script type="text/javascript" src="/ext/bootstrap-switch/js/bootstrap-switch.min.js"></script>

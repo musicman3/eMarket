@@ -54,9 +54,9 @@
                 <?php } ?>
 
                 <?php if (\eMarket\Cart::totalQuantity() == 0) { ?>
-                    <li class="nav"><a href="#" class="disabled"><i class="glyphicon glyphicon-shopping-cart"></i> <?php echo \eMarket\Cart::totalQuantity() . ' ' . lang('navbar_pcs') ?></a></li>
+                    <li id="cart_bar" class="nav"><a href="#" class="disabled"><i class="glyphicon glyphicon-shopping-cart"></i> <?php echo \eMarket\Cart::totalQuantity() . ' ' . lang('navbar_pcs') ?></a></li>
                 <?php } else { ?>
-                    <li class="dropdown">
+                    <li id="cart_bar" class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-shopping-cart"></i> <?php echo \eMarket\Cart::totalQuantity() . ' ' . lang('navbar_pcs') ?> <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#" class="disabled"><?php echo \eMarket\Ecb::totalPriceCartInterface(1) ?></a></li>
