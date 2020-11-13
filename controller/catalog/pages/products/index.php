@@ -9,7 +9,7 @@ $products = \eMarket\Products::productData(\eMarket\Valid::inGET('id'));
 
 $manufacturer = \eMarket\Products::nameToId($products['manufacturer'], TABLE_MANUFACTURERS, 'name');
 
-$vendor_code = \eMarket\Products::nameToId($products['vendor_code'], TABLE_MANUFACTURERS, 'name');
+$vendor_code = \eMarket\Products::nameToId($products['vendor_code'], TABLE_VENDOR_CODES, 'name');
 
 if ($vendor_code != NULL && $vendor_code != FALSE) {
     $vendor_code_value = $products['vendor_code_value'];
