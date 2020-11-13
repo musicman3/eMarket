@@ -28,15 +28,10 @@
 
                             <th>
 
-                                <form id="form_delete_log" name="form_delete_log" action="javascript:void(null);" onsubmit="callDelete('_log')" enctype="multipart/form-data">
-                                    <input hidden name="delete" value="delete">
-                                    <div class="b-right"><button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button></div>
-                                </form>
-
                                     <form>
                                         <input hidden name="start" value="<?php echo $start ?>">
                                         <input hidden name="finish" value="<?php echo $finish ?>">
-                                        <div class="b-left">
+                                        <div class="b-right">
 					    <?php if ($finish != $count_lines) { ?>
 						<button type="submit" class="btn btn-primary btn-xs" formmethod="post"><span class="glyphicon glyphicon-chevron-right"></span></button>
 					    <?php } else { ?>
@@ -56,6 +51,11 @@
 					    <?php } ?>
 					</div>
                                     </form>
+                                    
+				    <form id="form_delete_log" name="form_delete_log" action="javascript:void(null);" onsubmit="callDelete('_log')" enctype="multipart/form-data">
+					<input hidden name="delete" value="delete">
+					<div class="b-left"><button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button></div>
+				    </form>
 
                             </th>
                         </tr>

@@ -38,13 +38,11 @@
 
                             <th>
 
-                                <div class="b-right"><a href="#index" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
-
                                     <form>
                                         <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
                                         <input hidden name="start" value="<?php echo $start ?>">
                                         <input hidden name="finish" value="<?php echo $finish ?>">
-                                        <div class="b-left">
+                                        <div class="b-right">
 					    <?php if ($finish != $count_lines) { ?>
 						<button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button>
 					    <?php } else { ?>
@@ -65,6 +63,8 @@
 					    <?php } ?>
 					</div>
                                     </form>
+                                    
+				    <div class="b-left"><a href="#index" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
 
                             </th>
                         </tr>
