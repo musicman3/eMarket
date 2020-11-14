@@ -9,6 +9,9 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
     require_once (ROOT . $path);
 }
 ?>
+<!-- Модальное окно -->
+<?php require_once('modal/message_cart.php') ?>
+<!-- КОНЕЦ Модальное окно -->
 
 <?php if (\eMarket\Valid::inGET('search')) { ?><h1><?php echo lang('listing_search'); ?></h1><?php } else { ?><h1><?php echo $categories_name ?></h1><?php } ?>
 
@@ -59,9 +62,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                         <div class="row button">
                             <div class="col-xs-6"><?php echo \eMarket\Ecb::priceInterface($lines[$start], 1) ?></div>
                             <div class="col-xs-6 text-right">
-                                <form id="form_add_to_cart" name="form_add_to_cart" action="javascript:void(null);" onsubmit="ProductsListing.addToCart(<?php echo $lines[$start]['id'] ?>, 'true')">
-                                    <button id="cart_<?php echo $lines[$start]['id'] ?>" type="submit" data-content="<?php echo lang('listing_product_added_to_cart') ?>" data-placement="left" class="btn btn-primary"><?php echo lang('buy_now') ?></button>
-                                </form>
+                                <button class="btn btn-primary" id="cart_<?php echo $lines[$start]['id'] ?>" onclick="ProductsListing.addToCart(<?php echo $lines[$start]['id'] ?>, 'true')" data-content="<?php echo lang('listing_product_added_to_cart') ?>" data-placement="left"><?php echo lang('buy_now') ?></button>
                             </div>
                         </div>
                     </div>

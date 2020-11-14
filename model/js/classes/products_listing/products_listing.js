@@ -169,12 +169,8 @@ class ProductsListing {
         // Обновление страницы
         function AjaxSuccess(data) {
             $('#cart_bar').replaceWith($(data).find('#cart_bar'));
-            $('#cart_' + id).popover('show');
+            $('#message_cart').modal('show');
             $('#show_in_stock').bootstrapSwitch();
-            
-            setTimeout(function () {
-                $('#cart_' + id).popover('hide');
-            }, 3000);
 
             new ProductsListing();
         }
