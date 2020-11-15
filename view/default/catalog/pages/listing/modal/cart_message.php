@@ -10,7 +10,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 id="confirm_title" class="modal-title"><?php echo lang('listing_product_added_to_cart') ?></h4>
+                <h4 id="confirm_title" class="modal-title text-center"><?php echo lang('listing_product_added_to_cart') ?></h4>
             </div>
 	    <div class="modal-body">
 		<div class="row">
