@@ -419,7 +419,7 @@ class Set {
      * @param string $class (класс для переключения)
      * @return string (класс)
      */
-    public static function statusSwithClass($status, $class = null) {
+    public static function statusSwitchClass($status, $class = null) {
 
         if ($class == null) {
             $class = 'danger';

@@ -6,39 +6,28 @@
 
 ?>
 <!-- Модальное окно "Добавить категорию" -->
-<div id="message_cart" class="modal fade" tabindex="-1">
+<div id="cart_message" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header"><div class="pull-right">&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
-                <h4 id="confirm_title" class="modal-title">eMarket</h4>
+                <h4 id="confirm_title" class="modal-title">Product successfully added to your shopping cart</h4>
             </div>
 	    <div class="modal-body">
 		<div class="row">
 		    <div class="col-md-5">
 			<div class="row">
-			    <div class="col-md-6">
-				<img src="">
+			    <div id="product_image" class="col-md-6"></div>
+			    <div>
+				<span>Товар:&nbsp;<strong id="product_name"></strong></span>
+				<span>Цена:&nbsp;<strong id="product_price_formated"></strong></span>
+				<span>Количество:&nbsp;<strong id="product_quantity"></strong></span>
 			    </div>
-			    <div class="col-md-6">
-				<h6>Hummingbird printed sweater</h6>
-				<p>€34.46</p>
-				<span>Size:<strong> S</strong></span><br>
-				<span>Quantity:&nbsp;<strong>1</strong></span>
-			    </div>
-			</div>
-		    </div>
-		    <div class="col-md-7">
-			<div class="cart-content">
-			    <p>There is 1 item in your cart.</p>
-			    <p><span>Subtotal:</span>&nbsp;<span>€34.46</span></p>
-			    <p><span>Shipping:</span>&nbsp;<span>Free </span></p>
-			    <p><span>Total&nbsp;(tax incl.)</span>&nbsp;<span>€34.46</span></p>
 			</div>
 		    </div>
 		</div>
 	    </div>
             <div class="modal-footer">
-		<button type="submit" class="btn btn-primary">Продолжить</button>
+		<button type="submit" class="btn btn-success">Продолжить покупки</button> <button type="submit" class="btn btn-primary">Перейти в корзину</button>
 	    </div>
         </div>
     </div>

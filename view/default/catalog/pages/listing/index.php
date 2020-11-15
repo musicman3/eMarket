@@ -10,10 +10,12 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
 }
 ?>
 <!-- Модальное окно -->
-<?php require_once('modal/message_cart.php') ?>
+<?php require_once('modal/cart_message.php') ?>
 <!-- КОНЕЦ Модальное окно -->
 
 <?php if (\eMarket\Valid::inGET('search')) { ?><h1><?php echo lang('listing_search'); ?></h1><?php } else { ?><h1><?php echo $categories_name ?></h1><?php } ?>
+
+<div id="ajax_data" class='hidden' data-product='<?php echo $product_edit ?>'></div>
 
 <?php if ($count_lines > 0) { ?>
     <div id="listing" class="contentText">

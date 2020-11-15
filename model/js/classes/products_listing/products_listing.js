@@ -168,8 +168,17 @@ class ProductsListing {
                 AjaxSuccess);
         // Обновление страницы
         function AjaxSuccess(data) {
+            $('#product_image').empty();
+            // Получаем данные из data div
+            var product_edit = $('div#ajax_data').data('product')[id];
+
+            $('#product_name').html(product_edit['name']);
+            $('#product_price_formated').html(product_edit['price_formated']);
+            $('#product_quantity').html('1');
+            $('#product_image').append('<img class="img-responsive" src="/uploads/images/products/resize_1/' + product_edit['logo_general'] + '" alt="' + product_edit['name'] + '" />');
+
             $('#cart_bar').replaceWith($(data).find('#cart_bar'));
-            $('#message_cart').modal('show');
+            $('#cart_message').modal('show');
             $('#show_in_stock').bootstrapSwitch();
 
             new ProductsListing();
