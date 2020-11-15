@@ -9,7 +9,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header"><div class="pull-right"><button class="close" type="button" data-dismiss="modal">×</button></div>
-                <h4 class="modal-title"><?php echo lang('register_privacy_policy_tittle') ?></h4>
+                <h3 class="modal-title"><?php echo lang('register_privacy_policy_tittle') ?></h3>
             </div>
 
             <div class="panel-body">

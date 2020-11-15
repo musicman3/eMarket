@@ -11,7 +11,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header"><div class="pull-right"><button class="close" type="button" data-dismiss="modal">×</button></div>
-                <h4 class="modal-title" id="title"></h4>
+                <h3 class="modal-title" id="title"></h3>
             </div>
             <div class="panel-body">
 

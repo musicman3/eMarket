@@ -8,10 +8,10 @@
 
 <div class="contentText">
     <?php if ($CUSTOMER == FALSE) { ?>
-        <h4><?php echo sprintf(lang('welcome_name'), lang('welcome_guest')) ?></h4>
+        <h3><?php echo sprintf(lang('welcome_name'), lang('welcome_guest')) ?></h3>
         <p><?php echo sprintf(lang('welcome_text')) ?></p>
     <?php } else { ?>
-        <h4><?php echo sprintf(lang('welcome_name'), $CUSTOMER['firstname']) ?></h4>
+        <h3><?php echo sprintf(lang('welcome_name'), $CUSTOMER['firstname']) ?></h3>
         <p> </p>
     <?php } ?>
 </div>

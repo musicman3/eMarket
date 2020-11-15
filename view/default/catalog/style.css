@@ -29,8 +29,11 @@ body {font-family: 'Open Sans';}
 #layouts-categories .panel-heading {padding:5px 10px;}
 #layouts-categories .panel-body {padding:10px;}
 #bodyContent h1 {color: #03539a;margin-top: 3px;font-size: 24px;}
-#bodyContent h4 {font-size:20px;}
+#bodyContent h2 {font-size:22px;}
+#bodyContent h3 {font-size:20px;}
+#bodyContent h4 {font-size:18px;}
 #bodyContent h5 {font-size:16px;}
+#bodyContent h6 {font-size:14px;}
 nav .disabled {pointer-events: none;}
 .navbar {min-height: 30px;margin-bottom: 10px;border-radius:0;}
 .navbar-left {margin-left:-15px}

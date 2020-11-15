@@ -8,7 +8,7 @@
 
 <?php if ($products_new == true) { ?>
     <div id="new_products" class="contentText">
-        <h4><?php echo lang('new_products_name') ?></h4>
+        <h3><?php echo lang('new_products_name') ?></h3>
         <div class="row">
             <?php $x = 0;
             foreach ($products_new as $value) { ?>

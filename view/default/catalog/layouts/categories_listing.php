@@ -8,7 +8,7 @@
 
 <?php if ($categories == true) { ?>
 <div id="categories_listing" class="contentText">
-    <h4><?php echo lang('categories_name') ?></h4>
+    <h3><?php echo lang('categories_name') ?></h3>
     <div class="row grid-group">
         <?php foreach ($categories as $value) { ?>
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item">
