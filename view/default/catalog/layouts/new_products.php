@@ -18,9 +18,9 @@
                         <h5 class="text-center item-heading"><a href="/?route=products&category_id=<?php echo $value['parent_id'] ?>&id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></h5>
                         <div class="clearfix"></div>
                         <div class="row button">
-                            <div class="col-xs-6"><?php echo \eMarket\Ecb::priceInterface($value, 1) ?></div>
+                            <div class="col-xs-7"><?php echo \eMarket\Ecb::priceInterface($value, 1) ?></div>
 
-                            <div class="col-xs-6 text-right">
+                            <div class="col-xs-5 text-right">
                                 <form id="form_add_to_cart" name="form_add_to_cart" action="javascript:void(null);" onsubmit="addToCart(<?php echo $value['id'] ?>, 'true')">
                                     <button type="submit" class="btn btn-primary"><?php echo lang('buy_now') ?></button>
                                 </form>
