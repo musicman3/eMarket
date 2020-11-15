@@ -50,6 +50,8 @@ confirm-yes = Yes
 with = Displaying 
 to = to
 of = of
+button_continue_shopping = Continue shopping
+button_proceed_to_checkout = Proceed to checkout
 
 ;PAGES
 shopping_cart = Cart
@@ -97,7 +99,10 @@ listing_sort_by_default = By default
 listing_sort_by_name = By name
 listing_sort_by_price_asc = Price (ascending)
 listing_sort_by_price_desc = Price (descending)
-listing_product_added_to_cart = Product added to cart
+listing_product_added_to_cart = Product successfully added to your shopping cart!
+listing_product = Product:
+listing_price = Price:
+listing_quantity = Quantity:
 
 ;ADDRESS BOOK
 my_address_book = Address Book

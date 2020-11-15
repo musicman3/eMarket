@@ -50,6 +50,8 @@ confirm-yes = Да
 with = Отображено с
 to = по
 of = из
+button_continue_shopping = Продолжить покупки
+button_proceed_to_checkout = Перейти к оформлению
 
 ;PAGES
 shopping_cart = Корзина
@@ -97,7 +99,10 @@ listing_sort_by_default = По умолчанию
 listing_sort_by_name = По названию
 listing_sort_by_price_asc = Цена (по возрастанию)
 listing_sort_by_price_desc = Цена (по убыванию)
-listing_product_added_to_cart = Товар добавлен в корзину
+listing_product_added_to_cart = Товар успешно добавлен в Вашу корзину!
+listing_product = Товар:
+listing_price = Цена:
+listing_quantity = Количество:
 
 ;ADDRESS BOOK
 my_address_book = Адресная книга
