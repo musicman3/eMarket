@@ -10,7 +10,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header"><div class="pull-right"><button class="close" type="button" data-dismiss="modal">×</button></div>
-                <h3 class="modal-title"><?php echo \eMarket\Set::titlePageGenerator() ?></h3>
+                <h4 class="modal-title"><?php echo \eMarket\Set::titlePageGenerator() ?></h4>
             </div>
             <form id="form_cart" name="form_cart" action="javascript:void(null);" onsubmit="callSuccess()">
                 <div class="panel-body">
