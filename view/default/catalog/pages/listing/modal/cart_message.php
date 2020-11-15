@@ -9,20 +9,16 @@
 <div id="cart_message" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header"><div class="pull-right">&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
+            <div class="modal-header">
                 <h4 id="confirm_title" class="modal-title">Product successfully added to your shopping cart</h4>
             </div>
 	    <div class="modal-body">
 		<div class="row">
-		    <div class="col-md-5">
-			<div class="row">
-			    <div id="product_image" class="col-md-6"></div>
-			    <div>
-				<span>Товар:&nbsp;<strong id="product_name"></strong></span>
-				<span>Цена:&nbsp;<strong id="product_price_formated"></strong></span>
-				<span>Количество:&nbsp;<strong id="product_quantity"></strong></span>
-			    </div>
-			</div>
+		    <div id="product_image" class="col-xs-5"></div>
+		    <div class="col-xs-7">
+			<p><strong>Товар:</strong>&nbsp;<span id="product_name"></span></p>
+			<p><strong>Цена:</strong>&nbsp;<span id="product_price_formated"></span></p>
+			<p><strong>Количество:</strong>&nbsp;<span id="product_quantity"></span></p>
 		    </div>
 		</div>
 	    </div>
