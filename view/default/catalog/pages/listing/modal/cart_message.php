@@ -27,7 +27,7 @@
 		</div>
 	    </div>
             <div class="modal-footer">
-		<button type="submit" class="btn btn-primary">Продолжить покупки</button> <button type="submit" class="btn btn-success">Перейти к оформлению</button>
+		<button type="submit" class="btn btn-primary" data-dismiss="modal">Продолжить покупки</button> <button type="submit" class="btn btn-success" onClick='location.href="/?route=cart"'>Перейти к оформлению</button>
 	    </div>
         </div>
     </div>
