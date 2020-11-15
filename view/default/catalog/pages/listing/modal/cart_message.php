@@ -27,7 +27,7 @@
 		</div>
 	    </div>
             <div class="modal-footer">
-		<button type="submit" class="btn btn-success">Продолжить покупки</button> <button type="submit" class="btn btn-primary">Перейти в корзину</button>
+		<button type="submit" class="btn btn-primary">Продолжить покупки</button> <button type="submit" class="btn btn-success">Перейти к оформлению</button>
 	    </div>
         </div>
     </div>
