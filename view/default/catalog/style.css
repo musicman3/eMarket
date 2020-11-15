@@ -73,7 +73,7 @@ nav .disabled {pointer-events: none;}
 #products .productpage ul {padding: 0;margin: 0;}
 #products .productpage-price {font-size: 18px;color: #000;font-weight: bold;}
 #products .productpage {margin-bottom: 20px;}
-#products .product-attribute h4 {padding-left: 10px;margin-bottom: 14px;font-size: 15px;font-weight: bold;}
+#products .product-attribute h5 {padding-left: 10px;margin-bottom: 14px;font-weight: bold;}
 #products .product-attribute-table {margin-bottom: 32px;}
 #products .product-attribute-table td {padding-left: 20px;border-left: 1px solid #dfdfdf;border-top: 1px solid #dfdfdf;border-bottom: 1px solid #dfdfdf;}
 #products .product-attribute-table td:first-child {border-left: 0;}

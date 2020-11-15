@@ -50,10 +50,10 @@ class AttributesProcessing {
             var check = AttributesProcessing.checkSelect(data, selected, level_1[data_id]['uid']);
 
             if (marker === 'admin' && level_2[0] !== undefined) {
-                $('.product-attribute').prepend('<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#' + level_1[data_id]['uid'] + '">' + level_1[0]['value'] + '</a></h4></div><div id="' + level_1[data_id]['uid'] + '" class="panel-collapse collapse"><div class="panel-body"><table class="table table-striped product-attribute-table"><tbody id="table_' + level_1[data_id]['uid'] + '"></tbody></table></div></div></div>');
+                $('.product-attribute').prepend('<div class="panel panel-default"><div class="panel-heading"><h5 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#' + level_1[data_id]['uid'] + '">' + level_1[0]['value'] + '</a></h5></div><div id="' + level_1[data_id]['uid'] + '" class="panel-collapse collapse"><div class="panel-body"><table class="table table-striped product-attribute-table"><tbody id="table_' + level_1[data_id]['uid'] + '"></tbody></table></div></div></div>');
             } else {
                 if (check === 'true') {
-                    $('.product-attribute').prepend('<h4>' + level_1[0]['value'] + '</h4><table class="table table-striped product-attribute-table"><tbody id="table_' + level_1[data_id]['uid'] + '"></tbody></table>');
+                    $('.product-attribute').prepend('<h5>' + level_1[0]['value'] + '</h5><table class="table table-striped product-attribute-table"><tbody id="table_' + level_1[data_id]['uid'] + '"></tbody></table>');
                 }
             }
 
