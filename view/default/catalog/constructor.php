@@ -55,7 +55,7 @@
                 if ($COUNT_BOX_LEFT != 0) {
                     ?>
 
-                    <div id="bodyContent" class="col-md-10 col-md-push-2">
+                    <div id="bodyContent" class="col-lg-10 col-md-9 col-lg-push-2 col-md-push-3">
                         <?php
                         require_once(\eMarket\View::routingCatalog());
                         ?>
@@ -75,7 +75,7 @@
                 if ($COUNT_BOX_LEFT != 0) {
                     ?>
 
-                    <div id="columnLeft" class="col-md-2 col-xs-12 col-md-pull-10">
+                    <div id="columnLeft" class="col-lg-2 col-md-3 col-lg-pull-10 col-md-pull-9">
                         <?php
                         // ЗАГРУЖАЕМ БОКСЫ
                         foreach (\eMarket\View::layoutRouting('boxes-left') as $path) {
