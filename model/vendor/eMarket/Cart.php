@@ -17,28 +17,35 @@ namespace eMarket;
 class Cart {
 
     /**
-     * Добавить товар в корзину
-     *
-     * @param string $id (ID товара)
-     * @param string $quantity (количество добавляемых товаров)
+     * Добавление товара в корзину
      */
-    public static function addProduct($id, $quantity = null) {
+    public static function addProduct() {
 
-        $count = 0;
-        if (!isset($_SESSION['cart']) OR count($_SESSION['cart']) == 0) {
-            $_SESSION['cart'] = [['id' => $id, 'quantity' => $quantity]];
-        } else {
-            // Если не было такого id, то добавляем в массив для подсчета
-            $id_count = \eMarket\Func::filterArrayToKey($_SESSION['cart'], 'id', $id, 'id');
-            foreach ($_SESSION['cart'] as $value) {
-                if ($value['id'] == $id) {
-                    $_SESSION['cart'][$count]['quantity'] = $_SESSION['cart'][$count]['quantity'] + $quantity;
-                }
-
-                $count++;
+        if (\eMarket\Valid::inGET('add_to_cart')) {
+            $id = \eMarket\Valid::inGET('add_to_cart');
+            
+            if (!\eMarket\Valid::inGET('add_quantity')) {
+                $quantity = 1;
+            } else {
+                $quantity = \eMarket\Valid::inGET('add_quantity');
             }
-            if ($value['id'] != $id && count($id_count) == 0) {
-                array_push($_SESSION['cart'], ['id' => $id, 'quantity' => $quantity]);
+
+            $count = 0;
+            if (!isset($_SESSION['cart']) OR count($_SESSION['cart']) == 0) {
+                $_SESSION['cart'] = [['id' => $id, 'quantity' => $quantity]];
+            } else {
+                // Если не было такого id, то добавляем в массив для подсчета
+                $id_count = \eMarket\Func::filterArrayToKey($_SESSION['cart'], 'id', $id, 'id');
+                foreach ($_SESSION['cart'] as $value) {
+                    if ($value['id'] == $id) {
+                        $_SESSION['cart'][$count]['quantity'] = $_SESSION['cart'][$count]['quantity'] + $quantity;
+                    }
+
+                    $count++;
+                }
+                if ($value['id'] != $id && count($id_count) == 0) {
+                    array_push($_SESSION['cart'], ['id' => $id, 'quantity' => $quantity]);
+                }
             }
         }
     }
@@ -83,14 +90,7 @@ class Cart {
     public static function init() {
 
         if (\eMarket\Set::path() == 'catalog') {
-            if (\eMarket\Valid::inGET('add_to_cart')) {
-                if (!\eMarket\Valid::inGET('add_quantity')) {
-                    $add_quantity = 1;
-                } else {
-                    $add_quantity = \eMarket\Valid::inGET('add_quantity');
-                }
-                self::addProduct(\eMarket\Valid::inGET('add_to_cart'), $add_quantity);
-            }
+            self::addProduct();
             self::deleteProduct();
             self::editProductQuantity();
         }
@@ -155,7 +155,7 @@ class Cart {
     }
 
     /**
-     * Меняем количество товара в корзине
+     * Редактирование количества товара в корзине
      * 
      */
     public static function editProductQuantity() {

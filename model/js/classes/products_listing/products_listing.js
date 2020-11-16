@@ -151,6 +151,23 @@ class ProductsListing {
         $('#listing .item-list').removeClass('active');
         $('#listing .item-grid').addClass('active');
     }
+    
+    /**
+     * Количество товара в input
+     * @param val {String} (значение метки)
+     * @param id {String} (id товара)
+     *
+     */
+    static pcsProduct(val, id) {
+        var a = $('#number_' + id).val();
+
+        if (val === 'minus' && a > 1) {
+            $('#number_' + id).val(+a - 1);
+        }
+        if (val === 'plus') {
+            $('#number_' + id).val(+a + 1);
+        }
+    }
 
     /**
      * Добавить товар в корзину
@@ -163,8 +180,7 @@ class ProductsListing {
         jQuery.ajaxSetup({async: false});
         jQuery.get(window.location.href,
                 {add_to_cart: id,
-                    quantity_product_id: id,
-                    pcs_product: pcs},
+                    add_quantity: pcs},
                 AjaxSuccess);
         // Обновление страницы
         function AjaxSuccess(data) {
