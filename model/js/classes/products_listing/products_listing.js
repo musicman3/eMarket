@@ -88,6 +88,10 @@ class ProductsListing {
                 ProductsListing.getData(sort_id, change, prev, next);
             }
         });
+        // Если закрыли модал сообщения корзины
+        $('#cart_message').on('hidden.bs.modal', function () {
+            $('.quantity').val('1');
+        });
     }
 
     /**
@@ -151,7 +155,7 @@ class ProductsListing {
         $('#listing .item-list').removeClass('active');
         $('#listing .item-grid').addClass('active');
     }
-    
+
     /**
      * Количество товара в input
      * @param val {String} (значение метки)
