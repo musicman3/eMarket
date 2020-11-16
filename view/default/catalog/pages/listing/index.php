@@ -65,10 +65,12 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                         <!--<div class="clearfix"></div>-->
                         <div class="row button">
                             <div class="col-xs-12">
-                                <button class="btn btn-primary" type="button" onclick="ProductsListing.pcsProduct('minus', <?php echo $lines[$start]['id'] ?>)"><span class="glyphicon glyphicon-minus"></span></button>
-                                <input id="number_<?php echo $lines[$start]['id'] ?>" type="number" min="1" value="1" class="quantity">
-                                <button class="btn btn-primary" type="button" onclick="ProductsListing.pcsProduct('plus', <?php echo $lines[$start]['id'] ?>)"><span class="glyphicon glyphicon-plus"></span></button>
-                                <button class="btn btn-primary pull-right" onclick="ProductsListing.addToCart(<?php echo $lines[$start]['id'] ?>, $('#number_<?php echo $lines[$start]['id'] ?>').val())"><?php echo lang('buy_now') ?></button>
+				<div class="buy_now"><button class="btn btn-primary pull-right" onclick="ProductsListing.addToCart(<?php echo $lines[$start]['id'] ?>, $('#number_<?php echo $lines[$start]['id'] ?>').val())"><?php echo lang('buy_now') ?></button></div>
+				<div class="plus">
+				    <button class="btn btn-primary" type="button" onclick="ProductsListing.pcsProduct('minus', <?php echo $lines[$start]['id'] ?>)"><span class="glyphicon glyphicon-minus"></span></button>
+				    <input id="number_<?php echo $lines[$start]['id'] ?>" type="number" min="1" value="1" class="quantity">
+				    <button class="btn btn-primary" type="button" onclick="ProductsListing.pcsProduct('plus', <?php echo $lines[$start]['id'] ?>)"><span class="glyphicon glyphicon-plus"></span></button>&nbsp;
+				</div>
                             </div>
                         </div>
                     </div>
