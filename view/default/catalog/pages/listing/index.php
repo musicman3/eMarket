@@ -51,20 +51,33 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                             <h5 class="item-heading"><a href="/?route=products&category_id=<?php echo $lines[$start]['parent_id'] ?>&id=<?php echo $lines[$start]['id'] ?>"><?php echo $lines[$start]['name'] ?></a></h5>
                             <div class="item-text"><br />
                                 <?php if ($manufacturer != NULL && $manufacturer != FALSE) { ?>
-                                    <label><?php echo lang('product_manufacturer') ?></label> <?php echo $manufacturer ?><br> 
+                                    <label><?php echo lang('product_manufacturer') ?></label> <?php echo $manufacturer ?> / 
                                 <?php } if ($lines[$start]['model'] != NULL && $lines[$start]['model'] != FALSE) { ?>
                                     <label><?php echo lang('product_model') ?></label> 
-                                    <?php echo $lines[$start]['model'] ?><br>
+                                    <?php echo $lines[$start]['model'] ?> / 
                                 <?php } ?>
                                 <label><?php echo lang('product_availability') ?></label>
                                 <?php echo \eMarket\Products::inStock($lines[$start]['date_available'], $lines[$start]['quantity']); ?>
                             </div>
+			    <div class="item-price"><label>Цена:</label> <?php echo \eMarket\Ecb::priceInterface($lines[$start], 1) ?></div>
                         </div>
                         <div class="clearfix"></div>
                         <div class="row button">
-                            <div class="col-xs-7"><?php echo \eMarket\Ecb::priceInterface($lines[$start], 1) ?></div>
-                            <div class="col-xs-5 text-right">
-                                <button class="btn btn-primary" onclick="ProductsListing.addToCart(<?php echo $lines[$start]['id'] ?>, 1)" data-content="<?php echo lang('listing_product_added_to_cart') ?>" data-placement="left"><?php echo lang('buy_now') ?></button>
+                            <div class="col-xs-12">
+                            <?php if (\eMarket\Cart::productQuantity($products['id']) > 0) { ?>
+				<form id="quantity_product" name="quantity_product" action="javascript:void(null);" onsubmit="quantityProduct(<?php echo $products['id'] ?>, $('#number_<?php echo $products['id'] ?>').val())">
+				<?php } else { ?>
+				    <form id="quantity_product" name="quantity_product" action="javascript:void(null);" onsubmit="addToCart(<?php echo $products['id'] ?>, $('#number_<?php echo $products['id'] ?>').val())">
+				    <?php } ?>
+				    <button class="btn btn-primary" type="button" onclick="pcsProduct('minus', <?php echo $products['id'] ?>)"><span class="glyphicon glyphicon-minus"></span></button>
+				    <?php if (\eMarket\Cart::productQuantity($products['id']) > 0) { ?>
+					<input id="number_<?php echo $products['id'] ?>" type="number" min="1" value="<?php echo \eMarket\Cart::productQuantity($products['id']) ?>" class="quantity">
+				    <?php } else { ?>
+					<input id="number_<?php echo $products['id'] ?>" type="number" min="1" value="1" class="quantity">
+				    <?php } ?>
+				    <button class="btn btn-primary" type="button" onclick="pcsProduct('plus', <?php echo $products['id'] ?>)"><span class="glyphicon glyphicon-plus"></span></button>
+				    <button class="btn btn-primary pull-right" type="submit"><?php echo lang('buy_now') ?></button>
+				</form>
                             </div>
                         </div>
                     </div>
