@@ -60,7 +60,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                                 <label><?php echo lang('product_availability') ?></label>
                                 <?php echo \eMarket\Products::inStock($lines[$start]['date_available'], $lines[$start]['quantity']); ?>
                             </div>
-			    <div class="item-price"><label>Цена:</label> <?php echo \eMarket\Ecb::priceInterface($lines[$start], 1) ?></div>
+			    <div class="item-price"><label><?php echo lang('listing_price') ?></label> <?php echo \eMarket\Ecb::priceInterface($lines[$start], 1) ?></div>
                         </div>
                         <!--<div class="clearfix"></div>-->
                         <div class="row button">
