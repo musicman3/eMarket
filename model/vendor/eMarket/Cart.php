@@ -105,9 +105,15 @@ class Cart {
 
         $cart_info = [];
         if (isset($_SESSION['cart'])) {
+            $x = 0;
             foreach ($_SESSION['cart'] as $value) {
                 $product = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE language=? AND id=?", [lang('#lang_all')[0], $value['id']]);
-                array_push($cart_info, $product[0]);
+                if ($product != FALSE) {
+                    array_push($cart_info, $product[0]);
+                } else {
+                    unset($_SESSION['cart'][$x]);
+                }
+                $x++;
             }
         }
         return $cart_info;

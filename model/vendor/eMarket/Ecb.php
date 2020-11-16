@@ -87,15 +87,21 @@ final class Ecb {
 
         $total_price_with_sale = 0;
         if (isset($_SESSION['cart'])) {
+            $x = 0;
             foreach ($_SESSION['cart'] as $value) {
-                $data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=? AND language=?", [$value['id'], lang('#lang_all')[0]])[0];
-                //Модуль скидки \eMarket\Modules\Discount\Sale
-                $sale = \eMarket\Modules\Discount\Sale::dataInterface($data);
-                if (array_key_exists(3, $sale)) {
-                    $total_price_with_sale = $total_price_with_sale + ($data['price'] * $value['quantity'] / 100 * (100 - $sale[3]));
+                $data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=? AND language=?", [$value['id'], lang('#lang_all')[0]]);
+                if ($data != FALSE) {
+                    //Модуль скидки \eMarket\Modules\Discount\Sale
+                    $sale = \eMarket\Modules\Discount\Sale::dataInterface($data[0]);
+                    if (array_key_exists(3, $sale)) {
+                        $total_price_with_sale = $total_price_with_sale + ($data[0]['price'] * $value['quantity'] / 100 * (100 - $sale[3]));
+                    } else {
+                        $total_price_with_sale = $total_price_with_sale + ($data[0]['price'] * $value['quantity']);
+                    }
                 } else {
-                    $total_price_with_sale = $total_price_with_sale + ($data['price'] * $value['quantity']);
+                    unset($_SESSION['cart'][$x]);
                 }
+                $x++;
             }
         }
         return $total_price_with_sale;
@@ -122,6 +128,7 @@ final class Ecb {
         }
         return \eMarket\Products::productPrice($price_val, $marker);
     }
+
 }
 
 ?>
