@@ -64,18 +64,18 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                         <div class="clearfix"></div>
                         <div class="row button">
                             <div class="col-xs-12">
-                            <?php if (\eMarket\Cart::productQuantity($products['id']) > 0) { ?>
-				<form id="quantity_product" name="quantity_product" action="javascript:void(null);" onsubmit="quantityProduct(<?php echo $products['id'] ?>, $('#number_<?php echo $products['id'] ?>').val())">
+                            <?php if (\eMarket\Cart::productQuantity($lines[$start]['id']) > 0) { ?>
+				<form id="quantity_product" name="quantity_product" action="javascript:void(null);" onsubmit="quantityProduct(<?php echo $lines[$start]['id'] ?>, $('#number_<?php echo $lines[$start]['id'] ?>').val())">
 				<?php } else { ?>
-				    <form id="quantity_product" name="quantity_product" action="javascript:void(null);" onsubmit="addToCart(<?php echo $products['id'] ?>, $('#number_<?php echo $products['id'] ?>').val())">
+				    <form id="quantity_product" name="quantity_product" action="javascript:void(null);" onsubmit="addToCart(<?php echo $lines[$start]['id'] ?>, $('#number_<?php echo $lines[$start]['id'] ?>').val())">
 				    <?php } ?>
-				    <button class="btn btn-primary" type="button" onclick="pcsProduct('minus', <?php echo $products['id'] ?>)"><span class="glyphicon glyphicon-minus"></span></button>
-				    <?php if (\eMarket\Cart::productQuantity($products['id']) > 0) { ?>
-					<input id="number_<?php echo $products['id'] ?>" type="number" min="1" value="<?php echo \eMarket\Cart::productQuantity($products['id']) ?>" class="quantity">
+				    <button class="btn btn-primary" type="button" onclick="pcsProduct('minus', <?php echo $lines[$start]['id'] ?>)"><span class="glyphicon glyphicon-minus"></span></button>
+				    <?php if (\eMarket\Cart::productQuantity($lines[$start]['id']) > 0) { ?>
+					<input id="number_<?php echo $lines[$start]['id'] ?>" type="number" min="1" value="<?php echo \eMarket\Cart::productQuantity($lines[$start]['id']) ?>" class="quantity">
 				    <?php } else { ?>
-					<input id="number_<?php echo $products['id'] ?>" type="number" min="1" value="1" class="quantity">
+					<input id="number_<?php echo $lines[$start]['id'] ?>" type="number" min="1" value="1" class="quantity">
 				    <?php } ?>
-				    <button class="btn btn-primary" type="button" onclick="pcsProduct('plus', <?php echo $products['id'] ?>)"><span class="glyphicon glyphicon-plus"></span></button>
+				    <button class="btn btn-primary" type="button" onclick="pcsProduct('plus', <?php echo $lines[$start]['id'] ?>)"><span class="glyphicon glyphicon-plus"></span></button>
 				    <button class="btn btn-primary pull-right" type="submit"><?php echo lang('buy_now') ?></button>
 				</form>
                             </div>
