@@ -87,7 +87,7 @@ nav .disabled {pointer-events: none;}
 #listing .list-group-item .item-text {text-align: justify;}
 #listing .list-group-item .item-price, #listing .grid-group-item .item-price {text-align: justify;margin-bottom: 10px;}
 #listing .list-group-item .caption {margin-top:-10px;}
-#listing .list-group-item .buy_now {margin-right: -15px;}
+@media (min-width:510px) {#listing .list-group-item .buy_now {margin-right: -15px;}}
 #listing .list-group-item .plus {float:right;}
 #listing .grid-group-item .plus {float:left;}
 #listing .grid-group-item .item-heading {text-align: center;}
