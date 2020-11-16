@@ -29,8 +29,8 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                     </tr>
                     <?php foreach ($cart_info as $value) { ?>
                         <tr>
-                            <td class="text-center"><a href="/?route=products&id=<?php echo $value['id'] ?>"><img src="/uploads/images/products/resize_0/<?php echo $value['logo_general'] ?>" alt="<?php echo $value['name'] ?>" class="img-responsive center-block"></a></td>
-                            <td class="text-center"><a href="/?route=products&id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></td>
+                            <td class="text-center"><a href="/?route=products&category_id=<?php echo $value['parent_id'] ?>&id=<?php echo $value['id'] ?>"><img src="/uploads/images/products/resize_0/<?php echo $value['logo_general'] ?>" alt="<?php echo $value['name'] ?>" class="img-responsive center-block"></a></td>
+                            <td class="text-center"><a href="/?route=products&category_id=<?php echo $value['parent_id'] ?>&id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></td>
                             <td class="text-center"><?php echo \eMarket\Ecb::priceInterface($value, 1) ?></td>
                             <td class="text-center">
                                 <form id="quantity_product" name="quantity_product" action="javascript:void(null);" onsubmit="quantityProduct(<?php echo $value['id'] ?>, $('#number_<?php echo $value['id'] ?>').val())">
