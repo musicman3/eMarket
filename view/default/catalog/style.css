@@ -68,7 +68,7 @@ nav .disabled {pointer-events: none;}
 #products .list-group-item .item-text {text-align: justify;padding: 10px;border: 1px solid #dddddd;border-top: 0;border-bottom-left-radius: 4px;border-bottom-right-radius: 4px;}
 #products .nav-tabs > li.active > a, #products .nav-tabs > li.active > a:hover, #products .nav-tabs > li.active > a:focus {color: #ffffff;background: #428bca;border-color: #337ab7;}
 #products .nav-tabs > li > a {line-height: 1;border-color:  #e3e3e3;background: #F5F5F5}
-#products .quantity {all: unset;-moz-appearance: textfield;width: 38px;text-align: center;vertical-align: middle;border: 1px solid #2e6da4;border-radius: 3px;padding: 6px 0 6px 0;}
+#products .quantity {all: unset;appearance: textfield;width: 35px;text-align: center;vertical-align: middle;border: 1px solid #2e6da4;border-radius: 3px;padding: 6px 0 6px 0;}
 #products .productpage ul li {list-style: none;}
 #products .productpage ul {padding: 0;margin: 0;}
 #products .productpage-price {font-size: 18px;color: #000;font-weight: bold;}
@@ -100,8 +100,8 @@ nav .disabled {pointer-events: none;}
 #listing .no, #cart .no, #products .no {padding: 7px 2px;}
 #cart .button {padding-bottom: 20px;}
 #cart .table-bordered > tbody > tr > td {border:0;vertical-align: middle;}
-#cart .quantity {all: unset;-moz-appearance: textfield;width: 30px;text-align: center;vertical-align: middle;border: 1px solid #2e6da4;border-radius: 3px;padding: 4px 0 4px 0;}
-#cart .quantity:-webkit-inner-spin-button, #products .quantity:-webkit-inner-spin-button {display: none;}
+#cart .quantity {all: unset;appearance: textfield;width: 30px;text-align: center;vertical-align: middle;border: 1px solid #2e6da4;border-radius: 3px;padding: 4px 0 4px 0;}
+#cart input[type="number"]::-webkit-inner-spin-button, #cart input[type="number"]::-webkit-outer-spin-button, #products input[type="number"]::-webkit-inner-spin-button, #products input[type="number"]::-webkit-outer-spin-button {-webkit-appearance: none;}
 #register fieldset, #forgotpass fieldset {min-width: 0;padding: 0;margin: 0;border: 0;}
 #register legend, #login legend, #forgotpass legend {font-size: 14px;text-transform: uppercase;padding: 5px 0px 5px;display: block;width: 100%;margin-bottom: 20px;color: #666;border: 0;border-bottom-color: currentcolor;border-bottom-style: none;border-bottom-width: 0px;border-bottom: 1px solid #e5e5e5;}
 .modal-content .tooltip-inner {font-family: 'Open Sans';max-width:400px;}
