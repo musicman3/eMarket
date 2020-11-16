@@ -103,6 +103,7 @@ listing_product_added_to_cart = Product successfully added to your shopping cart
 listing_product = Product:
 listing_price = Price:
 listing_quantity = Quantity:
+listing_no_more_in_stock = No more in stock
 
 ;ADDRESS BOOK
 my_address_book = Address Book

@@ -103,6 +103,7 @@ listing_product_added_to_cart = Товар успешно добавлен в В
 listing_product = Товар:
 listing_price = Цена:
 listing_quantity = Количество:
+listing_no_more_in_stock = На складе больше нет
 
 ;ADDRESS BOOK
 my_address_book = Адресная книга

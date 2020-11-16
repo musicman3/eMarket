@@ -139,6 +139,7 @@ class ProductsListing {
      *
      */
     static setList() {
+        $('.popover').popover('hide');
         $('#listing .item').removeClass('col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item');
         $('#listing .item').addClass('col-xs-12 list-group-item');
         $('#listing .item-grid').removeClass('active');
@@ -150,6 +151,7 @@ class ProductsListing {
      *
      */
     static setGrid() {
+        $('.popover').popover('hide');
         $('#listing .item').removeClass('col-xs-12 list-group-item');
         $('#listing .item').addClass('col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item');
         $('#listing .item-list').removeClass('active');
@@ -160,17 +162,28 @@ class ProductsListing {
      * Количество товара в input
      * @param val {String} (значение метки)
      * @param id {String} (id товара)
+     * @param quantity {String} (id общее количество)
      *
      */
-    static pcsProduct(val, id) {
+    static pcsProduct(val, id, quantity = null) {
         var a = $('#number_' + id).val();
+
+        $(document).click(function (e) {
+            if ($(e.target).closest('.button-plus').length) {
+                return;
+            }
+            $('.popover').popover('hide');
+        });
 
         if (val === 'minus' && a > 1) {
             $('#number_' + id).val(+a - 1);
         }
-        if (val === 'plus') {
+        if (val === 'plus' && Number(a) < Number(quantity)) {
             $('#number_' + id).val(+a + 1);
         }
+        if (val === 'plus' && Number(a) === Number(quantity)) {
+            $('#number_' + id).popover('show');
+    }
     }
 
     /**
