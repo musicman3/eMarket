@@ -62,7 +62,6 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                             </div>
 			    <div class="item-price"><label><?php echo lang('listing_price') ?></label> <?php echo \eMarket\Ecb::priceInterface($lines[$start], 1) ?></div>
                         </div>
-                        <!--<div class="clearfix"></div>-->
                         <div class="row button">
                             <div class="col-xs-12">
 				<div class="buy_now"><button class="btn btn-primary pull-right" onclick="ProductsListing.addToCart(<?php echo $lines[$start]['id'] ?>, $('#number_<?php echo $lines[$start]['id'] ?>').val())"><?php echo lang('buy_now') ?></button></div>
