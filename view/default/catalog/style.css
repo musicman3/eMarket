@@ -92,6 +92,7 @@ nav .disabled {pointer-events: none;}
 #listing .grid-group-item .item-heading {text-align: center;}
 #listing .grid-group-item .item-text {display: none;}
 #listing .grid-group-item img {display: block;margin-right: auto;margin-left: auto;}
+#listing .navigate_plus, #listing .navigate_minus {margin-top: -1.5px;}
 @media (max-width:529px) {#listing .hidden_plus {display: none !important;}}
 @media (max-width:429px) {#listing .navigate_plus {display: none !important;}}
 @media (min-width:430px) {#listing .navigate_minus {display: none !important;}}
