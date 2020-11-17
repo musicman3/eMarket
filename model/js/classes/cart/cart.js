@@ -72,9 +72,7 @@ class Cart {
                 AjaxSuccess);
         // Обновление страницы
         function AjaxSuccess(data) {
-            setTimeout(function () {
-                document.location.href = window.location.href;
-            }, 100);
+            document.location.href = window.location.href;
         }
     }
 
@@ -91,9 +89,7 @@ class Cart {
                 AjaxSuccess);
         // Обновление страницы
         function AjaxSuccess(data) {
-            setTimeout(function () {
-                document.location.href = window.location.href;
-            }, 100);
+            document.location.href = window.location.href;
         }
     }
 
@@ -217,9 +213,7 @@ class Cart {
                 AjaxSuccess);
         // Обновление страницы
         function AjaxSuccess(data) {
-            setTimeout(function () {
-                document.location.href = url;
-            }, 100);
+            document.location.href = url;
         }
     }
 }
