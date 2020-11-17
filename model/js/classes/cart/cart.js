@@ -72,7 +72,8 @@ class Cart {
                 AjaxSuccess);
         // Обновление страницы
         function AjaxSuccess(data) {
-            document.location.href = window.location.href;
+            $('#cart_bar').replaceWith($(data).find('#cart_bar'));
+            $('#cart').replaceWith($(data).find('#cart'));
         }
     }
 
@@ -89,7 +90,8 @@ class Cart {
                 AjaxSuccess);
         // Обновление страницы
         function AjaxSuccess(data) {
-            document.location.href = window.location.href;
+            $('#cart_bar').replaceWith($(data).find('#cart_bar'));
+            $('#cart').replaceWith($(data).find('#cart'));
         }
     }
 
