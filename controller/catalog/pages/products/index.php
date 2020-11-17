@@ -62,6 +62,8 @@ if (\eMarket\Valid::inGET('category_id') == 0) {
     $attributes_data = json_encode($categories_data['attributes']);
 }
 
+require_once('modal/cart_message.php');
+
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
 $JS_END = __DIR__;
 ?>

@@ -21,7 +21,6 @@ class Ajax {
      * @param string $url (url страницы обработки)
      */
     public static function action($url) {
-        
         ?>
         <!-- Модальное окно "Добавить" -->
         <script type="text/javascript">
@@ -133,7 +132,6 @@ class Ajax {
     public static function fileUpload($url, $dir, $resize_param) {
 
         $resize_max = \eMarket\Files::imgResizeMax($resize_param);
-
         ?>
 
         <script type="text/javascript">
@@ -311,7 +309,6 @@ class Ajax {
     public static function fileUploadProduct($url, $dir, $resize_param) {
 
         $resize_max = \eMarket\Files::imgResizeMax($resize_param);
-
         ?>
 
         <script type="text/javascript">
@@ -480,35 +477,5 @@ class Ajax {
         <?php
     }
 
-    /**
-     * Ajax обработка для корзины
-     *
-     * @param string $url (url страницы обработки)
-     */
-    public static function сart($url) {
-        
-        ?>
-        <!-- Добавить товар -->
-        <script type="text/javascript">
-            function addToCart(id, pcs) {
-                // Установка синхронного запроса для jQuery.ajax
-                jQuery.ajaxSetup({async: false});
-                jQuery.get('<?php echo $url ?>',
-                        {add_to_cart: id,
-                            quantity_product_id: id,
-                            pcs_product: pcs},
-                        AjaxSuccess);
-                // Обновление страницы
-                function AjaxSuccess(data) {
-                    setTimeout(function () {
-                        document.location.href = '<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>';
-                    }, 100);
-                }
-            }
-        </script>
-        <?php
-    }
-
 }
-
 ?>
