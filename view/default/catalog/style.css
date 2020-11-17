@@ -96,6 +96,7 @@ nav .disabled {pointer-events: none;}
 @media (max-width:529px) {#listing .hidden_plus {display: none !important;}}
 @media (max-width:429px) {#listing .navigate_plus {display: none !important;}}
 @media (min-width:430px) {#listing .navigate_minus {display: none !important;}}
+@media (max-width:529px) {#listing .list-group-item img {margin-bottom: 10px;}}
 #listing .dropdown-menu {background-color: #ffffff;}
 #listing .dropdown-menu > li > a {color: #000000;padding: 3px 10px;cursor:pointer;}
 #listing .dropdown-menu > li > a:focus, #listing .dropdown-menu > li > a:hover {background: #f5f5f5;}
