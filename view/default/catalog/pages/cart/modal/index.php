@@ -12,7 +12,7 @@
             <div class="modal-header"><div class="pull-right"><button class="close" type="button" data-dismiss="modal">×</button></div>
                 <h4 class="modal-title"><?php echo \eMarket\Set::titlePageGenerator() ?></h4>
             </div>
-            <form id="form_cart" name="form_cart" action="javascript:void(null);" onsubmit="callSuccess()">
+            <form id="form_cart" name="form_cart" action="javascript:void(null);" onsubmit="Cart.callSuccess()">
                 <div class="panel-body">
                     <input type="hidden" name="add" value="ok" />
                     <input type="hidden" id="products_order" name="products_order" value='<?php echo $products_order ?>' />

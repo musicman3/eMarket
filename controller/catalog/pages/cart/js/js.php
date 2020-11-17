@@ -3,7 +3,6 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-
 $lang_js = json_encode([
     'cart_payment_is_not_available' => lang('cart_payment_is_not_available'),
     'cart_shipping_is_not_available' => lang('cart_shipping_is_not_available'),
