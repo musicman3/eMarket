@@ -11,6 +11,14 @@
  */
 class AttributesProcessing {
     /**
+     * Конструктор
+     *
+     **@param json_data {Json} (json атрибуты)
+     */
+    constructor(json_data) {
+        AttributesProcessing.add('catalog', json_data);
+    }
+    /**
      * Сбор данных из select атрибутов
      * @returns {Array}
      *

@@ -17,6 +17,7 @@ class Cart {
      */
     constructor(lang) {
         Cart.init(lang);
+        Cart.shippingData(lang);
     }
 
     /**
@@ -25,9 +26,6 @@ class Cart {
      *@param lang {Array} (языковые переменные)
      */
     static init(lang) {
-        $('#index').on('show.bs.modal', function (event) {
-            Cart.shippingData(lang);
-        });
         // Если выбрали адрес, то перезагружаем методы доставки
         $('#address').change(function (event) {
             // Получаем данные по доставке

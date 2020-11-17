@@ -3,7 +3,6 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-
 ?>
 
 <!-- Ekko Lightbox" -->
@@ -20,9 +19,7 @@
 <script type="text/javascript" src="/model/js/classes/jsdata/jsdata.js"></script>
 <script type="text/javascript" src="/model/js/classes/products/products.js"></script>
 <script type="text/javascript">
-    new AttributesProcessing();
-    new Products();
-    // Выводим атрибуты
     $('#selected_attributes').val('<?php echo $products['attributes'] ?>');
-    AttributesProcessing.add('catalog', <?php echo json_encode($attributes_data) ?>);
+    new Products();
+    new AttributesProcessing(<?php echo json_encode($attributes_data) ?>);
 </script>
