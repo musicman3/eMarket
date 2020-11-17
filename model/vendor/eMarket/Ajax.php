@@ -506,41 +506,6 @@ class Ajax {
                 }
             }
         </script>
-
-        <!-- Удалить товар -->
-        <script type="text/javascript">
-            function deleteProduct(id) {
-                // Установка синхронного запроса для jQuery.ajax
-                jQuery.ajaxSetup({async: false});
-                jQuery.get('<?php echo $url ?>',
-                        {delete_product: id},
-                        AjaxSuccess);
-                // Обновление страницы
-                function AjaxSuccess(data) {
-                    setTimeout(function () {
-                        document.location.href = '<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>';
-                    }, 100);
-                }
-            }
-        </script>
-
-        <!-- Редактировать количество -->
-        <script type="text/javascript">
-            function quantityProduct(id, pcs) {
-                // Установка синхронного запроса для jQuery.ajax
-                jQuery.ajaxSetup({async: false});
-                jQuery.get('<?php echo $url ?>',
-                        {quantity_product_id: id,
-                            pcs_product: pcs},
-                        AjaxSuccess);
-                // Обновление страницы
-                function AjaxSuccess(data) {
-                    setTimeout(function () {
-                        document.location.href = '<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>';
-                    }, 100);
-                }
-            }
-        </script>
         <?php
     }
 
