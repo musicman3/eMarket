@@ -33,7 +33,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                 &nbsp;&nbsp;<input class="check-box" hidden type="checkbox" data-off-color="success" data-size="normal" data-label-text="<?php echo lang('button-view-switch') ?>" data-label-width='auto' data-on-text="<?php echo lang('button-all-switch') ?>" data-off-text="<?php echo lang('button-instock-switch') ?>" data-handle-width="80" name="show_in_stock" id="show_in_stock"<?php echo $checked_stock ?>>
             </div>
 
-            <div class="btn-group pull-right">
+            <div class="btn-group pull-right hidden_plus">
                 <a id="grid" class="btn btn-default item-grid active"><span class="glyphicon glyphicon-th"></span></a>
                 <a id="list" class="btn btn-default item-list"><span class="glyphicon glyphicon-th-list"></span></a>
             </div>
@@ -51,24 +51,24 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                             <h5 class="item-heading"><a href="/?route=products&category_id=<?php echo $lines[$start]['parent_id'] ?>&id=<?php echo $lines[$start]['id'] ?>"><?php echo $lines[$start]['name'] ?></a></h5>
                             <div class="item-text">
                                 <?php if ($manufacturer != NULL && $manufacturer != FALSE) { ?>
-                                    <label><?php echo lang('product_manufacturer') ?></label> <?php echo $manufacturer ?>
+                                    <label><?php echo lang('product_manufacturer') ?></label> <?php echo $manufacturer ?><br />
                                 <?php } if ($lines[$start]['model'] != NULL && $lines[$start]['model'] != FALSE) { ?>
-                                    | <label><?php echo lang('product_model') ?></label> 
-                                    <?php echo $lines[$start]['model'] ?>
+                                    <label><?php echo lang('product_model') ?></label> 
+                                    <?php echo $lines[$start]['model'] ?><br />
                                 <?php } ?>
-                                <br />
                                 <label><?php echo lang('product_availability') ?></label>
                                 <?php echo \eMarket\Products::inStock($lines[$start]['date_available'], $lines[$start]['quantity']); ?>
                             </div>
 			    <div class="item-price"><label><?php echo lang('listing_price') ?></label> <?php echo \eMarket\Ecb::priceInterface($lines[$start], 1) ?></div>
                         </div>
+                        <div class="clearfix"></div>
                         <div class="row button">
                             <div class="col-xs-12">
-				<div class="buy_now"><button class="btn btn-primary pull-right" onclick="ProductsListing.addToCart(<?php echo $lines[$start]['id'] ?>, $('#number_<?php echo $lines[$start]['id'] ?>').val())"><?php echo lang('buy_now') ?></button></div>
-				<div class="plus">
+				<div class="block_plus">
 				    <button class="btn btn-primary" type="button" onclick="ProductsListing.pcsProduct('minus', <?php echo $lines[$start]['id'] ?>, <?php echo $lines[$start]['quantity'] ?>)"><span class="glyphicon glyphicon-minus"></span></button>
 				    <input id="number_<?php echo $lines[$start]['id'] ?>" data-placement="top" data-content="<?php echo lang('listing_no_more_in_stock') ?>" type="number" min="1" value="1" class="quantity" disabled>
 				    <button class="btn btn-primary button-plus" type="button" onclick="ProductsListing.pcsProduct('plus', <?php echo $lines[$start]['id'] ?>, <?php echo $lines[$start]['quantity'] ?>)"><span class="glyphicon glyphicon-plus"></span></button>
+				    <button class="btn btn-primary plus" onclick="ProductsListing.addToCart(<?php echo $lines[$start]['id'] ?>, $('#number_<?php echo $lines[$start]['id'] ?>').val())"><?php echo lang('buy_now') ?></button>
 				</div>
                             </div>
                         </div>
@@ -86,7 +86,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                  ></div>
             <div class="result-inner btn-group"><?php echo lang('with') ?> <?php echo $navigate[0] + 1 ?> <?php echo lang('to') ?> <?php echo $navigate[1] ?> ( <?php echo lang('of') ?> <?php echo $count_lines ?> )</div>
 
-            <div class="btn-group  pull-right" role="group">
+            <div class="btn-group pull-right navigate_plus" role="group">
                 <?php if ($navigate[0] > 0) { ?> 
                     <button id="prev" type="button" class="btn btn-default navigation"><span aria-hidden="true">&larr;</span> <?php echo lang('button_previous') ?></button> 
                 <?php } else { ?> 
@@ -98,6 +98,20 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                     <button id="next" type="button" class="btn btn-default navigation"><?php echo lang('button_next') ?> <span aria-hidden="true">&rarr;</span></button> 
                 <?php } else { ?> 
                     <a id="next" class="btn btn-default disabled" role="button"><?php echo lang('button_next') ?> <span aria-hidden="true">&rarr;</span></a> 
+                <?php } ?>
+            </div>
+            <div class="btn-group pull-right navigate_minus" role="group">
+                <?php if ($navigate[0] > 0) { ?> 
+                    <button id="prev" type="button" class="btn btn-default navigation"><span aria-hidden="true">&larr;</span></button> 
+                <?php } else { ?> 
+                    <a id="prev" class="btn btn-default disabled" role="button"><span aria-hidden="true">&larr;</span></a> 
+                    <?php
+                }
+                if ($navigate[1] != $count_lines) {
+                    ?> 
+                    <button id="next" type="button" class="btn btn-default navigation"><span aria-hidden="true">&rarr;</span></button> 
+                <?php } else { ?> 
+                    <a id="next" class="btn btn-default disabled" role="button"><span aria-hidden="true">&rarr;</span></a> 
                 <?php } ?>
             </div>
         </div>
