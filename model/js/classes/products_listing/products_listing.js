@@ -88,10 +88,6 @@ class ProductsListing {
                 ProductsListing.getData(sort_id, change, prev, next);
             }
         });
-        // Если закрыли модал сообщения корзины
-        $('#cart_message').on('hidden.bs.modal', function () {
-            $('.quantity').val('1');
-        });
     }
 
     /**
@@ -185,9 +181,7 @@ class ProductsListing {
         if (Number(a) === Number(quantity - cart_quantity)) {
             $('#number_' + id).popover('show');
         }
-        if (Number(quantity - cart_quantity) === 0) {
-            $('#number_' + id).val(0);
-    }
+
     }
 
     /**
