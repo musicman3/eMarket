@@ -68,7 +68,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
 				    <button class="btn btn-primary" type="button" onclick="ProductsListing.pcsProduct('minus', <?php echo $lines[$start]['id'] ?>, <?php echo $lines[$start]['quantity'] ?>)"><span class="glyphicon glyphicon-minus"></span></button>
 				    <input id="number_<?php echo $lines[$start]['id'] ?>" data-placement="top" data-content="<?php echo lang('listing_no_more_in_stock') ?>" type="number" min="1" value="1" class="quantity" disabled>
 				    <button class="btn btn-primary button-plus" type="button" onclick="ProductsListing.pcsProduct('plus', <?php echo $lines[$start]['id'] ?>, <?php echo $lines[$start]['quantity'] ?>)"><span class="glyphicon glyphicon-plus"></span></button>
-				    <button class="btn btn-primary" onclick="ProductsListing.addToCart(<?php echo $lines[$start]['id'] ?>, $('#number_<?php echo $lines[$start]['id'] ?>').val())"><?php echo lang('buy_now') ?></button>
+				    <button class="btn btn-primary buy_now" onclick="ProductsListing.addToCart(<?php echo $lines[$start]['id'] ?>, $('#number_<?php echo $lines[$start]['id'] ?>').val())"><?php echo lang('buy_now') ?></button>
 				</div>
                             </div>
                         </div>
