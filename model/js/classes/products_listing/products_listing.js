@@ -162,10 +162,11 @@ class ProductsListing {
      * Количество товара в input
      * @param val {String} (значение метки)
      * @param id {String} (id товара)
-     * @param quantity {String} (id общее количество)
+     * @param quantity {String} (выбранное количество)
+     * @param cart_quantity {String} (количество в корзине)
      *
      */
-    static pcsProduct(val, id, quantity = null) {
+    static pcsProduct(val, id, quantity, cart_quantity = null) {
         var a = $('#number_' + id).val();
 
         $(document).click(function (e) {
@@ -178,11 +179,14 @@ class ProductsListing {
         if (val === 'minus' && a > 1) {
             $('#number_' + id).val(+a - 1);
         }
-        if (val === 'plus' && Number(a) < Number(quantity)) {
+        if (val === 'plus' && Number(a) < Number(quantity) && Number(a) < Number(quantity - cart_quantity)) {
             $('#number_' + id).val(+a + 1);
         }
-        if (val === 'plus' && Number(a) === Number(quantity)) {
+        if (Number(a) === Number(quantity - cart_quantity)) {
             $('#number_' + id).popover('show');
+        }
+        if (Number(quantity - cart_quantity) === 0) {
+            $('#number_' + id).val(0);
     }
     }
 
@@ -211,6 +215,7 @@ class ProductsListing {
             $('#product_image').append('<img class="img-responsive center-block" src="/uploads/images/products/resize_0/' + product_edit['logo_general'] + '" alt="' + product_edit['name'] + '" />');
 
             $('#cart_bar').replaceWith($(data).find('#cart_bar'));
+            $('#listing').replaceWith($(data).find('#listing'));
             $('#cart_message').modal('show');
             $('#show_in_stock').bootstrapSwitch();
 

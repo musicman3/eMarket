@@ -23,7 +23,7 @@ class Cart {
 
         if (\eMarket\Valid::inGET('add_to_cart')) {
             $id = \eMarket\Valid::inGET('add_to_cart');
-            
+
             if (!\eMarket\Valid::inGET('add_quantity')) {
                 $quantity = 1;
             } else {
@@ -151,6 +151,25 @@ class Cart {
                 }
             }
             $_SESSION['cart'] = $array_new;
+        }
+    }
+
+    /**
+     * Максимальное количество для заказа
+     * 
+     * @param array $product_data (Данные о товаре)
+     * @return int|false
+     */
+    public static function maxQuantityToOrder($product_data) {
+        $quantity = $product_data['quantity'];
+        $cart_quantity = \eMarket\Cart::productQuantity($product_data['id']);
+        $total = $quantity - $cart_quantity;
+        if ($total == 0) {
+            return 0;
+        } elseif ($total > 0) {
+            return 1;
+        } else {
+            return false;
         }
     }
 
