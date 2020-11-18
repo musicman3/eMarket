@@ -164,9 +164,14 @@ class Cart {
         $quantity = $product_data['quantity'];
         $cart_quantity = \eMarket\Cart::productQuantity($product_data['id']);
         $total = $quantity - $cart_quantity;
+        
         if ($total == 0 && $flag == 'class') {
             return ' disabled';
         }
+        if ($total > 0 && $flag == 'class') {
+            return '';
+        }
+        
         if ($total == 0) {
             return 0;
         }
