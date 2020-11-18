@@ -4,52 +4,25 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-?>
-
-<?php if ($products_new == true) { ?>
+if ($products_new == true) {
+    ?>
     <div id="new_products" class="contentText">
         <h3><?php echo lang('new_products_name') ?></h3>
         <div class="row">
-            <?php $x = 0;
-            foreach ($products_new as $value) { ?>
+            <?php foreach ($products_new as $value) {
+                ?>
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item">
                     <div class="productHolder">
                         <a href="/?route=products&category_id=<?php echo $value['parent_id'] ?>&id=<?php echo $value['id'] ?>"><img src="/uploads/images/products/resize_1/<?php echo $value['logo_general'] ?>" alt="<?php echo $value['name']; ?>" class="img-responsive center-block"></a>
                         <h5 class="text-center item-heading"><a href="/?route=products&category_id=<?php echo $value['parent_id'] ?>&id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></h5>
                         <div class="clearfix"></div>
-                        <div class="row button">
-                            <div class="col-xs-7"><?php echo \eMarket\Ecb::priceInterface($value, 1) ?></div>
 
-                            <div class="col-xs-5 text-right">
-                                <form id="form_add_to_cart" name="form_add_to_cart" action="javascript:void(null);" onsubmit="addToCart(<?php echo $value['id'] ?>, 1)">
-                                    <button type="submit" class="btn btn-primary"><?php echo lang('buy_now') ?></button>
-                                </form>
-                            </div>
+                        <div class="text-center"><?php echo \eMarket\Ecb::priceInterface($value, 1) ?></div>
 
-                        </div>
                     </div>
                 </div>
-            <?php $x++; } ?>
+            <?php } ?>
         </div>
     </div>
 <?php }
-
 ?>
-<script type="text/javascript" language="javascript">
-    function addToCart(id, pcs) {
-        // Установка синхронного запроса для jQuery.ajax
-        jQuery.ajaxSetup({async: false});
-        jQuery.get(window.location.href,
-                {add_to_cart: id,
-                    add_quantity: pcs},
-                AjaxSuccess);
-        // Обновление страницы
-        function AjaxSuccess(data) {
-            $('#cart_bar').replaceWith($(data).find('#cart_bar'));
-        }
-    }
-    
-    $(window).load(function () {
-        $(".item-heading").simpleEQH();
-    });
-</script>
