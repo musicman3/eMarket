@@ -30,7 +30,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                     <li><a id="up" class="sorting"><?php echo lang('listing_sort_by_price_asc') ?></a></li>
                 </ul>
 
-                &nbsp;&nbsp;<input class="check-box" hidden type="checkbox" data-off-color="success" data-size="normal" data-label-text="<?php echo lang('button-view-switch') ?>" data-label-width='auto' data-on-text="<?php echo lang('button-all-switch') ?>" data-off-text="<?php echo lang('button-instock-switch') ?>" data-handle-width="80" name="show_in_stock" id="show_in_stock"<?php echo $checked_stock ?>>
+                &nbsp;&nbsp;<input class="check-box" hidden type="checkbox" data-off-color="success" data-size="normal" data-label-text="<?php echo lang('button-view-switch') ?>" data-label-width='auto' data-on-text="<?php echo lang('button-all-switch') ?>" data-off-text="<?php echo lang('button-instock-switch') ?>" data-handle-width="auto" name="show_in_stock" id="show_in_stock"<?php echo $checked_stock ?>>
             </div>
 
             <div class="btn-group pull-right hidden-grid-list">
