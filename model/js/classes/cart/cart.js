@@ -39,20 +39,32 @@ class Cart {
     }
 
     /**
-     * Изменение количества в корзине
+     * Количество товара в input
+     * @param val {String} (значение метки)
+     * @param id {String} (id товара)
+     * @param max_quantity {String} (Максимальное количество для заказа)
      *
-     *@param val {String} (значение)
-     *@param id {String} (id товара)
      */
-    static pcsProduct(val, id) {
+    static pcsProduct(val, id, max_quantity = null) {
         var a = $('#number_' + id).val();
+
+        $(document).click(function (e) {
+            if ($(e.target).closest('.button-plus').length) {
+                return;
+            }
+            $('.popover').popover('hide');
+        });
 
         if (val === 'minus' && a > 1) {
             $('#number_' + id).val(+a - 1);
         }
-        if (val === 'plus') {
+        if (val === 'plus' && Number(a) < Number(max_quantity)) {
             $('#number_' + id).val(+a + 1);
         }
+        if (Number(a) === Number(max_quantity)) {
+            $('#number_' + id).popover('show');
+    }
+
     }
 
     /**
