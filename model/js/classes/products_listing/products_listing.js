@@ -158,11 +158,10 @@ class ProductsListing {
      * Количество товара в input
      * @param val {String} (значение метки)
      * @param id {String} (id товара)
-     * @param quantity {String} (выбранное количество)
-     * @param cart_quantity {String} (количество в корзине)
+     * @param max_quantity {String} (Максимальное количество для заказа)
      *
      */
-    static pcsProduct(val, id, quantity, cart_quantity = null) {
+    static pcsProduct(val, id, max_quantity = null) {
         var a = $('#number_' + id).val();
 
         $(document).click(function (e) {
@@ -175,12 +174,12 @@ class ProductsListing {
         if (val === 'minus' && a > 1) {
             $('#number_' + id).val(+a - 1);
         }
-        if (val === 'plus' && Number(a) < Number(quantity) && Number(a) < Number(quantity - cart_quantity)) {
+        if (val === 'plus' && Number(a) < Number(max_quantity)) {
             $('#number_' + id).val(+a + 1);
         }
-        if (Number(a) === Number(quantity - cart_quantity)) {
+        if (Number(a) === Number(max_quantity)) {
             $('#number_' + id).popover('show');
-        }
+    }
 
     }
 

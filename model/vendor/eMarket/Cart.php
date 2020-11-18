@@ -160,13 +160,18 @@ class Cart {
      * @param array $product_data (Данные о товаре)
      * @return int|false
      */
-    public static function maxQuantityToOrder($product_data) {
+    public static function maxQuantityToOrder($product_data, $flag = null) {
         $quantity = $product_data['quantity'];
         $cart_quantity = \eMarket\Cart::productQuantity($product_data['id']);
         $total = $quantity - $cart_quantity;
         if ($total == 0) {
             return 0;
-        } elseif ($total > 0) {
+        }
+        if ($total > 0 && $flag == 'true') {
+            return $total;
+        }
+
+        if ($total > 0) {
             return 1;
         } else {
             return false;
