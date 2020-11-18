@@ -209,9 +209,10 @@ class ProductsListing {
             $('#product_image').append('<img class="img-responsive center-block" src="/uploads/images/products/resize_0/' + product_edit['logo_general'] + '" alt="' + product_edit['name'] + '" />');
 
             $('#cart_bar').replaceWith($(data).find('#cart_bar'));
-            $('#listing').replaceWith($(data).find('#listing'));
+            $('#product-data').replaceWith($(data).find('#product-data'));
             $('#cart_message').modal('show');
             $('#show_in_stock').bootstrapSwitch();
+            new ProductsListing();
 
             new ProductsListing();
         }
