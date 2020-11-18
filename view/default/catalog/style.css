@@ -87,15 +87,15 @@ nav .disabled {pointer-events: none;}
 #listing .list-group-item .item-text {text-align: justify;}
 #listing .list-group-item .item-price, #listing .grid-group-item .item-price {text-align: justify;margin-bottom: 5px;}
 #listing .list-group-item .caption {margin-top:-10px;}
-#listing .list-group-item .block_button {float:right;}
-#listing .grid-group-item .buy_now {float:right;}
+#listing .list-group-item .block-button {float:right;}
+#listing .grid-group-item .buy-now {float:right;}
 #listing .grid-group-item .item-heading {text-align: center;}
 #listing .grid-group-item .item-text {display: none;}
 #listing .grid-group-item img {display: block;margin-right: auto;margin-left: auto;}
-#listing .navigate_plus, #listing .navigate_mini {margin-top: -1.5px;}
-@media (max-width:529px) {#listing .hidden_plus {display: none !important;}}
-@media (max-width:429px) {#listing .navigate_normal {display: none !important;}}
-@media (min-width:430px) {#listing .navigate_mini {display: none !important;}}
+#listing .navigate_plus, #listing .navigate-mini {margin-top: -1.5px;}
+@media (max-width:529px) {#listing .hidden-grid-list {display: none !important;}}
+@media (max-width:429px) {#listing .navigate-normal {display: none !important;}}
+@media (min-width:430px) {#listing .navigate-mini {display: none !important;}}
 @media (max-width:529px) {#listing .list-group-item img {margin-bottom: 10px;}}
 #listing .dropdown-menu {background-color: #ffffff;}
 #listing .dropdown-menu > li > a {color: #000000;padding: 3px 10px;cursor:pointer;}
