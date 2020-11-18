@@ -17,19 +17,22 @@ class Products {
      *
      */
     static addToCart(id, pcs) {
-        // Установка синхронного запроса для jQuery.ajax
-        jQuery.ajaxSetup({async: false});
-        jQuery.get(window.location.href,
-                {add_to_cart: id,
-                    add_quantity: pcs},
-                AjaxSuccess);
-        // Обновление страницы
-        function AjaxSuccess(data) {
-            $('#product_quantity').html(pcs);
-            $('#cart_bar').replaceWith($(data).find('#cart_bar'));
-            $('#cart_message').modal('show');
+        if (pcs > 0) {
+            // Установка синхронного запроса для jQuery.ajax
+            jQuery.ajaxSetup({async: false});
+            jQuery.get(window.location.href,
+                    {add_to_cart: id,
+                        add_quantity: pcs},
+                    AjaxSuccess);
+            // Обновление страницы
+            function AjaxSuccess(data) {
+                $('#product_quantity').html(pcs);
+                $('#cart_bar').replaceWith($(data).find('#cart_bar'));
+                $('#products').replaceWith($(data).find('#products'));
+                $('#cart_message').modal('show');
 
-            new Products();
+                new Products();
+            }
         }
     }
 
@@ -37,10 +40,10 @@ class Products {
      * Количество товара в input
      * @param val {String} (значение метки)
      * @param id {String} (id товара)
-     * @param quantity {String} (id общее количество)
+     * @param max_quantity {String} (Максимальное количество для заказа)
      *
      */
-    static pcsProduct(val, id, quantity = null) {
+    static pcsProduct(val, id, max_quantity = null) {
         var a = $('#number_' + id).val();
 
         $(document).click(function (e) {
@@ -53,12 +56,13 @@ class Products {
         if (val === 'minus' && a > 1) {
             $('#number_' + id).val(+a - 1);
         }
-        if (val === 'plus' && Number(a) < Number(quantity)) {
+        if (val === 'plus' && Number(a) < Number(max_quantity)) {
             $('#number_' + id).val(+a + 1);
         }
-        if (val === 'plus' && Number(a) === Number(quantity)) {
+        if (Number(a) === Number(max_quantity)) {
             $('#number_' + id).popover('show');
     }
+
     }
 
 }

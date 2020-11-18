@@ -71,9 +71,9 @@ if ($products != FALSE) {
                 <hr>
                 <div>
                     <button class="btn btn-primary" type="button" onclick="Products.pcsProduct('minus', <?php echo $products['id'] ?>, <?php echo $products['quantity'] ?>)"><span class="glyphicon glyphicon-minus"></span></button>
-                    <input id="number_<?php echo $products['id'] ?>" data-placement="top" data-content="<?php echo lang('listing_no_more_in_stock') ?>" type="number" min="1" value="1" class="quantity" disabled>
-                    <button class="btn btn-primary button-plus" type="button" onclick="Products.pcsProduct('plus', <?php echo $products['id'] ?>, <?php echo $products['quantity'] ?>)"><span class="glyphicon glyphicon-plus"></span></button>
-                    <button class="btn btn-primary plus" onclick="Products.addToCart(<?php echo $products['id'] ?>, $('#number_<?php echo $products['id'] ?>').val())"><?php echo lang('add_to_cart') ?></button>
+                    <input id="number_<?php echo $products['id'] ?>" data-placement="top" data-content="<?php echo lang('listing_no_more_in_stock') ?>" type="number" min="1" value="<?php echo \eMarket\Cart::maxQuantityToOrder($products) ?>" class="quantity" disabled>
+                    <button class="btn btn-primary button-plus" type="button" onclick="Products.pcsProduct('plus', <?php echo $products['id'] ?>, <?php echo \eMarket\Cart::maxQuantityToOrder($products, 'true') ?>)"><span class="glyphicon glyphicon-plus"></span></button>
+                    <button class="btn btn-primary plus<?php echo \eMarket\Cart::maxQuantityToOrder($products, 'class') ?>" onclick="Products.addToCart(<?php echo $products['id'] ?>, $('#number_<?php echo $products['id'] ?>').val())"><?php echo lang('add_to_cart') ?></button>
                 </div>
             </div>
         </div>

@@ -191,29 +191,31 @@ class ProductsListing {
      */
     static addToCart(id, pcs) {
         // Установка синхронного запроса для jQuery.ajax
-        jQuery.ajaxSetup({async: false});
-        jQuery.get(window.location.href,
-                {add_to_cart: id,
-                    add_quantity: pcs},
-                AjaxSuccess);
-        // Обновление страницы
-        function AjaxSuccess(data) {
-            $('#product_image').empty();
-            // Получаем данные из data div
-            var product_edit = $('div#ajax_data').data('product')[id];
+        if (pcs > 0) {
+            jQuery.ajaxSetup({async: false});
+            jQuery.get(window.location.href,
+                    {add_to_cart: id,
+                        add_quantity: pcs},
+                    AjaxSuccess);
+            // Обновление страницы
+            function AjaxSuccess(data) {
+                $('#product_image').empty();
+                // Получаем данные из data div
+                var product_edit = $('div#ajax_data').data('product')[id];
 
-            $('#product_name').html(product_edit['name']);
-            $('#product_price_formated').html(product_edit['price_formated']);
-            $('#product_quantity').html(pcs);
-            $('#product_image').append('<img class="img-responsive center-block" src="/uploads/images/products/resize_0/' + product_edit['logo_general'] + '" alt="' + product_edit['name'] + '" />');
+                $('#product_name').html(product_edit['name']);
+                $('#product_price_formated').html(product_edit['price_formated']);
+                $('#product_quantity').html(pcs);
+                $('#product_image').append('<img class="img-responsive center-block" src="/uploads/images/products/resize_0/' + product_edit['logo_general'] + '" alt="' + product_edit['name'] + '" />');
 
-            $('#cart_bar').replaceWith($(data).find('#cart_bar'));
-            $('#product-data').replaceWith($(data).find('#product-data'));
-            $('#cart_message').modal('show');
-            $('#show_in_stock').bootstrapSwitch();
-            new ProductsListing();
+                $('#cart_bar').replaceWith($(data).find('#cart_bar'));
+                $('#product-data').replaceWith($(data).find('#product-data'));
+                $('#cart_message').modal('show');
+                $('#show_in_stock').bootstrapSwitch();
+                new ProductsListing();
 
-            new ProductsListing();
+                new ProductsListing();
+            }
         }
     }
 
