@@ -9,10 +9,6 @@
 <script type="text/javascript" src="/model/js/classes/products_listing/products_listing.js"></script>
 
 <script type="text/javascript" language="javascript">
-    $(window).load(function () {
-        $(".item-heading").simpleEQH();
-    });
-
     $('#show_in_stock').bootstrapSwitch();
 
     new ProductsListing();
