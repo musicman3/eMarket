@@ -39,7 +39,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
             </div>
         </div>
 
-        <div id="product-data" class="row">
+        <div id="product-data" class="row row-flex">
             <?php
             for ($start; $start < $finish; $start++) {
                 $manufacturer = \eMarket\Products::nameToId($lines[$start]['manufacturer'], TABLE_MANUFACTURERS, 'name');

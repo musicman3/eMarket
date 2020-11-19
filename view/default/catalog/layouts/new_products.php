@@ -8,7 +8,7 @@ if ($products_new == true) {
     ?>
     <div id="new_products" class="contentText">
         <h3><?php echo lang('new_products_name') ?></h3>
-        <div class="row">
+        <div class="row row-flex">
             <?php foreach ($products_new as $value) {
                 ?>
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item">
