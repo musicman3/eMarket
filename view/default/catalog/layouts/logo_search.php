@@ -15,7 +15,7 @@
                 <form>
                     <input hidden name="route" value="listing">
                     <div class="input-group">
-                        <input type="search" id="search" name="search" placeholder="<?php echo lang('search_name') ?>" class="form-control">
+                        <input type="search" id="search" name="search" required="" placeholder="<?php echo lang('search_name') ?>" class="form-control">
                         <span class="input-group-btn">
                             <button type="submit" class="btn btn-primary">
                                 <span class="glyphicon glyphicon-search"></span>
