@@ -94,7 +94,7 @@ nav .disabled {pointer-events: none;}
 #listing .grid-group-item .item-text {display: none;}
 #listing .grid-group-item img {display: block;margin-right: auto;margin-left: auto;}
 #listing .navigate-normal, #listing .navigate-mini {margin-top: -2px;}
-@media (max-width:529px) {#listing .hidden-grid-list {display: none !important;}}
+@media (max-width:584px) {#listing .hidden-grid-list {display: none !important;}}
 @media (max-width:429px) {#listing .navigate-normal {display: none !important;}}
 @media (min-width:430px) {#listing .navigate-mini {display: none !important;}}
 @media (max-width:529px) {#listing .list-group-item img {margin-bottom: 10px;}}
