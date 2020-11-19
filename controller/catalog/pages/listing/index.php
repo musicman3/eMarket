@@ -5,7 +5,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-if (\eMarket\Valid::inGET('change') == 'on' OR!\eMarket\Valid::inGET('change')) {
+if (\eMarket\Valid::inGET('change') == 'on' OR !\eMarket\Valid::inGET('change')) {
     $checked_stock = ' checked';
     $qnt_flag = '';
 } else {
