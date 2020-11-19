@@ -11,7 +11,7 @@ input, textarea {outline: none;}
 input:active, textarea:active {outline: none;}
 body {font-family: 'Open Sans';}
 #header, #bodyWrapper, #Carousel, #breadcrumb {margin-top:5px;margin-bottom:5px;}
-#breadcrumb {height: 36px;}
+.breadcrumb {white-space: nowrap;overflow: auto;}
 .footer {margin:15px 0 15px 0;}
 #header .searchbox-margin {padding-top: 18px;}
 #header .logo {padding: 0 10px 0 0;}
@@ -21,9 +21,9 @@ body {font-family: 'Open Sans';}
 #Carousel .glyphicon-chevron-right {opacity:0;right:0;transition: all .5s ease}
 #Carousel:hover .glyphicon-chevron-left {opacity:1;left:25%;}
 #Carousel:hover .glyphicon-chevron-right {opacity:1;right:25%;}
-.carousel-inner {border-radius: 4px;}
-.carousel-inner h3 {padding: 20px;animation: anime-H3 1.3s ease-out;}
-.carousel-inner p {font-size: 18px;padding: 20px;animation: anime-P 1.6s ease-out;}
+#Carousel .carousel-inner {border-radius: 4px;}
+#Carousel .carousel-inner h3 {padding: 20px;animation: anime-H3 1.3s ease-out;}
+#Carousel .carousel-inner p {font-size: 18px;padding: 20px;animation: anime-P 1.6s ease-out;}
 @keyframes anime-H3 { from { opacity: 0; transform: translateX(-2000px); } to { opacity: 1; transform: translateX(0); } }
 @keyframes anime-P { from { opacity: 0; transform: translateX(2000px); } to { opacity: 1; transform: translateX(0); } }
 #layouts-categories .panel-heading {padding:5px 10px;}
