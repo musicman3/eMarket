@@ -17,7 +17,7 @@ if ($products_new == true) {
                         <h5 class="text-center item-heading"><a href="/?route=products&category_id=<?php echo $value['parent_id'] ?>&id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></h5>
                         <div class="clearfix"></div>
 
-                        <div class="text-center"><?php echo \eMarket\Ecb::priceInterface($value, 1) ?></div>
+                        <div class="text-center item-price"><label><?php echo lang('listing_price') ?></label> <?php echo \eMarket\Ecb::priceInterface($value, 1) ?></div>
 
                     </div>
                 </div>
