@@ -24,8 +24,7 @@
                                 <option value=""></option>
                             </select>
                         </div>
-                    </div>
-                    <div class="form-group">
+                    
                         <small class="form-text text-muted"><?php echo lang('address_book_region') ?></small>
                         <div class="input-group has-success">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
@@ -33,22 +32,19 @@
                                 <option value=""></option>
                             </select>
                         </div>
-                    </div>
-                    <div class="form-group">
+                    
                         <small class="form-text text-muted"><?php echo lang('address_book_city') ?></small>
                         <div class="input-group has-error">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
                             <input class="input-sm form-control" placeholder="<?php echo lang('address_book_city_placeholder') ?>" type="text" name="city"  id="city" required />
                         </div>
-                    </div>
-                    <div class="form-group">
+                    
                         <small class="form-text text-muted"><?php echo lang('address_book_zip') ?></small>
                         <div class="input-group has-error">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
                             <input class="input-sm form-control" placeholder="<?php echo lang('address_book_zip_placeholder') ?>" type="text" name="zip"  id="zip" required />
                         </div>
-                    </div>
-                    <div class="form-group">
+                    
                         <small class="form-text text-muted"><?php echo lang('address_book_shipping_address') ?></small>
                         <div class="input-group has-error">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
