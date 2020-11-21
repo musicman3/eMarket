@@ -49,6 +49,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                         <a href="/?route=products&category_id=<?php echo $lines[$start]['parent_id'] ?>&id=<?php echo $lines[$start]['id'] ?>"><img src="/uploads/images/products/resize_1/<?php echo $lines[$start]['logo_general'] ?>" alt="<?php echo $lines[$start]['name'] ?>" class="img-responsive"></a>
                         <div class="caption">
                             <h5 class="item-heading"><a href="/?route=products&category_id=<?php echo $lines[$start]['parent_id'] ?>&id=<?php echo $lines[$start]['id'] ?>"><?php echo $lines[$start]['name'] ?></a></h5>
+			    <div class="item-price"><?php echo \eMarket\Ecb::priceInterface($lines[$start], 1) ?></div>
                             <div class="item-text">
                                 <?php if ($manufacturer != NULL && $manufacturer != FALSE) { ?>
                                     <label><?php echo lang('product_manufacturer') ?></label> <?php echo $manufacturer ?><br />
@@ -59,7 +60,6 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                                 <label><?php echo lang('product_availability') ?></label>
                                 <?php echo \eMarket\Products::inStock($lines[$start]['date_available'], $lines[$start]['quantity']); ?>
                             </div>
-			    <div class="item-price"><label><?php echo lang('listing_price') ?></label> <?php echo \eMarket\Ecb::priceInterface($lines[$start], 1) ?></div>
                         </div>
                         <div class="clearfix"></div>
                         <div class="row button">

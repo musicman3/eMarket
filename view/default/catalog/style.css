@@ -72,6 +72,7 @@ nav .disabled {pointer-events: none;}
 #new_products .grid-group-item, #categories_listing .grid-group-item, #categories_index .grid-group-item, #listing .grid-group-item {margin-bottom: 20px;}
 #new_products .productHolder, #listing .productHolder, #categories_listing .categoriesHolder, #categories_index .categoriesHolder {border: 1px solid #dddddd;padding: 10px;border-radius: 4px;}
 #new_products .row-flex, #listing .row-flex {display: -webkit-box;display: -ms-flexbox;display: flex;-ms-flex-wrap: wrap;flex-wrap: wrap;}
+#new_products .item-price {font-size: 16px;color: #101B52;font-weight: 700;}
 /* цена и кнопки #new_products .button, #listing .button, #products .button {display: flex;align-items: center;}*/
 
 #products .list-group-item {border: none;margin-bottom: 20px;}
@@ -82,7 +83,7 @@ nav .disabled {pointer-events: none;}
 #products .quantity {all: unset;appearance: textfield;width: 35px;text-align: center;vertical-align: middle;border: 1px solid #2e6da4;border-radius: 3px;padding: 6px 0 6px 0;}
 #products .productpage ul li {list-style: none;}
 #products .productpage ul {padding: 0;margin: 0;}
-#products .productpage-price {font-size: 18px;color: #000;font-weight: bold;}
+#products .productpage-price {font-size: 18px;color: #101B52;font-weight: 700;}
 #products .productpage {margin-bottom: 20px;}
 #products .product-attribute h5 {padding-left: 10px;margin-bottom: 14px;font-weight: bold;}
 #products .product-attribute-table {margin-bottom: 32px;}
@@ -97,7 +98,7 @@ nav .disabled {pointer-events: none;}
 #listing .list-group-item {border: none;padding: 0px 15px;margin-bottom: 20px;}
 #listing .list-group-item img {float: left;margin-right: 100px;}
 #listing .list-group-item .item-text {text-align: justify;}
-#listing .list-group-item .item-price, #listing .grid-group-item .item-price {text-align: justify;margin-bottom: 5px;}
+#listing .list-group-item .item-price, #listing .grid-group-item .item-price {font-size: 16px;color: #101B52;font-weight: 700;text-align: justify;margin-bottom: 10px;}
 #listing .list-group-item .caption {margin-top:-10px;}
 #listing .list-group-item .block-button {float:right;}
 #listing .grid-group-item .block-button {margin-left: -5px;margin-right: -5px;}
