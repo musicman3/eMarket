@@ -11,9 +11,9 @@
 <script type="text/javascript" src="/ext/bootstrap-datepicker/locales/bootstrap-datepicker.<?php echo lang('meta-language') ?>.min.js"></script>
 <script type="text/javascript" src="/model/js/classes/smartdatepicker.js"></script>
 
-<!-- Smart Datepicker" -->
 <script type="text/javascript">
     new SmartDatepicker('<?php echo lang('meta-language') ?>');
+    $('#default_module').bootstrapSwitch();
 </script>
 
 <?php if (isset($name)) { ?>
