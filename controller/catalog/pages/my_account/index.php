@@ -10,4 +10,5 @@ if ($CUSTOMER == FALSE) {
     exit;
 }
 
+$customer = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']])[0];
 ?>
