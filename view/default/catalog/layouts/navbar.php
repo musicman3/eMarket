@@ -48,7 +48,6 @@
                             <li><a href="/?route=my_account">My Account</a></li>
                             <li><a href="/?route=orders"><?php echo lang('title_orders_index') ?></a></li>
                             <li><a href="/?route=address_book"><?php echo lang('my_address_book') ?></a></li>
-                            <li><a href="#">My Password</a></li>
                         </ul>
                     </li>
                 <?php } ?>

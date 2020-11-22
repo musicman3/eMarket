@@ -16,45 +16,57 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
 
 <div id="my_account" class="contentText">
     <form>
-    <div class="row">
+        <div class="row">
 
-	<div class="col-sm-6">
-	    <div class="form-group">
-		<small class="form-text text-muted">Имя</small>
-		<div class="input-group has-error">
-		    <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-		    <input class="input-sm form-control" placeholder="Укажите имя" type="text" name="firstname" id="firstname" required />
-		</div>
-    
-		<small class="form-text text-muted">Отчество</small>
-		<div class="input-group has-error">
-		    <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-		    <input class="input-sm form-control" placeholder="Укажите отчество" type="text" name="lastname" id="lastname" required />
-		</div>
-	    </div>
-	</div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <small class="form-text text-muted">Имя</small>
+                    <div class="input-group has-success">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                        <input class="input-sm form-control" placeholder="Укажите имя" type="text" name="firstname" id="firstname" required />
+                    </div>
 
-	<div class="col-sm-6">
-	    <div class="form-group">
-		<small class="form-text text-muted">Фамилия</small>
-		<div class="input-group has-error">
-		    <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-		    <input class="input-sm form-control" placeholder="Укажите фамилию" type="text" name="firstname" id="firstname" required />
-		</div>
-    
-		<small class="form-text text-muted">Телефон</small>
-		<div class="input-group has-error">
-		    <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-		    <input class="input-sm form-control" placeholder="Укажите телефон" type="text" name="lastname" id="lastname" required />
-		</div>
-	    </div>
-	</div>
+                    <small class="form-text text-muted">Отчество</small>
+                    <div class="input-group has-success">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                        <input class="input-sm form-control" placeholder="Укажите отчество" type="text" name="lastname" id="lastname" required />
+                    </div>
 
-    </div>
-    
-    <div class="text-right">
-	<input class="btn btn-primary" type="submit" value="<?php echo lang('continue') ?>">
-    </div>
-    
+                    <small class="form-text text-muted">Новый пароль</small>
+                    <div class="input-group has-success">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                        <input class="input-sm form-control" type="password" name="password" required />
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <small class="form-text text-muted">Фамилия</small>
+                    <div class="input-group has-success">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                        <input class="input-sm form-control" placeholder="Укажите фамилию" type="text" name="middle_name" id="firstname" required />
+                    </div>
+
+                    <small class="form-text text-muted">Телефон</small>
+                    <div class="input-group has-success">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                        <input class="input-sm form-control" placeholder="Укажите телефон" type="text" name="phone" id="lastname" required />
+                    </div>
+
+                    <small class="form-text text-muted">Подтвердите пароль</small>
+                    <div class="input-group has-success">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                        <input class="input-sm form-control" type="password" name="password_confirm" required />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="text-right">
+            <input class="btn btn-primary" type="submit" value="<?php echo lang('continue') ?>">
+        </div>
+
     </form>
 </div>
