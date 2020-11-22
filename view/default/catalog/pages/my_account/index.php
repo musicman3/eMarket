@@ -26,26 +26,26 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
 		    <input class="input-sm form-control" placeholder="Укажите имя" type="text" name="firstname" id="firstname" required />
 		</div>
     
-		<small class="form-text text-muted">Фамилия</small>
+		<small class="form-text text-muted">Отчество</small>
 		<div class="input-group has-error">
 		    <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-		    <input class="input-sm form-control" placeholder="Укажите фамилию" type="text" name="lastname" id="lastname" required />
+		    <input class="input-sm form-control" placeholder="Укажите отчество" type="text" name="lastname" id="lastname" required />
 		</div>
 	    </div>
 	</div>
 
 	<div class="col-sm-6">
 	    <div class="form-group">
-		<small class="form-text text-muted">Имя</small>
-		<div class="input-group has-error">
-		    <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-		    <input class="input-sm form-control" placeholder="Укажите имя" type="text" name="firstname" id="firstname" required />
-		</div>
-    
 		<small class="form-text text-muted">Фамилия</small>
 		<div class="input-group has-error">
 		    <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-		    <input class="input-sm form-control" placeholder="Укажите фамилию" type="text" name="lastname" id="lastname" required />
+		    <input class="input-sm form-control" placeholder="Укажите фамилию" type="text" name="firstname" id="firstname" required />
+		</div>
+    
+		<small class="form-text text-muted">Телефон</small>
+		<div class="input-group has-error">
+		    <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+		    <input class="input-sm form-control" placeholder="Укажите телефон" type="text" name="lastname" id="lastname" required />
 		</div>
 	    </div>
 	</div>
