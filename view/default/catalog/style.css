@@ -102,7 +102,7 @@ nav .disabled {pointer-events: none;}
 #listing .list-group-item .block-button {float:right;}
 #listing .grid-group-item .item-price {font-size: 16px;color: #101B52;font-weight: 700;margin-bottom: 10px;text-align: center;}
 #listing .grid-group-item .block-button {margin-left: -5px;margin-right: -5px;}
-#listing .grid-group-item .buy-now {float:right;padding: 6px 9px;}
+#listing .grid-group-item .buy-now {float:right;}
 #listing .grid-group-item .item-heading {text-align: center;}
 #listing .grid-group-item .item-text {display: none;}
 #listing .grid-group-item img {display: block;margin-right: auto;margin-left: auto;}
@@ -122,6 +122,7 @@ nav .disabled {pointer-events: none;}
 #listing .check-box {margin:8px 0 0 0;}
 #listing .no, #cart .no, #products .no {padding: 7px 2px;}
 #listing .quantity {all: unset;appearance: textfield;width: 35px;text-align: center;vertical-align: middle;border: 1px solid #2e6da4;border-radius: 3px;padding: 6px 0 6px 0;}
+#listing .buy-now {padding: 6px 9px;}
 
 #cart .button {padding-bottom: 20px;}
 #cart .table-bordered > tbody > tr > td {border:0;vertical-align: middle;}
