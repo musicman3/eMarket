@@ -106,8 +106,8 @@ if (\eMarket\Valid::inPOST('add') && password_verify(\eMarket\Valid::inPOST('ord
             [$_SESSION['email_customer'], json_encode($customer), $orders_status_history, \eMarket\Valid::inPOST('products_order'), json_encode($order_total), json_encode($invoice),
                 NULL, \eMarket\Set::ipAddress(), $payment_method, $shipping_method, NULL, date("Y-m-d H:i:s")]);
 
-    //Вычитаем товар со склада
-    \eMarket\Pdo::inPrepare("UPDATE " . TABLE_PRODUCTS . " SET quantity=quantity- " . $value['quantity'] . " WHERE id=?", [$value['id']]);
+    //Обновляем таблицу товара
+    \eMarket\Pdo::inPrepare("UPDATE " . TABLE_PRODUCTS . " SET quantity=quantity- " . $value['quantity'] . ", ordered=ordered+1 WHERE id=?", [$value['id']]);
 
     unset($_SESSION['cart']);
     
