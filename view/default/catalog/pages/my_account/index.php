@@ -15,7 +15,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
 <h1><?php echo lang('my_account_name') ?></h1>
 
 <div id="my_account" class="contentText">
-    <form name="form_edit" id="form_edit"  action="javascript:void(null);" onsubmit="callEdit()">
+    <form name="form_edit" id="form_edit" action="javascript:void(null);" onchange="validate()" onsubmit="callEdit()">
         <input type="hidden" id="edit" name="edit" value="ok" />
         <div class="row">
 
@@ -58,15 +58,15 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
             <div class="col-sm-6">
                 <div class="form-group">
                     <small class="form-text text-muted"><?php echo lang('my_account_password') ?></small>
-                    <div class="input-group has-success">
+                    <div class="input-group has-success password">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                        <input class="input-sm form-control" placeholder="<?php echo lang('my_account_enter_your_password') ?>" type="password" name="password" id="password" />
+                        <input class="input-sm form-control password-data" minlength="7" maxlength="40" placeholder="<?php echo lang('my_account_enter_your_password') ?>" type="password" name="password" id="password" />
                     </div>
 
                     <small class="form-text text-muted"><?php echo lang('my_account_confirm_password') ?></small>
-                    <div class="input-group has-success">
+                    <div class="input-group has-success confirm">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                        <input class="input-sm form-control" placeholder="<?php echo lang('my_account_confirm_your_password') ?>" type="password" name="confirm_password" id="confirm_password" />
+                        <input class="input-sm form-control password-data" minlength="7" maxlength="40" placeholder="<?php echo lang('my_account_confirm_your_password') ?>" type="password" name="confirm_password" id="confirm_password" />
                     </div>
                 </div>
             </div>
@@ -74,7 +74,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
         </div>
 
         <div class="text-right">
-            <input class="btn btn-primary" type="submit" value="<?php echo lang('save') ?>">
+            <input id="submit_btn" class="btn btn-primary" type="submit" value="<?php echo lang('save') ?>">
         </div>
 
     </form>

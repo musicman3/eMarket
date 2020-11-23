@@ -36,6 +36,7 @@ my_account_enter_your_middlename = Please enter your middle name
 my_account_enter_your_phone = Please enter your phone
 my_account_enter_your_password = Please enter your new password
 my_account_confirm_your_password = Please confirm your new password
+my_account_password_check = Confirmation password error
 
 ;LAYOUTS
 categories_name = Categories
