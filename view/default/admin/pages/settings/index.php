@@ -61,6 +61,17 @@
                                 <div class="settings"><a href="?route=settings/order_status" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pushpin glyph-xs"> </span></a><?php echo lang('title_settings_order_status_index') ?></div>
                             </td>
                         </tr>
+                        <tr>
+                            <td>
+                                
+                            </td>
+                            <td>
+                                <div class="settings"><a href="?route=settings/stikers" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-bookmark glyph-xs"> </span></a><?php echo lang('title_settings_stikers_index') ?></div>
+                            </td>
+                            <td>
+                                
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

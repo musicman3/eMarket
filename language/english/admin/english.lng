@@ -20,6 +20,7 @@ title_settings_index = Settings
 title_settings_length_index = Length
 title_settings_modules_index = Modules
 title_settings_order_status_index = Order statuses
+title_settings_stikers_index = Stikers
 title_settings_taxes_index = Taxes
 title_settings_templates_index = Template layout
 title_settings_units_index = Units
@@ -260,3 +261,6 @@ customers_firstname = Firstname
 customers_lastname = Lastname
 customers_email = Email
 customers_date_created = Date created
+
+;STIKERS
+stikers_name = Stiker name
