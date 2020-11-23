@@ -12,7 +12,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
 
 <!--Выводим уведомление об успешном действии-->
 <?php \eMarket\Messages::alert(); ?>
-<h1>Мой Аккаунт</h1>
+<h1><?php echo lang('my_account_name') ?></h1>
 
 <div id="my_account" class="contentText">
     <form>
@@ -20,32 +20,32 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
 
             <div class="col-sm-6">
                 <div class="form-group">
-                    <small class="form-text text-muted">Имя</small>
+                    <small class="form-text text-muted"><?php echo lang('my_account_firstname') ?></small>
                     <div class="input-group has-success">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                        <input class="input-sm form-control" placeholder="Укажите имя" type="text" name="firstname" id="firstname" value="<?php echo $customer['firstname'] ?>" />
+                        <input class="input-sm form-control" placeholder="<?php echo lang('my_account_enter_your_firstname') ?>" type="text" name="firstname" id="firstname" value="<?php echo $customer['firstname'] ?>" />
                     </div>
 
-                    <small class="form-text text-muted">Отчество</small>
+                    <small class="form-text text-muted"><?php echo lang('my_account_middlename') ?></small>
                     <div class="input-group has-success">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                        <input class="input-sm form-control" placeholder="Укажите отчество" type="text" name="middle_name" id="middle_name" value="<?php echo $customer['middle_name'] ?>" />
+                        <input class="input-sm form-control" placeholder="<?php echo lang('my_account_enter_your_middlename') ?>" type="text" name="middle_name" id="middle_name" value="<?php echo $customer['middle_name'] ?>" />
                     </div>
                 </div>
             </div>
 
             <div class="col-sm-6">
                 <div class="form-group">
-                    <small class="form-text text-muted">Фамилия</small>
+                    <small class="form-text text-muted"><?php echo lang('my_account_lastname') ?></small>
                     <div class="input-group has-success">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                        <input class="input-sm form-control" placeholder="Укажите фамилию" type="text" name="lastname" id="lastname" value="<?php echo $customer['lastname'] ?>" />
+                        <input class="input-sm form-control" placeholder="<?php echo lang('my_account_enter_your_lastname') ?>" type="text" name="lastname" id="lastname" value="<?php echo $customer['lastname'] ?>" />
                     </div>
 
-                    <small class="form-text text-muted">Телефон</small>
+                    <small class="form-text text-muted"><?php echo lang('my_account_telephone') ?></small>
                     <div class="input-group has-success">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                        <input class="input-sm form-control" placeholder="Укажите телефон" type="text" name="telephone" id="lastname" value="<?php echo $customer['telephone'] ?>" />
+                        <input class="input-sm form-control" placeholder="<?php echo lang('my_account_enter_your_phone') ?>" type="text" name="telephone" id="lastname" value="<?php echo $customer['telephone'] ?>" />
                     </div>
                 </div>
             </div>
@@ -56,16 +56,16 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
 
             <div class="col-sm-6">
                 <div class="form-group">
-                    <small class="form-text text-muted">Новый пароль</small>
+                    <small class="form-text text-muted"><?php echo lang('my_account_password') ?></small>
                     <div class="input-group has-success">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                        <input class="input-sm form-control" placeholder="Укажите новый пароль" type="password" name="password" id="password" />
+                        <input class="input-sm form-control" placeholder="<?php echo lang('my_account_enter_your_password') ?>" type="password" name="password" id="password" />
                     </div>
 
-                    <small class="form-text text-muted">Подтвердите пароль</small>
+                    <small class="form-text text-muted"><?php echo lang('my_account_confirm_password') ?></small>
                     <div class="input-group has-success">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                        <input class="input-sm form-control" placeholder="Подтвердите новый пароль" type="password" name="confirm_password" id="confirm_password" />
+                        <input class="input-sm form-control" placeholder="<?php echo lang('my_account_confirm_your_password') ?>" type="password" name="confirm_password" id="confirm_password" />
                     </div>
                 </div>
             </div>

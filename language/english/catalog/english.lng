@@ -14,12 +14,28 @@ title_recoverypass_index = Password Recovery
 title_address_book_index = Address Book
 title_success_index = Order completed successfully
 title_orders_index = My Orders
+title_my_account_index = My Account
 
 ;DEBUG
 debug_page_generation_time = Page generation time:
 debug_db_queries = DB queries:
 debug_sec = sec.
 debug_pcs = pcs.
+
+;MY ACCOUNT
+my_account_name = My account
+my_account_firstname = Firstname
+my_account_lastname = Lastname
+my_account_middlename = Middle name
+my_account_telephone = Phone
+my_account_password = New password
+my_account_confirm_password = Confirm password
+my_account_enter_your_firstname = Please enter your firstname
+my_account_enter_your_lastname = Please enter your lastname
+my_account_enter_your_middlename = Please enter your middle name
+my_account_enter_your_phone = Please enter your phone
+my_account_enter_your_password = Please enter your new password
+my_account_confirm_your_password = Please confirm your new password
 
 ;LAYOUTS
 categories_name = Categories
