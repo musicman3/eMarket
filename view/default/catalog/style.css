@@ -73,6 +73,8 @@ nav .disabled {pointer-events: none;}
 #new_products .productHolder, #listing .productHolder, #categories_listing .categoriesHolder, #categories_index .categoriesHolder {border: 1px solid #dddddd;padding: 10px;border-radius: 4px;}
 #new_products .row-flex, #listing .row-flex {display: -webkit-box;display: -ms-flexbox;display: flex;-ms-flex-wrap: wrap;flex-wrap: wrap;}
 #new_products .item-price {font-size: 15px;color: #000000;font-weight: 700;}
+#new_products .labelsblock {position: absolute;margin: -5px 0 0 -5px;}
+#new_products .labelsblock div {display: table;padding: 4px 7px;color: #ffffff;font-size: 12px;margin: 0 0 4px 0;border-radius: 3px;text-transform: uppercase;font-weight: 700;}
 
 #products .list-group-item {border: none;margin-bottom: 20px;}
 #products .img-padding {padding: 0 0 15px 0;}
@@ -125,7 +127,6 @@ nav .disabled {pointer-events: none;}
 #listing .buy-now {padding: 6px 9px;}
 #listing .labelsblock {position: absolute;margin: -5px 0 0 -5px;}
 #listing .labelsblock div {display: table;padding: 4px 7px;color: #ffffff;font-size: 12px;margin: 0 0 4px 0;border-radius: 3px;text-transform: uppercase;font-weight: 700;}
-#listing .lowprice {background-color: #D9534F;}
 
 #cart .button {padding-bottom: 20px;}
 #cart .table-bordered > tbody > tr > td {border:0;vertical-align: middle;}
