@@ -59,6 +59,19 @@ if ($installed_active != '' && isset($sales_all) && count($sales_all) > 0) {
         }
     }
 }
+// Формируем список стикеров
+$stikers = '';
+$stikers_default = 0;
+$stikers_flag = 0;
+$stikers_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_STIKERS . " WHERE language=?", [lang('#lang_all')[0]]);
+
+foreach ($stikers_data as $val) {
+    $stikers_flag = 1;
+    $stikers .= $val['id'] . ': ' . "'" . $val['name'] . "', ";
+    if ($val['default_stikers'] == 1) {
+                $stikers_default = $val['id'];
+            }
+}
 // Формируем массив Валюта для выпадающего списка
 $currencies_all = \eMarket\Pdo::getColRow("SELECT name, default_value, id FROM " . TABLE_CURRENCIES . " WHERE language=?", [lang('#lang_all')[0]]);
 
@@ -90,10 +103,10 @@ $lines_on_page = \eMarket\Set::linesOnPage();
 $search = '%' . \eMarket\Valid::inGET('search') . '%';
 if (\eMarket\Valid::inGET('search')) {
     $lines_cat = \eMarket\Pdo::getColRow("SELECT id, name, parent_id, status, attributes FROM " . TABLE_CATEGORIES . " WHERE name LIKE? AND language=? ORDER BY sort_category DESC", [$search, lang('#lang_all')[0]]);
-    $lines_prod = \eMarket\Pdo::getColRow("SELECT id, name, parent_id, status, discount, price, attributes FROM " . TABLE_PRODUCTS . " WHERE (name LIKE? OR description LIKE?) AND language=? ORDER BY id DESC", [$search, $search, lang('#lang_all')[0]]);
+    $lines_prod = \eMarket\Pdo::getColRow("SELECT id, name, parent_id, status, discount, price, attributes, stiker FROM " . TABLE_PRODUCTS . " WHERE (name LIKE? OR description LIKE?) AND language=? ORDER BY id DESC", [$search, $search, lang('#lang_all')[0]]);
 } else {
     $lines_cat = \eMarket\Pdo::getColRow("SELECT id, name, parent_id, status, attributes FROM " . TABLE_CATEGORIES . " WHERE parent_id=? AND language=? ORDER BY sort_category DESC", [$parent_id, lang('#lang_all')[0]]);
-    $lines_prod = \eMarket\Pdo::getColRow("SELECT id, name, parent_id, status, discount, price, attributes FROM " . TABLE_PRODUCTS . " WHERE parent_id=? AND language=? ORDER BY id DESC", [$parent_id, lang('#lang_all')[0]]);
+    $lines_prod = \eMarket\Pdo::getColRow("SELECT id, name, parent_id, status, discount, price, attributes, stiker FROM " . TABLE_PRODUCTS . " WHERE parent_id=? AND language=? ORDER BY id DESC", [$parent_id, lang('#lang_all')[0]]);
 }
 $count_lines_cat = count($lines_cat);  //считаем количество строк
 $count_lines_prod = count($lines_prod);  //считаем количество строк
@@ -123,6 +136,13 @@ if ($parent_id == 0) {
 } else {
     $attributes_category = json_encode(\eMarket\Pdo::getColAssoc("SELECT attributes FROM " . TABLE_CATEGORIES . " WHERE id=? AND language=?", [$parent_id, lang('#lang_all')[0]])[0]['attributes']);
 }
+
+$stiker_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_STIKERS . " WHERE language=?", [lang('#lang_all')[0]]);
+$stiker_name = [];
+foreach ($stiker_data as $val){
+    $stiker_name[$val['id']] =  $val['name'];
+}
+
 // КОНЕЦ-> КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 // Модальное окно
 require_once('modal/index.php');

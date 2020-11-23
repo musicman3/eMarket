@@ -72,6 +72,9 @@ button_sale_on = Add to Sale
 button_sale_off = Remove from Sale
 button_sale_off_all = Remove all sales
 button_sale = Sale
+button_stiker = Stiker
+button_stiker_add = Add stiker
+button_stiker_delete = Delete stiker
 cut = Cut
 paste = Paste
 search = Search...
@@ -127,6 +130,7 @@ attention = ATTENTION!
 confirm_delete_product_or_category = Are you sure you want to delete a category or product?
 confirm_delete_sale = Are you sure you want to remove from the sale?
 confirm_delete_sales = Are you sure you want to remove all sales?
+confirm_delete_stiker = Are you sure you want to remove stiker?
 
 
 ;DEBUG

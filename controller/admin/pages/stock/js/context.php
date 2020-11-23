@@ -609,6 +609,130 @@
 
                 "sep13": "---------",
 
+                "fold3": {
+                    "name": "<?php echo lang('button_stiker') ?>",
+                    icon: function () {
+                        return 'context-menu-icon glyphicon-bookmark';
+                    },
+                    disabled: function () {
+                        // Делаем не активным пункт меню, если нет строк
+                        var sale = '<?php echo $stikers_flag ?>';
+                        if (sale === '0') {
+                            return true;
+                        }
+                    },
+
+                    "items": {
+                        "stiker": {
+                            type: 'select',
+                            options: {<?php echo $stikers ?>},
+                            selected: <?php echo $stikers_default ?>,
+                            disabled: function () {
+
+                            }
+                        },
+
+                        "sep14": "---------",
+
+                        'stikerOn': {
+                            name: "<?php echo lang('button_stiker_add') ?>",
+                            icon: function () {
+                                return 'context-menu-icon glyphicon-plus';
+                            },
+                            disabled: function () {
+
+                            },
+                            callback: function (itemKey, opt, rootMenu, originalEvent) {
+                                // Значение выбранного селекта
+                                var selected_id = $('select[name="context-menu-input-stiker"] option:selected').val();
+                                // Установка синхронного запроса для jQuery.ajax
+                                jQuery.ajaxSetup({async: false});
+                                // Отправка данных по каждой выделенной строке
+                                var idArray = [];
+                                $(".option").each(function (i) {
+                                    if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
+                                        idArray[i] = this.id;
+                                });
+                                $('.group-attributes').sortable('option', 'disabled', true);
+                                $('.attribute').sortable('option', 'disabled', true);
+                                $('.values_attribute').sortable('option', 'disabled', true);
+                                jQuery.post('?route=stock',
+                                        {idsx_stikerOn_id: idArray,
+                                            idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
+                                            stiker: selected_id,
+                                            idsx_stikerOn_key: 'On'});
+                                // Отправка запроса для обновления страницы
+                                jQuery.get('?route=stock',
+                                        {parent_down: <?php echo $parent_id ?>},
+                                        AjaxSuccess);
+                                // Обновление страницы
+                                function AjaxSuccess(data) {
+                                    $('#view_categories_stock').bootstrapSwitch('destroy');
+                                    $('#fileupload').fileupload('destroy');
+                                    $('#fileupload-product').fileupload('destroy');
+                                    $('#ajax').html(data);
+                                    $('.group-attributes').sortable('option', 'disabled', false);
+                                    $('.attribute').sortable('option', 'disabled', false);
+                                    $('.values_attributes').sortable('option', 'disabled', false);
+                                }
+                            }
+                        },
+
+                        "stikerOff": {
+                            name: "<?php echo lang('button_stiker_delete') ?>",
+                            icon: function () {
+                                return 'context-menu-icon glyphicon-trash';
+                            },
+                            disabled: function () {
+
+                            },
+                            callback: function (itemKey, opt, rootMenu, originalEvent) {
+                                $('#confirm').modal('show');
+                                $('#confirm_title').html('<?php echo lang('attention') ?>');
+                                $('#confirm_body').html('<?php echo lang('confirm_delete_stiker') ?>');
+
+                                confirmation.onclick = function () {
+                                    $('#confirm').modal('hide');
+                                    // Значение выбранного селекта
+                                    var selected_id = $('select[name="context-menu-input-stiker"] option:selected').val();
+                                    // Установка синхронного запроса для jQuery.ajax
+                                    jQuery.ajaxSetup({async: false});
+                                    // Отправка данных по каждой выделенной строке
+                                    var idArray = [];
+                                    $(".option").each(function (i) {
+                                        if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
+                                            idArray[i] = this.id;
+                                    });
+                                    $('.group-attributes').sortable('option', 'disabled', true);
+                                    $('.attribute').sortable('option', 'disabled', true);
+                                    $('.values_attribute').sortable('option', 'disabled', true);
+                                    jQuery.post('?route=stock',
+                                            {idsx_stikerOff_id: idArray,
+                                                idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
+                                                stiker: selected_id,
+                                                idsx_stikerOff_key: 'Off'});
+                                    // Отправка запроса для обновления страницы
+                                    jQuery.get('?route=stock',
+                                            {parent_down: <?php echo $parent_id ?>},
+                                            AjaxSuccess);
+                                    // Обновление страницы
+                                    function AjaxSuccess(data) {
+                                        $('#view_categories_stock').bootstrapSwitch('destroy');
+                                        $('#fileupload').fileupload('destroy');
+                                        $('#fileupload-product').fileupload('destroy');
+                                        $('#ajax').html(data);
+                                        $('.group-attributes').sortable('option', 'disabled', false);
+                                        $('.attribute').sortable('option', 'disabled', false);
+                                        $('.values_attributes').sortable('option', 'disabled', false);
+                                    }
+                                }
+                            }
+                        },
+                    }
+                },
+
+                "sep15": "---------",
+
                 "quit": {name: "<?php echo lang('menu_exit') ?>", icon: function () {
                         return 'context-menu-icon glyphicon-remove';
                     }}

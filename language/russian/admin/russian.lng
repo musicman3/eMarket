@@ -72,6 +72,9 @@ button_sale_on = Добавить в распродажу
 button_sale_off = Убрать из распродажи
 button_sale_off_all = Убрать все распродажи
 button_sale = Распродажа
+button_stiker = Стикер
+button_stiker_add = Добавить стикер
+button_stiker_delete = Удалить стикер
 cut = Вырезать
 paste = Вставить
 search = Искать...
@@ -128,6 +131,7 @@ attention = ВНИМАНИЕ!
 confirm_delete_product_or_category = Вы уверены что хотите удалить категорию или товар?
 confirm_delete_sale = Вы уверены что хотите убрать из распродажи?
 confirm_delete_sales = Вы уверены что хотите убрать все распродажи?
+confirm_delete_stiker = Вы уверены что хотите удалить стикер?
 
 ;DEBUG
 debug_page_generation_time = Время генерации страницы:

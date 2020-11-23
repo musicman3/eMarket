@@ -61,6 +61,9 @@ final class Eac {
 
         // Если нажали на кнопку Распродажа
         $parent_id_sale = self::sale($TABLES[0], $TABLES[1], $parent_id);
+        
+        // Если нажали на кнопку Распродажа
+        $parent_id_stiker = self::stiker($TABLES[0], $TABLES[1], $parent_id);
 
         // Сортировка мышкой EAC
         self::sortList($TABLES[0]);
@@ -83,6 +86,10 @@ final class Eac {
 
         if ($parent_id_sale != $parent_id) {
             $parent_id = $parent_id_sale;
+        }
+        
+        if ($parent_id_stiker != $parent_id) {
+            $parent_id = $parent_id_stiker;
         }
 
         return [$idsx_real_parent_id, $parent_id];
@@ -607,6 +614,79 @@ final class Eac {
     }
 
     /**
+     * Стикер в EAC
+     * @param string $TABLE_CATEGORIES (название таблицы категорий)
+     * @param string $TABLE_PRODUCTS (название таблицы товаров)
+     * @param string $parent_id (идентификатор родительской категории)
+     * @return string $parent_id (идентификатор родительской категории)
+     */
+    private static function stiker($TABLE_CATEGORIES, $TABLE_PRODUCTS, $parent_id) {
+
+        if ((\eMarket\Valid::inPOST('idsx_stikerOn_key') == 'On')
+                or ( \eMarket\Valid::inPOST('idsx_stikerOff_key') == 'Off')) {
+
+            $parent_id_real = (int) \eMarket\Valid::inPOST('idsx_real_parent_id'); // получить значение из JS
+
+            if (\eMarket\Valid::inPOST('idsx_stikerOn_key') == 'On') {
+                // Если в массиве пустое значение, то собираем новый массив без этого значения со сбросом ключей
+                $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('idsx_stikerOn_id'));
+                $stiker = \eMarket\Valid::inPOST('stiker');
+            }
+
+            if (\eMarket\Valid::inPOST('idsx_stikerOff_key') == 'Off') {
+                // Если в массиве пустое значение, то собираем новый массив без этого значения со сбросом ключей
+                $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('idsx_stikerOff_id'));
+                $stiker = '';
+                $stiker_id = \eMarket\Valid::inPOST('stiker');
+            }
+
+            if (is_array($idx) == FALSE) {
+                $idx = [];
+            }
+
+            for ($i = 0; $i < count($idx); $i++) {
+                if (strstr($idx[$i], '_', true) != 'product') {
+                    // Это категория
+                    $parent_id = self::dataParentId($TABLE_CATEGORIES, $idx[$i]);
+                    $keys = self::dataKeys($TABLE_CATEGORIES, $idx[$i]);
+
+                    $count_keys = count($keys); // Получаем количество значений в массиве
+                    for ($x = 0; $x < $count_keys; $x++) {
+
+                        //Обновляем статус подкатегорий
+                        if (\eMarket\Valid::inPOST('idsx_stikerOn_key') == 'On' OR \eMarket\Valid::inPOST('idsx_stikerOff_key') == 'Off') {
+                            // Это товар
+                            $stiker_id_array = \eMarket\Pdo::getCol("SELECT id FROM " . $TABLE_PRODUCTS . " WHERE language=? AND parent_id=?", [lang('#lang_all')[0], $keys[$x]]);
+
+                            foreach ($stiker_id_array as $stiker_id_arr) {
+                                \eMarket\Pdo::inPrepare("UPDATE " . $TABLE_PRODUCTS . " SET stiker=? WHERE id=?", [$stiker, $stiker_id_arr]);
+                            }
+
+                            if ($parent_id_real > 0) {
+                                $parent_id = $parent_id_real; // Возвращаемся в свою директорию после "Вырезать"
+                            }
+                        }
+                    }
+                } else {
+                    // Это товар
+                    //Обновляем статус основного товара
+                    if (\eMarket\Valid::inPOST('idsx_stikerOn_key') == 'On' OR \eMarket\Valid::inPOST('idsx_stikerOff_key') == 'Off') {
+                        $id_prod = explode('product_', $idx[$i]);
+                        \eMarket\Pdo::inPrepare("UPDATE " . $TABLE_PRODUCTS . " SET stiker=? WHERE id=?", [$stiker, $id_prod[1]]);
+                    }
+                }
+            }
+        }
+
+        // Если parrent_id является массивом, то
+        if (is_array($parent_id) == TRUE) {
+            $parent_id = 0;
+        }
+
+        return $parent_id;
+    }
+
+    /**
      * Установка parent_id при навигации в EAC
      * @param string $TABLE_CATEGORIES (название таблицы категорий)
      * @param string $idx (идентификатор)
@@ -760,7 +840,7 @@ final class Eac {
             } else {
                 $min_quantity_product_stock = NULL;
             }
-            
+
             if (\eMarket\Valid::inPOST('selected_attributes')) {
                 $selected_attributes_product_stock = \eMarket\Valid::inPOST('selected_attributes');
             } else {
@@ -888,7 +968,7 @@ final class Eac {
             } else {
                 $min_quantity_product_stock = NULL;
             }
-            
+
             if (\eMarket\Valid::inPOST('selected_attributes')) {
                 $selected_attributes_product_stock = \eMarket\Valid::inPOST('selected_attributes');
             } else {

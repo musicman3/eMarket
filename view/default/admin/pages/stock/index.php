@@ -74,39 +74,39 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th colspan="4">
+                                <th colspan="5">
 
                                     <div class="page"><?php echo lang('with') ?> <?php echo $start + 1 ?> <?php echo lang('to') ?> <?php echo \eMarket\Navigation::counter($start, $finish, $count_lines_merge, $lines_on_page) ?> ( <?php echo lang('of') ?> <?php echo $count_lines_merge; ?> )</div>
 
                                     <!-- Переключаем страницу "ВПЕРЕД" -->
-                                        <form>
-                                            <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
-                                            <input hidden name="start" value="<?php echo $start ?>">
-                                            <input hidden name="finish" value="<?php echo $finish ?>">
-                                            <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
-                                            <div class="b-right">
-					    <?php if ($finish != $count_lines_merge) { ?>
-						<button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button>
-					    <?php } else { ?>
-						<a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-right"></span></a>
-					    <?php } ?>
-					</div>
-                                        </form>
+                                    <form>
+                                        <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
+                                        <input hidden name="start" value="<?php echo $start ?>">
+                                        <input hidden name="finish" value="<?php echo $finish ?>">
+                                        <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
+                                        <div class="b-right">
+                                            <?php if ($finish != $count_lines_merge) { ?>
+                                                <button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button>
+                                            <?php } else { ?>
+                                                <a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-right"></span></a>
+                                            <?php } ?>
+                                        </div>
+                                    </form>
 
-                                        <!-- Переключаем страницу "НАЗАД" -->
-                                        <form>
-                                            <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
-                                            <input hidden name="backstart" value="<?php echo $start ?>">
-                                            <input hidden name="backfinish" value="<?php echo $finish ?>">
-                                            <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
-                                            <div class="b-left">
-					    <?php if ($start > 0) { ?>
-						<button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button>
-					    <?php } else { ?>
-						<a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-left"></span></a>
-					    <?php } ?>
-					</div>
-                                        </form>
+                                    <!-- Переключаем страницу "НАЗАД" -->
+                                    <form>
+                                        <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
+                                        <input hidden name="backstart" value="<?php echo $start ?>">
+                                        <input hidden name="backfinish" value="<?php echo $finish ?>">
+                                        <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
+                                        <div class="b-left">
+                                            <?php if ($start > 0) { ?>
+                                                <button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button>
+                                            <?php } else { ?>
+                                                <a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-left"></span></a>
+                                            <?php } ?>
+                                        </div>
+                                    </form>
 
                                 </th>
                             </tr>
@@ -245,13 +245,19 @@
                                             <div class="pull-left"><?php echo $arr_merge['prod'][$start . 'a'][1] ?></div>
                                             <div class="pull-right"><?php echo \eMarket\Ecb::priceInterface($arr_merge['prod'][$start . 'a'], 1) ?></div>
                                         </td>
+
                                         <?php if ($arr_merge['prod'][$start . 'a'][4] != '' && $arr_merge['prod'][$start . 'a'][4] != NULL && strpos($arr_merge['prod'][$start . 'a'][4], ',') == FALSE && \eMarket\Modules\Discount\Sale::status() == 1) { ?>
                                             <td class="sortleft"><span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="<?php echo \eMarket\Set::productSaleTooltip($arr_merge['prod'][$start . 'a'][4]) ?>" class="glyphicon glyphicon-tag text-primary"> </span></td>
                                         <?php } elseif ($arr_merge['prod'][$start . 'a'][4] != '' && $arr_merge['prod'][$start . 'a'][4] != NULL && strpos($arr_merge['prod'][$start . 'a'][4], ',') != FALSE && \eMarket\Modules\Discount\Sale::status() == 1) { ?>
                                             <td class="sortleft"><span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="<?php echo \eMarket\Set::productSaleTooltip($arr_merge['prod'][$start . 'a'][4]) ?>" class="glyphicon glyphicon-tags text-primary"> </span></td>
-
                                         <?php } else { ?>
                                             <td class="sortleft-m"><span class="glyphicon glyphicon-tag"></span></td>
+                                        <?php } ?>
+
+                                        <?php if ($arr_merge['prod'][$start . 'a'][7] != '' && $arr_merge['prod'][$start . 'a'][7] != NULL) { ?>
+                                            <td class="sortleft"><span class="label label-warning"><?php echo $stiker_name[$arr_merge['prod'][$start . 'a'][7]] ?></span></td>
+                                        <?php } else { ?>
+                                            <td class="sortleft-m"></td>
                                         <?php } ?>
                                     </tr>
 
@@ -292,7 +298,7 @@
                         </thead>
                         <tbody>
                             <tr class="sortno">
-				<td class="sortleft-m"></td>
+                                <td class="sortleft-m"></td>
                                 <td class="sortleft">
 
                                     <!-- Категорий нет "ВВЕРХ" -->
@@ -336,8 +342,8 @@
                         </thead>
                         <tbody>
                             <tr>
-				<td class="sortleft-m"></td>
-				<td class="sortleft-m"></td>
+                                <td class="sortleft-m"></td>
+                                <td class="sortleft-m"></td>
                                 <td class="options"><div class="context-one"><?php echo lang('no_listing') ?></div></td>
                             </tr>
                         </tbody>
