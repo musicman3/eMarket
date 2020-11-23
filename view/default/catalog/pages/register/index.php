@@ -82,7 +82,7 @@ if (\eMarket\Valid::inPOST('email') && $user_email != NULL) {
     <p><?php echo lang('register_problem_message') ?></p>
     <form>
 	<input hidden name="route" value="register">
-	<div class="text-center">
+	<div class="text-center form-group">
 	    <input class="btn btn-primary" type="submit" value="<?php echo lang('continue') ?>">
 	</div>
     </form>
@@ -97,7 +97,7 @@ if (\eMarket\Valid::inPOST('email') && $user_email == NULL) {
     <p><?php echo lang('register_complete_message') ?></p>
     <form>
 	<input hidden name="route" value="catalog">
-	<div class="text-center">
+	<div class="text-center form-group">
 	    <input class="btn btn-primary" type="submit" value="<?php echo lang('continue') ?>">
 	</div>
     </form>
