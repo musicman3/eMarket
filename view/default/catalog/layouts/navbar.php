@@ -45,7 +45,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="/?route=login&logout=ok"><?php echo lang('navbar_logout') ?></a></li>
                             <li class="divider"></li>
-                            <li><a href="/?route=my_account">My Account</a></li>
+                            <li><a href="/?route=my_account"><?php echo lang('title_my_account_index') ?></a></li>
                             <li><a href="/?route=orders"><?php echo lang('title_orders_index') ?></a></li>
                             <li><a href="/?route=address_book"><?php echo lang('my_address_book') ?></a></li>
                         </ul>

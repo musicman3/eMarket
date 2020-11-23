@@ -10,5 +10,10 @@ if ($CUSTOMER == FALSE) {
     exit;
 }
 
-$customer = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']])[0];
+if (\eMarket\Valid::inPOST('edit')) {
+    \eMarket\Pdo::inPrepare("UPDATE " . TABLE_CUSTOMERS . " SET firstname=?, lastname=?, middle_name=?, telephone=? WHERE email=?", [\eMarket\Valid::inPOST('firstname'), \eMarket\Valid::inPOST('lastname'), \eMarket\Valid::inPOST('middle_name'), \eMarket\Valid::inPOST('telephone'),  $CUSTOMER['email']]);
+}
+
+//Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
+$JS_END = __DIR__;
 ?>

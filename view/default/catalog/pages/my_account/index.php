@@ -15,7 +15,8 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
 <h1><?php echo lang('my_account_name') ?></h1>
 
 <div id="my_account" class="contentText">
-    <form>
+    <form name="form_edit" id="form_edit"  action="javascript:void(null);" onsubmit="callEdit()">
+        <input type="hidden" id="edit" name="edit" value="ok" />
         <div class="row">
 
             <div class="col-sm-6">
@@ -23,13 +24,13 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                     <small class="form-text text-muted"><?php echo lang('my_account_firstname') ?></small>
                     <div class="input-group has-success">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                        <input class="input-sm form-control" placeholder="<?php echo lang('my_account_enter_your_firstname') ?>" type="text" name="firstname" id="firstname" value="<?php echo $customer['firstname'] ?>" />
+                        <input class="input-sm form-control" placeholder="<?php echo lang('my_account_enter_your_firstname') ?>" type="text" name="firstname" id="firstname" value="<?php echo $CUSTOMER['firstname'] ?>" />
                     </div>
 
                     <small class="form-text text-muted"><?php echo lang('my_account_middlename') ?></small>
                     <div class="input-group has-success">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                        <input class="input-sm form-control" placeholder="<?php echo lang('my_account_enter_your_middlename') ?>" type="text" name="middle_name" id="middle_name" value="<?php echo $customer['middle_name'] ?>" />
+                        <input class="input-sm form-control" placeholder="<?php echo lang('my_account_enter_your_middlename') ?>" type="text" name="middle_name" id="middle_name" value="<?php echo $CUSTOMER['middle_name'] ?>" />
                     </div>
                 </div>
             </div>
@@ -39,13 +40,13 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                     <small class="form-text text-muted"><?php echo lang('my_account_lastname') ?></small>
                     <div class="input-group has-success">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                        <input class="input-sm form-control" placeholder="<?php echo lang('my_account_enter_your_lastname') ?>" type="text" name="lastname" id="lastname" value="<?php echo $customer['lastname'] ?>" />
+                        <input class="input-sm form-control" placeholder="<?php echo lang('my_account_enter_your_lastname') ?>" type="text" name="lastname" id="lastname" value="<?php echo $CUSTOMER['lastname'] ?>" />
                     </div>
 
                     <small class="form-text text-muted"><?php echo lang('my_account_telephone') ?></small>
                     <div class="input-group has-success">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                        <input class="input-sm form-control" placeholder="<?php echo lang('my_account_enter_your_phone') ?>" type="text" name="telephone" id="lastname" value="<?php echo $customer['telephone'] ?>" />
+                        <input class="input-sm form-control" placeholder="<?php echo lang('my_account_enter_your_phone') ?>" type="text" name="telephone" id="lastname" value="<?php echo $CUSTOMER['telephone'] ?>" />
                     </div>
                 </div>
             </div>
