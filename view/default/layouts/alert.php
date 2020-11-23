@@ -11,7 +11,7 @@ if (isset($_SESSION['message'][2])) {
 
 ?>
 <!--Выводим уведомление об успешном действии-->
-<div style="text-align:center;padding:0;margin:0;float:right;line-height:1;" id="alert" class="alert text-<?php echo $_SESSION['message'][0] ?> fade in" role="alert">
+<div id="alert" class="alert text-<?php echo $_SESSION['message'][0] ?> fade in" role="alert">
     <span class="glyphicon glyphicon-alert"></span> <?php echo $_SESSION['message'][1] ?>
 </div>
 
