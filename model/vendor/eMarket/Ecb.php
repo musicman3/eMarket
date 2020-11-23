@@ -16,6 +16,8 @@ namespace eMarket;
  */
 final class Ecb {
 
+    public static $stiker_data = FALSE;
+
     /**
      * Блок вывода цены с учетом скидки
      * 
@@ -53,7 +55,7 @@ final class Ecb {
             return \eMarket\Products::productPrice($price_val, $marker);
         }
     }
-    
+
     /**
      * Блок вывода стикеров
      * 
@@ -61,19 +63,37 @@ final class Ecb {
      * @param string $class (класс bootstrap для отображения скидки)
      * @return string (выходные данные в виде форматированной стоимости)
      */
-    public static function stikers($input, $class = null) {
+    public static function stikers($input, $class = null, $class2 = null) {
 
         if ($class == null) {
             $class = 'danger';
         }
+        if ($class2 == null) {
+            $class2 = 'warning';
+        }
+
+        self::$stiker_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_STIKERS . " WHERE language=?", [lang('#lang_all')[0]]);
+        $stiker_name = [];
+        foreach (self::$stiker_data as $val) {
+            $stiker_name[$val['id']] = $val['name'];
+        }
+
         //Модуль скидки \eMarket\Modules\Discount\Sale
         $price_with_sale = \eMarket\Modules\Discount\Sale::dataInterface($input);
 
-            if (isset($price_with_sale[3])) {
-                return '<div class="labelsblock"><div class="' . $class . '">- ' . $price_with_sale[3] . '%</div></div>';
-            }
-            return '';
-    }    
+        if (isset($price_with_sale[3]) && $input['stiker'] != '' && $input['stiker'] != NULL) {
+            return '<div class="labelsblock"><div class="' . $class . '">- ' . $price_with_sale[3] . '%</div><div class="' . $class2 . '">' . $stiker_name[$input['stiker']] . '</div></div>';
+        }
+        
+        if ($input['stiker'] != '' && $input['stiker'] != NULL) {
+            return '<div class="labelsblock"><div class="' . $class2 . '">' . $stiker_name[$input['stiker']] . '</div></div>';
+        }
+
+        if (isset($price_with_sale[3])) {
+            return '<div class="labelsblock"><div class="' . $class . '">- ' . $price_with_sale[3] . '%</div></div>';
+        }
+        return '';
+    }
 
     /**
      * Блок вывода цены в корзине с учетом скидки

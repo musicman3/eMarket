@@ -255,7 +255,7 @@
                                         <?php } ?>
 
                                         <?php if ($arr_merge['prod'][$start . 'a'][7] != '' && $arr_merge['prod'][$start . 'a'][7] != NULL) { ?>
-                                            <td class="sortleft"><span class="label label-warning"><?php echo $stiker_name[$arr_merge['prod'][$start . 'a'][7]] ?></span></td>
+                                            <td class="sortleft"><span class="label label-success"><?php echo $stiker_name[$arr_merge['prod'][$start . 'a'][7]] ?></span></td>
                                         <?php } else { ?>
                                             <td class="sortleft-m"></td>
                                         <?php } ?>

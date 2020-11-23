@@ -16,7 +16,7 @@ if ($products != FALSE) {
     <div id="products" class="contentText">
         <div class="row">
             <div class="col-sm-6 col-xs-12">
-		<?php echo \eMarket\Ecb::stikers($products, 'label-danger') ?>
+		<?php echo \eMarket\Ecb::stikers($products, 'label-danger', 'label-success') ?>
                 <a href="/uploads/images/products/resize_4/<?php echo $products['logo_general'] ?>" data-toggle="lightbox" data-gallery="example-gallery" data-type="image">
                     <img src="/uploads/images/products/resize_2/<?php echo $products['logo_general'] ?>" alt="<?php echo $products['name'] ?>" class="img-padding img-responsive center-block">
                 </a>
