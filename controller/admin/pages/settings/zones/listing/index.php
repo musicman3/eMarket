@@ -31,7 +31,6 @@ if (\eMarket\Valid::inPOST('add')) {
     }
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
-    exit;
 }
 
 // Собираем данные для массива Стран в мультиселекте

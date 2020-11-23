@@ -19,7 +19,6 @@ if (\eMarket\Valid::inPOST('edit')) {
     }
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
-    exit;
 }
 
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>

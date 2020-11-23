@@ -15,7 +15,6 @@ if (\eMarket\Valid::inPOST('add')) {
 
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
-    exit;
 }
 
 if (\eMarket\Valid::inPOST('delete')) {
@@ -25,7 +24,6 @@ if (\eMarket\Valid::inPOST('delete')) {
 
     // Выводим сообщение об успехе
     $_SESSION['message'] = ['success', lang('action_completed_successfully')];
-    exit;
 }
 
 if (\eMarket\Valid::inPOST('edit_active')) {
