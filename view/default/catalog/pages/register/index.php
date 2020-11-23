@@ -65,11 +65,10 @@ if (!\eMarket\Valid::inPOST('email')) {
 		</fieldset>
 	    </div>
 	</div>
-	<div class="text-right"><?php echo sprintf(lang('register_privacy_statement_agree'), '#privacy_policy') ?>&nbsp;
+	<div class="text-right form-group"><?php echo sprintf(lang('register_privacy_statement_agree'), '#privacy_policy') ?>&nbsp;
 	    <input type="checkbox" name="agree_privacy_policy" id="agree_privacy_policy" data-on-color="success" data-off-color="danger" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" required>&nbsp;
 	    <input class="btn btn-primary" type="submit" value="<?php echo lang('continue') ?>">
 	</div>
-	<br>
     </form>
 </div>
 
