@@ -21,16 +21,17 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
 
             <div class="col-sm-6">
                 <div class="form-group">
-                    <small class="form-text text-muted"><?php echo lang('my_account_lastname') ?></small>
-                    <div class="input-group has-success">
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                        <input class="input-sm form-control" placeholder="<?php echo lang('my_account_enter_your_lastname') ?>" type="text" name="lastname" id="lastname" value="<?php echo $CUSTOMER['lastname'] ?>" />
-                    </div>
-
+		    <legend><?php echo lang('register_personal_details') ?></legend>
                     <small class="form-text text-muted"><?php echo lang('my_account_firstname') ?></small>
                     <div class="input-group has-success">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
                         <input class="input-sm form-control" placeholder="<?php echo lang('my_account_enter_your_firstname') ?>" type="text" name="firstname" id="firstname" value="<?php echo $CUSTOMER['firstname'] ?>" />
+                    </div>
+
+                    <small class="form-text text-muted"><?php echo lang('my_account_lastname') ?></small>
+                    <div class="input-group has-success">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                        <input class="input-sm form-control" placeholder="<?php echo lang('my_account_enter_your_lastname') ?>" type="text" name="lastname" id="lastname" value="<?php echo $CUSTOMER['lastname'] ?>" />
                     </div>
 
                     <small class="form-text text-muted"><?php echo lang('my_account_middlename') ?></small>
@@ -38,17 +39,19 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
                         <input class="input-sm form-control" placeholder="<?php echo lang('my_account_enter_your_middlename') ?>" type="text" name="middle_name" id="middle_name" value="<?php echo $CUSTOMER['middle_name'] ?>" />
                     </div>
-                </div>
-            </div>
-
-            <div class="col-sm-6">
-                <div class="form-group">
+                    
                     <small class="form-text text-muted"><?php echo lang('my_account_telephone') ?></small>
                     <div class="input-group has-success">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
                         <input class="input-sm form-control" placeholder="<?php echo lang('my_account_enter_your_phone') ?>" type="text" name="telephone" id="lastname" value="<?php echo $CUSTOMER['telephone'] ?>" />
                     </div>
 
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="form-group">
+		    <legend><?php echo lang('register_details_password') ?></legend>
                     <small class="form-text text-muted"><?php echo lang('my_account_password') ?></small>
                     <div class="input-group has-success password">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
