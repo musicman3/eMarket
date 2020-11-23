@@ -21,6 +21,12 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
 
             <div class="col-sm-6">
                 <div class="form-group">
+                    <small class="form-text text-muted"><?php echo lang('my_account_lastname') ?></small>
+                    <div class="input-group has-success">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                        <input class="input-sm form-control" placeholder="<?php echo lang('my_account_enter_your_lastname') ?>" type="text" name="lastname" id="lastname" value="<?php echo $CUSTOMER['lastname'] ?>" />
+                    </div>
+
                     <small class="form-text text-muted"><?php echo lang('my_account_firstname') ?></small>
                     <div class="input-group has-success">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
@@ -37,26 +43,12 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
 
             <div class="col-sm-6">
                 <div class="form-group">
-                    <small class="form-text text-muted"><?php echo lang('my_account_lastname') ?></small>
-                    <div class="input-group has-success">
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                        <input class="input-sm form-control" placeholder="<?php echo lang('my_account_enter_your_lastname') ?>" type="text" name="lastname" id="lastname" value="<?php echo $CUSTOMER['lastname'] ?>" />
-                    </div>
-
                     <small class="form-text text-muted"><?php echo lang('my_account_telephone') ?></small>
                     <div class="input-group has-success">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
                         <input class="input-sm form-control" placeholder="<?php echo lang('my_account_enter_your_phone') ?>" type="text" name="telephone" id="lastname" value="<?php echo $CUSTOMER['telephone'] ?>" />
                     </div>
-                </div>
-            </div>
 
-            <div class="col-sm-6">
-                <div class="form-group"></div>
-            </div>
-
-            <div class="col-sm-6">
-                <div class="form-group">
                     <small class="form-text text-muted"><?php echo lang('my_account_password') ?></small>
                     <div class="input-group has-success password">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
@@ -68,14 +60,14 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
                         <input class="input-sm form-control password-data" minlength="7" maxlength="40" placeholder="<?php echo lang('my_account_confirm_your_password') ?>" type="password" name="confirm_password" id="confirm_password" />
                     </div>
-                </div>
-            </div>
+		</div>
+	    </div>
 
-        </div>
+	</div>
 
-        <div class="text-right">
-            <input id="submit_btn" class="btn btn-primary" type="submit" value="<?php echo lang('save') ?>">
-        </div>
+	<div class="text-right">
+	    <input id="submit_btn" class="btn btn-primary" type="submit" value="<?php echo lang('save') ?>">
+	</div>
 
     </form>
 </div>
