@@ -91,7 +91,8 @@ nav .disabled {pointer-events: none;}
 #products .product-attribute-table td {padding-left: 20px;border-left: 1px solid #dfdfdf;border-top: 1px solid #dfdfdf;border-bottom: 1px solid #dfdfdf;}
 #products .product-attribute-table td:first-child {border-left: 0;}
 #products .product-attribute-specification {display: table-cell;}
-#products .labelsblock {font-size: 18px;margin: -26px 0 0 120px;}
+#products .labelsblock {position: absolute;}
+#products .labelsblock div {display: table;padding: 2.8px 7px;color: #ffffff;font-size: 14px;margin: 0 0 4px 0;border-radius: 3px;text-transform: uppercase;font-weight: 700;}
 
 #index .nav > li > a {padding: 5px;}
 #index .tab-content {padding-top: 10px;}
