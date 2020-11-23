@@ -48,7 +48,7 @@ CREATE TABLE emkt_categories (
 	status int,
         logo_general varchar(128),
         attributes json,
-	PRIMARY KEY (id, language))
+PRIMARY KEY (id, language))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS emkt_countries;
@@ -59,7 +59,7 @@ CREATE TABLE emkt_countries (
         alpha_2 varchar(2),
         alpha_3 varchar(3),
         address_format varchar(256) NULL,
-	PRIMARY KEY (id, language))
+PRIMARY KEY (id, language))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS emkt_currencies;
@@ -75,7 +75,7 @@ CREATE TABLE emkt_currencies (
         symbol_position varchar(16),
         decimal_places char(1),
         last_updated datetime NULL,
-	PRIMARY KEY (id, language))
+PRIMARY KEY (id, language))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS emkt_customers;
@@ -118,7 +118,7 @@ CREATE TABLE emkt_length (
 	language varchar(64),
         value_length decimal(14,7),
         default_length int NOT NULL,
-	PRIMARY KEY (id, language))
+PRIMARY KEY (id, language))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS emkt_manufacturers;
@@ -129,7 +129,7 @@ CREATE TABLE emkt_manufacturers (
         logo varchar(1024),
         logo_general varchar(128),
         site varchar(256),
-	PRIMARY KEY (id, language))
+PRIMARY KEY (id, language))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS emkt_modules;
@@ -138,7 +138,7 @@ CREATE TABLE emkt_modules (
 	name varchar(256),
 	type varchar(256),
         active int(64),
-	PRIMARY KEY (id))
+PRIMARY KEY (id))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS emkt_order_status;
@@ -148,24 +148,24 @@ CREATE TABLE emkt_order_status (
 	language varchar(64),
         default_order_status int NOT NULL,
         sort int NOT NULL,
-	PRIMARY KEY (id, language))
+PRIMARY KEY (id, language))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS emkt_orders;
 CREATE TABLE emkt_orders (
-  id int NOT NULL auto_increment,
-  email varchar(128) NOT NULL,
-  customer_data json,
-  orders_status_history json,
-  products_order json,
-  order_total json,
-  invoice json,
-  orders_transactions_history json,
-  customer_ip_address varchar(30),
-  payment_method json,
-  shipping_method json,
-  last_modified datetime,
-  date_purchased datetime,
+        id int NOT NULL auto_increment,
+        email varchar(128) NOT NULL,
+        customer_data json,
+        orders_status_history json,
+        products_order json,
+        order_total json,
+        invoice json,
+        orders_transactions_history json,
+        customer_ip_address varchar(30),
+        payment_method json,
+        shipping_method json,
+        last_modified datetime,
+        date_purchased datetime,
 PRIMARY KEY (id))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -218,7 +218,8 @@ CREATE TABLE emkt_products (
         downloads_stat int default '0',
         discount varchar(256),
         attributes json,
-	PRIMARY KEY (id, language))
+        stiker varchar(64),
+PRIMARY KEY (id, language))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS emkt_regions;
@@ -228,7 +229,17 @@ CREATE TABLE emkt_regions (
         region_code varchar(8),
 	name varchar(256),
 	language varchar(64),
-	PRIMARY KEY (id, language))
+PRIMARY KEY (id, language))
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+DROP TABLE IF EXISTS emkt_stikers;
+CREATE TABLE emkt_stikers (
+	id int NOT NULL,
+	name varchar(256),
+	language varchar(64),
+        default_stikers int NOT NULL,
+        sort int NOT NULL,
+PRIMARY KEY (id, language))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS emkt_taxes;
@@ -237,7 +248,7 @@ CREATE TABLE emkt_taxes (
 	name varchar(256),
 	language varchar(64),
         rate decimal(4,2),
-	PRIMARY KEY (id, language))
+PRIMARY KEY (id, language))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS emkt_template_constructor;
@@ -249,7 +260,7 @@ CREATE TABLE emkt_template_constructor (
         page varchar(256),
         template_name varchar(256),
         sort int NOT NULL,
-	PRIMARY KEY (id))
+PRIMARY KEY (id))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS emkt_units;
@@ -259,7 +270,7 @@ CREATE TABLE emkt_units (
 	language varchar(64),
         unit varchar(256),
         default_unit int NOT NULL,
-	PRIMARY KEY (id, language))
+PRIMARY KEY (id, language))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS emkt_vendor_codes;
@@ -269,7 +280,7 @@ CREATE TABLE emkt_vendor_codes (
 	language varchar(64),
         vendor_code varchar(256),
         default_vendor_code int NOT NULL,
-	PRIMARY KEY (id, language))
+PRIMARY KEY (id, language))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS emkt_weight;
@@ -280,7 +291,7 @@ CREATE TABLE emkt_weight (
 	language varchar(64),
         value_weight decimal(14,7),
         default_weight int NOT NULL,
-	PRIMARY KEY (id, language))
+PRIMARY KEY (id, language))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS emkt_zones;
@@ -289,7 +300,7 @@ CREATE TABLE emkt_zones (
 	name varchar(256),
         note varchar(256),
 	language varchar(64),
-	PRIMARY KEY (id, language))
+PRIMARY KEY (id, language))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS emkt_zones_value;
@@ -298,7 +309,7 @@ CREATE TABLE emkt_zones_value (
         country_id int NOT NULL,
         regions_id int NOT NULL,
         zones_id int NOT NULL,
-	PRIMARY KEY (id))
+PRIMARY KEY (id))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 

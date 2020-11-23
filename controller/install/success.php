@@ -41,6 +41,7 @@ $tab_order_status = $db_pref . 'order_status';
 $tab_products = $db_pref . 'products';
 $tab_password_recovery = $db_pref . 'password_recovery';
 $tab_regions = $db_pref . 'regions';
+$tab_stikers = $db_pref . 'stikers';
 $tab_taxes = $db_pref . 'taxes';
 $tab_template_constructor = $db_pref . 'template_constructor';
 $tab_units = $db_pref . 'units';
@@ -79,6 +80,7 @@ $config = '<?php' . "\n" .
         '  define(\'TABLE_PRODUCTS\', \'' . $tab_products . '\');' . "\n" .
         '  define(\'TABLE_PASSWORD_RECOVERY\', \'' . $tab_password_recovery . '\');' . "\n" .
         '  define(\'TABLE_REGIONS\', \'' . $tab_regions . '\');' . "\n" .
+        '  define(\'TABLE_STIKERS\', \'' . $tab_stikers . '\');' . "\n" .
         '  define(\'TABLE_TAXES\', \'' . $tab_taxes . '\');' . "\n" .
         '  define(\'TABLE_TEMPLATE_CONSTRUCTOR\', \'' . $tab_template_constructor . '\');' . "\n" .
         '  define(\'TABLE_UNITS\', \'' . $tab_units . '\');' . "\n" .
