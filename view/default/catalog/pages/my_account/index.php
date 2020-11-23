@@ -68,6 +68,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
 	<div class="text-right">
 	    <input id="submit_btn" class="btn btn-primary" type="submit" value="<?php echo lang('save') ?>">
 	</div>
+	<br />
 
     </form>
 </div>
