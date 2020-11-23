@@ -37,6 +37,8 @@ my_account_enter_your_phone = Укажите Ваш телефон
 my_account_enter_your_password = Укажите новый пароль
 my_account_confirm_your_password = Подтвердите новый пароль
 my_account_password_check = Пароль и подтверждение пароля не совпадают
+my_account_personal_details = Ваши персональные данные
+my_account_details_password = Ваш пароль
 
 ;LAYOUTS
 categories_name = Категории

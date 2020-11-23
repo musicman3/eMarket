@@ -21,7 +21,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
 
             <div class="col-sm-6">
                 <div class="form-group">
-		    <legend><?php echo lang('register_personal_details') ?></legend>
+		    <legend><?php echo lang('my_account_personal_details') ?></legend>
                     <small class="form-text text-muted"><?php echo lang('my_account_firstname') ?></small>
                     <div class="input-group has-success">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
@@ -51,7 +51,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
 
             <div class="col-sm-6">
                 <div class="form-group">
-		    <legend><?php echo lang('register_details_password') ?></legend>
+		    <legend><?php echo lang('my_account_details_password') ?></legend>
                     <small class="form-text text-muted"><?php echo lang('my_account_password') ?></small>
                     <div class="input-group has-success password">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
