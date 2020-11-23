@@ -27,14 +27,14 @@ if (\eMarket\Valid::inPOST('add') && password_verify(\eMarket\Valid::inPOST('ord
     $admin_orders_status_history = \eMarket\Pdo::getCellFalse("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE default_order_status=? AND language=?", [1, $primary_language]);
     $date = date("Y-m-d H:i:s");
     $orders_status_history_data = [[
-        'admin' => [
-            'status' => $admin_orders_status_history,
-            'date' => \eMarket\Set::dateLocale($date, '%c', $primary_language)
-        ],
-        'customer' => [
-            'status' => $customer_orders_status_history,
-            'date' => \eMarket\Set::dateLocale($date, '%c')
-        ]
+    'admin' => [
+        'status' => $admin_orders_status_history,
+        'date' => \eMarket\Set::dateLocale($date, '%c', $primary_language)
+    ],
+    'customer' => [
+        'status' => $customer_orders_status_history,
+        'date' => \eMarket\Set::dateLocale($date, '%c')
+    ]
     ]];
     $orders_status_history = json_encode($orders_status_history_data);
 
@@ -42,33 +42,47 @@ if (\eMarket\Valid::inPOST('add') && password_verify(\eMarket\Valid::inPOST('ord
     $cart = json_decode(\eMarket\Valid::inPOST('products_order'), 1);
     $invoice = [];
 
+    $stiker_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_STIKERS . " WHERE language=?", [$primary_language]);
+    $stiker_name = [];
+    foreach ($stiker_data as $val) {
+        $stiker_name[$val['id']] = $val['name'];
+    }
+
+    $stiker_data_customer = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_STIKERS . " WHERE language=?", [lang('#lang_all')[0]]);
+    $stiker_name_customer = [];
+    foreach ($stiker_data_customer as $val) {
+        $stiker_name_customer[$val['id']] = $val['name'];
+    }
+
     foreach ($cart as $value) {
         $product_data = \eMarket\Products::productData($value['id']);
         $admin_product_data = \eMarket\Products::productData($value['id'], $primary_language);
         $unit = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_UNITS . " WHERE id=? AND language=?", [$product_data['unit'], lang('#lang_all')[0]])[0];
         $admin_unit = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_UNITS . " WHERE id=? AND language=?", [$product_data['unit'], $primary_language])[0];
-        
+
         $data = [
             'admin' => [
                 'name' => $admin_product_data['name'],
                 'price' => \eMarket\Products::productPrice($admin_product_data['price'], 1, $primary_language),
                 'unit' => $admin_unit['unit'],
-                'amount' => \eMarket\Products::productPrice($admin_product_data['price'] * $value['quantity'], 1, $primary_language)
+                'amount' => \eMarket\Products::productPrice($admin_product_data['price'] * $value['quantity'], 1, $primary_language),
+                'stiker' => $stiker_name[$product_data['stiker']]
             ],
             'customer' => [
                 'name' => $product_data['name'],
                 'price' => \eMarket\Products::productPrice($product_data['price'], 1),
                 'unit' => $unit['unit'],
-                'amount' => \eMarket\Products::productPrice($product_data['price'] * $value['quantity'], 1)
+                'amount' => \eMarket\Products::productPrice($product_data['price'] * $value['quantity'], 1),
+                'stiker' => $stiker_name_customer[$product_data['stiker']]
             ],
             'data' => [
                 'quantity' => $value['quantity']
             ]
         ];
-        
+
         array_push($invoice, $data);
     }
-    
+
     $order_total = [
         'admin' => [
             'total_with_shipping_format' => \eMarket\Products::productPrice(\eMarket\Valid::inPOST('order_total_with_shipping'), 1, $primary_language),
@@ -110,9 +124,9 @@ if (\eMarket\Valid::inPOST('add') && password_verify(\eMarket\Valid::inPOST('ord
     \eMarket\Pdo::inPrepare("UPDATE " . TABLE_PRODUCTS . " SET quantity=quantity- " . $value['quantity'] . ", ordered=ordered+ " . $value['quantity'] . " WHERE id=?", [$value['id']]);
 
     unset($_SESSION['cart']);
-    
+
     $customer_order_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_ORDERS . " WHERE email=? ORDER BY id DESC", [$_SESSION['email_customer']])[0];
-    
+
     $email_subject = sprintf(lang('email_order_success_subject'), $customer_order_data['id'], $customer_orders_status_history);
     $email_message = sprintf(lang('email_order_success_message'), $customer_order_data['id'], mb_strtolower($customer_orders_status_history), HTTP_SERVER . '?route=success', HTTP_SERVER . '?route=success');
     \eMarket\Messages::sendMail($_SESSION['email_customer'], $email_subject, $email_message);
