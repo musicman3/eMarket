@@ -70,7 +70,7 @@ final class Ecb {
         $price_with_sale = \eMarket\Modules\Discount\Sale::dataInterface($input);
 
             if (isset($price_with_sale[3])) {
-                return '<div>' . $price_with_sale[3] . ' %</div>';
+                return '<span class="label label-' . $class . '">' . $price_with_sale[3] . ' %</span>';
             }
             return '';
     }    
