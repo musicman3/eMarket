@@ -46,6 +46,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                 ?>
                 <div class="item col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item">
                     <div class="productHolder">
+                        <?php echo  \eMarket\Ecb::saleStiker($lines[$start]) ?>
                         <a href="/?route=products&category_id=<?php echo $lines[$start]['parent_id'] ?>&id=<?php echo $lines[$start]['id'] ?>"><img src="/uploads/images/products/resize_1/<?php echo $lines[$start]['logo_general'] ?>" alt="<?php echo $lines[$start]['name'] ?>" class="img-responsive"></a>
                         <div class="caption">
                             <h5 class="item-heading"><a href="/?route=products&category_id=<?php echo $lines[$start]['parent_id'] ?>&id=<?php echo $lines[$start]['id'] ?>"><?php echo $lines[$start]['name'] ?></a></h5>

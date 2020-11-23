@@ -53,6 +53,27 @@ final class Ecb {
             return \eMarket\Products::productPrice($price_val, $marker);
         }
     }
+    
+    /**
+     * Блок вывода стикера скидки
+     * 
+     * @param array $input (массив с входящими значениями по товару)
+     * @param string $class (класс bootstrap для отображения скидки)
+     * @return string (выходные данные в виде форматированной стоимости)
+     */
+    public static function saleStiker($input, $class = null) {
+
+        if ($class == null) {
+            $class = 'danger';
+        }
+        //Модуль скидки \eMarket\Modules\Discount\Sale
+        $price_with_sale = \eMarket\Modules\Discount\Sale::dataInterface($input);
+
+            if (isset($price_with_sale[3])) {
+                return '<div>' . $price_with_sale[3] . ' %</div>';
+            }
+            return '';
+    }    
 
     /**
      * Блок вывода цены в корзине с учетом скидки
