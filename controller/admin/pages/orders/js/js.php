@@ -49,8 +49,13 @@
 
         // Товары
         for (x = 0; x < invoice.length; x++) {
+                        if (invoice[x]['admin']['stiker'] !== null) {
+                var stiker = invoice[x]['admin']['stiker'];
+            } else {
+                var stiker = '';
+            }
             $("#invoice").append('<tr class="bg-success">\n\
-                                        <td class="text-left"><small><div class="labelsblock"><span class="label label-success">' + invoice[x]['admin']['stiker'] + '</span></div></small></td>\n\
+                                        <td class="text-left"><small><div class="labelsblock"><span class="label label-success">' + stiker + '</span></div></small></td>\n\
                                         <td class="text-center"><small>' + invoice[x]['admin']['name'] + '</small></td>\n\
                                         <td class="text-center"><small>' + invoice[x]['admin']['price'] + '</small></td>\n\
                                         <td class="text-center"><small>' + invoice[x]['data']['quantity'] + ' ' + invoice[x]['admin']['unit'] + '</small></td>\n\
