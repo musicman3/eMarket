@@ -74,7 +74,7 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th colspan="5">
+                                <th colspan="4">
 
                                     <div class="page"><?php echo lang('with') ?> <?php echo $start + 1 ?> <?php echo lang('to') ?> <?php echo \eMarket\Navigation::counter($start, $finish, $count_lines_merge, $lines_on_page) ?> ( <?php echo lang('of') ?> <?php echo $count_lines_merge; ?> )</div>
 
@@ -119,7 +119,7 @@
 
                                 <tr class="sortno">
                                     <td  class="sortleft-m"></td>
-                                    <td colspan="2" align="left">
+                                    <td colspan="4" align="left">
 
                                         <!-- Категории "ВВЕРХ" -->
                                         <form>
