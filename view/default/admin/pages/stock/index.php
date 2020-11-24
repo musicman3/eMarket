@@ -74,7 +74,7 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th colspan="4">
+                                <th colspan="5">
 
                                     <div class="page"><?php echo lang('with') ?> <?php echo $start + 1 ?> <?php echo lang('to') ?> <?php echo \eMarket\Navigation::counter($start, $finish, $count_lines_merge, $lines_on_page) ?> ( <?php echo lang('of') ?> <?php echo $count_lines_merge; ?> )</div>
 
@@ -209,6 +209,7 @@
                                                 <div class="context-one" id="<?php echo $arr_merge['cat'][$start][0] ?>"><?php echo $arr_merge['cat'][$start][1] ?></div>
                                             <?php } ?>
                                         </td>	
+                                        <td class="sortleft-m"></td>
                                         <td class="sortleft-m"></td>
                                     </tr>
 
