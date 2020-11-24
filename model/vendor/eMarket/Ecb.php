@@ -71,8 +71,9 @@ final class Ecb {
         if ($class2 == null) {
             $class2 = 'warning';
         }
-
-        self::$stiker_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_STIKERS . " WHERE language=?", [lang('#lang_all')[0]]);
+        if (self::$stiker_data == false) {
+            self::$stiker_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_STIKERS . " WHERE language=?", [lang('#lang_all')[0]]);
+        }
         $stiker_name = [];
         foreach (self::$stiker_data as $val) {
             $stiker_name[$val['id']] = $val['name'];
@@ -84,7 +85,7 @@ final class Ecb {
         if (isset($price_with_sale[3]) && $input['stiker'] != '' && $input['stiker'] != NULL) {
             return '<div class="labelsblock"><div class="' . $class . '">- ' . $price_with_sale[3] . '%</div><div class="' . $class2 . '">' . $stiker_name[$input['stiker']] . '</div></div>';
         }
-        
+
         if ($input['stiker'] != '' && $input['stiker'] != NULL) {
             return '<div class="labelsblock"><div class="' . $class2 . '">' . $stiker_name[$input['stiker']] . '</div></div>';
         }
