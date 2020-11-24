@@ -49,7 +49,7 @@
         for (x = 0; x < invoice.length; x++) {
             $("#invoice").append('<tr class="bg-success">\n\
                                         <td class="text-left"><small><div class="labelsblock"><span class="label label-success">' + invoice[x]['customer']['stiker'] + '</span></div></small></td>\n\
-                                        <td class="text-left"><small>' + invoice[x]['customer']['name'] + '</small></td>\n\
+                                        <td class="text-center"><small>' + invoice[x]['customer']['name'] + '</small></td>\n\
                                         <td class="text-center"><small>' + invoice[x]['customer']['price'] + '</small></td>\n\
                                         <td class="text-center"><small>' + invoice[x]['data']['quantity'] + ' ' + invoice[x]['customer']['unit'] + '</small></td>\n\
                                         <td class="text-right"><small>' + invoice[x]['customer']['amount'] + '</small></td>\n\
