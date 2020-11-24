@@ -207,6 +207,7 @@ orders_quantity = Количество
 orders_price = Цена
 orders_product = Товар
 orders_products = Товары
+orders_stiker = Стикер
 orders_transaction_history = История транзакций
 orders_status_history = История статусов
 orders_description = Описание

@@ -207,6 +207,7 @@ orders_quantity = Quantity
 orders_price = Price
 orders_product = Product
 orders_products = Products
+orders_stiker = Stiker
 orders_transaction_history = Transaction history
 orders_status_history = Status history
 orders_description = Description
