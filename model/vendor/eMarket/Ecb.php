@@ -70,7 +70,7 @@ final class Ecb {
             $class = 'danger';
         }
         if ($class2 == null) {
-            $class2 = 'warning';
+            $class2 = 'success';
         }
         if (self::$stiker_data == false) {
             self::$stiker_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_STIKERS . " WHERE language=?", [lang('#lang_all')[0]]);
