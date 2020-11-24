@@ -60,7 +60,8 @@ final class Ecb {
      * Блок вывода стикеров
      * 
      * @param array $input (массив с входящими значениями по товару)
-     * @param string $class (класс bootstrap для отображения скидки)
+     * @param string $class (класс bootstrap для отображения стикера скидки)
+     * @param string $class2 (класс bootstrap для отображения собственного стикера)
      * @return string (выходные данные в виде форматированной стоимости)
      */
     public static function stikers($input, $class = null, $class2 = null) {
