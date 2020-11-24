@@ -5,12 +5,6 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 ?>
-<script type="text/javascript" language="javascript">
-$(document).ready(function () {
-if ($(document).height() <= $(window).height())
-  $(".footerwrap").addClass("navbar-fixed-bottom");
-});
-</script>
 
 <div class="container-fluid footerwrap">
     <hr>
