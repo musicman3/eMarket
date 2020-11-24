@@ -8,7 +8,7 @@
 namespace eMarket;
 
 /**
- * Движок ECB (Easy Calculated Block) v.1.0
+ * Движок ECB (Easy Calculated Block) v.1.01
  *
  * @package Ecb
  * @author eMarket
