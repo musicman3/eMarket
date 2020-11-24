@@ -47,7 +47,7 @@
 
         // Товары
         for (x = 0; x < invoice.length; x++) {
-            if (invoice[x]['customer']['stiker'] !== null) {
+            if (invoice[x]['customer']['stiker'] !== null && invoice[x]['customer']['stiker'] !== undefined) {
                 var stiker = invoice[x]['customer']['stiker'];
             } else {
                 var stiker = '';
