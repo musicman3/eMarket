@@ -24,7 +24,7 @@
                     <!--Выводим уведомление об успешном действии-->
                     <?php \eMarket\Messages::alert(); ?>
                     <h3 class="panel-title">
-                        <div class="pull-left"><a href="#settings" class="btn btn-primary btn-xs" data-toggle="modal"><span class="back glyphicon glyphicon-wrench"></span></a> <?php echo \eMarket\Set::titlePageGenerator() ?></div>
+                        <div class="pull-left"><?php echo \eMarket\Set::titlePageGenerator() ?></div>
                         <div class="clearfix"></div>
                     </h3>
                 </div>
@@ -37,18 +37,18 @@
                                 </th>
 
                                 <th>
-                                
-                                    <div class="b-right"><a href="#add" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
-
-				    <div class="b-left"><button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index"><span class="glyphicon glyphicon-cog"></span></button></div>
 
                                     <form>
-                                            <div class="b-left"><button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
+                                            <div class="b-right"><button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
                                     </form>
 
                                     <form>
                                             <div class="b-left"><button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
                                     </form>
+
+				    <div class="b-left"><button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index"><span class="glyphicon glyphicon-cog"></span></button></div>
+
+                                    <div class="b-left"><a href="#add" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
 
                                 </th>
                             </tr>
