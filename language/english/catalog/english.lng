@@ -231,6 +231,7 @@ orders_date_added = Date added
 orders_date_of_change = Date of change
 orders_number = Order No.
 orders_subtotal = Subtotal
+orders_stiker = Stiker
 
 ;SUCCESS
 success_text = Order completed successfully

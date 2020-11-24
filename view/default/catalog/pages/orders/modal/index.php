@@ -101,7 +101,8 @@
                             <table class="table table-radius">
                                 <thead>
                                     <tr class="bg-primary">
-                                        <td class="text-left"><small><?php echo lang('orders_product') ?></small></td>
+                                        <td class="text-left"><small><?php echo lang('orders_stiker') ?></small></td>
+                                        <td class="text-center"><small><?php echo lang('orders_product') ?></small></td>
                                         <td class="text-center"><small><?php echo lang('orders_price') ?></small></td>
                                         <td class="text-center"><small><?php echo lang('orders_quantity') ?></small></td>
                                         <td class="text-right"><small><?php echo lang('orders_amount') ?></small></td>
