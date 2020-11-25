@@ -163,6 +163,7 @@ buy_now = Купить
 add_to_cart = В корзину
 action_completed_successfully = Действие успешно выполнено!
 action_failed = Действие не выполнено!
+no_listing = Нет записей
 
 ;MESSAGES
 messages_email_is_busy = Этот E-Mail уже занят! Пожалуйста, укажите другой E-Mail.
