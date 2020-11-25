@@ -53,7 +53,7 @@
                 var stiker = '';
             }
             $("#invoice").append('<tr class="bg-success">\n\
-                                        <td class="text-left"><small class="label label-success">' + stiker + '</small></td>\n\
+                                        <td class="text-left"><span class="label label-success">' + stiker + '</span></td>\n\
                                         <td class="text-center"><small>' + invoice[x]['customer']['name'] + '</small></td>\n\
                                         <td class="text-center"><small>' + invoice[x]['customer']['price'] + '</small></td>\n\
                                         <td class="text-center"><small>' + invoice[x]['data']['quantity'] + ' ' + invoice[x]['customer']['unit'] + '</small></td>\n\
