@@ -244,7 +244,7 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS emkt_slideshow;
 CREATE TABLE emkt_slideshow (
-	id int NOT NULL,
+	id int NOT NULL auto_increment,
 	language varchar(64),
 	image text,
         url text,
