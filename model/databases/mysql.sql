@@ -266,7 +266,7 @@ CREATE TABLE emkt_slideshow_pref (
 	cicles varchar(64),
 	indicators varchar(64),
 	navigation varchar(64),
-PRIMARY KEY (id, language))
+PRIMARY KEY (id))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS emkt_taxes;
