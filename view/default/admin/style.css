@@ -86,11 +86,6 @@ body {background:#e4e4da;font-family: 'Open Sans';background-image:url('images/s
 div.context-one, .table > tbody > tr > td.context-one {padding:5px;}
 .al-text {text-align: center;}
 .al-text-w {text-align: center;width: 150px;}
-.products .row {margin-left: 0;margin-right: 0;}
-.products .col-left {float: left;width: 250px;margin-right: 65px;}
-.products .col-right {float: left;width: 250px;}
-.products .col-left-w {float: left;width: 150px;margin-right: 58px;}
-.products .col-right-w {float: left;width: 150px;}
 .settings {float: left;padding-left: 5px;}
 .settings .btn {margin-right: 10px;}
 .modal-header .glyphicon {color: #000000;opacity: 0.5}

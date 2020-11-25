@@ -133,7 +133,7 @@
 
                         <!-- Содержимое панели История транзакций -->
                         <div id="panel_3" class="tab-pane fade">
-                            <div class="col-left form-group">
+                            <div class="col-sm-6 form-group">
 
                             </div>
                         </div>
