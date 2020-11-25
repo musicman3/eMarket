@@ -97,7 +97,6 @@ nav .disabled {pointer-events: none;}
 
 #index .nav > li > a {padding: 5px;}
 #index .tab-content {padding-top: 10px;}
-#index .pull-right .glyphicon {color: #000000;opacity: 0.5}
 
 #listing .list-group-item {border: none;padding: 0px 15px;margin-bottom: 20px;}
 #listing .list-group-item img {float: left;margin-right: 100px;}
