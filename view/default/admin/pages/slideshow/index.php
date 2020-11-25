@@ -25,7 +25,8 @@
             </div>
             <div class="panel-body">
                 <table class="table table-hover">
-
+                    <!-- Языковые панели -->
+                    <?php require_once(ROOT . '/view/' . \eMarket\Set::template() . '/layouts/lang_tabs_add.php') ?>
                     <thead>
                         <tr>
                             <th colspan="3">
@@ -56,8 +57,7 @@
                             <th class="al-text-w"></th>
                         </tr>
                     </thead>
-                    <!-- Языковые панели -->
-                    <?php require_once(ROOT . '/view/' . \eMarket\Set::template() . '/layouts/lang_tabs_add.php') ?>
+
                     <tbody>
                         <tr>
                             <td>Рисунок</td>
