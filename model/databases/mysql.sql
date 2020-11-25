@@ -242,6 +242,33 @@ CREATE TABLE emkt_stikers (
 PRIMARY KEY (id, language))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+DROP TABLE IF EXISTS emkt_slideshow;
+CREATE TABLE emkt_slideshow (
+	id int NOT NULL,
+	language varchar(64),
+	image text,
+        url text,
+        heading text,
+        info text,
+        date_start datetime,
+        date_finish datetime,
+        sort int NOT NULL,
+        status int DEFAULT '1' NOT NULL,
+PRIMARY KEY (id, language))
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+DROP TABLE IF EXISTS emkt_slideshow_pref;
+CREATE TABLE emkt_slideshow_pref (
+	id int NOT NULL auto_increment,
+	show_interval varchar(64),
+	mouse_stop varchar(64),
+	autostart varchar(64),
+	cicles varchar(64),
+	indicators varchar(64),
+	navigation varchar(64),
+PRIMARY KEY (id, language))
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 DROP TABLE IF EXISTS emkt_taxes;
 CREATE TABLE emkt_taxes (
 	id int NOT NULL,
