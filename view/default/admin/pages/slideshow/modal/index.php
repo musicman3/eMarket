@@ -6,7 +6,7 @@
 
 ?>
 <!-- Модальное окно "Добавить" -->
-<div id="index" class="modal fade" tabindex="-1">
+<div id="add" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header"><div class="pull-right"><button class="close" type="button" data-dismiss="modal">×</button></div>
@@ -15,7 +15,11 @@
             <form id="form_add" name="form_add" action="javascript:void(null);" onsubmit="callAdd()">
                 <div class="panel-body">
 
+                    <!-- Языковые панели -->
+                    <?php require_once(ROOT . '/view/' . \eMarket\Set::template() . '/layouts/lang_tabs_add.php') ?>
+
                     <div class="tab-content">
+                        <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade in active">
                             <div class="form-group">
 				<div class="input-group has-success">
 				    <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
@@ -34,6 +38,39 @@
 				    <input class="input-sm form-control" placeholder="Текст (?)" type="text" name="" id="" required />
 				</div>
 			    </div>
+                        </div>
+                        <?php
+                        if ($LANG_COUNT > 1) {
+                            for ($x = 1; $x < $LANG_COUNT; $x++) {
+
+                                ?>
+
+                                <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">
+                                    <div class="form-group">
+					<div class="input-group has-success">
+					    <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
+					    <input class="input-sm form-control" placeholder="Адрес ссылки" type="text" name="" id="" required />
+					</div>
+				    </div>
+				    <div class="form-group">
+					<div class="input-group has-success">
+					    <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+					    <input class="input-sm form-control" placeholder="Заголовок (?)" type="text" name="" id="" required />
+					</div>
+				    </div>
+				    <div class="form-group">
+					<div class="input-group has-success">
+					    <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+					    <input class="input-sm form-control" placeholder="Текст (?)" type="text" name="" id="" required />
+					</div>
+				    </div>
+                                </div>
+
+                                <?php
+                            }
+                        }
+
+                        ?>
                     </div>
                     
                     <!-- Выводим сообщения -->

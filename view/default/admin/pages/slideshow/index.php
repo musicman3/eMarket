@@ -24,57 +24,123 @@
                 </h3>
             </div>
             <div class="panel-body">
-                <table class="table table-hover">
+                <div class="tab-content">
                     <!-- Языковые панели -->
                     <?php require_once(ROOT . '/view/' . \eMarket\Set::template() . '/layouts/lang_tabs_add.php') ?>
-                    <thead>
-                        <tr>
-                            <th colspan="3">
-                                <div class="page">с 1 по 1 ( из 1 )</div>
-                            </th>
+                    <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade in active">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th colspan="3">
+                                        <div class="page">с 1 по 1 ( из 1 )</div>
+                                    </th>
 
-                            <th>
+                                    <th>
+                                        <form>
+                                            <div class="b-right"><button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
+                                        </form>
 
-                                <form>
-                                    <div class="b-right"><button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
-                                </form>
+                                        <form>
+                                            <div class="b-left"><button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
+                                        </form>
 
-                                <form>
-                                    <div class="b-left"><button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
-                                </form>
+                                        <div class="b-left"><a href="#settings" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-cog"></span></a></div>
 
-                                <div class="b-left"><a href="#settings" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-cog"></span></a></div>
+                                        <div class="b-left"><a href="#index" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
 
-                                <div class="b-left"><a href="#index" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
+                                    </th>
+                                </tr>
 
-                            </th>
-                        </tr>
+                                <tr class="border">
+                                    <th>Рисунок</th>
+                                    <th class="al-text">Ссылка</th>
+                                    <th class="al-text">Активна</th>
+                                    <th class="al-text-w"></th>
+                                </tr>
+                            </thead>
 
-                        <tr class="border">
-                            <th>Рисунок</th>
-                            <th class="al-text">Ссылка</th>
-                            <th class="al-text">Активна</th>
-                            <th class="al-text-w"></th>
-                        </tr>
-                    </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Рисунок</td>
+                                    <td class="al-text">Ссылка</td>
+                                    <td class="al-text">Активна</td>
+                                    <td class="al-text-w">
+                                        <div class="b-right">
+                                            <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button>
+                                        </div>
+                                        <div class="b-left">
+                                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#edit"><span class="glyphicon glyphicon-edit"></span></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
-                    <tbody>
-                        <tr>
-                            <td>Рисунок</td>
-                            <td class="al-text">Ссылка</td>
-                            <td class="al-text">Активна</td>
-                            <td class="al-text-w">
-                                <div class="b-right">
-                                    <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button>
-                                </div>
-                                <div class="b-left">
-                                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#edit"><span class="glyphicon glyphicon-edit"></span></button>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                    <?php
+                    if ($LANG_COUNT > 1) {
+                        for ($x = 1; $x < $LANG_COUNT; $x++) {
+                            ?>
+
+                            <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">
+                                <table class="table table-hover">
+
+                                    <thead>
+                                        <tr>
+                                            <th colspan="3">
+                                                <div class="page">с 1 по 1 ( из 1 )</div>
+                                            </th>
+
+                                            <th>
+
+                                                <form>
+                                                    <div class="b-right"><button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
+                                                </form>
+
+                                                <form>
+                                                    <div class="b-left"><button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
+                                                </form>
+
+                                                <div class="b-left"><a href="#settings" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-cog"></span></a></div>
+
+                                                <div class="b-left"><a href="#index" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
+
+                                            </th>
+                                        </tr>
+
+                                        <tr class="border">
+                                            <th>Рисунок</th>
+                                            <th class="al-text">Ссылка</th>
+                                            <th class="al-text">Активна</th>
+                                            <th class="al-text-w"></th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr>
+                                            <td>Рисунок</td>
+                                            <td class="al-text">Ссылка</td>
+                                            <td class="al-text">Активна</td>
+                                            <td class="al-text-w">
+                                                <div class="b-right">
+                                                    <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button>
+                                                </div>
+                                                <div class="b-left">
+                                                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#edit"><span class="glyphicon glyphicon-edit"></span></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <?php
+                    }
+                }
+                ?>
             </div>
         </div>
     </div>
+</div>
 </div>
