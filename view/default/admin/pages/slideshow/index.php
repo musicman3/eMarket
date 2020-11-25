@@ -25,7 +25,7 @@
             </div>
             <div class="panel-body">
                 <!-- Языковые панели -->
-                    <?php require_once(ROOT . '/view/' . \eMarket\Set::template() . '/layouts/lang_tabs_add.php') ?>
+                <?php require_once(ROOT . '/view/' . \eMarket\Set::template() . '/layouts/lang_tabs_add.php') ?>
                 <div class="tab-content">
                     <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade in active">
                         <table class="table table-hover">
@@ -64,8 +64,8 @@
                                 <tr>
                                     <td>Рисунок</td>
                                     <td class="al-text">Название</td>
-                                    <th class="al-text">10.10.20</th>
-                                    <th class="al-text">20.10.20</th>
+                                    <td class="al-text">10.10.20</td>
+                                    <td class="al-text">20.10.20</td>
                                     <td class="al-text-w">
                                         <div class="b-right">
                                             <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button>
@@ -123,8 +123,8 @@
                                         <tr>
                                             <td>Рисунок</td>
                                             <td class="al-text">Название</td>
-                                            <th class="al-text">10.10.20</th>
-                                            <th class="al-text">20.10.20</th>
+                                            <td class="al-text">10.10.20</td>
+                                            <td class="al-text">20.10.20</td>
                                             <td class="al-text-w">
                                                 <div class="b-right">
                                                     <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button>
