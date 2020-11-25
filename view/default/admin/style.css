@@ -12,7 +12,7 @@ input:active, textarea:active {outline: none;}
 html {position: relative;min-height: 100%;}
 body {background:#e4e4da;font-family: 'Open Sans';background-image:url('images/sep-half.png');margin-bottom: 70px;}
 
-@media (min-width:768px){.modal-md {width:700px;}}
+@media (min-width:768px){.modal-md {width:750px;}}
 
 .welcome {text-align: center;font-size: 40px;color: #c6c6c6;text-shadow: 0px 1px 1px #FFF;padding-top: 60px;}
 .welcome_logo {padding-top: 30px;padding-bottom: 30px;font-size: 70px;}

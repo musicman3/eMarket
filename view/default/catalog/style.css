@@ -12,7 +12,7 @@ input:active, textarea:active {outline: none;}
 html {position: relative;min-height: 100%;}
 body {font-family: 'Open Sans';margin-bottom: 90px;}
 
-@media (min-width:768px){.modal-md {width:700px;}}
+@media (min-width:768px){.modal-md {width:750px;}}
 
 #header, #bodyWrapper, #Carousel, #breadcrumb {margin-top:5px;margin-bottom:5px;}
 .breadcrumb {white-space: nowrap;overflow: auto;}
