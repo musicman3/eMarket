@@ -55,10 +55,10 @@
         });
         // Установка синхронного запроса для jQuery.ajax
         jQuery.ajaxSetup({async: false});
-        jQuery.post('?route=settings/order_status',
+        jQuery.post(window.location.href,
                 {ids: ids.join()});
         // Повторный вызов функции для нормального обновления страницы
-        jQuery.get('<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>',
+        jQuery.get(window.location.href,
                 {}, // id родительской категории
                 AjaxSuccess);
         function AjaxSuccess(data) {

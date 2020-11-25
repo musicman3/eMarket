@@ -20,7 +20,6 @@ title_settings_index = Настройки
 title_settings_length_index = Длина
 title_settings_modules_index = Модули
 title_settings_order_status_index = Статусы заказов
-title_settings_stikers_index = Стикеры
 title_settings_taxes_index = Налоги
 title_settings_templates_index = Компоновка шаблонов
 title_settings_units_index = Единицы измерения
@@ -28,6 +27,7 @@ title_settings_vendor_codes_index = Идентификаторы товара
 title_settings_weight_index = Вес
 title_settings_zones_index = Зоны
 title_settings_zones_listing_index = Страны и регионы
+title_stikers_index = Стикеры
 title_stock_index = Склад
 title_customers_index = Клиенты
 
