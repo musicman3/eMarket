@@ -22,7 +22,6 @@
         <title><?php echo \eMarket\Set::titlePageGenerator() ?></title>
 
         <link href="/ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
-        <link href="/ext/bootstrap/css/normalize.css" rel="stylesheet" media="screen" />
         <link rel="stylesheet" type="text/css" href="/view/<?php echo \eMarket\Set::template() ?>/admin/style.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="/ext/contextmenu/css/jquery.contextMenu.min.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="/ext/jquery/ui/jquery-ui.min.css" media="screen" />

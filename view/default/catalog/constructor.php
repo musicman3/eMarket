@@ -24,7 +24,6 @@
 
         <link rel="canonical" href="<?php echo \eMarket\Set::canonicalPathCatalog() ?>" />
         <link href="/ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
-        <link href="/ext/bootstrap/css/normalize.css" rel="stylesheet" media="screen" />
         <link rel="stylesheet" type="text/css" href="/view/<?php echo \eMarket\Set::template() ?>/catalog/style.css" media="screen" />
         <script type="text/javascript" src="/ext/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/ext/jquery/ui/jquery.ui.touch-punch.min.js"></script>

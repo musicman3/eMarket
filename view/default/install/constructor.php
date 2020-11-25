@@ -22,7 +22,6 @@
         <title><?php echo lang('title_' . \eMarket\Set::titleDir() . '_' . basename(\eMarket\Valid::inSERVER('PHP_SELF'), '.php')) ?></title>
 
         <link href="/ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
-        <link href="/ext/bootstrap/css/normalize.css" rel="stylesheet" media="screen" />
         <link rel="stylesheet" type="text/css" href="/view/<?php echo \eMarket\Set::template() ?>/install/style.css" media="screen" />
         <script type="text/javascript" src="/ext/jquery/jquery.min.js"></script>
     </head>
