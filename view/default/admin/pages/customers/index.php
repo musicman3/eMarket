@@ -31,88 +31,89 @@
                         </div>
                     </form>
                 </div>
+		<div class="clearfix"></div>
+		<div class="table-responsive">
+		    <table class="table table-hover">
+			<thead>
+			    <tr>
+				<th colspan="4">
+				    <?php if ($lines == TRUE) { ?>
+					<?php echo lang('with') ?> <?php echo $start + 1 ?> <?php echo lang('to') ?> <?php echo $finish ?> ( <?php echo lang('of') ?> <?php echo $count_lines; ?> )
+					<?php
+				    } else {
+					?>
+					<?php echo lang('no_listing') ?>
+				    <?php } ?>
+				</th>
 
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th colspan="4">
-                                <?php if ($lines == TRUE) { ?>
-                                    <div class="page"><?php echo lang('with') ?> <?php echo $start + 1 ?> <?php echo lang('to') ?> <?php echo $finish ?> ( <?php echo lang('of') ?> <?php echo $count_lines; ?> )</div>
-                                    <?php
-                                } else {
-                                    ?>
-                                    <div><?php echo lang('no_listing') ?></div>
-                                <?php } ?>
-                            </th>
-
-                            <th>
-
-                                    <form>
-                                        <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
-                                        <input hidden name="start" value="<?php echo $start ?>">
-                                        <input hidden name="finish" value="<?php echo $finish ?>">
-                                        <div class="b-right">
-					    <?php if ($finish != $count_lines) { ?>
-						<button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button>
-					    <?php } else { ?>
-						<a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-right"></span></a>
-					    <?php } ?>
+				<th>
+				    <div class="flexbox">
+					<form>
+					    <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
+					    <input hidden name="backstart" value="<?php echo $start ?>">
+					    <input hidden name="backfinish" value="<?php echo $finish ?>">
+					    <div class="b-left">
+						<?php if ($start > 0) { ?>
+						    <button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button>
+						<?php } else { ?>
+						    <a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-left"></span></a>
+						<?php } ?>
+					    </div>
+					</form>
+					<form>
+					    <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
+					    <input hidden name="start" value="<?php echo $start ?>">
+					    <input hidden name="finish" value="<?php echo $finish ?>">
+					    <div>
+						<?php if ($finish != $count_lines) { ?>
+						    <button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button>
+						<?php } else { ?>
+						    <a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-right"></span></a>
+						<?php } ?>
+					    </div>
+					</form>
+				    </div>
+				</th>
+			    </tr>
+			    <?php if ($lines == TRUE) { ?>
+				<tr class="border">
+				    <th><?php echo lang('customers_firstname') ?></th>
+				    <th class="text-center"><?php echo lang('customers_lastname') ?></th>
+				    <th class="text-center"><?php echo lang('customers_date_created') ?></th>
+				    <th class="text-center"><?php echo lang('customers_email') ?></th>
+				    <th></th>
+				</tr>
+			    <?php } ?>
+			</thead>
+			<tbody>
+			    <?php for ($start; $start < $finish; $start++) { ?>
+				<tr class="<?php echo \eMarket\Set::statusSwitchClass($lines[$start][18]) ?>">
+				    <td><?php echo $lines[$start][3] ?></td>
+				    <td class="text-center"><?php echo $lines[$start][4] ?></td>
+				    <td class="text-center"><?php echo \eMarket\Set::dateLocale($lines[$start][6]) ?></td>
+				    <td class="text-center"><?php echo $lines[$start][11] ?></td>
+				    <td>
+					<div class="flexbox">
+					    <!--Кнопка переключения статуса-->
+					    <form id="form_status<?php echo $lines[$start][0] ?>" name="form_status" action="javascript:void(null);" onsubmit="callAdd('form_status<?php echo $lines[$start][0] ?>')" enctype="multipart/form-data">
+						<input hidden name="status" value="<?php echo $lines[$start][0] ?>">
+						<div class="b-left">
+						    <button type="submit" name="status_but" class="btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-status') ?>"><span class="glyphicon glyphicon-off"> </span></button>
+						</div>
+					    </form>
+					    <form id="form_delete<?php echo $lines[$start][0] ?>" name="form_delete" action="javascript:void(null);" onsubmit="callDelete('<?php echo $lines[$start][0] ?>')" enctype="multipart/form-data">
+						<input hidden name="delete" value="<?php echo $lines[$start][0] ?>">
+						<div>
+						    <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button>
+						</div>
+					    </form>
 					</div>
-                                    </form>
-
-                                    <form>
-                                        <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
-                                        <input hidden name="backstart" value="<?php echo $start ?>">
-                                        <input hidden name="backfinish" value="<?php echo $finish ?>">
-                                        <div class="b-left">
-					    <?php if ($start > 0) { ?>
-						<button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button>
-					    <?php } else { ?>
-						<a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-left"></span></a>
-					    <?php } ?>
-					</div>
-                                    </form>
-
-                            </th>
-                        </tr>
-                        <?php if ($lines == TRUE) { ?>
-                            <tr class="border">
-                                <th><?php echo lang('customers_firstname') ?></th>
-                                <th class="al-text"><?php echo lang('customers_lastname') ?></th>
-                                <th class="al-text"><?php echo lang('customers_date_created') ?></th>
-                                <th class="al-text"><?php echo lang('customers_email') ?></th>
-                                <th class="al-text-w"></th>
-                            </tr>
-                        <?php } ?>
-                    </thead>
-                    <tbody>
-                        <?php for ($start; $start < $finish; $start++) { ?>
-                            <tr class="<?php echo \eMarket\Set::statusSwitchClass($lines[$start][18]) ?>">
-                                <td><?php echo $lines[$start][3] ?></td>
-                                <td class="al-text"><?php echo $lines[$start][4] ?></td>
-                                <td class="al-text"><?php echo \eMarket\Set::dateLocale($lines[$start][6]) ?></td>
-                                <td class="al-text"><?php echo $lines[$start][11] ?></td>
-                                <td class="al-text-w">
-                                    <form id="form_delete<?php echo $lines[$start][0] ?>" name="form_delete" action="javascript:void(null);" onsubmit="callDelete('<?php echo $lines[$start][0] ?>')" enctype="multipart/form-data">
-                                        <input hidden name="delete" value="<?php echo $lines[$start][0] ?>">
-                                        <div class="b-right">
-                                            <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button>
-                                        </div>
-                                    </form>
-                                    <!--Кнопка переключения статуса-->
-                                    <div class="b-left">
-                                        <form id="form_status<?php echo $lines[$start][0] ?>" name="form_status" action="javascript:void(null);" onsubmit="callAdd('form_status<?php echo $lines[$start][0] ?>')" enctype="multipart/form-data">
-                                            <input hidden name="status" value="<?php echo $lines[$start][0] ?>">
-                                            <div class="b-right">
-                                                <button type="submit" name="status_but" class="btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-status') ?>"><span class="glyphicon glyphicon-off"> </span></button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </td>
-                            </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
+				    </td>
+				</tr>
+			    <?php } ?>
+			</tbody>
+		    </table>
+                </div>
             </div>
         </div>
     </div>
