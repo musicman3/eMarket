@@ -18,8 +18,11 @@ require(ROOT . '/controller/admin/pages/slideshow/modal/settings.php');
                 <!-- Выводим сообщения -->
                 <div id="alert_messages_settings"></div>
 
-                <div class="form-group has-error">
-                    <input class="input-sm form-control" placeholder="Интервал (мс)" type="text" name="show_interval" id="show_interval" required />
+                <div class="form-group">
+                    <div class="input-group has-error">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                        <input class="input-sm form-control" placeholder="Интервал (мс)" type="text" name="show_interval" id="show_interval" required />
+                    </div>
                 </div>
                 <div class="form-group">
                     <input class="check-box" type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" id="mouse_stop">
