@@ -69,30 +69,19 @@
                             </div>
                         </form>
                     </div>
-
-
+		    <div class="clearfix"></div>
+		    <div class="table-responsive">
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th colspan="5">
+                                <th colspan="4">
 
-                                    <div class="page"><?php echo lang('with') ?> <?php echo $start + 1 ?> <?php echo lang('to') ?> <?php echo \eMarket\Navigation::counter($start, $finish, $count_lines_merge, $lines_on_page) ?> ( <?php echo lang('of') ?> <?php echo $count_lines_merge; ?> )</div>
+                                    <?php echo lang('with') ?> <?php echo $start + 1 ?> <?php echo lang('to') ?> <?php echo \eMarket\Navigation::counter($start, $finish, $count_lines_merge, $lines_on_page) ?> ( <?php echo lang('of') ?> <?php echo $count_lines_merge; ?> )
 
-                                    <!-- Переключаем страницу "ВПЕРЕД" -->
-                                    <form>
-                                        <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
-                                        <input hidden name="start" value="<?php echo $start ?>">
-                                        <input hidden name="finish" value="<?php echo $finish ?>">
-                                        <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
-                                        <div class="b-right">
-                                            <?php if ($finish != $count_lines_merge) { ?>
-                                                <button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button>
-                                            <?php } else { ?>
-                                                <a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-right"></span></a>
-                                            <?php } ?>
-                                        </div>
-                                    </form>
+				</th>
+				<th>
 
+				    <div class="flexbox">
                                     <!-- Переключаем страницу "НАЗАД" -->
                                     <form>
                                         <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
@@ -108,6 +97,22 @@
                                         </div>
                                     </form>
 
+                                    <!-- Переключаем страницу "ВПЕРЕД" -->
+                                    <form>
+                                        <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
+                                        <input hidden name="start" value="<?php echo $start ?>">
+                                        <input hidden name="finish" value="<?php echo $finish ?>">
+                                        <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
+                                        <div>
+                                            <?php if ($finish != $count_lines_merge) { ?>
+                                                <button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button>
+                                            <?php } else { ?>
+                                                <a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-right"></span></a>
+                                            <?php } ?>
+                                        </div>
+                                    </form>
+                                    </div>
+
                                 </th>
                             </tr>
                         </thead>
@@ -119,7 +124,7 @@
 
                                 <tr class="sortno">
                                     <td  class="sortleft-m"></td>
-                                    <td colspan="4" align="left">
+                                    <td colspan="4">
 
                                         <!-- Категории "ВВЕРХ" -->
                                         <form>
@@ -269,6 +274,7 @@
 
                         </tbody>
                     </table>
+                    </div>
                 </div>
 
                 <?php
@@ -289,6 +295,8 @@
                             </div>
                         </form>
                     </div>
+                    <div class="clearfix"></div>
+                    <div class="table-responsive">
                     <table class="table table-hover">
                         <thead>
                             <tr>
@@ -315,6 +323,7 @@
                             </tr>
                         </tbody>
                     </table>
+                    </div>
                 </div>
                 <?php
             } else {
@@ -333,6 +342,8 @@
                             </div>
                         </form>
                     </div>
+                    <div class="clearfix"></div>
+                    <div class="table-responsive">
                     <table class="table table-hover">
                         <thead>
                             <tr>
@@ -349,6 +360,7 @@
                             </tr>
                         </tbody>
                     </table>
+                    </div>
                 </div>
             <?php } ?>
         </div>
