@@ -94,20 +94,22 @@
                         <!-- Содержимое панели Атрибуты -->
                         <div id="panel_add_2" class="tab-pane fade">
 
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th colspan="3"></th>
-                                        <th>
-                                            <div class="b-right"><button class="add-group-attributes btn btn-primary btn-xs" type="button"><span class="glyphicon glyphicon-plus"></span></button></div>
-                                        </th>
-                                    </tr>
+			    <div class="table-responsive">
+				<table class="table table-hover">
+				    <thead>
+					<tr>
+					    <th colspan="3"></th>
+					    <th>
+						<div class="flexbox"><button class="add-group-attributes btn btn-primary btn-xs" type="button"><span class="glyphicon glyphicon-plus"></span></button></div>
+					    </th>
+					</tr>
 
-                                </thead>
+				    </thead>
 
-                                <tbody class="group-attributes"></tbody>
+				    <tbody class="group-attributes"></tbody>
 
-                            </table>
+				</table>
+                            </div>
 
                         </div>
 
