@@ -15,6 +15,7 @@
                 </h3>
             </div>
             <div class="panel-body">
+		<div class="table-responsive">
                 <table class="table">
                     <tbody>
                         <tr>
@@ -63,6 +64,7 @@
                         </tr>
                     </tbody>
                 </table>
+                </div>
             </div>
         </div>
     </div>
