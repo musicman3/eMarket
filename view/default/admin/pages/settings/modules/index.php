@@ -46,85 +46,93 @@
                         <div id="<?php echo $type ?>_modules" class="<?php echo $class_tab ?>">
 
                             <?php if (isset($_SESSION['MODULES_INFO'][$type])) { ?>
-                                <table class="table table-hover table-radius">
-                                    <thead>
+				<div class="table-responsive">
+				    <table class="table table-hover table-radius">
+					<thead>
 
-                                        <tr class="bg-primary">
-                                            <td><?php echo lang('installed_modules') ?></td>
-                                            <td class="al-text-w"></td>
-                                        </tr>
+					    <tr class="bg-primary">
+						<td><?php echo lang('installed_modules') ?></td>
+						<td></td>
+					    </tr>
 
-                                    </thead>
+					</thead>
 
-                                    <tbody>
-                                        <?php
-                                        foreach ($_SESSION['MODULES_INFO'][$type] as $key) {
-                                            if (in_array($key, $installed_filter)) {
-                                                if (in_array($key, $installed_filter_active)) {
-                                                    $active = '<tr class="success">';
-                                                } else {
-                                                    $active = '<tr class="danger">';
-                                                }
-                                                echo $active;
-                                                ?>
+					<tbody>
+					    <?php
+					    foreach ($_SESSION['MODULES_INFO'][$type] as $key) {
+						if (in_array($key, $installed_filter)) {
+						    if (in_array($key, $installed_filter_active)) {
+							$active = '<tr class="success">';
+						    } else {
+							$active = '<tr class="danger">';
+						    }
+						    echo $active;
+						    ?>
 
-                                            <td><?php echo lang('modules_' . $type . '_' . $key . '_name') ?></td>
+						<td><?php echo lang('modules_' . $type . '_' . $key . '_name') ?></td>
 
-                                            <?php ?>
-                                            <td class="al-text-w">
-                                                <form id="form_delete<?php echo $type . '_' . $key ?>" name="form_delete" action="javascript:void(null);" onsubmit="callDelete('<?php echo $type . '_' . $key ?>', '?route=settings/modules&active=<?php echo $type ?>')" enctype="multipart/form-data">
-                                                    <input hidden name="delete" value="<?php echo $type . '_' . $key ?>">
-                                                    <div class="b-right">
-                                                        <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-remove"> </span></button>
-                                                    </div>
-                                                </form>
-                                                <div class="b-left">
-                                                    <button type="button" onClick='location.href = "?route=settings/modules/edit&type=<?php echo $type ?>&name=<?php echo $key ?>"' class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-edit"> </span></button>
-                                                </div>
-                                            </td>
-                                            </tr>
-                                            <?php
-                                        }
-                                    }
-                                    ?> 
-                                    </tbody>
-                                </table>
+						<?php ?>
+						<td>
+						    <div class="flexbox">
+							<div class="b-left">
+							    <button type="button" onClick='location.href = "?route=settings/modules/edit&type=<?php echo $type ?>&name=<?php echo $key ?>"' class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-edit"> </span></button>
+							</div>
+							<form id="form_delete<?php echo $type . '_' . $key ?>" name="form_delete" action="javascript:void(null);" onsubmit="callDelete('<?php echo $type . '_' . $key ?>', '?route=settings/modules&active=<?php echo $type ?>')" enctype="multipart/form-data">
+							    <input hidden name="delete" value="<?php echo $type . '_' . $key ?>">
+							    <div>
+								<button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-remove"> </span></button>
+							    </div>
+							</form>
+						    </div>
+						</td>
+						</tr>
+						<?php
+					    }
+					}
+					?> 
+					</tbody>
+				    </table>
+				</div>
                                 </br>
-                                <table class="table table-hover table-radius">
-                                    <thead>
+                                <div class="table-responsive">
+				    <table class="table table-hover table-radius">
+					<thead>
 
-                                        <tr class="bg-primary">
-                                            <td><?php echo lang('uninstalled_modules') ?></td>
-                                            <td class="al-text-w"></td>
-                                        </tr>
+					    <tr class="bg-primary">
+						<td><?php echo lang('uninstalled_modules') ?></td>
+						<td></td>
+					    </tr>
 
-                                    </thead>
+					</thead>
 
-                                    <tbody>
-                                        <?php
-                                        foreach ($_SESSION['MODULES_INFO'][$type] as $key) {
-                                            if (!in_array($key, $installed_filter)) {
-                                                ?>
+					<tbody>
+					    <?php
+					    foreach ($_SESSION['MODULES_INFO'][$type] as $key) {
+						if (!in_array($key, $installed_filter)) {
+						    ?>
 
-                                                <tr class="danger">
-                                                    <td><?php echo lang('modules_' . $type . '_' . $key . '_name') ?></td>
+						    <tr class="danger">
+							<td><?php echo lang('modules_' . $type . '_' . $key . '_name') ?></td>
 
-                                                    <?php ?>
-                                                    <td class="al-text-w">
-                                                        <form id="form_add_<?php echo $type . '_' . $key ?>" name="form_add" action="javascript:void(null);" onsubmit="callAdd('form_add_<?php echo $type . '_' . $key ?>', '?route=settings/modules&active=<?php echo $type ?>')" enctype="multipart/form-data">
-                                                            <input hidden name="add" value="<?php echo $type . '_' . $key ?>">
-                                                            <div class="b-right">
-                                                                <button type="submit" name="add_but" class="btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-install') ?>"><span class="glyphicon glyphicon-plus"> </span></button>
-                                                            </div>
-                                                        </form>
-                                                    </td>
-                                                </tr>
-                                                <?php
-                                            }
-                                        }
-                                        ?> 
-                                    </tbody>
-                                </table>
+							<?php ?>
+							<td>
+							    <div class="flexbox">
+								<form id="form_add_<?php echo $type . '_' . $key ?>" name="form_add" action="javascript:void(null);" onsubmit="callAdd('form_add_<?php echo $type . '_' . $key ?>', '?route=settings/modules&active=<?php echo $type ?>')" enctype="multipart/form-data">
+								    <input hidden name="add" value="<?php echo $type . '_' . $key ?>">
+								    <div>
+									<button type="submit" name="add_but" class="btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-install') ?>"><span class="glyphicon glyphicon-plus"> </span></button>
+								    </div>
+								</form>
+							    </div>
+							</td>
+						    </tr>
+						    <?php
+						}
+					    }
+					    ?> 
+					</tbody>
+				    </table>
+                                </div>
                             </div>
                             <?php
                         }
