@@ -5,8 +5,8 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
 <!-- Модальное окно "Настройки" -->
-<?php require(ROOT . '/view/' . \eMarket\Set::template() . '/admin/pages/slideshow/modal/settings.php') ?>
-<!-- КОНЕЦ Модальное окно "Настройки" -->
+<?php require_once('modal/settings.php') ?>
+<!-- КОНЕЦ Модальное окно "Добавить" -->
 
 <!-- Модальное окно "Добавить" -->
 <?php require_once('modal/index.php') ?>
