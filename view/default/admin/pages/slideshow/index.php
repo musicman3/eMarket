@@ -24,59 +24,66 @@
                 </h3>
             </div>
             <div class="panel-body">
+		<div class="pull-right slide-sett"><a href="#settings" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-cog"></span></a></div>
                 <!-- Языковые панели -->
                 <?php require_once(ROOT . '/view/' . \eMarket\Set::template() . '/layouts/lang_tabs_add.php') ?>
                 <div class="tab-content">
                     <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade in active">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th colspan="4">
-                                        <div class="page">с 1 по 1 ( из 1 )</div>
-                                    </th>
+			<div class="table-responsive">
+			    <table class="table table-hover">
+				<thead>
+				    <tr>
+					<th colspan="4">
+					    с 1 по 1 ( из 1 )
+					</th>
 
-                                    <th>
-                                        <form>
-                                            <div class="b-right"><button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
-                                        </form>
+					<th>
+					    <div class="flexbox">
 
-                                        <form>
-                                            <div class="b-left"><button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
-                                        </form>
+						<div class="b-left"><a href="#index" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
 
-                                        <div class="b-left"><a href="#settings" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-cog"></span></a></div>
+						<form>
+						    <div class="b-left"><button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
+						</form>
 
-                                        <div class="b-left"><a href="#index" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
+						<form>
+						    <div><button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
+						</form>
 
-                                    </th>
-                                </tr>
+					    </div>
+					</th>
 
-                                <tr class="border">
-                                    <th>Рисунок</th>
-                                    <th class="al-text">Название</th>
-                                    <th class="al-text">Начало показа</th>
-                                    <th class="al-text">Конец показа</th>
-                                    <th class="al-text-w"></th>
-                                </tr>
-                            </thead>
+				    </tr>
 
-                            <tbody>
-                                <tr>
-                                    <td>Рисунок</td>
-                                    <td class="al-text">Название</td>
-                                    <td class="al-text">10.10.20</td>
-                                    <td class="al-text">20.10.20</td>
-                                    <td class="al-text-w">
-                                        <div class="b-right">
-                                            <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button>
-                                        </div>
-                                        <div class="b-left">
-                                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#edit"><span class="glyphicon glyphicon-edit"></span></button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+				    <tr class="border">
+					<th>Рисунок</th>
+					<th class="text-center">Название</th>
+					<th class="text-center">Начало показа</th>
+					<th class="text-center">Конец показа</th>
+					<th></th>
+				    </tr>
+				</thead>
+
+				<tbody>
+				    <tr>
+					<td>Рисунок</td>
+					<td class="text-center">Название</td>
+					<td class="text-center">10.10.20</td>
+					<td class="text-center">20.10.20</td>
+					<td>
+					    <div class="flexbox">
+						<div class="b-left">
+						    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#edit"><span class="glyphicon glyphicon-edit"></span></button>
+						</div>
+						<div>
+						    <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button>
+						</div>
+					    </div>
+					</td>
+				    </tr>
+				</tbody>
+			    </table>
+                        </div>
                     </div>
 
                     <?php
@@ -85,57 +92,60 @@
                             ?>
 
                             <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">
-                                <table class="table table-hover">
+				<div class="table-responsive">
+				    <table class="table table-hover">
 
-                                    <thead>
-                                        <tr>
-                                            <th colspan="4">
-                                                <div class="page">с 1 по 1 ( из 1 )</div>
-                                            </th>
+					<thead>
+					    <tr>
+						<th colspan="4">
+						    с 1 по 1 ( из 1 )
+						</th>
 
-                                            <th>
+						<th>
+						    <div class="flexbox">
+							<div class="b-left"><a href="#index" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
 
-                                                <form>
-                                                    <div class="b-right"><button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
-                                                </form>
+							<form>
+							    <div class="b-left"><button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
+							</form>
 
-                                                <form>
-                                                    <div class="b-left"><button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
-                                                </form>
+							<form>
+							    <div><button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
+							</form>
 
-                                                <div class="b-left"><a href="#settings" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-cog"></span></a></div>
+						    </div>
+						</th>
+					    </tr>
 
-                                                <div class="b-left"><a href="#index" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
+					    <tr class="border">
+						<th>Рисунок</th>
+						<th class="text-center">Название</th>
+						<th class="text-center">Начало показа</th>
+						<th class="text-center">Конец показа</th>
+						<th></th>
+					    </tr>
+					</thead>
 
-                                            </th>
-                                        </tr>
-
-                                        <tr class="border">
-                                            <th>Рисунок</th>
-                                            <th class="al-text">Название</th>
-                                            <th class="al-text">Начало показа</th>
-                                            <th class="al-text">Конец показа</th>
-                                            <th class="al-text-w"></th>
-                                        </tr>
-                                    </thead>
-
-                                    <tbody>
-                                        <tr>
-                                            <td>Рисунок</td>
-                                            <td class="al-text">Название</td>
-                                            <td class="al-text">10.10.20</td>
-                                            <td class="al-text">20.10.20</td>
-                                            <td class="al-text-w">
-                                                <div class="b-right">
-                                                    <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button>
-                                                </div>
-                                                <div class="b-left">
-                                                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#edit"><span class="glyphicon glyphicon-edit"></span></button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+					<tbody>
+					    <tr>
+						<td>Рисунок</td>
+						<td class="text-center">Название</td>
+						<td class="text-center">10.10.20</td>
+						<td class="text-center">20.10.20</td>
+						<td>
+						    <div class="flexbox">
+							<div class="b-left">
+							    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#edit"><span class="glyphicon glyphicon-edit"></span></button>
+							</div>
+							<div>
+							    <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button>
+							</div>
+						    </div>
+						</td>
+					    </tr>
+					</tbody>
+				    </table>
+                                </div>
                             </div>
                         </div>
 

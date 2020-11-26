@@ -61,6 +61,8 @@ body {background:#e4e4da;font-family: 'Open Sans';background-image:url('images/s
 
 #alert {padding:0;margin:0;float:right;line-height:1.4;}
 
+#slideshow .slide-sett {padding: 5px 5px 0 0;}
+
 .table {margin-bottom:0px;}
 .panel-title {font-size: 18px;padding:2px 0px 2px 0px;}
 .modal-body, .panel-body, .input-sm {font-size: 14px;}
