@@ -109,21 +109,18 @@
                                         </tr>
                                     </thead>
                                     <tbody id="invoice"></tbody>
-                                </table>
-
-                                <table class="table">
                                     <tbody>
                                         <tr>
-                                            <td class="text-right"><small><?php echo lang('orders_subtotal') ?>:</small></td>
-                                            <td class="text-right"><small id="invoice_order_total"></small></td>
+                                            <td  colspan="3" class="text-right"><small><?php echo lang('orders_subtotal') ?>:</small></td>
+                                            <td  colspan="2" class="text-right"><small id="invoice_order_total"></small></td>
                                         </tr>
                                         <tr>
-                                            <td class="text-right"><small class="label label-success" id="invoice_shipping_method"></small></td>
-                                            <td class="text-right"><small id="invoice_shipping_price"></small></td>
+                                            <td  colspan="3" class="text-right"><small class="label label-success" id="invoice_shipping_method"></small></td>
+                                            <td  colspan="2" class="text-right"><small id="invoice_shipping_price"></small></td>
                                         </tr>
                                         <tr>
-                                            <td class="text-right"><div class="label label-danger"><?php echo lang('orders_total') ?>:</div></td>
-                                            <td class="text-right"><small class="label label-danger" id="invoice_order_total_with_shipping"></small></td>
+                                            <td  colspan="3" class="text-right"><div class="label label-danger"><?php echo lang('orders_total') ?>:</div></td>
+                                            <td  colspan="2" class="text-right"><small class="label label-danger" id="invoice_order_total_with_shipping"></small></td>
                                         </tr>
                                     </tbody>
                                 </table>
