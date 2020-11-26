@@ -149,7 +149,7 @@ h6 {font-size:14px;}
 .modal-header {background-color: #f5f5f5;padding: 10px 15px;border-top-left-radius: 6px;border-top-right-radius: 6px;}
 .b-left {padding-right:10px;}
 .popover-title {text-align: center;padding: 5px;}
-.flexbox {display: flex;justify-content: right;}
+.flexbox {display: flex;justify-content: flex-end;}
 .table-radius {overflow: hidden;border-top-left-radius: 4px;border-top-right-radius: 4px;}
 .table-responsive {border: none;}
 .footerwrap {position: absolute;bottom: 0;width: 100%;height: 90px;}
