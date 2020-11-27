@@ -10448,6 +10448,8 @@ INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name
 INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/catalog/layouts/new_products.php', 'catalog', 'content-basket', 'listing', 'default', '1');
 INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/catalog/layouts/categories_index.php', 'catalog', 'content-basket', 'listing', 'default', '2');
 INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/catalog/layouts/categories_listing.php', 'catalog', 'content', 'listing', 'default', '1');
+/* SLIDESHOW PREF */
+INSERT INTO emkt_slideshow_pref (id, show_interval, mouse_stop, autostart, cicles, indicators, navigation) VALUES ('1', '2000', '0', '1', '0', '0', '0');
 /* SAMPLES */
 INSERT INTO emkt_categories (id, name, language, parent_id, logo, date_added, last_modified, sort_category, status, logo_general, attributes) VALUES
 (2, 'Notebooks', 'english', 0, NULL, '2019-10-08 23:22:18', '2019-10-09 00:04:05', 2, 1, NULL, '[]'),
