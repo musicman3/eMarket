@@ -93,7 +93,7 @@
 					    <div class="b-left">
 						<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index" data-edit="<?php echo $lines[$start][0] ?>"><span class="glyphicon glyphicon-edit"></span></button>
 					    </div>
-					    <form id="form_delete<?php echo $lines[$start][0] ?>" name="form_delete" action="javascript:void(null);" onsubmit="callDelete('<?php echo $lines[$start][0] ?>')" enctype="multipart/form-data">
+					    <form id="form_delete<?php echo $lines[$start][0] ?>" name="form_delete" action="javascript:void(null);" onsubmit="Ajax.callDelete('<?php echo $lines[$start][0] ?>')" enctype="multipart/form-data">
 						<input hidden name="delete" value="<?php echo $lines[$start][0] ?>">
 						<input hidden name="country_id" value="<?php echo \eMarket\Valid::inGET('country_id') ?>">
 						<div>

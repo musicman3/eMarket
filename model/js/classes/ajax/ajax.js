@@ -20,46 +20,17 @@ class Ajax {
     }
 
     /**
-     * Модальное окно "Добавить"
+     * Функция Добавить
      *
      * @param name {String} (имя)
      * @param url {String} (url)
      */
     static callAdd(name, url) {
-        if (name === undefined) {
+        if (name === undefined || name === null) {
             var msg = $('#form_add').serialize();
         } else {
             var msg = $('#' + name).serialize();
         }
-        jQuery.ajaxSetup({async: false});
-        jQuery.ajax({
-            type: 'POST',
-            url: this.basic_url,
-            data: msg,
-            beforeSend: function () {
-                $('.modal').modal('hide');
-            }
-        });
-        jQuery.get(this.basic_url,
-                {modify: 'update_ok'},
-                AjaxSuccess);
-        function AjaxSuccess(data) {
-            setTimeout(function () {
-                if (url === undefined) {
-                    document.location.href = window.location.href;
-                } else {
-                    document.location.href = url;
-                }
-            }, 100);
-        }
-    }
-    /**
-     * Модальное окно "Редактировать"
-     *
-     * @param url {String} (url)
-     */
-    static callEdit(url) {
-        var msg = $('#form_edit').serialize();
         jQuery.ajaxSetup({async: false});
         jQuery.ajax({
             type: 'POST',

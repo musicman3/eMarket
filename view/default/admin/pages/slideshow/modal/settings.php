@@ -12,7 +12,7 @@
                 <h4 class="modal-title"><?php echo \eMarket\Set::titlePageGenerator() ?></h4>
             </div>
             
-            <form id="form_settings" name="form_settings" action="javascript:void(null);" onsubmit="callAdd('form_settings')">
+            <form id="form_settings" name="form_settings" action="javascript:void(null);" onsubmit="Ajax.callAdd('form_settings')">
                 <div class="panel-body">
                     <input type="hidden" id="slideshow_pref" name="slideshow_pref" value="ok" />
 

@@ -15,7 +15,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
 <h1><?php echo lang('my_account_name') ?></h1>
 
 <div id="my_account" class="contentText">
-    <form name="form_edit" id="form_edit" action="javascript:void(null);" onchange="validate()" onsubmit="callEdit()">
+    <form name="form_add" id="form_add" action="javascript:void(null);" onchange="validate()" onsubmit="Ajax.callAdd()">
         <input type="hidden" id="edit" name="edit" value="ok" />
         <div class="row">
 

@@ -4,8 +4,6 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-// Подгружаем Ajax Добавить, Редактировать, Удалить
-\eMarket\Ajax::action('');
 ?>
 <link rel="stylesheet" href="/ext/bootstrap-switch/css/bootstrap-switch.min.css" type="text/css"/>
 <script type="text/javascript" src="/ext/bootstrap-switch/js/bootstrap-switch.min.js"></script>
@@ -129,4 +127,9 @@
             });
         }
     });
+</script>
+
+<script type="text/javascript" src="/model/js/classes/ajax/ajax.js"></script>
+<script type="text/javascript">
+    new Ajax('');
 </script>

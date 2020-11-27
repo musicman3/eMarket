@@ -12,7 +12,7 @@
             <div class="modal-header"><div class="pull-right"><button class="close" type="button" data-dismiss="modal">×</button></div>
                 <h4 class="modal-title" id="title"></h4>
             </div>
-            <form id="form_add" name="form_add" action="javascript:void(null);" onsubmit="callAdd()">
+            <form id="form_add" name="form_add" action="javascript:void(null);" onsubmit="Ajax.callAdd()">
                 <div class="panel-body">
                     <input type="hidden" id="edit" name="edit" value="" />
                     <!-- Панели формы -->

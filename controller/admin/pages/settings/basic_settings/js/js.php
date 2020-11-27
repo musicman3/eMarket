@@ -4,8 +4,6 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-// Подгружаем Ajax Добавить, Редактировать, Удалить
-\eMarket\Ajax::action('?route=settings/basic_settings');
 ?>
 
 <script type="text/javascript">
@@ -35,4 +33,9 @@
             $('#smtp_port').removeAttr('disabled');
         }
     });
+</script>
+
+<script type="text/javascript" src="/model/js/classes/ajax/ajax.js"></script>
+<script type="text/javascript">
+    new Ajax('?route=settings/basic_settings');
 </script>

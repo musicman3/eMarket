@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-// Подгружаем Ajax Добавить, Редактировать, Удалить
-\eMarket\Ajax::action('?route=error_log');
 ?>
+<script type="text/javascript" src="/model/js/classes/ajax/ajax.js"></script>
+<script type="text/javascript">
+    new Ajax('?route=error_log');
+</script>
