@@ -6,7 +6,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 // собираем данные для отображения в Редактировании категорий
-$json_data_category = json_encode([]);
+$json_data_category = json_encode(json_encode([]));
 for ($i = $start; $i < $finish; $i++) {
     if (isset($lines_cat[$i][0]) == TRUE) {
 
