@@ -38,7 +38,7 @@ if (\eMarket\Valid::inPOST('slideshow_pref')) {
         $navigation = 0;
     }
     
-    \eMarket\Pdo::inPrepare("UPDATE " . TABLE_SLIDESHOW_PREF . " SET show_interval=?, mouse_stop=?, autostart=?, cicles=?, indicators=?, navigation=?", [\eMarket\Valid::inPOST('show_interval'), $mouse_stop, $autostart, $cicles, $indicators, $navigation]);
+    \eMarket\Pdo::inPrepare("UPDATE " . TABLE_SLIDESHOW_PREF . " SET show_interval=?, mouse_stop=?, autostart=?, cicles=?, indicators=?, navigation=? WHERE id=?", [\eMarket\Valid::inPOST('show_interval'), $mouse_stop, $autostart, $cicles, $indicators, $navigation, 1]);
 }
 
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
