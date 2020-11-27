@@ -103,6 +103,5 @@ div.context-one, .table > tbody > tr > td.context-one {padding:5px;}
 .settings_back {padding: 0 5px 5px 5px;border: 1px solid #ddd;border-radius: 4px 0 0 4px;}
 .settings_name {padding: 0 5px 5px 5px;border: 1px solid #ddd;border-radius: 0 4px 4px 0;}
 .table-radius {overflow: hidden;border-top-left-radius: 4px;border-top-right-radius: 4px;}
-.table-responsive {border: none;}
 .shadow-element {box-shadow: 0 5px 15px rgba(0,0,0,.5);}
 .offset-0 {padding-left: 0;padding-right: 0;}
