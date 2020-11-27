@@ -16,6 +16,7 @@
                 <div class="panel-body">
 
                     <div class="form-group">
+                        <small class="form-text text-muted">Интервал (мс)</small>
                         <div class="input-group has-error">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
                             <input class="input-sm form-control" placeholder="Интервал (мс)" type="text" name="show_interval" id="show_interval" required />

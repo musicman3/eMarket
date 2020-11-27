@@ -24,6 +24,9 @@
                 </h3>
             </div>
             <div class="panel-body">
+                <!--Скрытый div для передачи данных-->
+                <div id="ajax_data" class='hidden' data-jsonsettings='<?php echo $settings ?>'></div>
+                
 		<div class="pull-right slide-sett"><a href="#settings" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-cog"></span></a></div>
                 <!-- Языковые панели -->
                 <?php require_once(ROOT . '/view/' . \eMarket\Set::template() . '/layouts/lang_tabs_add.php') ?>
