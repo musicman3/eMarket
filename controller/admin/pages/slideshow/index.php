@@ -3,12 +3,18 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-// Модальное окно
-require_once('modal/index.php');
-// Модальное окно
-require_once('modal/settings.php');
 
 $settings = json_encode(\eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_SLIDESHOW_PREF . "", [])[0]);
+
+// Загручик изображений (ВСТАВЛЯТЬ ПЕРЕД УДАЛЕНИЕМ)
+$resize_param = [];
+array_push($resize_param, ['125', '94']); // ширина, высота
+//array_push($resize_param, ['200','150']);
+//array_push($resize_param, ['325','244']);
+//array_push($resize_param, ['525','394']);
+//array_push($resize_param, ['850','638']);
+
+\eMarket\Files::imgUpload(TABLE_MANUFACTURERS, 'manufacturers', $resize_param);
 
 if (\eMarket\Valid::inPOST('slideshow_pref')) {
 
@@ -40,6 +46,11 @@ if (\eMarket\Valid::inPOST('slideshow_pref')) {
     
     \eMarket\Pdo::inPrepare("UPDATE " . TABLE_SLIDESHOW_PREF . " SET show_interval=?, mouse_stop=?, autostart=?, cicles=?, indicators=?, navigation=? WHERE id=?", [\eMarket\Valid::inPOST('show_interval'), $mouse_stop, $autostart, $cicles, $indicators, $navigation, 1]);
 }
+
+// Модальное окно
+require_once('modal/index.php');
+// Модальное окно
+require_once('modal/settings.php');
 
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
 $JS_END = __DIR__;

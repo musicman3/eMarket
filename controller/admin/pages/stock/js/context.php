@@ -172,7 +172,7 @@
                             $('#edit').val(modal_id);
                             $('#add').val('');
                             // Подгружаем изображения
-                            getImageToEdit(json_data['logo_general'], json_data['logo'], modal_id);
+                            Fileupload.getImageToEdit(json_data['logo_general'], json_data['logo'], modal_id, 'categories');
                             // Подгружаем атрибуты
                             sessionStorage.setItem('attributes', JSON.stringify(json_data['attributes'][modal_id]));
                             // Открываем модальное окно

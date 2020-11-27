@@ -3,7 +3,6 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-
 ?>
 <!-- Модальное окно "Добавить" -->
 <div id="index" class="modal fade" tabindex="-1">
@@ -16,26 +15,26 @@
                 <div class="panel-body">
 
                     <div class="tab-content">
-                            <div class="form-group">
-				<div class="input-group has-success">
-				    <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
-				    <input class="input-sm form-control" placeholder="Адрес ссылки" type="text" name="" id="" required />
-				</div>
-			    </div>
-			    <div class="form-group">
-				<div class="input-group has-success">
-				    <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-				    <input class="input-sm form-control" placeholder="Заголовок (?)" type="text" name="" id="" required />
-				</div>
-			    </div>
-			    <div class="form-group">
-				<div class="input-group has-success">
-				    <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-				    <input class="input-sm form-control" placeholder="Текст (?)" type="text" name="" id="" required />
-				</div>
-			    </div>
+                        <div class="form-group">
+                            <div class="input-group has-success">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
+                                <input class="input-sm form-control" placeholder="Адрес ссылки" type="text" name="" id="" required />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group has-success">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+                                <input class="input-sm form-control" placeholder="Заголовок (?)" type="text" name="" id="" required />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group has-success">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+                                <input class="input-sm form-control" placeholder="Текст (?)" type="text" name="" id="" required />
+                            </div>
+                        </div>
                     </div>
-                    
+
                     <!-- Выводим сообщения -->
                     <div id="alert_messages_add"></div>
 
@@ -43,7 +42,7 @@
                     <div class="form-group">
                         <span class="btn btn-primary btn-sm fileinput-button">
                             <i class="glyphicon glyphicon-picture"></i><span> <?php echo lang('button_add_image') ?></span>
-                            <input class="input-sm form-control" id="fileupload-add" type="file" name="files[]" accept="image/jpeg,image/png,image/gif" multiple>
+                            <input class="input-sm form-control" id="fileupload" type="file" name="files[]" accept="image/jpeg,image/png,image/gif" multiple>
                         </span>
                         <?php echo lang('max') ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>
                         <br>
@@ -51,8 +50,9 @@
                         <div id="progress" class="progress">
                             <div class="progress-bar progress-bar-warning progress-bar-striped active"></div>
                         </div>
-                        <div id="logo-add" class="text-center"></div>
+                        <div id="logo" class="text-center"></div>
                     </div>
+
                     <div class="form-group">
                         <label for="view_slideshow"><?php echo lang('display') ?> </label>
                         <input class="check-box" type="checkbox" name="view_slideshow" id="view_slideshow" checked>

@@ -3,22 +3,31 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+$resize_max = json_encode(\eMarket\Files::imgResizeMax($resize_param));
+$lang_js = json_encode([
+    'image_resize_error' => lang('image_resize_error'),
+    'download_complete' => lang('download_complete')
+        ]);
 ?>
+<!--Подгружаем jQuery File Upload -->
+<script src = "/ext/jquery_file_upload/js/vendor/jquery.ui.widget.js"></script>
+<script src="/ext/jquery_file_upload/js/jquery.iframe-transport.js"></script>
+<script src="/ext/jquery_file_upload/js/jquery.fileupload.js"></script>
+<script type="text/javascript" src="/model/js/classes/images/fileupload.js"></script>
+
 <!--Подгружаем bootstrapSwitch -->
 <link rel="stylesheet" href="/ext/bootstrap-switch/css/bootstrap-switch.min.css" type="text/css"/>
 <script type="text/javascript" src="/ext/bootstrap-switch/js/bootstrap-switch.min.js"></script>
 <script type="text/javascript">
     $('#view_categories_stock').bootstrapSwitch();
+    
+    var resize_max = $.parseJSON('<?php echo $resize_max ?>');
+    var lang = $.parseJSON('<?php echo $lang_js ?>');
+    new Fileupload(resize_max, lang);
 </script>
-
-<!--Подгружаем jQuery File Upload -->
-<script src = "/ext/jquery_file_upload/js/vendor/jquery.ui.widget.js"></script>
-<script src="/ext/jquery_file_upload/js/jquery.iframe-transport.js"></script>
-<script src="/ext/jquery_file_upload/js/jquery.fileupload.js"></script>
 
 <?php
 // Подгружаем jQuery File Upload
-\eMarket\Ajax::fileUpload('', 'categories', $resize_param);
 \eMarket\Ajax::fileUploadProduct('', 'products', $resize_param_product);
 ?>
 
