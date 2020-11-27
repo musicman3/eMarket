@@ -14,6 +14,7 @@
             
             <form id="form_settings" name="form_settings" action="javascript:void(null);" onsubmit="callAdd('form_settings')">
                 <div class="panel-body">
+                    <input type="hidden" id="slideshow_pref" name="slideshow_pref" value="ok" />
 
                     <div class="form-group">
                         <small class="form-text text-muted">Интервал (мс)</small>
@@ -23,23 +24,23 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <input class="check-box" type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" id="mouse_stop">
+                        <input class="check-box" type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="mouse_stop" id="mouse_stop">
                         <label>Остановка слайдшоу при нахождении курсора </label>
                     </div>
                     <div class="form-group">
-                        <input class="check-box" type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" id="autostart">
+                        <input class="check-box" type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="autostart" id="autostart">
                         <label>Запуск слайдшоу автоматически </label>
                     </div>
                     <div class="form-group">
-                        <input class="check-box" type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" id="cicles">
+                        <input class="check-box" type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="cicles" id="cicles">
                         <label>Зацикливать смену слайдов </label>
                     </div>
                     <div class="form-group">
-                        <input class="check-box" type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" id="indicators">
+                        <input class="check-box" type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="indicators" id="indicators">
                         <label>Показывать индикаторы </label>
                     </div>
                     <div class="form-group">
-                        <input class="check-box" type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" id="navigation">
+                        <input class="check-box" type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="navigation" id="navigation">
                         <label>Показывать стрелки навигации </label>
                     </div>
 
