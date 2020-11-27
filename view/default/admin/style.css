@@ -70,26 +70,18 @@ body {background:#e4e4da;font-family: 'Open Sans';background-image:url('images/s
 .modal-header {background-color: #f5f5f5;padding: 10px 15px;border-top-left-radius: 6px;border-top-right-radius: 6px;}
 .b-left {padding-right:10px;}
 .flexbox {display: flex;justify-content: flex-end;}
-.add-xs {font-size:14px;display: inline-block;float: right; padding-right:5px;padding-left:5px;}
-.popover-title {text-align:center;padding:5px;}
 .table > tbody > tr > td.selector {width: 30%;}
 .table > tbody > tr > td.attribute {vertical-align: middle;}
 .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {padding:5px;}
 .sortyes, .sortyes-group, .sortyes-attributes, .sortyes-value-attributes {cursor:move;}
 .table .sortleft {width:30px;vertical-align: middle;text-align: center;}
 .table .sortleft-m {color:#d8d8cf;width:25px;vertical-align: middle;text-align: center;}
-.table .sortleft-mp {opacity:0;width:25px;vertical-align: middle;text-align: center;}
 .table .sortno:hover {background: none;}
 .table > tbody > tr > td.active {background-color: #f0f0f0;}
 .table > tbody > tr > td.option, .table > tbody > tr > td.options {padding:0px;}
-.table .pleft {vertical-align: middle;width: 70%;}
-.table .pright {vertical-align: middle;width: 7%;}
 div.context-one, .table > tbody > tr > td.context-one {padding:5px;}
-.al-text {text-align: center;}
-.al-text-w {text-align: center;width: 150px;}
 .settings {float: left;padding-left: 5px;}
 .settings .btn {margin-right: 10px;}
-.modal-header .glyphicon {color: #000000;opacity: 0.5}
 .tab-content {padding-top: 10px;}
 .input-group .data {position: static;}
 .back {transform: scale(-1, 1);}

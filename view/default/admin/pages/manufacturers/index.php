@@ -72,8 +72,8 @@
 			    <?php if ($lines == TRUE) { ?>
 				<tr class="border">
 				    <th><?php echo lang('manufacturer') ?></th>
-				    <th class="al-text"><?php echo lang('site') ?></th>
-				    <th class="al-text-w"></th>
+				    <th class="text-center"><?php echo lang('site') ?></th>
+				    <th></th>
 				</tr>
 			    <?php } ?>
 			</thead>
