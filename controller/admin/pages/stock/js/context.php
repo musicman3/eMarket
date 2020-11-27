@@ -153,7 +153,7 @@
                             $('#edit_product').val(modal_id);
                             $('#add_product').val('');
                             // Подгружаем изображения
-                            getImageToEditProduct(json_data['logo_general'], json_data['logo'], modal_id);
+                            FileuploadProduct.getImageToEditProduct(json_data['logo_general'], json_data['logo'], modal_id, 'products');
 
                             $('#index_product').modal('show');
                         } else {
