@@ -14,11 +14,13 @@ $lang_js = json_encode([
 <script src="/ext/jquery_file_upload/js/jquery.iframe-transport.js"></script>
 <script src="/ext/jquery_file_upload/js/jquery.fileupload.js"></script>
 <script type="text/javascript" src="/model/js/classes/images/fileupload.js"></script>
+<script type="text/javascript" src="/model/js/classes/ajax/ajax.js"></script>
 
 <script type="text/javascript">
     var resize_max = $.parseJSON('<?php echo $resize_max ?>');
     var lang = $.parseJSON('<?php echo $lang_js ?>');
     new Fileupload(resize_max, lang);
+    new Ajax('');
     
     $('#index').on('show.bs.modal', function (event) {
 
@@ -47,9 +49,3 @@ $lang_js = json_encode([
         }
     });
 </script>
-<?php
-// Подгружаем Ajax Добавить, Редактировать, Удалить
-\eMarket\Ajax::action('');
-
-
-?>
