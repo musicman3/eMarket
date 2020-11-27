@@ -132,7 +132,7 @@ if (isset($_SESSION['buffer'])) {
 }
 
 if ($parent_id == 0) {
-    $attributes_category = json_encode([]);
+    $attributes_category = json_encode(json_encode([]));
 } else {
     $attributes_category = json_encode(\eMarket\Pdo::getColAssoc("SELECT attributes FROM " . TABLE_CATEGORIES . " WHERE id=? AND language=?", [$parent_id, lang('#lang_all')[0]])[0]['attributes']);
 }

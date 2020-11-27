@@ -42,8 +42,9 @@
                     },
                     disabled: function () {
                         let params = (new URL(document.location)).searchParams;
+                        let parent_id = '<?php echo $parent_id ?>';
                         // Делаем не активным пункт меню, если нет строк
-                        if (params.get('search') !== null) {
+                        if (params.get('search') !== null || Number(parent_id) === 0) {
                             return true;
                         }
                     },

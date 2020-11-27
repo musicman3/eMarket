@@ -27,7 +27,7 @@
         // Обновление страницы
         function AjaxSuccess(data) {
             setTimeout(function () {
-                document.location.href = '<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>';
+                document.location.href = window.location.href;
             }, 100);
             $("#sort-list").sortable();
         }
