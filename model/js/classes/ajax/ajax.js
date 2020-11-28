@@ -45,7 +45,7 @@ class Ajax {
                 AjaxSuccess);
         function AjaxSuccess(data) {
             setTimeout(function () {
-                if (url === undefined) {
+                if (url === undefined || url === null) {
                     document.location.href = window.location.href;
                 } else {
                     document.location.href = url;

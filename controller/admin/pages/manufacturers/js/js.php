@@ -20,7 +20,7 @@ $lang_js = json_encode([
     var resize_max = $.parseJSON('<?php echo $resize_max ?>');
     var lang = $.parseJSON('<?php echo $lang_js ?>');
     new Fileupload(resize_max, lang);
-    new Ajax('');
+    new Ajax();
     
     $('#index').on('show.bs.modal', function (event) {
 

@@ -35,5 +35,5 @@ if (isset($shipping_zone)) {
 ?>
 <script type="text/javascript" src="/model/js/classes/ajax/ajax.js"></script>
 <script type="text/javascript">
-    new Ajax('');
+    new Ajax();
 </script>
