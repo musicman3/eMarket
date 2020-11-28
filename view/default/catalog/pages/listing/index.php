@@ -23,7 +23,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
             <div class="btn-group">
                 <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-sort"></span> &nbsp;<?php echo $sort_name ?></button>
                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></button>
-                <ul class="dropdown-menu text-right">
+                <ul class="dropdown-menu">
                     <li><a id="default" class="sorting"><?php echo lang('listing_sort_by_default') ?></a></li>
                     <li><a id="name" class="sorting"><?php echo lang('listing_sort_by_name') ?></a></li>
                     <li><a id="down" class="sorting"><?php echo lang('listing_sort_by_price_desc') ?></a></li>
