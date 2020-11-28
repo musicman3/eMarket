@@ -10,8 +10,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">
-                    <div class="pull-left"><?php echo lang('title_settings_index') ?></div>
-                    <div class="clearfix"></div>
+                    <?php echo lang('title_settings_index') ?>
                 </h3>
             </div>
             <div class="panel-body">

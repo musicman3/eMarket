@@ -12,8 +12,7 @@
             <!--Выводим уведомление об успешном действии-->
             <?php \eMarket\Messages::alert(); ?>
             <h3 class="panel-title">
-                <div class="pull-left"><?php echo \eMarket\Set::titlePageGenerator() ?></div>
-                <div class="clearfix"></div>
+                <?php echo \eMarket\Set::titlePageGenerator() ?>
             </h3>
         </div>
         <?php if (file_exists(ROOT . '/model/work/errors.log') == true) { ?>
