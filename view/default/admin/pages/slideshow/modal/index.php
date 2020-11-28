@@ -13,8 +13,10 @@
             </div>
             <form id="form_add" name="form_add" action="javascript:void(null);" onsubmit="Ajax.callAdd()">
                 <div class="panel-body">
+                    <input type="hidden" id="add" name="add" value="" />
+                    <input type="hidden" id="edit" name="edit" value="" />
                     <input type="hidden" id="slide_language" name="slide_language" value="<?php echo lang('#lang_all')[0] ?>" />
-                    
+
                     <div class="tab-content">
                         <div class="form-group">
                             <div class="input-group has-success">
@@ -55,8 +57,8 @@
                     </div>
 
                     <div class="form-group">
+                        <input class="check-box" type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="view_slideshow" id="view_slideshow" checked>
                         <label for="view_slideshow"><?php echo lang('display') ?> </label>
-                        <input class="check-box" type="checkbox" name="view_slideshow" id="view_slideshow" checked>
                     </div>
                 </div>
                 <div class="modal-footer">

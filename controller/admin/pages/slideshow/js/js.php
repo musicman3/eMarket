@@ -12,6 +12,7 @@
     $('#cicles').bootstrapSwitch();
     $('#indicators').bootstrapSwitch();
     $('#navigation').bootstrapSwitch();
+    $('#view_slideshow').bootstrapSwitch();
 
     $('#settings').on('show.bs.modal', function (event) {
         $('#mouse_stop').bootstrapSwitch('destroy', true);
@@ -38,9 +39,34 @@
         $('#navigation').bootstrapSwitch();
     });
 
-$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-  $('#slide_language').val(e.target['hash'].slice(1));
-});
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        var tab = e.target['hash'].slice(1);
+        $('#slide_language').val(tab);
+    });
+
+    $('#index').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        var modal_id = button.data('edit'); // Получаем ID из data-edit при клике на кнопку редактирования
+        if (Number.isInteger(modal_id)) {
+            $('#default_stikers').bootstrapSwitch('destroy', true);
+            // Получаем массивы данных
+            var json_data = $('div#ajax_data').data('jsondata');
+
+            $('#edit').val(modal_id);
+            $('#add').val('');
+            
+            // Меняем значение чекбокса
+            //$('#view_slideshow').prop('checked', json_data['status'][modal_id]);
+            //$('#view_slideshow').bootstrapSwitch();
+        } else {
+            $('#edit').val('');
+            $('#add').val('ok');
+            //Очищаем поля
+            $(this).find('form').trigger('reset');
+            // Меняем значение чекбокса
+            $('#view_slideshow').prop('checked', '1');
+        }
+    });
 </script>
 
 <script type="text/javascript" src="/model/js/classes/ajax/ajax.js"></script>
