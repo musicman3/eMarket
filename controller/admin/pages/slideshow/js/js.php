@@ -38,6 +38,9 @@
         $('#navigation').bootstrapSwitch();
     });
 
+$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+  $('#slide_language').val(e.target['hash'].slice(1));
+});
 </script>
 
 <script type="text/javascript" src="/model/js/classes/ajax/ajax.js"></script>

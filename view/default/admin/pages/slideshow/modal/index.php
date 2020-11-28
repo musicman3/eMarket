@@ -13,24 +13,25 @@
             </div>
             <form id="form_add" name="form_add" action="javascript:void(null);" onsubmit="Ajax.callAdd()">
                 <div class="panel-body">
-
+                    <input type="hidden" id="slide_language" name="slide_language" value="<?php echo lang('#lang_all')[0] ?>" />
+                    
                     <div class="tab-content">
                         <div class="form-group">
                             <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
-                                <input class="input-sm form-control" placeholder="Адрес ссылки" type="text" name="" id="" required />
+                                <input class="input-sm form-control" placeholder="Адрес ссылки" type="text" name="url" id="url" />
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                <input class="input-sm form-control" placeholder="Заголовок (?)" type="text" name="" id="" required />
+                                <input class="input-sm form-control" placeholder="Заголовок (?)" type="text" name="name" id="name" required />
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                <input class="input-sm form-control" placeholder="Текст (?)" type="text" name="" id="" required />
+                                <input class="input-sm form-control" placeholder="Текст (?)" type="text" name="heading" id="heading" required />
                             </div>
                         </div>
                     </div>
