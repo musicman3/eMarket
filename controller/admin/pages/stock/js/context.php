@@ -23,7 +23,6 @@
                             ids2: opt.$trigger.attr("id")}), //id строки
                         success: function (data) {
                             setTimeout(function () {
-                                $('#view_categories_stock').bootstrapSwitch('destroy');
                                 $('#fileupload').fileupload('destroy');
                                 $('#fileupload-product').fileupload('destroy');
                             }, 1000);
@@ -230,7 +229,6 @@
                                         AjaxSuccess);
                                 // Обновление страницы
                                 function AjaxSuccess(data) {
-                                    $('#view_categories_stock').bootstrapSwitch('destroy');
                                     $('#fileupload').fileupload('destroy');
                                     $('#fileupload-product').fileupload('destroy');
                                     $('#ajax').html(data);
@@ -273,7 +271,6 @@
                                         AjaxSuccess);
                                 // Обновление страницы
                                 function AjaxSuccess(data) {
-                                    $('#view_categories_stock').bootstrapSwitch('destroy');
                                     $('#fileupload').fileupload('destroy');
                                     $('#fileupload-product').fileupload('destroy');
                                     $('#ajax').html(data);
@@ -323,7 +320,6 @@
                                         AjaxSuccess);
                                 // Обновление страницы
                                 function AjaxSuccess(data) {
-                                    $('#view_categories_stock').bootstrapSwitch('destroy');
                                     $('#fileupload').fileupload('destroy');
                                     $('#fileupload-product').fileupload('destroy');
                                     $('#ajax').html(data);
@@ -360,7 +356,6 @@
                                         AjaxSuccess);
                                 // Обновление страницы
                                 function AjaxSuccess(data) {
-                                    $('#view_categories_stock').bootstrapSwitch('destroy');
                                     $('#fileupload').fileupload('destroy');
                                     $('#fileupload-product').fileupload('destroy');
                                     $('#ajax').html(data);
@@ -412,7 +407,6 @@
                                     // Обновление страницы
                                     function AjaxSuccess(data) {
                                         $('#confirm').modal('hide');
-                                        $('#view_categories_stock').bootstrapSwitch('destroy');
                                         $('#fileupload').fileupload('destroy');
                                         $('#fileupload-product').fileupload('destroy');
                                         $('#ajax').html(data);
@@ -483,7 +477,6 @@
                                         AjaxSuccess);
                                 // Обновление страницы
                                 function AjaxSuccess(data) {
-                                    $('#view_categories_stock').bootstrapSwitch('destroy');
                                     $('#fileupload').fileupload('destroy');
                                     $('#fileupload-product').fileupload('destroy');
                                     $('#ajax').html(data);
@@ -539,7 +532,6 @@
                                             AjaxSuccess);
                                     // Обновление страницы
                                     function AjaxSuccess(data) {
-                                        $('#view_categories_stock').bootstrapSwitch('destroy');
                                         $('#fileupload').fileupload('destroy');
                                         $('#fileupload-product').fileupload('destroy');
                                         $('#ajax').html(data);
@@ -594,7 +586,6 @@
                                             AjaxSuccess);
                                     // Обновление страницы
                                     function AjaxSuccess(data) {
-                                        $('#view_categories_stock').bootstrapSwitch('destroy');
                                         $('#fileupload').fileupload('destroy');
                                         $('#fileupload-product').fileupload('destroy');
                                         $('#ajax').html(data);
@@ -668,7 +659,6 @@
                                         AjaxSuccess);
                                 // Обновление страницы
                                 function AjaxSuccess(data) {
-                                    $('#view_categories_stock').bootstrapSwitch('destroy');
                                     $('#fileupload').fileupload('destroy');
                                     $('#fileupload-product').fileupload('destroy');
                                     $('#ajax').html(data);
@@ -718,7 +708,6 @@
                                             AjaxSuccess);
                                     // Обновление страницы
                                     function AjaxSuccess(data) {
-                                        $('#view_categories_stock').bootstrapSwitch('destroy');
                                         $('#fileupload').fileupload('destroy');
                                         $('#fileupload-product').fileupload('destroy');
                                         $('#ajax').html(data);

@@ -23,6 +23,7 @@
                     <input id="general_image_edit_new" type="hidden" name="general_image_edit_new" value="">
                     <input id="attributes" type="hidden" name="attributes" value="">
                     <input id="group_attributes" type="hidden" name="group_attributes" value="">
+                    <input id="view_categories_stock" type="hidden" name="view_categories_stock" value="ok">
 
                     <!-- Панели формы -->
                     <ul class="nav nav-tabs">
@@ -84,10 +85,6 @@
                                     <div class="progress-bar progress-bar-warning progress-bar-striped active"></div>
                                 </div>
                                 <div id="logo" class="text-center"></div>
-                            </div>
-                            <div class="form-group">
-                                <input  class="check-box" hidden type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="view_categories_stock" id="view_categories_stock" checked>
-                                <label for="view_categories_stock"><?php echo lang('display') ?> </label>
                             </div>
                         </div>
 

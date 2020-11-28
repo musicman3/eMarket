@@ -17,13 +17,7 @@ $lang_js = json_encode([
 <script type="text/javascript" src="/model/js/classes/images/fileupload.js"></script>
 <script type="text/javascript" src="/model/js/classes/images/fileupload_product.js"></script>
 
-<!--Подгружаем bootstrapSwitch -->
-<link rel="stylesheet" href="/ext/bootstrap-switch/css/bootstrap-switch.min.css" type="text/css"/>
-<script type="text/javascript" src="/ext/bootstrap-switch/js/bootstrap-switch.min.js"></script>
-
 <script type="text/javascript">
-    $('#view_categories_stock').bootstrapSwitch();
-    
     var resize_max = $.parseJSON('<?php echo $resize_max ?>');
     var resize_max_prod = $.parseJSON('<?php echo $resize_max_prod ?>');
     var lang = $.parseJSON('<?php echo $lang_js ?>');

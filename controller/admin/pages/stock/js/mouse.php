@@ -74,11 +74,10 @@
         jQuery.post('?route=stock',
                 {ids: ids.join()});
         // Повторный вызов функции для нормального обновления страницы
-        jQuery.get('<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>',
+        jQuery.get(window.location.href,
                 {}, // id родительской категории
                 AjaxSuccess);
         function AjaxSuccess(data) {
-            $('#view_categories_stock').bootstrapSwitch('destroy');
             $('#fileupload').fileupload('destroy');
             $('#fileupload-product').fileupload('destroy');
             $('#ajax').html(data);

@@ -165,12 +165,6 @@ final class Eac {
 
         if (\eMarket\Valid::inPOST('add')) {
 
-            if (\eMarket\Valid::inPOST('view_categories_stock')) {
-                $view_cat = 1;
-            } else {
-                $view_cat = 0;
-            }
-
             // Получаем последний sort_category в текущем parent_id и увеличиваем его на 1
             $sort_max = \eMarket\Pdo::selectPrepare("SELECT sort_category FROM " . $TABLE_CATEGORIES . " WHERE language=? AND parent_id=? ORDER BY sort_category DESC", [lang('#lang_all')[0], $parent_id]);
             $sort_category = intval($sort_max) + 1;
@@ -187,7 +181,7 @@ final class Eac {
 
             // добавляем запись для всех вкладок
             for ($x = 0; $x < $LANG_COUNT; $x++) {
-                \eMarket\Pdo::inPrepare("INSERT INTO " . $TABLE_CATEGORIES . " SET id=?, name=?, sort_category=?, language=?, parent_id=?, date_added=?, status=?, attributes=?", [$id, \eMarket\Valid::inPOST('name_categories_stock_' . $x), $sort_category, lang('#lang_all')[$x], $parent_id, date("Y-m-d H:i:s"), $view_cat, $attributes]);
+                \eMarket\Pdo::inPrepare("INSERT INTO " . $TABLE_CATEGORIES . " SET id=?, name=?, sort_category=?, language=?, parent_id=?, date_added=?, status=?, attributes=?", [$id, \eMarket\Valid::inPOST('name_categories_stock_' . $x), $sort_category, lang('#lang_all')[$x], $parent_id, date("Y-m-d H:i:s"), 1, $attributes]);
             }
             // Выводим сообщение об успехе
             $_SESSION['message'] = ['success', lang('action_completed_successfully')];
