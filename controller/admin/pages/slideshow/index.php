@@ -1,4 +1,5 @@
 <?php
+
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -43,7 +44,7 @@ if (\eMarket\Valid::inPOST('slideshow_pref')) {
     } else {
         $navigation = 0;
     }
-    
+
     \eMarket\Pdo::inPrepare("UPDATE " . TABLE_SLIDESHOW_PREF . " SET show_interval=?, mouse_stop=?, autostart=?, cicles=?, indicators=?, navigation=? WHERE id=?", [\eMarket\Valid::inPOST('show_interval'), $mouse_stop, $autostart, $cicles, $indicators, $navigation, 1]);
 }
 
@@ -56,9 +57,24 @@ if (\eMarket\Valid::inPOST('add')) {
     } else {
         $view_slideshow = 0;
     }
-    
+
     \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_SLIDESHOW . " SET language=?, url=?, name=?, heading=?, sort=?, status=?", [\eMarket\Valid::inPOST('slide_language'), \eMarket\Valid::inPOST('url'), \eMarket\Valid::inPOST('name'), \eMarket\Valid::inPOST('heading'), 1, $view_slideshow]);
 }
+
+
+if (\eMarket\Valid::inPOST('slide_lang')) {
+    $slide_language = \eMarket\Valid::inPOST('slide_lang');
+} else {
+    $slide_language = lang('#lang_all')[0];
+}
+
+//КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
+$lines = \eMarket\Pdo::getColRow("SELECT * FROM " . TABLE_SLIDESHOW . " WHERE language=? ORDER BY sort DESC", [$slide_language]);
+$lines_on_page = \eMarket\Set::linesOnPage();
+$count_lines = count($lines);
+$navigate = \eMarket\Navigation::getLink($count_lines, $lines_on_page);
+$start = $navigate[0];
+$finish = $navigate[1];
 
 // Модальное окно
 require_once('modal/index.php');

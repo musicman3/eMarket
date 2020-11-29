@@ -44,13 +44,11 @@ class Ajax {
                 {modify: 'update_ok'},
                 AjaxSuccess);
         function AjaxSuccess(data) {
-            setTimeout(function () {
-                if (url === undefined || url === null) {
-                    document.location.href = window.location.href;
-                } else {
-                    document.location.href = url;
-                }
-            }, 100);
+            if (url === undefined || url === null) {
+                document.location.href = window.location.href;
+            } else {
+                document.location.href = url;
+            }
         }
     }
 
@@ -75,13 +73,11 @@ class Ajax {
                 {modify: 'update_ok'},
                 AjaxSuccess);
         function AjaxSuccess(data) {
-            setTimeout(function () {
-                if (url === undefined) {
-                    document.location.href = window.location.href;
-                } else {
-                    document.location.href = url;
-                }
-            }, 100);
+            if (url === undefined) {
+                document.location.href = window.location.href;
+            } else {
+                document.location.href = url;
+            }
         }
     }
 }

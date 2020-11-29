@@ -42,6 +42,14 @@
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
         var tab = e.target['hash'].slice(1);
         $('#slide_language').val(tab);
+
+        jQuery.post(window.location.href,
+                {slide_lang: tab},
+                AjaxSuccess);
+        function AjaxSuccess(data) {
+                $('.ajax-' + tab).replaceWith($(data).find('.ajax-' + tab));
+        }
+
     });
 
     $('#index').on('show.bs.modal', function (event) {
@@ -54,7 +62,7 @@
 
             $('#edit').val(modal_id);
             $('#add').val('');
-            
+
             // Меняем значение чекбокса
             //$('#view_slideshow').prop('checked', json_data['status'][modal_id]);
             //$('#view_slideshow').bootstrapSwitch();
