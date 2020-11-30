@@ -61,6 +61,15 @@ if (\eMarket\Valid::inPOST('add')) {
     \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_SLIDESHOW . " SET language=?, url=?, name=?, heading=?, sort=?, status=?", [\eMarket\Valid::inPOST('slide_language'), \eMarket\Valid::inPOST('url'), \eMarket\Valid::inPOST('name'), \eMarket\Valid::inPOST('heading'), 1, $view_slideshow]);
 }
 
+// Если нажали на кнопку Удалить
+if (\eMarket\Valid::inPOST('delete')) {
+
+    // Удаляем
+    \eMarket\Pdo::inPrepare("DELETE FROM " . TABLE_SLIDESHOW . " WHERE id=?", [\eMarket\Valid::inPOST('delete')]);
+    // Выводим сообщение об успехе
+    $_SESSION['message'] = ['success', lang('action_completed_successfully')];
+}
+
 if (\eMarket\Valid::inGET('slide_lang')) {
     $slide_language = \eMarket\Valid::inGET('slide_lang');
 } else {
