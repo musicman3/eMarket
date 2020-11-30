@@ -53,17 +53,23 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
 			    <div class="item-price"><?php echo \eMarket\Ecb::priceInterface($lines[$start], 1) ?></div>
                             <div class="item-text">
                                 <?php if ($manufacturer != NULL && $manufacturer != FALSE) { ?>
-                                    <label><?php echo lang('product_manufacturer') ?></label> <?php echo $manufacturer ?><br />
+				    <ul>
+					<li>
+					    <label><?php echo lang('product_manufacturer') ?></label> <?php echo $manufacturer ?>
+					</li>
                                 <?php } if ($lines[$start]['model'] != NULL && $lines[$start]['model'] != FALSE) { ?>
-                                    <label><?php echo lang('product_model') ?></label> 
-                                    <?php echo $lines[$start]['model'] ?><br />
+					<li>
+					    <label><?php echo lang('product_model') ?></label> 
+                                    <?php echo $lines[$start]['model'] ?>
+					</li>
                                 <?php } ?>
-                                <label><?php echo lang('product_availability') ?></label>
+					<li><label><?php echo lang('product_availability') ?></label>
                                 <?php echo \eMarket\Products::inStock($lines[$start]['date_available'], $lines[$start]['quantity']); ?>
+					</li>
+				    </ul>
                             </div>
                         </div>
-                        <div class="clearfix"></div>
-                        <div class="row button">
+                        <div class="row">
                             <div class="col-xs-12">
 				<div class="block-button">
 				    <button class="btn btn-primary" type="button" onclick="ProductsListing.pcsProduct('minus', <?php echo $lines[$start]['id'] ?>)"><span class="glyphicon glyphicon-minus"></span></button>

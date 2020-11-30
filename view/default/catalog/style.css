@@ -114,13 +114,9 @@ h6 {font-size:14px;}
 @media (max-width:429px) {#listing .navigate-normal {display: none !important;}}
 @media (min-width:430px) {#listing .navigate-mini {display: none !important;}}
 @media (max-width:529px) {#listing .list-group-item img {margin-bottom: 10px;}}
-#listing .dropdown-menu {background-color: #ffffff;}
 #listing .dropdown-menu > li > a {color: #000000;padding: 3px 10px;cursor:pointer;}
-#listing .dropdown-menu > li > a:focus, #listing .dropdown-menu > li > a:hover {background: #f5f5f5;}
 #listing .result-inner {margin: 5px 0 5px 0;}
-#listing .pagination-inner {margin-top: -2px;}
-#listing .pagination {margin: 0}
-#listing .item-text ul li {list-style: none;}
+#listing .item-text ul {list-style: none;padding: 0;margin: 0;}
 #listing .check-box {margin:8px 0 0 0;}
 #listing .no, #cart .no, #products .no {padding: 7px 2px;}
 #listing .quantity {all: unset;appearance: textfield;width: 35px;text-align: center;vertical-align: middle;border: 1px solid #2e6da4;border-radius: 3px;padding: 6px 0 6px 0;}
