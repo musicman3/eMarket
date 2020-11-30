@@ -63,7 +63,8 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                                     <?php echo $lines[$start]['model'] ?>
 					</li>
                                 <?php } ?>
-					<li><label><?php echo lang('product_availability') ?></label>
+					<li>
+					    <label><?php echo lang('product_availability') ?></label>
                                 <?php echo \eMarket\Products::inStock($lines[$start]['date_available'], $lines[$start]['quantity']); ?>
 					</li>
 				    </ul>
