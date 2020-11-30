@@ -27,34 +27,72 @@
                 <div id="ajax_data" class='hidden' data-jsonsettings='<?php echo $settings ?>'></div>
 
                 <div class="pull-right slide-sett"><a href="#settings" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-cog"></span></a></div>
+                
                 <!-- Языковые панели -->
-                <?php require_once(ROOT . '/view/' . \eMarket\Set::template() . '/layouts/lang_tabs_add.php') ?>
-                <div class="tab-content">
+                <ul class="nav nav-tabs">
+                    <li class="<?php echo \eMarket\Set::activeTab($slide_language, lang('#lang_all')[0]) ?>"><a data-toggle="tab" href="#<?php echo lang('#lang_all')[0] ?>"><img src="/view/<?php echo \eMarket\Set::template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[0] ?>.png" alt="<?php echo lang('#lang_all')[0] ?>" title="<?php echo lang('#lang_all')[0] ?>" width="16" height="10" /> <?php echo lang('language_name', lang('#lang_all')[0]) ?></a></li>
+
+                    <?php
+                    if ($LANG_COUNT > 1) {
+                        for ($x = 1; $x < $LANG_COUNT; $x++) {
+                            ?>
+
+                            <li class="<?php echo \eMarket\Set::activeTab($slide_language, lang('#lang_all')[$x]) ?>"><a data-toggle="tab" href="#<?php echo lang('#lang_all')[$x] ?>"><img src="/view/<?php echo \eMarket\Set::template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[$x] ?>.png" alt="<?php echo lang('#lang_all')[$x] ?>" title="<?php echo lang('#lang_all')[$x] ?>" width="16" height="10" /> <?php echo lang('language_name', lang('#lang_all')[$x]) ?></a></li>
+
+                            <?php
+                        }
+                    }
+                    ?>
+
+                </ul>
+                
+                <div class="ajax-tab tab-content">
                     <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade in active">
                         <div class="table-responsive">
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
                                         <th colspan="4">
-                                            с 1 по 1 ( из 1 )
+                                            <?php if ($lines == TRUE) { ?>
+                                                <?php echo lang('with') ?> <?php echo $start + 1 ?> <?php echo lang('to') ?> <?php echo $finish ?> ( <?php echo lang('of') ?> <?php echo $count_lines; ?> )
+                                                <?php
+                                            } else {
+                                                ?>
+                                                <?php echo lang('no_listing') ?>
+                                            <?php } ?>
                                         </th>
 
                                         <th>
                                             <div class="flexbox">
-
                                                 <div class="b-left"><a href="#index" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
-
                                                 <form>
-                                                    <div class="b-left"><button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
+                                                    <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
+                                                    <input hidden name="slide_lang" value="<?php echo \eMarket\Valid::inGET('slide_lang') ?>">
+                                                    <input hidden name="backstart" value="<?php echo $start ?>">
+                                                    <input hidden name="backfinish" value="<?php echo $finish ?>">
+                                                    <div class="b-left">
+                                                        <?php if ($start > 0) { ?>
+                                                            <button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button>
+                                                        <?php } else { ?>
+                                                            <a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-left"></span></a>
+                                                        <?php } ?>
+                                                    </div>
                                                 </form>
-
                                                 <form>
-                                                    <div><button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
+                                                    <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
+                                                    <input hidden name="slide_lang" value="<?php echo \eMarket\Valid::inGET('slide_lang') ?>">
+                                                    <input hidden name="start" value="<?php echo $start ?>">
+                                                    <input hidden name="finish" value="<?php echo $finish ?>">
+                                                    <div>
+                                                        <?php if ($finish != $count_lines) { ?>
+                                                            <button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button>
+                                                        <?php } else { ?>
+                                                            <a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-right"></span></a>
+                                                        <?php } ?>
+                                                    </div>
                                                 </form>
-
                                             </div>
                                         </th>
-
                                     </tr>
 
                                     <tr class="border">
@@ -66,7 +104,7 @@
                                     </tr>
                                 </thead>
 
-                                <tbody class="ajax-<?php echo lang('#lang_all')[0] ?>">
+                                <tbody>
                                     <?php for ($start; $start < $finish; $start++) { ?>
                                         <tr>
                                             <td>Рисунок</td>
@@ -97,6 +135,8 @@
                     <?php
                     if ($LANG_COUNT > 1) {
                         for ($x = 1; $x < $LANG_COUNT; $x++) {
+                            $start = $navigate[0];
+                            $finish = $navigate[1];
                             ?>
 
                             <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">
@@ -106,21 +146,44 @@
                                         <thead>
                                             <tr>
                                                 <th colspan="4">
-                                                    с 1 по 1 ( из 1 )
+                                                    <?php if ($lines == TRUE) { ?>
+                                                        <?php echo lang('with') ?> <?php echo $start + 1 ?> <?php echo lang('to') ?> <?php echo $finish ?> ( <?php echo lang('of') ?> <?php echo $count_lines; ?> )
+                                                        <?php
+                                                    } else {
+                                                        ?>
+                                                        <?php echo lang('no_listing') ?>
+                                                    <?php } ?>
                                                 </th>
 
                                                 <th>
                                                     <div class="flexbox">
                                                         <div class="b-left"><a href="#index" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
-
                                                         <form>
-                                                            <div class="b-left"><button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button></div>
+                                                            <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
+                                                            <input hidden name="slide_lang" value="<?php echo \eMarket\Valid::inGET('slide_lang') ?>">
+                                                            <input hidden name="backstart" value="<?php echo $start ?>">
+                                                            <input hidden name="backfinish" value="<?php echo $finish ?>">
+                                                            <div class="b-left">
+                                                                <?php if ($start > 0) { ?>
+                                                                    <button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button>
+                                                                <?php } else { ?>
+                                                                    <a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-left"></span></a>
+                                                                <?php } ?>
+                                                            </div>
                                                         </form>
-
                                                         <form>
-                                                            <div><button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button></div>
+                                                            <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
+                                                            <input hidden name="slide_lang" value="<?php echo \eMarket\Valid::inGET('slide_lang') ?>">
+                                                            <input hidden name="start" value="<?php echo $start ?>">
+                                                            <input hidden name="finish" value="<?php echo $finish ?>">
+                                                            <div>
+                                                                <?php if ($finish != $count_lines) { ?>
+                                                                    <button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button>
+                                                                <?php } else { ?>
+                                                                    <a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-right"></span></a>
+                                                                <?php } ?>
+                                                            </div>
                                                         </form>
-
                                                     </div>
                                                 </th>
                                             </tr>
@@ -134,8 +197,8 @@
                                             </tr>
                                         </thead>
 
-                                        <tbody class="ajax-<?php echo lang('#lang_all')[$x] ?>">
-                                            <?php for ($start = $navigate[0]; $start < $navigate[1]; $start++) { ?>
+                                        <tbody>
+                                            <?php for ($start; $start < $finish; $start++) { ?>
                                                 <tr>
                                                     <td>Рисунок</td>
                                                     <td class="text-center"><?php echo $lines[$start][4] ?></td>

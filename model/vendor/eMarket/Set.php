@@ -405,11 +405,10 @@ class Set {
         if ($class == null && !\eMarket\Valid::inGET('search')) {
             return '<td class="sortyes sortleft-m"><div><span class="glyphicon glyphicon-move"> </span></div></td>';
         }
-        
+
         if ($class == null && \eMarket\Valid::inGET('search')) {
             return '<td class="sortleft-m"></td> ';
         }
-
     }
 
     /**
@@ -476,6 +475,22 @@ class Set {
         }
 
         return FALSE;
+    }
+
+    /**
+     * Класс для активной вкладки
+     *
+     * @param string $active_language (активный язык)
+     * @return string $lang (язык)
+     */
+    public static function activeTab($active_language, $lang) {
+
+        if ($active_language == $lang) {
+            $class = 'active';
+        } else {
+            $class = '';
+        }
+        return $class;
     }
 
 }

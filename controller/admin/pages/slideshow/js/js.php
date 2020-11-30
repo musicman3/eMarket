@@ -42,14 +42,14 @@
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
         var tab = e.target['hash'].slice(1);
         $('#slide_language').val(tab);
+        window.history.pushState(null, null, "?route=slideshow&slide_lang=" + tab);
 
-        jQuery.post(window.location.href,
+        jQuery.get(window.location.href,
                 {slide_lang: tab},
                 AjaxSuccess);
         function AjaxSuccess(data) {
-                $('.ajax-' + tab).replaceWith($(data).find('.ajax-' + tab));
+            $('.ajax-tab').replaceWith($(data).find('.ajax-tab'));
         }
-
     });
 
     $('#index').on('show.bs.modal', function (event) {
