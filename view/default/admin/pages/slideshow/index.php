@@ -24,7 +24,9 @@
             </div>
             <div class="panel-body">
                 <!--Скрытый div для передачи данных-->
-                <div id="ajax_data" class='hidden' data-jsonsettings='<?php echo $settings ?>'></div>
+                <div id="ajax_data" class='hidden' 
+                     data-jsonsettings='<?php echo $settings ?>'
+                      data-jsondata='<?php echo $json_data ?>'></div>
 
                 <div class="pull-right slide-sett"><a href="#settings" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-cog"></span></a></div>
                 

@@ -57,16 +57,16 @@
         var button = $(event.relatedTarget);
         var modal_id = button.data('edit'); // Получаем ID из data-edit при клике на кнопку редактирования
         if (Number.isInteger(modal_id)) {
-            $('#default_stikers').bootstrapSwitch('destroy', true);
+            $('#view_slideshow').bootstrapSwitch('destroy', true);
             // Получаем массивы данных
             var json_data = $('div#ajax_data').data('jsondata');
 
             $('#edit').val(modal_id);
             $('#add').val('');
-
+console.log(json_data['status'][modal_id]);
             // Меняем значение чекбокса
-            //$('#view_slideshow').prop('checked', json_data['status'][modal_id]);
-            //$('#view_slideshow').bootstrapSwitch();
+            $('#view_slideshow').prop('checked', json_data['status'][modal_id]);
+            $('#view_slideshow').bootstrapSwitch();
         } else {
             $('#edit').val('');
             $('#add').val('ok');

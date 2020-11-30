@@ -34,16 +34,13 @@ if (\eMarket\Valid::inPOST('add')) {
 }
 
 // Собираем данные для массива Стран в мультиселекте
-$countries_multiselect_temp = \eMarket\Pdo::getColRow("SELECT name, id  FROM " . TABLE_COUNTRIES . " WHERE language=?", [lang('#lang_all')[0]]);
+$countries_multiselect_temp = \eMarket\Pdo::getColRow("SELECT id, name FROM " . TABLE_COUNTRIES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
 // Собираем одномерный массив id=>Страна
-$countries_multiselect = array_column($countries_multiselect_temp, 0, 1);
+$countries_multiselect = array_column($countries_multiselect_temp, 1, 0);
 // Сортируем Страны по возрастанию
 asort($countries_multiselect);
 // Собираем данные для массива Регионов в мультиселекте
 $regions_multiselect = \eMarket\Pdo::getColAssoc("SELECT id, country_id, name, region_code  FROM " . TABLE_REGIONS . " WHERE language=?", [lang('#lang_all')[0]]);
-// Собираем название стран и регионов для вывода в View
-$name_country = \eMarket\Pdo::getColRow("SELECT id, name FROM " . TABLE_COUNTRIES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
-$name_regions = \eMarket\Pdo::getColAssoc("SELECT id, country_id, name FROM " . TABLE_REGIONS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
 // Собираем данные по сопоставлению Страна->Регионы для конкретной зоны
 $regions = \eMarket\Pdo::getColAssoc("SELECT country_id, regions_id FROM " . TABLE_ZONES_VALUE . " WHERE zones_id=?", [$zones_id]);
 
@@ -63,7 +60,7 @@ for ($y = $start; $y < $finish; $y++) {
     $text = '| ';
     for ($x = 0; $x < count($regions); $x++) {
         if (isset($regions[$x]['country_id']) == TRUE && isset($lines[$y][0]) == TRUE && $regions[$x]['country_id'] == $lines[$y][0]) { // если регион есть
-            $text .= \eMarket\Func::filterArrayToKeyAssoc($name_regions, 'country_id', $regions[$x]['country_id'], 'name', 'id')[$regions[$x]['regions_id']] . ' | '; // то, добавляем название региона
+            $text .= \eMarket\Func::filterArrayToKeyAssoc($regions_multiselect, 'country_id', $regions[$x]['country_id'], 'name', 'id')[$regions[$x]['regions_id']] . ' | '; // то, добавляем название региона
         }
     }
     array_push($text_arr, $text);
