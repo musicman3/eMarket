@@ -26,7 +26,7 @@ body {background:#e4e4da;font-family: 'Open Sans';background-image:url('images/s
 .login-box .btn, .login-box .btn a:active {border: 1px solid #000;color:#fff;background: none; font-size:15px;}
 #login .alert-danger {position: absolute;top: 10%;}
 
-.navbar {min-height: 30px;}
+.navbar {min-height: 30px;padding: 5px 0 5px 0;}
 .navbar-inverse .navbar-nav > li > a {color:#ffffff;}
 .nav > li > a {padding: 5px;}
 .nav .open > a, .nav .open > a:focus, .nav .open > a:hover {background:#505050;color:#ffffff;}
