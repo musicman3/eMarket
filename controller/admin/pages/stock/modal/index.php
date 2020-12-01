@@ -17,7 +17,7 @@ for ($i = $start; $i < $finish; $i++) {
             $name[$x][$modal_id] = \eMarket\Pdo::selectPrepare("SELECT name FROM " . TABLE_CATEGORIES . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]]);
         }
         $query = \eMarket\Pdo::getRow("SELECT logo, logo_general, attributes FROM " . TABLE_CATEGORIES . " WHERE id=?", [$modal_id]);
-        $logo[$modal_id] = explode(',', $query[0], -1);
+        $logo[$modal_id] = json_decode($query[0], 1);
         $logo_general[$modal_id] = $query[1];
         $attributes[$modal_id] = json_decode($query[2]);
 

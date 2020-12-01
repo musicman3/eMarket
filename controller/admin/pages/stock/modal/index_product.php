@@ -75,7 +75,7 @@ for ($i = $start; $i < $finish; $i++) {
         // Высота
         $height_product[$modal_id_product] = $query['height'];
 
-        $logo_product[$modal_id_product] = explode(',', $query['logo'], -1);
+        $logo_product[$modal_id_product] = json_decode($query['logo'], 1);
         $logo_general_product[$modal_id_product] = $query['logo_general'];
 
         // Атрибуты

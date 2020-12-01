@@ -19,7 +19,7 @@ for ($i = $start; $i < $finish; $i++) {
 
         $query = \eMarket\Pdo::getRow("SELECT site, logo, logo_general FROM " . TABLE_MANUFACTURERS . " WHERE id=?", [$modal_id]);
         $site[$modal_id] = $query[0];
-        $logo[$modal_id] = explode(',', $query[1], -1);
+        $logo[$modal_id] = json_decode($query[1], 1);
         $logo_general[$modal_id] = $query[2];
 
         $json_data = json_encode([
