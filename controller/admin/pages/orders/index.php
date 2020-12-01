@@ -37,7 +37,7 @@ if (\eMarket\Valid::inPOST('edit')) {
         exit;
     }
     // Выводим сообщение об успехе
-    $_SESSION['message'] = ['success', lang('action_completed_successfully')];
+    \eMarket\Messages::alert('success', lang('action_completed_successfully'));
 }
 
 // Если нажали на кнопку Удалить
@@ -45,7 +45,7 @@ if (\eMarket\Valid::inPOST('delete')) {
     // Удаляем запись
     \eMarket\Pdo::inPrepare("DELETE FROM " . TABLE_ORDERS . " WHERE id=?", [\eMarket\Valid::inPOST('delete')]);
     // Выводим сообщение об успехе
-    $_SESSION['message'] = ['success', lang('action_completed_successfully')];
+    \eMarket\Messages::alert('success', lang('action_completed_successfully'));
 }
 
 $order_status = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_ORDER_STATUS . " WHERE language=? ORDER BY sort DESC", [lang('#lang_all')[0]]);

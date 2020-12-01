@@ -184,7 +184,7 @@ final class Eac {
                 \eMarket\Pdo::inPrepare("INSERT INTO " . $TABLE_CATEGORIES . " SET id=?, name=?, sort_category=?, language=?, parent_id=?, date_added=?, status=?, attributes=?", [$id, \eMarket\Valid::inPOST('name_categories_stock_' . $x), $sort_category, lang('#lang_all')[$x], $parent_id, date("Y-m-d H:i:s"), 1, $attributes]);
             }
             // Выводим сообщение об успехе
-            $_SESSION['message'] = ['success', lang('action_completed_successfully')];
+            \eMarket\Messages::alert('success', lang('action_completed_successfully'));
         }
     }
 
@@ -203,7 +203,7 @@ final class Eac {
                 \eMarket\Pdo::inPrepare("UPDATE " . $TABLE_CATEGORIES . " SET name=?, last_modified=?, attributes=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_categories_stock_' . $x), date("Y-m-d H:i:s"), \eMarket\Valid::inPOST('attributes'), \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
             }
             // Выводим сообщение об успехе
-            $_SESSION['message'] = ['success', lang('action_completed_successfully')];
+            \eMarket\Messages::alert('success', lang('action_completed_successfully'));
         }
     }
 
@@ -266,7 +266,7 @@ final class Eac {
                     }
                 }
                 // Выводим сообщение об успехе
-                $_SESSION['message'] = ['success', lang('action_completed_successfully')];
+                \eMarket\Messages::alert('success', lang('action_completed_successfully'));
             }
         }
 
@@ -384,7 +384,7 @@ final class Eac {
                 $parent_id = $parent_id_real; // Возвращаемся в свою директорию после вставки
             }
             // Выводим сообщение об успехе
-            $_SESSION['message'] = ['success', lang('action_completed_successfully')];
+            \eMarket\Messages::alert('success', lang('action_completed_successfully'));
         }
         // Если parrent_id является массивом, то
         if (is_array($parent_id) == TRUE) {
@@ -854,7 +854,7 @@ final class Eac {
                 ]);
             }
             // Выводим сообщение об успехе
-            $_SESSION['message'] = ['success', lang('action_completed_successfully')];
+            \eMarket\Messages::alert('success', lang('action_completed_successfully'));
         }
     }
 
@@ -978,7 +978,7 @@ final class Eac {
                 ]);
             }
             // Выводим сообщение об успехе
-            $_SESSION['message'] = ['success', lang('action_completed_successfully')];
+            \eMarket\Messages::alert('success', lang('action_completed_successfully'));
         }
     }
 

@@ -29,7 +29,7 @@ if (\eMarket\Valid::inPOST('save')) {
     }
 
     // Выводим сообщение об успехе
-    $_SESSION['message'] = ['success', lang('action_completed_successfully')];
+    \eMarket\Messages::alert('success', lang('action_completed_successfully'));
     exit;
 }
 

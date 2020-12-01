@@ -15,10 +15,10 @@ if (\eMarket\Valid::inGET('recovery_code')) {
             
             $password_hash = \eMarket\Autorize::passwordHash(\eMarket\Valid::inPOST('password'));
             \eMarket\Pdo::inPrepare("UPDATE " . TABLE_CUSTOMERS . " SET password=? WHERE id=?", [$password_hash, $customer_id]);
-            $_SESSION['message'] = ['success', lang('messages_recovery_password_complete'), 7000, TRUE];
+            \eMarket\Messages::alert('success', lang('messages_recovery_password_complete'), 7000, true);
         } else {
             \eMarket\Pdo::inPrepare("DELETE FROM " . TABLE_PASSWORD_RECOVERY . " WHERE customer_id=?", [$customer_id]);
-            $_SESSION['message'] = ['success', lang('messages_recovery_password_failed'), 7000, TRUE];
+            \eMarket\Messages::alert('danger', lang('messages_recovery_password_failed'), 7000, true);
         }
     }
 }

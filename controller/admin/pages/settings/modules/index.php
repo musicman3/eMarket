@@ -14,7 +14,7 @@ if (\eMarket\Valid::inPOST('add')) {
     $namespace::install($module);
 
     // Выводим сообщение об успехе
-    $_SESSION['message'] = ['success', lang('action_completed_successfully')];
+    \eMarket\Messages::alert('success', lang('action_completed_successfully'));
 }
 
 if (\eMarket\Valid::inPOST('delete')) {
@@ -23,7 +23,7 @@ if (\eMarket\Valid::inPOST('delete')) {
     $namespace::uninstall($module);
 
     // Выводим сообщение об успехе
-    $_SESSION['message'] = ['success', lang('action_completed_successfully')];
+    \eMarket\Messages::alert('success', lang('action_completed_successfully'));
 }
 
 if (\eMarket\Valid::inPOST('edit_active')) {

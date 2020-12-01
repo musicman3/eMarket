@@ -19,7 +19,7 @@ if (\eMarket\Valid::inPOST('add')) {
     \eMarket\Pdo::inPrepare("INSERT INTO " . $MODULE_DB . " SET minimum_price=?, shipping_zone=?", [\eMarket\Valid::inPOST('minimum_price'), \eMarket\Valid::inPOST('zone')]);
 
     // Выводим сообщение об успехе
-    $_SESSION['message'] = ['success', lang('action_completed_successfully')];
+    \eMarket\Messages::alert('success', lang('action_completed_successfully'));
     exit;
 }
 
@@ -28,7 +28,7 @@ if (\eMarket\Valid::inPOST('edit')) {
     \eMarket\Pdo::inPrepare("UPDATE " . $MODULE_DB . " SET minimum_price=?, shipping_zone=? WHERE id=?", [\eMarket\Valid::inPOST('minimum_price'), \eMarket\Valid::inPOST('zone'), \eMarket\Valid::inPOST('edit')]);
 
     // Выводим сообщение об успехе
-    $_SESSION['message'] = ['success', lang('action_completed_successfully')];
+    \eMarket\Messages::alert('success', lang('action_completed_successfully'));
     exit;
 }
 
@@ -37,7 +37,7 @@ if (\eMarket\Valid::inPOST('delete')) {
     \eMarket\Pdo::inPrepare("DELETE FROM " . $MODULE_DB . " WHERE id=?", [\eMarket\Valid::inPOST('delete')]);
     
     // Выводим сообщение об успехе
-    $_SESSION['message'] = ['success', lang('action_completed_successfully')];
+    \eMarket\Messages::alert('success', lang('action_completed_successfully'));
     exit;
 }
 

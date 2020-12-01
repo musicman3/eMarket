@@ -11,7 +11,7 @@ if (\eMarket\Valid::inPOST('delete') == 'delete' && file_exists(ROOT . '/model/w
     unlink(ROOT . '/model/work/errors.log');
 
     // Выводим сообщение об успехе
-    $_SESSION['message'] = ['success', lang('action_completed_successfully')];
+    \eMarket\Messages::alert('success', lang('action_completed_successfully'));
 }
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ

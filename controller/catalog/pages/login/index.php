@@ -13,7 +13,7 @@ if (\eMarket\Valid::inGET('activation_code')) {
         if ($account_date + (3 * 24 * 60 * 60) > time()) {
             \eMarket\Pdo::inPrepare("DELETE FROM " . TABLE_CUSTOMERS_ACTIVATION . " WHERE id=?", [$id_actvation]);
             \eMarket\Pdo::inPrepare("UPDATE " . TABLE_CUSTOMERS . " SET status=? WHERE id=?", [1, $id_actvation]);
-            $_SESSION['message'] = ['success', lang('messages_activation_complete'), 7000, TRUE];
+            \eMarket\Messages::alert('success', lang('messages_activation_complete'), 7000, true);
         } else {
             \eMarket\Pdo::inPrepare("DELETE FROM " . TABLE_CUSTOMERS_ACTIVATION . " WHERE id=?", [$id_actvation]);
             \eMarket\Pdo::inPrepare("DELETE FROM " . TABLE_CUSTOMERS . " WHERE id=?", [$id_actvation]);
@@ -31,7 +31,7 @@ if (\eMarket\Valid::inPOST('email_for_recovery')) {
         $link = HTTP_SERVER . '?route=recoverypass&recovery_code=' . $recovery_code;
         \eMarket\Messages::sendMail(\eMarket\Valid::inPOST('email_for_recovery'), lang('email_recovery_password_subject'), sprintf(lang('email_recovery_password_message'), $link, $link));
 
-        $_SESSION['message'] = ['success', lang('register_password_recovery_message_success'), 7000, TRUE];
+        \eMarket\Messages::alert('success', lang('register_password_recovery_message_success'), 7000, true);
     } elseif ($customer_id != FALSE && $recovery_check != FALSE) { // Если произведен повторный запрос
         $recovery_code = \eMarket\Func::getToken(64);
         \eMarket\Pdo::inPrepare("UPDATE " . TABLE_PASSWORD_RECOVERY . " SET recovery_code=?, recovery_code_created=? WHERE customer_id=?", [$recovery_code, date("Y-m-d H:i:s"), $customer_id]);
@@ -39,9 +39,9 @@ if (\eMarket\Valid::inPOST('email_for_recovery')) {
         $link = HTTP_SERVER . '?route=recoverypass&recovery_code=' . $recovery_code;
         \eMarket\Messages::sendMail(\eMarket\Valid::inPOST('email_for_recovery'), lang('email_recovery_password_subject'), sprintf(lang('email_recovery_password_message'), $link, $link));
 
-        $_SESSION['message'] = ['success', lang('register_password_recovery_message_success'), 7000, TRUE];
+        \eMarket\Messages::alert('success', lang('register_password_recovery_message_success'), 7000, true);
     } else { // Если нет такого пользователя
-        $_SESSION['message'] = ['danger', lang('register_password_recovery_message_failed'), 7000, TRUE];
+        \eMarket\Messages::alert('danger', lang('register_password_recovery_message_failed'), 7000, true);
     }
 }
 
@@ -54,7 +54,7 @@ if (\eMarket\Valid::inGET('logout')) {
 if (\eMarket\Valid::inPOST('email')) {
     $HASH = \eMarket\Pdo::selectPrepare("SELECT password FROM " . TABLE_CUSTOMERS . " WHERE email=?", [\eMarket\Valid::inPOST('email')]);
     if (!password_verify(\eMarket\Valid::inPOST('password'), $HASH)) {
-        $_SESSION['message'] = ['danger', lang('messages_email_or_password_is_not_correct'), 7000, TRUE];
+        \eMarket\Messages::alert('danger', lang('messages_email_or_password_is_not_correct'), 7000, true);
     } else {
         $_SESSION['password_customer'] = $HASH;
         $_SESSION['email_customer'] = \eMarket\Valid::inPOST('email');

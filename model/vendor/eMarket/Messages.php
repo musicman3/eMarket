@@ -18,12 +18,23 @@ class Messages {
 
     /**
      * Уведомления об ошибках, успехе и т.п.
+     * 
+     * @param string $class (класс bootstrap)
+     * @param string $message (сообщение)
+     * @param string $time (время показа)
+     * @param string $start (если показываем самостоятельно)
      *
      */
-    public static function alert() {
-        
-        if (\eMarket\Valid::inPOST('add') OR \eMarket\Valid::inPOST('add_product') OR \eMarket\Valid::inPOST('edit') OR \eMarket\Valid::inPOST('edit_product') OR \eMarket\Valid::inPOST('delete') OR \eMarket\Valid::inPOST('idsx_paste_key')) {
+    public static function alert($class = null, $message = null, $time = null, $start = false) {
+
+        if ($message != null && $class != null) {
             $_SESSION['message_marker'] = 'ok';
+            if ($time != null) {
+                $_SESSION['message'] = [$class, $message, $time, $start];
+            } else {
+                $_SESSION['message'] = [$class, $message, 3000, $start];
+            }
+            return true;
         }
 
         // При POST и GET по ajax + обновление страницы ШАГ 3 (обновление редиректом)
@@ -49,6 +60,7 @@ class Messages {
         if (isset($_SESSION['message_marker']) && $_SESSION['message_marker'] == 'ok') {
             $_SESSION['message_marker'] = 'ok_2';
         }
+
         // Если вызываем самостоятельно
         if (isset($_SESSION['message'][3]) && $_SESSION['message'][3] == TRUE) {
             require_once (ROOT . '/view/' . \eMarket\Set::template() . '/layouts/alert.php');
@@ -64,7 +76,7 @@ class Messages {
      * @param string $message (Сообщение в html)
      */
     public static function sendMail($email_to, $subject, $message) {
-        
+
         $mail = new \PHPMailer\PHPMailer\PHPMailer();
         $mail->CharSet = 'UTF-8';
 

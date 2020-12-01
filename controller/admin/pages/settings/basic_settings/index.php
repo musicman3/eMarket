@@ -11,7 +11,7 @@ if (\eMarket\Valid::inPOST('lines_on_page')) {
     \eMarket\Pdo::inPrepare("UPDATE " . TABLE_BASIC_SETTINGS . " SET lines_on_page=?", [\eMarket\Valid::inPOST('lines_on_page')]);
 
     // Выводим сообщение об успехе
-    $_SESSION['message'] = ['success', lang('action_completed_successfully')];
+    \eMarket\Messages::alert('success', lang('action_completed_successfully'));
     // Считываем значение
     $lines_on_page = \eMarket\Set::linesOnPage();
 }

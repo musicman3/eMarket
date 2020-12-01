@@ -18,9 +18,9 @@ if (\eMarket\Valid::inPOST('email')) {
         $link = HTTP_SERVER . '?route=login&activation_code=' . $activation_code;
         \eMarket\Messages::sendMail(\eMarket\Valid::inPOST('email'), lang('email_registration_subject'), sprintf(lang('email_registration_message'), $link, $link));
         
-        $_SESSION['message'] = ['success', lang('messages_registration_complete'), 7000, TRUE];
+        \eMarket\Messages::alert('success', lang('messages_registration_complete'), 7000, true);
     } else {
-        $_SESSION['message'] = ['danger', lang('messages_email_is_busy'), 7000, TRUE];
+        \eMarket\Messages::alert('danger', lang('messages_email_is_busy'), 7000, true);
     }
 }
 
