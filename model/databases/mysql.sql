@@ -252,7 +252,6 @@ CREATE TABLE emkt_slideshow (
         heading text,
         date_start datetime,
         date_finish datetime,
-        sort int NOT NULL,
         status int DEFAULT '1' NOT NULL,
 PRIMARY KEY (id, language))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

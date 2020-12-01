@@ -46,6 +46,8 @@ if (\eMarket\Valid::inPOST('slideshow_pref')) {
     }
 
     \eMarket\Pdo::inPrepare("UPDATE " . TABLE_SLIDESHOW_PREF . " SET show_interval=?, mouse_stop=?, autostart=?, cicles=?, indicators=?, navigation=? WHERE id=?", [\eMarket\Valid::inPOST('show_interval'), $mouse_stop, $autostart, $cicles, $indicators, $navigation, 1]);
+    // Выводим сообщение об успехе
+    $_SESSION['message'] = ['success', lang('action_completed_successfully')];
 }
 
 // Если нажали на кнопку Добавить
@@ -58,7 +60,25 @@ if (\eMarket\Valid::inPOST('add')) {
         $view_slideshow = 0;
     }
 
-    \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_SLIDESHOW . " SET language=?, url=?, name=?, heading=?, sort=?, status=?", [\eMarket\Valid::inPOST('slide_language'), \eMarket\Valid::inPOST('url'), \eMarket\Valid::inPOST('name'), \eMarket\Valid::inPOST('heading'), 1, $view_slideshow]);
+    \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_SLIDESHOW . " SET language=?, url=?, name=?, heading=?, status=?", [\eMarket\Valid::inPOST('slide_language'), \eMarket\Valid::inPOST('url'), \eMarket\Valid::inPOST('name'), \eMarket\Valid::inPOST('heading'), $view_slideshow]);
+    // Выводим сообщение об успехе
+    $_SESSION['message'] = ['success', lang('action_completed_successfully')];
+}
+
+// Если нажали на кнопку Редактировать
+if (\eMarket\Valid::inPOST('edit')) {
+
+    // Если есть установка по-умолчанию
+    if (\eMarket\Valid::inPOST('view_slideshow')) {
+        $view_slideshow = 1;
+    } else {
+        $view_slideshow = 0;
+    }
+    // обновляем запись
+    \eMarket\Pdo::inPrepare("UPDATE " . TABLE_SLIDESHOW . " SET url=?, name=?, heading=?, status=? WHERE id=?", [\eMarket\Valid::inPOST('url'), \eMarket\Valid::inPOST('name'), \eMarket\Valid::inPOST('heading'), $view_slideshow, \eMarket\Valid::inPOST('edit')]);
+
+    // Выводим сообщение об успехе
+    $_SESSION['message'] = ['success', lang('action_completed_successfully')];
 }
 
 // Если нажали на кнопку Удалить
