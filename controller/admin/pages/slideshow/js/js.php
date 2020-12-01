@@ -49,6 +49,7 @@
                 AjaxSuccess);
         function AjaxSuccess(data) {
             $('.ajax-tab').replaceWith($(data).find('.ajax-tab'));
+            $('#ajax_data').replaceWith($(data).find('#ajax_data'));
             $('[data-toggle=confirmation]').confirmation();
         }
     });
