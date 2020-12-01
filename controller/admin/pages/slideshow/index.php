@@ -48,7 +48,6 @@ if (\eMarket\Valid::inPOST('slideshow_pref')) {
     \eMarket\Pdo::inPrepare("UPDATE " . TABLE_SLIDESHOW_PREF . " SET show_interval=?, mouse_stop=?, autostart=?, cicles=?, indicators=?, navigation=? WHERE id=?", [\eMarket\Valid::inPOST('show_interval'), $mouse_stop, $autostart, $cicles, $indicators, $navigation, 1]);
     // Выводим сообщение об успехе
     \eMarket\Messages::alert('success', lang('action_completed_successfully'));
-    //\eMarket\Messages::alert('success', lang('action_completed_successfully'));
 }
 
 // Если нажали на кнопку Добавить
