@@ -63,10 +63,13 @@
 
             $('#edit').val(modal_id);
             $('#add').val('');
-console.log(json_data['status'][modal_id]);
             // Меняем значение чекбокса
             $('#view_slideshow').prop('checked', json_data['status'][modal_id]);
             $('#view_slideshow').bootstrapSwitch();
+            
+            $('#url').val(json_data['url'][modal_id]);
+            $('#name').val(json_data['name'][modal_id]);
+            $('#heading').val(json_data['heading'][modal_id]);
         } else {
             $('#edit').val('');
             $('#add').val('ok');
