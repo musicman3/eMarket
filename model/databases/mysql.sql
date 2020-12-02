@@ -246,7 +246,8 @@ DROP TABLE IF EXISTS emkt_slideshow;
 CREATE TABLE emkt_slideshow (
 	id int NOT NULL auto_increment,
 	language varchar(64),
-	image text,
+	logo json,
+        logo_general varchar(128),
         url text,
         name varchar(256),
         heading text,
