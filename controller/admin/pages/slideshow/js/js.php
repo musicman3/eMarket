@@ -6,6 +6,12 @@
 ?>
 <link rel="stylesheet" href="/ext/bootstrap-switch/css/bootstrap-switch.min.css" type="text/css"/>
 <script type="text/javascript" src="/ext/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+<!-- Bootstrap Datepicker" -->
+<script type="text/javascript" src="/ext/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+<link href="/ext/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+<script type="text/javascript" src="/ext/bootstrap-datepicker/locales/bootstrap-datepicker.<?php echo lang('meta-language') ?>.min.js"></script>
+<script type="text/javascript" src="/model/js/classes/smartdatepicker.js"></script>
+
 <script type="text/javascript">
     $('#mouse_stop').bootstrapSwitch();
     $('#autostart').bootstrapSwitch();
@@ -61,17 +67,29 @@
             $('#view_slideshow').bootstrapSwitch('destroy', true);
             // Получаем массивы данных
             var json_data = $('div#ajax_data').data('jsondata');
+            var start = json_data['date_start'][modal_id];
+            var end = json_data['date_finish'][modal_id];
 
             $('#edit').val(modal_id);
             $('#add').val('');
             // Меняем значение чекбокса
             $('#view_slideshow').prop('checked', json_data['status'][modal_id]);
             $('#view_slideshow').bootstrapSwitch();
-            
+
             $('#url').val(json_data['url'][modal_id]);
             $('#name').val(json_data['name'][modal_id]);
             $('#heading').val(json_data['heading'][modal_id]);
-        } else {
+
+            // Устанавливаем SmartDatepicker
+            var day_start = new Date(start);
+            $('#start_date').datepicker('setDate', day_start);
+            $('#end_date').datepicker('setDate', new Date(end));
+            if (day_start.setDate(day_start.getDate()) < new Date()) {
+                $('#start_date').datepicker('setStartDate', new Date());
+                $('#start_date').datepicker('setDate', new Date());
+            }
+        }
+        if (!Number.isInteger(modal_id) && button.data('toggle') === 'modal') {
             $('#edit').val('');
             $('#add').val('ok');
             //Очищаем поля
@@ -85,4 +103,5 @@
 <script type="text/javascript" src="/model/js/classes/ajax/ajax.js"></script>
 <script type="text/javascript">
     new Ajax();
+    new SmartDatepicker('<?php echo lang('meta-language') ?>');
 </script>

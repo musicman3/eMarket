@@ -36,6 +36,18 @@
                                 <input class="input-sm form-control" placeholder="Текст (?)" type="text" name="heading" id="heading" required />
                             </div>
                         </div>
+                        <div class="col-left form-group">
+                            <div class="input-group has-error">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                <input class="input-sm form-control" placeholder="Дата начала показа" type="text" name="start_date" id="start_date" autocomplete="off" required />
+                            </div>
+                        </div>
+                        <div class="col-left form-group">
+                            <div class="input-group has-error">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                <input class="input-sm form-control" placeholder="Дата окончания показа" type="text" name="end_date" id="end_date" autocomplete="off" required />
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Выводим сообщения -->

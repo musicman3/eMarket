@@ -60,7 +60,19 @@ if (\eMarket\Valid::inPOST('add')) {
         $view_slideshow = 0;
     }
 
-    \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_SLIDESHOW . " SET language=?, url=?, name=?, heading=?, status=?", [\eMarket\Valid::inPOST('slide_language'), \eMarket\Valid::inPOST('url'), \eMarket\Valid::inPOST('name'), \eMarket\Valid::inPOST('heading'), $view_slideshow]);
+    if (\eMarket\Valid::inPOST('start_date')) {
+        $start_date = date('Y-m-d', strtotime(\eMarket\Valid::inPOST('start_date')));
+    } else {
+        $start_date = NULL;
+    }
+    // Формат даты после Datepicker
+    if (\eMarket\Valid::inPOST('end_date')) {
+        $end_date = date('Y-m-d', strtotime(\eMarket\Valid::inPOST('end_date')));
+    } else {
+        $end_date = NULL;
+    }
+
+    \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_SLIDESHOW . " SET language=?, url=?, name=?, heading=?, date_start=?, date_finish=?, status=?", [\eMarket\Valid::inPOST('slide_language'), \eMarket\Valid::inPOST('url'), \eMarket\Valid::inPOST('name'), \eMarket\Valid::inPOST('heading'), $start_date, $end_date, $view_slideshow]);
     // Выводим сообщение об успехе
     \eMarket\Messages::alert('success', lang('action_completed_successfully'));
 }
@@ -74,8 +86,21 @@ if (\eMarket\Valid::inPOST('edit')) {
     } else {
         $view_slideshow = 0;
     }
+
+    if (\eMarket\Valid::inPOST('start_date')) {
+        $start_date = date('Y-m-d', strtotime(\eMarket\Valid::inPOST('start_date')));
+    } else {
+        $start_date = NULL;
+    }
+    // Формат даты после Datepicker
+    if (\eMarket\Valid::inPOST('end_date')) {
+        $end_date = date('Y-m-d', strtotime(\eMarket\Valid::inPOST('end_date')));
+    } else {
+        $end_date = NULL;
+    }
+
     // обновляем запись
-    \eMarket\Pdo::inPrepare("UPDATE " . TABLE_SLIDESHOW . " SET url=?, name=?, heading=?, status=? WHERE id=?", [\eMarket\Valid::inPOST('url'), \eMarket\Valid::inPOST('name'), \eMarket\Valid::inPOST('heading'), $view_slideshow, \eMarket\Valid::inPOST('edit')]);
+    \eMarket\Pdo::inPrepare("UPDATE " . TABLE_SLIDESHOW . " SET url=?, name=?, heading=?, date_start=?, date_finish=?, status=? WHERE id=?", [\eMarket\Valid::inPOST('url'), \eMarket\Valid::inPOST('name'), \eMarket\Valid::inPOST('heading'), $start_date, $end_date, $view_slideshow, \eMarket\Valid::inPOST('edit')]);
 
     // Выводим сообщение об успехе
     \eMarket\Messages::alert('success', lang('action_completed_successfully'));
