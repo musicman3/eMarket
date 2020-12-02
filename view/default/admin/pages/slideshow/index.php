@@ -99,7 +99,7 @@
 
                                     <tr class="border">
                                         <th>Рисунок</th>
-                                        <th class="text-center">Название</th>
+                                        <th class="text-center">Заголовок</th>
                                         <th class="text-center">Начало показа</th>
                                         <th class="text-center">Конец показа</th>
                                         <th></th>
@@ -192,7 +192,7 @@
 
                                             <tr class="border">
                                                 <th>Рисунок</th>
-                                                <th class="text-center">Название</th>
+                                                <th class="text-center">Заголовок</th>
                                                 <th class="text-center">Начало показа</th>
                                                 <th class="text-center">Конец показа</th>
                                                 <th></th>
