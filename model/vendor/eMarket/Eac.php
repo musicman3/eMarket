@@ -8,7 +8,7 @@
 namespace eMarket;
 
 /**
- * Движок EAC (Easy Ajax Catalog) v.1.01
+ * Движок EAC (Easy Ajax Catalog) v.1.02
  *
  * @package Eac
  * @author eMarket
@@ -48,7 +48,7 @@ final class Eac {
 
         $idsx_real_parent_id = $parent_id; //для отправки в JS
         // Если нажали на кнопку Удалить
-        $parent_id_delete = self::delete($TABLES[0], $TABLES[1], $parent_id);
+        $parent_id_delete = self::delete($TABLES[0], $TABLES[1], $parent_id, $resize_param);
 
         // Если нажали на кнопку Вырезать
         $parent_id_cut = self::cut($TABLES[0], $parent_id);
@@ -61,7 +61,7 @@ final class Eac {
 
         // Если нажали на кнопку Распродажа
         $parent_id_sale = self::sale($TABLES[0], $TABLES[1], $parent_id);
-        
+
         // Если нажали на кнопку Распродажа
         $parent_id_stiker = self::stiker($TABLES[0], $TABLES[1], $parent_id);
 
@@ -87,7 +87,7 @@ final class Eac {
         if ($parent_id_sale != $parent_id) {
             $parent_id = $parent_id_sale;
         }
-        
+
         if ($parent_id_stiker != $parent_id) {
             $parent_id = $parent_id_stiker;
         }
@@ -214,7 +214,7 @@ final class Eac {
      * @param string $parent_id (идентификатор родительской категории)
      * @return string $parent_id (идентификатор родительской категории)
      */
-    private static function delete($TABLE_CATEGORIES, $TABLE_PRODUCTS, $parent_id) {
+    private static function delete($TABLE_CATEGORIES, $TABLE_PRODUCTS, $parent_id, $resize_param) {
 
         if (\eMarket\Valid::inPOST('delete')) {
 
@@ -234,10 +234,12 @@ final class Eac {
                     $count_keys = count($keys); // Получаем количество значений в массиве
                     for ($x = 0; $x < $count_keys; $x++) {
 
-                        //Удаляем товар  
+                        //Удаляем товар и изображения
+                        self::deleteImages($TABLE_PRODUCTS, $keys[$x], $resize_param, 'products');
                         \eMarket\Pdo::inPrepare("DELETE FROM " . $TABLE_PRODUCTS . " WHERE parent_id=?", [$keys[$x]]);
 
-                        //Удаляем подкатегории
+                        //Удаляем подкатегории и изображения
+                        self::deleteImages($TABLE_CATEGORIES, $keys[$x], $resize_param, 'categories');
                         \eMarket\Pdo::inPrepare("DELETE FROM " . $TABLE_CATEGORIES . " WHERE parent_id=?", [$keys[$x]]);
                     }
 
@@ -726,6 +728,27 @@ final class Eac {
         }
 
         return $keys;
+    }
+
+    /**
+     * Ключ категорий в EAC
+     * @param string $TABLE (название таблицы)
+     * @param array $keys (ключи)
+     * @param array $resize_param (параметры на ресайз)
+     * @param string $path (путь)
+     */
+    private static function deleteImages($TABLE, $keys, $resize_param, $path) {
+
+        $logo_delete = json_decode(\eMarket\Pdo::getCellFalse("SELECT logo FROM " . $TABLE . " WHERE parent_id=?", [$keys]), 1);
+        if (is_countable($logo_delete)) {
+            foreach ($logo_delete as $file) {
+                // Удаляем файлы
+                foreach ($resize_param as $key => $value) {
+                    \eMarket\Func::deleteFile(ROOT . '/uploads/images/' . $path . '/resize_' . $key . '/' . $file);
+                }
+                \eMarket\Func::deleteFile(ROOT . '/uploads/images/' . $path . '/originals/' . $file);
+            }
+        }
     }
 
     /**

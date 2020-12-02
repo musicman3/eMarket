@@ -216,9 +216,7 @@
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                         idArray[i] = this.id;
                                 });
-                                $('.group-attributes').sortable('option', 'disabled', true);
-                                $('.attribute').sortable('option', 'disabled', true);
-                                $('.values_attribute').sortable('option', 'disabled', true);
+                                $('.group-attributes, .attribute, .values_attribute').sortable('option', 'disabled', true);
                                 jQuery.post('?route=stock',
                                         {idsx_statusOn_id: idArray,
                                             idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
@@ -258,9 +256,7 @@
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                         idArray[i] = this.id;
                                 });
-                                $('.group-attributes').sortable('option', 'disabled', true);
-                                $('.attribute').sortable('option', 'disabled', true);
-                                $('.values_attribute').sortable('option', 'disabled', true);
+                                $('.group-attributes, .attribute, .values_attribute').sortable('option', 'disabled', true);
                                 jQuery.post('?route=stock',
                                         {idsx_statusOff_id: idArray,
                                             idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
@@ -306,9 +302,7 @@
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                         idArray[i] = this.id;
                                 });
-                                $('.group-attributes').sortable('option', 'disabled', true);
-                                $('.attribute').sortable('option', 'disabled', true);
-                                $('.values_attribute').sortable('option', 'disabled', true);
+                                $('.group-attributes, .attribute, .values_attribute').sortable('option', 'disabled', true);
                                 jQuery.post('?route=stock',
                                         {idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
                                             idsx_cut_id: idArray,
@@ -393,9 +387,7 @@
                                         if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                             idArray[i] = this.id;
                                     });
-                                    $('.group-attributes').sortable('option', 'disabled', true);
-                                    $('.attribute').sortable('option', 'disabled', true);
-                                    $('.values_attribute').sortable('option', 'disabled', true);
+                                    $('.group-attributes, .attribute, .values_attribute').sortable('option', 'disabled', true);
                                     jQuery.post('?route=stock',
                                             {delete: idArray,
                                                 parent_down: <?php echo $parent_id ?>});
@@ -463,9 +455,7 @@
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                         idArray[i] = this.id;
                                 });
-                                $('.group-attributes').sortable('option', 'disabled', true);
-                                $('.attribute').sortable('option', 'disabled', true);
-                                $('.values_attribute').sortable('option', 'disabled', true);
+                                $('.group-attributes, .attribute, .values_attribute').sortable('option', 'disabled', true);
                                 jQuery.post('?route=stock',
                                         {idsx_saleOn_id: idArray,
                                             idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
@@ -518,9 +508,7 @@
                                         if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                             idArray[i] = this.id;
                                     });
-                                    $('.group-attributes').sortable('option', 'disabled', true);
-                                    $('.attribute').sortable('option', 'disabled', true);
-                                    $('.values_attribute').sortable('option', 'disabled', true);
+                                    $('.group-attributes, .attribute, .values_attribute').sortable('option', 'disabled', true);
                                     jQuery.post('?route=stock',
                                             {idsx_saleOff_id: idArray,
                                                 idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
@@ -573,9 +561,7 @@
                                         if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                             idArray[i] = this.id;
                                     });
-                                    $('.group-attributes').sortable('option', 'disabled', true);
-                                    $('.attribute').sortable('option', 'disabled', true);
-                                    $('.values_attribute').sortable('option', 'disabled', true);
+                                    $('.group-attributes, .attribute, .values_attribute').sortable('option', 'disabled', true);
                                     jQuery.post('?route=stock',
                                             {idsx_saleOffAll_id: idArray,
                                                 idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
@@ -645,9 +631,7 @@
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                         idArray[i] = this.id;
                                 });
-                                $('.group-attributes').sortable('option', 'disabled', true);
-                                $('.attribute').sortable('option', 'disabled', true);
-                                $('.values_attribute').sortable('option', 'disabled', true);
+                                $('.group-attributes, .attribute, .values_attribute').sortable('option', 'disabled', true);
                                 jQuery.post('?route=stock',
                                         {idsx_stikerOn_id: idArray,
                                             idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
@@ -694,9 +678,7 @@
                                         if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                             idArray[i] = this.id;
                                     });
-                                    $('.group-attributes').sortable('option', 'disabled', true);
-                                    $('.attribute').sortable('option', 'disabled', true);
-                                    $('.values_attribute').sortable('option', 'disabled', true);
+                                    $('.group-attributes, .attribute, .values_attribute').sortable('option', 'disabled', true);
                                     jQuery.post('?route=stock',
                                             {idsx_stikerOff_id: idArray,
                                                 idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
