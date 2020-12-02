@@ -9,10 +9,7 @@
 <!-- КОНЕЦ Модальное окно -->
 
 <!--Скрытый div для передачи данных-->
-<div id="ajax_data" class='hidden'
-     data-price='<?php echo $minimum_price ?>'
-     data-zone='<?php echo $shipping_zone ?>'
-     ></div>
+<div id="ajax_data" class='hidden' data-jsondata='<?php echo $json_data ?>'></div>
 
 <div class="table-responsive">
     <table class="table table-hover">
