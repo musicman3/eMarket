@@ -34,6 +34,9 @@ class Messages {
             } else {
                 $_SESSION['message'] = [$class, $message, 3000, $start];
             }
+            if (\eMarket\Valid::inGET('route') == 'settings/modules/edit') {
+                self::alert();
+            }
             return true;
         }
 

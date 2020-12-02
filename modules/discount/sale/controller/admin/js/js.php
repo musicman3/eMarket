@@ -16,59 +16,51 @@
     $('#default_module').bootstrapSwitch();
 </script>
 
-<?php if (isset($name)) { ?>
-    <!-- Загрузка данных в модальное окно -->
-    <script type="text/javascript">
-        $('#index').on('show.bs.modal', function (event) {
+<!-- Загрузка данных в модальное окно -->
+<script type="text/javascript">
+    $('#index').on('show.bs.modal', function (event) {
 
-            var button = $(event.relatedTarget);
-            var modal_id = button.data('edit'); // Получаем ID из data-edit при клике на кнопку редактирования
+        var button = $(event.relatedTarget);
+        var modal_id = button.data('edit'); // Получаем ID из data-edit при клике на кнопку редактирования
 
-            if (Number.isInteger(modal_id)) {
-                $('#default_module').bootstrapSwitch('destroy', true);
-                // Получаем массивы данных
-                var name = $('div#ajax_data').data('name');
-                var value = $('div#ajax_data').data('value');
-                var start = $('div#ajax_data').data('start');
-                var end = $('div#ajax_data').data('end');
-                var default_var = $('div#ajax_data').data('default');
+        if (Number.isInteger(modal_id)) {
+            $('#default_module').bootstrapSwitch('destroy', true);
+            // Получаем массивы данных
+            var json_data = $('div#ajax_data').data('jsondata');
 
-                // Ищем id и добавляем данные
-                for (x = 0; x < name.length; x++) {
-                    $('#name_module_' + x).val(name[x][modal_id]);
-                }
-
-                $('#sale_value').val(value[modal_id]);
-                $('#edit').val(modal_id);
-                $('#add').val('');
-
-                // Устанавливаем SmartDatepicker
-                var day_start = new Date(start[modal_id]);
-                if (button.data('edit') !== undefined) {
-                    $('#start_date').datepicker('setDate', day_start);
-                    $('#end_date').datepicker('setDate', new Date(end[modal_id]));
-                    if (day_start.setDate(day_start.getDate()) < new Date()) {
-                        $('#start_date').datepicker('setStartDate', new Date());
-                        $('#start_date').datepicker('setDate', new Date());
-                    }
-                }
-
-                // Меняем значение чекбокса
-                $('#default_module').prop('checked', default_var[modal_id]);
-                $('#default_module').bootstrapSwitch();
+            // Ищем id и добавляем данные
+            for (x = 0; x < json_data['name'].length; x++) {
+                $('#name_module_' + x).val(json_data['name'][x][modal_id]);
             }
 
-            if (!Number.isInteger(modal_id) && button.data('toggle') === 'modal') {
-                $('#edit').val('');
-                $('#add').val('ok');
-                //Очищаем поля
-                $(this).find('form').trigger('reset');
-                // Меняем значение чекбокса
-                $('#default_module').prop('checked', '1');
+            $('#sale_value').val(json_data['value'][modal_id]);
+            $('#edit').val(modal_id);
+            $('#add').val('');
+
+            // Устанавливаем SmartDatepicker
+            var day_start = new Date(json_data['start'][modal_id]);
+            if (button.data('edit') !== undefined) {
+                $('#start_date').datepicker('setDate', day_start);
+                $('#end_date').datepicker('setDate', new Date(json_data['end'][modal_id]));
+                if (day_start.setDate(day_start.getDate()) < new Date()) {
+                    $('#start_date').datepicker('setStartDate', new Date());
+                    $('#start_date').datepicker('setDate', new Date());
+                }
             }
-        });
-    </script>
-    <?php
-}
-?>
+
+            // Меняем значение чекбокса
+            $('#default_module').prop('checked', json_data['default'][modal_id]);
+            $('#default_module').bootstrapSwitch();
+        }
+
+        if (!Number.isInteger(modal_id) && button.data('toggle') === 'modal') {
+            $('#edit').val('');
+            $('#add').val('ok');
+            //Очищаем поля
+            $(this).find('form').trigger('reset');
+            // Меняем значение чекбокса
+            $('#default_module').prop('checked', '1');
+        }
+    });
+</script>
 
