@@ -26,10 +26,10 @@
                 <!--Скрытый div для передачи данных-->
                 <div id="ajax_data" class='hidden' 
                      data-jsonsettings='<?php echo $settings ?>'
-                      data-jsondata='<?php echo $json_data ?>'></div>
+                     data-jsondata='<?php echo $json_data ?>'></div>
 
                 <div class="pull-right slide-sett"><a href="#settings" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-cog"></span></a></div>
-                
+
                 <!-- Языковые панели -->
                 <ul class="nav nav-tabs">
                     <li class="<?php echo \eMarket\Set::activeTab($slide_language, lang('#lang_all')[0]) ?>"><a data-toggle="tab" href="#<?php echo lang('#lang_all')[0] ?>"><img src="/view/<?php echo \eMarket\Set::template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[0] ?>.png" alt="<?php echo lang('#lang_all')[0] ?>" title="<?php echo lang('#lang_all')[0] ?>" width="16" height="10" /> <?php echo lang('language_name', lang('#lang_all')[0]) ?></a></li>
@@ -47,7 +47,7 @@
                     ?>
 
                 </ul>
-                
+
                 <div class="ajax-tab tab-content">
                     <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade in active">
                         <div class="table-responsive">
@@ -111,8 +111,8 @@
                                         <tr>
                                             <td>Рисунок</td>
                                             <td class="text-center"><?php echo $lines[$start][4] ?></td>
-                                            <td class="text-center">10.10.20</td>
-                                            <td class="text-center">20.10.20</td>
+                                            <td class="text-center"><?php echo \eMarket\Set::dateLocale($lines[$start][6]); ?></td>
+                                            <td class="text-center"><?php echo \eMarket\Set::dateLocale($lines[$start][7]); ?></td>
                                             <td>
                                                 <div class="flexbox">
                                                     <!--Вызов модального окна для редактирования-->
@@ -204,8 +204,8 @@
                                                 <tr>
                                                     <td>Рисунок</td>
                                                     <td class="text-center"><?php echo $lines[$start][4] ?></td>
-                                                    <td class="text-center">10.10.20</td>
-                                                    <td class="text-center">20.10.20</td>
+                                                    <td class="text-center"><?php echo \eMarket\Set::dateLocale($lines[$start][6]); ?></td>
+                                                    <td class="text-center"><?php echo \eMarket\Set::dateLocale($lines[$start][7]); ?></td>
                                                     <td>
                                                         <div class="flexbox">
                                                             <!--Вызов модального окна для редактирования-->
