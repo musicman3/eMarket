@@ -13,19 +13,10 @@
 <script type="text/javascript" src="/model/js/classes/smartdatepicker.js"></script>
 
 <script type="text/javascript">
-    $('#mouse_stop').bootstrapSwitch();
-    $('#autostart').bootstrapSwitch();
-    $('#cicles').bootstrapSwitch();
-    $('#indicators').bootstrapSwitch();
-    $('#navigation').bootstrapSwitch();
-    $('#view_slideshow').bootstrapSwitch();
+    $('#mouse_stop, #autostart, #cicles, #indicators, #navigation, #view_slideshow').bootstrapSwitch();
 
     $('#settings').on('show.bs.modal', function (event) {
-        $('#mouse_stop').bootstrapSwitch('destroy', true);
-        $('#autostart').bootstrapSwitch('destroy', true);
-        $('#cicles').bootstrapSwitch('destroy', true);
-        $('#indicators').bootstrapSwitch('destroy', true);
-        $('#navigation').bootstrapSwitch('destroy', true);
+        $('#mouse_stop, #autostart, #cicles, #indicators, #navigation').bootstrapSwitch('destroy', true);
         // Получаем массивы данных
         var json_data = $('div#ajax_data').data('jsonsettings');
 
@@ -38,11 +29,7 @@
         $('#indicators').prop('checked', Number(json_data['indicators']));
         $('#navigation').prop('checked', Number(json_data['navigation']));
 
-        $('#mouse_stop').bootstrapSwitch();
-        $('#autostart').bootstrapSwitch();
-        $('#cicles').bootstrapSwitch();
-        $('#indicators').bootstrapSwitch();
-        $('#navigation').bootstrapSwitch();
+        $('#mouse_stop, #autostart, #cicles, #indicators, #navigation').bootstrapSwitch();
     });
 
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
