@@ -63,7 +63,7 @@ class Files {
                     }
                 }
                 // "Главное изображение" по-умолчанию
-                if (is_countable($image_list)) {
+                if (count($image_list) > 0) {
                     $general_image_add = $image_list[0];
                 }
                 // Назначаем "Главное изображение" в модальном окне "Добавить"
@@ -96,7 +96,7 @@ class Files {
                 }
             }
             // "Главное изображение" по-умолчанию
-            if (is_countable($image_list)) {
+            if (count($image_list) > 0) {
                 $general_image_edit = $image_list[0];
             }
             // Назначаем "Главное изображение" в модальном окне "Редактировать"
@@ -142,7 +142,7 @@ class Files {
                         }
                     }
                 }
-                if (isset($logo_general_update) && is_countable($image_list_new)) {
+                if (isset($logo_general_update) && count($image_list_new) > 0) {
                     // Если есть маркер, то устанавливаем новую первую картинку по списку главной
                     \eMarket\Pdo::inPrepare("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [json_encode($image_list_new), $image_list_new[0], $id]);
                 } else {
@@ -231,7 +231,7 @@ class Files {
                     }
                 }
                 // "Главное изображение" по-умолчанию
-                if (is_countable($image_list)) {
+                if (count($image_list) > 0) {
                     $general_image_add = $image_list[0];
                 }
                 // Назначаем "Главное изображение" в модальном окне "Добавить"
@@ -264,7 +264,7 @@ class Files {
                 }
             }
             // "Главное изображение" по-умолчанию
-            if (is_countable($image_list)) {
+            if (count($image_list) > 0) {
                 $general_image_edit = $image_list[0];
             }
             // Назначаем "Главное изображение" в модальном окне "Редактировать"
