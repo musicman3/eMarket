@@ -153,7 +153,11 @@ class Files {
 
         // Если нажали на кнопку Удалить
         if (\eMarket\Valid::inPOST('delete')) {
-            $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('delete'));
+            if (is_numeric(\eMarket\Valid::inPOST('delete'))) {
+                $idx = [\eMarket\Valid::inPOST('delete')];
+            } else {
+                $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('delete'));
+            }
             if (is_countable($idx)) {
                 for ($i = 0; $i < count($idx); $i++) {
                     if (strstr($idx[$i], '_', true) != 'product') {

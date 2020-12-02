@@ -7,16 +7,6 @@
 
 $settings = json_encode(\eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_SLIDESHOW_PREF . "", [])[0]);
 
-// Загручик изображений (ВСТАВЛЯТЬ ПЕРЕД УДАЛЕНИЕМ)
-$resize_param = [];
-array_push($resize_param, ['125', '94']); // ширина, высота
-//array_push($resize_param, ['200','150']);
-//array_push($resize_param, ['325','244']);
-//array_push($resize_param, ['525','394']);
-//array_push($resize_param, ['850','638']);
-
-\eMarket\Files::imgUpload(TABLE_MANUFACTURERS, 'manufacturers', $resize_param);
-
 if (\eMarket\Valid::inPOST('slideshow_pref')) {
 
     if (\eMarket\Valid::inPOST('mouse_stop')) {
@@ -72,7 +62,7 @@ if (\eMarket\Valid::inPOST('add')) {
         $end_date = NULL;
     }
 
-    \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_SLIDESHOW . " SET language=?, url=?, name=?, heading=?, date_start=?, date_finish=?, status=?", [\eMarket\Valid::inPOST('slide_language'), \eMarket\Valid::inPOST('url'), \eMarket\Valid::inPOST('name'), \eMarket\Valid::inPOST('heading'), $start_date, $end_date, $view_slideshow]);
+    \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_SLIDESHOW . " SET language=?, url=?, name=?, heading=?, logo=?, date_start=?, date_finish=?, status=?", [\eMarket\Valid::inPOST('slide_language'), \eMarket\Valid::inPOST('url'), \eMarket\Valid::inPOST('name'), \eMarket\Valid::inPOST('heading'), json_encode([]), $start_date, $end_date, $view_slideshow]);
     // Выводим сообщение об успехе
     \eMarket\Messages::alert('success', lang('action_completed_successfully'));
 }
@@ -105,6 +95,16 @@ if (\eMarket\Valid::inPOST('edit')) {
     // Выводим сообщение об успехе
     \eMarket\Messages::alert('success', lang('action_completed_successfully'));
 }
+
+// Загручик изображений (ВСТАВЛЯТЬ ПЕРЕД УДАЛЕНИЕМ)
+$resize_param = [];
+array_push($resize_param, ['125', '94']); // ширина, высота
+//array_push($resize_param, ['200','150']);
+//array_push($resize_param, ['325','244']);
+//array_push($resize_param, ['525','394']);
+//array_push($resize_param, ['850','638']);
+
+\eMarket\Files::imgUpload(TABLE_SLIDESHOW, 'slideshow', $resize_param);
 
 // Если нажали на кнопку Удалить
 if (\eMarket\Valid::inPOST('delete')) {

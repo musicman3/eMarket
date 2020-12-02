@@ -3,6 +3,11 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+$resize_max = json_encode(\eMarket\Files::imgResizeMax($resize_param));
+$lang_js = json_encode([
+    'image_resize_error' => lang('image_resize_error'),
+    'download_complete' => lang('download_complete')
+        ]);
 ?>
 <link rel="stylesheet" href="/ext/bootstrap-switch/css/bootstrap-switch.min.css" type="text/css"/>
 <script type="text/javascript" src="/ext/bootstrap-switch/js/bootstrap-switch.min.js"></script>
@@ -11,8 +16,17 @@
 <link href="/ext/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
 <script type="text/javascript" src="/ext/bootstrap-datepicker/locales/bootstrap-datepicker.<?php echo lang('meta-language') ?>.min.js"></script>
 <script type="text/javascript" src="/model/js/classes/smartdatepicker.js"></script>
+<!--Подгружаем jQuery File Upload -->
+<script src = "/ext/jquery_file_upload/js/vendor/jquery.ui.widget.js"></script>
+<script src="/ext/jquery_file_upload/js/jquery.iframe-transport.js"></script>
+<script src="/ext/jquery_file_upload/js/jquery.fileupload.js"></script>
+<script type="text/javascript" src="/model/js/classes/images/fileupload.js"></script>
 
 <script type="text/javascript">
+    var resize_max = $.parseJSON('<?php echo $resize_max ?>');
+    var lang = $.parseJSON('<?php echo $lang_js ?>');
+    new Fileupload(resize_max, lang);
+
     $('#mouse_stop, #autostart, #cicles, #indicators, #navigation, #view_slideshow').bootstrapSwitch();
 
     $('#settings').on('show.bs.modal', function (event) {
@@ -75,6 +89,8 @@
                 $('#start_date').datepicker('setStartDate', new Date());
                 $('#start_date').datepicker('setDate', new Date());
             }
+            // Подгружаем изображения
+            Fileupload.getImageToEdit(json_data['logo_general'], json_data['logo'], modal_id, 'slideshow');
         }
         if (!Number.isInteger(modal_id) && button.data('toggle') === 'modal') {
             $('#edit').val('');

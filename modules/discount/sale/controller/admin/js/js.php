@@ -39,13 +39,11 @@
 
             // Устанавливаем SmartDatepicker
             var day_start = new Date(json_data['start'][modal_id]);
-            if (button.data('edit') !== undefined) {
-                $('#start_date').datepicker('setDate', day_start);
-                $('#end_date').datepicker('setDate', new Date(json_data['end'][modal_id]));
-                if (day_start.setDate(day_start.getDate()) < new Date()) {
-                    $('#start_date').datepicker('setStartDate', new Date());
-                    $('#start_date').datepicker('setDate', new Date());
-                }
+            $('#start_date').datepicker('setDate', day_start);
+            $('#end_date').datepicker('setDate', new Date(json_data['end'][modal_id]));
+            if (day_start.setDate(day_start.getDate()) < new Date()) {
+                $('#start_date').datepicker('setStartDate', new Date());
+                $('#start_date').datepicker('setDate', new Date());
             }
 
             // Меняем значение чекбокса
