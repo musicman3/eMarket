@@ -111,8 +111,8 @@
                                         <tr>
                                             <td>Рисунок</td>
                                             <td class="text-center"><?php echo $lines[$start][4] ?></td>
-                                            <td class="text-center"><?php echo \eMarket\Set::dateLocale($lines[$start][6]); ?></td>
                                             <td class="text-center"><?php echo \eMarket\Set::dateLocale($lines[$start][7]); ?></td>
+                                            <td class="text-center"><?php echo \eMarket\Set::dateLocale($lines[$start][8]); ?></td>
                                             <td>
                                                 <div class="flexbox">
                                                     <!--Вызов модального окна для редактирования-->
@@ -204,8 +204,8 @@
                                                 <tr>
                                                     <td>Рисунок</td>
                                                     <td class="text-center"><?php echo $lines[$start][4] ?></td>
-                                                    <td class="text-center"><?php echo \eMarket\Set::dateLocale($lines[$start][6]); ?></td>
                                                     <td class="text-center"><?php echo \eMarket\Set::dateLocale($lines[$start][7]); ?></td>
+                                                    <td class="text-center"><?php echo \eMarket\Set::dateLocale($lines[$start][8]); ?></td>
                                                     <td>
                                                         <div class="flexbox">
                                                             <!--Вызов модального окна для редактирования-->
