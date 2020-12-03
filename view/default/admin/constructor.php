@@ -46,6 +46,7 @@
         <?php } ?>
     </head>
     <body>
+        <div>
 
         <?php
         // ЗАГРУЖАЕМ HEADER
@@ -85,5 +86,6 @@
         // Выводим отладочную информацию
         \eMarket\Debug::info($TIME_START);
         ?>
+        </div>
     </body>
 </html>
