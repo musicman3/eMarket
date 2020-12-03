@@ -4,7 +4,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
-<div>
+
     <div id="ajax" class="container-fluid">
         <div class="panel panel-default">
 
@@ -141,5 +141,4 @@
                 </div>  
             </div> 
         </div> 
-    </div> 
-</div>
+    </div>

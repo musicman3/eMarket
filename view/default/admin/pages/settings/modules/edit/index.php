@@ -5,7 +5,6 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
 
-<div>
     <div id="ajax" class="container-fluid">
         <div class="panel panel-default shadow-element">
 
@@ -37,4 +36,3 @@
 
         </div>
     </div>
-</div>
