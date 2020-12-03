@@ -49,7 +49,7 @@ class Messages {
             unset($_SESSION['message']);
         }
         // При POST и GET по ajax + обновление страницы ШАГ 4 (обновление по ajax)
-        if (\eMarket\Valid::inGET('modify')) {
+        if (\eMarket\Valid::inGET('message') == 'ok') {
             if (isset($_SESSION['message'])) {
                 require_once (ROOT . '/view/' . \eMarket\Set::template() . '/layouts/alert.php');
             }

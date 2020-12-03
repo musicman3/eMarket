@@ -25,7 +25,7 @@
         // Отправка запроса для обновления страницы
         jQuery.get('?route=stock',
                 {parent_down: <?php echo $parent_id ?>,
-                    modify: 'update_ok'},
+                    message: 'ok'},
                 AjaxSuccess);
         // Обновление страницы
         function AjaxSuccess(data) {
