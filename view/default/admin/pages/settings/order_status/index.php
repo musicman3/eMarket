@@ -8,7 +8,6 @@
 <?php require_once('modal/index.php') ?>
 <!-- КОНЕЦ Модальное окно -->
 
-<div>
     <div id="ajax" class="container-fluid">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -107,4 +106,3 @@
             </div>
         </div>
     </div>
-</div>
