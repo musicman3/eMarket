@@ -34,8 +34,7 @@
 <?php require_once('modal/add_values_attribute.php') ?>
 <!-- КОНЕЦ Модальное окно "Добавить значения атрибута" -->
 
-<div id="ajax">
-
+<div>
     <div id="ajax" class="container-fluid">
         <div class="panel panel-default">
 
