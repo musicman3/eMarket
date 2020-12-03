@@ -103,7 +103,7 @@
                                         <input hidden name="finish" value="<?php echo $finish ?>">
                                         <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
                                         <div>
-                                            <?php if ($finish != $count_lines_merge) { ?>
+                                            <?php if (\eMarket\Navigation::counter($start, $finish, $count_lines_merge, $lines_on_page) != $count_lines_merge) { ?>
                                                 <button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button>
                                             <?php } else { ?>
                                                 <a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-right"></span></a>
