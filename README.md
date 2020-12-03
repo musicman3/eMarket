@@ -8,7 +8,7 @@
   - HTML 5
   
 ### Intro  
-eMarket is free software for anyone. This online store is available to anyone without any obligation or payment. GNU GPL Free License v. 3.0
+eMarket is free software for anyone. This online store is available to anyone without any obligation or payment. GNU GPL Free License v. 3.0. The project was founded on March 10, 2018.
 
 ### What is all this for?
 We have been doing online storers for a long time. Basically, everyone thinks about the buyer. But what about the manager? Many functions in third-party stores are unnecessarily overloaded for the manager. To perform a simple action, you need to configure several different settings pages. Adding and editing products for the manager turns into torture. Stores make for programmers, not managers. Few people think about the convenience for the manager. But it is the manager who has to do the main work with the store. Have you thought about this?
@@ -33,7 +33,7 @@ Regards, eMarket Team.
 
 ---
 ### Вступление
-eMarket - это свободное программное обеспечение для любого человека. Этот интернет-магазин доступен любому желающему без каких либо обязательств и оплаты. Свободная лицензия GNU GPL v. 3.0
+eMarket - это свободное программное обеспечение для любого человека. Этот интернет-магазин доступен любому желающему без каких либо обязательств и оплаты. Свободная лицензия GNU GPL v. 3.0. Проект основан 10 марта 2018.
 
 ### Для чего все это?
 Мы давно занимаемся интернет-магазинами. В основном все думают о покупателе. А как же менеджер? Многие функции в сторонних магазинах излишне перегружены для менеджера. Чтобы совершить простое действие требуется настроить несколько разных страниц настроек. Добавление и редактирование товара для менеджера превращается в пытку. Магазины делают для программистов, а не для менеджеров. Мало кто задумывается об удобстве для менеджера. Но ведь именно менеджеру и предстоит основная работа с магазином. Вы об этом задумывались?
