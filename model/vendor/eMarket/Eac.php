@@ -18,13 +18,23 @@ final class Eac {
 
     /**
      * Инициализация EAC
-     * @param array $TABLES (названия таблиц)
      * @param array $resize_param (параметры ресайза)
      * @param array $resize_param_product (параметры ресайза фото товаров)
      * @return array [$idsx_real_parent_id, $parent_id]
      */
-    public static function init($TABLES, $resize_param, $resize_param_product) {
-
+    public static function init($resize_param, $resize_param_product) {
+        // Создаем массив используемых таблиц в EAC
+        $TABLES = [
+            TABLE_CATEGORIES,
+            TABLE_PRODUCTS,
+            TABLE_TAXES,
+            TABLE_UNITS,
+            TABLE_MANUFACTURERS,
+            TABLE_VENDOR_CODES,
+            TABLE_WEIGHT,
+            TABLE_LENGTH,
+            TABLE_CURRENCIES
+        ];
         // Устанавливаем parent_id родительской категории
         $parent_id = self::parentIdStart($TABLES[0]);
 
@@ -48,7 +58,7 @@ final class Eac {
 
         $idsx_real_parent_id = $parent_id; //для отправки в JS
         // Если нажали на кнопку Удалить
-        $parent_id_delete = self::delete($TABLES[0], $TABLES[1], $parent_id, $resize_param);
+        $parent_id_delete = self::delete($TABLES[0], $TABLES[1], $parent_id, $resize_param, $resize_param_product);
 
         // Если нажали на кнопку Вырезать
         $parent_id_cut = self::cut($TABLES[0], $parent_id);
@@ -212,9 +222,11 @@ final class Eac {
      * @param string $TABLE_CATEGORIES (название таблицы категорий)
      * @param string $TABLE_PRODUCTS (название таблицы товаров)
      * @param string $parent_id (идентификатор родительской категории)
+     * @param string $resize_param (ресайз категорий)
+     * @param string $resize_param_product (ресайз товаров)
      * @return string $parent_id (идентификатор родительской категории)
      */
-    private static function delete($TABLE_CATEGORIES, $TABLE_PRODUCTS, $parent_id, $resize_param) {
+    private static function delete($TABLE_CATEGORIES, $TABLE_PRODUCTS, $parent_id, $resize_param, $resize_param_product) {
 
         if (\eMarket\Valid::inPOST('delete')) {
 
@@ -235,11 +247,11 @@ final class Eac {
                     for ($x = 0; $x < $count_keys; $x++) {
 
                         //Удаляем товар и изображения
-                        self::deleteImages($TABLE_PRODUCTS, $keys[$x], $resize_param, 'products');
+                        self::deleteImages($TABLE_PRODUCTS, $keys[$x], $resize_param, $resize_param_product, 'products');
                         \eMarket\Pdo::inPrepare("DELETE FROM " . $TABLE_PRODUCTS . " WHERE parent_id=?", [$keys[$x]]);
 
                         //Удаляем подкатегории и изображения
-                        self::deleteImages($TABLE_CATEGORIES, $keys[$x], $resize_param, 'categories');
+                        self::deleteImages($TABLE_CATEGORIES, $keys[$x], $resize_param, $resize_param_product, 'categories');
                         \eMarket\Pdo::inPrepare("DELETE FROM " . $TABLE_CATEGORIES . " WHERE parent_id=?", [$keys[$x]]);
                     }
 
@@ -734,16 +746,24 @@ final class Eac {
      * Ключ категорий в EAC
      * @param string $TABLE (название таблицы)
      * @param array $keys (ключи)
-     * @param array $resize_param (параметры на ресайз)
+     * @param array $resize_param (параметры на ресайз категорий)
+     * @param array $resize_param_product (параметры на ресайз товаров)
      * @param string $path (путь)
      */
-    private static function deleteImages($TABLE, $keys, $resize_param, $path) {
+    private static function deleteImages($TABLE, $keys, $resize_param, $resize_param_product, $path) {
+
+        if ($path == 'categories') {
+            $resize = $resize_param;
+        }
+        if ($path == 'products') {
+            $resize = $resize_param_product;
+        }
 
         $logo_delete = json_decode(\eMarket\Pdo::getCellFalse("SELECT logo FROM " . $TABLE . " WHERE parent_id=?", [$keys]), 1);
         if (is_countable($logo_delete)) {
             foreach ($logo_delete as $file) {
                 // Удаляем файлы
-                foreach ($resize_param as $key => $value) {
+                foreach ($resize as $key => $value) {
                     \eMarket\Func::deleteFile(ROOT . '/uploads/images/' . $path . '/resize_' . $key . '/' . $file);
                 }
                 \eMarket\Func::deleteFile(ROOT . '/uploads/images/' . $path . '/originals/' . $file);
