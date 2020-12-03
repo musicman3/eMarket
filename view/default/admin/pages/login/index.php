@@ -1,9 +1,8 @@
 <?php
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
-  |    GNU GENERAL PUBLIC LICENSE v.3.0    |    
+  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-
 ?>
 
 <div class="lbox-horz"></div>
@@ -19,9 +18,9 @@
 
 <div class="login-box side-form">
     <form action='?route=login' method='post'>
-        
+
         <input hidden name="autorize" value="ok">
-        
+
         <div class="form-group">
             <input type="text" name="login" class="input-sm form-control" placeholder="<?php echo lang('email') ?>">
         </div>

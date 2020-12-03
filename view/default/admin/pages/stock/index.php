@@ -34,40 +34,40 @@
 <?php require_once('modal/add_values_attribute.php') ?>
 <!-- КОНЕЦ Модальное окно "Добавить значения атрибута" -->
 
-    <div id="ajax" class="container-fluid">
-        <div class="panel panel-default">
+<div id="ajax" class="container-fluid">
+    <div class="panel panel-default">
 
-            <div class="panel-heading">
+        <div class="panel-heading">
 
-                <!--Выводим уведомление об успешном действии-->
-                <?php \eMarket\Messages::alert(); ?>
+            <!--Выводим уведомление об успешном действии-->
+            <?php \eMarket\Messages::alert(); ?>
 
-                <h3 class="panel-title">
-                    <?php echo \eMarket\Set::titlePageGenerator() ?>
-                </h3>
-            </div>
-            <!--Скрытый div для передачи данных-->
-            <div id="ajax_data" class='hidden' 
-                 data-jsondataproduct='<?php echo $json_data_product ?>'
-                 data-jsondatacategory='<?php echo $json_data_category ?>'>
-            </div>
-            <?php if ($lines_cat == TRUE OR $lines_prod == TRUE) { ?>
-                <div class="panel-body">
-                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 offset-0">
-                        <form>
-                            <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
-                            <div class="input-group">
-                                <input type="search" id="search" name="search" placeholder="<?php echo lang('search') ?>" class="form-control">
-                                <span class="input-group-btn">
-                                    <button type="submit" class="btn btn-primary">
-                                        <span class="glyphicon glyphicon-search"></span>
-                                    </button>
-                                </span>
-                            </div>
-                        </form>
-                    </div>
-		    <div class="clearfix"></div>
-		    <div class="table-responsive">
+            <h3 class="panel-title">
+                <?php echo \eMarket\Set::titlePageGenerator() ?>
+            </h3>
+        </div>
+        <!--Скрытый div для передачи данных-->
+        <div id="ajax_data" class='hidden' 
+             data-jsondataproduct='<?php echo $json_data_product ?>'
+             data-jsondatacategory='<?php echo $json_data_category ?>'>
+        </div>
+        <?php if ($lines_cat == TRUE OR $lines_prod == TRUE) { ?>
+            <div class="panel-body">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 offset-0">
+                    <form>
+                        <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
+                        <div class="input-group">
+                            <input type="search" id="search" name="search" placeholder="<?php echo lang('search') ?>" class="form-control">
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-primary">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+                <div class="clearfix"></div>
+                <div class="table-responsive">
                     <table class="table table-hover">
                         <thead>
                             <tr>
@@ -75,39 +75,39 @@
 
                                     <?php echo lang('with') ?> <?php echo $start + 1 ?> <?php echo lang('to') ?> <?php echo \eMarket\Navigation::counter($start, $finish, $count_lines_merge, $lines_on_page) ?> ( <?php echo lang('of') ?> <?php echo $count_lines_merge; ?> )
 
-				</th>
-				<th>
+                                </th>
+                                <th>
 
-				    <div class="flexbox">
-                                    <!-- Переключаем страницу "НАЗАД" -->
-                                    <form>
-                                        <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
-                                        <input hidden name="backstart" value="<?php echo $start ?>">
-                                        <input hidden name="backfinish" value="<?php echo $finish ?>">
-                                        <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
-                                        <div class="b-left">
-                                            <?php if ($start > 0) { ?>
-                                                <button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button>
-                                            <?php } else { ?>
-                                                <a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-left"></span></a>
-                                            <?php } ?>
-                                        </div>
-                                    </form>
+                                    <div class="flexbox">
+                                        <!-- Переключаем страницу "НАЗАД" -->
+                                        <form>
+                                            <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
+                                            <input hidden name="backstart" value="<?php echo $start ?>">
+                                            <input hidden name="backfinish" value="<?php echo $finish ?>">
+                                            <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
+                                            <div class="b-left">
+                                                <?php if ($start > 0) { ?>
+                                                    <button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button>
+                                                <?php } else { ?>
+                                                    <a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-left"></span></a>
+                                                <?php } ?>
+                                            </div>
+                                        </form>
 
-                                    <!-- Переключаем страницу "ВПЕРЕД" -->
-                                    <form>
-                                        <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
-                                        <input hidden name="start" value="<?php echo $start ?>">
-                                        <input hidden name="finish" value="<?php echo $finish ?>">
-                                        <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
-                                        <div>
-                                            <?php if (\eMarket\Navigation::counter($start, $finish, $count_lines_merge, $lines_on_page) < $count_lines_merge) { ?>
-                                                <button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button>
-                                            <?php } else { ?>
-                                                <a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-right"></span></a>
-                                            <?php } ?>
-                                        </div>
-                                    </form>
+                                        <!-- Переключаем страницу "ВПЕРЕД" -->
+                                        <form>
+                                            <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
+                                            <input hidden name="start" value="<?php echo $start ?>">
+                                            <input hidden name="finish" value="<?php echo $finish ?>">
+                                            <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
+                                            <div>
+                                                <?php if (\eMarket\Navigation::counter($start, $finish, $count_lines_merge, $lines_on_page) < $count_lines_merge) { ?>
+                                                    <button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button>
+                                                <?php } else { ?>
+                                                    <a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-right"></span></a>
+                                                <?php } ?>
+                                            </div>
+                                        </form>
                                     </div>
 
                                 </th>
@@ -271,29 +271,29 @@
 
                         </tbody>
                     </table>
-                    </div>
                 </div>
+            </div>
 
-                <?php
-            } elseif ($lines_cat == FALSE && $parent_id > 0) {
-                ?>
+            <?php
+        } elseif ($lines_cat == FALSE && $parent_id > 0) {
+            ?>
 
-                <div class="panel-body">
-                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 offset-0">
-                        <form>
-                            <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
-                            <div class="input-group">
-                                <input type="search" id="search" name="search" placeholder="<?php echo lang('search') ?>" class="form-control">
-                                <span class="input-group-btn">
-                                    <button type="submit" class="btn btn-primary">
-                                        <span class="glyphicon glyphicon-search"></span>
-                                    </button>
-                                </span>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="table-responsive">
+            <div class="panel-body">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 offset-0">
+                    <form>
+                        <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
+                        <div class="input-group">
+                            <input type="search" id="search" name="search" placeholder="<?php echo lang('search') ?>" class="form-control">
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-primary">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+                <div class="clearfix"></div>
+                <div class="table-responsive">
                     <table class="table table-hover">
                         <thead>
                             <tr>
@@ -320,27 +320,27 @@
                             </tr>
                         </tbody>
                     </table>
-                    </div>
                 </div>
-                <?php
-            } else {
-                ?>
-                <div class="panel-body">
-                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 offset-0">
-                        <form>
-                            <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
-                            <div class="input-group">
-                                <input type="search" id="search" name="search" placeholder="<?php echo lang('search') ?>" class="form-control">
-                                <span class="input-group-btn">
-                                    <button type="submit" class="btn btn-primary">
-                                        <span class="glyphicon glyphicon-search"></span>
-                                    </button>
-                                </span>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="table-responsive">
+            </div>
+            <?php
+        } else {
+            ?>
+            <div class="panel-body">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 offset-0">
+                    <form>
+                        <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
+                        <div class="input-group">
+                            <input type="search" id="search" name="search" placeholder="<?php echo lang('search') ?>" class="form-control">
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-primary">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+                <div class="clearfix"></div>
+                <div class="table-responsive">
                     <table class="table table-hover">
                         <thead>
                             <tr>
@@ -357,8 +357,8 @@
                             </tr>
                         </tbody>
                     </table>
-                    </div>
                 </div>
-            <?php } ?>
-        </div>
+            </div>
+        <?php } ?>
     </div>
+</div>
