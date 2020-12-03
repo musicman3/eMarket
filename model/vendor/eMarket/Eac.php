@@ -18,23 +18,13 @@ final class Eac {
 
     /**
      * Инициализация EAC
+     * @param array $TABLES (названия таблиц)
      * @param array $resize_param (параметры ресайза)
      * @param array $resize_param_product (параметры ресайза фото товаров)
      * @return array [$idsx_real_parent_id, $parent_id]
      */
-    public static function init($resize_param, $resize_param_product) {
-        // Создаем массив используемых таблиц в EAC
-        $TABLES = [
-            TABLE_CATEGORIES,
-            TABLE_PRODUCTS,
-            TABLE_TAXES,
-            TABLE_UNITS,
-            TABLE_MANUFACTURERS,
-            TABLE_VENDOR_CODES,
-            TABLE_WEIGHT,
-            TABLE_LENGTH,
-            TABLE_CURRENCIES
-        ];
+    public static function init($TABLES, $resize_param, $resize_param_product) {
+        
         // Устанавливаем parent_id родительской категории
         $parent_id = self::parentIdStart($TABLES[0]);
 
@@ -751,14 +741,14 @@ final class Eac {
      * @param string $path (путь)
      */
     private static function deleteImages($TABLE, $keys, $resize_param, $resize_param_product, $path) {
-
-        if ($path == 'categories') {
+        
+        if ($path == 'categories'){
             $resize = $resize_param;
         }
-        if ($path == 'products') {
+        if ($path == 'products'){
             $resize = $resize_param_product;
         }
-
+        
         $logo_delete = json_decode(\eMarket\Pdo::getCellFalse("SELECT logo FROM " . $TABLE . " WHERE parent_id=?", [$keys]), 1);
         if (is_countable($logo_delete)) {
             foreach ($logo_delete as $file) {
