@@ -8,7 +8,7 @@
 <?php require_once('modal/index.php') ?>
 <!-- КОНЕЦ Модальное окно "Добавить" -->
 
-<div id="ajax">
+<div>
     <div id="settings_zones_listing" class="container-fluid">
         <div class="panel panel-default">
             <div class="panel-heading">

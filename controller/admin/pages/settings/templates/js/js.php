@@ -5,7 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
 
-<script>
+<script type="text/javascript" language="javascript">
     $(function () {
         $("#sortable1, #sortable2").sortable({
             connectWith: ".connectedSortable",

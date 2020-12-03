@@ -4,8 +4,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
-<div id="ajax">
-    <div id="settings_modules" class="container-fluid">
+<div>
+    <div id="ajax" class="container-fluid">
         <div class="panel panel-default">
 
             <div class="panel-heading">
