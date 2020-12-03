@@ -5,6 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
 
+<div>
     <div id="ajax" class="container-fluid">
         <div class="panel panel-default">
 
@@ -97,3 +98,4 @@
             <?php } ?>
         </div>
     </div>
+</div>
