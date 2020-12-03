@@ -9,6 +9,14 @@ $lang_js = json_encode([
     'image_resize_error' => lang('image_resize_error'),
     'download_complete' => lang('download_complete')
         ]);
+
+$lang_attributes = json_encode([
+    lang('confirm-yes'),
+    lang('confirm-no'),
+    lang('button_delete'),
+    lang('button_edit'),
+    lang('#lang_all')[0]
+        ]);
 ?>
 <!--Подгружаем jQuery File Upload -->
 <script src = "/ext/jquery_file_upload/js/vendor/jquery.ui.widget.js"></script>

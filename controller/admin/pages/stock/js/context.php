@@ -22,10 +22,6 @@
                             itemName: itemKey, //название ключа из меню (edit, delete, copy и т.п.)
                             ids2: opt.$trigger.attr("id")}), //id строки
                         success: function (data) {
-                            setTimeout(function () {
-                                $('#fileupload').fileupload('destroy');
-                                $('#fileupload-product').fileupload('destroy');
-                            }, 1000);
                         }
                     });
                 }
@@ -216,7 +212,6 @@
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                         idArray[i] = this.id;
                                 });
-                                $('.group-attributes, .attribute, .values_attribute').sortable('option', 'disabled', true);
                                 jQuery.post('?route=stock',
                                         {idsx_statusOn_id: idArray,
                                             idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
@@ -227,12 +222,8 @@
                                         AjaxSuccess);
                                 // Обновление страницы
                                 function AjaxSuccess(data) {
-                                    $('#fileupload').fileupload('destroy');
-                                    $('#fileupload-product').fileupload('destroy');
-                                    $('#ajax').html(data);
-                                    $('.group-attributes').sortable('option', 'disabled', false);
-                                    $('.attribute').sortable('option', 'disabled', false);
-                                    $('.values_attributes').sortable('option', 'disabled', false);
+                                    $('#ajax').replaceWith($(data).find('#ajax'));
+                                    Mouse.sortInitAll();
                                 }
                             }
                         },
@@ -256,7 +247,6 @@
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                         idArray[i] = this.id;
                                 });
-                                $('.group-attributes, .attribute, .values_attribute').sortable('option', 'disabled', true);
                                 jQuery.post('?route=stock',
                                         {idsx_statusOff_id: idArray,
                                             idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
@@ -267,12 +257,8 @@
                                         AjaxSuccess);
                                 // Обновление страницы
                                 function AjaxSuccess(data) {
-                                    $('#fileupload').fileupload('destroy');
-                                    $('#fileupload-product').fileupload('destroy');
-                                    $('#ajax').html(data);
-                                    $('.group-attributes').sortable('option', 'disabled', false);
-                                    $('.attribute').sortable('option', 'disabled', false);
-                                    $('.values_attributes').sortable('option', 'disabled', false);
+                                    $('#ajax').replaceWith($(data).find('#ajax'));
+                                    Mouse.sortInitAll();
                                 }
                             }
                         },
@@ -302,7 +288,6 @@
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                         idArray[i] = this.id;
                                 });
-                                $('.group-attributes, .attribute, .values_attribute').sortable('option', 'disabled', true);
                                 jQuery.post('?route=stock',
                                         {idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
                                             idsx_cut_id: idArray,
@@ -314,12 +299,8 @@
                                         AjaxSuccess);
                                 // Обновление страницы
                                 function AjaxSuccess(data) {
-                                    $('#fileupload').fileupload('destroy');
-                                    $('#fileupload-product').fileupload('destroy');
-                                    $('#ajax').html(data);
-                                    $('.group-attributes').sortable('option', 'disabled', false);
-                                    $('.attribute').sortable('option', 'disabled', false);
-                                    $('.values_attributes').sortable('option', 'disabled', false);
+                                    $('#ajax').replaceWith($(data).find('#ajax'));
+                                    Mouse.sortInitAll();
                                 }
                             }
                         },
@@ -350,12 +331,8 @@
                                         AjaxSuccess);
                                 // Обновление страницы
                                 function AjaxSuccess(data) {
-                                    $('#fileupload').fileupload('destroy');
-                                    $('#fileupload-product').fileupload('destroy');
-                                    $('#ajax').html(data);
-                                    $('.group-attributes').sortable('option', 'disabled', false);
-                                    $('.attribute').sortable('option', 'disabled', false);
-                                    $('.values_attributes').sortable('option', 'disabled', false);
+                                    $('#ajax').replaceWith($(data).find('#ajax'));
+                                    Mouse.sortInitAll();
                                 }
                             }
                         },
@@ -387,7 +364,6 @@
                                         if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                             idArray[i] = this.id;
                                     });
-                                    $('.group-attributes, .attribute, .values_attribute').sortable('option', 'disabled', true);
                                     jQuery.post('?route=stock',
                                             {delete: idArray,
                                                 parent_down: <?php echo $parent_id ?>});
@@ -399,14 +375,10 @@
                                     // Обновление страницы
                                     function AjaxSuccess(data) {
                                         $('#confirm').modal('hide');
-                                        $('#fileupload').fileupload('destroy');
-                                        $('#fileupload-product').fileupload('destroy');
-                                        $('#ajax').html(data);
-                                        $('.group-attributes').sortable('option', 'disabled', false);
-                                        $('.attribute').sortable('option', 'disabled', false);
-                                        $('.values_attributes').sortable('option', 'disabled', false);
+                                        $('#ajax').replaceWith($(data).find('#ajax'));
+                                        Mouse.sortInitAll();
                                     }
-                                }
+                                };
                             }
                         }
                     }
@@ -455,7 +427,6 @@
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                         idArray[i] = this.id;
                                 });
-                                $('.group-attributes, .attribute, .values_attribute').sortable('option', 'disabled', true);
                                 jQuery.post('?route=stock',
                                         {idsx_saleOn_id: idArray,
                                             idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
@@ -467,12 +438,8 @@
                                         AjaxSuccess);
                                 // Обновление страницы
                                 function AjaxSuccess(data) {
-                                    $('#fileupload').fileupload('destroy');
-                                    $('#fileupload-product').fileupload('destroy');
-                                    $('#ajax').html(data);
-                                    $('.group-attributes').sortable('option', 'disabled', false);
-                                    $('.attribute').sortable('option', 'disabled', false);
-                                    $('.values_attributes').sortable('option', 'disabled', false);
+                                    $('#ajax').replaceWith($(data).find('#ajax'));
+                                    Mouse.sortInitAll();
                                 }
                             },
                             icon: function () {
@@ -508,7 +475,6 @@
                                         if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                             idArray[i] = this.id;
                                     });
-                                    $('.group-attributes, .attribute, .values_attribute').sortable('option', 'disabled', true);
                                     jQuery.post('?route=stock',
                                             {idsx_saleOff_id: idArray,
                                                 idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
@@ -520,14 +486,10 @@
                                             AjaxSuccess);
                                     // Обновление страницы
                                     function AjaxSuccess(data) {
-                                        $('#fileupload').fileupload('destroy');
-                                        $('#fileupload-product').fileupload('destroy');
-                                        $('#ajax').html(data);
-                                        $('.group-attributes').sortable('option', 'disabled', false);
-                                        $('.attribute').sortable('option', 'disabled', false);
-                                        $('.values_attributes').sortable('option', 'disabled', false);
+                                        $('#ajax').replaceWith($(data).find('#ajax'));
+                                        Mouse.sortInitAll();
                                     }
-                                }
+                                };
                             }
                         },
 
@@ -561,7 +523,6 @@
                                         if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                             idArray[i] = this.id;
                                     });
-                                    $('.group-attributes, .attribute, .values_attribute').sortable('option', 'disabled', true);
                                     jQuery.post('?route=stock',
                                             {idsx_saleOffAll_id: idArray,
                                                 idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
@@ -572,14 +533,10 @@
                                             AjaxSuccess);
                                     // Обновление страницы
                                     function AjaxSuccess(data) {
-                                        $('#fileupload').fileupload('destroy');
-                                        $('#fileupload-product').fileupload('destroy');
-                                        $('#ajax').html(data);
-                                        $('.group-attributes').sortable('option', 'disabled', false);
-                                        $('.attribute').sortable('option', 'disabled', false);
-                                        $('.values_attributes').sortable('option', 'disabled', false);
+                                        $('#ajax').replaceWith($(data).find('#ajax'));
+                                        Mouse.sortInitAll();
                                     }
-                                }
+                                };
                             }
                         }
                     }
@@ -631,7 +588,6 @@
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                         idArray[i] = this.id;
                                 });
-                                $('.group-attributes, .attribute, .values_attribute').sortable('option', 'disabled', true);
                                 jQuery.post('?route=stock',
                                         {idsx_stikerOn_id: idArray,
                                             idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
@@ -643,12 +599,8 @@
                                         AjaxSuccess);
                                 // Обновление страницы
                                 function AjaxSuccess(data) {
-                                    $('#fileupload').fileupload('destroy');
-                                    $('#fileupload-product').fileupload('destroy');
-                                    $('#ajax').html(data);
-                                    $('.group-attributes').sortable('option', 'disabled', false);
-                                    $('.attribute').sortable('option', 'disabled', false);
-                                    $('.values_attributes').sortable('option', 'disabled', false);
+                                    $('#ajax').replaceWith($(data).find('#ajax'));
+                                    Mouse.sortInitAll();
                                 }
                             }
                         },
@@ -678,7 +630,6 @@
                                         if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                             idArray[i] = this.id;
                                     });
-                                    $('.group-attributes, .attribute, .values_attribute').sortable('option', 'disabled', true);
                                     jQuery.post('?route=stock',
                                             {idsx_stikerOff_id: idArray,
                                                 idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
@@ -690,16 +641,12 @@
                                             AjaxSuccess);
                                     // Обновление страницы
                                     function AjaxSuccess(data) {
-                                        $('#fileupload').fileupload('destroy');
-                                        $('#fileupload-product').fileupload('destroy');
-                                        $('#ajax').html(data);
-                                        $('.group-attributes').sortable('option', 'disabled', false);
-                                        $('.attribute').sortable('option', 'disabled', false);
-                                        $('.values_attributes').sortable('option', 'disabled', false);
+                                        $('#ajax').replaceWith($(data).find('#ajax'));
+                                        Mouse.sortInitAll();
                                     }
-                                }
+                                };
                             }
-                        },
+                        }
                     }
                 },
 
