@@ -6,6 +6,7 @@
 ?>
 
 <?php if (isset($_SESSION['login']) && isset($_SESSION['pass'])) { // Выводим если авторизованы   ?>
+    <div>
         <div id="ajax" class="container-fluid">
             <div class="welcome text-center">
                 <?php echo lang('index-title') ?>
@@ -13,4 +14,5 @@
                 <div class="welcome_description"><?php echo lang('index-text') ?></div>
             </div>
         </div>
+    </div>
 <?php } ?>

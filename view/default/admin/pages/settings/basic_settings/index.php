@@ -5,6 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
 
+<div>
     <div id="settings_basic_settings" class="container-fluid">
         <div class="panel panel-default">
 
@@ -167,3 +168,4 @@
             </div>
         </div>
     </div>
+</div>

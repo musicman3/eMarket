@@ -8,6 +8,7 @@
 <?php require_once('modal/index.php') ?>
 <!-- КОНЕЦ Модальное окно "Добавить" -->
 
+<div>
     <div id="settings_zones_listing" class="container-fluid">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -96,3 +97,4 @@
             </div>
         </div>
     </div>
+</div>
