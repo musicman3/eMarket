@@ -41,7 +41,7 @@ class Ajax {
             }
         });
         jQuery.get(this.basic_url,
-                {modify: 'update_ok'},
+                {},
                 AjaxSuccess);
         function AjaxSuccess(data) {
             if (url === undefined || url === null) {
@@ -70,7 +70,7 @@ class Ajax {
             }
         });
         jQuery.get(this.basic_url,
-                {modify: 'update_ok'},
+                {},
                 AjaxSuccess);
         function AjaxSuccess(data) {
             if (url === undefined || url === null) {

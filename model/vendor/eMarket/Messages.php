@@ -53,6 +53,8 @@ class Messages {
             if (isset($_SESSION['message'])) {
                 require_once (ROOT . '/view/' . \eMarket\Set::template() . '/layouts/alert.php');
             }
+            unset($_SESSION['message_marker']);
+            unset($_SESSION['message']);
         }
 
         // При POST и GET по ajax + обновление страницы ШАГ 2

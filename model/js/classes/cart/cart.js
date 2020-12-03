@@ -221,7 +221,7 @@ class Cart {
         });
         // Отправка запроса для обновления страницы
         jQuery.get(url,
-                {modify: 'update_ok'},
+                {},
                 AjaxSuccess);
         // Обновление страницы
         function AjaxSuccess(data) {

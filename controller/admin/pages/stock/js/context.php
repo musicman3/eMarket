@@ -294,7 +294,7 @@
                                             parent_down: <?php echo $parent_id ?>,
                                             idsx_cut_key: itemKey});
                                 // Отправка запроса для обновления страницы
-                                jQuery.get('<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>',
+                                jQuery.get(window.location.href,
                                         {parent_down: <?php echo $parent_id ?>},
                                         AjaxSuccess);
                                 // Обновление страницы
@@ -325,7 +325,7 @@
                                             parent_down: <?php echo $parent_id ?>,
                                             idsx_paste_key: itemKey});
                                 // Отправка запроса для обновления страницы
-                                jQuery.get('<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>',
+                                jQuery.get(window.location.href,
                                         {parent_down: <?php echo $parent_id ?>,
                                             modify: 'update_ok'},
                                         AjaxSuccess);

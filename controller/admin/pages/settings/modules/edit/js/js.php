@@ -3,7 +3,6 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-
 ?>
 <!-- Загрузка bootstrap-switch -->
 <link rel="stylesheet" href="/ext/bootstrap-switch/css/bootstrap-switch.min.css" type="text/css"/>
@@ -39,13 +38,11 @@
         });
         // Отправка запроса для обновления страницы
         jQuery.get(url,
-                {modify: 'update_ok'},
+                {},
                 AjaxSuccess);
         // Обновление страницы
         function AjaxSuccess(data) {
-            setTimeout(function () {
-                document.location.href = url;
-            }, 100);
+            document.location.href = url;
         }
     }
 </script>
