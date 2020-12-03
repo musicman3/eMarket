@@ -19,8 +19,8 @@ final class Eac {
     /**
      * Инициализация EAC
      * @param array $TABLES (названия таблиц)
-     * @param array $resize_param (параметры ресайза)
-     * @param array $resize_param_product (параметры ресайза фото товаров)
+     * @param array $resize_param (параметры ресайза категорий)
+     * @param array $resize_param_product (параметры ресайза товаров)
      * @return array [$idsx_real_parent_id, $parent_id]
      */
     public static function init($TABLES, $resize_param, $resize_param_product) {
