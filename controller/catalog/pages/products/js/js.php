@@ -21,5 +21,6 @@
 <script type="text/javascript">
     $('#selected_attributes').val('<?php echo $products['attributes'] ?>');
     new Products();
-    new AttributesProcessing(<?php echo json_encode($attributes_data) ?>);
+    new AttributesProcessing();
+    AttributesProcessing.add('catalog', <?php echo json_encode($attributes_data) ?>);
 </script>
