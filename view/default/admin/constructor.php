@@ -48,44 +48,44 @@
     <body>
         <div>
 
-        <?php
-        // ЗАГРУЖАЕМ HEADER
-        foreach (\eMarket\View::layoutRouting('header') as $path) {
-            require_once (ROOT . $path);
-        }
+            <?php
+            // ЗАГРУЖАЕМ HEADER
+            foreach (\eMarket\View::layoutRouting('header') as $path) {
+                require_once (ROOT . $path);
+            }
 
-        // ЗАГРУЖАЕМ ТЕЛО HTML СТРАНИЦЫ
-        require_once(\eMarket\View::routingAdmin());
+            // ЗАГРУЖАЕМ ТЕЛО HTML СТРАНИЦЫ
+            require_once(\eMarket\View::routingAdmin());
 
-        // ЗАГРУЖАЕМ FOOTER
-        foreach (\eMarket\View::layoutRouting('footer') as $path) {
-            require_once (ROOT . $path);
-        }
-        ?>
+            // ЗАГРУЖАЕМ FOOTER
+            foreach (\eMarket\View::layoutRouting('footer') as $path) {
+                require_once (ROOT . $path);
+            }
+            ?>
 
-        <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="/ext/bootstrap/js/bootstrap-confirmation.min.js"></script>
-        <script type="text/javascript" src="/ext/contextmenu/js/jquery.contextMenu.min.js"></script>
-        <script type="text/javascript" src="/ext/bootstrap/js/bootstrap-multiselect.js"></script>
-        
-        <script type="text/javascript">
-            $('[data-toggle=confirmation]').confirmation();
-        </script>
+            <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.min.js"></script>
+            <script type="text/javascript" src="/ext/bootstrap/js/bootstrap-confirmation.min.js"></script>
+            <script type="text/javascript" src="/ext/contextmenu/js/jquery.contextMenu.min.js"></script>
+            <script type="text/javascript" src="/ext/bootstrap/js/bootstrap-multiselect.js"></script>
 
-        <?php
-        //Если существует $JS_END
-        if (isset($JS_END)) {
-            //то подгружаем JS.PHP файл
-            require_once($JS_END . '/js/js.php');
-        }
-        //Если существует $JS_MOD_END
-        if (isset($JS_MOD_END)) {
-            //то подгружаем JS.PHP файл
-            require_once($JS_MOD_END . '/js/js.php');
-        }
-        // Выводим отладочную информацию
-        \eMarket\Debug::info($TIME_START);
-        ?>
+            <script type="text/javascript">
+                $('[data-toggle=confirmation]').confirmation();
+            </script>
+
+            <?php
+            //Если существует $JS_END
+            if (isset($JS_END)) {
+                //то подгружаем JS.PHP файл
+                require_once($JS_END . '/js/js.php');
+            }
+            //Если существует $JS_MOD_END
+            if (isset($JS_MOD_END)) {
+                //то подгружаем JS.PHP файл
+                require_once($JS_MOD_END . '/js/js.php');
+            }
+            // Выводим отладочную информацию
+            \eMarket\Debug::info($TIME_START);
+            ?>
         </div>
     </body>
 </html>
