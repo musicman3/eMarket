@@ -62,7 +62,7 @@ final class Eac {
         // Если нажали на кнопку Распродажа
         $parent_id_sale = self::sale($TABLES[0], $TABLES[1], $parent_id);
 
-        // Если нажали на кнопку Распродажа
+        // Если нажали на кнопку Стикер
         $parent_id_stiker = self::stiker($TABLES[0], $TABLES[1], $parent_id);
 
         // Сортировка мышкой EAC
