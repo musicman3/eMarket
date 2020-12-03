@@ -29,10 +29,8 @@
                 AjaxSuccess);
         // Обновление страницы
         function AjaxSuccess(data) {
-            setTimeout(function () {
-                document.location.href = window.location.href;
-            }, 100);
-            $("#sort-list").sortable();
+            $('#ajax').replaceWith($(data).find('#ajax'));
+            Mouse.sortInitAll();
         }
     }
 </script>  
