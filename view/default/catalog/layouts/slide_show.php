@@ -20,7 +20,7 @@
                 <?php
                 foreach ($slideshow as $images_data) {
                     foreach (json_decode($images_data['logo'], 1) as $logo) {
-                        if ($images_data['status'] == 1) {
+                        if ($images_data['status'] == 1 && strtotime($images_data['date_start']) < $this_time && strtotime($images_data['date_finish']) > $this_time) {
                             ?>
                             <div class="item<?php echo $active_class ?>">
                                 <a href="<?php echo $images_data['url'] ?>">
