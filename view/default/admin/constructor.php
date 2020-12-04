@@ -46,17 +46,26 @@
         <?php } ?>
     </head>
     <body>
-        <div>
 
             <?php
             // ЗАГРУЖАЕМ HEADER
             foreach (\eMarket\View::layoutRouting('header') as $path) {
                 require_once (ROOT . $path);
             }
+	    ?>
+            
+            <div id="bodyWrapper" class="container-fluid">
+		<div id="ajax">
 
+	    <?php
             // ЗАГРУЖАЕМ ТЕЛО HTML СТРАНИЦЫ
             require_once(\eMarket\View::routingAdmin());
+            ?>
+            
+		</div>
+	    </div>
 
+	    <?php
             // ЗАГРУЖАЕМ FOOTER
             foreach (\eMarket\View::layoutRouting('footer') as $path) {
                 require_once (ROOT . $path);
@@ -86,6 +95,6 @@
             // Выводим отладочную информацию
             \eMarket\Debug::info($TIME_START);
             ?>
-        </div>
+
     </body>
 </html>
