@@ -8,7 +8,7 @@ if (isset($_SESSION['login']) && isset($_SESSION['pass'])) { // Выводим �
 
     ?>
 
-    <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+    <nav class="navbar navbar-fixed-top navbar-inverse">
         <div class="container-fluid">
 
             <div class="navbar-header">

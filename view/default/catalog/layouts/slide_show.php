@@ -13,7 +13,7 @@
             <li data-target="#Carousel" data-slide-to="0" class="active"></li>
             <li data-target="#Carousel" data-slide-to="1" class=""></li>
         </ol>
-        <div class="carousel-inner" role="listbox" >
+        <div class="carousel-inner">
             <div class="item active">
 		<a href="#">
 		    <img src="" class="center-block" >

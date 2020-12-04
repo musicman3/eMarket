@@ -35,7 +35,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                             <button class="btn btn-primary btn-block" type="submit"><?php echo lang('sign_in') ?></button>
                         </div>
                     </form>
-                    <a class="btn btn-default" role="button" href="#forgot_password" data-toggle="modal"><?php echo lang('forgot_your_password') ?></a>
+                    <a class="btn btn-default" href="#forgot_password" data-toggle="modal"><?php echo lang('forgot_your_password') ?></a>
                 </div>
             </div>
         </div>

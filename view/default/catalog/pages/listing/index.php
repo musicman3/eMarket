@@ -94,32 +94,32 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                  ></div>
             <div class="result-inner btn-group"><?php echo lang('with') ?> <?php echo $navigate[0] + 1 ?> <?php echo lang('to') ?> <?php echo $navigate[1] ?> ( <?php echo lang('of') ?> <?php echo $count_lines ?> )</div>
 
-            <div class="btn-group pull-right navigate-normal" role="group">
+            <div class="btn-group pull-right navigate-normal">
                 <?php if ($navigate[0] > 0) { ?> 
                     <button id="prev" type="button" class="btn btn-default navigation">&larr; <?php echo lang('button_previous') ?></button>
                 <?php } else { ?> 
-                    <a id="prev" class="btn btn-default disabled" role="button">&larr; <?php echo lang('button_previous') ?></a>
+                    <a id="prev" class="btn btn-default disabled">&larr; <?php echo lang('button_previous') ?></a>
                     <?php
                 }
                 if ($navigate[1] != $count_lines) {
                     ?> 
                     <button id="next" type="button" class="btn btn-default navigation"><?php echo lang('button_next') ?> &rarr;</button>
                 <?php } else { ?> 
-                    <a id="next" class="btn btn-default disabled" role="button"><?php echo lang('button_next') ?> &rarr;</a>
+                    <a id="next" class="btn btn-default disabled"><?php echo lang('button_next') ?> &rarr;</a>
                 <?php } ?>
             </div>
-            <div class="btn-group pull-right navigate-mini" role="group">
+            <div class="btn-group pull-right navigate-mini">
                 <?php if ($navigate[0] > 0) { ?> 
                     <button id="prev" type="button" class="btn btn-default navigation">&larr;</button>
                 <?php } else { ?> 
-                    <a id="prev" class="btn btn-default disabled" role="button">&larr;</a>
+                    <a id="prev" class="btn btn-default disabled">&larr;</a>
                     <?php
                 }
                 if ($navigate[1] != $count_lines) {
                     ?> 
                     <button id="next" type="button" class="btn btn-default navigation">&rarr;</button>
                 <?php } else { ?> 
-                    <a id="next" class="btn btn-default disabled" role="button">&rarr;</a>
+                    <a id="next" class="btn btn-default disabled">&rarr;</a>
                 <?php } ?>
             </div>
         </div>

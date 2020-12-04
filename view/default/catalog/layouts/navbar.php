@@ -5,7 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
 
-<nav class="navbar navbar-inverse navbar-no-corners navbar-no-margin" role="navigation">
+<nav class="navbar navbar-inverse navbar-no-corners navbar-no-margin">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse-core-nav">

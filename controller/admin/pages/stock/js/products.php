@@ -17,7 +17,7 @@
             data: msg,
             beforeSend: function (data) {
                 $('#index_product').modal('hide');
-                $('#alert_block').html('<div id="alert" class="alert text-danger fade in" role="alert"><span class="glyphicon glyphicon-alert"></span> <?php echo lang('alert_wait') ?></div>');
+                $('#alert_block').html('<div id="alert" class="alert text-danger fade in"><span class="glyphicon glyphicon-alert"></span> <?php echo lang('alert_wait') ?></div>');
             }
         });
         // Отправка запроса для обновления страницы
