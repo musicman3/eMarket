@@ -11,7 +11,7 @@
             <div class="modal-header"><div class="pull-right"><button class="close" type="button" data-dismiss="modal">×</button></div>
                 <h4 class="modal-title"><?php echo \eMarket\Set::titlePageGenerator() ?></h4>
             </div>
-            <form id="form_add" name="form_add" action="javascript:void(null);" onsubmit="Ajax.callAdd()">
+            <form id="form_add" name="form_add" action="javascript:void(null);" onsubmit="Ajax.callAdd(null, null, '<?php echo lang('alert_wait') ?>')">
                 <div class="panel-body">
                     <input type="hidden" id="add" name="add" value="" />
                     <input type="hidden" id="edit" name="edit" value="" />
@@ -55,7 +55,7 @@
                     </div>
 
                     <!-- Выводим сообщения -->
-                    <div id="alert_messages_add"></div>
+                    <div id="alert_messages"></div>
 
                     <!-- ЗАГРУЗКА jQuery-File-Upload -->
                     <div class="form-group">

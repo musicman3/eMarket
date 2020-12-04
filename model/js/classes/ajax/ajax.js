@@ -25,7 +25,7 @@ class Ajax {
      * @param name {String} (имя)
      * @param url {String} (url)
      */
-    static callAdd(name, url) {
+    static callAdd(name, url, alert) {
         if (name === undefined || name === null) {
             var msg = $('#form_add').serialize();
         } else {
@@ -38,6 +38,9 @@ class Ajax {
             data: msg,
             beforeSend: function () {
                 $('.modal').modal('hide');
+                if (alert !== undefined || alert !== null) {
+                    $('#alert_block').html('<div id="alert" class="alert text-danger fade in" role="alert"><span class="glyphicon glyphicon-alert"></span> ' + alert + '</div>');
+                }
             }
         });
         jQuery.get(this.basic_url,

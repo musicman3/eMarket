@@ -58,7 +58,7 @@ class FileuploadProduct {
                             if (this_height < quality_height && this_width < quality_width) {
                                 // Если изображение не соответствует минимальным размерам то выводим сообщение
                                 if ($('#add_product').val() === 'ok') {
-                                    $('#alert_messages_product').html('<div class="alert alert-danger"><' + lang['image_resize_error'] + ' ' + quality_width + 'x' + quality_height + '</div>');
+                                    $('#alert_messages_product').html('<div class="alert alert-danger">' + lang['image_resize_error'] + ' ' + quality_width + 'x' + quality_height + '</div>');
                                 }
                                 if ($('#edit_product').val() !== '') {
                                     $('#alert_messages_product').html('<div class="alert alert-danger">' + lang['image_resize_error'] + ' ' + quality_width + 'x' + quality_height + '</div>');
