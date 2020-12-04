@@ -8,7 +8,7 @@
 <?php if (isset($_SESSION['login']) && isset($_SESSION['pass'])) { // Выводим если авторизованы   ?>
     <div id="dashboard" class="welcome text-center">
 	<?php echo lang('index-title') ?>
-        <div class="welcome_logo">eMarket <small>v0.3.9</small></div>
+        <div class="welcome_logo">eMarket <small>V0.4.0 Alpha 1</small></div>
         <div class="welcome_description"><?php echo lang('index-text') ?></div>
     </div>
 <?php } ?>
