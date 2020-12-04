@@ -11,7 +11,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
 ?>
 
 <!--Выводим уведомление об успешном действии-->
-<?php \eMarket\Messages::alert(); ?>
+<div id="alert_block"><?php \eMarket\Messages::alert(); ?></div>
 
 <?php if (isset($customer_id) && $customer_id != FALSE) { ?>
     <h1><?php echo lang('register_password_recovery') ?></h1>

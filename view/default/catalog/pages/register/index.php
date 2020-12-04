@@ -15,8 +15,8 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
 <!-- КОНЕЦ Модальное окно -->
 
 <!--Выводим уведомление об успешном действии-->
+<div id="alert_block"><?php \eMarket\Messages::alert(); ?></div>
 <?php
-\eMarket\Messages::alert();
 if (!\eMarket\Valid::inPOST('email')) {
     ?>
 <h1><?php echo lang('register_account') ?></h1>

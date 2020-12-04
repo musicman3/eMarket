@@ -16,7 +16,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
 
 
 <!--Выводим уведомление об успешном действии-->
-<?php \eMarket\Messages::alert(); ?>
+<div id="alert_block"><?php \eMarket\Messages::alert(); ?></div>
 <h1><?php echo lang('my_address_book') ?></h1>
 
 <div id="ajax_data" class='hidden'

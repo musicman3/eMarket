@@ -15,7 +15,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
 <!-- КОНЕЦ Модальное окно -->
 
 <!--Выводим уведомление об успешном действии-->
-<?php \eMarket\Messages::alert(); ?>
+<div id="alert_block"><?php \eMarket\Messages::alert(); ?></div>
 <h1><?php echo lang('login_to_account') ?></h1>
 
 <div id="login" class="contentText">

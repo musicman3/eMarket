@@ -15,7 +15,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
 <!-- КОНЕЦ Модальное окно "Редактировать" -->
 
 <!--Выводим уведомление об успешном действии-->
-<?php \eMarket\Messages::alert(); ?>
+<div id="alert_block"><?php \eMarket\Messages::alert(); ?></div>
 <h1><?php echo lang('orders_book') ?></h1>
 
 <div id="ajax_data" class='hidden' data-orders='<?php echo $orders_edit ?>'></div>
