@@ -53,7 +53,7 @@
                 require_once (ROOT . $path);
             }
 	    ?>
-            
+
             <div id="bodyWrapper" class="container-fluid">
 		<div id="ajax">
 
@@ -61,7 +61,7 @@
             // ЗАГРУЖАЕМ ТЕЛО HTML СТРАНИЦЫ
             require_once(\eMarket\View::routingAdmin());
             ?>
-            
+
 		</div>
 	    </div>
 
