@@ -150,21 +150,21 @@
                                         if (isset($_SESSION['buffer']['cat']) == true && in_array($arr_merge['cat'][$start][0], $_SESSION['buffer']['cat']) == true && $arr_merge['cat'][$start][3] == 1) {
                                             echo \eMarket\Set::sorties();
                                             ?>    
-                                            <td class="sortleft"><div><a href="#" class="btn btn-primary btn-xs disabled" aria-disabled="true"><span class="glyphicon glyphicon-folder-open"> </span></a></div></td>
+                                            <td class="sortleft"><div><a href="#" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-folder-open"> </span></a></div></td>
 
                                             <!-- Вырезанные категории "НЕ АКТИВНЫЕ" -->
                                             <?php
                                         } elseif (isset($_SESSION['buffer']['cat']) == true && in_array($arr_merge['cat'][$start][0], $_SESSION['buffer']['cat']) == true && $arr_merge['cat'][$start][3] == 0) {
                                             echo \eMarket\Set::sorties();
                                             ?>    
-                                            <td class="sortleft"><div><a href="#" class="btn btn-default btn-xs disabled" aria-disabled="true"><span class="glyphicon glyphicon-folder-open"> </span></a></div></td>
+                                            <td class="sortleft"><div><a href="#" class="btn btn-default btn-xs disabled"><span class="glyphicon glyphicon-folder-open"> </span></a></div></td>
 
                                             <!-- Категория для трансфера -->
                                             <?php
                                         } elseif ($transfer == $lines_on_page + 1) {
                                             echo \eMarket\Set::sorties();
                                             ?>    
-                                            <td class="sortleft"><div><a href="#" class="btn btn-primary btn-xs disabled" aria-disabled="true"><span class="glyphicon glyphicon-transfer"> </span></a></div></td>
+                                            <td class="sortleft"><div><a href="#" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-transfer"> </span></a></div></td>
 
                                             <!-- Если категория НЕ АКТИВНА -->
                                             <?php
@@ -226,22 +226,22 @@
                                         <!-- Вырезанные товары "АКТИВНЫЕ" -->
                                         <?php if (isset($_SESSION['buffer']['prod']) == true && in_array($arr_merge['prod'][$start . 'a'][0], $_SESSION['buffer']['prod']) == true && $arr_merge['prod'][$start . 'a'][3] == 1) { ?>
                                             <td class="sortleft-m"></td>    
-                                            <td class="sortleft"><div><a href="#" class="btn btn-success btn-xs disabled" aria-disabled="true"><span class="glyphicon glyphicon-shopping-cart"> </span></a></div></td>
+                                            <td class="sortleft"><div><a href="#" class="btn btn-success btn-xs disabled"><span class="glyphicon glyphicon-shopping-cart"> </span></a></div></td>
 
                                             <!-- Вырезанные товары "НЕ АКТИВНЫЕ" -->
                                         <?php } elseif (isset($_SESSION['buffer']['prod']) == true && in_array($arr_merge['prod'][$start . 'a'][0], $_SESSION['buffer']['prod']) == true && $arr_merge['prod'][$start . 'a'][3] == 0) { ?>
                                             <td class="sortleft-m"></td>    
-                                            <td class="sortleft"><div><a href="#" class="btn btn-default btn-xs disabled" aria-disabled="true"><span class="glyphicon glyphicon-shopping-cart"> </span></a></div></td>
+                                            <td class="sortleft"><div><a href="#" class="btn btn-default btn-xs disabled"><span class="glyphicon glyphicon-shopping-cart"> </span></a></div></td>
 
                                             <!-- Если товар НЕ АКТИВЕН -->
                                         <?php } elseif ($arr_merge['prod'][$start . 'a'][3] == 0) { ?>
                                             <td class="sortleft-m"></td>    
-                                            <td class="sortleft"><div><a href="#" class="btn btn-default btn-xs" aria-disabled="true"><span class="glyphicon glyphicon-shopping-cart"> </span></a></div></td>
+                                            <td class="sortleft"><div><a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-shopping-cart"> </span></a></div></td>
                                         <?php } else { ?>
 
                                             <!-- Если товар АКТИВЕН -->    
                                             <td class="sortleft-m"></td>
-                                            <td class="sortleft"><div><a href="#" class="btn btn-success btn-xs" aria-disabled="true"><span class="glyphicon glyphicon-shopping-cart"> </span></a></div></td>
+                                            <td class="sortleft"><div><a href="#" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-shopping-cart"> </span></a></div></td>
                                             <!-- ВЫБРАННЫЕ СТРОКИ -->
                                         <?php } ?>
                                         <td class="context-one option" id="product_<?php echo $arr_merge['prod'][$start . 'a'][0] ?>"><span class="inactive" style="display: none;"></span>
