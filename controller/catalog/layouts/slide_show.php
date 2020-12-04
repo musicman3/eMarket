@@ -45,7 +45,7 @@ $this_time = time();
 $slideshow_array = [];
 foreach ($slideshow as $images_data) {
     foreach (json_decode($images_data['logo'], 1) as $logo) {
-        if ($images_data['status'] == '1' && strtotime($images_data['date_start']) < $this_time && strtotime($images_data['date_finish']) > $this_time) {
+        if ($images_data['status'] == '1' && strtotime($images_data['date_start']) <= $this_time && strtotime($images_data['date_finish']) >= $this_time) {
             array_push($slideshow_array, $logo);
         }
     }
