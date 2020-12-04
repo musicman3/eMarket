@@ -38,7 +38,7 @@ class Ajax {
             data: msg,
             beforeSend: function () {
                 $('.modal').modal('hide');
-                if (alert !== undefined || alert !== null) {
+                if (alert !== undefined && alert !== null) {
                     $('#alert_block').html('<div id="alert" class="alert text-danger fade in" role="alert"><span class="glyphicon glyphicon-alert"></span> ' + alert + '</div>');
                 }
             }
