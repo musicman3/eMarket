@@ -51,5 +51,5 @@ foreach ($slideshow as $images_data) {
     }
 }
 $active_class = ' active';
-//\eMarket\Debug::trace($slideshow_array);
+
 ?>
