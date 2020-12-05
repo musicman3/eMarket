@@ -17,31 +17,31 @@
                     <input type="hidden" id="slideshow_pref" name="slideshow_pref" value="ok" />
 
                     <div class="form-group">
-                        <small class="form-text text-muted">Интервал (мс)</small>
+                        <small class="form-text text-muted"><?php echo lang('slides_interval') ?></small>
                         <div class="input-group has-error">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
-                            <input class="input-sm form-control" placeholder="Интервал (мс)" type="text" name="show_interval" id="show_interval" required />
+                            <input class="input-sm form-control" placeholder="<?php echo lang('slides_interval_placeholder') ?>" type="text" name="show_interval" id="show_interval" required />
                         </div>
                     </div>
                     <div class="form-group">
                         <input class="check-box" type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="mouse_stop" id="mouse_stop">
-                        <label>Остановка слайдшоу при нахождении курсора </label>
+                        <label><?php echo lang('slides_stop_on_hover') ?> </label>
                     </div>
                     <div class="form-group">
                         <input class="check-box" type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="autostart" id="autostart">
-                        <label>Запуск слайдшоу автоматически </label>
+                        <label><?php echo lang('slides_auto_start') ?> </label>
                     </div>
                     <div class="form-group">
                         <input class="check-box" type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="cicles" id="cicles">
-                        <label>Зацикливать смену слайдов </label>
+                        <label><?php echo lang('slides_loop_changes') ?> </label>
                     </div>
                     <div class="form-group">
                         <input class="check-box" type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="indicators" id="indicators">
-                        <label>Показывать индикаторы </label>
+                        <label><?php echo lang('slides_show_indicators') ?> </label>
                     </div>
                     <div class="form-group">
                         <input class="check-box" type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="navigation" id="navigation">
-                        <label>Показывать стрелки навигации </label>
+                        <label><?php echo lang('slides_show_navigation_buttons') ?> </label>
                     </div>
 
                 </div>

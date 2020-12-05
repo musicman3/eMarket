@@ -271,3 +271,18 @@ customers_date_created = Дата создания
 
 ;STIKERS
 stikers_name = Название стикера
+
+;SLIDES
+slides_image = Изображение
+slides_name = Название
+slides_show_start = Начало показа
+slides_show_end = Конец показа
+slides_text = Текст
+slides_url = https://example.com
+slides_interval = Интервал (мс)
+slides_interval_placeholder = Интервал переключения слайдов (мс)
+slides_stop_on_hover = Остановить слайдшоу при наведении курсора
+slides_auto_start = Автоматический запуск слайдшоу
+slides_loop_changes = Зациклить смену слайдов
+slides_show_indicators = Показать индикаторы
+slides_show_navigation_buttons = Показать навигационные кнопки

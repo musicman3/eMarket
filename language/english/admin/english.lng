@@ -270,3 +270,18 @@ customers_date_created = Date created
 
 ;STIKERS
 stikers_name = Stiker name
+
+;SLIDES
+slides_image = Image
+slides_name = Name
+slides_show_start = Show start
+slides_show_end = Show end
+slides_text = Text
+slides_url = https://example.com
+slides_interval = Interval (ms)
+slides_interval_placeholder = Slide switching interval (ms)
+slides_stop_on_hover = Stop slideshow on hover
+slides_auto_start = Auto start slideshow
+slides_loop_changes = Loop Slide Changes
+slides_show_indicators = Show indicators
+slides_show_navigation_buttons = Show navigation buttons
