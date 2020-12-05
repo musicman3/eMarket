@@ -37,7 +37,7 @@
                         <div class="form-group">
                             <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
-                                <input class="input-sm form-control" placeholder="https://example.com" type="url" name="url" id="url" />
+                                <input class="input-sm form-control" placeholder="https://example.com" type="text" name="url" id="url" />
                             </div>
                         </div>
                         <div class="col-left form-group">
