@@ -417,7 +417,8 @@ class Set {
      * @param string $status (статус из БД)
      * @param array $argument_1 (аргумент для сравнения)
      * @param array $argument_2 (аргумент для сравнения)
-     * @param string $class (класс для переключения)
+     * @param string $class (класс)
+     * @param string $class_2 (класс)
      * @return string (класс)
      */
     public static function statusSwitchClass($status, $argument_1 = null, $argument_2 = null, $class = '', $class_2 = 'danger') {
