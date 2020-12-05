@@ -83,7 +83,7 @@ final class Ecb {
         //Модуль скидки \eMarket\Modules\Discount\Sale
         $price_with_sale = \eMarket\Modules\Discount\Sale::dataInterface($input);
 
-        if (isset($price_with_sale[3]) && $input['stiker'] != '' && $input['stiker'] != NULL) {
+        if (isset($price_with_sale[3]) && $price_with_sale[3] > 0 && $input['stiker'] != '' && $input['stiker'] != NULL) {
             return '<div class="labelsblock"><div class="' . $class . '">- ' . $price_with_sale[3] . '%</div><div class="' . $class2 . '">' . $stiker_name[$input['stiker']] . '</div></div>';
         }
 
@@ -91,7 +91,7 @@ final class Ecb {
             return '<div class="labelsblock"><div class="' . $class2 . '">' . $stiker_name[$input['stiker']] . '</div></div>';
         }
 
-        if (isset($price_with_sale[3])) {
+        if (isset($price_with_sale[3]) && $price_with_sale[3] > 0) {
             return '<div class="labelsblock"><div class="' . $class . '">- ' . $price_with_sale[3] . '%</div></div>';
         }
         return '';
