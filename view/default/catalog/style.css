@@ -43,8 +43,13 @@ nav .disabled {pointer-events: none;}
 #Carousel:hover .glyphicon-chevron-left {opacity:1;left:25%;}
 #Carousel:hover .glyphicon-chevron-right {opacity:1;right:25%;}
 #Carousel .carousel-inner {border-radius: 4px;}
-#Carousel .carousel-inner h3 {padding: 20px;animation: anime-H3 1.3s ease-out;}
-#Carousel .carousel-inner p {font-size: 18px;padding: 20px;animation: anime-P 1.6s ease-out;}
+#Carousel .carousel-inner h3, #Carousel .carousel-inner p {text-shadow: -0   -2px 2px #000000, 0   -2px 2px #000000, -0    2px 2px #000000, 0    2px 2px #000000, -2px -0   2px #000000, 2px -0   2px #000000, -2px  0   2px #000000, 2px  0   2px #000000, -1px -2px 2px #000000, 1px -2px 2px #000000, -1px  2px 2px #000000, 1px  2px 2px #000000, -2px -1px 2px #000000, 2px -1px 2px #000000, -2px  1px 2px #000000, 2px  1px 2px #000000, -2px -2px 2px #000000, 2px -2px 2px #000000, -2px  2px 2px #000000, 2px  2px 2px #000000, -2px -2px 2px #000000, 2px -2px 2px #000000, -2px  2px 2px #000000, 2px  2px 2px #444444;}
+@media (min-width:1200px) {#Carousel .carousel-inner h3 {padding: 20px;animation: anime-H3 1.3s ease-out;font-size: 28px;}}
+@media (min-width:1200px) {#Carousel .carousel-inner p {padding: 20px;animation: anime-P 1.6s ease-out;font-size: 24px;}}
+@media (min-width:992px) and (max-width:1199px) {#Carousel .carousel-inner h3 {padding: 15px;animation: anime-H3 1.3s ease-out;font-size: 26px;}}
+@media (min-width:992px) and (max-width:1199px) {#Carousel .carousel-inner p {padding: 15px;animation: anime-P 1.6s ease-out;font-size: 22px;}}
+@media (max-width:991px) {#Carousel .carousel-inner h3 {padding: 10px;animation: anime-H3 1.3s ease-out;font-size: 24px;}}
+@media (max-width:991px) {#Carousel .carousel-inner p {padding: 10px;animation: anime-P 1.6s ease-out;font-size: 20px;}}
 @keyframes anime-H3 { from { opacity: 0; transform: translateX(-2000px); } to { opacity: 1; transform: translateX(0); } }
 @keyframes anime-P { from { opacity: 0; transform: translateX(2000px); } to { opacity: 1; transform: translateX(0); } }
 
