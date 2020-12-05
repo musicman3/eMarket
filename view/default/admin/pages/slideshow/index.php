@@ -53,7 +53,7 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th colspan="4">
+                                    <th colspan="5">
                                         <?php if ($lines == TRUE) { ?>
                                             <?php echo lang('with') ?> <?php echo $start + 1 ?> <?php echo lang('to') ?> <?php echo $finish ?> ( <?php echo lang('of') ?> <?php echo $count_lines; ?> )
                                             <?php
@@ -98,6 +98,7 @@
 
                                 <tr class="border">
                                     <th><?php echo lang('slides_image') ?></th>
+                                    <th class="text-center"><?php echo lang('slides_quantity') ?></th>
                                     <th class="text-center"><?php echo lang('slides_name') ?></th>
                                     <th class="text-center"><?php echo lang('slides_show_start') ?></th>
                                     <th class="text-center"><?php echo lang('slides_show_end') ?></th>
@@ -109,6 +110,7 @@
                                 <?php for ($start; $start < $finish; $start++) { ?>
                                     <tr class="<?php echo \eMarket\Set::statusSwitchClass($lines[$start][9], [$this_time, strtotime($lines[$start][7])], [strtotime($lines[$start][8]), $this_time]) ?>">
                                         <td><img src="/uploads/images/slideshow/resize_0/<?php echo $lines[$start][3] ?>" /></td>
+                                         <td class="text-center"><?php echo count(json_decode($lines[$start][2])) ?></td>
                                         <td class="text-center"><?php echo $lines[$start][5] ?></td>
                                         <td class="text-center"><?php echo \eMarket\Set::dateLocale($lines[$start][7]); ?></td>
                                         <td class="text-center"><?php echo \eMarket\Set::dateLocale($lines[$start][8]); ?></td>
@@ -191,6 +193,7 @@
 
                                         <tr class="border">
                                             <th><?php echo lang('slides_image') ?></th>
+                                            <th class="text-center"><?php echo lang('slides_quantity') ?></th>
                                             <th class="text-center"><?php echo lang('slides_name') ?></th>
                                             <th class="text-center"><?php echo lang('slides_show_start') ?></th>
                                             <th class="text-center"><?php echo lang('slides_show_end') ?></th>
@@ -202,6 +205,7 @@
                                         <?php for ($start; $start < $finish; $start++) { ?>
                                         <tr class="<?php echo \eMarket\Set::statusSwitchClass($lines[$start][9], [$this_time, strtotime($lines[$start][7])], [strtotime($lines[$start][8]), $this_time]) ?>">
                                                 <td><img src="/uploads/images/slideshow/resize_0/<?php echo $lines[$start][3] ?>" /></td>
+                                                <td class="text-center"><?php echo count(json_decode($lines[$start][2])) ?></td>
                                                 <td class="text-center"><?php echo $lines[$start][5] ?></td>
                                                 <td class="text-center"><?php echo \eMarket\Set::dateLocale($lines[$start][7]); ?></td>
                                                 <td class="text-center"><?php echo \eMarket\Set::dateLocale($lines[$start][8]); ?></td>

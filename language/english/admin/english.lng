@@ -285,3 +285,4 @@ slides_auto_start = Auto start slideshow
 slides_loop_changes = Loop Slide Changes
 slides_show_indicators = Show indicators
 slides_show_navigation_buttons = Show navigation buttons
+slides_quantity = Quantity

@@ -286,3 +286,4 @@ slides_auto_start = Автоматический запуск слайдшоу
 slides_loop_changes = Зациклить смену слайдов
 slides_show_indicators = Показать индикаторы
 slides_show_navigation_buttons = Показать навигационные кнопки
+slides_quantity = Количество
