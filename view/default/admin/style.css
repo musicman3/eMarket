@@ -12,6 +12,18 @@ input:active, textarea:active {outline: none;}
 html {position: relative;min-height: 100%;}
 body {background:#e4e4da;font-family: 'Open Sans';background-image:url('images/sep-half.png');margin-bottom: 80px;}
 
+.navbar {min-height: 30px;padding: 5px 0 5px 0;}
+.navbar-inverse .navbar-nav > li > a {color:#ffffff;}
+.nav > li > a {padding: 5px;}
+.nav .open > a, .nav .open > a:focus, .nav .open > a:hover {background:#505050;color:#ffffff;}
+@media (min-width:768px){#bs-navbar .dropdown-menu > li > a {padding: 3px 5px;}}
+@media (max-width:767px){#bs-navbar .dropdown-menu > li > a {padding: 3px 0px 5px 20px;}}
+@media (max-width:767px){#bs-navbar .navbar-nav .dropdown-menu .link > li > a {padding: 5px 10px 5px 40px;}}
+#bs-navbar .dropdown-menu {background:#000000;min-width: 0px;}
+#bs-navbar .dropdown-menu > ul {margin-top:5px;}
+#bs-navbar .dropdown-menu > li > a {color:#ffffff;}
+#bs-navbar .dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover {background:#505050;color:#ffffff;}
+
 @media (min-width:768px){.modal-md {width:750px;}}
 
 #dashboard .welcome {text-align: center;font-size: 40px;color: #c6c6c6;text-shadow: 0px 1px 1px #FFF;padding-top: 60px;}
@@ -25,18 +37,6 @@ body {background:#e4e4da;font-family: 'Open Sans';background-image:url('images/s
 #login .login-box {width: 200px;height: 136px;position: absolute;margin-top: -68px;top: 50%;left: 70%;padding: 15px;text-align: center}
 #login .login-box .btn, .login-box .btn a:active {border: 1px solid #000;color:#fff;background: none; font-size:15px;}
 #login .alert-danger {position: absolute;top: 10%;margin: 0 10px 0 10px;padding: 5px;}
-
-.navbar {min-height: 30px;padding: 5px 0 5px 0;}
-.navbar-inverse .navbar-nav > li > a {color:#ffffff;}
-.nav > li > a {padding: 5px;}
-.nav .open > a, .nav .open > a:focus, .nav .open > a:hover {background:#505050;color:#ffffff;}
-@media (min-width:768px){#bs-navbar .dropdown-menu > li > a {padding: 3px 5px;}}
-@media (max-width:767px){#bs-navbar .dropdown-menu > li > a {padding: 3px 0px 5px 20px;}}
-@media (max-width:767px){#bs-navbar .navbar-nav .dropdown-menu .link > li > a {padding: 5px 10px 5px 40px;}}
-#bs-navbar .dropdown-menu {background:#000000;min-width: 0px;}
-#bs-navbar .dropdown-menu > ul {margin-top:5px;}
-#bs-navbar .dropdown-menu > li > a {color:#ffffff;}
-#bs-navbar .dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover {background:#505050;color:#ffffff;}
 
 #settings_basic_settings .tooltip-inner {font-family: 'Open Sans';min-width:200px;}
 
@@ -52,15 +52,15 @@ body {background:#e4e4da;font-family: 'Open Sans';background-image:url('images/s
 #settings_templates .border-r {border-top-right-radius: 4px;}
 #settings_templates .input-sm {padding: 0 10px;}
 
-#panel_add_product_4 .product-attribute h5 {font-size: 16px;}
-#panel_add_product_4 .product-attribute-table td {padding-left: 10px;}
-
-#footerwrap {width: 100%;background: #4c453d;border-top: 8px solid #312d27;background-image: url('images/sep-half.png');text-align: center;position: absolute;bottom: 0;height: 80px;}
-#footerwrap p {color: white;font-size: 12px;}
+#index_product .product-attribute h5 {font-size: 16px;padding: 0px;}
+#index_product .product-attribute-table td {padding-left: 10px;}
 
 #alert {padding:0;margin:0;float:right;line-height:1.4;}
 
 #slideshow .slide-sett {padding: 5px 5px 0 0;}
+
+#footerwrap {width: 100%;background: #4c453d;border-top: 8px solid #312d27;background-image: url('images/sep-half.png');text-align: center;position: absolute;bottom: 0;height: 80px;}
+#footerwrap p {color: white;font-size: 12px;}
 
 .table {margin-bottom:0px;}
 .panel-title {font-size: 18px;padding:2px 0px 2px 0px;}
