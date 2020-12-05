@@ -25,11 +25,11 @@
                             <div class="item<?php echo $active_class ?>">
                                 <a href="<?php echo $images_data['url'] ?>">
                                     <img src="/uploads/images/slideshow/resize_4/<?php echo $logo ?>" class="center-block" >
-                                </a>
-                                <div class="carousel-caption">
-                                    <h3><?php echo $images_data['name'] ?></h3>
-                                    <p><?php echo $images_data['heading'] ?></p>
-                                </div>
+				    <div class="carousel-caption">
+					<h3><?php echo $images_data['name'] ?></h3>
+					<p><?php echo $images_data['heading'] ?></p>
+				    </div>
+				</a>
                             </div>
 
                             <?php
