@@ -36,6 +36,7 @@ $parent_id = $EAC_ENGINE[1];
 $installed_active = \eMarket\Pdo::getCell("SELECT id FROM " . TABLE_MODULES . " WHERE name=? AND type=? AND active=?", ['sale', 'discount', 1]);
 $sales = '';
 $sale_default = 0;
+$sale_default_flag = 0;
 $sales_flag = 0;
 $select_array = [];
 
@@ -47,7 +48,6 @@ if ($installed_active != '' && isset($sales_all) && count($sales_all) > 0) {
     $this_time = time();
 
     foreach ($sales_all as $val) {
-        $date_start = \eMarket\Pdo::getCell("SELECT UNIX_TIMESTAMP (date_start) FROM " . DB_PREFIX . 'modules_discount_sale' . " WHERE id=?", [$val['id']]);
         $date_end = \eMarket\Pdo::getCell("SELECT UNIX_TIMESTAMP (date_end) FROM " . DB_PREFIX . 'modules_discount_sale' . " WHERE id=?", [$val['id']]);
         if ($this_time < $date_end) {
             $sales_flag = 1;
@@ -55,6 +55,10 @@ if ($installed_active != '' && isset($sales_all) && count($sales_all) > 0) {
             array_push($select_array, $val['id']);
             if ($val['default_set'] == 1) {
                 $sale_default = $val['id'];
+                $sale_default_flag = 1;
+            } elseif ($sale_default_flag == 0) {
+                $sale_default = $val['id'];
+                $sale_default_flag = 1;
             }
         }
     }
@@ -69,8 +73,8 @@ foreach ($stikers_data as $val) {
     $stikers_flag = 1;
     $stikers .= $val['id'] . ': ' . "'" . $val['name'] . "', ";
     if ($val['default_stikers'] == 1) {
-                $stikers_default = $val['id'];
-            }
+        $stikers_default = $val['id'];
+    }
 }
 // Формируем массив Валюта для выпадающего списка
 $currencies_all = \eMarket\Pdo::getColRow("SELECT name, default_value, id FROM " . TABLE_CURRENCIES . " WHERE language=?", [lang('#lang_all')[0]]);
@@ -139,8 +143,8 @@ if ($parent_id == 0) {
 
 $stiker_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_STIKERS . " WHERE language=?", [lang('#lang_all')[0]]);
 $stiker_name = [];
-foreach ($stiker_data as $val){
-    $stiker_name[$val['id']] =  $val['name'];
+foreach ($stiker_data as $val) {
+    $stiker_name[$val['id']] = $val['name'];
 }
 
 // КОНЕЦ-> КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
