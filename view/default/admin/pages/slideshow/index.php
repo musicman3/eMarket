@@ -108,7 +108,7 @@
 			    <tbody>
 				<?php for ($start; $start < $finish; $start++) { ?>
     				<tr>
-    				    <td>Рисунок</td>
+    				    <td><img src="/uploads/images/slideshow/resize_0/<?php echo $lines[$start][3] ?>" /></td>
     				    <td class="text-center"><?php echo $lines[$start][5] ?></td>
     				    <td class="text-center"><?php echo \eMarket\Set::dateLocale($lines[$start][7]); ?></td>
     				    <td class="text-center"><?php echo \eMarket\Set::dateLocale($lines[$start][8]); ?></td>
@@ -201,7 +201,7 @@
 				    <tbody>
 					<?php for ($start; $start < $finish; $start++) { ?>
 	    				<tr>
-	    				    <td>Рисунок</td>
+	    				    <td><img src="/uploads/images/slideshow/resize_0/<?php echo $lines[$start][3] ?>" /></td>
 	    				    <td class="text-center"><?php echo $lines[$start][5] ?></td>
 	    				    <td class="text-center"><?php echo \eMarket\Set::dateLocale($lines[$start][7]); ?></td>
 	    				    <td class="text-center"><?php echo \eMarket\Set::dateLocale($lines[$start][8]); ?></td>
