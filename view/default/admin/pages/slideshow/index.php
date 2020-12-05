@@ -107,7 +107,7 @@
 
                             <tbody>
                                 <?php for ($start; $start < $finish; $start++) { ?>
-                                    <tr>
+                                    <tr class="<?php echo \eMarket\Set::statusSwitchClass($lines[$start][9], [$this_time, strtotime($lines[$start][7])], [strtotime($lines[$start][8]), $this_time]) ?>">
                                         <td><img src="/uploads/images/slideshow/resize_0/<?php echo $lines[$start][3] ?>" /></td>
                                         <td class="text-center"><?php echo $lines[$start][5] ?></td>
                                         <td class="text-center"><?php echo \eMarket\Set::dateLocale($lines[$start][7]); ?></td>
@@ -200,7 +200,7 @@
 
                                     <tbody>
                                         <?php for ($start; $start < $finish; $start++) { ?>
-                                            <tr>
+                                        <tr class="<?php echo \eMarket\Set::statusSwitchClass($lines[$start][9], [$this_time, strtotime($lines[$start][7])], [strtotime($lines[$start][8]), $this_time]) ?>">
                                                 <td><img src="/uploads/images/slideshow/resize_0/<?php echo $lines[$start][3] ?>" /></td>
                                                 <td class="text-center"><?php echo $lines[$start][5] ?></td>
                                                 <td class="text-center"><?php echo \eMarket\Set::dateLocale($lines[$start][7]); ?></td>

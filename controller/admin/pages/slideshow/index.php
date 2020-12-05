@@ -121,6 +121,8 @@ if (\eMarket\Valid::inGET('slide_lang')) {
     $set_language = lang('#lang_all')[0];
 }
 
+$this_time = time();
+
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 $lines = \eMarket\Pdo::getColRow("SELECT * FROM " . TABLE_SLIDESHOW . " WHERE language=? ORDER BY id DESC", [$set_language]);
 $lines_on_page = \eMarket\Set::linesOnPage();

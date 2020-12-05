@@ -415,19 +415,33 @@ class Set {
      * Переключение класса при смене статуса
      *
      * @param string $status (статус из БД)
+     * @param array $argument_1 (аргумент для сравнения)
+     * @param array $argument_2 (аргумент для сравнения)
      * @param string $class (класс для переключения)
      * @return string (класс)
      */
-    public static function statusSwitchClass($status, $class = null) {
+    public static function statusSwitchClass($status, $argument_1 = null, $argument_2 = null, $class = '', $class_2 = 'danger') {
 
-        if ($class == null) {
-            $class = 'danger';
+        if ($argument_1 == null) {
+            $arg_1 = null;
+        } elseif ($argument_1 != null && $argument_1[0] >= $argument_1[1]) {
+            $arg_1 = 'true';
+        } else {
+            $arg_1 = 'false';
         }
 
-        if ($status == 0) {
-            return $class;
+        if ($argument_2 == null) {
+            $arg_2 = null;
+        } elseif ($argument_2 != null && $argument_2[0] >= $argument_2[1]) {
+            $arg_2 = 'true';
         } else {
-            return '';
+            $arg_2 = 'false';
+        }
+
+        if ($status == 0 OR $arg_1 == 'false' OR $arg_2 == 'false') {
+            return $class_2;
+        } else {
+            return $class;
         }
     }
 
