@@ -98,11 +98,11 @@ if (\eMarket\Valid::inPOST('edit')) {
 
 // Загручик изображений (ВСТАВЛЯТЬ ПЕРЕД УДАЛЕНИЕМ)
 $resize_param = [];
-array_push($resize_param, ['125', '94']); // ширина, высота
-array_push($resize_param, ['1200', '1200']);
-array_push($resize_param, ['1366','1366']);
-array_push($resize_param, ['1600','1600']);
-array_push($resize_param, ['1920','1920']);
+array_push($resize_param, ['125', '63']); // ширина, высота
+array_push($resize_param, ['1200', '600']);
+array_push($resize_param, ['1366','683']);
+array_push($resize_param, ['1600','800']);
+array_push($resize_param, ['1920','960']);
 
 \eMarket\Files::imgUpload(TABLE_SLIDESHOW, 'slideshow', $resize_param);
 
