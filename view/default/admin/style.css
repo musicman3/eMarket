@@ -14,9 +14,9 @@ body {background:#e4e4da;font-family: 'Open Sans';background-image:url('images/s
 
 @media (min-width:768px){.modal-md {width:750px;}}
 
-.welcome {text-align: center;font-size: 40px;color: #c6c6c6;text-shadow: 0px 1px 1px #FFF;padding-top: 60px;}
-.welcome_logo {padding-top: 30px;padding-bottom: 30px;font-size: 70px;}
-.welcome_description {font-size: 24px;padding-bottom: 50px;color: #aaaaaa;}
+#dashboard .welcome {text-align: center;font-size: 40px;color: #c6c6c6;text-shadow: 0px 1px 1px #FFF;padding-top: 60px;}
+#dashboard .welcome_logo {padding-top: 30px;padding-bottom: 30px;font-size: 70px;}
+#dashboard .welcome_description {font-size: 24px;padding-bottom: 50px;color: #aaaaaa;}
 
 #login [class*=lbox-] {background:rgba(0,0,0,.4);position:absolute}
 #login .lbox-horz {height: 136px;width: 100%;padding-left: 50px;margin-top: -63px;top: 50%}
