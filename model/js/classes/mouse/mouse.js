@@ -95,7 +95,7 @@ class Mouse {
             $(this).toggleClass('active');
         });
     }
-    
+
     /**
      * Сортировка
      *
@@ -115,8 +115,10 @@ class Mouse {
                 {}, // id родительской категории
                 AjaxSuccess);
         function AjaxSuccess(data) {
-            $('#ajax').replaceWith($(data).find('#ajax'));
-            Mouse.sortInitAll();
+            setTimeout(function () {
+                $('#ajax').replaceWith($(data).find('#ajax'));
+                Mouse.sortInitAll();
+            }, 100);
         }
     }
 }

@@ -29,8 +29,10 @@
                 AjaxSuccess);
         // Обновление страницы
         function AjaxSuccess(data) {
-            $('#ajax').replaceWith($(data).find('#ajax'));
-            Mouse.sortInitAll();
+            setTimeout(function () {
+                $('#ajax').replaceWith($(data).find('#ajax'));
+                Mouse.sortInitAll();
+            }, 100);
         }
     }
 </script>  
