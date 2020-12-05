@@ -5,7 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
 
-<?php if (count($slideshow) > 0) { ?>
+<?php if ($slideshow == true) { ?>
     <div class="container-fluid">
         <div id="Carousel" class="carousel slide hidden-xs" data-interval="<?php echo $slide_interval ?>" data-pause="<?php echo $slide_pause ?>" data-ride="<?php echo $autostart ?>" data-wrap="<?php echo $cicles ?>">
             <?php if ($indicators == 'true') { ?>
