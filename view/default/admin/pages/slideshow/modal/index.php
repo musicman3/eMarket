@@ -25,13 +25,13 @@
                         <div class="form-group">
                             <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                <input class="input-sm form-control" placeholder="Заголовок (?)" type="text" name="name" id="name" required />
+                                <input class="input-sm form-control" placeholder="Заголовок" type="text" name="name" id="name" required />
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                <input class="input-sm form-control" placeholder="Текст (?)" type="text" name="heading" id="heading" required />
+                                <input class="input-sm form-control" placeholder="Текст" type="text" name="heading" id="heading" />
                             </div>
                         </div>
                         <div class="form-group">

@@ -52,8 +52,14 @@ class Files {
             $count_files = count($files);
             if ($count_files > 0) {
 
-                // Получаем последний id и увеличиваем его на 1
-                $id_max = \eMarket\Pdo::selectPrepare("SELECT id FROM " . $TABLE . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+                // Язык
+                if (\eMarket\Valid::inPOST('set_language')) {
+                    $language = \eMarket\Valid::inPOST('set_language');
+                } else {
+                    $language = lang('#lang_all')[0];
+                }
+                // Получаем последний id
+                $id_max = \eMarket\Pdo::selectPrepare("SELECT id FROM " . $TABLE . " WHERE language=? ORDER BY id DESC", [$language]);
                 $id = intval($id_max);
 
                 $image_list = [];
@@ -224,8 +230,15 @@ class Files {
             $count_files = count($files);
             if ($count_files > 0) {
 
+                // Язык
+                if (\eMarket\Valid::inPOST('set_language')) {
+                    $language = \eMarket\Valid::inPOST('set_language');
+                } else {
+                    $language = lang('#lang_all')[0];
+                }
+
                 // Получаем последний id
-                $id_max = \eMarket\Pdo::selectPrepare("SELECT id FROM " . $TABLE . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+                $id_max = \eMarket\Pdo::selectPrepare("SELECT id FROM " . $TABLE . " WHERE language=? ORDER BY id DESC", [$language]);
                 $id = intval($id_max);
 
                 $image_list = [];
