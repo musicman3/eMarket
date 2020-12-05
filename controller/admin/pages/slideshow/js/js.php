@@ -48,7 +48,7 @@ $lang_js = json_encode([
 
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
         var tab = e.target['hash'].slice(1);
-        $('#slide_language').val(tab);
+        $('#set_language').val(tab);
         window.history.pushState(null, null, "?route=slideshow&slide_lang=" + tab);
 
         jQuery.get(window.location.href,

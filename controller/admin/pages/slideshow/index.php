@@ -62,7 +62,7 @@ if (\eMarket\Valid::inPOST('add')) {
         $end_date = NULL;
     }
 
-    \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_SLIDESHOW . " SET language=?, url=?, name=?, heading=?, logo=?, date_start=?, date_finish=?, status=?", [\eMarket\Valid::inPOST('slide_language'), \eMarket\Valid::inPOST('url'), \eMarket\Valid::inPOST('name'), \eMarket\Valid::inPOST('heading'), json_encode([]), $start_date, $end_date, $view_slideshow]);
+    \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_SLIDESHOW . " SET language=?, url=?, name=?, heading=?, logo=?, date_start=?, date_finish=?, status=?", [\eMarket\Valid::inPOST('set_language'), \eMarket\Valid::inPOST('url'), \eMarket\Valid::inPOST('name'), \eMarket\Valid::inPOST('heading'), json_encode([]), $start_date, $end_date, $view_slideshow]);
     // Выводим сообщение об успехе
     \eMarket\Messages::alert('success', lang('action_completed_successfully'));
 }
@@ -116,13 +116,13 @@ if (\eMarket\Valid::inPOST('delete')) {
 }
 
 if (\eMarket\Valid::inGET('slide_lang')) {
-    $slide_language = \eMarket\Valid::inGET('slide_lang');
+    $set_language = \eMarket\Valid::inGET('slide_lang');
 } else {
-    $slide_language = lang('#lang_all')[0];
+    $set_language = lang('#lang_all')[0];
 }
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
-$lines = \eMarket\Pdo::getColRow("SELECT * FROM " . TABLE_SLIDESHOW . " WHERE language=? ORDER BY id DESC", [$slide_language]);
+$lines = \eMarket\Pdo::getColRow("SELECT * FROM " . TABLE_SLIDESHOW . " WHERE language=? ORDER BY id DESC", [$set_language]);
 $lines_on_page = \eMarket\Set::linesOnPage();
 $count_lines = count($lines);
 $navigate = \eMarket\Navigation::getLink($count_lines, $lines_on_page);
