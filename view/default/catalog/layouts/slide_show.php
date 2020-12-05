@@ -16,7 +16,7 @@
                     <?php } ?>
                 </ol>
             <?php } ?>
-            <div class="carousel-inner">
+            <div class="carousel-inner slide-text-anime">
                 <?php
                 foreach ($slideshow as $images_data) {
                     foreach (json_decode($images_data['logo'], 1) as $logo) {
