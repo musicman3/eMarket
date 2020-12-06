@@ -238,7 +238,6 @@ CREATE TABLE emkt_stikers (
 	name varchar(256),
 	language varchar(64),
         default_stikers int NOT NULL,
-        sort int NOT NULL,
 PRIMARY KEY (id, language))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
