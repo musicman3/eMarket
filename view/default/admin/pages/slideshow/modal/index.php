@@ -25,7 +25,7 @@
                         <div class="form-group">
                             <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                <input class="input-sm form-control" placeholder="<?php echo lang('slides_name') ?>" type="text" name="name" id="name" required />
+                                <input class="input-sm form-control" placeholder="<?php echo lang('slides_name') ?>" type="text" name="name" id="name" />
                             </div>
                         </div>
                         <div class="form-group">
