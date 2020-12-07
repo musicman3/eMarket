@@ -21,7 +21,6 @@
                     <input id="general_image_edit" type="hidden" name="general_image_edit" value="">
                     <input id="general_image_edit_new" type="hidden" name="general_image_edit_new" value="">
 
-                    <div class="tab-content">
                         <div class="form-group">
                             <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
@@ -52,7 +51,6 @@
                                 <input class="input-sm form-control" placeholder="<?php echo lang('slides_show_end') ?>" type="text" name="end_date" id="end_date" autocomplete="off" required />
                             </div>
                         </div>
-                    </div>
 
                     <!-- Выводим сообщения -->
                     <div id="alert_messages"></div>
