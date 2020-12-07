@@ -1,9 +1,8 @@
 <?php
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
-  |    GNU GENERAL PUBLIC LICENSE v.3.0    |    
+  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-
 ?>
 <!-- Модальное окно -->
 <div id="index" class="modal fade" tabindex="-1">
@@ -34,7 +33,6 @@
                         <?php
                         if ($LANG_COUNT > 1) {
                             for ($x = 1; $x < $LANG_COUNT; $x++) {
-
                                 ?>
 
                                 <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">
@@ -49,7 +47,6 @@
                                 <?php
                             }
                         }
-
                         ?>
 
                         <div class="form-group">
@@ -57,6 +54,23 @@
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
                                 <input class="input-sm form-control" placeholder="<?php echo lang('tax_rate') ?>" type="text" pattern="\d+(\.\d{0,2})?" name="rate_taxes" id="rate_taxes" required />
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="mini" data-handle-width="70" data-on-text="ПРОЦЕНТ" data-off-text="СУММА" name="fixed" id="fixed" checked>
+                            <br><small class="form-text text-muted">Процент / фиксированная сумма</small>
+                        </div>
+                        <div class="form-group">
+                            <input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="mini" data-handle-width="70" data-on-text="ВКЛЮЧЕН" data-off-text="ОТДЕЛЬНО" name="tax_type" id="tax_type" checked>
+                            <br><small class="form-text text-muted">Включен в стоимость / отдельно</small>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group has-success">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                                <select name="zones_id" id="zones_id" class="input-sm form-control">
+                                    <option value="0">Москва</option>
+                                </select>
+                            </div>
+                            <small class="form-text text-muted">Зона действия налога</small>
                         </div>
                     </div>
                 </div>
