@@ -26,10 +26,10 @@
             for (x = 0; x < json_data['name'].length; x++) {
                 $('#name_taxes_' + x).val(json_data['name'][x][modal_id]);
             }
-            $('#rate_taxes').val(json_data['code'][modal_id]);
+            $('#rate_taxes').val(json_data['rate'][modal_id]);
+            $('#tax_type').prop('checked', json_data['tax_type'][modal_id]);
+            $('#fixed').prop('checked', json_data['fixed'][modal_id]);
             $('#tax_type, #fixed').bootstrapSwitch();
-            $('#tax_type').prop('checked', '1');
-            $('#fixed').prop('checked', '1');
         } else {
             $('#edit').val('');
             $('#add').val('ok');

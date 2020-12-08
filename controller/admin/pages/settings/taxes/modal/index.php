@@ -16,11 +16,17 @@ for ($i = $start; $i < $finish; $i++) {
         for ($x = 0; $x < $count_lang; $x++) {
             $name[$x][$modal_id] = \eMarket\Pdo::selectPrepare("SELECT name FROM " . TABLE_TAXES . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]]);
         }
-        $code[$modal_id] = \eMarket\Pdo::selectPrepare("SELECT rate FROM " . TABLE_TAXES . " WHERE id=?", [$modal_id]);
-
+        $query = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_TAXES . " WHERE id=?", [$modal_id])[0];
+        $rate[$modal_id] = $query['rate'];
+        $tax_type[$modal_id] = (int) $query['tax_type'];
+        $zones_id[$modal_id] = (int) $query['zones_id'];
+        $fixed[$modal_id] = (int) $query['fixed'];
         $json_data = json_encode([
             'name' => $name,
-            'code' => $code
+            'rate' => $rate,
+            'tax_type' => $tax_type,
+            'zones_id' => $zones_id,
+            'fixed' => $fixed
         ]);
     }
 }
