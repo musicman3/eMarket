@@ -66,9 +66,7 @@
                         <div class="form-group">
                             <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                                <select name="zones_id" id="zones_id" class="input-sm form-control">
-                                    <option value="0">Москва</option>
-                                </select>
+                                <select name="zones_id" id="zones_id" class="input-sm form-control"></select>
                             </div>
                             <small class="form-text text-muted">Зона действия налога</small>
                         </div>

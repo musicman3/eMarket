@@ -30,13 +30,29 @@
             $('#tax_type').prop('checked', json_data['tax_type'][modal_id]);
             $('#fixed').prop('checked', json_data['fixed'][modal_id]);
             $('#tax_type, #fixed').bootstrapSwitch();
+
+            $.each(json_data['zones'], function (key, value) {
+                $('#zones_id').append('<option value="' + value['id'] + '">' + value['name'] + '</option>');
+            });
+
+            if (json_data['zones_id'][modal_id] !== undefined && json_data['zones_id'][modal_id] !== null) {
+                $('#zones_id option[value="' + json_data['zones_id'][modal_id] + '"]').prop('selected', '1');
+            }
+
         } else {
+            
             $('#edit').val('');
             $('#add').val('ok');
+            var json_data = $('div#ajax_data').data('jsondata');
             //Очищаем поля
             $(this).find('form').trigger('reset');
             // Меняем значение чекбокса
             $('#tax_type, #fixed').prop('checked', '1');
+
+            $.each(json_data['zones'], function (key, value) {
+                $('#zones_id').append('<option value="' + value['id'] + '">' + value['name'] + '</option>');
+            });
+
         }
     });
 </script>

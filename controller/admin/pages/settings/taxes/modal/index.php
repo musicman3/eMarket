@@ -6,7 +6,8 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 // собираем данные для отображения в Редактировании
-$json_data = json_encode([]);
+$zones = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_ZONES . " WHERE language=?", [lang('#lang_all')[0]]);
+$json_data = json_encode(['zones' => $zones]);
 for ($i = $start; $i < $finish; $i++) {
     if (isset($lines[$i][0]) == TRUE) {
 
@@ -14,9 +15,9 @@ for ($i = $start; $i < $finish; $i++) {
         $count_lang = $LANG_COUNT;
 
         for ($x = 0; $x < $count_lang; $x++) {
-            $name[$x][$modal_id] = \eMarket\Pdo::selectPrepare("SELECT name FROM " . TABLE_TAXES . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]]);
+            $name[$x][$modal_id] = \eMarket\Pdo::selectPrepare("SELECT name FROM " . TABLE_TAXES . " WHERE id=? AND language=?", [$modal_id, lang('#lang_all')[$x]]);
         }
-        $query = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_TAXES . " WHERE id=?", [$modal_id])[0];
+        $query = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_TAXES . " WHERE id=? AND language=?", [$modal_id, lang('#lang_all')[0]])[0];
         $rate[$modal_id] = $query['rate'];
         $tax_type[$modal_id] = (int) $query['tax_type'];
         $zones_id[$modal_id] = (int) $query['zones_id'];
@@ -26,7 +27,8 @@ for ($i = $start; $i < $finish; $i++) {
             'rate' => $rate,
             'tax_type' => $tax_type,
             'zones_id' => $zones_id,
-            'fixed' => $fixed
+            'fixed' => $fixed,
+            'zones' => $zones
         ]);
     }
 }
