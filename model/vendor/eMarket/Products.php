@@ -15,8 +15,6 @@ namespace eMarket;
  * 
  */
 class Products {
-    
-    public static $CURRENCIES = FALSE;
 
     /**
      * Данные по товару
@@ -120,24 +118,6 @@ class Products {
 
         $categories = \eMarket\Pdo::getCell("SELECT name FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], $id]);
         return $categories;
-    }
-
-    /**
-     * Данные по категории товара
-     *
-     * @param string $price (значение стоимости)
-     * @return string $currency (валюта)
-     */
-    public static function currencyPrice($price, $currency) {
-
-        if (self::$CURRENCIES == FALSE) {
-            self::$CURRENCIES = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=?", [lang('#lang_all')[0]]);
-        }
-        foreach (self::$CURRENCIES as $value){
-            if ($value['id'] == $currency){
-                return $price / $value['value'];
-            }
-        }
     }
 
     /**

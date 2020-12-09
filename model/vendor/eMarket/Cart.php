@@ -77,7 +77,7 @@ class Cart {
         if (isset($_SESSION['cart'])) {
             foreach ($_SESSION['cart'] as $value) {
                 $product = \eMarket\Pdo::getColAssoc("SELECT price, currency FROM " . TABLE_PRODUCTS . " WHERE id=? AND language=?", [$value['id'], lang('#lang_all')[0]])[0];
-                $total_price = $total_price + \eMarket\Products::currencyPrice($product['price'], $product['currency']) * $value['quantity'];
+                $total_price = $total_price + \eMarket\Ecb::currencyPrice($product['price'], $product['currency']) * $value['quantity'];
             }
         }
         return $total_price;

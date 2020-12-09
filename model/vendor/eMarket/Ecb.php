@@ -17,6 +17,7 @@ namespace eMarket;
 final class Ecb {
 
     public static $stiker_data = FALSE;
+    public static $CURRENCIES = FALSE;
 
     /**
      * Блок вывода цены с учетом скидки
@@ -41,7 +42,7 @@ final class Ecb {
         }
 
         if (\eMarket\Set::path() == 'admin') {
-            $price_val = \eMarket\Products::currencyPrice($input[5], $input[8]);
+            $price_val = self::currencyPrice($input[5], $input[8]);
 
             if ($price_val != $discount_sale['price'] && $discount_count == 1) {
                 return '<span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="' . $discount_names . '" class="label label-' . $class . '">' . \eMarket\Products::productPrice($discount_sale['price'], $marker) . '</span> <del>' . \eMarket\Products::productPrice($price_val, $marker) . '</del>';
@@ -53,7 +54,7 @@ final class Ecb {
         }
 
         if (\eMarket\Set::path() == 'catalog') {
-            $price_val = \eMarket\Products::currencyPrice($input['price'], $input['currency']);
+            $price_val = self::currencyPrice($input['price'], $input['currency']);
 
             if ($price_val != $discount_sale['price']) {
                 return '<del>' . \eMarket\Products::productPrice($price_val, $marker) . '</del><br><span class="label label-' . $class . '">' . \eMarket\Products::productPrice($discount_sale['price'], $marker) . '</span>';
@@ -139,7 +140,7 @@ final class Ecb {
         }
         $discount_sale = self::outPrice($input)['discount_sale'];
 
-        $price_val = \eMarket\Products::currencyPrice($input['price'], $input['currency']);
+        $price_val = self::currencyPrice($input['price'], $input['currency']);
 
         if ($price_val != $discount_sale['price']) {
             return '<del>' . \eMarket\Products::productPrice($price_val * \eMarket\Cart::productQuantity($input['id'], 1), $marker) . '</del><br><span class="label label-' . $class . '">' . \eMarket\Products::productPrice($discount_sale['price'] * \eMarket\Cart::productQuantity($input['id'], 1), $marker) . '</span>';
@@ -167,9 +168,9 @@ final class Ecb {
                         $discount_total_sale = $discount_total_sale + $total_sale;
                     }
                     if ($discount_sale['sales'] != 'false') {
-                        $total_price_with_sale = $total_price_with_sale + (\eMarket\Products::currencyPrice($data[0]['price'], $data[0]['currency']) * $value['quantity'] / 100 * (100 - $discount_total_sale));
+                        $total_price_with_sale = $total_price_with_sale + (self::currencyPrice($data[0]['price'], $data[0]['currency']) * $value['quantity'] / 100 * (100 - $discount_total_sale));
                     } else {
-                        $total_price_with_sale = $total_price_with_sale + (\eMarket\Products::currencyPrice($data[0]['price'], $data[0]['currency']) * $value['quantity']);
+                        $total_price_with_sale = $total_price_with_sale + (self::currencyPrice($data[0]['price'], $data[0]['currency']) * $value['quantity']);
                     }
                 } else {
                     unset($_SESSION['cart'][$x]);
@@ -200,6 +201,25 @@ final class Ecb {
             return '<del>' . \eMarket\Products::productPrice($price_val, $marker) . '</del><br><span class="label label-' . $class . '">' . \eMarket\Products::productPrice($total_price_with_sale, $marker) . '</span>';
         }
         return \eMarket\Products::productPrice($price_val, $marker);
+    }
+
+    /**
+     * Стоимость с учетом валюты
+     *
+     * @param string $price (значение стоимости)
+     * @param string $currency (id валюты)
+     * @return string $currency (валюта)
+     */
+    public static function currencyPrice($price, $currency) {
+
+        if (self::$CURRENCIES == FALSE) {
+            self::$CURRENCIES = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=?", [lang('#lang_all')[0]]);
+        }
+        foreach (self::$CURRENCIES as $value) {
+            if ($value['id'] == $currency) {
+                return $price / $value['value'];
+            }
+        }
     }
 
 }
