@@ -188,9 +188,24 @@ symbol_right = Символ справа
 iso_4217 = Код ISO 4217
 
 ;TAXES
-tax_rate = Налоговая ставка (%)
-rate = Ставка
-tax = Налог
+taxes_modal_name = Название
+taxes_modal_rate = Налоговая ставка
+taxes_modal_percent = ПРОЦЕНТ
+taxes_modal_value = ЗНАЧЕНИЕ
+taxes_modal_included = ВКЛЮЧЕН
+taxes_modal_separately = ОТДЕЛЬНО
+taxes_modal_fixed_desc = Процент / фиксированное значение
+taxes_modal_included_desc = Включен в стоимость / отдельно
+taxes_modal_zones_desc = Зона действия налога
+taxes_rate = Ставка
+taxes_name = Налог
+taxes_percent = ПРОЦЕНТ
+taxes_value = ЗНАЧЕНИЕ
+taxes_included = ВКЛЮЧЕН
+taxes_separately = ОТДЕЛЬНО
+taxes_fixed_desc = Процент / фиксированное значение
+taxes_included_desc = Включен в стоимость / отдельно
+taxes_zones_desc = Зона действия налога
 
 ;CATEGORIES
 add_category = Добавить категорию

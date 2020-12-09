@@ -25,7 +25,7 @@
                             <div class="form-group">
                                 <div class="input-group has-error">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="name_taxes_0" id="name_taxes_0" required />
+                                    <input class="input-sm form-control" placeholder="<?php echo lang('taxes_modal_name') ?>" type="text" name="name_taxes_0" id="name_taxes_0" required />
                                 </div>
                             </div>
                         </div>
@@ -39,7 +39,7 @@
                                     <div class="form-group">
                                         <div class="input-group has-error">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="name_taxes_<?php echo $x ?>" id="name_taxes_<?php echo $x ?>" required />
+                                            <input class="input-sm form-control" placeholder="<?php echo lang('taxes_modal_name') ?>" type="text" name="name_taxes_<?php echo $x ?>" id="name_taxes_<?php echo $x ?>" required />
                                         </div>
                                     </div>
                                 </div>
@@ -52,23 +52,23 @@
                         <div class="form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
-                                <input class="input-sm form-control" placeholder="<?php echo lang('tax_rate') ?>" type="text" pattern="\d+(\.\d{0,2})?" name="rate_taxes" id="rate_taxes" required />
+                                <input class="input-sm form-control" placeholder="<?php echo lang('taxes_modal_rate') ?>" type="text" pattern="\d+(\.\d{0,2})?" name="rate_taxes" id="rate_taxes" required />
                             </div>
                         </div>
                         <div class="form-group">
-                            <input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="mini" data-handle-width="70" data-on-text="ПРОЦЕНТ" data-off-text="СУММА" name="fixed" id="fixed" checked>
-                            <br><small class="form-text text-muted">Процент / фиксированная сумма</small>
+                            <input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="mini" data-handle-width="70" data-on-text="<?php echo lang('taxes_modal_percent') ?>" data-off-text="<?php echo lang('taxes_modal_value') ?>" name="fixed" id="fixed" checked>
+                            <br><small class="form-text text-muted"><?php echo lang('taxes_modal_fixed_desc') ?></small>
                         </div>
                         <div class="form-group">
-                            <input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="mini" data-handle-width="70" data-on-text="ВКЛЮЧЕН" data-off-text="ОТДЕЛЬНО" name="tax_type" id="tax_type" checked>
-                            <br><small class="form-text text-muted">Включен в стоимость / отдельно</small>
+                            <input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="mini" data-handle-width="70" data-on-text="<?php echo lang('taxes_modal_included') ?>" data-off-text="<?php echo lang('taxes_modal_separately') ?>" name="tax_type" id="tax_type" checked>
+                            <br><small class="form-text text-muted"><?php echo lang('taxes_modal_included_desc') ?></small>
                         </div>
                         <div class="form-group">
                             <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
                                 <select name="zones_id" id="zones_id" class="input-sm form-control"></select>
                             </div>
-                            <small class="form-text text-muted">Зона действия налога</small>
+                            <small class="form-text text-muted"><?php echo lang('taxes_modal_zones_desc') ?></small>
                         </div>
                     </div>
                 </div>

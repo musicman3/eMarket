@@ -73,8 +73,8 @@ foreach ($zones as $zones_val) {
     $zones_names[$zones_val['id']] = $zones_val['name'];
 }
 
-$value_6 = [0 => 'Фиксированная сумма', 1 => 'Процент'];
-$value_4 = [0 => 'Отдельно', 1 => 'Включен в стоимость'];
+$value_6 = [0 => lang('taxes_value'), 1 => lang('taxes_percent')];
+$value_4 = [0 => lang('taxes_separately'), 1 => lang('taxes_included')];
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 $lines = \eMarket\Pdo::getColRow("SELECT * FROM " . TABLE_TAXES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);

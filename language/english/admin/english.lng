@@ -187,9 +187,24 @@ symbol_right = Symbol right
 iso_4217 = Code ISO 4217
 
 ;TAXES
-tax_rate = Rate (%)
-rate = Rate
-tax = Tax
+taxes_modal_name = Name
+taxes_modal_rate = Rate
+taxes_modal_percent = PERCENT
+taxes_modal_value = VALUE
+taxes_modal_included = INCLUDING
+taxes_modal_separately = SEPARATELY
+taxes_modal_fixed_desc = Percent / Fixed value
+taxes_modal_included_desc = Tax included / Separately
+taxes_modal_zones_desc = Tax zone
+taxes_rate = Rate
+taxes_name = Tax
+taxes_percent = PERCENT
+taxes_value = VALUE
+taxes_included = INCLUDING
+taxes_separately = SEPARATELY
+taxes_fixed_desc = Percent / Fixed value
+taxes_included_desc = Tax included / Separately
+taxes_zones_desc = Tax zone
 
 ;CATEGORIES
 add_category = Add category

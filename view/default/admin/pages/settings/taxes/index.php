@@ -70,11 +70,11 @@
 			</tr>
 			<?php if ($lines == TRUE) { ?>
     			<tr class="border">
-    			    <th><?php echo lang('tax') ?></th>
-    			    <th class="text-center"><?php echo lang('rate') ?></th>
-                            <th class="text-center">Процент / фиксированная сумма</th>
-                            <th class="text-center">Включен в стоимость / отдельно</th>
-                            <th class="text-center">Зона действия налога</th>
+    			    <th><?php echo lang('taxes_name') ?></th>
+    			    <th class="text-center"><?php echo lang('taxes_rate') ?></th>
+                            <th class="text-center"><?php echo lang('taxes_fixed_desc') ?></th>
+                            <th class="text-center"><?php echo lang('taxes_included_desc') ?></th>
+                            <th class="text-center"><?php echo lang('taxes_zones_desc') ?></th>
     			    <th></th>
     			</tr>
 			<?php } ?>
