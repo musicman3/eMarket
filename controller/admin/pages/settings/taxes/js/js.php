@@ -30,6 +30,8 @@
             $('#tax_type').prop('checked', json_data['tax_type'][modal_id]);
             $('#fixed').prop('checked', json_data['fixed'][modal_id]);
             $('#tax_type, #fixed').bootstrapSwitch();
+            
+            $('#zones_id').empty();
 
             $.each(json_data['zones'], function (key, value) {
                 $('#zones_id').append('<option value="' + value['id'] + '">' + value['name'] + '</option>');
@@ -48,6 +50,8 @@
             $(this).find('form').trigger('reset');
             // Меняем значение чекбокса
             $('#tax_type, #fixed').prop('checked', '1');
+            
+            $('#zones_id').empty();
 
             $.each(json_data['zones'], function (key, value) {
                 $('#zones_id').append('<option value="' + value['id'] + '">' + value['name'] + '</option>');
