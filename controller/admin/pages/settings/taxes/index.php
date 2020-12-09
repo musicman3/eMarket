@@ -26,7 +26,7 @@ if (\eMarket\Valid::inPOST('add')) {
 
     // добавляем запись для всех вкладок
     for ($x = 0; $x < $LANG_COUNT; $x++) {
-        \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_TAXES . " SET id=?, name=?, language=?, rate=?, tax_type=?, zones_id=?, fixed=?", [$id, \eMarket\Valid::inPOST('name_taxes_' . $x), lang('#lang_all')[$x], \eMarket\Valid::inPOST('rate_taxes'), $tax_type, \eMarket\Valid::inPOST('zones_id'), $fixed]);
+        \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_TAXES . " SET id=?, name=?, language=?, rate=?, tax_type=?, zones_id=?, fixed=?, currency=?", [$id, \eMarket\Valid::inPOST('name_taxes_' . $x), lang('#lang_all')[$x], \eMarket\Valid::inPOST('rate_taxes'), $tax_type, \eMarket\Valid::inPOST('zones_id'), $fixed, \eMarket\Set::currencyDefault()[0]]);
     }
 
     // Выводим сообщение об успехе
@@ -50,7 +50,7 @@ if (\eMarket\Valid::inPOST('edit')) {
 
     for ($x = 0; $x < $LANG_COUNT; $x++) {
         // обновляем запись
-        \eMarket\Pdo::inPrepare("UPDATE " . TABLE_TAXES . " SET name=?, rate=?, tax_type=?, zones_id=?, fixed=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_taxes_' . $x), \eMarket\Valid::inPOST('rate_taxes'), $tax_type, \eMarket\Valid::inPOST('zones_id'), $fixed, \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
+        \eMarket\Pdo::inPrepare("UPDATE " . TABLE_TAXES . " SET name=?, rate=?, tax_type=?, zones_id=?, fixed=?, currency=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_taxes_' . $x), \eMarket\Valid::inPOST('rate_taxes'), $tax_type, \eMarket\Valid::inPOST('zones_id'), $fixed, \eMarket\Set::currencyDefault()[0], \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
     }
 
     // Выводим сообщение об успехе
