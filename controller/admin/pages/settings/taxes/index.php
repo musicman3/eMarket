@@ -66,8 +66,18 @@ if (\eMarket\Valid::inPOST('delete')) {
     \eMarket\Messages::alert('success', lang('action_completed_successfully'));
 }
 
+$zones = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_ZONES . " WHERE language=?", [lang('#lang_all')[0]]);
+
+$zones_names = [];
+foreach ($zones as $zones_val) {
+    $zones_names[$zones_val['id']] = $zones_val['name'];
+}
+
+$value_6 = [0 => 'Фиксированная сумма', 1 => 'Процент'];
+$value_4 = [0 => 'Отдельно', 1 => 'Включен в стоимость'];
+
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
-$lines = \eMarket\Pdo::getColRow("SELECT id, name, rate FROM " . TABLE_TAXES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+$lines = \eMarket\Pdo::getColRow("SELECT * FROM " . TABLE_TAXES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
 $lines_on_page = \eMarket\Set::linesOnPage();
 $count_lines = count($lines);
 $navigate = \eMarket\Navigation::getLink($count_lines, $lines_on_page);

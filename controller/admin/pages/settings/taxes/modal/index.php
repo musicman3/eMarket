@@ -6,7 +6,6 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 // собираем данные для отображения в Редактировании
-$zones = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_ZONES . " WHERE language=?", [lang('#lang_all')[0]]);
 $json_data = json_encode(['zones' => $zones]);
 for ($i = $start; $i < $finish; $i++) {
     if (isset($lines[$i][0]) == TRUE) {

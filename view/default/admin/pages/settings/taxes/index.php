@@ -25,7 +25,7 @@
 		<table class="table table-hover">
 		    <thead>
 			<tr>
-			    <th colspan="2">
+			    <th colspan="5">
 				<?php if ($lines == TRUE) { ?>
 				    <?php echo lang('with') ?> <?php echo $start + 1 ?> <?php echo lang('to') ?> <?php echo $finish ?> ( <?php echo lang('of') ?> <?php echo $count_lines; ?> )
 				    <?php
@@ -72,6 +72,9 @@
     			<tr class="border">
     			    <th><?php echo lang('tax') ?></th>
     			    <th class="text-center"><?php echo lang('rate') ?></th>
+                            <th class="text-center">Процент / фиксированная сумма</th>
+                            <th class="text-center">Включен в стоимость / отдельно</th>
+                            <th class="text-center">Зона действия налога</th>
     			    <th></th>
     			</tr>
 			<?php } ?>
@@ -80,7 +83,10 @@
 			<?php for ($start; $start < $finish; $start++) { ?>
     			<tr>
     			    <td><?php echo $lines[$start][1] ?></td>
-    			    <td class="text-center"><?php echo $lines[$start][2] ?></td>
+    			    <td class="text-center"><?php echo $lines[$start][3] ?></td>
+                            <td class="text-center"><?php echo $value_6[$lines[$start][6]] ?></td>
+                            <td class="text-center"><?php echo $value_4[$lines[$start][4]] ?></td>
+                            <td class="text-center"><?php echo $zones_names[$lines[$start][5]] ?></td>
     			    <td>
     				<div class="flexbox">
     				    <!--Вызов модального окна для редактирования-->
