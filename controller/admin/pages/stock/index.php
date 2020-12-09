@@ -107,10 +107,10 @@ $lines_on_page = \eMarket\Set::linesOnPage();
 $search = '%' . \eMarket\Valid::inGET('search') . '%';
 if (\eMarket\Valid::inGET('search')) {
     $lines_cat = \eMarket\Pdo::getColRow("SELECT id, name, parent_id, status, attributes FROM " . TABLE_CATEGORIES . " WHERE name LIKE? AND language=? ORDER BY sort_category DESC", [$search, lang('#lang_all')[0]]);
-    $lines_prod = \eMarket\Pdo::getColRow("SELECT id, name, parent_id, status, discount, price, attributes, stiker FROM " . TABLE_PRODUCTS . " WHERE (name LIKE? OR description LIKE?) AND language=? ORDER BY id DESC", [$search, $search, lang('#lang_all')[0]]);
+    $lines_prod = \eMarket\Pdo::getColRow("SELECT id, name, parent_id, status, discount, price, attributes, stiker, currency FROM " . TABLE_PRODUCTS . " WHERE (name LIKE? OR description LIKE?) AND language=? ORDER BY id DESC", [$search, $search, lang('#lang_all')[0]]);
 } else {
     $lines_cat = \eMarket\Pdo::getColRow("SELECT id, name, parent_id, status, attributes FROM " . TABLE_CATEGORIES . " WHERE parent_id=? AND language=? ORDER BY sort_category DESC", [$parent_id, lang('#lang_all')[0]]);
-    $lines_prod = \eMarket\Pdo::getColRow("SELECT id, name, parent_id, status, discount, price, attributes, stiker FROM " . TABLE_PRODUCTS . " WHERE parent_id=? AND language=? ORDER BY id DESC", [$parent_id, lang('#lang_all')[0]]);
+    $lines_prod = \eMarket\Pdo::getColRow("SELECT id, name, parent_id, status, discount, price, attributes, stiker, currency FROM " . TABLE_PRODUCTS . " WHERE parent_id=? AND language=? ORDER BY id DESC", [$parent_id, lang('#lang_all')[0]]);
 }
 $count_lines_cat = count($lines_cat);  //считаем количество строк
 $count_lines_prod = count($lines_prod);  //считаем количество строк

@@ -31,11 +31,11 @@ final class Ecb {
         if ($class == null) {
             $class = 'danger';
         }
-        //Модуль скидки \eMarket\Modules\Discount\Sale
-        $price_with_sale = \eMarket\Modules\Discount\Sale::dataInterface($input);
+
+        $price_with_sale = self::outPrice($input);
 
         if (\eMarket\Set::path() == 'admin') {
-            $price_val = $input[5];
+            $price_val = \eMarket\Products::currencyPrice($input[5], $input[8]);
 
             if ($price_val != $price_with_sale[0] && $price_with_sale[2] == 1) {
                 return '<span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="' . $price_with_sale[1] . '" class="label label-' . $class . '">' . \eMarket\Products::productPrice($price_with_sale[0], $marker) . '</span> <del>' . \eMarket\Products::productPrice($price_val, $marker) . '</del>';
@@ -47,13 +47,29 @@ final class Ecb {
         }
 
         if (\eMarket\Set::path() == 'catalog') {
-            $price_val = $input['price'];
+            $price_val = \eMarket\Products::currencyPrice($input['price'], $input['currency']);
 
             if ($price_val != $price_with_sale[0]) {
                 return '<del>' . \eMarket\Products::productPrice($price_val, $marker) . '</del><br><span class="label label-' . $class . '">' . \eMarket\Products::productPrice($price_with_sale[0], $marker) . '</span>';
             }
             return \eMarket\Products::productPrice($price_val, $marker);
         }
+    }
+    
+        /**
+     * Блок вывода итоговой цены товара
+     * 
+     * @param array $input (массив с входящими значениями по товару)
+     * @param string $class (класс bootstrap для отображения стикера скидки)
+     * @param string $class2 (класс bootstrap для отображения собственного стикера)
+     * @return string (выходные данные в виде форматированной стоимости)
+     */
+    public static function outPrice($input) {
+        //Модуль скидки \eMarket\Modules\Discount\Sale
+        $price_with_sale = \eMarket\Modules\Discount\Sale::dataInterface($input);
+        
+        $output = $price_with_sale;
+        return $output;
     }
 
     /**
@@ -80,8 +96,7 @@ final class Ecb {
             $stiker_name[$val['id']] = $val['name'];
         }
 
-        //Модуль скидки \eMarket\Modules\Discount\Sale
-        $price_with_sale = \eMarket\Modules\Discount\Sale::dataInterface($input);
+        $price_with_sale = self::outPrice($input);
 
         if (isset($price_with_sale[3]) && $price_with_sale[3] > 0 && $input['stiker'] != '' && $input['stiker'] != NULL) {
             return '<div class="labelsblock"><div class="' . $class . '">- ' . $price_with_sale[3] . '%</div><div class="' . $class2 . '">' . $stiker_name[$input['stiker']] . '</div></div>';
@@ -110,10 +125,9 @@ final class Ecb {
         if ($class == null) {
             $class = 'danger';
         }
-        //Модуль скидки \eMarket\Modules\Discount\Sale
-        $price_with_sale = \eMarket\Modules\Discount\Sale::dataInterface($input);
+        $price_with_sale = self::outPrice($input);
 
-        $price_val = $input['price'];
+        $price_val = \eMarket\Products::currencyPrice($input['price'], $input['currency']);
 
         if ($price_val != $price_with_sale[0]) {
             return '<del>' . \eMarket\Products::productPrice($price_val * \eMarket\Cart::productQuantity($input['id'], 1), $marker) . '</del><br><span class="label label-' . $class . '">' . \eMarket\Products::productPrice($price_with_sale[0] * \eMarket\Cart::productQuantity($input['id'], 1), $marker) . '</span>';
@@ -134,12 +148,11 @@ final class Ecb {
             foreach ($_SESSION['cart'] as $value) {
                 $data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=? AND language=?", [$value['id'], lang('#lang_all')[0]]);
                 if ($data != FALSE) {
-                    //Модуль скидки \eMarket\Modules\Discount\Sale
-                    $sale = \eMarket\Modules\Discount\Sale::dataInterface($data[0]);
+                    $sale = self::outPrice($data[0]);
                     if (array_key_exists(3, $sale)) {
-                        $total_price_with_sale = $total_price_with_sale + ($data[0]['price'] * $value['quantity'] / 100 * (100 - $sale[3]));
+                        $total_price_with_sale = $total_price_with_sale + (\eMarket\Products::currencyPrice($data[0]['price'], $data[0]['currency']) * $value['quantity'] / 100 * (100 - $sale[3]));
                     } else {
-                        $total_price_with_sale = $total_price_with_sale + ($data[0]['price'] * $value['quantity']);
+                        $total_price_with_sale = $total_price_with_sale + (\eMarket\Products::currencyPrice($data[0]['price'], $data[0]['currency']) * $value['quantity']);
                     }
                 } else {
                     unset($_SESSION['cart'][$x]);

@@ -65,10 +65,12 @@ class Sale {
 
         if (\eMarket\Set::path() == 'admin') {
             $discount_val = $input[4];
-            $price_val = $input[5];
+            $currency = $input[8];
+            $price_val = \eMarket\Products::currencyPrice($input[5], $currency);
         } else {
             $discount_val = $input['discount'];
-            $price_val = $input['price'];
+            $currency = $input['currency'];
+            $price_val = \eMarket\Products::currencyPrice($input['price'], $currency);
         }
 
         if ($discount_val != '' && $discount_val != NULL && self::status() == 1) {
