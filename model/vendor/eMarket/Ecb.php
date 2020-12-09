@@ -17,7 +17,7 @@ namespace eMarket;
 final class Ecb {
 
     public static $stiker_data = FALSE;
-    public static $CURRENCIES = FALSE;
+    public static $currencies = FALSE;
 
     /**
      * Блок вывода цены с учетом скидки
@@ -212,10 +212,10 @@ final class Ecb {
      */
     public static function currencyPrice($price, $currency) {
 
-        if (self::$CURRENCIES == FALSE) {
-            self::$CURRENCIES = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=?", [lang('#lang_all')[0]]);
+        if (self::$currencies == FALSE) {
+            self::$currencies = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=?", [lang('#lang_all')[0]]);
         }
-        foreach (self::$CURRENCIES as $value) {
+        foreach (self::$currencies as $value) {
             if ($value['id'] == $currency) {
                 return $price / $value['value'];
             }
