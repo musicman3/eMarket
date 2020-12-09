@@ -208,7 +208,7 @@ final class Ecb {
      *
      * @param string $price (значение стоимости)
      * @param string $currency (id валюты)
-     * @return string $currency (валюта)
+     * @return string string (стоимость с учетом валюты)
      */
     public static function currencyPrice($price, $currency) {
 
