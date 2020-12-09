@@ -73,7 +73,7 @@ foreach ($zones as $zones_val) {
     $zones_names[$zones_val['id']] = $zones_val['name'];
 }
 
-$value_6 = [0 => lang('taxes_value'), 1 => lang('taxes_percent')];
+$value_6 = [0 => sprintf(lang('taxes_value'), \eMarket\Set::currencyDefault()[2]), 1 => lang('taxes_percent')];
 $value_4 = [0 => lang('taxes_separately'), 1 => lang('taxes_included')];
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
