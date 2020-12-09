@@ -76,30 +76,32 @@ class Sale {
         if ($discount_val != '' && $discount_val != NULL && self::status() == 1) {
 
             $explode_id = explode(',', $discount_val);
-            $discount_out = 0;
-            $discount_name_out = '';
-            $discount_count = 0;
+            $discount_out = [];
+            $discount_names = [];
 
             foreach ($explode_id as $val) {
                 $data = \eMarket\Pdo::getRow("SELECT sale_value, name, UNIX_TIMESTAMP (date_start), UNIX_TIMESTAMP (date_end) FROM " . DB_PREFIX . 'modules_discount_sale' . " WHERE language=? AND id=?", [lang('#lang_all')[0], $val]);
-                $discount = $data[0];
-                $discount_name = $data[1];
 
                 $this_time = time();
                 $date_start = $data[2];
                 $date_end = $data[3];
 
                 if ($this_time > $date_start && $this_time < $date_end) {
-                    $discount_out = $discount_out + $discount;
-                    $discount_name_out .= $discount_name . '<br>';
-                    $discount_count++;
+                    array_push($discount_out, $data[0]);
+                    array_push($discount_names, $data[1]);
                 }
             }
-            $price = $price_val / 100 * (100 - $discount_out);
+            
+            $total_rate = 0;
+            foreach ($discount_out as $rate) {
+                $total_rate = $total_rate + $rate;
+            }
 
-            return [$price, $discount_name_out, $discount_count, $discount_out];
+            $price = $price_val / 100 * (100 - $total_rate);
+
+            return ['price' => $price, 'names' => $discount_names, 'sales' => $discount_out];
         }
-        return [$price_val];
+        return ['price' => $price_val, 'names' => 'false', 'sales' => 'false'];
     }
 
 }

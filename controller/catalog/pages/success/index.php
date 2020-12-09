@@ -63,16 +63,16 @@ if (\eMarket\Valid::inPOST('add') && password_verify(\eMarket\Valid::inPOST('ord
         $data = [
             'admin' => [
                 'name' => $admin_product_data['name'],
-                'price' => \eMarket\Products::productPrice(\eMarket\Ecb::outPrice($admin_product_data)[0], 1, $primary_language),
+                'price' => \eMarket\Products::productPrice(\eMarket\Ecb::outPrice($admin_product_data)['out_price'], 1, $primary_language),
                 'unit' => $admin_unit['unit'],
-                'amount' => \eMarket\Products::productPrice(\eMarket\Ecb::outPrice($admin_product_data)[0] * $value['quantity'], 1, $primary_language),
+                'amount' => \eMarket\Products::productPrice(\eMarket\Ecb::outPrice($admin_product_data)['out_price'] * $value['quantity'], 1, $primary_language),
                 'stiker' => $stiker_name[$product_data['stiker']]
             ],
             'customer' => [
                 'name' => $product_data['name'],
-                'price' => \eMarket\Products::productPrice(\eMarket\Ecb::outPrice($product_data)[0], 1),
+                'price' => \eMarket\Products::productPrice(\eMarket\Ecb::outPrice($product_data)['out_price'], 1),
                 'unit' => $unit['unit'],
-                'amount' => \eMarket\Products::productPrice(\eMarket\Ecb::outPrice($product_data)[0] * $value['quantity'], 1),
+                'amount' => \eMarket\Products::productPrice(\eMarket\Ecb::outPrice($product_data)['out_price'] * $value['quantity'], 1),
                 'stiker' => $stiker_name_customer[$product_data['stiker']]
             ],
             'data' => [

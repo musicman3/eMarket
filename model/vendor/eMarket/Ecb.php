@@ -32,16 +32,22 @@ final class Ecb {
             $class = 'danger';
         }
 
-        $price_with_sale = self::outPrice($input);
+        $discount_sale = self::outPrice($input)['discount_sale'];
+        $discount_count = count($discount_sale['names']);
+        $discount_names = '';
+
+        foreach ($discount_sale['names'] as $name_val) {
+            $discount_names .= $name_val . '<br>';
+        }
 
         if (\eMarket\Set::path() == 'admin') {
             $price_val = \eMarket\Products::currencyPrice($input[5], $input[8]);
 
-            if ($price_val != $price_with_sale[0] && $price_with_sale[2] == 1) {
-                return '<span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="' . $price_with_sale[1] . '" class="label label-' . $class . '">' . \eMarket\Products::productPrice($price_with_sale[0], $marker) . '</span> <del>' . \eMarket\Products::productPrice($price_val, $marker) . '</del>';
+            if ($price_val != $discount_sale['price'] && $discount_count == 1) {
+                return '<span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="' . $discount_names . '" class="label label-' . $class . '">' . \eMarket\Products::productPrice($discount_sale['price'], $marker) . '</span> <del>' . \eMarket\Products::productPrice($price_val, $marker) . '</del>';
             }
-            if ($price_val != $price_with_sale[0] && $price_with_sale[2] > 1) {
-                return '<span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="' . lang('modules_discount_sale_admin_tooltip_warning') . $price_with_sale[1] . '" class="label label-warning"><u>' . \eMarket\Products::productPrice($price_with_sale[0], $marker) . '</u></span> <del>' . \eMarket\Products::productPrice($price_val, $marker) . '</del>';
+            if ($price_val != $discount_sale['price'] && $discount_count > 1) {
+                return '<span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="' . lang('modules_discount_sale_admin_tooltip_warning') . $discount_names . '" class="label label-warning"><u>' . \eMarket\Products::productPrice($discount_sale['price'], $marker) . '</u></span> <del>' . \eMarket\Products::productPrice($price_val, $marker) . '</del>';
             }
             return \eMarket\Products::productPrice($price_val, $marker);
         }
@@ -49,26 +55,27 @@ final class Ecb {
         if (\eMarket\Set::path() == 'catalog') {
             $price_val = \eMarket\Products::currencyPrice($input['price'], $input['currency']);
 
-            if ($price_val != $price_with_sale[0]) {
-                return '<del>' . \eMarket\Products::productPrice($price_val, $marker) . '</del><br><span class="label label-' . $class . '">' . \eMarket\Products::productPrice($price_with_sale[0], $marker) . '</span>';
+            if ($price_val != $discount_sale['price']) {
+                return '<del>' . \eMarket\Products::productPrice($price_val, $marker) . '</del><br><span class="label label-' . $class . '">' . \eMarket\Products::productPrice($discount_sale['price'], $marker) . '</span>';
             }
             return \eMarket\Products::productPrice($price_val, $marker);
         }
     }
-    
-        /**
+
+    /**
      * Блок вывода итоговой цены товара
      * 
      * @param array $input (массив с входящими значениями по товару)
-     * @param string $class (класс bootstrap для отображения стикера скидки)
-     * @param string $class2 (класс bootstrap для отображения собственного стикера)
-     * @return string (выходные данные в виде форматированной стоимости)
+     * @return array (выходные данные)
      */
     public static function outPrice($input) {
         //Модуль скидки \eMarket\Modules\Discount\Sale
-        $price_with_sale = \eMarket\Modules\Discount\Sale::dataInterface($input);
-        
-        $output = $price_with_sale;
+        $discount_sale = \eMarket\Modules\Discount\Sale::dataInterface($input);
+
+        $output = [
+            'out_price' => $discount_sale['price'],
+            'discount_sale' => $discount_sale
+        ];
         return $output;
     }
 
@@ -96,18 +103,23 @@ final class Ecb {
             $stiker_name[$val['id']] = $val['name'];
         }
 
-        $price_with_sale = self::outPrice($input);
+        $discount_sale = self::outPrice($input)['discount_sale'];
+        $discount_total_sale = 0;
 
-        if (isset($price_with_sale[3]) && $price_with_sale[3] > 0 && $input['stiker'] != '' && $input['stiker'] != NULL) {
-            return '<div class="labelsblock"><div class="' . $class . '">- ' . $price_with_sale[3] . '%</div><div class="' . $class2 . '">' . $stiker_name[$input['stiker']] . '</div></div>';
+        foreach ($discount_sale['sales'] as $total_sale) {
+            $discount_total_sale = $discount_total_sale + $total_sale;
+        }
+
+        if (isset($discount_total_sale) && $discount_total_sale > 0 && $input['stiker'] != '' && $input['stiker'] != NULL) {
+            return '<div class="labelsblock"><div class="' . $class . '">- ' . $discount_total_sale . '%</div><div class="' . $class2 . '">' . $stiker_name[$input['stiker']] . '</div></div>';
         }
 
         if ($input['stiker'] != '' && $input['stiker'] != NULL) {
             return '<div class="labelsblock"><div class="' . $class2 . '">' . $stiker_name[$input['stiker']] . '</div></div>';
         }
 
-        if (isset($price_with_sale[3]) && $price_with_sale[3] > 0) {
-            return '<div class="labelsblock"><div class="' . $class . '">- ' . $price_with_sale[3] . '%</div></div>';
+        if (isset($discount_total_sale) && $discount_total_sale > 0) {
+            return '<div class="labelsblock"><div class="' . $class . '">- ' . $discount_total_sale . '%</div></div>';
         }
         return '';
     }
@@ -125,12 +137,12 @@ final class Ecb {
         if ($class == null) {
             $class = 'danger';
         }
-        $price_with_sale = self::outPrice($input);
+        $discount_sale = self::outPrice($input)['discount_sale'];
 
         $price_val = \eMarket\Products::currencyPrice($input['price'], $input['currency']);
 
-        if ($price_val != $price_with_sale[0]) {
-            return '<del>' . \eMarket\Products::productPrice($price_val * \eMarket\Cart::productQuantity($input['id'], 1), $marker) . '</del><br><span class="label label-' . $class . '">' . \eMarket\Products::productPrice($price_with_sale[0] * \eMarket\Cart::productQuantity($input['id'], 1), $marker) . '</span>';
+        if ($price_val != $discount_sale['price']) {
+            return '<del>' . \eMarket\Products::productPrice($price_val * \eMarket\Cart::productQuantity($input['id'], 1), $marker) . '</del><br><span class="label label-' . $class . '">' . \eMarket\Products::productPrice($discount_sale['price'] * \eMarket\Cart::productQuantity($input['id'], 1), $marker) . '</span>';
         }
         return \eMarket\Products::productPrice($price_val * \eMarket\Cart::productQuantity($input['id'], 1), $marker);
     }
@@ -148,9 +160,14 @@ final class Ecb {
             foreach ($_SESSION['cart'] as $value) {
                 $data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=? AND language=?", [$value['id'], lang('#lang_all')[0]]);
                 if ($data != FALSE) {
-                    $sale = self::outPrice($data[0]);
-                    if (array_key_exists(3, $sale)) {
-                        $total_price_with_sale = $total_price_with_sale + (\eMarket\Products::currencyPrice($data[0]['price'], $data[0]['currency']) * $value['quantity'] / 100 * (100 - $sale[3]));
+                    $discount_sale = self::outPrice($data[0])['discount_sale'];
+                    $discount_total_sale = 0;
+
+                    foreach ($discount_sale['sales'] as $total_sale) {
+                        $discount_total_sale = $discount_total_sale + $total_sale;
+                    }
+                    if ($discount_sale['sales'] != 'false') {
+                        $total_price_with_sale = $total_price_with_sale + (\eMarket\Products::currencyPrice($data[0]['price'], $data[0]['currency']) * $value['quantity'] / 100 * (100 - $discount_total_sale));
                     } else {
                         $total_price_with_sale = $total_price_with_sale + (\eMarket\Products::currencyPrice($data[0]['price'], $data[0]['currency']) * $value['quantity']);
                     }
