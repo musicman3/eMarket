@@ -208,7 +208,7 @@ final class Ecb {
      *
      * @param string $price (значение стоимости)
      * @param string $currency (id валюты)
-     * @return string string (стоимость с учетом валюты)
+     * @return string|FALSE string (стоимость с учетом валюты)
      */
     public static function currencyPrice($price, $currency) {
 
@@ -220,6 +220,7 @@ final class Ecb {
                 return $price / $value['value'];
             }
         }
+        return FALSE;
     }
 
 }
