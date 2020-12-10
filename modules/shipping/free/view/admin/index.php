@@ -76,7 +76,7 @@
 		?>
 		<tr>
 		    <td><?php echo $zones_name[$lines[$start][2]] ?></td>
-		    <td class="text-center"><?php echo $lines[$start][1] ?></td>
+                    <td class="text-center"><?php echo \eMarket\Products::productPrice(\eMarket\Ecb::currencyPrice($lines[$start][1], $lines[$start][3]), 1) ?></td>
 		    <td>
 			<div class="flexbox">
 			    <!--Вызов модального окна для редактирования-->

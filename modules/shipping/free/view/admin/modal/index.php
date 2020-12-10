@@ -37,7 +37,7 @@
                         </div>
                         <div class="col-left form-group">
                             <div class="input-group has-error">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
+                                <span class="input-group-addon"><?php echo \eMarket\Set::currencyDefault()[3] ?></span></span>
                                 <input class="input-sm form-control" placeholder="<?php echo lang('modules_shipping_free_admin_minimum_order_price_for_free_shipping') ?>" type="text" name="minimum_price" id="minimum_price" autocomplete="off" required />
                             </div>
                         </div>

@@ -10,8 +10,8 @@ for ($i = $start; $i < $finish; $i++) {
 
         $modal_id = $lines[$i][0]; // ID
 
-        $query = \eMarket\Pdo::getRow("SELECT minimum_price, shipping_zone FROM " . $MODULE_DB . " WHERE id=?", [$modal_id]);
-        $minimum_price[$modal_id] = $query[0];
+        $query = \eMarket\Pdo::getRow("SELECT minimum_price, shipping_zone, currency FROM " . $MODULE_DB . " WHERE id=?", [$modal_id]);
+        $minimum_price[$modal_id] = round(\eMarket\Ecb::currencyPrice($query[0], $query[2]), 2);
         $shipping_zone[$modal_id] = $query[1];
         // ПАРАМЕТРЫ ДЛЯ ПЕРЕДАЧИ В МОДАЛ
         $json_data = json_encode([
