@@ -229,6 +229,7 @@ class Cart {
                 AjaxSuccess);
         // Обновление страницы
         function AjaxSuccess(data) {
+            sessionStorage.removeItem('lang');
             document.location.href = url;
         }
     }
