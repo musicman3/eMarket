@@ -12,8 +12,8 @@
 class Cart {
     /**
      * Конструктор
-     *
-     **@param lang {Array} (языковые переменные)
+     * 
+     * @param lang {Array} (языковые переменные)
      */
     constructor(lang) {
         Cart.init(lang);
@@ -84,6 +84,8 @@ class Cart {
         function AjaxSuccess(data) {
             $('#cart_bar').replaceWith($(data).find('#cart_bar'));
             $('#cart').replaceWith($(data).find('#cart'));
+            $('#index').replaceWith($(data).find('#index'));
+            new Cart($.parseJSON(sessionStorage.getItem('lang')));
         }
     }
 
@@ -102,6 +104,8 @@ class Cart {
         function AjaxSuccess(data) {
             $('#cart_bar').replaceWith($(data).find('#cart_bar'));
             $('#cart').replaceWith($(data).find('#cart'));
+            $('#index').replaceWith($(data).find('#index'));
+            new Cart($.parseJSON(sessionStorage.getItem('lang')));
         }
     }
 
