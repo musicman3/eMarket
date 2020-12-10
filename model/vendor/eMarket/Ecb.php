@@ -34,11 +34,13 @@ final class Ecb {
         }
 
         $discount_sale = self::outPrice($input)['discount_sale'];
-        $discount_count = count($discount_sale['names']);
-        $discount_names = '';
+        if ($discount_sale['names'] != 'false') {
+            $discount_count = count($discount_sale['names']);
+            $discount_names = '';
 
-        foreach ($discount_sale['names'] as $name_val) {
-            $discount_names .= $name_val . '<br>';
+            foreach ($discount_sale['names'] as $name_val) {
+                $discount_names .= $name_val . '<br>';
+            }
         }
 
         if (\eMarket\Set::path() == 'admin') {
