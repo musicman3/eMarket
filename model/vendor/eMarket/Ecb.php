@@ -109,8 +109,10 @@ final class Ecb {
         $discount_sale = self::outPrice($input)['discount_sale'];
         $discount_total_sale = 0;
 
-        foreach ($discount_sale['sales'] as $total_sale) {
-            $discount_total_sale = $discount_total_sale + $total_sale;
+        if ($discount_sale['sales'] != 'false') {
+            foreach ($discount_sale['sales'] as $total_sale) {
+                $discount_total_sale = $discount_total_sale + $total_sale;
+            }
         }
 
         if (isset($discount_total_sale) && $discount_total_sale > 0 && $input['stiker'] != '' && $input['stiker'] != NULL) {
