@@ -51,7 +51,7 @@
 
                         <div class="form-group">
                             <div class="input-group has-error">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-order"></span></span>
+                                <span class="input-group-addon"><?php echo \eMarket\Set::currencyDefault()[3] ?></span>
                                 <input class="input-sm form-control" placeholder="<?php echo lang('taxes_modal_rate') ?>" type="text" pattern="\d+(\.\d{0,2})?" name="rate_taxes" id="rate_taxes" required />
                             </div>
                         </div>
