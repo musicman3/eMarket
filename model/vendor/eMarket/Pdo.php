@@ -359,7 +359,7 @@ final class Pdo {
                 AND $result = $value[0][0]) {
             
         }
-        return $result;
+        return \eMarket\Func::escape_sign($result);
     }
 
     /**

@@ -8,7 +8,7 @@
 <div id="layouts-categories" class="panel panel-default">
     <div class="panel-heading"><?php echo lang('categories_name') ?></div>
     <div class="panel-body category_block">
-        <?php $categories_and_breadcrumb = \eMarket\Tree::categories($sql, \eMarket\Valid::inGET('category_id')); ?>
+        <?php $categories_and_breadcrumb = \eMarket\Func::escape_sign(\eMarket\Tree::categories($sql, \eMarket\Valid::inGET('category_id'))); ?>
     </div>
 </div>
 <?php if ($categories_and_breadcrumb != 0) { ?>
