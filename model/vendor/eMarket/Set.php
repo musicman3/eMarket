@@ -19,6 +19,7 @@ class Set {
     public static $primary_language = FALSE;
     public static $lines_on_page = FALSE;
     public static $session_expr_time = FALSE;
+    public static $currency_default_admin = FALSE;
 
     /**
      * Название текущего шаблона
@@ -60,7 +61,7 @@ class Set {
     }
 
     /**
-     * Данные по основной валюте
+     * Данные по основной валюте каталога
      *
      * @param string $language (язык)
      * @return array $currency
@@ -75,14 +76,20 @@ class Set {
 
         if (self::$CURRENCIES == FALSE) {
 
-            if (!isset($_SESSION['currency_default_catalog'])) {
+            if (self::path() == 'catalog') {
+                if (!isset($_SESSION['currency_default_catalog'])) {
+                    $currency = \eMarket\Pdo::getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND default_value=?", [$language, 1])[0];
+                    $_SESSION['currency_default_catalog'] = $currency[0];
+                } elseif (isset($_SESSION['currency_default_catalog']) && !\eMarket\Valid::inGET('currency_default')) {
+                    $currency = \eMarket\Pdo::getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND id=?", [$language, $_SESSION['currency_default_catalog']])[0];
+                } elseif (isset($_SESSION['currency_default_catalog']) && \eMarket\Valid::inGET('currency_default')) {
+                    $currency = \eMarket\Pdo::getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND id=?", [$language, \eMarket\Valid::inGET('currency_default')])[0];
+                    $_SESSION['currency_default_catalog'] = $currency[0];
+                }
+            }
+
+            if (self::path() == 'admin') {
                 $currency = \eMarket\Pdo::getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND default_value=?", [$language, 1])[0];
-                $_SESSION['currency_default_catalog'] = $currency[0];
-            } elseif (isset($_SESSION['currency_default_catalog']) && !\eMarket\Valid::inGET('currency_default')) {
-                $currency = \eMarket\Pdo::getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND id=?", [$language, $_SESSION['currency_default_catalog']])[0];
-            } elseif (isset($_SESSION['currency_default_catalog']) && \eMarket\Valid::inGET('currency_default')) {
-                $currency = \eMarket\Pdo::getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND id=?", [$language, \eMarket\Valid::inGET('currency_default')])[0];
-                $_SESSION['currency_default_catalog'] = $currency[0];
             }
 
             self::$CURRENCIES = $currency;

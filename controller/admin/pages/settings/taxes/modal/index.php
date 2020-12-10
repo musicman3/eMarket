@@ -17,7 +17,7 @@ for ($i = $start; $i < $finish; $i++) {
             $name[$x][$modal_id] = \eMarket\Pdo::selectPrepare("SELECT name FROM " . TABLE_TAXES . " WHERE id=? AND language=?", [$modal_id, lang('#lang_all')[$x]]);
         }
         $query = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_TAXES . " WHERE id=? AND language=?", [$modal_id, lang('#lang_all')[0]])[0];
-        $rate[$modal_id] = $query['rate'];
+        $rate[$modal_id] = round(\eMarket\Ecb::currencyPrice($query['rate'], $query['currency']), 2);
         $tax_type[$modal_id] = (int) $query['tax_type'];
         $zones_id[$modal_id] = (int) $query['zones_id'];
         $fixed[$modal_id] = (int) $query['fixed'];

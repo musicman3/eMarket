@@ -25,10 +25,10 @@ for ($i = $start; $i < $finish; $i++) {
         $query = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product])[0];
 
         // Цена
-        $price_product[$modal_id_product] = $query['price'];
+        $price_product[$modal_id_product] = round(\eMarket\Ecb::currencyPrice($query['price'], $query['currency']), 2);
 
         // Валюта
-        $currency_product[$modal_id_product] = \eMarket\Pdo::selectPrepare("SELECT name FROM " . TABLE_CURRENCIES . " WHERE id=? and language=?", [$query['currency'], lang('#lang_all')[0]]);
+        $currency_product[$modal_id_product] = \eMarket\Pdo::selectPrepare("SELECT name FROM " . TABLE_CURRENCIES . " WHERE id=? and language=?", [\eMarket\Set::currencyDefault()[0], lang('#lang_all')[0]]);
 
         // Количество
         $quantity_product[$modal_id_product] = $query['quantity'];

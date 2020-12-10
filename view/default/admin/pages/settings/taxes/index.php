@@ -83,7 +83,7 @@
 			<?php for ($start; $start < $finish; $start++) { ?>
     			<tr>
     			    <td><?php echo $lines[$start][1] ?></td>
-    			    <td class="text-center"><?php echo $lines[$start][3] ?></td>
+                            <td class="text-center"><?php echo round(\eMarket\Ecb::currencyPrice($lines[$start][3], $lines[$start][7]), 2) ?></td>
                             <td class="text-center"><?php echo $value_6[$lines[$start][6]] ?></td>
                             <td class="text-center"><?php echo $value_4[$lines[$start][4]] ?></td>
                             <td class="text-center"><?php echo $zones_names[$lines[$start][5]] ?></td>
