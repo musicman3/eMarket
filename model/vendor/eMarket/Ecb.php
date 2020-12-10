@@ -167,11 +167,11 @@ final class Ecb {
                 if ($data != FALSE) {
                     $discount_sale = self::outPrice($data[0])['discount_sale'];
                     $discount_total_sale = 0;
-
-                    foreach ($discount_sale['sales'] as $total_sale) {
-                        $discount_total_sale = $discount_total_sale + $total_sale;
-                    }
+                    
                     if ($discount_sale['sales'] != 'false') {
+                        foreach ($discount_sale['sales'] as $total_sale) {
+                            $discount_total_sale = $discount_total_sale + $total_sale;
+                        }
                         $total_price_with_sale = $total_price_with_sale + (self::currencyPrice($data[0]['price'], $data[0]['currency']) * $value['quantity'] / 100 * (100 - $discount_total_sale));
                     } else {
                         $total_price_with_sale = $total_price_with_sale + (self::currencyPrice($data[0]['price'], $data[0]['currency']) * $value['quantity']);
