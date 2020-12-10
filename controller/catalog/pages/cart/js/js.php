@@ -15,6 +15,6 @@ $lang_js = json_encode([
 ?>
 <script type="text/javascript" src="/model/js/classes/cart/cart.js"></script>
 <script type="text/javascript">
-    new Cart(<?php echo $lang_js ?>);
     sessionStorage.setItem('lang', '<?php echo $lang_js ?>');
+    new Cart();
 </script>

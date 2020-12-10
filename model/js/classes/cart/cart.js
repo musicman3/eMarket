@@ -13,9 +13,9 @@ class Cart {
     /**
      * Конструктор
      * 
-     * @param lang {Array} (языковые переменные)
      */
-    constructor(lang) {
+    constructor() {
+        var lang = $.parseJSON(sessionStorage.getItem('lang'));
         Cart.init(lang);
         Cart.shippingData(lang);
     }
@@ -85,7 +85,7 @@ class Cart {
             $('#cart_bar').replaceWith($(data).find('#cart_bar'));
             $('#cart').replaceWith($(data).find('#cart'));
             $('#index').replaceWith($(data).find('#index'));
-            new Cart($.parseJSON(sessionStorage.getItem('lang')));
+            new Cart();
         }
     }
 
@@ -105,7 +105,7 @@ class Cart {
             $('#cart_bar').replaceWith($(data).find('#cart_bar'));
             $('#cart').replaceWith($(data).find('#cart'));
             $('#index').replaceWith($(data).find('#index'));
-            new Cart($.parseJSON(sessionStorage.getItem('lang')));
+            new Cart();
         }
     }
 
