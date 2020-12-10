@@ -395,17 +395,22 @@ class Func {
     /**
      * Функция для экранирования специальных символов
      *
-     * @param string $string (строка для экранирования символов)
-     * @return string $output (токен)
+     * @param string|array $string (строка для экранирования символов)
+     * @return string|array $output (исходящая строка)
      */
     public static function escape_sign($string) {
-
         //перечень символов и замен в массиве
         $symbols = ["'"];
         $escape = ["&#8216;"];
 
-        $output = str_replace($symbols, $escape, $string);
-
+        if (is_array($string)) {
+            $output = [];
+            foreach ($string as $key => $value) {
+                $output[$key] = str_replace($symbols, $escape, $value);
+            }
+        } else {
+            $output = str_replace($symbols, $escape, $string);
+        }
         return $output;
     }
 

@@ -124,7 +124,7 @@ final class Pdo {
                 AND $result = $value[0]) {
             
         }
-        return $result;
+        return \eMarket\Func::escape_sign($result);
     }
 
     /**
@@ -194,7 +194,7 @@ final class Pdo {
                 AND $result = $exec->fetchAll(\PDO :: FETCH_NUM)) {
             
         }
-        return $result;
+        return  \eMarket\Func::escape_sign($result);
     }
 
     /**
@@ -226,7 +226,7 @@ final class Pdo {
                 AND $result = $exec->fetchAll(\PDO :: FETCH_COLUMN)) {
             
         }
-        return $result;
+        return  \eMarket\Func::escape_sign($result);
     }
 
     /**
@@ -258,7 +258,7 @@ final class Pdo {
                 AND $result = $exec->fetchAll(\PDO :: FETCH_NUM)) {
             
         }
-        return $result[0];
+        return  \eMarket\Func::escape_sign($result)[0];
     }
 
     /**
@@ -283,7 +283,7 @@ final class Pdo {
                 AND $result = $exec->fetchColumn()) {
             
         }
-        return $result;
+        return \eMarket\Func::escape_sign($result);
     }
 
     /**
@@ -419,9 +419,8 @@ final class Pdo {
         if ($exec = self::connect()->prepare($sql)
                 AND $exec->execute($a)
                 AND $result = $exec->fetchAll(\PDO :: FETCH_ASSOC)) {
-            
         }
-        return $result;
+        return \eMarket\Func::escape_sign($result);
     }
 
     /**

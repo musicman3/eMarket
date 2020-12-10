@@ -62,7 +62,7 @@ if (\eMarket\Valid::inPOST('add')) {
         $end_date = NULL;
     }
 
-    \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_SLIDESHOW . " SET language=?, url=?, name=?, heading=?, logo=?, date_start=?, date_finish=?, status=?", [\eMarket\Valid::inPOST('set_language'), \eMarket\Valid::inPOST('url'), \eMarket\Func::escape_sign(\eMarket\Valid::inPOST('name')), \eMarket\Func::escape_sign(\eMarket\Valid::inPOST('heading')), json_encode([]), $start_date, $end_date, $view_slideshow]);
+    \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_SLIDESHOW . " SET language=?, url=?, name=?, heading=?, logo=?, date_start=?, date_finish=?, status=?", [\eMarket\Valid::inPOST('set_language'), \eMarket\Valid::inPOST('url'), \eMarket\Valid::inPOST('name'), \eMarket\Valid::inPOST('heading'), json_encode([]), $start_date, $end_date, $view_slideshow]);
     // Выводим сообщение об успехе
     \eMarket\Messages::alert('success', lang('action_completed_successfully'));
 }
@@ -90,7 +90,7 @@ if (\eMarket\Valid::inPOST('edit')) {
     }
 
     // обновляем запись
-    \eMarket\Pdo::inPrepare("UPDATE " . TABLE_SLIDESHOW . " SET url=?, name=?, heading=?, date_start=?, date_finish=?, status=? WHERE id=?", [\eMarket\Valid::inPOST('url'), \eMarket\Func::escape_sign(\eMarket\Valid::inPOST('name')), \eMarket\Func::escape_sign(\eMarket\Valid::inPOST('heading')), $start_date, $end_date, $view_slideshow, \eMarket\Valid::inPOST('edit')]);
+    \eMarket\Pdo::inPrepare("UPDATE " . TABLE_SLIDESHOW . " SET url=?, name=?, heading=?, date_start=?, date_finish=?, status=? WHERE id=?", [\eMarket\Valid::inPOST('url'), \eMarket\Valid::inPOST('name'), \eMarket\Valid::inPOST('heading'), $start_date, $end_date, $view_slideshow, \eMarket\Valid::inPOST('edit')]);
 
     // Выводим сообщение об успехе
     \eMarket\Messages::alert('success', lang('action_completed_successfully'));
