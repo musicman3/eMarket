@@ -168,17 +168,6 @@ class Products {
     }
 
     /**
-     * Данные по категории товара
-     *
-     * @param string $id (id категории)
-     * @return array $product (данные по категории)
-     */
-    public static function productCategories($id) {
-        $categories = \eMarket\Pdo::getCell("SELECT name FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], $id]);
-        return $categories;
-    }
-
-    /**
      * Данные стоимости товара
      *
      * @param string $price (цена)
