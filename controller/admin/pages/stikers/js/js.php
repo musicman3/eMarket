@@ -28,7 +28,7 @@
                 $('#name_stikers_' + x).val(json_data['name'][x][modal_id]);
             }
             // Меняем значение чекбокса
-            $('#default_stikers').prop('checked', json_data['status'][modal_id]);
+            $('#default_stikers').prop('checked', json_data['default_stikers'][modal_id]);
             $('#default_stikers').bootstrapSwitch();
         } else {
             $('#edit').val('');

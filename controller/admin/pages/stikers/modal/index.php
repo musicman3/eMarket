@@ -8,21 +8,25 @@
 // собираем данные для отображения в Редактировании
 $json_data = json_encode([]);
 for ($i = $start; $i < $finish; $i++) {
-    if (isset($lines[$i][0]) == TRUE) {
+    if (isset($lines[$i]['id']) == TRUE) {
 
-        $modal_id = $lines[$i][0]; // ID
-        $count_lang = $LANG_COUNT;
+        $modal_id = $lines[$i]['id']; // ID
 
-        for ($x = 0; $x < $count_lang; $x++) {
-            $query_lang = \eMarket\Pdo::getRow("SELECT name FROM " . TABLE_STIKERS . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]]);
-            $name[$x][$modal_id] = $query_lang[0];
+        foreach ($sql_data as $sql_modal) {
+            //Языковые
+            if ($sql_modal['id'] == $modal_id) {
+                $name[array_search($sql_modal['language'], lang('#lang_all'))][$modal_id] = $sql_modal['name'];
+            }
+            if ($sql_modal['language'] == lang('#lang_all')[0] && $sql_modal['id'] == $modal_id) {
+                $default_stikers[$modal_id] = (int) $sql_modal['default_stikers'];
+            }
         }
-
-        $status[$modal_id] = (int) \eMarket\Pdo::selectPrepare("SELECT default_stikers FROM " . TABLE_STIKERS . " WHERE id=?", [$modal_id]);
+        //Сортируем языковые
+        ksort($name);
 
         $json_data = json_encode([
             'name' => $name,
-            'status' => $status
+            'default_stikers' => $default_stikers
         ]);
     }
 }
