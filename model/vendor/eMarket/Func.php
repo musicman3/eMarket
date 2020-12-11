@@ -414,6 +414,24 @@ class Func {
         return $output;
     }
 
+    /**
+     * Функция фильтрации данных в двухмерном массиве
+     *
+     * @param array $data (входящие данные)
+     * @param string $parameter_name (входящие данные)
+     * @param string $parameter (входящие данные)
+     * @return array $data (исходящие данные)
+     */
+    public static function filterData($data, $parameter_name, $parameter) {
+        $output = [];
+        foreach ($data as $value) {
+            if ($value[$parameter_name] == $parameter) {
+                array_push($output, $value);
+            }
+        }
+        return $output;
+    }
+
 }
 
 ?>
