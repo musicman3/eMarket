@@ -5,5 +5,5 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-$products_new = \eMarket\Products::viewNew(10);
+$products_new = \eMarket\Products::newProducts(10);
 ?>

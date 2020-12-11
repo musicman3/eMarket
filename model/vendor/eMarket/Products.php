@@ -22,16 +22,14 @@ class Products {
     public static $length = FALSE;
 
     /**
-     * Данные по товару
+     * Данные по новым товарам
      *
      * @param string $count (количество новых товаров)
-     * @return array $product (массив с данными по товару)
+     * @return array $product (массив с данными по товарам)
      */
-    public static function viewNew($count) {
-
-
-        $product = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE language=? AND status=? ORDER BY id DESC LIMIT " . $count . "", [lang('#lang_all')[0], 1]);
-        return $product;
+    public static function newProducts($count) {
+        $products = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE language=? AND status=? ORDER BY id DESC LIMIT " . $count . "", [lang('#lang_all')[0], 1]);
+        return $products;
     }
 
     /**
