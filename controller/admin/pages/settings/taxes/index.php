@@ -77,7 +77,8 @@ $value_6 = [0 => sprintf(lang('taxes_value'), \eMarket\Set::currencyDefault()[2]
 $value_4 = [0 => lang('taxes_separately'), 1 => lang('taxes_included')];
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
-$lines = \eMarket\Pdo::getColRow("SELECT * FROM " . TABLE_TAXES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+$sql_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_TAXES . " ORDER BY id DESC", []);
+$lines = \eMarket\Func::filterData($sql_data, 'language', lang('#lang_all')[0]);
 $lines_on_page = \eMarket\Set::linesOnPage();
 $count_lines = count($lines);
 $navigate = \eMarket\Navigation::getLink($count_lines, $lines_on_page);

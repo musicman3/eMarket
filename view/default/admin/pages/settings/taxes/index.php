@@ -82,19 +82,19 @@
 		    <tbody>
 			<?php for ($start; $start < $finish; $start++) { ?>
     			<tr>
-    			    <td><?php echo $lines[$start][1] ?></td>
-                            <td class="text-center"><?php echo round(\eMarket\Ecb::currencyPrice($lines[$start][3], $lines[$start][7]), 2) ?></td>
-                            <td class="text-center"><?php echo $value_6[$lines[$start][6]] ?></td>
-                            <td class="text-center"><?php echo $value_4[$lines[$start][4]] ?></td>
-                            <td class="text-center"><?php echo $zones_names[$lines[$start][5]] ?></td>
+    			    <td><?php echo $lines[$start]['name'] ?></td>
+                            <td class="text-center"><?php echo round(\eMarket\Ecb::currencyPrice($lines[$start]['rate'], $lines[$start]['currency']), 2) ?></td>
+                            <td class="text-center"><?php echo $value_6[$lines[$start]['fixed']] ?></td>
+                            <td class="text-center"><?php echo $value_4[$lines[$start]['tax_type']] ?></td>
+                            <td class="text-center"><?php echo $zones_names[$lines[$start]['zones_id']] ?></td>
     			    <td>
     				<div class="flexbox">
     				    <!--Вызов модального окна для редактирования-->
     				    <div class="b-left">
-    					<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index" data-edit="<?php echo $lines[$start][0] ?>"><span class="glyphicon glyphicon-edit"></span></button>
+    					<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index" data-edit="<?php echo $lines[$start]['id'] ?>"><span class="glyphicon glyphicon-edit"></span></button>
     				    </div>
-    				    <form id="form_delete<?php echo $lines[$start][0] ?>" name="form_delete" action="javascript:void(null);" onsubmit="Ajax.callDelete('<?php echo $lines[$start][0] ?>')" enctype="multipart/form-data">
-    					<input hidden name="delete" value="<?php echo $lines[$start][0] ?>">
+    				    <form id="form_delete<?php echo $lines[$start]['id'] ?>" name="form_delete" action="javascript:void(null);" onsubmit="Ajax.callDelete('<?php echo $lines[$start]['id'] ?>')" enctype="multipart/form-data">
+    					<input hidden name="delete" value="<?php echo $lines[$start]['id'] ?>">
     					<div>
     					    <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button>
     					</div>
