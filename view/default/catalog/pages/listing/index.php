@@ -42,7 +42,6 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
         <div id="product-data" class="row row-flex">
             <?php
             for ($start; $start < $finish; $start++) {
-                $manufacturer = \eMarket\Products::nameToId($lines[$start]['manufacturer'], TABLE_MANUFACTURERS, 'name');
                 ?>
                 <div class="item col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item">
                     <div class="productHolder">
@@ -52,10 +51,10 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                             <h5 class="item-heading"><a href="/?route=products&category_id=<?php echo $lines[$start]['parent_id'] ?>&id=<?php echo $lines[$start]['id'] ?>"><?php echo $lines[$start]['name'] ?></a></h5>
 			    <div class="item-price"><?php echo \eMarket\Ecb::priceInterface($lines[$start], 1) ?></div>
                             <div class="item-text">
-                                <?php if ($manufacturer != NULL && $manufacturer != FALSE) { ?>
+                                <?php if (\eMarket\Products::manufacturer($lines[$start]['manufacturer'])['name'] != NULL && \eMarket\Products::manufacturer($lines[$start]['manufacturer'])['name'] != FALSE) { ?>
 				    <ul>
 					<li>
-					    <label><?php echo lang('product_manufacturer') ?></label> <?php echo $manufacturer ?>
+					    <label><?php echo lang('product_manufacturer') ?></label> <?php echo \eMarket\Products::manufacturer($lines[$start]['manufacturer'])['name'] ?>
 					</li>
                                 <?php } if ($lines[$start]['model'] != NULL && $lines[$start]['model'] != FALSE) { ?>
 					<li>

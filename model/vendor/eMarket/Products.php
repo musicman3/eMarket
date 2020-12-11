@@ -16,6 +16,11 @@ namespace eMarket;
  */
 class Products {
 
+    public static $manufacturer = FALSE;
+    public static $vendor_codes = FALSE;
+    public static $weight = FALSE;
+    public static $length = FALSE;
+
     /**
      * Данные по товару
      *
@@ -63,20 +68,75 @@ class Products {
     }
 
     /**
-     * Вывод имени по id
+     * Вывод производителя по id
      *
      * @param string $id (id в таблице)
-     * @param string $db (таблица)
-     * @param string $column (колонка)
-     * @return string $output (название)
+     * @return array|FALSE $value (данные по производителю)
      */
-    public static function nameToId($id, $db, $column) {
-        if ($id != NULL) {
-            $output = \eMarket\Pdo::getCellFalse("SELECT " . $column . " FROM " . $db . " WHERE language=? AND id=?", [lang('#lang_all')[0], $id]);
-        } else {
-            $output = NULL;
+    public static function manufacturer($id) {
+        if (self::$manufacturer == FALSE) {
+            $manufacturer = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_MANUFACTURERS . " WHERE language=? AND id=?", [lang('#lang_all')[0], $id]);
         }
-        return $output;
+        foreach ($manufacturer as $value) {
+            if ($value['id'] == $id) {
+                return $value;
+            }
+        }
+        return FALSE;
+    }
+
+    /**
+     * Вывод идентификатора по id
+     *
+     * @param string $id (id в таблице)
+     * @return array|FALSE $value (данные по идентификатору)
+     */
+    public static function vendorCode($id) {
+        if (self::$vendor_codes == FALSE) {
+            $vendor_codes = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_VENDOR_CODES . " WHERE language=? AND id=?", [lang('#lang_all')[0], $id]);
+        }
+        foreach ($vendor_codes as $value) {
+            if ($value['id'] == $id) {
+                return $value;
+            }
+        }
+        return FALSE;
+    }
+
+    /**
+     * Вывод веса по id
+     *
+     * @param string $id (id в таблице)
+     * @return array|FALSE $value (данные по весу)
+     */
+    public static function weight($id) {
+        if (self::$weight == FALSE) {
+            $weight = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_WEIGHT . " WHERE language=? AND id=?", [lang('#lang_all')[0], $id]);
+        }
+        foreach ($weight as $value) {
+            if ($value['id'] == $id) {
+                return $value;
+            }
+        }
+        return FALSE;
+    }
+
+    /**
+     * Вывод длины по id
+     *
+     * @param string $id (id в таблице)
+     * @return array|FALSE $value (данные по длине)
+     */
+    public static function length($id) {
+        if (self::$length == FALSE) {
+            $length = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_LENGTH . " WHERE language=? AND id=?", [lang('#lang_all')[0], $id]);
+        }
+        foreach ($length as $value) {
+            if ($value['id'] == $id) {
+                return $value;
+            }
+        }
+        return FALSE;
     }
 
     /**
@@ -114,8 +174,6 @@ class Products {
      * @return array $product (данные по категории)
      */
     public static function productCategories($id) {
-
-
         $categories = \eMarket\Pdo::getCell("SELECT name FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], $id]);
         return $categories;
     }

@@ -7,21 +7,21 @@
 
 $products = \eMarket\Products::productData(\eMarket\Valid::inGET('id'));
 
-$manufacturer = \eMarket\Products::nameToId($products['manufacturer'], TABLE_MANUFACTURERS, 'name');
+$manufacturer = \eMarket\Products::manufacturer($products['manufacturer'])['name'];
 
-$vendor_code = \eMarket\Products::nameToId($products['vendor_code'], TABLE_VENDOR_CODES, 'name');
+$vendor_code = \eMarket\Products::vendorCode($products['vendor_code'])['name'];
 
 if ($vendor_code != NULL && $vendor_code != FALSE) {
     $vendor_code_value = $products['vendor_code_value'];
 }
 
-$weight = \eMarket\Products::nameToId($products['weight'], TABLE_WEIGHT, 'code');
+$weight = \eMarket\Products::weight($products['weight'])['code'];
 
 if ($weight != NULL && $weight != FALSE) {
     $weight_value = $products['weight_value'];
 }
 
-$dimension_name = \eMarket\Pdo::getCellFalse("SELECT code FROM " . TABLE_LENGTH . " WHERE language=? AND id=?", [lang('#lang_all')[0], $products['dimension']]);
+$dimension_name = \eMarket\Products::length($products['dimension'])['code'];
 $dimensions = '';
 $dimension_marker = 0;
 
