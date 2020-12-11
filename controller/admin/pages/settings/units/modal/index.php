@@ -8,18 +8,23 @@
 // собираем данные для отображения в Редактировании
 $json_data = json_encode([]);
 for ($i = $start; $i < $finish; $i++) {
-    if (isset($lines[$i][0]) == TRUE) {
+    if (isset($lines[$i]['id']) == TRUE) {
 
-        $modal_id = $lines[$i][0]; // ID
-        $count_lang = $LANG_COUNT;
+        $modal_id = $lines[$i]['id']; // ID
 
-        for ($x = 0; $x < $count_lang; $x++) {
-            $query_lang = \eMarket\Pdo::getRow("SELECT name, unit FROM " . TABLE_UNITS . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]]);
-            $name[$x][$modal_id] = $query_lang[0];
-            $code[$x][$modal_id] = $query_lang[1];
+        foreach ($sql_data as $sql_modal) {
+            //Языковые
+            if ($sql_modal['id'] == $modal_id) {
+                $name[array_search($sql_modal['language'], lang('#lang_all'))][$modal_id] = $sql_modal['name'];
+                $code[array_search($sql_modal['language'], lang('#lang_all'))][$modal_id] = $sql_modal['unit'];
+            }
+            if ($sql_modal['language'] == lang('#lang_all')[0] && $sql_modal['id'] == $modal_id) {
+                $default[$modal_id] = $sql_modal['default_unit'];
+            }
         }
-
-        $default[$modal_id] = (int) \eMarket\Pdo::selectPrepare("SELECT default_unit FROM " . TABLE_UNITS . " WHERE id=?", [$modal_id]);
+        //Сортируем языковые
+        ksort($name);
+        ksort($code);
 
         $json_data = json_encode([
             'name' => $name,
