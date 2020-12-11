@@ -19,7 +19,7 @@ for ($i = $start; $i < $finish; $i++) {
                 $code[array_search($sql_modal['language'], lang('#lang_all'))][$modal_id] = $sql_modal['unit'];
             }
             if ($sql_modal['language'] == lang('#lang_all')[0] && $sql_modal['id'] == $modal_id) {
-                $default[$modal_id] = $sql_modal['default_unit'];
+                $default[$modal_id] = (int) $sql_modal['default_unit'];
             }
         }
         //Сортируем языковые

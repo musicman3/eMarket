@@ -18,8 +18,8 @@ for ($i = $start; $i < $finish; $i++) {
                 $code[array_search($sql_modal['language'], lang('#lang_all'))][$modal_id] = $sql_modal['code'];
             }
             if ($sql_modal['language'] == lang('#lang_all')[0] && $sql_modal['id'] == $modal_id) {
-                $value_length[$modal_id] = $sql_modal['value_length'];
-                $default_length[$modal_id] = $sql_modal['default_length'];
+                $value_length[$modal_id] = (float) $sql_modal['value_length'];
+                $default_length[$modal_id] = (int) $sql_modal['default_length'];
             }
         }
         //Сортируем языковые

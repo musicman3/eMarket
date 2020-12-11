@@ -18,7 +18,7 @@ for ($i = $start; $i < $finish; $i++) {
                 $name[array_search($sql_modal['language'], lang('#lang_all'))][$modal_id] = $sql_modal['name'];
             }
             if ($sql_modal['language'] == lang('#lang_all')[0] && $sql_modal['id'] == $modal_id) {
-                $default_order_status[$modal_id] = $sql_modal['default_order_status'];
+                $default_order_status[$modal_id] = (int) $sql_modal['default_order_status'];
             }
         }
         //Сортируем языковые

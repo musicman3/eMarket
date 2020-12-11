@@ -18,11 +18,11 @@ for ($i = $start; $i < $finish; $i++) {
             }
             if ($sql_modal['language'] == lang('#lang_all')[0] && $sql_modal['id'] == $modal_id) {
                 $iso_4217[$modal_id] = $sql_modal['iso_4217'];
-                $value[$modal_id] = $sql_modal['value'];
+                $value[$modal_id] = (float) $sql_modal['value'];
                 $symbol[$modal_id] = $sql_modal['symbol'];
                 $symbol_position[$modal_id] = $sql_modal['symbol_position'];
-                $decimal_places[$modal_id] = $sql_modal['decimal_places'];
-                $default_value[$modal_id] = $sql_modal['default_value'];
+                $decimal_places[$modal_id] = (float) $sql_modal['decimal_places'];
+                $default_value[$modal_id] = (int) $sql_modal['default_value'];
             }
         }
         //Сортируем языковые

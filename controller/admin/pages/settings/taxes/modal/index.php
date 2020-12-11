@@ -18,10 +18,10 @@ for ($i = $start; $i < $finish; $i++) {
                 $name[array_search($sql_modal['language'], lang('#lang_all'))][$modal_id] = $sql_modal['name'];
             }
             if ($sql_modal['language'] == lang('#lang_all')[0] && $sql_modal['id'] == $modal_id) {
-                $rate[$modal_id] = $sql_modal['rate'];
-                $tax_type[$modal_id] = $sql_modal['tax_type'];
-                $zones_id[$modal_id] = $sql_modal['zones_id'];
-                $fixed[$modal_id] = $sql_modal['fixed'];
+                $rate[$modal_id] = round($sql_modal['rate'], 2);
+                $tax_type[$modal_id] = (int) $sql_modal['tax_type'];
+                $zones_id[$modal_id] = (int) $sql_modal['zones_id'];
+                $fixed[$modal_id] = (int) $sql_modal['fixed'];
             }
         }
         //Сортируем языковые
