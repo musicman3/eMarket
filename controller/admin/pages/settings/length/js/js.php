@@ -28,9 +28,9 @@
                 $('#code_length_' + x).val(json_data['code'][x][modal_id]);
             }
 
-            $('#value_length').val(json_data['value'][modal_id]);
+            $('#value_length').val(json_data['value_length'][modal_id]);
             // Меняем значение чекбокса
-            $('#default_length').prop('checked', json_data['status'][modal_id]);
+            $('#default_length').prop('checked', json_data['default_length'][modal_id]);
             $('#default_length').bootstrapSwitch();
         } else {
             $('#edit').val('');

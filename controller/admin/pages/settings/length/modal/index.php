@@ -7,25 +7,30 @@
 // собираем данные для отображения в Редактировании
 $json_data = json_encode([]);
 for ($i = $start; $i < $finish; $i++) {
-    if (isset($lines[$i][0]) == TRUE) {
+    if (isset($lines[$i]['id']) == TRUE) {
 
-        $modal_id = $lines[$i][0]; // ID
-        $count_lang = $LANG_COUNT;
-
-        for ($x = 0; $x < $count_lang; $x++) {
-            $query_lang = \eMarket\Pdo::getRow("SELECT name, code FROM " . TABLE_LENGTH . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[$x]]);
-            $name[$x][$modal_id] = $query_lang[0];
-            $code[$x][$modal_id] = $query_lang[1];
+        $modal_id = $lines[$i]['id']; // ID
+        
+        foreach ($sql_data as $sql_modal) {
+            //Языковые
+            if ($sql_modal['id'] == $modal_id) {
+                $name[array_search($sql_modal['language'], lang('#lang_all'))][$modal_id] = $sql_modal['name'];
+                $code[array_search($sql_modal['language'], lang('#lang_all'))][$modal_id] = $sql_modal['code'];
+            }
+            if ($sql_modal['language'] == lang('#lang_all')[0] && $sql_modal['id'] == $modal_id) {
+                $value_length[$modal_id] = $sql_modal['value_length'];
+                $default_length[$modal_id] = $sql_modal['default_length'];
+            }
         }
-        $query = \eMarket\Pdo::getRow("SELECT value_length, default_length FROM " . TABLE_LENGTH . " WHERE id=?", [$modal_id]);
-        $value[$modal_id] = (float) $query[0];
-        $status[$modal_id] = (int) $query[1];
+        //Сортируем языковые
+        ksort($name);
+        ksort($code);
 
         $json_data = json_encode([
             'name' => $name,
             'code' => $code,
-            'value' => $value,
-            'status' => $status
+            'value_length' => $value_length,
+            'default_length' => $default_length
         ]);
     }
 }
