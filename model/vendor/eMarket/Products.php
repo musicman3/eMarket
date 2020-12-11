@@ -57,17 +57,6 @@ class Products {
     }
 
     /**
-     * Все изображения конкретного товара в массиве
-     *
-     * @param string $products_new_count (ячейка со списком изображений товара)
-     * @return array $image (названия изображений в массиве)
-     */
-    public static function viewNewImages($products_new_count) {
-        $image = explode(',', $products_new_count[6], -1);
-        return $image;
-    }
-
-    /**
      * Вывод производителя по id
      *
      * @param string $id (id в таблице)
