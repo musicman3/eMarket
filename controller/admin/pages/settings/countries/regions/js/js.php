@@ -22,7 +22,7 @@
                 $('#name_regions_' + x).val(json_data['name'][x][modal_id]);
             }
 
-            $('#region_code_regions').val(json_data['code'][modal_id]);
+            $('#region_code_regions').val(json_data['region_code'][modal_id]);
         } else {
             $('#edit').val('');
             $('#add').val('ok');
