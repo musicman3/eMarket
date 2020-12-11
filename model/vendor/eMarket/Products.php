@@ -129,7 +129,7 @@ class Products {
     /**
      * Товар на складе
      *
-     * @param string $date_available (id в таблице)
+     * @param string $date_available (дата появления на складе)
      * @param string $quantity (количество)
      * @return array (выходной массив)
      */
