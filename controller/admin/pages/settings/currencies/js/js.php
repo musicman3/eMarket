@@ -32,7 +32,7 @@
             $('#symbol_currencies').val(json_data['symbol'][modal_id]);
             $('#decimal_places_currencies').val(json_data['decimal_places'][modal_id]);
             // Меняем значение чекбокса
-            $('#default_value_currencies').prop('checked', json_data['status'][modal_id]);
+            $('#default_value_currencies').prop('checked', json_data['default_value'][modal_id]);
             $('#default_value_currencies').bootstrapSwitch();
             // Выбираем установленный селект
             if (json_data['symbol_position'][modal_id] === 'left') {
