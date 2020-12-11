@@ -108,20 +108,20 @@
 
                             <tbody>
                                 <?php for ($start; $start < $finish; $start++) { ?>
-                                    <tr class="<?php echo \eMarket\Set::statusSwitchClass($lines[$start][9], [$this_time, strtotime($lines[$start][7])], [strtotime($lines[$start][8]), $this_time]) ?>">
-                                        <td><img src="/uploads/images/slideshow/resize_0/<?php echo $lines[$start][3] ?>" /></td>
-                                         <td class="text-center"><?php echo count(json_decode($lines[$start][2])) ?></td>
-                                        <td class="text-center"><?php echo $lines[$start][5] ?></td>
-                                        <td class="text-center"><?php echo \eMarket\Set::dateLocale($lines[$start][7]); ?></td>
-                                        <td class="text-center"><?php echo \eMarket\Set::dateLocale($lines[$start][8]); ?></td>
+                                    <tr class="<?php echo \eMarket\Set::statusSwitchClass($lines[$start]['status'], [$this_time, strtotime($lines[$start]['date_start'])], [strtotime($lines[$start]['date_finish']), $this_time]) ?>">
+                                        <td><img src="/uploads/images/slideshow/resize_0/<?php echo $lines[$start]['logo_general'] ?>" /></td>
+                                        <td class="text-center"><?php echo count(json_decode($lines[$start]['logo'])) ?></td>
+                                        <td class="text-center"><?php echo $lines[$start]['name'] ?></td>
+                                        <td class="text-center"><?php echo \eMarket\Set::dateLocale($lines[$start]['date_start']); ?></td>
+                                        <td class="text-center"><?php echo \eMarket\Set::dateLocale($lines[$start]['date_finish']); ?></td>
                                         <td>
                                             <div class="flexbox">
                                                 <!--Вызов модального окна для редактирования-->
                                                 <div class="b-left">
-                                                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index" data-edit="<?php echo $lines[$start][0] ?>"><span class="glyphicon glyphicon-edit"></span></button>
+                                                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index" data-edit="<?php echo $lines[$start]['id'] ?>"><span class="glyphicon glyphicon-edit"></span></button>
                                                 </div>
-                                                <form id="form_delete<?php echo $lines[$start][0] ?>" name="form_delete" action="javascript:void(null);" onsubmit="Ajax.callDelete('<?php echo $lines[$start][0] ?>')" enctype="multipart/form-data">
-                                                    <input hidden name="delete" value="<?php echo $lines[$start][0] ?>">
+                                                <form id="form_delete<?php echo $lines[$start]['id'] ?>" name="form_delete" action="javascript:void(null);" onsubmit="Ajax.callDelete('<?php echo $lines[$start]['id'] ?>')" enctype="multipart/form-data">
+                                                    <input hidden name="delete" value="<?php echo $lines[$start]['id'] ?>">
                                                     <div>
                                                         <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button>
                                                     </div>
@@ -203,20 +203,20 @@
 
                                     <tbody>
                                         <?php for ($start; $start < $finish; $start++) { ?>
-                                        <tr class="<?php echo \eMarket\Set::statusSwitchClass($lines[$start][9], [$this_time, strtotime($lines[$start][7])], [strtotime($lines[$start][8]), $this_time]) ?>">
-                                                <td><img src="/uploads/images/slideshow/resize_0/<?php echo $lines[$start][3] ?>" /></td>
-                                                <td class="text-center"><?php echo count(json_decode($lines[$start][2])) ?></td>
-                                                <td class="text-center"><?php echo $lines[$start][5] ?></td>
-                                                <td class="text-center"><?php echo \eMarket\Set::dateLocale($lines[$start][7]); ?></td>
-                                                <td class="text-center"><?php echo \eMarket\Set::dateLocale($lines[$start][8]); ?></td>
+                                            <tr class="<?php echo \eMarket\Set::statusSwitchClass($lines[$start]['status'], [$this_time, strtotime($lines[$start]['date_start'])], [strtotime($lines[$start]['date_finish']), $this_time]) ?>">
+                                                <td><img src="/uploads/images/slideshow/resize_0/<?php echo $lines[$start]['logo_general'] ?>" /></td>
+                                                <td class="text-center"><?php echo count(json_decode($lines[$start]['logo'])) ?></td>
+                                                <td class="text-center"><?php echo $lines[$start]['name'] ?></td>
+                                                <td class="text-center"><?php echo \eMarket\Set::dateLocale($lines[$start]['date_start']); ?></td>
+                                                <td class="text-center"><?php echo \eMarket\Set::dateLocale($lines[$start]['date_finish']); ?></td>
                                                 <td>
                                                     <div class="flexbox">
                                                         <!--Вызов модального окна для редактирования-->
                                                         <div class="b-left">
-                                                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index" data-edit="<?php echo $lines[$start][0] ?>"><span class="glyphicon glyphicon-edit"></span></button>
+                                                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index" data-edit="<?php echo $lines[$start]['id'] ?>"><span class="glyphicon glyphicon-edit"></span></button>
                                                         </div>
-                                                        <form id="form_delete<?php echo $lines[$start][0] ?>" name="form_delete" action="javascript:void(null);" onsubmit="Ajax.callDelete('<?php echo $lines[$start][0] ?>')" enctype="multipart/form-data">
-                                                            <input hidden name="delete" value="<?php echo $lines[$start][0] ?>">
+                                                        <form id="form_delete<?php echo $lines[$start]['id'] ?>" name="form_delete" action="javascript:void(null);" onsubmit="Ajax.callDelete('<?php echo $lines[$start]['id'] ?>')" enctype="multipart/form-data">
+                                                            <input hidden name="delete" value="<?php echo $lines[$start]['id'] ?>">
                                                             <div>
                                                                 <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button>
                                                             </div>

@@ -7,21 +7,23 @@
 
 $json_data = json_encode([]);
 for ($i = $start; $i < $finish; $i++) {
-    if (isset($lines[$i][0]) == TRUE) {
+    if (isset($lines[$i]['id']) == TRUE) {
 
-        $modal_id = $lines[$i][0]; // ID
+        $modal_id = $lines[$i]['id']; // ID
 
-        $query = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_SLIDESHOW . " WHERE id=?", [$modal_id])[0];
-        
-        $name[$modal_id] = $query['name'];
-        $url[$modal_id] = $query['url'];
-        $heading[$modal_id] = $query['heading'];
-        $logo[$modal_id] = json_decode($query['logo'], 1);
-        $logo_general[$modal_id] = $query['logo_general'];
-        $heading[$modal_id] = $query['heading'];
-        $date_start[$modal_id] = $query['date_start'];
-        $date_finish[$modal_id] = $query['date_finish'];
-        $status[$modal_id] = (int) $query['status'];
+        foreach ($sql_data as $sql_modal) {
+            if ($sql_modal['id'] == $modal_id) {
+                $name[$modal_id] = $sql_modal['name'];
+                $url[$modal_id] = $sql_modal['url'];
+                $heading[$modal_id] = $sql_modal['heading'];
+                $logo[$modal_id] = json_decode($sql_modal['logo'], 1);
+                $logo_general[$modal_id] = $sql_modal['logo_general'];
+                $heading[$modal_id] = $sql_modal['heading'];
+                $date_start[$modal_id] = $sql_modal['date_start'];
+                $date_finish[$modal_id] = $sql_modal['date_finish'];
+                $status[$modal_id] = (int) $sql_modal['status'];
+            }
+        }
 
         $json_data = json_encode([
             'name' => $name,
