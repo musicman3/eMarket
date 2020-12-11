@@ -53,9 +53,9 @@ $order_status = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_ORDER_STATUS 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 $search = '%' . \eMarket\Valid::inGET('search') . '%';
 if (\eMarket\Valid::inGET('search')) {
-    $lines = \eMarket\Pdo::getColRow("SELECT * FROM " . TABLE_ORDERS . " WHERE id LIKE? OR email LIKE? ORDER BY id DESC", [$search, $search]);
+    $lines = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_ORDERS . " WHERE id LIKE? OR email LIKE? ORDER BY id DESC", [$search, $search]);
 } else {
-    $lines = \eMarket\Pdo::getColRow("SELECT * FROM " . TABLE_ORDERS . " ORDER BY id DESC", []);
+    $lines = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_ORDERS . " ORDER BY id DESC", []);
 }
 
 $lines_on_page = \eMarket\Set::linesOnPage();

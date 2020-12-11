@@ -95,21 +95,21 @@
 		    <tbody>
 			<?php for ($start; $start < $finish; $start++) { ?>
     			<tr>
-    			    <td><?php echo $lines[$start][0] ?></td>
-    			    <td class="text-center"><?php echo json_decode($lines[$start][2], 1)['firstname'] . ' ' . json_decode($lines[$start][2], 1)['lastname'] ?></td>
-    			    <td class="text-center"><?php echo $lines[$start][1] ?></td>
-    			    <td class="text-center"><?php echo json_decode($lines[$start][5], 1)['admin']['total_format'] ?></td>
-    			    <td class="text-center"><?php echo \eMarket\Set::dateLocale($lines[$start][12], '%c') ?></td>
-    			    <td class="text-center"><?php echo \eMarket\Set::dateLocale($lines[$start][11], '%c') ?></td>
-    			    <td class="text-center"><?php echo json_decode($lines[$start][3], 1)[0]['admin']['status'] ?></td>
+    			    <td><?php echo $lines[$start]['id'] ?></td>
+    			    <td class="text-center"><?php echo json_decode($lines[$start]['customer_data'], 1)['firstname'] . ' ' . json_decode($lines[$start]['customer_data'], 1)['lastname'] ?></td>
+    			    <td class="text-center"><?php echo $lines[$start]['email'] ?></td>
+    			    <td class="text-center"><?php echo json_decode($lines[$start]['order_total'], 1)['admin']['total_format'] ?></td>
+    			    <td class="text-center"><?php echo \eMarket\Set::dateLocale($lines[$start]['date_purchased'], '%c') ?></td>
+    			    <td class="text-center"><?php echo \eMarket\Set::dateLocale($lines[$start]['last_modified'], '%c') ?></td>
+    			    <td class="text-center"><?php echo json_decode($lines[$start]['orders_status_history'], 1)[0]['admin']['status'] ?></td>
     			    <td>
     				<div class="flexbox">
     				    <!--Вызов модального окна для редактирования-->
     				    <div class="b-left">
-    					<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index" data-edit="<?php echo $lines[$start][0] ?>"><span class="glyphicon glyphicon-edit"></span></button>
+    					<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index" data-edit="<?php echo $lines[$start]['id'] ?>"><span class="glyphicon glyphicon-edit"></span></button>
     				    </div>
-    				    <form id="form_delete<?php echo $lines[$start][0] ?>" name="form_delete" action="javascript:void(null);" onsubmit="Ajax.callDelete('<?php echo $lines[$start][0] ?>')" enctype="multipart/form-data">
-    					<input hidden name="delete" value="<?php echo $lines[$start][0] ?>">
+    				    <form id="form_delete<?php echo $lines[$start]['id'] ?>" name="form_delete" action="javascript:void(null);" onsubmit="Ajax.callDelete('<?php echo $lines[$start]['id'] ?>')" enctype="multipart/form-data">
+    					<input hidden name="delete" value="<?php echo $lines[$start]['id'] ?>">
     					<div>
     					    <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button>
     					</div>

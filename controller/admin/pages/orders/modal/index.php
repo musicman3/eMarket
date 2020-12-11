@@ -7,14 +7,16 @@
 // собираем данные для отображения в Редактировании
 $json_data = json_encode([]);
 for ($i = $start; $i < $finish; $i++) {
-    if (isset($lines[$i][0]) == TRUE) {
+    if (isset($lines[$i]['id']) == TRUE) {
 
-        $modal_id = $lines[$i][0]; // ID
-        
-        $query = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_ORDERS . " WHERE id=?", [$modal_id])[0];
-        $query['date_purchased'] = \eMarket\Set::dateLocale($query['date_purchased'], '%c');
-        
-        $orders[$modal_id] = $query;
+        $modal_id = $lines[$i]['id']; // ID
+
+        foreach ($lines as $sql_modal) {
+            if ($sql_modal['id'] == $modal_id) {
+                $sql_modal['date_purchased'] = \eMarket\Set::dateLocale($sql_modal['date_purchased'], '%c');
+                $orders[$modal_id] = $sql_modal;
+            }
+        }
 
         // ПАРАМЕТРЫ ДЛЯ ПЕРЕДАЧИ В МОДАЛ
         $json_data = json_encode($orders);
