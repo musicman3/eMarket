@@ -86,9 +86,15 @@ class Mouse {
      */
     static sortInitAll() {
         Mouse.sortInit('#sort-list', 'tr.sort-list', 'td.sortyes');
-        Mouse.sortInit('.group-attributes', 'tr.groupattributes', 'td.sortyes-group');
-        Mouse.sortInit('.attribute', 'tr.attributes-class', 'td.sortyes-attributes');
-        Mouse.sortInit('.values_attribute', 'tr.value-attributes-class', 'td.sortyes-value-attributes');
+        if ($('tbody').is('.group-attributes')) {
+            Mouse.sortInit('.group-attributes', 'tr.groupattributes', 'td.sortyes-group');
+        }
+        if ($('tbody').is('.attribute')) {
+            Mouse.sortInit('.attribute', 'tr.attributes-class', 'td.sortyes-attributes');
+        }
+        if ($('tbody').is('.values_attribute')) {
+            Mouse.sortInit('.values_attribute', 'tr.value-attributes-class', 'td.sortyes-value-attributes');
+        }
         //Выбор мышкой
         $(".option").click(function () {
             $(this).find('span').toggleClass('inactive');
@@ -108,17 +114,7 @@ class Mouse {
 
         // Установка синхронного запроса для jQuery.ajax
         jQuery.ajaxSetup({async: false});
-        jQuery.post('?route=stock',
+        jQuery.post(window.location.href,
                 {ids: ids.join()});
-        // Повторный вызов функции для нормального обновления страницы
-        jQuery.get(window.location.href,
-                {}, // id родительской категории
-                AjaxSuccess);
-        function AjaxSuccess(data) {
-            setTimeout(function () {
-                $('#ajax').replaceWith($(data).find('#ajax'));
-                Mouse.sortInitAll();
-            }, 100);
-        }
     }
 }

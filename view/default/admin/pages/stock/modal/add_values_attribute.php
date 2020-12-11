@@ -12,32 +12,32 @@
                 <h4 class="modal-title"><?php echo lang('stock_tittle_specification_value') ?></h4>
             </div>
             <form id="add_values_attribute_form">
-            <div class="panel-body">
-                
-                <div class="form-group">
-                    <div class="input-group has-success">
-                        <span class="input-group-addon"><img src="/view/<?php echo \eMarket\Set::template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[0] ?>.png" alt="<?php echo lang('#lang_all')[0] ?>" title="<?php echo lang('#lang_all')[0] ?>" width="16" height="10" /></span>
-                        <input class="input-add-values-attribute input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="add_values_attribute_<?php echo lang('#lang_all')[0] ?>" required />
-                    </div>
-                </div>
+                <div class="panel-body">
 
-                <?php
-                if ($LANG_COUNT > 1) {
-                    for ($x = 1; $x < $LANG_COUNT; $x++) {
-                        ?>
-                        <div class="form-group">
-                            <div class="input-group has-success">
-                                <span class="input-group-addon"><img src="/view/<?php echo \eMarket\Set::template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[$x] ?>.png" alt="<?php echo lang('#lang_all')[$x] ?>" title="<?php echo lang('#lang_all')[$x] ?>" width="16" height="10" /></span>
-                                <input class="input-add-values-attribute input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="add_values_attribute_<?php echo lang('#lang_all')[$x] ?>" required />
-                            </div>
+                    <div class="form-group">
+                        <div class="input-group has-success">
+                            <span class="input-group-addon"><img src="/view/<?php echo \eMarket\Set::template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[0] ?>.png" alt="<?php echo lang('#lang_all')[0] ?>" title="<?php echo lang('#lang_all')[0] ?>" width="16" height="10" /></span>
+                            <input class="input-add-values-attribute input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="add_values_attribute_<?php echo lang('#lang_all')[0] ?>" required />
                         </div>
+                    </div>
 
-                        <?php
+                    <?php
+                    if ($LANG_COUNT > 1) {
+                        for ($x = 1; $x < $LANG_COUNT; $x++) {
+                            ?>
+                            <div class="form-group">
+                                <div class="input-group has-success">
+                                    <span class="input-group-addon"><img src="/view/<?php echo \eMarket\Set::template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[$x] ?>.png" alt="<?php echo lang('#lang_all')[$x] ?>" title="<?php echo lang('#lang_all')[$x] ?>" width="16" height="10" /></span>
+                                    <input class="input-add-values-attribute input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="add_values_attribute_<?php echo lang('#lang_all')[$x] ?>" required />
+                                </div>
+                            </div>
+
+                            <?php
+                        }
                     }
-                }
-                ?>
+                    ?>
 
-            </div>
+                </div>
             </form>
             <div class="modal-footer">
                 <button class="btn btn-primary btn-xs" type="button" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-remove"></span> <?php echo lang('cancel') ?></button>

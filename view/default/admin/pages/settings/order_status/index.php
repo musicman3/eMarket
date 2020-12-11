@@ -76,10 +76,10 @@
 		    </thead>
 		    <tbody id="sort-list">
 			<?php for ($start; $start < $finish; $start++) { ?>
-    			<tr class="sort-list" unitid="<?php echo $lines[$start][0] ?>">
+    			<tr class="sort-list" unitid="<?php echo $lines[$start]['id'] ?>">
     			    <td class="sortyes sortleft-m"><div><span class="glyphicon glyphicon-move"> </span></div></td> 
-    			    <td><?php echo $lines[$start][1] ?></td>
-				<?php if ($lines[$start][2] == 1) { ?>
+    			    <td><?php echo $lines[$start]['name'] ?></td>
+				<?php if ($lines[$start]['default_order_status'] == 1) { ?>
 				    <td class="text-center"><?php echo lang('confirm-yes') ?></td>
 				<?php } else { ?>
 				    <td class="text-center"><?php echo lang('confirm-no') ?></td>
@@ -88,10 +88,10 @@
     				<div class="flexbox">
     				    <!--Вызов модального окна для редактирования-->
     				    <div class="b-left">
-    					<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index" data-edit="<?php echo $lines[$start][0] ?>"><span class="glyphicon glyphicon-edit"></span></button>
+    					<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index" data-edit="<?php echo $lines[$start]['id'] ?>"><span class="glyphicon glyphicon-edit"></span></button>
     				    </div>
-    				    <form id="form_delete<?php echo $lines[$start][0] ?>" name="form_delete" action="javascript:void(null);" onsubmit="Ajax.callDelete('<?php echo $lines[$start][0] ?>')" enctype="multipart/form-data">
-    					<input hidden name="delete" value="<?php echo $lines[$start][0] ?>">
+    				    <form id="form_delete<?php echo $lines[$start]['id'] ?>" name="form_delete" action="javascript:void(null);" onsubmit="Ajax.callDelete('<?php echo $lines[$start]['id'] ?>')" enctype="multipart/form-data">
+    					<input hidden name="delete" value="<?php echo $lines[$start]['id'] ?>">
     					<div>
     					    <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button>
     					</div>
