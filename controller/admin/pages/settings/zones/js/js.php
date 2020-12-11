@@ -21,7 +21,7 @@
             for (x = 0; x < json_data['name'].length; x++) {
                 $('#name_zones_' + x).val(json_data['name'][x][modal_id]);
             }
-            $('#note_zones').val(json_data['code'][modal_id]);
+            $('#note_zones').val(json_data['note'][modal_id]);
             $('#js').val(modal_id);
         } else {
             $('#edit').val('');

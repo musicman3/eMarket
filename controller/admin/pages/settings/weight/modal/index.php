@@ -24,6 +24,7 @@ for ($i = $start; $i < $finish; $i++) {
         }
         //Сортируем языковые
         ksort($name);
+        ksort($code);
 
         $json_data = json_encode([
             'name' => $name,
