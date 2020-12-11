@@ -146,6 +146,8 @@ $stiker_name = [];
 foreach ($stiker_data as $val) {
     $stiker_name[$val['id']] = $val['name'];
 }
+// Счетчик трансфера
+$transfer = 0;
 
 // КОНЕЦ-> КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 // Модальное окно

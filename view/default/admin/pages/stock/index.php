@@ -136,7 +136,7 @@
 
                                 <?php
                             }
-                            $transfer = 0;
+
                             for ($start; $start < $finish; $start++) {
                                 $transfer++;
 
