@@ -10,12 +10,15 @@ for ($i = $start; $i < $finish; $i++) {
     if (isset($lines[$i]['id']) == TRUE) {
 
         $modal_id = $lines[$i]['id']; // ID
-        
-        $query = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_ORDERS . " WHERE id=?", [$modal_id])[0];
-        $orders_temp[$modal_id] = $query;
+
+        foreach ($lines as $sql_modal) {
+            if ($sql_modal['id'] == $modal_id) {
+                $orders[$modal_id] = $sql_modal;
+            }
+        }
 
         // ПАРАМЕТРЫ ДЛЯ ПЕРЕДАЧИ В МОДАЛ
-        $orders_edit = json_encode($orders_temp);
+        $orders_edit = json_encode($orders);
     }
 }
 
