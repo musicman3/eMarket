@@ -105,9 +105,8 @@ h6 {font-size:14px;}
 
 #listing .list-group-item {border: none;padding: 0px 15px;margin-bottom: 20px;}
 #listing .list-group-item img {float: left;margin-right: 100px;}
-#listing .list-group-item .item-text {float: left;}
 #listing .list-group-item .item-price {font-size: 15px;color: #000000;font-weight: 700;margin-bottom: 10px;}
-#listing .list-group-item .caption {margin-top:-10px;}
+#listing .list-group-item .caption {margin-top:-10px;float: left;}
 #listing .list-group-item .block-button {float:right;}
 #listing .grid-group-item .item-price {font-size: 15px;color: #000000;font-weight: 700;margin-bottom: 10px;text-align: center;}
 #listing .grid-group-item .block-button {margin-left: -5px;margin-right: -5px;}
