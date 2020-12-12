@@ -131,7 +131,7 @@ $transfer = 0;
 $lines_on_page = \eMarket\Set::linesOnPage();
 $search = '%' . \eMarket\Valid::inGET('search') . '%';
 if (\eMarket\Valid::inGET('search')) {
-    $sql_data_cat_search = \eMarket\Pdo::getColAssoc("SELECT id FROM " . TABLE_CATEGORIES . " WHERE name LIKE? ORDER BY sort_category DESC", [$search]);
+    $sql_data_cat_search = \eMarket\Pdo::getColAssoc("SELECT id FROM " . TABLE_CATEGORIES . " WHERE name LIKE? AND language=? ORDER BY sort_category DESC", [$search, lang('#lang_all')[0]]);
     $sql_data_cat = [];
     foreach ($sql_data_cat_search as $sql_data_cat_search_val) {
         foreach (\eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_CATEGORIES . " WHERE id=? ORDER BY sort_category DESC", [$sql_data_cat_search_val['id']]) as $cat_array) {
@@ -140,7 +140,7 @@ if (\eMarket\Valid::inGET('search')) {
     }
     $lines_cat = \eMarket\Func::filterData($sql_data_cat, 'language', lang('#lang_all')[0]);
 
-    $sql_data_prod_search = \eMarket\Pdo::getColAssoc("SELECT id FROM " . TABLE_PRODUCTS . " WHERE (name LIKE? OR description LIKE?) ORDER BY id DESC", [$search, $search]);
+    $sql_data_prod_search = \eMarket\Pdo::getColAssoc("SELECT id FROM " . TABLE_PRODUCTS . " WHERE (name LIKE? OR description LIKE?) AND language=? ORDER BY id DESC", [$search, $search, lang('#lang_all')[0]]);
     $sql_data_prod = [];
     foreach ($sql_data_prod_search as $sql_data_prod_search_val) {
         foreach (\eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=? ORDER BY id DESC", [$sql_data_prod_search_val['id']]) as $prod_array) {
