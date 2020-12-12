@@ -15,7 +15,7 @@
         jQuery.ajaxSetup({async: false});
         jQuery.ajax({
             type: 'POST',
-            url: '?route=stock',
+            url: window.location.href,
             data: msg,
             beforeSend: function (data) {
                 $('#index').modal('hide');
@@ -23,7 +23,7 @@
             }
         });
         // Отправка запроса для обновления страницы
-        jQuery.get('?route=stock',
+        jQuery.get(window.location.href,
                 {parent_down: <?php echo $parent_id ?>,
                     message: 'ok'},
                 AjaxSuccess);

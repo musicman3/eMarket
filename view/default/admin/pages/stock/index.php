@@ -143,18 +143,18 @@
                                 if ($start < $count_lines_cat) {
                                     ?>
 
-                                    <tr class="<?php echo \eMarket\Set::sorties('info') ?> sort-list" unitid="<?php echo $arr_merge['cat'][$start][0] ?>">
+                                    <tr class="<?php echo \eMarket\Set::sorties('info') ?> sort-list" unitid="<?php echo $arr_merge['cat'][$start]['id'] ?>">
 
                                         <!-- Вырезанные категории "АКТИВНЫЕ" -->
                                         <?php
-                                        if (isset($_SESSION['buffer']['cat']) == true && in_array($arr_merge['cat'][$start][0], $_SESSION['buffer']['cat']) == true && $arr_merge['cat'][$start][3] == 1) {
+                                        if (isset($_SESSION['buffer']['cat']) == true && in_array($arr_merge['cat'][$start]['id'], $_SESSION['buffer']['cat']) == true && $arr_merge['cat'][$start]['status'] == 1) {
                                             echo \eMarket\Set::sorties();
                                             ?>    
                                             <td class="sortleft"><div><a href="#" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-folder-open"> </span></a></div></td>
 
                                             <!-- Вырезанные категории "НЕ АКТИВНЫЕ" -->
                                             <?php
-                                        } elseif (isset($_SESSION['buffer']['cat']) == true && in_array($arr_merge['cat'][$start][0], $_SESSION['buffer']['cat']) == true && $arr_merge['cat'][$start][3] == 0) {
+                                        } elseif (isset($_SESSION['buffer']['cat']) == true && in_array($arr_merge['cat'][$start]['id'], $_SESSION['buffer']['cat']) == true && $arr_merge['cat'][$start]['status'] == 0) {
                                             echo \eMarket\Set::sorties();
                                             ?>    
                                             <td class="sortleft"><div><a href="#" class="btn btn-default btn-xs disabled"><span class="glyphicon glyphicon-folder-open"> </span></a></div></td>
@@ -168,7 +168,7 @@
 
                                             <!-- Если категория НЕ АКТИВНА -->
                                             <?php
-                                        } elseif ($arr_merge['cat'][$start][3] == 0) {
+                                        } elseif ($arr_merge['cat'][$start]['status'] == 0) {
                                             echo \eMarket\Set::sorties();
                                             ?>    
                                             <td class="sortleft">
@@ -177,7 +177,7 @@
                                                 <form>
                                                     <div>
                                                         <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
-                                                        <button name="parent_down" value="<?php echo $arr_merge['cat'][$start][0] ?>" class="btn btn-default btn-xs" title="<?php echo $arr_merge['cat'][$start][1] ?>" action="index.php" formmethod="get"><span class="glyphicon glyphicon-folder-open"> </span></button>
+                                                        <button name="parent_down" value="<?php echo $arr_merge['cat'][$start]['id'] ?>" class="btn btn-default btn-xs" title="<?php echo $arr_merge['cat'][$start]['name'] ?>" action="index.php" formmethod="get"><span class="glyphicon glyphicon-folder-open"> </span></button>
                                                     </div>
                                                 </form>
 
@@ -194,7 +194,7 @@
                                                 <form>
                                                     <div>
                                                         <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
-                                                        <button name="parent_down" value="<?php echo $arr_merge['cat'][$start][0] ?>" class="btn btn-primary btn-xs" title="<?php echo $arr_merge['cat'][$start][1] ?>" action="index.php" formmethod="get"><span class="glyphicon glyphicon-folder-open"> </span></button>
+                                                        <button name="parent_down" value="<?php echo $arr_merge['cat'][$start]['id'] ?>" class="btn btn-primary btn-xs" title="<?php echo $arr_merge['cat'][$start]['name'] ?>" action="index.php" formmethod="get"><span class="glyphicon glyphicon-folder-open"> </span></button>
                                                     </div>
                                                 </form>
 
@@ -204,11 +204,11 @@
                                         ?>
 
                                         <!-- ВЫБРАННЫЕ СТРОКИ -->
-                                        <td class="option" id="<?php echo $arr_merge['cat'][$start][0] ?>"><span class="inactive" style="display: none;"></span>
+                                        <td class="option" id="<?php echo $arr_merge['cat'][$start]['id'] ?>"><span class="inactive" style="display: none;"></span>
                                             <?php if ($transfer == $lines_on_page + 1) { ?>
-                                                <div class="transfer" id="<?php echo $arr_merge['cat'][$start][0] ?>"><?php echo lang('categories_transfer') ?></div>
+                                                <div class="transfer" id="<?php echo $arr_merge['cat'][$start]['id'] ?>"><?php echo lang('categories_transfer') ?></div>
                                             <?php } else { ?>
-                                                <div class="context-one" id="<?php echo $arr_merge['cat'][$start][0] ?>"><?php echo $arr_merge['cat'][$start][1] ?></div>
+                                                <div class="context-one" id="<?php echo $arr_merge['cat'][$start]['id'] ?>"><?php echo $arr_merge['cat'][$start]['name'] ?></div>
                                             <?php } ?>
                                         </td>	
                                         <td class="sortleft-m"></td>

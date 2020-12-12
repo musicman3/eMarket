@@ -106,10 +106,18 @@ if (\eMarket\Valid::inGET('parent_id_temp')) {
 $lines_on_page = \eMarket\Set::linesOnPage();
 $search = '%' . \eMarket\Valid::inGET('search') . '%';
 if (\eMarket\Valid::inGET('search')) {
-    $lines_cat = \eMarket\Pdo::getColRow("SELECT id, name, parent_id, status, attributes FROM " . TABLE_CATEGORIES . " WHERE name LIKE? AND language=? ORDER BY sort_category DESC", [$search, lang('#lang_all')[0]]);
+    $sql_data_cat_search = \eMarket\Pdo::getColAssoc("SELECT id FROM " . TABLE_CATEGORIES . " WHERE name LIKE? ORDER BY sort_category DESC", [$search]);
+    $sql_data_cat = [];
+    foreach ($sql_data_cat_search as $sql_data_cat_search_val) {
+        foreach (\eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_CATEGORIES . " WHERE id=? ORDER BY sort_category DESC", [$sql_data_cat_search_val['id']]) as $cat_array) {
+            $sql_data_cat[] = $cat_array;
+        }
+    }
+    $lines_cat = \eMarket\Func::filterData($sql_data_cat, 'language', lang('#lang_all')[0]);
     $lines_prod = \eMarket\Pdo::getColRow("SELECT id, name, parent_id, status, discount, price, attributes, stiker, currency FROM " . TABLE_PRODUCTS . " WHERE (name LIKE? OR description LIKE?) AND language=? ORDER BY id DESC", [$search, $search, lang('#lang_all')[0]]);
 } else {
-    $lines_cat = \eMarket\Pdo::getColRow("SELECT id, name, parent_id, status, attributes FROM " . TABLE_CATEGORIES . " WHERE parent_id=? AND language=? ORDER BY sort_category DESC", [$parent_id, lang('#lang_all')[0]]);
+    $sql_data_cat = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_CATEGORIES . " WHERE parent_id=? ORDER BY sort_category DESC", [$parent_id]);
+    $lines_cat = \eMarket\Func::filterData($sql_data_cat, 'language', lang('#lang_all')[0]);
     $lines_prod = \eMarket\Pdo::getColRow("SELECT id, name, parent_id, status, discount, price, attributes, stiker, currency FROM " . TABLE_PRODUCTS . " WHERE parent_id=? AND language=? ORDER BY id DESC", [$parent_id, lang('#lang_all')[0]]);
 }
 $count_lines_cat = count($lines_cat);  //считаем количество строк
