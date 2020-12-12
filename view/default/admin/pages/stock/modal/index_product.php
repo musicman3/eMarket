@@ -130,7 +130,7 @@
                                     <div class="input-group has-error">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-euro"></span></span>
                                         <select name="currency_product_stock" id="currency_product_stock" class="form-control">
-                                            <?php \eMarket\Set::viewSelect($currencies_all) ?>
+                                            <?php \eMarket\Set::viewSelect($currencies_all, 'default_value') ?>
                                         </select>
                                     </div>
                                 </div>
@@ -148,7 +148,7 @@
                                     <div class="input-group has-error">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-flag"></span></span>
                                         <select name="unit_product_stock" id="unit_product_stock" class="form-control">
-                                            <?php \eMarket\Set::viewSelect($units_all) ?>
+                                            <?php \eMarket\Set::viewSelect($units_all, 'default_unit') ?>
                                         </select>
                                     </div>
                                 </div>
@@ -208,7 +208,7 @@
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-tag"></span></span>
                                         <select name="vendor_codes_product_stock" id="vendor_codes_product_stock" class="form-control">
-                                            <?php \eMarket\Set::viewSelect($vendor_codes_all) ?>
+                                            <?php \eMarket\Set::viewSelect($vendor_codes_all, 'default_vendor_code') ?>
                                         </select>
                                     </div>
                                 </div>
@@ -226,7 +226,7 @@
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-scale"></span></span>
                                         <select name="weight_product_stock" id="weight_product_stock" class="form-control">
-                                            <?php \eMarket\Set::viewSelect($weight_all) ?>
+                                            <?php \eMarket\Set::viewSelect($weight_all, 'default_weight') ?>
                                         </select>
                                     </div>
                                 </div>
@@ -244,7 +244,7 @@
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-road"></span></span>
                                         <select name="length_product_stock" id="length_product_stock" class="form-control">
-                                            <?php \eMarket\Set::viewSelect($length_all) ?>
+                                            <?php \eMarket\Set::viewSelect($length_all, 'default_length') ?>
                                         </select>
                                     </div>
                                 </div>

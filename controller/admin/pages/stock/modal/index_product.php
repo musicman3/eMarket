@@ -8,86 +8,94 @@
 // собираем данные для отображения в Редактировании товаров
 $json_data_product = json_encode([]);
 for ($i = $start; $i < $finish; $i++) {
-    if (isset($arr_merge['prod'][$i . 'a'][0]) == TRUE) {
+    if (isset($arr_merge['prod'][$i . 'a']['id']) == TRUE) {
 
-        $modal_id_product = $arr_merge['prod'][$i . 'a'][0]; // ID
-        $count_lang = $LANG_COUNT;
+        $modal_id_prod = $arr_merge['prod'][$i . 'a']['id']; // ID
 
-        for ($x = 0; $x < $count_lang; $x++) {
-            $query_lang = \eMarket\Pdo::getRow("SELECT name, description, keyword, tags FROM " . TABLE_PRODUCTS . " WHERE id=? and language=?", [$modal_id_product, lang('#lang_all')[$x]]);
-            $name_product[$x][$modal_id_product] = $query_lang[0];
-            $description_product[$x][$modal_id_product] = $query_lang[1];
-            $keyword_product[$x][$modal_id_product] = $query_lang[2];
-            $tags_product[$x][$modal_id_product] = $query_lang[3];
+        foreach ($sql_data_prod as $sql_modal_prod) {
+            //Языковые
+            if ($sql_modal_prod['id'] == $modal_id_prod) {
+                $name_product[array_search($sql_modal_prod['language'], lang('#lang_all'))][$modal_id_prod] = $sql_modal_prod['name'];
+                $description_product[array_search($sql_modal_prod['language'], lang('#lang_all'))][$modal_id_prod] = $sql_modal_prod['description'];
+                $keyword_product[array_search($sql_modal_prod['language'], lang('#lang_all'))][$modal_id_prod] = $sql_modal_prod['keyword'];
+                $tags_product[array_search($sql_modal_prod['language'], lang('#lang_all'))][$modal_id_prod] = $sql_modal_prod['tags'];
+            }
+            if ($sql_modal_prod['language'] == lang('#lang_all')[0] && $sql_modal_prod['id'] == $modal_id_prod) {
+                // Цена
+                $price_product[$modal_id_prod] = round(\eMarket\Ecb::currencyPrice($sql_modal_prod['price'], $sql_modal_prod['currency']), 2);
+                // Валюта
+                foreach ($currencies_all as $currency_val) {
+                    if ($currency_val['id'] == \eMarket\Set::currencyDefault()[0])
+                        $currency_product[$modal_id_prod] = $currency_val['name'];
+                }
+                // Количество
+                $quantity_product[$modal_id_prod] = $sql_modal_prod['quantity'];
+                // Единицы измерения
+                foreach ($units_all as $unit_val) {
+                    if ($unit_val['id'] == $sql_modal_prod['unit'])
+                        $units_product[$modal_id_prod] = $unit_val['name'];
+                }
+                // Модель
+                $model_product[$modal_id_prod] = $sql_modal_prod['model'];
+                // Производитель
+                foreach ($manufacturers_all as $manufacturer_val) {
+                    if ($manufacturer_val['id'] == $sql_modal_prod['manufacturer'])
+                        $manufacturers_product[$modal_id_prod] = $manufacturer_val['name'];
+                }
+                // Дата поступления
+                $date_available_product[$modal_id_prod] = $sql_modal_prod['date_available'];
+                // Налог
+                foreach ($taxes_all as $tax_val) {
+                    if ($tax_val['id'] == $sql_modal_prod['tax'])
+                        $tax_product[$modal_id_prod] = $tax_val['name'];
+                }
+                // Значение идентификатора
+                $vendor_code_value_product[$modal_id_prod] = $sql_modal_prod['vendor_code_value'];
+                // Идентификатор
+                foreach ($vendor_codes_all as $vendor_code_val) {
+                    if ($vendor_code_val['id'] == $sql_modal_prod['vendor_code'])
+                        $vendor_code_product[$modal_id_prod] = $vendor_code_val['name'];
+                }
+                // Значение Веса
+                $weight_value_product[$modal_id_prod] = $sql_modal_prod['weight_value'];
+                // Вес
+                foreach ($weight_all as $weight_val) {
+                    if ($weight_val['id'] == $sql_modal_prod['weight'])
+                        $weight_product[$modal_id_prod] = $weight_val['name'];
+                }
+                // Минимальное количество
+                $min_quantity_product[$modal_id_prod] = $sql_modal_prod['min_quantity'];
+                // Ед. изм. длины
+                foreach ($length_all as $length_val) {
+                    if ($length_val['id'] == $sql_modal_prod['dimension'])
+                        $dimension_product[$modal_id_prod] = $length_val['name'];
+                }
+                // Длина
+                $length_product[$modal_id_prod] = $sql_modal_prod['length'];
+                // Ширина
+                $width_product[$modal_id_prod] = $sql_modal_prod['width'];
+                // Высота
+                $height_product[$modal_id_prod] = $sql_modal_prod['height'];
+                // Изображения
+                $logo_product[$modal_id_prod] = json_decode($sql_modal_prod['logo'], 1);
+                // Главное изображение
+                $logo_general_product[$modal_id_prod] = $sql_modal_prod['logo_general'];
+                // Атрибуты
+                $attributes_product[$modal_id_prod] = json_decode($sql_modal_prod['attributes'], 1);
+
+                if ($parent_id == 0) {
+                    $attributes_data[$modal_id_prod] = json_encode(json_encode([]));
+                } else {
+                    $attributes_data[$modal_id_prod] = json_encode(\eMarket\Pdo::getColAssoc("SELECT attributes FROM " . TABLE_CATEGORIES . " WHERE id=? AND language=?", [$parent_id, lang('#lang_all')[0]])[0]['attributes']);
+                }
+            }
         }
 
-        // Общий запрос
-        $query = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=?", [$modal_id_product])[0];
-
-        // Цена
-        $price_product[$modal_id_product] = round(\eMarket\Ecb::currencyPrice($query['price'], $query['currency']), 2);
-
-        // Валюта
-        $currency_product[$modal_id_product] = \eMarket\Pdo::selectPrepare("SELECT name FROM " . TABLE_CURRENCIES . " WHERE id=? and language=?", [\eMarket\Set::currencyDefault()[0], lang('#lang_all')[0]]);
-
-        // Количество
-        $quantity_product[$modal_id_product] = $query['quantity'];
-
-        // Единицы измерения
-        $units_product[$modal_id_product] = \eMarket\Pdo::selectPrepare("SELECT name FROM " . TABLE_UNITS . " WHERE id=? and language=?", [$query['unit'], lang('#lang_all')[0]]);
-
-        // Модель
-        $model_product[$modal_id_product] = $query['model'];
-
-        // Производитель
-        $manufacturers_product[$modal_id_product] = \eMarket\Pdo::selectPrepare("SELECT name FROM " . TABLE_MANUFACTURERS . " WHERE id=? and language=?", [$query['manufacturer'], lang('#lang_all')[0]]);
-
-        // Дата поступления
-        $date_available_product[$modal_id_product] = $query['date_available'];
-
-        // Налог
-        $tax_product[$modal_id_product] = \eMarket\Pdo::selectPrepare("SELECT name FROM " . TABLE_TAXES . " WHERE id=? and language=?", [$query['tax'], lang('#lang_all')[0]]);
-
-        // Значение идентификатора
-        $vendor_code_value_product[$modal_id_product] = $query['vendor_code_value'];
-
-        // Идентификатор
-        $vendor_code_product[$modal_id_product] = \eMarket\Pdo::selectPrepare("SELECT name FROM " . TABLE_VENDOR_CODES . " WHERE id=? and language=?", [$query['vendor_code'], lang('#lang_all')[0]]);
-
-        // Значение Веса
-        $weight_value_product[$modal_id_product] = $query['weight_value'];
-
-        // Вес
-        $weight_product[$modal_id_product] = \eMarket\Pdo::selectPrepare("SELECT name FROM " . TABLE_WEIGHT . " WHERE id=? and language=?", [$query['weight'], lang('#lang_all')[0]]);
-
-        // Минимальное количество
-        $min_quantity_product[$modal_id_product] = $query['min_quantity'];
-
-        // Ед. изм. длины
-        $dimension_product[$modal_id_product] = \eMarket\Pdo::selectPrepare("SELECT name FROM " . TABLE_LENGTH . " WHERE id=? and language=?", [$query['dimension'], lang('#lang_all')[0]]);
-
-        // Длина
-        $length_product[$modal_id_product] = $query['length'];
-
-        // Ширина
-        $width_product[$modal_id_product] = $query['width'];
-
-        // Высота
-        $height_product[$modal_id_product] = $query['height'];
-
-        $logo_product[$modal_id_product] = json_decode($query['logo'], 1);
-        $logo_general_product[$modal_id_product] = $query['logo_general'];
-
-        // Атрибуты
-        $attributes_product[$modal_id_product] = json_decode($query['attributes'], 1);
-
-        $parent_id = $query['parent_id'];
-
-        if ($parent_id == 0) {
-            $attributes_data[$modal_id_product] = json_encode(json_encode([]));
-        } else {
-            $attributes_data[$modal_id_product] = json_encode(\eMarket\Pdo::getColAssoc("SELECT attributes FROM " . TABLE_CATEGORIES . " WHERE id=? AND language=?", [$parent_id, lang('#lang_all')[0]])[0]['attributes']);
-        }
+        //Сортируем языковые
+        ksort($name_product);
+        ksort($description_product);
+        ksort($keyword_product);
+        ksort($tags_product);
 
         $json_data_product = json_encode([
             'name' => $name_product,

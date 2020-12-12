@@ -286,19 +286,17 @@ class Set {
      * Отображаем Select с учетом значения по-умолчанию
      *
      * @param array $value (массив для Select)
-     * @param string $id (идентификатор id)
-     * @param string (если не нужно Selected, то указываем FALSE)
+     * @param string $default (идентификатор)
      */
-    public static function viewSelect($value, $id = null, $selected = null) {
+    public static function viewSelect($value, $default = null) {
 
-        $count_value = count($value);
-        for ($x = 0; $x < $count_value; $x++) {
-            if (isset($value[$x][1]) && $value[$x][1] == 1 && $selected != FALSE && $id != null) {
+        foreach ($value as $val) {
+            if ($val[$default] == 1) {
                 ?>
                 <!-- Строка Select по умолчанию-->
-                <option value="<?php echo $id ?>" selected><?php echo $value[$x][0] ?></option>
+                <option selected><?php echo $val['name'] ?></option>
             <?php } else { ?>
-                <option><?php echo $value[$x][0] ?></option>
+                <option><?php echo $val['name'] ?></option>
                 <?php
             }
         }
