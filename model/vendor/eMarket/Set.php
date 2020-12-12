@@ -291,7 +291,7 @@ class Set {
     public static function viewSelect($value, $default = null) {
 
         foreach ($value as $val) {
-            if ($val[$default] == 1) {
+            if ($default != null && $val[$default] == 1) {
                 ?>
                 <!-- Строка Select по умолчанию-->
                 <option selected><?php echo $val['name'] ?></option>
