@@ -125,7 +125,7 @@ $this_time = time();
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 $sql_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_SLIDESHOW . " ORDER BY id DESC", []);
-$lines = \eMarket\Func::filterData($sql_data, 'language', lang('#lang_all')[0]);
+$lines = \eMarket\Func::filterData($sql_data, 'language', $set_language);
 $lines_on_page = \eMarket\Set::linesOnPage();
 $count_lines = count($lines);
 $navigate = \eMarket\Navigation::getLink($count_lines, $lines_on_page);
