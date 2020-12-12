@@ -102,7 +102,8 @@ if (\eMarket\Valid::inPOST('delete')) {
 }
 
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
-$lines = \eMarket\Pdo::getColRow("SELECT id, name, sale_value, date_start, date_end, default_set, UNIX_TIMESTAMP (date_end) FROM " . $MODULE_DB . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+$sql_data = \eMarket\Pdo::getColAssoc("SELECT *, UNIX_TIMESTAMP (date_end) FROM " . $MODULE_DB . " ORDER BY id DESC", []);
+$lines = \eMarket\Func::filterData($sql_data, 'language', lang('#lang_all')[0]);
 $lines_on_page = \eMarket\Set::linesOnPage();
 $navigate = \eMarket\Navigation::getLink(count($lines), $lines_on_page);
 $start = $navigate[0];
