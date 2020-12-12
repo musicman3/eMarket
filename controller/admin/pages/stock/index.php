@@ -143,7 +143,7 @@ if (\eMarket\Valid::inGET('search')) {
     $sql_data_prod_search = \eMarket\Pdo::getColAssoc("SELECT id FROM " . TABLE_PRODUCTS . " WHERE (name LIKE? OR description LIKE?) ORDER BY id DESC", [$search, $search]);
     $sql_data_prod = [];
     foreach ($sql_data_prod_search as $sql_data_prod_search_val) {
-        foreach (\eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_CATEGORIES . " WHERE id=? ORDER BY id DESC", [$sql_data_prod_search_val['id']]) as $prod_array) {
+        foreach (\eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=? ORDER BY id DESC", [$sql_data_prod_search_val['id']]) as $prod_array) {
             $sql_data_prod[] = $prod_array;
         }
     }
