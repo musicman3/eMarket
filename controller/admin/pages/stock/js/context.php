@@ -17,7 +17,7 @@
                     $.ajax({
                         method: 'POST',
                         dataType: 'text',
-                        url: '?route=stock',
+                        url: window.location.href,
                         data: ({
                             itemName: itemKey, //название ключа из меню (edit, delete, copy и т.п.)
                             ids2: opt.$trigger.attr("id")}), //id строки
@@ -212,12 +212,12 @@
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                         idArray[i] = this.id;
                                 });
-                                jQuery.post('?route=stock',
+                                jQuery.post(window.location.href,
                                         {idsx_statusOn_id: idArray,
                                             idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
                                             idsx_statusOn_key: 'On'});
                                 // Отправка запроса для обновления страницы
-                                jQuery.get('?route=stock',
+                                jQuery.get(window.location.href,
                                         {parent_down: <?php echo $parent_id ?>},
                                         AjaxSuccess);
                                 // Обновление страницы
@@ -247,12 +247,12 @@
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                         idArray[i] = this.id;
                                 });
-                                jQuery.post('?route=stock',
+                                jQuery.post(window.location.href,
                                         {idsx_statusOff_id: idArray,
                                             idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
                                             idsx_statusOff_key: 'Off'});
                                 // Отправка запроса для обновления страницы
-                                jQuery.get('?route=stock',
+                                jQuery.get(window.location.href,
                                         {parent_down: <?php echo $parent_id ?>},
                                         AjaxSuccess);
                                 // Обновление страницы
@@ -280,7 +280,7 @@
                                 // Установка синхронного запроса для jQuery.ajax
                                 jQuery.ajaxSetup({async: false});
                                 // Отправка маркера на очитку буффера
-                                jQuery.post('?route=stock',
+                                jQuery.post(window.location.href,
                                         {idsx_cut_marker: 'cut'});
                                 // Отправка данных по каждой выделенной строке
                                 var idArray = [];
@@ -288,7 +288,7 @@
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                         idArray[i] = this.id;
                                 });
-                                jQuery.post('?route=stock',
+                                jQuery.post(window.location.href,
                                         {idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
                                             idsx_cut_id: idArray,
                                             parent_down: <?php echo $parent_id ?>,
@@ -320,7 +320,7 @@
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
                                 // Установка синхронного запроса для jQuery.ajax
                                 jQuery.ajaxSetup({async: false});
-                                jQuery.post('?route=stock',
+                                jQuery.post(window.location.href,
                                         {idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
                                             parent_down: <?php echo $parent_id ?>,
                                             idsx_paste_key: itemKey});
@@ -365,11 +365,11 @@
                                         if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                             idArray[i] = this.id;
                                     });
-                                    jQuery.post('?route=stock',
+                                    jQuery.post(window.location.href,
                                             {delete: idArray,
                                                 parent_down: <?php echo $parent_id ?>});
                                     // Отправка запроса для обновления страницы
-                                    jQuery.get('?route=stock',
+                                    jQuery.get(window.location.href,
                                             {parent_down: <?php echo $parent_id ?>,
                                                 message: 'ok'},
                                             AjaxSuccess);
@@ -429,13 +429,13 @@
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                         idArray[i] = this.id;
                                 });
-                                jQuery.post('?route=stock',
+                                jQuery.post(window.location.href,
                                         {idsx_saleOn_id: idArray,
                                             idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
                                             sale: selected_id,
                                             idsx_saleOn_key: 'On'});
                                 // Отправка запроса для обновления страницы
-                                jQuery.get('?route=stock',
+                                jQuery.get(window.location.href,
                                         {parent_down: <?php echo $parent_id ?>},
                                         AjaxSuccess);
                                 // Обновление страницы
@@ -477,13 +477,13 @@
                                         if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                             idArray[i] = this.id;
                                     });
-                                    jQuery.post('?route=stock',
+                                    jQuery.post(window.location.href,
                                             {idsx_saleOff_id: idArray,
                                                 idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
                                                 sale: selected_id,
                                                 idsx_saleOff_key: 'Off'});
                                     // Отправка запроса для обновления страницы
-                                    jQuery.get('?route=stock',
+                                    jQuery.get(window.location.href,
                                             {parent_down: <?php echo $parent_id ?>},
                                             AjaxSuccess);
                                     // Обновление страницы
@@ -527,12 +527,12 @@
                                         if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                             idArray[i] = this.id;
                                     });
-                                    jQuery.post('?route=stock',
+                                    jQuery.post(window.location.href,
                                             {idsx_saleOffAll_id: idArray,
                                                 idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
                                                 idsx_saleOffAll_key: 'OffAll'});
                                     // Отправка запроса для обновления страницы
-                                    jQuery.get('?route=stock',
+                                    jQuery.get(window.location.href,
                                             {parent_down: <?php echo $parent_id ?>},
                                             AjaxSuccess);
                                     // Обновление страницы
@@ -594,13 +594,13 @@
                                     if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                         idArray[i] = this.id;
                                 });
-                                jQuery.post('?route=stock',
+                                jQuery.post(window.location.href,
                                         {idsx_stikerOn_id: idArray,
                                             idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
                                             stiker: selected_id,
                                             idsx_stikerOn_key: 'On'});
                                 // Отправка запроса для обновления страницы
-                                jQuery.get('?route=stock',
+                                jQuery.get(window.location.href,
                                         {parent_down: <?php echo $parent_id ?>},
                                         AjaxSuccess);
                                 // Обновление страницы
@@ -636,13 +636,13 @@
                                         if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
                                             idArray[i] = this.id;
                                     });
-                                    jQuery.post('?route=stock',
+                                    jQuery.post(window.location.href,
                                             {idsx_stikerOff_id: idArray,
                                                 idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
                                                 stiker: selected_id,
                                                 idsx_stikerOff_key: 'Off'});
                                     // Отправка запроса для обновления страницы
-                                    jQuery.get('?route=stock',
+                                    jQuery.get(window.location.href,
                                             {parent_down: <?php echo $parent_id ?>},
                                             AjaxSuccess);
                                     // Обновление страницы
