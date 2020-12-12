@@ -63,7 +63,9 @@ body {background:#e4e4da;font-family: 'Open Sans';background-image:url('images/s
 #alert {padding:0;margin:0;float:right;line-height:1.4;}
 
 #slideshow .slide-sett {padding: 5px 5px 0 0;}
-#slideshow .table > tbody > tr > td {vertical-align: middle;}
+#slideshow .table > tbody > tr > td, .slide-color label {vertical-align: middle;}
+.slide-color input {cursor: pointer;}
+
 
 #footerwrap {width: 100%;background: #4c453d;border-top: 8px solid #312d27;background-image: url('images/sep-half.png');text-align: center;position: absolute;bottom: 0;height: 80px;}
 #footerwrap p {color: white;font-size: 12px;}

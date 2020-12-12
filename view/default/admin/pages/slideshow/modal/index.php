@@ -33,6 +33,20 @@
                                 <input class="input-sm form-control" placeholder="<?php echo lang('slides_text') ?>" type="text" name="heading" id="heading" />
                             </div>
                         </div>
+                        <div class="form-group row slide-color">
+			    <div class="col-xs-6">
+				<div class="input-group">
+				    <input class="check-box" type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="animation" id="animation">
+				    <label for="animation"> Анимация текста</label>
+				</div>
+			    </div>
+			    <div class="col-xs-6">
+				<div class="input-group">
+				    <input type="color" name="color" id="color" />
+				    <label for="color"> Цвет текста</label>
+				</div>
+			    </div>
+                        </div>
                         <div class="form-group">
                             <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
