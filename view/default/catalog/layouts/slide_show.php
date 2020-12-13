@@ -26,12 +26,12 @@
                                 <a href="<?php echo $images_data['url'] ?>">
                                     <img src="/uploads/images/slideshow/resize_4/<?php echo $logo ?>" class="center-block" >
                                     <?php if ($images_data['animation'] == 1) { ?>
-                                        <div class="carousel-caption slide-text-anime">
+                                        <div class="carousel-caption slide-text-anime" style="color: <?php echo $images_data['color'] ?>;">
                                             <h3><?php echo $images_data['name'] ?></h3>
                                             <p><?php echo $images_data['heading'] ?></p>
                                         </div>
                                     <?php } else { ?>
-                                        <div class="carousel-caption">
+                                        <div class="carousel-caption" style="color: <?php echo $images_data['color'] ?>;">
                                             <h3><?php echo $images_data['name'] ?></h3>
                                             <p><?php echo $images_data['heading'] ?></p>
                                         </div>

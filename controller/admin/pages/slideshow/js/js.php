@@ -77,7 +77,8 @@ $lang_js = json_encode([
             $('#view_slideshow').prop('checked', json_data['status'][modal_id]);
             $('#animation').prop('checked', json_data['animation'][modal_id]);
             $('#view_slideshow, #animation').bootstrapSwitch();
-
+            
+            $('#color').val(json_data['color'][modal_id]);
             $('#url').val(json_data['url'][modal_id]);
             $('#name').val(json_data['name'][modal_id]);
             $('#heading').val(json_data['heading'][modal_id]);

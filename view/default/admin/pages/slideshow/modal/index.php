@@ -42,7 +42,7 @@
 			    </div>
 			    <div class="col-xs-6">
 				<div class="input-group">
-				    <input type="color" name="color" id="color" />
+                                    <input type="color" name="color" id="color" value="#ffffff" />
 				    <label for="color"> Цвет текста</label>
 				</div>
 			    </div>
