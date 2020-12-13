@@ -18,12 +18,13 @@ final class Ecb {
 
     public static $stiker_data = FALSE;
     public static $currencies = FALSE;
+    public static $taxes_data = FALSE;
 
     /**
      * Блок вывода цены с учетом скидки
      * 
      * @param array $input (массив с входящими значениями по товару)
-     * @param string $marker (маркер для \eMarket\Products::productPrice для вывода названия валюты)
+     * @param string $marker (маркер для \eMarket\Products::formatPrice для вывода названия валюты)
      * @param string $class (класс bootstrap для отображения скидки)
      * @return string (выходные данные в виде форматированной стоимости)
      */
@@ -47,19 +48,19 @@ final class Ecb {
 
         if (\eMarket\Set::path() == 'admin') {
             if ($price_val != $discount_sale['price'] && $discount_count == 1) {
-                return '<span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="' . $discount_names . '" class="label label-' . $class . '">' . \eMarket\Products::productPrice($discount_sale['price'], $marker) . '</span> <del>' . \eMarket\Products::productPrice($price_val, $marker) . '</del>';
+                return '<span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="' . $discount_names . '" class="label label-' . $class . '">' . \eMarket\Products::formatPrice($discount_sale['price'], $marker) . '</span> <del>' . \eMarket\Products::formatPrice($price_val, $marker) . '</del>';
             }
             if ($price_val != $discount_sale['price'] && $discount_count > 1) {
-                return '<span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="' . lang('modules_discount_sale_admin_tooltip_warning') . $discount_names . '" class="label label-warning"><u>' . \eMarket\Products::productPrice($discount_sale['price'], $marker) . '</u></span> <del>' . \eMarket\Products::productPrice($price_val, $marker) . '</del>';
+                return '<span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="' . lang('modules_discount_sale_admin_tooltip_warning') . $discount_names . '" class="label label-warning"><u>' . \eMarket\Products::formatPrice($discount_sale['price'], $marker) . '</u></span> <del>' . \eMarket\Products::formatPrice($price_val, $marker) . '</del>';
             }
-            return \eMarket\Products::productPrice($price_val, $marker);
+            return \eMarket\Products::formatPrice($price_val, $marker);
         }
 
         if (\eMarket\Set::path() == 'catalog') {
             if ($price_val != $discount_sale['price']) {
-                return '<del>' . \eMarket\Products::productPrice($price_val, $marker) . '</del><br><span class="label label-' . $class . '">' . \eMarket\Products::productPrice($discount_sale['price'], $marker) . '</span>';
+                return '<del>' . \eMarket\Products::formatPrice($price_val, $marker) . '</del><br><span class="label label-' . $class . '">' . \eMarket\Products::formatPrice($discount_sale['price'], $marker) . '</span>';
             }
-            return \eMarket\Products::productPrice($price_val, $marker);
+            return \eMarket\Products::formatPrice($price_val, $marker);
         }
     }
 
@@ -131,7 +132,7 @@ final class Ecb {
      * Блок вывода цены в корзине с учетом скидки
      * 
      * @param array $input (массив с входящими значениями по товару)
-     * @param string $marker (маркер для \eMarket\Products::productPrice для вывода названия валюты)
+     * @param string $marker (маркер для \eMarket\Products::formatPrice для вывода названия валюты)
      * @param string $class (класс bootstrap для отображения скидки)
      * @return string (выходные данные в виде форматированной стоимости)
      */
@@ -145,9 +146,9 @@ final class Ecb {
         $price_val = self::currencyPrice($input['price'], $input['currency']);
 
         if ($price_val != $discount_sale['price']) {
-            return '<del>' . \eMarket\Products::productPrice($price_val * \eMarket\Cart::productQuantity($input['id'], 1), $marker) . '</del><br><span class="label label-' . $class . '">' . \eMarket\Products::productPrice($discount_sale['price'] * \eMarket\Cart::productQuantity($input['id'], 1), $marker) . '</span>';
+            return '<del>' . \eMarket\Products::formatPrice($price_val * \eMarket\Cart::productQuantity($input['id'], 1), $marker) . '</del><br><span class="label label-' . $class . '">' . \eMarket\Products::formatPrice($discount_sale['price'] * \eMarket\Cart::productQuantity($input['id'], 1), $marker) . '</span>';
         }
-        return \eMarket\Products::productPrice($price_val * \eMarket\Cart::productQuantity($input['id'], 1), $marker);
+        return \eMarket\Products::formatPrice($price_val * \eMarket\Cart::productQuantity($input['id'], 1), $marker);
     }
 
     /**
@@ -155,9 +156,14 @@ final class Ecb {
      * 
      * @return string (выходные данные в виде форматированной стоимости)
      */
-    public static function totalPriceCartWithSale() {
+    public static function priceTerminal() {
 
         $total_price_with_sale = 0;
+        
+        if(self::$taxes_data == FALSE){
+            self::$taxes_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_TAXES . " WHERE language=?", [lang('#lang_all')[0]]);
+        }
+        
         if (isset($_SESSION['cart'])) {
             $x = 0;
             foreach ($_SESSION['cart'] as $value) {
@@ -186,13 +192,13 @@ final class Ecb {
     /**
      * Блок вывода цены в корзине с учетом скидки
      * 
-     * @param string $marker (маркер для \eMarket\Products::productPrice для вывода названия валюты)
+     * @param string $marker (маркер для \eMarket\Products::formatPrice для вывода названия валюты)
      * @param string $class (класс bootstrap для отображения скидки)
      * @return string (выходные данные в виде форматированной стоимости)
      */
     public static function totalPriceCartInterface($marker, $class = null) {
 
-        $total_price_with_sale = self::totalPriceCartWithSale();
+        $total_price_with_sale = self::priceTerminal();
         $price_val = \eMarket\Cart::totalPrice();
 
         if ($class == null) {
@@ -200,9 +206,9 @@ final class Ecb {
         }
 
         if ($price_val != $total_price_with_sale) {
-            return '<del>' . \eMarket\Products::productPrice($price_val, $marker) . '</del><br><span class="label label-' . $class . '">' . \eMarket\Products::productPrice($total_price_with_sale, $marker) . '</span>';
+            return '<del>' . \eMarket\Products::formatPrice($price_val, $marker) . '</del><br><span class="label label-' . $class . '">' . \eMarket\Products::formatPrice($total_price_with_sale, $marker) . '</span>';
         }
-        return \eMarket\Products::productPrice($price_val, $marker);
+        return \eMarket\Products::formatPrice($price_val, $marker);
     }
 
     /**

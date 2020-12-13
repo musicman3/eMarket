@@ -162,7 +162,7 @@ class Products {
      * @param string $language (язык для отображения)
      * @return array $price (данные по стоимости)
      */
-    public static function productPrice($price, $format = null, $language = null) {
+    public static function formatPrice($price, $format = null, $language = null) {
 
         if ($language == null) {
             $CURRENCIES = \eMarket\Set::currencyDefault();

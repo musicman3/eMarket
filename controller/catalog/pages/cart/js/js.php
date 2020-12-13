@@ -7,8 +7,8 @@ $lang_js = json_encode([
     'cart_payment_is_not_available' => lang('cart_payment_is_not_available'),
     'cart_shipping_is_not_available' => lang('cart_shipping_is_not_available'),
     'cart_shipping_price' => lang('cart_shipping_price'),
-    'product_price' => \eMarket\Products::productPrice(0, 1),
-    'total_price_cart_with_sale' => \eMarket\Products::productPrice(\eMarket\Ecb::totalPriceCartWithSale(), 1),
+    'product_price' => \eMarket\Products::formatPrice(0, 1),
+    'total_price_cart_with_sale' => \eMarket\Products::formatPrice(\eMarket\Ecb::priceTerminal(), 1),
     'cart_total_to_pay' => lang('cart_total_to_pay'),
     'cart_shipping_is_not_available_and_min_price' => lang('cart_shipping_is_not_available_and_min_price')
         ]);
