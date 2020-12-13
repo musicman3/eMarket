@@ -179,7 +179,7 @@ final class Ecb {
                         }
                         $total_price_with_sale = $total_price_with_sale + (self::currencyPrice($data[0]['price'], $data[0]['currency']) * $value['quantity'] / 100 * (100 - $discount_total_sale));
                         
-                        $out_array = [
+                        $interface = [
                             'id' => $value['id'],
                             'price' => $data[0]['price'],
                             'currency' => $data[0]['currency'],
@@ -189,11 +189,11 @@ final class Ecb {
                             'discount_sale' => $discount_sale
                         ];
                         
-                        array_push($output_data, $out_array);
+                        array_push($output_data, $interface);
                     } else {
                         $total_price_with_sale = $total_price_with_sale + (self::currencyPrice($data[0]['price'], $data[0]['currency']) * $value['quantity']);
                         
-                        $out_array = [
+                        $interface = [
                             'id' => $value['id'],
                             'price' => $data[0]['price'],
                             'currency' => $data[0]['currency'],
@@ -203,7 +203,7 @@ final class Ecb {
                             'discount_sale' => $discount_sale
                         ];
                         
-                        array_push($output_data, $out_array);
+                        array_push($output_data, $interface);
                     }
                 } else {
                     unset($_SESSION['cart'][$x]);
