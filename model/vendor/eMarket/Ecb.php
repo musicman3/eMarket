@@ -154,7 +154,7 @@ final class Ecb {
     /**
      * Ценовой терминал корзины
      * 
-     * @return string (выходные данные в виде форматированной стоимости)
+     * @return array (выходные данные)
      */
     public static function priceTerminal() {
 
