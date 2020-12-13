@@ -75,7 +75,7 @@ $lang_js = json_encode([
             $('#add').val('');
             // Меняем значение чекбокса
             $('#view_slideshow').prop('checked', json_data['status'][modal_id]);
-            $('#view_slideshow').prop('checked', 1);
+            $('#animation').prop('checked', json_data['animation'][modal_id]);
             $('#view_slideshow, #animation').bootstrapSwitch();
 
             $('#url').val(json_data['url'][modal_id]);
