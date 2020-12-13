@@ -37,13 +37,13 @@
 			    <div class="col-xs-6">
 				<div class="input-group">
 				    <input class="check-box" type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="animation" id="animation" checked>
-				    <label for="animation"> Анимация текста</label>
+				    <label for="animation"> <?php echo lang('slides_text_animation') ?></label>
 				</div>
 			    </div>
 			    <div class="col-xs-6">
 				<div class="input-group">
                                     <input type="color" name="color" id="color" value="#ffffff" />
-				    <label for="color"> Цвет текста</label>
+				    <label for="color"> <?php echo lang('slides_text_color') ?></label>
 				</div>
 			    </div>
                         </div>
