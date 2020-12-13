@@ -6,7 +6,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 $settings = json_encode(\eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_SLIDESHOW_PREF . "", [])[0]);
-
+ 
 if (\eMarket\Valid::inPOST('slideshow_pref')) {
 
     if (\eMarket\Valid::inPOST('mouse_stop')) {
