@@ -158,6 +158,7 @@ class Cart {
      * Максимальное количество для заказа
      * 
      * @param array $product_data (Данные о товаре)
+     * @param string $flag (флаг)
      * @return int|false
      */
     public static function maxQuantityToOrder($product_data, $flag = null) {
