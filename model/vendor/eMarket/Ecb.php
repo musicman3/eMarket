@@ -42,10 +42,10 @@ final class Ecb {
                 $discount_names .= $name_val . '<br>';
             }
         }
+        
+        $price_val = self::currencyPrice($input['price'], $input['currency']);
 
         if (\eMarket\Set::path() == 'admin') {
-            $price_val = self::currencyPrice($input['price'], $input['currency']);
-
             if ($price_val != $discount_sale['price'] && $discount_count == 1) {
                 return '<span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="' . $discount_names . '" class="label label-' . $class . '">' . \eMarket\Products::productPrice($discount_sale['price'], $marker) . '</span> <del>' . \eMarket\Products::productPrice($price_val, $marker) . '</del>';
             }
@@ -56,8 +56,6 @@ final class Ecb {
         }
 
         if (\eMarket\Set::path() == 'catalog') {
-            $price_val = self::currencyPrice($input['price'], $input['currency']);
-
             if ($price_val != $discount_sale['price']) {
                 return '<del>' . \eMarket\Products::productPrice($price_val, $marker) . '</del><br><span class="label label-' . $class . '">' . \eMarket\Products::productPrice($discount_sale['price'], $marker) . '</span>';
             }
