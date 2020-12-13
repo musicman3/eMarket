@@ -43,7 +43,7 @@ final class Ecb {
                 $discount_names .= $name_val . '<br>';
             }
         }
-        
+
         $price_val = self::currencyPrice($input['price'], $input['currency']);
 
         if (\eMarket\Set::path() == 'admin') {
@@ -152,18 +152,19 @@ final class Ecb {
     }
 
     /**
-     * Данные цены в корзине с учетом скидки
+     * Ценовой терминал корзины
      * 
      * @return string (выходные данные в виде форматированной стоимости)
      */
     public static function priceTerminal() {
 
         $total_price_with_sale = 0;
-        
-        if(self::$taxes_data == FALSE){
+        $output_data = [];
+
+        if (self::$taxes_data == FALSE) {
             self::$taxes_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_TAXES . " WHERE language=?", [lang('#lang_all')[0]]);
         }
-        
+
         if (isset($_SESSION['cart'])) {
             $x = 0;
             foreach ($_SESSION['cart'] as $value) {
@@ -171,14 +172,38 @@ final class Ecb {
                 if ($data != FALSE) {
                     $discount_sale = self::outPrice($data[0])['discount_sale'];
                     $discount_total_sale = 0;
-                    
+
                     if ($discount_sale['sales'] != 'false') {
                         foreach ($discount_sale['sales'] as $total_sale) {
                             $discount_total_sale = $discount_total_sale + $total_sale;
                         }
                         $total_price_with_sale = $total_price_with_sale + (self::currencyPrice($data[0]['price'], $data[0]['currency']) * $value['quantity'] / 100 * (100 - $discount_total_sale));
+                        
+                        $out_array = [
+                            'id' => $value['id'],
+                            'price' => $data[0]['price'],
+                            'currency' => $data[0]['currency'],
+                            'price_with_currency' => self::currencyPrice($data[0]['price'], $data[0]['currency']),
+                            'currency' => $data[0]['currency'],
+                            'quantity' => $value['quantity'],
+                            'discount_sale' => $discount_sale
+                        ];
+                        
+                        array_push($output_data, $out_array);
                     } else {
                         $total_price_with_sale = $total_price_with_sale + (self::currencyPrice($data[0]['price'], $data[0]['currency']) * $value['quantity']);
+                        
+                        $out_array = [
+                            'id' => $value['id'],
+                            'price' => $data[0]['price'],
+                            'currency' => $data[0]['currency'],
+                            'price_with_currency' => self::currencyPrice($data[0]['price'], $data[0]['currency']),
+                            'currency' => $data[0]['currency'],
+                            'quantity' => $value['quantity'],
+                            'discount_sale' => $discount_sale
+                        ];
+                        
+                        array_push($output_data, $out_array);
                     }
                 } else {
                     unset($_SESSION['cart'][$x]);
@@ -186,7 +211,9 @@ final class Ecb {
                 $x++;
             }
         }
-        return $total_price_with_sale;
+        $output_data['total_price_with_sale'] = $total_price_with_sale;
+ 
+        return $output_data;
     }
 
     /**
@@ -198,7 +225,7 @@ final class Ecb {
      */
     public static function totalPriceCartInterface($marker, $class = null) {
 
-        $total_price_with_sale = self::priceTerminal();
+        $total_price_with_sale = self::priceTerminal()['total_price_with_sale'];
         $price_val = \eMarket\Cart::totalPrice();
 
         if ($class == null) {
