@@ -20,6 +20,7 @@ class Set {
     public static $lines_on_page = FALSE;
     public static $session_expr_time = FALSE;
     public static $currency_default_admin = FALSE;
+    public static $active_tabs_count = 0;
 
     /**
      * Название текущего шаблона
@@ -500,17 +501,19 @@ class Set {
     /**
      * Класс для активной вкладки
      *
-     * @param string $active_language (активный язык)
-     * @return string $lang (язык)
+     * @param string $active_tab (активная вкладка)
+     * @param string $active (маркер активности)
+     * @param string $class (класс)
+     * @return string (класс активности)
      */
-    public static function activeTab($active_language, $lang) {
+    public static function activeTab($active_tab, $active, $class = 'active') {
 
-        if ($active_language == $lang) {
-            $class = 'active';
+        if ($active_tab == $active && self::$active_tabs_count == 0) {
+            self::$active_tabs_count = 1;
+            return $class;
         } else {
-            $class = '';
+            return '';
         }
-        return $class;
     }
 
 }

@@ -50,6 +50,5 @@ foreach ($slideshow as $images_data) {
         }
     }
 }
-$active_class = ' active';
 
 ?>

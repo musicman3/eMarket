@@ -22,7 +22,7 @@
                     foreach (json_decode($images_data['logo'], 1) as $logo) {
                         if ($images_data['status'] == 1 && strtotime($images_data['date_start']) <= $this_time && strtotime($images_data['date_finish']) >= $this_time) {
                             ?>
-                            <div class="item<?php echo $active_class ?>">
+                            <div class="item <?php echo \eMarket\Set::activeTab(0, 0) ?>">
                                 <a href="<?php echo $images_data['url'] ?>">
                                     <img src="/uploads/images/slideshow/resize_4/<?php echo $logo ?>" class="center-block" >
                                     <?php if ($images_data['animation'] == 1) { ?>
@@ -40,7 +40,6 @@
                             </div>
 
                             <?php
-                            $active_class = '';
                         }
                     }
                 }
