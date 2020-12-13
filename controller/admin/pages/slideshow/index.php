@@ -45,16 +45,16 @@ if (\eMarket\Valid::inPOST('add')) {
 
     // Если есть установка по-умолчанию
     if (\eMarket\Valid::inPOST('view_slideshow')) {
-        $view_slideshow = 1;
+        $view_slideshow = '1';
     } else {
-        $view_slideshow = 0;
+        $view_slideshow = '0';
     }
 
     // Если есть установка анимации
     if (\eMarket\Valid::inPOST('animation')) {
-        $animation = 1;
+        $animation = '1';
     } else {
-        $animation = 0;
+        $animation = '0';
     }
 
     if (\eMarket\Valid::inPOST('start_date')) {
@@ -79,16 +79,16 @@ if (\eMarket\Valid::inPOST('edit')) {
 
     // Если есть установка по-умолчанию
     if (\eMarket\Valid::inPOST('view_slideshow')) {
-        $view_slideshow = 1;
+        $view_slideshow = '1';
     } else {
-        $view_slideshow = 0;
+        $view_slideshow = '0';
     }
 
     // Если есть установка анимации
     if (\eMarket\Valid::inPOST('animation')) {
-        $animation = 1;
+        $animation = '1';
     } else {
-        $animation = 0;
+        $animation = '0';
     }
 
     if (\eMarket\Valid::inPOST('start_date')) {
