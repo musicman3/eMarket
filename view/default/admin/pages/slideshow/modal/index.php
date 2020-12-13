@@ -36,7 +36,7 @@
                         <div class="form-group row slide-color">
 			    <div class="col-xs-6">
 				<div class="input-group">
-				    <input class="check-box" type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="animation" id="animation">
+				    <input class="check-box" type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="animation" id="animation" checked>
 				    <label for="animation"> Анимация текста</label>
 				</div>
 			    </div>

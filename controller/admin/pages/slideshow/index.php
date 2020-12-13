@@ -50,6 +50,13 @@ if (\eMarket\Valid::inPOST('add')) {
         $view_slideshow = 0;
     }
 
+    // Если есть установка анимации
+    if (\eMarket\Valid::inPOST('animation')) {
+        $animation = 1;
+    } else {
+        $animation = 0;
+    }
+
     if (\eMarket\Valid::inPOST('start_date')) {
         $start_date = date('Y-m-d', strtotime(\eMarket\Valid::inPOST('start_date')));
     } else {
@@ -62,7 +69,7 @@ if (\eMarket\Valid::inPOST('add')) {
         $end_date = NULL;
     }
 
-    \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_SLIDESHOW . " SET language=?, url=?, name=?, heading=?, logo=?, date_start=?, date_finish=?, status=?", [\eMarket\Valid::inPOST('set_language'), \eMarket\Valid::inPOST('url'), \eMarket\Valid::inPOST('name'), \eMarket\Valid::inPOST('heading'), json_encode([]), $start_date, $end_date, $view_slideshow]);
+    \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_SLIDESHOW . " SET language=?, url=?, name=?, heading=?, logo=?, animation=?, color=?, date_start=?, date_finish=?, status=?", [\eMarket\Valid::inPOST('set_language'), \eMarket\Valid::inPOST('url'), \eMarket\Valid::inPOST('name'), \eMarket\Valid::inPOST('heading'), json_encode([]), $animation, \eMarket\Valid::inPOST('color'), $start_date, $end_date, $view_slideshow]);
     // Выводим сообщение об успехе
     \eMarket\Messages::alert('success', lang('action_completed_successfully'));
 }
@@ -75,6 +82,13 @@ if (\eMarket\Valid::inPOST('edit')) {
         $view_slideshow = 1;
     } else {
         $view_slideshow = 0;
+    }
+
+    // Если есть установка анимации
+    if (\eMarket\Valid::inPOST('animation')) {
+        $animation = 1;
+    } else {
+        $animation = 0;
     }
 
     if (\eMarket\Valid::inPOST('start_date')) {
@@ -90,7 +104,7 @@ if (\eMarket\Valid::inPOST('edit')) {
     }
 
     // обновляем запись
-    \eMarket\Pdo::inPrepare("UPDATE " . TABLE_SLIDESHOW . " SET url=?, name=?, heading=?, date_start=?, date_finish=?, status=? WHERE id=?", [\eMarket\Valid::inPOST('url'), \eMarket\Valid::inPOST('name'), \eMarket\Valid::inPOST('heading'), $start_date, $end_date, $view_slideshow, \eMarket\Valid::inPOST('edit')]);
+    \eMarket\Pdo::inPrepare("UPDATE " . TABLE_SLIDESHOW . " SET url=?, name=?, heading=?, animation=?, color=?, date_start=?, date_finish=?, status=? WHERE id=?", [\eMarket\Valid::inPOST('url'), \eMarket\Valid::inPOST('name'), \eMarket\Valid::inPOST('heading'), $animation, \eMarket\Valid::inPOST('color'), $start_date, $end_date, $view_slideshow, \eMarket\Valid::inPOST('edit')]);
 
     // Выводим сообщение об успехе
     \eMarket\Messages::alert('success', lang('action_completed_successfully'));
@@ -100,9 +114,9 @@ if (\eMarket\Valid::inPOST('edit')) {
 $resize_param = [];
 array_push($resize_param, ['125', '63']); // ширина, высота
 array_push($resize_param, ['1200', '600']);
-array_push($resize_param, ['1366','683']);
-array_push($resize_param, ['1600','800']);
-array_push($resize_param, ['1920','960']);
+array_push($resize_param, ['1366', '683']);
+array_push($resize_param, ['1600', '800']);
+array_push($resize_param, ['1920', '960']);
 
 \eMarket\Files::imgUpload(TABLE_SLIDESHOW, 'slideshow', $resize_param);
 

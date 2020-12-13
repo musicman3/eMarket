@@ -27,7 +27,7 @@ $lang_js = json_encode([
     var lang = $.parseJSON('<?php echo $lang_js ?>');
     new Fileupload(resize_max, lang);
 
-    $('#mouse_stop, #autostart, #cicles, #indicators, #navigation, #view_slideshow').bootstrapSwitch();
+    $('#mouse_stop, #autostart, #cicles, #indicators, #navigation, #view_slideshow', '#animation').bootstrapSwitch();
 
     $('#settings').on('show.bs.modal', function (event) {
         $('#mouse_stop, #autostart, #cicles, #indicators, #navigation').bootstrapSwitch('destroy', true);
@@ -65,7 +65,7 @@ $lang_js = json_encode([
         var button = $(event.relatedTarget);
         var modal_id = button.data('edit'); // Получаем ID из data-edit при клике на кнопку редактирования
         if (Number.isInteger(modal_id)) {
-            $('#view_slideshow').bootstrapSwitch('destroy', true);
+            $('#view_slideshow, #animation').bootstrapSwitch('destroy', true);
             // Получаем массивы данных
             var json_data = $('div#ajax_data').data('jsondata');
             var start = json_data['date_start'][modal_id];
@@ -75,7 +75,8 @@ $lang_js = json_encode([
             $('#add').val('');
             // Меняем значение чекбокса
             $('#view_slideshow').prop('checked', json_data['status'][modal_id]);
-            $('#view_slideshow').bootstrapSwitch();
+            $('#view_slideshow').prop('checked', 1);
+            $('#view_slideshow, #animation').bootstrapSwitch();
 
             $('#url').val(json_data['url'][modal_id]);
             $('#name').val(json_data['name'][modal_id]);
@@ -98,7 +99,8 @@ $lang_js = json_encode([
             //Очищаем поля
             $(this).find('form').trigger('reset');
             // Меняем значение чекбокса
-            $('#view_slideshow').prop('checked', '1');
+            $('#view_slideshow, #animation').prop('checked', '1');
+            $('#view_slideshow, #animation').bootstrapSwitch();
         }
     });
 </script>

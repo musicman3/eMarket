@@ -247,6 +247,8 @@ CREATE TABLE emkt_slideshow (
 	language varchar(64),
 	logo json,
         logo_general varchar(128),
+        animation int DEFAULT '1' NOT NULL,
+        color text,
         url text,
         name varchar(256),
         heading text,
