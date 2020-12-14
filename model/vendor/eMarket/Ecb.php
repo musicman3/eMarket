@@ -156,10 +156,14 @@ final class Ecb {
      * 
      * @return array (выходные данные)
      */
-    public static function priceTerminal() {
+    public static function priceTerminal($marker = null) {
         
         if (self::$terminal_data != FALSE) {
-            return self::$terminal_data;
+            if ($marker == 'interface') {
+                return self::$terminal_data;
+            } else {
+                return self::$terminal_data['total_price_with_sale'];
+            }
         }
 
         $total_price_with_sale = 0;
@@ -226,7 +230,11 @@ final class Ecb {
             self::$terminal_data = $output_data;
         }
 
-        return self::$terminal_data;
+        if ($marker == 'interface') {
+                return self::$terminal_data;
+            } else {
+                return self::$terminal_data['total_price_with_sale'];
+            }
     }
 
     /**
@@ -238,7 +246,7 @@ final class Ecb {
      */
     public static function totalPriceCartInterface($marker, $class = null) {
 
-        $total_price_with_sale = self::priceTerminal()['total_price_with_sale'];
+        $total_price_with_sale = self::priceTerminal();
         $price_val = \eMarket\Cart::totalPrice();
 
         if ($class == null) {

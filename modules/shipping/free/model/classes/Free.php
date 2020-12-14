@@ -61,14 +61,14 @@ class Free {
                     'chanel_id' => $data['id'],
                     'chanel_module_name' => 'free',
                     'chanel_name' => lang('modules_shipping_free_name'),
-                    'chanel_total_price' => \eMarket\Ecb::priceTerminal()['total_price_with_sale'],
-                    'chanel_total_price_format' => \eMarket\Products::formatPrice(\eMarket\Ecb::priceTerminal()['total_price_with_sale'], 1),
+                    'chanel_total_price' => \eMarket\Ecb::priceTerminal(),
+                    'chanel_total_price_format' => \eMarket\Products::formatPrice(\eMarket\Ecb::priceTerminal(), 1),
                     'chanel_minimum_price' => \eMarket\Ecb::currencyPrice($data['minimum_price'], $data['currency']),
                     'chanel_minimum_price_format' => \eMarket\Products::formatPrice(\eMarket\Ecb::currencyPrice($data['minimum_price'], $data['currency']), 1),
                     'chanel_shipping_price' => 0,
                     'chanel_shipping_price_format' => \eMarket\Products::formatPrice(0, 1),
-                    'chanel_total_price_with_shipping' => \eMarket\Ecb::priceTerminal()['total_price_with_sale'] + 0,
-                    'chanel_total_price_with_shipping_format' => \eMarket\Products::formatPrice(\eMarket\Ecb::priceTerminal()['total_price_with_sale'] + 0, 1),
+                    'chanel_total_price_with_shipping' => \eMarket\Ecb::priceTerminal() + 0,
+                    'chanel_total_price_with_shipping_format' => \eMarket\Products::formatPrice(\eMarket\Ecb::priceTerminal() + 0, 1),
                     'chanel_tax' => '',
                     'chanel_image' => ''
                 ];
