@@ -65,7 +65,7 @@ final class Ecb {
     }
 
     /**
-     * Блок вывода цены в корзине с учетом скидки
+     * Блок вывода итоговой цены в корзине
      * 
      * @param string $marker (маркер для self::formatPrice для вывода названия валюты)
      * @param string $class (класс bootstrap для отображения скидки)
