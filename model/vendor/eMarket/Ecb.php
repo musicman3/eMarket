@@ -18,7 +18,6 @@ final class Ecb {
 
     public static $stiker_data = FALSE;
     public static $currencies = FALSE;
-    public static $taxes_data = FALSE;
     public static $terminal_data = FALSE;
 
     /**
@@ -166,46 +165,51 @@ final class Ecb {
         $total_price_with_sale = 0;
         $output_data = [];
 
-        if (self::$taxes_data == FALSE) {
-            self::$taxes_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_TAXES . " WHERE language=?", [lang('#lang_all')[0]]);
-        }
+        $taxes_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_TAXES . " WHERE language=?", [lang('#lang_all')[0]]);
 
         if (isset($_SESSION['cart'])) {
             $x = 0;
             foreach ($_SESSION['cart'] as $value) {
-                $data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=? AND language=?", [$value['id'], lang('#lang_all')[0]]);
+                $data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=? AND language=?", [$value['id'], lang('#lang_all')[0]])[0];
                 if ($data != FALSE) {
-                    $discount_sale = self::outPrice($data[0])['discount_sale'];
+                    $discount_sale = self::outPrice($data)['discount_sale'];
                     $discount_total_sale = 0;
+                    
+                    $tax = [];
+                    foreach ($taxes_data as $tax_data){
+                        if ($tax_data['id'] == $data['tax']){
+                            $tax = $tax_data;
+                        }
+                    }
 
                     if ($discount_sale['sales'] != 'false') {
                         foreach ($discount_sale['sales'] as $total_sale) {
                             $discount_total_sale = $discount_total_sale + $total_sale;
                         }
-                        $total_price_with_sale = $total_price_with_sale + (self::currencyPrice($data[0]['price'], $data[0]['currency']) * $value['quantity'] / 100 * (100 - $discount_total_sale));
+                        $total_price_with_sale = $total_price_with_sale + (self::currencyPrice($data['price'], $data['currency']) * $value['quantity'] / 100 * (100 - $discount_total_sale));
 
                         $interface = [
                             'id' => $value['id'],
-                            'price' => $data[0]['price'],
-                            'currency' => $data[0]['currency'],
-                            'price_with_currency' => self::currencyPrice($data[0]['price'], $data[0]['currency']),
-                            'currency' => $data[0]['currency'],
+                            'price' => $data['price'],
+                            'currency' => $data['currency'],
+                            'price_with_currency' => self::currencyPrice($data['price'], $data['currency']),
                             'quantity' => $value['quantity'],
-                            'discount_sale' => $discount_sale
+                            'discount_sale' => $discount_sale,
+                            'tax' => $tax
                         ];
 
                         array_push($output_data, $interface);
                     } else {
-                        $total_price_with_sale = $total_price_with_sale + (self::currencyPrice($data[0]['price'], $data[0]['currency']) * $value['quantity']);
+                        $total_price_with_sale = $total_price_with_sale + (self::currencyPrice($data['price'], $data['currency']) * $value['quantity']);
 
                         $interface = [
                             'id' => $value['id'],
-                            'price' => $data[0]['price'],
-                            'currency' => $data[0]['currency'],
-                            'price_with_currency' => self::currencyPrice($data[0]['price'], $data[0]['currency']),
-                            'currency' => $data[0]['currency'],
+                            'price' => $data['price'],
+                            'currency' => $data['currency'],
+                            'price_with_currency' => self::currencyPrice($data['price'], $data['currency']),
                             'quantity' => $value['quantity'],
-                            'discount_sale' => $discount_sale
+                            'discount_sale' => $discount_sale,
+                            'tax' => $tax
                         ];
 
                         array_push($output_data, $interface);
