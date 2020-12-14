@@ -20,6 +20,7 @@ class Products {
     public static $vendor_codes = FALSE;
     public static $weight = FALSE;
     public static $length = FALSE;
+    public static $stiker_data = FALSE;
 
     /**
      * Данные по новым товарам
@@ -153,60 +154,52 @@ class Products {
             return '<span class="label label-success">' . $date_available_text . '</span>';
         }
     }
-
+    
     /**
-     * Данные стоимости товара
-     *
-     * @param string $price (цена)
-     * @param string $format (выводить стоимость в форматированном виде: 0 - полное наим., 1- сокращ. наим., 2 - знак валюты, 3 - ISO код)
-     * @param string $language (язык для отображения)
-     * @return array $price (данные по стоимости)
+     * Блок вывода стикеров
+     * 
+     * @param array $input (массив с входящими значениями по товару)
+     * @param string $class (класс bootstrap для отображения стикера скидки)
+     * @param string $class2 (класс bootstrap для отображения собственного стикера)
+     * @return string (выходные данные в виде форматированной стоимости)
      */
-    public static function formatPrice($price, $format = null, $language = null) {
+    public static function stikers($input, $class = null, $class2 = null) {
 
-        if ($language == null) {
-            $CURRENCIES = \eMarket\Set::currencyDefault();
-        } else {
-            $CURRENCIES = \eMarket\Set::currencyDefault($language);
+        if ($class == null) {
+            $class = 'danger';
+        }
+        if ($class2 == null) {
+            $class2 = 'success';
+        }
+        if (self::$stiker_data == false) {
+            self::$stiker_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_STIKERS . " WHERE language=?", [lang('#lang_all')[0]]);
+        }
+        $stiker_name = [];
+        foreach (self::$stiker_data as $val) {
+            $stiker_name[$val['id']] = $val['name'];
         }
 
-        if ($format == 0) {
-            if ($CURRENCIES[8] == 'left') {
-                return $price_return = $CURRENCIES[1] . ' ' . number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language));
-            }
-            if ($CURRENCIES[8] == 'right') {
-                return $price_return = number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language)) . ' ' . $CURRENCIES[1];
-            }
-        }
+        $discount_sale = \eMarket\Ecb::outPrice($input)['discount_sale'];
+        $discount_total_sale = 0;
 
-        if ($format == 1) {
-            if ($CURRENCIES[8] == 'left') {
-                return $price_return = $CURRENCIES[2] . ' ' . number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language));
-            }
-            if ($CURRENCIES[8] == 'right') {
-                return $price_return = number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language)) . ' ' . $CURRENCIES[2];
-            }
-        }
-
-        if ($format == 2) {
-            if ($CURRENCIES[8] == 'left') {
-                return $price_return = $CURRENCIES[7] . ' ' . number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language));
-            }
-            if ($CURRENCIES[8] == 'right') {
-                return $price_return = number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language)) . ' ' . $CURRENCIES[7];
+        if ($discount_sale['sales'] != 'false') {
+            foreach ($discount_sale['sales'] as $total_sale) {
+                $discount_total_sale = $discount_total_sale + $total_sale;
             }
         }
 
-        if ($format == 3) {
-            if ($CURRENCIES[8] == 'left') {
-                return $price_return = $CURRENCIES[3] . ' ' . number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language));
-            }
-            if ($CURRENCIES[8] == 'right') {
-                return $price_return = number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language)) . ' ' . $CURRENCIES[3];
-            }
+        if (isset($discount_total_sale) && $discount_total_sale > 0 && $input['stiker'] != '' && $input['stiker'] != NULL) {
+            return '<div class="labelsblock"><div class="' . $class . '">- ' . $discount_total_sale . '%</div><div class="' . $class2 . '">' . $stiker_name[$input['stiker']] . '</div></div>';
         }
 
-        return number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language));
+        if ($input['stiker'] != '' && $input['stiker'] != NULL) {
+            return '<div class="labelsblock"><div class="' . $class2 . '">' . $stiker_name[$input['stiker']] . '</div></div>';
+        }
+
+        if (isset($discount_total_sale) && $discount_total_sale > 0) {
+            return '<div class="labelsblock"><div class="' . $class . '">- ' . $discount_total_sale . '%</div></div>';
+        }
+        return '';
     }
 
 }

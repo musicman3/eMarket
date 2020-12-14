@@ -63,16 +63,16 @@ if (\eMarket\Valid::inPOST('add') && password_verify(\eMarket\Valid::inPOST('ord
         $data = [
             'admin' => [
                 'name' => $admin_product_data['name'],
-                'price' => \eMarket\Products::formatPrice(\eMarket\Ecb::outPrice($admin_product_data)['out_price'], 1, $primary_language),
+                'price' => \eMarket\Ecb::formatPrice(\eMarket\Ecb::outPrice($admin_product_data)['out_price'], 1, $primary_language),
                 'unit' => $admin_unit['unit'],
-                'amount' => \eMarket\Products::formatPrice(\eMarket\Ecb::outPrice($admin_product_data)['out_price'] * $value['quantity'], 1, $primary_language),
+                'amount' => \eMarket\Ecb::formatPrice(\eMarket\Ecb::outPrice($admin_product_data)['out_price'] * $value['quantity'], 1, $primary_language),
                 'stiker' => $stiker_name[$product_data['stiker']]
             ],
             'customer' => [
                 'name' => $product_data['name'],
-                'price' => \eMarket\Products::formatPrice(\eMarket\Ecb::outPrice($product_data)['out_price'], 1),
+                'price' => \eMarket\Ecb::formatPrice(\eMarket\Ecb::outPrice($product_data)['out_price'], 1),
                 'unit' => $unit['unit'],
-                'amount' => \eMarket\Products::formatPrice(\eMarket\Ecb::outPrice($product_data)['out_price'] * $value['quantity'], 1),
+                'amount' => \eMarket\Ecb::formatPrice(\eMarket\Ecb::outPrice($product_data)['out_price'] * $value['quantity'], 1),
                 'stiker' => $stiker_name_customer[$product_data['stiker']]
             ],
             'data' => [
@@ -85,14 +85,14 @@ if (\eMarket\Valid::inPOST('add') && password_verify(\eMarket\Valid::inPOST('ord
 
     $order_total = [
         'admin' => [
-            'total_with_shipping_format' => \eMarket\Products::formatPrice(\eMarket\Valid::inPOST('order_total_with_shipping'), 1, $primary_language),
-            'total_format' => \eMarket\Products::formatPrice(\eMarket\Valid::inPOST('order_total'), 1, $primary_language),
-            'shipping_price_format' => \eMarket\Products::formatPrice(\eMarket\Valid::inPOST('order_shipping_price'), 1, $primary_language)
+            'total_with_shipping_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_total_with_shipping'), 1, $primary_language),
+            'total_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_total'), 1, $primary_language),
+            'shipping_price_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_shipping_price'), 1, $primary_language)
         ],
         'customer' => [
-            'total_with_shipping_format' => \eMarket\Products::formatPrice(\eMarket\Valid::inPOST('order_total_with_shipping'), 1),
-            'total_format' => \eMarket\Products::formatPrice(\eMarket\Valid::inPOST('order_total'), 1),
-            'shipping_price_format' => \eMarket\Products::formatPrice(\eMarket\Valid::inPOST('order_shipping_price'), 1)
+            'total_with_shipping_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_total_with_shipping'), 1),
+            'total_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_total'), 1),
+            'shipping_price_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_shipping_price'), 1)
         ],
         'data' => [
             'total_with_shipping' => \eMarket\Valid::inPOST('order_total_with_shipping'),

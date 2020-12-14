@@ -16,7 +16,6 @@ namespace eMarket;
  */
 final class Ecb {
 
-    public static $stiker_data = FALSE;
     public static $currencies = FALSE;
     public static $terminal_data = FALSE;
 
@@ -48,84 +47,20 @@ final class Ecb {
 
         if (\eMarket\Set::path() == 'admin') {
             if ($price_val != $discount_sale['price'] && $discount_count == 1) {
-                return '<span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="' . $discount_names . '" class="label label-' . $class . '">' . \eMarket\Products::formatPrice($discount_sale['price'], $marker) . '</span> <del>' . \eMarket\Products::formatPrice($price_val, $marker) . '</del>';
+                return '<span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="' . $discount_names . '" class="label label-' . $class . '">' . \eMarket\Ecb::formatPrice($discount_sale['price'], $marker) . '</span> <del>' . \eMarket\Ecb::formatPrice($price_val, $marker) . '</del>';
             }
             if ($price_val != $discount_sale['price'] && $discount_count > 1) {
-                return '<span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="' . lang('modules_discount_sale_admin_tooltip_warning') . $discount_names . '" class="label label-warning"><u>' . \eMarket\Products::formatPrice($discount_sale['price'], $marker) . '</u></span> <del>' . \eMarket\Products::formatPrice($price_val, $marker) . '</del>';
+                return '<span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="' . lang('modules_discount_sale_admin_tooltip_warning') . $discount_names . '" class="label label-warning"><u>' . \eMarket\Ecb::formatPrice($discount_sale['price'], $marker) . '</u></span> <del>' . \eMarket\Ecb::formatPrice($price_val, $marker) . '</del>';
             }
-            return \eMarket\Products::formatPrice($price_val, $marker);
+            return \eMarket\Ecb::formatPrice($price_val, $marker);
         }
 
         if (\eMarket\Set::path() == 'catalog') {
             if ($price_val != $discount_sale['price']) {
-                return '<del>' . \eMarket\Products::formatPrice($price_val, $marker) . '</del><br><span class="label label-' . $class . '">' . \eMarket\Products::formatPrice($discount_sale['price'], $marker) . '</span>';
+                return '<del>' . \eMarket\Ecb::formatPrice($price_val, $marker) . '</del><br><span class="label label-' . $class . '">' . \eMarket\Ecb::formatPrice($discount_sale['price'], $marker) . '</span>';
             }
-            return \eMarket\Products::formatPrice($price_val, $marker);
+            return \eMarket\Ecb::formatPrice($price_val, $marker);
         }
-    }
-
-    /**
-     * Блок вывода итоговой цены товара
-     * 
-     * @param array $input (массив с входящими значениями по товару)
-     * @return array (выходные данные)
-     */
-    public static function outPrice($input) {
-        //Модуль скидки \eMarket\Modules\Discount\Sale
-        $discount_sale = \eMarket\Modules\Discount\Sale::dataInterface($input);
-
-        $output = [
-            'out_price' => $discount_sale['price'],
-            'discount_sale' => $discount_sale
-        ];
-        return $output;
-    }
-
-    /**
-     * Блок вывода стикеров
-     * 
-     * @param array $input (массив с входящими значениями по товару)
-     * @param string $class (класс bootstrap для отображения стикера скидки)
-     * @param string $class2 (класс bootstrap для отображения собственного стикера)
-     * @return string (выходные данные в виде форматированной стоимости)
-     */
-    public static function stikers($input, $class = null, $class2 = null) {
-
-        if ($class == null) {
-            $class = 'danger';
-        }
-        if ($class2 == null) {
-            $class2 = 'success';
-        }
-        if (self::$stiker_data == false) {
-            self::$stiker_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_STIKERS . " WHERE language=?", [lang('#lang_all')[0]]);
-        }
-        $stiker_name = [];
-        foreach (self::$stiker_data as $val) {
-            $stiker_name[$val['id']] = $val['name'];
-        }
-
-        $discount_sale = self::outPrice($input)['discount_sale'];
-        $discount_total_sale = 0;
-
-        if ($discount_sale['sales'] != 'false') {
-            foreach ($discount_sale['sales'] as $total_sale) {
-                $discount_total_sale = $discount_total_sale + $total_sale;
-            }
-        }
-
-        if (isset($discount_total_sale) && $discount_total_sale > 0 && $input['stiker'] != '' && $input['stiker'] != NULL) {
-            return '<div class="labelsblock"><div class="' . $class . '">- ' . $discount_total_sale . '%</div><div class="' . $class2 . '">' . $stiker_name[$input['stiker']] . '</div></div>';
-        }
-
-        if ($input['stiker'] != '' && $input['stiker'] != NULL) {
-            return '<div class="labelsblock"><div class="' . $class2 . '">' . $stiker_name[$input['stiker']] . '</div></div>';
-        }
-
-        if (isset($discount_total_sale) && $discount_total_sale > 0) {
-            return '<div class="labelsblock"><div class="' . $class . '">- ' . $discount_total_sale . '%</div></div>';
-        }
-        return '';
     }
 
     /**
@@ -146,9 +81,31 @@ final class Ecb {
         $price_val = self::currencyPrice($input['price'], $input['currency']);
 
         if ($price_val != $discount_sale['price']) {
-            return '<del>' . \eMarket\Products::formatPrice($price_val * \eMarket\Cart::productQuantity($input['id'], 1), $marker) . '</del><br><span class="label label-' . $class . '">' . \eMarket\Products::formatPrice($discount_sale['price'] * \eMarket\Cart::productQuantity($input['id'], 1), $marker) . '</span>';
+            return '<del>' . \eMarket\Ecb::formatPrice($price_val * \eMarket\Cart::productQuantity($input['id'], 1), $marker) . '</del><br><span class="label label-' . $class . '">' . \eMarket\Ecb::formatPrice($discount_sale['price'] * \eMarket\Cart::productQuantity($input['id'], 1), $marker) . '</span>';
         }
-        return \eMarket\Products::formatPrice($price_val * \eMarket\Cart::productQuantity($input['id'], 1), $marker);
+        return \eMarket\Ecb::formatPrice($price_val * \eMarket\Cart::productQuantity($input['id'], 1), $marker);
+    }
+
+    /**
+     * Блок вывода цены в корзине с учетом скидки
+     * 
+     * @param string $marker (маркер для \eMarket\Products::formatPrice для вывода названия валюты)
+     * @param string $class (класс bootstrap для отображения скидки)
+     * @return string (выходные данные в виде форматированной стоимости)
+     */
+    public static function totalPriceCartInterface($marker, $class = null) {
+
+        $total_price_with_sale = self::priceTerminal();
+        $price_val = \eMarket\Cart::totalPrice();
+
+        if ($class == null) {
+            $class = 'danger';
+        }
+
+        if ($price_val != $total_price_with_sale) {
+            return '<del>' . \eMarket\Ecb::formatPrice($price_val, $marker) . '</del><br><span class="label label-' . $class . '">' . \eMarket\Ecb::formatPrice($total_price_with_sale, $marker) . '</span>';
+        }
+        return \eMarket\Ecb::formatPrice($price_val, $marker);
     }
 
     /**
@@ -157,7 +114,7 @@ final class Ecb {
      * @return array (выходные данные)
      */
     public static function priceTerminal($marker = null) {
-        
+
         if (self::$terminal_data != FALSE) {
             if ($marker == 'interface') {
                 return self::$terminal_data;
@@ -178,10 +135,10 @@ final class Ecb {
                 if ($data != FALSE) {
                     $discount_sale = self::outPrice($data)['discount_sale'];
                     $discount_total_sale = 0;
-                    
+
                     $tax = [];
-                    foreach ($taxes_data as $tax_data){
-                        if ($tax_data['id'] == $data['tax']){
+                    foreach ($taxes_data as $tax_data) {
+                        if ($tax_data['id'] == $data['tax']) {
                             $tax = $tax_data;
                         }
                     }
@@ -225,38 +182,33 @@ final class Ecb {
             }
         }
         $output_data['total_price_with_sale'] = $total_price_with_sale;
-        
+
         if (self::$terminal_data == FALSE) {
             self::$terminal_data = $output_data;
         }
 
         if ($marker == 'interface') {
-                return self::$terminal_data;
-            } else {
-                return self::$terminal_data['total_price_with_sale'];
-            }
+            return self::$terminal_data;
+        } else {
+            return self::$terminal_data['total_price_with_sale'];
+        }
     }
 
     /**
-     * Блок вывода цены в корзине с учетом скидки
+     * Блок вывода итоговой цены товара
      * 
-     * @param string $marker (маркер для \eMarket\Products::formatPrice для вывода названия валюты)
-     * @param string $class (класс bootstrap для отображения скидки)
-     * @return string (выходные данные в виде форматированной стоимости)
+     * @param array $input (массив с входящими значениями по товару)
+     * @return array (выходные данные)
      */
-    public static function totalPriceCartInterface($marker, $class = null) {
+    public static function outPrice($input) {
+        //Модуль скидки \eMarket\Modules\Discount\Sale
+        $discount_sale = \eMarket\Modules\Discount\Sale::dataInterface($input);
 
-        $total_price_with_sale = self::priceTerminal();
-        $price_val = \eMarket\Cart::totalPrice();
-
-        if ($class == null) {
-            $class = 'danger';
-        }
-
-        if ($price_val != $total_price_with_sale) {
-            return '<del>' . \eMarket\Products::formatPrice($price_val, $marker) . '</del><br><span class="label label-' . $class . '">' . \eMarket\Products::formatPrice($total_price_with_sale, $marker) . '</span>';
-        }
-        return \eMarket\Products::formatPrice($price_val, $marker);
+        $output = [
+            'out_price' => $discount_sale['price'],
+            'discount_sale' => $discount_sale
+        ];
+        return $output;
     }
 
     /**
@@ -279,6 +231,60 @@ final class Ecb {
         return FALSE;
     }
 
+    /**
+     * Данные стоимости товара
+     *
+     * @param string $price (цена)
+     * @param string $format (выводить стоимость в форматированном виде: 0 - полное наим., 1- сокращ. наим., 2 - знак валюты, 3 - ISO код)
+     * @param string $language (язык для отображения)
+     * @return array $price (данные по стоимости)
+     */
+    public static function formatPrice($price, $format = null, $language = null) {
+
+        if ($language == null) {
+            $CURRENCIES = \eMarket\Set::currencyDefault();
+        } else {
+            $CURRENCIES = \eMarket\Set::currencyDefault($language);
+        }
+
+        if ($format == 0) {
+            if ($CURRENCIES[8] == 'left') {
+                return $price_return = $CURRENCIES[1] . ' ' . number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language));
+            }
+            if ($CURRENCIES[8] == 'right') {
+                return $price_return = number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language)) . ' ' . $CURRENCIES[1];
+            }
+        }
+
+        if ($format == 1) {
+            if ($CURRENCIES[8] == 'left') {
+                return $price_return = $CURRENCIES[2] . ' ' . number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language));
+            }
+            if ($CURRENCIES[8] == 'right') {
+                return $price_return = number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language)) . ' ' . $CURRENCIES[2];
+            }
+        }
+
+        if ($format == 2) {
+            if ($CURRENCIES[8] == 'left') {
+                return $price_return = $CURRENCIES[7] . ' ' . number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language));
+            }
+            if ($CURRENCIES[8] == 'right') {
+                return $price_return = number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language)) . ' ' . $CURRENCIES[7];
+            }
+        }
+
+        if ($format == 3) {
+            if ($CURRENCIES[8] == 'left') {
+                return $price_return = $CURRENCIES[3] . ' ' . number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language));
+            }
+            if ($CURRENCIES[8] == 'right') {
+                return $price_return = number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language)) . ' ' . $CURRENCIES[3];
+            }
+        }
+
+        return number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language));
+    }
 }
 
 ?>
