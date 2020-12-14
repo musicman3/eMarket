@@ -6,7 +6,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 // Если добавлен новый заказ
-if (\eMarket\Valid::inPOST('add') && password_verify(\eMarket\Valid::inPOST('order_total') . \eMarket\Valid::inPOST('products_order') . \eMarket\Valid::inPOST('shipping_method'), \eMarket\Valid::inPOST('hash'))) {
+if (\eMarket\Valid::inPOST('add') && password_verify(\eMarket\Valid::inPOST('order_total'), \eMarket\Valid::inPOST('hash'))) {
     $customer = \eMarket\Pdo::getColAssoc("SELECT id, address_book, gender, firstname, lastname, middle_name, fax, telephone FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']])[0];
     // Готовим данные по адресу
     $address_all = json_decode($customer['address_book'], 1);
