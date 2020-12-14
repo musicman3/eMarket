@@ -19,6 +19,7 @@ final class Ecb {
     public static $stiker_data = FALSE;
     public static $currencies = FALSE;
     public static $taxes_data = FALSE;
+    public static $terminal_data = FALSE;
 
     /**
      * Блок вывода цены с учетом скидки
@@ -157,6 +158,10 @@ final class Ecb {
      * @return array (выходные данные)
      */
     public static function priceTerminal() {
+        
+        if (self::$terminal_data != FALSE) {
+            return self::$terminal_data;
+        }
 
         $total_price_with_sale = 0;
         $output_data = [];
@@ -178,7 +183,7 @@ final class Ecb {
                             $discount_total_sale = $discount_total_sale + $total_sale;
                         }
                         $total_price_with_sale = $total_price_with_sale + (self::currencyPrice($data[0]['price'], $data[0]['currency']) * $value['quantity'] / 100 * (100 - $discount_total_sale));
-                        
+
                         $interface = [
                             'id' => $value['id'],
                             'price' => $data[0]['price'],
@@ -188,11 +193,11 @@ final class Ecb {
                             'quantity' => $value['quantity'],
                             'discount_sale' => $discount_sale
                         ];
-                        
+
                         array_push($output_data, $interface);
                     } else {
                         $total_price_with_sale = $total_price_with_sale + (self::currencyPrice($data[0]['price'], $data[0]['currency']) * $value['quantity']);
-                        
+
                         $interface = [
                             'id' => $value['id'],
                             'price' => $data[0]['price'],
@@ -202,7 +207,7 @@ final class Ecb {
                             'quantity' => $value['quantity'],
                             'discount_sale' => $discount_sale
                         ];
-                        
+
                         array_push($output_data, $interface);
                     }
                 } else {
@@ -212,8 +217,12 @@ final class Ecb {
             }
         }
         $output_data['total_price_with_sale'] = $total_price_with_sale;
- 
-        return $output_data;
+        
+        if (self::$terminal_data == FALSE) {
+            self::$terminal_data = $output_data;
+        }
+
+        return self::$terminal_data;
     }
 
     /**
