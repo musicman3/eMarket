@@ -29,7 +29,7 @@ if (\eMarket\Valid::inPOST('shipping_region_json')) {
             'chanel_tax' => $data['chanel_tax'],
             'chanel_image' => $data['chanel_image'],
             // Хэш стоимости с учетом доставки
-            'chanel_hash_total_price_with_shipping' => \eMarket\Autorize::passwordHash($data['chanel_total_price_with_shipping'])
+            'chanel_hash_total_price_with_shipping' => \eMarket\Autorize::passwordHash($data['chanel_total_price_with_shipping'] . \eMarket\Valid::inPOST('products_order_json') . $data['chanel_module_name'])
         ];
 
         array_push($interface_data, $interface);
