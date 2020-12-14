@@ -41,7 +41,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                                     <button class="btn btn-primary btn-sm" type="button" onclick="Cart.deleteProduct(<?php echo $value['id'] ?>)"><span class="glyphicon glyphicon-trash"></span></button>
                                 </form>
                             </td>
-                            <td class="text-center"><?php echo \eMarket\Ecb::priceCartInterface($value, 1) ?></td>
+                            <td class="text-center"><?php echo \eMarket\Ecb::priceInterface($value, 1, \eMarket\Cart::productQuantity($value['id'], 1)) ?></td>
                         </tr>
                     <?php } ?>
                 </tbody>
