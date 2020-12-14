@@ -73,17 +73,17 @@ final class Ecb {
      */
     public static function totalPriceCartInterface($marker, $class = null) {
 
-        $total_price_with_sale = self::priceTerminal();
-        $price_val = \eMarket\Cart::totalPrice();
+        $total_terminal_price = self::priceTerminal();
+        $total_price = \eMarket\Cart::totalPrice();
 
         if ($class == null) {
             $class = 'danger';
         }
 
-        if ($price_val != $total_price_with_sale) {
-            return '<del>' . self::formatPrice($price_val, $marker) . '</del><br><span class="label label-' . $class . '">' . self::formatPrice($total_price_with_sale, $marker) . '</span>';
+        if ($total_price != $total_terminal_price) {
+            return '<del>' . self::formatPrice($total_price, $marker) . '</del><br><span class="label label-' . $class . '">' . self::formatPrice($total_terminal_price, $marker) . '</span>';
         }
-        return self::formatPrice($price_val, $marker);
+        return self::formatPrice($total_price, $marker);
     }
 
     /**
