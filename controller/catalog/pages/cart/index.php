@@ -13,7 +13,7 @@ if (\eMarket\Valid::inPOST('shipping_region_json')) {
     $interface_data = [];
     foreach ($modules_data as $data) {
 
-        // Интерфейс для модулей доставки
+        // Интерфейс для получения данных от модулей доставки
         $interface = [
             'chanel_id' => $data['chanel_id'],
             'chanel_module_name' => $data['chanel_module_name'],
@@ -46,7 +46,7 @@ if (\eMarket\Valid::inPOST('payment_shipping_json')) {
     $interface_data = [];
     foreach ($modules_data as $data) {
 
-        // Интерфейс для модулей оплаты
+        // Интерфейс для получения данных от модулей оплаты
         $interface = [
             'chanel_module_name' => $data['chanel_module_name'],
             'chanel_name' => $data['chanel_name'],
