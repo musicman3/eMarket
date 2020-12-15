@@ -53,7 +53,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                 <table class="table table-bordered">
                     <tbody>
                         <tr>
-                            <td class="text-right"><strong><?php echo lang('cart_total') ?></strong></td>
+                            <td class="text-right"><strong><?php echo lang('cart_subtotal') ?></strong></td>
                             <td class="text-right"><?php echo \eMarket\Ecb::totalPriceCartInterface(1) ?></td>
                         </tr>
                     </tbody>
