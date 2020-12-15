@@ -27,9 +27,12 @@ if (\eMarket\Valid::inPOST('shipping_region_json')) {
             'chanel_total_price_with_shipping' => $data['chanel_total_price_with_shipping'],
             'chanel_total_price_with_shipping_format' => $data['chanel_total_price_with_shipping_format'],
             'chanel_tax' => $data['chanel_tax'],
+            'chanel_tax_format' => $data['chanel_tax_format'],
             'chanel_image' => $data['chanel_image'],
+            'chanel_order_to_pay' => $data['chanel_total_price_with_shipping'] + $data['chanel_tax'],
+            'chanel_order_to_pay_format' => \eMarket\Ecb::formatPrice($data['chanel_total_price_with_shipping'] + $data['chanel_tax'], 1),
             // Хэш стоимости с учетом доставки
-            'chanel_hash_total_price_with_shipping' => \eMarket\Autorize::passwordHash($data['chanel_total_price_with_shipping'] . \eMarket\Valid::inPOST('products_order_json') . $data['chanel_module_name'] . $data['chanel_shipping_price'] . $data['chanel_total_price'])
+            'chanel_hash_total_price_with_shipping' => \eMarket\Autorize::passwordHash($data['chanel_total_price_with_shipping'] + $data['chanel_tax'] . $data['chanel_total_price_with_shipping'] . \eMarket\Valid::inPOST('products_order_json') . $data['chanel_module_name'] . $data['chanel_shipping_price'] . $data['chanel_total_price'])
         ];
 
         array_push($interface_data, $interface);
@@ -42,7 +45,7 @@ if (\eMarket\Valid::inPOST('shipping_region_json')) {
 if (\eMarket\Valid::inPOST('payment_shipping_json')) {
     $modules_names = \eMarket\Payment::paymentModulesAvailable(\eMarket\Valid::inPOST('payment_shipping_json')); // данные в виде названия модулей
     $modules_data = \eMarket\Payment::loadData($modules_names);
-    
+
     $interface_data = [];
     foreach ($modules_data as $data) {
 

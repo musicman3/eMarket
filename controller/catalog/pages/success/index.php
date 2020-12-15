@@ -6,7 +6,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 // Если добавлен новый заказ
-if (\eMarket\Valid::inPOST('add') && password_verify(\eMarket\Valid::inPOST('order_total_with_shipping') . \eMarket\Valid::inPOST('products_order') . \eMarket\Valid::inPOST('shipping_method') . \eMarket\Valid::inPOST('order_shipping_price') . \eMarket\Valid::inPOST('order_total'), \eMarket\Valid::inPOST('hash'))) {
+if (\eMarket\Valid::inPOST('add') && password_verify(\eMarket\Valid::inPOST('order_to_pay') . \eMarket\Valid::inPOST('order_total_with_shipping') . \eMarket\Valid::inPOST('products_order') . \eMarket\Valid::inPOST('shipping_method') . \eMarket\Valid::inPOST('order_shipping_price') . \eMarket\Valid::inPOST('order_total'), \eMarket\Valid::inPOST('hash'))) {
     $customer = \eMarket\Pdo::getColAssoc("SELECT id, address_book, gender, firstname, lastname, middle_name, fax, telephone FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']])[0];
     // Готовим данные по адресу
     $address_all = json_decode($customer['address_book'], 1);
@@ -132,7 +132,7 @@ if (\eMarket\Valid::inPOST('add') && password_verify(\eMarket\Valid::inPOST('ord
     \eMarket\Messages::sendMail($_SESSION['email_customer'], $email_subject, $email_message);
 }
 
-if (\eMarket\Valid::inPOST('add') && !password_verify(\eMarket\Valid::inPOST('order_total_with_shipping') . \eMarket\Valid::inPOST('products_order') . \eMarket\Valid::inPOST('shipping_method') . \eMarket\Valid::inPOST('order_shipping_price') . \eMarket\Valid::inPOST('order_total'), \eMarket\Valid::inPOST('hash'))) {
+if (\eMarket\Valid::inPOST('add') && !password_verify(\eMarket\Valid::inPOST('order_to_pay') . \eMarket\Valid::inPOST('order_total_with_shipping') . \eMarket\Valid::inPOST('products_order') . \eMarket\Valid::inPOST('shipping_method') . \eMarket\Valid::inPOST('order_shipping_price') . \eMarket\Valid::inPOST('order_total'), \eMarket\Valid::inPOST('hash'))) {
     echo 'false';
     exit;
 }

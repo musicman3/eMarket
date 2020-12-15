@@ -10,6 +10,8 @@ $lang_js = json_encode([
     'product_price' => \eMarket\Ecb::formatPrice(0, 1),
     'total_price_cart_with_sale' => \eMarket\Ecb::formatPrice(\eMarket\Ecb::priceTerminal(), 1),
     'cart_total_to_pay' => lang('cart_total_to_pay'),
+    'cart_total' => lang('cart_total'),
+    'cart_tax' => lang('cart_tax'),
     'cart_shipping_is_not_available_and_min_price' => lang('cart_shipping_is_not_available_and_min_price')
         ]);
 ?>

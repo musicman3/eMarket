@@ -194,10 +194,15 @@ class Cart {
                         $('#shipping_method_class').removeClass('has-error');
                         $('#shipping_method_class').addClass('has-success');
                         $('#shipping_price').html(lang['cart_shipping_price'] + ' <b>' + shipping_val['chanel_shipping_price_format'] + '</b>');
-                        $('#total_price_modal').html('<h5>' + lang['cart_total_to_pay'] + ' ' + shipping_val['chanel_total_price_with_shipping_format'] + '</h5>');
+                        $('#total_price_modal').html(lang['cart_total'] + ' <b>' + shipping_val['chanel_total_price_with_shipping_format'] + '</b>');
                         $('#order_total_with_shipping').val(shipping_val['chanel_total_price_with_shipping']);
                         $('#order_total').val(shipping_val['chanel_total_price']);
                         $('#order_shipping_price').val(shipping_val['chanel_shipping_price']);
+                        $('#order_to_pay').val(shipping_val['chanel_order_to_pay']);
+                        if (shipping_val['chanel_tax'] > 0) {
+                            $('#total_tax_price').html(lang['cart_tax'] + ' <b>' + shipping_val['chanel_tax_format'] + '</b>');
+                        }
+                        $('#total_price_to_pay_modal').html('<h5>' + lang['cart_total_to_pay'] + ' ' + shipping_val['chanel_order_to_pay_format'] + '</h5>');
                         $('#hash').val(shipping_val['chanel_hash_total_price_with_shipping']);
                     }
                 }

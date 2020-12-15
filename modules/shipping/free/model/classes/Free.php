@@ -69,7 +69,8 @@ class Free {
                     'chanel_shipping_price_format' => \eMarket\Ecb::formatPrice(0, 1),
                     'chanel_total_price_with_shipping' => \eMarket\Ecb::priceTerminal() + 0,
                     'chanel_total_price_with_shipping_format' => \eMarket\Ecb::formatPrice(\eMarket\Ecb::priceTerminal() + 0, 1),
-                    'chanel_tax' => '',
+                    'chanel_tax' => \eMarket\Ecb::priceTerminal('total_tax_price'),
+                    'chanel_tax_format' => \eMarket\Ecb::formatPrice(\eMarket\Ecb::priceTerminal('total_tax_price'), 1),
                     'chanel_image' => ''
                 ];
                 array_push($interface_data_all, $interface_data);

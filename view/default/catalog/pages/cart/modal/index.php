@@ -19,6 +19,7 @@
                     <input type="hidden" id="order_total_with_shipping" name="order_total_with_shipping" value="" />
                     <input type="hidden" id="order_shipping_price" name="order_shipping_price" value="" />
                     <input type="hidden" id="order_total" name="order_total" value="" />
+                    <input type="hidden" id="order_to_pay" name="order_to_pay" value="" />
                     <input type="hidden" id="callback_url" name="callback_url" value="" />
                     <input type="hidden" id="callback_type" name="callback_type" value="" />
                     <input type="hidden" id="callback_data" name="callback_data" value="" />
@@ -64,9 +65,11 @@
                         </div>
                         <small class="form-text text-muted"><?php echo lang('cart_payment_method_small') ?></small>
                     </div>
-
+                    
+                    <div id="total_price_modal" class="form-group text-right"></div>
+                    <div id="total_tax_price" class="form-group text-right"></div>
                     <div id="shipping_price" class="form-group text-right"></div>
-                    <div id="total_price_modal" class="pull-right label label-danger"></div>
+                    <div id="total_price_to_pay_modal" class="pull-right label label-danger"></div>
 
                 </div> 
                 <div class="modal-footer">

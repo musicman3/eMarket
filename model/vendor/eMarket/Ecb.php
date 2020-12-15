@@ -96,12 +96,15 @@ final class Ecb {
         if (self::$terminal_data != FALSE) {
             if ($marker == 'interface') {
                 return self::$terminal_data;
+            } elseif ($marker == 'total_tax_price') {
+                return self::$terminal_data['total_tax_price'];
             } else {
                 return self::$terminal_data['total_price_with_sale'];
             }
         }
 
         $total_price_with_sale = 0;
+        $total_tax_price = 0;
         $output_data = [];
 
         $taxes_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_TAXES . " WHERE language=?", [lang('#lang_all')[0]]);
@@ -126,6 +129,7 @@ final class Ecb {
                             $discount_total_sale = $discount_total_sale + $total_sale;
                         }
                         $total_price_with_sale = $total_price_with_sale + (self::currencyPrice($data['price'], $data['currency']) * $value['quantity'] / 100 * (100 - $discount_total_sale));
+                        $total_tax_price = $total_tax_price + self::totalTax($tax, self::currencyPrice($data['price'], $data['currency']) * $value['quantity'] / 100 * (100 - $discount_total_sale));
 
                         $interface = [
                             'id' => $value['id'],
@@ -140,6 +144,7 @@ final class Ecb {
                         array_push($output_data, $interface);
                     } else {
                         $total_price_with_sale = $total_price_with_sale + (self::currencyPrice($data['price'], $data['currency']) * $value['quantity']);
+                        $total_tax_price = $total_tax_price + self::totalTax($tax, self::currencyPrice($data['price'], $data['currency']) * $value['quantity']);
 
                         $interface = [
                             'id' => $value['id'],
@@ -160,6 +165,7 @@ final class Ecb {
             }
         }
         $output_data['total_price_with_sale'] = $total_price_with_sale;
+        $output_data['total_tax_price'] = $total_tax_price;
 
         if (self::$terminal_data == FALSE) {
             self::$terminal_data = $output_data;
@@ -167,9 +173,34 @@ final class Ecb {
 
         if ($marker == 'interface') {
             return self::$terminal_data;
+        } elseif ($marker == 'total_tax_price') {
+            return self::$terminal_data['total_tax_price'];
         } else {
             return self::$terminal_data['total_price_with_sale'];
         }
+    }
+
+    /**
+     * Блок вывода итогового налога
+     * 
+     * @param array $tax_data (массив с входящими значениями по налогу)
+     * @param string $price_with_sale (цена с учетом скидок)
+     * @param string $currency (валюта)
+     * @return string (итоговый налог)
+     */
+    public static function totalTax($tax_data, $price_with_sale) {
+
+            if ($tax_data['fixed'] == '1') {
+                $tax_out = $price_with_sale / 100 * $tax_data['rate'];
+            } else {
+                $tax_out = $tax_data['rate'];
+            }
+
+            if ($tax_data['tax_type'] == '1') {
+                return 0;
+            } else {
+                return $tax_out;
+            }
     }
 
     /**
@@ -263,6 +294,7 @@ final class Ecb {
 
         return number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language));
     }
+
 }
 
 ?>
