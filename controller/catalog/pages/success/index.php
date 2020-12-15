@@ -6,7 +6,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 // Если добавлен новый заказ
-if (\eMarket\Valid::inPOST('add') && password_verify(\eMarket\Valid::inPOST('order_to_pay') . \eMarket\Valid::inPOST('order_total_with_shipping') . \eMarket\Valid::inPOST('products_order') . \eMarket\Valid::inPOST('shipping_method') . \eMarket\Valid::inPOST('order_shipping_price') . \eMarket\Valid::inPOST('order_total'), \eMarket\Valid::inPOST('hash'))) {
+if (\eMarket\Valid::inPOST('add') && password_verify((float) \eMarket\Valid::inPOST('order_total_tax') . (float) \eMarket\Valid::inPOST('order_to_pay') . (float) \eMarket\Valid::inPOST('order_total_with_shipping') . \eMarket\Valid::inPOST('products_order') . \eMarket\Valid::inPOST('shipping_method') . (float) \eMarket\Valid::inPOST('order_shipping_price') . (float) \eMarket\Valid::inPOST('order_total'), \eMarket\Valid::inPOST('hash'))) {
     $customer = \eMarket\Pdo::getColAssoc("SELECT id, address_book, gender, firstname, lastname, middle_name, fax, telephone FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']])[0];
     // Готовим данные по адресу
     $address_all = json_decode($customer['address_book'], 1);
@@ -87,17 +87,23 @@ if (\eMarket\Valid::inPOST('add') && password_verify(\eMarket\Valid::inPOST('ord
         'admin' => [
             'total_with_shipping_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_total_with_shipping'), 1, $primary_language),
             'total_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_total'), 1, $primary_language),
-            'shipping_price_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_shipping_price'), 1, $primary_language)
+            'shipping_price_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_shipping_price'), 1, $primary_language),
+            'total_to_pay_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_to_pay'), 1, $primary_language),
+            'order_total_tax_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_total_tax'), 1, $primary_language)
         ],
         'customer' => [
             'total_with_shipping_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_total_with_shipping'), 1),
             'total_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_total'), 1),
-            'shipping_price_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_shipping_price'), 1)
+            'shipping_price_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_shipping_price'), 1),
+            'total_to_pay_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_to_pay'), 1),
+            'order_total_tax_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_total_tax'), 1)
         ],
         'data' => [
             'total_with_shipping' => \eMarket\Valid::inPOST('order_total_with_shipping'),
             'total' => \eMarket\Valid::inPOST('order_total'),
             'shipping_price' => \eMarket\Valid::inPOST('order_shipping_price'),
+            'total_to_pay' => \eMarket\Valid::inPOST('total_to_pay'),
+            'order_total_tax' => \eMarket\Valid::inPOST('order_total_tax')
         ]
     ];
 
@@ -132,7 +138,7 @@ if (\eMarket\Valid::inPOST('add') && password_verify(\eMarket\Valid::inPOST('ord
     \eMarket\Messages::sendMail($_SESSION['email_customer'], $email_subject, $email_message);
 }
 
-if (\eMarket\Valid::inPOST('add') && !password_verify(\eMarket\Valid::inPOST('order_to_pay') . \eMarket\Valid::inPOST('order_total_with_shipping') . \eMarket\Valid::inPOST('products_order') . \eMarket\Valid::inPOST('shipping_method') . \eMarket\Valid::inPOST('order_shipping_price') . \eMarket\Valid::inPOST('order_total'), \eMarket\Valid::inPOST('hash'))) {
+if (\eMarket\Valid::inPOST('add') && !password_verify((float) \eMarket\Valid::inPOST('order_total_tax') . (float) \eMarket\Valid::inPOST('order_to_pay') . (float) \eMarket\Valid::inPOST('order_total_with_shipping') . \eMarket\Valid::inPOST('products_order') . \eMarket\Valid::inPOST('shipping_method') . (float) \eMarket\Valid::inPOST('order_shipping_price') . (float) \eMarket\Valid::inPOST('order_total'), \eMarket\Valid::inPOST('hash'))) {
     echo 'false';
     exit;
 }
