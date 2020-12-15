@@ -148,6 +148,8 @@ class Cart {
                     $('#payment_method_class').removeClass('has-error');
                     $('#payment_method_class').addClass('has-success');
                     $('#callback_url').val(payment_val['chanel_callback_url']);
+                    $('#callback_type').val(payment_val['chanel_callback_type']);
+                    $('#callback_data').val(payment_val['chanel_callback_data']);
                 }
             }
             Cart.buttonClass();
@@ -207,12 +209,30 @@ class Cart {
     }
 
     /**
+     * Редирект
+     *@param callback_url {String} (redirect url)
+     *@param callback_data {Array} (callback data)
+     *@param callback_type {String} (post/get)
+     */
+    static redirect(callback_url, callback_data, callback_type) {
+        var form = '';
+        var callback_data_arr = $.parseJSON(callback_data);
+        $.each(callback_data_arr, function (key, value) {
+            form += '<input type="hidden" name="' + key + '" value="' + value + '">';
+        });
+        $('<form action="' + callback_url + '" method="' + callback_type + '">' + form + '</form>').appendTo($('#index')).submit();
+    }
+
+    /**
      * Завершение заказа
      *
      */
     static callSuccess() {
         var msg = $('#form_cart').serialize();
-        var url = $('#callback_url').val();
+        var callback_url = $('#callback_url').val();
+        var callback_type = $('#callback_type').val();
+        var callback_data = $('#callback_data').val();
+
         // Установка синхронного запроса для jQuery.ajax
         jQuery.ajaxSetup({async: false});
         jQuery.ajax({
@@ -221,16 +241,11 @@ class Cart {
             data: msg,
             beforeSend: function () {
                 $('#index').modal('hide');
+            },
+            success: function () {
+                sessionStorage.removeItem('lang');
+                Cart.redirect(callback_url, callback_data, callback_type);
             }
         });
-        // Отправка запроса для обновления страницы
-        jQuery.get(url,
-                {},
-                AjaxSuccess);
-        // Обновление страницы
-        function AjaxSuccess(data) {
-            sessionStorage.removeItem('lang');
-            document.location.href = url;
-        }
     }
 }

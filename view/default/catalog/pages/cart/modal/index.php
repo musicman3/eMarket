@@ -20,6 +20,8 @@
                     <input type="hidden" id="order_shipping_price" name="order_shipping_price" value="" />
                     <input type="hidden" id="order_total" name="order_total" value="" />
                     <input type="hidden" id="callback_url" name="callback_url" value="" />
+                    <input type="hidden" id="callback_type" name="callback_type" value="" />
+                    <input type="hidden" id="callback_data" name="callback_data" value="" />
                     <input type="hidden" id="hash" name="hash" value="" />
 
                     <div class="form-group">
