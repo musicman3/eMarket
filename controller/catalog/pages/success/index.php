@@ -102,8 +102,9 @@ if (\eMarket\Valid::inPOST('add') && password_verify((float) \eMarket\Valid::inP
             'total_with_shipping' => \eMarket\Valid::inPOST('order_total_with_shipping'),
             'total' => \eMarket\Valid::inPOST('order_total'),
             'shipping_price' => \eMarket\Valid::inPOST('order_shipping_price'),
-            'total_to_pay' => \eMarket\Valid::inPOST('total_to_pay'),
-            'order_total_tax' => \eMarket\Valid::inPOST('order_total_tax')
+            'total_to_pay' => \eMarket\Valid::inPOST('order_to_pay'),
+            'order_total_tax' => \eMarket\Valid::inPOST('order_total_tax'),
+            'order_interface_data' => \eMarket\Ecb::priceTerminal('interface')
         ]
     ];
 
