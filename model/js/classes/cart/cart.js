@@ -196,13 +196,13 @@ class Cart {
                         $('#shipping_method_class').addClass('has-success');
                         $('#shipping_price').html(lang['cart_shipping_price'] + ' <b>' + shipping_val['chanel_shipping_price_format'] + '</b>');
                         $('#total_price_modal').html(lang['cart_total'] + ' <b>' + shipping_val['chanel_total_price_with_shipping_format'] + '</b>');
-                        if (shipping_val['chanel_tax'] > 0) {
-                            $('#total_tax_price').html(lang['cart_tax'] + ' <b>' + shipping_val['chanel_tax_format'] + '</b>');
+                        if (shipping_val['chanel_total_tax'] > 0) {
+                            $('#total_tax_price').html(lang['cart_estimated_taxes'] + ' <b>' + shipping_val['chanel_total_tax_format'] + '</b>');
                         }
                         $('#total_price_to_pay_modal').html('<h5>' + lang['cart_total_to_pay'] + ' ' + shipping_val['chanel_order_to_pay_format'] + '</h5>');
                         // input hidden
                         $('#order_to_pay').val(shipping_val['chanel_order_to_pay']);
-                        $('#order_total_tax').val(shipping_val['chanel_tax']);
+                        $('#order_total_tax').val(shipping_val['chanel_total_tax']);
                         $('#order_total_with_shipping').val(shipping_val['chanel_total_price_with_shipping']);
                         $('#order_total').val(shipping_val['chanel_total_price']);
                         $('#order_shipping_price').val(shipping_val['chanel_shipping_price']);
