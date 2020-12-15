@@ -130,6 +130,9 @@ if (\eMarket\Valid::inPOST('add') && password_verify(\eMarket\Valid::inPOST('ord
     $email_subject = sprintf(lang('email_order_success_subject'), $customer_order_data['id'], $customer_orders_status_history);
     $email_message = sprintf(lang('email_order_success_message'), $customer_order_data['id'], mb_strtolower($customer_orders_status_history), HTTP_SERVER . '?route=success', HTTP_SERVER . '?route=success');
     \eMarket\Messages::sendMail($_SESSION['email_customer'], $email_subject, $email_message);
+} else {
+    echo 'false';
+    exit;
 }
 
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>

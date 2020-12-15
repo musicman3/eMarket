@@ -242,9 +242,11 @@ class Cart {
             beforeSend: function () {
                 $('#index').modal('hide');
             },
-            success: function () {
+            success: function (data) {
+                if (data !== 'false'){
                 sessionStorage.removeItem('lang');
                 Cart.redirect(callback_url, callback_data, callback_type);
+            }
             }
         });
     }
