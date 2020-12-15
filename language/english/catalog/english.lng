@@ -240,3 +240,4 @@ orders_price_including_all_taxes = Products subtotal is including all taxes
 
 ;SUCCESS
 success_text = Order completed successfully
+success_message = Dear customer. Thank you for purchasing from eMarket. Your order has been successfully completed. <br><br>Details of the order can be found in your personal account.

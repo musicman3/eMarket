@@ -13,3 +13,5 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
 <!--Выводим уведомление об успешном действии-->
 <div id="alert_block"><?php \eMarket\Messages::alert(); ?></div>
 <h1><?php echo lang('success_text') ?></h1>
+
+<div id="success" class="contentText"><?php echo lang('success_message') ?></div>
