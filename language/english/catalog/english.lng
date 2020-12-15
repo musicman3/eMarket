@@ -149,6 +149,7 @@ cart_quantity = Quantity
 cart_amount = Amount
 cart_total = Total:
 cart_estimated_taxes = Estimated Taxes:
+cart_price_including_all_taxes = Price including all taxes
 cart_shopping_cart_empty = Shopping cart is empty
 cart_сheckout = Checkout
 cart_discount_card_number = Discount card number

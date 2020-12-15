@@ -149,6 +149,7 @@ cart_quantity = Количество
 cart_amount = Сумма
 cart_total = Итого:
 cart_estimated_taxes = Расчетные налоги:
+cart_price_including_all_taxes = Цена с учетом всех налогов
 cart_shopping_cart_empty = В корзине нет товаров
 cart_сheckout = Оформить заказ
 cart_discount_card_number = Номер дисконтной карты

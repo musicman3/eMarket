@@ -12,6 +12,7 @@ $lang_js = json_encode([
     'cart_total_to_pay' => lang('cart_total_to_pay'),
     'cart_total' => lang('cart_total'),
     'cart_estimated_taxes' => lang('cart_estimated_taxes'),
+    'cart_price_including_all_taxes' => lang('cart_price_including_all_taxes'),
     'cart_shipping_is_not_available_and_min_price' => lang('cart_shipping_is_not_available_and_min_price')
         ]);
 ?>

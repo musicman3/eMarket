@@ -199,6 +199,9 @@ class Cart {
                         if (shipping_val['chanel_total_tax'] > 0) {
                             $('#total_tax_price').html(lang['cart_estimated_taxes'] + ' <b>' + shipping_val['chanel_total_tax_format'] + '</b>');
                         }
+                        if (shipping_val['chanel_total_tax'] === 0) {
+                            $('#total_tax_price').html(lang['cart_price_including_all_taxes']);
+                        }
                         $('#total_price_to_pay_modal').html('<h5>' + lang['cart_total_to_pay'] + ' ' + shipping_val['chanel_order_to_pay_format'] + '</h5>');
                         // input hidden
                         $('#order_to_pay').val(shipping_val['chanel_order_to_pay']);
