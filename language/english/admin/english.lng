@@ -232,7 +232,9 @@ orders_billing_address = Billing address
 orders_date_added = Date added
 orders_date_of_change = Date of change
 orders_number = Order No.
-orders_subtotal = Subtotal
+orders_subtotal = Products subtotal
+orders_estimated_taxes = Estimated Taxes:
+orders_price_including_all_taxes = Products subtotal is including all taxes
 orders_email = E-mail
 orders_change_status_subject = Status order #%s has been changed (%s).
 orders_change_status_message = Dear customer. The status of your order #%s has been changed <br><br>New order status: %s. <br><br>Details of the order can be found in your personal account: <a href="%s" target="_blank">%s</a>

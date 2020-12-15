@@ -233,8 +233,10 @@ orders_billing_address = Billing address
 orders_date_added = Date added
 orders_date_of_change = Date of change
 orders_number = Order No.
-orders_subtotal = Subtotal
+orders_subtotal = Products subtotal
 orders_stiker = Stiker
+orders_estimated_taxes = Estimated Taxes:
+orders_price_including_all_taxes = Products subtotal is including all taxes
 
 ;SUCCESS
 success_text = Order completed successfully

@@ -7,7 +7,6 @@
 <!-- Загрузка данных в модальное окно -->
 <script type="text/javascript">
     $('#index').on('show.bs.modal', function (event) {
-
         var button = $(event.relatedTarget);
         var modal_id = button.data('edit'); // Получаем ID из data-edit при клике на кнопку редактирования
         $('#invoice').empty();
@@ -45,7 +44,7 @@
         // #Статус
         $('#description_date_purchased').html(history_status[0]['admin']['status'] + ': ' + history_status[0]['admin']['date']);
         // #Итого
-        $('#description_order_total').html(order_total['admin']['total_with_shipping_format']);
+        $('#description_order_total').html(order_total['admin']['total_to_pay_format']);
 
         // Товары
         for (x = 0; x < invoice.length; x++) {
@@ -66,7 +65,15 @@
         $('#invoice_shipping_method').html('<b>' + shipping_method + '</b>');
         $('#invoice_shipping_price').html(order_total['admin']['shipping_price_format']);
         $('#invoice_order_total').html(order_total['admin']['total_format']);
-        $('#invoice_order_total_with_shipping').html(order_total['admin']['total_with_shipping_format']);
+
+        if (Number(order_total['data']['order_total_tax']) > 0) {
+            $('#invoice_taxes').html(order_total['admin']['order_total_tax_format']);
+        }
+        if (Number(order_total['data']['order_total_tax']) === 0) {
+            $('#invoice_taxes').html('<?php echo lang('orders_price_including_all_taxes') ?>');
+        }
+
+        $('#invoice_order_total_to_pay').html(order_total['admin']['total_to_pay_format']);
 
         // История статусов
         for (x = 0; x < history_status.length; x++) {
