@@ -176,7 +176,7 @@ class Cart {
                 $('#shipping_method_class').removeClass('has-success');
                 $('#shipping_method_class').addClass('has-error');
                 $('#shipping_price').html(lang['cart_shipping_price'] + ' <b>' + lang['product_price'] + '</b>');
-                $('#total_price_modal').html('<h5>' + lang['cart_total_to_pay'] + ' ' + lang['total_price_cart_with_sale'] + '</h5>');
+                $('#total_price_modal').html(lang['cart_total'] + ' <b>' + lang['total_price_cart_with_sale'] + '</b>');
             } else {
                 for (var shipping_val of shipping_method) {
                     //Если минимальная стоимость заказа ниже указанной
@@ -185,7 +185,7 @@ class Cart {
                         $('#shipping_method_class').removeClass('has-success');
                         $('#shipping_method_class').addClass('has-error');
                         $('#shipping_price').html(lang['cart_shipping_price'] + ' <b>' + shipping_val['chanel_shipping_price_format'] + '</b>');
-                        $('#total_price_modal').html('<h5>' + lang['cart_total_to_pay'] + ' ' + shipping_val['chanel_total_price_with_shipping_format'] + '</h5>');
+                        $('#total_price_modal').html(lang['cart_total'] + ' <b>' + shipping_val['chanel_total_price_with_shipping_format'] + '</b>');
                         // input hidden
                         $('#order_total').val(shipping_val['chanel_total_price_with_shipping']);
                         $('#hash').val(shipping_val['chanel_hash']);
@@ -202,10 +202,10 @@ class Cart {
                         $('#total_price_to_pay_modal').html('<h5>' + lang['cart_total_to_pay'] + ' ' + shipping_val['chanel_order_to_pay_format'] + '</h5>');
                         // input hidden
                         $('#order_to_pay').val(shipping_val['chanel_order_to_pay']);
-                        $('#order_total_tax').val(shipping_val['chanel_total_tax']);
-                        $('#order_total_with_shipping').val(shipping_val['chanel_total_price_with_shipping']);
                         $('#order_total').val(shipping_val['chanel_total_price']);
                         $('#order_shipping_price').val(shipping_val['chanel_shipping_price']);
+                        $('#order_total_tax').val(shipping_val['chanel_total_tax']);
+                        $('#order_total_with_shipping').val(shipping_val['chanel_total_price_with_shipping']);
                         $('#hash').val(shipping_val['chanel_hash']);
                     }
                 }
