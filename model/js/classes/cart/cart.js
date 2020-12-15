@@ -243,10 +243,10 @@ class Cart {
                 $('#index').modal('hide');
             },
             success: function (data) {
-                if (data !== 'false'){
-                sessionStorage.removeItem('lang');
-                Cart.redirect(callback_url, callback_data, callback_type);
-            }
+                if (data !== 'false') {
+                    sessionStorage.removeItem('lang');
+                    Cart.redirect(callback_url, callback_data, callback_type);
+                }
             }
         });
     }

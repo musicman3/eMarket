@@ -130,7 +130,9 @@ if (\eMarket\Valid::inPOST('add') && password_verify(\eMarket\Valid::inPOST('ord
     $email_subject = sprintf(lang('email_order_success_subject'), $customer_order_data['id'], $customer_orders_status_history);
     $email_message = sprintf(lang('email_order_success_message'), $customer_order_data['id'], mb_strtolower($customer_orders_status_history), HTTP_SERVER . '?route=success', HTTP_SERVER . '?route=success');
     \eMarket\Messages::sendMail($_SESSION['email_customer'], $email_subject, $email_message);
-} else {
+}
+
+if (\eMarket\Valid::inPOST('add') && !password_verify(\eMarket\Valid::inPOST('order_total_with_shipping') . \eMarket\Valid::inPOST('products_order') . \eMarket\Valid::inPOST('shipping_method') . \eMarket\Valid::inPOST('order_shipping_price') . \eMarket\Valid::inPOST('order_total'), \eMarket\Valid::inPOST('hash'))) {
     echo 'false';
     exit;
 }
