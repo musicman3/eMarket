@@ -15,8 +15,11 @@ namespace eMarket;
  * 
  */
 final class Eac {
-    
-    public static $parent_id = FALSE;
+
+    public static $parent_id = 0;
+    public static $TABLES = FALSE;
+    public static $resize_param = FALSE;
+    public static $resize_param_product = FALSE;
 
     /**
      * Инициализация EAC / Init EAC
@@ -26,60 +29,63 @@ final class Eac {
      * @return array [$idsx_real_parent_id, self::$parent_id]
      */
     public static function init($TABLES, $resize_param, $resize_param_product) {
-        
+
+        self::$TABLES = $TABLES;
+        self::$resize_param = $resize_param;
+        self::$resize_param_product = $resize_param_product;
+
         // parent_id
-        self::parentIdStart($TABLES[0]);
+        self::parentIdStart();
 
         // Добавить / Add
-        self::addCategory($TABLES[0]);
+        self::addCategory();
 
         // Редактировать / Edit
-        self::editCategory($TABLES[0]);
+        self::editCategory();
 
         // Добавить товар / Add product
-        self::addProduct($TABLES);
+        self::addProduct();
 
         // Редактировать товар / Edit product
-        self::editProduct($TABLES);
+        self::editProduct();
 
         // Загручик изображений для категорий (ВСТАВЛЯТЬ ПЕРЕД УДАЛЕНИЕМ) / Image loader for categories (INSERT BEFORE DELETING)
-        \eMarket\Files::imgUpload($TABLES[0], 'categories', $resize_param);
+        \eMarket\Files::imgUpload(self::$TABLES[0], 'categories', self::$resize_param);
 
         // Загручик изображений для товаров (ВСТАВЛЯТЬ ПЕРЕД УДАЛЕНИЕМ) / Image loader for products (INSERT BEFORE DELETING)
-        \eMarket\Files::imgUploadProduct($TABLES[1], 'products', $resize_param_product);
+        \eMarket\Files::imgUploadProduct(self::$TABLES[1], 'products', self::$resize_param_product);
 
         $idsx_real_parent_id = self::$parent_id; //для отправки в JS / for sent to JS
         // Удалить / Delete
-        self::delete($TABLES[0], $TABLES[1], $resize_param, $resize_param_product);
+        self::delete();
 
         // Вырезать / Cut
-        self::cut($TABLES[0]);
+        self::cut();
 
         // Вставить / Paste
-        self::paste($TABLES[0], $TABLES[1]);
+        self::paste();
 
         // Скрыть и Отобразить / Hide and Show
-        self::status($TABLES[0], $TABLES[1]);
+        self::status();
 
         // Распродажа / Sale
-        self::sale($TABLES[0], $TABLES[1]);
+        self::sale();
 
         // Стикер / Stiker
-        self::stiker($TABLES[0], $TABLES[1]);
+        self::stiker();
 
         // Сортировка / Sorting
-        self::sortList($TABLES[0]);
-
+        self::sortList();
 
         return [$idsx_real_parent_id, self::$parent_id];
     }
 
     /**
      * Инициализация parent_id / parent_id init
-     * @param string $TABLE_CATEGORIES (название таблицы категорий / categories table name)
-     * @return string self::$parent_id (parent id)
      */
-    private static function parentIdStart($TABLE_CATEGORIES) {
+    private static function parentIdStart() {
+
+        $TABLE_CATEGORIES = self::$TABLES[0];
 
         self::$parent_id = \eMarket\Valid::inPOST('parent_id');
         if (self::$parent_id == FALSE) {
@@ -103,7 +109,9 @@ final class Eac {
      * Сортировка / Sorting
      * @param string $TABLE_CATEGORIES (название таблицы категорий / categories table name)
      */
-    private static function sortList($TABLE_CATEGORIES) {
+    private static function sortList() {
+        
+        $TABLE_CATEGORIES = self::$TABLES[0];
 
         if (\eMarket\Valid::inPOST('ids')) {
             $sort_array_id_ajax = explode(',', \eMarket\Valid::inPOST('ids'));
@@ -128,10 +136,10 @@ final class Eac {
 
     /**
      * Добавить категорию / Add category
-     * @param string $TABLE_CATEGORIES (название таблицы категорий / categories table name)
-     * @param string self::$parent_id (parent_id)
      */
-    private static function addCategory($TABLE_CATEGORIES) {
+    private static function addCategory() {
+        
+        $TABLE_CATEGORIES = self::$TABLES[0];
 
         $LANG_COUNT = count(lang('#lang_all'));
 
@@ -159,9 +167,10 @@ final class Eac {
 
     /**
      * Редактировать категорию / Edit category
-     * @param string $TABLE_CATEGORIES (название таблицы категорий / categories table name)
      */
-    private static function editCategory($TABLE_CATEGORIES) {
+    private static function editCategory() {
+        
+        $TABLE_CATEGORIES = self::$TABLES[0];
 
         $LANG_COUNT = count(lang('#lang_all'));
 
@@ -177,14 +186,10 @@ final class Eac {
 
     /**
      * Удалить категорию / Delete category
-     * @param string $TABLE_CATEGORIES (название таблицы категорий / categories table name)
-     * @param string $TABLE_PRODUCTS (название таблицы товаров / products table name)
-     * @param string self::$parent_id (parent_id)
-     * @param string $resize_param (параметры ресайза категорий / categories resize param)
-     * @param string $resize_param_product (параметры ресайза товаров / products resize param)
-     * @return string self::$parent_id (parent_id)
      */
-    private static function delete($TABLE_CATEGORIES, $TABLE_PRODUCTS, $resize_param, $resize_param_product) {
+    private static function delete() {
+        $TABLE_CATEGORIES = self::$TABLES[0];
+        $TABLE_PRODUCTS = self::$TABLES[1];
 
         if (\eMarket\Valid::inPOST('delete')) {
 
@@ -204,11 +209,11 @@ final class Eac {
                     for ($x = 0; $x < $count_keys; $x++) {
 
                         //Удаляем товар и изображения / Removing product and images
-                        self::deleteImages($TABLE_PRODUCTS, $keys[$x], $resize_param, $resize_param_product, 'products');
+                        self::deleteImages($TABLE_PRODUCTS, $keys[$x], 'products');
                         \eMarket\Pdo::inPrepare("DELETE FROM " . $TABLE_PRODUCTS . " WHERE parent_id=?", [$keys[$x]]);
 
                         //Удаляем подкатегории и изображения / Removing subcategories and images
-                        self::deleteImages($TABLE_CATEGORIES, $keys[$x], $resize_param, $resize_param_product, 'categories');
+                        self::deleteImages($TABLE_CATEGORIES, $keys[$x], 'categories');
                         \eMarket\Pdo::inPrepare("DELETE FROM " . $TABLE_CATEGORIES . " WHERE parent_id=?", [$keys[$x]]);
                     }
 
@@ -248,11 +253,10 @@ final class Eac {
 
     /**
      * Вырезаем категорию / Cut category
-     * @param string $TABLE_CATEGORIES (название таблицы категорий / categories table name)
-     * @param string self::$parent_id (parent_id)
-     * @return string self::$parent_id (parent_id)
      */
-    private static function cut($TABLE_CATEGORIES) {
+    private static function cut() {
+        
+        $TABLE_CATEGORIES = self::$TABLES[0];
 
         if (\eMarket\Valid::inPOST('idsx_cut_marker') == 'cut') {
             unset($_SESSION['buffer']);
@@ -269,7 +273,7 @@ final class Eac {
 
                 $parent_id_real = (int) \eMarket\Valid::inPOST('idsx_real_parent_id'); // получить значение из JS
                 self::$parent_id = self::dataParentId($TABLE_CATEGORIES, $idx[$i]);
- 
+
                 if (\eMarket\Valid::inPOST('idsx_cut_key') == 'cut') {
                     // Это категория / This is category
                     if (strstr($idx[$i], '_', true) != 'product') {
@@ -302,12 +306,11 @@ final class Eac {
 
     /**
      * Вставляем категорию / Paste category
-     * @param string $TABLE_CATEGORIES (название таблицы категорий / categories table name)
-     * @param string $TABLE_PRODUCTS (название таблицы товаров / products table name)
-     * @param string self::$parent_id (parent_id)
-     * @return string self::$parent_id (parent_id)
      */
-    private static function paste($TABLE_CATEGORIES, $TABLE_PRODUCTS) {
+    private static function paste() {
+        
+        $TABLE_CATEGORIES = self::$TABLES[0];
+        $TABLE_PRODUCTS = self::$TABLES[1];
 
         if (\eMarket\Valid::inPOST('idsx_paste_key') == 'paste' && isset($_SESSION['buffer']) == TRUE) {
 
@@ -353,12 +356,11 @@ final class Eac {
 
     /**
      * Статус категорий / Categories status
-     * @param string $TABLE_CATEGORIES (название таблицы категорий / categories table name)
-     * @param string $TABLE_PRODUCTS (название таблицы товаров / products table name)
-     * @param string self::$parent_id (parent_id)
-     * @return string self::$parent_id (parent_id)
      */
-    private static function status($TABLE_CATEGORIES, $TABLE_PRODUCTS) {
+    private static function status() {
+        
+        $TABLE_CATEGORIES = self::$TABLES[0];
+        $TABLE_PRODUCTS = self::$TABLES[1];
 
         if ((\eMarket\Valid::inPOST('idsx_status_on_key') == 'On')
                 or ( \eMarket\Valid::inPOST('idsx_status_off_key') == 'Off')) {
@@ -425,12 +427,11 @@ final class Eac {
 
     /**
      * Скидка / Sale
-     * @param string $TABLE_CATEGORIES (название таблицы категорий / categories table name)
-     * @param string $TABLE_PRODUCTS (название таблицы товаров / products table name)
-     * @param string self::$parent_id (parent_id)
-     * @return string self::$parent_id (parent_id)
      */
-    private static function sale($TABLE_CATEGORIES, $TABLE_PRODUCTS) {
+    private static function sale() {
+        
+        $TABLE_CATEGORIES = self::$TABLES[0];
+        $TABLE_PRODUCTS = self::$TABLES[1];
 
         if ((\eMarket\Valid::inPOST('idsx_sale_on_key') == 'On')
                 or ( \eMarket\Valid::inPOST('idsx_sale_off_key') == 'Off')
@@ -551,12 +552,11 @@ final class Eac {
 
     /**
      * Стикеры / Stikers
-     * @param string $TABLE_CATEGORIES (название таблицы категорий / categories table name)
-     * @param string $TABLE_PRODUCTS (название таблицы товаров / products table name)
-     * @param string self::$parent_id (parent_id)
-     * @return string self::$parent_id (parent_id)
      */
-    private static function stiker($TABLE_CATEGORIES, $TABLE_PRODUCTS) {
+    private static function stiker() {
+        
+        $TABLE_CATEGORIES = self::$TABLES[0];
+        $TABLE_PRODUCTS = self::$TABLES[1];
 
         if ((\eMarket\Valid::inPOST('idsx_stikerOn_key') == 'On')
                 or ( \eMarket\Valid::inPOST('idsx_stikerOff_key') == 'Off')) {
@@ -617,11 +617,11 @@ final class Eac {
 
     /**
      * Установка parent_id при навигации в EAC
-     * @param string $TABLE_CATEGORIES (название таблицы категорий)
      * @param string $idx (идентификатор)
-     * @return string self::$parent_id (идентификатор родительской категории)
      */
-    private static function dataParentId($TABLE_CATEGORIES, $idx) {
+    private static function dataParentId($idx) {
+        
+        $TABLE_CATEGORIES = self::$TABLES[0];
 
         // Устанавливаем родительскую категорию
         self::$parent_id = \eMarket\Pdo::selectPrepare("SELECT parent_id FROM " . $TABLE_CATEGORIES . " WHERE id=?", [$idx]);
@@ -637,11 +637,12 @@ final class Eac {
 
     /**
      * Ключ категорий в EAC
-     * @param string $TABLE_CATEGORIES (название таблицы категорий)
      * @param string $idx (идентификатор)
      * @return array $keys
      */
-    private static function dataKeys($TABLE_CATEGORIES, $idx) {
+    private static function dataKeys($idx) {
+        
+        $TABLE_CATEGORIES = self::$TABLES[0];
 
         //Выбираем данные из БД
         $data_cat = \eMarket\Pdo::inPrepare("SELECT id, parent_id FROM " . $TABLE_CATEGORIES);
@@ -669,15 +670,15 @@ final class Eac {
      * @param array $resize_param_product (параметры на ресайз товаров)
      * @param string $path (путь)
      */
-    private static function deleteImages($TABLE, $keys, $resize_param, $resize_param_product, $path) {
-        
-        if ($path == 'categories'){
-            $resize = $resize_param;
+    private static function deleteImages($TABLE, $keys, $path) {
+
+        if ($path == 'categories') {
+            $resize = self::$resize_param;
         }
-        if ($path == 'products'){
-            $resize = $resize_param_product;
+        if ($path == 'products') {
+            $resize = self::$resize_param_product;
         }
-        
+
         $logo_delete = json_decode(\eMarket\Pdo::getCellFalse("SELECT logo FROM " . $TABLE . " WHERE parent_id=?", [$keys]), 1);
         if (is_countable($logo_delete)) {
             foreach ($logo_delete as $file) {
@@ -692,21 +693,19 @@ final class Eac {
 
     /**
      * Добавить товар в EAC
-     * @param array $TABLES (названия таблиц)
-     * @param string self::$parent_id (идентификатор родительской категории)
      */
-    private static function addProduct($TABLES) {
+    private static function addProduct() {
 
         $LANG_COUNT = count(lang('#lang_all'));
 
-        $TABLE_PRODUCTS = $TABLES[1];
-        $TABLE_TAXES = $TABLES[2];
-        $TABLE_UNITS = $TABLES[3];
-        $TABLE_MANUFACTURERS = $TABLES[4];
-        $TABLE_VENDOR_CODES = $TABLES[5];
-        $TABLE_WEIGHT = $TABLES[6];
-        $TABLE_LENGTH = $TABLES[7];
-        $TABLE_CURRENCIES = $TABLES[8];
+        $TABLE_PRODUCTS = self::$TABLES[1];
+        $TABLE_TAXES = self::$TABLES[2];
+        $TABLE_UNITS = self::$TABLES[3];
+        $TABLE_MANUFACTURERS = self::$TABLES[4];
+        $TABLE_VENDOR_CODES = self::$TABLES[5];
+        $TABLE_WEIGHT = self::$TABLES[6];
+        $TABLE_LENGTH = self::$TABLES[7];
+        $TABLE_CURRENCIES = self::$TABLES[8];
 
         // Если нажали на кнопку Добавить товар
         if (\eMarket\Valid::inPOST('add_product')) {
@@ -822,20 +821,19 @@ final class Eac {
 
     /**
      * Редактировать товар в EAC
-     * @param array $TABLES (названия таблиц)
      */
-    private static function editProduct($TABLES) {
+    private static function editProduct() {
 
         $LANG_COUNT = count(lang('#lang_all'));
 
-        $TABLE_PRODUCTS = $TABLES[1];
-        $TABLE_TAXES = $TABLES[2];
-        $TABLE_UNITS = $TABLES[3];
-        $TABLE_MANUFACTURERS = $TABLES[4];
-        $TABLE_VENDOR_CODES = $TABLES[5];
-        $TABLE_WEIGHT = $TABLES[6];
-        $TABLE_LENGTH = $TABLES[7];
-        $TABLE_CURRENCIES = $TABLES[8];
+        $TABLE_PRODUCTS = self::$TABLES[1];
+        $TABLE_TAXES = self::$TABLES[2];
+        $TABLE_UNITS = self::$TABLES[3];
+        $TABLE_MANUFACTURERS = self::$TABLES[4];
+        $TABLE_VENDOR_CODES = self::$TABLES[5];
+        $TABLE_WEIGHT = self::$TABLES[6];
+        $TABLE_LENGTH = self::$TABLES[7];
+        $TABLE_CURRENCIES = self::$TABLES[8];
 
         // Если нажали на кнопку Редактировать товар
         if (\eMarket\Valid::inPOST('edit_product')) {
