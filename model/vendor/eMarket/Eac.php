@@ -609,42 +609,36 @@ final class Eac {
     }
 
     /**
-     * Установка parent_id при навигации в EAC
-     * @param string $idx (идентификатор)
+     * Установка parent_id при навигации / parent_id for navigation
+     * @param string $idx (идентификатор / identifier)
      */
     private static function dataParentId($idx) {
 
-        // Устанавливаем родительскую категорию
         self::$parent_id = \eMarket\Pdo::selectPrepare("SELECT parent_id FROM " . self::$TABLE_CATEGORIES . " WHERE id=?", [$idx]);
-        // Устанавливаем родительскую категорию родительской категории
         $parent_id_up = \eMarket\Pdo::selectPrepare("SELECT parent_id FROM " . self::$TABLE_CATEGORIES . " WHERE id=?", [self::$parent_id]);
-        // считаем одинаковые parent_id
         $parent_id_num = \eMarket\Pdo::getColRow("SELECT id FROM " . self::$TABLE_CATEGORIES . " WHERE parent_id=?", [self::$parent_id]);
-        // если меньше 2-х значений, то устанавливаем parent_id как родительский родительского
         if (count($parent_id_num) < 2) {
             self::$parent_id = $parent_id_up;
         }
     }
 
     /**
-     * Ключ категорий в EAC
-     * @param string $idx (идентификатор)
+     * Ключ категорий / Categories key
+     * @param string $idx (идентификатор / identifier)
      * @return array $keys
      */
     private static function dataKeys($idx) {
 
-        //Выбираем данные из БД
         $data_cat = \eMarket\Pdo::inPrepare("SELECT id, parent_id FROM " . self::$TABLE_CATEGORIES);
 
-        $category = $idx; // id родителя
+        $category = $idx;
         $categories = [];
-        $keys[] = $category; // добавляем первый ключ в массив
-        // В цикле формируем ассоциативный массив разделов
+        $keys[] = $category;
+
         while ($category = $data_cat->fetch(\PDO::FETCH_ASSOC)) {
-            // Проверяем наличие id категории в массиве ключей
             if (in_array($category['parent_id'], $keys)) {
                 $categories[$category['parent_id']][] = $category['id'];
-                $keys[] = $category['id']; // расширяем массив
+                $keys[] = $category['id'];
             }
         }
 
@@ -652,12 +646,10 @@ final class Eac {
     }
 
     /**
-     * Ключ категорий в EAC
-     * @param string $TABLE (название таблицы)
-     * @param array $keys (ключи)
-     * @param array $resize_param (параметры на ресайз категорий)
-     * @param array $resize_param_product (параметры на ресайз товаров)
-     * @param string $path (путь)
+     * Удаление изображений / Delete images
+     * @param string $TABLE (название таблицы / table name)
+     * @param array $keys (ключи / keys)
+     * @param string $path (путь / path)
      */
     private static function deleteImages($TABLE, $keys, $path) {
 
@@ -681,16 +673,15 @@ final class Eac {
     }
 
     /**
-     * Добавить товар в EAC
+     * Добавить товар / Add product
      */
     private static function addProduct() {
 
         $LANG_COUNT = count(lang('#lang_all'));
 
-        // Если нажали на кнопку Добавить товар
         if (\eMarket\Valid::inPOST('add_product')) {
 
-            // Формат даты после Datepicker
+            // Формат даты после Datepicker / Format date after Datepicker
             if (\eMarket\Valid::inPOST('date_available_product_stock')) {
                 $date_available = date('Y-m-d', strtotime(\eMarket\Valid::inPOST('date_available_product_stock')));
             } else {
@@ -782,11 +773,9 @@ final class Eac {
                 $selected_attributes_product_stock = json_encode([]);
             }
 
-            // Получаем последний id и увеличиваем его на 1
             $id_max = \eMarket\Pdo::selectPrepare("SELECT id FROM " . self::$TABLE_PRODUCTS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max) + 1;
 
-            // добавляем запись для всех вкладок
             for ($x = 0; $x < $LANG_COUNT; $x++) {
                 \eMarket\Pdo::inPrepare("INSERT INTO " . self::$TABLE_PRODUCTS .
                         " SET id=?, name=?, language=?, parent_id=?, date_added=?, date_available=?, model=?, price=?, currency=?, quantity=?, unit=?, keyword=?, tags=?, description=?, tax=?, manufacturer=?, vendor_code=?, vendor_code_value=?, weight=?, weight_value=?, dimension=?, length=?, width=?, height=?, min_quantity=?, logo=?, attributes=?", [
@@ -794,22 +783,21 @@ final class Eac {
                     $tax_product_stock, $manufacturers_product_stock, $vendor_codes_product_stock, \eMarket\Valid::inPOST('vendor_code_value_product_stock'), $weight_product_stock, $weight_value_product_stock, $length_product_stock, $value_length_product_stock, $value_width_product_stock, $value_height_product_stock, $min_quantity_product_stock, json_encode([]), $selected_attributes_product_stock
                 ]);
             }
-            // Выводим сообщение об успехе
+
             \eMarket\Messages::alert('success', lang('action_completed_successfully'));
         }
     }
 
     /**
-     * Редактировать товар в EAC
+     * Редактировать товар / Edit product
      */
     private static function editProduct() {
 
         $LANG_COUNT = count(lang('#lang_all'));
 
-        // Если нажали на кнопку Редактировать товар
         if (\eMarket\Valid::inPOST('edit_product')) {
 
-            // Формат даты после Datepicker
+            // Формат даты после Datepicker / Format date after Datepicker
             if (\eMarket\Valid::inPOST('date_available_product_stock')) {
                 $date_available = date('Y-m-d', strtotime(\eMarket\Valid::inPOST('date_available_product_stock')));
             } else {
@@ -900,7 +888,6 @@ final class Eac {
                 $selected_attributes_product_stock = json_encode([]);
             }
 
-            // добавляем запись для всех вкладок
             for ($x = 0; $x < $LANG_COUNT; $x++) {
                 \eMarket\Pdo::inPrepare("UPDATE " . self::$TABLE_PRODUCTS .
                         " SET name=?, last_modified=?, date_available=?, model=?, price=?, currency=?, quantity=?, unit=?, keyword=?, tags=?, description=?, tax=?, manufacturer=?, vendor_code=?, vendor_code_value=?, weight=?, weight_value=?, dimension=?, length=?, width=?, height=?, min_quantity=?, attributes=? WHERE id=? AND language=?", [
@@ -908,7 +895,7 @@ final class Eac {
                     $tax_product_stock, $manufacturers_product_stock, $vendor_codes_product_stock, \eMarket\Valid::inPOST('vendor_code_value_product_stock'), $weight_product_stock, $weight_value_product_stock, $length_product_stock, $value_length_product_stock, $value_width_product_stock, $value_height_product_stock, $min_quantity_product_stock, $selected_attributes_product_stock, \eMarket\Valid::inPOST('edit_product'), lang('#lang_all')[$x]
                 ]);
             }
-            // Выводим сообщение об успехе
+
             \eMarket\Messages::alert('success', lang('action_completed_successfully'));
         }
     }
