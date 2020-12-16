@@ -25,25 +25,25 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                     <small class="form-text text-muted"><?php echo lang('my_account_firstname') ?></small>
                     <div class="input-group has-success">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                        <input class="input-sm form-control" placeholder="<?php echo lang('my_account_enter_your_firstname') ?>" type="text" name="firstname" id="firstname" value="<?php echo $CUSTOMER['firstname'] ?>" />
+                        <input class="input-sm form-control" placeholder="<?php echo lang('my_account_enter_your_firstname') ?>" type="text" name="firstname" id="firstname" value="<?php echo \eMarket\Autorize::$CUSTOMER['firstname'] ?>" />
                     </div>
 
                     <small class="form-text text-muted"><?php echo lang('my_account_lastname') ?></small>
                     <div class="input-group has-success">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                        <input class="input-sm form-control" placeholder="<?php echo lang('my_account_enter_your_lastname') ?>" type="text" name="lastname" id="lastname" value="<?php echo $CUSTOMER['lastname'] ?>" />
+                        <input class="input-sm form-control" placeholder="<?php echo lang('my_account_enter_your_lastname') ?>" type="text" name="lastname" id="lastname" value="<?php echo \eMarket\Autorize::$CUSTOMER['lastname'] ?>" />
                     </div>
 
                     <small class="form-text text-muted"><?php echo lang('my_account_middlename') ?></small>
                     <div class="input-group has-success">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                        <input class="input-sm form-control" placeholder="<?php echo lang('my_account_enter_your_middlename') ?>" type="text" name="middle_name" id="middle_name" value="<?php echo $CUSTOMER['middle_name'] ?>" />
+                        <input class="input-sm form-control" placeholder="<?php echo lang('my_account_enter_your_middlename') ?>" type="text" name="middle_name" id="middle_name" value="<?php echo \eMarket\Autorize::$CUSTOMER['middle_name'] ?>" />
                     </div>
                     
                     <small class="form-text text-muted"><?php echo lang('my_account_telephone') ?></small>
                     <div class="input-group has-success">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                        <input class="input-sm form-control" placeholder="<?php echo lang('my_account_enter_your_phone') ?>" type="text" name="telephone" id="lastname" value="<?php echo $CUSTOMER['telephone'] ?>" />
+                        <input class="input-sm form-control" placeholder="<?php echo lang('my_account_enter_your_phone') ?>" type="text" name="telephone" id="lastname" value="<?php echo \eMarket\Autorize::$CUSTOMER['telephone'] ?>" />
                     </div>
 
                 </div>

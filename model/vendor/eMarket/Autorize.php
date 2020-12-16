@@ -15,6 +15,8 @@ namespace eMarket;
  * 
  */
 class Autorize {
+    
+    public static $CUSTOMER;
 
     /**
      * Авторизация сессиями для Административной панели / Session authorization for Admin Panel
@@ -63,12 +65,12 @@ class Autorize {
 
             session_start();
             if (isset($_SESSION['email_customer'])) {
-                $status = \eMarket\Pdo::getCellFalse("SELECT status FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']]);
+                $customer_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']])[0];
             } else {
-                $status = null;
+                $customer_data = null;
             }
 
-            if (isset($_SESSION['customer_session_start']) && (time() - $_SESSION['customer_session_start']) / 60 > \eMarket\Set::sessionExprTime() OR $status == 0) {
+            if (isset($_SESSION['customer_session_start']) && (time() - $_SESSION['customer_session_start']) / 60 > \eMarket\Set::sessionExprTime() OR $customer_data['status'] == 0) {
                 unset($_SESSION['password_customer']);
                 unset($_SESSION['email_customer']);
                 unset($_SESSION['customer_session_start']);
@@ -77,9 +79,9 @@ class Autorize {
             $_SESSION['customer_session_start'] = time();
 
             if (!isset($_SESSION['email_customer'])) {
-                return FALSE;
+                self::$CUSTOMER = FALSE;
             } else {
-                return TRUE;
+                self::$CUSTOMER = $customer_data;
             }
         }
     }

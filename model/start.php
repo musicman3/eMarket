@@ -38,12 +38,7 @@ if (\eMarket\Set::path() == 'catalog') {
     require_once('configure/configure.php');
 
     // Загружаем авторизацию Каталога
-    if (\eMarket\Autorize::sessionCatalog() == TRUE) {
-        $CUSTOMER = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']])[0];
-    } else {
-        $CUSTOMER = FALSE;
-    }
-
+    \eMarket\Autorize::sessionCatalog();
     // Инициализация корзины
     \eMarket\Cart::init();
 }
