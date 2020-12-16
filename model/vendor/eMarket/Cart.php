@@ -8,7 +8,7 @@
 namespace eMarket;
 
 /**
- * Класс для работы с корзиной
+ * Класс для работы с корзиной / Class for working with a cart
  *
  * @package Cart
  * @author eMarket
@@ -17,7 +17,7 @@ namespace eMarket;
 class Cart {
 
     /**
-     * Добавление товара в корзину
+     * Добавление товара в корзину / Add product to cart
      */
     public static function addProduct() {
 
@@ -34,7 +34,7 @@ class Cart {
             if (!isset($_SESSION['cart']) OR count($_SESSION['cart']) == 0) {
                 $_SESSION['cart'] = [['id' => $id, 'quantity' => $quantity]];
             } else {
-                // Если не было такого id, то добавляем в массив для подсчета
+
                 $id_count = \eMarket\Func::filterArrayToKey($_SESSION['cart'], 'id', $id, 'id');
                 foreach ($_SESSION['cart'] as $value) {
                     if ($value['id'] == $id) {
@@ -51,9 +51,9 @@ class Cart {
     }
 
     /**
-     * Подсчет количества товара в корзине
+     * Подсчет итогового количества товара в корзине / Counting total quantity product in cart
      *
-     * @return string $total_quantity (количества товара)
+     * @return string $total_quantity (количества товара / quantity product)
      */
     public static function totalQuantity() {
 
@@ -67,9 +67,9 @@ class Cart {
     }
 
     /**
-     * Подсчет стоимости в корзине
+     * Подсчет стоимости товара в корзине / Counting product price in cart
      *
-     * @return string $total_price (количества товара)
+     * @return string $total_price (количество товара / quantity product)
      */
     public static function totalPrice() {
 
@@ -84,7 +84,7 @@ class Cart {
     }
 
     /**
-     * Инициализация корзины на страницы
+     * Инициализация корзины / Init cart
      *
      */
     public static function init() {
@@ -97,68 +97,68 @@ class Cart {
     }
 
     /**
-     * Информация о товарах в корзине
+     * Информация о товарах в корзине / Products info in cart
      *
-     * @return array $cart (информация о товарах в корзине)
+     * @return array $output (исходящие данные / output data)
      */
     public static function info() {
 
-        $cart_info = [];
+        $output = [];
         if (isset($_SESSION['cart'])) {
             $x = 0;
             foreach ($_SESSION['cart'] as $value) {
                 $product = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE language=? AND id=?", [lang('#lang_all')[0], $value['id']]);
                 if ($product != FALSE) {
-                    array_push($cart_info, $product[0]);
+                    array_push($output, $product[0]);
                 } else {
                     unset($_SESSION['cart'][$x]);
                 }
                 $x++;
             }
         }
-        return $cart_info;
+        return $output;
     }
 
     /**
-     * Подсчет количества товара в корзине
-     * @param string $id (ID товара в корзине)
-     * @return string $total_quantity (количество товара)
+     * Подсчет количества товара в корзине / Counting quantity product in cart
+     * @param string $id (id товара / product id)
+     * @return string $output (количество / quantity)
      */
     public static function productQuantity($id) {
 
-        $product_quantity = 0;
+        $output = 0;
         if (isset($_SESSION['cart'])) {
             foreach ($_SESSION['cart'] as $value) {
                 if ($value['id'] == $id) {
-                    $product_quantity = $value['quantity'];
+                    $output = $value['quantity'];
                 }
             }
         }
-        return $product_quantity;
+        return $output;
     }
 
     /**
-     * Удаляем товар из корзины
+     * Удаление товара из корзины / Product removing from cart
      * 
      */
     public static function deleteProduct() {
 
         if (\eMarket\Valid::inGET('delete_product') && isset($_SESSION['cart'])) {
-            $array_new = [];
+            $array = [];
             foreach ($_SESSION['cart'] as $value) {
                 if ($value['id'] != \eMarket\Valid::inGET('delete_product')) {
-                    array_push($array_new, $value);
+                    array_push($array, $value);
                 }
             }
-            $_SESSION['cart'] = $array_new;
+            $_SESSION['cart'] = $array;
         }
     }
 
     /**
-     * Максимальное количество для заказа
+     * Максимальное количество для заказа / Max. quantity for order
      * 
-     * @param array $product_data (Данные о товаре)
-     * @param string $flag (флаг)
+     * @param array $product_data (данные о товаре / product data)
+     * @param string $flag (флаг / flag)
      * @return int|false
      */
     public static function maxQuantityToOrder($product_data, $flag = null) {
@@ -188,7 +188,7 @@ class Cart {
     }
 
     /**
-     * Редактирование количества товара в корзине
+     * Редактирование количества товара в корзине / Edit products quantity in cart
      * 
      */
     public static function editProductQuantity() {

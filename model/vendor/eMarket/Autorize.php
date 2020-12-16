@@ -8,7 +8,7 @@
 namespace eMarket;
 
 /**
- * Класс для авторизации пользователей
+ * Класс для авторизации пользователей / Class for user authorization
  *
  * @package Autorize
  * @author eMarket
@@ -17,7 +17,7 @@ namespace eMarket;
 class Autorize {
 
     /**
-     * Авторизация сессиями для Административной панели
+     * Авторизация сессиями для Административной панели / Session authorization for Admin Panel
      *
      * @return string TRUE
      */
@@ -28,24 +28,23 @@ class Autorize {
 
             session_start();
 
-            if (isset($_SESSION['session_start']) && (time() - $_SESSION['session_start']) / 60 > \eMarket\Set::sessionExprTime()) { // Если истекло время сеанса
-                unset($_SESSION['login']);    //удаляем текущую сессию
+            if (isset($_SESSION['session_start']) && (time() - $_SESSION['session_start']) / 60 > \eMarket\Set::sessionExprTime()) {
+                unset($_SESSION['login']);
                 unset($_SESSION['pass']);
                 unset($_SESSION['session_start']);
                 $_SESSION['session_page'] = \eMarket\Valid::inSERVER('REQUEST_URI');
-                header('Location: ?route=login'); // переадресация на LOGIN
+                header('Location: ?route=login');
                 exit;
             }
             $_SESSION['session_start'] = time();
 
-            if (!isset($_SESSION['login'])) { // Если нет пользователя
-                unset($_SESSION['login']);    //удаляем текущую сессию
+            if (!isset($_SESSION['login'])) {
+                unset($_SESSION['login']);
                 unset($_SESSION['pass']);
                 $_SESSION['session_page'] = \eMarket\Valid::inSERVER('REQUEST_URI');
-                header('Location: ?route=login'); // переадресация на LOGIN
+                header('Location: ?route=login');
                 exit;
             } else {
-                //Язык авторизованного администратора
                 $_SESSION['DEFAULT_LANGUAGE'] = \eMarket\Pdo::selectPrepare("SELECT language FROM " . TABLE_ADMINISTRATORS . " WHERE login=? AND password=?", [$_SESSION['login'], $_SESSION['pass']]);
 
                 return TRUE;
@@ -54,7 +53,7 @@ class Autorize {
     }
 
     /**
-     * Авторизация сессиями для Каталога
+     * Авторизация сессиями для Каталога / Session authorization for Catalog
      *
      * @return string TRUE|FALSE
      */
@@ -69,7 +68,7 @@ class Autorize {
                 $status = null;
             }
 
-            if (isset($_SESSION['customer_session_start']) && (time() - $_SESSION['customer_session_start']) / 60 > \eMarket\Set::sessionExprTime() OR $status == 0) { // Если истекло время сеанса или пользователь отключен
+            if (isset($_SESSION['customer_session_start']) && (time() - $_SESSION['customer_session_start']) / 60 > \eMarket\Set::sessionExprTime() OR $status == 0) {
                 unset($_SESSION['password_customer']);
                 unset($_SESSION['email_customer']);
                 unset($_SESSION['customer_session_start']);
@@ -77,7 +76,7 @@ class Autorize {
             }
             $_SESSION['customer_session_start'] = time();
 
-            if (!isset($_SESSION['email_customer'])) { // Если нет пользователя
+            if (!isset($_SESSION['email_customer'])) {
                 return FALSE;
             } else {
                 return TRUE;
@@ -86,26 +85,26 @@ class Autorize {
     }
 
     /**
-     * Хэширование пароля
+     * Хэширование пароля / Password hashing
      *
-     * @param string $password (входящий пароль)
-     * @return string $password_hash (хэшированный пароль)
+     * @param string $password (пароль / password)
+     * @return string $password_hash (password hash)
      */
     public static function passwordHash($password) {
 
         if (HASH_METHOD == 'PASSWORD_DEFAULT') {
-            $options = ['cost' => 10]; // Уровень сложности
+            $options = ['cost' => 10];
             $METHOD = PASSWORD_DEFAULT;
         }
         if (HASH_METHOD == 'PASSWORD_BCRYPT') {
-            $options = ['cost' => 10]; // Уровень сложности
+            $options = ['cost' => 10];
             $METHOD = PASSWORD_BCRYPT;
         }
         if (HASH_METHOD == 'PASSWORD_ARGON2I') {
-            $options = ['time_cost' => 2]; // Максимум в сек. на вычисление хэша
+            $options = ['time_cost' => 2];
             $METHOD = PASSWORD_ARGON2I;
         }
-        $password_hash = password_hash($password, $METHOD, $options); // Хэшируем пароль
+        $password_hash = password_hash($password, $METHOD, $options);
         return $password_hash;
     }
 
