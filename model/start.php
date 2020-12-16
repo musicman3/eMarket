@@ -14,6 +14,7 @@ ini_set('error_log', __DIR__ . '/work/errors.log');
 require_once('vendor/autoload.php');
 
 \eMarket\Debug::$TIME_START = $TIME_START;
+unset($TIME_START);
 
 //АВТОЗАГРУЗКА БАЗОВЫХ ФУНКЦИЙ
 foreach (\eMarket\Tree::filesTree(getenv('DOCUMENT_ROOT') . '/model/functions/') as $path) {

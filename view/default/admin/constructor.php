@@ -93,7 +93,7 @@
                 require_once($JS_MOD_END . '/js/js.php');
             }
             // Выводим отладочную информацию
-            \eMarket\Debug::info($TIME_START);
+            \eMarket\Debug::info();
             ?>
 
     </body>

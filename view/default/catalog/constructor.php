@@ -117,7 +117,7 @@
         }
 
         // Выводим отладочную информацию
-        \eMarket\Debug::info($TIME_START);
+        \eMarket\Debug::info();
         ?>
     </body>
 </html>
