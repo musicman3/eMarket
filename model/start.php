@@ -4,14 +4,16 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+//ВРЕМЯ ФОРМИРОВАНИЯ СТРАНИЦЫ
+$TIME_START = microtime(1);
 //ПОДКЛЮЧАЕМ ЛОГ
 error_reporting(-1);
 ini_set('error_log', __DIR__ . '/work/errors.log');
-//ВРЕМЯ ФОРМИРОВАНИЯ СТРАНИЦЫ
-$TIME_START = microtime(1);
 
 //АВТОЗАГРУЗКА БАЗОВЫХ КЛАССОВ
 require_once('vendor/autoload.php');
+
+\eMarket\Debug::$TIME_START = $TIME_START;
 
 //АВТОЗАГРУЗКА БАЗОВЫХ ФУНКЦИЙ
 foreach (\eMarket\Tree::filesTree(getenv('DOCUMENT_ROOT') . '/model/functions/') as $path) {

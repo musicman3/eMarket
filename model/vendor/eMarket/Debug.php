@@ -1,4 +1,5 @@
 <?php
+
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -14,6 +15,8 @@ namespace eMarket;
  * 
  */
 class Debug {
+
+    public static $TIME_START;
 
     /**
      * Отображение массива при отладке / Array displaying when debugging
@@ -33,13 +36,13 @@ class Debug {
      *
      * @param string $start_time (начальное время / start time)
      */
-    public static function info($start_time) {
-        
+    public static function info() {
+
         $val = \eMarket\Pdo::getCell("SELECT debug FROM " . TABLE_BASIC_SETTINGS . "", []);
         if ($val == 1) {
             $tend = microtime(1);
 
-            $totaltime = round(($tend - $start_time), 2);
+            $totaltime = round(($tend - self::$TIME_START), 2);
 
             echo lang('debug_page_generation_time') . " " . $totaltime . " " . lang('debug_sec') . "<br>";
             echo lang('debug_db_queries') . " " . \eMarket\Pdo::$query_count . " " . lang('debug_pcs') . "<br><br>";

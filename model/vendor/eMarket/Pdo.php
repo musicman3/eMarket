@@ -18,25 +18,26 @@ final class Pdo {
 
     // Счетчик запросов к БД
     public static $query_count = 0;
+    public static $connect = null;
 
     /**
      * Функция для соединения с БД
-     * @param string $a (маркер)
+     * @param string $marker (маркер)
      * @return object $connect (объект БД)
      */
-    public static function connect($a = null) {
-        static $connect = null;
-        
+    public static function connect($marker = null) {
+
         self::$query_count++; //Считаем запросы к БД
 
-        if (isset($a) && $a == 'end') {
-            return $connect;
+        if ($marker == 'end') {
+            self::$connect = null;
+            return self::$connect;
         }
 
-        if (!isset($connect) && defined('DB_TYPE') && defined('DB_SERVER') && defined('DB_NAME') && defined('DB_USERNAME') && defined('DB_PASSWORD')) {
+        if (self::$connect == null && defined('DB_TYPE') && defined('DB_SERVER') && defined('DB_NAME') && defined('DB_USERNAME') && defined('DB_PASSWORD')) {
 
             try {
-                $connect = new \PDO(DB_TYPE . ':host=' . DB_SERVER . ';dbname=' . DB_NAME, DB_USERNAME, DB_PASSWORD, [\PDO::ATTR_ERRMODE => \PDO::ERRMODE_WARNING, \PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4"]);
+                self::$connect = new \PDO(DB_TYPE . ':host=' . DB_SERVER . ';dbname=' . DB_NAME, DB_USERNAME, DB_PASSWORD, [\PDO::ATTR_ERRMODE => \PDO::ERRMODE_WARNING, \PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4"]);
             } catch (PDOException $error) {
                 // Если ошибка соединения с БД в инсталляторе, то переадресуем на страницу ошибки
                 if (\eMarket\Set::path() == 'install') {
@@ -48,7 +49,7 @@ final class Pdo {
             }
         }
 
-        return $connect;
+        return self::$connect;
     }
 
     /**
@@ -194,7 +195,7 @@ final class Pdo {
                 AND $result = $exec->fetchAll(\PDO :: FETCH_NUM)) {
             
         }
-        return  \eMarket\Func::escape_sign($result);
+        return \eMarket\Func::escape_sign($result);
     }
 
     /**
@@ -226,7 +227,7 @@ final class Pdo {
                 AND $result = $exec->fetchAll(\PDO :: FETCH_COLUMN)) {
             
         }
-        return  \eMarket\Func::escape_sign($result);
+        return \eMarket\Func::escape_sign($result);
     }
 
     /**
@@ -258,7 +259,7 @@ final class Pdo {
                 AND $result = $exec->fetchAll(\PDO :: FETCH_NUM)) {
             
         }
-        return  \eMarket\Func::escape_sign($result)[0];
+        return \eMarket\Func::escape_sign($result)[0];
     }
 
     /**
@@ -419,6 +420,7 @@ final class Pdo {
         if ($exec = self::connect()->prepare($sql)
                 AND $exec->execute($a)
                 AND $result = $exec->fetchAll(\PDO :: FETCH_ASSOC)) {
+            
         }
         return \eMarket\Func::escape_sign($result);
     }
