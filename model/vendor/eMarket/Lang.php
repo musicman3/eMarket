@@ -16,6 +16,8 @@ namespace eMarket;
  */
 final class Lang {
 
+    public static $COUNT;
+
     /**
      * Подключение и парсинг языковых файлов
      *
@@ -105,6 +107,21 @@ final class Lang {
         if (\eMarket\Valid::inGET('language')) {
             $_SESSION['DEFAULT_LANGUAGE'] = \eMarket\Valid::inGET('language');
         }
+    }
+
+    /**
+     * Инициализация / Init
+     *
+     */
+    public static function init() {
+
+        if (\eMarket\Valid::inGET('language') && \eMarket\Set::path() == 'admin' && isset($_SESSION['login']) && isset($_SESSION['pass'])) {
+            \eMarket\Pdo::inPrepare("UPDATE " . TABLE_ADMINISTRATORS . " SET language=? WHERE login=? AND password=?", [\eMarket\Valid::inGET('language'), $_SESSION['login'], $_SESSION['pass']]);
+        }
+
+        setlocale(LC_ALL, lang('language_locale'));
+
+        self::$COUNT = count(lang('#lang_all'));
     }
 
 }

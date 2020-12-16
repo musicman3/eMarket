@@ -26,7 +26,7 @@ if (\eMarket\Valid::inPOST('add')) {
     }
 
     // добавляем запись для всех вкладок
-    for ($x = 0; $x < $LANG_COUNT; $x++) {
+    for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
         \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_STIKERS . " SET id=?, name=?, language=?, default_stikers=?", [$id, \eMarket\Valid::inPOST('name_stikers_' . $x), lang('#lang_all')[$x], $default_stikers]);
     }
 
@@ -48,7 +48,7 @@ if (\eMarket\Valid::inPOST('edit')) {
         \eMarket\Pdo::inPrepare("UPDATE " . TABLE_STIKERS . " SET default_stikers=?", [0]);
     }
 
-    for ($x = 0; $x < $LANG_COUNT; $x++) {
+    for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
         // обновляем запись
         \eMarket\Pdo::inPrepare("UPDATE " . TABLE_STIKERS . " SET name=?, default_stikers=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_stikers_' . $x), $default_stikers, \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
     }

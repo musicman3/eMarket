@@ -15,8 +15,24 @@ namespace eMarket;
  * 
  */
 class Autorize {
-    
+
     public static $CUSTOMER;
+
+    /**
+     * Инициализация сессий / Sessions init
+     *
+     */
+    public static function init() {
+        
+        if (\eMarket\Set::path() == 'admin' && \eMarket\Valid::inGET('route') != 'login') {
+                \eMarket\Autorize::sessionAdmin();
+        }
+
+        if (\eMarket\Set::path() == 'catalog') {
+            \eMarket\Autorize::sessionCatalog();
+            \eMarket\Cart::init();
+        }
+    }
 
     /**
      * Авторизация сессиями для Административной панели / Session authorization for Admin Panel
@@ -48,7 +64,6 @@ class Autorize {
                 exit;
             } else {
                 $_SESSION['DEFAULT_LANGUAGE'] = \eMarket\Pdo::selectPrepare("SELECT language FROM " . TABLE_ADMINISTRATORS . " WHERE login=? AND password=?", [$_SESSION['login'], $_SESSION['pass']]);
-
                 return TRUE;
             }
         }
@@ -57,7 +72,6 @@ class Autorize {
     /**
      * Авторизация сессиями для Каталога / Session authorization for Catalog
      *
-     * @return string TRUE|FALSE
      */
     public static function sessionCatalog() {
 

@@ -31,13 +31,13 @@ if (\eMarket\Valid::inPOST('add')) {
         }
         
         // добавляем запись для всех вкладок
-        for ($x = 0; $x < $LANG_COUNT; $x++) {
+        for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
             \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_LENGTH . " SET id=?, name=?, language=?, code=?, value_length=?, default_length=?", [$id, \eMarket\Valid::inPOST('name_length_' . $x), lang('#lang_all')[$x], \eMarket\Valid::inPOST('code_length_' . $x), 1, $default_length]);
         }
     } else {
 
         // добавляем запись для всех вкладок
-        for ($x = 0; $x < $LANG_COUNT; $x++) {
+        for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
             \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_LENGTH . " SET id=?, name=?, language=?, code=?, value_length=?, default_length=?", [$id, \eMarket\Valid::inPOST('name_length_' . $x), lang('#lang_all')[$x], \eMarket\Valid::inPOST('code_length_' . $x), \eMarket\Valid::inPOST('value_length'), $default_length]);
         }
     }
@@ -66,13 +66,13 @@ if (\eMarket\Valid::inPOST('edit')) {
             \eMarket\Pdo::inPrepare("UPDATE " . TABLE_LENGTH . " SET value_length=? WHERE id=? AND language=?", [($value_length_all[$x]['value_length'] / \eMarket\Valid::inPOST('value_length')), $value_length_all[$x]['id'], $value_length_all[$x]['language']]);
         }
 
-        for ($x = 0; $x < $LANG_COUNT; $x++) {
+        for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
             // обновляем запись
             \eMarket\Pdo::inPrepare("UPDATE " . TABLE_LENGTH . " SET name=?, code=?, value_length=?, default_length=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_length_' . $x), \eMarket\Valid::inPOST('code_length_' . $x), 1, $default_length, \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
         }
     } else {
 
-        for ($x = 0; $x < $LANG_COUNT; $x++) {
+        for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
             // обновляем запись
             \eMarket\Pdo::inPrepare("UPDATE " . TABLE_LENGTH . " SET name=?, code=?, value_length=?, default_length=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_length_' . $x), \eMarket\Valid::inPOST('code_length_' . $x), \eMarket\Valid::inPOST('value_length'), $default_length, \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
         }

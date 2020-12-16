@@ -37,8 +37,8 @@
                         </div>
 
                         <?php
-                        if ($LANG_COUNT > 1) {
-                            for ($x = 1; $x < $LANG_COUNT; $x++) {
+                        if (\eMarket\Lang::$COUNT > 1) {
+                            for ($x = 1; $x < \eMarket\Lang::$COUNT; $x++) {
                                 ?>
 
                                 <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">

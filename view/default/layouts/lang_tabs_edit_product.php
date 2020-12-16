@@ -9,8 +9,8 @@
     <li class="active"><a data-toggle="tab" href="#productEdit_<?php echo lang('#lang_all')[0] ?>"><img src="/view/<?php echo \eMarket\Set::template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[0] ?>.png" alt="<?php echo lang('#lang_all')[0] ?>" title="<?php echo lang('#lang_all')[0] ?>" width="16" height="10" /> <?php echo lang('language_name', lang('#lang_all')[0]) ?></a></li>
 
     <?php
-    if ($LANG_COUNT > 1) {
-        for ($x = 1; $x < $LANG_COUNT; $x++) {
+    if (\eMarket\Lang::$COUNT > 1) {
+        for ($x = 1; $x < \eMarket\Lang::$COUNT; $x++) {
             ?>
 
             <li><a data-toggle="tab" href="#productEdit_<?php echo lang('#lang_all')[$x] ?>"><img src="/view/<?php echo \eMarket\Set::template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[$x] ?>.png" alt="<?php echo lang('#lang_all')[$x] ?>" title="<?php echo lang('#lang_all')[$x] ?>" width="16" height="10" /> <?php echo lang('language_name', lang('#lang_all')[$x]) ?></a></li>

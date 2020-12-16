@@ -31,13 +31,13 @@ if (\eMarket\Valid::inPOST('add')) {
         }
         
         // добавляем запись для всех вкладок
-        for ($x = 0; $x < $LANG_COUNT; $x++) {
+        for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
             \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_WEIGHT . " SET id=?, name=?, language=?, code=?, value_weight=?, default_weight=?", [$id, \eMarket\Valid::inPOST('name_weight_' . $x), lang('#lang_all')[$x], \eMarket\Valid::inPOST('code_weight_' . $x), 1, $default_weight]);
         }
     } else {
 
         // добавляем запись для всех вкладок
-        for ($x = 0; $x < $LANG_COUNT; $x++) {
+        for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
             \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_WEIGHT . " SET id=?, name=?, language=?, code=?, value_weight=?, default_weight=?", [$id, \eMarket\Valid::inPOST('name_weight_' . $x), lang('#lang_all')[$x], \eMarket\Valid::inPOST('code_weight_' . $x), \eMarket\Valid::inPOST('value_weight'), $default_weight]);
         }
     }
@@ -66,13 +66,13 @@ if (\eMarket\Valid::inPOST('edit')) {
             \eMarket\Pdo::inPrepare("UPDATE " . TABLE_WEIGHT . " SET value_weight=? WHERE id=? AND language=?", [($value_weight_all[$x]['value_weight'] / \eMarket\Valid::inPOST('value_weight')), $value_weight_all[$x]['id'], $value_weight_all[$x]['language']]);
         }
 
-        for ($x = 0; $x < $LANG_COUNT; $x++) {
+        for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
             // обновляем запись
             \eMarket\Pdo::inPrepare("UPDATE " . TABLE_WEIGHT . " SET name=?, code=?, value_weight=?, default_weight=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_weight_' . $x), \eMarket\Valid::inPOST('code_weight_' . $x), 1, $default_weight, \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
         }
     } else {
 
-        for ($x = 0; $x < $LANG_COUNT; $x++) {
+        for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
             // обновляем запись
             \eMarket\Pdo::inPrepare("UPDATE " . TABLE_WEIGHT . " SET name=?, code=?, value_weight=?, default_weight=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_weight_' . $x), \eMarket\Valid::inPOST('code_weight_' . $x), \eMarket\Valid::inPOST('value_weight'), $default_weight, \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
         }

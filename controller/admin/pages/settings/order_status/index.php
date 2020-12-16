@@ -30,7 +30,7 @@ if (\eMarket\Valid::inPOST('add')) {
     $id_sort = intval($id_max_sort) + 1;
 
     // добавляем запись для всех вкладок
-    for ($x = 0; $x < $LANG_COUNT; $x++) {
+    for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
         \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_ORDER_STATUS . " SET id=?, name=?, language=?, default_order_status=?, sort=?", [$id, \eMarket\Valid::inPOST('name_order_status_' . $x), lang('#lang_all')[$x], $default_order_status, $id_sort]);
     }
 
@@ -52,7 +52,7 @@ if (\eMarket\Valid::inPOST('edit')) {
         \eMarket\Pdo::inPrepare("UPDATE " . TABLE_ORDER_STATUS . " SET default_order_status=?", [0]);
     }
 
-    for ($x = 0; $x < $LANG_COUNT; $x++) {
+    for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
         // обновляем запись
         \eMarket\Pdo::inPrepare("UPDATE " . TABLE_ORDER_STATUS . " SET name=?, default_order_status=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_order_status_' . $x), $default_order_status, \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
     }

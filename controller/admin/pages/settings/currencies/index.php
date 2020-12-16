@@ -31,13 +31,13 @@ if (\eMarket\Valid::inPOST('add')) {
         }
         
         // добавляем запись для всех вкладок
-        for ($x = 0; $x < $LANG_COUNT; $x++) {
+        for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
             \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_CURRENCIES . " SET id=?, name=?, language=?, code=?, iso_4217=?, value=?, default_value=?, symbol=?, symbol_position=?, decimal_places=?", [$id, \eMarket\Valid::inPOST('name_currencies_' . $x), lang('#lang_all')[$x], \eMarket\Valid::inPOST('code_currencies_' . $x), \eMarket\Valid::inPOST('iso_4217_currencies'), 1, $default_value, \eMarket\Valid::inPOST('symbol_currencies'), \eMarket\Valid::inPOST('symbol_position_currencies'), \eMarket\Valid::inPOST('decimal_places_currencies')]);
         }
     } else {
 
         // добавляем запись для всех вкладок
-        for ($x = 0; $x < $LANG_COUNT; $x++) {
+        for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
             \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_CURRENCIES . " SET id=?, name=?, language=?, code=?, iso_4217=?, value=?, default_value=?, symbol=?, symbol_position=?, decimal_places=?", [$id, \eMarket\Valid::inPOST('name_currencies_' . $x), lang('#lang_all')[$x], \eMarket\Valid::inPOST('code_currencies_' . $x), \eMarket\Valid::inPOST('iso_4217_currencies'), \eMarket\Valid::inPOST('value_currencies'), $default_value, \eMarket\Valid::inPOST('symbol_currencies'), \eMarket\Valid::inPOST('symbol_position_currencies'), \eMarket\Valid::inPOST('decimal_places_currencies')]);
         }
     }
@@ -66,13 +66,13 @@ if (\eMarket\Valid::inPOST('edit')) {
             \eMarket\Pdo::inPrepare("UPDATE " . TABLE_CURRENCIES . " SET value=? WHERE id=? AND language=?", [($value_all[$x]['value'] / \eMarket\Valid::inPOST('value_currencies')), $value_all[$x]['id'], $value_all[$x]['language']]);
         }
 
-        for ($x = 0; $x < $LANG_COUNT; $x++) {
+        for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
             // обновляем запись
             \eMarket\Pdo::inPrepare("UPDATE " . TABLE_CURRENCIES . " SET name=?, code=?, iso_4217=?, value=?, default_value=?, symbol=?, symbol_position=?, decimal_places=?, last_updated=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_currencies_' . $x), \eMarket\Valid::inPOST('code_currencies_' . $x), \eMarket\Valid::inPOST('iso_4217_currencies'), 1, $default_value, \eMarket\Valid::inPOST('symbol_currencies'), \eMarket\Valid::inPOST('symbol_position_currencies'), \eMarket\Valid::inPOST('decimal_places_currencies'), date("Y-m-d H:i:s"), \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
         }
     } else {
 
-        for ($x = 0; $x < $LANG_COUNT; $x++) {
+        for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
             // обновляем запись
             \eMarket\Pdo::inPrepare("UPDATE " . TABLE_CURRENCIES . " SET name=?, code=?, iso_4217=?, value=?, default_value=?, symbol=?, symbol_position=?, decimal_places=?, last_updated=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_currencies_' . $x), \eMarket\Valid::inPOST('code_currencies_' . $x), \eMarket\Valid::inPOST('iso_4217_currencies'), \eMarket\Valid::inPOST('value_currencies'), $default_value, \eMarket\Valid::inPOST('symbol_currencies'), \eMarket\Valid::inPOST('symbol_position_currencies'), \eMarket\Valid::inPOST('decimal_places_currencies'), date("Y-m-d H:i:s"), \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
         }

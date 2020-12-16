@@ -24,7 +24,7 @@ if (\eMarket\Valid::inPOST('add')) {
     }
 
     // добавляем запись для всех вкладок
-    for ($x = 0; $x < $LANG_COUNT; $x++) {
+    for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
         \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_VENDOR_CODES . " SET id=?, name=?, language=?, vendor_code=?, default_vendor_code=?", [$id, \eMarket\Valid::inPOST('name_vendor_codes_' . $x), lang('#lang_all')[$x], \eMarket\Valid::inPOST('vendor_code_' . $x), $default_vendor_code]);
     }
 
@@ -47,7 +47,7 @@ if (\eMarket\Valid::inPOST('edit')) {
         \eMarket\Pdo::inPrepare("UPDATE " . TABLE_VENDOR_CODES . " SET default_vendor_code=?", [0]);
     }
 
-    for ($x = 0; $x < $LANG_COUNT; $x++) {
+    for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
         // обновляем запись
         \eMarket\Pdo::inPrepare("UPDATE " . TABLE_VENDOR_CODES . " SET name=?, vendor_code=?, default_vendor_code=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_vendor_codes_' . $x), \eMarket\Valid::inPOST('vendor_code_' . $x), $default_vendor_code, \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
     }

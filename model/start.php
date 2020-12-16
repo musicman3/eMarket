@@ -24,34 +24,12 @@ foreach (\eMarket\Tree::modulesClasses() as $path) {
 }
 
 //Если это панель администратора
-if (\eMarket\Set::path() == 'admin') {
+if (\eMarket\Set::path() == 'admin' OR \eMarket\Set::path() == 'catalog') {
     require_once('configure/configure.php');
-
-    // Загружаем авторизацию Административной части
-    if (\eMarket\Valid::inGET('route') != 'login') {
-        \eMarket\Autorize::sessionAdmin();
-    }
 }
 
-// Если это каталог
-if (\eMarket\Set::path() == 'catalog') {
-    require_once('configure/configure.php');
+\eMarket\Autorize::init();
 
-    // Загружаем авторизацию Каталога
-    \eMarket\Autorize::sessionCatalog();
-    // Инициализация корзины
-    \eMarket\Cart::init();
-}
+\eMarket\Lang::init();
 
-// Загружаем языковой роутер
-require_once('router_lang.php');
-
-//Устанавливаем локаль
-setlocale(LC_ALL, lang('language_locale'));
-
-// Считаем количество языков
-$LANG_COUNT = count(lang('#lang_all'));
-
-//unset($_SESSION['cart']);
-//\eMarket\Debug::trace($_SESSION['cart']);
 ?>

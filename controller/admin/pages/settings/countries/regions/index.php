@@ -24,7 +24,7 @@ if (\eMarket\Valid::inPOST('add')) {
     $id = intval($id_max) + 1;
 
     // добавляем запись для всех вкладок
-    for ($x = 0; $x < $LANG_COUNT; $x++) {
+    for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
         \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_REGIONS . " SET id=?, country_id=?, name=?, language=?, region_code=?", [$id, $country_id, \eMarket\Valid::inPOST('name_regions_' . $x), lang('#lang_all')[$x], \eMarket\Valid::inPOST('region_code_regions')]);
     }
 
@@ -35,7 +35,7 @@ if (\eMarket\Valid::inPOST('add')) {
 // Если нажали на кнопку Редактировать
 if (\eMarket\Valid::inPOST('edit')) {
 
-    for ($x = 0; $x < $LANG_COUNT; $x++) {
+    for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
         // обновляем запись
         \eMarket\Pdo::inPrepare("UPDATE " . TABLE_REGIONS . " SET name=?, region_code=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_regions_' . $x), \eMarket\Valid::inPOST('region_code_regions'), \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
     }

@@ -13,7 +13,7 @@ if (\eMarket\Valid::inPOST('add')) {
     $id = intval($id_max) + 1;
 
     // добавляем запись для всех вкладок
-    for ($x = 0; $x < $LANG_COUNT; $x++) {
+    for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
         \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_MANUFACTURERS . " SET id=?, name=?, language=?, site=?, logo=?", [$id, \eMarket\Valid::inPOST('name_manufacturers_' . $x), lang('#lang_all')[$x], \eMarket\Valid::inPOST('site_manufacturers'), json_encode([])]);
     }
 
@@ -24,7 +24,7 @@ if (\eMarket\Valid::inPOST('add')) {
 // Если нажали на кнопку Редактировать
 if (\eMarket\Valid::inPOST('edit')) {
 
-    for ($x = 0; $x < $LANG_COUNT; $x++) {
+    for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
         \eMarket\Pdo::inPrepare("UPDATE " . TABLE_MANUFACTURERS . " SET name=?, site=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_manufacturers_' . $x), \eMarket\Valid::inPOST('site_manufacturers'), \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
     }
 

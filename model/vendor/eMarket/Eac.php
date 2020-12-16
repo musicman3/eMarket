@@ -152,8 +152,6 @@ final class Eac {
      */
     private static function addCategory() {
 
-        $LANG_COUNT = count(lang('#lang_all'));
-
         if (\eMarket\Valid::inPOST('add')) {
 
             $sort_max = \eMarket\Pdo::selectPrepare("SELECT sort_category FROM " . self::$TABLE_CATEGORIES . " WHERE language=? AND parent_id=? ORDER BY sort_category DESC", [lang('#lang_all')[0], self::$parent_id]);
@@ -168,7 +166,7 @@ final class Eac {
                 $attributes = json_encode([]);
             }
 
-            for ($x = 0; $x < $LANG_COUNT; $x++) {
+            for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
                 \eMarket\Pdo::inPrepare("INSERT INTO " . self::$TABLE_CATEGORIES . " SET id=?, name=?, sort_category=?, language=?, parent_id=?, date_added=?, status=?, logo=?, attributes=?", [$id, \eMarket\Valid::inPOST('name_categories_stock_' . $x), $sort_category, lang('#lang_all')[$x], self::$parent_id, date("Y-m-d H:i:s"), 1, json_encode([]), $attributes]);
             }
 
@@ -181,11 +179,9 @@ final class Eac {
      */
     private static function editCategory() {
 
-        $LANG_COUNT = count(lang('#lang_all'));
-
         if (\eMarket\Valid::inPOST('edit')) {
 
-            for ($x = 0; $x < $LANG_COUNT; $x++) {
+            for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
                 \eMarket\Pdo::inPrepare("UPDATE " . self::$TABLE_CATEGORIES . " SET name=?, last_modified=?, attributes=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_categories_stock_' . $x), date("Y-m-d H:i:s"), \eMarket\Valid::inPOST('attributes'), \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
             }
 
@@ -677,8 +673,6 @@ final class Eac {
      */
     private static function addProduct() {
 
-        $LANG_COUNT = count(lang('#lang_all'));
-
         if (\eMarket\Valid::inPOST('add_product')) {
 
             // Формат даты после Datepicker / Format date after Datepicker
@@ -776,7 +770,7 @@ final class Eac {
             $id_max = \eMarket\Pdo::selectPrepare("SELECT id FROM " . self::$TABLE_PRODUCTS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max) + 1;
 
-            for ($x = 0; $x < $LANG_COUNT; $x++) {
+            for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
                 \eMarket\Pdo::inPrepare("INSERT INTO " . self::$TABLE_PRODUCTS .
                         " SET id=?, name=?, language=?, parent_id=?, date_added=?, date_available=?, model=?, price=?, currency=?, quantity=?, unit=?, keyword=?, tags=?, description=?, tax=?, manufacturer=?, vendor_code=?, vendor_code_value=?, weight=?, weight_value=?, dimension=?, length=?, width=?, height=?, min_quantity=?, logo=?, attributes=?", [
                     $id, \eMarket\Valid::inPOST('name_product_stock_' . $x), lang('#lang_all')[$x], self::$parent_id, date("Y-m-d H:i:s"), $date_available, \eMarket\Valid::inPOST('model_product_stock'), \eMarket\Valid::inPOST('price_product_stock'), $currency_product_stock, \eMarket\Valid::inPOST('quantity_product_stock'), $unit_product_stock, \eMarket\Valid::inPOST('keyword_product_stock_' . $x), \eMarket\Valid::inPOST('tags_product_stock_' . $x), \eMarket\Valid::inPOST('description_product_stock_' . $x),
@@ -792,8 +786,6 @@ final class Eac {
      * Редактировать товар / Edit product
      */
     private static function editProduct() {
-
-        $LANG_COUNT = count(lang('#lang_all'));
 
         if (\eMarket\Valid::inPOST('edit_product')) {
 
@@ -888,7 +880,7 @@ final class Eac {
                 $selected_attributes_product_stock = json_encode([]);
             }
 
-            for ($x = 0; $x < $LANG_COUNT; $x++) {
+            for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
                 \eMarket\Pdo::inPrepare("UPDATE " . self::$TABLE_PRODUCTS .
                         " SET name=?, last_modified=?, date_available=?, model=?, price=?, currency=?, quantity=?, unit=?, keyword=?, tags=?, description=?, tax=?, manufacturer=?, vendor_code=?, vendor_code_value=?, weight=?, weight_value=?, dimension=?, length=?, width=?, height=?, min_quantity=?, attributes=? WHERE id=? AND language=?", [
                     \eMarket\Valid::inPOST('name_product_stock_' . $x), date("Y-m-d H:i:s"), $date_available, \eMarket\Valid::inPOST('model_product_stock'), \eMarket\Valid::inPOST('price_product_stock'), $currency_product_stock, \eMarket\Valid::inPOST('quantity_product_stock'), $unit_product_stock, \eMarket\Valid::inPOST('keyword_product_stock_' . $x), \eMarket\Valid::inPOST('tags_product_stock_' . $x), \eMarket\Valid::inPOST('description_product_stock_' . $x),

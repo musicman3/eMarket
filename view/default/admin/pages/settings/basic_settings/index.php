@@ -33,7 +33,7 @@
 			    <div class="col-sm-3 text-left"><label class=""><?php echo lang('basic_settings_primary_language') ?></label></div>
 			    <div class="col-sm-9">
 				<select name="primary_language" id="primary_language" class="input-sm form-control">
-				    <?php if ($LANG_COUNT == 1) { ?>
+				    <?php if (\eMarket\Lang::$COUNT == 1) { ?>
     				    <option value="<?php echo $primary_language ?>" selected><?php echo lang('language_name', $primary_language) ?></option>
 				    <?php } else { ?>
     				    <option value="<?php echo $primary_language ?>" selected><?php echo lang('language_name', $primary_language) ?></option>

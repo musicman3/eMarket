@@ -39,7 +39,7 @@ if (\eMarket\Valid::inPOST('add')) {
     }
 
     // добавляем запись для всех вкладок
-    for ($x = 0; $x < $LANG_COUNT; $x++) {
+    for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
         \eMarket\Pdo::inPrepare("INSERT INTO " . $MODULE_DB . " SET id=?, name=?, language=?, sale_value=?, date_start=?, date_end=?, default_set=?", [$id, \eMarket\Valid::inPOST('name_module_' . $x), lang('#lang_all')[$x], \eMarket\Valid::inPOST('sale_value'), $start_date, $end_date, $default_value]);
     }
 
@@ -74,7 +74,7 @@ if (\eMarket\Valid::inPOST('edit')) {
     }
 
     // добавляем запись для всех вкладок
-    for ($x = 0; $x < $LANG_COUNT; $x++) {
+    for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
         \eMarket\Pdo::inPrepare("UPDATE " . $MODULE_DB . " SET name=?, sale_value=?, date_start=?, date_end=?, default_set=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_module_' . $x), \eMarket\Valid::inPOST('sale_value'), $start_date, $end_date, $default_value, \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
     }
 
