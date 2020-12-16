@@ -60,20 +60,31 @@ if (\eMarket\Valid::inPOST('add') && password_verify((float) \eMarket\Valid::inP
         $unit = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_UNITS . " WHERE id=? AND language=?", [$product_data['unit'], lang('#lang_all')[0]])[0];
         $admin_unit = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_UNITS . " WHERE id=? AND language=?", [$product_data['unit'], $primary_language])[0];
 
+        if (isset($stiker_name[$product_data['stiker']])) {
+            $stiker_name_data = $stiker_name[$product_data['stiker']];
+        } else {
+            $stiker_name_data = '';
+        }
+        if (isset($stiker_name_customer[$product_data['stiker']])) {
+            $stiker_name_customer_data = $stiker_name_customer[$product_data['stiker']];
+        } else {
+            $stiker_name_customer_data = '';
+        }
+
         $data = [
             'admin' => [
                 'name' => $admin_product_data['name'],
                 'price' => \eMarket\Ecb::formatPrice(\eMarket\Ecb::outPrice($admin_product_data)['out_price'], 1, $primary_language),
                 'unit' => $admin_unit['unit'],
                 'amount' => \eMarket\Ecb::formatPrice(\eMarket\Ecb::outPrice($admin_product_data)['out_price'] * $value['quantity'], 1, $primary_language),
-                'stiker' => $stiker_name[$product_data['stiker']]
+                'stiker' => $stiker_name_data
             ],
             'customer' => [
                 'name' => $product_data['name'],
                 'price' => \eMarket\Ecb::formatPrice(\eMarket\Ecb::outPrice($product_data)['out_price'], 1),
                 'unit' => $unit['unit'],
                 'amount' => \eMarket\Ecb::formatPrice(\eMarket\Ecb::outPrice($product_data)['out_price'] * $value['quantity'], 1),
-                'stiker' => $stiker_name_customer[$product_data['stiker']]
+                'stiker' => $stiker_name_customer_data
             ],
             'data' => [
                 'quantity' => $value['quantity']
