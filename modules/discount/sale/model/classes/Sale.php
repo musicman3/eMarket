@@ -59,9 +59,14 @@ class Sale {
      * Выходные данные для внутреннего интерфейса калькулятора
      *
      * @param array $input (массив с входящими значениями по товару)
+     * @param string $language (язык)
      * @return array (выходные данные по цене)
      */
-    public static function dataInterface($input) {
+    public static function dataInterface($input, $language = null) {
+
+        if ($language == null) {
+            $language = lang('#lang_all')[0];
+        }
 
         $discount_val = $input['discount'];
         $currency = $input['currency'];
@@ -74,7 +79,7 @@ class Sale {
             $discount_names = [];
 
             foreach ($explode_id as $val) {
-                $data = \eMarket\Pdo::getRow("SELECT sale_value, name, UNIX_TIMESTAMP (date_start), UNIX_TIMESTAMP (date_end) FROM " . DB_PREFIX . 'modules_discount_sale' . " WHERE language=? AND id=?", [lang('#lang_all')[0], $val]);
+                $data = \eMarket\Pdo::getRow("SELECT sale_value, name, UNIX_TIMESTAMP (date_start), UNIX_TIMESTAMP (date_end) FROM " . DB_PREFIX . 'modules_discount_sale' . " WHERE language=? AND id=?", [$language, $val]);
 
                 $this_time = time();
                 $date_start = $data[2];

@@ -100,22 +100,23 @@ if (\eMarket\Valid::inPOST('add') && password_verify((float) \eMarket\Valid::inP
             'total_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_total'), 1, $primary_language),
             'shipping_price_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_shipping_price'), 1, $primary_language),
             'total_to_pay_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_to_pay'), 1, $primary_language),
-            'order_total_tax_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_total_tax'), 1, $primary_language)
+            'order_total_tax_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_total_tax'), 1, $primary_language),
+            'order_interface_data' => \eMarket\Ecb::priceTerminal('interface', $primary_language)
         ],
         'customer' => [
             'total_with_shipping_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_total_with_shipping'), 1),
             'total_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_total'), 1),
             'shipping_price_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_shipping_price'), 1),
             'total_to_pay_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_to_pay'), 1),
-            'order_total_tax_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_total_tax'), 1)
+            'order_total_tax_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_total_tax'), 1),
+            'order_interface_data' => \eMarket\Ecb::priceTerminal('interface', lang('#lang_all')[0])
         ],
         'data' => [
             'total_with_shipping' => \eMarket\Valid::inPOST('order_total_with_shipping'),
             'total' => \eMarket\Valid::inPOST('order_total'),
             'shipping_price' => \eMarket\Valid::inPOST('order_shipping_price'),
             'total_to_pay' => \eMarket\Valid::inPOST('order_to_pay'),
-            'order_total_tax' => \eMarket\Valid::inPOST('order_total_tax'),
-            'order_interface_data' => \eMarket\Ecb::priceTerminal('interface')
+            'order_total_tax' => \eMarket\Valid::inPOST('order_total_tax')
         ]
     ];
 

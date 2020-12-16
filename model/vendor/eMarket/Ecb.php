@@ -89,9 +89,18 @@ final class Ecb {
     /**
      * Ценовой терминал корзины
      * 
+     * @param string $marker (маркер)
+     * @param string $language (язык)
      * @return array (выходные данные)
      */
-    public static function priceTerminal($marker = null) {
+    public static function priceTerminal($marker = null, $language = null) {
+
+        if ($language == null) {
+            $language = lang('#lang_all')[0];
+        } else {
+            // reset data
+            self::$terminal_data = FALSE;
+        }
 
         if (self::$terminal_data != FALSE) {
             if ($marker == 'interface') {
@@ -107,14 +116,14 @@ final class Ecb {
         $total_tax_price = 0;
         $output_data = [];
 
-        $taxes_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_TAXES . " WHERE language=?", [lang('#lang_all')[0]]);
+        $taxes_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_TAXES . " WHERE language=?", [$language]);
 
         if (isset($_SESSION['cart'])) {
             $x = 0;
             foreach ($_SESSION['cart'] as $value) {
-                $data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=? AND language=?", [$value['id'], lang('#lang_all')[0]])[0];
+                $data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=? AND language=?", [$value['id'], $language])[0];
                 if ($data != FALSE) {
-                    $discount_sale = self::outPrice($data)['discount_sale'];
+                    $discount_sale = self::outPrice($data, $language)['discount_sale'];
                     $discount_total_sale = 0;
 
                     $tax = [];
@@ -190,28 +199,29 @@ final class Ecb {
      */
     public static function totalTax($tax_data, $price_with_sale) {
 
-            if ($tax_data['fixed'] == '1') {
-                $tax_out = $price_with_sale / 100 * $tax_data['rate'];
-            } else {
-                $tax_out = $tax_data['rate'];
-            }
+        if ($tax_data['fixed'] == '1') {
+            $tax_out = $price_with_sale / 100 * $tax_data['rate'];
+        } else {
+            $tax_out = $tax_data['rate'];
+        }
 
-            if ($tax_data['tax_type'] == '1') {
-                return 0;
-            } else {
-                return $tax_out;
-            }
+        if ($tax_data['tax_type'] == '1') {
+            return 0;
+        } else {
+            return $tax_out;
+        }
     }
 
     /**
      * Блок вывода итоговой цены товара
      * 
      * @param array $input (массив с входящими значениями по товару)
+     * @param string $language (язык)
      * @return array (выходные данные)
      */
-    public static function outPrice($input) {
+    public static function outPrice($input, $language = null) {
         //Модуль скидки \eMarket\Modules\Discount\Sale
-        $discount_sale = \eMarket\Modules\Discount\Sale::dataInterface($input);
+        $discount_sale = \eMarket\Modules\Discount\Sale::dataInterface($input, $language);
 
         $output = [
             'out_price' => $discount_sale['price'],
