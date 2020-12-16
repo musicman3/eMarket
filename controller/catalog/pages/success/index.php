@@ -19,7 +19,7 @@ if (\eMarket\Valid::inPOST('add') && password_verify((float) \eMarket\Valid::inP
     unset($address_data['countries_id']);
 
     $customer['address_book'] = json_encode($address_data);
-    $customer['language'] = $_SESSION['DEFAULT_LANGUAGE'];
+    $customer['language'] = lang('#lang_all')[0];
     //Основной язык
     $primary_language = \eMarket\Set::primaryLanguage();
 
