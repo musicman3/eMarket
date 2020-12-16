@@ -16,6 +16,9 @@ namespace eMarket;
  */
 class View {
 
+    public static $array_pos_value = null;
+    public static $array_pos = null;
+
     /**
      * Роутинг данных из View
      *
@@ -93,31 +96,41 @@ class View {
      * Вывод отсортированных слоев в конкретную позицию шаблона
      * 
      * @param string $position (позиция)
-     * @return array $array_out (массив настроек позиций для конкретного пути)
+     * @param string $count (маркер счетчика)
+     * @return array|string (массив настроек позиций для конкретного пути)
      */
-    public static function layoutRouting($position) {
+    public static function layoutRouting($position, $count = null) {
 
-        $array_pos_temp = \eMarket\Pdo::getColRow("SELECT url, value FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND page=? AND template_name=? ORDER BY sort ASC", [\eMarket\Set::path(), \eMarket\Set::titleDir(), \eMarket\Set::template()]);
-        if (count($array_pos_temp) > 0) {
-            $array_pos = $array_pos_temp;
+        if (self::$array_pos_value == null) {
+            self::$array_pos_value = \eMarket\Pdo::getColRow("SELECT url, value FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND page=? AND template_name=? ORDER BY sort ASC", [\eMarket\Set::path(), \eMarket\Set::titleDir(), \eMarket\Set::template()]);
+        }
+        if (count(self::$array_pos_value) > 0) {
             $array_out = [];
-            foreach ($array_pos as $val) {
+            foreach (self::$array_pos_value as $val) {
                 if ($val[1] == $position) {
                     $path_view = str_replace('controller', 'view/' . \eMarket\Set::template(), $val[0]);
                     $array_out[] = $val[0];
                     $array_out[] = $path_view;
                 }
             }
+            if ($count == 'count') {
+                return count($array_out);
+            }
             return $array_out;
         } else {
-            $array_pos = \eMarket\Pdo::getColRow("SELECT url, page FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? ORDER BY sort ASC", [\eMarket\Set::path(), $position, \eMarket\Set::template()]);
+            if (self::$array_pos == null) {
+                self::$array_pos = \eMarket\Pdo::getColRow("SELECT url, page FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? ORDER BY sort ASC", [\eMarket\Set::path(), $position, \eMarket\Set::template()]);
+            }
             $array_out = [];
-            foreach ($array_pos as $val) {
+            foreach (self::$array_pos as $val) {
                 if ($val[1] == 'all') {
                     $path_view = str_replace('controller', 'view/' . \eMarket\Set::template(), $val[0]);
                     $array_out[] = $val[0];
                     $array_out[] = $path_view;
                 }
+            }
+            if ($count == 'count') {
+                return count($array_out);
             }
             return $array_out;
         }

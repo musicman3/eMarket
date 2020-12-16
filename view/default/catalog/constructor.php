@@ -48,10 +48,8 @@
             <div class="row">
 
                 <?php
-                // ПРОВЕРЯЕМ НАЛИЧИЕ БОКСА В РАЗМЕТКЕ
-                $COUNT_BOX_LEFT = count(\eMarket\View::layoutRouting('boxes-left'));
 
-                if ($COUNT_BOX_LEFT != 0) {
+                if (\eMarket\View::layoutRouting('boxes-left', 'count') > 0) {
                     ?>
 
                     <div id="bodyContent" class="col-lg-10 col-md-9 col-lg-push-2 col-md-push-3">
@@ -71,7 +69,7 @@
                     <?php
                 }
 
-                if ($COUNT_BOX_LEFT != 0) {
+                if (\eMarket\View::layoutRouting('boxes-left', 'count') > 0) {
                     ?>
 
                     <div id="columnLeft" class="col-lg-2 col-md-3 col-lg-pull-10 col-md-pull-9">
