@@ -26,13 +26,13 @@ foreach (\eMarket\Tree::modulesClasses() as $path) {
     require_once($path);
 }
 
-//Если это панель администратора
+// Файл конфигурации
 if (\eMarket\Set::path() == 'admin' OR \eMarket\Set::path() == 'catalog') {
     require_once('configure/configure.php');
 }
-
+//Авторизация
 \eMarket\Autorize::init();
-
+//Языки
 \eMarket\Lang::init();
 
 ?>
