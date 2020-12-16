@@ -103,15 +103,15 @@
         </script>
 
         <?php
-        //Если существует $JS_END
-        if (isset($JS_END)) {
+        //Если существует \eMarket\Set::$JS_END
+        if (\eMarket\Set::$JS_END != FALSE) {
             //то подгружаем JS.PHP файл
-            require_once($JS_END . '/js/js.php');
+            require_once(\eMarket\Set::$JS_END . '/js/js.php');
         }
-        //Если существует $JS_MOD_END
-        if (isset($JS_MOD_END)) {
+        //Если существует \eMarket\Set::$JS_MOD_END
+        if (\eMarket\Set::$JS_MOD_END != FALSE) {
             //то подгружаем JS.PHP файл
-            require_once($JS_MOD_END . '/js/js.php');
+            require_once(\eMarket\Set::$JS_MOD_END . '/js/js.php');
         }
 
         // Выводим отладочную информацию

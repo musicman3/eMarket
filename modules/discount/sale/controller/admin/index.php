@@ -114,7 +114,7 @@ $this_time = time();
 require(\eMarket\View::routingModules('controller') . '/modal/index.php');
 
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
-$JS_MOD_END = __DIR__;
+\eMarket\Set::$JS_MOD_END = __DIR__;
 // Загружаем разметку модуля
 require_once (\eMarket\View::routingModules('view') . '/index.php');
 ?>

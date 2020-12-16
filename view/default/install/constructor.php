@@ -39,10 +39,10 @@
         <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.min.js"></script>
 
         <?php
-        //Если существует $JS_END
-        if (isset($JS_END)) {
+        //Если существует \eMarket\Set::$JS_END
+        if (\eMarket\Set::$JS_END != FALSE) {
             //то подгружаем JS.PHP файл
-            require_once($JS_END . '/js/js.php');
+            require_once(\eMarket\Set::$JS_END . '/js/js.php');
         }
 
         ?>

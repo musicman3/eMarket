@@ -152,5 +152,5 @@ require_once('modal/index.php');
 require_once('modal/settings.php');
 
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
-$JS_END = __DIR__;
+\eMarket\Set::$JS_END = __DIR__;
 ?>

@@ -16,7 +16,7 @@ if (\eMarket\Valid::inPOST('language')) {
     $DEFAULT_LANGUAGE = \eMarket\Valid::inPOST('language');
 }
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
-$JS_END = __DIR__;
+\eMarket\Set::$JS_END = __DIR__;
 
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
 require_once(getenv('DOCUMENT_ROOT') . '/model/end.php');

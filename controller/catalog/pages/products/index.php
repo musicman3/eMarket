@@ -64,5 +64,5 @@ if (\eMarket\Valid::inGET('category_id') == 0) {
 require_once('modal/cart_message.php');
 
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
-$JS_END = __DIR__;
+\eMarket\Set::$JS_END = __DIR__;
 ?>

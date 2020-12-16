@@ -16,6 +16,8 @@ namespace eMarket;
 class Set {
 
     public static $CURRENCIES = FALSE;
+    public static $JS_END = FALSE;
+    public static $JS_MOD_END = FALSE;
     public static $primary_language = FALSE;
     public static $lines_on_page = FALSE;
     public static $session_expr_time = FALSE;

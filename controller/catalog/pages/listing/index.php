@@ -52,5 +52,5 @@ $categories_name = \eMarket\Pdo::getCell("SELECT name FROM " . TABLE_CATEGORIES 
 require_once('modal/cart_message.php');
 
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
-$JS_END = __DIR__;
+\eMarket\Set::$JS_END = __DIR__;
 ?>
