@@ -98,8 +98,8 @@ $vendor_codes_all = \eMarket\Pdo::getColAssoc("SELECT name, default_vendor_code,
 $manufacturers_all = \eMarket\Pdo::getColAssoc("SELECT name, id FROM " . TABLE_MANUFACTURERS . " WHERE language=?", [lang('#lang_all')[0]]);
 
 // Устанавливаем родительскую категорию при навигации назад-вперед
-if (\eMarket\Valid::inGET('parent_id_temp')) {
-    $parent_id = \eMarket\Valid::inGET('parent_id_temp');
+if (\eMarket\Valid::inGET('nav_parent_id')) {
+    $parent_id = \eMarket\Valid::inGET('nav_parent_id');
 }
 
 // Параметры для JS

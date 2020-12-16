@@ -84,7 +84,7 @@
                                             <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
                                             <input hidden name="backstart" value="<?php echo $start ?>">
                                             <input hidden name="backfinish" value="<?php echo $finish ?>">
-                                            <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
+                                            <input hidden name="nav_parent_id" value="<?php echo $parent_id ?>">
                                             <div class="b-left">
                                                 <?php if ($start > 0) { ?>
                                                     <button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button>
@@ -99,7 +99,7 @@
                                             <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
                                             <input hidden name="start" value="<?php echo $start ?>">
                                             <input hidden name="finish" value="<?php echo $finish ?>">
-                                            <input hidden name="parent_id_temp" value="<?php echo $parent_id ?>">
+                                            <input hidden name="nav_parent_id" value="<?php echo $parent_id ?>">
                                             <div>
                                                 <?php if (\eMarket\Navigation::counter($start, $finish, $count_lines_merge, $lines_on_page) < $count_lines_merge) { ?>
                                                     <button type="submit" class="btn btn-primary btn-xs" action="index.php" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button>

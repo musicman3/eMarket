@@ -215,7 +215,7 @@
                                 jQuery.post(window.location.href,
                                         {idsx_statusOn_id: idArray,
                                             idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
-                                            idsx_statusOn_key: 'On'});
+                                            idsx_status_on_key: 'On'});
                                 // Отправка запроса для обновления страницы
                                 jQuery.get(window.location.href,
                                         {parent_down: <?php echo $parent_id ?>},
@@ -250,7 +250,7 @@
                                 jQuery.post(window.location.href,
                                         {idsx_statusOff_id: idArray,
                                             idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
-                                            idsx_statusOff_key: 'Off'});
+                                            idsx_status_off_key: 'Off'});
                                 // Отправка запроса для обновления страницы
                                 jQuery.get(window.location.href,
                                         {parent_down: <?php echo $parent_id ?>},
@@ -433,7 +433,7 @@
                                         {idsx_saleOn_id: idArray,
                                             idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
                                             sale: selected_id,
-                                            idsx_saleOn_key: 'On'});
+                                            idsx_sale_on_key: 'On'});
                                 // Отправка запроса для обновления страницы
                                 jQuery.get(window.location.href,
                                         {parent_down: <?php echo $parent_id ?>},
@@ -481,7 +481,7 @@
                                             {idsx_saleOff_id: idArray,
                                                 idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
                                                 sale: selected_id,
-                                                idsx_saleOff_key: 'Off'});
+                                                idsx_sale_off_key: 'Off'});
                                     // Отправка запроса для обновления страницы
                                     jQuery.get(window.location.href,
                                             {parent_down: <?php echo $parent_id ?>},
@@ -530,7 +530,7 @@
                                     jQuery.post(window.location.href,
                                             {idsx_saleOffAll_id: idArray,
                                                 idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
-                                                idsx_saleOffAll_key: 'OffAll'});
+                                                idsx_sale_off_all_key: 'OffAll'});
                                     // Отправка запроса для обновления страницы
                                     jQuery.get(window.location.href,
                                             {parent_down: <?php echo $parent_id ?>},
