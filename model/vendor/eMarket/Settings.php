@@ -70,7 +70,7 @@ class Settings {
      */
     public static function currenciesData() {
 
-        return array_column(self::$currencies_data, 'id', 'name');
+        return self::$currencies_data;
     }
 
     /**
