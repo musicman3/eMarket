@@ -4,35 +4,35 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-//ВРЕМЯ ФОРМИРОВАНИЯ СТРАНИЦЫ
+
 $TIME_START = microtime(1);
-//ПОДКЛЮЧАЕМ ЛОГ
+//ПОДКЛЮЧАЕМ ЛОГ / ENABLE LOG
 error_reporting(-1);
 ini_set('error_log', __DIR__ . '/work/errors.log');
 
-//АВТОЗАГРУЗКА БАЗОВЫХ КЛАССОВ
+//АВТОЗАГРУЗКА КЛАССОВ / AUTOLOAD FOR CLASSES
 require_once('vendor/autoload.php');
 
 \eMarket\Debug::$TIME_START = $TIME_START;
 unset($TIME_START);
 
-//АВТОЗАГРУЗКА БАЗОВЫХ ФУНКЦИЙ
+//АВТОЗАГРУЗКА ФУНКЦИЙ / AUTOLOAD FOR FUNCTION
 foreach (\eMarket\Tree::filesTree(getenv('DOCUMENT_ROOT') . '/model/functions/') as $path) {
     require_once($path);
 }
 
-//АВТОЗАГРУЗКА КЛАССОВ МОДУЛЕЙ
+//АВТОЗАГРУЗКА КЛАССОВ МОДУЛЕЙ / AUTOLOAD FOR MODULES CLASSES
 foreach (\eMarket\Tree::modulesClasses() as $path) {
     require_once($path);
 }
 
-// Файл конфигурации
+// Файл конфигурации / config file
 if (\eMarket\Set::path() == 'admin' OR \eMarket\Set::path() == 'catalog') {
     require_once('configure/configure.php');
 }
-//Авторизация
+//Авторизация / Autorize
 \eMarket\Autorize::init();
-//Языки
+//Языки / Languages
 \eMarket\Lang::init();
 
 ?>

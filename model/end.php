@@ -5,20 +5,19 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 // 
-//Загружаем HTML
+//Загружаем HTML / Load HTML
 //
-//ВЫВОД ТОЛЬКО В АДМИНКЕ
 if (\eMarket\Set::path() == 'admin') {
     require_once(getenv('DOCUMENT_ROOT') . '/view/' . \eMarket\Set::template() . '/admin/constructor.php');
 }
-//ВЫВОД ТОЛЬКО В КАТАЛОГЕ
+
 if (\eMarket\Set::path() == 'catalog') {
     require_once(getenv('DOCUMENT_ROOT') . '/view/' . \eMarket\Set::template() . '/catalog/constructor.php');
 }
-//ВЫВОД ТОЛЬКО В КАТАЛОГЕ
+
 if (\eMarket\Set::path() == 'install') {
     require_once(getenv('DOCUMENT_ROOT') . '/view/' . \eMarket\Set::template() . '/install/constructor.php');
 }
-//Закрываем соединение с БД
+//Закрываем соединение с БД / Close DB connect
 \eMarket\Pdo::connect('end');
 ?>
