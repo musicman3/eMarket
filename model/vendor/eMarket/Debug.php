@@ -45,7 +45,7 @@ class Debug {
             $totaltime = round(($tend - self::$TIME_START), 2);
 
             echo lang('debug_page_generation_time') . " " . $totaltime . " " . lang('debug_sec') . "<br>";
-            echo lang('debug_db_queries') . " " . \eMarket\Pdo::$query_count . " " . lang('debug_pcs') . "<br><br>";
+            echo lang('debug_db_queries') . " " . \eMarket\Pdo::$QUERY_COUNT . " " . lang('debug_pcs') . "<br><br>";
         }
     }
 
