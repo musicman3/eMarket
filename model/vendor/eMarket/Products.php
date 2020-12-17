@@ -17,6 +17,11 @@ namespace eMarket;
 class Products {
 
     public static $stiker_data = FALSE;
+    
+    private static $manufacturer = FALSE;
+    private static $vendor_codes = FALSE;
+    private static $weight = FALSE;
+    private static $length = FALSE;
 
     /**
      * Данные по новым товарам
@@ -59,7 +64,11 @@ class Products {
      */
     public static function manufacturer($id) {
 
-        foreach (\eMarket\Settings::$manufacturer as $value) {
+        if (self::$manufacturer == FALSE) {
+            self::$manufacturer = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_MANUFACTURERS . " WHERE language=?", [lang('#lang_all')[0]]);
+        }
+
+        foreach (self::$manufacturer as $value) {
             if ($value['id'] == $id) {
                 return $value;
             }
@@ -75,7 +84,11 @@ class Products {
      */
     public static function vendorCode($id) {
 
-        foreach (\eMarket\Settings::$vendor_codes as $value) {
+        if (self::$vendor_codes == FALSE) {
+            self::$vendor_codes = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_VENDOR_CODES . " WHERE language=?", [lang('#lang_all')[0]]);
+        }
+
+        foreach (self::$vendor_codes as $value) {
             if ($value['id'] == $id) {
                 return $value;
             }
@@ -91,7 +104,11 @@ class Products {
      */
     public static function weight($id) {
 
-        foreach (\eMarket\Settings::$weight as $value) {
+        if (self::$weight == FALSE) {
+            self::$weight = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_WEIGHT . " WHERE language=?", [lang('#lang_all')[0]]);
+        }
+
+        foreach (self::$weight as $value) {
             if ($value['id'] == $id) {
                 return $value;
             }
@@ -107,7 +124,11 @@ class Products {
      */
     public static function length($id) {
 
-        foreach (\eMarket\Settings::$length as $value) {
+        if (self::$length == FALSE) {
+            self::$length = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_LENGTH . " WHERE language=?", [lang('#lang_all')[0]]);
+        }
+
+        foreach (self::$length as $value) {
             if ($value['id'] == $id) {
                 return $value;
             }
@@ -142,7 +163,7 @@ class Products {
             return '<span class="label label-success">' . $date_available_text . '</span>';
         }
     }
-    
+
     /**
      * Блок вывода стикеров
      * 

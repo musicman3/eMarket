@@ -239,7 +239,7 @@ final class Ecb {
      */
     public static function currencyPrice($price, $currency) {
 
-        $currencies = \eMarket\Settings::$currencies_data;
+        $currencies = \eMarket\Settings::currenciesData();
         
         foreach ($currencies as $value) {
             if ($value['id'] == $currency) {

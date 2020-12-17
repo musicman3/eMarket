@@ -18,13 +18,8 @@ class Settings {
     private static $DEFAULT_CURRENCY = FALSE;
     private static $active_tabs_count = 0;
     private static $lang_currency_path = FALSE;
-    
     public static $basic_settings = FALSE;
     public static $currencies_data = FALSE;
-    public static $manufacturer = FALSE;
-    public static $vendor_codes = FALSE;
-    public static $weight = FALSE;
-    public static $length = FALSE;
     public static $JS_END = FALSE;
     public static $JS_MOD_END = FALSE;
     public static $session_expr_time = FALSE;
@@ -42,35 +37,32 @@ class Settings {
     /**
      * Загрузка статических данных
      *
+     * @param string $param (колонка таблицы)
+     * @return array|string data
      */
-    public static function init() {
+    public static function basicSettings($param = null) {
 
         if (self::$basic_settings == FALSE) {
             self::$basic_settings = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_BASIC_SETTINGS, [])[0];
         }
-        if (self::$currencies_data == FALSE) {
-            self::$currencies_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=?", [lang('#lang_all')[0]]);
+        
+        if ($param != null){
+            return self::$basic_settings[$param];
         }
-        if (self::$manufacturer == FALSE) {
-            self::$manufacturer = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_MANUFACTURERS . " WHERE language=?", [lang('#lang_all')[0]]);
-        }
-        if (self::$vendor_codes == FALSE) {
-            self::$vendor_codes = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_VENDOR_CODES . " WHERE language=?", [lang('#lang_all')[0]]);
-        }
-        if (self::$weight == FALSE) {
-            self::$weight = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_WEIGHT . " WHERE language=?", [lang('#lang_all')[0]]);
-        }
-        if (self::$length == FALSE) {
-            self::$length = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_LENGTH . " WHERE language=?", [lang('#lang_all')[0]]);
-        }
+        
+        return self::$basic_settings;
     }
 
     /**
      * Данные по валютам
      *
-     * @return array $currencies
+     * @return array data
      */
     public static function currenciesData() {
+
+        if (self::$currencies_data == FALSE) {
+            self::$currencies_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=?", [lang('#lang_all')[0]]);
+        }
 
         return self::$currencies_data;
     }
@@ -78,21 +70,21 @@ class Settings {
     /**
      * Считываем значение строк на странице
      *
-     * @return string $lines_on_page
+     * @return string data
      */
     public static function linesOnPage() {
 
-        return self::$basic_settings['lines_on_page'];
+        return self::basicSettings('lines_on_page');
     }
 
     /**
      * Считываем значение времени сессии администратора
      *
-     * @return string $session_expr_time
+     * @return string data
      */
     public static function sessionExprTime() {
 
-        return self::$basic_settings['session_expr_time'];
+        return self::basicSettings('session_expr_time');
     }
 
     /**
@@ -386,8 +378,8 @@ class Settings {
      * @return string (путь для переключателя языков и валют)
      */
     public static function langCurrencyPath() {
-        
-        if(self::$lang_currency_path != FALSE){
+
+        if (self::$lang_currency_path != FALSE) {
             return self::$lang_currency_path;
         }
 
@@ -417,7 +409,7 @@ class Settings {
      */
     public static function primaryLanguage() {
 
-        return self::$basic_settings['primary_language'];
+        return self::basicSettings('primary_language');
     }
 
     /**
