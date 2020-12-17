@@ -8,7 +8,7 @@
 namespace eMarket;
 
 /**
- * Easy Ajax Catalog v.1.02
+ * Easy Ajax Catalog
  *
  * @package Eac
  * @author eMarket

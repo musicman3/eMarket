@@ -8,7 +8,7 @@
 namespace eMarket;
 
 /**
- * Движок ECB (Easy Calculated Block) v.1.01
+ * Easy Calculated Block
  *
  * @package Ecb
  * @author eMarket
@@ -16,17 +16,17 @@ namespace eMarket;
  */
 final class Ecb {
 
-    public static $currencies = FALSE;
-    public static $terminal_data = FALSE;
+    private static $currencies = FALSE;
+    private static $terminal_data = FALSE;
 
     /**
-     * Блок вывода цены с учетом скидки
+     * Отображение цены / View price
      * 
-     * @param array $input (массив с входящими значениями по товару)
-     * @param string $marker (маркер для self::formatPrice для вывода названия валюты)
-     * @param string $quantity (количество)
-     * @param string $class (класс bootstrap для отображения скидки)
-     * @return string (выходные данные в виде форматированной стоимости)
+     * @param array $input (массив с данными товара / array with products data)
+     * @param string $marker (маркер формата валюты / format currency marker)
+     * @param string $quantity (количество / quantity)
+     * @param string $class (класс bootstrap для скидки / bootstrap class for sale)
+     * @return string (выходные данные / output data)
      */
     public static function priceInterface($input, $marker, $quantity = 1, $class = null) {
 
@@ -65,11 +65,11 @@ final class Ecb {
     }
 
     /**
-     * Блок вывода итоговой цены в корзине
+     * Итого в корзине / Total in cart
      * 
-     * @param string $marker (маркер для self::formatPrice для вывода названия валюты)
-     * @param string $class (класс bootstrap для отображения скидки)
-     * @return string (выходные данные в виде форматированной стоимости)
+     * @param string $marker ($marker (маркер формата валюты / format currency marker))
+     * @param string $class (класс bootstrap для скидки / bootstrap class for sale)
+     * @return string (выходные данные / output data)
      */
     public static function totalPriceCartInterface($marker, $class = null) {
 
@@ -87,11 +87,11 @@ final class Ecb {
     }
 
     /**
-     * Ценовой терминал корзины
+     * Ценовой терминал / Price terminal
      * 
-     * @param string $marker (маркер)
-     * @param string $language (язык)
-     * @return array (выходные данные)
+     * @param string $marker (маркер / marker)
+     * @param string $language (язык / language)
+     * @return array (выходные данные / output data)
      */
     public static function priceTerminal($marker = null, $language = null) {
 
@@ -190,12 +190,12 @@ final class Ecb {
     }
 
     /**
-     * Блок вывода итогового налога
+     * Итоговый налог / Total tax
      * 
-     * @param array $tax_data (массив с входящими значениями по налогу)
-     * @param string $price_with_sale (цена с учетом скидок)
-     * @param string $currency (валюта)
-     * @return string (итоговый налог)
+     * @param array $tax_data (массив с данными по налогу / array with tax data)
+     * @param string $price_with_sale (цена с учетом скидок / price with sales)
+     * @param string $currency (валюта / currency)
+     * @return string (итоговый налог / total tax)
      */
     public static function totalTax($tax_data, $price_with_sale) {
 
@@ -213,14 +213,14 @@ final class Ecb {
     }
 
     /**
-     * Блок вывода итоговой цены товара
+     * Итого для товара / Total for product
      * 
-     * @param array $input (массив с входящими значениями по товару)
-     * @param string $language (язык)
-     * @return array (выходные данные)
+     * @param array $input (массив с данными по товару / array with product data)
+     * @param string $language (язык /language)
+     * @return array (выходные данные / output data)
      */
     public static function outPrice($input, $language = null) {
-        //Модуль скидки \eMarket\Modules\Discount\Sale
+
         $discount_sale = \eMarket\Modules\Discount\Sale::dataInterface($input, $language);
 
         $output = [
@@ -231,11 +231,11 @@ final class Ecb {
     }
 
     /**
-     * Стоимость с учетом валюты
+     * Стоимость с учетом валюты / Price with currency
      *
-     * @param string $price (значение стоимости)
-     * @param string $currency (id валюты)
-     * @return string|FALSE string (стоимость с учетом валюты)
+     * @param string $price (значение стоимости / price value)
+     * @param string $currency (id валюты / currency id)
+     * @return string|FALSE string (стоимость с учетом валюты / price with currency)
      */
     public static function currencyPrice($price, $currency) {
 
@@ -251,12 +251,12 @@ final class Ecb {
     }
 
     /**
-     * Стоимость с учетом регионального формата
+     * Стоимость с учетом регионального формата / Price with region format
      *
-     * @param string $price (цена)
-     * @param string $format (выводить стоимость в форматированном виде: 0 - полное наим., 1- сокращ. наим., 2 - знак валюты, 3 - ISO код)
-     * @param string $language (язык для отображения)
-     * @return array $price (данные по стоимости)
+     * @param string $price (цена / price)
+     * @param string $format (флаг формата / format flag)
+     * @param string $language (язык / language)
+     * @return array $price (данные по стоимости / price data)
      */
     public static function formatPrice($price, $format = null, $language = null) {
 
