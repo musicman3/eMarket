@@ -21,13 +21,6 @@ final class Eac {
     private static $resize_param_product = FALSE;
     private static $TABLE_CATEGORIES;
     private static $TABLE_PRODUCTS;
-    private static $TABLE_TAXES;
-    private static $TABLE_UNITS;
-    private static $TABLE_MANUFACTURERS;
-    private static $TABLE_VENDOR_CODES;
-    private static $TABLE_WEIGHT;
-    private static $TABLE_LENGTH;
-    private static $TABLE_CURRENCIES;
 
     /**
      * Инициализация EAC / Init EAC
@@ -43,13 +36,6 @@ final class Eac {
         
         self::$TABLE_CATEGORIES = $TABLES[0];
         self::$TABLE_PRODUCTS = $TABLES[1];
-        self::$TABLE_TAXES = $TABLES[2];
-        self::$TABLE_UNITS = $TABLES[3];
-        self::$TABLE_MANUFACTURERS = $TABLES[4];
-        self::$TABLE_VENDOR_CODES = $TABLES[5];
-        self::$TABLE_WEIGHT = $TABLES[6];
-        self::$TABLE_LENGTH = $TABLES[7];
-        self::$TABLE_CURRENCIES = $TABLES[8];
 
         // parent_id
         self::parentIdStart();
@@ -690,43 +676,43 @@ final class Eac {
             }
 
             if (\eMarket\Valid::inPOST('tax_product_stock')) {
-                $tax_product_stock = (int) \eMarket\Pdo::selectPrepare("SELECT id FROM " . self::$TABLE_TAXES . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], \eMarket\Valid::inPOST('tax_product_stock')]);
+                $tax_product_stock = (int) \eMarket\Valid::inPOST('tax_product_stock');
             } else {
                 $tax_product_stock = NULL;
             }
 
             if (\eMarket\Valid::inPOST('unit_product_stock')) {
-                $unit_product_stock = (int) \eMarket\Pdo::selectPrepare("SELECT id FROM " . self::$TABLE_UNITS . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], \eMarket\Valid::inPOST('unit_product_stock')]);
+                $unit_product_stock = (int) \eMarket\Valid::inPOST('unit_product_stock');
             } else {
                 $unit_product_stock = NULL;
             }
 
             if (\eMarket\Valid::inPOST('manufacturers_product_stock')) {
-                $manufacturers_product_stock = (int) \eMarket\Pdo::selectPrepare("SELECT id FROM " . self::$TABLE_MANUFACTURERS . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], \eMarket\Valid::inPOST('manufacturers_product_stock')]);
+                $manufacturers_product_stock = (int) \eMarket\Valid::inPOST('manufacturers_product_stock');
             } else {
                 $manufacturers_product_stock = NULL;
             }
 
             if (\eMarket\Valid::inPOST('vendor_codes_product_stock')) {
-                $vendor_codes_product_stock = (int) \eMarket\Pdo::selectPrepare("SELECT id FROM " . self::$TABLE_VENDOR_CODES . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], \eMarket\Valid::inPOST('vendor_codes_product_stock')]);
+                $vendor_codes_product_stock = (int) \eMarket\Valid::inPOST('vendor_codes_product_stock');
             } else {
                 $vendor_codes_product_stock = NULL;
             }
 
             if (\eMarket\Valid::inPOST('weight_product_stock')) {
-                $weight_product_stock = (int) \eMarket\Pdo::selectPrepare("SELECT id FROM " . self::$TABLE_WEIGHT . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], \eMarket\Valid::inPOST('weight_product_stock')]);
+                $weight_product_stock = (int) \eMarket\Valid::inPOST('weight_product_stock');
             } else {
                 $weight_product_stock = NULL;
             }
 
             if (\eMarket\Valid::inPOST('length_product_stock')) {
-                $length_product_stock = (int) \eMarket\Pdo::selectPrepare("SELECT id FROM " . self::$TABLE_LENGTH . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], \eMarket\Valid::inPOST('length_product_stock')]);
+                $length_product_stock = (int) \eMarket\Valid::inPOST('length_product_stock');
             } else {
                 $length_product_stock = NULL;
             }
 
             if (\eMarket\Valid::inPOST('currency_product_stock')) {
-                $currency_product_stock = (int) \eMarket\Pdo::selectPrepare("SELECT id FROM " . self::$TABLE_CURRENCIES . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], \eMarket\Valid::inPOST('currency_product_stock')]);
+                $currency_product_stock = (int) \eMarket\Valid::inPOST('currency_product_stock');
             } else {
                 $currency_product_stock = NULL;
             }
@@ -803,43 +789,43 @@ final class Eac {
             }
 
             if (\eMarket\Valid::inPOST('tax_product_stock')) {
-                $tax_product_stock = (int) \eMarket\Pdo::selectPrepare("SELECT id FROM " . self::$TABLE_TAXES . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], \eMarket\Valid::inPOST('tax_product_stock')]);
+                $tax_product_stock = (int) \eMarket\Valid::inPOST('tax_product_stock');
             } else {
                 $tax_product_stock = NULL;
             }
 
             if (\eMarket\Valid::inPOST('unit_product_stock')) {
-                $unit_product_stock = (int) \eMarket\Pdo::selectPrepare("SELECT id FROM " . self::$TABLE_UNITS . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], \eMarket\Valid::inPOST('unit_product_stock')]);
+                $unit_product_stock = (int) \eMarket\Valid::inPOST('unit_product_stock');
             } else {
                 $unit_product_stock = NULL;
             }
 
             if (\eMarket\Valid::inPOST('manufacturers_product_stock')) {
-                $manufacturers_product_stock = (int) \eMarket\Pdo::selectPrepare("SELECT id FROM " . self::$TABLE_MANUFACTURERS . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], \eMarket\Valid::inPOST('manufacturers_product_stock')]);
+                $manufacturers_product_stock = (int) \eMarket\Valid::inPOST('manufacturers_product_stock');
             } else {
                 $manufacturers_product_stock = NULL;
             }
 
             if (\eMarket\Valid::inPOST('vendor_codes_product_stock')) {
-                $vendor_codes_product_stock = (int) \eMarket\Pdo::selectPrepare("SELECT id FROM " . self::$TABLE_VENDOR_CODES . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], \eMarket\Valid::inPOST('vendor_codes_product_stock')]);
+                $vendor_codes_product_stock = (int) \eMarket\Valid::inPOST('vendor_codes_product_stock');
             } else {
                 $vendor_codes_product_stock = NULL;
             }
 
             if (\eMarket\Valid::inPOST('weight_product_stock')) {
-                $weight_product_stock = (int) \eMarket\Pdo::selectPrepare("SELECT id FROM " . self::$TABLE_WEIGHT . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], \eMarket\Valid::inPOST('weight_product_stock')]);
+                $weight_product_stock = (int) \eMarket\Valid::inPOST('weight_product_stock');
             } else {
                 $weight_product_stock = NULL;
             }
 
             if (\eMarket\Valid::inPOST('length_product_stock')) {
-                $length_product_stock = (int) \eMarket\Pdo::selectPrepare("SELECT id FROM " . self::$TABLE_LENGTH . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], \eMarket\Valid::inPOST('length_product_stock')]);
+                $length_product_stock = (int) \eMarket\Valid::inPOST('length_product_stock');
             } else {
                 $length_product_stock = NULL;
             }
 
             if (\eMarket\Valid::inPOST('currency_product_stock')) {
-                $currency_product_stock = (int) \eMarket\Pdo::selectPrepare("SELECT id FROM " . self::$TABLE_CURRENCIES . " WHERE language=? AND name=? ORDER BY id DESC", [lang('#lang_all')[0], \eMarket\Valid::inPOST('currency_product_stock')]);
+                $currency_product_stock = (int) \eMarket\Valid::inPOST('currency_product_stock');
             } else {
                 $currency_product_stock = NULL;
             }

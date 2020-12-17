@@ -30,6 +30,8 @@ foreach (\eMarket\Tree::modulesClasses() as $path) {
 if (\eMarket\Settings::path() == 'admin' OR \eMarket\Settings::path() == 'catalog') {
     require_once('configure/configure.php');
 }
+//Статические данные / Static data
+\eMarket\Settings::loadStatic();
 //Авторизация / Autorize
 \eMarket\Autorize::init();
 //Языки / Languages

@@ -16,10 +16,10 @@ namespace eMarket;
 class Settings {
 
     private static $DEFAULT_CURRENCY = FALSE;
-    private static $primary_language = FALSE;
-    private static $lines_on_page = FALSE;
     private static $active_tabs_count = 0;
     
+    public static $basic_settings = FALSE;
+    public static $currencies_data = FALSE;
     public static $JS_END = FALSE;
     public static $JS_MOD_END = FALSE;
     public static $session_expr_time = FALSE;
@@ -35,15 +35,49 @@ class Settings {
     }
 
     /**
+     * Загрузка статических данных
+     *
+     */
+    public static function loadStatic() {
+        
+        if (self::$basic_settings == FALSE) {
+            self::$basic_settings = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_BASIC_SETTINGS, [])[0];
+        }
+        if (self::$currencies_data == FALSE) {
+            self::$currencies_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=?", [lang('#lang_all')[0]]);
+        }
+        
+    }
+
+    /**
      * Данные по валютам
      *
      * @return array $currencies
      */
     public static function currenciesData() {
 
-        $currencies = \eMarket\Pdo::getColRow("SELECT name, id FROM " . TABLE_CURRENCIES . " WHERE language=?", [lang('#lang_all')[0]]);
-        return $currencies;
+        return array_column(self::$currencies_data, 'id', 'name');
     }
+    
+    /**
+     * Считываем значение строк на странице
+     *
+     * @return string $lines_on_page
+     */
+    public static function linesOnPage() {
+
+        return self::$basic_settings['lines_on_page'];
+    }
+
+    /**
+     * Считываем значение времени сессии администратора
+     *
+     * @return string $session_expr_time
+     */
+    public static function sessionExprTime() {
+
+        return self::$basic_settings['session_expr_time'];
+    }    
 
     /**
      * Данные по тултипу для скидки на товар
@@ -258,34 +292,6 @@ class Settings {
     }
 
     /**
-     * Считываем значение строк на странице
-     *
-     * @return string $lines_on_page
-     */
-    public static function linesOnPage() {
-
-        if (self::$lines_on_page == FALSE) {
-            self::$lines_on_page = \eMarket\Pdo::selectPrepare("SELECT lines_on_page FROM " . TABLE_BASIC_SETTINGS, []);
-        }
-
-        return self::$lines_on_page;
-    }
-
-    /**
-     * Считываем значение времени сессии администратора
-     *
-     * @return string $session_expr_time
-     */
-    public static function sessionExprTime() {
-
-        if (self::$session_expr_time == FALSE) {
-            self::$session_expr_time = \eMarket\Pdo::selectPrepare("SELECT session_expr_time FROM " . TABLE_BASIC_SETTINGS, []);
-        }
-
-        return self::$session_expr_time;
-    }
-
-    /**
      * Отображаем Select с учетом значения по-умолчанию
      *
      * @param array $value (массив для Select)
@@ -297,9 +303,9 @@ class Settings {
             if ($default != null && $val[$default] == 1) {
                 ?>
                 <!-- Строка Select по умолчанию-->
-                <option selected><?php echo $val['name'] ?></option>
+                <option value="<?php echo $val['id'] ?>" selected><?php echo $val['name'] ?></option>
             <?php } else { ?>
-                <option><?php echo $val['name'] ?></option>
+                <option value="<?php echo $val['id'] ?>" ><?php echo $val['name'] ?></option>
                 <?php
             }
         }
@@ -391,11 +397,7 @@ class Settings {
      */
     public static function primaryLanguage() {
 
-        if (self::$primary_language == FALSE) {
-            self::$primary_language = \eMarket\Pdo::getCell("SELECT primary_language FROM " . TABLE_BASIC_SETTINGS . "", []);
-        }
-
-        return self::$primary_language;
+        return self::$basic_settings['primary_language'];
     }
 
     /**

@@ -239,10 +239,9 @@ final class Ecb {
      */
     public static function currencyPrice($price, $currency) {
 
-        if (self::$currencies == FALSE) {
-            self::$currencies = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=?", [lang('#lang_all')[0]]);
-        }
-        foreach (self::$currencies as $value) {
+        $currencies = \eMarket\Settings::$currencies_data;
+        
+        foreach ($currencies as $value) {
             if ($value['id'] == $currency) {
                 return $price / $value['value'];
             }

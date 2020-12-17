@@ -18,14 +18,7 @@ array_push($resize_param_product, ['850', '638']);
 // Создаем массив используемых таблиц в EAC
 $TABLES = [
     TABLE_CATEGORIES,
-    TABLE_PRODUCTS,
-    TABLE_TAXES,
-    TABLE_UNITS,
-    TABLE_MANUFACTURERS,
-    TABLE_VENDOR_CODES,
-    TABLE_WEIGHT,
-    TABLE_LENGTH,
-    TABLE_CURRENCIES
+    TABLE_PRODUCTS
 ];
 // Загружаем движок EAC
 $EAC_ENGINE = \eMarket\Eac::init($TABLES, $resize_param, $resize_param_product);

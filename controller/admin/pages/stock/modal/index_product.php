@@ -26,49 +26,49 @@ for ($i = $start; $i < $finish; $i++) {
                 // Валюта
                 foreach ($currencies_all as $currency_val) {
                     if ($currency_val['id'] == \eMarket\Settings::currencyDefault()[0])
-                        $currency_product[$modal_id_prod] = $currency_val['name'];
+                        $currency_product[$modal_id_prod] = $currency_val['id'];
                 }
                 // Количество
                 $quantity_product[$modal_id_prod] = $sql_modal_prod['quantity'];
                 // Единицы измерения
                 foreach ($units_all as $unit_val) {
                     if ($unit_val['id'] == $sql_modal_prod['unit'])
-                        $units_product[$modal_id_prod] = $unit_val['name'];
+                        $units_product[$modal_id_prod] = $unit_val['id'];
                 }
                 // Модель
                 $model_product[$modal_id_prod] = $sql_modal_prod['model'];
                 // Производитель
                 foreach ($manufacturers_all as $manufacturer_val) {
                     if ($manufacturer_val['id'] == $sql_modal_prod['manufacturer'])
-                        $manufacturers_product[$modal_id_prod] = $manufacturer_val['name'];
+                        $manufacturers_product[$modal_id_prod] = $manufacturer_val['id'];
                 }
                 // Дата поступления
                 $date_available_product[$modal_id_prod] = $sql_modal_prod['date_available'];
                 // Налог
                 foreach ($taxes_all as $tax_val) {
                     if ($tax_val['id'] == $sql_modal_prod['tax'])
-                        $tax_product[$modal_id_prod] = $tax_val['name'];
+                        $tax_product[$modal_id_prod] = $tax_val['id'];
                 }
                 // Значение идентификатора
                 $vendor_code_value_product[$modal_id_prod] = $sql_modal_prod['vendor_code_value'];
                 // Идентификатор
                 foreach ($vendor_codes_all as $vendor_code_val) {
                     if ($vendor_code_val['id'] == $sql_modal_prod['vendor_code'])
-                        $vendor_code_product[$modal_id_prod] = $vendor_code_val['name'];
+                        $vendor_code_product[$modal_id_prod] = $vendor_code_val['id'];
                 }
                 // Значение Веса
                 $weight_value_product[$modal_id_prod] = $sql_modal_prod['weight_value'];
                 // Вес
                 foreach ($weight_all as $weight_val) {
                     if ($weight_val['id'] == $sql_modal_prod['weight'])
-                        $weight_product[$modal_id_prod] = $weight_val['name'];
+                        $weight_product[$modal_id_prod] = $weight_val['id'];
                 }
                 // Минимальное количество
                 $min_quantity_product[$modal_id_prod] = $sql_modal_prod['min_quantity'];
                 // Ед. изм. длины
                 foreach ($length_all as $length_val) {
                     if ($length_val['id'] == $sql_modal_prod['dimension'])
-                        $dimension_product[$modal_id_prod] = $length_val['name'];
+                        $dimension_product[$modal_id_prod] = $length_val['id'];
                 }
                 // Длина
                 $length_product[$modal_id_prod] = $sql_modal_prod['length'];
