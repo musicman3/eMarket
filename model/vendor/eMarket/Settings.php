@@ -15,7 +15,7 @@ namespace eMarket;
  */
 class Settings {
 
-    public static $DEFAULT_CURRENCY = FALSE;
+    private static $DEFAULT_CURRENCY = FALSE;
     public static $JS_END = FALSE;
     public static $JS_MOD_END = FALSE;
     public static $primary_language = FALSE;
