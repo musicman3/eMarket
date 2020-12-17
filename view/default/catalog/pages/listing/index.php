@@ -49,34 +49,39 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                         <a href="/?route=products&category_id=<?php echo $lines[$start]['parent_id'] ?>&id=<?php echo $lines[$start]['id'] ?>"><img src="/uploads/images/products/resize_1/<?php echo $lines[$start]['logo_general'] ?>" alt="<?php echo $lines[$start]['name'] ?>" class="img-responsive"></a>
                         <div class="caption">
                             <h5 class="item-heading"><a href="/?route=products&category_id=<?php echo $lines[$start]['parent_id'] ?>&id=<?php echo $lines[$start]['id'] ?>"><?php echo $lines[$start]['name'] ?></a></h5>
-			    <div class="item-price"><?php echo \eMarket\Ecb::priceInterface($lines[$start], 1) ?></div>
+                            <div class="item-price"><?php echo \eMarket\Ecb::priceInterface($lines[$start], 1) ?></div>
                             <div class="item-text">
                                 <?php if (\eMarket\Products::manufacturer($lines[$start]['manufacturer'])['name'] != NULL && \eMarket\Products::manufacturer($lines[$start]['manufacturer'])['name'] != FALSE) { ?>
-				    <ul>
-					<li>
-					    <label><?php echo lang('product_manufacturer') ?></label> <?php echo \eMarket\Products::manufacturer($lines[$start]['manufacturer'])['name'] ?>
-					</li>
-                                <?php } if ($lines[$start]['model'] != NULL && $lines[$start]['model'] != FALSE) { ?>
-					<li>
-					    <label><?php echo lang('product_model') ?></label> 
-                                    <?php echo $lines[$start]['model'] ?>
-					</li>
-                                <?php } ?>
-					<li>
-					    <label><?php echo lang('product_availability') ?></label>
-                                <?php echo \eMarket\Products::inStock($lines[$start]['date_available'], $lines[$start]['quantity']); ?>
-					</li>
-				    </ul>
+                                    <ul>
+                                        <li>
+                                            <label><?php echo lang('product_manufacturer') ?></label> <?php echo \eMarket\Products::manufacturer($lines[$start]['manufacturer'])['name'] ?>
+                                        </li>
+                                    <?php } if ($lines[$start]['model'] != NULL && $lines[$start]['model'] != FALSE) { ?>
+                                        <li>
+                                            <label><?php echo lang('product_model') ?></label> 
+                                            <?php echo $lines[$start]['model'] ?>
+                                        </li>
+                                    <?php } if ($lines[$start]['vendor_code'] != NULL && $lines[$start]['vendor_code'] != FALSE) { ?>
+                                        <li>
+                                            <label><?php echo \eMarket\Products::vendorCode($lines[$start]['vendor_code'])['name'] ?>: </label> 
+                                            <?php echo $lines[$start]['vendor_code_value'] ?>
+                                        </li>
+                                    <?php } ?>
+                                    <li>
+                                        <label><?php echo lang('product_availability') ?></label>
+                                        <?php echo \eMarket\Products::inStock($lines[$start]['date_available'], $lines[$start]['quantity']); ?>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-				<div class="block-button">
-				    <button class="btn btn-primary" type="button" onclick="ProductsListing.pcsProduct('minus', <?php echo $lines[$start]['id'] ?>)"><span class="glyphicon glyphicon-minus"></span></button>
+                                <div class="block-button">
+                                    <button class="btn btn-primary" type="button" onclick="ProductsListing.pcsProduct('minus', <?php echo $lines[$start]['id'] ?>)"><span class="glyphicon glyphicon-minus"></span></button>
                                     <input id="number_<?php echo $lines[$start]['id'] ?>" data-placement="top" data-content="<?php echo lang('listing_no_more_in_stock') ?>" type="number" min="1" value="<?php echo \eMarket\Cart::maxQuantityToOrder($lines[$start]) ?>" class="quantity" disabled>
-				    <button class="btn btn-primary button-plus" type="button" onclick="ProductsListing.pcsProduct('plus', <?php echo $lines[$start]['id'] ?>, <?php echo \eMarket\Cart::maxQuantityToOrder($lines[$start], 'true') ?>)"><span class="glyphicon glyphicon-plus"></span></button>
-				    <button class="btn btn-primary buy-now<?php echo \eMarket\Cart::maxQuantityToOrder($lines[$start], 'class') ?>" onclick="ProductsListing.addToCart(<?php echo $lines[$start]['id'] ?>, $('#number_<?php echo $lines[$start]['id'] ?>').val())"><?php echo lang('buy_now') ?></button>
-				</div>
+                                    <button class="btn btn-primary button-plus" type="button" onclick="ProductsListing.pcsProduct('plus', <?php echo $lines[$start]['id'] ?>, <?php echo \eMarket\Cart::maxQuantityToOrder($lines[$start], 'true') ?>)"><span class="glyphicon glyphicon-plus"></span></button>
+                                    <button class="btn btn-primary buy-now<?php echo \eMarket\Cart::maxQuantityToOrder($lines[$start], 'class') ?>" onclick="ProductsListing.addToCart(<?php echo $lines[$start]['id'] ?>, $('#number_<?php echo $lines[$start]['id'] ?>').val())"><?php echo lang('buy_now') ?></button>
+                                </div>
                             </div>
                         </div>
                     </div>
