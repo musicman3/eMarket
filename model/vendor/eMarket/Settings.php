@@ -23,7 +23,6 @@ class Settings {
     public static $JS_END = FALSE;
     public static $JS_MOD_END = FALSE;
     public static $session_expr_time = FALSE;
-    public static $currency_default_admin = FALSE;
 
     /**
      * Название текущего шаблона
