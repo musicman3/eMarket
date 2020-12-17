@@ -8,7 +8,7 @@
 namespace eMarket;
 
 /**
- * Класс для работы с модулями
+ * Класс для модулей / Class for modules
  *
  * @package Modules
  * @author eMarket
@@ -17,9 +17,9 @@ namespace eMarket;
 final class Modules {
 
     /**
-     * Инсталляция модуля
+     * Инсталляция модуля / Install module
      *
-     * @param array $module (входящие данные)
+     * @param array $module (входящие данные / input data)
      */
     public static function install($module) {
 
@@ -29,9 +29,9 @@ final class Modules {
     }
     
     /**
-     * Удаление модуля
+     * Удаление модуля / Delete module
      *
-     * @param array $module (входящие данные)
+     * @param array $module (входящие данные / input data)
      */
     public static function uninstall($module) {
         // Удаляем
