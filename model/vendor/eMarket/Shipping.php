@@ -8,7 +8,7 @@
 namespace eMarket;
 
 /**
- * Класс для обработки модулей доставки
+ * Класс для модулей доставки / Class for shipping modules
  *
  * @package Shipping
  * @author eMarket
@@ -17,9 +17,9 @@ namespace eMarket;
 final class Shipping {
 
     /**
-     * Список зон, для которых доступна доставка покупателю
-     * @param array $region (номера регинов)
-     * @return array $output (выходные данные в виде id зон, в которых находится регион)
+     * Список зон, для которых доступна доставка покупателю / List of zones for which delivery to the buyer is available
+     * @param array $region (номера регинов / regions numbers)
+     * @return array $output (выходные данные / output data)
      */
     public static function shippingZonesAvailable($region) {
         $data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE active=? AND type=?", [1, 'shipping']);
@@ -47,9 +47,9 @@ final class Shipping {
     }
 
     /**
-     * Список модулей доставки, для которых доступна доставка покупателю
-     * @param array $shipping_zones_id_available (id зон, в которых находится регион)
-     * @return array $output (выходные данные в виде названия модулей)
+     * Список модулей доставки, для которых доступна доставка покупателю / List of shipping modules for which delivery to the buyer is available
+     * @param array $shipping_zones_id_available (id зон, в которых находится регион / id of zones in which the region is located)
+     * @return array $output (выходные данные / output data)
      */
     public static function shippingModulesAvailable($shipping_zones_id_available) {
         $data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE active=? AND type=?", [1, 'shipping']);
@@ -79,11 +79,11 @@ final class Shipping {
     }
 
     /**
-     * Загрузка данных с модулей доставки
+     * Загрузка данных с модулей доставки / Loading data from shipping modules
      * 
-     * @param array $zones_id (данные по доступным зонам доставки для региона)
-     * @param array $modules_names (данные по доступным именам модулей доставки для региона)
-     * @return array $modules_data (выходные данные)
+     * @param array $zones_id (данные по доступным зонам доставки для региона / data on available shipping zones for region)
+     * @param array $modules_names (данные по доступным именам модулей доставки для региона / data on available names of shipping modules for region)
+     * @return array $modules_data (output data)
      */
     public static function loadData($zones_id, $modules_names) {
 
@@ -99,15 +99,14 @@ final class Shipping {
     }
 
     /**
-     * Фильтрация данных модуля
+     * Фильтрация и сортировка данных / Filtering and sorting data
      * 
-     * @param array $interface_data_all (входной массив данных)
-     * @return array|FALSE $interface (выходные данные)
+     * @param array $interface_data_all (input data)
+     * @return array|FALSE $interface (output data)
      */
     public static function filterData($interface_data_all) {
 
         if (count($interface_data_all) > 0) {
-            // Выбираем массивы с наименьшей chanel_minimum_price
             $chanel_minimum_price = array_column($interface_data_all, 'chanel_minimum_price');
             array_multisort($chanel_minimum_price, SORT_ASC, $interface_data_all);
 
@@ -118,7 +117,6 @@ final class Shipping {
                 }
             }
 
-            // Выбираем итоговый массив с наименьшей chanel_shipping_price
             $chanel_minimum_shipping_price = array_column($interface_minimum_price, 'chanel_shipping_price');
             array_multisort($chanel_minimum_shipping_price, SORT_ASC, $interface_minimum_price);
 
