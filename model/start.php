@@ -26,15 +26,15 @@ foreach (\eMarket\Tree::modulesClasses() as $path) {
     require_once($path);
 }
 
-// Файл конфигурации / config file
+// Файл конфигурации и др. / config file and etc.
 if (\eMarket\Settings::path() == 'admin' OR \eMarket\Settings::path() == 'catalog') {
     require_once('configure/configure.php');
+    //Статические данные / Static data
+    \eMarket\Settings::init();
+    //Авторизация / Autorize
+    \eMarket\Autorize::init();
 }
-//Статические данные / Static data
-\eMarket\Settings::init();
-//Авторизация / Autorize
-\eMarket\Autorize::init();
+
 //Языки / Languages
 \eMarket\Lang::init();
-
 ?>
