@@ -8,7 +8,7 @@
 namespace eMarket;
 
 /**
- * Класс для обработки модулей оплаты
+ * Класс для модулей оплаты / Class for payment modules
  *
  * @package Payment
  * @author eMarket
@@ -17,9 +17,9 @@ namespace eMarket;
 final class Payment {
 
     /**
-     * Список модулей оплаты, которые доступны для выбранного модуля доставки
-     * @param string $name (название выбранного модуля доставки)
-     * @return array $output (выходные данные в виде названия модулей)
+     * Список модулей оплаты, которые доступны для выбранного модуля доставки / List of payment modules that are available for the selected delivery module
+     * @param string $name (название модуля доставки / payment module name)
+     * @return array $output (выходные данные / output data)
      */
     public static function paymentModulesAvailable($name) {
         $data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE active=? AND type=?", [1, 'payment']);
@@ -35,10 +35,10 @@ final class Payment {
     }
 
     /**
-     * Загрузка данных с модулей оплаты
+     * Загрузка данных с модулей оплаты / Loading data from payment modules
      * 
-     * @param array $modules_names (данные по доступным именам модулей доставки)
-     * @return array $modules_data (выходные данные)
+     * @param array $modules_names (данные по доступным именам модулей доставки / data on available names of delivery modules)
+     * @return array $modules_data (выходные данные / output data)
      */
     public static function loadData($modules_names) {
 
