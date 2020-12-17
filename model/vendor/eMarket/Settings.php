@@ -38,7 +38,7 @@ class Settings {
      * Загрузка статических данных
      *
      */
-    public static function loadStatic() {
+    public static function init() {
         
         if (self::$basic_settings == FALSE) {
             self::$basic_settings = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_BASIC_SETTINGS, [])[0];

@@ -31,7 +31,7 @@ if (\eMarket\Settings::path() == 'admin' OR \eMarket\Settings::path() == 'catalo
     require_once('configure/configure.php');
 }
 //Статические данные / Static data
-\eMarket\Settings::loadStatic();
+\eMarket\Settings::init();
 //Авторизация / Autorize
 \eMarket\Autorize::init();
 //Языки / Languages
