@@ -213,7 +213,7 @@
                                         idArray[i] = this.id;
                                 });
                                 jQuery.post(window.location.href,
-                                        {idsx_statusOn_id: idArray,
+                                        {idsx_status_on_id: idArray,
                                             idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
                                             idsx_status_on_key: 'On'});
                                 // Отправка запроса для обновления страницы
@@ -248,7 +248,7 @@
                                         idArray[i] = this.id;
                                 });
                                 jQuery.post(window.location.href,
-                                        {idsx_statusOff_id: idArray,
+                                        {idsx_status_off_id: idArray,
                                             idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
                                             idsx_status_off_key: 'Off'});
                                 // Отправка запроса для обновления страницы
@@ -430,7 +430,7 @@
                                         idArray[i] = this.id;
                                 });
                                 jQuery.post(window.location.href,
-                                        {idsx_saleOn_id: idArray,
+                                        {idsx_sale_on_id: idArray,
                                             idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
                                             sale: selected_id,
                                             idsx_sale_on_key: 'On'});
@@ -478,7 +478,7 @@
                                             idArray[i] = this.id;
                                     });
                                     jQuery.post(window.location.href,
-                                            {idsx_saleOff_id: idArray,
+                                            {idsx_sale_off_id: idArray,
                                                 idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
                                                 sale: selected_id,
                                                 idsx_sale_off_key: 'Off'});
@@ -528,7 +528,7 @@
                                             idArray[i] = this.id;
                                     });
                                     jQuery.post(window.location.href,
-                                            {idsx_saleOffAll_id: idArray,
+                                            {idsx_sale_off_all_id: idArray,
                                                 idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
                                                 idsx_sale_off_all_key: 'OffAll'});
                                     // Отправка запроса для обновления страницы
@@ -595,7 +595,7 @@
                                         idArray[i] = this.id;
                                 });
                                 jQuery.post(window.location.href,
-                                        {idsx_stikerOn_id: idArray,
+                                        {idsx_stiker_on_id: idArray,
                                             idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
                                             stiker: selected_id,
                                             idsx_stikerOn_key: 'On'});
@@ -637,7 +637,7 @@
                                             idArray[i] = this.id;
                                     });
                                     jQuery.post(window.location.href,
-                                            {idsx_stikerOff_id: idArray,
+                                            {idsx_stiker_off_id: idArray,
                                                 idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
                                                 stiker: selected_id,
                                                 idsx_stikerOff_key: 'Off'});

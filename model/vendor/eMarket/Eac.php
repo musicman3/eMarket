@@ -363,12 +363,12 @@ final class Eac {
             $parent_id_real = (int) \eMarket\Valid::inPOST('idsx_real_parent_id');
 
             if (\eMarket\Valid::inPOST('idsx_status_on_key') == 'On') {
-                $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('idsx_statusOn_id'));
+                $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('idsx_status_on_id'));
                 $status = 1;
             }
 
             if (\eMarket\Valid::inPOST('idsx_status_off_key') == 'Off') {
-                $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('idsx_statusOff_id'));
+                $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('idsx_status_off_id'));
                 $status = 0;
             }
 
@@ -432,18 +432,18 @@ final class Eac {
             $parent_id_real = (int) \eMarket\Valid::inPOST('idsx_real_parent_id');
 
             if (\eMarket\Valid::inPOST('idsx_sale_on_key') == 'On') {
-                $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('idsx_saleOn_id'));
+                $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('idsx_sale_on_id'));
                 $discount = \eMarket\Valid::inPOST('sale');
             }
 
             if (\eMarket\Valid::inPOST('idsx_sale_off_key') == 'Off') {
-                $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('idsx_saleOff_id'));
+                $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('idsx_sale_off_id'));
                 $discount = '';
                 $discount_id = \eMarket\Valid::inPOST('sale');
             }
 
             if (\eMarket\Valid::inPOST('idsx_sale_off_all_key') == 'OffAll') {
-                $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('idsx_saleOffAll_id'));
+                $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('idsx_sale_off_all_id'));
                 $discount = '';
                 $discount_id = \eMarket\Valid::inPOST('sale');
             }
@@ -553,12 +553,12 @@ final class Eac {
             $parent_id_real = (int) \eMarket\Valid::inPOST('idsx_real_parent_id');
 
             if (\eMarket\Valid::inPOST('idsx_stikerOn_key') == 'On') {
-                $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('idsx_stikerOn_id'));
+                $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('idsx_stiker_on_id'));
                 $stiker = \eMarket\Valid::inPOST('stiker');
             }
 
             if (\eMarket\Valid::inPOST('idsx_stikerOff_key') == 'Off') {
-                $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('idsx_stikerOff_id'));
+                $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('idsx_stiker_off_id'));
                 $stiker = '';
                 $stiker_id = \eMarket\Valid::inPOST('stiker');
             }
