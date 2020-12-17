@@ -10353,8 +10353,8 @@ INSERT INTO emkt_zones VALUES (1, 'Москва', null, 'russian');
 INSERT INTO emkt_zones_value VALUES (1, 175, 2869, 1);
 
 /* ЗАГРУЗКА НАЛОГОВ */
-INSERT INTO emkt_taxes VALUES (1, 'VAT', 'english', '20.00', 1, 1, 1, 1);
-INSERT INTO emkt_taxes VALUES (1, 'НДС', 'russian', '20.00', 1, 1, 1, 1);
+INSERT INTO emkt_taxes VALUES (1, 'VAT', 'english', '20.00', '1', '1', '1', '1');
+INSERT INTO emkt_taxes VALUES (1, 'НДС', 'russian', '20.00', '1', '1', '1', '1');
 
 /* ЗАГРУЗКА ДЛИНЫ */
 INSERT INTO emkt_length VALUES (1, 'Meter', 'm.', 'english', '1.0000000', '1');

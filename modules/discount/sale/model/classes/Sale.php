@@ -72,7 +72,7 @@ class Sale {
         $currency = $input['currency'];
         $price_val = \eMarket\Ecb::currencyPrice($input['price'], $currency);
 
-        if ($discount_val != '' && $discount_val != NULL && self::status() == 1) {
+        if (self::status() != FALSE && self::status() == 1) {
 
             $explode_id = explode(',', $discount_val);
             $discount_out = [];
