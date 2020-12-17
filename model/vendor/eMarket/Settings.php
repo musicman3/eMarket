@@ -17,8 +17,7 @@ class Settings {
 
     private static $DEFAULT_CURRENCY = FALSE;
     private static $active_tabs_count = 0;
-    private static $url_request = FALSE;
-    
+    private static $lang_currency_path = FALSE;
     
     public static $basic_settings = FALSE;
     public static $currencies_data = FALSE;
@@ -387,27 +386,28 @@ class Settings {
      * @return string (путь для переключателя языков и валют)
      */
     public static function langCurrencyPath() {
-        if(self::$url_request != FALSE){
-            return self::$url_request;
+        
+        if(self::$lang_currency_path != FALSE){
+            return self::$lang_currency_path;
         }
 
         if (\eMarket\Valid::inSERVER('REQUEST_URI') == '/') {
-            self::$url_request = HTTP_SERVER . '?route=catalog';
+            self::$lang_currency_path = HTTP_SERVER . '?route=catalog';
         } elseif (\eMarket\Valid::inSERVER('REQUEST_URI') == '/controller/admin/') {
-            self::$url_request = HTTP_SERVER . 'controller/admin/?route=dashboard';
+            self::$lang_currency_path = HTTP_SERVER . 'controller/admin/?route=dashboard';
         } else {
-            self::$url_request = \eMarket\Valid::inSERVER('REQUEST_URI');
+            self::$lang_currency_path = \eMarket\Valid::inSERVER('REQUEST_URI');
         }
 
         if (\eMarket\Valid::inGET('language')) {
-            self::$url_request = \eMarket\Func::deleteGet('language');
+            self::$lang_currency_path = \eMarket\Func::deleteGet('language');
         }
 
         if (\eMarket\Valid::inGET('currency_default')) {
-            self::$url_request = \eMarket\Func::deleteGet('currency_default');
+            self::$lang_currency_path = \eMarket\Func::deleteGet('currency_default');
         }
 
-        return self::$url_request;
+        return self::$lang_currency_path;
     }
 
     /**
