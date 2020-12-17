@@ -24,7 +24,6 @@ final class Modules {
     public static function install($module) {
 
         \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_MODULES . " SET name=?, type=?, active=?", [$module[1], $module[0], 1]);
-        //Загружаем БД из файла
         \eMarket\Pdo::dbInstall(ROOT . '/modules/' . $module[0] . '/' . $module[1] . '/install/');
     }
     
@@ -34,7 +33,6 @@ final class Modules {
      * @param array $module (входящие данные / input data)
      */
     public static function uninstall($module) {
-        // Удаляем
         \eMarket\Pdo::inPrepare("DELETE FROM " . TABLE_MODULES . " WHERE name=? AND type=?", [$module[1], $module[0]]);
         \eMarket\Pdo::inPrepare("DROP TABLE " . DB_PREFIX . 'modules_' . $module[0] . '_' . $module[1], []);
     }    
