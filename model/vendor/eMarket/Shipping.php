@@ -82,10 +82,11 @@ final class Shipping {
      * Загрузка данных с модулей доставки / Loading data from shipping modules
      * 
      * @param array $zones_id (данные по доступным зонам доставки для региона / data on available shipping zones for region)
-     * @param array $modules_names (данные по доступным именам модулей доставки для региона / data on available names of shipping modules for region)
      * @return array $modules_data (output data)
      */
-    public static function loadData($zones_id, $modules_names) {
+    public static function loadData($zones_id) {
+        
+        $modules_names = self::shippingModulesAvailable($zones_id); // данные в виде названия модулей
 
         $modules_data = [];
         foreach ($modules_names as $name) {

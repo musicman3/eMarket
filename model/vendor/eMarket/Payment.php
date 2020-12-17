@@ -37,10 +37,12 @@ final class Payment {
     /**
      * Загрузка данных с модулей оплаты / Loading data from payment modules
      * 
-     * @param array $modules_names (данные по доступным именам модулей доставки / data on available names of delivery modules)
+     * @param array $input (данные по доступным именам модулей доставки / data on available names of delivery modules)
      * @return array $modules_data (выходные данные / output data)
      */
-    public static function loadData($modules_names) {
+    public static function loadData($input) {
+        
+        $modules_names = self::paymentModulesAvailable($input);
 
         $modules_data = [];
         foreach ($modules_names as $name) {

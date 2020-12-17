@@ -8,8 +8,7 @@
 // JSON ECHO SHIPPING
 if (\eMarket\Valid::inPOST('shipping_region_json')) {
     $zones_id = \eMarket\Shipping::shippingZonesAvailable(\eMarket\Valid::inPOST('shipping_region_json')); // список id зон, в которых находится регион
-    $modules_names = \eMarket\Shipping::shippingModulesAvailable($zones_id); // данные в виде названия модулей
-    $modules_data = \eMarket\Shipping::loadData($zones_id, $modules_names);
+    $modules_data = \eMarket\Shipping::loadData($zones_id);
     $interface_data = [];
     foreach ($modules_data as $data) {
         
@@ -44,8 +43,7 @@ if (\eMarket\Valid::inPOST('shipping_region_json')) {
 
 // JSON ECHO PAYMENT
 if (\eMarket\Valid::inPOST('payment_shipping_json')) {
-    $modules_names = \eMarket\Payment::paymentModulesAvailable(\eMarket\Valid::inPOST('payment_shipping_json')); // данные в виде названия модулей
-    $modules_data = \eMarket\Payment::loadData($modules_names);
+    $modules_data = \eMarket\Payment::loadData(\eMarket\Valid::inPOST('payment_shipping_json'));
 
     $interface_data = [];
     foreach ($modules_data as $data) {
