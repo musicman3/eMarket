@@ -61,7 +61,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                                             <label><?php echo lang('product_model') ?></label> 
                                             <?php echo $lines[$start]['model'] ?>
                                         </li>
-                                    <?php } if ($lines[$start]['vendor_code'] != NULL && $lines[$start]['vendor_code'] != FALSE) { ?>
+                                    <?php } if ($lines[$start]['vendor_code'] != NULL && $lines[$start]['vendor_code'] != FALSE && $lines[$start]['vendor_code_value'] != NULL && $lines[$start]['vendor_code_value'] != FALSE) { ?>
                                         <li>
                                             <label><?php echo \eMarket\Products::vendorCode($lines[$start]['vendor_code'])['name'] ?>: </label> 
                                             <?php echo $lines[$start]['vendor_code_value'] ?>
