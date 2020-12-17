@@ -16,10 +16,6 @@ namespace eMarket;
  */
 class Products {
 
-    public static $manufacturer = FALSE;
-    public static $vendor_codes = FALSE;
-    public static $weight = FALSE;
-    public static $length = FALSE;
     public static $stiker_data = FALSE;
 
     /**
@@ -62,10 +58,8 @@ class Products {
      * @return array|FALSE $value (данные по производителю)
      */
     public static function manufacturer($id) {
-        if (self::$manufacturer == FALSE) {
-            $manufacturer = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_MANUFACTURERS . " WHERE language=? AND id=?", [lang('#lang_all')[0], $id]);
-        }
-        foreach ($manufacturer as $value) {
+
+        foreach (\eMarket\Settings::$manufacturer as $value) {
             if ($value['id'] == $id) {
                 return $value;
             }
@@ -80,10 +74,8 @@ class Products {
      * @return array|FALSE $value (данные по идентификатору)
      */
     public static function vendorCode($id) {
-        if (self::$vendor_codes == FALSE) {
-            $vendor_codes = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_VENDOR_CODES . " WHERE language=? AND id=?", [lang('#lang_all')[0], $id]);
-        }
-        foreach ($vendor_codes as $value) {
+
+        foreach (\eMarket\Settings::$vendor_codes as $value) {
             if ($value['id'] == $id) {
                 return $value;
             }
@@ -98,10 +90,8 @@ class Products {
      * @return array|FALSE $value (данные по весу)
      */
     public static function weight($id) {
-        if (self::$weight == FALSE) {
-            $weight = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_WEIGHT . " WHERE language=? AND id=?", [lang('#lang_all')[0], $id]);
-        }
-        foreach ($weight as $value) {
+
+        foreach (\eMarket\Settings::$weight as $value) {
             if ($value['id'] == $id) {
                 return $value;
             }
@@ -116,10 +106,8 @@ class Products {
      * @return array|FALSE $value (данные по длине)
      */
     public static function length($id) {
-        if (self::$length == FALSE) {
-            $length = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_LENGTH . " WHERE language=? AND id=?", [lang('#lang_all')[0], $id]);
-        }
-        foreach ($length as $value) {
+
+        foreach (\eMarket\Settings::$length as $value) {
             if ($value['id'] == $id) {
                 return $value;
             }

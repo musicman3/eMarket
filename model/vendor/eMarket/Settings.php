@@ -17,9 +17,12 @@ class Settings {
 
     private static $DEFAULT_CURRENCY = FALSE;
     private static $active_tabs_count = 0;
-    
     public static $basic_settings = FALSE;
     public static $currencies_data = FALSE;
+    public static $manufacturer = FALSE;
+    public static $vendor_codes = FALSE;
+    public static $weight = FALSE;
+    public static $length = FALSE;
     public static $JS_END = FALSE;
     public static $JS_MOD_END = FALSE;
     public static $session_expr_time = FALSE;
@@ -39,14 +42,25 @@ class Settings {
      *
      */
     public static function init() {
-        
+
         if (self::$basic_settings == FALSE) {
             self::$basic_settings = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_BASIC_SETTINGS, [])[0];
         }
         if (self::$currencies_data == FALSE) {
             self::$currencies_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=?", [lang('#lang_all')[0]]);
         }
-        
+        if (self::$manufacturer == FALSE) {
+            self::$manufacturer = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_MANUFACTURERS . " WHERE language=?", [lang('#lang_all')[0]]);
+        }
+        if (self::$vendor_codes == FALSE) {
+            self::$vendor_codes = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_VENDOR_CODES . " WHERE language=?", [lang('#lang_all')[0]]);
+        }
+        if (self::$weight == FALSE) {
+            self::$weight = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_WEIGHT . " WHERE language=?", [lang('#lang_all')[0]]);
+        }
+        if (self::$length == FALSE) {
+            self::$length = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_LENGTH . " WHERE language=?", [lang('#lang_all')[0]]);
+        }
     }
 
     /**
@@ -58,7 +72,7 @@ class Settings {
 
         return array_column(self::$currencies_data, 'id', 'name');
     }
-    
+
     /**
      * Считываем значение строк на странице
      *
@@ -77,7 +91,7 @@ class Settings {
     public static function sessionExprTime() {
 
         return self::$basic_settings['session_expr_time'];
-    }    
+    }
 
     /**
      * Данные по тултипу для скидки на товар
