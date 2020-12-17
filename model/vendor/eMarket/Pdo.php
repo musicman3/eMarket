@@ -18,7 +18,7 @@ final class Pdo {
 
     // Счетчик запросов к БД
     public static $query_count = 0;
-    public static $connect = null;
+    private static $connect = null;
 
     /**
      * Функция для соединения с БД

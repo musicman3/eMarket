@@ -16,18 +16,18 @@ namespace eMarket;
  */
 final class Eac {
 
-    public static $parent_id = 0;
-    public static $resize_param = FALSE;
-    public static $resize_param_product = FALSE;
-    public static $TABLE_CATEGORIES;
-    public static $TABLE_PRODUCTS;
-    public static $TABLE_TAXES;
-    public static $TABLE_UNITS;
-    public static $TABLE_MANUFACTURERS;
-    public static $TABLE_VENDOR_CODES;
-    public static $TABLE_WEIGHT;
-    public static $TABLE_LENGTH;
-    public static $TABLE_CURRENCIES;
+    private static $parent_id = 0;
+    private static $resize_param = FALSE;
+    private static $resize_param_product = FALSE;
+    private static $TABLE_CATEGORIES;
+    private static $TABLE_PRODUCTS;
+    private static $TABLE_TAXES;
+    private static $TABLE_UNITS;
+    private static $TABLE_MANUFACTURERS;
+    private static $TABLE_VENDOR_CODES;
+    private static $TABLE_WEIGHT;
+    private static $TABLE_LENGTH;
+    private static $TABLE_CURRENCIES;
 
     /**
      * Инициализация EAC / Init EAC
