@@ -16,9 +16,6 @@ namespace eMarket;
  */
 class View {
 
-    public static $array_pos_value = null;
-    public static $array_pos = null;
-
     /**
      * Роутинг данных из View
      *
@@ -101,12 +98,10 @@ class View {
      */
     public static function layoutRouting($position, $count = null) {
 
-        if (self::$array_pos_value == null) {
-            self::$array_pos_value = \eMarket\Pdo::getColRow("SELECT url, value FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND page=? AND template_name=? ORDER BY sort ASC", [\eMarket\Settings::path(), \eMarket\Settings::titleDir(), \eMarket\Settings::template()]);
-        }
-        if (count(self::$array_pos_value) > 0) {
+        $array_pos_value = \eMarket\Pdo::getColRow("SELECT url, value FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND page=? AND template_name=? ORDER BY sort ASC", [\eMarket\Settings::path(), \eMarket\Settings::titleDir(), \eMarket\Settings::template()]);
+        if (count($array_pos_value) > 0) {
             $array_out = [];
-            foreach (self::$array_pos_value as $val) {
+            foreach ($array_pos_value as $val) {
                 if ($val[1] == $position) {
                     $path_view = str_replace('controller', 'view/' . \eMarket\Settings::template(), $val[0]);
                     $array_out[] = $val[0];
@@ -118,11 +113,9 @@ class View {
             }
             return $array_out;
         } else {
-            if (self::$array_pos == null) {
-                self::$array_pos = \eMarket\Pdo::getColRow("SELECT url, page FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? ORDER BY sort ASC", [\eMarket\Settings::path(), $position, \eMarket\Settings::template()]);
-            }
+            $array_pos = \eMarket\Pdo::getColRow("SELECT url, page FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? ORDER BY sort ASC", [\eMarket\Settings::path(), $position, \eMarket\Settings::template()]);
             $array_out = [];
-            foreach (self::$array_pos as $val) {
+            foreach ($array_pos as $val) {
                 if ($val[1] == 'all') {
                     $path_view = str_replace('controller', 'view/' . \eMarket\Settings::template(), $val[0]);
                     $array_out[] = $val[0];
