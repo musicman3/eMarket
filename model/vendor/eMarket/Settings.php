@@ -16,13 +16,14 @@ namespace eMarket;
 class Settings {
 
     private static $DEFAULT_CURRENCY = FALSE;
+    private static $primary_language = FALSE;
+    private static $lines_on_page = FALSE;
+    private static $active_tabs_count = 0;
+    
     public static $JS_END = FALSE;
     public static $JS_MOD_END = FALSE;
-    public static $primary_language = FALSE;
-    public static $lines_on_page = FALSE;
     public static $session_expr_time = FALSE;
     public static $currency_default_admin = FALSE;
-    private static $active_tabs_count = 0;
 
     /**
      * Название текущего шаблона
