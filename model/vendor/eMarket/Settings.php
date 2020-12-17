@@ -15,7 +15,7 @@ namespace eMarket;
  */
 class Settings {
 
-    public static $CURRENCIES = FALSE;
+    public static $DEFAULT_CURRENCY = FALSE;
     public static $JS_END = FALSE;
     public static $JS_MOD_END = FALSE;
     public static $primary_language = FALSE;
@@ -74,10 +74,10 @@ class Settings {
         if ($language == null) {
             $language = lang('#lang_all')[0];
         } else {
-            self::$CURRENCIES = FALSE;
+            self::$DEFAULT_CURRENCY = FALSE;
         }
 
-        if (self::$CURRENCIES == FALSE) {
+        if (self::$DEFAULT_CURRENCY == FALSE) {
 
             if (self::path() == 'catalog') {
                 if (!isset($_SESSION['currency_default_catalog'])) {
@@ -95,15 +95,15 @@ class Settings {
                 $currency = \eMarket\Pdo::getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND default_value=?", [$language, 1])[0];
             }
 
-            self::$CURRENCIES = $currency;
+            self::$DEFAULT_CURRENCY = $currency;
 
             if ($language != null) {
-                self::$CURRENCIES = FALSE;
+                self::$DEFAULT_CURRENCY = FALSE;
             }
 
             return $currency;
         } else {
-            return self::$CURRENCIES;
+            return self::$DEFAULT_CURRENCY;
         }
     }
 
