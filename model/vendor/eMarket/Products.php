@@ -188,7 +188,7 @@ class Products {
             $stiker_name[$val['id']] = $val['name'];
         }
 
-        $discount_sale = \eMarket\Ecb::outPrice($input)['discount_sale'];
+        $discount_sale = \eMarket\Ecb::discountHandler($input)['discount_sale'];
         $discount_total_sale = 0;
 
         if ($discount_sale['sales'] != 'false') {

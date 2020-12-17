@@ -34,7 +34,7 @@ final class Ecb {
             $class = 'danger';
         }
 
-        $discount_sale = self::outPrice($input)['discount_sale'];
+        $discount_sale = self::discountHandler($input)['discount_sale'];
         if ($discount_sale['names'] != 'false') {
             $discount_count = count($discount_sale['names']);
             $discount_names = '';
@@ -123,7 +123,7 @@ final class Ecb {
             foreach ($_SESSION['cart'] as $value) {
                 $data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=? AND language=?", [$value['id'], $language])[0];
                 if ($data != FALSE) {
-                    $discount_sale = self::outPrice($data, $language)['discount_sale'];
+                    $discount_sale = self::discountHandler($data, $language)['discount_sale'];
                     $discount_total_sale = 0;
 
                     $tax = [];
@@ -213,13 +213,13 @@ final class Ecb {
     }
 
     /**
-     * Итого для товара / Total for product
+     * Обработчик скидок / Discount handler
      * 
      * @param array $input (массив с данными по товару / array with product data)
      * @param string $language (язык /language)
      * @return array (выходные данные / output data)
      */
-    public static function outPrice($input, $language = null) {
+    public static function discountHandler($input, $language = null) {
 
         $discount_sale = \eMarket\Modules\Discount\Sale::dataInterface($input, $language);
 

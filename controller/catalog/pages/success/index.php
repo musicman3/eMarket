@@ -74,16 +74,16 @@ if (\eMarket\Valid::inPOST('add') && password_verify((float) \eMarket\Valid::inP
         $data = [
             'admin' => [
                 'name' => $admin_product_data['name'],
-                'price' => \eMarket\Ecb::formatPrice(\eMarket\Ecb::outPrice($admin_product_data)['out_price'], 1, $primary_language),
+                'price' => \eMarket\Ecb::formatPrice(\eMarket\Ecb::discountHandler($admin_product_data)['out_price'], 1, $primary_language),
                 'unit' => $admin_unit['unit'],
-                'amount' => \eMarket\Ecb::formatPrice(\eMarket\Ecb::outPrice($admin_product_data)['out_price'] * $value['quantity'], 1, $primary_language),
+                'amount' => \eMarket\Ecb::formatPrice(\eMarket\Ecb::discountHandler($admin_product_data)['out_price'] * $value['quantity'], 1, $primary_language),
                 'stiker' => $stiker_name_data
             ],
             'customer' => [
                 'name' => $product_data['name'],
-                'price' => \eMarket\Ecb::formatPrice(\eMarket\Ecb::outPrice($product_data)['out_price'], 1),
+                'price' => \eMarket\Ecb::formatPrice(\eMarket\Ecb::discountHandler($product_data)['out_price'], 1),
                 'unit' => $unit['unit'],
-                'amount' => \eMarket\Ecb::formatPrice(\eMarket\Ecb::outPrice($product_data)['out_price'] * $value['quantity'], 1),
+                'amount' => \eMarket\Ecb::formatPrice(\eMarket\Ecb::discountHandler($product_data)['out_price'] * $value['quantity'], 1),
                 'stiker' => $stiker_name_customer_data
             ],
             'data' => [
