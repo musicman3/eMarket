@@ -25,7 +25,7 @@ for ($i = $start; $i < $finish; $i++) {
                 $price_product[$modal_id_prod] = round(\eMarket\Ecb::currencyPrice($sql_modal_prod['price'], $sql_modal_prod['currency']), 2);
                 // Валюта
                 foreach ($currencies_all as $currency_val) {
-                    if ($currency_val['id'] == \eMarket\Set::currencyDefault()[0])
+                    if ($currency_val['id'] == \eMarket\Settings::currencyDefault()[0])
                         $currency_product[$modal_id_prod] = $currency_val['name'];
                 }
                 // Количество

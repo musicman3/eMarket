@@ -82,7 +82,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
 		    <tr>
 			<td><?php echo $lines[$start]['id'] ?></td>
 			<td class="text-center"><?php echo json_decode($lines[$start]['order_total'], 1)['customer']['total_to_pay_format'] ?></td>
-			<td class="text-center"><?php echo \eMarket\Set::dateLocale($lines[$start]['date_purchased'], '%c') ?></td>
+			<td class="text-center"><?php echo \eMarket\Settings::dateLocale($lines[$start]['date_purchased'], '%c') ?></td>
 			<td class="text-center"><?php echo json_decode($lines[$start]['orders_status_history'], 1)[0]['customer']['status'] ?></td>
 
 			<td>

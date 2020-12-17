@@ -46,7 +46,7 @@ final class Ecb {
 
         $price_val = self::currencyPrice($input['price'], $input['currency']);
 
-        if (\eMarket\Set::path() == 'admin') {
+        if (\eMarket\Settings::path() == 'admin') {
             if ($price_val != $discount_sale['price'] && $discount_count == 1) {
                 return '<span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="' . $discount_names . '" class="label label-' . $class . '">' . self::formatPrice($discount_sale['price'], $marker) . '</span> <del>' . self::formatPrice($price_val, $marker) . '</del>';
             }
@@ -56,7 +56,7 @@ final class Ecb {
             return self::formatPrice($price_val, $marker);
         }
 
-        if (\eMarket\Set::path() == 'catalog') {
+        if (\eMarket\Settings::path() == 'catalog') {
             if ($price_val != $discount_sale['price']) {
                 return '<del>' . self::formatPrice($price_val * $quantity, $marker) . '</del><br><span class="label label-' . $class . '">' . self::formatPrice($discount_sale['price'] * $quantity, $marker) . '</span>';
             }
@@ -261,9 +261,9 @@ final class Ecb {
     public static function formatPrice($price, $format = null, $language = null) {
 
         if ($language == null) {
-            $CURRENCIES = \eMarket\Set::currencyDefault();
+            $CURRENCIES = \eMarket\Settings::currencyDefault();
         } else {
-            $CURRENCIES = \eMarket\Set::currencyDefault($language);
+            $CURRENCIES = \eMarket\Settings::currencyDefault($language);
         }
 
         if ($format == 0) {

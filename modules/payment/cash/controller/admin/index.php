@@ -5,7 +5,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-$MODULE_DB = \eMarket\Set::moduleDatabase();
+$MODULE_DB = \eMarket\Settings::moduleDatabase();
 
 $shipping_method = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE type=? AND active=? ORDER BY name ASC", ['shipping', 1]);
 $order_status = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_ORDER_STATUS . " WHERE language=? ORDER BY sort DESC", [lang('#lang_all')[0]]);
@@ -34,7 +34,7 @@ if (\eMarket\Valid::inPOST('save')) {
 }
 
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
-\eMarket\Set::$JS_MOD_END = __DIR__;
+\eMarket\Settings::$JS_MOD_END = __DIR__;
 // Загружаем разметку модуля
 require_once (\eMarket\View::routingModules('view') . '/index.php');
 ?>

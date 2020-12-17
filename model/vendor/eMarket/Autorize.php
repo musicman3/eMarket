@@ -24,11 +24,11 @@ class Autorize {
      */
     public static function init() {
         
-        if (\eMarket\Set::path() == 'admin' && \eMarket\Valid::inGET('route') != 'login') {
+        if (\eMarket\Settings::path() == 'admin' && \eMarket\Valid::inGET('route') != 'login') {
                 \eMarket\Autorize::sessionAdmin();
         }
 
-        if (\eMarket\Set::path() == 'catalog') {
+        if (\eMarket\Settings::path() == 'catalog') {
             \eMarket\Autorize::sessionCatalog();
             \eMarket\Cart::init();
         }
@@ -42,11 +42,11 @@ class Autorize {
     public static function sessionAdmin() {
 
         // ЕСЛИ В АДМИНИСТРАТИВНОЙ ПАНЕЛИ
-        if (\eMarket\Set::path() == 'admin' && \eMarket\Set::titleDir() != 'login') {
+        if (\eMarket\Settings::path() == 'admin' && \eMarket\Settings::titleDir() != 'login') {
 
             session_start();
 
-            if (isset($_SESSION['session_start']) && (time() - $_SESSION['session_start']) / 60 > \eMarket\Set::sessionExprTime()) {
+            if (isset($_SESSION['session_start']) && (time() - $_SESSION['session_start']) / 60 > \eMarket\Settings::sessionExprTime()) {
                 unset($_SESSION['login']);
                 unset($_SESSION['pass']);
                 unset($_SESSION['session_start']);
@@ -75,7 +75,7 @@ class Autorize {
      */
     public static function sessionCatalog() {
 
-        if (\eMarket\Set::path() == 'catalog') {
+        if (\eMarket\Settings::path() == 'catalog') {
 
             session_start();
             if (isset($_SESSION['email_customer'])) {
@@ -84,7 +84,7 @@ class Autorize {
                 $customer_data = null;
             }
 
-            if (isset($_SESSION['customer_session_start']) && (time() - $_SESSION['customer_session_start']) / 60 > \eMarket\Set::sessionExprTime() OR $customer_data['status'] == 0) {
+            if (isset($_SESSION['customer_session_start']) && (time() - $_SESSION['customer_session_start']) / 60 > \eMarket\Settings::sessionExprTime() OR $customer_data['status'] == 0) {
                 unset($_SESSION['password_customer']);
                 unset($_SESSION['email_customer']);
                 unset($_SESSION['customer_session_start']);

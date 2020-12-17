@@ -89,7 +89,7 @@ class Cart {
      */
     public static function init() {
 
-        if (\eMarket\Set::path() == 'catalog') {
+        if (\eMarket\Settings::path() == 'catalog') {
             self::addProduct();
             self::deleteProduct();
             self::editProductQuantity();

@@ -8,7 +8,7 @@
 require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 /* ------------------------------------------ */
 //Если не переключали язык
-if (!\eMarket\Valid::inPOST('language') && \eMarket\Set::path() == 'install') {
+if (!\eMarket\Valid::inPOST('language') && \eMarket\Settings::path() == 'install') {
     $DEFAULT_LANGUAGE = 'russian';
 }
 //Если переключили язык
@@ -16,7 +16,7 @@ if (\eMarket\Valid::inPOST('language')) {
     $DEFAULT_LANGUAGE = \eMarket\Valid::inPOST('language');
 }
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
-\eMarket\Set::$JS_END = __DIR__;
+\eMarket\Settings::$JS_END = __DIR__;
 
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
 require_once(getenv('DOCUMENT_ROOT') . '/model/end.php');

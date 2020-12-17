@@ -13,7 +13,7 @@ namespace eMarket;
  * @author eMarket
  * 
  */
-class Set {
+class Settings {
 
     public static $CURRENCIES = FALSE;
     public static $JS_END = FALSE;
@@ -22,7 +22,7 @@ class Set {
     public static $lines_on_page = FALSE;
     public static $session_expr_time = FALSE;
     public static $currency_default_admin = FALSE;
-    public static $active_tabs_count = 0;
+    private static $active_tabs_count = 0;
 
     /**
      * Название текущего шаблона
@@ -178,7 +178,7 @@ class Set {
     public static function titlePageGenerator() {
 
         if (self::path() == 'install') {
-            $title = lang('title_' . \eMarket\Set::titleDir() . '_' . basename(\eMarket\Valid::inSERVER('PHP_SELF'), '.php'));
+            $title = lang('title_' . \eMarket\Settings::titleDir() . '_' . basename(\eMarket\Valid::inSERVER('PHP_SELF'), '.php'));
             return $title;
         }
 
@@ -186,7 +186,7 @@ class Set {
             $title = lang('modules_' . \eMarket\Valid::inGET('type') . '_' . \eMarket\Valid::inGET('name') . '_name');
             return $title;
         }
-        $title = lang('title_' . \eMarket\Set::titleDir() . '_index');
+        $title = lang('title_' . \eMarket\Settings::titleDir() . '_index');
 
         return $title;
     }

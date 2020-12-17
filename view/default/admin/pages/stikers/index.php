@@ -14,7 +14,7 @@
             <!--Выводим уведомление об успешном действии-->
             <div id="alert_block"><?php \eMarket\Messages::alert(); ?></div>
             <h3 class="panel-title">
-                <?php echo \eMarket\Set::titlePageGenerator() ?>
+                <?php echo \eMarket\Settings::titlePageGenerator() ?>
             </h3>
         </div>
         <div class="panel-body">

@@ -5,6 +5,6 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-$url_request = \eMarket\Set::langCurrencyPath();
+$url_request = \eMarket\Settings::langCurrencyPath();
 
 ?>

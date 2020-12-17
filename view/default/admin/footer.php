@@ -13,7 +13,7 @@
 
         <div class="container-fluid">
             <div class="row">
-                    <p><img src="/view/<?php echo \eMarket\Set::template() ?>/admin/images/emarket.png" width="57" alt="" class="img-responsive center-block"></p>
+                    <p><img src="/view/<?php echo \eMarket\Settings::template() ?>/admin/images/emarket.png" width="57" alt="" class="img-responsive center-block"></p>
 
                     <p>Copyright © 2018-<?php echo date('Y') ?>, <a target=_blank href="https://github.com/musicman3/eMarket">eMarket Team</a>. All rights reserved.</p>
             </div>

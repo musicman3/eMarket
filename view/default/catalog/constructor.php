@@ -19,12 +19,12 @@
         <meta name="copyright" content="Copyright © 2018 by eMarket Team. All right reserved." />
 
         <!-- Автогенерация Title" -->
-        <title><?php echo lang('title_catalog_index') . \eMarket\Set::titleCatalog() ?></title>
+        <title><?php echo lang('title_catalog_index') . \eMarket\Settings::titleCatalog() ?></title>
         <meta name="description" content="">
 
-        <link rel="canonical" href="<?php echo \eMarket\Set::canonicalPathCatalog() ?>" />
+        <link rel="canonical" href="<?php echo \eMarket\Settings::canonicalPathCatalog() ?>" />
         <link href="/ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
-        <link rel="stylesheet" type="text/css" href="/view/<?php echo \eMarket\Set::template() ?>/catalog/style.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="/view/<?php echo \eMarket\Settings::template() ?>/catalog/style.css" media="screen" />
         <script type="text/javascript" src="/ext/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/ext/jquery/ui/jquery.ui.touch-punch.min.js"></script>
 
@@ -96,7 +96,7 @@
         <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/ext/bootstrap/js/bootstrap-confirmation.min.js"></script>
         <script type="text/javascript" src="/ext/jstree/jstree.min.js"></script>
-        <?php require_once (ROOT . '/view/' . \eMarket\Set::template() . '/js/breadcrumb.php') ?>
+        <?php require_once (ROOT . '/view/' . \eMarket\Settings::template() . '/js/breadcrumb.php') ?>
 
         <script type="text/javascript">
             $('[data-toggle=confirmation]').confirmation();
@@ -104,14 +104,14 @@
 
         <?php
         //Если существует \eMarket\Set::$JS_END
-        if (\eMarket\Set::$JS_END != FALSE) {
+        if (\eMarket\Settings::$JS_END != FALSE) {
             //то подгружаем JS.PHP файл
-            require_once(\eMarket\Set::$JS_END . '/js/js.php');
+            require_once(\eMarket\Settings::$JS_END . '/js/js.php');
         }
         //Если существует \eMarket\Set::$JS_MOD_END
-        if (\eMarket\Set::$JS_MOD_END != FALSE) {
+        if (\eMarket\Settings::$JS_MOD_END != FALSE) {
             //то подгружаем JS.PHP файл
-            require_once(\eMarket\Set::$JS_MOD_END . '/js/js.php');
+            require_once(\eMarket\Settings::$JS_MOD_END . '/js/js.php');
         }
 
         // Выводим отладочную информацию

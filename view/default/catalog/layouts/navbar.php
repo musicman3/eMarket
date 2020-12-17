@@ -27,13 +27,13 @@
                 <li class="dropdown"><a data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-globe"></span><span class="hidden-sm"> <?php echo lang('navbar_languages') ?></span> <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <?php foreach (lang('#lang_all') as $value) { ?>
-                            <li><a href="<?php echo $url_request . '&language=' . $value ?>"><img src="/view/<?php echo \eMarket\Set::template() ?>/admin/images/langflags/<?php echo $value ?>.png"> <?php echo lang('language_name', $value) ?></a></li>
+                            <li><a href="<?php echo $url_request . '&language=' . $value ?>"><img src="/view/<?php echo \eMarket\Settings::template() ?>/admin/images/langflags/<?php echo $value ?>.png"> <?php echo lang('language_name', $value) ?></a></li>
                         <?php } ?>
                     </ul>
                 </li>
                 <li class="dropdown"><a data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-credit-card"></span><span class="hidden-sm"> <?php echo lang('navbar_currencies') ?></span> <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <?php foreach (\eMarket\Set::currenciesData() as $value) { ?>
+                        <?php foreach (\eMarket\Settings::currenciesData() as $value) { ?>
                             <li><a href="<?php echo $url_request . '&currency_default=' . $value[1] ?>"><?php echo $value[0] ?></a></li>
                         <?php } ?>
                     </ul>

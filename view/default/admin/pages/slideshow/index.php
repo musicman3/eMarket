@@ -18,7 +18,7 @@
             <!--Выводим уведомление об успешном действии-->
             <div id="alert_block"><?php \eMarket\Messages::alert(); ?></div>
             <h3 class="panel-title">
-                <?php echo \eMarket\Set::titlePageGenerator() ?>
+                <?php echo \eMarket\Settings::titlePageGenerator() ?>
             </h3>
         </div>
         <div class="panel-body">
@@ -31,14 +31,14 @@
 
             <!-- Языковые панели -->
             <ul class="nav nav-tabs">
-                <li class="<?php echo \eMarket\Set::activeTab($set_language, lang('#lang_all')[0]) ?>"><a data-toggle="tab" href="#<?php echo lang('#lang_all')[0] ?>"><img src="/view/<?php echo \eMarket\Set::template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[0] ?>.png" alt="<?php echo lang('#lang_all')[0] ?>" title="<?php echo lang('#lang_all')[0] ?>" width="16" height="10" /> <?php echo lang('language_name', lang('#lang_all')[0]) ?></a></li>
+                <li class="<?php echo \eMarket\Settings::activeTab($set_language, lang('#lang_all')[0]) ?>"><a data-toggle="tab" href="#<?php echo lang('#lang_all')[0] ?>"><img src="/view/<?php echo \eMarket\Settings::template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[0] ?>.png" alt="<?php echo lang('#lang_all')[0] ?>" title="<?php echo lang('#lang_all')[0] ?>" width="16" height="10" /> <?php echo lang('language_name', lang('#lang_all')[0]) ?></a></li>
 
                 <?php
                 if (\eMarket\Lang::$COUNT > 1) {
                     for ($x = 1; $x < \eMarket\Lang::$COUNT; $x++) {
                         ?>
 
-                        <li class="<?php echo \eMarket\Set::activeTab($set_language, lang('#lang_all')[$x]) ?>"><a data-toggle="tab" href="#<?php echo lang('#lang_all')[$x] ?>"><img src="/view/<?php echo \eMarket\Set::template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[$x] ?>.png" alt="<?php echo lang('#lang_all')[$x] ?>" title="<?php echo lang('#lang_all')[$x] ?>" width="16" height="10" /> <?php echo lang('language_name', lang('#lang_all')[$x]) ?></a></li>
+                        <li class="<?php echo \eMarket\Settings::activeTab($set_language, lang('#lang_all')[$x]) ?>"><a data-toggle="tab" href="#<?php echo lang('#lang_all')[$x] ?>"><img src="/view/<?php echo \eMarket\Settings::template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[$x] ?>.png" alt="<?php echo lang('#lang_all')[$x] ?>" title="<?php echo lang('#lang_all')[$x] ?>" width="16" height="10" /> <?php echo lang('language_name', lang('#lang_all')[$x]) ?></a></li>
 
                         <?php
                     }
@@ -108,12 +108,12 @@
 
                             <tbody>
                                 <?php for ($start; $start < $finish; $start++) { ?>
-                                    <tr class="<?php echo \eMarket\Set::statusSwitchClass($lines[$start]['status'], [$this_time, strtotime($lines[$start]['date_start'])], [strtotime($lines[$start]['date_finish']), $this_time]) ?>">
+                                    <tr class="<?php echo \eMarket\Settings::statusSwitchClass($lines[$start]['status'], [$this_time, strtotime($lines[$start]['date_start'])], [strtotime($lines[$start]['date_finish']), $this_time]) ?>">
                                         <td><img src="/uploads/images/slideshow/resize_0/<?php echo $lines[$start]['logo_general'] ?>" /></td>
                                         <td class="text-center"><?php echo count(json_decode($lines[$start]['logo'])) ?></td>
                                         <td class="text-center"><?php echo $lines[$start]['name'] ?></td>
-                                        <td class="text-center"><?php echo \eMarket\Set::dateLocale($lines[$start]['date_start']); ?></td>
-                                        <td class="text-center"><?php echo \eMarket\Set::dateLocale($lines[$start]['date_finish']); ?></td>
+                                        <td class="text-center"><?php echo \eMarket\Settings::dateLocale($lines[$start]['date_start']); ?></td>
+                                        <td class="text-center"><?php echo \eMarket\Settings::dateLocale($lines[$start]['date_finish']); ?></td>
                                         <td>
                                             <div class="flexbox">
                                                 <!--Вызов модального окна для редактирования-->
@@ -203,12 +203,12 @@
 
                                     <tbody>
                                         <?php for ($start; $start < $finish; $start++) { ?>
-                                            <tr class="<?php echo \eMarket\Set::statusSwitchClass($lines[$start]['status'], [$this_time, strtotime($lines[$start]['date_start'])], [strtotime($lines[$start]['date_finish']), $this_time]) ?>">
+                                            <tr class="<?php echo \eMarket\Settings::statusSwitchClass($lines[$start]['status'], [$this_time, strtotime($lines[$start]['date_start'])], [strtotime($lines[$start]['date_finish']), $this_time]) ?>">
                                                 <td><img src="/uploads/images/slideshow/resize_0/<?php echo $lines[$start]['logo_general'] ?>" /></td>
                                                 <td class="text-center"><?php echo count(json_decode($lines[$start]['logo'])) ?></td>
                                                 <td class="text-center"><?php echo $lines[$start]['name'] ?></td>
-                                                <td class="text-center"><?php echo \eMarket\Set::dateLocale($lines[$start]['date_start']); ?></td>
-                                                <td class="text-center"><?php echo \eMarket\Set::dateLocale($lines[$start]['date_finish']); ?></td>
+                                                <td class="text-center"><?php echo \eMarket\Settings::dateLocale($lines[$start]['date_start']); ?></td>
+                                                <td class="text-center"><?php echo \eMarket\Settings::dateLocale($lines[$start]['date_finish']); ?></td>
                                                 <td>
                                                     <div class="flexbox">
                                                         <!--Вызов модального окна для редактирования-->

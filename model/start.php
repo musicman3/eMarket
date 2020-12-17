@@ -27,7 +27,7 @@ foreach (\eMarket\Tree::modulesClasses() as $path) {
 }
 
 // Файл конфигурации / config file
-if (\eMarket\Set::path() == 'admin' OR \eMarket\Set::path() == 'catalog') {
+if (\eMarket\Settings::path() == 'admin' OR \eMarket\Settings::path() == 'catalog') {
     require_once('configure/configure.php');
 }
 //Авторизация / Autorize

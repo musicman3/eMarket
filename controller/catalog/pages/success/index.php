@@ -21,7 +21,7 @@ if (\eMarket\Valid::inPOST('add') && password_verify((float) \eMarket\Valid::inP
     $customer['address_book'] = json_encode($address_data);
     $customer['language'] = lang('#lang_all')[0];
     //Основной язык
-    $primary_language = \eMarket\Set::primaryLanguage();
+    $primary_language = \eMarket\Settings::primaryLanguage();
 
     $customer_orders_status_history = \eMarket\Pdo::getCellFalse("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE default_order_status=? AND language=?", [1, lang('#lang_all')[0]]);
     $admin_orders_status_history = \eMarket\Pdo::getCellFalse("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE default_order_status=? AND language=?", [1, $primary_language]);
@@ -29,11 +29,11 @@ if (\eMarket\Valid::inPOST('add') && password_verify((float) \eMarket\Valid::inP
     $orders_status_history_data = [[
     'admin' => [
         'status' => $admin_orders_status_history,
-        'date' => \eMarket\Set::dateLocale($date, '%c', $primary_language)
+        'date' => \eMarket\Settings::dateLocale($date, '%c', $primary_language)
     ],
     'customer' => [
         'status' => $customer_orders_status_history,
-        'date' => \eMarket\Set::dateLocale($date, '%c')
+        'date' => \eMarket\Settings::dateLocale($date, '%c')
     ]
     ]];
     $orders_status_history = json_encode($orders_status_history_data);
@@ -137,7 +137,7 @@ if (\eMarket\Valid::inPOST('add') && password_verify((float) \eMarket\Valid::inP
     \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_ORDERS . " SET email=?, customer_data=?, orders_status_history=?, products_order=?, order_total=?, invoice=?"
             . ", orders_transactions_history=?, customer_ip_address=?, payment_method=?, shipping_method=?, last_modified=?, date_purchased=?",
             [$_SESSION['email_customer'], json_encode($customer), $orders_status_history, \eMarket\Valid::inPOST('products_order'), json_encode($order_total), json_encode($invoice),
-                NULL, \eMarket\Set::ipAddress(), $payment_method, $shipping_method, NULL, date("Y-m-d H:i:s")]);
+                NULL, \eMarket\Settings::ipAddress(), $payment_method, $shipping_method, NULL, date("Y-m-d H:i:s")]);
 
     //Обновляем таблицу товара
     \eMarket\Pdo::inPrepare("UPDATE " . TABLE_PRODUCTS . " SET quantity=quantity- " . $value['quantity'] . ", ordered=ordered+ " . $value['quantity'] . " WHERE id=?", [$value['id']]);
@@ -157,5 +157,5 @@ if (\eMarket\Valid::inPOST('add') && !password_verify((float) \eMarket\Valid::in
 }
 
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
-\eMarket\Set::$JS_END = __DIR__;
+\eMarket\Settings::$JS_END = __DIR__;
 ?>

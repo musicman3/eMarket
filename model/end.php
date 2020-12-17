@@ -7,16 +7,16 @@
 // 
 //Загружаем HTML / Load HTML
 //
-if (\eMarket\Set::path() == 'admin') {
-    require_once(getenv('DOCUMENT_ROOT') . '/view/' . \eMarket\Set::template() . '/admin/constructor.php');
+if (\eMarket\Settings::path() == 'admin') {
+    require_once(getenv('DOCUMENT_ROOT') . '/view/' . \eMarket\Settings::template() . '/admin/constructor.php');
 }
 
-if (\eMarket\Set::path() == 'catalog') {
-    require_once(getenv('DOCUMENT_ROOT') . '/view/' . \eMarket\Set::template() . '/catalog/constructor.php');
+if (\eMarket\Settings::path() == 'catalog') {
+    require_once(getenv('DOCUMENT_ROOT') . '/view/' . \eMarket\Settings::template() . '/catalog/constructor.php');
 }
 
-if (\eMarket\Set::path() == 'install') {
-    require_once(getenv('DOCUMENT_ROOT') . '/view/' . \eMarket\Set::template() . '/install/constructor.php');
+if (\eMarket\Settings::path() == 'install') {
+    require_once(getenv('DOCUMENT_ROOT') . '/view/' . \eMarket\Settings::template() . '/install/constructor.php');
 }
 //Закрываем соединение с БД / Close DB connect
 \eMarket\Pdo::connect('end');

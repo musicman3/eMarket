@@ -140,7 +140,7 @@ $this_time = time();
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 $sql_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_SLIDESHOW . " ORDER BY id DESC", []);
 $lines = \eMarket\Func::filterData($sql_data, 'language', $set_language);
-$lines_on_page = \eMarket\Set::linesOnPage();
+$lines_on_page = \eMarket\Settings::linesOnPage();
 $count_lines = count($lines);
 $navigate = \eMarket\Navigation::getLink($count_lines, $lines_on_page);
 $start = $navigate[0];
@@ -152,5 +152,5 @@ require_once('modal/index.php');
 require_once('modal/settings.php');
 
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
-\eMarket\Set::$JS_END = __DIR__;
+\eMarket\Settings::$JS_END = __DIR__;
 ?>

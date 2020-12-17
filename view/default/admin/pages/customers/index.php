@@ -11,7 +11,7 @@
 	    <!--Выводим уведомление об успешном действии-->
 	    <div id="alert_block"><?php \eMarket\Messages::alert(); ?></div>
 	    <h3 class="panel-title">
-		<?php echo \eMarket\Set::titlePageGenerator() ?>
+		<?php echo \eMarket\Settings::titlePageGenerator() ?>
 	    </h3>
 	</div>
 	<div class="panel-body">
@@ -85,10 +85,10 @@
 		    </thead>
 		    <tbody>
 			<?php for ($start; $start < $finish; $start++) { ?>
-    			<tr class="<?php echo \eMarket\Set::statusSwitchClass($lines[$start][18]) ?>">
+    			<tr class="<?php echo \eMarket\Settings::statusSwitchClass($lines[$start][18]) ?>">
     			    <td><?php echo $lines[$start][3] ?></td>
     			    <td class="text-center"><?php echo $lines[$start][4] ?></td>
-    			    <td class="text-center"><?php echo \eMarket\Set::dateLocale($lines[$start][6]) ?></td>
+    			    <td class="text-center"><?php echo \eMarket\Settings::dateLocale($lines[$start][6]) ?></td>
     			    <td class="text-center"><?php echo $lines[$start][11] ?></td>
     			    <td>
     				<div class="flexbox">

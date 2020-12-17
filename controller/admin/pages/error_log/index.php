@@ -21,13 +21,13 @@ if (file_exists(ROOT . '/model/work/errors.log')) { // Если файл сущ�
 } else { // если файла нет, то выводим пустой массив
     $lines = [];
 }
-$lines_on_page = \eMarket\Set::linesOnPage();
+$lines_on_page = \eMarket\Settings::linesOnPage();
 $count_lines = count($lines);
 $navigate = \eMarket\Navigation::postLink($count_lines, $lines_on_page);
 $start = $navigate[0];
 $finish = $navigate[1];
 
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
-\eMarket\Set::$JS_END = __DIR__;
+\eMarket\Settings::$JS_END = __DIR__;
 
 ?>

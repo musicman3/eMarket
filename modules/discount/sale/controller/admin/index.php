@@ -5,7 +5,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-$MODULE_DB = \eMarket\Set::moduleDatabase();
+$MODULE_DB = \eMarket\Settings::moduleDatabase();
 
 // Если нажали на кнопку Добавить
 if (\eMarket\Valid::inPOST('add')) {
@@ -104,7 +104,7 @@ if (\eMarket\Valid::inPOST('delete')) {
 //КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 $sql_data = \eMarket\Pdo::getColAssoc("SELECT *, UNIX_TIMESTAMP (date_end) FROM " . $MODULE_DB . " ORDER BY id DESC", []);
 $lines = \eMarket\Func::filterData($sql_data, 'language', lang('#lang_all')[0]);
-$lines_on_page = \eMarket\Set::linesOnPage();
+$lines_on_page = \eMarket\Settings::linesOnPage();
 $navigate = \eMarket\Navigation::getLink(count($lines), $lines_on_page);
 $start = $navigate[0];
 $finish = $navigate[1];
@@ -114,7 +114,7 @@ $this_time = time();
 require(\eMarket\View::routingModules('controller') . '/modal/index.php');
 
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
-\eMarket\Set::$JS_MOD_END = __DIR__;
+\eMarket\Settings::$JS_MOD_END = __DIR__;
 // Загружаем разметку модуля
 require_once (\eMarket\View::routingModules('view') . '/index.php');
 ?>

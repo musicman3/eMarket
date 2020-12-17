@@ -86,8 +86,8 @@
 
                     <td><?php echo $lines[$start]['name'] ?></td>
                     <td class="text-center"><?php echo $lines[$start]['sale_value'] ?></td>
-                    <td class="text-center"><?php echo \eMarket\Set::dateLocale($lines[$start]['date_start']); ?></td>
-                    <td class="text-center"><?php echo \eMarket\Set::dateLocale($lines[$start]['date_end']); ?></td>
+                    <td class="text-center"><?php echo \eMarket\Settings::dateLocale($lines[$start]['date_start']); ?></td>
+                    <td class="text-center"><?php echo \eMarket\Settings::dateLocale($lines[$start]['date_end']); ?></td>
                     <?php if ($lines[$start]['default_set'] == 1) { ?>
                         <td class="text-center"><?php echo lang('confirm-yes') ?></td>
                     <?php } else { ?>

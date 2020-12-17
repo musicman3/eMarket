@@ -43,7 +43,7 @@
             <div id="alert_block"><?php \eMarket\Messages::alert(); ?></div>
 
             <h3 class="panel-title">
-                <?php echo \eMarket\Set::titlePageGenerator() ?>
+                <?php echo \eMarket\Settings::titlePageGenerator() ?>
             </h3>
         </div>
         <!--Скрытый div для передачи данных-->
@@ -143,33 +143,33 @@
                                 if ($start < $count_lines_cat) {
                                     ?>
 
-                                    <tr class="<?php echo \eMarket\Set::sorties('info') ?> sort-list" unitid="<?php echo $arr_merge['cat'][$start]['id'] ?>">
+                                    <tr class="<?php echo \eMarket\Settings::sorties('info') ?> sort-list" unitid="<?php echo $arr_merge['cat'][$start]['id'] ?>">
 
                                         <!-- Вырезанные категории "АКТИВНЫЕ" -->
                                         <?php
                                         if (isset($_SESSION['buffer']['cat']) == true && in_array($arr_merge['cat'][$start]['id'], $_SESSION['buffer']['cat']) == true && $arr_merge['cat'][$start]['status'] == 1) {
-                                            echo \eMarket\Set::sorties();
+                                            echo \eMarket\Settings::sorties();
                                             ?>    
                                             <td class="sortleft"><div><a href="#" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-folder-open"> </span></a></div></td>
 
                                             <!-- Вырезанные категории "НЕ АКТИВНЫЕ" -->
                                             <?php
                                         } elseif (isset($_SESSION['buffer']['cat']) == true && in_array($arr_merge['cat'][$start]['id'], $_SESSION['buffer']['cat']) == true && $arr_merge['cat'][$start]['status'] == 0) {
-                                            echo \eMarket\Set::sorties();
+                                            echo \eMarket\Settings::sorties();
                                             ?>    
                                             <td class="sortleft"><div><a href="#" class="btn btn-default btn-xs disabled"><span class="glyphicon glyphicon-folder-open"> </span></a></div></td>
 
                                             <!-- Категория для трансфера -->
                                             <?php
                                         } elseif ($transfer == $lines_on_page + 1) {
-                                            echo \eMarket\Set::sorties();
+                                            echo \eMarket\Settings::sorties();
                                             ?>    
                                             <td class="sortleft"><div><a href="#" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-transfer"> </span></a></div></td>
 
                                             <!-- Если категория НЕ АКТИВНА -->
                                             <?php
                                         } elseif ($arr_merge['cat'][$start]['status'] == 0) {
-                                            echo \eMarket\Set::sorties();
+                                            echo \eMarket\Settings::sorties();
                                             ?>    
                                             <td class="sortleft">
 
@@ -187,7 +187,7 @@
                                         } else {
                                             ?>
                                             <!-- Если категория АКТИВНА -->
-                                            <?php echo \eMarket\Set::sorties() ?>    
+                                            <?php echo \eMarket\Settings::sorties() ?>    
                                             <td class="sortleft">
 
                                                 <!-- Активная категория "ВНИЗ" -->
@@ -250,9 +250,9 @@
                                         </td>
 
                                         <?php if ($arr_merge['prod'][$start . 'a']['discount'] != '' && $arr_merge['prod'][$start . 'a']['discount'] != NULL && strpos($arr_merge['prod'][$start . 'a']['discount'], ',') == FALSE && \eMarket\Modules\Discount\Sale::status() == 1) { ?>
-                                            <td class="sortleft"><span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="<?php echo \eMarket\Set::productSaleTooltip($arr_merge['prod'][$start . 'a']['discount']) ?>" class="glyphicon glyphicon-tag text-primary"> </span></td>
+                                            <td class="sortleft"><span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="<?php echo \eMarket\Settings::productSaleTooltip($arr_merge['prod'][$start . 'a']['discount']) ?>" class="glyphicon glyphicon-tag text-primary"> </span></td>
                                         <?php } elseif ($arr_merge['prod'][$start . 'a']['discount'] != '' && $arr_merge['prod'][$start . 'a']['discount'] != NULL && strpos($arr_merge['prod'][$start . 'a']['discount'], ',') != FALSE && \eMarket\Modules\Discount\Sale::status() == 1) { ?>
-                                            <td class="sortleft"><span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="<?php echo \eMarket\Set::productSaleTooltip($arr_merge['prod'][$start . 'a']['discount']) ?>" class="glyphicon glyphicon-tags text-primary"> </span></td>
+                                            <td class="sortleft"><span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="<?php echo \eMarket\Settings::productSaleTooltip($arr_merge['prod'][$start . 'a']['discount']) ?>" class="glyphicon glyphicon-tags text-primary"> </span></td>
                                         <?php } else { ?>
                                             <td class="sortleft-m"><span class="glyphicon glyphicon-tag"></span></td>
                                         <?php } ?>

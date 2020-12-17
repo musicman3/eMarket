@@ -23,5 +23,5 @@ if (\eMarket\Valid::inGET('recovery_code')) {
     }
 }
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
-\eMarket\Set::$JS_END = __DIR__;
+\eMarket\Settings::$JS_END = __DIR__;
 ?>

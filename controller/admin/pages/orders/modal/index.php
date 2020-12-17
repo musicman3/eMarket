@@ -13,7 +13,7 @@ for ($i = $start; $i < $finish; $i++) {
 
         foreach ($lines as $sql_modal) {
             if ($sql_modal['id'] == $modal_id) {
-                $sql_modal['date_purchased'] = \eMarket\Set::dateLocale($sql_modal['date_purchased'], '%c');
+                $sql_modal['date_purchased'] = \eMarket\Settings::dateLocale($sql_modal['date_purchased'], '%c');
                 $orders[$modal_id] = $sql_modal;
             }
         }

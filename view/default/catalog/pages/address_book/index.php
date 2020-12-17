@@ -47,7 +47,7 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
 		foreach ($address_data as $val) {
 		    ?>
 		    <tr>
-			<td><img src="/view/<?php echo \eMarket\Set::template() ?>/admin/images/worldflags/<?php echo strtolower($val['alpha_2']) ?>.png" alt="<?php echo $val['countries_name'] . ', ' . $val['regions_name'] ?>" title="<?php echo $val['countries_name'] . ', ' . $val['regions_name'] ?>" width="16" height="10" /> <?php echo $val['zip'] . ', ' . $val['city'] . ', ' . $val['address'] ?></td>
+			<td><img src="/view/<?php echo \eMarket\Settings::template() ?>/admin/images/worldflags/<?php echo strtolower($val['alpha_2']) ?>.png" alt="<?php echo $val['countries_name'] . ', ' . $val['regions_name'] ?>" title="<?php echo $val['countries_name'] . ', ' . $val['regions_name'] ?>" width="16" height="10" /> <?php echo $val['zip'] . ', ' . $val['city'] . ', ' . $val['address'] ?></td>
 			<?php if ($val['default'] == 1) { ?>
 			    <td class="text-center"><?php echo lang('confirm-yes') ?></td>
 			<?php } else { ?>

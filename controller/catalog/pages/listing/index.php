@@ -41,7 +41,7 @@ if (\eMarket\Valid::inGET('search')) {
 } else {
     $lines = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE language=? AND parent_id=? AND status=? " . $sort_parameter, [lang('#lang_all')[0], \eMarket\Valid::inGET('category_id'), 1]);
 }
-$lines_on_page = \eMarket\Set::linesOnPage();
+$lines_on_page = \eMarket\Settings::linesOnPage();
 $count_lines = count($lines);
 $navigate = \eMarket\Navigation::getLink($count_lines, $lines_on_page);
 $start = $navigate[0];
@@ -52,5 +52,5 @@ $categories_name = \eMarket\Pdo::getCell("SELECT name FROM " . TABLE_CATEGORIES 
 require_once('modal/cart_message.php');
 
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
-\eMarket\Set::$JS_END = __DIR__;
+\eMarket\Settings::$JS_END = __DIR__;
 ?>

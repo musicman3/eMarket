@@ -43,7 +43,7 @@ class Messages {
         // При POST и GET по ajax + обновление страницы ШАГ 3 (обновление редиректом)
         if (isset($_SESSION['message_marker']) && $_SESSION['message_marker'] == 'ok_3') {
             if (isset($_SESSION['message'])) {
-                require_once (ROOT . '/view/' . \eMarket\Set::template() . '/layouts/alert.php');
+                require_once (ROOT . '/view/' . \eMarket\Settings::template() . '/layouts/alert.php');
             }
             unset($_SESSION['message_marker']);
             unset($_SESSION['message']);
@@ -51,7 +51,7 @@ class Messages {
         // При POST и GET по ajax + обновление страницы ШАГ 4 (обновление по ajax)
         if (\eMarket\Valid::inGET('message') == 'ok') {
             if (isset($_SESSION['message'])) {
-                require_once (ROOT . '/view/' . \eMarket\Set::template() . '/layouts/alert.php');
+                require_once (ROOT . '/view/' . \eMarket\Settings::template() . '/layouts/alert.php');
             }
             unset($_SESSION['message_marker']);
             unset($_SESSION['message']);
@@ -68,7 +68,7 @@ class Messages {
 
         // Если вызываем самостоятельно
         if (isset($_SESSION['message'][3]) && $_SESSION['message'][3] == TRUE) {
-            require_once (ROOT . '/view/' . \eMarket\Set::template() . '/layouts/alert.php');
+            require_once (ROOT . '/view/' . \eMarket\Settings::template() . '/layouts/alert.php');
             unset($_SESSION['message']);
         }
     }

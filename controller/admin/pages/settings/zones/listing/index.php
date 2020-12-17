@@ -48,7 +48,7 @@ $regions = \eMarket\Pdo::getColAssoc("SELECT country_id, regions_id FROM " . TAB
 // Собираем данные для вывода списка стран
 $lines_temp = \eMarket\Pdo::getColRow("SELECT country_id FROM " . TABLE_ZONES_VALUE . " WHERE zones_id=?", [$zones_id]);
 $lines = array_values(array_unique($lines_temp, SORT_REGULAR)); // Выбираем по 1 экземпляру стран и сбрасываем ключи массива
-$lines_on_page = \eMarket\Set::linesOnPage();
+$lines_on_page = \eMarket\Settings::linesOnPage();
 $count_lines = count($lines);
 $navigate = \eMarket\Navigation::getLink($count_lines, $lines_on_page);
 $start = $navigate[0];
@@ -67,5 +67,5 @@ for ($y = $start; $y < $finish; $y++) {
 }
 
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
-\eMarket\Set::$JS_END = __DIR__;
+\eMarket\Settings::$JS_END = __DIR__;
 ?>

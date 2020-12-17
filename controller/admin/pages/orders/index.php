@@ -8,7 +8,7 @@
 // Если нажали на кнопку Редактировать
 if (\eMarket\Valid::inPOST('edit')) {
 
-    $primary_language = \eMarket\Set::primaryLanguage();
+    $primary_language = \eMarket\Settings::primaryLanguage();
     // Сохраняем статус
     $order_data = \eMarket\Pdo::getColAssoc("SELECT orders_status_history, customer_data, email FROM " . TABLE_ORDERS . " WHERE id=?", [\eMarket\Valid::inPOST('edit')])[0];
     $customer_language = json_decode($order_data['customer_data'], 1)['language'];
@@ -22,11 +22,11 @@ if (\eMarket\Valid::inPOST('edit')) {
         array_unshift($orders_status_history, [
             'customer' => [
                 'status' => $customer_status_history_select,
-                'date' => \eMarket\Set::dateLocale($date, '%c', $customer_language)
+                'date' => \eMarket\Settings::dateLocale($date, '%c', $customer_language)
             ],
             'admin' => [
                 'status' => $admin_status_history_select,
-                'date' => \eMarket\Set::dateLocale($date, '%c', $primary_language)
+                'date' => \eMarket\Settings::dateLocale($date, '%c', $primary_language)
         ]]);
         \eMarket\Pdo::inPrepare("UPDATE " . TABLE_ORDERS . " SET orders_status_history=?, last_modified=? WHERE id=?", [json_encode($orders_status_history), $date, \eMarket\Valid::inPOST('edit')]);
 
@@ -58,7 +58,7 @@ if (\eMarket\Valid::inGET('search')) {
     $lines = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_ORDERS . " ORDER BY id DESC", []);
 }
 
-$lines_on_page = \eMarket\Set::linesOnPage();
+$lines_on_page = \eMarket\Settings::linesOnPage();
 $count_lines = count($lines);
 $navigate = \eMarket\Navigation::getLink($count_lines, $lines_on_page);
 $start = $navigate[0];
@@ -68,5 +68,5 @@ $finish = $navigate[1];
 require_once('modal/index.php');
 
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
-\eMarket\Set::$JS_END = __DIR__;
+\eMarket\Settings::$JS_END = __DIR__;
 ?>

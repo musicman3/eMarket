@@ -20,7 +20,7 @@ if (\eMarket\Valid::inGET('layout_pages_templates')) {
 if (\eMarket\Valid::inGET('name_templates')) {
     $select_template = \eMarket\Valid::inGET('name_templates');
 } else {
-    $select_template = \eMarket\Set::template();
+    $select_template = \eMarket\Settings::template();
 }
 
 
@@ -161,6 +161,6 @@ if (\eMarket\Valid::inGET('layout_header') OR \eMarket\Valid::inGET('layout_head
 //\eMarket\Debug::trace($layout_pages);
 //
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
-\eMarket\Set::$JS_END = __DIR__;
+\eMarket\Settings::$JS_END = __DIR__;
 
 ?>

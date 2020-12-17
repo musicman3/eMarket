@@ -137,7 +137,7 @@ class Products {
     public static function inStock($date_available, $quantity) {
         if ($date_available != NULL && $date_available != FALSE && strtotime($date_available) > strtotime(date('Y-m-d'))) {
             $date_available_marker = 'false';
-            $date_available_text = lang('product_in_stock_from') . ' ' . \eMarket\Set::dateLocale($date_available);
+            $date_available_text = lang('product_in_stock_from') . ' ' . \eMarket\Settings::dateLocale($date_available);
         } elseif ($quantity != NULL && $quantity <= 0) {
             $date_available_text = lang('product_out_of_stock');
             $date_available_marker = 'true';

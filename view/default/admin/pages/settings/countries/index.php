@@ -14,7 +14,7 @@
 	    <!--Выводим уведомление об успешном действии-->
 	    <div id="alert_block"><?php \eMarket\Messages::alert(); ?></div>
 	    <h3 class="panel-title">
-		<span class="settings_back"><button type="button" onClick='location.href = "<?php echo \eMarket\Set::parentPartitionGenerator() ?>"' class="btn btn-primary btn-xs"><span class="back glyphicon glyphicon-share-alt"></span></button></span><span class="settings_name"><?php echo \eMarket\Set::titlePageGenerator() ?></span>
+		<span class="settings_back"><button type="button" onClick='location.href = "<?php echo \eMarket\Settings::parentPartitionGenerator() ?>"' class="btn btn-primary btn-xs"><span class="back glyphicon glyphicon-share-alt"></span></button></span><span class="settings_name"><?php echo \eMarket\Settings::titlePageGenerator() ?></span>
 	    </h3>
 	</div>
 	<div class="panel-body">
@@ -96,7 +96,7 @@
     			    <td><?php echo $lines[$start]['name'] ?></td>
     			    <td class="text-center"><?php echo $lines[$start]['alpha_2'] ?></td>
     			    <td class="text-center"><?php echo $lines[$start]['alpha_3'] ?></td>
-    			    <td class="text-center"><img src='/view/<?php echo \eMarket\Set::template() ?>/admin/images/worldflags/<?php echo strtolower($lines[$start]['alpha_2']) ?>.png'></td>
+    			    <td class="text-center"><img src='/view/<?php echo \eMarket\Settings::template() ?>/admin/images/worldflags/<?php echo strtolower($lines[$start]['alpha_2']) ?>.png'></td>
     			    <td>
     				<div class="flexbox">
     				    <!--Вызов модального окна для редактирования-->

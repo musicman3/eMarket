@@ -13,7 +13,7 @@ if (\eMarket\Valid::inPOST('lines_on_page')) {
     // Выводим сообщение об успехе
     \eMarket\Messages::alert('success', lang('action_completed_successfully'));
     // Считываем значение
-    $lines_on_page = \eMarket\Set::linesOnPage();
+    $lines_on_page = \eMarket\Settings::linesOnPage();
 }
 
 // ВРЕМЯ СЕССИИ АДМИНИСТРАТОРА
@@ -22,7 +22,7 @@ if (\eMarket\Valid::inPOST('session_expr_time')) {
     \eMarket\Pdo::inPrepare("UPDATE " . TABLE_BASIC_SETTINGS . " SET session_expr_time=?", [\eMarket\Valid::inPOST('session_expr_time')]);
 
     // Считываем значение
-    $session_expr_time = \eMarket\Set::sessionExprTime();
+    $session_expr_time = \eMarket\Settings::sessionExprTime();
 }
 
 // ОТЛАДОЧНАЯ ИНФОРМАЦИЯ
@@ -43,7 +43,7 @@ if (\eMarket\Valid::inPOST('debug')) {
 }
 
 // ОСНОВНОЙ ЯЗЫК
-$primary_language = \eMarket\Set::primaryLanguage();
+$primary_language = \eMarket\Settings::primaryLanguage();
 $langs_settings = \eMarket\Func::deleteValInArray(lang('#lang_all'), [$primary_language]);
 
 if (\eMarket\Valid::inPOST('primary_language')) {
@@ -51,7 +51,7 @@ if (\eMarket\Valid::inPOST('primary_language')) {
     \eMarket\Pdo::inPrepare("UPDATE " . TABLE_BASIC_SETTINGS . " SET primary_language=?", [\eMarket\Valid::inPOST('primary_language')]);
 
     // Считываем значение
-    $primary_language = \eMarket\Set::primaryLanguage();
+    $primary_language = \eMarket\Settings::primaryLanguage();
 }
 
 
@@ -159,5 +159,5 @@ if (\eMarket\Valid::inPOST('smtp_port')) {
 }
 
 //Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
-\eMarket\Set::$JS_END = __DIR__;
+\eMarket\Settings::$JS_END = __DIR__;
 ?>

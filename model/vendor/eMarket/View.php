@@ -26,7 +26,7 @@ class View {
      */
     public static function routing() {
 
-        $str = str_replace('controller', 'view/' . \eMarket\Set::template(), getenv('SCRIPT_FILENAME'));
+        $str = str_replace('controller', 'view/' . \eMarket\Settings::template(), getenv('SCRIPT_FILENAME'));
 
         return $str;
     }
@@ -47,9 +47,9 @@ class View {
         }
 
         if (\eMarket\Valid::inGET('route') != '') {
-            $str = str_replace('controller', 'view/' . \eMarket\Set::template(), getenv('DOCUMENT_ROOT') . '/controller/' . \eMarket\Set::path() . '/pages/' . \eMarket\Valid::inGET('route') . '/' . $page);
+            $str = str_replace('controller', 'view/' . \eMarket\Settings::template(), getenv('DOCUMENT_ROOT') . '/controller/' . \eMarket\Settings::path() . '/pages/' . \eMarket\Valid::inGET('route') . '/' . $page);
         } else {
-            $str = str_replace('controller', 'view/' . \eMarket\Set::template(), getenv('DOCUMENT_ROOT') . '/controller/' . \eMarket\Set::path() . '/pages/dashboard/index.php');
+            $str = str_replace('controller', 'view/' . \eMarket\Settings::template(), getenv('DOCUMENT_ROOT') . '/controller/' . \eMarket\Settings::path() . '/pages/dashboard/index.php');
         }
         if (file_exists($str)) {
             return $str;
@@ -66,9 +66,9 @@ class View {
     public static function routingCatalog() {
 
         if (\eMarket\Valid::inGET('route') != '') {
-            $str = str_replace('controller', 'view/' . \eMarket\Set::template(), getenv('DOCUMENT_ROOT') . '/controller/' . \eMarket\Set::path() . '/pages/' . \eMarket\Valid::inGET('route') . '/index.php');
+            $str = str_replace('controller', 'view/' . \eMarket\Settings::template(), getenv('DOCUMENT_ROOT') . '/controller/' . \eMarket\Settings::path() . '/pages/' . \eMarket\Valid::inGET('route') . '/index.php');
         } else {
-            $str = str_replace('controller', 'view/' . \eMarket\Set::template(), getenv('DOCUMENT_ROOT') . '/controller/' . \eMarket\Set::path() . '/pages/catalog/index.php');
+            $str = str_replace('controller', 'view/' . \eMarket\Settings::template(), getenv('DOCUMENT_ROOT') . '/controller/' . \eMarket\Settings::path() . '/pages/catalog/index.php');
         }
         if (file_exists($str)) {
             return $str;
@@ -86,9 +86,9 @@ class View {
     public static function routingModules($path) {
 
         if (\eMarket\Valid::inGET('module_path')) {
-            return \eMarket\Set::modulesPath() . '/' . $path . '/' . \eMarket\Set::path() . '/' . \eMarket\Valid::inGET('module_path');
+            return \eMarket\Settings::modulesPath() . '/' . $path . '/' . \eMarket\Settings::path() . '/' . \eMarket\Valid::inGET('module_path');
         } else {
-            return \eMarket\Set::modulesPath() . '/' . $path . '/' . \eMarket\Set::path();
+            return \eMarket\Settings::modulesPath() . '/' . $path . '/' . \eMarket\Settings::path();
         }
     }
 
@@ -102,13 +102,13 @@ class View {
     public static function layoutRouting($position, $count = null) {
 
         if (self::$array_pos_value == null) {
-            self::$array_pos_value = \eMarket\Pdo::getColRow("SELECT url, value FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND page=? AND template_name=? ORDER BY sort ASC", [\eMarket\Set::path(), \eMarket\Set::titleDir(), \eMarket\Set::template()]);
+            self::$array_pos_value = \eMarket\Pdo::getColRow("SELECT url, value FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND page=? AND template_name=? ORDER BY sort ASC", [\eMarket\Settings::path(), \eMarket\Settings::titleDir(), \eMarket\Settings::template()]);
         }
         if (count(self::$array_pos_value) > 0) {
             $array_out = [];
             foreach (self::$array_pos_value as $val) {
                 if ($val[1] == $position) {
-                    $path_view = str_replace('controller', 'view/' . \eMarket\Set::template(), $val[0]);
+                    $path_view = str_replace('controller', 'view/' . \eMarket\Settings::template(), $val[0]);
                     $array_out[] = $val[0];
                     $array_out[] = $path_view;
                 }
@@ -119,12 +119,12 @@ class View {
             return $array_out;
         } else {
             if (self::$array_pos == null) {
-                self::$array_pos = \eMarket\Pdo::getColRow("SELECT url, page FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? ORDER BY sort ASC", [\eMarket\Set::path(), $position, \eMarket\Set::template()]);
+                self::$array_pos = \eMarket\Pdo::getColRow("SELECT url, page FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? ORDER BY sort ASC", [\eMarket\Settings::path(), $position, \eMarket\Settings::template()]);
             }
             $array_out = [];
             foreach (self::$array_pos as $val) {
                 if ($val[1] == 'all') {
-                    $path_view = str_replace('controller', 'view/' . \eMarket\Set::template(), $val[0]);
+                    $path_view = str_replace('controller', 'view/' . \eMarket\Settings::template(), $val[0]);
                     $array_out[] = $val[0];
                     $array_out[] = $path_view;
                 }

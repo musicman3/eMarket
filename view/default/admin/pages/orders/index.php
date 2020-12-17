@@ -15,7 +15,7 @@
 	    <!--Выводим уведомление об успешном действии-->
 	    <div id="alert_block"><?php \eMarket\Messages::alert(); ?></div>
 	    <h3 class="panel-title">
-		<?php echo \eMarket\Set::titlePageGenerator() ?>
+		<?php echo \eMarket\Settings::titlePageGenerator() ?>
 	    </h3>
 	</div>
 	<div class="panel-body">
@@ -99,8 +99,8 @@
     			    <td class="text-center"><?php echo json_decode($lines[$start]['customer_data'], 1)['firstname'] . ' ' . json_decode($lines[$start]['customer_data'], 1)['lastname'] ?></td>
     			    <td class="text-center"><?php echo $lines[$start]['email'] ?></td>
     			    <td class="text-center"><?php echo json_decode($lines[$start]['order_total'], 1)['admin']['total_to_pay_format'] ?></td>
-    			    <td class="text-center"><?php echo \eMarket\Set::dateLocale($lines[$start]['date_purchased'], '%c') ?></td>
-    			    <td class="text-center"><?php echo \eMarket\Set::dateLocale($lines[$start]['last_modified'], '%c') ?></td>
+    			    <td class="text-center"><?php echo \eMarket\Settings::dateLocale($lines[$start]['date_purchased'], '%c') ?></td>
+    			    <td class="text-center"><?php echo \eMarket\Settings::dateLocale($lines[$start]['last_modified'], '%c') ?></td>
     			    <td class="text-center"><?php echo json_decode($lines[$start]['orders_status_history'], 1)[0]['admin']['status'] ?></td>
     			    <td>
     				<div class="flexbox">

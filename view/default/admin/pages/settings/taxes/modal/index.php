@@ -9,7 +9,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header"><div class="pull-right"><button class="close" type="button" data-dismiss="modal">×</button></div>
-                <h4 class="modal-title"><?php echo \eMarket\Set::titlePageGenerator() ?></h4>
+                <h4 class="modal-title"><?php echo \eMarket\Settings::titlePageGenerator() ?></h4>
             </div>
             <form id="form_add" name="form_add" action="javascript:void(null);" onsubmit="Ajax.callAdd()">
                 <div class="panel-body">
@@ -17,7 +17,7 @@
                     <input type="hidden" id="edit" name="edit" value="" />
 
                     <!-- Языковые панели -->
-                    <?php require_once(ROOT . '/view/' . \eMarket\Set::template() . '/layouts/lang_tabs_add.php') ?>
+                    <?php require_once(ROOT . '/view/' . \eMarket\Settings::template() . '/layouts/lang_tabs_add.php') ?>
 
                     <!-- Содержимое языковых панелей -->
                     <div class="tab-content">
@@ -51,7 +51,7 @@
 
                         <div class="form-group">
                             <div class="input-group has-error">
-                                <span class="input-group-addon"><?php echo \eMarket\Set::currencyDefault()[3] ?></span>
+                                <span class="input-group-addon"><?php echo \eMarket\Settings::currencyDefault()[3] ?></span>
                                 <input class="input-sm form-control" placeholder="<?php echo lang('taxes_modal_rate') ?>" type="text" pattern="\d+(\.\d{0,2})?" name="rate_taxes" id="rate_taxes" required />
                             </div>
                         </div>
