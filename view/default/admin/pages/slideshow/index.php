@@ -95,17 +95,17 @@
                                         </div>
                                     </th>
                                 </tr>
-
-                                <tr class="border">
-                                    <th><?php echo lang('slides_image') ?></th>
-                                    <th class="text-center"><?php echo lang('slides_quantity') ?></th>
-                                    <th class="text-center"><?php echo lang('slides_name') ?></th>
-                                    <th class="text-center"><?php echo lang('slides_show_start') ?></th>
-                                    <th class="text-center"><?php echo lang('slides_show_end') ?></th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-
+                                <?php if ($lines == TRUE) { ?>
+                                    <tr class="border">
+                                        <th><?php echo lang('slides_image') ?></th>
+                                        <th class="text-center"><?php echo lang('slides_quantity') ?></th>
+                                        <th class="text-center"><?php echo lang('slides_name') ?></th>
+                                        <th class="text-center"><?php echo lang('slides_show_start') ?></th>
+                                        <th class="text-center"><?php echo lang('slides_show_end') ?></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                            <?php } ?>
                             <tbody>
                                 <?php for ($start; $start < $finish; $start++) { ?>
                                     <tr class="<?php echo \eMarket\Settings::statusSwitchClass($lines[$start]['status'], [$this_time, strtotime($lines[$start]['date_start'])], [strtotime($lines[$start]['date_finish']), $this_time]) ?>">
