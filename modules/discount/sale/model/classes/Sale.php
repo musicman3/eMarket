@@ -96,10 +96,22 @@ class Sale {
             }
 
             $price = $price_val / 100 * (100 - $total_rate);
+            
+            $interface = [
+                'price' => $price,
+                'names' => $discount_names,
+                'sales' => $discount_out
+            ];
 
-            return ['price' => $price, 'names' => $discount_names, 'sales' => $discount_out];
+            return $interface;
         }
-        return ['price' => $price_val, 'names' => 'false', 'sales' => 'false'];
+        
+        $interface = [
+            'price' => $price_val,
+            'names' => 'false',
+            'sales' => 'false'
+        ];
+        return $interface;
     }
 
     /**
