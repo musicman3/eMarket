@@ -34,7 +34,7 @@ final class Ecb {
             $class = 'danger';
         }
 
-        $discount_sale = self::discountHandler($input)['discount_sale'];
+        $discount_sale = self::discountHandler($input)['discount'];
         if ($discount_sale['names'] != 'false') {
             $discount_count = count($discount_sale['names']);
             $discount_names = '';
@@ -123,7 +123,7 @@ final class Ecb {
             foreach ($_SESSION['cart'] as $value) {
                 $data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=? AND language=?", [$value['id'], $language])[0];
                 if ($data != FALSE) {
-                    $discount_sale = self::discountHandler($data, $language)['discount_sale'];
+                    $discount_sale = self::discountHandler($data, $language)['discount'];
                     $discount_total_sale = 0;
 
                     $tax = [];
@@ -146,7 +146,7 @@ final class Ecb {
                             'currency' => $data['currency'],
                             'price_with_currency' => self::currencyPrice($data['price'], $data['currency']),
                             'quantity' => $value['quantity'],
-                            'discount_sale' => $discount_sale,
+                            'discount' => $discount_sale,
                             'tax' => $tax
                         ];
 
@@ -161,7 +161,7 @@ final class Ecb {
                             'currency' => $data['currency'],
                             'price_with_currency' => self::currencyPrice($data['price'], $data['currency']),
                             'quantity' => $value['quantity'],
-                            'discount_sale' => $discount_sale,
+                            'discount' => $discount_sale,
                             'tax' => $tax
                         ];
 
@@ -225,7 +225,7 @@ final class Ecb {
 
         $interface = [
             'out_price' => $discount_sale_interface['price'],
-            'discount_sale' => $discount_sale_interface
+            'discount' => $discount_sale_interface
         ];
         return $interface;
     }
