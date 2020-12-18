@@ -221,13 +221,13 @@ final class Ecb {
      */
     public static function discountHandler($input, $language = null) {
 
-        $discount_sale = \eMarket\Modules\Discount\Sale::dataInterface($input, $language);
+        $discount_sale_interface = \eMarket\Modules\Discount\Sale::dataInterface($input, $language);
 
-        $output = [
-            'out_price' => $discount_sale['price'],
-            'discount_sale' => $discount_sale
+        $interface = [
+            'out_price' => $discount_sale_interface['price'],
+            'discount_sale' => $discount_sale_interface
         ];
-        return $output;
+        return $interface;
     }
 
     /**
@@ -240,7 +240,7 @@ final class Ecb {
     public static function currencyPrice($price, $currency) {
 
         $currencies = \eMarket\Settings::currenciesData();
-        
+
         foreach ($currencies as $value) {
             if ($value['id'] == $currency) {
                 return $price / $value['value'];
