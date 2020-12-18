@@ -64,9 +64,9 @@ final class Eac {
 
         // Скрыть и Отобразить / Hide and Show
         self::status();
-        
+
         self::initDiscount();
-;
+        ;
         // Стикер / Stiker
         self::stiker();
 
@@ -81,13 +81,11 @@ final class Eac {
      */
     private static function initDiscount() {
 
-        $active_modules = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES, []);
+        $active_modules = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE type=? AND active=?", ['discount', '1']);
 
         foreach ($active_modules as $module) {
-            if ($module['type'] == 'discount' && $module['active'] == '1') {
-                $namespace = '\eMarket\Modules\Discount\\' . ucfirst($module['name']);
-                $namespace::initEac();
-            }
+            $namespace = '\eMarket\Modules\Discount\\' . ucfirst($module['name']);
+            $namespace::initEac();
         }
     }
 

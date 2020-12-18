@@ -225,16 +225,14 @@ final class Ecb {
      */
     public static function discountHandler($input, $language = null) {
 
-        $active_modules = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES, []);
+        $active_modules = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE type=? AND active=?", ['discount', '1']);
 
         $discounts_interfaces = [];
         $discounts_price = 0;
         foreach ($active_modules as $module) {
-            if ($module['type'] == 'discount' && $module['active'] == '1') {
-                $namespace = '\eMarket\Modules\Discount\\' . ucfirst($module['name']);
-                array_push($discounts_interfaces, $namespace::dataInterface($input, $language));
-                $discounts_price = $discounts_price + $namespace::dataInterface($input, $language)['price'];
-            }
+            $namespace = '\eMarket\Modules\Discount\\' . ucfirst($module['name']);
+            array_push($discounts_interfaces, $namespace::dataInterface($input, $language));
+            $discounts_price = $discounts_price + $namespace::dataInterface($input, $language)['price'];
         }
 
         $interface = [
