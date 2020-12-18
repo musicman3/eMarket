@@ -385,7 +385,7 @@ final class Pdo {
      * @param array $a (параметр для execute($a))
      * @return bool|array $result (возвращает данные или FALSE)
      */
-    public static function inPrepare($sql, $a = null) {
+    public static function action($sql, $a = null) {
 
         $result = FALSE;
         if ($result = self::connect()->prepare($sql)

@@ -116,7 +116,7 @@ final class Lang {
     public static function init() {
 
         if (\eMarket\Valid::inGET('language') && \eMarket\Settings::path() == 'admin' && isset($_SESSION['login']) && isset($_SESSION['pass'])) {
-            \eMarket\Pdo::inPrepare("UPDATE " . TABLE_ADMINISTRATORS . " SET language=? WHERE login=? AND password=?", [\eMarket\Valid::inGET('language'), $_SESSION['login'], $_SESSION['pass']]);
+            \eMarket\Pdo::action("UPDATE " . TABLE_ADMINISTRATORS . " SET language=? WHERE login=? AND password=?", [\eMarket\Valid::inGET('language'), $_SESSION['login'], $_SESSION['pass']]);
         }
 
         setlocale(LC_ALL, lang('language_locale'));

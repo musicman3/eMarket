@@ -16,7 +16,7 @@ foreach ($zones as $val) {
 
 // Если нажали на кнопку Добавить
 if (\eMarket\Valid::inPOST('add')) {
-    \eMarket\Pdo::inPrepare("INSERT INTO " . $MODULE_DB . " SET minimum_price=?, shipping_zone=?, currency=?", [\eMarket\Valid::inPOST('minimum_price'), \eMarket\Valid::inPOST('zone'), \eMarket\Settings::currencyDefault()[0]]);
+    \eMarket\Pdo::action("INSERT INTO " . $MODULE_DB . " SET minimum_price=?, shipping_zone=?, currency=?", [\eMarket\Valid::inPOST('minimum_price'), \eMarket\Valid::inPOST('zone'), \eMarket\Settings::currencyDefault()[0]]);
 
     // Выводим сообщение об успехе
     \eMarket\Messages::alert('success', lang('action_completed_successfully'));
@@ -25,7 +25,7 @@ if (\eMarket\Valid::inPOST('add')) {
 
 // Если нажали на кнопку Редактировать
 if (\eMarket\Valid::inPOST('edit')) {
-    \eMarket\Pdo::inPrepare("UPDATE " . $MODULE_DB . " SET minimum_price=?, shipping_zone=?, currency=? WHERE id=?", [\eMarket\Valid::inPOST('minimum_price'), \eMarket\Valid::inPOST('zone'), \eMarket\Settings::currencyDefault()[0], \eMarket\Valid::inPOST('edit')]);
+    \eMarket\Pdo::action("UPDATE " . $MODULE_DB . " SET minimum_price=?, shipping_zone=?, currency=? WHERE id=?", [\eMarket\Valid::inPOST('minimum_price'), \eMarket\Valid::inPOST('zone'), \eMarket\Settings::currencyDefault()[0], \eMarket\Valid::inPOST('edit')]);
 
     // Выводим сообщение об успехе
     \eMarket\Messages::alert('success', lang('action_completed_successfully'));
@@ -34,7 +34,7 @@ if (\eMarket\Valid::inPOST('edit')) {
 
 // Если нажали на кнопку Удалить
 if (\eMarket\Valid::inPOST('delete')) {
-    \eMarket\Pdo::inPrepare("DELETE FROM " . $MODULE_DB . " WHERE id=?", [\eMarket\Valid::inPOST('delete')]);
+    \eMarket\Pdo::action("DELETE FROM " . $MODULE_DB . " WHERE id=?", [\eMarket\Valid::inPOST('delete')]);
     
     // Выводим сообщение об успехе
     \eMarket\Messages::alert('success', lang('action_completed_successfully'));

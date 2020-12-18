@@ -68,7 +68,7 @@ if (\eMarket\Valid::inPOST('add')) {
     }
     array_unshift($address_data, $address_array);
 
-    \eMarket\Pdo::inPrepare("UPDATE " . TABLE_CUSTOMERS . " SET address_book=? WHERE email=?", [json_encode($address_data), $_SESSION['email_customer']]);
+    \eMarket\Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET address_book=? WHERE email=?", [json_encode($address_data), $_SESSION['email_customer']]);
 
     // Выводим сообщение об успехе
     \eMarket\Messages::alert('success', lang('action_completed_successfully'));
@@ -100,7 +100,7 @@ if (\eMarket\Valid::inPOST('edit')) {
 
     $address_data[(int) \eMarket\Valid::inPOST('edit') - 1] = $address_array;
 
-    \eMarket\Pdo::inPrepare("UPDATE " . TABLE_CUSTOMERS . " SET address_book=? WHERE email=?", [json_encode($address_data), $_SESSION['email_customer']]);
+    \eMarket\Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET address_book=? WHERE email=?", [json_encode($address_data), $_SESSION['email_customer']]);
 
     // Выводим сообщение об успехе
     \eMarket\Messages::alert('success', lang('action_completed_successfully'));
@@ -126,7 +126,7 @@ if (\eMarket\Valid::inPOST('delete')) {
         $address_data_out_table = json_encode($address_data_out);
     }
 
-    \eMarket\Pdo::inPrepare("UPDATE " . TABLE_CUSTOMERS . " SET address_book=? WHERE email=?", [$address_data_out_table, $_SESSION['email_customer']]);
+    \eMarket\Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET address_book=? WHERE email=?", [$address_data_out_table, $_SESSION['email_customer']]);
 
     // Выводим сообщение об успехе
     \eMarket\Messages::alert('success', lang('action_completed_successfully'));

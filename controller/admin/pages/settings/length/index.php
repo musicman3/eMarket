@@ -21,24 +21,24 @@ if (\eMarket\Valid::inPOST('add')) {
 
     // Оставляем один экземпляр значения по-умолчанию
     if ($id > 1 && $default_length != 0) {
-        \eMarket\Pdo::inPrepare("UPDATE " . TABLE_LENGTH . " SET default_length=?", [0]);
+        \eMarket\Pdo::action("UPDATE " . TABLE_LENGTH . " SET default_length=?", [0]);
 
         //Пересчитываем значения
         $value_length_all = \eMarket\Pdo::getColAssoc("SELECT id, value_length, language FROM " . TABLE_LENGTH, []);
         $count_value_length_all = count($value_length_all);
         for ($x = 0; $x < $count_value_length_all; $x++) {
-            \eMarket\Pdo::inPrepare("UPDATE " . TABLE_LENGTH . " SET value_length=? WHERE id=? AND language=?", [($value_length_all[$x]['value_length'] / \eMarket\Valid::inPOST('value_length')), $value_length_all[$x]['id'], $value_length_all[$x]['language']]);
+            \eMarket\Pdo::action("UPDATE " . TABLE_LENGTH . " SET value_length=? WHERE id=? AND language=?", [($value_length_all[$x]['value_length'] / \eMarket\Valid::inPOST('value_length')), $value_length_all[$x]['id'], $value_length_all[$x]['language']]);
         }
         
         // добавляем запись для всех вкладок
         for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
-            \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_LENGTH . " SET id=?, name=?, language=?, code=?, value_length=?, default_length=?", [$id, \eMarket\Valid::inPOST('name_length_' . $x), lang('#lang_all')[$x], \eMarket\Valid::inPOST('code_length_' . $x), 1, $default_length]);
+            \eMarket\Pdo::action("INSERT INTO " . TABLE_LENGTH . " SET id=?, name=?, language=?, code=?, value_length=?, default_length=?", [$id, \eMarket\Valid::inPOST('name_length_' . $x), lang('#lang_all')[$x], \eMarket\Valid::inPOST('code_length_' . $x), 1, $default_length]);
         }
     } else {
 
         // добавляем запись для всех вкладок
         for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
-            \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_LENGTH . " SET id=?, name=?, language=?, code=?, value_length=?, default_length=?", [$id, \eMarket\Valid::inPOST('name_length_' . $x), lang('#lang_all')[$x], \eMarket\Valid::inPOST('code_length_' . $x), \eMarket\Valid::inPOST('value_length'), $default_length]);
+            \eMarket\Pdo::action("INSERT INTO " . TABLE_LENGTH . " SET id=?, name=?, language=?, code=?, value_length=?, default_length=?", [$id, \eMarket\Valid::inPOST('name_length_' . $x), lang('#lang_all')[$x], \eMarket\Valid::inPOST('code_length_' . $x), \eMarket\Valid::inPOST('value_length'), $default_length]);
         }
     }
     // Выводим сообщение об успехе
@@ -57,24 +57,24 @@ if (\eMarket\Valid::inPOST('edit')) {
 
     // Оставляем один экземпляр значения по-умолчанию
     if ($default_length != 0) {
-        \eMarket\Pdo::inPrepare("UPDATE " . TABLE_LENGTH . " SET default_length=?", [0]);
+        \eMarket\Pdo::action("UPDATE " . TABLE_LENGTH . " SET default_length=?", [0]);
 
         //Пересчитываем значения
         $value_length_all = \eMarket\Pdo::getColAssoc("SELECT id, value_length, language FROM " . TABLE_LENGTH, []);
         $count_value_length_all = count($value_length_all);
         for ($x = 0; $x < $count_value_length_all; $x++) {
-            \eMarket\Pdo::inPrepare("UPDATE " . TABLE_LENGTH . " SET value_length=? WHERE id=? AND language=?", [($value_length_all[$x]['value_length'] / \eMarket\Valid::inPOST('value_length')), $value_length_all[$x]['id'], $value_length_all[$x]['language']]);
+            \eMarket\Pdo::action("UPDATE " . TABLE_LENGTH . " SET value_length=? WHERE id=? AND language=?", [($value_length_all[$x]['value_length'] / \eMarket\Valid::inPOST('value_length')), $value_length_all[$x]['id'], $value_length_all[$x]['language']]);
         }
 
         for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
             // обновляем запись
-            \eMarket\Pdo::inPrepare("UPDATE " . TABLE_LENGTH . " SET name=?, code=?, value_length=?, default_length=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_length_' . $x), \eMarket\Valid::inPOST('code_length_' . $x), 1, $default_length, \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
+            \eMarket\Pdo::action("UPDATE " . TABLE_LENGTH . " SET name=?, code=?, value_length=?, default_length=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_length_' . $x), \eMarket\Valid::inPOST('code_length_' . $x), 1, $default_length, \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
         }
     } else {
 
         for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
             // обновляем запись
-            \eMarket\Pdo::inPrepare("UPDATE " . TABLE_LENGTH . " SET name=?, code=?, value_length=?, default_length=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_length_' . $x), \eMarket\Valid::inPOST('code_length_' . $x), \eMarket\Valid::inPOST('value_length'), $default_length, \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
+            \eMarket\Pdo::action("UPDATE " . TABLE_LENGTH . " SET name=?, code=?, value_length=?, default_length=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_length_' . $x), \eMarket\Valid::inPOST('code_length_' . $x), \eMarket\Valid::inPOST('value_length'), $default_length, \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
         }
     }
     // Выводим сообщение об успехе
@@ -85,7 +85,7 @@ if (\eMarket\Valid::inPOST('edit')) {
 if (\eMarket\Valid::inPOST('delete')) {
 
     // Удаляем
-    \eMarket\Pdo::inPrepare("DELETE FROM " . TABLE_LENGTH . " WHERE id=?", [\eMarket\Valid::inPOST('delete')]);
+    \eMarket\Pdo::action("DELETE FROM " . TABLE_LENGTH . " WHERE id=?", [\eMarket\Valid::inPOST('delete')]);
     // Выводим сообщение об успехе
     \eMarket\Messages::alert('success', lang('action_completed_successfully'));
 }

@@ -14,7 +14,7 @@ if (\eMarket\Valid::inPOST('add')) {
 
     // добавляем запись для всех вкладок
     for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
-        \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_MANUFACTURERS . " SET id=?, name=?, language=?, site=?, logo=?", [$id, \eMarket\Valid::inPOST('name_manufacturers_' . $x), lang('#lang_all')[$x], \eMarket\Valid::inPOST('site_manufacturers'), json_encode([])]);
+        \eMarket\Pdo::action("INSERT INTO " . TABLE_MANUFACTURERS . " SET id=?, name=?, language=?, site=?, logo=?", [$id, \eMarket\Valid::inPOST('name_manufacturers_' . $x), lang('#lang_all')[$x], \eMarket\Valid::inPOST('site_manufacturers'), json_encode([])]);
     }
 
     // Выводим сообщение об успехе
@@ -25,7 +25,7 @@ if (\eMarket\Valid::inPOST('add')) {
 if (\eMarket\Valid::inPOST('edit')) {
 
     for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
-        \eMarket\Pdo::inPrepare("UPDATE " . TABLE_MANUFACTURERS . " SET name=?, site=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_manufacturers_' . $x), \eMarket\Valid::inPOST('site_manufacturers'), \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
+        \eMarket\Pdo::action("UPDATE " . TABLE_MANUFACTURERS . " SET name=?, site=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_manufacturers_' . $x), \eMarket\Valid::inPOST('site_manufacturers'), \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
     }
 
     // Выводим сообщение об успехе
@@ -45,7 +45,7 @@ array_push($resize_param, ['125', '94']); // ширина, высота
 // Если нажали на кнопку Удалить
 if (\eMarket\Valid::inPOST('delete')) {
     // Удаляем запись
-    \eMarket\Pdo::inPrepare("DELETE FROM " . TABLE_MANUFACTURERS . " WHERE id=?", [\eMarket\Valid::inPOST('delete')]);
+    \eMarket\Pdo::action("DELETE FROM " . TABLE_MANUFACTURERS . " WHERE id=?", [\eMarket\Valid::inPOST('delete')]);
     // Выводим сообщение об успехе
     \eMarket\Messages::alert('success', lang('action_completed_successfully'));
 }

@@ -35,12 +35,12 @@ if (\eMarket\Valid::inPOST('add')) {
 
     // Оставляем один экземпляр значения по-умолчанию
     if ($id > 1 && $default_value != 0) {
-        \eMarket\Pdo::inPrepare("UPDATE " . $MODULE_DB . " SET default_set=?", [0]);
+        \eMarket\Pdo::action("UPDATE " . $MODULE_DB . " SET default_set=?", [0]);
     }
 
     // добавляем запись для всех вкладок
     for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
-        \eMarket\Pdo::inPrepare("INSERT INTO " . $MODULE_DB . " SET id=?, name=?, language=?, sale_value=?, date_start=?, date_end=?, default_set=?", [$id, \eMarket\Valid::inPOST('name_module_' . $x), lang('#lang_all')[$x], \eMarket\Valid::inPOST('sale_value'), $start_date, $end_date, $default_value]);
+        \eMarket\Pdo::action("INSERT INTO " . $MODULE_DB . " SET id=?, name=?, language=?, sale_value=?, date_start=?, date_end=?, default_set=?", [$id, \eMarket\Valid::inPOST('name_module_' . $x), lang('#lang_all')[$x], \eMarket\Valid::inPOST('sale_value'), $start_date, $end_date, $default_value]);
     }
 
     // Выводим сообщение об успехе
@@ -70,12 +70,12 @@ if (\eMarket\Valid::inPOST('edit')) {
 
     // Оставляем один экземпляр значения по-умолчанию
     if ($default_value != 0) {
-        \eMarket\Pdo::inPrepare("UPDATE " . $MODULE_DB . " SET default_set=?", [0]);
+        \eMarket\Pdo::action("UPDATE " . $MODULE_DB . " SET default_set=?", [0]);
     }
 
     // добавляем запись для всех вкладок
     for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
-        \eMarket\Pdo::inPrepare("UPDATE " . $MODULE_DB . " SET name=?, sale_value=?, date_start=?, date_end=?, default_set=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_module_' . $x), \eMarket\Valid::inPOST('sale_value'), $start_date, $end_date, $default_value, \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
+        \eMarket\Pdo::action("UPDATE " . $MODULE_DB . " SET name=?, sale_value=?, date_start=?, date_end=?, default_set=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_module_' . $x), \eMarket\Valid::inPOST('sale_value'), $start_date, $end_date, $default_value, \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
     }
 
     // Выводим сообщение об успехе
@@ -93,10 +93,10 @@ if (\eMarket\Valid::inPOST('delete')) {
         $discount_str_explode_temp = explode(',', $discount_str_temp);
         $discount_str_explode = \eMarket\Func::deleteValInArray(\eMarket\Func::deleteEmptyInArray($discount_str_explode_temp), [\eMarket\Valid::inPOST('delete')]);
         $discount_str_implode = implode(',', $discount_str_explode);
-        \eMarket\Pdo::inPrepare("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [$discount_str_implode, $discount_id_arr]);
+        \eMarket\Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [$discount_str_implode, $discount_id_arr]);
     }
 
-    \eMarket\Pdo::inPrepare("DELETE FROM " . $MODULE_DB . " WHERE id=?", [\eMarket\Valid::inPOST('delete')]);
+    \eMarket\Pdo::action("DELETE FROM " . $MODULE_DB . " WHERE id=?", [\eMarket\Valid::inPOST('delete')]);
     // Выводим сообщение об успехе
     \eMarket\Messages::alert('success', lang('action_completed_successfully'));
 }

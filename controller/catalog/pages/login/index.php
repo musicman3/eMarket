@@ -11,12 +11,12 @@ if (\eMarket\Valid::inGET('activation_code')) {
         $account_date = \eMarket\Pdo::selectPrepare("SELECT UNIX_TIMESTAMP (date_account_created) FROM " . TABLE_CUSTOMERS . " WHERE id=?", [$id_actvation]);
         // Если дата активации не истекла
         if ($account_date + (3 * 24 * 60 * 60) > time()) {
-            \eMarket\Pdo::inPrepare("DELETE FROM " . TABLE_CUSTOMERS_ACTIVATION . " WHERE id=?", [$id_actvation]);
-            \eMarket\Pdo::inPrepare("UPDATE " . TABLE_CUSTOMERS . " SET status=? WHERE id=?", [1, $id_actvation]);
+            \eMarket\Pdo::action("DELETE FROM " . TABLE_CUSTOMERS_ACTIVATION . " WHERE id=?", [$id_actvation]);
+            \eMarket\Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET status=? WHERE id=?", [1, $id_actvation]);
             \eMarket\Messages::alert('success', lang('messages_activation_complete'), 7000, true);
         } else {
-            \eMarket\Pdo::inPrepare("DELETE FROM " . TABLE_CUSTOMERS_ACTIVATION . " WHERE id=?", [$id_actvation]);
-            \eMarket\Pdo::inPrepare("DELETE FROM " . TABLE_CUSTOMERS . " WHERE id=?", [$id_actvation]);
+            \eMarket\Pdo::action("DELETE FROM " . TABLE_CUSTOMERS_ACTIVATION . " WHERE id=?", [$id_actvation]);
+            \eMarket\Pdo::action("DELETE FROM " . TABLE_CUSTOMERS . " WHERE id=?", [$id_actvation]);
         }
     }
 }
@@ -26,7 +26,7 @@ if (\eMarket\Valid::inPOST('email_for_recovery')) {
     $recovery_check = \eMarket\Pdo::getCellFalse("SELECT recovery_code FROM " . TABLE_PASSWORD_RECOVERY . " WHERE customer_id=?", [$customer_id]);
     if ($customer_id != FALSE && $recovery_check == FALSE) { // Если произведен запрос на восстановление доступа
         $recovery_code = \eMarket\Func::getToken(64);
-        \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_PASSWORD_RECOVERY . " SET customer_id=?, recovery_code=?, recovery_code_created=?", [$customer_id, $recovery_code, date("Y-m-d H:i:s")]);
+        \eMarket\Pdo::action("INSERT INTO " . TABLE_PASSWORD_RECOVERY . " SET customer_id=?, recovery_code=?, recovery_code_created=?", [$customer_id, $recovery_code, date("Y-m-d H:i:s")]);
 
         $link = HTTP_SERVER . '?route=recoverypass&recovery_code=' . $recovery_code;
         \eMarket\Messages::sendMail(\eMarket\Valid::inPOST('email_for_recovery'), lang('email_recovery_password_subject'), sprintf(lang('email_recovery_password_message'), $link, $link));
@@ -34,7 +34,7 @@ if (\eMarket\Valid::inPOST('email_for_recovery')) {
         \eMarket\Messages::alert('success', lang('register_password_recovery_message_success'), 7000, true);
     } elseif ($customer_id != FALSE && $recovery_check != FALSE) { // Если произведен повторный запрос
         $recovery_code = \eMarket\Func::getToken(64);
-        \eMarket\Pdo::inPrepare("UPDATE " . TABLE_PASSWORD_RECOVERY . " SET recovery_code=?, recovery_code_created=? WHERE customer_id=?", [$recovery_code, date("Y-m-d H:i:s"), $customer_id]);
+        \eMarket\Pdo::action("UPDATE " . TABLE_PASSWORD_RECOVERY . " SET recovery_code=?, recovery_code_created=? WHERE customer_id=?", [$recovery_code, date("Y-m-d H:i:s"), $customer_id]);
 
         $link = HTTP_SERVER . '?route=recoverypass&recovery_code=' . $recovery_code;
         \eMarket\Messages::sendMail(\eMarket\Valid::inPOST('email_for_recovery'), lang('email_recovery_password_subject'), sprintf(lang('email_recovery_password_message'), $link, $link));

@@ -14,7 +14,7 @@ if (\eMarket\Valid::inPOST('add')) {
 
     // добавляем запись для всех вкладок
     for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
-        \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_ZONES . " SET id=?, name=?, note=?, language=?", [$id, \eMarket\Valid::inPOST('name_zones_' . $x), \eMarket\Valid::inPOST('note_zones'), lang('#lang_all')[$x]]);
+        \eMarket\Pdo::action("INSERT INTO " . TABLE_ZONES . " SET id=?, name=?, note=?, language=?", [$id, \eMarket\Valid::inPOST('name_zones_' . $x), \eMarket\Valid::inPOST('note_zones'), lang('#lang_all')[$x]]);
     }
 
     // Выводим сообщение об успехе
@@ -26,7 +26,7 @@ if (\eMarket\Valid::inPOST('edit')) {
 
     for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
         // обновляем запись
-        \eMarket\Pdo::inPrepare("UPDATE " . TABLE_ZONES . " SET name=?, note=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_zones_' . $x), \eMarket\Valid::inPOST('note_zones'), \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
+        \eMarket\Pdo::action("UPDATE " . TABLE_ZONES . " SET name=?, note=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_zones_' . $x), \eMarket\Valid::inPOST('note_zones'), \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
     }
 
     // Выводим сообщение об успехе
@@ -37,8 +37,8 @@ if (\eMarket\Valid::inPOST('edit')) {
 if (\eMarket\Valid::inPOST('delete')) {
 
     // Удаляем
-    \eMarket\Pdo::inPrepare("DELETE FROM " . TABLE_ZONES . " WHERE id=?", [\eMarket\Valid::inPOST('delete')]);
-    \eMarket\Pdo::inPrepare("DELETE FROM " . TABLE_ZONES_VALUE . " WHERE zones_id=?", [\eMarket\Valid::inPOST('delete')]);
+    \eMarket\Pdo::action("DELETE FROM " . TABLE_ZONES . " WHERE id=?", [\eMarket\Valid::inPOST('delete')]);
+    \eMarket\Pdo::action("DELETE FROM " . TABLE_ZONES_VALUE . " WHERE zones_id=?", [\eMarket\Valid::inPOST('delete')]);
     // Выводим сообщение об успехе
     \eMarket\Messages::alert('success', lang('action_completed_successfully'));
 }

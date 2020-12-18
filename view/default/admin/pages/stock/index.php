@@ -249,9 +249,9 @@
                                             <div class="pull-right"><?php echo \eMarket\Ecb::priceInterface($arr_merge['prod'][$start . 'a'], 1) ?></div>
                                         </td>
 
-                                        <?php if ($arr_merge['prod'][$start . 'a']['discount'] != '' && $arr_merge['prod'][$start . 'a']['discount'] != NULL && strpos($arr_merge['prod'][$start . 'a']['discount'], ',') == FALSE && \eMarket\Modules\Discount\Sale::status() == 1) { ?>
+                                        <?php if (json_decode($arr_merge['prod'][$start . 'a']['discount'], 1) > 0 && \eMarket\Modules\Discount\Sale::status() == 1) { ?>
                                             <td class="sortleft"><span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="<?php echo \eMarket\Settings::productSaleTooltip($arr_merge['prod'][$start . 'a']['discount']) ?>" class="glyphicon glyphicon-tag text-primary"> </span></td>
-                                        <?php } elseif ($arr_merge['prod'][$start . 'a']['discount'] != '' && $arr_merge['prod'][$start . 'a']['discount'] != NULL && strpos($arr_merge['prod'][$start . 'a']['discount'], ',') != FALSE && \eMarket\Modules\Discount\Sale::status() == 1) { ?>
+                                        <?php } elseif (json_decode($arr_merge['prod'][$start . 'a']['discount'], 1) == 0  && \eMarket\Modules\Discount\Sale::status() == 1) { ?>
                                             <td class="sortleft"><span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="<?php echo \eMarket\Settings::productSaleTooltip($arr_merge['prod'][$start . 'a']['discount']) ?>" class="glyphicon glyphicon-tags text-primary"> </span></td>
                                         <?php } else { ?>
                                             <td class="sortleft-m"><span class="glyphicon glyphicon-tag"></span></td>

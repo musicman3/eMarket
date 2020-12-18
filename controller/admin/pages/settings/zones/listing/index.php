@@ -19,14 +19,14 @@ if (\eMarket\Valid::inGET('zone_id')) {
 if (\eMarket\Valid::inPOST('add')) {
 
     // Очищаем страны и регионы из этой зоны
-    \eMarket\Pdo::inPrepare("DELETE FROM " . TABLE_ZONES_VALUE . " WHERE zones_id=?", [$zones_id]);
+    \eMarket\Pdo::action("DELETE FROM " . TABLE_ZONES_VALUE . " WHERE zones_id=?", [$zones_id]);
 
     if (empty(\eMarket\Valid::inPOST('multiselect')) == FALSE) {
         // Создаем многомерный массив из одномерного, разбитого на части разделителем "-"
         $multiselect = \eMarket\Func::arrayExplode(\eMarket\Valid::inPOST('multiselect'), '-');
         // Добавляем выбранные в мультиселекте данные
         for ($x = 0; $x < count($multiselect); $x++) {
-            \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_ZONES_VALUE . " SET country_id=?, regions_id=?, zones_id=?", [$multiselect[$x][0], $multiselect[$x][1], $zones_id]);
+            \eMarket\Pdo::action("INSERT INTO " . TABLE_ZONES_VALUE . " SET country_id=?, regions_id=?, zones_id=?", [$multiselect[$x][0], $multiselect[$x][1], $zones_id]);
         }
     }
     // Выводим сообщение об успехе

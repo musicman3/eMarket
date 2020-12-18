@@ -19,13 +19,13 @@ if (\eMarket\Valid::inPOST('save')) {
     if ($data == FALSE) {
         if (empty(\eMarket\Valid::inPOST('multiselect')) == FALSE) {
             $multiselect = json_encode(\eMarket\Valid::inPOST('multiselect'));
-            \eMarket\Pdo::inPrepare("INSERT INTO " . $MODULE_DB . " SET order_status=?, shipping_module=?", [\eMarket\Valid::inPOST('order_status'), $multiselect]);
+            \eMarket\Pdo::action("INSERT INTO " . $MODULE_DB . " SET order_status=?, shipping_module=?", [\eMarket\Valid::inPOST('order_status'), $multiselect]);
         }
     } elseif (empty(\eMarket\Valid::inPOST('multiselect')) == FALSE) {
         $multiselect = json_encode(\eMarket\Valid::inPOST('multiselect'));
-        \eMarket\Pdo::inPrepare("UPDATE " . $MODULE_DB . " SET order_status=?, shipping_module=?", [\eMarket\Valid::inPOST('order_status'), $multiselect]);
+        \eMarket\Pdo::action("UPDATE " . $MODULE_DB . " SET order_status=?, shipping_module=?", [\eMarket\Valid::inPOST('order_status'), $multiselect]);
     } else {
-        \eMarket\Pdo::inPrepare("UPDATE " . $MODULE_DB . " SET order_status=?, shipping_module=?", [\eMarket\Valid::inPOST('order_status'), NULL]);
+        \eMarket\Pdo::action("UPDATE " . $MODULE_DB . " SET order_status=?, shipping_module=?", [\eMarket\Valid::inPOST('order_status'), NULL]);
     }
 
     // Выводим сообщение об успехе

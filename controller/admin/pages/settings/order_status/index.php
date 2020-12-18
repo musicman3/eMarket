@@ -22,7 +22,7 @@ if (\eMarket\Valid::inPOST('add')) {
 
     // Оставляем один экземпляр значения по-умолчанию
     if ($id > 1 && $default_order_status != 0) {
-        \eMarket\Pdo::inPrepare("UPDATE " . TABLE_ORDER_STATUS . " SET default_order_status=?", [0]);
+        \eMarket\Pdo::action("UPDATE " . TABLE_ORDER_STATUS . " SET default_order_status=?", [0]);
     }
 
     // Получаем последний sort и увеличиваем его на 1
@@ -31,7 +31,7 @@ if (\eMarket\Valid::inPOST('add')) {
 
     // добавляем запись для всех вкладок
     for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
-        \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_ORDER_STATUS . " SET id=?, name=?, language=?, default_order_status=?, sort=?", [$id, \eMarket\Valid::inPOST('name_order_status_' . $x), lang('#lang_all')[$x], $default_order_status, $id_sort]);
+        \eMarket\Pdo::action("INSERT INTO " . TABLE_ORDER_STATUS . " SET id=?, name=?, language=?, default_order_status=?, sort=?", [$id, \eMarket\Valid::inPOST('name_order_status_' . $x), lang('#lang_all')[$x], $default_order_status, $id_sort]);
     }
 
     // Выводим сообщение об успехе
@@ -49,12 +49,12 @@ if (\eMarket\Valid::inPOST('edit')) {
     }
     // Оставляем один экземпляр значения по-умолчанию
     if ($default_order_status != 0) {
-        \eMarket\Pdo::inPrepare("UPDATE " . TABLE_ORDER_STATUS . " SET default_order_status=?", [0]);
+        \eMarket\Pdo::action("UPDATE " . TABLE_ORDER_STATUS . " SET default_order_status=?", [0]);
     }
 
     for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
         // обновляем запись
-        \eMarket\Pdo::inPrepare("UPDATE " . TABLE_ORDER_STATUS . " SET name=?, default_order_status=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_order_status_' . $x), $default_order_status, \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
+        \eMarket\Pdo::action("UPDATE " . TABLE_ORDER_STATUS . " SET name=?, default_order_status=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_order_status_' . $x), $default_order_status, \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
     }
 
     // Выводим сообщение об успехе
@@ -65,7 +65,7 @@ if (\eMarket\Valid::inPOST('edit')) {
 if (\eMarket\Valid::inPOST('delete')) {
 
     // Удаляем
-    \eMarket\Pdo::inPrepare("DELETE FROM " . TABLE_ORDER_STATUS . " WHERE id=?", [\eMarket\Valid::inPOST('delete')]);
+    \eMarket\Pdo::action("DELETE FROM " . TABLE_ORDER_STATUS . " WHERE id=?", [\eMarket\Valid::inPOST('delete')]);
     // Выводим сообщение об успехе
     \eMarket\Messages::alert('success', lang('action_completed_successfully'));
 }
@@ -88,7 +88,7 @@ if (\eMarket\Valid::inPOST('ids')) {
 
     foreach ($sort_array_id as $val) {
 
-        \eMarket\Pdo::inPrepare("UPDATE " . TABLE_ORDER_STATUS . " SET sort=? WHERE id=?", [(int) $sort_array_final[$val], (int) $val]);
+        \eMarket\Pdo::action("UPDATE " . TABLE_ORDER_STATUS . " SET sort=? WHERE id=?", [(int) $sort_array_final[$val], (int) $val]);
     }
 }
 

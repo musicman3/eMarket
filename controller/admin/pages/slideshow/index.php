@@ -35,7 +35,7 @@ if (\eMarket\Valid::inPOST('slideshow_pref')) {
         $navigation = 0;
     }
 
-    \eMarket\Pdo::inPrepare("UPDATE " . TABLE_SLIDESHOW_PREF . " SET show_interval=?, mouse_stop=?, autostart=?, cicles=?, indicators=?, navigation=? WHERE id=?", [\eMarket\Valid::inPOST('show_interval'), $mouse_stop, $autostart, $cicles, $indicators, $navigation, 1]);
+    \eMarket\Pdo::action("UPDATE " . TABLE_SLIDESHOW_PREF . " SET show_interval=?, mouse_stop=?, autostart=?, cicles=?, indicators=?, navigation=? WHERE id=?", [\eMarket\Valid::inPOST('show_interval'), $mouse_stop, $autostart, $cicles, $indicators, $navigation, 1]);
     // Выводим сообщение об успехе
     \eMarket\Messages::alert('success', lang('action_completed_successfully'));
 }
@@ -69,7 +69,7 @@ if (\eMarket\Valid::inPOST('add')) {
         $end_date = NULL;
     }
 
-    \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_SLIDESHOW . " SET language=?, url=?, name=?, heading=?, logo=?, animation=?, color=?, date_start=?, date_finish=?, status=?", [\eMarket\Valid::inPOST('set_language'), \eMarket\Valid::inPOST('url'), \eMarket\Valid::inPOST('name'), \eMarket\Valid::inPOST('heading'), json_encode([]), $animation, \eMarket\Valid::inPOST('color'), $start_date, $end_date, $view_slideshow]);
+    \eMarket\Pdo::action("INSERT INTO " . TABLE_SLIDESHOW . " SET language=?, url=?, name=?, heading=?, logo=?, animation=?, color=?, date_start=?, date_finish=?, status=?", [\eMarket\Valid::inPOST('set_language'), \eMarket\Valid::inPOST('url'), \eMarket\Valid::inPOST('name'), \eMarket\Valid::inPOST('heading'), json_encode([]), $animation, \eMarket\Valid::inPOST('color'), $start_date, $end_date, $view_slideshow]);
     // Выводим сообщение об успехе
     \eMarket\Messages::alert('success', lang('action_completed_successfully'));
 }
@@ -104,7 +104,7 @@ if (\eMarket\Valid::inPOST('edit')) {
     }
 
     // обновляем запись
-    \eMarket\Pdo::inPrepare("UPDATE " . TABLE_SLIDESHOW . " SET url=?, name=?, heading=?, animation=?, color=?, date_start=?, date_finish=?, status=? WHERE id=?", [\eMarket\Valid::inPOST('url'), \eMarket\Valid::inPOST('name'), \eMarket\Valid::inPOST('heading'), $animation, \eMarket\Valid::inPOST('color'), $start_date, $end_date, $view_slideshow, \eMarket\Valid::inPOST('edit')]);
+    \eMarket\Pdo::action("UPDATE " . TABLE_SLIDESHOW . " SET url=?, name=?, heading=?, animation=?, color=?, date_start=?, date_finish=?, status=? WHERE id=?", [\eMarket\Valid::inPOST('url'), \eMarket\Valid::inPOST('name'), \eMarket\Valid::inPOST('heading'), $animation, \eMarket\Valid::inPOST('color'), $start_date, $end_date, $view_slideshow, \eMarket\Valid::inPOST('edit')]);
 
     // Выводим сообщение об успехе
     \eMarket\Messages::alert('success', lang('action_completed_successfully'));
@@ -124,7 +124,7 @@ array_push($resize_param, ['1920', '960']);
 if (\eMarket\Valid::inPOST('delete')) {
 
     // Удаляем
-    \eMarket\Pdo::inPrepare("DELETE FROM " . TABLE_SLIDESHOW . " WHERE id=?", [\eMarket\Valid::inPOST('delete')]);
+    \eMarket\Pdo::action("DELETE FROM " . TABLE_SLIDESHOW . " WHERE id=?", [\eMarket\Valid::inPOST('delete')]);
     // Выводим сообщение об успехе
     \eMarket\Messages::alert('success', lang('action_completed_successfully'));
 }

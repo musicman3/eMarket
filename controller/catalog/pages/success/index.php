@@ -134,13 +134,13 @@ if (\eMarket\Valid::inPOST('add') && password_verify((float) \eMarket\Valid::inP
         'customer' => $customer_shipping_method
     ]);
 
-    \eMarket\Pdo::inPrepare("INSERT INTO " . TABLE_ORDERS . " SET email=?, customer_data=?, orders_status_history=?, products_order=?, order_total=?, invoice=?"
+    \eMarket\Pdo::action("INSERT INTO " . TABLE_ORDERS . " SET email=?, customer_data=?, orders_status_history=?, products_order=?, order_total=?, invoice=?"
             . ", orders_transactions_history=?, customer_ip_address=?, payment_method=?, shipping_method=?, last_modified=?, date_purchased=?",
             [$_SESSION['email_customer'], json_encode($customer), $orders_status_history, \eMarket\Valid::inPOST('products_order'), json_encode($order_total), json_encode($invoice),
                 NULL, \eMarket\Settings::ipAddress(), $payment_method, $shipping_method, NULL, date("Y-m-d H:i:s")]);
 
     //Обновляем таблицу товара
-    \eMarket\Pdo::inPrepare("UPDATE " . TABLE_PRODUCTS . " SET quantity=quantity- " . $value['quantity'] . ", ordered=ordered+ " . $value['quantity'] . " WHERE id=?", [$value['id']]);
+    \eMarket\Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET quantity=quantity- " . $value['quantity'] . ", ordered=ordered+ " . $value['quantity'] . " WHERE id=?", [$value['id']]);
 
     unset($_SESSION['cart']);
 

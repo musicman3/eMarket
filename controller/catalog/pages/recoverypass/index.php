@@ -11,13 +11,13 @@ if (\eMarket\Valid::inGET('recovery_code')) {
         $recovery_code_created = \eMarket\Pdo::selectPrepare("SELECT UNIX_TIMESTAMP (recovery_code_created) FROM " . TABLE_PASSWORD_RECOVERY . " WHERE customer_id=?", [$customer_id]);
         // Если дата активации не истекла
         if ($recovery_code_created + (3 * 24 * 60 * 60) > time()) {
-            \eMarket\Pdo::inPrepare("DELETE FROM " . TABLE_PASSWORD_RECOVERY . " WHERE customer_id=?", [$customer_id]);
+            \eMarket\Pdo::action("DELETE FROM " . TABLE_PASSWORD_RECOVERY . " WHERE customer_id=?", [$customer_id]);
             
             $password_hash = \eMarket\Autorize::passwordHash(\eMarket\Valid::inPOST('password'));
-            \eMarket\Pdo::inPrepare("UPDATE " . TABLE_CUSTOMERS . " SET password=? WHERE id=?", [$password_hash, $customer_id]);
+            \eMarket\Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET password=? WHERE id=?", [$password_hash, $customer_id]);
             \eMarket\Messages::alert('success', lang('messages_recovery_password_complete'), 7000, true);
         } else {
-            \eMarket\Pdo::inPrepare("DELETE FROM " . TABLE_PASSWORD_RECOVERY . " WHERE customer_id=?", [$customer_id]);
+            \eMarket\Pdo::action("DELETE FROM " . TABLE_PASSWORD_RECOVERY . " WHERE customer_id=?", [$customer_id]);
             \eMarket\Messages::alert('danger', lang('messages_recovery_password_failed'), 7000, true);
         }
     }

@@ -45,11 +45,11 @@ class Settings {
         if (self::$basic_settings == FALSE) {
             self::$basic_settings = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_BASIC_SETTINGS, [])[0];
         }
-        
-        if ($param != null){
+
+        if ($param != null) {
             return self::$basic_settings[$param];
         }
-        
+
         return self::$basic_settings;
     }
 
@@ -95,11 +95,12 @@ class Settings {
      */
     public static function productSaleTooltip($discount) {
 
-        $discount_str_explode_temp = explode(',', $discount);
-        $discount_str_explode = \eMarket\Func::deleteEmptyInArray($discount_str_explode_temp);
+        $discount_json = json_decode($discount, 1);
         $text = '';
-        foreach ($discount_str_explode as $id) {
-            $text .= \eMarket\Pdo::getCell("SELECT name FROM " . DB_PREFIX . 'modules_discount_sale' . "  WHERE language=? AND id=?", [lang('#lang_all')[0], $id]) . '<br>';
+        foreach ($discount_json as $key => $id) {
+            foreach ($id as $val_id) {
+                $text .= lang('modules_discount_' . $key . '_name') . ': ' . \eMarket\Pdo::getCellFalse("SELECT name FROM " . DB_PREFIX . 'modules_discount_' . $key . "  WHERE language=? AND id=?", [lang('#lang_all')[0], $val_id]) . '<br>';
+            }
         }
 
         return $text;

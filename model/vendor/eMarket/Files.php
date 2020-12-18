@@ -80,7 +80,7 @@ class Files {
                 \eMarket\Tree::filesDirAction(ROOT . '/uploads/temp/originals/', ROOT . '/uploads/images/' . $dir . '/originals/');
 
                 // Обновляем запись для всех вкладок
-                \eMarket\Pdo::inPrepare("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [json_encode($image_list), $general_image_add, $id]);
+                \eMarket\Pdo::action("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [json_encode($image_list), $general_image_add, $id]);
             }
         }
 
@@ -119,9 +119,9 @@ class Files {
 
             // Обновляем запись
             if (isset($general_image_edit)) {
-                \eMarket\Pdo::inPrepare("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [json_encode($image_list), $general_image_edit, $id]);
+                \eMarket\Pdo::action("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [json_encode($image_list), $general_image_edit, $id]);
             } else {
-                \eMarket\Pdo::inPrepare("UPDATE " . $TABLE . " SET logo=? WHERE id=?", [json_encode($image_list), $id]);
+                \eMarket\Pdo::action("UPDATE " . $TABLE . " SET logo=? WHERE id=?", [json_encode($image_list), $id]);
             }
 
             // Выборочное удаление изображений в модальном окне "Редактировать"
@@ -143,16 +143,16 @@ class Files {
                         \eMarket\Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/originals/' . $file);
                         // Если удаляемая картинка является главной, то устанавливаем маркер
                         if ($file == \eMarket\Pdo::selectPrepare("SELECT logo_general FROM " . $TABLE . " WHERE id=?", [$id])) {
-                            \eMarket\Pdo::inPrepare("UPDATE " . $TABLE . " SET logo_general=? WHERE id=?", [NULL, $id]);
+                            \eMarket\Pdo::action("UPDATE " . $TABLE . " SET logo_general=? WHERE id=?", [NULL, $id]);
                             $logo_general_update = 'ok';
                         }
                     }
                 }
                 if (isset($logo_general_update) && count($image_list_new) > 0) {
                     // Если есть маркер, то устанавливаем новую первую картинку по списку главной
-                    \eMarket\Pdo::inPrepare("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [json_encode($image_list_new), $image_list_new[0], $id]);
+                    \eMarket\Pdo::action("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [json_encode($image_list_new), $image_list_new[0], $id]);
                 } else {
-                    \eMarket\Pdo::inPrepare("UPDATE " . $TABLE . " SET logo=? WHERE id=?", [json_encode($image_list_new), $id]);
+                    \eMarket\Pdo::action("UPDATE " . $TABLE . " SET logo=? WHERE id=?", [json_encode($image_list_new), $id]);
                 }
             }
         }
@@ -259,7 +259,7 @@ class Files {
                 \eMarket\Tree::filesDirAction(ROOT . '/uploads/temp/originals/', ROOT . '/uploads/images/' . $dir . '/originals/');
 
                 // Обновляем запись для всех вкладок
-                \eMarket\Pdo::inPrepare("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [json_encode($image_list), $general_image_add, $id]);
+                \eMarket\Pdo::action("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [json_encode($image_list), $general_image_add, $id]);
             }
         }
 
@@ -298,9 +298,9 @@ class Files {
 
             // Обновляем запись
             if (isset($general_image_edit)) {
-                \eMarket\Pdo::inPrepare("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [json_encode($image_list), $general_image_edit, $id]);
+                \eMarket\Pdo::action("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [json_encode($image_list), $general_image_edit, $id]);
             } else {
-                \eMarket\Pdo::inPrepare("UPDATE " . $TABLE . " SET logo=? WHERE id=?", [json_encode($image_list), $id]);
+                \eMarket\Pdo::action("UPDATE " . $TABLE . " SET logo=? WHERE id=?", [json_encode($image_list), $id]);
             }
 
             // Выборочное удаление изображений в модальном окне "Редактировать"
@@ -322,16 +322,16 @@ class Files {
                         \eMarket\Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/originals/' . $file);
                         // Если удаляемая картинка является главной, то устанавливаем маркер
                         if ($file == \eMarket\Pdo::selectPrepare("SELECT logo_general FROM " . $TABLE . " WHERE id=?", [$id])) {
-                            \eMarket\Pdo::inPrepare("UPDATE " . $TABLE . " SET logo_general=? WHERE id=?", [NULL, $id]);
+                            \eMarket\Pdo::action("UPDATE " . $TABLE . " SET logo_general=? WHERE id=?", [NULL, $id]);
                             $logo_general_update = 'ok';
                         }
                     }
                 }
                 if (isset($logo_general_update) && is_array($image_list_new)) {
                     // Если есть маркер, то устанавливаем новую первую картинку по списку главной
-                    \eMarket\Pdo::inPrepare("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [json_encode($image_list_new), $image_list_new[0], $id]);
+                    \eMarket\Pdo::action("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [json_encode($image_list_new), $image_list_new[0], $id]);
                 } else {
-                    \eMarket\Pdo::inPrepare("UPDATE " . $TABLE . " SET logo=? WHERE id=?", [json_encode($image_list_new), $id]);
+                    \eMarket\Pdo::action("UPDATE " . $TABLE . " SET logo=? WHERE id=?", [json_encode($image_list_new), $id]);
                 }
             }
         }

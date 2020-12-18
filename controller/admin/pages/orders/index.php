@@ -28,7 +28,7 @@ if (\eMarket\Valid::inPOST('edit')) {
                 'status' => $admin_status_history_select,
                 'date' => \eMarket\Settings::dateLocale($date, '%c', $primary_language)
         ]]);
-        \eMarket\Pdo::inPrepare("UPDATE " . TABLE_ORDERS . " SET orders_status_history=?, last_modified=? WHERE id=?", [json_encode($orders_status_history), $date, \eMarket\Valid::inPOST('edit')]);
+        \eMarket\Pdo::action("UPDATE " . TABLE_ORDERS . " SET orders_status_history=?, last_modified=? WHERE id=?", [json_encode($orders_status_history), $date, \eMarket\Valid::inPOST('edit')]);
 
         $email_subject = sprintf(lang('orders_change_status_subject'), \eMarket\Valid::inPOST('edit'), $customer_status_history_select);
         $email_message = sprintf(lang('orders_change_status_message'), \eMarket\Valid::inPOST('edit'), mb_strtolower($customer_status_history_select), HTTP_SERVER . '?route=success', HTTP_SERVER . '?route=success');
@@ -43,7 +43,7 @@ if (\eMarket\Valid::inPOST('edit')) {
 // Если нажали на кнопку Удалить
 if (\eMarket\Valid::inPOST('delete')) {
     // Удаляем запись
-    \eMarket\Pdo::inPrepare("DELETE FROM " . TABLE_ORDERS . " WHERE id=?", [\eMarket\Valid::inPOST('delete')]);
+    \eMarket\Pdo::action("DELETE FROM " . TABLE_ORDERS . " WHERE id=?", [\eMarket\Valid::inPOST('delete')]);
     // Выводим сообщение об успехе
     \eMarket\Messages::alert('success', lang('action_completed_successfully'));
 }
