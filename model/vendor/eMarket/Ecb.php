@@ -34,7 +34,7 @@ final class Ecb {
             $class = 'danger';
         }
 
-        $discount_sales = self::discountHandler($input)['discount'];
+        $discount_sales = self::discountHandler($input)['interface'];
         foreach ($discount_sales as $discount_sale) {
             if ($discount_sale['names'] != 'false') {
                 $discount_count = count($discount_sale['names']);
@@ -125,7 +125,7 @@ final class Ecb {
             foreach ($_SESSION['cart'] as $value) {
                 $data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=? AND language=?", [$value['id'], $language])[0];
                 if ($data != FALSE) {
-                    $discount_sales = self::discountHandler($data, $language)['discount'];
+                    $discount_sales = self::discountHandler($data, $language)['interface'];
                     foreach ($discount_sales as $discount_sale) {
                         $discount_total_sale = 0;
 
@@ -237,7 +237,7 @@ final class Ecb {
 
         $interface = [
             'out_price' => $discounts_price,
-            'discount' => $discounts_interfaces
+            'interface' => $discounts_interfaces
         ];
         return $interface;
     }
