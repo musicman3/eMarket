@@ -185,8 +185,8 @@ final class Eac {
             for ($i = 0; $i < count($idx); $i++) {
                 if (strstr($idx[$i], '_', true) != 'product') {
                     // Это категория / This is category
-                    self::$parent_id = self::dataParentId(TABLE_CATEGORIES, $idx[$i]);
-                    $keys = self::dataKeys(TABLE_CATEGORIES, $idx[$i]);
+                    self::$parent_id = self::dataParentId($idx[$i]);
+                    $keys = self::dataKeys($idx[$i]);
 
                     $count_keys = count($keys);
                     for ($x = 0; $x < $count_keys; $x++) {
@@ -253,7 +253,7 @@ final class Eac {
             for ($i = 0; $i < count($idx); $i++) {
 
                 $parent_id_real = (int) \eMarket\Valid::inPOST('idsx_real_parent_id'); // получить значение из JS
-                self::$parent_id = self::dataParentId(TABLE_CATEGORIES, $idx[$i]);
+                self::$parent_id = self::dataParentId($idx[$i]);
 
                 if (\eMarket\Valid::inPOST('idsx_cut_key') == 'cut') {
                     // Это категория / This is category
@@ -359,8 +359,8 @@ final class Eac {
             for ($i = 0; $i < count($idx); $i++) {
                 if (strstr($idx[$i], '_', true) != 'product') {
                     // Это категория / This is category
-                    self::$parent_id = self::dataParentId(TABLE_CATEGORIES, $idx[$i]);
-                    $keys = self::dataKeys(TABLE_CATEGORIES, $idx[$i]);
+                    self::$parent_id = self::dataParentId($idx[$i]);
+                    $keys = self::dataKeys($idx[$i]);
 
                     $count_keys = count($keys);
                     for ($x = 0; $x < $count_keys; $x++) {
@@ -435,8 +435,8 @@ final class Eac {
             for ($i = 0; $i < count($idx); $i++) {
                 if (strstr($idx[$i], '_', true) != 'product') {
                     // Это категория / This is category
-                    self::$parent_id = self::dataParentId(TABLE_CATEGORIES, $idx[$i]);
-                    $keys = self::dataKeys(TABLE_CATEGORIES, $idx[$i]);
+                    self::$parent_id = self::dataParentId($idx[$i]);
+                    $keys = self::dataKeys($idx[$i]);
 
                     $count_keys = count($keys);
                     for ($x = 0; $x < $count_keys; $x++) {
@@ -550,8 +550,8 @@ final class Eac {
             for ($i = 0; $i < count($idx); $i++) {
                 if (strstr($idx[$i], '_', true) != 'product') {
                     // Это категория / This is category
-                    self::$parent_id = self::dataParentId(TABLE_CATEGORIES, $idx[$i]);
-                    $keys = self::dataKeys(TABLE_CATEGORIES, $idx[$i]);
+                    self::$parent_id = self::dataParentId($idx[$i]);
+                    $keys = self::dataKeys($idx[$i]);
 
                     $count_keys = count($keys);
                     for ($x = 0; $x < $count_keys; $x++) {
