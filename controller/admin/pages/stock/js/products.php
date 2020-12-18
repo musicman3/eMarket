@@ -30,6 +30,7 @@
             setTimeout(function () {
                 $('#ajax').replaceWith($(data).find('#ajax'));
                 Mouse.sortInitAll();
+                $('[data-toggle="tooltip"]').tooltip();
             }, 100);
         }
     }

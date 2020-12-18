@@ -224,6 +224,7 @@
                                 function AjaxSuccess(data) {
                                     $('#ajax').replaceWith($(data).find('#ajax'));
                                     Mouse.sortInitAll();
+                                    $('[data-toggle="tooltip"]').tooltip();
                                 }
                             }
                         },
@@ -259,6 +260,7 @@
                                 function AjaxSuccess(data) {
                                     $('#ajax').replaceWith($(data).find('#ajax'));
                                     Mouse.sortInitAll();
+                                    $('[data-toggle="tooltip"]').tooltip();
                                 }
                             }
                         },
@@ -301,6 +303,7 @@
                                 function AjaxSuccess(data) {
                                     $('#ajax').replaceWith($(data).find('#ajax'));
                                     Mouse.sortInitAll();
+                                    $('[data-toggle="tooltip"]').tooltip();
                                 }
                             }
                         },
@@ -333,6 +336,7 @@
                                 function AjaxSuccess(data) {
                                     $('#ajax').replaceWith($(data).find('#ajax'));
                                     Mouse.sortInitAll();
+                                    $('[data-toggle="tooltip"]').tooltip();
                                 }
                             }
                         },
@@ -378,6 +382,7 @@
                                         setTimeout(function () {
                                             $('#ajax').replaceWith($(data).find('#ajax'));
                                             Mouse.sortInitAll();
+                                            $('[data-toggle="tooltip"]').tooltip();
                                         }, 100);
                                     }
                                 };
@@ -442,6 +447,7 @@
                                 function AjaxSuccess(data) {
                                     $('#ajax').replaceWith($(data).find('#ajax'));
                                     Mouse.sortInitAll();
+                                    $('[data-toggle="tooltip"]').tooltip();
                                 }
                             },
                             icon: function () {
@@ -491,6 +497,7 @@
                                         setTimeout(function () {
                                             $('#ajax').replaceWith($(data).find('#ajax'));
                                             Mouse.sortInitAll();
+                                            $('[data-toggle="tooltip"]').tooltip();
                                         }, 100);
                                     }
                                 };
@@ -540,6 +547,7 @@
                                         setTimeout(function () {
                                             $('#ajax').replaceWith($(data).find('#ajax'));
                                             Mouse.sortInitAll();
+                                            $('[data-toggle="tooltip"]').tooltip();
                                         }, 100);
                                     }
                                 };
@@ -607,6 +615,7 @@
                                 function AjaxSuccess(data) {
                                     $('#ajax').replaceWith($(data).find('#ajax'));
                                     Mouse.sortInitAll();
+                                    $('[data-toggle="tooltip"]').tooltip();
                                 }
                             }
                         },
@@ -650,6 +659,7 @@
                                         setTimeout(function () {
                                             $('#ajax').replaceWith($(data).find('#ajax'));
                                             Mouse.sortInitAll();
+                                            $('[data-toggle="tooltip"]').tooltip();
                                         }, 100);
                                     }
                                 };

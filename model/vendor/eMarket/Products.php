@@ -17,7 +17,6 @@ namespace eMarket;
 class Products {
 
     public static $stiker_data = FALSE;
-    
     private static $manufacturer = FALSE;
     private static $vendor_codes = FALSE;
     private static $weight = FALSE;
@@ -188,12 +187,14 @@ class Products {
             $stiker_name[$val['id']] = $val['name'];
         }
 
-        $discount_sale = \eMarket\Ecb::discountHandler($input)['discount_sale'];
-        $discount_total_sale = 0;
+        $discount_sales = \eMarket\Ecb::discountHandler($input)['discount'];
+        foreach ($discount_sales as $discount_sale) {
+            $discount_total_sale = 0;
 
-        if ($discount_sale['sales'] != 'false') {
-            foreach ($discount_sale['sales'] as $total_sale) {
-                $discount_total_sale = $discount_total_sale + $total_sale;
+            if ($discount_sale['sales'] != 'false') {
+                foreach ($discount_sale['sales'] as $total_sale) {
+                    $discount_total_sale = $discount_total_sale + $total_sale;
+                }
             }
         }
 
