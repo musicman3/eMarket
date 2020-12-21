@@ -60,7 +60,6 @@ final class Modules {
         foreach ($active_modules as $module) {
             if (file_exists(ROOT . '/modules/discount/' . $module['name'] . '/controller/admin/js/contextmenu/contextmenu.js')) {
                 $text .= $module['name'] . ': Discount' . ucfirst($module['name']) . '.context(sales_interface), ';
-                //$output_text = substr($text, 0, -2);
                 array_push($output_modules, $module['name']);
             }
         }
