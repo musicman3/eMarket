@@ -14,6 +14,7 @@ class DiscountSale {
     /**
      * Вывод в контекстное меню
      * @param sales_interface {Array} (входящий массив)
+     * @return output {Object} (исходящие данные)
      *
      */
     static context(sales_interface) {
@@ -25,7 +26,7 @@ class DiscountSale {
         var sale = sales_interface[4];
         var sale_dafault = sales_interface[5];
 
-        var fold2 = {
+        var output = {
             name: lang['button_sale'],
             icon: function () {
                 return 'context-menu-icon glyphicon-tag';
@@ -165,6 +166,6 @@ class DiscountSale {
             }
         };
 
-        return fold2;
+        return output;
     }
 }
