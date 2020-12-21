@@ -78,7 +78,7 @@ class Sale {
             $discount_names = [];
 
             foreach ($discount_val['sale'] as $val) {
-                $data = \eMarket\Pdo::getColAssoc("SELECT sale_value, name, UNIX_TIMESTAMP (date_start), UNIX_TIMESTAMP (date_end) FROM " . DB_PREFIX . 'modules_discount_sale' . " WHERE language=? AND id=?", [$language, $val]);
+                $data = \eMarket\Pdo::getColAssoc("SELECT sale_value, name, UNIX_TIMESTAMP (date_start), UNIX_TIMESTAMP (date_end) FROM " . DB_PREFIX . 'modules_discount_sale' . " WHERE language=? AND id=?", [$language, $val])[0];
                 if (count($data) > 0) {
                     $this_time = time();
                     $date_start = $data['UNIX_TIMESTAMP (date_start)'];
