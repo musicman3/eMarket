@@ -3,41 +3,76 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMark
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-?>
+$lang_js = json_encode([
+    'sales_flag' => lang('sales_flag'),
+    'attention' => lang('attention'),
+    'confirm_delete_product_or_category' => lang('confirm_delete_product_or_category'),
+    'button_sale' => lang('button_sale'),
+    'button_sale_off' => lang('button_sale_off'),
+    'button_sale_on' => lang('button_sale_on'),
+    'button_sale_off_all' => lang('button_sale_off_all'),
+    'confirm_delete_sale' => lang('confirm_delete_sale'),
+    'confirm_delete_sales' => lang('confirm_delete_sales'),
+    'add_product' => lang('add_product'),
+    'add_category' => lang('add_category'),
+    'button_edit' => lang('button_edit'),
+    'button_action' => lang('button_action'),
+    'button_show' => lang('button_show'),
+    'button_hide' => lang('button_hide'),
+    'cut' => lang('cut'),
+    'paste' => lang('paste'),
+    'button_delete' => lang('button_delete'),
+    'button_stiker' => lang('button_stiker'),
+    'button_stiker_add' => lang('button_stiker_add'),
+    'button_stiker_delete' => lang('button_stiker_delete'),
+    'confirm_delete_stiker' => lang('confirm_delete_stiker'),
+    'menu_exit' => lang('menu_exit'),
+    'discount_modules' => lang('discount_modules')
+        ]);
 
+foreach (\eMarket\Modules::discountRouter('data') as $js_path) {
+    echo '<script type="text/javascript" src="/modules/discount/' . $js_path . '/controller/admin/js/contextmenu/contextmenu.js"></script>';
+}
+?>
 <!-- Контекстное меню -->
 <script type="text/javascript">
 
-    session = '<?php echo $ses_verify ?>';
     $(function () {
+        var session = '<?php echo $ses_verify ?>';
+        var lang = <?php echo $lang_js ?>;
+        let parent_id = '<?php echo $parent_id ?>';
+        var idsx_real_parent_id = '<?php echo $idsx_real_parent_id ?>';
+        var sale = '<?php echo $sales_flag ?>';
+        var sales = {<?php echo $sales ?>};
+        var sale_dafault = '<?php echo $sale_default ?>';
+        var stiker = '<?php echo $stikers_flag ?>';
+        var stikers = {<?php echo $stikers ?>};
+        var stikers_default = '<?php echo $stikers_default ?>';
+        var attributes_category = <?php echo json_encode($attributes_category) ?>;
+
+        var sales_interface = [
+            lang,
+            parent_id,
+            idsx_real_parent_id,
+            sales,
+            sale,
+            sale_dafault
+        ];
+
+        var discount = {name: lang['discount_modules'], icon: 'context-menu-icon glyphicon-tags', items: {<?php echo \eMarket\Modules::discountRouter('functions') ?>}};
+
         $.contextMenu({
             selector: '.context-one',
-            callback: function (itemKey, opt) {
-                function send() {
-                    $.ajax({
-                        method: 'POST',
-                        dataType: 'text',
-                        url: window.location.href,
-                        data: ({
-                            itemName: itemKey, //название ключа из меню (edit, delete, copy и т.п.)
-                            ids2: opt.$trigger.attr("id")}), //id строки
-                        success: function (data) {
-                        }
-                    });
-                }
-                ;
-                return send();
-            },
+
             items: {
 
                 "add_product": {
-                    name: "<?php echo lang('add_product') ?>",
+                    name: lang['add_product'],
                     icon: function () {
                         return 'context-menu-icon glyphicon-shopping-cart';
                     },
                     disabled: function () {
                         let params = (new URL(document.location)).searchParams;
-                        let parent_id = '<?php echo $parent_id ?>';
                         // Делаем не активным пункт меню, если нет строк
                         if (params.get('search') !== null || Number(parent_id) === 0) {
                             return true;
@@ -46,7 +81,7 @@
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
                         $('#selected_attributes').val(JSON.stringify([]));
                         // Выводим атрибуты
-                        AttributesProcessing.add('admin', <?php echo json_encode($attributes_category) ?>);
+                        AttributesProcessing.add('admin', attributes_category);
 
                         $('#edit_product').val('');
                         $('#add_product').val('ok');
@@ -62,7 +97,7 @@
                 "sep1": "---------",
 
                 "add": {
-                    name: "<?php echo lang('add_category') ?>",
+                    name: lang['add_category'],
                     icon: function () {
                         return 'context-menu-icon glyphicon-folder-open';
                     },
@@ -85,7 +120,7 @@
                 "sep2": "---------",
 
                 "edit": {
-                    name: "<?php echo lang('button_edit') ?>",
+                    name: lang['button_edit'],
                     icon: function () {
                         return 'context-menu-icon glyphicon-edit';
                     },
@@ -180,7 +215,7 @@
                 "sep3": "---------",
 
                 "fold": {
-                    "name": "<?php echo lang('button_action') ?>",
+                    "name": lang['button_action'],
                     icon: function () {
                         return 'context-menu-icon glyphicon-hand-right';
                     },
@@ -193,7 +228,7 @@
                     "items": {
 
                         "statusOn": {
-                            name: "<?php echo lang('button_show') ?>",
+                            name: lang['button_show'],
                             icon: function () {
                                 return 'context-menu-icon glyphicon-eye-open';
                             },
@@ -214,22 +249,16 @@
                                 });
                                 jQuery.post(window.location.href,
                                         {idsx_status_on_id: idArray,
-                                            idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
+                                            idsx_real_parent_id: idsx_real_parent_id,
                                             idsx_status_on_key: 'On'});
                                 // Отправка запроса для обновления страницы
                                 jQuery.get(window.location.href,
-                                        {parent_down: <?php echo $parent_id ?>},
+                                        {parent_down: parent_id},
                                         AjaxSuccess);
-                                // Обновление страницы
-                                function AjaxSuccess(data) {
-                                    $('#ajax').replaceWith($(data).find('#ajax'));
-                                    Mouse.sortInitAll();
-                                    $('[data-toggle="tooltip"]').tooltip();
-                                }
                             }
                         },
                         "statusOff": {
-                            name: "<?php echo lang('button_hide') ?>",
+                            name: lang['button_hide'],
                             icon: function () {
                                 return 'context-menu-icon glyphicon-eye-close';
                             },
@@ -250,25 +279,19 @@
                                 });
                                 jQuery.post(window.location.href,
                                         {idsx_status_off_id: idArray,
-                                            idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
+                                            idsx_real_parent_id: idsx_real_parent_id,
                                             idsx_status_off_key: 'Off'});
                                 // Отправка запроса для обновления страницы
                                 jQuery.get(window.location.href,
-                                        {parent_down: <?php echo $parent_id ?>},
+                                        {parent_down: parent_id},
                                         AjaxSuccess);
-                                // Обновление страницы
-                                function AjaxSuccess(data) {
-                                    $('#ajax').replaceWith($(data).find('#ajax'));
-                                    Mouse.sortInitAll();
-                                    $('[data-toggle="tooltip"]').tooltip();
-                                }
                             }
                         },
 
                         "sep4": "---------",
 
                         "cut": {
-                            name: "<?php echo lang('cut') ?>",
+                            name: lang['cut'],
                             icon: function () {
                                 return 'context-menu-icon glyphicon-scissors';
                             },
@@ -291,24 +314,18 @@
                                         idArray[i] = this.id;
                                 });
                                 jQuery.post(window.location.href,
-                                        {idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
+                                        {idsx_real_parent_id: idsx_real_parent_id,
                                             idsx_cut_id: idArray,
-                                            parent_down: <?php echo $parent_id ?>,
+                                            parent_down: parent_id,
                                             idsx_cut_key: itemKey});
                                 // Отправка запроса для обновления страницы
                                 jQuery.get(window.location.href,
-                                        {parent_down: <?php echo $parent_id ?>},
+                                        {parent_down: parent_id},
                                         AjaxSuccess);
-                                // Обновление страницы
-                                function AjaxSuccess(data) {
-                                    $('#ajax').replaceWith($(data).find('#ajax'));
-                                    Mouse.sortInitAll();
-                                    $('[data-toggle="tooltip"]').tooltip();
-                                }
                             }
                         },
                         "paste": {
-                            name: "<?php echo lang('paste') ?>",
+                            name: lang['paste'],
                             icon: function () {
                                 return 'context-menu-icon glyphicon-paste';
                             },
@@ -324,27 +341,21 @@
                                 // Установка синхронного запроса для jQuery.ajax
                                 jQuery.ajaxSetup({async: false});
                                 jQuery.post(window.location.href,
-                                        {idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
-                                            parent_down: <?php echo $parent_id ?>,
+                                        {idsx_real_parent_id: idsx_real_parent_id,
+                                            parent_down: parent_id,
                                             idsx_paste_key: itemKey});
                                 // Отправка запроса для обновления страницы
                                 jQuery.get(window.location.href,
-                                        {parent_down: <?php echo $parent_id ?>,
+                                        {parent_down: parent_id,
                                             message: 'ok'},
                                         AjaxSuccess);
-                                // Обновление страницы
-                                function AjaxSuccess(data) {
-                                    $('#ajax').replaceWith($(data).find('#ajax'));
-                                    Mouse.sortInitAll();
-                                    $('[data-toggle="tooltip"]').tooltip();
-                                }
                             }
                         },
 
                         "sep5": "---------",
 
                         "delete": {
-                            name: "<?php echo lang('button_delete') ?>",
+                            name: lang['button_delete'],
                             icon: function () {
                                 return 'context-menu-icon glyphicon-trash';
                             },
@@ -356,8 +367,8 @@
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
                                 $('#confirm').modal('show');
-                                $('#confirm_title').html('<?php echo lang('attention') ?>');
-                                $('#confirm_body').html('<?php echo lang('confirm_delete_product_or_category') ?>');
+                                $('#confirm_title').html(lang['attention']);
+                                $('#confirm_body').html(lang['confirm_delete_product_or_category']);
 
                                 confirmation.onclick = function () {
                                     $('#confirm').modal('hide');
@@ -371,20 +382,12 @@
                                     });
                                     jQuery.post(window.location.href,
                                             {delete: idArray,
-                                                parent_down: <?php echo $parent_id ?>});
+                                                parent_down: parent_id});
                                     // Отправка запроса для обновления страницы
                                     jQuery.get(window.location.href,
-                                            {parent_down: <?php echo $parent_id ?>,
+                                            {parent_down: parent_id,
                                                 message: 'ok'},
                                             AjaxSuccess);
-                                    // Обновление страницы
-                                    function AjaxSuccess(data) {
-                                        setTimeout(function () {
-                                            $('#ajax').replaceWith($(data).find('#ajax'));
-                                            Mouse.sortInitAll();
-                                            $('[data-toggle="tooltip"]').tooltip();
-                                        }, 100);
-                                    }
                                 };
                             }
                         }
@@ -393,180 +396,18 @@
 
                 "sep10": "---------",
 
-                "fold2": {
-                    "name": "<?php echo lang('button_sale') ?>",
-                    icon: function () {
-                        return 'context-menu-icon glyphicon-tag';
-                    },
-                    disabled: function () {
-                        // Делаем не активным пункт меню, если нет строк
-                        var sale = '<?php echo $sales_flag ?>';
-                        if (sale === '0' || $('div#ajax_data').data('jsondataproduct')['name'] === undefined && $('div#ajax_data').data('jsondatacategory')['name'] === undefined) {
-                            return true;
-                        }
-                    },
-
-                    "items": {
-                        "sale": {
-                            type: 'select',
-                            options: {<?php echo $sales ?>},
-                            selected: <?php echo $sale_default ?>,
-                            disabled: function () {
-                                // Делаем не активным пункт меню, если нет строк
-                                if ($('div#ajax_data').data('jsondataproduct')['name'] === undefined && $('div#ajax_data').data('jsondatacategory')['name'] === undefined) {
-                                    return true;
-                                }
-                            }
-                        },
-
-                        "sep11": "---------",
-
-                        'saleOn': {
-                            name: "<?php echo lang('button_sale_on') ?>",
-                            callback: function (itemKey, opt, rootMenu, originalEvent) {
-                                // Значение выбранного селекта
-                                var selected_id = $('select[name="context-menu-input-sale"] option:selected').val();
-                                // Установка синхронного запроса для jQuery.ajax
-                                jQuery.ajaxSetup({async: false});
-                                // Отправка данных по каждой выделенной строке
-                                var idArray = [];
-                                $(".option").each(function (i) {
-                                    if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
-                                        idArray[i] = this.id;
-                                });
-                                jQuery.post(window.location.href,
-                                        {idsx_sale_on_id: idArray,
-                                            idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
-                                            sale: selected_id,
-                                            idsx_sale_on_key: 'On'});
-                                // Отправка запроса для обновления страницы
-                                jQuery.get(window.location.href,
-                                        {parent_down: <?php echo $parent_id ?>},
-                                        AjaxSuccess);
-                                // Обновление страницы
-                                function AjaxSuccess(data) {
-                                    $('#ajax').replaceWith($(data).find('#ajax'));
-                                    Mouse.sortInitAll();
-                                    $('[data-toggle="tooltip"]').tooltip();
-                                }
-                            },
-                            icon: function () {
-                                return 'context-menu-icon glyphicon-star';
-                            }
-                        },
-
-                        "saleOff": {
-                            name: "<?php echo lang('button_sale_off') ?>",
-                            icon: function () {
-                                return 'context-menu-icon glyphicon-star-empty';
-                            },
-                            disabled: function () {
-                                // Делаем не активным пункт меню, если нет строк
-                                if ($('div#ajax_data').data('jsondataproduct')['name'] === undefined && $('div#ajax_data').data('jsondatacategory')['name'] === undefined) {
-                                    return true;
-                                }
-                            },
-                            callback: function (itemKey, opt, rootMenu, originalEvent) {
-                                $('#confirm').modal('show');
-                                $('#confirm_title').html('<?php echo lang('attention') ?>');
-                                $('#confirm_body').html('<?php echo lang('confirm_delete_sale') ?>');
-
-                                confirmation.onclick = function () {
-                                    $('#confirm').modal('hide');
-                                    // Значение выбранного селекта
-                                    var selected_id = $('select[name="context-menu-input-sale"] option:selected').val();
-                                    // Установка синхронного запроса для jQuery.ajax
-                                    jQuery.ajaxSetup({async: false});
-                                    // Отправка данных по каждой выделенной строке
-                                    var idArray = [];
-                                    $(".option").each(function (i) {
-                                        if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
-                                            idArray[i] = this.id;
-                                    });
-                                    jQuery.post(window.location.href,
-                                            {idsx_sale_off_id: idArray,
-                                                idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
-                                                sale: selected_id,
-                                                idsx_sale_off_key: 'Off'});
-                                    // Отправка запроса для обновления страницы
-                                    jQuery.get(window.location.href,
-                                            {parent_down: <?php echo $parent_id ?>},
-                                            AjaxSuccess);
-                                    // Обновление страницы
-                                    function AjaxSuccess(data) {
-                                        setTimeout(function () {
-                                            $('#ajax').replaceWith($(data).find('#ajax'));
-                                            Mouse.sortInitAll();
-                                            $('[data-toggle="tooltip"]').tooltip();
-                                        }, 100);
-                                    }
-                                };
-                            }
-                        },
-
-                        "sep12": "---------",
-
-                        "saleOffAll": {
-                            name: "<?php echo lang('button_sale_off_all') ?>",
-                            icon: function () {
-                                return 'context-menu-icon glyphicon-flash';
-                            },
-                            disabled: function () {
-                                // Делаем не активным пункт меню, если нет строк
-                                if ($('div#ajax_data').data('jsondataproduct')['name'] === undefined && $('div#ajax_data').data('jsondatacategory')['name'] === undefined) {
-                                    return true;
-                                }
-                            },
-                            callback: function (itemKey, opt, rootMenu, originalEvent) {
-                                $('#confirm').modal('show');
-                                $('#confirm_title').html('<?php echo lang('attention') ?>');
-                                $('#confirm_body').html('<?php echo lang('confirm_delete_sales') ?>');
-
-                                confirmation.onclick = function () {
-                                    $('#confirm').modal('hide');
-                                    // Значение выбранного селекта
-                                    var selected_id = $('select[name="context-menu-input-sale"] option:selected').val();
-                                    // Установка синхронного запроса для jQuery.ajax
-                                    jQuery.ajaxSetup({async: false});
-                                    // Отправка данных по каждой выделенной строке
-                                    var idArray = [];
-                                    $(".option").each(function (i) {
-                                        if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
-                                            idArray[i] = this.id;
-                                    });
-                                    jQuery.post(window.location.href,
-                                            {idsx_sale_off_all_id: idArray,
-                                                idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
-                                                idsx_sale_off_all_key: 'OffAll'});
-                                    // Отправка запроса для обновления страницы
-                                    jQuery.get(window.location.href,
-                                            {parent_down: <?php echo $parent_id ?>},
-                                            AjaxSuccess);
-                                    // Обновление страницы
-                                     function AjaxSuccess(data) {
-                                        setTimeout(function () {
-                                            $('#ajax').replaceWith($(data).find('#ajax'));
-                                            Mouse.sortInitAll();
-                                            $('[data-toggle="tooltip"]').tooltip();
-                                        }, 100);
-                                    }
-                                };
-                            }
-                        }
-                    }
-                },
+                discount: discount,
 
                 "sep13": "---------",
 
                 "fold3": {
-                    "name": "<?php echo lang('button_stiker') ?>",
+                    "name": lang['button_stiker'],
                     icon: function () {
                         return 'context-menu-icon glyphicon-bookmark';
                     },
                     disabled: function () {
                         // Делаем не активным пункт меню, если нет строк
-                        var sale = '<?php echo $stikers_flag ?>';
-                        if (sale === '0') {
+                        if (stiker === '0') {
                             return true;
                         }
                     },
@@ -574,8 +415,8 @@
                     "items": {
                         "stiker": {
                             type: 'select',
-                            options: {<?php echo $stikers ?>},
-                            selected: <?php echo $stikers_default ?>,
+                            options: stikers,
+                            selected: stikers_default,
                             disabled: function () {
 
                             }
@@ -584,7 +425,7 @@
                         "sep14": "---------",
 
                         'stikerOn': {
-                            name: "<?php echo lang('button_stiker_add') ?>",
+                            name: lang['button_stiker_add'],
                             icon: function () {
                                 return 'context-menu-icon glyphicon-plus';
                             },
@@ -604,24 +445,18 @@
                                 });
                                 jQuery.post(window.location.href,
                                         {idsx_stiker_on_id: idArray,
-                                            idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
+                                            idsx_real_parent_id: idsx_real_parent_id,
                                             stiker: selected_id,
                                             idsx_stikerOn_key: 'On'});
                                 // Отправка запроса для обновления страницы
                                 jQuery.get(window.location.href,
-                                        {parent_down: <?php echo $parent_id ?>},
+                                        {parent_down: parent_id},
                                         AjaxSuccess);
-                                // Обновление страницы
-                                function AjaxSuccess(data) {
-                                    $('#ajax').replaceWith($(data).find('#ajax'));
-                                    Mouse.sortInitAll();
-                                    $('[data-toggle="tooltip"]').tooltip();
-                                }
                             }
                         },
 
                         "stikerOff": {
-                            name: "<?php echo lang('button_stiker_delete') ?>",
+                            name: lang['button_stiker_delete'],
                             icon: function () {
                                 return 'context-menu-icon glyphicon-trash';
                             },
@@ -630,8 +465,8 @@
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
                                 $('#confirm').modal('show');
-                                $('#confirm_title').html('<?php echo lang('attention') ?>');
-                                $('#confirm_body').html('<?php echo lang('confirm_delete_stiker') ?>');
+                                $('#confirm_title').html(lang['attention']);
+                                $('#confirm_body').html(lang['confirm_delete_stiker']);
 
                                 confirmation.onclick = function () {
                                     $('#confirm').modal('hide');
@@ -647,21 +482,13 @@
                                     });
                                     jQuery.post(window.location.href,
                                             {idsx_stiker_off_id: idArray,
-                                                idsx_real_parent_id: '<?php echo $idsx_real_parent_id ?>',
+                                                idsx_real_parent_id: idsx_real_parent_id,
                                                 stiker: selected_id,
                                                 idsx_stikerOff_key: 'Off'});
                                     // Отправка запроса для обновления страницы
                                     jQuery.get(window.location.href,
-                                            {parent_down: <?php echo $parent_id ?>},
+                                            {parent_down: parent_id},
                                             AjaxSuccess);
-                                    // Обновление страницы
-                                    function AjaxSuccess(data) {
-                                        setTimeout(function () {
-                                            $('#ajax').replaceWith($(data).find('#ajax'));
-                                            Mouse.sortInitAll();
-                                            $('[data-toggle="tooltip"]').tooltip();
-                                        }, 100);
-                                    }
                                 };
                             }
                         }
@@ -670,10 +497,26 @@
 
                 "sep15": "---------",
 
-                "quit": {name: "<?php echo lang('menu_exit') ?>", icon: function () {
+                "quit": {
+                    name: lang['menu_exit'],
+                    icon: function () {
                         return 'context-menu-icon glyphicon-remove';
-                    }}
+                    },
+                    callback: function (itemKey, opt, rootMenu, originalEvent) {
+                        opt.$menu.trigger("contextmenu:hide");
+                    }
+                }
             }
         });
     });
+
+
+    // Обновление страницы
+    function AjaxSuccess(data) {
+        setTimeout(function () {
+            $('#ajax').replaceWith($(data).find('#ajax'));
+            Mouse.sortInitAll();
+            $('[data-toggle="tooltip"]').tooltip();
+        }, 100);
+    }
 </script>
