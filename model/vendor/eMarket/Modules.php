@@ -53,14 +53,27 @@ final class Modules {
         }
 
         $active_modules = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE type=? AND active=?", ['discount', '1']);
-        $text = '';
+
+        $text = '"discount_separator": "---------",';
         $discount_router = [];
         $output_modules = [];
         foreach ($active_modules as $module) {
             if (file_exists(ROOT . '/modules/discount/' . $module['name'] . '/controller/admin/js/contextmenu/contextmenu.js')) {
                 $text .= $module['name'] . ': Discount' . ucfirst($module['name']) . '.context(sales_interface), ';
-                $output_text = substr($text, 0, -2);
+                //$output_text = substr($text, 0, -2);
                 array_push($output_modules, $module['name']);
+            }
+        }
+
+        if (count($active_modules) == 0) {
+            self::$discount_router['data'] = [];
+            self::$discount_router['functions'] = '';
+            
+            if ($marker == 'data') {
+                return self::$discount_router['data'];
+            }
+            if ($marker == 'functions') {
+                return self::$discount_router['functions'];
             }
         }
 
@@ -68,11 +81,11 @@ final class Modules {
             return $output_modules;
         }
         if ($marker == 'functions') {
-            return $output_text;
+            return $text;
         }
 
         self::$discount_router['data'] = $output_modules;
-        self::$discount_router['functions'] = $output_text;
+        self::$discount_router['functions'] = $text;
 
         return self::$discount_router;
     }

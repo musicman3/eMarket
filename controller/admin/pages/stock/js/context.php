@@ -392,9 +392,7 @@ foreach (\eMarket\Modules::discountRouter('data') as $js_path) {
                     }
                 },
 
-                "sep10": "---------",
-
-                <?php echo \eMarket\Modules::discountRouter('functions') ?>,
+                <?php echo \eMarket\Modules::discountRouter('functions') ?>
 
                 "sep13": "---------",
 
