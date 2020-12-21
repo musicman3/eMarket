@@ -59,8 +59,6 @@ foreach (\eMarket\Modules::discountRouter('data') as $js_path) {
             sale_dafault
         ];
 
-        var discount = {name: lang['discount_modules'], icon: 'context-menu-icon glyphicon-tags', items: {<?php echo \eMarket\Modules::discountRouter('functions') ?>}};
-
         $.contextMenu({
             selector: '.context-one',
 
@@ -396,7 +394,7 @@ foreach (\eMarket\Modules::discountRouter('data') as $js_path) {
 
                 "sep10": "---------",
 
-                discount: discount,
+                <?php echo \eMarket\Modules::discountRouter('functions') ?>,
 
                 "sep13": "---------",
 
