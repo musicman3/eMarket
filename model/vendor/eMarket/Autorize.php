@@ -81,7 +81,7 @@ class Autorize {
             if (isset($_SESSION['email_customer'])) {
                 $customer_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']])[0];
             } else {
-                $customer_data = null;
+                $customer_data['status'] = 0;
             }
 
             if (isset($_SESSION['customer_session_start']) && (time() - $_SESSION['customer_session_start']) / 60 > \eMarket\Settings::sessionExprTime() OR $customer_data['status'] == 0) {
