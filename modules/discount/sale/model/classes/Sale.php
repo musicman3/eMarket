@@ -42,7 +42,7 @@ class Sale {
         // Удаляем
         \eMarket\Modules::uninstall($module);
         // Очищаем поле распродажи
-        \eMarket\Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=?", ['']);
+        \eMarket\Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=?", [json_encode([])]);
     }
 
     /**
@@ -78,15 +78,16 @@ class Sale {
             $discount_names = [];
 
             foreach ($discount_val['sale'] as $val) {
-                $data = \eMarket\Pdo::getRow("SELECT sale_value, name, UNIX_TIMESTAMP (date_start), UNIX_TIMESTAMP (date_end) FROM " . DB_PREFIX . 'modules_discount_sale' . " WHERE language=? AND id=?", [$language, $val]);
+                $data = \eMarket\Pdo::getColAssoc("SELECT sale_value, name, UNIX_TIMESTAMP (date_start), UNIX_TIMESTAMP (date_end) FROM " . DB_PREFIX . 'modules_discount_sale' . " WHERE language=? AND id=?", [$language, $val]);
+                if (count($data) > 0) {
+                    $this_time = time();
+                    $date_start = $data['UNIX_TIMESTAMP (date_start)'];
+                    $date_end = $data['UNIX_TIMESTAMP (date_end)'];
 
-                $this_time = time();
-                $date_start = $data[2];
-                $date_end = $data[3];
-
-                if ($this_time > $date_start && $this_time < $date_end) {
-                    array_push($discount_out, $data[0]);
-                    array_push($discount_names, lang('modules_discount_sale_name') . ': ' . $data[1] . ' (' . $data[0] . '%)');
+                    if ($this_time > $date_start && $this_time < $date_end) {
+                        array_push($discount_out, $data['sale_value']);
+                        array_push($discount_names, lang('modules_discount_sale_name') . ': ' . $data['name'] . ' (' . $data['sale_value'] . '%)');
+                    }
                 }
             }
 
@@ -96,7 +97,7 @@ class Sale {
             }
 
             $out_price = $input_price / 100 * (100 - $total_rate);
-            
+
             $interface = [
                 'price' => $out_price,
                 'names' => $discount_names,
@@ -105,7 +106,7 @@ class Sale {
 
             return $interface;
         }
-        
+
         $interface = [
             'price' => $input_price,
             'names' => 'false',
