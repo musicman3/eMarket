@@ -42,7 +42,12 @@ class Sale {
         // Удаляем
         \eMarket\Modules::uninstall($module);
         // Очищаем поле распродажи
-        \eMarket\Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=?", [json_encode([])]);
+        $products_data = \eMarket\Pdo::getColAssoc("SELECT id, discount FROM " . TABLE_PRODUCTS . " WHERE language=?", [lang('#lang_all')[0]]);
+        foreach ($products_data as $data) {
+            $discounts = json_decode($data['discount'], 1);
+            unset($discounts['sale']);
+            \eMarket\Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [json_encode($discounts), $data['id']]);
+        }
     }
 
     /**
