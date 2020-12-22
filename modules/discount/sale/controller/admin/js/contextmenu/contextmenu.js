@@ -27,7 +27,7 @@ class DiscountSale {
         var sale_dafault = sales_interface[5];
 
         var output = {
-            name: lang['button_sale'],
+            name: lang['modules_discount_sale_admin_button_sale'],
             icon: function () {
                 return 'context-menu-icon glyphicon-tag';
             },
@@ -54,7 +54,7 @@ class DiscountSale {
                 sale_sep_1: "---------",
 
                 saleOn: {
-                    name: lang['button_sale_on'],
+                    name: lang['modules_discount_sale_admin_button_sale_on'],
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
                         // Значение выбранного селекта
                         var selected_id = $('select[name="context-menu-input-sale"] option:selected').val();
@@ -82,7 +82,7 @@ class DiscountSale {
                 },
 
                 saleOff: {
-                    name: lang['button_sale_off'],
+                    name: lang['modules_discount_sale_admin_button_sale_off'],
                     icon: function () {
                         return 'context-menu-icon glyphicon-star-empty';
                     },
@@ -94,8 +94,8 @@ class DiscountSale {
                     },
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
                         $('#confirm').modal('show');
-                        $('#confirm_title').html(lang['attention']);
-                        $('#confirm_body').html(lang['confirm_delete_sale']);
+                        $('#confirm_title').html(lang['modules_discount_sale_admin_attention']);
+                        $('#confirm_body').html(lang['modules_discount_sale_admin_confirm_delete_sale']);
 
                         confirmation.onclick = function () {
                             $('#confirm').modal('hide');
@@ -125,7 +125,7 @@ class DiscountSale {
                 sale_sep_2: "---------",
 
                 saleOffAll: {
-                    name: lang['button_sale_off_all'],
+                    name: lang['modules_discount_sale_admin_button_sale_off_all'],
                     icon: function () {
                         return 'context-menu-icon glyphicon-flash';
                     },
@@ -137,8 +137,8 @@ class DiscountSale {
                     },
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
                         $('#confirm').modal('show');
-                        $('#confirm_title').html(lang['attention']);
-                        $('#confirm_body').html(lang['confirm_delete_sales']);
+                        $('#confirm_title').html(lang['modules_discount_sale_admin_attention']);
+                        $('#confirm_body').html(lang['modules_discount_sale_admin_confirm_delete_sales']);
 
                         confirmation.onclick = function () {
                             $('#confirm').modal('hide');

@@ -17,6 +17,14 @@ modules_discount_sale_admin_sale_end_date = Sale end date
 modules_discount_sale_admin_value = Percent value (%)
 modules_discount_sale_admin_tooltip_warning = There are several discounts for this product at the same time:<br>
 
+modules_discount_sale_admin_button_sale_on = Add to Sale
+modules_discount_sale_admin_button_sale_off = Remove from Sale
+modules_discount_sale_admin_button_sale_off_all = Remove all sales
+modules_discount_sale_admin_button_sale = Sale
+modules_discount_sale_admin_confirm_delete_sale = Are you sure you want to remove from the sale?
+modules_discount_sale_admin_confirm_delete_sales = Are you sure you want to remove all sales?
+modules_discount_sale_admin_attention = ATTENTION!
+
 [catalog]
 
 ;TITLE
