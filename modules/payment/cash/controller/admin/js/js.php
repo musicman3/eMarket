@@ -25,13 +25,13 @@
 
             //Свой Title на кнопке
             buttonTitle: function () {
-                return 'Выберите модуль доставки';
+                return '<?php echo lang('modules_payment_cash_admin_shipping_module_select') ?>';
             },
 
             //Надписи на кнопке
             buttonText: function (options, select) {
                 if (options.length === 0) {
-                    return 'Выберите модуль доставки';
+                    return '<?php echo lang('modules_payment_cash_admin_shipping_module_select') ?>';
                 } else if (options.length > 0) {
                     return '<?php echo lang('positions_selected') ?>: ' + options.length + ' <?php echo lang('pcs') ?>';
                 } else {
