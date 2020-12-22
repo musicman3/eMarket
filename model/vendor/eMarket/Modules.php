@@ -77,7 +77,7 @@ final class Modules {
             }
         }
         
-        $output_text .= ', "discount_separator_end": "---------" ';
+        $output_text .= ', "discount_separator_end": "---------"';
 
         if ($marker == 'data') {
             return $output_modules;
