@@ -76,6 +76,8 @@ final class Modules {
                 return self::$discount_router['functions'];
             }
         }
+        
+        $output_text .= ', "discount_separator_end": "---------" ';
 
         if ($marker == 'data') {
             return $output_modules;

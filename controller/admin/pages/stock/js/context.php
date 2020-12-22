@@ -368,7 +368,6 @@ foreach (\eMarket\Modules::discountRouter('data') as $js_path) {
                 
                 "discount_separator": <?php echo \eMarket\Modules::discountRouter('functions') ?>,
 
-                "sep13": "---------",
 
                 "fold3": {
                     "name": lang['button_stiker'],
