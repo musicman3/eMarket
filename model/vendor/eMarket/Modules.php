@@ -67,7 +67,7 @@ final class Modules {
 
         if (count($active_modules) == 0) {
             self::$discount_router['data'] = [];
-            self::$discount_router['functions'] = '';
+            self::$discount_router['functions'] = '"---------" ';
             
             if ($marker == 'data') {
                 return self::$discount_router['data'];
