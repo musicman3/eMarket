@@ -3,32 +3,7 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMark
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-$lang_js = json_encode([
-    'sales_flag' => lang('sales_flag'),
-    'attention' => lang('attention'),
-    'confirm_delete_product_or_category' => lang('confirm_delete_product_or_category'),
-    'button_sale' => lang('button_sale'),
-    'button_sale_off' => lang('button_sale_off'),
-    'button_sale_on' => lang('button_sale_on'),
-    'button_sale_off_all' => lang('button_sale_off_all'),
-    'confirm_delete_sale' => lang('confirm_delete_sale'),
-    'confirm_delete_sales' => lang('confirm_delete_sales'),
-    'add_product' => lang('add_product'),
-    'add_category' => lang('add_category'),
-    'button_edit' => lang('button_edit'),
-    'button_action' => lang('button_action'),
-    'button_show' => lang('button_show'),
-    'button_hide' => lang('button_hide'),
-    'cut' => lang('cut'),
-    'paste' => lang('paste'),
-    'button_delete' => lang('button_delete'),
-    'button_stiker' => lang('button_stiker'),
-    'button_stiker_add' => lang('button_stiker_add'),
-    'button_stiker_delete' => lang('button_stiker_delete'),
-    'confirm_delete_stiker' => lang('confirm_delete_stiker'),
-    'menu_exit' => lang('menu_exit'),
-    'discount_modules' => lang('discount_modules')
-        ]);
+$lang_js = json_encode(lang());
 
 foreach (\eMarket\Modules::discountRouter('data') as $js_path) {
     echo '<script type="text/javascript" src="/modules/discount/' . $js_path . '/controller/admin/js/contextmenu/contextmenu.js"></script>';
@@ -391,8 +366,8 @@ foreach (\eMarket\Modules::discountRouter('data') as $js_path) {
                         }
                     }
                 },
-
-                <?php echo \eMarket\Modules::discountRouter('functions') ?>
+                
+                "discount_separator": <?php echo \eMarket\Modules::discountRouter('functions') ?>,
 
                 "sep13": "---------",
 
