@@ -37,6 +37,7 @@ menu_catalog = Catalog
 menu_market = Market
 menu_sellings = Sellings
 menu_customers = Customers
+menu_marketing = Marketing
 menu_refunds = Refunds
 menu_error_log = Error log
 menu_exit = Exit

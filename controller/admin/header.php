@@ -31,7 +31,7 @@ $menu[$menu_sales][0] = array('?route=orders', 'glyphicon glyphicon-shopping-car
 //$menu[$menu_sales][1] = array('#', 'glyphicon glyphicon-import', lang('menu_refunds'), '', 'false');
 
 //МАРКЕТИНГ
-$level[$menu_marketing] = array('#', 'Маркетинг', 'true');
+$level[$menu_marketing] = array('#', lang('menu_marketing'), 'true');
 
 $menu[$menu_marketing][0] = array('?route=slideshow', 'glyphicon glyphicon-film', lang('title_slideshow_index'), '', 'false');
 $menu[$menu_marketing][1] = array('?route=stikers', 'glyphicon glyphicon-bookmark', lang('title_stikers_index'), '', 'false');

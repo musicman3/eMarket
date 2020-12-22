@@ -37,6 +37,7 @@ menu_catalog = Каталог товаров
 menu_market = Магазин
 menu_sellings = Продажи
 menu_customers = Клиенты
+menu_marketing = Маркетинг
 menu_refunds = Возвраты
 menu_error_log = Лог ошибок
 menu_exit = Выход
