@@ -44,25 +44,25 @@ final class Ecb {
                     $discount_names .= $name_val . '<br>';
                 }
             }
+        }
 
-            $price_val = self::currencyPrice($input['price'], $input['currency']);
+        $price_val = self::currencyPrice($input['price'], $input['currency']);
 
-            if (\eMarket\Settings::path() == 'admin') {
-                if ($price_val != $discount_sale['price'] && $discount_count == 1) {
-                    return '<span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="' . $discount_names . '" class="label label-' . $class . '">' . self::formatPrice($discount_sale['price'], $marker) . '</span> <del>' . self::formatPrice($price_val, $marker) . '</del>';
-                }
-                if ($price_val != $discount_sale['price'] && $discount_count > 1) {
-                    return '<span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="' . lang('modules_discount_sale_admin_tooltip_warning') . $discount_names . '" class="label label-warning"><u>' . self::formatPrice($discount_sale['price'], $marker) . '</u></span> <del>' . self::formatPrice($price_val, $marker) . '</del>';
-                }
-                return self::formatPrice($price_val, $marker);
+        if (\eMarket\Settings::path() == 'admin') {
+            if ($discount_sales != [] && $price_val != $discount_sale['price'] && $discount_count == 1) {
+                return '<span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="' . $discount_names . '" class="label label-' . $class . '">' . self::formatPrice($discount_sale['price'], $marker) . '</span> <del>' . self::formatPrice($price_val, $marker) . '</del>';
             }
-
-            if (\eMarket\Settings::path() == 'catalog') {
-                if ($price_val != $discount_sale['price']) {
-                    return '<del>' . self::formatPrice($price_val * $quantity, $marker) . '</del><br><span class="label label-' . $class . '">' . self::formatPrice($discount_sale['price'] * $quantity, $marker) . '</span>';
-                }
-                return self::formatPrice($price_val * $quantity, $marker);
+            if ($discount_sales != [] && $price_val != $discount_sale['price'] && $discount_count > 1) {
+                return '<span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="' . lang('modules_discount_sale_admin_tooltip_warning') . $discount_names . '" class="label label-warning"><u>' . self::formatPrice($discount_sale['price'], $marker) . '</u></span> <del>' . self::formatPrice($price_val, $marker) . '</del>';
             }
+            return self::formatPrice($price_val, $marker);
+        }
+
+        if (\eMarket\Settings::path() == 'catalog') {
+            if ($discount_sales != [] && $price_val != $discount_sale['price']) {
+                return '<del>' . self::formatPrice($price_val * $quantity, $marker) . '</del><br><span class="label label-' . $class . '">' . self::formatPrice($discount_sale['price'] * $quantity, $marker) . '</span>';
+            }
+            return self::formatPrice($price_val * $quantity, $marker);
         }
     }
 
@@ -126,6 +126,10 @@ final class Ecb {
                 $data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=? AND language=?", [$value['id'], $language])[0];
                 if ($data != FALSE) {
                     $discount_sales = self::discountHandler($data, $language)['interface'];
+                    if ($discount_sales == []) {
+                        $currency = $data['currency'];
+                        $total_price_with_sale = \eMarket\Ecb::currencyPrice($data['price'], $currency);
+                    }
                     foreach ($discount_sales as $discount_sale) {
                         $discount_total_sale = 0;
 
@@ -226,6 +230,8 @@ final class Ecb {
     public static function discountHandler($input, $language = null) {
 
         $active_modules = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE type=? AND active=?", ['discount', '1']);
+        $currency = $input['currency'];
+        $input_price = \eMarket\Ecb::currencyPrice($input['price'], $currency);
 
         $discounts_interfaces = [];
         $discounts_price = 0;
@@ -235,11 +241,20 @@ final class Ecb {
             $discounts_price = $discounts_price + $namespace::dataInterface($input, $language)['price'];
         }
 
-        $interface = [
-            'out_price' => $discounts_price,
-            'interface' => $discounts_interfaces
-        ];
-        return $interface;
+        if ($discounts_price != 0 && $discounts_price != $input_price) {
+
+            $interface = [
+                'out_price' => $discounts_price,
+                'interface' => $discounts_interfaces
+            ];
+            return $interface;
+        } else {
+            $interface = [
+                'out_price' => $input_price,
+                'interface' => $discounts_interfaces
+            ];
+            return $interface;
+        }
     }
 
     /**
