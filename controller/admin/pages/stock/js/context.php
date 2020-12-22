@@ -3,7 +3,6 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMark
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-$lang_js = json_encode(lang());
 
 foreach (\eMarket\Modules::discountRouter('data') as $js_path) {
     echo '<script type="text/javascript" src="/modules/discount/' . $js_path . '/controller/admin/js/contextmenu/contextmenu.js"></script>';
@@ -14,7 +13,7 @@ foreach (\eMarket\Modules::discountRouter('data') as $js_path) {
 
     $(function () {
         var session = '<?php echo $ses_verify ?>';
-        var lang = <?php echo $lang_js ?>;
+        var lang = <?php echo json_encode(lang()) ?>;
         let parent_id = '<?php echo $parent_id ?>';
         var idsx_real_parent_id = '<?php echo $idsx_real_parent_id ?>';
         var sale = '<?php echo $sales_flag ?>';
