@@ -165,7 +165,7 @@ class Attributes {
      * @param lang {Array} (Языковые переменные)
      *
      */
-    static sort(lang) {
+    sort(lang) {
         var sortedIDs = $(".attribute").sortable("toArray").reverse();
         var processing = new AttributesProcessing();
         var parse_attributes_add = processing.sorted(sortedIDs, sessionStorage.getItem('level_1'));

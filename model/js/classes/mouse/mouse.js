@@ -35,7 +35,7 @@ class Mouse {
             return $helper;
         };
 
-        Mouse.sortInitAll();
+        Mouse.sortInitAll(lang);
     }
 
     /**
@@ -43,9 +43,10 @@ class Mouse {
      * @param id {String} (id)
      * @param items {String} (items)
      * @param handle {String} (handle)
+     * @param lang {Array} (Языковые переменные)
      *
      */
-    static sortInit(id, items, handle) {
+    static sortInit(id, items, handle, lang) {
         $(id).sortable({
             items: items,
             handle: handle,
@@ -65,16 +66,16 @@ class Mouse {
                     Mouse.sortList();
                 }
                 if (id === '.group-attributes') {
-                    var GroupAttributes = new GroupAttributes(this.lang);
-                    GroupAttributes.sort(this.lang);
+                    var GroupAttributesObj = new GroupAttributes(lang);
+                    GroupAttributesObj.sort(lang);
                 }
                 if (id === '.attribute') {
-                    var Attributes = new Attributes(this.lang);
-                    Attributes.sort(this.lang);
+                    var AttributesObj = new Attributes(lang);
+                    AttributesObj.sort(lang);
                 }
                 if (id === '.values_attribute') {
-                    var ValuesAttribute = new ValuesAttribute(this.lang);
-                    ValuesAttribute.sort(this.lang);
+                    var ValuesAttributeObj = new ValuesAttribute(lang);
+                    ValuesAttributeObj.sort(lang);
                 }
             }
         });
@@ -82,18 +83,19 @@ class Mouse {
 
     /**
      * Инициализация всего
+     * @param lang {Array} (Языковые переменные)
      *
      */
-    static sortInitAll() {
+    static sortInitAll(lang) {
         Mouse.sortInit('#sort-list', 'tr.sort-list', 'td.sortyes');
         if ($('tbody').is('.group-attributes')) {
-            Mouse.sortInit('.group-attributes', 'tr.groupattributes', 'td.sortyes-group');
+            Mouse.sortInit('.group-attributes', 'tr.groupattributes', 'td.sortyes-group', lang);
         }
         if ($('tbody').is('.attribute')) {
-            Mouse.sortInit('.attribute', 'tr.attributes-class', 'td.sortyes-attributes');
+            Mouse.sortInit('.attribute', 'tr.attributes-class', 'td.sortyes-attributes', lang);
         }
         if ($('tbody').is('.values_attribute')) {
-            Mouse.sortInit('.values_attribute', 'tr.value-attributes-class', 'td.sortyes-value-attributes');
+            Mouse.sortInit('.values_attribute', 'tr.value-attributes-class', 'td.sortyes-value-attributes', lang);
         }
         //Выбор мышкой
         $(".option").click(function () {

@@ -29,11 +29,7 @@
                 AjaxSuccess);
         // Обновление страницы
         function AjaxSuccess(data) {
-            setTimeout(function () {
-                $('#ajax').replaceWith($(data).find('#ajax'));
-                Mouse.sortInitAll();
-                $('[data-toggle="tooltip"]').tooltip();
-            }, 100);
+            document.location.href = window.location.href;
         }
     }
 </script>  

@@ -169,7 +169,7 @@ class GroupAttributes {
      * @param lang {Array} (Языковые переменные)
      *
      */
-    static sort(lang) {
+    sort(lang) {
         var sortedIDs = $(".group-attributes").sortable("toArray").reverse();
         var processing = new AttributesProcessing();
         var parse_attributes_add = processing.sorted(sortedIDs, 'false');
