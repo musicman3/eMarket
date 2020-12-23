@@ -51,8 +51,13 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                             <h5 class="item-heading"><a href="/?route=products&category_id=<?php echo $lines[$start]['parent_id'] ?>&id=<?php echo $lines[$start]['id'] ?>"><?php echo $lines[$start]['name'] ?></a></h5>
                             <div class="item-price"><?php echo \eMarket\Ecb::priceInterface($lines[$start], 1) ?></div>
                             <div class="item-text">
-                                <?php if (\eMarket\Products::manufacturer($lines[$start]['manufacturer'])['name'] != NULL && \eMarket\Products::manufacturer($lines[$start]['manufacturer'])['name'] != FALSE) { ?>
-                                    <ul>
+                                <ul>
+                                    <?php if ($lines[$start]['vendor_code'] != NULL && $lines[$start]['vendor_code'] != FALSE && $lines[$start]['vendor_code_value'] != NULL && $lines[$start]['vendor_code_value'] != FALSE) { ?>
+                                        <li>
+                                            <label><?php echo \eMarket\Products::vendorCode($lines[$start]['vendor_code'])['name'] ?>: </label> 
+                                            <?php echo $lines[$start]['vendor_code_value'] ?>
+                                        </li>
+				    <?php } if (\eMarket\Products::manufacturer($lines[$start]['manufacturer'])['name'] != NULL && \eMarket\Products::manufacturer($lines[$start]['manufacturer'])['name'] != FALSE) { ?>
                                         <li>
                                             <label><?php echo lang('product_manufacturer') ?></label> <?php echo \eMarket\Products::manufacturer($lines[$start]['manufacturer'])['name'] ?>
                                         </li>
@@ -60,11 +65,6 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
                                         <li>
                                             <label><?php echo lang('product_model') ?></label> 
                                             <?php echo $lines[$start]['model'] ?>
-                                        </li>
-                                    <?php } if ($lines[$start]['vendor_code'] != NULL && $lines[$start]['vendor_code'] != FALSE && $lines[$start]['vendor_code_value'] != NULL && $lines[$start]['vendor_code_value'] != FALSE) { ?>
-                                        <li>
-                                            <label><?php echo \eMarket\Products::vendorCode($lines[$start]['vendor_code'])['name'] ?>: </label> 
-                                            <?php echo $lines[$start]['vendor_code_value'] ?>
                                         </li>
                                     <?php } ?>
                                     <li>
