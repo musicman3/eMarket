@@ -22,5 +22,5 @@
     $('#selected_attributes').val('<?php echo $products['attributes'] ?>');
     new Products();
     new AttributesProcessing();
-    AttributesProcessing.add('catalog', <?php echo json_encode($attributes_data) ?>);
+    AttributesProcessing.add('catalog', <?php echo json_encode($attributes_data) ?>, '<?php echo lang('#lang_all')[0] ?>');
 </script>

@@ -33,7 +33,7 @@ class AttributesProcessing {
      * @param data {String} (данные по атрибутам)
      *
      */
-    static add(marker, data) {
+    static add(marker, data, language) {
         var jsdata = new JsData();
 
         if (data.length > 0) {
@@ -44,16 +44,23 @@ class AttributesProcessing {
         var selected = $.parseJSON($('#selected_attributes').val());
 
         group_attributes_data.forEach((level_1) => {
-            var data_id = level_1.length - 1;
+            var level_length = level_1.length;
+            var data_id = level_length - 1;
+            
+            for(var x = 0; x < level_length; x++){
+                if (level_1[x]['name'] === 'group_attributes_' + language){
+                    var lang = x;
+                }
+            }
             var level_2 = jsdata.sort(jsdata.selectParentUids(level_1[data_id]['uid'], data));
 
             var check = AttributesProcessing.checkSelect(data, selected, level_1[data_id]['uid']);
 
-            if (marker === 'admin' && level_2[0] !== undefined) {
-                $('.product-attribute').prepend('<div class="panel panel-default"><div class="panel-heading"><h5 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#' + level_1[data_id]['uid'] + '">' + level_1[0]['value'] + '</a></h5></div><div id="' + level_1[data_id]['uid'] + '" class="panel-collapse collapse"><div class="panel-body"><table class="table table-striped product-attribute-table"><tbody id="table_' + level_1[data_id]['uid'] + '"></tbody></table></div></div></div>');
+            if (marker === 'admin' && level_2[lang] !== undefined) {
+                $('.product-attribute').prepend('<div class="panel panel-default"><div class="panel-heading"><h5 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#' + level_1[data_id]['uid'] + '">' + level_1[lang]['value'] + '</a></h5></div><div id="' + level_1[data_id]['uid'] + '" class="panel-collapse collapse"><div class="panel-body"><table class="table table-striped product-attribute-table"><tbody id="table_' + level_1[data_id]['uid'] + '"></tbody></table></div></div></div>');
             } else {
                 if (check === 'true') {
-                    $('.product-attribute').prepend('<h5>' + level_1[0]['value'] + '</h5><table class="table table-striped product-attribute-table"><tbody id="table_' + level_1[data_id]['uid'] + '"></tbody></table>');
+                    $('.product-attribute').prepend('<h5>' + level_1[lang]['value'] + '</h5><table class="table table-striped product-attribute-table"><tbody id="table_' + level_1[data_id]['uid'] + '"></tbody></table>');
                 }
             }
 
@@ -62,20 +69,20 @@ class AttributesProcessing {
                 var level_3 = jsdata.sort(jsdata.selectParentUids(item[data_id]['uid'], data));
                 if (marker === 'admin') {
 
-                    if (level_3[0] !== undefined) {
+                    if (level_3[lang] !== undefined) {
                         var light = 'has-success';
                     } else {
                         var light = 'has-error';
                     }
 
                     $('#table_' + level_1[data_id]['uid']).prepend(
-                            '<tr><td class="attribute"><span class="product-attribute-specification">' + item[0]['value'] + '</span></td>' +
+                            '<tr><td class="attribute"><span class="product-attribute-specification">' + item[lang]['value'] + '</span></td>' +
                             '<td class="selector"><div class="input-group ' + light + '"><span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>' +
                             '<select class="form-control selectattr" id="selectattr_' + item[data_id]['uid'] + '"></select></div></td></tr>'
                             );
                     $('#selectattr_' + item[data_id]['uid']).empty();
                     level_3.forEach((string, i) => {
-                        $('#selectattr_' + item[data_id]['uid']).prepend($('<option></option>').val(string[data_id]['uid']).html(string[0]['value']));
+                        $('#selectattr_' + item[data_id]['uid']).prepend($('<option></option>').val(string[data_id]['uid']).html(string[lang]['value']));
                         if (selected.length !== 0 && selected.includes(string[data_id]['uid']) === true) {
                             $('#selectattr_' + item[data_id]['uid'] + ' option[value=' + string[data_id]['uid'] + ']').prop('selected', true);
                         }
@@ -83,12 +90,12 @@ class AttributesProcessing {
                 } else {
                     if (check === 'true') {
                         $('#table_' + level_1[data_id]['uid']).prepend(
-                                '<tr><td class="attribute"><span class="product-attribute-specification">' + item[0]['value'] + '</span></td>' +
+                                '<tr><td class="attribute"><span class="product-attribute-specification">' + item[lang]['value'] + '</span></td>' +
                                 '<td class="selector"><div class="selectattr" id="selectattr_' + item[data_id]['uid'] + '"></div></td></tr>'
                                 );
                         level_3.forEach((string, i) => {
                             if (selected.length !== 0 && selected.includes(string[data_id]['uid']) === true) {
-                                $('#selectattr_' + item[data_id]['uid']).html(string[0]['value']);
+                                $('#selectattr_' + item[data_id]['uid']).html(string[lang]['value']);
                             }
                         });
                     }

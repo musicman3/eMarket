@@ -53,7 +53,7 @@ foreach (\eMarket\Modules::discountRouter('data') as $js_path) {
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
                         $('#selected_attributes').val(JSON.stringify([]));
                         // Выводим атрибуты
-                        AttributesProcessing.add('admin', attributes_category);
+                        AttributesProcessing.add('admin', attributes_category, '<?php echo lang('#lang_all')[0] ?>');
 
                         $('#edit_product').val('');
                         $('#add_product').val('ok');
@@ -151,7 +151,7 @@ foreach (\eMarket\Modules::discountRouter('data') as $js_path) {
                             $('#selected_attributes').val(JSON.stringify(json_data['attributes'][modal_id]));
 
                             // Выводим атрибуты
-                            AttributesProcessing.add('admin', json_data['attributes_data'][modal_id]);
+                            AttributesProcessing.add('admin', json_data['attributes_data'][modal_id], '<?php echo lang('#lang_all')[0] ?>');
 
                             $('#edit_product').val(modal_id);
                             $('#add_product').val('');
