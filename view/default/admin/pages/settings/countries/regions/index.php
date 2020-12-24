@@ -83,8 +83,8 @@
 		    <tbody>
 			<?php for ($start; $start < $finish; $start++) { ?>
     			<tr>
-    			    <td><?php echo $lines[$start]['region_code'] ?></td>
-    			    <td class="text-center"><?php echo $lines[$start]['country_id'] ?></td>
+    			    <td><?php echo $lines[$start]['name'] ?></td>
+    			    <td class="text-center"><?php echo $lines[$start]['region_code'] ?></td>
     			    <td>
     				<div class="flexbox">
     				    <!--Вызов модального окна для редактирования-->
