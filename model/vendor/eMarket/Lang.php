@@ -95,7 +95,7 @@ final class Lang {
             $_SESSION['DEFAULT_LANGUAGE'] = \eMarket\Settings::basicSettings('primary_language');
         }
 
-        //Если первый раз в инсталляторе, то устанавливаем язык по умолчанию Russian
+        //Если первый раз в инсталляторе, то устанавливаем язык по умолчанию English
         if (!\eMarket\Valid::inPOST('language') && \eMarket\Settings::path() == 'install') {
             $_SESSION['DEFAULT_LANGUAGE'] = 'english';
         }
