@@ -89,10 +89,11 @@
                             <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-tower"></span></span>
                                 <select name="crypt_method" class="input-sm form-control">
-                                    <option value='gost'>-- <?php echo lang('crypt_method') ?> --</option>
-                                    <option value='gost'><?php echo lang('crypt_gost') ?></option>
-                                    <option value='blowfish'><?php echo lang('crypt_blowfish') ?></option>
-                                    <option value='rijndael-256'><?php echo lang('crypt_rijndael-256') ?></option>
+                                    <option value='aes-128-cbc'>-- <?php echo lang('crypt_method') ?> --</option>
+                                    <option value='aes-128-cbc'>aes-128-cbc</option>
+                                    <option value='aes-256-cbc'>aes-256-cbc</option>
+                                    <option value='chacha20'>chacha20</option>
+                                    <option value='chacha20-poly1305'>chacha20-poly1305</option>
                                 </select>
                             </div>
                         </div>
