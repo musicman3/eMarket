@@ -32,7 +32,7 @@ class GroupAttributes {
 
             var jsdata = new JsData();
             var data_id = 'false';
-            if (sessionStorage.getItem('attributes') === null){
+            if (sessionStorage.getItem('attributes') === null) {
                 sessionStorage.setItem('attributes', '[]');
             }
             var parse_attributes = jsdata.selectParentUids(data_id, $.parseJSON(sessionStorage.getItem('attributes')));
@@ -70,7 +70,15 @@ class GroupAttributes {
             sessionStorage.setItem('level_1', data_id);
 
             $('#attribute').modal('show');
-            $('#title_attribute').html(jsdata.selectUid(data_id, parse_attributes)[0]['value']);
+            var level_length = parse_attributes[0].length;
+
+            for (var x = 0; x < level_length; x++) {
+                if (parse_attributes[0][x]['name'] === 'group_attributes_' + lang[4]) {
+                    var language = x;
+                }
+            }
+
+            $('#title_attribute').html(jsdata.selectUid(data_id, parse_attributes)[language]['value']);
 
         });
 

@@ -67,7 +67,15 @@ class Attributes {
             sessionStorage.setItem('level_2', data_id);
 
             $('#values_attribute').modal('show');
-            $('#title_values_attribute').html(jsdata.selectUid(data_id, parse_attributes)[0]['value']);
+            var level_length = parse_attributes[0].length;
+            
+            for(var x = 0; x < level_length; x++){
+                if (parse_attributes[0][x]['name'] === 'attribute_' + lang[4]){
+                    var language = x;
+                }
+            }
+
+            $('#title_values_attribute').html(jsdata.selectUid(data_id, parse_attributes)[language]['value']);
         });
 
         // Добавляем атрибут
