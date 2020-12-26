@@ -7,6 +7,8 @@
   - Javascript >= ES6
   - HTML 5
   
+Demo page and support: http://emarketforum.com
+  
 ### Intro  
 eMarket is free software for anyone. This online store is available to anyone without any obligation or payment. GNU GPL Free License v. 3.0. The project was founded on March 10, 2018.
 
