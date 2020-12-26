@@ -66,7 +66,6 @@ $config = '<?php' . "\n" .
         '  define(\'DB_TYPE\', \'' . $db_type . '\');' . "\n" .
         '  define(\'HASH_METHOD\', \'' . $hash_method . '\');' . "\n" .
         '  define(\'CRYPT_METHOD\', \'' . $crypt_method . '\');' . "\n" .
-        '  define(\'DEFAULT_LANGUAGE\', \'' . $lng . '\');' . "\n" .
         '  define(\'TABLE_ADMINISTRATORS\', \'' . $tab_admin . '\');' . "\n" .
         '  define(\'TABLE_BASIC_SETTINGS\', \'' . $tab_basic_settings . '\');' . "\n" .
         '  define(\'TABLE_CATEGORIES\', \'' . $tab_categories . '\');' . "\n" .
@@ -161,6 +160,8 @@ fclose($fp);
 if (file_exists(ROOT . '/.htaccess')) {
     chmod(ROOT . '/.htaccess', 0644);
 }
+// Устанавливаем язык по-умолчанию
+\eMarket\Pdo::action("UPDATE " . TABLE_BASIC_SETTINGS . " SET primary_language=?", [$lng]);
 
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
 require_once(getenv('DOCUMENT_ROOT') . '/model/end.php');

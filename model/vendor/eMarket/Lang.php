@@ -92,7 +92,7 @@ final class Lang {
 
         //Если пользователь не авторизован, то устанавливаем язык по умолчанию
         if (!isset($_SESSION['DEFAULT_LANGUAGE']) && \eMarket\Settings::path() != 'install') {
-            $_SESSION['DEFAULT_LANGUAGE'] = DEFAULT_LANGUAGE;
+            $_SESSION['DEFAULT_LANGUAGE'] = \eMarket\Settings::basicSettings('primary_language');
         }
 
         //Если первый раз в инсталляторе, то устанавливаем язык по умолчанию Russian

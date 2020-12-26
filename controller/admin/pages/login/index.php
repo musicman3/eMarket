@@ -47,7 +47,7 @@ if (\eMarket\Valid::inPOST('autorize') == 'ok') {
         //удаляем текущую сессию
         unset($_SESSION['login']);
         unset($_SESSION['pass']);
-        $_SESSION['default_language'] = DEFAULT_LANGUAGE;
+        $_SESSION['default_language'] = \eMarket\Settings::basicSettings('primary_language');
         $_SESSION['login_error'] = lang('login_error');
     } else {
         $_SESSION['login'] = \eMarket\Valid::inPOST('login');
