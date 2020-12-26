@@ -70,8 +70,9 @@
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-tower"></span></span>
                                 <select name="hash_method" class="input-sm form-control">
                                     <option value='PASSWORD_DEFAULT'>-- <?php echo lang('hash_method') ?> --</option>
-                                    <option value='PASSWORD_BCRYPT'><?php echo lang('crypt_blowfish') ?></option>
-                                    <option value='PASSWORD_ARGON2I'><?php echo lang('crypt_argon2i') ?></option>
+                                    <option value='PASSWORD_DEFAULT'><?php echo lang('hash_recommended') ?></option>
+                                    <option value='PASSWORD_BCRYPT'><?php echo lang('hash_blowfish') ?></option>
+                                    <option value='PASSWORD_ARGON2I'><?php echo lang('hash_argon2i') ?></option>
                                 </select>
                             </div>
                         </div>

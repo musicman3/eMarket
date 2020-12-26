@@ -7,11 +7,10 @@
 
 button_go_login = Next
 confirm_install = Install Software?
-crypt_blowfish = BLOWFISH
-crypt_argon2i = ARGON2I
-crypt_gost = GOST 28147-89
+hash_blowfish = BLOWFISH
+hash_argon2i = ARGON2I
+hash_recommended = Recommended (BCRYPT)
 crypt_method = Encryption Method
-crypt_rijndael-256 = AES (RIJNDAEL-256)
 database_family = DB Family
 database_family_mysql = MySQL
 database_innodb = InnoDB (protected)
@@ -23,9 +22,7 @@ database_type = DB Type
 email_check = Please, enter correct E-Mail
 file_configure_not_found = File model/configure/configure.php not found!
 file_not_found = SQL-file in model/databases/ not found!
-hash_gost = GOST R 34.11-94
 hash_method = Hashing Method
-hash_sha256 = SHA2 (SHA256)
 install_button = INSTALL
 install_panel = Install eMarket
 login_admin = Admin E-Mail
