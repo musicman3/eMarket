@@ -17,9 +17,10 @@
         <meta name="author" content="eMarket" />
         <meta name="owner" content="eMarket" />
         <meta name="copyright" content="Copyright © 2018 by eMarket Team. All right reserved." />
+        <meta name="keywords" content="<?php echo \eMarket\Settings::keywordsCatalog() ?>"> 
 
         <!-- Автогенерация Title" -->
-        <title><?php echo lang('title_catalog_index') . \eMarket\Settings::titleCatalog() ?></title>
+        <title><?php echo \eMarket\Settings::titleCatalog() ?></title>
         <meta name="description" content="">
 
         <link rel="canonical" href="<?php echo \eMarket\Settings::canonicalPathCatalog() ?>" />

@@ -294,10 +294,36 @@ class Settings {
         }
 
         if (basename(\eMarket\Valid::inGET('route')) == 'products' && self::path() == 'catalog') {
-            $title = $sign . \eMarket\Pdo::getCell("SELECT name FROM " . TABLE_PRODUCTS . " WHERE language=? AND id=?", [lang('#lang_all')[0], \eMarket\Valid::inGET('id')]);
+            $product_data = \eMarket\Products::productData(\eMarket\Valid::inGET('id'));
+            if ($product_data ['tags'] != NULL && $product_data ['tags'] != '') {
+                $title = $sign . $product_data ['tags'];
+            } else {
+                $title = $sign . $product_data ['name'];
+            }
         }
 
-        return $title;
+        return lang('title_catalog_index') . $title;
+    }
+
+    /**
+     * Keywords в каталоге
+     *
+     * @return string $title
+     */
+    public static function keywordsCatalog() {
+
+        $keywords = '';
+        
+        if (basename(\eMarket\Valid::inGET('route')) == 'products' && self::path() == 'catalog') {
+            $product_data = \eMarket\Products::productData(\eMarket\Valid::inGET('id'));
+            if ($product_data ['keyword'] != NULL && $product_data ['keyword'] != '') {
+                $keywords = $product_data ['keyword'];
+            } else {
+                $keywords = '';
+            }
+        }
+
+        return $keywords;
     }
 
     /**
