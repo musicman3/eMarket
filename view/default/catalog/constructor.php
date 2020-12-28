@@ -17,12 +17,13 @@
         <meta name="author" content="eMarket" />
         <meta name="owner" content="eMarket" />
         <meta name="copyright" content="Copyright © 2018 by eMarket Team. All right reserved." />
-        <meta name="keywords" content="<?php echo \eMarket\Settings::keywordsCatalog() ?>"> 
 
         <!-- Автогенерация Title" -->
         <title><?php echo \eMarket\Settings::titleCatalog() ?></title>
+        <meta name="keywords" content="<?php echo \eMarket\Settings::keywordsCatalog() ?>">
         <meta name="description" content="">
 
+        <link type="image/x-icon" rel="shortcut icon" href="favicon.ico">
         <link rel="canonical" href="<?php echo \eMarket\Settings::canonicalPathCatalog() ?>" />
         <link href="/ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
         <link rel="stylesheet" type="text/css" href="/view/<?php echo \eMarket\Settings::template() ?>/catalog/style.css" media="screen" />
