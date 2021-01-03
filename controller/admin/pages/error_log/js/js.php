@@ -8,5 +8,5 @@
 ?>
 <script type="text/javascript" src="/model/js/classes/ajax/ajax.js"></script>
 <script type="text/javascript">
-    new Ajax('?route=error_log');
+    new Ajax();
 </script>

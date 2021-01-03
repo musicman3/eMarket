@@ -3,79 +3,76 @@
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 /**
- * Запросы Ajax
+ * Запросы Ajax / Ajax requests
  *
  * @package Ajax
  * @author eMarket
  * 
  */
 class Ajax {
-    /**
-     * Конструктор
-     *
-     * @param basic_url {String} (Базовый url)
-     */
-    constructor(basic_url) {
-        this.basic_url = basic_url;
-    }
 
     /**
-     * Функция Добавить
+     * Добавить / Add
      *
-     * @param name {String} (имя)
+     * @param name {String} (name)
      * @param url {String} (url)
+     * @param alert {String} (alert block)
      */
     static callAdd(name, url, alert) {
+
         if (name === undefined || name === null) {
-            var msg = $('#form_add').serialize();
+            var msg = document.forms.form_add;
         } else {
-            var msg = $('#' + name).serialize();
+            var msg = document.getElementById(name);
         }
-        jQuery.ajaxSetup({async: false});
-        jQuery.ajax({
-            type: 'POST',
-            url: this.basic_url,
-            data: msg,
-            beforeSend: function () {
-                $('.modal').modal('hide');
-                if (alert !== undefined && alert !== null) {
-                    $('#alert_block').html('<div id="alert" class="alert text-danger fade in"><span class="glyphicon glyphicon-alert"></span> ' + alert + '</div>');
-                }
+
+        let data = new FormData(msg);
+        let xhr = new XMLHttpRequest();
+        xhr.open('POST', window.location.href, false);
+        xhr.send(data);
+        if (xhr.status === 200) {
+            if (alert !== undefined && alert !== null) {
+                document.getElementById('alert_block').innerHTML = '<div id="alert" class="alert text-danger fade in"><span class="glyphicon glyphicon-alert"></span> ' + alert + '</div>';
             }
-        });
-        jQuery.get(this.basic_url,
-                {},
-                AjaxSuccess);
-        function AjaxSuccess(data) {
-            if (url === undefined || url === null) {
-                document.location.href = window.location.href;
+            if (document.querySelector('.modal')) {
+                $('.modal').modal('hide');
+                $('.modal').on('hidden.bs.modal', function () {
+                    Ajax.getUpdate(url);
+                });
             } else {
-                document.location.href = url;
+                Ajax.getUpdate(url);
             }
         }
     }
 
     /**
-     * Функция "Удалить"
+     * Удалить / Delete
      *
      * @param id {String} (id)
      * @param url {String} (url)
      */
     static callDelete(id, url) {
-        var msg = $('#form_delete' + id).serialize();
-        jQuery.ajaxSetup({async: false});
-        jQuery.ajax({
-            type: 'POST',
-            url: this.basic_url,
-            data: msg,
-            success: function () {
-                // Пустой запрос
-            }
-        });
-        jQuery.get(this.basic_url,
-                {},
-                AjaxSuccess);
-        function AjaxSuccess(data) {
+        var msg = document.forms['form_delete' + id];
+
+        let data = new FormData(msg);
+        let xhr = new XMLHttpRequest();
+        xhr.open('POST', window.location.href, false);
+        xhr.send(data);
+        if (xhr.status === 200) {
+            Ajax.getUpdate(url);
+        }
+    }
+
+    /**
+     * Обновить get / Get update
+     *
+     * @param url {String} (url)
+     */
+    static getUpdate(url) {
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET', window.location.href, false);
+        xhr.send();
+        if (xhr.status === 200) {
             if (url === undefined || url === null) {
                 document.location.href = window.location.href;
             } else {
