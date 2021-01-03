@@ -47,54 +47,55 @@
     </head>
     <body>
 
-            <?php
-            // ЗАГРУЖАЕМ HEADER
-            foreach (\eMarket\View::layoutRouting('header') as $path) {
-                require_once (ROOT . $path);
-            }
-	    ?>
+        <?php
+        // ЗАГРУЖАЕМ HEADER
+        foreach (\eMarket\View::layoutRouting('header') as $path) {
+            require_once (ROOT . $path);
+        }
+        ?>
 
-            <div id="bodyWrapper" class="container-fluid">
-		<div id="ajax">
+        <div id="bodyWrapper" class="container-fluid">
+            <div id="ajax">
 
-	    <?php
-            // ЗАГРУЖАЕМ ТЕЛО HTML СТРАНИЦЫ
-            require_once(\eMarket\View::routingAdmin());
-            ?>
+                <?php
+                // ЗАГРУЖАЕМ ТЕЛО HTML СТРАНИЦЫ
+                require_once(\eMarket\View::routingAdmin());
+                ?>
 
-		</div>
-	    </div>
+            </div>
+        </div>
 
-	    <?php
-            // ЗАГРУЖАЕМ FOOTER
-            foreach (\eMarket\View::layoutRouting('footer') as $path) {
-                require_once (ROOT . $path);
-            }
-            ?>
+        <?php
+        // ЗАГРУЖАЕМ FOOTER
+        foreach (\eMarket\View::layoutRouting('footer') as $path) {
+            require_once (ROOT . $path);
+        }
+        ?>
 
-            <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.min.js"></script>
-            <script type="text/javascript" src="/ext/bootstrap/js/bootstrap-confirmation.min.js"></script>
-            <script type="text/javascript" src="/ext/contextmenu/js/jquery.contextMenu.min.js"></script>
-            <script type="text/javascript" src="/ext/bootstrap/js/bootstrap-multiselect.js"></script>
+        <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/ext/bootstrap/js/bootstrap-confirmation.min.js"></script>
+        <script type="text/javascript" src="/ext/contextmenu/js/jquery.contextMenu.min.js"></script>
+        <script type="text/javascript" src="/ext/bootstrap/js/bootstrap-multiselect.js"></script>
 
-            <script type="text/javascript">
-                $('[data-toggle=confirmation]').confirmation();
-            </script>
+        <script type="text/javascript">
+            $('[data-toggle=confirmation]').confirmation(
+                    {rootSelector: '[data-toggle=confirmation]'});
+        </script>
 
-            <?php
-            //Если существует \eMarket\Set::$JS_END
-            if (\eMarket\Settings::$JS_END != FALSE) {
-                //то подгружаем JS.PHP файл
-                require_once(\eMarket\Settings::$JS_END . '/js/js.php');
-            }
-            //Если существует \eMarket\Set::$JS_MOD_END
-            if (\eMarket\Settings::$JS_MOD_END != FALSE) {
-                //то подгружаем JS.PHP файл
-                require_once(\eMarket\Settings::$JS_MOD_END . '/js/js.php');
-            }
-            // Выводим отладочную информацию
-            \eMarket\Debug::info();
-            ?>
+        <?php
+        //Если существует \eMarket\Set::$JS_END
+        if (\eMarket\Settings::$JS_END != FALSE) {
+            //то подгружаем JS.PHP файл
+            require_once(\eMarket\Settings::$JS_END . '/js/js.php');
+        }
+        //Если существует \eMarket\Set::$JS_MOD_END
+        if (\eMarket\Settings::$JS_MOD_END != FALSE) {
+            //то подгружаем JS.PHP файл
+            require_once(\eMarket\Settings::$JS_MOD_END . '/js/js.php');
+        }
+        // Выводим отладочную информацию
+        \eMarket\Debug::info();
+        ?>
 
     </body>
 </html>

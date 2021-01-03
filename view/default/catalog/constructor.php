@@ -101,7 +101,8 @@
         <?php require_once (ROOT . '/view/' . \eMarket\Settings::template() . '/js/breadcrumb.php') ?>
 
         <script type="text/javascript">
-            $('[data-toggle=confirmation]').confirmation();
+            $('[data-toggle=confirmation]').confirmation(
+                    {rootSelector: '[data-toggle=confirmation]'});
         </script>
 
         <?php
