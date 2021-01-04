@@ -15,37 +15,13 @@
 <!-- Отправка данных при переключении bootstrap-switch -->
 <script type="text/javascript">
     $('#switch_active').on('switchChange.bootstrapSwitch', function (event, state) {
-        var msg = $('#form_edit_active').serialize();
-        // Установка синхронного запроса для jQuery.ajax
-        jQuery.ajaxSetup({async: false});
-        jQuery.ajax({
-            type: 'POST',
-            url: '?route=settings/modules',
-            data: msg
-        });
+        var msg = document.forms.form_edit_active;
+        let data = new FormData(msg);
+        let xhr = new XMLHttpRequest();
+        xhr.open('POST', '?route=settings/modules', false);
+        xhr.send(data);
     });
 </script>    
-
-<script type="text/javascript">
-    function callSaveMod(url) {
-        var msg = $('#form_save_mod').serialize();
-        // Установка синхронного запроса для jQuery.ajax
-        jQuery.ajaxSetup({async: false});
-        jQuery.ajax({
-            type: 'POST',
-            url: url,
-            data: msg
-        });
-        // Отправка запроса для обновления страницы
-        jQuery.get(url,
-                {},
-                AjaxSuccess);
-        // Обновление страницы
-        function AjaxSuccess(data) {
-            document.location.href = url;
-        }
-    }
-</script>
 
 <script type="text/javascript" src="/model/js/classes/ajax/ajax.js"></script>
 <script type="text/javascript">

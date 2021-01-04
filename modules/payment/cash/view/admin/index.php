@@ -5,7 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
 
-<form id="form_save_mod" name="form_save_mod" action="javascript:void(null);" onsubmit="callSaveMod('<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>')">
+<form id="form_add_mod" name="form_add_mod" action="javascript:void(null);" onsubmit="Ajax.callAdd('form_add_mod')">
 
     <input type="hidden" name="save" value="ok" />
 
