@@ -15,30 +15,28 @@
 <!-- Загрузка данных в модальное окно -->
 <script type="text/javascript">
     $('#index').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget);
-        var modal_id = button.data('edit'); // Получаем ID из data-edit при клике на кнопку редактирования
+        var button = event.relatedTarget;
+        var modal_id = Number(button.dataset.edit); // Получаем ID из data-edit при клике на кнопку редактирования
         if (Number.isInteger(modal_id)) {
             $('#default_order_status').bootstrapSwitch('destroy', true);
             // Получаем массивы данных
-            var json_data = $('div#ajax_data').data('jsondata');
+            var json_data = JSON.parse(document.querySelector('#ajax_data').dataset.jsondata);
 
-            $('#edit').val(modal_id);
-            $('#add').val('');
+            document.querySelector('#edit').value = modal_id;
+            document.querySelector('#add').value = '';
 
             // Ищем id и добавляем данные
-            for (x = 0; x < json_data['name'].length; x++) {
-                $('#name_order_status_' + x).val(json_data['name'][x][modal_id]);
+            for (var x = 0; x < json_data.name.length; x++) {
+                document.querySelector('#name_order_status_' + x).value = json_data.name[x][modal_id];
             }
             // Меняем значение чекбокса
-            $('#default_order_status').prop('checked', json_data['default_order_status'][modal_id]);
+            document.querySelector('#default_order_status').checked = json_data.default_order_status[modal_id];
             $('#default_order_status').bootstrapSwitch();
         } else {
-            $('#edit').val('');
-            $('#add').val('ok');
+            document.querySelector('#edit').value = '';
+            document.querySelector('#add').value = 'ok';
             //Очищаем поля
-            $(this).find('form').trigger('reset');
-            // Меняем значение чекбокса
-            $('#default_order_status').prop('checked', '1');
+            document.querySelector('form').reset();
         }
     });
 </script>
