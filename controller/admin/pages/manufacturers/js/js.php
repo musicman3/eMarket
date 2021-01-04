@@ -29,21 +29,21 @@ $lang_js = json_encode([
 
         if (Number.isInteger(modal_id)) {
 
-            var json_data = JSON.parse(document.getElementById('ajax_data').dataset.jsondata);
-            document.getElementById('edit').value = modal_id;
-            document.getElementById('add').value = '';
+            var json_data = JSON.parse(document.querySelector('#ajax_data').dataset.jsondata);
+            document.querySelector('#edit').value = modal_id;
+            document.querySelector('#add').value = '';
 
             // Ищем id и добавляем данные
             for (var x = 0; x < json_data.name.length; x++) {
-                document.getElementById('name_manufacturers_' + x).value = json_data.name[x][modal_id];
+                document.querySelector('#name_manufacturers_' + x).value = json_data.name[x][modal_id];
             }
-            document.getElementById('site_manufacturers').value = json_data.site[modal_id];
+            document.querySelector('#site_manufacturers').value = json_data.site[modal_id];
 
             // Подгружаем изображения
             Fileupload.getImageToEdit(json_data.logo_general, json_data.logo, modal_id, 'manufacturers');
         } else {
-            document.getElementById('edit').value = '';
-            document.getElementById('add').value = 'ok';
+            document.querySelector('#edit').value = '';
+            document.querySelector('#add').value = 'ok';
         }
     });
 </script>

@@ -23,7 +23,7 @@ class Ajax {
         if (name === undefined || name === null) {
             var msg = document.forms.form_add;
         } else {
-            var msg = document.getElementById(name);
+            var msg = document.querySelector('#' + name);
         }
 
         let data = new FormData(msg);
@@ -32,7 +32,7 @@ class Ajax {
         xhr.send(data);
         if (xhr.status === 200) {
             if (alert !== undefined && alert !== null) {
-                document.getElementById('alert_block').innerHTML = '<div id="alert" class="alert text-danger fade in"><span class="glyphicon glyphicon-alert"></span> ' + alert + '</div>';
+                document.querySelector('#alert_block').innerHTML = '<div id="alert" class="alert text-danger fade in"><span class="glyphicon glyphicon-alert"></span> ' + alert + '</div>';
             }
             if (document.querySelector('.modal')) {
                 $('.modal').modal('hide');
