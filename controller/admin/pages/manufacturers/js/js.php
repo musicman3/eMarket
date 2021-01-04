@@ -44,6 +44,8 @@ $lang_js = json_encode([
         } else {
             document.querySelector('#edit').value = '';
             document.querySelector('#add').value = 'ok';
+            //Очищаем поля
+            document.querySelector('form').reset();
         }
     });
 </script>
