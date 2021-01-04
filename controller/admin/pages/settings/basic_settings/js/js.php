@@ -3,36 +3,34 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-
 ?>
 
 <script type="text/javascript">
-    if ($("#smtp_status option:selected").val() === 'off') {
-        $('#smtp_auth').attr('disabled', 'disabled');
-        $('#host_email').attr('disabled', 'disabled');
-        $('#username_email').attr('disabled', 'disabled');
-        $('#password_email').attr('disabled', 'disabled');
-        $('#smtp_secure').attr('disabled', 'disabled');
-        $('#smtp_port').attr('disabled', 'disabled');
+    if (document.querySelector('#smtp_status').options.selectedIndex === 1) {
+        disableInput();
     }
 
-    $('#smtp_status').change(function (event) {
-        if ($("#smtp_status option:selected").val() === 'off') {
-            $('#smtp_auth').attr('disabled', 'disabled');
-            $('#host_email').attr('disabled', 'disabled');
-            $('#username_email').attr('disabled', 'disabled');
-            $('#password_email').attr('disabled', 'disabled');
-            $('#smtp_secure').attr('disabled', 'disabled');
-            $('#smtp_port').attr('disabled', 'disabled');
+    document.querySelector('#smtp_status').addEventListener('change', function (event) {
+        if (document.querySelector('#smtp_status').options.selectedIndex === 1) {
+            disableInput();
         } else {
-            $('#smtp_auth').removeAttr('disabled');
-            $('#host_email').removeAttr('disabled');
-            $('#username_email').removeAttr('disabled');
-            $('#password_email').removeAttr('disabled');
-            $('#smtp_secure').removeAttr('disabled');
-            $('#smtp_port').removeAttr('disabled');
+            document.querySelector('#smtp_auth').removeAttribute('disabled');
+            document.querySelector('#host_email').removeAttribute('disabled');
+            document.querySelector('#username_email').removeAttribute('disabled');
+            document.querySelector('#password_email').removeAttribute('disabled');
+            document.querySelector('#smtp_secure').removeAttribute('disabled');
+            document.querySelector('#smtp_port').removeAttribute('disabled');
         }
     });
+
+    function disableInput() {
+        document.querySelector('#smtp_auth').setAttribute('disabled', 'disabled');
+        document.querySelector('#host_email').setAttribute('disabled', 'disabled');
+        document.querySelector('#username_email').setAttribute('disabled', 'disabled');
+        document.querySelector('#password_email').setAttribute('disabled', 'disabled');
+        document.querySelector('#smtp_secure').setAttribute('disabled', 'disabled');
+        document.querySelector('#smtp_port').setAttribute('disabled', 'disabled');
+    }
 </script>
 
 <script type="text/javascript" src="/model/js/classes/ajax/ajax.js"></script>
