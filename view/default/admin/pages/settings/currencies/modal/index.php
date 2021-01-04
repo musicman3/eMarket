@@ -80,7 +80,7 @@
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
                                 <select name="symbol_position_currencies" id="symbol_position_currencies" class="input-sm form-control">
                                     <option value="right"><?php echo lang('symbol_right') ?></option>
-                                    <option value="left"><?php echo lang('symbol_left') ?></option>
+                                    <option value="left" selected><?php echo lang('symbol_left') ?></option>
                                 </select>
                             </div>
                         </div>

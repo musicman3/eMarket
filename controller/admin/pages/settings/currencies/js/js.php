@@ -12,42 +12,41 @@
 <!-- Загрузка данных в модальное окно -->
 <script type="text/javascript">
     $('#index').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget);
-        var modal_id = button.data('edit'); // Получаем ID из data-edit при клике на кнопку редактирования
+
+        var button = event.relatedTarget;
+        var modal_id = Number(button.dataset.edit); // Получаем ID из data-edit при клике на кнопку редактирования
+
         if (Number.isInteger(modal_id)) {
             $('#default_value_currencies').bootstrapSwitch('destroy', true);
-            var json_data = $('div#ajax_data').data('jsondata');
+            var json_data = JSON.parse(document.querySelector('#ajax_data').dataset.jsondata);
 
-            $('#edit').val(modal_id);
-            $('#add').val('');
+            document.querySelector('#edit').value = modal_id;
+            document.querySelector('#add').value = '';
 
             // Ищем id и добавляем данные
-            for (x = 0; x < json_data['name'].length; x++) {
-                $('#name_currencies_' + x).val(json_data['name'][x][modal_id]);
-                $('#code_currencies_' + x).val(json_data['code'][x][modal_id]);
+            for (var x = 0; x < json_data.name.length; x++) {
+                document.querySelector('#name_currencies_' + x).value = json_data.name[x][modal_id];
+                document.querySelector('#code_currencies_' + x).value = json_data.code[x][modal_id];
             }
 
-            $('#iso_4217_currencies').val(json_data['iso_4217'][modal_id]);
-            $('#value_currencies').val(json_data['value'][modal_id]);
-            $('#symbol_currencies').val(json_data['symbol'][modal_id]);
-            $('#decimal_places_currencies').val(json_data['decimal_places'][modal_id]);
+            document.querySelector('#iso_4217_currencies').value = json_data.iso_4217[modal_id];
+            document.querySelector('#value_currencies').value = json_data.value[modal_id];
+            document.querySelector('#symbol_currencies').value = json_data.symbol[modal_id];
+            document.querySelector('#decimal_places_currencies').value = json_data.decimal_places[modal_id];
             // Меняем значение чекбокса
-            $('#default_value_currencies').prop('checked', json_data['default_value'][modal_id]);
+            document.querySelector('#default_value_currencies').checked = json_data.default_value[modal_id];
             $('#default_value_currencies').bootstrapSwitch();
             // Выбираем установленный селект
-            if (json_data['symbol_position'][modal_id] === 'left') {
-                $('#symbol_position_currencies option[value="left"]').prop('selected', true);
+            if (json_data.symbol_position[modal_id] === 'left') {
+                document.querySelector('#symbol_position_currencies option[value="left"]').selected = true;
             } else {
-                $('#symbol_position_currencies option[value="right"]').prop('selected', true);
+                document.querySelector('#symbol_position_currencies option[value="right"]').selected = true;
             }
         } else {
-            $('#edit').val('');
-            $('#add').val('ok');
+            document.querySelector('#edit').value = '';
+            document.querySelector('#add').value = 'ok';
             //Очищаем поля
-            $(this).find('form').trigger('reset');
-            // Меняем значение чекбокса
-            $('#symbol_position_currencies').val('left').prop('selected', true);
-            $('#default_value_currencies').prop('checked', '1');
+            document.querySelector('form').reset();
         }
     });
 </script>
