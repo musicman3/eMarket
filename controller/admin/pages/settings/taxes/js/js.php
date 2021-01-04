@@ -12,49 +12,47 @@
 <!-- Загрузка данных в модальное окно -->
 <script type="text/javascript">
     $('#index').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget);
-        var modal_id = button.data('edit'); // Получаем ID из data-edit при клике на кнопку редактирования
+        var button = event.relatedTarget;
+        var modal_id = Number(button.dataset.edit); // Получаем ID из data-edit при клике на кнопку редактирования
         if (Number.isInteger(modal_id)) {
             $('#tax_type, #fixed').bootstrapSwitch('destroy', true);
             // Получаем массивы данных
-            var json_data = $('div#ajax_data').data('jsondata');
+            var json_data = JSON.parse(document.querySelector('#ajax_data').dataset.jsondata);
 
-            $('#edit').val(modal_id);
-            $('#add').val('');
+            document.querySelector('#edit').value = modal_id;
+            document.querySelector('#add').value = '';
 
             // Ищем id и добавляем данные
-            for (x = 0; x < json_data['name'].length; x++) {
-                $('#name_taxes_' + x).val(json_data['name'][x][modal_id]);
+            for (var x = 0; x < json_data.name.length; x++) {
+                document.querySelector('#name_taxes_' + x).value = json_data.name[x][modal_id];
             }
-            $('#rate_taxes').val(json_data['rate'][modal_id]);
-            $('#tax_type').prop('checked', json_data['tax_type'][modal_id]);
-            $('#fixed').prop('checked', json_data['fixed'][modal_id]);
+            document.querySelector('#rate_taxes').value = json_data.rate[modal_id];
+            document.querySelector('#tax_type').checked = json_data.tax_type[modal_id];
+            document.querySelector('#fixed').checked = json_data.fixed[modal_id];
             $('#tax_type, #fixed').bootstrapSwitch();
             
-            $('#zones_id').empty();
+            document.querySelector('#zones_id').innerHTML = '';
 
-            $.each(json_data['zones'], function (key, value) {
-                $('#zones_id').append('<option value="' + value['id'] + '">' + value['name'] + '</option>');
+            json_data.zones.forEach((value) => {
+                document.querySelector('#zones_id').insertAdjacentHTML('beforeend', '<option value="' + value.id + '">' + value.name + '</option>');
             });
 
-            if (json_data['zones_id'][modal_id] !== undefined && json_data['zones_id'][modal_id] !== null) {
-                $('#zones_id option[value="' + json_data['zones_id'][modal_id] + '"]').prop('selected', '1');
+            if (json_data.zones_id[modal_id] !== undefined && json_data.zones_id[modal_id] !== null) {
+                document.querySelector('#zones_id option[value="' + json_data.zones_id[modal_id] + '"]').selected = true;
             }
 
         } else {
             
-            $('#edit').val('');
-            $('#add').val('ok');
-            var json_data = $('div#ajax_data').data('jsondata');
+            document.querySelector('#edit').value = '';
+            document.querySelector('#add').value = 'ok';
             //Очищаем поля
-            $(this).find('form').trigger('reset');
-            // Меняем значение чекбокса
-            $('#tax_type, #fixed').prop('checked', '1');
+            document.querySelector('form').reset();
             
-            $('#zones_id').empty();
+            var json_data = JSON.parse(document.querySelector('#ajax_data').dataset.jsondata);
+            document.querySelector('#zones_id').innerHTML = '';
 
-            $.each(json_data['zones'], function (key, value) {
-                $('#zones_id').append('<option value="' + value['id'] + '">' + value['name'] + '</option>');
+            json_data.zones.forEach((value) => {
+                document.querySelector('#zones_id').insertAdjacentHTML('beforeend', '<option value="' + value.id + '">' + value.name + '</option>');
             });
 
         }
