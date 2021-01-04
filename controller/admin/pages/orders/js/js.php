@@ -7,77 +7,78 @@
 <!-- Загрузка данных в модальное окно -->
 <script type="text/javascript">
     $('#index').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget);
-        var modal_id = button.data('edit'); // Получаем ID из data-edit при клике на кнопку редактирования
-        $('#invoice').empty();
-        $('#status_history').empty();
+        var button = event.relatedTarget;
+        var modal_id = Number(button.dataset.edit); // Получаем ID из data-edit при клике на кнопку редактирования
+
+        document.querySelector('#invoice').innerHTML = '';
+        document.querySelector('#status_history').innerHTML = '';
 
         // Получаем данные из data div
-        var orders = $('div#ajax_data').data('orders')[modal_id];
-        var customer_data = $.parseJSON(orders['customer_data']);
-        var invoice = $.parseJSON(orders['invoice']);
-        var order_total = $.parseJSON(orders['order_total']);
-        var address_book = $.parseJSON(customer_data['address_book']);
-        var history_status = $.parseJSON(orders['orders_status_history']);
-        var shipping_method = $.parseJSON(orders['shipping_method'])['admin'];
-        var payment_method = $.parseJSON(orders['payment_method'])['admin'];
+        var orders = JSON.parse(document.querySelector('#ajax_data').dataset.orders)[modal_id];
+        var customer_data = JSON.parse(orders.customer_data);
+        var invoice = JSON.parse(orders.invoice);
+        var order_total = JSON.parse(orders.order_total);
+        var address_book = JSON.parse(customer_data.address_book);
+        var history_status = JSON.parse(orders.orders_status_history);
+        var shipping_method = JSON.parse(orders.shipping_method).admin;
+        var payment_method = JSON.parse(orders.payment_method).admin;
 
-        $('#edit').val(modal_id);
+        document.querySelector('#edit').value = modal_id;
 
         // Титл
-        $('#title').html('<?php echo lang('orders_number') ?>: ' + orders['id']);
+        document.querySelector('#title').innerHTML = '<?php echo lang('orders_number') ?>: ' + orders.id;
 
         // Описание
         // #Клиент
-        $('#description_client_name').html(customer_data['firstname'] + ' ' + customer_data['lastname']);
-        $('#description_client_phone').html(customer_data['telephone']);
-        $('#description_client_email').html(orders['email']);
+        document.querySelector('#description_client_name').innerHTML = customer_data.firstname + ' ' + customer_data.lastname;
+        document.querySelector('#description_client_phone').innerHTML = customer_data.telephone;
+        document.querySelector('#description_client_email').innerHTML = orders.email;
         // #Метод оплаты
-        $('#description_payment_method').html(payment_method);
+        document.querySelector('#description_payment_method').innerHTML = payment_method;
         // #Доставка
-        $('#description_shipping_method').html('<b>' + shipping_method + '</b>');
-        $('#description_shipping_country').html(address_book['zip'] + ', ' + address_book['country'] + ', ' + address_book['region']);
-        $('#description_shipping_address').html(address_book['city'] + ', ' + address_book['address']);
+        document.querySelector('#description_shipping_method').innerHTML = '<b>' + shipping_method + '</b>';
+        document.querySelector('#description_shipping_country').innerHTML = address_book.zip + ', ' + address_book.country + ', ' + address_book.region;
+        document.querySelector('#description_shipping_address').innerHTML = address_book.city + ', ' + address_book.address;
         // #Платежный адрес
-        $('#description_billing_country').html(address_book['zip'] + ', ' + address_book['country'] + ', ' + address_book['region']);
-        $('#description_billing_address').html(address_book['city'] + ', ' + address_book['address']);
+        document.querySelector('#description_billing_country').innerHTML = address_book.zip + ', ' + address_book.country + ', ' + address_book.region;
+        document.querySelector('#description_billing_address').innerHTML = address_book.city + ', ' + address_book.address;
         // #Статус
-        $('#description_date_purchased').html(history_status[0]['admin']['status'] + ': ' + history_status[0]['admin']['date']);
+        document.querySelector('#description_date_purchased').innerHTML = history_status[0].admin.status + ': ' + history_status[0].admin.date;
         // #Итого
-        $('#description_order_total').html(order_total['admin']['total_to_pay_format']);
+        document.querySelector('#description_order_total').innerHTML = order_total.admin.total_to_pay_format;
 
         // Товары
-        for (x = 0; x < invoice.length; x++) {
-            if (invoice[x]['admin']['stiker'] !== null && invoice[x]['admin']['stiker'] !== undefined) {
-                var stiker = invoice[x]['admin']['stiker'];
+        for (var x = 0; x < invoice.length; x++) {
+            if (invoice[x].admin.stiker !== null && invoice[x].admin.stiker !== undefined) {
+                var stiker = invoice[x].admin.stiker;
             } else {
                 var stiker = '';
             }
-            $("#invoice").append('<tr class="bg-success">\n\
+            document.querySelector('#invoice').insertAdjacentHTML('beforeend', '<tr class="bg-success">\n\
                                         <td class="text-left"><span class="label label-success">' + stiker + '</span></td>\n\
-                                        <td class="text-center"><small>' + invoice[x]['admin']['name'] + '</small></td>\n\
-                                        <td class="text-center"><small>' + invoice[x]['admin']['price'] + '</small></td>\n\
-                                        <td class="text-center"><small>' + invoice[x]['data']['quantity'] + ' ' + invoice[x]['admin']['unit'] + '</small></td>\n\
-                                        <td class="text-right"><small>' + invoice[x]['admin']['amount'] + '</small></td>\n\
+                                        <td class="text-center"><small>' + invoice[x].admin.name + '</small></td>\n\
+                                        <td class="text-center"><small>' + invoice[x].admin.price + '</small></td>\n\
+                                        <td class="text-center"><small>' + invoice[x].data.quantity + ' ' + invoice[x].admin.unit + '</small></td>\n\
+                                        <td class="text-right"><small>' + invoice[x].admin.amount + '</small></td>\n\
                                   </tr>');
         }
 
-        $('#invoice_shipping_method').html('<b>' + shipping_method + '</b>');
-        $('#invoice_shipping_price').html(order_total['admin']['shipping_price_format']);
-        $('#invoice_order_total').html(order_total['admin']['total_format']);
+        document.querySelector('#invoice_shipping_method').innerHTML = '<b>' + shipping_method + '</b>';
+        document.querySelector('#invoice_shipping_price').innerHTML = order_total.admin.shipping_price_format;
+        document.querySelector('#invoice_order_total').innerHTML = order_total.admin.total_format;
 
-        if (Number(order_total['data']['order_total_tax']) > 0) {
-            $('#invoice_taxes').html(order_total['admin']['order_total_tax_format']);
+        if (Number(order_total.data.order_total_tax) > 0) {
+            document.querySelector('#invoice_taxes').innerHTML = order_total.admin.order_total_tax_format;
         }
-        if (Number(order_total['data']['order_total_tax']) === 0) {
-            $('#invoice_taxes').html('<?php echo lang('orders_price_including_all_taxes') ?>');
+        if (Number(order_total.data.order_total_tax) === 0) {
+            document.querySelector('#invoice_taxes').innerHTML = '<?php echo lang('orders_price_including_all_taxes') ?>';
         }
 
-        $('#invoice_order_total_to_pay').html(order_total['admin']['total_to_pay_format']);
+        document.querySelector('#invoice_order_total_to_pay').innerHTML = order_total.admin.total_to_pay_format;
 
         // История статусов
         for (x = 0; x < history_status.length; x++) {
-            $("#status_history").append('<span class="glyphicon glyphicon-ok"></span><small> ' + history_status[x]['admin']['date'] + ' </small><span class="label label-success">' + history_status[x]['admin']['status'] + '</span><br>');
+            document.querySelector('#status_history').insertAdjacentHTML('beforeend', '<span class="glyphicon glyphicon-ok"></span><small> ' + history_status[x].admin.date + ' </small><span class="label label-success">' + history_status[x].admin.status + '</span><br>');
         }
     });
 </script>
