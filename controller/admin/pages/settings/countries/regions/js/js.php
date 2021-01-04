@@ -8,26 +8,25 @@
 <!-- Загрузка данных в модальное окно -->
 <script type="text/javascript">
     $('#index').on('show.bs.modal', function (event) {
-
-        var button = $(event.relatedTarget);
-        var modal_id = button.data('edit'); // Получаем ID из data-edit при клике на кнопку редактирования
+        var button = event.relatedTarget;
+        var modal_id = Number(button.dataset.edit); // Получаем ID из data-edit при клике на кнопку редактирования
         if (Number.isInteger(modal_id)) {
             // Получаем массивы данных
-            var json_data = $('div#ajax_data').data('jsondata');
-            $('#edit').val(modal_id);
-            $('#add').val('');
+            var json_data = JSON.parse(document.querySelector('#ajax_data').dataset.jsondata);
+            document.querySelector('#edit').value = modal_id;
+            document.querySelector('#add').value = '';
 
             // Ищем id и добавляем данные
-            for (x = 0; x < json_data['name'].length; x++) {
-                $('#name_regions_' + x).val(json_data['name'][x][modal_id]);
+            for (var x = 0; x < json_data.name.length; x++) {
+                document.querySelector('#name_regions_' + x).value = json_data.name[x][modal_id];
             }
 
-            $('#region_code_regions').val(json_data['region_code'][modal_id]);
+            document.querySelector('#region_code_regions').value = json_data.region_code[modal_id];
         } else {
-            $('#edit').val('');
-            $('#add').val('ok');
+            document.querySelector('#edit').value = '';
+            document.querySelector('#add').value = 'ok';
             //Очищаем поля
-            $(this).find('form').trigger('reset');
+            document.querySelector('form').reset();
         }
     });
 </script>
