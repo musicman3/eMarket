@@ -12,7 +12,6 @@
 <!-- Загрузка данных в модальное окно -->
 <script type="text/javascript">
     $('#index').on('show.bs.modal', function (event) {
-
         var button = event.relatedTarget;
         var modal_id = Number(button.dataset.edit); // Получаем ID из data-edit при клике на кнопку редактирования
 
