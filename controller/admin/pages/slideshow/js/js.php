@@ -46,7 +46,7 @@ $lang_js = json_encode([
         $('#mouse_stop, #autostart, #cicles, #indicators, #navigation').bootstrapSwitch();
     });
 
-    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+    $('[data-toggle="tab"]').on('shown.bs.tab', function (e) {
         var tab = e.target['hash'].slice(1);
         $('#set_language').val(tab);
         window.history.pushState(null, null, "?route=slideshow&slide_lang=" + tab);
@@ -57,7 +57,7 @@ $lang_js = json_encode([
         function AjaxSuccess(data) {
             $('.ajax-tab').replaceWith($(data).find('.ajax-tab'));
             $('#ajax_data').replaceWith($(data).find('#ajax_data'));
-            $('[data-toggle=confirmation]').confirmation();
+            $('[data-toggle=confirmation]').confirmation({rootSelector: '[data-toggle=confirmation]'});
         }
     });
 

@@ -78,8 +78,7 @@
         <script type="text/javascript" src="/ext/bootstrap/js/bootstrap-multiselect.js"></script>
 
         <script type="text/javascript">
-            $('[data-toggle=confirmation]').confirmation(
-                    {rootSelector: '[data-toggle=confirmation]'});
+            $('[data-toggle=confirmation]').confirmation({rootSelector: '[data-toggle=confirmation]'});
         </script>
 
         <?php
