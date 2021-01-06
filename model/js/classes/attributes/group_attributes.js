@@ -153,6 +153,7 @@ class GroupAttributes {
      */
     static deleteValue(lang) {
         $('.delete-group-attribute').confirmation({
+            rootSelector: '[data-toggle=confirmation]',
             onConfirm: function (event) {
                 $(this).closest('tr').remove();
 

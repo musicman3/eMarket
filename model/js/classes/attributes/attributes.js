@@ -150,6 +150,7 @@ class Attributes {
      */
     static deleteValue(lang) {
         $('.delete-attribute').confirmation({
+            rootSelector: '[data-toggle=confirmation]',
             onConfirm: function (event) {
                 $(this).closest('tr').remove();
 
