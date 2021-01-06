@@ -6,6 +6,11 @@
   - MySQL >= 5.7
   - Javascript >= ES6
   - HTML 5
+
+### Install  
+Copy files to server and open page: http://localhost/controller/install
+
+---
   
 Demo page and support: http://emarketforum.com
 
