@@ -11,7 +11,7 @@
             <div class="modal-header"><div class="pull-right"><button class="close" type="button" data-dismiss="modal">×</button></div>
                 <h4 class="modal-title"><?php echo \eMarket\Settings::titlePageGenerator() ?></h4>
             </div>
-            <form id="form_add_product" name="form_add_product" action="javascript:void(null);" onsubmit="callProduct()">
+            <form id="form_add_product" name="form_add_product" action="javascript:void(null);" onsubmit="Ajax.callAdd('form_add_product')">
                 <div class="panel-body">
                     <input type="hidden" name="parent_id" value="<?php echo $parent_id ?>" />
                     <input type="hidden" id="add_product" name="add_product" value="" />

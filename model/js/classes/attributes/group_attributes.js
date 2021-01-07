@@ -43,9 +43,10 @@ class GroupAttributes {
         });
 
         // Если закрыли главный модал
-        $('#index').on('hidden.bs.modal', function (event) {
+        $('#index, #index_product').on('hidden.bs.modal', function (event) {
             $('.group-attributes').empty();
             GroupAttributes.clearAttributes();
+            $('.product-attribute').empty();
         });
 
         // Если закрыли добавление группы атрибутов

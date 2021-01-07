@@ -33,11 +33,10 @@ $lang_attributes = json_encode([
     new FileuploadProduct(resize_max_prod, lang);
 </script>
 
-<!--Подгружаем Категории -->
-<?php require_once ('categories.php') ?>
-
-<!--Подгружаем Товары -->
-<?php require_once ('products.php') ?>
+<script type="text/javascript" src="/model/js/classes/ajax/ajax.js"></script>
+<script type="text/javascript">
+    new Ajax();
+</script>
 
 <!--Подгружаем Атрибуты -->
 <?php require_once ('attributes.php') ?>

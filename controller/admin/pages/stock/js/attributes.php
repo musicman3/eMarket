@@ -13,7 +13,7 @@
 <script type="text/javascript" src="/model/js/classes/jsdata/jsdata.js"></script>
 
 <script type="text/javascript">
-    var lang = $.parseJSON('<?php echo $lang_attributes ?>');
+    var lang = JSON.parse('<?php echo $lang_attributes ?>');
     new GroupAttributes(lang);
     new Attributes(lang);
     new ValuesAttribute(lang);
