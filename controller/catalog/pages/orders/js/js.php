@@ -15,13 +15,13 @@
 
         // Получаем данные из data div
         var orders_edit = $('div#ajax_data').data('orders')[modal_id];
-        var customer_data = $.parseJSON(orders_edit['customer_data']);
-        var invoice = $.parseJSON(orders_edit['invoice']);
-        var order_total = $.parseJSON(orders_edit['order_total']);
-        var address_book = $.parseJSON(customer_data['address_book']);
-        var history_status = $.parseJSON(orders_edit['orders_status_history']);
-        var shipping_method = $.parseJSON(orders_edit['shipping_method'])['customer'];
-        var payment_method = $.parseJSON(orders_edit['payment_method'])['customer'];
+        var customer_data = JSON.parse(orders_edit['customer_data']);
+        var invoice = JSON.parse(orders_edit['invoice']);
+        var order_total = JSON.parse(orders_edit['order_total']);
+        var address_book = JSON.parse(customer_data['address_book']);
+        var history_status = JSON.parse(orders_edit['orders_status_history']);
+        var shipping_method = JSON.parse(orders_edit['shipping_method'])['customer'];
+        var payment_method = JSON.parse(orders_edit['payment_method'])['customer'];
 
         // Титл
         $('#title').html('<?php echo lang('orders_number') ?>: ' + orders_edit['id']);
