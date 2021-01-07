@@ -37,11 +37,11 @@ class AttributesProcessing {
         var jsdata = new JsData();
 
         if (data.length > 0) {
-            data = $.parseJSON($.parseJSON(data));
+            data = JSON.parse(JSON.parse(data));
         }
 
         var group_attributes_data = jsdata.sort(jsdata.selectParentUids('false', data));
-        var selected = $.parseJSON($('#selected_attributes').val());
+        var selected = JSON.parse($('#selected_attributes').val());
 
         group_attributes_data.forEach((level_1) => {
             var level_length = level_1.length;
@@ -119,7 +119,7 @@ class AttributesProcessing {
     clickEdit(id, uid, name) {
         var jsdata = new JsData();
 
-        var parse_attributes = jsdata.selectParentUids(uid, $.parseJSON(sessionStorage.getItem('attributes')));
+        var parse_attributes = jsdata.selectParentUids(uid, JSON.parse(sessionStorage.getItem('attributes')));
         var uid_string = jsdata.selectUid(id, parse_attributes);
 
         sessionStorage.setItem('action', 'edit');
@@ -139,14 +139,14 @@ class AttributesProcessing {
      */
     sorted(sortedIDs, data_id) {
         var jsdata = new JsData();
-        var parse_attributes = $.parseJSON(sessionStorage.getItem('attributes'));
-        var parse_attributes_sort = jsdata.selectParentUids(data_id, $.parseJSON(sessionStorage.getItem('attributes')));
+        var parse_attributes = JSON.parse(sessionStorage.getItem('attributes'));
+        var parse_attributes_sort = jsdata.selectParentUids(data_id, JSON.parse(sessionStorage.getItem('attributes')));
         var sort = jsdata.sortToListUid(sortedIDs, parse_attributes_sort);
 
         var sorted = jsdata.replaceUids(sort, parse_attributes);
 
         sessionStorage.setItem('attributes', JSON.stringify(sorted));
-        var parse_attributes_add = jsdata.selectParentUids(data_id, $.parseJSON(sessionStorage.getItem('attributes')));
+        var parse_attributes_add = jsdata.selectParentUids(data_id, JSON.parse(sessionStorage.getItem('attributes')));
 
         return parse_attributes_add;
     }

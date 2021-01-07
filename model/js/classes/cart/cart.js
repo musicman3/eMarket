@@ -15,7 +15,7 @@ class Cart {
      * 
      */
     constructor() {
-        var lang = $.parseJSON(sessionStorage.getItem('lang'));
+        var lang = JSON.parse(sessionStorage.getItem('lang'));
         Cart.init(lang);
         Cart.shippingData(lang);
     }
@@ -133,7 +133,7 @@ class Cart {
                 AjaxSuccess);
         // Обновление страницы
         function AjaxSuccess(data) {
-            var payment_method = $.parseJSON(data);
+            var payment_method = JSON.parse(data);
             $("#payment_method").empty();
 
             if ($("#shipping_method_class").attr("class") !== 'input-group has-success' || payment_method.length < 1) {
@@ -167,7 +167,7 @@ class Cart {
                 AjaxSuccess);
         // Обновление страницы
         function AjaxSuccess(data) {
-            var shipping_method = $.parseJSON(data);
+            var shipping_method = JSON.parse(data);
             $("#shipping_method").empty();
 
             if (shipping_method.length < 1) {
@@ -227,7 +227,7 @@ class Cart {
      */
     static redirect(callback_url, callback_data, callback_type) {
         var form = '';
-        var callback_data_arr = $.parseJSON(callback_data);
+        var callback_data_arr = JSON.parse(callback_data);
         $.each(callback_data_arr, function (key, value) {
             form += '<input type="hidden" name="' + key + '" value="' + value + '">';
         });
