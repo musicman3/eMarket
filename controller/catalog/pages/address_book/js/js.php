@@ -36,12 +36,12 @@
                 }
             }
             // Устанавливаем Регион
-            jQuery.post('<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>',
+            jQuery.post(window.location.href,
                     {countries_select: edit_data[modal_id]['countries_id']},
                     AjaxSuccess);
             // Обновление страницы
             function AjaxSuccess(data) {
-                var regions = $.parseJSON(data);
+                var regions = JSON.parse(data);
                 $("#regions").empty();
 
                 for (x = 0; x < regions.length; x++) {
@@ -55,12 +55,12 @@
 
             // Если выбрали страну, то загружаем новые регионы
             $('#countries').change(function (event) {
-                jQuery.post('<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>',
+                jQuery.post(window.location.href,
                         {countries_select: $("#countries").val()},
                         AjaxSuccess);
                 // Обновление страницы
                 function AjaxSuccess(data) {
-                    var regions = $.parseJSON(data);
+                    var regions = JSON.parse(data);
                     $("#regions").empty();
 
                     for (x = 0; x < regions.length; x++) {
@@ -98,12 +98,12 @@
             }
 
             // Устанавливаем Регион
-            jQuery.post('<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>',
+            jQuery.post(window.location.href,
                     {countries_select: countries[0]['id']},
                     AjaxSuccess);
             // Обновление страницы
             function AjaxSuccess(data) {
-                var regions = $.parseJSON(data);
+                var regions = JSON.parse(data);
                 $("#regions").empty();
 
                 for (x = 0; x < regions.length; x++) {
@@ -112,12 +112,12 @@
             }
             // Если выбрали страну, то загружаем новые регионы
             $('#countries').change(function (event) {
-                jQuery.post('<?php echo \eMarket\Valid::inSERVER('REQUEST_URI') ?>',
+                jQuery.post(window.location.href,
                         {countries_select: $("#countries").val()},
                         AjaxSuccess);
                 // Обновление страницы
                 function AjaxSuccess(data) {
-                    var regions = $.parseJSON(data);
+                    var regions = JSON.parse(data);
                     $("#regions").empty();
 
                     for (x = 0; x < regions.length; x++) {
