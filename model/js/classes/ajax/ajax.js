@@ -36,9 +36,6 @@ class Ajax {
             if (alert !== undefined && alert !== null) {
                 document.querySelector('#alert_block').innerHTML = '<div id="alert" class="alert text-danger fade in"><span class="glyphicon glyphicon-alert"></span> ' + alert + '</div>';
             }
-            if (document.querySelector('#attributes') !== null) {
-                GroupAttributes.clearAttributes();
-            }
             if (document.querySelector('.modal')) {
                 $('.modal').modal('hide');
                 $('.modal').on('hidden.bs.modal', function () {
