@@ -18,7 +18,7 @@ Demo page and support: http://emarketforum.com
   
 ---
 ### eMarket Block Diagram  
-[![N|Solid](https://github.com/musicman3/eMarketHandler/blob/main/eMarket.png)]()
+[![N|Solid](https://github.com/musicman3/eMarketHandler/blob/main/eMarket.png)](https://github.com/musicman3/eMarketHandler/blob/main/eMarket.png)
 ---
 ### Intro  
 eMarket is free software for anyone. This online store is available to anyone without any obligation or payment. GNU GPL Free License v. 3.0. The project was founded on March 10, 2018.
