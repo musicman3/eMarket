@@ -14,7 +14,7 @@ Copy files to server and open page: http://localhost/controller/install
   
 Demo page and support: http://emarketforum.com
 
-[![N|Solid](https://github.com/musicman3/AlphaCommerce/blob/master/donate.png)](https://funding.wmtransfer.com/widgets/horizontal/9971da3b-1647-48c0-8563-a84241a33eac?bt=0&hs=1&sum=5)
+[![N|Solid](https://github.com/musicman3/eMarketHandler/blob/main/donate.png)](https://funding.wmtransfer.com/widgets/horizontal/9971da3b-1647-48c0-8563-a84241a33eac?bt=0&hs=1&sum=5)
   
 ---
 ### eMarket Block Diagram  
