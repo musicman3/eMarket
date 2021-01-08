@@ -14,11 +14,11 @@ Copy files to server and open page: http://localhost/controller/install
   
 Demo page and support: http://emarketforum.com
 
-[![N|Solid](https://github.com/musicman3/eMarketHandler/blob/main/donate.png)](https://funding.wmtransfer.com/widgets/horizontal/9971da3b-1647-48c0-8563-a84241a33eac?bt=0&hs=1&sum=5)
+[![N|Solid](https://raw.githubusercontent.com/musicman3/eMarketHandler/main/donate.png)](https://funding.wmtransfer.com/widgets/horizontal/9971da3b-1647-48c0-8563-a84241a33eac?bt=0&hs=1&sum=5)
   
 ---
 ### eMarket Block Diagram  
-[![N|Solid](https://github.com/musicman3/eMarketHandler/blob/main/eMarket.png)](https://github.com/musicman3/eMarketHandler/blob/main/eMarket.png)
+[![N|Solid](https://raw.githubusercontent.com/musicman3/eMarketHandler/main/eMarket.png)](https://raw.githubusercontent.com/musicman3/eMarketHandler/main/eMarket.png)
 ---
 ### Intro  
 eMarket is free software for anyone. This online store is available to anyone without any obligation or payment. GNU GPL Free License v. 3.0. The project was founded on March 10, 2018.
