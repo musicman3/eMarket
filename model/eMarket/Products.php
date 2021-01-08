@@ -63,7 +63,7 @@ class Products {
      */
     public static function manufacturer($id) {
 
-        if (!self::$manufacturer) {
+        if (self::$manufacturer == FALSE) {
             self::$manufacturer = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_MANUFACTURERS . " WHERE language=?", [lang('#lang_all')[0]]);
         }
 
@@ -83,7 +83,7 @@ class Products {
      */
     public static function vendorCode($id) {
 
-        if (!self::$vendor_codes) {
+        if (self::$vendor_codes == FALSE) {
             self::$vendor_codes = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_VENDOR_CODES . " WHERE language=?", [lang('#lang_all')[0]]);
         }
 
@@ -103,7 +103,7 @@ class Products {
      */
     public static function weight($id) {
 
-        if (!self::$weight) {
+        if (self::$weight == FALSE) {
             self::$weight = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_WEIGHT . " WHERE language=?", [lang('#lang_all')[0]]);
         }
 
@@ -123,7 +123,7 @@ class Products {
      */
     public static function length($id) {
 
-        if (!self::$length) {
+        if (self::$length == FALSE) {
             self::$length = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_LENGTH . " WHERE language=?", [lang('#lang_all')[0]]);
         }
 
@@ -179,7 +179,7 @@ class Products {
         if ($class2 == null) {
             $class2 = 'success';
         }
-        if (!self::$stiker_data) {
+        if (self::$stiker_data == false) {
             self::$stiker_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_STIKERS . " WHERE language=?", [lang('#lang_all')[0]]);
         }
         $stiker_name = [];

@@ -63,9 +63,9 @@ foreach (\eMarket\View::layoutRouting('content') as $path) {
 
         <div class="input-group-btn button">
             <div class="pull-right">
-                <?php if (isset($_SESSION['email_customer']) && $address_data_json) { ?>
+                <?php if (isset($_SESSION['email_customer']) && $address_data_json != FALSE) { ?>
                     <button type="button" class="btn btn btn-primary" data-toggle="modal" data-target="#index"><span class="glyphicon glyphicon-share-alt"></span> <?php echo lang('cart_сheckout') ?></button>
-                <?php } elseif (isset($_SESSION['email_customer']) && !$address_data_json) { ?>
+                <?php } elseif (isset($_SESSION['email_customer']) && $address_data_json == FALSE) { ?>
                     <button type="button" class="btn btn btn-primary" onClick='location.href = "/?route=address_book&redirect=cart"'><span class="glyphicon glyphicon-share-alt"></span> <?php echo lang('cart_сheckout') ?></button>
                 <?php } else { ?>
                     <button type="button" class="btn btn btn-primary" onClick='location.href = "/?route=login&redirect=cart"'><span class="glyphicon glyphicon-share-alt"></span> <?php echo lang('cart_сheckout') ?></button>

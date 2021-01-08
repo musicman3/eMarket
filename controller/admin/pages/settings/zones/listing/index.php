@@ -21,7 +21,7 @@ if (\eMarket\Valid::inPOST('add')) {
     // Очищаем страны и регионы из этой зоны
     \eMarket\Pdo::action("DELETE FROM " . TABLE_ZONES_VALUE . " WHERE zones_id=?", [$zones_id]);
 
-    if (!empty(\eMarket\Valid::inPOST('multiselect'))) {
+    if (empty(\eMarket\Valid::inPOST('multiselect')) == FALSE) {
         // Создаем многомерный массив из одномерного, разбитого на части разделителем "-"
         $multiselect = \eMarket\Func::arrayExplode(\eMarket\Valid::inPOST('multiselect'), '-');
         // Добавляем выбранные в мультиселекте данные

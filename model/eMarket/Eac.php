@@ -95,7 +95,7 @@ final class Eac {
     private static function parentIdStart() {
 
         self::$parent_id = \eMarket\Valid::inPOST('parent_id');
-        if (!self::$parent_id) {
+        if (self::$parent_id == FALSE) {
             self::$parent_id = 0;
         }
 
@@ -190,7 +190,7 @@ final class Eac {
 
             $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('delete'));
 
-            if (!is_array($idx)) {
+            if (is_array($idx) == FALSE) {
                 $idx = [];
             }
 
@@ -258,7 +258,7 @@ final class Eac {
         if ((\eMarket\Valid::inPOST('idsx_cut_key') == 'cut')) {
             $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('idsx_cut_id'));
 
-            if (!is_array($idx)) {
+            if (is_array($idx) == FALSE) {
                 $idx = [];
             }
 
@@ -364,7 +364,7 @@ final class Eac {
                 $status = 0;
             }
 
-            if (!is_array($idx)) {
+            if (is_array($idx) == FALSE) {
                 $idx = [];
             }
 
@@ -430,9 +430,10 @@ final class Eac {
             if (\eMarket\Valid::inPOST('idsx_stikerOff_key') == 'Off') {
                 $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('idsx_stiker_off_id'));
                 $stiker = '';
+                $stiker_id = \eMarket\Valid::inPOST('stiker');
             }
 
-            if (!is_array($idx)) {
+            if (is_array($idx) == FALSE) {
                 $idx = [];
             }
 

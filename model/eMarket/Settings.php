@@ -42,7 +42,7 @@ class Settings {
      */
     public static function basicSettings($param = null) {
 
-        if (!self::$basic_settings) {
+        if (self::$basic_settings == FALSE) {
             self::$basic_settings = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_BASIC_SETTINGS, [])[0];
         }
 
@@ -60,7 +60,7 @@ class Settings {
      */
     public static function currenciesData() {
 
-        if (!self::$currencies_data) {
+        if (self::$currencies_data == FALSE) {
             self::$currencies_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=?", [lang('#lang_all')[0]]);
         }
 
@@ -120,7 +120,7 @@ class Settings {
             self::$DEFAULT_CURRENCY = FALSE;
         }
 
-        if (!self::$DEFAULT_CURRENCY) {
+        if (self::$DEFAULT_CURRENCY == FALSE) {
 
             if (self::path() == 'catalog') {
                 if (!isset($_SESSION['currency_default_catalog'])) {
