@@ -184,7 +184,7 @@ final class Ecb {
         $output_data['total_price_with_sale'] = $total_price_with_sale;
         $output_data['total_tax_price'] = $total_tax_price;
 
-        if (self::$terminal_data == FALSE) {
+        if (!self::$terminal_data) {
             self::$terminal_data = $output_data;
         }
 

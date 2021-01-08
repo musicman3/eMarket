@@ -5,7 +5,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-if (\eMarket\Autorize::$CUSTOMER == FALSE) {
+if (!\eMarket\Autorize::$CUSTOMER) {
     header('Location: ?route=login'); // переадресация на LOGIN
     exit;
 }

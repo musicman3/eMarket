@@ -7,7 +7,7 @@
 ?>
 
 <div class="contentText">
-    <?php if (\eMarket\Autorize::$CUSTOMER == FALSE) { ?>
+    <?php if (!\eMarket\Autorize::$CUSTOMER) { ?>
         <h3><?php echo sprintf(lang('welcome_name'), lang('welcome_guest')) ?></h3>
         <p><?php echo sprintf(lang('welcome_text')) ?></p>
     <?php } else { ?>

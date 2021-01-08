@@ -16,12 +16,12 @@ $shipping_val = json_decode(\eMarket\Pdo::getCellFalse("SELECT shipping_module F
 if (\eMarket\Valid::inPOST('save')) {
 
     $data = \eMarket\Pdo::getCellFalse("SELECT * FROM " . $MODULE_DB, []);
-    if ($data == FALSE) {
-        if (empty(\eMarket\Valid::inPOST('multiselect')) == FALSE) {
+    if ($data) {
+        if (!empty(\eMarket\Valid::inPOST('multiselect'))) {
             $multiselect = json_encode(\eMarket\Valid::inPOST('multiselect'));
             \eMarket\Pdo::action("INSERT INTO " . $MODULE_DB . " SET order_status=?, shipping_module=?", [\eMarket\Valid::inPOST('order_status'), $multiselect]);
         }
-    } elseif (empty(\eMarket\Valid::inPOST('multiselect')) == FALSE) {
+    } elseif (!empty(\eMarket\Valid::inPOST('multiselect'))) {
         $multiselect = json_encode(\eMarket\Valid::inPOST('multiselect'));
         \eMarket\Pdo::action("UPDATE " . $MODULE_DB . " SET order_status=?, shipping_module=?", [\eMarket\Valid::inPOST('order_status'), $multiselect]);
     } else {

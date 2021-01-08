@@ -75,7 +75,7 @@ if (\eMarket\Valid::inGET('layout_header') OR \eMarket\Valid::inGET('layout_head
     \eMarket\Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", ['catalog', 'header', \eMarket\Valid::inGET('template'), $select_page]);
     \eMarket\Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", ['catalog', 'header-basket', \eMarket\Valid::inGET('template'), $select_page]);
 
-    if (empty(\eMarket\Valid::inGET('layout_header')) == FALSE) {
+    if (!empty(\eMarket\Valid::inGET('layout_header'))) {
         for ($x = 0; $x < count(\eMarket\Valid::inGET('layout_header')); $x++) {
             if (\eMarket\Valid::inGET('layout_header')[$x] == 'header') {
                 \eMarket\Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/' . \eMarket\Valid::inGET('layout_header')[$x] . '.php', 'catalog', 'header', $select_page, $x, \eMarket\Valid::inGET('template')]);
@@ -85,7 +85,7 @@ if (\eMarket\Valid::inGET('layout_header') OR \eMarket\Valid::inGET('layout_head
         }
     }
 
-    if (empty(\eMarket\Valid::inGET('layout_header_basket')) == FALSE) {
+    if (!empty(\eMarket\Valid::inGET('layout_header_basket'))) {
         for ($x = 0; $x < count(\eMarket\Valid::inGET('layout_header_basket')); $x++) {
             if (\eMarket\Valid::inGET('layout_header_basket')[$x] == 'header') {
                 \eMarket\Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/' . \eMarket\Valid::inGET('layout_header_basket')[$x] . '.php', 'catalog', 'header-basket', $select_page, $x, \eMarket\Valid::inGET('template')]);
@@ -99,13 +99,13 @@ if (\eMarket\Valid::inGET('layout_header') OR \eMarket\Valid::inGET('layout_head
     \eMarket\Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", ['catalog', 'content', \eMarket\Valid::inGET('template'), $select_page]);
     \eMarket\Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", ['catalog', 'content-basket', \eMarket\Valid::inGET('template'), $select_page]);
 
-    if (empty(\eMarket\Valid::inGET('layout_content')) == FALSE) {
+    if (!empty(\eMarket\Valid::inGET('layout_content'))) {
         for ($x = 0; $x < count(\eMarket\Valid::inGET('layout_content')); $x++) {
             \eMarket\Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/layouts/' . \eMarket\Valid::inGET('layout_content')[$x] . '.php', 'catalog', 'content', $select_page, $x, \eMarket\Valid::inGET('template')]);
         }
     }
 
-    if (empty(\eMarket\Valid::inGET('layout_content_basket')) == FALSE) {
+    if (!empty(\eMarket\Valid::inGET('layout_content_basket'))) {
         for ($x = 0; $x < count(\eMarket\Valid::inGET('layout_content_basket')); $x++) {
             \eMarket\Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/layouts/' . \eMarket\Valid::inGET('layout_content_basket')[$x] . '.php', 'catalog', 'content-basket', $select_page, $x, \eMarket\Valid::inGET('template')]);
         }
@@ -116,19 +116,19 @@ if (\eMarket\Valid::inGET('layout_header') OR \eMarket\Valid::inGET('layout_head
     \eMarket\Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", ['catalog', 'boxes-right', \eMarket\Valid::inGET('template'), $select_page]);
     \eMarket\Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", ['catalog', 'boxes-basket', \eMarket\Valid::inGET('template'), $select_page]);
 
-    if (empty(\eMarket\Valid::inGET('layout_boxes_left')) == FALSE) {
+    if (!empty(\eMarket\Valid::inGET('layout_boxes_left'))) {
         for ($x = 0; $x < count(\eMarket\Valid::inGET('layout_boxes_left')); $x++) {
             \eMarket\Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/layouts/' . \eMarket\Valid::inGET('layout_boxes_left')[$x] . '.php', 'catalog', 'boxes-left', $select_page, $x, \eMarket\Valid::inGET('template')]);
         }
     }
 
-    if (empty(\eMarket\Valid::inGET('layout_boxes_right')) == FALSE) {
+    if (!empty(\eMarket\Valid::inGET('layout_boxes_right'))) {
         for ($x = 0; $x < count(\eMarket\Valid::inGET('layout_boxes_right')); $x++) {
             \eMarket\Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/layouts/' . \eMarket\Valid::inGET('layout_boxes_right')[$x] . '.php', 'catalog', 'boxes-right', $select_page, $x, \eMarket\Valid::inGET('template')]);
         }
     }
 
-    if (empty(\eMarket\Valid::inGET('layout_boxes_basket')) == FALSE) {
+    if (!empty(\eMarket\Valid::inGET('layout_boxes_basket'))) {
         for ($x = 0; $x < count(\eMarket\Valid::inGET('layout_boxes_basket')); $x++) {
             \eMarket\Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/layouts/' . \eMarket\Valid::inGET('layout_boxes_basket')[$x] . '.php', 'catalog', 'boxes-basket', $select_page, $x, \eMarket\Valid::inGET('template')]);
         }
@@ -138,7 +138,7 @@ if (\eMarket\Valid::inGET('layout_header') OR \eMarket\Valid::inGET('layout_head
     \eMarket\Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", ['catalog', 'footer', \eMarket\Valid::inGET('template'), $select_page]);
     \eMarket\Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", ['catalog', 'footer-basket', \eMarket\Valid::inGET('template'), $select_page]);
 
-    if (empty(\eMarket\Valid::inGET('layout_footer')) == FALSE) {
+    if (!empty(\eMarket\Valid::inGET('layout_footer'))) {
         for ($x = 0; $x < count(\eMarket\Valid::inGET('layout_footer')); $x++) {
             if (\eMarket\Valid::inGET('layout_footer')[$x] == 'footer') {
                 \eMarket\Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/' . \eMarket\Valid::inGET('layout_footer')[$x] . '.php', 'catalog', 'footer', $select_page, $x, \eMarket\Valid::inGET('template')]);
@@ -148,7 +148,7 @@ if (\eMarket\Valid::inGET('layout_header') OR \eMarket\Valid::inGET('layout_head
         }
     }
 
-    if (empty(\eMarket\Valid::inGET('layout_footer_basket')) == FALSE) {
+    if (!empty(\eMarket\Valid::inGET('layout_footer_basket'))) {
         for ($x = 0; $x < count(\eMarket\Valid::inGET('layout_footer_basket')); $x++) {
             if (\eMarket\Valid::inGET('layout_footer_basket')[$x] == 'footer') {
                 \eMarket\Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/' . \eMarket\Valid::inGET('layout_footer_basket')[$x] . '.php', 'catalog', 'footer-basket', $select_page, $x, \eMarket\Valid::inGET('template')]);

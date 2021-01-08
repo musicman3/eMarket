@@ -146,7 +146,7 @@ class Sale {
                 $discount = \eMarket\Valid::inPOST('sale');
             }
 
-            if (is_array($idx) == FALSE) {
+            if (!is_array($idx)) {
                 $idx = [];
             }
 
