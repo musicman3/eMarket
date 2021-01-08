@@ -430,7 +430,6 @@ final class Eac {
             if (\eMarket\Valid::inPOST('idsx_stikerOff_key') == 'Off') {
                 $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('idsx_stiker_off_id'));
                 $stiker = '';
-                $stiker_id = \eMarket\Valid::inPOST('stiker');
             }
 
             if (is_array($idx) == FALSE) {
