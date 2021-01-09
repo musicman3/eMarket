@@ -90,7 +90,7 @@ class View {
     }
 
     /**
-     * Template Layer Positioning Controller
+     * Template Layers Positioning Controller
      * 
      * @param string $position (позиция)
      * @param string $count (маркер счетчика)
