@@ -37,7 +37,3 @@ if (\eMarket\Valid::inPOST('edit_active')) {
     $module = explode('_', \eMarket\Valid::inPOST('edit_active'));
     \eMarket\Pdo::action("UPDATE " . TABLE_MODULES . " SET active=? WHERE name=? AND type=?", [$active, $module[1], $module[0]]);
 }
-
-//Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
-\eMarket\Settings::$JS_END = __DIR__;
-?>

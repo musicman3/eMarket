@@ -157,7 +157,3 @@ if (\eMarket\Valid::inPOST('smtp_port')) {
     // Считываем значение
     $smtp_port = \eMarket\Pdo::getCell("SELECT smtp_port FROM " . TABLE_BASIC_SETTINGS . "", []);
 }
-
-//Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
-\eMarket\Settings::$JS_END = __DIR__;
-?>

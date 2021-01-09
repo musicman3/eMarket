@@ -155,7 +155,3 @@ if (\eMarket\Valid::inPOST('add') && !password_verify((float) \eMarket\Valid::in
     echo 'false';
     exit;
 }
-
-//Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
-\eMarket\Settings::$JS_END = __DIR__;
-?>

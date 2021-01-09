@@ -26,8 +26,3 @@ $count_lines = count($lines);
 $navigate = \eMarket\Navigation::postLink($count_lines, $lines_on_page);
 $start = $navigate[0];
 $finish = $navigate[1];
-
-//Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
-\eMarket\Settings::$JS_END = __DIR__;
-
-?>

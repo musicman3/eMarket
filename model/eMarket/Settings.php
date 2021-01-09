@@ -88,6 +88,18 @@ class Settings {
     }
 
     /**
+     * JS Handler
+     *
+     * @return string data
+     */
+    public static function jsHandler() {
+        $path = ROOT . '/controller/' . \eMarket\Settings::path() . '/pages/' . \eMarket\Valid::inGET('route') . '/';
+        if (file_exists($path . '/js/js.php')) {
+            self::$JS_END = $path;
+        }
+    }
+
+    /**
      * Данные по тултипу для скидки на товар
      *
      * @param string $discount (данные по скидкам в строке через запятую)
@@ -313,7 +325,7 @@ class Settings {
     public static function keywordsCatalog() {
 
         $keywords = '';
-        
+
         if (basename(\eMarket\Valid::inGET('route')) == 'products' && self::path() == 'catalog') {
             $product_data = \eMarket\Products::productData(\eMarket\Valid::inGET('id'));
             if ($product_data ['keyword'] != NULL && $product_data ['keyword'] != '') {

@@ -66,7 +66,3 @@ $finish = $navigate[1];
 
 // Модальное окно
 require_once('modal/index.php');
-
-//Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
-\eMarket\Settings::$JS_END = __DIR__;
-?>

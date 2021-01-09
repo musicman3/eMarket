@@ -65,7 +65,3 @@ for ($y = $start; $y < $finish; $y++) {
     }
     array_push($text_arr, $text);
 }
-
-//Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
-\eMarket\Settings::$JS_END = __DIR__;
-?>

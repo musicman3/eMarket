@@ -150,7 +150,3 @@ $finish = $navigate[1];
 require_once('modal/index.php');
 // Модальное окно
 require_once('modal/settings.php');
-
-//Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
-\eMarket\Settings::$JS_END = __DIR__;
-?>

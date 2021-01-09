@@ -12,7 +12,3 @@ if ($active == 1){
 }else{
     $switch_active = '';
 }
-
-//Создаем маркер для подгрузки JS/JS.PHP в конце перед </body>
-\eMarket\Settings::$JS_END = __DIR__;
-?>
