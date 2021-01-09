@@ -105,14 +105,10 @@
         </script>
 
         <?php
-        //Если существует \eMarket\Set::$JS_END
         if (\eMarket\Settings::$JS_HANDLER != FALSE) {
-            //то подгружаем JS.PHP файл
             require_once(\eMarket\Settings::$JS_HANDLER . '/js/js.php');
         }
-        //Если существует \eMarket\Set::$JS_MOD_END
         if (\eMarket\Settings::$JS_MODULES_HANDLER != FALSE) {
-            //то подгружаем JS.PHP файл
             require_once(\eMarket\Settings::$JS_MODULES_HANDLER . '/js/js.php');
         }
 
