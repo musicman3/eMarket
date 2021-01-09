@@ -34,6 +34,6 @@ if (\eMarket\Settings::path() == 'admin' OR \eMarket\Settings::path() == 'catalo
 \eMarket\Autorize::init();
 //Языки / Languages
 \eMarket\Lang::init();
-
+//JS Handler
 \eMarket\Settings::jsHandler();
 ?>

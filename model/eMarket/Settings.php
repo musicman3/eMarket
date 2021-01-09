@@ -20,8 +20,8 @@ class Settings {
     private static $lang_currency_path = FALSE;
     public static $basic_settings = FALSE;
     public static $currencies_data = FALSE;
-    public static $JS_END = FALSE;
-    public static $JS_MOD_END = FALSE;
+    public static $JS_HANDLER = FALSE;
+    public static $JS_MODULES_HANDLER = FALSE;
     public static $session_expr_time = FALSE;
 
     /**
@@ -95,9 +95,21 @@ class Settings {
     public static function jsHandler() {
         $path = ROOT . '/controller/' . \eMarket\Settings::path() . '/pages/' . \eMarket\Valid::inGET('route') . '/';
         if (file_exists($path . '/js/js.php')) {
-            self::$JS_END = $path;
+            self::$JS_HANDLER = $path;
         }
     }
+    
+    /**
+     * JS Modules Handler
+     *
+     * @return string data
+     */
+    public static function jsModulesHandler() {
+        $path = \eMarket\View::routingModules('controller');
+        if (file_exists($path . '/js/js.php')) {
+            self::$JS_MODULES_HANDLER = $path;
+        }
+    }    
 
     /**
      * Данные по тултипу для скидки на товар

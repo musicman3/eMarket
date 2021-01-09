@@ -26,8 +26,3 @@
         }
     });
 </script>
-
-<script type="text/javascript" src="/model/js/classes/ajax/ajax.js"></script>
-<script type="text/javascript">
-        new Ajax();
-</script>
