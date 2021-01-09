@@ -41,7 +41,7 @@
 
         <?php
         // ЗАГРУЖАЕМ HEADER
-        foreach (\eMarket\View::TLPC('header') as $path) {
+        foreach (\eMarket\View::tlpc('header') as $path) {
             require_once (ROOT . $path);
         }
         ?>
@@ -51,7 +51,7 @@
 
                 <?php
 
-                if (\eMarket\View::TLPC('boxes-left', 'count') > 0) {
+                if (\eMarket\View::tlpc('boxes-left', 'count') > 0) {
                     ?>
 
                     <div id="bodyContent" class="col-lg-10 col-md-9 col-lg-push-2 col-md-push-3">
@@ -71,13 +71,13 @@
                     <?php
                 }
 
-                if (\eMarket\View::TLPC('boxes-left', 'count') > 0) {
+                if (\eMarket\View::tlpc('boxes-left', 'count') > 0) {
                     ?>
 
                     <div id="columnLeft" class="col-lg-2 col-md-3 col-lg-pull-10 col-md-pull-9">
                         <?php
                         // ЗАГРУЖАЕМ БОКСЫ
-                        foreach (\eMarket\View::TLPC('boxes-left') as $path) {
+                        foreach (\eMarket\View::tlpc('boxes-left') as $path) {
                             require_once (ROOT . $path);
                         }
                         ?>
@@ -90,7 +90,7 @@
 
         <?php
         // ЗАГРУЖАЕМ FOOTER
-        foreach (\eMarket\View::TLPC('footer') as $path) {
+        foreach (\eMarket\View::tlpc('footer') as $path) {
             require_once (ROOT . $path);
         }
         ?>

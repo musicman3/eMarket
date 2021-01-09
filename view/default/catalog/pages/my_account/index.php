@@ -5,7 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 // ПОДКЛЮЧАЕМ КОНТЕНТ
-foreach (\eMarket\View::TLPC('content') as $path) {
+foreach (\eMarket\View::tlpc('content') as $path) {
     require_once (ROOT . $path);
 }
 ?>

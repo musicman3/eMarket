@@ -49,7 +49,7 @@
 
         <?php
         // ЗАГРУЖАЕМ HEADER
-        foreach (\eMarket\View::TLPC('header') as $path) {
+        foreach (\eMarket\View::tlpc('header') as $path) {
             require_once (ROOT . $path);
         }
         ?>
@@ -67,7 +67,7 @@
 
         <?php
         // ЗАГРУЖАЕМ FOOTER
-        foreach (\eMarket\View::TLPC('footer') as $path) {
+        foreach (\eMarket\View::tlpc('footer') as $path) {
             require_once (ROOT . $path);
         }
         ?>

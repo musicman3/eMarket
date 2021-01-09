@@ -96,7 +96,7 @@ class View {
      * @param string $count (маркер счетчика)
      * @return array|string (массив настроек позиций для конкретного пути)
      */
-    public static function TLPC($position, $count = null) {
+    public static function tlpc($position, $count = null) {
 
         $array_pos_value = \eMarket\Pdo::getColRow("SELECT url, value FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND page=? AND template_name=? ORDER BY sort ASC", [\eMarket\Settings::path(), \eMarket\Settings::titleDir(), \eMarket\Settings::template()]);
         if (count($array_pos_value) > 0) {
