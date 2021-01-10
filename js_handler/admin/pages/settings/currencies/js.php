@@ -9,11 +9,11 @@
 <script type="text/javascript">
     $('#default_value_currencies').bootstrapSwitch();
 </script>
-<!-- Загрузка данных в модальное окно -->
+
 <script type="text/javascript">
     $('#index').on('show.bs.modal', function (event) {
         var button = event.relatedTarget;
-        var modal_id = Number(button.dataset.edit); // Получаем ID из data-edit при клике на кнопку редактирования
+        var modal_id = Number(button.dataset.edit);
 
         if (Number.isInteger(modal_id)) {
             $('#default_value_currencies').bootstrapSwitch('destroy', true);
@@ -22,7 +22,6 @@
             document.querySelector('#edit').value = modal_id;
             document.querySelector('#add').value = '';
 
-            // Ищем id и добавляем данные
             for (var x = 0; x < json_data.name.length; x++) {
                 document.querySelector('#name_currencies_' + x).value = json_data.name[x][modal_id];
                 document.querySelector('#code_currencies_' + x).value = json_data.code[x][modal_id];
@@ -32,10 +31,9 @@
             document.querySelector('#value_currencies').value = json_data.value[modal_id];
             document.querySelector('#symbol_currencies').value = json_data.symbol[modal_id];
             document.querySelector('#decimal_places_currencies').value = json_data.decimal_places[modal_id];
-            // Меняем значение чекбокса
             document.querySelector('#default_value_currencies').checked = json_data.default_value[modal_id];
             $('#default_value_currencies').bootstrapSwitch();
-            // Выбираем установленный селект
+
             if (json_data.symbol_position[modal_id] === 'left') {
                 document.querySelector('#symbol_position_currencies option[value="left"]').selected = true;
             } else {
@@ -44,7 +42,6 @@
         } else {
             document.querySelector('#edit').value = '';
             document.querySelector('#add').value = 'ok';
-            //Очищаем поля
             document.querySelector('form').reset();
         }
     });

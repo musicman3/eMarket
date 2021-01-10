@@ -16,7 +16,7 @@ $lang_js = json_encode([
 <link href="/ext/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
 <script type="text/javascript" src="/ext/bootstrap-datepicker/locales/bootstrap-datepicker.<?php echo lang('meta-language') ?>.min.js"></script>
 <script type="text/javascript" src="/model/js/classes/smartdatepicker.js"></script>
-<!--Подгружаем jQuery File Upload -->
+<!-- jQuery File Upload -->
 <script src = "/ext/jquery_file_upload/js/vendor/jquery.ui.widget.js"></script>
 <script src="/ext/jquery_file_upload/js/jquery.iframe-transport.js"></script>
 <script src="/ext/jquery_file_upload/js/jquery.fileupload.js"></script>
@@ -31,12 +31,10 @@ $lang_js = json_encode([
 
     $('#settings').on('show.bs.modal', function (event) {
         $('#mouse_stop, #autostart, #cicles, #indicators, #navigation').bootstrapSwitch('destroy', true);
-        // Получаем массивы данных
         var json_data = JSON.parse(document.querySelector('#ajax_data').dataset.jsonsettings);
 
         document.querySelector('#show_interval').value = json_data.show_interval;
 
-        // Меняем значение чекбокса
         document.querySelector('#mouse_stop').checked = Number(json_data.mouse_stop);
         document.querySelector('#autostart').checked = Number(json_data.autostart);
         document.querySelector('#cicles').checked = Number(json_data.cicles);
@@ -66,18 +64,16 @@ $lang_js = json_encode([
 
     $('#index').on('show.bs.modal', function (event) {
         var button = event.relatedTarget;
-        var modal_id = Number(button.dataset.edit); // Получаем ID из data-edit при клике на кнопку редактирования
+        var modal_id = Number(button.dataset.edit);
         if (Number.isInteger(modal_id)) {
             $('#view_slideshow, #animation').bootstrapSwitch('destroy', true);
-            // Получаем массивы данных
             var json_data = JSON.parse(document.querySelector('#ajax_data').dataset.jsondata);
 
             document.querySelector('#edit').value = modal_id;
             document.querySelector('#add').value = '';
-            
+
             var start = json_data.date_start[modal_id];
             var end = json_data.date_finish[modal_id];
-            // Меняем значение чекбокса
             document.querySelector('#view_slideshow').checked = json_data.status[modal_id];
             document.querySelector('#animation').checked = json_data.animation[modal_id];
             $('#view_slideshow, #animation').bootstrapSwitch();
@@ -87,23 +83,21 @@ $lang_js = json_encode([
             document.querySelector('#name').value = json_data.name[modal_id];
             document.querySelector('#heading').value = json_data.heading[modal_id];
 
-            // Устанавливаем SmartDatepicker
             var day_start = new Date(start);
             $('#start_date').datepicker('setDate', day_start);
             $('#end_date').datepicker('setDate', new Date(end));
+
             if (day_start.setDate(day_start.getDate()) < new Date()) {
                 $('#start_date').datepicker('setStartDate', new Date());
                 $('#start_date').datepicker('setDate', new Date());
             }
-            // Подгружаем изображения
+
             Fileupload.getImageToEdit(json_data.logo_general, json_data.logo, modal_id, 'slideshow');
         }
         if (!Number.isInteger(modal_id) && button.dataset.toggle === 'modal') {
             document.querySelector('#edit').value = '';
             document.querySelector('#add').value = 'ok';
-            //Очищаем поля
             document.querySelector('form').reset();
-            // Меняем значение чекбокса
             $('#view_slideshow, #animation').bootstrapSwitch();
         }
     });

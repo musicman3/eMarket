@@ -3,7 +3,6 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-
 ?>
 
 <script type="text/javascript">
@@ -57,7 +56,7 @@
             replaceClass('.database_name', false);
         }
     });
-    
+
     $('#password_db').on('input', function () {
         if ($('#password_db').val() !== '') {
             replaceClass('.password_db', true);
@@ -100,7 +99,6 @@
             confirm.setCustomValidity('');
         }
 
-        //Если email не соответствует типу
         if (!email.match(/^[a-zA-Zа-яА-Я_\d][-a-zA-Zа-яА-Я0-9_\.\d]*\@[a-zA-Zа-яА-Я\d][-a-zA-Zа-яА-Я\.\d]*\.[a-zA-Zа-яА-Я]{2,4}$/)) {
             email.setCustomValidity("<?php echo lang('email_check') ?>");
         } else {

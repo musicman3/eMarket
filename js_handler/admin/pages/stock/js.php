@@ -18,7 +18,7 @@ $lang_attributes = json_encode([
     lang('#lang_all')[0]
         ]);
 ?>
-<!--Подгружаем jQuery File Upload -->
+<!-- jQuery File Upload -->
 <script src = "/ext/jquery_file_upload/js/vendor/jquery.ui.widget.js"></script>
 <script src="/ext/jquery_file_upload/js/jquery.iframe-transport.js"></script>
 <script src="/ext/jquery_file_upload/js/jquery.fileupload.js"></script>
@@ -38,17 +38,10 @@ $lang_attributes = json_encode([
     new Ajax();
 </script>
 
-<!--Подгружаем Атрибуты -->
-<?php require_once ('attributes.php') ?>
-
-<!--Подгружаем Summernote -->
-<?php require_once ('summernote.php') ?>
-
-<!--Подгружаем Контекстное меню -->
-<?php require_once ('context.php') ?>
-
-<!--Подгружаем Действия мышкой -->
-<?php require_once ('mouse.php') ?>
-
-<!--Подгружаем Bootstrap Datepicker -->
-<?php require_once ('datepicker.php') ?>
+<?php
+require_once ('attributes.php');
+require_once ('summernote.php');
+require_once ('context.php');
+require_once ('mouse.php');
+require_once ('datepicker.php');
+?>

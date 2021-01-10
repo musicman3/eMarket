@@ -8,7 +8,7 @@ foreach (\eMarket\Modules::discountRouter('data') as $js_path) {
     echo '<script type="text/javascript" src="/modules/discount/' . $js_path . '/js_handler/admin/contextmenu/contextmenu.js"></script>';
 }
 ?>
-<!-- Контекстное меню -->
+
 <script type="text/javascript">
 
     $(function () {
@@ -45,22 +45,18 @@ foreach (\eMarket\Modules::discountRouter('data') as $js_path) {
                     },
                     disabled: function () {
                         let params = (new URL(document.location)).searchParams;
-                        // Делаем не активным пункт меню, если нет строк
                         if (params.get('search') !== null || Number(parent_id) === 0) {
                             return true;
                         }
                     },
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
                         $('#selected_attributes').val(JSON.stringify([]));
-                        // Выводим атрибуты
                         AttributesProcessing.add('admin', attributes_category, '<?php echo lang('#lang_all')[0] ?>');
 
                         $('#edit_product').val('');
                         $('#add_product').val('ok');
-                        //Очищаем поля
                         $(this).find('form').trigger('reset');
                         $('.summernote_add').val('');
-                        // Загружаем настройки Summernote
                         $('.summernote_add').summernote(summernote_pref);
                         $('#index_product').modal('show');
                     }
@@ -75,7 +71,6 @@ foreach (\eMarket\Modules::discountRouter('data') as $js_path) {
                     },
                     disabled: function () {
                         let params = (new URL(document.location)).searchParams;
-                        // Делаем не активным пункт меню, если нет строк
                         if (params.get('search') !== null) {
                             return true;
                         }
@@ -83,7 +78,6 @@ foreach (\eMarket\Modules::discountRouter('data') as $js_path) {
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
                         $('#edit').val('');
                         $('#add').val('ok');
-                        //Очищаем поля
                         $(this).find('form').trigger('reset');
                         $('#index').modal('show');
                     }
@@ -97,7 +91,6 @@ foreach (\eMarket\Modules::discountRouter('data') as $js_path) {
                         return 'context-menu-icon glyphicon-edit';
                     },
                     disabled: function () {
-                        // Делаем не активным пункт меню, если нет строк
                         if ($('div#ajax_data').data('jsondataproduct')['name'] === undefined && $('div#ajax_data').data('jsondatacategory')['name'] === undefined) {
                             return true;
                         }
@@ -112,26 +105,25 @@ foreach (\eMarket\Modules::discountRouter('data') as $js_path) {
                             $('#delete_image_product').val('');
                             $('#general_image_edit_product').val('');
                             $('#alert_messages_edit_product').empty();
-                            // Получаем ID при клике на кнопку редактирования
                             var modal_id = modal_edit.split('product_')[1];
-                            // Получаем массивы данных
                             var json_data = $('div#ajax_data').data('jsondataproduct');
 
-                            // Загружаем настройки Summernote
                             $('.summernote_add').summernote(summernote_pref);
-                            // Ищем id и добавляем данные
+
                             for (var x = 0; x < json_data['name'].length; x++) {
                                 $('#name_product_stock_' + x).val(json_data['name'][x][modal_id]);
                                 $('#description_product_stock_' + x).summernote('code', json_data['description'][x][modal_id]);
                                 $('#keyword_product_stock_' + x).val(json_data['keyword'][x][modal_id]);
                                 $('#tags_product_stock_' + x).val(json_data['tags'][x][modal_id]);
                             }
+
                             $('#price_product_stock').val(json_data['price'][modal_id]);
                             $('#currency_product_stock').val(json_data['currency'][modal_id]);
                             $('#quantity_product_stock').val(json_data['quantity'][modal_id]);
                             $('#unit_product_stock').val(json_data['units'][modal_id]);
                             $('#model_product_stock').val(json_data['model'][modal_id]);
                             $('#manufacturers_product_stock').val(json_data['manufacturers'][modal_id]);
+
                             if (json_data['date_available'][modal_id] === null) {
                                 $('#date_available_product_stock').datepicker('setDate', '');
                             } else {
@@ -150,23 +142,18 @@ foreach (\eMarket\Modules::discountRouter('data') as $js_path) {
                             $('#value_height_product_stock').val(json_data['height'][modal_id]);
                             $('#selected_attributes').val(JSON.stringify(json_data['attributes'][modal_id]));
 
-                            // Выводим атрибуты
                             AttributesProcessing.add('admin', json_data['attributes_data'][modal_id], '<?php echo lang('#lang_all')[0] ?>');
 
                             $('#edit_product').val(modal_id);
                             $('#add_product').val('');
-                            // Подгружаем изображения
                             FileuploadProduct.getImageToEditProduct(json_data['logo_general'], json_data['logo'], modal_id, 'products');
 
                             $('#index_product').modal('show');
                         } else {
-                            // Получаем ID при клике на кнопку редактирования
                             var modal_id = opt.$trigger.attr("id");
 
-                            // Получаем массивы данных
                             var json_data = $('div#ajax_data').data('jsondatacategory');
 
-                            // Ищем id и добавляем данные
                             for (var x = 0; x < json_data['name'].length; x++) {
                                 $('#name_categories_stock_' + x).val(json_data['name'][x][modal_id]);
                             }
@@ -174,11 +161,8 @@ foreach (\eMarket\Modules::discountRouter('data') as $js_path) {
 
                             $('#edit').val(modal_id);
                             $('#add').val('');
-                            // Подгружаем изображения
                             Fileupload.getImageToEdit(json_data['logo_general'], json_data['logo'], modal_id, 'categories');
-                            // Подгружаем атрибуты
                             sessionStorage.setItem('attributes', JSON.stringify(json_data['attributes'][modal_id]));
-                            // Открываем модальное окно
                             $('#index').modal('show');
                         }
                     }
@@ -192,7 +176,6 @@ foreach (\eMarket\Modules::discountRouter('data') as $js_path) {
                         return 'context-menu-icon glyphicon-hand-right';
                     },
                     disabled: function () {
-                        // Делаем не активным пункт меню, если нет строк
                         if ($('div#ajax_data').data('jsondataproduct')['name'] === undefined && $('div#ajax_data').data('jsondatacategory')['name'] === undefined && session === '0') {
                             return true;
                         }
@@ -205,25 +188,21 @@ foreach (\eMarket\Modules::discountRouter('data') as $js_path) {
                                 return 'context-menu-icon glyphicon-eye-open';
                             },
                             disabled: function () {
-                                // Делаем не активным пункт меню, если нет строк
                                 if ($('div#ajax_data').data('jsondataproduct')['name'] === undefined && $('div#ajax_data').data('jsondatacategory')['name'] === undefined) {
                                     return true;
                                 }
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
-                                // Установка синхронного запроса для jQuery.ajax
                                 jQuery.ajaxSetup({async: false});
-                                // Отправка данных по каждой выделенной строке
                                 var idArray = [];
                                 $(".option").each(function (i) {
-                                    if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
+                                    if (!$(this).children().hasClass('inactive'))
                                         idArray[i] = this.id;
                                 });
                                 jQuery.post(window.location.href,
                                         {idsx_status_on_id: idArray,
                                             idsx_real_parent_id: idsx_real_parent_id,
                                             idsx_status_on_key: 'On'});
-                                // Отправка запроса для обновления страницы
                                 jQuery.get(window.location.href,
                                         {parent_down: parent_id},
                                         AjaxSuccess);
@@ -235,25 +214,21 @@ foreach (\eMarket\Modules::discountRouter('data') as $js_path) {
                                 return 'context-menu-icon glyphicon-eye-close';
                             },
                             disabled: function () {
-                                // Делаем не активным пункт меню, если нет строк
                                 if ($('div#ajax_data').data('jsondataproduct')['name'] === undefined && $('div#ajax_data').data('jsondatacategory')['name'] === undefined) {
                                     return true;
                                 }
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
-                                // Установка синхронного запроса для jQuery.ajax
                                 jQuery.ajaxSetup({async: false});
-                                // Отправка данных по каждой выделенной строке
                                 var idArray = [];
                                 $(".option").each(function (i) {
-                                    if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
+                                    if (!$(this).children().hasClass('inactive'))
                                         idArray[i] = this.id;
                                 });
                                 jQuery.post(window.location.href,
                                         {idsx_status_off_id: idArray,
                                             idsx_real_parent_id: idsx_real_parent_id,
                                             idsx_status_off_key: 'Off'});
-                                // Отправка запроса для обновления страницы
                                 jQuery.get(window.location.href,
                                         {parent_down: parent_id},
                                         AjaxSuccess);
@@ -268,21 +243,17 @@ foreach (\eMarket\Modules::discountRouter('data') as $js_path) {
                                 return 'context-menu-icon glyphicon-scissors';
                             },
                             disabled: function () {
-                                // Делаем не активным пункт меню, если нет строк
                                 if ($('div#ajax_data').data('jsondataproduct')['name'] === undefined && $('div#ajax_data').data('jsondatacategory')['name'] === undefined) {
                                     return true;
                                 }
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
-                                // Установка синхронного запроса для jQuery.ajax
                                 jQuery.ajaxSetup({async: false});
-                                // Отправка маркера на очитку буффера
                                 jQuery.post(window.location.href,
                                         {idsx_cut_marker: 'cut'});
-                                // Отправка данных по каждой выделенной строке
                                 var idArray = [];
                                 $(".option").each(function (i) {
-                                    if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
+                                    if (!$(this).children().hasClass('inactive'))
                                         idArray[i] = this.id;
                                 });
                                 jQuery.post(window.location.href,
@@ -290,7 +261,6 @@ foreach (\eMarket\Modules::discountRouter('data') as $js_path) {
                                             idsx_cut_id: idArray,
                                             parent_down: parent_id,
                                             idsx_cut_key: itemKey});
-                                // Отправка запроса для обновления страницы
                                 jQuery.get(window.location.href,
                                         {parent_down: parent_id},
                                         AjaxSuccess);
@@ -302,21 +272,17 @@ foreach (\eMarket\Modules::discountRouter('data') as $js_path) {
                                 return 'context-menu-icon glyphicon-paste';
                             },
                             disabled: function () {
-                                // Делаем не активным пункт меню, если нет строк
                                 let params = (new URL(document.location)).searchParams;
-                                // Делаем не активным пункт меню, если нет строк
                                 if (session === '0' || params.get('search') !== null) {
                                     return true;
                                 }
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
-                                // Установка синхронного запроса для jQuery.ajax
                                 jQuery.ajaxSetup({async: false});
                                 jQuery.post(window.location.href,
                                         {idsx_real_parent_id: idsx_real_parent_id,
                                             parent_down: parent_id,
                                             idsx_paste_key: itemKey});
-                                // Отправка запроса для обновления страницы
                                 jQuery.get(window.location.href,
                                         {parent_down: parent_id,
                                             message: 'ok'},
@@ -332,7 +298,6 @@ foreach (\eMarket\Modules::discountRouter('data') as $js_path) {
                                 return 'context-menu-icon glyphicon-trash';
                             },
                             disabled: function () {
-                                // Делаем не активным пункт меню, если нет строк
                                 if ($('div#ajax_data').data('jsondataproduct')['name'] === undefined && $('div#ajax_data').data('jsondatacategory')['name'] === undefined) {
                                     return true;
                                 }
@@ -344,18 +309,15 @@ foreach (\eMarket\Modules::discountRouter('data') as $js_path) {
 
                                 confirmation.onclick = function () {
                                     $('#confirm').modal('hide');
-                                    // Установка синхронного запроса для jQuery.ajax
                                     jQuery.ajaxSetup({async: false});
-                                    // Отправка данных по каждой выделенной строке
                                     var idArray = [];
-                                    $(".option").each(function (i) { // выделенное мышкой
-                                        if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
+                                    $(".option").each(function (i) {
+                                        if (!$(this).children().hasClass('inactive'))
                                             idArray[i] = this.id;
                                     });
                                     jQuery.post(window.location.href,
                                             {delete: idArray,
                                                 parent_down: parent_id});
-                                    // Отправка запроса для обновления страницы
                                     jQuery.get(window.location.href,
                                             {parent_down: parent_id,
                                                 message: 'ok'},
@@ -365,9 +327,8 @@ foreach (\eMarket\Modules::discountRouter('data') as $js_path) {
                         }
                     }
                 },
-                
-                "discount_separator": <?php echo \eMarket\Modules::discountRouter('functions') ?>,
 
+                "discount_separator": <?php echo \eMarket\Modules::discountRouter('functions') ?>,
 
                 "fold3": {
                     "name": lang['button_stiker'],
@@ -375,7 +336,6 @@ foreach (\eMarket\Modules::discountRouter('data') as $js_path) {
                         return 'context-menu-icon glyphicon-bookmark';
                     },
                     disabled: function () {
-                        // Делаем не активным пункт меню, если нет строк
                         if (stiker === '0') {
                             return true;
                         }
@@ -402,14 +362,12 @@ foreach (\eMarket\Modules::discountRouter('data') as $js_path) {
 
                             },
                             callback: function (itemKey, opt, rootMenu, originalEvent) {
-                                // Значение выбранного селекта
+
                                 var selected_id = $('select[name="context-menu-input-stiker"] option:selected').val();
-                                // Установка синхронного запроса для jQuery.ajax
                                 jQuery.ajaxSetup({async: false});
-                                // Отправка данных по каждой выделенной строке
                                 var idArray = [];
                                 $(".option").each(function (i) {
-                                    if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
+                                    if (!$(this).children().hasClass('inactive'))
                                         idArray[i] = this.id;
                                 });
                                 jQuery.post(window.location.href,
@@ -417,7 +375,6 @@ foreach (\eMarket\Modules::discountRouter('data') as $js_path) {
                                             idsx_real_parent_id: idsx_real_parent_id,
                                             stiker: selected_id,
                                             idsx_stikerOn_key: 'On'});
-                                // Отправка запроса для обновления страницы
                                 jQuery.get(window.location.href,
                                         {parent_down: parent_id},
                                         AjaxSuccess);
@@ -439,14 +396,11 @@ foreach (\eMarket\Modules::discountRouter('data') as $js_path) {
 
                                 confirmation.onclick = function () {
                                     $('#confirm').modal('hide');
-                                    // Значение выбранного селекта
                                     var selected_id = $('select[name="context-menu-input-stiker"] option:selected').val();
-                                    // Установка синхронного запроса для jQuery.ajax
                                     jQuery.ajaxSetup({async: false});
-                                    // Отправка данных по каждой выделенной строке
                                     var idArray = [];
                                     $(".option").each(function (i) {
-                                        if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
+                                        if (!$(this).children().hasClass('inactive'))
                                             idArray[i] = this.id;
                                     });
                                     jQuery.post(window.location.href,
@@ -454,7 +408,6 @@ foreach (\eMarket\Modules::discountRouter('data') as $js_path) {
                                                 idsx_real_parent_id: idsx_real_parent_id,
                                                 stiker: selected_id,
                                                 idsx_stikerOff_key: 'Off'});
-                                    // Отправка запроса для обновления страницы
                                     jQuery.get(window.location.href,
                                             {parent_down: parent_id},
                                             AjaxSuccess);
@@ -479,8 +432,6 @@ foreach (\eMarket\Modules::discountRouter('data') as $js_path) {
         });
     });
 
-
-    // Обновление страницы
     function AjaxSuccess(data) {
         setTimeout(function () {
             $('#ajax').replaceWith($(data).find('#ajax'));

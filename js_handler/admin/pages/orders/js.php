@@ -4,16 +4,15 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
-<!-- Загрузка данных в модальное окно -->
+
 <script type="text/javascript">
     $('#index').on('show.bs.modal', function (event) {
         var button = event.relatedTarget;
-        var modal_id = Number(button.dataset.edit); // Получаем ID из data-edit при клике на кнопку редактирования
+        var modal_id = Number(button.dataset.edit);
 
         document.querySelector('#invoice').innerHTML = '';
         document.querySelector('#status_history').innerHTML = '';
 
-        // Получаем данные из data div
         var orders = JSON.parse(document.querySelector('#ajax_data').dataset.orders)[modal_id];
         var customer_data = JSON.parse(orders.customer_data);
         var invoice = JSON.parse(orders.invoice);
@@ -25,29 +24,25 @@
 
         document.querySelector('#edit').value = modal_id;
 
-        // Титл
         document.querySelector('#title').innerHTML = '<?php echo lang('orders_number') ?>: ' + orders.id;
 
-        // Описание
-        // #Клиент
         document.querySelector('#description_client_name').innerHTML = customer_data.firstname + ' ' + customer_data.lastname;
         document.querySelector('#description_client_phone').innerHTML = customer_data.telephone;
         document.querySelector('#description_client_email').innerHTML = orders.email;
-        // #Метод оплаты
+
         document.querySelector('#description_payment_method').innerHTML = payment_method;
-        // #Доставка
+
         document.querySelector('#description_shipping_method').innerHTML = '<b>' + shipping_method + '</b>';
         document.querySelector('#description_shipping_country').innerHTML = address_book.zip + ', ' + address_book.country + ', ' + address_book.region;
         document.querySelector('#description_shipping_address').innerHTML = address_book.city + ', ' + address_book.address;
-        // #Платежный адрес
+
         document.querySelector('#description_billing_country').innerHTML = address_book.zip + ', ' + address_book.country + ', ' + address_book.region;
         document.querySelector('#description_billing_address').innerHTML = address_book.city + ', ' + address_book.address;
-        // #Статус
+
         document.querySelector('#description_date_purchased').innerHTML = history_status[0].admin.status + ': ' + history_status[0].admin.date;
-        // #Итого
+
         document.querySelector('#description_order_total').innerHTML = order_total.admin.total_to_pay_format;
 
-        // Товары
         for (var x = 0; x < invoice.length; x++) {
             if (invoice[x].admin.stiker !== null && invoice[x].admin.stiker !== undefined) {
                 var stiker = invoice[x].admin.stiker;
@@ -76,7 +71,6 @@
 
         document.querySelector('#invoice_order_total_to_pay').innerHTML = order_total.admin.total_to_pay_format;
 
-        // История статусов
         for (x = 0; x < history_status.length; x++) {
             document.querySelector('#status_history').insertAdjacentHTML('beforeend', '<span class="glyphicon glyphicon-ok"></span><small> ' + history_status[x].admin.date + ' </small><span class="label label-success">' + history_status[x].admin.status + '</span><br>');
         }

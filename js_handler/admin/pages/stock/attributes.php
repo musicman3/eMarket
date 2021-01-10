@@ -5,7 +5,6 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
 
-<!--Атрибуты -->
 <script type="text/javascript" src="/model/js/classes/attributes/group_attributes.js"></script>
 <script type="text/javascript" src="/model/js/classes/attributes/attributes.js"></script>
 <script type="text/javascript" src="/model/js/classes/attributes/values_attribute.js"></script>

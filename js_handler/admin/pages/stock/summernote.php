@@ -15,7 +15,6 @@
     
 <script type="text/javascript">
 
-    // Настройка Summernote
     var summernote_pref = {
         lang: '<?php echo lang('language_code') ?>',
         dialogsInBody: true,
@@ -37,7 +36,7 @@
             ['misc', ['codeview', 'help']]
         ]
     };
-    //Если закрыли модальное окно #index_product
+
     $('#index_product').on('hidden.bs.modal', function (event) {
         // Destroy Summernote
         var count_lang = '<?php echo \eMarket\Lang::$COUNT ?>';
@@ -45,11 +44,11 @@
             $('#description_product_stock_' + x).summernote('destroy');
         }
     });
-    // Фикс модала в модале
+    // Fix modal to modal
     $(document).on('hidden.bs.modal', '.modal', function (event) {
         $('.modal:visible').length && $('body').addClass('modal-open');
     });
-    // Фикс Fullscreen в модале
+    // Fix Fullscreen
     $(document).on('click', '.btn-fullscreen', function () {
         $('body').css({overflow: 'hidden'});
         $(this).tooltip('hide');
