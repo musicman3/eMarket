@@ -47,6 +47,6 @@ $navigate = \eMarket\Navigation::getLink($count_lines, $lines_on_page);
 $start = $navigate[0];
 $finish = $navigate[1];
 
-$categories_name = \eMarket\Pdo::getCell("SELECT name FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], \eMarket\Valid::inGET('category_id')]);
+$categories_name = \eMarket\Products::categoryData(\eMarket\Valid::inGET('category_id'))['name'];
 
 require_once('modal/cart_message.php');

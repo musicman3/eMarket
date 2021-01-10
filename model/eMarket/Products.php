@@ -17,6 +17,8 @@ namespace eMarket;
 class Products {
 
     public static $stiker_data = FALSE;
+    public static $product_data = FALSE;
+    public static $category_data = FALSE;
     private static $manufacturer = FALSE;
     private static $vendor_codes = FALSE;
     private static $weight = FALSE;
@@ -38,20 +40,42 @@ class Products {
      *
      * @param string $id (id товара)
      * @param string $language (язык отображения)
-     * @return array|FALSE $product (данные по товару)
+     * @return array (данные по товару)
      */
     public static function productData($id, $language = null) {
 
-        if ($language == null) {
-            $language = lang('#lang_all')[0];
+        if (self::$product_data == FALSE) {
+            if ($language == null) {
+                $language = lang('#lang_all')[0];
+            }
+            self::$product_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=? AND language=? AND status=?", [$id, $language, 1])[0];
+            return self::$product_data;
         }
 
-        $product = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=? AND language=? AND status=?", [$id, $language, 1]);
+        if (self::$product_data != FALSE) {
+            return self::$product_data;
+        }
+    }
+    
+        /**
+     * Данные по товару
+     *
+     * @param string $id (id категории)
+     * @param string $language (язык отображения)
+     * @return array (данные по категории)
+     */
+    public static function categoryData($id, $language = null) {
 
-        if (count($product) > 0) {
-            return $product[0];
-        } else {
-            return FALSE;
+        if (self::$category_data == FALSE) {
+            if ($language == null) {
+                $language = lang('#lang_all')[0];
+            }
+            self::$category_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [$language, $id])[0];
+            return self::$category_data;
+        }
+
+        if (self::$category_data != FALSE) {
+            return self::$category_data;
         }
     }
 

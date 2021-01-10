@@ -18,8 +18,8 @@
                     $('#breadcrumb').append('<li class="selected"><a href="/?route=listing&category_id=' + breadcrumbid[x] + '">' + breadcrumbname[x] + '</a></li>');
                 }
             }
-            $('#breadcrumb').append('<li class="selected"><a href="/?route=listing&category_id=<?php echo \eMarket\Valid::inGET('category_id') ?>"><?php echo $categories_name ?></a></li>');
-            $('#breadcrumb').append('<li class="selected"><?php echo $products['name'] ?></li>');
+            $('#breadcrumb').append('<li class="selected"><a href="/?route=listing&category_id=<?php echo \eMarket\Valid::inGET('category_id') ?>"><?php echo \eMarket\Products::$category_data['name'] ?></a></li>');
+            $('#breadcrumb').append('<li class="selected"><?php echo \eMarket\Products::$product_data['name'] ?></li>');
         }
 
         $(document).ready(function () {
@@ -37,7 +37,7 @@
                     $('#breadcrumb').append('<li class="selected"><a href="/?route=listing&category_id=' + breadcrumbid[x] + '">' + breadcrumbname[x] + '</a></li>');
                 }
             }
-            $('#breadcrumb').append('<li class="selected"><?php echo $categories_name ?></li>');
+            $('#breadcrumb').append('<li class="selected"><?php echo \eMarket\Products::$category_data['name'] ?></li>');
         }
 
         $(document).ready(function () {

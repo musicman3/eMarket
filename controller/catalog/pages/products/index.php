@@ -51,7 +51,7 @@ if ($products['height'] != NULL && $products['height'] != FALSE) {
 }
 
 $images = \eMarket\Func::deleteValInArray(json_decode($products['logo'], 1), [$products['logo_general']]);
-$categories_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], \eMarket\Valid::inGET('category_id')])[0];
+$categories_data = \eMarket\Products::categoryData(\eMarket\Valid::inGET('category_id'));
 $categories_name = $categories_data['name'];
 $category_parent_id = $categories_data['parent_id'];
 
