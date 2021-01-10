@@ -58,7 +58,7 @@ class Products {
     }
     
         /**
-     * Данные по товару
+     * Данные по категории
      *
      * @param string $id (id категории)
      * @param string $language (язык отображения)
