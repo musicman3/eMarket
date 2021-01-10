@@ -3,7 +3,7 @@
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 /**
- * Группа атрибутов
+ * Attribute group
  *
  * @package Group Attributes
  * @author eMarket
@@ -11,9 +11,9 @@
  */
 class GroupAttributes {
     /**
-     * Конструктор
+     * Constructor
      *
-     * @param lang {Json} (Языковые переменные)
+     * @param lang {Json} (lang)
      */
     constructor(lang) {
         this.modal(lang);
@@ -21,13 +21,12 @@ class GroupAttributes {
     }
 
     /**
-     * Инициализация для модалов
+     * Init for modal
      *
-     *@param lang {Array} (Языковые переменные)
+     *@param lang {Array} (lang)
      */
     modal(lang) {
 
-        // Если открыли главный модал
         $('#index').on('show.bs.modal', function (event) {
 
             var jsdata = new JsData();
@@ -38,32 +37,27 @@ class GroupAttributes {
             var parse_attributes = jsdata.selectParentUids(data_id, JSON.parse(sessionStorage.getItem('attributes')));
 
             GroupAttributes.add(lang, parse_attributes);
-            // Загружаем удаление группы атрибутов
             GroupAttributes.deleteValue(lang);
         });
 
-        // Если закрыли главный модал
         $('#index, #index_product').on('hidden.bs.modal', function (event) {
             $('.group-attributes').empty();
             GroupAttributes.clearAttributes();
             $('.product-attribute').empty();
         });
 
-        // Если закрыли добавление группы атрибутов
         $('#add_group_attributes').on('hidden.bs.modal', function (event) {
-            // Загружаем удаление группы атрибутов
             $('.input-add-group-attributes').val('');
             GroupAttributes.deleteValue(lang);
         });
     }
 
     /**
-     * Инициализация для кликов
+     * Init for clicks
      *
-     *@param lang {Array} (Языковые переменные)
+     *@param lang {Array} (lang)
      */
     click(lang) {
-        // Если открыли модал списка значений группы атрибута
         $(document).on('click', '.values-group-attribute', function () {
             var jsdata = new JsData();
             var data_id = $(this).closest('tr').attr('id').split('_')[1];
@@ -83,20 +77,17 @@ class GroupAttributes {
 
         });
 
-        // Добавляем значение группы атрибутов
         $(document).on('click', '.add-group-attributes', function () {
             $('#add_group_attributes').modal('show');
             sessionStorage.setItem('action', 'add');
         });
 
-        // Редактируем значение группы атрибутов
         $(document).on('click', '.edit-group-attribute', function () {
             $('#add_group_attributes').modal('show');
             var processing = new AttributesProcessing();
             processing.clickEdit($(this).closest('tr').attr('id').split('_')[1], 'false', 'level_1');
         });
 
-        // Сохраняем значение группы атрибутов
         $(document).on('click', '#save_group_attributes_button', function () {
             $('#add_group_attributes').modal('hide');
 
@@ -126,11 +117,11 @@ class GroupAttributes {
     }
 
     /**
-     * Отображение группы атрибутов
+     * Add value
      *
-     * @param id {String} (id строки)
-     * @param value {String} (значение строки)
-     * @param lang {Array} (Языковые переменные)
+     * @param id {String} (string id)
+     * @param value {String} (string value)
+     * @param lang {Array} (lang)
      */
     static addValue(id, value, lang) {
         $('.group-attributes').prepend(
@@ -147,9 +138,9 @@ class GroupAttributes {
     }
 
     /**
-     * Удаление группы атрибутов
+     * Delete
      * 
-     * @param lang {Array} (Языковые переменные)
+     * @param lang {Array} (lang)
      *
      */
     static deleteValue(lang) {
@@ -167,16 +158,15 @@ class GroupAttributes {
 
                 var parse_attributes_add = jsdata.selectParentUids(data_id, JSON.parse(sessionStorage.getItem('attributes')));
                 GroupAttributes.add(lang, parse_attributes_add);
-                // Загружаем удаление группы атрибутов
                 GroupAttributes.deleteValue(lang);
             }
         });
     }
 
     /**
-     * Сортировка группы атрибутов
+     * Sorting
      * 
-     * @param lang {Array} (Языковые переменные)
+     * @param lang {Array} (lang)
      *
      */
     sort(lang) {
@@ -189,10 +179,10 @@ class GroupAttributes {
     }
 
     /**
-     * Добавление атрибутов
+     * Add
      * 
-     * @param lang {Array} (Языковые переменные)
-     * @param parse {Array} (Данные по атрибутам)
+     * @param lang {Array} (lang)
+     * @param parse {Array} (attributes data)
      *
      */
     static add(lang, parse) {
@@ -212,7 +202,7 @@ class GroupAttributes {
     }
 
     /**
-     * Очистка атрибутов
+     * Clear Attributes
      *
      */
     static clearAttributes() {

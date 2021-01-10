@@ -113,7 +113,7 @@ class Attributes {
     }
 
     /**
-     * Attribute display
+     * Add value
      *
      * @param id {String} (id)
      * @param value {String} (value)
@@ -134,7 +134,7 @@ class Attributes {
     }
 
     /**
-     * Delete attributes
+     * Delete
      * 
      * @param lang {Array} (lang)
      *
@@ -159,7 +159,7 @@ class Attributes {
     }
 
     /**
-     * Sort attributes
+     * Sorting
      * 
      * @param lang {Array} (lang)
      *
@@ -174,7 +174,7 @@ class Attributes {
     }
 
     /**
-     * Add atributes
+     * Add
      * 
      * @param lang {Array} (lang)
      * @param parse {Array} (attributes data)

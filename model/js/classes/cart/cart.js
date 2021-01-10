@@ -3,7 +3,7 @@
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 /**
- * Корзина
+ * Cart
  *
  * @package Cart
  * @author eMarket
@@ -11,7 +11,7 @@
  */
 class Cart {
     /**
-     * Конструктор
+     * Constructor
      * 
      */
     constructor() {
@@ -21,28 +21,25 @@ class Cart {
     }
 
     /**
-     * Инициализация
+     * Init
      * 
-     *@param lang {Array} (языковые переменные)
+     *@param lang {Array} (lang)
      */
     static init(lang) {
-        // Если выбрали адрес, то перезагружаем методы доставки
         $('#address').change(function (event) {
-            // Получаем данные по доставке
             Cart.shippingData(lang);
         });
 
-        // Если выбрали доставку, то перезагружаем методы оплаты
         $('#shipping_method').change(function (event) {
             Cart.paymentData(lang);
         });
     }
 
     /**
-     * Количество товара в input
-     * @param val {String} (значение метки)
-     * @param id {String} (id товара)
-     * @param max_quantity {String} (Максимальное количество для заказа)
+     * Quantity
+     * @param val {String} (value)
+     * @param id {String} (product id)
+     * @param max_quantity {String} (max quantity)
      *
      */
     static pcsProduct(val, id, max_quantity = null) {
@@ -68,19 +65,17 @@ class Cart {
     }
 
     /**
-     * Обновление количества в корзине
+     * Quantity update
      *
-     *@param id {String} (id товара)
-     *@param pcs {Int} (количество)
+     *@param id {String} (product id)
+     *@param pcs {Int} (quantity)
      */
     static quantityProduct(id, pcs) {
-        // Установка синхронного запроса для jQuery.ajax
         jQuery.ajaxSetup({async: false});
         jQuery.get(window.location.href,
                 {quantity_product_id: id,
                     pcs_product: pcs},
                 AjaxSuccess);
-        // Обновление страницы
         function AjaxSuccess(data) {
             $('#cart_bar').replaceWith($(data).find('#cart_bar'));
             $('#cart').replaceWith($(data).find('#cart'));
@@ -90,17 +85,15 @@ class Cart {
     }
 
     /**
-     * Удаление товара из корзины
+     * Delete
      *
-     *@param id {String} (id товара)
+     *@param id {String} (product id)
      */
     static deleteProduct(id) {
-        // Установка синхронного запроса для jQuery.ajax
         jQuery.ajaxSetup({async: false});
         jQuery.get(window.location.href,
                 {delete_product: id},
                 AjaxSuccess);
-        // Обновление страницы
         function AjaxSuccess(data) {
             $('#cart_bar').replaceWith($(data).find('#cart_bar'));
             $('#cart').replaceWith($(data).find('#cart'));
@@ -110,11 +103,10 @@ class Cart {
     }
 
     /**
-     * Изменение класса кнопок
+     * Changing class of buttons
      *
      */
     static buttonClass() {
-        // Делаем не активной кнопку завершения заказа, если селекты не валидны
         if ($("#address_class").attr("class") !== 'input-group has-success' || $("#shipping_method_class").attr("class") !== 'input-group has-success' || $("#payment_method_class").attr("class") !== 'input-group has-success') {
             $("#complete").attr("disabled", "disabled");
         } else {
@@ -123,27 +115,24 @@ class Cart {
     }
 
     /**
-     * Функция получения данных для модулей оплаты
+     * Data for payment modules
      *
-     *@param lang {Array} (языковые переменные)
+     *@param lang {Array} (lang)
      */
     static paymentData(lang) {
         jQuery.post(window.location.href,
                 {payment_shipping_json: $(':selected', '#shipping_method').val()},
                 AjaxSuccess);
-        // Обновление страницы
         function AjaxSuccess(data) {
             var payment_method = JSON.parse(data);
             $("#payment_method").empty();
 
             if ($("#shipping_method_class").attr("class") !== 'input-group has-success' || payment_method.length < 1) {
-                // Если нет оплаты
                 $("#payment_method").append($('<option value="no">' + lang['cart_payment_is_not_available'] + '</option>'));
                 $('#payment_method_class').removeClass('has-success');
                 $('#payment_method_class').addClass('has-error');
             } else {
                 for (var payment_val of payment_method) {
-                    // Если есть оплата
                     $("#payment_method").append($('<option value="' + payment_val['chanel_module_name'] + '">' + payment_val['chanel_name'] + '</option>'));
                     $('#payment_method_class').removeClass('has-error');
                     $('#payment_method_class').addClass('has-success');
@@ -156,22 +145,20 @@ class Cart {
         }
     }
     /**
-     * Функция получения данных для модулей доставки
+     * Data for shipping modules
      *
-     *@param lang {Array} (языковые переменные)
+     *@param lang {Array} (lang)
      */
     static shippingData(lang) {
         jQuery.post(window.location.href,
                 {shipping_region_json: $(':selected', '#address').data('regions'),
                     products_order_json: $('#products_order').val()},
                 AjaxSuccess);
-        // Обновление страницы
         function AjaxSuccess(data) {
             var shipping_method = JSON.parse(data);
             $("#shipping_method").empty();
 
             if (shipping_method.length < 1) {
-                // Если нет доставки
                 $("#shipping_method").append($('<option value="no">' + lang['cart_shipping_is_not_available'] + '</option>'));
                 $('#shipping_method_class').removeClass('has-success');
                 $('#shipping_method_class').addClass('has-error');
@@ -179,18 +166,16 @@ class Cart {
                 $('#total_price_modal').html(lang['cart_subtotal'] + ' <b>' + lang['total_price_cart_with_sale'] + '</b>');
             } else {
                 for (var shipping_val of shipping_method) {
-                    //Если минимальная стоимость заказа ниже указанной
                     if (shipping_val['chanel_total_price'] < shipping_val['chanel_minimum_price']) {
                         $("#shipping_method").append($('<option value="no">' + shipping_val['chanel_name'] + lang['cart_shipping_is_not_available_and_min_price'] + ' ' + shipping_val['chanel_minimum_price_format'] + '</option>'));
                         $('#shipping_method_class').removeClass('has-success');
                         $('#shipping_method_class').addClass('has-error');
                         $('#shipping_price').html(lang['cart_shipping_price'] + ' <b>' + shipping_val['chanel_shipping_price_format'] + '</b>');
-                        $('#total_price_modal').html(sub + ' <b>' + shipping_val['chanel_total_price_with_shipping_format'] + '</b>');
+                        $('#total_price_modal').html(lang['cart_subtotal'] +  + ' <b>' + shipping_val['chanel_total_price_with_shipping_format'] + '</b>');
                         // input hidden
                         $('#order_total').val(shipping_val['chanel_total_price_with_shipping']);
                         $('#hash').val(shipping_val['chanel_hash']);
                     } else {
-                        // Если есть доставка
                         $("#shipping_method").append($('<option value="' + shipping_val['chanel_module_name'] + '" data-shipping="' + shipping_val['chanel_id'] + '">' + shipping_val['chanel_name'] + '</option>'));
                         $('#shipping_method_class').removeClass('has-error');
                         $('#shipping_method_class').addClass('has-success');
@@ -214,13 +199,13 @@ class Cart {
                 }
             }
             Cart.buttonClass();
-            // Обновляем модули оплаты
+            // Update
             Cart.paymentData(lang);
         }
     }
 
     /**
-     * Редирект
+     * Redirect
      *@param callback_url {String} (redirect url)
      *@param callback_data {Array} (callback data)
      *@param callback_type {String} (post/get)
@@ -235,7 +220,7 @@ class Cart {
     }
 
     /**
-     * Завершение заказа
+     * Success
      *
      */
     static callSuccess() {
@@ -244,7 +229,6 @@ class Cart {
         var callback_type = $('#callback_type').val();
         var callback_data = $('#callback_data').val();
 
-        // Установка синхронного запроса для jQuery.ajax
         jQuery.ajaxSetup({async: false});
         jQuery.ajax({
             type: 'POST',

@@ -3,7 +3,7 @@
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 /**
- * Обработка атрибутов
+ * Attributes Processing
  *
  * @package AttributesProcessing
  * @author eMarket
@@ -11,7 +11,7 @@
  */
 class AttributesProcessing {
     /**
-     * Сбор данных из select атрибутов
+     * Collecting data from select attributes
      * @returns {Array}
      *
      */
@@ -28,9 +28,10 @@ class AttributesProcessing {
     }
 
     /**
-     * Вывод атрибутов в товаре
-     * @param marker {String} (маркер admin/catalog)
-     * @param data {String} (данные по атрибутам)
+     * Displaying attributes
+     * @param marker {String} (marker admin/catalog)
+     * @param data {String} (attributes data)
+     * @param language {String} (language)
      *
      */
     static add(marker, data, language) {
@@ -110,7 +111,7 @@ class AttributesProcessing {
     }
 
     /**
-     * Отображение данных в окне редактирования атрибутов
+     * Displaying data in attribute edit window
      * @param id {String} (id)
      * @param uid {String} (uid)
      * @param name {String} (name)
@@ -131,8 +132,8 @@ class AttributesProcessing {
     }
 
     /**
-     * Сортировка
-     * @param sortedIDs {Array} (список сортировки)
+     * Sorting
+     * @param sortedIDs {Array} (sort list)
      * @param data_id {String} (data_id)
      * @returns {Array}
      *
@@ -152,9 +153,9 @@ class AttributesProcessing {
     }
 
     /**
-     * Проверка по выбранным значениям
-     * @param data {Array} (Входящий массив)
-     * @param selected {Array} (Массив с выбранными значениями)
+     * Checking by selected values
+     * @param data {Array} (input data)
+     * @param selected {Array} (selected array)
      * @param uid {String} (uid)
      * @returns {Array}
      *
