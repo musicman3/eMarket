@@ -3,7 +3,7 @@
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 /**
- * Запросы Ajax / Ajax requests
+ * Ajax requests
  *
  * @package Ajax
  * @author eMarket
@@ -12,7 +12,7 @@
 class Ajax {
 
     /**
-     * Добавить / Add
+     * Add
      *
      * @param name {String} (name)
      * @param url {String} (url)
@@ -48,7 +48,7 @@ class Ajax {
     }
 
     /**
-     * Удалить / Delete
+     * Delete
      *
      * @param id {String} (id)
      * @param url {String} (url)
@@ -66,7 +66,7 @@ class Ajax {
     }
 
     /**
-     * Обновить get / Get update
+     * Get update
      *
      * @param url {String} (url)
      */

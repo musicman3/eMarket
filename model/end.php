@@ -5,7 +5,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 // 
-//Загружаем HTML / Load HTML
+//Load HTML
 //
 if (\eMarket\Settings::path() == 'admin') {
     require_once(getenv('DOCUMENT_ROOT') . '/view/' . \eMarket\Settings::template() . '/admin/constructor.php');
@@ -18,6 +18,6 @@ if (\eMarket\Settings::path() == 'catalog') {
 if (\eMarket\Settings::path() == 'install') {
     require_once(getenv('DOCUMENT_ROOT') . '/view/' . \eMarket\Settings::template() . '/install/constructor.php');
 }
-//Закрываем соединение с БД / Close DB connect
+//Close DB connect
 \eMarket\Pdo::connect('end');
 ?>

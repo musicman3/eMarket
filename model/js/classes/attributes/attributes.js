@@ -3,7 +3,7 @@
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 /**
- * Атрибуты
+ * Attributes
  *
  * @package Attributes
  * @author eMarket
@@ -11,9 +11,9 @@
  */
 class Attributes {
     /**
-     * Конструктор
+     * Constructor
      *
-     * @param lang {Json} (Языковые переменные)
+     * @param lang {Json} (lang)
      */
     constructor(lang) {
         this.modal(lang);
@@ -21,13 +21,12 @@ class Attributes {
     }
 
     /**
-     * Инициализация для модалов
+     * Init for modals
      *
-     *@param lang {Array} (Языковые переменные)
+     *@param lang {Array} (lang)
      */
     modal(lang) {
 
-        // Если открыли модал списка в группе атрибутов
         $('#attribute').on('show.bs.modal', function (event) {
 
             var jsdata = new JsData();
@@ -35,31 +34,26 @@ class Attributes {
             var parse_attributes = jsdata.selectParentUids(data_id, JSON.parse(sessionStorage.getItem('attributes')));
 
             Attributes.add(lang, parse_attributes);
-            // Загружаем удаление атрибута
             Attributes.deleteValue(lang);
 
         });
 
-        // Если закрыли модал списка в группе атрибутов
         $('#attribute').on('hidden.bs.modal', function (event) {
             $('.attribute').empty();
         });
 
-        // Если закрыли модал значения атрибута
         $('#add_attribute').on('hidden.bs.modal', function (event) {
             $('.input-add-attribute').val('');
-            // Загружаем удаление атрибута
             Attributes.deleteValue(lang);
         });
     }
 
     /**
-     * Инициализация для кликов
+     * Init for clicks
      *
-     *@param lang {Array} (Языковые переменные)
+     *@param lang {Array} (lang)
      */
     click(lang) {
-        // Если открыли модал списка значений группы атрибута
         $(document).on('click', '.values-attribute', function () {
             var jsdata = new JsData();
             var data_id = $(this).closest('tr').attr('id').split('_')[1];
@@ -78,13 +72,11 @@ class Attributes {
             $('#title_values_attribute').html(jsdata.selectUid(data_id, parse_attributes)[language]['value']);
         });
 
-        // Добавляем атрибут
         $(document).on('click', '.add-attribute', function () {
             sessionStorage.setItem('action', 'add');
             $('#add_attribute').modal('show');
         });
 
-        // Редактируем атрибут
         $(document).on('click', '.edit-attribute', function () {
             $('#add_attribute').modal('show');
             var processing = new AttributesProcessing();
@@ -92,7 +84,6 @@ class Attributes {
 
         });
 
-        // Сохраняем атрибут
         $('#save_attribute_button').click(function () {
             $('#add_attribute').modal('hide');
 
@@ -122,11 +113,11 @@ class Attributes {
     }
 
     /**
-     * Отображение атрибутов
+     * Attribute display
      *
-     * @param id {String} (id строки)
-     * @param value {String} (значение строки)
-     * @param lang {Array} (Языковые переменные)
+     * @param id {String} (id)
+     * @param value {String} (value)
+     * @param lang {Array} (lang)
      */
     static addValue(id, value, lang) {
         $('.attribute').prepend(
@@ -143,9 +134,9 @@ class Attributes {
     }
 
     /**
-     * Удаление атрибутов
+     * Delete attributes
      * 
-     * @param lang {Array} (Языковые переменные)
+     * @param lang {Array} (lang)
      *
      */
     static deleteValue(lang) {
@@ -163,15 +154,14 @@ class Attributes {
 
                 var parse_attributes_add = jsdata.selectParentUids(data_id, JSON.parse(sessionStorage.getItem('attributes')));
                 Attributes.add(lang, parse_attributes_add);
-                // Загружаем удаление атрибута
                 Attributes.deleteValue(lang);
             }});
     }
 
     /**
-     * Сортировка атрибутов
+     * Sort attributes
      * 
-     * @param lang {Array} (Языковые переменные)
+     * @param lang {Array} (lang)
      *
      */
     sort(lang) {
@@ -184,10 +174,10 @@ class Attributes {
     }
 
     /**
-     * Добавление атрибутов
+     * Add atributes
      * 
-     * @param lang {Array} (Языковые переменные)
-     * @param parse {Array} (Данные по атрибутам)
+     * @param lang {Array} (lang)
+     * @param parse {Array} (attributes data)
      *
      */
     static add(lang, parse) {
