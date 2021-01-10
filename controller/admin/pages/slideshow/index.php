@@ -6,7 +6,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 $settings = json_encode(\eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_SLIDESHOW_PREF . "", [])[0]);
- 
+
 if (\eMarket\Valid::inPOST('slideshow_pref')) {
 
     if (\eMarket\Valid::inPOST('mouse_stop')) {
@@ -36,21 +36,18 @@ if (\eMarket\Valid::inPOST('slideshow_pref')) {
     }
 
     \eMarket\Pdo::action("UPDATE " . TABLE_SLIDESHOW_PREF . " SET show_interval=?, mouse_stop=?, autostart=?, cicles=?, indicators=?, navigation=? WHERE id=?", [\eMarket\Valid::inPOST('show_interval'), $mouse_stop, $autostart, $cicles, $indicators, $navigation, 1]);
-    // Выводим сообщение об успехе
+
     \eMarket\Messages::alert('success', lang('action_completed_successfully'));
 }
 
-// Если нажали на кнопку Добавить
 if (\eMarket\Valid::inPOST('add')) {
 
-    // Если есть установка по-умолчанию
     if (\eMarket\Valid::inPOST('view_slideshow')) {
         $view_slideshow = '1';
     } else {
         $view_slideshow = '0';
     }
 
-    // Если есть установка анимации
     if (\eMarket\Valid::inPOST('animation')) {
         $animation = '1';
     } else {
@@ -62,7 +59,7 @@ if (\eMarket\Valid::inPOST('add')) {
     } else {
         $start_date = NULL;
     }
-    // Формат даты после Datepicker
+
     if (\eMarket\Valid::inPOST('end_date')) {
         $end_date = date('Y-m-d', strtotime(\eMarket\Valid::inPOST('end_date')));
     } else {
@@ -70,21 +67,18 @@ if (\eMarket\Valid::inPOST('add')) {
     }
 
     \eMarket\Pdo::action("INSERT INTO " . TABLE_SLIDESHOW . " SET language=?, url=?, name=?, heading=?, logo=?, animation=?, color=?, date_start=?, date_finish=?, status=?", [\eMarket\Valid::inPOST('set_language'), \eMarket\Valid::inPOST('url'), \eMarket\Valid::inPOST('name'), \eMarket\Valid::inPOST('heading'), json_encode([]), $animation, \eMarket\Valid::inPOST('color'), $start_date, $end_date, $view_slideshow]);
-    // Выводим сообщение об успехе
+
     \eMarket\Messages::alert('success', lang('action_completed_successfully'));
 }
 
-// Если нажали на кнопку Редактировать
 if (\eMarket\Valid::inPOST('edit')) {
 
-    // Если есть установка по-умолчанию
     if (\eMarket\Valid::inPOST('view_slideshow')) {
         $view_slideshow = '1';
     } else {
         $view_slideshow = '0';
     }
 
-    // Если есть установка анимации
     if (\eMarket\Valid::inPOST('animation')) {
         $animation = '1';
     } else {
@@ -96,23 +90,21 @@ if (\eMarket\Valid::inPOST('edit')) {
     } else {
         $start_date = NULL;
     }
-    // Формат даты после Datepicker
+
     if (\eMarket\Valid::inPOST('end_date')) {
         $end_date = date('Y-m-d', strtotime(\eMarket\Valid::inPOST('end_date')));
     } else {
         $end_date = NULL;
     }
 
-    // обновляем запись
     \eMarket\Pdo::action("UPDATE " . TABLE_SLIDESHOW . " SET url=?, name=?, heading=?, animation=?, color=?, date_start=?, date_finish=?, status=? WHERE id=?", [\eMarket\Valid::inPOST('url'), \eMarket\Valid::inPOST('name'), \eMarket\Valid::inPOST('heading'), $animation, \eMarket\Valid::inPOST('color'), $start_date, $end_date, $view_slideshow, \eMarket\Valid::inPOST('edit')]);
 
-    // Выводим сообщение об успехе
     \eMarket\Messages::alert('success', lang('action_completed_successfully'));
 }
 
-// Загручик изображений (ВСТАВЛЯТЬ ПЕРЕД УДАЛЕНИЕМ)
+// add before delete
 $resize_param = [];
-array_push($resize_param, ['125', '63']); // ширина, высота
+array_push($resize_param, ['125', '63']); // width, height
 array_push($resize_param, ['1200', '600']);
 array_push($resize_param, ['1366', '683']);
 array_push($resize_param, ['1600', '800']);
@@ -120,12 +112,9 @@ array_push($resize_param, ['1920', '960']);
 
 \eMarket\Files::imgUpload(TABLE_SLIDESHOW, 'slideshow', $resize_param);
 
-// Если нажали на кнопку Удалить
 if (\eMarket\Valid::inPOST('delete')) {
-
-    // Удаляем
     \eMarket\Pdo::action("DELETE FROM " . TABLE_SLIDESHOW . " WHERE id=?", [\eMarket\Valid::inPOST('delete')]);
-    // Выводим сообщение об успехе
+
     \eMarket\Messages::alert('success', lang('action_completed_successfully'));
 }
 
@@ -137,7 +126,6 @@ if (\eMarket\Valid::inGET('slide_lang')) {
 
 $this_time = time();
 
-//КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 $sql_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_SLIDESHOW . " ORDER BY id DESC", []);
 $lines = \eMarket\Func::filterData($sql_data, 'language', $set_language);
 $lines_on_page = \eMarket\Settings::linesOnPage();
@@ -146,7 +134,5 @@ $navigate = \eMarket\Navigation::getLink($count_lines, $lines_on_page);
 $start = $navigate[0];
 $finish = $navigate[1];
 
-// Модальное окно
 require_once('modal/index.php');
-// Модальное окно
 require_once('modal/settings.php');

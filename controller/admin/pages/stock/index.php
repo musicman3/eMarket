@@ -6,21 +6,19 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 $resize_param = [];
-array_push($resize_param, ['125', '94']); // ширина, высота
+array_push($resize_param, ['125', '94']); // width, height
 //
 $resize_param_product = [];
-array_push($resize_param_product, ['125', '94']); // ширина, высота
+array_push($resize_param_product, ['125', '94']); // width, height
 array_push($resize_param_product, ['200', '150']);
 array_push($resize_param_product, ['325', '244']);
 array_push($resize_param_product, ['525', '394']);
 array_push($resize_param_product, ['850', '638']);
 
-// Загружаем движок EAC
 $EAC_ENGINE = \eMarket\Eac::init($resize_param, $resize_param_product);
 $idsx_real_parent_id = $EAC_ENGINE[0];
 $parent_id = $EAC_ENGINE[1];
 
-// Формируем распродажу для выпадающего списка
 $installed_active = \eMarket\Pdo::getCell("SELECT id FROM " . TABLE_MODULES . " WHERE name=? AND type=? AND active=?", ['sale', 'discount', 1]);
 $sales = '';
 $sale_default = 0;
@@ -51,7 +49,7 @@ if ($installed_active != '' && isset($sales_all) && count($sales_all) > 0) {
         }
     }
 }
-// Формируем список стикеров
+
 $stikers = '';
 $stikers_default = 0;
 $stikers_flag = 0;
@@ -64,33 +62,19 @@ foreach ($stikers_data as $val) {
         $stikers_default = $val['id'];
     }
 }
-// Формируем массив Валюта для выпадающего списка
+
 $currencies_all = \eMarket\Pdo::getColAssoc("SELECT name, default_value, id FROM " . TABLE_CURRENCIES . " WHERE language=?", [lang('#lang_all')[0]]);
-
-// Формируем массив Налог для выпадающего списка
 $taxes_all = \eMarket\Pdo::getColAssoc("SELECT name, id FROM " . TABLE_TAXES . " WHERE language=?", [lang('#lang_all')[0]]);
-
-// Формируем массив Единица измерения для выпадающего списка
 $units_all = \eMarket\Pdo::getColAssoc("SELECT name, default_unit, id FROM " . TABLE_UNITS . " WHERE language=?", [lang('#lang_all')[0]]);
-
-// Формируем массив Размер измерения для выпадающего списка
 $length_all = \eMarket\Pdo::getColAssoc("SELECT name, default_length, id FROM " . TABLE_LENGTH . " WHERE language=?", [lang('#lang_all')[0]]);
-
-// Формируем массив Вес измерения для выпадающего списка
 $weight_all = \eMarket\Pdo::getColAssoc("SELECT name, default_weight, id FROM " . TABLE_WEIGHT . " WHERE language=?", [lang('#lang_all')[0]]);
-
-// Формируем массив Вес измерения для выпадающего списка
 $vendor_codes_all = \eMarket\Pdo::getColAssoc("SELECT name, default_vendor_code, id FROM " . TABLE_VENDOR_CODES . " WHERE language=?", [lang('#lang_all')[0]]);
-
-// Формируем массив Производитель измерения для выпадающего списка
 $manufacturers_all = \eMarket\Pdo::getColAssoc("SELECT name, id FROM " . TABLE_MANUFACTURERS . " WHERE language=?", [lang('#lang_all')[0]]);
 
-// Устанавливаем родительскую категорию при навигации назад-вперед
 if (\eMarket\Valid::inGET('nav_parent_id')) {
     $parent_id = \eMarket\Valid::inGET('nav_parent_id');
 }
 
-// Параметры для JS
 if (!isset($idsx_real_parent_id)) {
     $idsx_real_parent_id = '';
 }
@@ -112,10 +96,9 @@ $stiker_name = [];
 foreach ($stiker_data as $val) {
     $stiker_name[$val['id']] = $val['name'];
 }
-// Счетчик трансфера
+
 $transfer = 0;
 
-// КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 $lines_on_page = \eMarket\Settings::linesOnPage();
 $search = '%' . \eMarket\Valid::inGET('search') . '%';
 if (\eMarket\Valid::inGET('search')) {
@@ -142,20 +125,17 @@ if (\eMarket\Valid::inGET('search')) {
     $sql_data_prod = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE parent_id=? ORDER BY id DESC", [$parent_id]);
     $lines_prod = \eMarket\Func::filterData($sql_data_prod, 'language', lang('#lang_all')[0]);
 }
-$count_lines_cat = count($lines_cat);  //считаем количество строк
-$count_lines_prod = count($lines_prod);  //считаем количество строк
+$count_lines_cat = count($lines_cat);
+$count_lines_prod = count($lines_prod);
 
 $arr_merge = \eMarket\Func::arrayMergeOriginKey('cat', 'prod', $lines_cat, $lines_prod);
 
-//\eMarket\Debug::trace($arr_merge);
-$count_lines_merge = $count_lines_cat + $count_lines_prod; // Считаем общее количество строк в категории
+$count_lines_merge = $count_lines_cat + $count_lines_prod;
 
 $navigate = \eMarket\Navigation::getLink($count_lines_merge, $lines_on_page, 1);
 $start = $navigate[0];
 $finish = $navigate[1];
 
-// КОНЕЦ-> КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
-// Модальное окно
 require_once('modal/index.php');
 require_once('modal/index_product.php');
 

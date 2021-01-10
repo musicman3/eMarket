@@ -8,27 +8,23 @@
 session_start();
 
 if (\eMarket\Valid::inGET('logout') == 'ok') {
-    //удаляем текущую сессию
     unset($_SESSION['login']);
     unset($_SESSION['pass']);
-    header('Location: ?route=login');    //перенаправляем на авторизацию
+    header('Location: ?route=login');
 }
 
 if (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
-    //Ищем авторизованного администратора
     if (isset($_SESSION['session_page'])) {
         $session_page = $_SESSION['session_page'];
         unset($_SESSION['session_page']);
         header('Location: ' . $session_page);
     } else {
-        header('Location: ?route=dashboard');    // Если все успешно, то редирект в административную часть
+        header('Location: ?route=dashboard'); 
     }
 }
 
-// если логин или пароль не верные, то готовим уведомление
 if (isset($_SESSION['login_error']) == TRUE && \eMarket\Valid::inPOST('login') && \eMarket\Valid::inPOST('pass')) {
     $login_error = $_SESSION['login_error'];
-    //удаляем текущую сессию
     unset($_SESSION['login']);
     unset($_SESSION['pass']);
 } else {
@@ -36,15 +32,13 @@ if (isset($_SESSION['login_error']) == TRUE && \eMarket\Valid::inPOST('login') &
 }
 
 if (\eMarket\Valid::inPOST('install') == 'ok') {
-    session_destroy();    //удаляем текущую сессию
+    session_destroy();
     session_start();
 }
 
 if (\eMarket\Valid::inPOST('autorize') == 'ok') {
-    //Ищем авторизованного администратора
     $HASH = \eMarket\Pdo::selectPrepare("SELECT password FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [\eMarket\Valid::inPOST('login')]);
-    if (!password_verify(\eMarket\Valid::inPOST('pass'), $HASH)) {    //Если проверка не удалась:
-        //удаляем текущую сессию
+    if (!password_verify(\eMarket\Valid::inPOST('pass'), $HASH)) {
         unset($_SESSION['login']);
         unset($_SESSION['pass']);
         $_SESSION['default_language'] = \eMarket\Settings::basicSettings('primary_language');
@@ -57,7 +51,7 @@ if (\eMarket\Valid::inPOST('autorize') == 'ok') {
             unset($_SESSION['session_page']);
             header('Location: ' . $session_page);
         } else {
-            header('Location: ?route=dashboard');    // Если все успешно, то редирект в административную часть
+            header('Location: ?route=dashboard');
         }
     }
 }

@@ -5,15 +5,13 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-// собираем данные для отображения в Редактировании товаров
 $json_data_product = json_encode([]);
 for ($i = $start; $i < $finish; $i++) {
     if (isset($arr_merge['prod'][$i . 'a']['id']) == TRUE) {
 
-        $modal_id_prod = $arr_merge['prod'][$i . 'a']['id']; // ID
+        $modal_id_prod = $arr_merge['prod'][$i . 'a']['id'];
 
         foreach ($sql_data_prod as $sql_modal_prod) {
-            //Языковые
             if ($sql_modal_prod['id'] == $modal_id_prod) {
                 $name_product[array_search($sql_modal_prod['language'], lang('#lang_all'))][$modal_id_prod] = $sql_modal_prod['name'];
                 $description_product[array_search($sql_modal_prod['language'], lang('#lang_all'))][$modal_id_prod] = $sql_modal_prod['description'];
@@ -21,45 +19,25 @@ for ($i = $start; $i < $finish; $i++) {
                 $tags_product[array_search($sql_modal_prod['language'], lang('#lang_all'))][$modal_id_prod] = $sql_modal_prod['tags'];
             }
             if ($sql_modal_prod['language'] == lang('#lang_all')[0] && $sql_modal_prod['id'] == $modal_id_prod) {
-                // Цена
                 $price_product[$modal_id_prod] = round(\eMarket\Ecb::currencyPrice($sql_modal_prod['price'], $sql_modal_prod['currency']), 2);
-                // Валюта
                 $currency_product[$modal_id_prod] = \eMarket\Settings::currencyDefault()[0];
-                // Количество
                 $quantity_product[$modal_id_prod] = $sql_modal_prod['quantity'];
-                // Единицы измерения
                 $units_product[$modal_id_prod] = $sql_modal_prod['unit'];
-                // Модель
                 $model_product[$modal_id_prod] = $sql_modal_prod['model'];
-                // Производитель
                 $manufacturers_product[$modal_id_prod] = $sql_modal_prod['manufacturer'];
-                // Дата поступления
                 $date_available_product[$modal_id_prod] = $sql_modal_prod['date_available'];
-                // Налог
                 $tax_product[$modal_id_prod] = $sql_modal_prod['tax'];
-                // Значение идентификатора
                 $vendor_code_value_product[$modal_id_prod] = $sql_modal_prod['vendor_code_value'];
-                // Идентификатор
                 $vendor_code_product[$modal_id_prod] = $sql_modal_prod['vendor_code'];
-                // Значение Веса
                 $weight_value_product[$modal_id_prod] = $sql_modal_prod['weight_value'];
-                // Вес
                 $weight_product[$modal_id_prod] = $sql_modal_prod['weight'];
-                // Минимальное количество
                 $min_quantity_product[$modal_id_prod] = $sql_modal_prod['min_quantity'];
-                // Ед. изм. длины
                 $dimension_product[$modal_id_prod] = $sql_modal_prod['dimension'];
-                // Длина
                 $length_product[$modal_id_prod] = $sql_modal_prod['length'];
-                // Ширина
                 $width_product[$modal_id_prod] = $sql_modal_prod['width'];
-                // Высота
                 $height_product[$modal_id_prod] = $sql_modal_prod['height'];
-                // Изображения
                 $logo_product[$modal_id_prod] = json_decode($sql_modal_prod['logo'], 1);
-                // Главное изображение
                 $logo_general_product[$modal_id_prod] = $sql_modal_prod['logo_general'];
-                // Атрибуты
                 $attributes_product[$modal_id_prod] = json_decode($sql_modal_prod['attributes'], 1);
 
                 if ($parent_id == 0) {
@@ -70,7 +48,6 @@ for ($i = $start; $i < $finish; $i++) {
             }
         }
 
-        //Сортируем языковые
         ksort($name_product);
         ksort($description_product);
         ksort($keyword_product);

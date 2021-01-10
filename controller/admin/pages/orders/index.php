@@ -5,11 +5,10 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-// Если нажали на кнопку Редактировать
 if (\eMarket\Valid::inPOST('edit')) {
 
     $primary_language = \eMarket\Settings::primaryLanguage();
-    // Сохраняем статус
+
     $order_data = \eMarket\Pdo::getColAssoc("SELECT orders_status_history, customer_data, email FROM " . TABLE_ORDERS . " WHERE id=?", [\eMarket\Valid::inPOST('edit')])[0];
     $customer_language = json_decode($order_data['customer_data'], 1)['language'];
     $customer_status_history_select = \eMarket\Pdo::getCellFalse("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE language=? AND id=?", [$customer_language, \eMarket\Valid::inPOST('status_history_select')]);
@@ -36,21 +35,21 @@ if (\eMarket\Valid::inPOST('edit')) {
     } else {
         exit;
     }
-    // Выводим сообщение об успехе
+
     \eMarket\Messages::alert('success', lang('action_completed_successfully'));
 }
 
-// Если нажали на кнопку Удалить
+
 if (\eMarket\Valid::inPOST('delete')) {
-    // Удаляем запись
+
     \eMarket\Pdo::action("DELETE FROM " . TABLE_ORDERS . " WHERE id=?", [\eMarket\Valid::inPOST('delete')]);
-    // Выводим сообщение об успехе
+
     \eMarket\Messages::alert('success', lang('action_completed_successfully'));
 }
 
 $order_status = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_ORDER_STATUS . " WHERE language=? ORDER BY sort DESC", [lang('#lang_all')[0]]);
 
-//КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
+
 $search = '%' . \eMarket\Valid::inGET('search') . '%';
 if (\eMarket\Valid::inGET('search')) {
     $lines = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_ORDERS . " WHERE id LIKE? OR email LIKE? OR customer_data RLIKE? OR customer_data RLIKE? ORDER BY id DESC", [$search, $search, '"lastname": "(?i)([^"])*' . \eMarket\Valid::inGET('search') . '([^"])*', '"firstname": "(?i)([^"])*' . \eMarket\Valid::inGET('search') . '([^"])*']);
@@ -64,5 +63,4 @@ $navigate = \eMarket\Navigation::getLink($count_lines, $lines_on_page);
 $start = $navigate[0];
 $finish = $navigate[1];
 
-// Модальное окно
 require_once('modal/index.php');

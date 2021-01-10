@@ -5,36 +5,30 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-// Если нажали на кнопку Добавить
 if (\eMarket\Valid::inPOST('add')) {
 
-    // Получаем последний id и увеличиваем его на 1
     $id_max = \eMarket\Pdo::selectPrepare("SELECT id FROM " . TABLE_MANUFACTURERS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
     $id = intval($id_max) + 1;
 
-    // добавляем запись для всех вкладок
     for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
         \eMarket\Pdo::action("INSERT INTO " . TABLE_MANUFACTURERS . " SET id=?, name=?, language=?, site=?, logo=?", [$id, \eMarket\Valid::inPOST('name_manufacturers_' . $x), lang('#lang_all')[$x], \eMarket\Valid::inPOST('site_manufacturers'), json_encode([])]);
     }
 
-    // Выводим сообщение об успехе
     \eMarket\Messages::alert('success', lang('action_completed_successfully'));
 }
 
-// Если нажали на кнопку Редактировать
 if (\eMarket\Valid::inPOST('edit')) {
 
     for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
         \eMarket\Pdo::action("UPDATE " . TABLE_MANUFACTURERS . " SET name=?, site=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_manufacturers_' . $x), \eMarket\Valid::inPOST('site_manufacturers'), \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
     }
 
-    // Выводим сообщение об успехе
     \eMarket\Messages::alert('success', lang('action_completed_successfully'));
 }
 
-// Загручик изображений (ВСТАВЛЯТЬ ПЕРЕД УДАЛЕНИЕМ)
+// add before delete
 $resize_param = [];
-array_push($resize_param, ['125', '94']); // ширина, высота
+array_push($resize_param, ['125', '94']); // width, height
 //array_push($resize_param, ['200','150']);
 //array_push($resize_param, ['325','244']);
 //array_push($resize_param, ['525','394']);
@@ -42,15 +36,13 @@ array_push($resize_param, ['125', '94']); // ширина, высота
 
 \eMarket\Files::imgUpload(TABLE_MANUFACTURERS, 'manufacturers', $resize_param);
 
-// Если нажали на кнопку Удалить
 if (\eMarket\Valid::inPOST('delete')) {
-    // Удаляем запись
+
     \eMarket\Pdo::action("DELETE FROM " . TABLE_MANUFACTURERS . " WHERE id=?", [\eMarket\Valid::inPOST('delete')]);
-    // Выводим сообщение об успехе
+
     \eMarket\Messages::alert('success', lang('action_completed_successfully'));
 }
 
-//КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 $sql_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_MANUFACTURERS . " ORDER BY id DESC", []);
 $lines = \eMarket\Func::filterData($sql_data, 'language', lang('#lang_all')[0]);
 $lines_on_page = \eMarket\Settings::linesOnPage();
@@ -59,5 +51,4 @@ $navigate = \eMarket\Navigation::getLink($count_lines, $lines_on_page);
 $start = $navigate[0];
 $finish = $navigate[1];
 
-// Модальное окно
 require_once('modal/index.php');

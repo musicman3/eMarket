@@ -1,4 +1,5 @@
 <?php
+
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -23,12 +24,10 @@ if (\eMarket\Valid::inGET('name_templates')) {
     $select_template = \eMarket\Settings::template();
 }
 
-
-
 $layout_header_temp = \eMarket\Pdo::getCol("SELECT url FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=? ORDER BY sort ASC", ['catalog', 'header', $select_template, $select_page]);
 $layout_header_basket_temp = \eMarket\Pdo::getCol("SELECT url FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=? ORDER BY sort ASC", ['catalog', 'header-basket', $select_template, $select_page]);
 
-if ($layout_header_temp == NULL && $layout_header_basket_temp == NULL) { // ЕСЛИ ЕЩЕ НЕ БЫЛО ОТДЕЛЬНОЙ КОМПОНОВКИ НА СТРАНИЦУ, ТО ГРУЗИМ КОМПОНОВКУ ИЗ ALL
+if ($layout_header_temp == NULL && $layout_header_basket_temp == NULL) {
     $select_page_temp = 'all';
     $layout_header = \eMarket\Pdo::getCol("SELECT url FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=? ORDER BY sort ASC", ['catalog', 'header', $select_template, $select_page_temp]);
     $layout_content = \eMarket\Pdo::getCol("SELECT url FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=? ORDER BY sort ASC", ['catalog', 'content', $select_template, $select_page_temp]);
@@ -57,7 +56,6 @@ if (\eMarket\Valid::inGET('layout_header') OR \eMarket\Valid::inGET('layout_head
     if (\eMarket\Valid::inGET('page') == 'all') {
         $select_page = 'all';
 
-        // ОЧИЩАЕМ ВСЕ СЛОИ ДЛЯ ШАБЛОНА
         \eMarket\Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=?", ['catalog', 'header', \eMarket\Valid::inGET('template')]);
         \eMarket\Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=?", ['catalog', 'header-basket', \eMarket\Valid::inGET('template')]);
         \eMarket\Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=?", ['catalog', 'content', \eMarket\Valid::inGET('template')]);
@@ -71,7 +69,7 @@ if (\eMarket\Valid::inGET('layout_header') OR \eMarket\Valid::inGET('layout_head
         $select_page = \eMarket\Valid::inGET('page');
     }
 
-    // ОБРАБАТЫВАЕМ HEADER
+    //HEADER
     \eMarket\Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", ['catalog', 'header', \eMarket\Valid::inGET('template'), $select_page]);
     \eMarket\Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", ['catalog', 'header-basket', \eMarket\Valid::inGET('template'), $select_page]);
 
@@ -95,7 +93,7 @@ if (\eMarket\Valid::inGET('layout_header') OR \eMarket\Valid::inGET('layout_head
         }
     }
 
-    // ОБРАБАТЫВАЕМ CONTENT
+    //CONTENT
     \eMarket\Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", ['catalog', 'content', \eMarket\Valid::inGET('template'), $select_page]);
     \eMarket\Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", ['catalog', 'content-basket', \eMarket\Valid::inGET('template'), $select_page]);
 
@@ -111,7 +109,7 @@ if (\eMarket\Valid::inGET('layout_header') OR \eMarket\Valid::inGET('layout_head
         }
     }
 
-    // ОБРАБАТЫВАЕМ BOXES
+    //BOXES
     \eMarket\Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", ['catalog', 'boxes-left', \eMarket\Valid::inGET('template'), $select_page]);
     \eMarket\Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", ['catalog', 'boxes-right', \eMarket\Valid::inGET('template'), $select_page]);
     \eMarket\Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", ['catalog', 'boxes-basket', \eMarket\Valid::inGET('template'), $select_page]);
@@ -134,7 +132,7 @@ if (\eMarket\Valid::inGET('layout_header') OR \eMarket\Valid::inGET('layout_head
         }
     }
 
-    // ОБРАБАТЫВАЕМ FOOTER
+    //FOOTER
     \eMarket\Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", ['catalog', 'footer', \eMarket\Valid::inGET('template'), $select_page]);
     \eMarket\Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", ['catalog', 'footer-basket', \eMarket\Valid::inGET('template'), $select_page]);
 

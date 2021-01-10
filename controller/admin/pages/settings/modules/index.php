@@ -13,7 +13,6 @@ if (\eMarket\Valid::inPOST('add')) {
     $namespace = '\eMarket\Modules\\' . ucfirst($module[0]) . '\\' . ucfirst($module[1]);
     $namespace::install($module);
 
-    // Выводим сообщение об успехе
     \eMarket\Messages::alert('success', lang('action_completed_successfully'));
 }
 
@@ -22,7 +21,6 @@ if (\eMarket\Valid::inPOST('delete')) {
     $namespace = '\eMarket\Modules\\' . ucfirst($module[0]) . '\\' . ucfirst($module[1]);
     $namespace::uninstall($module);
 
-    // Выводим сообщение об успехе
     \eMarket\Messages::alert('success', lang('action_completed_successfully'));
 }
 

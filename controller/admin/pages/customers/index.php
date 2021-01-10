@@ -5,9 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-// Если нажали на кнопку Статус
 if (\eMarket\Valid::inPOST('status')) {
-
+    
     $status_data = \eMarket\Pdo::getCell("SELECT status FROM " . TABLE_CUSTOMERS . " WHERE id=?", [\eMarket\Valid::inPOST('status')]);
 
     if ($status_data == 0) {
@@ -18,19 +17,16 @@ if (\eMarket\Valid::inPOST('status')) {
     
     \eMarket\Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET status=? WHERE id=?", [$status, \eMarket\Valid::inPOST('status')]);
 
-    // Выводим сообщение об успехе
     \eMarket\Messages::alert('success', lang('action_completed_successfully'));
 }
 
-// Если нажали на кнопку Удалить
 if (\eMarket\Valid::inPOST('delete')) {
-    // Удаляем запись
+    
     \eMarket\Pdo::action("DELETE FROM " . TABLE_CUSTOMERS . " WHERE id=?", [\eMarket\Valid::inPOST('delete')]);
-    // Выводим сообщение об успехе
+    
     \eMarket\Messages::alert('success', lang('action_completed_successfully'));
 }
 
-//КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
 $search = '%' . \eMarket\Valid::inGET('search') . '%';
 if (\eMarket\Valid::inGET('search')) {
     $lines = \eMarket\Pdo::getColRow("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE firstname LIKE? OR lastname LIKE? OR middle_name LIKE? OR email LIKE? ORDER BY id DESC", [$search, $search, $search, $search]);

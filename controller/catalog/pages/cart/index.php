@@ -7,13 +7,13 @@
 
 // JSON ECHO SHIPPING
 if (\eMarket\Valid::inPOST('shipping_region_json')) {
-    $zones_id = \eMarket\Shipping::shippingZonesAvailable(\eMarket\Valid::inPOST('shipping_region_json')); // список id зон, в которых находится регион
+    $zones_id = \eMarket\Shipping::shippingZonesAvailable(\eMarket\Valid::inPOST('shipping_region_json'));
     $modules_data = \eMarket\Shipping::loadData($zones_id);
     $interface_data = [];
     foreach ($modules_data as $data) {
-        
+
         $order_to_pay = (float) $data['chanel_total_price_with_shipping'] + (float) $data['chanel_total_tax'];
-        // Интерфейс для получения данных от модулей доставки
+        // INTERFACE
         $interface = [
             'chanel_id' => $data['chanel_id'],
             'chanel_module_name' => $data['chanel_module_name'],
@@ -31,7 +31,6 @@ if (\eMarket\Valid::inPOST('shipping_region_json')) {
             'chanel_image' => $data['chanel_image'],
             'chanel_order_to_pay' => $order_to_pay,
             'chanel_order_to_pay_format' => \eMarket\Ecb::formatPrice($order_to_pay, 1),
-            // Хэш стоимости с учетом доставки
             'chanel_hash' => \eMarket\Autorize::passwordHash((float) $data['chanel_total_tax'] . $order_to_pay . (float) $data['chanel_total_price_with_shipping'] . \eMarket\Valid::inPOST('products_order_json') . $data['chanel_module_name'] . (float) $data['chanel_shipping_price'] . (float) $data['chanel_total_price'])
         ];
 
@@ -48,7 +47,7 @@ if (\eMarket\Valid::inPOST('payment_shipping_json')) {
     $interface_data = [];
     foreach ($modules_data as $data) {
 
-        // Интерфейс для получения данных от модулей оплаты
+        // INTERFACE
         $interface = [
             'chanel_module_name' => $data['chanel_module_name'],
             'chanel_name' => $data['chanel_name'],

@@ -5,22 +5,19 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-// Если нажали на кнопку Удалить
 if (\eMarket\Valid::inPOST('delete') == 'delete' && file_exists(ROOT . '/model/work/errors.log')) {
-    // удаляем лог
     unlink(ROOT . '/model/work/errors.log');
 
-    // Выводим сообщение об успехе
     \eMarket\Messages::alert('success', lang('action_completed_successfully'));
 }
 
-//КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ
-if (file_exists(ROOT . '/model/work/errors.log')) { // Если файл существует, то
-    // получаем содержимое файла в виде массива и сортируем в обратном порядке
+
+if (file_exists(ROOT . '/model/work/errors.log')) {
     $lines = array_reverse(file(ROOT . '/model/work/errors.log'));
-} else { // если файла нет, то выводим пустой массив
+} else {
     $lines = [];
 }
+
 $lines_on_page = \eMarket\Settings::linesOnPage();
 $count_lines = count($lines);
 $navigate = \eMarket\Navigation::postLink($count_lines, $lines_on_page);

@@ -34,4 +34,3 @@ if (\eMarket\Valid::inGET('error_message')) {
 require_once(getenv('DOCUMENT_ROOT') . '/model/end.php');
 /* ------------------------------------------ */
 
-?>

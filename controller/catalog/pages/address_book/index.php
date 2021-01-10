@@ -6,7 +6,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 if (\eMarket\Autorize::$CUSTOMER == FALSE) {
-    header('Location: ?route=login'); // переадресация на LOGIN
+    header('Location: ?route=login');
     exit;
 }
 // JSON ECHO
@@ -43,9 +43,7 @@ foreach ($address_data as $address_val) {
     $x++;
 }
 
-// Если нажали на кнопку Добавить
 if (\eMarket\Valid::inPOST('add')) {
-// Если есть установка по-умолчанию
     if (\eMarket\Valid::inPOST('default')) {
         $default = 1;
     } else {
@@ -70,13 +68,10 @@ if (\eMarket\Valid::inPOST('add')) {
 
     \eMarket\Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET address_book=? WHERE email=?", [json_encode($address_data), $_SESSION['email_customer']]);
 
-    // Выводим сообщение об успехе
     \eMarket\Messages::alert('success', lang('action_completed_successfully'));
 }
 
-// Если нажали на кнопку Добавить
 if (\eMarket\Valid::inPOST('edit')) {
-// Если есть установка по-умолчанию
     if (\eMarket\Valid::inPOST('default')) {
         $default = 1;
     } else {
@@ -102,12 +97,9 @@ if (\eMarket\Valid::inPOST('edit')) {
 
     \eMarket\Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET address_book=? WHERE email=?", [json_encode($address_data), $_SESSION['email_customer']]);
 
-    // Выводим сообщение об успехе
     \eMarket\Messages::alert('success', lang('action_completed_successfully'));
-
 }
 
-// Если нажали на кнопку Удалить
 if (\eMarket\Valid::inPOST('delete')) {
 
     $number = (int) \eMarket\Valid::inPOST('delete') - 1;
@@ -119,15 +111,14 @@ if (\eMarket\Valid::inPOST('delete')) {
         unset($address_data[$number]);
         $address_data_out = array_values($address_data);
     }
-    
-    if (count($address_data_out) == 0){
+
+    if (count($address_data_out) == 0) {
         $address_data_out_table = NULL;
-    }else{
+    } else {
         $address_data_out_table = json_encode($address_data_out);
     }
 
     \eMarket\Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET address_book=? WHERE email=?", [$address_data_out_table, $_SESSION['email_customer']]);
 
-    // Выводим сообщение об успехе
     \eMarket\Messages::alert('success', lang('action_completed_successfully'));
 }

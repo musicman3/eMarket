@@ -9,7 +9,7 @@ $json_data = json_encode([]);
 for ($i = $start; $i < $finish; $i++) {
     if (isset($lines[$i]['id']) == TRUE) {
 
-        $modal_id = $lines[$i]['id']; // ID
+        $modal_id = $lines[$i]['id'];
 
         foreach ($sql_data as $sql_modal) {
             if ($sql_modal['id'] == $modal_id) {

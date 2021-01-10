@@ -1,4 +1,5 @@
 <?php
+
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-= 
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -7,11 +8,11 @@
 /* >-->-->-->  CONNECT PAGE START  <--<--<--< */
 require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 /* ------------------------------------------ */
-//Если не переключали язык
+
 if (!\eMarket\Valid::inPOST('language') && \eMarket\Settings::path() == 'install') {
     $DEFAULT_LANGUAGE = 'english';
 }
-//Если переключили язык
+
 if (\eMarket\Valid::inPOST('language')) {
     $DEFAULT_LANGUAGE = \eMarket\Valid::inPOST('language');
 }
@@ -19,5 +20,4 @@ if (\eMarket\Valid::inPOST('language')) {
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
 require_once(getenv('DOCUMENT_ROOT') . '/model/end.php');
 /* ------------------------------------------ */
-
 ?>

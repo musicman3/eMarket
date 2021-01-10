@@ -5,10 +5,9 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-// Если добавлен новый заказ
 if (\eMarket\Valid::inPOST('add') && password_verify((float) \eMarket\Valid::inPOST('order_total_tax') . (float) \eMarket\Valid::inPOST('order_to_pay') . (float) \eMarket\Valid::inPOST('order_total_with_shipping') . \eMarket\Valid::inPOST('products_order') . \eMarket\Valid::inPOST('shipping_method') . (float) \eMarket\Valid::inPOST('order_shipping_price') . (float) \eMarket\Valid::inPOST('order_total'), \eMarket\Valid::inPOST('hash'))) {
     $customer = \eMarket\Pdo::getColAssoc("SELECT id, address_book, gender, firstname, lastname, middle_name, fax, telephone FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']])[0];
-    // Готовим данные по адресу
+
     $address_all = json_decode($customer['address_book'], 1);
     $address_data = $address_all[\eMarket\Valid::inPOST('address') - 1];
     $address_data['region'] = \eMarket\Pdo::getCellFalse("SELECT name FROM " . TABLE_REGIONS . " WHERE id=? AND language=?", [$address_data['regions_id'], lang('#lang_all')[0]]);
@@ -20,7 +19,7 @@ if (\eMarket\Valid::inPOST('add') && password_verify((float) \eMarket\Valid::inP
 
     $customer['address_book'] = json_encode($address_data);
     $customer['language'] = lang('#lang_all')[0];
-    //Основной язык
+
     $primary_language = \eMarket\Settings::primaryLanguage();
 
     $customer_orders_status_history = \eMarket\Pdo::getCellFalse("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE default_order_status=? AND language=?", [1, lang('#lang_all')[0]]);
@@ -38,7 +37,6 @@ if (\eMarket\Valid::inPOST('add') && password_verify((float) \eMarket\Valid::inP
     ]];
     $orders_status_history = json_encode($orders_status_history_data);
 
-    //Формируем данные по заказу
     $cart = json_decode(\eMarket\Valid::inPOST('products_order'), 1);
     $invoice = [];
 
@@ -139,7 +137,6 @@ if (\eMarket\Valid::inPOST('add') && password_verify((float) \eMarket\Valid::inP
             [$_SESSION['email_customer'], json_encode($customer), $orders_status_history, \eMarket\Valid::inPOST('products_order'), json_encode($order_total), json_encode($invoice),
                 NULL, \eMarket\Settings::ipAddress(), $payment_method, $shipping_method, NULL, date("Y-m-d H:i:s")]);
 
-    //Обновляем таблицу товара
     \eMarket\Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET quantity=quantity- " . $value['quantity'] . ", ordered=ordered+ " . $value['quantity'] . " WHERE id=?", [$value['id']]);
 
     unset($_SESSION['cart']);

@@ -6,7 +6,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 if (\eMarket\Autorize::$CUSTOMER == FALSE) {
-    header('Location: ?route=login'); // переадресация на LOGIN
+    header('Location: ?route=login');
     exit;
 }
 
