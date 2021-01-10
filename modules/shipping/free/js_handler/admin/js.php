@@ -4,13 +4,12 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
-<!-- Загрузка данных в модальное окно -->
+
 <script type="text/javascript">
     $('#index').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget);
-        var modal_id = button.data('edit'); // Получаем ID из data-edit при клике на кнопку редактирования
+        var modal_id = button.data('edit');
         if (Number.isInteger(modal_id)) {
-            // Получаем массивы данных
             var json_data = $('div#ajax_data').data('jsondata');
 
             $('#zone').val(json_data['zone'][modal_id]);
@@ -20,7 +19,6 @@
         } else {
             $('#edit').val('');
             $('#add').val('ok');
-            //Очищаем поля
             $(this).find('form').trigger('reset');
 
         }

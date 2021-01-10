@@ -4,31 +4,23 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
-<!--Мультиселект-->
+
 <script type="text/javascript">
     $(document).ready(function () {
         $('#shipping_method').multiselect({
-            //Выбирать группы
             enableClickableOptGroups: true,
             enableCollapsibleOptGroups: true,
             collapseOptGroupsByDefault: true,
-            //Включить "Выбрать все"
             includeSelectAllOption: true,
-            //Надписи "Выбрать все"
             selectAllText: '<?php echo lang('select_all') ?>',
-            //"Выбрать все" для раскрытых и не раскрытых стран
             selectAllJustVisible: false,
-            //Включить поддержку HTML в названиях
             enableHTML: true,
-            //Класс на кнопку
             buttonClass: 'btn btn-primary',
 
-            //Свой Title на кнопке
             buttonTitle: function () {
                 return '<?php echo lang('modules_payment_cash_admin_shipping_module_select') ?>';
             },
 
-            //Надписи на кнопке
             buttonText: function (options, select) {
                 if (options.length === 0) {
                     return '<?php echo lang('modules_payment_cash_admin_shipping_module_select') ?>';

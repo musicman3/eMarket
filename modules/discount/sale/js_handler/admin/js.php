@@ -16,19 +16,16 @@
     $('#default_module').bootstrapSwitch();
 </script>
 
-<!-- Загрузка данных в модальное окно -->
 <script type="text/javascript">
     $('#index').on('show.bs.modal', function (event) {
 
         var button = $(event.relatedTarget);
-        var modal_id = button.data('edit'); // Получаем ID из data-edit при клике на кнопку редактирования
+        var modal_id = button.data('edit');
 
         if (Number.isInteger(modal_id)) {
             $('#default_module').bootstrapSwitch('destroy', true);
-            // Получаем массивы данных
             var json_data = $('div#ajax_data').data('jsondata');
 
-            // Ищем id и добавляем данные
             for (x = 0; x < json_data['name'].length; x++) {
                 $('#name_module_' + x).val(json_data['name'][x][modal_id]);
             }
@@ -37,7 +34,6 @@
             $('#edit').val(modal_id);
             $('#add').val('');
 
-            // Устанавливаем SmartDatepicker
             var day_start = new Date(json_data['start'][modal_id]);
             $('#start_date').datepicker('setDate', day_start);
             $('#end_date').datepicker('setDate', new Date(json_data['end'][modal_id]));
@@ -46,7 +42,6 @@
                 $('#start_date').datepicker('setDate', new Date());
             }
 
-            // Меняем значение чекбокса
             $('#default_module').prop('checked', json_data['default'][modal_id]);
             $('#default_module').bootstrapSwitch();
         }
@@ -54,10 +49,7 @@
         if (!Number.isInteger(modal_id) && button.data('toggle') === 'modal') {
             $('#edit').val('');
             $('#add').val('ok');
-            //Очищаем поля
             $(this).find('form').trigger('reset');
-            // Меняем значение чекбокса
-            $('#default_module').prop('checked', '1');
         }
     });
 </script>

@@ -3,7 +3,7 @@
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 /**
- * Модуль Распродажа
+ * DiscountSale
  *
  * @package DiscountSales
  * @author eMarket
@@ -12,9 +12,9 @@
 class DiscountSale {
 
     /**
-     * Вывод в контекстное меню
-     * @param sales_interface {Array} (входящий массив)
-     * @return output {Object} (исходящие данные)
+     * Outputting data to context menu
+     * @param sales_interface {Array} (input data)
+     * @return output {Object} (output data)
      *
      */
     static context(sales_interface) {
@@ -32,7 +32,6 @@ class DiscountSale {
                 return 'context-menu-icon glyphicon-tag';
             },
             disabled: function () {
-                // Делаем не активным пункт меню, если нет строк
                 if (sale === '0' || $('div#ajax_data').data('jsondataproduct')['name'] === undefined && $('div#ajax_data').data('jsondatacategory')['name'] === undefined) {
                     return true;
                 }
@@ -44,7 +43,6 @@ class DiscountSale {
                     options: sales,
                     selected: sale_dafault,
                     disabled: function () {
-                        // Делаем не активным пункт меню, если нет строк
                         if ($('div#ajax_data').data('jsondataproduct')['name'] === undefined && $('div#ajax_data').data('jsondatacategory')['name'] === undefined) {
                             return true;
                         }
@@ -56,14 +54,11 @@ class DiscountSale {
                 saleOn: {
                     name: lang['modules_discount_sale_admin_button_sale_on'],
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
-                        // Значение выбранного селекта
                         var selected_id = $('select[name="context-menu-input-sale"] option:selected').val();
-                        // Установка синхронного запроса для jQuery.ajax
                         jQuery.ajaxSetup({async: false});
-                        // Отправка данных по каждой выделенной строке
                         var idArray = [];
                         $(".option").each(function (i) {
-                            if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
+                            if (!$(this).children().hasClass('inactive'))
                                 idArray[i] = this.id;
                         });
                         jQuery.post(window.location.href,
@@ -71,7 +66,6 @@ class DiscountSale {
                                     idsx_real_parent_id: idsx_real_parent_id,
                                     sale: selected_id,
                                     idsx_sale_on_key: 'On'});
-                        // Отправка запроса для обновления страницы
                         jQuery.get(window.location.href,
                                 {parent_down: parent_id},
                                 AjaxSuccess);
@@ -87,7 +81,6 @@ class DiscountSale {
                         return 'context-menu-icon glyphicon-star-empty';
                     },
                     disabled: function () {
-                        // Делаем не активным пункт меню, если нет строк
                         if ($('div#ajax_data').data('jsondataproduct')['name'] === undefined && $('div#ajax_data').data('jsondatacategory')['name'] === undefined) {
                             return true;
                         }
@@ -99,14 +92,11 @@ class DiscountSale {
 
                         confirmation.onclick = function () {
                             $('#confirm').modal('hide');
-                            // Значение выбранного селекта
                             var selected_id = $('select[name="context-menu-input-sale"] option:selected').val();
-                            // Установка синхронного запроса для jQuery.ajax
                             jQuery.ajaxSetup({async: false});
-                            // Отправка данных по каждой выделенной строке
                             var idArray = [];
                             $(".option").each(function (i) {
-                                if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
+                                if (!$(this).children().hasClass('inactive'))
                                     idArray[i] = this.id;
                             });
                             jQuery.post(window.location.href,
@@ -114,7 +104,6 @@ class DiscountSale {
                                         idsx_real_parent_id: idsx_real_parent_id,
                                         sale: selected_id,
                                         idsx_sale_off_key: 'Off'});
-                            // Отправка запроса для обновления страницы
                             jQuery.get(window.location.href,
                                     {parent_down: parent_id},
                                     AjaxSuccess);
@@ -130,7 +119,6 @@ class DiscountSale {
                         return 'context-menu-icon glyphicon-flash';
                     },
                     disabled: function () {
-                        // Делаем не активным пункт меню, если нет строк
                         if ($('div#ajax_data').data('jsondataproduct')['name'] === undefined && $('div#ajax_data').data('jsondatacategory')['name'] === undefined) {
                             return true;
                         }
@@ -142,21 +130,17 @@ class DiscountSale {
 
                         confirmation.onclick = function () {
                             $('#confirm').modal('hide');
-                            // Значение выбранного селекта
                             var selected_id = $('select[name="context-menu-input-sale"] option:selected').val();
-                            // Установка синхронного запроса для jQuery.ajax
                             jQuery.ajaxSetup({async: false});
-                            // Отправка данных по каждой выделенной строке
                             var idArray = [];
                             $(".option").each(function (i) {
-                                if (!$(this).children().hasClass('inactive'))  // выделенное мышкой
+                                if (!$(this).children().hasClass('inactive'))
                                     idArray[i] = this.id;
                             });
                             jQuery.post(window.location.href,
                                     {idsx_sale_off_all_id: idArray,
                                         idsx_real_parent_id: idsx_real_parent_id,
                                         idsx_sale_off_all_key: 'OffAll'});
-                            // Отправка запроса для обновления страницы
                             jQuery.get(window.location.href,
                                     {parent_down: parent_id},
                                     AjaxSuccess);
