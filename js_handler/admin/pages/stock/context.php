@@ -5,7 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 foreach (\eMarket\Modules::discountRouter('data') as $js_path) {
-    echo '<script type="text/javascript" src="/modules/discount/' . $js_path . '/controller/admin/js/contextmenu/contextmenu.js"></script>';
+    echo '<script type="text/javascript" src="/modules/discount/' . $js_path . '/js_handler/admin/contextmenu/contextmenu.js"></script>';
 }
 ?>
 <!-- Контекстное меню -->
