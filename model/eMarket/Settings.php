@@ -93,8 +93,8 @@ class Settings {
      * @return string data
      */
     public static function jsHandler() {
-        $path = getenv('DOCUMENT_ROOT') . '/controller/' . \eMarket\Settings::path() . '/pages/' . \eMarket\Valid::inGET('route') . '/';
-        if (file_exists($path . '/js_handler/js.php')) {
+        $path = getenv('DOCUMENT_ROOT') . '/js_handler/' . \eMarket\Settings::path() . '/pages/' . \eMarket\Valid::inGET('route');
+        if (file_exists($path . '/js.php')) {
             self::$JS_HANDLER = $path;
         }
     }
@@ -105,8 +105,8 @@ class Settings {
      * @return string data
      */
     public static function jsModulesHandler() {
-        $path = \eMarket\View::routingModules('controller');
-        if (file_exists($path . '/js_handler/js.php')) {
+        $path = \eMarket\View::routingModules('js_handler');
+        if (file_exists($path . '/js.php')) {
             self::$JS_MODULES_HANDLER = $path;
         }
     }    

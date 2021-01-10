@@ -83,10 +83,10 @@
 
         <?php
         if (\eMarket\Settings::$JS_HANDLER != FALSE) {
-            require_once(\eMarket\Settings::$JS_HANDLER . '/js_handler/js.php');
+            require_once(\eMarket\Settings::$JS_HANDLER . '/js.php');
         }
         if (\eMarket\Settings::$JS_MODULES_HANDLER != FALSE) {
-            require_once(\eMarket\Settings::$JS_MODULES_HANDLER . '/js_handler/js.php');
+            require_once(\eMarket\Settings::$JS_MODULES_HANDLER . '/js.php');
         }
         // Выводим отладочную информацию
         \eMarket\Debug::info();
