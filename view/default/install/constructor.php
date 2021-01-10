@@ -39,9 +39,7 @@
         <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.min.js"></script>
 
         <?php
-        //Если существует \eMarket\Set::$JS_END
         if (\eMarket\Settings::$JS_HANDLER != FALSE) {
-            //то подгружаем JS.PHP файл
             require_once(\eMarket\Settings::$JS_HANDLER . '/js.php');
         }
 
