@@ -5,17 +5,4 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-if (\eMarket\Valid::inPOST('delete') == 'delete' && file_exists(ROOT . '/model/work/errors.log')) {
-    unlink(ROOT . '/model/work/errors.log');
-
-    \eMarket\Messages::alert('success', lang('action_completed_successfully'));
-}
-
-
-if (file_exists(ROOT . '/model/work/errors.log')) {
-    $lines = array_reverse(file(ROOT . '/model/work/errors.log'));
-} else {
-    $lines = [];
-}
-
-\eMarket\Pages::table($lines);
+$eMarketErrorLog = new eMarket\Admin\ErrorLog();
