@@ -18,8 +18,4 @@ if (file_exists(ROOT . '/model/work/errors.log')) {
     $lines = [];
 }
 
-$lines_on_page = \eMarket\Settings::linesOnPage();
-$count_lines = count($lines);
-$navigate = \eMarket\Navigation::postLink($count_lines, $lines_on_page);
-$start = $navigate[0];
-$finish = $navigate[1];
+\eMarket\Pages::table($lines);
