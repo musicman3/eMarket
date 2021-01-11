@@ -33,8 +33,5 @@ if (\eMarket\Valid::inGET('search')) {
 } else {
     $lines = \eMarket\Pdo::getColRow("SELECT * FROM " . TABLE_CUSTOMERS . " ORDER BY id DESC", []);
 }
-$lines_on_page = \eMarket\Settings::linesOnPage();
-$count_lines = count($lines);
-$navigate = \eMarket\Navigation::getLink($count_lines, $lines_on_page);
-$start = $navigate[0];
-$finish = $navigate[1];
+
+\eMarket\Pages::table($lines);

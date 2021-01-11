@@ -122,23 +122,6 @@ class Navigation {
         return array($start, $finish);
     }
 
-    /**
-     * НАВИГАЦИОННЫЙ СЧЕТЧИК
-     *
-     * @param string $start ($start)
-     * @param string $finish ($finish)
-     * @param string $count_lines_merge ($count_lines_merge)
-     * @return string $lines_on_page(значение на выходе)
-     */
-    public static function counter($start, $finish, $count_lines_merge, $lines_on_page) {
-
-        if ($finish == $count_lines_merge && ($finish - $start) <= $lines_on_page OR $finish == $lines_on_page) {
-            return $finish;
-        } else {
-            return $finish - 1;
-        }
-    }
-
 }
 
 ?>
