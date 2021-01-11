@@ -25,25 +25,17 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th colspan="2">
-                                <?php if ($lines == TRUE) { ?>
-                                    <?php echo lang('with') ?> <?php echo $start + 1 ?> <?php echo lang('to') ?> <?php echo $finish ?> ( <?php echo lang('of') ?> <?php echo $count_lines; ?> )
-                                    <?php
-                                } else {
-                                    ?>
-                                    <?php echo lang('no_listing') ?>
-                                <?php } ?>
-                            </th>
+                            <th colspan="2"><?php echo \eMarket\Pages::counterPage() ?></th>
 
                             <th>
                                 <div class="flexbox">
                                     <div class="b-left"><a href="#index" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
                                     <form>
                                         <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
-                                        <input hidden name="backstart" value="<?php echo $start ?>">
-                                        <input hidden name="backfinish" value="<?php echo $finish ?>">
+                                        <input hidden name="backstart" value="<?php echo \eMarket\Pages::$start ?>">
+                                        <input hidden name="backfinish" value="<?php echo \eMarket\Pages::$finish ?>">
                                         <div class="b-left">
-                                            <?php if ($start > 0) { ?>
+                                            <?php if (\eMarket\Pages::$start > 0) { ?>
                                                 <button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button>
                                             <?php } else { ?>
                                                 <a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-left"></span></a>
@@ -52,10 +44,10 @@
                                     </form>
                                     <form>
                                         <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
-                                        <input hidden name="start" value="<?php echo $start ?>">
-                                        <input hidden name="finish" value="<?php echo $finish ?>">
+                                        <input hidden name="start" value="<?php echo \eMarket\Pages::$start ?>">
+                                        <input hidden name="finish" value="<?php echo \eMarket\Pages::$finish ?>">
                                         <div>
-                                            <?php if ($finish != $count_lines) { ?>
+                                            <?php if (\eMarket\Pages::$finish != \eMarket\Pages::$count) { ?>
                                                 <button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button>
                                             <?php } else { ?>
                                                 <a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-right"></span></a>
@@ -74,10 +66,10 @@
                         <?php } ?>
                     </thead>
                     <tbody>
-                        <?php for ($start; $start < $finish; $start++) { ?>
+                        <?php for (\eMarket\Pages::$start; \eMarket\Pages::$start < \eMarket\Pages::$finish; \eMarket\Pages::$start++, \eMarket\Pages::lineUpdate()) { ?>
                             <tr>
-                                <td><?php echo $lines[$start]['name'] ?></td>
-                                <?php if ($lines[$start]['default_stikers'] == 1) { ?>
+                                <td><?php echo eMarket\Pages::$table['line']['name'] ?></td>
+                                <?php if (eMarket\Pages::$table['line']['default_stikers'] == 1) { ?>
                                     <td class="text-center"><?php echo lang('confirm-yes') ?></td>
                                 <?php } else { ?>
                                     <td class="text-center"><?php echo lang('confirm-no') ?></td>
@@ -86,10 +78,10 @@
                                     <div class="flexbox">
                                         <!--Вызов модального окна для редактирования-->
                                         <div class="b-left">
-                                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index" data-edit="<?php echo $lines[$start]['id'] ?>"><span class="glyphicon glyphicon-edit"></span></button>
+                                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index" data-edit="<?php echo eMarket\Pages::$table['line']['id'] ?>"><span class="glyphicon glyphicon-edit"></span></button>
                                         </div>
-                                        <form id="form_delete<?php echo $lines[$start]['id'] ?>" name="form_delete" action="javascript:void(null);" onsubmit="Ajax.callDelete('<?php echo $lines[$start]['id'] ?>')" enctype="multipart/form-data">
-                                            <input hidden name="delete" value="<?php echo $lines[$start]['id'] ?>">
+                                        <form id="form_delete<?php echo eMarket\Pages::$table['line']['id'] ?>" name="form_delete" action="javascript:void(null);" onsubmit="Ajax.callDelete('<?php echo eMarket\Pages::$table['line']['id'] ?>')" enctype="multipart/form-data">
+                                            <input hidden name="delete" value="<?php echo eMarket\Pages::$table['line']['id'] ?>">
                                             <div>
                                                 <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button>
                                             </div>

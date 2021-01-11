@@ -45,23 +45,27 @@ class Pages {
      * @return array (output data)
      */
     public static function table($lines) {
-        if (isset($lines[self::$start])) {
-            if (self::$count == FALSE) {
-                self::$count = count($lines);
-            }
 
-            $navigate = \eMarket\Navigation::getLink(self::$count, \eMarket\Settings::linesOnPage());
-            self::$start = $navigate[0];
-            self::$finish = $navigate[1];
-
-            self::$table = [
-                'lines' => $lines,
-                'line' => $lines[self::$start],
-                'navigate' => $navigate
-            ];
-
-            return self::$table;
+        if (self::$count == FALSE) {
+            self::$count = count($lines);
         }
+        if (self::$count > 0) {
+            $line = $lines[self::$start];
+        } else {
+            $line = [];
+        }
+
+        $navigate = \eMarket\Navigation::getLink(self::$count, \eMarket\Settings::linesOnPage());
+        self::$start = $navigate[0];
+        self::$finish = $navigate[1];
+
+        self::$table = [
+            'lines' => $lines,
+            'line' => $line,
+            'navigate' => $navigate
+        ];
+
+        return self::$table;
     }
 
     /**

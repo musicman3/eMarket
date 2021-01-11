@@ -22,15 +22,7 @@
 		<table class="table table-hover">
 		    <thead>
 			<tr>
-			    <th colspan="2">
-				<?php if ($lines == TRUE) { ?>
-				    <?php echo lang('with') ?> <?php echo \eMarket\Pages::$start + 1 ?> <?php echo lang('to') ?> <?php echo \eMarket\Pages::$finish ?> ( <?php echo lang('of') ?> <?php echo \eMarket\Pages::$count; ?> )
-				    <?php
-				} else {
-				    ?>
-				    <?php echo lang('no_listing') ?>
-				<?php } ?>
-			    </th>
+			    <th colspan="2"><?php echo \eMarket\Pages::counterPage() ?></th>
 
 			    <th>
 				<div class="flexbox">

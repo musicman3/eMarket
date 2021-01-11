@@ -53,15 +53,7 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th colspan="5">
-                                        <?php if ($lines == TRUE) { ?>
-                                            <?php echo lang('with') ?> <?php echo $start + 1 ?> <?php echo lang('to') ?> <?php echo $finish ?> ( <?php echo lang('of') ?> <?php echo $count_lines; ?> )
-                                            <?php
-                                        } else {
-                                            ?>
-                                            <?php echo lang('no_listing') ?>
-                                        <?php } ?>
-                                    </th>
+                                    <th colspan="5"><?php echo \eMarket\Pages::counterPage() ?></th>
 
                                     <th>
                                         <div class="flexbox">
@@ -69,10 +61,10 @@
                                             <form>
                                                 <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
                                                 <input hidden name="slide_lang" value="<?php echo \eMarket\Valid::inGET('slide_lang') ?>">
-                                                <input hidden name="backstart" value="<?php echo $start ?>">
-                                                <input hidden name="backfinish" value="<?php echo $finish ?>">
+                                                <input hidden name="backstart" value="<?php echo \eMarket\Pages::$start ?>">
+                                                <input hidden name="backfinish" value="<?php echo \eMarket\Pages::$finish ?>">
                                                 <div class="b-left">
-                                                    <?php if ($start > 0) { ?>
+                                                    <?php if (\eMarket\Pages::$start > 0) { ?>
                                                         <button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button>
                                                     <?php } else { ?>
                                                         <a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-left"></span></a>
@@ -82,10 +74,10 @@
                                             <form>
                                                 <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
                                                 <input hidden name="slide_lang" value="<?php echo \eMarket\Valid::inGET('slide_lang') ?>">
-                                                <input hidden name="start" value="<?php echo $start ?>">
-                                                <input hidden name="finish" value="<?php echo $finish ?>">
+                                                <input hidden name="start" value="<?php echo \eMarket\Pages::$start ?>">
+                                                <input hidden name="finish" value="<?php echo \eMarket\Pages::$finish ?>">
                                                 <div>
-                                                    <?php if ($finish != $count_lines) { ?>
+                                                    <?php if (\eMarket\Pages::$finish != \eMarket\Pages::$count) { ?>
                                                         <button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button>
                                                     <?php } else { ?>
                                                         <a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-right"></span></a>
@@ -107,21 +99,21 @@
                                 </thead>
                             <?php } ?>
                             <tbody>
-                                <?php for ($start; $start < $finish; $start++) { ?>
-                                    <tr class="<?php echo \eMarket\Settings::statusSwitchClass($lines[$start]['status'], [$this_time, strtotime($lines[$start]['date_start'])], [strtotime($lines[$start]['date_finish']), $this_time]) ?>">
-                                        <td><img src="/uploads/images/slideshow/resize_0/<?php echo $lines[$start]['logo_general'] ?>" /></td>
-                                        <td class="text-center"><?php echo count(json_decode($lines[$start]['logo'])) ?></td>
-                                        <td class="text-center"><?php echo $lines[$start]['name'] ?></td>
-                                        <td class="text-center"><?php echo \eMarket\Settings::dateLocale($lines[$start]['date_start']); ?></td>
-                                        <td class="text-center"><?php echo \eMarket\Settings::dateLocale($lines[$start]['date_finish']); ?></td>
+                                <?php for (\eMarket\Pages::$start; \eMarket\Pages::$start < \eMarket\Pages::$finish; \eMarket\Pages::$start++, \eMarket\Pages::lineUpdate()) { ?>
+                                    <tr class="<?php echo \eMarket\Settings::statusSwitchClass(eMarket\Pages::$table['line']['status'], [$this_time, strtotime(eMarket\Pages::$table['line']['date_start'])], [strtotime(eMarket\Pages::$table['line']['date_finish']), $this_time]) ?>">
+                                        <td><img src="/uploads/images/slideshow/resize_0/<?php echo eMarket\Pages::$table['line']['logo_general'] ?>" /></td>
+                                        <td class="text-center"><?php echo count(json_decode(eMarket\Pages::$table['line']['logo'])) ?></td>
+                                        <td class="text-center"><?php echo eMarket\Pages::$table['line']['name'] ?></td>
+                                        <td class="text-center"><?php echo \eMarket\Settings::dateLocale(eMarket\Pages::$table['line']['date_start']); ?></td>
+                                        <td class="text-center"><?php echo \eMarket\Settings::dateLocale(eMarket\Pages::$table['line']['date_finish']); ?></td>
                                         <td>
                                             <div class="flexbox">
                                                 <!--Вызов модального окна для редактирования-->
                                                 <div class="b-left">
-                                                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index" data-edit="<?php echo $lines[$start]['id'] ?>"><span class="glyphicon glyphicon-edit"></span></button>
+                                                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index" data-edit="<?php echo eMarket\Pages::$table['line']['id'] ?>"><span class="glyphicon glyphicon-edit"></span></button>
                                                 </div>
-                                                <form id="form_delete<?php echo $lines[$start]['id'] ?>" name="form_delete" action="javascript:void(null);" onsubmit="Ajax.callDelete('<?php echo $lines[$start]['id'] ?>')" enctype="multipart/form-data">
-                                                    <input hidden name="delete" value="<?php echo $lines[$start]['id'] ?>">
+                                                <form id="form_delete<?php echo eMarket\Pages::$table['line']['id'] ?>" name="form_delete" action="javascript:void(null);" onsubmit="Ajax.callDelete('<?php echo eMarket\Pages::$table['line']['id'] ?>')" enctype="multipart/form-data">
+                                                    <input hidden name="delete" value="<?php echo eMarket\Pages::$table['line']['id'] ?>">
                                                     <div>
                                                         <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button>
                                                     </div>
@@ -138,8 +130,8 @@
                 <?php
                 if (\eMarket\Lang::$COUNT > 1) {
                     for ($x = 1; $x < \eMarket\Lang::$COUNT; $x++) {
-                        $start = $navigate[0];
-                        $finish = $navigate[1];
+                        \eMarket\Pages::$start = \eMarket\Pages::$table['navigate'][0]; 
+                        \eMarket\Pages::$finish = \eMarket\Pages::$table['navigate'][1];
                         ?>
 
                         <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">
@@ -150,7 +142,7 @@
                                         <tr>
                                             <th colspan="4">
                                                 <?php if ($lines == TRUE) { ?>
-                                                    <?php echo lang('with') ?> <?php echo $start + 1 ?> <?php echo lang('to') ?> <?php echo $finish ?> ( <?php echo lang('of') ?> <?php echo $count_lines; ?> )
+                                                    <?php echo lang('with') ?> <?php echo \eMarket\Pages::$start + 1 ?> <?php echo lang('to') ?> <?php echo \eMarket\Pages::$finish ?> ( <?php echo lang('of') ?> <?php echo \eMarket\Pages::$count; ?> )
                                                     <?php
                                                 } else {
                                                     ?>
@@ -164,10 +156,10 @@
                                                     <form>
                                                         <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
                                                         <input hidden name="slide_lang" value="<?php echo \eMarket\Valid::inGET('slide_lang') ?>">
-                                                        <input hidden name="backstart" value="<?php echo $start ?>">
-                                                        <input hidden name="backfinish" value="<?php echo $finish ?>">
+                                                        <input hidden name="backstart" value="<?php echo \eMarket\Pages::$start ?>">
+                                                        <input hidden name="backfinish" value="<?php echo \eMarket\Pages::$finish ?>">
                                                         <div class="b-left">
-                                                            <?php if ($start > 0) { ?>
+                                                            <?php if (\eMarket\Pages::$start > 0) { ?>
                                                                 <button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button>
                                                             <?php } else { ?>
                                                                 <a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-left"></span></a>
@@ -177,10 +169,10 @@
                                                     <form>
                                                         <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
                                                         <input hidden name="slide_lang" value="<?php echo \eMarket\Valid::inGET('slide_lang') ?>">
-                                                        <input hidden name="start" value="<?php echo $start ?>">
-                                                        <input hidden name="finish" value="<?php echo $finish ?>">
+                                                        <input hidden name="start" value="<?php echo \eMarket\Pages::$start ?>">
+                                                        <input hidden name="finish" value="<?php echo \eMarket\Pages::$finish ?>">
                                                         <div>
-                                                            <?php if ($finish != $count_lines) { ?>
+                                                            <?php if (\eMarket\Pages::$finish != \eMarket\Pages::$count) { ?>
                                                                 <button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button>
                                                             <?php } else { ?>
                                                                 <a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-right"></span></a>
@@ -202,21 +194,21 @@
                                     </thead>
 
                                     <tbody>
-                                        <?php for ($start; $start < $finish; $start++) { ?>
-                                            <tr class="<?php echo \eMarket\Settings::statusSwitchClass($lines[$start]['status'], [$this_time, strtotime($lines[$start]['date_start'])], [strtotime($lines[$start]['date_finish']), $this_time]) ?>">
-                                                <td><img src="/uploads/images/slideshow/resize_0/<?php echo $lines[$start]['logo_general'] ?>" /></td>
-                                                <td class="text-center"><?php echo count(json_decode($lines[$start]['logo'])) ?></td>
-                                                <td class="text-center"><?php echo $lines[$start]['name'] ?></td>
-                                                <td class="text-center"><?php echo \eMarket\Settings::dateLocale($lines[$start]['date_start']); ?></td>
-                                                <td class="text-center"><?php echo \eMarket\Settings::dateLocale($lines[$start]['date_finish']); ?></td>
+                                        <?php for (\eMarket\Pages::$start; \eMarket\Pages::$start < \eMarket\Pages::$finish; \eMarket\Pages::$start++, \eMarket\Pages::lineUpdate()) { ?>
+                                            <tr class="<?php echo \eMarket\Settings::statusSwitchClass(eMarket\Pages::$table['line']['status'], [$this_time, strtotime(eMarket\Pages::$table['line']['date_start'])], [strtotime(eMarket\Pages::$table['line']['date_finish']), $this_time]) ?>">
+                                                <td><img src="/uploads/images/slideshow/resize_0/<?php echo eMarket\Pages::$table['line']['logo_general'] ?>" /></td>
+                                                <td class="text-center"><?php echo count(json_decode(eMarket\Pages::$table['line']['logo'])) ?></td>
+                                                <td class="text-center"><?php echo eMarket\Pages::$table['line']['name'] ?></td>
+                                                <td class="text-center"><?php echo \eMarket\Settings::dateLocale(eMarket\Pages::$table['line']['date_start']); ?></td>
+                                                <td class="text-center"><?php echo \eMarket\Settings::dateLocale(eMarket\Pages::$table['line']['date_finish']); ?></td>
                                                 <td>
                                                     <div class="flexbox">
                                                         <!--Вызов модального окна для редактирования-->
                                                         <div class="b-left">
-                                                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index" data-edit="<?php echo $lines[$start]['id'] ?>"><span class="glyphicon glyphicon-edit"></span></button>
+                                                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index" data-edit="<?php echo eMarket\Pages::$table['line']['id'] ?>"><span class="glyphicon glyphicon-edit"></span></button>
                                                         </div>
-                                                        <form id="form_delete<?php echo $lines[$start]['id'] ?>" name="form_delete" action="javascript:void(null);" onsubmit="Ajax.callDelete('<?php echo $lines[$start]['id'] ?>')" enctype="multipart/form-data">
-                                                            <input hidden name="delete" value="<?php echo $lines[$start]['id'] ?>">
+                                                        <form id="form_delete<?php echo eMarket\Pages::$table['line']['id'] ?>" name="form_delete" action="javascript:void(null);" onsubmit="Ajax.callDelete('<?php echo eMarket\Pages::$table['line']['id'] ?>')" enctype="multipart/form-data">
+                                                            <input hidden name="delete" value="<?php echo eMarket\Pages::$table['line']['id'] ?>">
                                                             <div>
                                                                 <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button>
                                                             </div>
