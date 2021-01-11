@@ -41,11 +41,7 @@ if (\eMarket\Valid::inGET('search')) {
 } else {
     $lines = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE language=? AND parent_id=? AND status=? " . $sort_parameter, [lang('#lang_all')[0], \eMarket\Valid::inGET('category_id'), 1]);
 }
-$lines_on_page = \eMarket\Settings::linesOnPage();
-$count_lines = count($lines);
-$navigate = \eMarket\Navigation::getLink($count_lines, $lines_on_page);
-$start = $navigate[0];
-$finish = $navigate[1];
+\eMarket\Pages::table($lines);
 
 $categories_name = \eMarket\Products::categoryData(\eMarket\Valid::inGET('category_id'))['name'];
 
