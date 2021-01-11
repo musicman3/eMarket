@@ -26,7 +26,7 @@ foreach (\eMarket\View::tlpc('content') as $path) {
 	    <tr>
 		<th colspan="4">
 		    <?php if ($lines == TRUE) { ?>
-			<?php echo lang('with') ?> <?php echo $start + 1 ?> <?php echo lang('to') ?> <?php echo $finish ?> ( <?php echo lang('of') ?> <?php echo $count_lines; ?> )
+			<?php echo lang('with') ?> <?php echo \eMarket\Pages::$start + 1 ?> <?php echo lang('to') ?> <?php echo \eMarket\Pages::$finish ?> ( <?php echo lang('of') ?> <?php echo \eMarket\Pages::$count; ?> )
 			<?php
 		    } else {
 			?>
@@ -39,10 +39,10 @@ foreach (\eMarket\View::tlpc('content') as $path) {
                     <div class="flexbox">
 			<form>
 			    <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
-			    <input hidden name="backstart" value="<?php echo $start ?>">
-			    <input hidden name="backfinish" value="<?php echo $finish ?>">
+			    <input hidden name="backstart" value="<?php echo \eMarket\Pages::$start ?>">
+			    <input hidden name="backfinish" value="<?php echo \eMarket\Pages::$finish ?>">
 			    <div class="b-left">
-				<?php if ($start > 0) { ?>
+				<?php if (\eMarket\Pages::$start > 0) { ?>
 				    <button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button>
 				<?php } else { ?>
 				    <a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-left"></span></a>
@@ -52,10 +52,10 @@ foreach (\eMarket\View::tlpc('content') as $path) {
 			
 			<form>
 			    <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
-			    <input hidden name="start" value="<?php echo $start ?>">
-			    <input hidden name="finish" value="<?php echo $finish ?>">
+			    <input hidden name="start" value="<?php echo \eMarket\Pages::$start ?>">
+			    <input hidden name="finish" value="<?php echo \eMarket\Pages::$finish ?>">
 			    <div>
-				<?php if ($finish != $count_lines) { ?>
+				<?php if (\eMarket\Pages::$finish != \eMarket\Pages::$count) { ?>
 				    <button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button>
 				<?php } else { ?>
 				    <a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-right"></span></a>
@@ -77,18 +77,18 @@ foreach (\eMarket\View::tlpc('content') as $path) {
 	<tbody>
 	    <?php
 	    if ($lines != FALSE) {
-		for ($start; $start < $finish; $start++) {
+		for (\eMarket\Pages::$start; \eMarket\Pages::$start < \eMarket\Pages::$finish; \eMarket\Pages::$start++, \eMarket\Pages::lineUpdate()) {
 		    ?>
 		    <tr>
-			<td><?php echo $lines[$start]['id'] ?></td>
-			<td class="text-center"><?php echo json_decode($lines[$start]['order_total'], 1)['customer']['total_to_pay_format'] ?></td>
-			<td class="text-center"><?php echo \eMarket\Settings::dateLocale($lines[$start]['date_purchased'], '%c') ?></td>
-			<td class="text-center"><?php echo json_decode($lines[$start]['orders_status_history'], 1)[0]['customer']['status'] ?></td>
+			<td><?php echo eMarket\Pages::$table['line']['id'] ?></td>
+			<td class="text-center"><?php echo json_decode(eMarket\Pages::$table['line']['order_total'], 1)['customer']['total_to_pay_format'] ?></td>
+			<td class="text-center"><?php echo \eMarket\Settings::dateLocale(eMarket\Pages::$table['line']['date_purchased'], '%c') ?></td>
+			<td class="text-center"><?php echo json_decode(eMarket\Pages::$table['line']['orders_status_history'], 1)[0]['customer']['status'] ?></td>
 
 			<td>
 			    <!--Вызов модального окна для редактирования-->
 			    <div class="flexbox">
-				<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index" data-edit="<?php echo $lines[$start]['id'] ?>"><span class="glyphicon glyphicon-edit"></span></button>
+				<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index" data-edit="<?php echo eMarket\Pages::$table['line']['id'] ?>"><span class="glyphicon glyphicon-edit"></span></button>
 			    </div>
 			</td>
 		    </tr>

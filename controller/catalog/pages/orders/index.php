@@ -11,12 +11,7 @@ if (\eMarket\Autorize::$CUSTOMER == FALSE) {
 }
 
 $lines = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_ORDERS . " WHERE email=? ORDER BY id DESC", [$_SESSION['email_customer']]);
-
-$lines_on_page = \eMarket\Settings::linesOnPage();
-$count_lines = count($lines);
-$navigate = \eMarket\Navigation::getLink($count_lines, $lines_on_page);
-$start = $navigate[0];
-$finish = $navigate[1];
+\eMarket\Pages::table($lines);
 
 require_once('modal/index.php');
 
