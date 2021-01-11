@@ -76,10 +76,6 @@ if (\eMarket\Valid::inPOST('delete')) {
 
 $sql_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_LENGTH . " ORDER BY id DESC", []);
 $lines = \eMarket\Func::filterData($sql_data, 'language', lang('#lang_all')[0]);
-$lines_on_page = \eMarket\Settings::linesOnPage();
-$count_lines = count($lines);
-$navigate = \eMarket\Navigation::getLink($count_lines, $lines_on_page);
-$start = $navigate[0];
-$finish = $navigate[1];
+\eMarket\Pages::table($lines);
 
 require_once('modal/index.php');
