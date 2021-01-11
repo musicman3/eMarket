@@ -20,7 +20,7 @@
 	<div class="panel-body">
 
 	    <!--Скрытый div для передачи данных-->
-            <div id="ajax_data" class='hidden' data-jsondata='<?php echo \eMarket\Admin\CountriesRegions::$json_data ?>'></div>
+            <div id="ajax_data" class='hidden' data-jsondata='<?php echo \eMarket\Admin\Regions::$json_data ?>'></div>
 
 	    <div class="table-responsive">
 		<table class="table table-hover">

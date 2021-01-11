@@ -14,7 +14,7 @@ namespace eMarket\Admin;
  * @author eMarket
  * 
  */
-class CountriesRegions {
+class Regions {
 
     public static $sql_data = FALSE;
     public static $country_id = FALSE;
