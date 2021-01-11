@@ -22,7 +22,7 @@ for ($i = $start; $i < $finish; $i++) {
                 $symbol[$modal_id] = $sql_modal['symbol'];
                 $symbol_position[$modal_id] = $sql_modal['symbol_position'];
                 $decimal_places[$modal_id] = (float) $sql_modal['decimal_places'];
-                $default_value[$modal_id] = (int) $sql_modal['default_value'];
+                $status[$modal_id] = (int) $sql_modal['default_value'];
             }
         }
 
@@ -37,7 +37,7 @@ for ($i = $start; $i < $finish; $i++) {
             'symbol' => $symbol,
             'symbol_position' => $symbol_position,
             'decimal_places' => $decimal_places,
-            'default_value' => $default_value
+            'default_value' => $status
         ]);
     }
 }

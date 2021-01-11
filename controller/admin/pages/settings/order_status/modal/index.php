@@ -16,7 +16,7 @@ for ($i = $start; $i < $finish; $i++) {
                 $name[array_search($sql_modal['language'], lang('#lang_all'))][$modal_id] = $sql_modal['name'];
             }
             if ($sql_modal['language'] == lang('#lang_all')[0] && $sql_modal['id'] == $modal_id) {
-                $default_order_status[$modal_id] = (int) $sql_modal['default_order_status'];
+                $status[$modal_id] = (int) $sql_modal['default_order_status'];
             }
         }
 
@@ -24,7 +24,7 @@ for ($i = $start; $i < $finish; $i++) {
 
         $json_data = json_encode([
             'name' => $name,
-            'default_order_status' => $default_order_status
+            'default_order_status' => $status
         ]);
     }
 }
