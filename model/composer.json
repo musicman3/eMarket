@@ -4,7 +4,7 @@
     "license": "GPL-3.0-only",
     "autoload": {
         "psr-4": {
-            "eMarket\\": "eMarket/"
+            "eMarket\\": "eMarket"
         },
         "classmap": ["vendor/blueimp/"]
     },

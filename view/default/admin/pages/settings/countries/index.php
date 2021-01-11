@@ -19,7 +19,7 @@
 	</div>
 	<div class="panel-body">
 	    <!--Скрытый div для передачи данных-->
-	    <div id="ajax_data" class='hidden' data-jsondata='<?php echo $json_data ?>'></div>
+            <div id="ajax_data" class='hidden' data-jsondata='<?php echo \eMarket\admin\Countries::$json_data ?>'></div>
 
 	    <div class="table-responsive">
 		<table class="table table-hover">
@@ -64,7 +64,7 @@
 
 			    </th>
 			</tr>
-			<?php if ($lines == TRUE) { ?>
+			<?php if (\eMarket\Pages::$count > 0) { ?>
     			<tr class="border">
     			    <th class="sortleft"></th>
     			    <th><?php echo lang('country') ?></th>
