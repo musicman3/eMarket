@@ -5,7 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 $json_data = json_encode([]);
-for ($i = $start; $i < $finish; $i++) {
+for ($i = \eMarket\Pages::$start; $i < \eMarket\Pages::$finish; $i++) {
     if (isset($lines[$i]['id']) == TRUE) {
 
         $modal_id = $lines[$i]['id'];
