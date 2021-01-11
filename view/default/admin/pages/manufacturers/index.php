@@ -78,16 +78,16 @@
 		    <tbody>
 			<?php for (\eMarket\Pages::$start; \eMarket\Pages::$start < \eMarket\Pages::$finish; \eMarket\Pages::$start++, \eMarket\Pages::lineUpdate()) { ?>
                             <tr>
-                                <td><?php echo $lines[\eMarket\Pages::$start]['name'] ?></td>
-                                <td class="text-center"><?php echo $lines[\eMarket\Pages::$start]['site'] ?></td>
+                                <td><?php echo eMarket\Pages::$table['line']['name'] ?></td>
+                                <td class="text-center"><?php echo eMarket\Pages::$table['line']['site'] ?></td>
                                 <td>
                                     <div class="flexbox">
                                         <!--Вызов модального окна для редактирования-->
                                         <div class="b-left">
-                                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index" data-edit="<?php echo $lines[\eMarket\Pages::$start]['id'] ?>"><span class="glyphicon glyphicon-edit"></span></button>
+                                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index" data-edit="<?php echo eMarket\Pages::$table['line']['id'] ?>"><span class="glyphicon glyphicon-edit"></span></button>
                                         </div>
-                                        <form id="form_delete<?php echo $lines[\eMarket\Pages::$start]['id'] ?>" name="form_delete" action="javascript:void(null);" onsubmit="Ajax.callDelete('<?php echo $lines[\eMarket\Pages::$start]['id'] ?>')" enctype="multipart/form-data">
-                                            <input hidden name="delete" value="<?php echo $lines[\eMarket\Pages::$start]['id'] ?>">
+                                        <form id="form_delete<?php echo eMarket\Pages::$table['line']['id'] ?>" name="form_delete" action="javascript:void(null);" onsubmit="Ajax.callDelete('<?php echo eMarket\Pages::$table['line']['id'] ?>')" enctype="multipart/form-data">
+                                            <input hidden name="delete" value="<?php echo eMarket\Pages::$table['line']['id'] ?>">
                                             <div>
                                                 <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button>
                                             </div>

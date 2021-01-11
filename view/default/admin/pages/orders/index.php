@@ -95,21 +95,21 @@
 		    <tbody>
 			<?php for (\eMarket\Pages::$start; \eMarket\Pages::$start < \eMarket\Pages::$finish; \eMarket\Pages::$start++, \eMarket\Pages::lineUpdate()) { ?>
     			<tr>
-    			    <td><?php echo $lines[\eMarket\Pages::$start]['id'] ?></td>
-    			    <td class="text-center"><?php echo json_decode($lines[\eMarket\Pages::$start]['customer_data'], 1)['firstname'] . ' ' . json_decode($lines[\eMarket\Pages::$start]['customer_data'], 1)['lastname'] ?></td>
-    			    <td class="text-center"><?php echo $lines[\eMarket\Pages::$start]['email'] ?></td>
-    			    <td class="text-center"><?php echo json_decode($lines[\eMarket\Pages::$start]['order_total'], 1)['admin']['total_to_pay_format'] ?></td>
-    			    <td class="text-center"><?php echo \eMarket\Settings::dateLocale($lines[\eMarket\Pages::$start]['date_purchased'], '%c') ?></td>
-    			    <td class="text-center"><?php echo \eMarket\Settings::dateLocale($lines[\eMarket\Pages::$start]['last_modified'], '%c') ?></td>
-    			    <td class="text-center"><?php echo json_decode($lines[\eMarket\Pages::$start]['orders_status_history'], 1)[0]['admin']['status'] ?></td>
+    			    <td><?php echo eMarket\Pages::$table['line']['id'] ?></td>
+    			    <td class="text-center"><?php echo json_decode(eMarket\Pages::$table['line']['customer_data'], 1)['firstname'] . ' ' . json_decode(eMarket\Pages::$table['line']['customer_data'], 1)['lastname'] ?></td>
+    			    <td class="text-center"><?php echo eMarket\Pages::$table['line']['email'] ?></td>
+    			    <td class="text-center"><?php echo json_decode(eMarket\Pages::$table['line']['order_total'], 1)['admin']['total_to_pay_format'] ?></td>
+    			    <td class="text-center"><?php echo \eMarket\Settings::dateLocale(eMarket\Pages::$table['line']['date_purchased'], '%c') ?></td>
+    			    <td class="text-center"><?php echo \eMarket\Settings::dateLocale(eMarket\Pages::$table['line']['last_modified'], '%c') ?></td>
+    			    <td class="text-center"><?php echo json_decode(eMarket\Pages::$table['line']['orders_status_history'], 1)[0]['admin']['status'] ?></td>
     			    <td>
     				<div class="flexbox">
     				    <!--Вызов модального окна для редактирования-->
     				    <div class="b-left">
-    					<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index" data-edit="<?php echo $lines[\eMarket\Pages::$start]['id'] ?>"><span class="glyphicon glyphicon-edit"></span></button>
+    					<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index" data-edit="<?php echo eMarket\Pages::$table['line']['id'] ?>"><span class="glyphicon glyphicon-edit"></span></button>
     				    </div>
-    				    <form id="form_delete<?php echo $lines[\eMarket\Pages::$start]['id'] ?>" name="form_delete" action="javascript:void(null);" onsubmit="Ajax.callDelete('<?php echo $lines[\eMarket\Pages::$start]['id'] ?>')" enctype="multipart/form-data">
-    					<input hidden name="delete" value="<?php echo $lines[\eMarket\Pages::$start]['id'] ?>">
+    				    <form id="form_delete<?php echo eMarket\Pages::$table['line']['id'] ?>" name="form_delete" action="javascript:void(null);" onsubmit="Ajax.callDelete('<?php echo eMarket\Pages::$table['line']['id'] ?>')" enctype="multipart/form-data">
+    					<input hidden name="delete" value="<?php echo eMarket\Pages::$table['line']['id'] ?>">
     					<div>
     					    <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button>
     					</div>
