@@ -5,4 +5,4 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-$eMarketErrorLog = new eMarket\Admin\ErrorLog();
+$eMarket = new eMarket\Admin\ErrorLog();

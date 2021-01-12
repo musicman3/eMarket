@@ -20,7 +20,7 @@
 	</div>
 	<div class="panel-body">
 	    <!--Скрытый div для передачи данных-->
-	    <div id="ajax_data" class='hidden' data-orders='<?php echo $json_data ?>'></div>
+            <div id="ajax_data" class='hidden' data-orders='<?php echo \eMarket\Admin\Orders::$json_data ?>'></div>
 
 	    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 offset-0">
 		<form>
@@ -71,7 +71,7 @@
 				</div>
 			    </th>
 			</tr>
-			<?php if ($lines == TRUE) { ?>
+			<?php if (\eMarket\Pages::$count > 0) { ?>
     			<tr class="border">
     			    <th><?php echo lang('orders_number') ?></th>
     			    <th class="text-center"><?php echo lang('orders_client') ?></th>

@@ -5,4 +5,4 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-$eMarketCustomers = new eMarket\Admin\Customers();
+$eMarket = new eMarket\Admin\Customers();
