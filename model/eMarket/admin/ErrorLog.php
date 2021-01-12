@@ -16,9 +16,6 @@ namespace eMarket\Admin;
  */
 class ErrorLog {
 
-    public static $sql_data = FALSE;
-    public static $json_data = FALSE;
-
     /**
      * Constructor
      *
