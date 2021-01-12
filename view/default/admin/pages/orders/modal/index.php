@@ -146,7 +146,7 @@
                                 <div class="input-group has-success">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
                                 <select name="status_history_select" id="status_history_select" class="input-sm form-control">
-                                    <?php foreach ($order_status as $value) { ?>
+                                    <?php foreach (\eMarket\Admin\Orders::$order_status as $value) { ?>
                                     <option value="<?php echo $value['id'] ?>"><?php echo $value['name'] ?></option>
                                     <?php } ?>
                                 </select>
