@@ -5,4 +5,4 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-$eMarketCountries = new eMarket\Admin\Countries();
+$eMarket = new eMarket\Admin\Countries();
