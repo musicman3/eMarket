@@ -17,8 +17,8 @@ namespace eMarket;
 class Pages {
 
     public static $table = FALSE;
-    public static $start = 0;
-    public static $finish = 0;
+    public static $start = FALSE;
+    public static $finish = FALSE;
     public static $count = FALSE;
 
     /**
@@ -49,15 +49,18 @@ class Pages {
         if (self::$count == FALSE) {
             self::$count = count($lines);
         }
+        
+        $navigate = \eMarket\Navigation::getLink(self::$count, \eMarket\Settings::linesOnPage());
+        self::$start = $navigate[0];
+        self::$finish = $navigate[1];
+
         if (self::$count > 0) {
             $line = $lines[self::$start];
         } else {
             $line = [];
         }
 
-        $navigate = \eMarket\Navigation::getLink(self::$count, \eMarket\Settings::linesOnPage());
-        self::$start = $navigate[0];
-        self::$finish = $navigate[1];
+
 
         self::$table = [
             'lines' => $lines,
