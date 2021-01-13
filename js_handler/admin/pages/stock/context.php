@@ -16,9 +16,9 @@ foreach (\eMarket\Modules::discountRouter('data') as $js_path) {
         var lang = <?php echo json_encode(lang()) ?>;
         let parent_id = '<?php echo \eMarket\Admin\Stock::$parent_id ?>';
         var idsx_real_parent_id = '<?php echo \eMarket\Admin\Stock::$idsx_real_parent_id ?>';
-        var sale = '<?php echo \eMarket\Modules::$discounts_flag ?>';
-        var sales = {<?php echo \eMarket\Modules::$discounts ?>};
-        var sale_dafault = '<?php echo \eMarket\Modules::$discount_default ?>';
+        var discounts_flag = '<?php echo \eMarket\Modules::$discounts_flag ?>';
+        var discounts = {<?php echo \eMarket\Modules::$discounts ?>};
+        var discount_dafault = '<?php echo \eMarket\Modules::$discount_default ?>';
         var stiker = '<?php echo \eMarket\Admin\Stikers::$stikers_flag ?>';
         var stikers = {<?php echo \eMarket\Admin\Stikers::$stikers ?>};
         var stikers_default = '<?php echo \eMarket\Admin\Stikers::$stikers_default ?>';
@@ -28,9 +28,9 @@ foreach (\eMarket\Modules::discountRouter('data') as $js_path) {
             lang,
             parent_id,
             idsx_real_parent_id,
-            sales,
-            sale,
-            sale_dafault
+            discounts,
+            discounts_flag,
+            discount_dafault
         ];
 
         $.contextMenu({
