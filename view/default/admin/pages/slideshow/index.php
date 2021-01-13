@@ -24,21 +24,21 @@
         <div class="panel-body">
             <!--Скрытый div для передачи данных-->
             <div id="ajax_data" class='hidden' 
-                 data-jsonsettings='<?php echo $settings ?>'
-                 data-jsondata='<?php echo $json_data ?>'></div>
+                 data-jsonsettings='<?php echo \eMarket\Admin\Slideshow::$settings ?>'
+                 data-jsondata='<?php echo \eMarket\Admin\Slideshow::$json_data ?>'></div>
 
             <div class="pull-right slide-sett"><a href="#settings" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-cog"></span></a></div>
 
             <!-- Языковые панели -->
             <ul class="nav nav-tabs">
-                <li class="<?php echo \eMarket\Settings::activeTab($set_language, lang('#lang_all')[0]) ?>"><a data-toggle="tab" href="#<?php echo lang('#lang_all')[0] ?>"><img src="/view/<?php echo \eMarket\Settings::template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[0] ?>.png" alt="<?php echo lang('#lang_all')[0] ?>" title="<?php echo lang('#lang_all')[0] ?>" width="16" height="10" /> <?php echo lang('language_name', lang('#lang_all')[0]) ?></a></li>
+                <li class="<?php echo \eMarket\Settings::activeTab(\eMarket\Admin\Slideshow::$set_language, lang('#lang_all')[0]) ?>"><a data-toggle="tab" href="#<?php echo lang('#lang_all')[0] ?>"><img src="/view/<?php echo \eMarket\Settings::template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[0] ?>.png" alt="<?php echo lang('#lang_all')[0] ?>" title="<?php echo lang('#lang_all')[0] ?>" width="16" height="10" /> <?php echo lang('language_name', lang('#lang_all')[0]) ?></a></li>
 
                 <?php
                 if (\eMarket\Lang::$COUNT > 1) {
                     for ($x = 1; $x < \eMarket\Lang::$COUNT; $x++) {
                         ?>
 
-                        <li class="<?php echo \eMarket\Settings::activeTab($set_language, lang('#lang_all')[$x]) ?>"><a data-toggle="tab" href="#<?php echo lang('#lang_all')[$x] ?>"><img src="/view/<?php echo \eMarket\Settings::template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[$x] ?>.png" alt="<?php echo lang('#lang_all')[$x] ?>" title="<?php echo lang('#lang_all')[$x] ?>" width="16" height="10" /> <?php echo lang('language_name', lang('#lang_all')[$x]) ?></a></li>
+                        <li class="<?php echo \eMarket\Settings::activeTab(\eMarket\Admin\Slideshow::$set_language, lang('#lang_all')[$x]) ?>"><a data-toggle="tab" href="#<?php echo lang('#lang_all')[$x] ?>"><img src="/view/<?php echo \eMarket\Settings::template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[$x] ?>.png" alt="<?php echo lang('#lang_all')[$x] ?>" title="<?php echo lang('#lang_all')[$x] ?>" width="16" height="10" /> <?php echo lang('language_name', lang('#lang_all')[$x]) ?></a></li>
 
                         <?php
                     }
@@ -87,7 +87,7 @@
                                         </div>
                                     </th>
                                 </tr>
-                                <?php if ($lines == TRUE) { ?>
+                                <?php if (\eMarket\Pages::$count > 0) { ?>
                                     <tr class="border">
                                         <th><?php echo lang('slides_image') ?></th>
                                         <th class="text-center"><?php echo lang('slides_quantity') ?></th>
@@ -140,15 +140,7 @@
 
                                     <thead>
                                         <tr>
-                                            <th colspan="4">
-                                                <?php if ($lines == TRUE) { ?>
-                                                    <?php echo lang('with') ?> <?php echo \eMarket\Pages::$start + 1 ?> <?php echo lang('to') ?> <?php echo \eMarket\Pages::$finish ?> ( <?php echo lang('of') ?> <?php echo \eMarket\Pages::$count; ?> )
-                                                    <?php
-                                                } else {
-                                                    ?>
-                                                    <?php echo lang('no_listing') ?>
-                                                <?php } ?>
-                                            </th>
+                                            <th colspan="4"><?php echo \eMarket\Pages::counterPage() ?></th>
 
                                             <th>
                                                 <div class="flexbox">
