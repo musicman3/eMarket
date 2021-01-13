@@ -22,19 +22,15 @@ class Pages {
     public static $count = FALSE;
 
     /**
-     * НАВИГАЦИОННЫЙ СЧЕТЧИК
+     * Counter for Stock
      *
-     * @param string $start ($start)
-     * @param string $finish ($finish)
-     * @param string $count_lines_merge ($count_lines_merge)
-     * @return string $lines_on_page(значение на выходе)
      */
-    public static function counter($start, $finish, $count_lines_merge, $lines_on_page) {
+    public static function counterStock() {
 
-        if ($finish == $count_lines_merge && ($finish - $start) <= $lines_on_page OR $finish == $lines_on_page) {
-            return $finish;
+        if (\eMarket\Admin\Stock::$finish == \eMarket\Admin\Stock::$count_lines_merge && (\eMarket\Admin\Stock::$finish - \eMarket\Admin\Stock::$start) <= \eMarket\Settings::linesOnPage() OR \eMarket\Admin\Stock::$finish == \eMarket\Settings::linesOnPage()) {
+            return \eMarket\Admin\Stock::$finish;
         } else {
-            return $finish - 1;
+            return \eMarket\Admin\Stock::$finish - 1;
         }
     }
 
@@ -91,6 +87,21 @@ class Pages {
 
         if (self::$count > 0) {
             return lang('with') . ' ' . $count . ' ' . lang('to') . ' ' . self::$finish . ' ( ' . lang('of') . ' ' . self::$count . ')';
+        } else {
+            return lang('no_listing');
+        }
+    }
+    
+        /**
+     * Counter
+     *
+     * @return string (output data)
+     */
+    public static function counterPageStock() {
+        $count = \eMarket\Admin\Stock::$start + 1;
+
+        if (\eMarket\Admin\Stock::$count_lines_merge > 0) {
+            return lang('with') . ' ' . $count . ' ' . lang('to') . ' ' . self::counterStock() . ' ( ' . lang('of') . ' ' . \eMarket\Admin\Stock::$count_lines_merge . ')';
         } else {
             return lang('no_listing');
         }

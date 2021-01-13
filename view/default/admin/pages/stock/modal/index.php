@@ -14,7 +14,7 @@
 
             <form id="form_add" name="form_add" action="javascript:void(null);" onsubmit="Ajax.callAdd()">
                 <div class="panel-body">
-                    <input type="hidden" name="parent_id" value="<?php echo $parent_id ?>" />
+                    <input type="hidden" name="parent_id" value="<?php echo \eMarket\Admin\Stock::$parent_id ?>" />
                     <input type="hidden" id="add" name="add" value="" />
                     <input type="hidden" id="edit" name="edit" value="" />
                     <input id="general_image_add" type="hidden" name="general_image_add" value="">

@@ -12,17 +12,17 @@ foreach (\eMarket\Modules::discountRouter('data') as $js_path) {
 <script type="text/javascript">
 
     $(function () {
-        var session = '<?php echo $ses_verify ?>';
+        var session = '<?php echo \eMarket\Admin\Stock::$ses_verify ?>';
         var lang = <?php echo json_encode(lang()) ?>;
-        let parent_id = '<?php echo $parent_id ?>';
-        var idsx_real_parent_id = '<?php echo $idsx_real_parent_id ?>';
-        var sale = '<?php echo $sales_flag ?>';
-        var sales = {<?php echo $sales ?>};
-        var sale_dafault = '<?php echo $sale_default ?>';
-        var stiker = '<?php echo $stikers_flag ?>';
-        var stikers = {<?php echo $stikers ?>};
-        var stikers_default = '<?php echo $stikers_default ?>';
-        var attributes_category = <?php echo json_encode($attributes_category) ?>;
+        let parent_id = '<?php echo \eMarket\Admin\Stock::$parent_id ?>';
+        var idsx_real_parent_id = '<?php echo \eMarket\Admin\Stock::$idsx_real_parent_id ?>';
+        var sale = '<?php echo \eMarket\Admin\Stock::$sales_flag ?>';
+        var sales = {<?php echo \eMarket\Admin\Stock::$sales ?>};
+        var sale_dafault = '<?php echo \eMarket\Admin\Stock::$sale_default ?>';
+        var stiker = '<?php echo \eMarket\Admin\Stock::$stikers_flag ?>';
+        var stikers = {<?php echo \eMarket\Admin\Stock::$stikers ?>};
+        var stikers_default = '<?php echo \eMarket\Admin\Stock::$stikers_default ?>';
+        var attributes_category = <?php echo json_encode(\eMarket\Admin\Stock::$attributes_category) ?>;
 
         var sales_interface = [
             lang,
