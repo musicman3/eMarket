@@ -135,6 +135,67 @@ class Stikers {
     }
 
     /**
+     * Init Eac
+     */
+    public static function initEac() {
+
+        if ((\eMarket\Valid::inPOST('idsx_stikerOn_key') == 'On')
+                or ( \eMarket\Valid::inPOST('idsx_stikerOff_key') == 'Off')) {
+
+            $parent_id_real = (int) \eMarket\Valid::inPOST('idsx_real_parent_id');
+
+            if (\eMarket\Valid::inPOST('idsx_stikerOn_key') == 'On') {
+                $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('idsx_stiker_on_id'));
+                $stiker = \eMarket\Valid::inPOST('stiker');
+            }
+
+            if (\eMarket\Valid::inPOST('idsx_stikerOff_key') == 'Off') {
+                $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('idsx_stiker_off_id'));
+                $stiker = '';
+            }
+
+            if (is_array($idx) == FALSE) {
+                $idx = [];
+            }
+
+            for ($i = 0; $i < count($idx); $i++) {
+                if (strstr($idx[$i], '_', true) != 'product') {
+                    // Это категория / This is category
+                    \eMarket\Eac::$parent_id = self::dataParentId($idx[$i]);
+                    $keys = self::dataKeys($idx[$i]);
+
+                    $count_keys = count($keys);
+                    for ($x = 0; $x < $count_keys; $x++) {
+
+                        if (\eMarket\Valid::inPOST('idsx_stikerOn_key') == 'On' OR \eMarket\Valid::inPOST('idsx_stikerOff_key') == 'Off') {
+                            // Это товар / This is product
+                            $stiker_id_array = \eMarket\Pdo::getCol("SELECT id FROM " . TABLE_PRODUCTS . " WHERE language=? AND parent_id=?", [lang('#lang_all')[0], $keys[$x]]);
+
+                            foreach ($stiker_id_array as $stiker_id_arr) {
+                                \eMarket\Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET stiker=? WHERE id=?", [$stiker, $stiker_id_arr]);
+                            }
+
+                            if ($parent_id_real > 0) {
+                                \eMarket\Eac::$parent_id = $parent_id_real;
+                            }
+                        }
+                    }
+                } else {
+                    // Это товар / This is product
+                    if (\eMarket\Valid::inPOST('idsx_stikerOn_key') == 'On' OR \eMarket\Valid::inPOST('idsx_stikerOff_key') == 'Off') {
+                        $id_prod = explode('product_', $idx[$i]);
+                        \eMarket\Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET stiker=? WHERE id=?", [$stiker, $id_prod[1]]);
+                    }
+                }
+            }
+        }
+
+        if (is_array(\eMarket\Eac::$parent_id) == TRUE) {
+            \eMarket\Eac::$parent_id = 0;
+        }
+    }
+
+    /**
      * Modal
      *
      */
