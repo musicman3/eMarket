@@ -15,7 +15,7 @@
                 <div class="panel-body">
                     <input type="hidden" id="add" name="add" value="" />
                     <input type="hidden" id="edit" name="edit" value="" />
-                    <input type="hidden" id="set_language" name="set_language" value="<?php echo $set_language ?>" />
+                    <input type="hidden" id="set_language" name="set_language" value="<?php echo \eMarket\Admin\Slideshow::$set_language ?>" />
                     <input id="general_image_add" type="hidden" name="general_image_add" value="">
                     <input id="delete_image" type="hidden" name="delete_image" value="">
                     <input id="general_image_edit" type="hidden" name="general_image_edit" value="">
