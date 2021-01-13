@@ -100,7 +100,7 @@
                             <?php } ?>
                             <tbody>
                                 <?php for (\eMarket\Pages::$start; \eMarket\Pages::$start < \eMarket\Pages::$finish; \eMarket\Pages::$start++, \eMarket\Pages::lineUpdate()) { ?>
-                                    <tr class="<?php echo \eMarket\Settings::statusSwitchClass(eMarket\Pages::$table['line']['status'], [$this_time, strtotime(eMarket\Pages::$table['line']['date_start'])], [strtotime(eMarket\Pages::$table['line']['date_finish']), \eMarket\Admin\Slideshow::$this_time]) ?>">
+                                    <tr class="<?php echo \eMarket\Settings::statusSwitchClass(eMarket\Pages::$table['line']['status'], [\eMarket\Admin\Slideshow::$this_time, strtotime(eMarket\Pages::$table['line']['date_start'])], [strtotime(eMarket\Pages::$table['line']['date_finish']), \eMarket\Admin\Slideshow::$this_time]) ?>">
                                         <td><img src="/uploads/images/slideshow/resize_0/<?php echo eMarket\Pages::$table['line']['logo_general'] ?>" /></td>
                                         <td class="text-center"><?php echo count(json_decode(eMarket\Pages::$table['line']['logo'])) ?></td>
                                         <td class="text-center"><?php echo eMarket\Pages::$table['line']['name'] ?></td>
@@ -187,7 +187,7 @@
 
                                     <tbody>
                                         <?php for (\eMarket\Pages::$start; \eMarket\Pages::$start < \eMarket\Pages::$finish; \eMarket\Pages::$start++, \eMarket\Pages::lineUpdate()) { ?>
-                                            <tr class="<?php echo \eMarket\Settings::statusSwitchClass(eMarket\Pages::$table['line']['status'], [$this_time, strtotime(eMarket\Pages::$table['line']['date_start'])], [strtotime(eMarket\Pages::$table['line']['date_finish']), \eMarket\Admin\Slideshow::$this_time]) ?>">
+                                            <tr class="<?php echo \eMarket\Settings::statusSwitchClass(eMarket\Pages::$table['line']['status'], [\eMarket\Admin\Slideshow::$this_time, strtotime(eMarket\Pages::$table['line']['date_start'])], [strtotime(eMarket\Pages::$table['line']['date_finish']), \eMarket\Admin\Slideshow::$this_time]) ?>">
                                                 <td><img src="/uploads/images/slideshow/resize_0/<?php echo eMarket\Pages::$table['line']['logo_general'] ?>" /></td>
                                                 <td class="text-center"><?php echo count(json_decode(eMarket\Pages::$table['line']['logo'])) ?></td>
                                                 <td class="text-center"><?php echo eMarket\Pages::$table['line']['name'] ?></td>
