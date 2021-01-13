@@ -19,7 +19,7 @@
 		    <span class="input-group-addon"><span class="glyphicon glyphicon-th-large"></span></span>
 		    <form method="get" name="select_template" action="index.php">
 			<input hidden name="route" value="settings/templates">
-			<select name="name_templates" id="name_templates" class="input-sm form-control"  onchange="selectTemplate(event)">
+			<select name="name_templates" id="name_templates" class="input-sm form-control"  onchange="selectTemplate()">
 			    <option><?php echo \eMarket\Settings::template() ?></option>
 			    <?php
 			    foreach ($name_template as $path) {
@@ -44,7 +44,7 @@
 		    <form method="get" name="select_page">
 			<input hidden name="route" value="settings/templates">
 			<input type="hidden" name="name_templates" value="<?php echo $select_template ?>" />
-			<select name="layout_pages_templates" id="layout_pages_templates" class="input-sm form-control" onchange="selectPage(event)">
+			<select name="layout_pages_templates" id="layout_pages_templates" class="input-sm form-control" onchange="selectPage()">
 			    <option value="all"><?php echo lang('all_pages_template') ?></option>
 			    <?php
 			    if (!\eMarket\Valid::inGET('layout_pages_templates')) {

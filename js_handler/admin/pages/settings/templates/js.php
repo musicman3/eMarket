@@ -223,10 +223,10 @@
 </script>
 
 <script type="text/javascript" language="javascript">
-    selectTemplate = function (event) {
+    selectTemplate = function () {
         document.forms["select_template"].submit();
     };
-    selectPage = function (event) {
+    selectPage = function () {
         document.forms["select_page"].submit();
     };
 </script>

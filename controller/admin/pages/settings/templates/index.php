@@ -9,7 +9,7 @@ $layout_pages = scandir(ROOT . '/controller/catalog/pages/');
 $name_template = scandir(ROOT . '/view/');
 
 if (\eMarket\Valid::inGET('layout_pages_templates')) {
-    if (\eMarket\Valid::inGET('layout_pages_templates') == 'Все страницы') {
+    if (\eMarket\Valid::inGET('layout_pages_templates') == 'all') {
         $select_page = 'all';
     } else {
         $select_page = \eMarket\Valid::inGET('layout_pages_templates');
