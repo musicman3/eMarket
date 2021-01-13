@@ -48,7 +48,7 @@
             var breadcrumbid = $('div#data_breadcrumb').data('breadcrumbid');
             var breadcrumbname = $('div#data_breadcrumb').data('breadcrumbname');
 
-            $('#breadcrumb').append('<li class="selected"><?php echo \eMarket\Settings::titleCatalog('false') ?></li>');
+            $('#breadcrumb').append('<li class="selected"><?php echo lang('title_' . basename(\eMarket\Valid::inGET('route')) . '_index') ?></li>');
         }
 
         $(document).ready(function () {
