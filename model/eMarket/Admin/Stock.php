@@ -247,7 +247,7 @@ class Stock {
     }
 
     /**
-     * Modal
+     * Categories Modal
      *
      */
     public function modalCategories() {
@@ -282,7 +282,7 @@ class Stock {
     }
 
     /**
-     * Modal
+     * Products Modal
      *
      */
     public function modalProducts() {

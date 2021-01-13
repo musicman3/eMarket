@@ -6,4 +6,3 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 $eMarket = new eMarket\Admin\Stock();
-
