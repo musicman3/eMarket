@@ -10,7 +10,6 @@
  * 
  */
 class DiscountSale {
-
     /**
      * Outputting data to context menu
      * @param discounts_interface {Array} (input data)
@@ -18,13 +17,26 @@ class DiscountSale {
      *
      */
     static context(discounts_interface) {
+        
+        var discounts = new Object();
+        for (var key in discounts_interface[3]) {
+            var discount_name = key.split('_');
+            if (discount_name[0] === 'sale') {
+                discounts[discount_name[1]] = discounts_interface[3][key];
+            }
+        }
+        
+        var discount_dafault = '';
+        for (var key in discounts_interface[4]) {
+            var default_id = key.split('_');
+            if (default_id[0] === 'sale') {
+                discount_dafault = default_id[1];
+            }
+        }
 
         var lang = discounts_interface[0];
         var parent_id = discounts_interface[1];
         var idsx_real_parent_id = discounts_interface[2];
-        var discounts = discounts_interface[3];
-        var discounts_flag = discounts_interface[4];
-        var discount_dafault = discounts_interface[5];
 
         var output = {
             name: lang['modules_discount_sale_admin_button_sale'],
@@ -32,7 +44,7 @@ class DiscountSale {
                 return 'context-menu-icon glyphicon-tag';
             },
             disabled: function () {
-                if (discounts_flag === '0' || $('div#ajax_data').data('jsondataproduct')['name'] === undefined && $('div#ajax_data').data('jsondatacategory')['name'] === undefined) {
+                if (discounts.length === 0 || $('div#ajax_data').data('jsondataproduct')['name'] === undefined && $('div#ajax_data').data('jsondatacategory')['name'] === undefined) {
                     return true;
                 }
             },

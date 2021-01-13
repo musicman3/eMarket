@@ -42,7 +42,7 @@
                 $('#start_date').datepicker('setDate', new Date());
             }
 
-            $('#default_module').prop('checked', json_data['default'][modal_id]);
+            $('#default_module').prop('checked', Number(json_data['default'][modal_id]));
             $('#default_module').bootstrapSwitch();
         }
 
