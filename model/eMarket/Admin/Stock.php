@@ -22,13 +22,6 @@ class Stock {
     public static $resize_param_product = FALSE;
     public static $idsx_real_parent_id = FALSE;
     public static $parent_id = FALSE;
-    public static $sales = FALSE;
-    public static $sale_default = FALSE;
-    public static $sales_flag = FALSE;
-    public static $stikers = FALSE;
-    public static $stikers_default = FALSE;
-    public static $stikers_flag = FALSE;
-    public static $stiker_name = FALSE;
     public static $currencies_all = FALSE;
     public static $taxes_all = FALSE;
     public static $units_all = FALSE;
@@ -58,8 +51,8 @@ class Stock {
         $this->imgUploadCategories();
         $this->imgUploadProducts();
         $this->initEac();
-        $this->initDiscount();
-        $this->initStikers();
+        \eMarket\Modules::initDiscount();
+        \eMarket\Admin\Stikers::initStikers();
         $this->selectData();
         $this->preparedData();
         $this->data();
@@ -97,67 +90,6 @@ class Stock {
         $EAC_ENGINE = \eMarket\Eac::init(self::$resize_param, self::$resize_param_product);
         self::$idsx_real_parent_id = $EAC_ENGINE[0];
         self::$parent_id = $EAC_ENGINE[1];
-    }
-
-    /**
-     * Init Discount
-     *
-     */
-    public function initDiscount() {
-        $installed_active = \eMarket\Pdo::getCell("SELECT id FROM " . TABLE_MODULES . " WHERE name=? AND type=? AND active=?", ['sale', 'discount', 1]);
-        self::$sales = '';
-        self::$sale_default = 0;
-        $sale_default_flag = 0;
-        self::$sales_flag = 0;
-        $select_array = [];
-
-        if ($installed_active != '') {
-            $sales_all = \eMarket\Pdo::getColAssoc("SELECT id, name, default_set FROM " . DB_PREFIX . 'modules_discount_sale' . " WHERE language=?", [lang('#lang_all')[0]]);
-        }
-
-        if ($installed_active != '' && isset($sales_all) && count($sales_all) > 0) {
-            $this_time = time();
-
-            foreach ($sales_all as $val) {
-                $date_end = \eMarket\Pdo::getCell("SELECT UNIX_TIMESTAMP (date_end) FROM " . DB_PREFIX . 'modules_discount_sale' . " WHERE id=?", [$val['id']]);
-                if ($this_time < $date_end) {
-                    self::$sales_flag = 1;
-                    self::$sales .= $val['id'] . ': ' . "'" . $val['name'] . "', ";
-                    array_push($select_array, $val['id']);
-                    if ($val['default_set'] == 1) {
-                        self::$sale_default = $val['id'];
-                        $sale_default_flag = 1;
-                    } elseif ($sale_default_flag == 0) {
-                        self::$sale_default = $val['id'];
-                        $sale_default_flag = 1;
-                    }
-                }
-            }
-        }
-    }
-
-    /**
-     * Init Stikers
-     *
-     */
-    public function initStikers() {
-        self::$stikers = '';
-        self::$stikers_default = 0;
-        self::$stikers_flag = 0;
-        $stikers_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_STIKERS . " WHERE language=?", [lang('#lang_all')[0]]);
-
-        foreach ($stikers_data as $val) {
-            self::$stikers_flag = 1;
-            self::$stikers .= $val['id'] . ': ' . "'" . $val['name'] . "', ";
-            if ($val['default_stikers'] == 1) {
-                self::$stikers_default = $val['id'];
-            }
-        }
-
-        self::$stiker_name = [];
-        foreach ($stikers_data as $val) {
-            self::$stiker_name[$val['id']] = $val['name'];
-        }
     }
 
     /**

@@ -18,6 +18,10 @@ class Stikers {
 
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
+    public static $stikers = FALSE;
+    public static $stikers_default = FALSE;
+    public static $stikers_flag = FALSE;
+    public static $stiker_name = FALSE;
 
     /**
      * Constructor
@@ -104,6 +108,30 @@ class Stikers {
         self::$sql_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_STIKERS . " ORDER BY id DESC", []);
         $lines = \eMarket\Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
         \eMarket\Pages::table($lines);
+    }
+
+    /**
+     * Init Stikers
+     *
+     */
+    public static function initStikers() {
+        self::$stikers = '';
+        self::$stikers_default = 0;
+        self::$stikers_flag = 0;
+        $stikers_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_STIKERS . " WHERE language=?", [lang('#lang_all')[0]]);
+
+        foreach ($stikers_data as $val) {
+            self::$stikers_flag = 1;
+            self::$stikers .= $val['id'] . ': ' . "'" . $val['name'] . "', ";
+            if ($val['default_stikers'] == 1) {
+                self::$stikers_default = $val['id'];
+            }
+        }
+
+        self::$stiker_name = [];
+        foreach ($stikers_data as $val) {
+            self::$stiker_name[$val['id']] = $val['name'];
+        }
     }
 
     /**

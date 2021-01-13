@@ -253,7 +253,7 @@
                                         <?php } ?>
 
                                         <?php if (\eMarket\Admin\Stock::$arr_merge['prod'][\eMarket\Admin\Stock::$start . 'a']['stiker'] != '' && \eMarket\Admin\Stock::$arr_merge['prod'][\eMarket\Admin\Stock::$start . 'a']['stiker'] != NULL) { ?>
-                                            <td class="sortleft"><span class="label label-success"><?php echo \eMarket\Admin\Stock::$stiker_name[\eMarket\Admin\Stock::$arr_merge['prod'][\eMarket\Admin\Stock::$start . 'a']['stiker']] ?></span></td>
+                                            <td class="sortleft"><span class="label label-success"><?php echo \eMarket\Admin\Stikers::$stiker_name[\eMarket\Admin\Stock::$arr_merge['prod'][\eMarket\Admin\Stock::$start . 'a']['stiker']] ?></span></td>
                                         <?php } else { ?>
                                             <td class="sortleft-m"></td>
                                         <?php } ?>

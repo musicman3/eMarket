@@ -17,6 +17,9 @@ namespace eMarket;
 final class Modules {
 
     private static $discount_router = FALSE;
+    public static $sales = FALSE;
+    public static $sale_default = FALSE;
+    public static $sales_flag = FALSE;
 
     /**
      * Инсталляция модуля / Install module
@@ -37,6 +40,43 @@ final class Modules {
     public static function uninstall($module) {
         \eMarket\Pdo::action("DELETE FROM " . TABLE_MODULES . " WHERE name=? AND type=?", [$module[1], $module[0]]);
         \eMarket\Pdo::action("DROP TABLE " . DB_PREFIX . 'modules_' . $module[0] . '_' . $module[1], []);
+    }
+
+    /**
+     * Init Discount
+     *
+     */
+    public static function initDiscount() {
+        $installed_active = \eMarket\Pdo::getCell("SELECT id FROM " . TABLE_MODULES . " WHERE name=? AND type=? AND active=?", ['sale', 'discount', 1]);
+        self::$sales = '';
+        self::$sale_default = 0;
+        $sale_default_flag = 0;
+        self::$sales_flag = 0;
+        $select_array = [];
+
+        if ($installed_active != '') {
+            $sales_all = \eMarket\Pdo::getColAssoc("SELECT id, name, default_set FROM " . DB_PREFIX . 'modules_discount_sale' . " WHERE language=?", [lang('#lang_all')[0]]);
+        }
+
+        if ($installed_active != '' && isset($sales_all) && count($sales_all) > 0) {
+            $this_time = time();
+
+            foreach ($sales_all as $val) {
+                $date_end = \eMarket\Pdo::getCell("SELECT UNIX_TIMESTAMP (date_end) FROM " . DB_PREFIX . 'modules_discount_sale' . " WHERE id=?", [$val['id']]);
+                if ($this_time < $date_end) {
+                    self::$sales_flag = 1;
+                    self::$sales .= $val['id'] . ': ' . "'" . $val['name'] . "', ";
+                    array_push($select_array, $val['id']);
+                    if ($val['default_set'] == 1) {
+                        self::$sale_default = $val['id'];
+                        $sale_default_flag = 1;
+                    } elseif ($sale_default_flag == 0) {
+                        self::$sale_default = $val['id'];
+                        $sale_default_flag = 1;
+                    }
+                }
+            }
+        }
     }
 
     /**
@@ -68,7 +108,7 @@ final class Modules {
         if (count($active_modules) == 0) {
             self::$discount_router['data'] = [];
             self::$discount_router['functions'] = '"---------" ';
-            
+
             if ($marker == 'data') {
                 return self::$discount_router['data'];
             }
@@ -76,7 +116,7 @@ final class Modules {
                 return self::$discount_router['functions'];
             }
         }
-        
+
         $output_text .= ', "discount_separator_end": "---------"';
 
         if ($marker == 'data') {
