@@ -13,18 +13,18 @@ class DiscountSale {
 
     /**
      * Outputting data to context menu
-     * @param sales_interface {Array} (input data)
+     * @param discounts_interface {Array} (input data)
      * @return output {Object} (output data)
      *
      */
-    static context(sales_interface) {
+    static context(discounts_interface) {
 
-        var lang = sales_interface[0];
-        var parent_id = sales_interface[1];
-        var idsx_real_parent_id = sales_interface[2];
-        var sales = sales_interface[3];
-        var sale = sales_interface[4];
-        var sale_dafault = sales_interface[5];
+        var lang = discounts_interface[0];
+        var parent_id = discounts_interface[1];
+        var idsx_real_parent_id = discounts_interface[2];
+        var discounts = discounts_interface[3];
+        var discount = discounts_interface[4];
+        var discount_dafault = discounts_interface[5];
 
         var output = {
             name: lang['modules_discount_sale_admin_button_sale'],
@@ -32,7 +32,7 @@ class DiscountSale {
                 return 'context-menu-icon glyphicon-tag';
             },
             disabled: function () {
-                if (sale === '0' || $('div#ajax_data').data('jsondataproduct')['name'] === undefined && $('div#ajax_data').data('jsondatacategory')['name'] === undefined) {
+                if (discount === '0' || $('div#ajax_data').data('jsondataproduct')['name'] === undefined && $('div#ajax_data').data('jsondatacategory')['name'] === undefined) {
                     return true;
                 }
             },
@@ -40,8 +40,8 @@ class DiscountSale {
             items: {
                 sale: {
                     type: 'select',
-                    options: sales,
-                    selected: sale_dafault,
+                    options: discounts,
+                    selected: discount_dafault,
                     disabled: function () {
                         if ($('div#ajax_data').data('jsondataproduct')['name'] === undefined && $('div#ajax_data').data('jsondatacategory')['name'] === undefined) {
                             return true;

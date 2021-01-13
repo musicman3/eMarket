@@ -16,15 +16,15 @@ foreach (\eMarket\Modules::discountRouter('data') as $js_path) {
         var lang = <?php echo json_encode(lang()) ?>;
         let parent_id = '<?php echo \eMarket\Admin\Stock::$parent_id ?>';
         var idsx_real_parent_id = '<?php echo \eMarket\Admin\Stock::$idsx_real_parent_id ?>';
-        var sale = '<?php echo \eMarket\Modules::$sales_flag ?>';
-        var sales = {<?php echo \eMarket\Modules::$sales ?>};
-        var sale_dafault = '<?php echo \eMarket\Modules::$sale_default ?>';
+        var sale = '<?php echo \eMarket\Modules::$discounts_flag ?>';
+        var sales = {<?php echo \eMarket\Modules::$discounts ?>};
+        var sale_dafault = '<?php echo \eMarket\Modules::$discount_default ?>';
         var stiker = '<?php echo \eMarket\Admin\Stikers::$stikers_flag ?>';
         var stikers = {<?php echo \eMarket\Admin\Stikers::$stikers ?>};
         var stikers_default = '<?php echo \eMarket\Admin\Stikers::$stikers_default ?>';
         var attributes_category = <?php echo json_encode(\eMarket\Admin\Stock::$attributes_category) ?>;
 
-        var sales_interface = [
+        var discounts_interface = [
             lang,
             parent_id,
             idsx_real_parent_id,

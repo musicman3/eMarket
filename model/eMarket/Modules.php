@@ -17,9 +17,9 @@ namespace eMarket;
 final class Modules {
 
     private static $discount_router = FALSE;
-    public static $sales = FALSE;
-    public static $sale_default = FALSE;
-    public static $sales_flag = FALSE;
+    public static $discounts = FALSE;
+    public static $discount_default = FALSE;
+    public static $discounts_flag = FALSE;
 
     /**
      * Инсталляция модуля / Install module
@@ -48,31 +48,31 @@ final class Modules {
      */
     public static function initDiscount() {
         $installed_active = \eMarket\Pdo::getCell("SELECT id FROM " . TABLE_MODULES . " WHERE name=? AND type=? AND active=?", ['sale', 'discount', 1]);
-        self::$sales = '';
-        self::$sale_default = 0;
-        $sale_default_flag = 0;
-        self::$sales_flag = 0;
+        self::$discounts = '';
+        self::$discount_default = 0;
+        $discount_default_flag = 0;
+        self::$discounts_flag = 0;
         $select_array = [];
 
         if ($installed_active != '') {
-            $sales_all = \eMarket\Pdo::getColAssoc("SELECT id, name, default_set FROM " . DB_PREFIX . 'modules_discount_sale' . " WHERE language=?", [lang('#lang_all')[0]]);
+            $discounts_all = \eMarket\Pdo::getColAssoc("SELECT id, name, default_set FROM " . DB_PREFIX . 'modules_discount_sale' . " WHERE language=?", [lang('#lang_all')[0]]);
         }
 
-        if ($installed_active != '' && isset($sales_all) && count($sales_all) > 0) {
+        if ($installed_active != '' && isset($discounts_all) && count($discounts_all) > 0) {
             $this_time = time();
 
-            foreach ($sales_all as $val) {
+            foreach ($discounts_all as $val) {
                 $date_end = \eMarket\Pdo::getCell("SELECT UNIX_TIMESTAMP (date_end) FROM " . DB_PREFIX . 'modules_discount_sale' . " WHERE id=?", [$val['id']]);
                 if ($this_time < $date_end) {
-                    self::$sales_flag = 1;
-                    self::$sales .= $val['id'] . ': ' . "'" . $val['name'] . "', ";
+                    self::$discounts_flag = 1;
+                    self::$discounts .= $val['id'] . ': ' . "'" . $val['name'] . "', ";
                     array_push($select_array, $val['id']);
                     if ($val['default_set'] == 1) {
-                        self::$sale_default = $val['id'];
-                        $sale_default_flag = 1;
-                    } elseif ($sale_default_flag == 0) {
-                        self::$sale_default = $val['id'];
-                        $sale_default_flag = 1;
+                        self::$discount_default = $val['id'];
+                        $discount_default_flag = 1;
+                    } elseif ($discount_default_flag == 0) {
+                        self::$discount_default = $val['id'];
+                        $discount_default_flag = 1;
                     }
                 }
             }
@@ -99,7 +99,7 @@ final class Modules {
         $output_modules = [];
         foreach ($active_modules as $module) {
             if (file_exists(ROOT . '/modules/discount/' . $module['name'] . '/js_handler/admin/contextmenu/contextmenu.js')) {
-                $text .= $module['name'] . ': Discount' . ucfirst($module['name']) . '.context(sales_interface), ';
+                $text .= $module['name'] . ': Discount' . ucfirst($module['name']) . '.context(discounts_interface), ';
                 $output_text = substr($text, 0, -2);
                 array_push($output_modules, $module['name']);
             }
