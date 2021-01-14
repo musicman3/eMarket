@@ -96,7 +96,7 @@ final class Ecb {
      * 
      * @param string $marker (маркер / marker)
      * @param string $language (язык / language)
-     * @return array (выходные данные / output data)
+     * @return array (выходные данные / $interface_data)
      */
     public static function priceTerminal($marker = null, $language = null) {
 
@@ -119,7 +119,7 @@ final class Ecb {
 
         $total_price_with_sale = 0;
         $total_tax_price = 0;
-        $output_data = [];
+        $interface_data = [];
 
         $taxes_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_TAXES . " WHERE language=?", [$language]);
 
@@ -150,18 +150,18 @@ final class Ecb {
                         'tax' => $tax
                     ];
 
-                    array_push($output_data, $interface);
+                    array_push($interface_data, $interface);
                 } else {
                     unset($_SESSION['cart'][$x]);
                 }
                 $x++;
             }
         }
-        $output_data['total_price_with_sale'] = $total_price_with_sale;
-        $output_data['total_tax_price'] = $total_tax_price;
+        $interface_data['total_price_with_sale'] = $total_price_with_sale;
+        $interface_data['total_tax_price'] = $total_tax_price;
 
         if (self::$terminal_data == FALSE) {
-            self::$terminal_data = $output_data;
+            self::$terminal_data = $interface_data;
         }
 
         if ($marker == 'interface') {
