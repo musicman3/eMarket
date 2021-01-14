@@ -8,7 +8,7 @@
 namespace eMarket;
 
 /**
- * Easy Calculated Block
+ * eMarket Calculated Block
  *
  * @package Ecb
  * @author eMarket
