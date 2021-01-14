@@ -96,7 +96,7 @@ final class Ecb {
      * 
      * @param string $marker (маркер / marker)
      * @param string $language (язык / language)
-     * @return array (выходные данные / $interface_data)
+     * @return array (выходные данные / output data)
      */
     public static function priceTerminal($marker = null, $language = null) {
 
