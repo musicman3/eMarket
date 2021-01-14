@@ -44,17 +44,11 @@ class Products {
      */
     public static function productData($id, $language = null) {
 
-        if (self::$product_data == FALSE) {
             if ($language == null) {
                 $language = lang('#lang_all')[0];
             }
             self::$product_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=? AND language=? AND status=?", [$id, $language, 1])[0];
             return self::$product_data;
-        }
-
-        if (self::$product_data != FALSE) {
-            return self::$product_data;
-        }
     }
     
         /**
@@ -212,9 +206,8 @@ class Products {
         }
 
         $discount_sales = \eMarket\Ecb::discountHandler($input)['interface'];
+        $discount_total_sale = 0;
         foreach ($discount_sales as $discount_sale) {
-            $discount_total_sale = 0;
-
             if ($discount_sale['sales'] != 'false') {
                 foreach ($discount_sale['sales'] as $total_sale) {
                     $discount_total_sale = $discount_total_sale + $total_sale;
