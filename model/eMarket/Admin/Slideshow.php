@@ -22,6 +22,14 @@ class Slideshow {
     public static $resize_param = FALSE;
     public static $this_time = FALSE;
     public static $set_language = FALSE;
+    public static $slideshow;
+    public static $slide_interval;
+    public static $slide_pause;
+    public static $autostart;
+    public static $cicles;
+    public static $indicators;
+    public static $navigation_key;
+    public static $slideshow_array = [];
 
     /**
      * Constructor
@@ -37,7 +45,7 @@ class Slideshow {
         $this->data();
         $this->modal();
     }
-    
+
     /**
      * Menu config
      * [0] - url, [1] - icon, [2] - name, [3] - target="_blank", [4] - submenu (true/false)
@@ -45,7 +53,7 @@ class Slideshow {
      */
     public static function menu() {
         \eMarket\Admin\HeaderMenu::$menu[\eMarket\Admin\HeaderMenu::$menu_marketing][] = ['?route=slideshow', 'glyphicon glyphicon-film', lang('title_slideshow_index'), '', 'false'];
-    }    
+    }
 
     /**
      * Settings
@@ -212,6 +220,57 @@ class Slideshow {
         self::$sql_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_SLIDESHOW . " ORDER BY id DESC", []);
         $lines = \eMarket\Func::filterData(self::$sql_data, 'language', self::$set_language);
         \eMarket\Pages::table($lines);
+    }
+
+    /**
+     * View
+     *
+     */
+    public static function view() {
+        self::$slideshow = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_SLIDESHOW . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+        $slideshow_pref = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_SLIDESHOW_PREF . " WHERE id=?", [1])[0];
+
+        self::$slide_interval = $slideshow_pref['show_interval'];
+
+        if ($slideshow_pref['mouse_stop'] == 1) {
+            self::$slide_pause = 'hover';
+        } else {
+            self::$slide_pause = 'false';
+        }
+
+        if ($slideshow_pref['autostart'] == 1) {
+            self::$autostart = 'carousel';
+        } else {
+            self::$autostart = 'false';
+        }
+
+        if ($slideshow_pref['cicles'] == 1) {
+            self::$cicles = 'true';
+        } else {
+            self::$cicles = 'false';
+        }
+
+        if ($slideshow_pref['indicators'] == 1) {
+            self::$indicators = 'true';
+        } else {
+            self::$indicators = 'false';
+        }
+
+        if ($slideshow_pref['navigation'] == 1) {
+            self::$navigation_key = 'true';
+        } else {
+            self::$navigation_key = 'false';
+        }
+
+        self::$this_time = time();
+
+        foreach (self::$slideshow as $images_data) {
+            foreach (json_decode($images_data['logo'], 1) as $logo) {
+                if ($images_data['status'] == '1' && strtotime($images_data['date_start']) <= self::$this_time && strtotime($images_data['date_finish']) >= self::$this_time) {
+                    array_push(self::$slideshow_array, $logo);
+                }
+            }
+        }
     }
 
     /**

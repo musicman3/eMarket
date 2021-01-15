@@ -8,11 +8,9 @@
 require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 /* ------------------------------------------ */
 
-if (\eMarket\Valid::inGET('route') != '') {
-    require_once (ROOT . '/controller/catalog/pages/' . \eMarket\Valid::inGET('route') . '/index.php');
-} else {
-    require_once (ROOT . '/controller/catalog/pages/catalog/index.php');
-}
+$eMarket = new \eMarket\Catalog\Index();
+require_once($eMarket->route());
+$eMarket->init();
 
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
 require_once(ROOT . '/model/end.php');
