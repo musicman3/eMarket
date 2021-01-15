@@ -97,7 +97,7 @@ class HeaderMenu {
     }
 
     /**
-     * Level Two
+     * Static levels
      *
      */
     public function staticLevels() {
