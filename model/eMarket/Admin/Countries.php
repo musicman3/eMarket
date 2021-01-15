@@ -105,7 +105,7 @@ class Countries {
                     if ($sql_modal['id'] == $modal_id) {
                         $name[array_search($sql_modal['language'], lang('#lang_all'))][$modal_id] = $sql_modal['name'];
                     }
-                    if ($sql_modal['language'] == \lang('#lang_all')[0] && $sql_modal['id'] == $modal_id) {
+                    if ($sql_modal['language'] == lang('#lang_all')[0] && $sql_modal['id'] == $modal_id) {
                         $alpha_2[$modal_id] = $sql_modal['alpha_2'];
                         $alpha_3[$modal_id] = $sql_modal['alpha_3'];
                         $address_format[$modal_id] = $sql_modal['address_format'];

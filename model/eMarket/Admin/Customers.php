@@ -30,6 +30,15 @@ class Customers {
     }
 
     /**
+     * Menu config
+     * [0] - url, [1] - icon, [2] - name, [3] - target="_blank", [4] - submenu (true/false)
+     * 
+     */
+    public static function menu() {
+        \eMarket\Admin\HeaderMenu::$menu[\eMarket\Admin\HeaderMenu::$menu_customers][] = ['?route=customers', 'glyphicon glyphicon glyphicon-user', lang('menu_customers'), '', 'false'];
+    }
+
+    /**
      * Status
      *
      */

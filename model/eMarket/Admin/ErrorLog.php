@@ -24,6 +24,15 @@ class ErrorLog {
         $this->delete();
         $this->data();
     }
+    
+    /**
+     * Menu config
+     * [0] - url, [1] - icon, [2] - name, [3] - target="_blank", [4] - submenu (true/false)
+     * 
+     */
+    public static function menu() {
+        \eMarket\Admin\HeaderMenu::$menu[\eMarket\Admin\HeaderMenu::$menu_tools][] = ['?route=error_log', 'glyphicon glyphicon-exclamation-sign', lang('menu_error_log'), '', 'false'];
+    }    
 
     /**
      * Delete

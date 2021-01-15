@@ -52,6 +52,15 @@ class BasicSettings {
     }
 
     /**
+     * Menu config
+     * [0] - url, [1] - icon, [2] - name, [3] - target="_blank", [4] - submenu (true/false)
+     * 
+     */
+    public static function menu() {
+        \eMarket\Admin\HeaderMenu::$menu[\eMarket\Admin\HeaderMenu::$menu_market][2] = ['?route=settings', 'glyphicon glyphicon-cog', lang('title_settings_index'), '', 'false'];
+    }
+
+    /**
      * Lines on page
      *
      */
