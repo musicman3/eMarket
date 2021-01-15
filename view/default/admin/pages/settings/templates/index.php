@@ -22,9 +22,9 @@
 			<select name="name_templates" id="name_templates" class="input-sm form-control"  onchange="selectTemplate()">
 			    <option><?php echo \eMarket\Settings::template() ?></option>
 			    <?php
-			    foreach ($name_template as $path) {
+			    foreach (\eMarket\Admin\Templates::$name_template as $path) {
 				if ($path != '.' && $path != '..' && $path != \eMarket\Settings::template()) {
-				    if ($path == $select_template) {
+				    if ($path == \eMarket\Admin\Templates::$select_template) {
 					?>
 	    			    <option selected><?php echo $path ?></option>
 				    <?php } else {
@@ -43,16 +43,13 @@
 		    <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
 		    <form method="get" name="select_page">
 			<input hidden name="route" value="settings/templates">
-			<input type="hidden" name="name_templates" value="<?php echo $select_template ?>" />
+			<input type="hidden" name="name_templates" value="<?php echo \eMarket\Admin\Templates::$select_template ?>" />
 			<select name="layout_pages_templates" id="layout_pages_templates" class="input-sm form-control" onchange="selectPage()">
 			    <option value="all"><?php echo lang('all_pages_template') ?></option>
 			    <?php
-			    if (!\eMarket\Valid::inGET('layout_pages_templates')) {
-				$select_page = 'catalog';
-			    }
-			    foreach ($layout_pages as $path) {
+			    foreach (\eMarket\Admin\Templates::$layout_pages as $path) {
 				if ($path != '.' && $path != '..') {
-				    if ($path == $select_page) {
+				    if ($path == \eMarket\Admin\Templates::$select_page) {
 					?>
 	    			    <option value="<?php echo $path ?>" selected><?php echo $path ?></option>
 				    <?php } else {
@@ -72,13 +69,13 @@
 	    <div class="center-block">
 		<ul id="sortable1" class="connectedSortable block-ul" style="width:66%">
 		    <li class="sortno border bg-primary">header &nbsp;<span class="glyphicon glyphicon-resize-horizontal"></span></li>
-		    <?php foreach ($layout_header as $path) { ?>
+		    <?php foreach (\eMarket\Admin\Templates::$layout_header as $path) { ?>
     		    <li id="<?php echo basename($path, '.php') ?>" class="sortyes"><?php echo basename($path, '.php') ?></li>
 		    <?php } ?>
 		</ul>
 		<ul id="sortable2" class="connectedSortable block-ul" style="width:33%">
 		    <li class="sortno border bg-primary"><span class="glyphicon glyphicon-resize-horizontal"></span><span class="glyphicon glyphicon-trash"></span></li>
-		    <?php foreach ($layout_header_basket as $path) { ?>
+		    <?php foreach (\eMarket\Admin\Templates::$layout_header_basket as $path) { ?>
     		    <li id="<?php echo basename($path, '.php') ?>" class="sortyes"><?php echo basename($path, '.php') ?></li>
 		    <?php } ?>
 		</ul>
@@ -86,13 +83,13 @@
 	    <div class="center-block">
 		<ul id="sortable3" class="connectedSortable2 block-ul" style="width:66%">
 		    <li class="sortno border bg-primary">content &nbsp;<span class="glyphicon glyphicon-resize-horizontal"></span></li>
-		    <?php foreach ($layout_content as $path) { ?>
+		    <?php foreach (\eMarket\Admin\Templates::$layout_content as $path) { ?>
     		    <li id="<?php echo basename($path, '.php') ?>" class="sortyes"><?php echo basename($path, '.php') ?></li>
 		    <?php } ?>
 		</ul>
 		<ul id="sortable4" class="connectedSortable2 block-ul" style="width:33%">
 		    <li class="sortno border bg-primary"><span class="glyphicon glyphicon-resize-horizontal"></span><span class="glyphicon glyphicon-trash"></span></li>
-		    <?php foreach ($layout_content_basket as $path) { ?>
+		    <?php foreach (\eMarket\Admin\Templates::$layout_content_basket as $path) { ?>
     		    <li id="<?php echo basename($path, '.php') ?>" class="sortyes"><?php echo basename($path, '.php') ?></li>
 		    <?php } ?>
 		</ul>
@@ -100,19 +97,19 @@
 	    <div class="center-block">
 		<ul id="sortable5" class="connectedSortable3 block-l" style="width:33%;">
 		    <li class="sortno border-l bg-primary">boxes-left &nbsp;<span class="glyphicon glyphicon-resize-horizontal"></span></li>
-		    <?php foreach ($layout_boxes_left as $path) { ?>
+		    <?php foreach (\eMarket\Admin\Templates::$layout_boxes_left as $path) { ?>
     		    <li id="<?php echo basename($path, '.php') ?>" class="sortyes"><?php echo basename($path, '.php') ?></li>
 		    <?php } ?>
 		</ul>
 		<ul id="sortable6" class="connectedSortable3 block-m block-r" style="width:33%;">
 		    <li class="sortno border-r bg-primary">boxes-right &nbsp;<span class="glyphicon glyphicon-resize-horizontal"></span></li>
-		    <?php foreach ($layout_boxes_right as $path) { ?>
+		    <?php foreach (\eMarket\Admin\Templates::$layout_boxes_right as $path) { ?>
     		    <li id="<?php echo basename($path, '.php') ?>" class="sortyes"><?php echo basename($path, '.php') ?></li>
 		    <?php } ?>
 		</ul>
 		<ul id="sortable7" class="connectedSortable3 block-ul" style="width:33%">
 		    <li class="sortno border bg-primary"><span class="glyphicon glyphicon-resize-horizontal"></span><span class="glyphicon glyphicon-trash"></span></li>
-		    <?php foreach ($layout_boxes_basket as $path) { ?>
+		    <?php foreach (\eMarket\Admin\Templates::$layout_boxes_basket as $path) { ?>
     		    <li id="<?php echo basename($path, '.php') ?>" class="sortyes"><?php echo basename($path, '.php') ?></li>
 		    <?php } ?>
 		</ul>
@@ -120,13 +117,13 @@
 	    <div class="center-block">
 		<ul id="sortable8" class="connectedSortable4 block-ul" style="width:66%">
 		    <li class="sortno border bg-primary">footer &nbsp;<span class="glyphicon glyphicon-resize-horizontal"></span></li>
-		    <?php foreach ($layout_footer as $path) { ?>
+		    <?php foreach (\eMarket\Admin\Templates::$layout_footer as $path) { ?>
     		    <li id="<?php echo basename($path, '.php') ?>" class="sortyes"><?php echo basename($path, '.php') ?></li>
 		    <?php } ?>
 		</ul>
 		<ul id="sortable9" class="connectedSortable4 block-ul" style="width:33%">
 		    <li class="sortno border bg-primary"><span class="glyphicon glyphicon-resize-horizontal"></span><span class="glyphicon glyphicon-trash"></span></li>
-		    <?php foreach ($layout_footer_basket as $path) { ?>
+		    <?php foreach (\eMarket\Admin\Templates::$layout_footer_basket as $path) { ?>
     		    <li id="<?php echo basename($path, '.php') ?>" class="sortyes"><?php echo basename($path, '.php') ?></li>
 			<?php } ?>
 		</ul>

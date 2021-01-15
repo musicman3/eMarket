@@ -75,7 +75,7 @@ class Func {
      * @return array $arr (новый массив)
      * 
      */
-    public static function filterArrayToKey($basic_array, $name_key, $value_key, $val) {
+    public static function filterArrayToKey($basic_array, $name_key, $value_key, $val, $sort = null) {
 
         $arr = [];
         foreach ($basic_array as $value) {
@@ -83,9 +83,11 @@ class Func {
                 array_push($arr, $value[$val]);
             }
         }
-        // Сортируем массив по возрастанию (регистронезависимо)
-        $array_lowercase = array_map('strtolower', $arr);
-        array_multisort($array_lowercase, SORT_ASC, SORT_STRING, $arr);
+        if ($sort == null) {
+            // Сортируем массив по возрастанию (регистронезависимо)
+            $array_lowercase = array_map('strtolower', $arr);
+            array_multisort($array_lowercase, SORT_ASC, SORT_STRING, $arr);
+        }
         return $arr;
     }
 
@@ -415,17 +417,17 @@ class Func {
     }
 
     /**
-     * Функция фильтрации данных в двухмерном массиве
+     * Array filtering
      *
-     * @param array $data (входящие данные)
-     * @param string $parameter_name (входящие данные)
-     * @param string $parameter (входящие данные)
-     * @return array $data (исходящие данные)
+     * @param array $data (input array)
+     * @param string $key (key)
+     * @param string $val (value)
+     * @return array $output (output array)
      */
-    public static function filterData($data, $parameter_name, $parameter) {
+    public static function filterData($data, $key, $val) {
         $output = [];
         foreach ($data as $value) {
-            if ($value[$parameter_name] == $parameter) {
+            if ($value[$key] == $val) {
                 array_push($output, $value);
             }
         }
