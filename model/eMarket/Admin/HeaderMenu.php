@@ -80,6 +80,7 @@ class HeaderMenu {
     /**
      * Get parameters
      *
+     * @return array Parameters
      */
     public static function getParameters() {
         return [self::$param_1, self::$param_2];
