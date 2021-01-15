@@ -105,7 +105,7 @@ if (\eMarket\Valid::inPOST('add') && password_verify((float) \eMarket\Valid::inP
         'shipping_price_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_shipping_price'), 1, $primary_language),
         'total_to_pay_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_to_pay'), 1, $primary_language),
         'order_total_tax_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_total_tax'), 1, $primary_language),
-        'order_interface_data' => $INTERFACE->load('priceTerminal', 'data')
+        'order_interface_data' => $INTERFACE->load('priceTerminal')
     ];
 
     \eMarket\Ecb::priceTerminal(lang('#lang_all')[0]);
@@ -115,7 +115,7 @@ if (\eMarket\Valid::inPOST('add') && password_verify((float) \eMarket\Valid::inP
         'shipping_price_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_shipping_price'), 1),
         'total_to_pay_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_to_pay'), 1),
         'order_total_tax_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_total_tax'), 1),
-        'order_interface_data' => $INTERFACE->load('priceTerminal', 'data')
+        'order_interface_data' => $INTERFACE->load('priceTerminal')
     ];
 
     $order_total['data'] = [
