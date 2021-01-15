@@ -52,6 +52,8 @@ if (\eMarket\Valid::inPOST('add') && password_verify((float) \eMarket\Valid::inP
         $stiker_name_customer[$val['id']] = $val['name'];
     }
 
+    $INTERFACE = new \eMarket\Interfaces();
+
     foreach ($cart as $value) {
         $product_data = \eMarket\Products::productData($value['id']);
         $admin_product_data = \eMarket\Products::productData($value['id'], $primary_language);
@@ -69,53 +71,59 @@ if (\eMarket\Valid::inPOST('add') && password_verify((float) \eMarket\Valid::inP
             $stiker_name_customer_data = '';
         }
 
-        $data = [
-            'admin' => [
-                'name' => $admin_product_data['name'],
-                'price' => \eMarket\Ecb::formatPrice(\eMarket\Ecb::discountHandler($admin_product_data)['out_price'], 1, $primary_language),
-                'unit' => $admin_unit['unit'],
-                'amount' => \eMarket\Ecb::formatPrice(\eMarket\Ecb::discountHandler($admin_product_data)['out_price'] * $value['quantity'], 1, $primary_language),
-                'stiker' => $stiker_name_data
-            ],
-            'customer' => [
-                'name' => $product_data['name'],
-                'price' => \eMarket\Ecb::formatPrice(\eMarket\Ecb::discountHandler($product_data)['out_price'], 1),
-                'unit' => $unit['unit'],
-                'amount' => \eMarket\Ecb::formatPrice(\eMarket\Ecb::discountHandler($product_data)['out_price'] * $value['quantity'], 1),
-                'stiker' => $stiker_name_customer_data
-            ],
-            'data' => [
-                'quantity' => $value['quantity']
-            ]
+        \eMarket\Ecb::discountHandler($admin_product_data);
+
+        $data['admin'] = [
+            'name' => $admin_product_data['name'],
+            'price' => \eMarket\Ecb::formatPrice($INTERFACE->load('discountHandler', 'data', 'out_price'), 1, $primary_language),
+            'unit' => $admin_unit['unit'],
+            'amount' => \eMarket\Ecb::formatPrice($INTERFACE->load('discountHandler', 'data', 'out_price') * $value['quantity'], 1, $primary_language),
+            'stiker' => $stiker_name_data
+        ];
+
+        \eMarket\Ecb::discountHandler($product_data);
+
+        $data['customer'] = [
+            'name' => $product_data['name'],
+            'price' => \eMarket\Ecb::formatPrice($INTERFACE->load('discountHandler', 'data', 'out_price'), 1),
+            'unit' => $unit['unit'],
+            'amount' => \eMarket\Ecb::formatPrice($INTERFACE->load('discountHandler', 'data', 'out_price') * $value['quantity'], 1),
+            'stiker' => $stiker_name_customer_data
+        ];
+
+        $data['data'] = [
+            'quantity' => $value['quantity']
         ];
 
         array_push($invoice, $data);
     }
 
-    $order_total = [
-        'admin' => [
-            'total_with_shipping_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_total_with_shipping'), 1, $primary_language),
-            'total_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_total'), 1, $primary_language),
-            'shipping_price_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_shipping_price'), 1, $primary_language),
-            'total_to_pay_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_to_pay'), 1, $primary_language),
-            'order_total_tax_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_total_tax'), 1, $primary_language),
-            'order_interface_data' => \eMarket\Ecb::priceTerminal('interface', $primary_language)
-        ],
-        'customer' => [
-            'total_with_shipping_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_total_with_shipping'), 1),
-            'total_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_total'), 1),
-            'shipping_price_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_shipping_price'), 1),
-            'total_to_pay_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_to_pay'), 1),
-            'order_total_tax_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_total_tax'), 1),
-            'order_interface_data' => \eMarket\Ecb::priceTerminal('interface', lang('#lang_all')[0])
-        ],
-        'data' => [
-            'total_with_shipping' => \eMarket\Valid::inPOST('order_total_with_shipping'),
-            'total' => \eMarket\Valid::inPOST('order_total'),
-            'shipping_price' => \eMarket\Valid::inPOST('order_shipping_price'),
-            'total_to_pay' => \eMarket\Valid::inPOST('order_to_pay'),
-            'order_total_tax' => \eMarket\Valid::inPOST('order_total_tax')
-        ]
+    eMarket\Ecb::priceTerminal($primary_language);
+    $order_total['admin'] = [
+        'total_with_shipping_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_total_with_shipping'), 1, $primary_language),
+        'total_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_total'), 1, $primary_language),
+        'shipping_price_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_shipping_price'), 1, $primary_language),
+        'total_to_pay_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_to_pay'), 1, $primary_language),
+        'order_total_tax_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_total_tax'), 1, $primary_language),
+        'order_interface_data' => $INTERFACE->load('priceTerminal', 'data')
+    ];
+
+    \eMarket\Ecb::priceTerminal(lang('#lang_all')[0]);
+    $order_total['customer'] = [
+        'total_with_shipping_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_total_with_shipping'), 1),
+        'total_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_total'), 1),
+        'shipping_price_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_shipping_price'), 1),
+        'total_to_pay_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_to_pay'), 1),
+        'order_total_tax_format' => \eMarket\Ecb::formatPrice(\eMarket\Valid::inPOST('order_total_tax'), 1),
+        'order_interface_data' => $INTERFACE->load('priceTerminal', 'data')
+    ];
+
+    $order_total['data'] = [
+        'total_with_shipping' => \eMarket\Valid::inPOST('order_total_with_shipping'),
+        'total' => \eMarket\Valid::inPOST('order_total'),
+        'shipping_price' => \eMarket\Valid::inPOST('order_shipping_price'),
+        'total_to_pay' => \eMarket\Valid::inPOST('order_to_pay'),
+        'order_total_tax' => \eMarket\Valid::inPOST('order_total_tax')
     ];
 
     $admin_payment_method = lang('modules_payment_' . \eMarket\Valid::inPOST('payment_method') . '_name', $primary_language, 'all');

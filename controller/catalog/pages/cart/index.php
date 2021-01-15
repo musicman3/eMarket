@@ -4,11 +4,14 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-
+$INTERFACE = new \eMarket\Interfaces();
 // JSON ECHO SHIPPING
 if (\eMarket\Valid::inPOST('shipping_region_json')) {
     $zones_id = \eMarket\Shipping::shippingZonesAvailable(\eMarket\Valid::inPOST('shipping_region_json'));
-    $modules_data = \eMarket\Shipping::loadData($zones_id);
+    \eMarket\Shipping::loadData($zones_id);
+    
+    $modules_data = $INTERFACE->load('shipping');
+    
     $interface_data = [];
     foreach ($modules_data as $data) {
 
@@ -42,7 +45,9 @@ if (\eMarket\Valid::inPOST('shipping_region_json')) {
 
 // JSON ECHO PAYMENT
 if (\eMarket\Valid::inPOST('payment_shipping_json')) {
-    $modules_data = \eMarket\Payment::loadData(\eMarket\Valid::inPOST('payment_shipping_json'));
+    \eMarket\Payment::loadData(\eMarket\Valid::inPOST('payment_shipping_json'));
+    
+    $modules_data = $INTERFACE->load('payment');
 
     $interface_data = [];
     foreach ($modules_data as $data) {

@@ -76,6 +76,8 @@ class Sale {
         $discount_val = json_decode($input['discount'], 1);
         $currency = $input['currency'];
         $input_price = \eMarket\Ecb::currencyPrice($input['price'], $currency);
+        
+        $INTERFACE = new \eMarket\Interfaces();
 
         if (array_key_exists('sale', $discount_val) && count($discount_val['sale']) > 0 && self::status() != FALSE && self::status() == 1) {
 
@@ -103,21 +105,24 @@ class Sale {
 
             $out_price = $input_price / 100 * (100 - $total_rate);
 
-            $interface = [
+            $out_data = [
                 'price' => $out_price,
                 'names' => $discount_names,
-                'sales' => $discount_out
+                'discounts' => $discount_out
             ];
 
-            return $interface;
-        }
+            $INTERFACE->save('discount', 'sale', $out_data);
+            
+        } else {
 
-        $interface = [
-            'price' => $input_price,
-            'names' => 'false',
-            'sales' => 'false'
-        ];
-        return $interface;
+            $out_data = [
+                'price' => $input_price,
+                'names' => 'false',
+                'discounts' => 'false'
+            ];
+            
+            $INTERFACE->save('discount', 'sale', $out_data);
+        }
     }
 
     /**

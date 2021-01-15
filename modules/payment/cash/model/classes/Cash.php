@@ -49,7 +49,8 @@ class Cash {
      * @return array $interface (выходные данные)
      */
     public static function load() {
-
+        
+        $INTERFACE = new \eMarket\Interfaces();
         // Интерфейс для модулей оплаты
         $interface = [
             'chanel_module_name' => 'cash',
@@ -61,8 +62,8 @@ class Cash {
             'chanel_callback_data' => json_encode([]), // пример: ['id' => '', 'price' => '']
             'chanel_image' => ''
         ];
-
-        return $interface;
+        
+        $INTERFACE->save('payment', 'cash', $interface);
     }
 
 }

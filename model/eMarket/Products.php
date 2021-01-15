@@ -204,12 +204,15 @@ class Products {
         foreach (self::$stiker_data as $val) {
             $stiker_name[$val['id']] = $val['name'];
         }
-
-        $discount_sales = \eMarket\Ecb::discountHandler($input)['interface'];
+        
+        $INTERFACE = new \eMarket\Interfaces();
+        \eMarket\Ecb::discountHandler($input);
+        $discount_handler = $INTERFACE->load('discountHandler', 'data', 'discounts_data');
+        
         $discount_total_sale = 0;
-        foreach ($discount_sales as $discount_sale) {
-            if ($discount_sale['sales'] != 'false') {
-                foreach ($discount_sale['sales'] as $total_sale) {
+        foreach ($discount_handler as $data) {
+            if ($data['discounts'] != 'false') {
+                foreach ($data['discounts'] as $total_sale) {
                     $discount_total_sale = $discount_total_sale + $total_sale;
                 }
             }
