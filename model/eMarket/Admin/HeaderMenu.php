@@ -16,13 +16,14 @@ namespace eMarket\Admin;
  */
 class HeaderMenu {
 
-    public static $menu_market = '0'; //МАГАЗИН
-    public static $menu_sales = '1'; // ПРОДАЖИ
-    public static $menu_marketing = '2'; //МАРКЕТИНГ
-    public static $menu_customers = '3'; //КОНТРАГЕНТЫ
-    public static $menu_tools = '4'; //ИНСТРУМЕНТЫ
-    public static $menu_help = '5'; //ПОМОЩЬ
-    public static $menu_exit = '6'; //ВЫХОД
+    public static $menu_market = '0';
+    public static $menu_sales = '1';
+    public static $menu_marketing = '2';
+    public static $menu_customers = '3';
+    public static $menu_tools = '4';
+    public static $menu_help = '5';
+    public static $menu_exit = '6';
+    
     public static $level = [];
     public static $menu = [];
     public static $submenu = [];
@@ -58,7 +59,6 @@ class HeaderMenu {
      *
      */
     public function levelOne() {
-
         self::$level[self::$menu_market] = ['#', lang('menu_market'), 'true'];
         self::$level[self::$menu_sales] = ['#', lang('menu_sellings'), 'true'];
         self::$level[self::$menu_marketing] = ['#', lang('menu_marketing'), 'true'];
