@@ -10,7 +10,7 @@ namespace eMarket\Admin;
 /**
  * Index
  *
- * @package Catalog
+ * @package Admin
  * @author eMarket
  * 
  */
