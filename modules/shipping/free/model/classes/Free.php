@@ -63,16 +63,16 @@ class Free {
                     'chanel_id' => $data['id'],
                     'chanel_module_name' => 'free',
                     'chanel_name' => lang('modules_shipping_free_name'),
-                    'chanel_total_price' => $INTERFACE->load('priceTerminal', 'discounted_price'),
-                    'chanel_total_price_format' => \eMarket\Ecb::formatPrice($INTERFACE->load('priceTerminal', 'discounted_price'), 1),
+                    'chanel_total_price' => $INTERFACE->load('priceTerminal', 'data', 'discounted_price'),
+                    'chanel_total_price_format' => \eMarket\Ecb::formatPrice($INTERFACE->load('priceTerminal', 'data', 'discounted_price'), 1),
                     'chanel_minimum_price' => \eMarket\Ecb::currencyPrice($data['minimum_price'], $data['currency']),
                     'chanel_minimum_price_format' => \eMarket\Ecb::formatPrice(\eMarket\Ecb::currencyPrice($data['minimum_price'], $data['currency']), 1),
                     'chanel_shipping_price' => 0,
                     'chanel_shipping_price_format' => \eMarket\Ecb::formatPrice(0, 1),
-                    'chanel_total_price_with_shipping' => $INTERFACE->load('priceTerminal', 'discounted_price') + 0,
-                    'chanel_total_price_with_shipping_format' => \eMarket\Ecb::formatPrice($INTERFACE->load('priceTerminal', 'discounted_price') + 0, 1),
-                    'chanel_total_tax' => $INTERFACE->load('priceTerminal', 'total_tax_price'),
-                    'chanel_total_tax_format' => \eMarket\Ecb::formatPrice($INTERFACE->load('priceTerminal', 'total_tax_price'), 1),
+                    'chanel_total_price_with_shipping' => $INTERFACE->load('priceTerminal', 'data', 'discounted_price') + 0,
+                    'chanel_total_price_with_shipping_format' => \eMarket\Ecb::formatPrice($INTERFACE->load('priceTerminal', 'data', 'discounted_price') + 0, 1),
+                    'chanel_total_tax' => $INTERFACE->load('priceTerminal', 'data', 'total_tax_price'),
+                    'chanel_total_tax_format' => \eMarket\Ecb::formatPrice($INTERFACE->load('priceTerminal', 'data', 'total_tax_price'), 1),
                     'chanel_image' => ''
                 ];
                 array_push($interface_data_all, $interface_data);

@@ -84,7 +84,7 @@ final class Ecb {
         
         $INTERFACE = new \eMarket\Interfaces();
         self::priceTerminal();
-        $total_terminal_price = $INTERFACE->load('priceTerminal', 'discounted_price');
+        $total_terminal_price = $INTERFACE->load('priceTerminal', 'data', 'discounted_price');
         
         $total_price = \eMarket\Cart::totalPrice();
 
@@ -153,7 +153,7 @@ final class Ecb {
         $price_terminal_data['discounted_price'] = $discounted_total_price;
         $price_terminal_data['total_tax_price'] = $total_price_with_tax;
         
-        $INTERFACE->save('priceTerminal', $price_terminal_data);
+        $INTERFACE->save('priceTerminal', 'data', $price_terminal_data);
     }
 
     /**
