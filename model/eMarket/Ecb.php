@@ -224,6 +224,7 @@ final class Ecb {
             ];
 
             $INTERFACE->save('discountHandler', 'data', $out_data);
+            
         } else {
             $out_data = [
                 'out_price' => $input_price,
