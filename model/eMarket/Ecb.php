@@ -84,7 +84,7 @@ final class Ecb {
         
         $INTERFACE = new \eMarket\Interfaces();
         self::priceTerminal();
-        $total_terminal_price = $INTERFACE->load('priceTerminal', 'data', 'discounted_price');
+        $discounted_price = $INTERFACE->load('priceTerminal', 'data', 'discounted_price');
         
         $total_price = \eMarket\Cart::totalPrice();
 
@@ -92,8 +92,8 @@ final class Ecb {
             $class = 'danger';
         }
 
-        if ($total_price != $total_terminal_price) {
-            return '<del>' . self::formatPrice($total_price, $marker) . '</del><br><span class="label label-' . $class . '">' . self::formatPrice($total_terminal_price, $marker) . '</span>';
+        if ($total_price != $discounted_price) {
+            return '<del>' . self::formatPrice($total_price, $marker) . '</del><br><span class="label label-' . $class . '">' . self::formatPrice($discounted_price, $marker) . '</span>';
         }
         return self::formatPrice($total_price, $marker);
     }
