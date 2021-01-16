@@ -121,6 +121,8 @@ class Success {
                 ];
 
                 array_push($invoice, $data);
+
+                \eMarket\Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET quantity=quantity- " . $value['quantity'] . ", ordered=ordered+ " . $value['quantity'] . " WHERE id=?", [$value['id']]);
             }
 
             \eMarket\Ecb::priceTerminal($primary_language);
@@ -169,8 +171,6 @@ class Success {
                     . ", orders_transactions_history=?, customer_ip_address=?, payment_method=?, shipping_method=?, last_modified=?, date_purchased=?",
                     [$_SESSION['email_customer'], json_encode($customer), $orders_status_history, \eMarket\Valid::inPOST('products_order'), json_encode($order_total), json_encode($invoice),
                         NULL, \eMarket\Settings::ipAddress(), $payment_method, $shipping_method, NULL, date("Y-m-d H:i:s")]);
-
-            \eMarket\Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET quantity=quantity- " . $value['quantity'] . ", ordered=ordered+ " . $value['quantity'] . " WHERE id=?", [$value['id']]);
 
             unset($_SESSION['cart']);
 
