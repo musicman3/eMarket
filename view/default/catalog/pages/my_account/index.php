@@ -5,13 +5,13 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 // ПОДКЛЮЧАЕМ КОНТЕНТ
-foreach (\eMarket\View::tlpc('content') as $path) {
+foreach (\eMarket\Core\View::tlpc('content') as $path) {
     require_once (ROOT . $path);
 }
 ?>
 
 <!--Выводим уведомление об успешном действии-->
-<div id="alert_block"><?php \eMarket\Messages::alert(); ?></div>
+<div id="alert_block"><?php \eMarket\Core\Messages::alert(); ?></div>
 <h1><?php echo lang('my_account_name') ?></h1>
 
 <div id="my_account" class="contentText">
@@ -25,25 +25,25 @@ foreach (\eMarket\View::tlpc('content') as $path) {
                     <small class="form-text text-muted"><?php echo lang('my_account_firstname') ?></small>
                     <div class="input-group has-success">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                        <input class="input-sm form-control" placeholder="<?php echo lang('my_account_enter_your_firstname') ?>" type="text" name="firstname" id="firstname" value="<?php echo \eMarket\Autorize::$CUSTOMER['firstname'] ?>" />
+                        <input class="input-sm form-control" placeholder="<?php echo lang('my_account_enter_your_firstname') ?>" type="text" name="firstname" id="firstname" value="<?php echo \eMarket\Core\Autorize::$CUSTOMER['firstname'] ?>" />
                     </div>
 
                     <small class="form-text text-muted"><?php echo lang('my_account_lastname') ?></small>
                     <div class="input-group has-success">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                        <input class="input-sm form-control" placeholder="<?php echo lang('my_account_enter_your_lastname') ?>" type="text" name="lastname" id="lastname" value="<?php echo \eMarket\Autorize::$CUSTOMER['lastname'] ?>" />
+                        <input class="input-sm form-control" placeholder="<?php echo lang('my_account_enter_your_lastname') ?>" type="text" name="lastname" id="lastname" value="<?php echo \eMarket\Core\Autorize::$CUSTOMER['lastname'] ?>" />
                     </div>
 
                     <small class="form-text text-muted"><?php echo lang('my_account_middlename') ?></small>
                     <div class="input-group has-success">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                        <input class="input-sm form-control" placeholder="<?php echo lang('my_account_enter_your_middlename') ?>" type="text" name="middle_name" id="middle_name" value="<?php echo \eMarket\Autorize::$CUSTOMER['middle_name'] ?>" />
+                        <input class="input-sm form-control" placeholder="<?php echo lang('my_account_enter_your_middlename') ?>" type="text" name="middle_name" id="middle_name" value="<?php echo \eMarket\Core\Autorize::$CUSTOMER['middle_name'] ?>" />
                     </div>
                     
                     <small class="form-text text-muted"><?php echo lang('my_account_telephone') ?></small>
                     <div class="input-group has-success">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                        <input class="input-sm form-control" placeholder="<?php echo lang('my_account_enter_your_phone') ?>" type="text" name="telephone" id="lastname" value="<?php echo \eMarket\Autorize::$CUSTOMER['telephone'] ?>" />
+                        <input class="input-sm form-control" placeholder="<?php echo lang('my_account_enter_your_phone') ?>" type="text" name="telephone" id="lastname" value="<?php echo \eMarket\Core\Autorize::$CUSTOMER['telephone'] ?>" />
                     </div>
 
                 </div>

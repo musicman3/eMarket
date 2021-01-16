@@ -26,8 +26,8 @@ class Categories {
      * @return obj
      */
     public static function data() {
-        $sql = \eMarket\Pdo::getObj("SELECT id, name, status, parent_id FROM " . TABLE_CATEGORIES . " WHERE language=? AND status=? ORDER BY sort_category DESC", [lang('#lang_all')[0], 1]);
-        self::$categories_and_breadcrumb = \eMarket\Func::escape_sign(\eMarket\Tree::categories($sql, \eMarket\Valid::inGET('category_id')));
+        $sql = \eMarket\Core\Pdo::getObj("SELECT id, name, status, parent_id FROM " . TABLE_CATEGORIES . " WHERE language=? AND status=? ORDER BY sort_category DESC", [lang('#lang_all')[0], 1]);
+        self::$categories_and_breadcrumb = \eMarket\Core\Func::escape_sign(\eMarket\Core\Tree::categories($sql, \eMarket\Core\Valid::inGET('category_id')));
     }
 
     /**
@@ -36,7 +36,7 @@ class Categories {
      * @return string url
      */
     public static function indexData() {
-        self::$index_data = \eMarket\Pdo::getColRow("SELECT id, name, logo_general, status FROM " . TABLE_CATEGORIES . " WHERE language=? AND parent_id=? AND status=? ORDER BY sort_category DESC", [lang('#lang_all')[0], 0, 1]);
+        self::$index_data = \eMarket\Core\Pdo::getColRow("SELECT id, name, logo_general, status FROM " . TABLE_CATEGORIES . " WHERE language=? AND parent_id=? AND status=? ORDER BY sort_category DESC", [lang('#lang_all')[0], 0, 1]);
     }
 
     /**
@@ -45,7 +45,7 @@ class Categories {
      * @return string url
      */
     public static function listingData() {
-        self::$listing_data = \eMarket\Pdo::getColRow("SELECT id, name, logo_general, status FROM " . TABLE_CATEGORIES . " WHERE language=? AND parent_id=? AND status=? ORDER BY sort_category DESC", [lang('#lang_all')[0], \eMarket\Valid::inGET('category_id'), 1]);
+        self::$listing_data = \eMarket\Core\Pdo::getColRow("SELECT id, name, logo_general, status FROM " . TABLE_CATEGORIES . " WHERE language=? AND parent_id=? AND status=? ORDER BY sort_category DESC", [lang('#lang_all')[0], \eMarket\Core\Valid::inGET('category_id'), 1]);
     }
 
 }

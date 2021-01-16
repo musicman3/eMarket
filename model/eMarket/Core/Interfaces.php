@@ -5,7 +5,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-namespace eMarket;
+namespace eMarket\Core;
 
 /**
  * Data Interfaces

@@ -10,7 +10,7 @@
     <div class="panel panel-default">
 	<div class="panel-heading">
 	    <h3 class="panel-title">
-		<span class="settings_back"><button type="button" onClick='location.href = "<?php echo \eMarket\Settings::parentPartitionGenerator() ?>"' class="btn btn-primary btn-xs"><span class="back glyphicon glyphicon-share-alt"></span></button></span><span class="settings_name"><?php echo \eMarket\Settings::titlePageGenerator() ?></span>
+		<span class="settings_back"><button type="button" onClick='location.href = "<?php echo \eMarket\Core\Settings::parentPartitionGenerator() ?>"' class="btn btn-primary btn-xs"><span class="back glyphicon glyphicon-share-alt"></span></button></span><span class="settings_name"><?php echo \eMarket\Core\Settings::titlePageGenerator() ?></span>
 	    </h3>
 	</div>
 	<div class="panel-body">
@@ -21,10 +21,10 @@
 		    <form method="get" name="select_template" action="index.php">
 			<input hidden name="route" value="settings/templates">
 			<select name="name_templates" id="name_templates" class="input-sm form-control"  onchange="selectTemplate()">
-			    <option><?php echo \eMarket\Settings::template() ?></option>
+			    <option><?php echo \eMarket\Core\Settings::template() ?></option>
 			    <?php
 			    foreach (\eMarket\Admin\Templates::$name_template as $path) {
-				if ($path != '.' && $path != '..' && $path != \eMarket\Settings::template()) {
+				if ($path != '.' && $path != '..' && $path != \eMarket\Core\Settings::template()) {
 				    if ($path == \eMarket\Admin\Templates::$select_template) {
 					?>
 	    			    <option selected><?php echo $path ?></option>

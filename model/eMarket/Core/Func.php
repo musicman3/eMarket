@@ -5,7 +5,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-namespace eMarket;
+namespace eMarket\Core;
 
 /**
  * Класс для вспомогательных функций
@@ -61,7 +61,7 @@ class Func {
      * 
      * $val = 2; - это ключ ячейки Город [2] из которого берется значение Города для нового одномерного массива
      *
-     * $mass = \eMarket\Func::filterArrayToKey($array, $value_key, $name_key, $val);
+     * $mass = \eMarket\Core\Func::filterArrayToKey($array, $value_key, $name_key, $val);
      * 
      * на выходе получаем сортированный массив
      * 
@@ -138,7 +138,7 @@ class Func {
      * 
      * $key = 0; - это будущий ключ массива из уникального значения ячейки
      *
-     * $mass = \eMarket\Func::filterArrayToKey($array, $value_key, $name_key, $val);
+     * $mass = \eMarket\Core\Func::filterArrayToKey($array, $value_key, $name_key, $val);
      * 
      * на выходе получаем сортированный массив
      * 
@@ -191,7 +191,7 @@ class Func {
       [1] => 1
       )
      * 
-     * Использовать так: $multiselect = \eMarket\Func::arrayExplode($array, '-');
+     * Использовать так: $multiselect = \eMarket\Core\Func::arrayExplode($array, '-');
      * 
      * @param array $array (исходный одномерный массив с разделителем)
      * @param string $delimiter (разделитель)
@@ -389,7 +389,7 @@ class Func {
             }
         }
 
-        parse_str(\eMarket\Valid::inSERVER('QUERY_STRING'), $vars);
+        parse_str(\eMarket\Core\Valid::inSERVER('QUERY_STRING'), $vars);
         $url = http_build_query(array_diff_key($vars, $array));
         return '?' . $url;
     }

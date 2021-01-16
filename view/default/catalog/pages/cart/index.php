@@ -5,7 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 // ПОДКЛЮЧАЕМ КОНТЕНТ
-foreach (\eMarket\View::tlpc('content') as $path) {
+foreach (\eMarket\Core\View::tlpc('content') as $path) {
     require_once (ROOT . $path);
 }
 ?>
@@ -31,17 +31,17 @@ foreach (\eMarket\View::tlpc('content') as $path) {
                         <tr>
                             <td class="text-center"><a href="/?route=products&category_id=<?php echo $value['parent_id'] ?>&id=<?php echo $value['id'] ?>"><img src="/uploads/images/products/resize_0/<?php echo $value['logo_general'] ?>" alt="<?php echo $value['name'] ?>" class="img-responsive center-block"></a></td>
                             <td class="text-center"><a href="/?route=products&category_id=<?php echo $value['parent_id'] ?>&id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></td>
-                            <td class="text-center"><?php echo \eMarket\Ecb::priceInterface($value, 1) ?></td>
+                            <td class="text-center"><?php echo \eMarket\Core\Ecb::priceInterface($value, 1) ?></td>
                             <td class="text-center">
                                 <form id="quantity_product" name="quantity_product" action="javascript:void(null);" onsubmit="Cart.quantityProduct(<?php echo $value['id'] ?>, $('#number_<?php echo $value['id'] ?>').val())">
                                     <button class="btn btn-primary btn-sm" type="button" onclick="Cart.pcsProduct('minus', <?php echo $value['id'] ?>)"><span class="glyphicon glyphicon-minus"></span></button>
-                                    <input id="number_<?php echo $value['id'] ?>" data-placement="top" data-content="<?php echo lang('listing_no_more_in_stock') ?>" type="number" min="1" value="<?php echo \eMarket\Cart::productQuantity($value['id']) ?>" class="quantity">
+                                    <input id="number_<?php echo $value['id'] ?>" data-placement="top" data-content="<?php echo lang('listing_no_more_in_stock') ?>" type="number" min="1" value="<?php echo \eMarket\Core\Cart::productQuantity($value['id']) ?>" class="quantity">
                                     <button class="btn btn-primary btn-sm button-plus" type="button" onclick="Cart.pcsProduct('plus', <?php echo $value['id'] ?>, <?php echo $value['quantity'] ?>)"><span class="glyphicon glyphicon-plus"></span></button>
                                     <button class="btn btn-primary btn-sm" type="submit"><span class="glyphicon glyphicon-refresh"></span></button>
                                     <button class="btn btn-primary btn-sm" type="button" onclick="Cart.deleteProduct(<?php echo $value['id'] ?>)"><span class="glyphicon glyphicon-trash"></span></button>
                                 </form>
                             </td>
-                            <td class="text-center"><?php echo \eMarket\Ecb::priceInterface($value, 1, \eMarket\Cart::productQuantity($value['id'], 1)) ?></td>
+                            <td class="text-center"><?php echo \eMarket\Core\Ecb::priceInterface($value, 1, \eMarket\Core\Cart::productQuantity($value['id'], 1)) ?></td>
                         </tr>
                     <?php } ?>
                 </tbody>
@@ -54,7 +54,7 @@ foreach (\eMarket\View::tlpc('content') as $path) {
                     <tbody>
                         <tr>
                             <td class="text-right"><strong><?php echo lang('cart_subtotal') ?></strong></td>
-                            <td class="text-right"><?php echo \eMarket\Ecb::totalPriceCartInterface(1) ?></td>
+                            <td class="text-right"><?php echo \eMarket\Core\Ecb::totalPriceCartInterface(1) ?></td>
                         </tr>
                     </tbody>
                 </table>

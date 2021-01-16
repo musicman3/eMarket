@@ -47,16 +47,16 @@ class Manufacturers {
      *
      */
     public function add() {
-        if (\eMarket\Valid::inPOST('add')) {
+        if (\eMarket\Core\Valid::inPOST('add')) {
 
-            $id_max = \eMarket\Pdo::selectPrepare("SELECT id FROM " . TABLE_MANUFACTURERS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+            $id_max = \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . TABLE_MANUFACTURERS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max) + 1;
 
-            for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
-                \eMarket\Pdo::action("INSERT INTO " . TABLE_MANUFACTURERS . " SET id=?, name=?, language=?, site=?, logo=?", [$id, \eMarket\Valid::inPOST('name_manufacturers_' . $x), lang('#lang_all')[$x], \eMarket\Valid::inPOST('site_manufacturers'), json_encode([])]);
+            for ($x = 0; $x < \eMarket\Core\Lang::$COUNT; $x++) {
+                \eMarket\Core\Pdo::action("INSERT INTO " . TABLE_MANUFACTURERS . " SET id=?, name=?, language=?, site=?, logo=?", [$id, \eMarket\Core\Valid::inPOST('name_manufacturers_' . $x), lang('#lang_all')[$x], \eMarket\Core\Valid::inPOST('site_manufacturers'), json_encode([])]);
             }
 
-            \eMarket\Messages::alert('success', lang('action_completed_successfully'));
+            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
         }
     }
 
@@ -65,13 +65,13 @@ class Manufacturers {
      *
      */
     public function edit() {
-        if (\eMarket\Valid::inPOST('edit')) {
+        if (\eMarket\Core\Valid::inPOST('edit')) {
 
-            for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
-                \eMarket\Pdo::action("UPDATE " . TABLE_MANUFACTURERS . " SET name=?, site=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_manufacturers_' . $x), \eMarket\Valid::inPOST('site_manufacturers'), \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
+            for ($x = 0; $x < \eMarket\Core\Lang::$COUNT; $x++) {
+                \eMarket\Core\Pdo::action("UPDATE " . TABLE_MANUFACTURERS . " SET name=?, site=? WHERE id=? AND language=?", [\eMarket\Core\Valid::inPOST('name_manufacturers_' . $x), \eMarket\Core\Valid::inPOST('site_manufacturers'), \eMarket\Core\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
             }
 
-            \eMarket\Messages::alert('success', lang('action_completed_successfully'));
+            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
         }
     }
 
@@ -87,7 +87,7 @@ class Manufacturers {
         //array_push($resize_param, ['325','244']);
         //array_push($resize_param, ['525','394']);
         //array_push($resize_param, ['850','638']);
-        \eMarket\Files::imgUpload(TABLE_MANUFACTURERS, 'manufacturers', self::$resize_param);
+        \eMarket\Core\Files::imgUpload(TABLE_MANUFACTURERS, 'manufacturers', self::$resize_param);
     }
 
     /**
@@ -95,11 +95,11 @@ class Manufacturers {
      *
      */
     public function delete() {
-        if (\eMarket\Valid::inPOST('delete')) {
+        if (\eMarket\Core\Valid::inPOST('delete')) {
 
-            \eMarket\Pdo::action("DELETE FROM " . TABLE_MANUFACTURERS . " WHERE id=?", [\eMarket\Valid::inPOST('delete')]);
+            \eMarket\Core\Pdo::action("DELETE FROM " . TABLE_MANUFACTURERS . " WHERE id=?", [\eMarket\Core\Valid::inPOST('delete')]);
 
-            \eMarket\Messages::alert('success', lang('action_completed_successfully'));
+            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
         }
     }
 
@@ -108,9 +108,9 @@ class Manufacturers {
      *
      */
     public function data() {
-        self::$sql_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_MANUFACTURERS . " ORDER BY id DESC", []);
-        $lines = \eMarket\Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
-        \eMarket\Pages::table($lines);
+        self::$sql_data = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_MANUFACTURERS . " ORDER BY id DESC", []);
+        $lines = \eMarket\Core\Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
+        \eMarket\Core\Pages::table($lines);
     }
 
     /**
@@ -120,10 +120,10 @@ class Manufacturers {
     public function modal() {
         self::$json_data = json_encode([]);
         $name = [];
-        for ($i = \eMarket\Pages::$start; $i < \eMarket\Pages::$finish; $i++) {
-            if (isset(\eMarket\Pages::$table['lines'][$i]['id']) == TRUE) {
+        for ($i = \eMarket\Core\Pages::$start; $i < \eMarket\Core\Pages::$finish; $i++) {
+            if (isset(\eMarket\Core\Pages::$table['lines'][$i]['id']) == TRUE) {
 
-                $modal_id = \eMarket\Pages::$table['lines'][$i]['id'];
+                $modal_id = \eMarket\Core\Pages::$table['lines'][$i]['id'];
 
                 foreach (self::$sql_data as $sql_modal) {
                     if ($sql_modal['id'] == $modal_id) {

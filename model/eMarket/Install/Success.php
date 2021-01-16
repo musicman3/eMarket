@@ -39,26 +39,26 @@ class Success {
      */
     public function config() {
         self::$ROOT = getenv('DOCUMENT_ROOT');
-        self::$db_family = \eMarket\Valid::inPOST('database_family');
-        $db_pref = \eMarket\Valid::inPOST('database_prefix');
-        self::$db_type = \eMarket\Valid::inPOST('database_type');
-        self::$lng = strtolower(\eMarket\Valid::inPOST('language'));
-        self::$login_admin = \eMarket\Valid::inPOST('login_admin');
-        self::$password_admin = \eMarket\Valid::inPOST('password_admin');
+        self::$db_family = \eMarket\Core\Valid::inPOST('database_family');
+        $db_pref = \eMarket\Core\Valid::inPOST('database_prefix');
+        self::$db_type = \eMarket\Core\Valid::inPOST('database_type');
+        self::$lng = strtolower(\eMarket\Core\Valid::inPOST('language'));
+        self::$login_admin = \eMarket\Core\Valid::inPOST('login_admin');
+        self::$password_admin = \eMarket\Core\Valid::inPOST('password_admin');
 
         self::$config = '<?php' . "\n" .
-                '  define(\'HTTP_SERVER\', \'' . 'http://' . \eMarket\Valid::inSERVER('HTTP_HOST') . '/' . '\');' . "\n" .
+                '  define(\'HTTP_SERVER\', \'' . 'http://' . \eMarket\Core\Valid::inSERVER('HTTP_HOST') . '/' . '\');' . "\n" .
                 '  define(\'ROOT\', \'' . self::$ROOT . '\');' . "\n" .
-                '  define(\'DB_SERVER\', \'' . \eMarket\Valid::inPOST('server_db') . '\');' . "\n" .
-                '  define(\'DB_USERNAME\', \'' . \eMarket\Valid::inPOST('login_db') . '\');' . "\n" .
-                '  define(\'DB_PASSWORD\', \'' . \eMarket\Valid::inPOST('password_db') . '\');' . "\n" .
-                '  define(\'DB_NAME\', \'' . \eMarket\Valid::inPOST('database_name') . '\');' . "\n" .
+                '  define(\'DB_SERVER\', \'' . \eMarket\Core\Valid::inPOST('server_db') . '\');' . "\n" .
+                '  define(\'DB_USERNAME\', \'' . \eMarket\Core\Valid::inPOST('login_db') . '\');' . "\n" .
+                '  define(\'DB_PASSWORD\', \'' . \eMarket\Core\Valid::inPOST('password_db') . '\');' . "\n" .
+                '  define(\'DB_NAME\', \'' . \eMarket\Core\Valid::inPOST('database_name') . '\');' . "\n" .
                 '  define(\'DB_FAMILY\', \'' . self::$db_family . '\');' . "\n" .
                 '  define(\'DB_PREFIX\', \'' . $db_pref . '\');' . "\n" .
-                '  define(\'DB_PORT\', \'' . \eMarket\Valid::inPOST('database_port') . '\');' . "\n" .
+                '  define(\'DB_PORT\', \'' . \eMarket\Core\Valid::inPOST('database_port') . '\');' . "\n" .
                 '  define(\'DB_TYPE\', \'' . self::$db_type . '\');' . "\n" .
-                '  define(\'HASH_METHOD\', \'' . \eMarket\Valid::inPOST('hash_method') . '\');' . "\n" .
-                '  define(\'CRYPT_METHOD\', \'' . \eMarket\Valid::inPOST('crypt_method') . '\');' . "\n" .
+                '  define(\'HASH_METHOD\', \'' . \eMarket\Core\Valid::inPOST('hash_method') . '\');' . "\n" .
+                '  define(\'CRYPT_METHOD\', \'' . \eMarket\Core\Valid::inPOST('crypt_method') . '\');' . "\n" .
                 '  define(\'TABLE_ADMINISTRATORS\', \'' . $db_pref . 'administrators' . '\');' . "\n" .
                 '  define(\'TABLE_BASIC_SETTINGS\', \'' . $db_pref . 'basic_settings' . '\');' . "\n" .
                 '  define(\'TABLE_CATEGORIES\', \'' . $db_pref . 'categories' . '\');' . "\n" .
@@ -118,13 +118,13 @@ class Success {
             $buffer = str_ireplace('ENGINE=InnoDB', 'ENGINE=MyISAM', $buffer);
         }
 
-        \eMarket\Pdo::getExec($buffer);
+        \eMarket\Core\Pdo::getExec($buffer);
 
-        $password_admin_hash = \eMarket\Autorize::passwordHash(self::$password_admin);
+        $password_admin_hash = \eMarket\Core\Autorize::passwordHash(self::$password_admin);
 
-        if (\eMarket\Valid::inPOST('login_admin') && \eMarket\Valid::inPOST('password_admin')) {
-            \eMarket\Pdo::action("INSERT INTO " . TABLE_ADMINISTRATORS . "  SET login=?, password=?, permission=?, language=?", [self::$login_admin, $password_admin_hash, 'admin', self::$lng]);
-            \eMarket\Pdo::action("UPDATE " . TABLE_BASIC_SETTINGS . " SET primary_language=?", [self::$lng]);
+        if (\eMarket\Core\Valid::inPOST('login_admin') && \eMarket\Core\Valid::inPOST('password_admin')) {
+            \eMarket\Core\Pdo::action("INSERT INTO " . TABLE_ADMINISTRATORS . "  SET login=?, password=?, permission=?, language=?", [self::$login_admin, $password_admin_hash, 'admin', self::$lng]);
+            \eMarket\Core\Pdo::action("UPDATE " . TABLE_BASIC_SETTINGS . " SET primary_language=?", [self::$lng]);
         }
 
         // .HTACCESS
@@ -148,7 +148,7 @@ RewriteRule ^(.*)$ controller/catalog/$1 [L,QSA]";
             chmod(ROOT . '/.htaccess', 0644);
         }
 
-        \eMarket\Pdo::action("UPDATE " . TABLE_BASIC_SETTINGS . " SET primary_language=?", [self::$lng]);
+        \eMarket\Core\Pdo::action("UPDATE " . TABLE_BASIC_SETTINGS . " SET primary_language=?", [self::$lng]);
     }
 
 }

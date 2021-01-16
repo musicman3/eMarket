@@ -65,13 +65,13 @@ class BasicSettings {
      *
      */
     public function linesOnPage() {
-        if (\eMarket\Valid::inPOST('lines_on_page')) {
+        if (\eMarket\Core\Valid::inPOST('lines_on_page')) {
 
-            \eMarket\Pdo::action("UPDATE " . TABLE_BASIC_SETTINGS . " SET lines_on_page=?", [\eMarket\Valid::inPOST('lines_on_page')]);
+            \eMarket\Core\Pdo::action("UPDATE " . TABLE_BASIC_SETTINGS . " SET lines_on_page=?", [\eMarket\Core\Valid::inPOST('lines_on_page')]);
 
-            \eMarket\Messages::alert('success', lang('action_completed_successfully'));
+            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
 
-            self::$lines_on_page = \eMarket\Settings::linesOnPage();
+            self::$lines_on_page = \eMarket\Core\Settings::linesOnPage();
         }
     }
 
@@ -80,11 +80,11 @@ class BasicSettings {
      *
      */
     public function sessionExprTime() {
-        if (\eMarket\Valid::inPOST('session_expr_time')) {
+        if (\eMarket\Core\Valid::inPOST('session_expr_time')) {
 
-            \eMarket\Pdo::action("UPDATE " . TABLE_BASIC_SETTINGS . " SET session_expr_time=?", [\eMarket\Valid::inPOST('session_expr_time')]);
+            \eMarket\Core\Pdo::action("UPDATE " . TABLE_BASIC_SETTINGS . " SET session_expr_time=?", [\eMarket\Core\Valid::inPOST('session_expr_time')]);
 
-            self::$session_expr_time = \eMarket\Settings::sessionExprTime();
+            self::$session_expr_time = \eMarket\Core\Settings::sessionExprTime();
         }
     }
 
@@ -93,19 +93,19 @@ class BasicSettings {
      *
      */
     public function debug() {
-        self::$debug = \eMarket\Pdo::getCell("SELECT debug FROM " . TABLE_BASIC_SETTINGS . "", []);
-        if (\eMarket\Valid::inPOST('debug')) {
+        self::$debug = \eMarket\Core\Pdo::getCell("SELECT debug FROM " . TABLE_BASIC_SETTINGS . "", []);
+        if (\eMarket\Core\Valid::inPOST('debug')) {
 
-            if (\eMarket\Valid::inPOST('debug') == lang('debug_on')) {
+            if (\eMarket\Core\Valid::inPOST('debug') == lang('debug_on')) {
                 $debug_set = 1;
             }
-            if (\eMarket\Valid::inPOST('debug') == lang('debug_off')) {
+            if (\eMarket\Core\Valid::inPOST('debug') == lang('debug_off')) {
                 $debug_set = 0;
             }
 
-            \eMarket\Pdo::action("UPDATE " . TABLE_BASIC_SETTINGS . " SET debug=?", [$debug_set]);
+            \eMarket\Core\Pdo::action("UPDATE " . TABLE_BASIC_SETTINGS . " SET debug=?", [$debug_set]);
 
-            self::$debug = \eMarket\Pdo::getCell("SELECT debug FROM " . TABLE_BASIC_SETTINGS . "", []);
+            self::$debug = \eMarket\Core\Pdo::getCell("SELECT debug FROM " . TABLE_BASIC_SETTINGS . "", []);
         }
     }
 
@@ -114,14 +114,14 @@ class BasicSettings {
      *
      */
     public function primaryLanguage() {
-        self::$primary_language = \eMarket\Settings::primaryLanguage();
-        self::$langs_settings = \eMarket\Func::deleteValInArray(lang('#lang_all'), [self::$primary_language]);
+        self::$primary_language = \eMarket\Core\Settings::primaryLanguage();
+        self::$langs_settings = \eMarket\Core\Func::deleteValInArray(lang('#lang_all'), [self::$primary_language]);
 
-        if (\eMarket\Valid::inPOST('primary_language')) {
+        if (\eMarket\Core\Valid::inPOST('primary_language')) {
 
-            \eMarket\Pdo::action("UPDATE " . TABLE_BASIC_SETTINGS . " SET primary_language=?", [\eMarket\Valid::inPOST('primary_language')]);
+            \eMarket\Core\Pdo::action("UPDATE " . TABLE_BASIC_SETTINGS . " SET primary_language=?", [\eMarket\Core\Valid::inPOST('primary_language')]);
 
-            self::$primary_language = \eMarket\Settings::primaryLanguage();
+            self::$primary_language = \eMarket\Core\Settings::primaryLanguage();
         }
     }
 
@@ -130,12 +130,12 @@ class BasicSettings {
      *
      */
     public function email() {
-        self::$email = \eMarket\Pdo::getCell("SELECT email FROM " . TABLE_BASIC_SETTINGS . "", []);
-        if (\eMarket\Valid::inPOST('email')) {
+        self::$email = \eMarket\Core\Pdo::getCell("SELECT email FROM " . TABLE_BASIC_SETTINGS . "", []);
+        if (\eMarket\Core\Valid::inPOST('email')) {
 
-            \eMarket\Pdo::action("UPDATE " . TABLE_BASIC_SETTINGS . " SET email=?", [\eMarket\Valid::inPOST('email')]);
+            \eMarket\Core\Pdo::action("UPDATE " . TABLE_BASIC_SETTINGS . " SET email=?", [\eMarket\Core\Valid::inPOST('email')]);
 
-            self::$email = \eMarket\Pdo::getCell("SELECT email FROM " . TABLE_BASIC_SETTINGS . "", []);
+            self::$email = \eMarket\Core\Pdo::getCell("SELECT email FROM " . TABLE_BASIC_SETTINGS . "", []);
         }
     }
 
@@ -144,12 +144,12 @@ class BasicSettings {
      *
      */
     public function emailName() {
-        self::$email_name = \eMarket\Pdo::getCell("SELECT email_name FROM " . TABLE_BASIC_SETTINGS . "", []);
-        if (\eMarket\Valid::inPOST('email_name')) {
+        self::$email_name = \eMarket\Core\Pdo::getCell("SELECT email_name FROM " . TABLE_BASIC_SETTINGS . "", []);
+        if (\eMarket\Core\Valid::inPOST('email_name')) {
 
-            \eMarket\Pdo::action("UPDATE " . TABLE_BASIC_SETTINGS . " SET email_name=?", [\eMarket\Valid::inPOST('email_name')]);
+            \eMarket\Core\Pdo::action("UPDATE " . TABLE_BASIC_SETTINGS . " SET email_name=?", [\eMarket\Core\Valid::inPOST('email_name')]);
 
-            self::$email_name = \eMarket\Pdo::getCell("SELECT email_name FROM " . TABLE_BASIC_SETTINGS . "", []);
+            self::$email_name = \eMarket\Core\Pdo::getCell("SELECT email_name FROM " . TABLE_BASIC_SETTINGS . "", []);
         }
     }
 
@@ -158,18 +158,18 @@ class BasicSettings {
      *
      */
     public function smtpStatus() {
-        self::$smtp_status = \eMarket\Pdo::getCell("SELECT smtp_status FROM " . TABLE_BASIC_SETTINGS . "", []);
-        if (\eMarket\Valid::inPOST('smtp_status')) {
-            if (\eMarket\Valid::inPOST('smtp_status') == 'on') {
+        self::$smtp_status = \eMarket\Core\Pdo::getCell("SELECT smtp_status FROM " . TABLE_BASIC_SETTINGS . "", []);
+        if (\eMarket\Core\Valid::inPOST('smtp_status')) {
+            if (\eMarket\Core\Valid::inPOST('smtp_status') == 'on') {
                 $smtp_status_set = 1;
             }
-            if (\eMarket\Valid::inPOST('smtp_status') == 'off') {
+            if (\eMarket\Core\Valid::inPOST('smtp_status') == 'off') {
                 $smtp_status_set = 0;
             }
 
-            \eMarket\Pdo::action("UPDATE " . TABLE_BASIC_SETTINGS . " SET smtp_status=?", [$smtp_status_set]);
+            \eMarket\Core\Pdo::action("UPDATE " . TABLE_BASIC_SETTINGS . " SET smtp_status=?", [$smtp_status_set]);
 
-            self::$smtp_status = \eMarket\Pdo::getCell("SELECT smtp_status FROM " . TABLE_BASIC_SETTINGS . "", []);
+            self::$smtp_status = \eMarket\Core\Pdo::getCell("SELECT smtp_status FROM " . TABLE_BASIC_SETTINGS . "", []);
         }
     }
 
@@ -178,21 +178,21 @@ class BasicSettings {
      *
      */
     public function smtpAuth() {
-        self::$smtp_auth = \eMarket\Pdo::getCell("SELECT smtp_auth FROM " . TABLE_BASIC_SETTINGS . "", []);
-        if (\eMarket\Valid::inPOST('smtp_auth')) {
+        self::$smtp_auth = \eMarket\Core\Pdo::getCell("SELECT smtp_auth FROM " . TABLE_BASIC_SETTINGS . "", []);
+        if (\eMarket\Core\Valid::inPOST('smtp_auth')) {
 
-            if (\eMarket\Valid::inPOST('smtp_auth') == lang('debug_on')) {
+            if (\eMarket\Core\Valid::inPOST('smtp_auth') == lang('debug_on')) {
                 $smtp_auth_set = 1;
             }
-            if (\eMarket\Valid::inPOST('smtp_auth') == lang('debug_off')) {
+            if (\eMarket\Core\Valid::inPOST('smtp_auth') == lang('debug_off')) {
                 $smtp_auth_set = 0;
             }
 
-            \eMarket\Pdo::action("UPDATE " . TABLE_BASIC_SETTINGS . " SET smtp_auth=?", [$smtp_auth_set]);
+            \eMarket\Core\Pdo::action("UPDATE " . TABLE_BASIC_SETTINGS . " SET smtp_auth=?", [$smtp_auth_set]);
 
-            self::$smtp_auth = \eMarket\Pdo::getCell("SELECT smtp_auth FROM " . TABLE_BASIC_SETTINGS . "", []);
+            self::$smtp_auth = \eMarket\Core\Pdo::getCell("SELECT smtp_auth FROM " . TABLE_BASIC_SETTINGS . "", []);
         }
-        self::$smtp_auth = \eMarket\Pdo::getCell("SELECT smtp_auth FROM " . TABLE_BASIC_SETTINGS . "", []);
+        self::$smtp_auth = \eMarket\Core\Pdo::getCell("SELECT smtp_auth FROM " . TABLE_BASIC_SETTINGS . "", []);
     }
 
     /**
@@ -200,12 +200,12 @@ class BasicSettings {
      *
      */
     public function hostEmail() {
-        self::$host_email = \eMarket\Pdo::getCell("SELECT host_email FROM " . TABLE_BASIC_SETTINGS . "", []);
-        if (\eMarket\Valid::inPOST('host_email')) {
+        self::$host_email = \eMarket\Core\Pdo::getCell("SELECT host_email FROM " . TABLE_BASIC_SETTINGS . "", []);
+        if (\eMarket\Core\Valid::inPOST('host_email')) {
 
-            \eMarket\Pdo::action("UPDATE " . TABLE_BASIC_SETTINGS . " SET host_email=?", [\eMarket\Valid::inPOST('host_email')]);
+            \eMarket\Core\Pdo::action("UPDATE " . TABLE_BASIC_SETTINGS . " SET host_email=?", [\eMarket\Core\Valid::inPOST('host_email')]);
 
-            self::$host_email = \eMarket\Pdo::getCell("SELECT host_email FROM " . TABLE_BASIC_SETTINGS . "", []);
+            self::$host_email = \eMarket\Core\Pdo::getCell("SELECT host_email FROM " . TABLE_BASIC_SETTINGS . "", []);
         }
     }
 
@@ -214,12 +214,12 @@ class BasicSettings {
      *
      */
     public function usernameEmail() {
-        self::$username_email = \eMarket\Pdo::getCell("SELECT username_email FROM " . TABLE_BASIC_SETTINGS . "", []);
-        if (\eMarket\Valid::inPOST('username_email')) {
+        self::$username_email = \eMarket\Core\Pdo::getCell("SELECT username_email FROM " . TABLE_BASIC_SETTINGS . "", []);
+        if (\eMarket\Core\Valid::inPOST('username_email')) {
 
-            \eMarket\Pdo::action("UPDATE " . TABLE_BASIC_SETTINGS . " SET username_email=?", [\eMarket\Valid::inPOST('username_email')]);
+            \eMarket\Core\Pdo::action("UPDATE " . TABLE_BASIC_SETTINGS . " SET username_email=?", [\eMarket\Core\Valid::inPOST('username_email')]);
 
-            self::$username_email = \eMarket\Pdo::getCell("SELECT username_email FROM " . TABLE_BASIC_SETTINGS . "", []);
+            self::$username_email = \eMarket\Core\Pdo::getCell("SELECT username_email FROM " . TABLE_BASIC_SETTINGS . "", []);
         }
     }
 
@@ -228,12 +228,12 @@ class BasicSettings {
      *
      */
     public function passwordEmail() {
-        self::$password_email = \eMarket\Pdo::getCell("SELECT password_email FROM " . TABLE_BASIC_SETTINGS . "", []);
-        if (\eMarket\Valid::inPOST('password_email')) {
+        self::$password_email = \eMarket\Core\Pdo::getCell("SELECT password_email FROM " . TABLE_BASIC_SETTINGS . "", []);
+        if (\eMarket\Core\Valid::inPOST('password_email')) {
 
-            \eMarket\Pdo::action("UPDATE " . TABLE_BASIC_SETTINGS . " SET password_email=?", [\eMarket\Valid::inPOST('password_email')]);
+            \eMarket\Core\Pdo::action("UPDATE " . TABLE_BASIC_SETTINGS . " SET password_email=?", [\eMarket\Core\Valid::inPOST('password_email')]);
 
-            self::$password_email = \eMarket\Pdo::getCell("SELECT password_email FROM " . TABLE_BASIC_SETTINGS . "", []);
+            self::$password_email = \eMarket\Core\Pdo::getCell("SELECT password_email FROM " . TABLE_BASIC_SETTINGS . "", []);
         }
     }
 
@@ -242,12 +242,12 @@ class BasicSettings {
      *
      */
     public function smtpSecure() {
-        self::$smtp_secure = \eMarket\Pdo::getCell("SELECT smtp_secure FROM " . TABLE_BASIC_SETTINGS . "", []);
-        if (\eMarket\Valid::inPOST('smtp_secure')) {
+        self::$smtp_secure = \eMarket\Core\Pdo::getCell("SELECT smtp_secure FROM " . TABLE_BASIC_SETTINGS . "", []);
+        if (\eMarket\Core\Valid::inPOST('smtp_secure')) {
 
-            \eMarket\Pdo::action("UPDATE " . TABLE_BASIC_SETTINGS . " SET smtp_secure=?", [\eMarket\Valid::inPOST('smtp_secure')]);
+            \eMarket\Core\Pdo::action("UPDATE " . TABLE_BASIC_SETTINGS . " SET smtp_secure=?", [\eMarket\Core\Valid::inPOST('smtp_secure')]);
 
-            self::$smtp_secure = \eMarket\Pdo::getCell("SELECT smtp_secure FROM " . TABLE_BASIC_SETTINGS . "", []);
+            self::$smtp_secure = \eMarket\Core\Pdo::getCell("SELECT smtp_secure FROM " . TABLE_BASIC_SETTINGS . "", []);
         }
     }
 
@@ -256,12 +256,12 @@ class BasicSettings {
      *
      */
     public function smtpPort() {
-        self::$smtp_port = \eMarket\Pdo::getCell("SELECT smtp_port FROM " . TABLE_BASIC_SETTINGS . "", []);
-        if (\eMarket\Valid::inPOST('smtp_port')) {
+        self::$smtp_port = \eMarket\Core\Pdo::getCell("SELECT smtp_port FROM " . TABLE_BASIC_SETTINGS . "", []);
+        if (\eMarket\Core\Valid::inPOST('smtp_port')) {
 
-            \eMarket\Pdo::action("UPDATE " . TABLE_BASIC_SETTINGS . " SET smtp_port=?", [\eMarket\Valid::inPOST('smtp_port')]);
+            \eMarket\Core\Pdo::action("UPDATE " . TABLE_BASIC_SETTINGS . " SET smtp_port=?", [\eMarket\Core\Valid::inPOST('smtp_port')]);
 
-            self::$smtp_port = \eMarket\Pdo::getCell("SELECT smtp_port FROM " . TABLE_BASIC_SETTINGS . "", []);
+            self::$smtp_port = \eMarket\Core\Pdo::getCell("SELECT smtp_port FROM " . TABLE_BASIC_SETTINGS . "", []);
         }
     }
 

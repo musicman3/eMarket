@@ -9,7 +9,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header"><div class="pull-right"><button class="close" type="button" data-dismiss="modal">×</button></div>
-                <h4 class="modal-title"><?php echo \eMarket\Settings::titlePageGenerator() ?></h4>
+                <h4 class="modal-title"><?php echo \eMarket\Core\Settings::titlePageGenerator() ?></h4>
             </div>
             <form id="form_add" name="form_add" action="javascript:void(null);" onsubmit="Ajax.callAdd()">
 
@@ -34,7 +34,7 @@
                                     <optgroup label="<?php echo $v ?>">
                                         <?php
                                     }
-                                    foreach (\eMarket\Func::filterArrayToKeyAssoc(\eMarket\Admin\ZonesListing::$regions_multiselect, 'country_id', $k, 'name', 'id') as $k2 => $v2) {
+                                    foreach (\eMarket\Core\Func::filterArrayToKeyAssoc(\eMarket\Admin\ZonesListing::$regions_multiselect, 'country_id', $k, 'name', 'id') as $k2 => $v2) {
                                         // Если Страна уже добавлена
                                         if (in_array(array($k), \eMarket\Admin\ZonesListing::$lines) == TRUE && isset(\eMarket\Admin\ZonesListing::$regions[\eMarket\Admin\ZonesListing::$count]['regions_id']) == TRUE && $k2 == \eMarket\Admin\ZonesListing::$regions[\eMarket\Admin\ZonesListing::$count]['regions_id']) {
                                             \eMarket\Admin\ZonesListing::$count++;

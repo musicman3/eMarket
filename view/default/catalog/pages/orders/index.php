@@ -5,7 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 // ПОДКЛЮЧАЕМ КОНТЕНТ
-foreach (\eMarket\View::tlpc('content') as $path) {
+foreach (\eMarket\Core\View::tlpc('content') as $path) {
     require_once (ROOT . $path);
 }
 ?>
@@ -15,7 +15,7 @@ foreach (\eMarket\View::tlpc('content') as $path) {
 <!-- КОНЕЦ Модальное окно "Редактировать" -->
 
 <!--Выводим уведомление об успешном действии-->
-<div id="alert_block"><?php \eMarket\Messages::alert(); ?></div>
+<div id="alert_block"><?php \eMarket\Core\Messages::alert(); ?></div>
 <h1><?php echo lang('orders_book') ?></h1>
 
 <div id="ajax_data" class='hidden' data-orders='<?php echo \eMarket\Catalog\Orders::$orders_edit ?>'></div>
@@ -24,17 +24,17 @@ foreach (\eMarket\View::tlpc('content') as $path) {
     <table class="table table-hover">
 	<thead>
 	    <tr>
-		<th colspan="4"><?php echo \eMarket\Pages::counterPage() ?></th>
+		<th colspan="4"><?php echo \eMarket\Core\Pages::counterPage() ?></th>
 
 		<th>
 
                     <div class="flexbox">
 			<form>
-			    <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
-			    <input hidden name="backstart" value="<?php echo \eMarket\Pages::$start ?>">
-			    <input hidden name="backfinish" value="<?php echo \eMarket\Pages::$finish ?>">
+			    <input hidden name="route" value="<?php echo \eMarket\Core\Valid::inGET('route') ?>">
+			    <input hidden name="backstart" value="<?php echo \eMarket\Core\Pages::$start ?>">
+			    <input hidden name="backfinish" value="<?php echo \eMarket\Core\Pages::$finish ?>">
 			    <div class="b-left">
-				<?php if (\eMarket\Pages::$start > 0) { ?>
+				<?php if (\eMarket\Core\Pages::$start > 0) { ?>
 				    <button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button>
 				<?php } else { ?>
 				    <a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-left"></span></a>
@@ -43,11 +43,11 @@ foreach (\eMarket\View::tlpc('content') as $path) {
 			</form>
 			
 			<form>
-			    <input hidden name="route" value="<?php echo \eMarket\Valid::inGET('route') ?>">
-			    <input hidden name="start" value="<?php echo \eMarket\Pages::$start ?>">
-			    <input hidden name="finish" value="<?php echo \eMarket\Pages::$finish ?>">
+			    <input hidden name="route" value="<?php echo \eMarket\Core\Valid::inGET('route') ?>">
+			    <input hidden name="start" value="<?php echo \eMarket\Core\Pages::$start ?>">
+			    <input hidden name="finish" value="<?php echo \eMarket\Core\Pages::$finish ?>">
 			    <div>
-				<?php if (\eMarket\Pages::$finish != \eMarket\Pages::$count) { ?>
+				<?php if (\eMarket\Core\Pages::$finish != \eMarket\Core\Pages::$count) { ?>
 				    <button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button>
 				<?php } else { ?>
 				    <a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-right"></span></a>
@@ -68,19 +68,19 @@ foreach (\eMarket\View::tlpc('content') as $path) {
 	</thead>
 	<tbody>
 	    <?php
-	    if (\eMarket\Pages::$count > 0) {
-		for (\eMarket\Pages::$start; \eMarket\Pages::$start < \eMarket\Pages::$finish; \eMarket\Pages::$start++, \eMarket\Pages::lineUpdate()) {
+	    if (\eMarket\Core\Pages::$count > 0) {
+		for (\eMarket\Core\Pages::$start; \eMarket\Core\Pages::$start < \eMarket\Core\Pages::$finish; \eMarket\Core\Pages::$start++, \eMarket\Core\Pages::lineUpdate()) {
 		    ?>
 		    <tr>
-			<td><?php echo eMarket\Pages::$table['line']['id'] ?></td>
-			<td class="text-center"><?php echo json_decode(eMarket\Pages::$table['line']['order_total'], 1)['customer']['total_to_pay_format'] ?></td>
-			<td class="text-center"><?php echo \eMarket\Settings::dateLocale(eMarket\Pages::$table['line']['date_purchased'], '%c') ?></td>
-			<td class="text-center"><?php echo json_decode(eMarket\Pages::$table['line']['orders_status_history'], 1)[0]['customer']['status'] ?></td>
+			<td><?php echo eMarket\Core\Pages::$table['line']['id'] ?></td>
+			<td class="text-center"><?php echo json_decode(eMarket\Core\Pages::$table['line']['order_total'], 1)['customer']['total_to_pay_format'] ?></td>
+			<td class="text-center"><?php echo \eMarket\Core\Settings::dateLocale(eMarket\Core\Pages::$table['line']['date_purchased'], '%c') ?></td>
+			<td class="text-center"><?php echo json_decode(eMarket\Core\Pages::$table['line']['orders_status_history'], 1)[0]['customer']['status'] ?></td>
 
 			<td>
 			    <!--Вызов модального окна для редактирования-->
 			    <div class="flexbox">
-				<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index" data-edit="<?php echo eMarket\Pages::$table['line']['id'] ?>"><span class="glyphicon glyphicon-edit"></span></button>
+				<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index" data-edit="<?php echo eMarket\Core\Pages::$table['line']['id'] ?>"><span class="glyphicon glyphicon-edit"></span></button>
 			    </div>
 			</td>
 		    </tr>

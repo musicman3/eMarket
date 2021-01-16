@@ -37,29 +37,29 @@ class OrderStatus {
      *
      */
     public function add() {
-        if (\eMarket\Valid::inPOST('add')) {
+        if (\eMarket\Core\Valid::inPOST('add')) {
 
-            if (\eMarket\Valid::inPOST('default_order_status')) {
+            if (\eMarket\Core\Valid::inPOST('default_order_status')) {
                 $default_order_status = 1;
             } else {
                 $default_order_status = 0;
             }
 
-            $id_max = \eMarket\Pdo::selectPrepare("SELECT id FROM " . TABLE_ORDER_STATUS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+            $id_max = \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . TABLE_ORDER_STATUS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max) + 1;
 
             if ($id > 1 && $default_order_status != 0) {
-                \eMarket\Pdo::action("UPDATE " . TABLE_ORDER_STATUS . " SET default_order_status=?", [0]);
+                \eMarket\Core\Pdo::action("UPDATE " . TABLE_ORDER_STATUS . " SET default_order_status=?", [0]);
             }
 
-            $id_max_sort = \eMarket\Pdo::selectPrepare("SELECT sort FROM " . TABLE_ORDER_STATUS . " WHERE language=? ORDER BY sort DESC", [lang('#lang_all')[0]]);
+            $id_max_sort = \eMarket\Core\Pdo::selectPrepare("SELECT sort FROM " . TABLE_ORDER_STATUS . " WHERE language=? ORDER BY sort DESC", [lang('#lang_all')[0]]);
             $id_sort = intval($id_max_sort) + 1;
 
-            for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
-                \eMarket\Pdo::action("INSERT INTO " . TABLE_ORDER_STATUS . " SET id=?, name=?, language=?, default_order_status=?, sort=?", [$id, \eMarket\Valid::inPOST('name_order_status_' . $x), lang('#lang_all')[$x], $default_order_status, $id_sort]);
+            for ($x = 0; $x < \eMarket\Core\Lang::$COUNT; $x++) {
+                \eMarket\Core\Pdo::action("INSERT INTO " . TABLE_ORDER_STATUS . " SET id=?, name=?, language=?, default_order_status=?, sort=?", [$id, \eMarket\Core\Valid::inPOST('name_order_status_' . $x), lang('#lang_all')[$x], $default_order_status, $id_sort]);
             }
 
-            \eMarket\Messages::alert('success', lang('action_completed_successfully'));
+            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
         }
     }
 
@@ -68,23 +68,23 @@ class OrderStatus {
      *
      */
     public function edit() {
-        if (\eMarket\Valid::inPOST('edit')) {
+        if (\eMarket\Core\Valid::inPOST('edit')) {
 
-            if (\eMarket\Valid::inPOST('default_order_status')) {
+            if (\eMarket\Core\Valid::inPOST('default_order_status')) {
                 $default_order_status = 1;
             } else {
                 $default_order_status = 0;
             }
 
             if ($default_order_status != 0) {
-                \eMarket\Pdo::action("UPDATE " . TABLE_ORDER_STATUS . " SET default_order_status=?", [0]);
+                \eMarket\Core\Pdo::action("UPDATE " . TABLE_ORDER_STATUS . " SET default_order_status=?", [0]);
             }
 
-            for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
-                \eMarket\Pdo::action("UPDATE " . TABLE_ORDER_STATUS . " SET name=?, default_order_status=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_order_status_' . $x), $default_order_status, \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
+            for ($x = 0; $x < \eMarket\Core\Lang::$COUNT; $x++) {
+                \eMarket\Core\Pdo::action("UPDATE " . TABLE_ORDER_STATUS . " SET name=?, default_order_status=? WHERE id=? AND language=?", [\eMarket\Core\Valid::inPOST('name_order_status_' . $x), $default_order_status, \eMarket\Core\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
             }
 
-            \eMarket\Messages::alert('success', lang('action_completed_successfully'));
+            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
         }
     }
 
@@ -93,10 +93,10 @@ class OrderStatus {
      *
      */
     public function delete() {
-        if (\eMarket\Valid::inPOST('delete')) {
-            \eMarket\Pdo::action("DELETE FROM " . TABLE_ORDER_STATUS . " WHERE id=?", [\eMarket\Valid::inPOST('delete')]);
+        if (\eMarket\Core\Valid::inPOST('delete')) {
+            \eMarket\Core\Pdo::action("DELETE FROM " . TABLE_ORDER_STATUS . " WHERE id=?", [\eMarket\Core\Valid::inPOST('delete')]);
 
-            \eMarket\Messages::alert('success', lang('action_completed_successfully'));
+            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
         }
     }
 
@@ -105,13 +105,13 @@ class OrderStatus {
      *
      */
     public function sorting() {
-        if (\eMarket\Valid::inPOST('ids')) {
-            $sort_array_id_ajax = explode(',', \eMarket\Valid::inPOST('ids'));
-            $sort_array_id = \eMarket\Func::deleteEmptyInArray($sort_array_id_ajax);
+        if (\eMarket\Core\Valid::inPOST('ids')) {
+            $sort_array_id_ajax = explode(',', \eMarket\Core\Valid::inPOST('ids'));
+            $sort_array_id = \eMarket\Core\Func::deleteEmptyInArray($sort_array_id_ajax);
             $sort_array_order_status = [];
 
             foreach ($sort_array_id as $val) {
-                $sort_order_status = \eMarket\Pdo::selectPrepare("SELECT sort FROM " . TABLE_ORDER_STATUS . " WHERE id=? AND language=? ORDER BY id ASC", [$val, lang('#lang_all')[0]]);
+                $sort_order_status = \eMarket\Core\Pdo::selectPrepare("SELECT sort FROM " . TABLE_ORDER_STATUS . " WHERE id=? AND language=? ORDER BY id ASC", [$val, lang('#lang_all')[0]]);
                 array_push($sort_array_order_status, $sort_order_status);
                 arsort($sort_array_order_status);
             }
@@ -120,7 +120,7 @@ class OrderStatus {
 
             foreach ($sort_array_id as $val) {
 
-                \eMarket\Pdo::action("UPDATE " . TABLE_ORDER_STATUS . " SET sort=? WHERE id=?", [(int) $sort_array_final[$val], (int) $val]);
+                \eMarket\Core\Pdo::action("UPDATE " . TABLE_ORDER_STATUS . " SET sort=? WHERE id=?", [(int) $sort_array_final[$val], (int) $val]);
             }
         }
     }
@@ -130,9 +130,9 @@ class OrderStatus {
      *
      */
     public function data() {
-        self::$sql_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_ORDER_STATUS . " ORDER BY sort DESC", []);
-        $lines = \eMarket\Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
-        \eMarket\Pages::table($lines);
+        self::$sql_data = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_ORDER_STATUS . " ORDER BY sort DESC", []);
+        $lines = \eMarket\Core\Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
+        \eMarket\Core\Pages::table($lines);
     }
 
     /**
@@ -142,10 +142,10 @@ class OrderStatus {
     public function modal() {
         self::$json_data = json_encode([]);
         $name = [];
-        for ($i = \eMarket\Pages::$start; $i < \eMarket\Pages::$finish; $i++) {
-            if (isset(\eMarket\Pages::$table['lines'][$i]['id']) == TRUE) {
+        for ($i = \eMarket\Core\Pages::$start; $i < \eMarket\Core\Pages::$finish; $i++) {
+            if (isset(\eMarket\Core\Pages::$table['lines'][$i]['id']) == TRUE) {
 
-                $modal_id = \eMarket\Pages::$table['lines'][$i]['id'];
+                $modal_id = \eMarket\Core\Pages::$table['lines'][$i]['id'];
 
                 foreach (self::$sql_data as $sql_modal) {
                     if ($sql_modal['id'] == $modal_id) {

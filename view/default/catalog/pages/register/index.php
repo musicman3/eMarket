@@ -5,7 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 // ПОДКЛЮЧАЕМ КОНТЕНТ
-foreach (\eMarket\View::tlpc('content') as $path) {
+foreach (\eMarket\Core\View::tlpc('content') as $path) {
     require_once (ROOT . $path);
 }
 ?>
@@ -15,9 +15,9 @@ foreach (\eMarket\View::tlpc('content') as $path) {
 <!-- КОНЕЦ Модальное окно -->
 
 <!--Выводим уведомление об успешном действии-->
-<div id="alert_block"><?php \eMarket\Messages::alert(); ?></div>
+<div id="alert_block"><?php \eMarket\Core\Messages::alert(); ?></div>
 <?php
-if (!\eMarket\Valid::inPOST('email')) {
+if (!\eMarket\Core\Valid::inPOST('email')) {
     ?>
 <h1><?php echo lang('register_account') ?></h1>
 
@@ -74,7 +74,7 @@ if (!\eMarket\Valid::inPOST('email')) {
 
     <?php
 }
-if (\eMarket\Valid::inPOST('email') && \eMarket\Catalog\Register::$user_email != NULL) {
+if (\eMarket\Core\Valid::inPOST('email') && \eMarket\Catalog\Register::$user_email != NULL) {
     ?>
 <h1><?php echo lang('register_account') ?></h1>
 
@@ -89,7 +89,7 @@ if (\eMarket\Valid::inPOST('email') && \eMarket\Catalog\Register::$user_email !=
 </div>
     <?php
 }
-if (\eMarket\Valid::inPOST('email') && \eMarket\Catalog\Register::$user_email == NULL) {
+if (\eMarket\Core\Valid::inPOST('email') && \eMarket\Catalog\Register::$user_email == NULL) {
     ?>
 <h1><?php echo lang('register_account') ?></h1>
 

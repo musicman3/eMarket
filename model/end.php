@@ -7,17 +7,17 @@
 // 
 //Load HTML
 //
-if (\eMarket\Settings::path() == 'admin') {
-    require_once(getenv('DOCUMENT_ROOT') . '/view/' . \eMarket\Settings::template() . '/admin/constructor.php');
+if (\eMarket\Core\Settings::path() == 'admin') {
+    require_once(getenv('DOCUMENT_ROOT') . '/view/' . \eMarket\Core\Settings::template() . '/admin/constructor.php');
 }
 
-if (\eMarket\Settings::path() == 'catalog') {
-    require_once(getenv('DOCUMENT_ROOT') . '/view/' . \eMarket\Settings::template() . '/catalog/constructor.php');
+if (\eMarket\Core\Settings::path() == 'catalog') {
+    require_once(getenv('DOCUMENT_ROOT') . '/view/' . \eMarket\Core\Settings::template() . '/catalog/constructor.php');
 }
 
-if (\eMarket\Settings::path() == 'install') {
-    require_once(getenv('DOCUMENT_ROOT') . '/view/' . \eMarket\Settings::template() . '/install/constructor.php');
+if (\eMarket\Core\Settings::path() == 'install') {
+    require_once(getenv('DOCUMENT_ROOT') . '/view/' . \eMarket\Core\Settings::template() . '/install/constructor.php');
 }
 //Close DB connect
-\eMarket\Pdo::connect('end');
+\eMarket\Core\Pdo::connect('end');
 ?>

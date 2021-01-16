@@ -5,7 +5,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-namespace eMarket;
+namespace eMarket\Core;
 
 /**
  * Класс для работы с корзиной / Class for working with a cart
@@ -21,13 +21,13 @@ class Cart {
      */
     public static function addProduct() {
 
-        if (\eMarket\Valid::inGET('add_to_cart')) {
-            $id = \eMarket\Valid::inGET('add_to_cart');
+        if (\eMarket\Core\Valid::inGET('add_to_cart')) {
+            $id = \eMarket\Core\Valid::inGET('add_to_cart');
 
-            if (!\eMarket\Valid::inGET('add_quantity')) {
+            if (!\eMarket\Core\Valid::inGET('add_quantity')) {
                 $quantity = 1;
             } else {
-                $quantity = \eMarket\Valid::inGET('add_quantity');
+                $quantity = \eMarket\Core\Valid::inGET('add_quantity');
             }
 
             $count = 0;
@@ -35,7 +35,7 @@ class Cart {
                 $_SESSION['cart'] = [['id' => $id, 'quantity' => $quantity]];
             } else {
 
-                $id_count = \eMarket\Func::filterArrayToKey($_SESSION['cart'], 'id', $id, 'id');
+                $id_count = \eMarket\Core\Func::filterArrayToKey($_SESSION['cart'], 'id', $id, 'id');
                 foreach ($_SESSION['cart'] as $value) {
                     if ($value['id'] == $id) {
                         $_SESSION['cart'][$count]['quantity'] = $_SESSION['cart'][$count]['quantity'] + $quantity;
@@ -76,8 +76,8 @@ class Cart {
         $total_price = 0;
         if (isset($_SESSION['cart'])) {
             foreach ($_SESSION['cart'] as $value) {
-                $product = \eMarket\Pdo::getColAssoc("SELECT price, currency FROM " . TABLE_PRODUCTS . " WHERE id=? AND language=?", [$value['id'], lang('#lang_all')[0]])[0];
-                $total_price = $total_price + \eMarket\Ecb::currencyPrice($product['price'], $product['currency']) * $value['quantity'];
+                $product = \eMarket\Core\Pdo::getColAssoc("SELECT price, currency FROM " . TABLE_PRODUCTS . " WHERE id=? AND language=?", [$value['id'], lang('#lang_all')[0]])[0];
+                $total_price = $total_price + \eMarket\Core\Ecb::currencyPrice($product['price'], $product['currency']) * $value['quantity'];
             }
         }
         return $total_price;
@@ -89,7 +89,7 @@ class Cart {
      */
     public static function init() {
 
-        if (\eMarket\Settings::path() == 'catalog') {
+        if (\eMarket\Core\Settings::path() == 'catalog') {
             self::addProduct();
             self::deleteProduct();
             self::editProductQuantity();
@@ -107,7 +107,7 @@ class Cart {
         if (isset($_SESSION['cart'])) {
             $x = 0;
             foreach ($_SESSION['cart'] as $value) {
-                $product = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE language=? AND id=?", [lang('#lang_all')[0], $value['id']]);
+                $product = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE language=? AND id=?", [lang('#lang_all')[0], $value['id']]);
                 if ($product != FALSE) {
                     array_push($output, $product[0]);
                 } else {
@@ -143,10 +143,10 @@ class Cart {
      */
     public static function deleteProduct() {
 
-        if (\eMarket\Valid::inGET('delete_product') && isset($_SESSION['cart'])) {
+        if (\eMarket\Core\Valid::inGET('delete_product') && isset($_SESSION['cart'])) {
             $array = [];
             foreach ($_SESSION['cart'] as $value) {
-                if ($value['id'] != \eMarket\Valid::inGET('delete_product')) {
+                if ($value['id'] != \eMarket\Core\Valid::inGET('delete_product')) {
                     array_push($array, $value);
                 }
             }
@@ -163,7 +163,7 @@ class Cart {
      */
     public static function maxQuantityToOrder($product_data, $flag = null) {
         $quantity = $product_data['quantity'];
-        $cart_quantity = \eMarket\Cart::productQuantity($product_data['id']);
+        $cart_quantity = \eMarket\Core\Cart::productQuantity($product_data['id']);
         $total = $quantity - $cart_quantity;
         
         if ($total == 0 && $flag == 'class') {
@@ -193,11 +193,11 @@ class Cart {
      */
     public static function editProductQuantity() {
 
-        if (\eMarket\Valid::inGET('quantity_product_id') && isset($_SESSION['cart'])) {
+        if (\eMarket\Core\Valid::inGET('quantity_product_id') && isset($_SESSION['cart'])) {
             $count = 0;
             foreach ($_SESSION['cart'] as $value) {
-                if ($value['id'] == \eMarket\Valid::inGET('quantity_product_id') && \eMarket\Valid::inGET('pcs_product') != 'true') {
-                    $_SESSION['cart'][$count]['quantity'] = \eMarket\Valid::inGET('pcs_product');
+                if ($value['id'] == \eMarket\Core\Valid::inGET('quantity_product_id') && \eMarket\Core\Valid::inGET('pcs_product') != 'true') {
+                    $_SESSION['cart'][$count]['quantity'] = \eMarket\Core\Valid::inGET('pcs_product');
                 }
                 $count++;
             }

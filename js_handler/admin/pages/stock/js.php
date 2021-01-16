@@ -3,8 +3,8 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-$resize_max = json_encode(\eMarket\Files::imgResizeMax(\eMarket\Admin\Stock::$resize_param));
-$resize_max_prod = json_encode(\eMarket\Files::imgResizeMax(\eMarket\Admin\Stock::$resize_param_product));
+$resize_max = json_encode(\eMarket\Core\Files::imgResizeMax(\eMarket\Admin\Stock::$resize_param));
+$resize_max_prod = json_encode(\eMarket\Core\Files::imgResizeMax(\eMarket\Admin\Stock::$resize_param_product));
 $lang_js = json_encode([
     'image_resize_error' => lang('image_resize_error'),
     'download_complete' => lang('download_complete')

@@ -46,7 +46,7 @@ class Products {
      *
      */
     public function data() {
-        self::$products = \eMarket\Products::productData(\eMarket\Valid::inGET('id'));
+        self::$products = \eMarket\Core\Products::productData(\eMarket\Core\Valid::inGET('id'));
     }
 
     /**
@@ -55,7 +55,7 @@ class Products {
      */
     public function dimensions() {
 
-        self::$dimension_name = \eMarket\Products::length(self::$products['dimension'])['code'];
+        self::$dimension_name = \eMarket\Core\Products::length(self::$products['dimension'])['code'];
         self::$dimensions = '';
         $dimension_marker = 0;
 
@@ -90,7 +90,7 @@ class Products {
      *
      */
     public function manufacturer() {
-        self::$manufacturer = \eMarket\Products::manufacturer(self::$products['manufacturer'])['name'];
+        self::$manufacturer = \eMarket\Core\Products::manufacturer(self::$products['manufacturer'])['name'];
     }
 
     /**
@@ -98,7 +98,7 @@ class Products {
      *
      */
     public function vendorCode() {
-        self::$vendor_code = \eMarket\Products::vendorCode(self::$products['vendor_code'])['name'];
+        self::$vendor_code = \eMarket\Core\Products::vendorCode(self::$products['vendor_code'])['name'];
 
         if (self::$vendor_code != NULL && self::$vendor_code != FALSE) {
             self::$vendor_code_value = self::$products['vendor_code_value'];
@@ -110,7 +110,7 @@ class Products {
      *
      */
     public function weight() {
-        self::$weight = \eMarket\Products::weight(self::$products['weight'])['code'];
+        self::$weight = \eMarket\Core\Products::weight(self::$products['weight'])['code'];
 
         if (self::$weight != NULL && self::$weight != FALSE) {
             self::$weight_value = self::$products['weight_value'];
@@ -122,7 +122,7 @@ class Products {
      *
      */
     public function images() {
-        self::$images = \eMarket\Func::deleteValInArray(json_decode(self::$products['logo'], 1), [self::$products['logo_general']]);
+        self::$images = \eMarket\Core\Func::deleteValInArray(json_decode(self::$products['logo'], 1), [self::$products['logo_general']]);
     }
 
     /**
@@ -130,8 +130,8 @@ class Products {
      *
      */
     public function attributes() {
-        $categories_data = \eMarket\Products::categoryData(\eMarket\Valid::inGET('category_id'));
-        if (\eMarket\Valid::inGET('category_id') == 0) {
+        $categories_data = \eMarket\Core\Products::categoryData(\eMarket\Core\Valid::inGET('category_id'));
+        if (\eMarket\Core\Valid::inGET('category_id') == 0) {
             self::$attributes_data = json_encode([]);
         } else {
             self::$attributes_data = json_encode($categories_data['attributes']);

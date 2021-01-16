@@ -19,14 +19,14 @@
         <meta name="copyright" content="Copyright © 2018 by eMarket Team. All right reserved." />
 
         <!-- Автогенерация Title" -->
-        <title><?php echo \eMarket\Settings::titleCatalog() ?></title>
-        <meta name="keywords" content="<?php echo \eMarket\Settings::keywordsCatalog() ?>">
+        <title><?php echo \eMarket\Core\Settings::titleCatalog() ?></title>
+        <meta name="keywords" content="<?php echo \eMarket\Core\Settings::keywordsCatalog() ?>">
         <meta name="description" content="">
 
         <link type="image/x-icon" rel="shortcut icon" href="favicon.ico">
-        <link rel="canonical" href="<?php echo \eMarket\Settings::canonicalPathCatalog() ?>" />
+        <link rel="canonical" href="<?php echo \eMarket\Core\Settings::canonicalPathCatalog() ?>" />
         <link href="/ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
-        <link rel="stylesheet" type="text/css" href="/view/<?php echo \eMarket\Settings::template() ?>/catalog/style.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="/view/<?php echo \eMarket\Core\Settings::template() ?>/catalog/style.css" media="screen" />
         <script type="text/javascript" src="/ext/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/ext/jquery/ui/jquery.ui.touch-punch.min.js"></script>
 
@@ -41,7 +41,7 @@
 
         <?php
         // ЗАГРУЖАЕМ HEADER
-        foreach (\eMarket\View::tlpc('header') as $path) {
+        foreach (\eMarket\Core\View::tlpc('header') as $path) {
             require_once (ROOT . $path);
         }
         ?>
@@ -50,12 +50,12 @@
             <div class="row">
 
                 <?php
-                if (\eMarket\View::tlpc('boxes-left', 'count') > 0) {
+                if (\eMarket\Core\View::tlpc('boxes-left', 'count') > 0) {
                     ?>
 
                     <div id="bodyContent" class="col-lg-10 col-md-9 col-lg-push-2 col-md-push-3">
                         <?php
-                        require_once(\eMarket\View::routingCatalog());
+                        require_once(\eMarket\Core\View::routingCatalog());
                         ?>
                     </div>
 
@@ -63,20 +63,20 @@
 
                     <div id="bodyContent" class="col-xs-12">
                         <?php
-                        require_once(\eMarket\View::routingCatalog());
+                        require_once(\eMarket\Core\View::routingCatalog());
                         ?>
                     </div>
 
                     <?php
                 }
 
-                if (\eMarket\View::tlpc('boxes-left', 'count') > 0) {
+                if (\eMarket\Core\View::tlpc('boxes-left', 'count') > 0) {
                     ?>
 
                     <div id="columnLeft" class="col-lg-2 col-md-3 col-lg-pull-10 col-md-pull-9">
                         <?php
                         // ЗАГРУЖАЕМ БОКСЫ
-                        foreach (\eMarket\View::tlpc('boxes-left') as $path) {
+                        foreach (\eMarket\Core\View::tlpc('boxes-left') as $path) {
                             require_once (ROOT . $path);
                         }
                         ?>
@@ -89,7 +89,7 @@
 
         <?php
         // ЗАГРУЖАЕМ FOOTER
-        foreach (\eMarket\View::tlpc('footer') as $path) {
+        foreach (\eMarket\Core\View::tlpc('footer') as $path) {
             require_once (ROOT . $path);
         }
         ?>
@@ -107,15 +107,15 @@
         </script>
 
         <?php
-        if (\eMarket\Settings::$JS_HANDLER != FALSE) {
-            require_once(\eMarket\Settings::$JS_HANDLER . '/js.php');
+        if (\eMarket\Core\Settings::$JS_HANDLER != FALSE) {
+            require_once(\eMarket\Core\Settings::$JS_HANDLER . '/js.php');
         }
-        if (\eMarket\Settings::$JS_MODULES_HANDLER != FALSE) {
-            require_once(\eMarket\Settings::$JS_MODULES_HANDLER . '/js.php');
+        if (\eMarket\Core\Settings::$JS_MODULES_HANDLER != FALSE) {
+            require_once(\eMarket\Core\Settings::$JS_MODULES_HANDLER . '/js.php');
         }
 
         // Выводим отладочную информацию
-        \eMarket\Debug::info();
+        \eMarket\Core\Debug::info();
         ?>
     </body>
 </html>

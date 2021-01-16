@@ -19,7 +19,7 @@
                 <form action='index.php' method='post' accept-charset='utf-8'>
                     <div class="alert alert-danger"><?php echo lang(\eMarket\Install\Error::$message) ?></div>
 
-                    <?php if (\eMarket\Valid::inGET('error_message')) { ?>
+                    <?php if (\eMarket\Core\Valid::inGET('error_message')) { ?>
                         <div class="alert alert-warning"><?php echo \eMarket\Install\Error::$error_message ?></div>
                     <?php } ?>
 

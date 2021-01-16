@@ -16,7 +16,7 @@ if (\eMarket\Catalog\Products::$products != FALSE) {
     <div id="products" class="contentText">
         <div class="row">
             <div class="col-sm-6 col-xs-12">
-                <?php echo \eMarket\Products::stikers(\eMarket\Catalog\Products::$products, 'label-danger', 'label-success') ?>
+                <?php echo \eMarket\Core\Products::stikers(\eMarket\Catalog\Products::$products, 'label-danger', 'label-success') ?>
                 <a href="/uploads/images/products/resize_4/<?php echo \eMarket\Catalog\Products::$products['logo_general'] ?>" data-toggle="lightbox" data-gallery="example-gallery" data-type="image">
                     <img src="/uploads/images/products/resize_2/<?php echo \eMarket\Catalog\Products::$products['logo_general'] ?>" alt="<?php echo \eMarket\Catalog\Products::$products['name'] ?>" class="img-padding img-responsive center-block">
                 </a>
@@ -33,7 +33,7 @@ if (\eMarket\Catalog\Products::$products != FALSE) {
             <div class="col-sm-6 col-xs-12 productpage">
                 <ul>
                     <li>
-                        <span class="productpage-price"><?php echo \eMarket\Ecb::priceInterface(\eMarket\Catalog\Products::$products, 1) ?></span>
+                        <span class="productpage-price"><?php echo \eMarket\Core\Ecb::priceInterface(\eMarket\Catalog\Products::$products, 1) ?></span>
                     </li>
                 </ul>
                 <hr>
@@ -66,15 +66,15 @@ if (\eMarket\Catalog\Products::$products != FALSE) {
                     <?php } ?>
                     <li>
                         <label><?php echo lang('product_availability') ?></label>
-                        <?php echo \eMarket\Products::inStock(\eMarket\Catalog\Products::$products['date_available'], \eMarket\Catalog\Products::$products['quantity']); ?>
+                        <?php echo \eMarket\Core\Products::inStock(\eMarket\Catalog\Products::$products['date_available'], \eMarket\Catalog\Products::$products['quantity']); ?>
                     </li>
                 </ul>
                 <hr>
                 <div>
                     <button class="btn btn-primary" type="button" onclick="Products.pcsProduct('minus', <?php echo \eMarket\Catalog\Products::$products['id'] ?>, <?php echo \eMarket\Catalog\Products::$products['quantity'] ?>)"><span class="glyphicon glyphicon-minus"></span></button>
-                    <input id="number_<?php echo \eMarket\Catalog\Products::$products['id'] ?>" data-placement="top" data-content="<?php echo lang('listing_no_more_in_stock') ?>" type="number" min="1" value="<?php echo \eMarket\Cart::maxQuantityToOrder(\eMarket\Catalog\Products::$products) ?>" class="quantity" disabled>
-                    <button class="btn btn-primary button-plus" type="button" onclick="Products.pcsProduct('plus', <?php echo \eMarket\Catalog\Products::$products['id'] ?>, <?php echo \eMarket\Cart::maxQuantityToOrder(\eMarket\Catalog\Products::$products, 'true') ?>)"><span class="glyphicon glyphicon-plus"></span></button>
-                    <button class="btn btn-primary plus<?php echo \eMarket\Cart::maxQuantityToOrder(\eMarket\Catalog\Products::$products, 'class') ?>" onclick="Products.addToCart(<?php echo \eMarket\Catalog\Products::$products['id'] ?>, $('#number_<?php echo \eMarket\Catalog\Products::$products['id'] ?>').val())"><?php echo lang('add_to_cart') ?></button>
+                    <input id="number_<?php echo \eMarket\Catalog\Products::$products['id'] ?>" data-placement="top" data-content="<?php echo lang('listing_no_more_in_stock') ?>" type="number" min="1" value="<?php echo \eMarket\Core\Cart::maxQuantityToOrder(\eMarket\Catalog\Products::$products) ?>" class="quantity" disabled>
+                    <button class="btn btn-primary button-plus" type="button" onclick="Products.pcsProduct('plus', <?php echo \eMarket\Catalog\Products::$products['id'] ?>, <?php echo \eMarket\Core\Cart::maxQuantityToOrder(\eMarket\Catalog\Products::$products, 'true') ?>)"><span class="glyphicon glyphicon-plus"></span></button>
+                    <button class="btn btn-primary plus<?php echo \eMarket\Core\Cart::maxQuantityToOrder(\eMarket\Catalog\Products::$products, 'class') ?>" onclick="Products.addToCart(<?php echo \eMarket\Catalog\Products::$products['id'] ?>, $('#number_<?php echo \eMarket\Catalog\Products::$products['id'] ?>').val())"><?php echo lang('add_to_cart') ?></button>
                 </div>
             </div>
         </div>
@@ -114,7 +114,7 @@ if (\eMarket\Catalog\Products::$products != FALSE) {
 }
 
 // ПОДКЛЮЧАЕМ КОНТЕНТ
-foreach (\eMarket\View::tlpc('content') as $path) {
+foreach (\eMarket\Core\View::tlpc('content') as $path) {
     require_once (ROOT . $path);
 }
 ?>

@@ -40,7 +40,7 @@ class AddressBook {
      *
      */
     public function autorize() {
-        if (\eMarket\Autorize::$CUSTOMER == FALSE) {
+        if (\eMarket\Core\Autorize::$CUSTOMER == FALSE) {
             header('Location: ?route=login');
             exit;
         }
@@ -51,8 +51,8 @@ class AddressBook {
      *
      */
     public function jsonEcho() {
-        if (\eMarket\Valid::inPOST('countries_select')) {
-            self::$regions_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_REGIONS . " WHERE language=? AND country_id=? ORDER BY name ASC", [lang('#lang_all')[0], \eMarket\Valid::inPOST('countries_select')]);
+        if (\eMarket\Core\Valid::inPOST('countries_select')) {
+            self::$regions_data = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_REGIONS . " WHERE language=? AND country_id=? ORDER BY name ASC", [lang('#lang_all')[0], \eMarket\Core\Valid::inPOST('countries_select')]);
             echo json_encode(self::$regions_data);
             exit;
         }
@@ -63,10 +63,10 @@ class AddressBook {
      *
      */
     public function initData() {
-        $countries_array = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_COUNTRIES . " WHERE language=? ORDER BY name ASC", [lang('#lang_all')[0]]);
+        $countries_array = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_COUNTRIES . " WHERE language=? ORDER BY name ASC", [lang('#lang_all')[0]]);
         self::$countries_data_json = json_encode($countries_array);
 
-        self::$address_data_json = \eMarket\Pdo::getCellFalse("SELECT address_book FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']]);
+        self::$address_data_json = \eMarket\Core\Pdo::getCellFalse("SELECT address_book FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']]);
 
         if (self::$address_data_json == FALSE) {
             self::$address_data = [];
@@ -80,18 +80,18 @@ class AddressBook {
      *
      */
     public function add() {
-        if (\eMarket\Valid::inPOST('add')) {
-            if (\eMarket\Valid::inPOST('default')) {
+        if (\eMarket\Core\Valid::inPOST('add')) {
+            if (\eMarket\Core\Valid::inPOST('default')) {
                 $default = 1;
             } else {
                 $default = 0;
             }
 
-            $address_array = ['countries_id' => \eMarket\Valid::inPOST('countries'),
-                'regions_id' => \eMarket\Valid::inPOST('regions'),
-                'city' => \eMarket\Valid::inPOST('city'),
-                'zip' => \eMarket\Valid::inPOST('zip'),
-                'address' => \eMarket\Valid::inPOST('address'),
+            $address_array = ['countries_id' => \eMarket\Core\Valid::inPOST('countries'),
+                'regions_id' => \eMarket\Core\Valid::inPOST('regions'),
+                'city' => \eMarket\Core\Valid::inPOST('city'),
+                'zip' => \eMarket\Core\Valid::inPOST('zip'),
+                'address' => \eMarket\Core\Valid::inPOST('address'),
                 'default' => $default];
 
             $x = 0;
@@ -103,9 +103,9 @@ class AddressBook {
             }
             array_unshift(self::$address_data, $address_array);
 
-            \eMarket\Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET address_book=? WHERE email=?", [json_encode(self::$address_data), $_SESSION['email_customer']]);
+            \eMarket\Core\Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET address_book=? WHERE email=?", [json_encode(self::$address_data), $_SESSION['email_customer']]);
 
-            \eMarket\Messages::alert('success', lang('action_completed_successfully'));
+            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
         }
     }
 
@@ -114,18 +114,18 @@ class AddressBook {
      *
      */
     public function edit() {
-        if (\eMarket\Valid::inPOST('edit')) {
-            if (\eMarket\Valid::inPOST('default')) {
+        if (\eMarket\Core\Valid::inPOST('edit')) {
+            if (\eMarket\Core\Valid::inPOST('default')) {
                 $default = 1;
             } else {
                 $default = 0;
             }
 
-            $address_array = ['countries_id' => \eMarket\Valid::inPOST('countries'),
-                'regions_id' => \eMarket\Valid::inPOST('regions'),
-                'city' => \eMarket\Valid::inPOST('city'),
-                'zip' => \eMarket\Valid::inPOST('zip'),
-                'address' => \eMarket\Valid::inPOST('address'),
+            $address_array = ['countries_id' => \eMarket\Core\Valid::inPOST('countries'),
+                'regions_id' => \eMarket\Core\Valid::inPOST('regions'),
+                'city' => \eMarket\Core\Valid::inPOST('city'),
+                'zip' => \eMarket\Core\Valid::inPOST('zip'),
+                'address' => \eMarket\Core\Valid::inPOST('address'),
                 'default' => $default];
 
             $x = 0;
@@ -136,11 +136,11 @@ class AddressBook {
                 $x++;
             }
 
-            self::$address_data[(int) \eMarket\Valid::inPOST('edit') - 1] = $address_array;
+            self::$address_data[(int) \eMarket\Core\Valid::inPOST('edit') - 1] = $address_array;
 
-            \eMarket\Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET address_book=? WHERE email=?", [json_encode(self::$address_data), $_SESSION['email_customer']]);
+            \eMarket\Core\Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET address_book=? WHERE email=?", [json_encode(self::$address_data), $_SESSION['email_customer']]);
 
-            \eMarket\Messages::alert('success', lang('action_completed_successfully'));
+            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
         }
     }
 
@@ -149,9 +149,9 @@ class AddressBook {
      *
      */
     public function delete() {
-        if (\eMarket\Valid::inPOST('delete')) {
+        if (\eMarket\Core\Valid::inPOST('delete')) {
 
-            $number = (int) \eMarket\Valid::inPOST('delete') - 1;
+            $number = (int) \eMarket\Core\Valid::inPOST('delete') - 1;
             if (self::$address_data[$number]['default'] == 1 && count(self::$address_data) > 1) {
                 unset(self::$address_data[$number]);
                 $address_data_out = array_values(self::$address_data);
@@ -167,9 +167,9 @@ class AddressBook {
                 $address_data_out_table = json_encode($address_data_out);
             }
 
-            \eMarket\Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET address_book=? WHERE email=?", [$address_data_out_table, $_SESSION['email_customer']]);
+            \eMarket\Core\Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET address_book=? WHERE email=?", [$address_data_out_table, $_SESSION['email_customer']]);
 
-            \eMarket\Messages::alert('success', lang('action_completed_successfully'));
+            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
         }
     }
 
@@ -180,8 +180,8 @@ class AddressBook {
     public function data() {
         $x = 0;
         foreach (self::$address_data as $address_val) {
-            $countries_array = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_COUNTRIES . " WHERE language=? AND id=? ORDER BY name ASC", [lang('#lang_all')[0], $address_val['countries_id']])[0];
-            $regions_array = \eMarket\Pdo::getColAssoc("SELECT id, name FROM " . TABLE_REGIONS . " WHERE language=? AND id=? ORDER BY name ASC", [lang('#lang_all')[0], $address_val['regions_id']])[0];
+            $countries_array = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_COUNTRIES . " WHERE language=? AND id=? ORDER BY name ASC", [lang('#lang_all')[0], $address_val['countries_id']])[0];
+            $regions_array = \eMarket\Core\Pdo::getColAssoc("SELECT id, name FROM " . TABLE_REGIONS . " WHERE language=? AND id=? ORDER BY name ASC", [lang('#lang_all')[0], $address_val['regions_id']])[0];
             if ($address_val['countries_id'] == $countries_array['id']) {
                 self::$address_data[$x]['countries_name'] = $countries_array['name'];
                 self::$address_data[$x]['alpha_2'] = $countries_array['alpha_2'];

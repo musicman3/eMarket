@@ -5,7 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 // ПОДКЛЮЧАЕМ КОНТЕНТ
-foreach (\eMarket\View::tlpc('content') as $path) {
+foreach (\eMarket\Core\View::tlpc('content') as $path) {
     require_once (ROOT . $path);
 }
 ?>
@@ -13,11 +13,11 @@ foreach (\eMarket\View::tlpc('content') as $path) {
 <?php require_once('modal/cart_message.php') ?>
 <!-- КОНЕЦ Модальное окно -->
 
-<?php if (\eMarket\Valid::inGET('search')) { ?><h1><?php echo lang('listing_search'); ?></h1><?php } else { ?><h1><?php echo \eMarket\Catalog\Listing::$categories_name ?></h1><?php } ?>
+<?php if (\eMarket\Core\Valid::inGET('search')) { ?><h1><?php echo lang('listing_search'); ?></h1><?php } else { ?><h1><?php echo \eMarket\Catalog\Listing::$categories_name ?></h1><?php } ?>
 
 <div id="ajax_data" class='hidden' data-product='<?php echo \eMarket\Catalog\Listing::$product_edit ?>'></div>
 
-<?php if (\eMarket\Pages::$count > 0) { ?>
+<?php if (\eMarket\Core\Pages::$count > 0) { ?>
     <div id="listing" class="contentText">
         <div class="well well-sm">
             <div class="btn-group">
@@ -41,35 +41,35 @@ foreach (\eMarket\View::tlpc('content') as $path) {
 
         <div id="product-data" class="row row-flex">
             <?php
-            for (\eMarket\Pages::$start; \eMarket\Pages::$start < \eMarket\Pages::$finish; \eMarket\Pages::$start++, \eMarket\Pages::lineUpdate()) {
+            for (\eMarket\Core\Pages::$start; \eMarket\Core\Pages::$start < \eMarket\Core\Pages::$finish; \eMarket\Core\Pages::$start++, \eMarket\Core\Pages::lineUpdate()) {
                 ?>
                 <div class="item col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item">
                     <div class="productHolder">
-                        <?php echo \eMarket\Products::stikers(eMarket\Pages::$table['line'], 'label-danger', 'label-success') ?>
-                        <a href="/?route=products&category_id=<?php echo eMarket\Pages::$table['line']['parent_id'] ?>&id=<?php echo eMarket\Pages::$table['line']['id'] ?>"><img src="/uploads/images/products/resize_1/<?php echo eMarket\Pages::$table['line']['logo_general'] ?>" alt="<?php echo eMarket\Pages::$table['line']['name'] ?>" class="img-responsive"></a>
+                        <?php echo \eMarket\Core\Products::stikers(eMarket\Core\Pages::$table['line'], 'label-danger', 'label-success') ?>
+                        <a href="/?route=products&category_id=<?php echo eMarket\Core\Pages::$table['line']['parent_id'] ?>&id=<?php echo eMarket\Core\Pages::$table['line']['id'] ?>"><img src="/uploads/images/products/resize_1/<?php echo eMarket\Core\Pages::$table['line']['logo_general'] ?>" alt="<?php echo eMarket\Core\Pages::$table['line']['name'] ?>" class="img-responsive"></a>
                         <div class="caption">
-                            <h5 class="item-heading"><a href="/?route=products&category_id=<?php echo eMarket\Pages::$table['line']['parent_id'] ?>&id=<?php echo eMarket\Pages::$table['line']['id'] ?>"><?php echo eMarket\Pages::$table['line']['name'] ?></a></h5>
-                            <div class="item-price"><?php echo \eMarket\Ecb::priceInterface(eMarket\Pages::$table['line'], 1) ?></div>
+                            <h5 class="item-heading"><a href="/?route=products&category_id=<?php echo eMarket\Core\Pages::$table['line']['parent_id'] ?>&id=<?php echo eMarket\Core\Pages::$table['line']['id'] ?>"><?php echo eMarket\Core\Pages::$table['line']['name'] ?></a></h5>
+                            <div class="item-price"><?php echo \eMarket\Core\Ecb::priceInterface(eMarket\Core\Pages::$table['line'], 1) ?></div>
                             <div class="item-text">
                                 <ul>
-                                    <?php if (eMarket\Pages::$table['line']['vendor_code'] != NULL && eMarket\Pages::$table['line']['vendor_code'] != FALSE && eMarket\Pages::$table['line']['vendor_code_value'] != NULL && eMarket\Pages::$table['line']['vendor_code_value'] != FALSE) { ?>
+                                    <?php if (eMarket\Core\Pages::$table['line']['vendor_code'] != NULL && eMarket\Core\Pages::$table['line']['vendor_code'] != FALSE && eMarket\Core\Pages::$table['line']['vendor_code_value'] != NULL && eMarket\Core\Pages::$table['line']['vendor_code_value'] != FALSE) { ?>
                                         <li>
-                                            <label><?php echo \eMarket\Products::vendorCode(eMarket\Pages::$table['line']['vendor_code'])['name'] ?>: </label> 
-                                            <?php echo eMarket\Pages::$table['line']['vendor_code_value'] ?>
+                                            <label><?php echo \eMarket\Core\Products::vendorCode(eMarket\Core\Pages::$table['line']['vendor_code'])['name'] ?>: </label> 
+                                            <?php echo eMarket\Core\Pages::$table['line']['vendor_code_value'] ?>
                                         </li>
-				    <?php } if (\eMarket\Products::manufacturer(eMarket\Pages::$table['line']['manufacturer'])['name'] != NULL && \eMarket\Products::manufacturer(eMarket\Pages::$table['line']['manufacturer'])['name'] != FALSE) { ?>
+				    <?php } if (\eMarket\Core\Products::manufacturer(eMarket\Core\Pages::$table['line']['manufacturer'])['name'] != NULL && \eMarket\Core\Products::manufacturer(eMarket\Core\Pages::$table['line']['manufacturer'])['name'] != FALSE) { ?>
                                         <li>
-                                            <label><?php echo lang('product_manufacturer') ?></label> <?php echo \eMarket\Products::manufacturer(eMarket\Pages::$table['line']['manufacturer'])['name'] ?>
+                                            <label><?php echo lang('product_manufacturer') ?></label> <?php echo \eMarket\Core\Products::manufacturer(eMarket\Core\Pages::$table['line']['manufacturer'])['name'] ?>
                                         </li>
-                                    <?php } if (eMarket\Pages::$table['line']['model'] != NULL && eMarket\Pages::$table['line']['model'] != FALSE) { ?>
+                                    <?php } if (eMarket\Core\Pages::$table['line']['model'] != NULL && eMarket\Core\Pages::$table['line']['model'] != FALSE) { ?>
                                         <li>
                                             <label><?php echo lang('product_model') ?></label> 
-                                            <?php echo eMarket\Pages::$table['line']['model'] ?>
+                                            <?php echo eMarket\Core\Pages::$table['line']['model'] ?>
                                         </li>
                                     <?php } ?>
                                     <li>
                                         <label><?php echo lang('product_availability') ?></label>
-                                        <?php echo \eMarket\Products::inStock(eMarket\Pages::$table['line']['date_available'], eMarket\Pages::$table['line']['quantity']); ?>
+                                        <?php echo \eMarket\Core\Products::inStock(eMarket\Core\Pages::$table['line']['date_available'], eMarket\Core\Pages::$table['line']['quantity']); ?>
                                     </li>
                                 </ul>
                             </div>
@@ -77,10 +77,10 @@ foreach (\eMarket\View::tlpc('content') as $path) {
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="block-button">
-                                    <button class="btn btn-primary" type="button" onclick="ProductsListing.pcsProduct('minus', <?php echo eMarket\Pages::$table['line']['id'] ?>)"><span class="glyphicon glyphicon-minus"></span></button>
-                                    <input id="number_<?php echo eMarket\Pages::$table['line']['id'] ?>" data-placement="top" data-content="<?php echo lang('listing_no_more_in_stock') ?>" type="number" min="1" value="<?php echo \eMarket\Cart::maxQuantityToOrder(eMarket\Pages::$table['line']) ?>" class="quantity" disabled>
-                                    <button class="btn btn-primary button-plus" type="button" onclick="ProductsListing.pcsProduct('plus', <?php echo eMarket\Pages::$table['line']['id'] ?>, <?php echo \eMarket\Cart::maxQuantityToOrder(eMarket\Pages::$table['line'], 'true') ?>)"><span class="glyphicon glyphicon-plus"></span></button>
-                                    <button class="btn btn-primary buy-now<?php echo \eMarket\Cart::maxQuantityToOrder(eMarket\Pages::$table['line'], 'class') ?>" onclick="ProductsListing.addToCart(<?php echo eMarket\Pages::$table['line']['id'] ?>, $('#number_<?php echo eMarket\Pages::$table['line']['id'] ?>').val())"><?php echo lang('buy_now') ?></button>
+                                    <button class="btn btn-primary" type="button" onclick="ProductsListing.pcsProduct('minus', <?php echo eMarket\Core\Pages::$table['line']['id'] ?>)"><span class="glyphicon glyphicon-minus"></span></button>
+                                    <input id="number_<?php echo eMarket\Core\Pages::$table['line']['id'] ?>" data-placement="top" data-content="<?php echo lang('listing_no_more_in_stock') ?>" type="number" min="1" value="<?php echo \eMarket\Core\Cart::maxQuantityToOrder(eMarket\Core\Pages::$table['line']) ?>" class="quantity" disabled>
+                                    <button class="btn btn-primary button-plus" type="button" onclick="ProductsListing.pcsProduct('plus', <?php echo eMarket\Core\Pages::$table['line']['id'] ?>, <?php echo \eMarket\Core\Cart::maxQuantityToOrder(eMarket\Core\Pages::$table['line'], 'true') ?>)"><span class="glyphicon glyphicon-plus"></span></button>
+                                    <button class="btn btn-primary buy-now<?php echo \eMarket\Core\Cart::maxQuantityToOrder(eMarket\Core\Pages::$table['line'], 'class') ?>" onclick="ProductsListing.addToCart(<?php echo eMarket\Core\Pages::$table['line']['id'] ?>, $('#number_<?php echo eMarket\Core\Pages::$table['line']['id'] ?>').val())"><?php echo lang('buy_now') ?></button>
                                 </div>
                             </div>
                         </div>
@@ -92,20 +92,20 @@ foreach (\eMarket\View::tlpc('content') as $path) {
         <div class="well well-sm">
             <!--Скрытый div для передачи данных-->
             <div id="nav_data" class='hidden' 
-                 data-prev='<?php echo eMarket\Pages::$table['navigate'][0] ?>'
-                 data-next='<?php echo eMarket\Pages::$table['navigate'][1] ?>'
+                 data-prev='<?php echo eMarket\Core\Pages::$table['navigate'][0] ?>'
+                 data-next='<?php echo eMarket\Core\Pages::$table['navigate'][1] ?>'
                  data-sortflag='<?php echo \eMarket\Catalog\Listing::$sort_flag ?>'
                  ></div>
-            <div class="result-inner btn-group"><?php echo \eMarket\Pages::counterPage() ?></div>
+            <div class="result-inner btn-group"><?php echo \eMarket\Core\Pages::counterPage() ?></div>
 
             <div class="btn-group pull-right navigate-normal">
-                <?php if (eMarket\Pages::$table['navigate'][0] > 0) { ?> 
+                <?php if (eMarket\Core\Pages::$table['navigate'][0] > 0) { ?> 
                     <button id="prev" type="button" class="btn btn-default navigation">&larr; <?php echo lang('button_previous') ?></button>
                 <?php } else { ?> 
                     <a id="prev" class="btn btn-default disabled">&larr; <?php echo lang('button_previous') ?></a>
                     <?php
                 }
-                if (eMarket\Pages::$table['navigate'][1] != \eMarket\Pages::$count) {
+                if (eMarket\Core\Pages::$table['navigate'][1] != \eMarket\Core\Pages::$count) {
                     ?> 
                     <button id="next" type="button" class="btn btn-default navigation"><?php echo lang('button_next') ?> &rarr;</button>
                 <?php } else { ?> 
@@ -113,13 +113,13 @@ foreach (\eMarket\View::tlpc('content') as $path) {
                 <?php } ?>
             </div>
             <div class="btn-group pull-right navigate-mini">
-                <?php if (eMarket\Pages::$table['navigate'][0] > 0) { ?> 
+                <?php if (eMarket\Core\Pages::$table['navigate'][0] > 0) { ?> 
                     <button id="prev" type="button" class="btn btn-default navigation">&larr;</button>
                 <?php } else { ?> 
                     <a id="prev" class="btn btn-default disabled">&larr;</a>
                     <?php
                 }
-                if (eMarket\Pages::$table['navigate'][1] != \eMarket\Pages::$count) {
+                if (eMarket\Core\Pages::$table['navigate'][1] != \eMarket\Core\Pages::$count) {
                     ?> 
                     <button id="next" type="button" class="btn btn-default navigation">&rarr;</button>
                 <?php } else { ?> 
@@ -133,7 +133,7 @@ foreach (\eMarket\View::tlpc('content') as $path) {
         <div class="well well-sm">
             <div class="no">
                 <?php
-                if (\eMarket\Valid::inGET('search')) {
+                if (\eMarket\Core\Valid::inGET('search')) {
                     echo lang('listing_no_search');
                 } else {
                     echo lang('listing_no');

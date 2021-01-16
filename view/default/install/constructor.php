@@ -19,28 +19,28 @@
         <meta name="owner" content="eMarket" />
         <meta name="copyright" content="Copyright © 2018 by eMarket Team. All right reserved." />
         <!-- Автогенерация Title" -->
-        <title><?php echo lang('title_' . \eMarket\Settings::titleDir() . '_' . basename(\eMarket\Valid::inSERVER('PHP_SELF'), '.php')) ?></title>
+        <title><?php echo lang('title_' . \eMarket\Core\Settings::titleDir() . '_' . basename(\eMarket\Core\Valid::inSERVER('PHP_SELF'), '.php')) ?></title>
 
         <link href="/ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
-        <link rel="stylesheet" type="text/css" href="/view/<?php echo \eMarket\Settings::template() ?>/install/style.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="/view/<?php echo \eMarket\Core\Settings::template() ?>/install/style.css" media="screen" />
         <script type="text/javascript" src="/ext/jquery/jquery.min.js"></script>
     </head>
     <body>
         <?php
         // ЗАГРУЖАЕМ ТЕЛО HTML СТРАНИЦЫ
-        require_once(\eMarket\View::routing());
+        require_once(\eMarket\Core\View::routing());
 
         // ЗАГРУЖАЕМ FOOTER
         require_once (getenv('DOCUMENT_ROOT') . '/controller/install/footer.php');
-        require_once (getenv('DOCUMENT_ROOT') . '/view/' . \eMarket\Settings::template() . '/install/footer.php');
+        require_once (getenv('DOCUMENT_ROOT') . '/view/' . \eMarket\Core\Settings::template() . '/install/footer.php');
 
         ?>
 
         <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.min.js"></script>
 
         <?php
-        if (\eMarket\Settings::$JS_HANDLER != FALSE) {
-            require_once(\eMarket\Settings::$JS_HANDLER . '/js.php');
+        if (\eMarket\Core\Settings::$JS_HANDLER != FALSE) {
+            require_once(\eMarket\Core\Settings::$JS_HANDLER . '/js.php');
         }
 
         ?>

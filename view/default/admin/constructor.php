@@ -19,10 +19,10 @@
         <meta name="copyright" content="Copyright © 2018 by eMarket Team. All right reserved." />
 
         <!-- Автогенерация Title" -->
-        <title><?php echo \eMarket\Settings::titlePageGenerator() ?></title>
+        <title><?php echo \eMarket\Core\Settings::titlePageGenerator() ?></title>
 
         <link href="/ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
-        <link rel="stylesheet" type="text/css" href="/view/<?php echo \eMarket\Settings::template() ?>/admin/style.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="/view/<?php echo \eMarket\Core\Settings::template() ?>/admin/style.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="/ext/contextmenu/css/jquery.contextMenu.min.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="/ext/jquery/ui/jquery-ui.min.css" media="screen" />
         <link rel="stylesheet" href="/ext/bootstrap/css/bootstrap-multiselect.css" type="text/css"/>
@@ -40,16 +40,16 @@
         </script>
 
         <?php
-        if (isset($_SESSION['login']) && isset($_SESSION['pass']) && file_exists(ROOT . '/view/' . \eMarket\Settings::template() . '/admin/nav.css')) {
+        if (isset($_SESSION['login']) && isset($_SESSION['pass']) && file_exists(ROOT . '/view/' . \eMarket\Core\Settings::template() . '/admin/nav.css')) {
             ?>
-            <link rel="stylesheet" type="text/css" href="/view/<?php echo \eMarket\Settings::template() ?>/admin/nav.css" media="screen" />
+            <link rel="stylesheet" type="text/css" href="/view/<?php echo \eMarket\Core\Settings::template() ?>/admin/nav.css" media="screen" />
         <?php } ?>
     </head>
     <body>
 
         <?php
         // ЗАГРУЖАЕМ HEADER
-        foreach (\eMarket\View::tlpc('header') as $path) {
+        foreach (\eMarket\Core\View::tlpc('header') as $path) {
             require_once (ROOT . $path);
         }
         ?>
@@ -59,7 +59,7 @@
 
                 <?php
                 // ЗАГРУЖАЕМ ТЕЛО HTML СТРАНИЦЫ
-                require_once(\eMarket\View::routingAdmin());
+                require_once(\eMarket\Core\View::routingAdmin());
                 ?>
 
             </div>
@@ -67,7 +67,7 @@
 
         <?php
         // ЗАГРУЖАЕМ FOOTER
-        foreach (\eMarket\View::tlpc('footer') as $path) {
+        foreach (\eMarket\Core\View::tlpc('footer') as $path) {
             require_once (ROOT . $path);
         }
         ?>
@@ -82,14 +82,14 @@
         </script>
 
         <?php
-        if (\eMarket\Settings::$JS_HANDLER != FALSE) {
-            require_once(\eMarket\Settings::$JS_HANDLER . '/js.php');
+        if (\eMarket\Core\Settings::$JS_HANDLER != FALSE) {
+            require_once(\eMarket\Core\Settings::$JS_HANDLER . '/js.php');
         }
-        if (\eMarket\Settings::$JS_MODULES_HANDLER != FALSE) {
-            require_once(\eMarket\Settings::$JS_MODULES_HANDLER . '/js.php');
+        if (\eMarket\Core\Settings::$JS_MODULES_HANDLER != FALSE) {
+            require_once(\eMarket\Core\Settings::$JS_MODULES_HANDLER . '/js.php');
         }
         // Выводим отладочную информацию
-        \eMarket\Debug::info();
+        \eMarket\Core\Debug::info();
         ?>
 
     </body>

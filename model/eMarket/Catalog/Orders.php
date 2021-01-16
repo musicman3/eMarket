@@ -34,7 +34,7 @@ class Orders {
      *
      */
     public function autorize() {
-        if (\eMarket\Autorize::$CUSTOMER == FALSE) {
+        if (\eMarket\Core\Autorize::$CUSTOMER == FALSE) {
             header('Location: ?route=login');
             exit;
         }
@@ -45,8 +45,8 @@ class Orders {
      *
      */
     public function data() {
-        self::$lines = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_ORDERS . " WHERE email=? ORDER BY id DESC", [$_SESSION['email_customer']]);
-        \eMarket\Pages::table(self::$lines);
+        self::$lines = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_ORDERS . " WHERE email=? ORDER BY id DESC", [$_SESSION['email_customer']]);
+        \eMarket\Core\Pages::table(self::$lines);
     }
 
     /**
@@ -55,7 +55,7 @@ class Orders {
      */
     public function modal() {
         self::$orders_edit = json_encode([]);
-        for ($i = \eMarket\Pages::$start; $i < \eMarket\Pages::$finish; $i++) {
+        for ($i = \eMarket\Core\Pages::$start; $i < \eMarket\Core\Pages::$finish; $i++) {
             if (isset(self::$lines[$i]['id']) == TRUE) {
 
                 $modal_id = self::$lines[$i]['id'];

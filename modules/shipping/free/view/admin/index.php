@@ -33,8 +33,8 @@
 			    <input hidden name="route" value="settings/modules/edit">
 			    <input hidden name="backstart" value="<?php echo $start ?>">
 			    <input hidden name="backfinish" value="<?php echo $finish ?>">
-			    <input hidden name="type" value="<?php echo \eMarket\Valid::inGET('type') ?>">
-			    <input hidden name="name" value="<?php echo \eMarket\Valid::inGET('name') ?>">
+			    <input hidden name="type" value="<?php echo \eMarket\Core\Valid::inGET('type') ?>">
+			    <input hidden name="name" value="<?php echo \eMarket\Core\Valid::inGET('name') ?>">
 			    <div class="b-left">
 				<?php if ($start > 0) { ?>
 				    <button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button>
@@ -48,8 +48,8 @@
 			    <input hidden name="route" value="settings/modules/edit">
 			    <input hidden name="start" value="<?php echo $start ?>">
 			    <input hidden name="finish" value="<?php echo $finish ?>">
-			    <input hidden name="type" value="<?php echo \eMarket\Valid::inGET('type') ?>">
-			    <input hidden name="name" value="<?php echo \eMarket\Valid::inGET('name') ?>">
+			    <input hidden name="type" value="<?php echo \eMarket\Core\Valid::inGET('type') ?>">
+			    <input hidden name="name" value="<?php echo \eMarket\Core\Valid::inGET('name') ?>">
 			    <div>
 				<?php if ($finish != count($lines)) { ?>
 				    <button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button>
@@ -76,7 +76,7 @@
 		?>
 		<tr>
 		    <td><?php echo $zones_name[$lines[$start][2]] ?></td>
-                    <td class="text-center"><?php echo \eMarket\Ecb::formatPrice(\eMarket\Ecb::currencyPrice($lines[$start][1], $lines[$start][3]), 1) ?></td>
+                    <td class="text-center"><?php echo \eMarket\Core\Ecb::formatPrice(\eMarket\Core\Ecb::currencyPrice($lines[$start][1], $lines[$start][3]), 1) ?></td>
 		    <td>
 			<div class="flexbox">
 			    <!--Вызов модального окна для редактирования-->

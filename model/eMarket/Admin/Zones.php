@@ -36,16 +36,16 @@ class Zones {
      *
      */
     public function add() {
-        if (\eMarket\Valid::inPOST('add')) {
+        if (\eMarket\Core\Valid::inPOST('add')) {
 
-            $id_max = \eMarket\Pdo::selectPrepare("SELECT id FROM " . TABLE_ZONES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+            $id_max = \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . TABLE_ZONES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max) + 1;
 
-            for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
-                \eMarket\Pdo::action("INSERT INTO " . TABLE_ZONES . " SET id=?, name=?, note=?, language=?", [$id, \eMarket\Valid::inPOST('name_zones_' . $x), \eMarket\Valid::inPOST('note_zones'), lang('#lang_all')[$x]]);
+            for ($x = 0; $x < \eMarket\Core\Lang::$COUNT; $x++) {
+                \eMarket\Core\Pdo::action("INSERT INTO " . TABLE_ZONES . " SET id=?, name=?, note=?, language=?", [$id, \eMarket\Core\Valid::inPOST('name_zones_' . $x), \eMarket\Core\Valid::inPOST('note_zones'), lang('#lang_all')[$x]]);
             }
 
-            \eMarket\Messages::alert('success', lang('action_completed_successfully'));
+            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
         }
     }
 
@@ -54,13 +54,13 @@ class Zones {
      *
      */
     public function edit() {
-        if (\eMarket\Valid::inPOST('edit')) {
+        if (\eMarket\Core\Valid::inPOST('edit')) {
 
-            for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
-                \eMarket\Pdo::action("UPDATE " . TABLE_ZONES . " SET name=?, note=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_zones_' . $x), \eMarket\Valid::inPOST('note_zones'), \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
+            for ($x = 0; $x < \eMarket\Core\Lang::$COUNT; $x++) {
+                \eMarket\Core\Pdo::action("UPDATE " . TABLE_ZONES . " SET name=?, note=? WHERE id=? AND language=?", [\eMarket\Core\Valid::inPOST('name_zones_' . $x), \eMarket\Core\Valid::inPOST('note_zones'), \eMarket\Core\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
             }
 
-            \eMarket\Messages::alert('success', lang('action_completed_successfully'));
+            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
         }
     }
 
@@ -69,12 +69,12 @@ class Zones {
      *
      */
     public function delete() {
-        if (\eMarket\Valid::inPOST('delete')) {
+        if (\eMarket\Core\Valid::inPOST('delete')) {
 
-            \eMarket\Pdo::action("DELETE FROM " . TABLE_ZONES . " WHERE id=?", [\eMarket\Valid::inPOST('delete')]);
-            \eMarket\Pdo::action("DELETE FROM " . TABLE_ZONES_VALUE . " WHERE zones_id=?", [\eMarket\Valid::inPOST('delete')]);
+            \eMarket\Core\Pdo::action("DELETE FROM " . TABLE_ZONES . " WHERE id=?", [\eMarket\Core\Valid::inPOST('delete')]);
+            \eMarket\Core\Pdo::action("DELETE FROM " . TABLE_ZONES_VALUE . " WHERE zones_id=?", [\eMarket\Core\Valid::inPOST('delete')]);
 
-            \eMarket\Messages::alert('success', lang('action_completed_successfully'));
+            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
         }
     }
 
@@ -83,9 +83,9 @@ class Zones {
      *
      */
     public function data() {
-        self::$sql_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_ZONES . " ORDER BY name", []);
-        $lines = \eMarket\Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
-        \eMarket\Pages::table($lines);
+        self::$sql_data = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_ZONES . " ORDER BY name", []);
+        $lines = \eMarket\Core\Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
+        \eMarket\Core\Pages::table($lines);
     }
 
     /**
@@ -95,10 +95,10 @@ class Zones {
     public function modal() {
         self::$json_data = json_encode([]);
         $name = [];
-        for ($i = \eMarket\Pages::$start; $i < \eMarket\Pages::$finish; $i++) {
-            if (isset(\eMarket\Pages::$table['lines'][$i]['id']) == TRUE) {
+        for ($i = \eMarket\Core\Pages::$start; $i < \eMarket\Core\Pages::$finish; $i++) {
+            if (isset(\eMarket\Core\Pages::$table['lines'][$i]['id']) == TRUE) {
 
-                $modal_id = \eMarket\Pages::$table['lines'][$i]['id'];
+                $modal_id = \eMarket\Core\Pages::$table['lines'][$i]['id'];
 
                 foreach (self::$sql_data as $sql_modal) {
                     if ($sql_modal['id'] == $modal_id) {

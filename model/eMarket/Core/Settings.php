@@ -4,7 +4,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-namespace eMarket;
+namespace eMarket\Core;
 
 /**
  * Класс для получения установок, настроек и др.
@@ -43,7 +43,7 @@ class Settings {
     public static function basicSettings($param = null) {
 
         if (self::$basic_settings == FALSE) {
-            self::$basic_settings = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_BASIC_SETTINGS, [])[0];
+            self::$basic_settings = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_BASIC_SETTINGS, [])[0];
         }
 
         if ($param != null) {
@@ -61,7 +61,7 @@ class Settings {
     public static function currenciesData() {
 
         if (self::$currencies_data == FALSE) {
-            self::$currencies_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=?", [lang('#lang_all')[0]]);
+            self::$currencies_data = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=?", [lang('#lang_all')[0]]);
         }
 
         return self::$currencies_data;
@@ -93,7 +93,7 @@ class Settings {
      * @return string data
      */
     public static function jsHandler() {
-        $path = getenv('DOCUMENT_ROOT') . '/js_handler/' . \eMarket\Settings::path() . '/pages/' . \eMarket\Valid::inGET('route');
+        $path = getenv('DOCUMENT_ROOT') . '/js_handler/' . \eMarket\Core\Settings::path() . '/pages/' . \eMarket\Core\Valid::inGET('route');
         if (file_exists($path . '/js.php')) {
             self::$JS_HANDLER = $path;
         }
@@ -105,7 +105,7 @@ class Settings {
      * @return string data
      */
     public static function jsModulesHandler() {
-        $path = \eMarket\View::routingModules('js_handler');
+        $path = \eMarket\Core\View::routingModules('js_handler');
         if (file_exists($path . '/js.php')) {
             self::$JS_MODULES_HANDLER = $path;
         }
@@ -123,7 +123,7 @@ class Settings {
         $text = '';
         foreach ($discount_json as $key => $id) {
             foreach ($id as $val_id) {
-                $text .= lang('modules_discount_' . $key . '_name') . ': ' . \eMarket\Pdo::getCellFalse("SELECT name FROM " . DB_PREFIX . 'modules_discount_' . $key . "  WHERE language=? AND id=?", [lang('#lang_all')[0], $val_id]) . '<br>';
+                $text .= lang('modules_discount_' . $key . '_name') . ': ' . \eMarket\Core\Pdo::getCellFalse("SELECT name FROM " . DB_PREFIX . 'modules_discount_' . $key . "  WHERE language=? AND id=?", [lang('#lang_all')[0], $val_id]) . '<br>';
             }
         }
 
@@ -148,18 +148,18 @@ class Settings {
 
             if (self::path() == 'catalog') {
                 if (!isset($_SESSION['currency_default_catalog'])) {
-                    $currency = \eMarket\Pdo::getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND default_value=?", [$language, 1])[0];
+                    $currency = \eMarket\Core\Pdo::getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND default_value=?", [$language, 1])[0];
                     $_SESSION['currency_default_catalog'] = $currency[0];
-                } elseif (isset($_SESSION['currency_default_catalog']) && !\eMarket\Valid::inGET('currency_default')) {
-                    $currency = \eMarket\Pdo::getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND id=?", [$language, $_SESSION['currency_default_catalog']])[0];
-                } elseif (isset($_SESSION['currency_default_catalog']) && \eMarket\Valid::inGET('currency_default')) {
-                    $currency = \eMarket\Pdo::getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND id=?", [$language, \eMarket\Valid::inGET('currency_default')])[0];
+                } elseif (isset($_SESSION['currency_default_catalog']) && !\eMarket\Core\Valid::inGET('currency_default')) {
+                    $currency = \eMarket\Core\Pdo::getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND id=?", [$language, $_SESSION['currency_default_catalog']])[0];
+                } elseif (isset($_SESSION['currency_default_catalog']) && \eMarket\Core\Valid::inGET('currency_default')) {
+                    $currency = \eMarket\Core\Pdo::getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND id=?", [$language, \eMarket\Core\Valid::inGET('currency_default')])[0];
                     $_SESSION['currency_default_catalog'] = $currency[0];
                 }
             }
 
             if (self::path() == 'admin') {
-                $currency = \eMarket\Pdo::getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND default_value=?", [$language, 1])[0];
+                $currency = \eMarket\Core\Pdo::getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND default_value=?", [$language, 1])[0];
             }
 
             self::$DEFAULT_CURRENCY = $currency;
@@ -181,14 +181,14 @@ class Settings {
      */
     public static function canonicalPathCatalog() {
 
-        $path_temp = \eMarket\Valid::inSERVER('REQUEST_URI');
-        if (\eMarket\Valid::inSERVER('REQUEST_URI') == '/') {
+        $path_temp = \eMarket\Core\Valid::inSERVER('REQUEST_URI');
+        if (\eMarket\Core\Valid::inSERVER('REQUEST_URI') == '/') {
             $path_temp = '';
         }
         $path = HTTP_SERVER . $path_temp;
 
-        if (strrpos(\eMarket\Valid::inSERVER('REQUEST_URI'), '?route') == true) {
-            $path_temp = HTTP_SERVER . str_replace('/?route', '?route', \eMarket\Valid::inSERVER('REQUEST_URI'));
+        if (strrpos(\eMarket\Core\Valid::inSERVER('REQUEST_URI'), '?route') == true) {
+            $path_temp = HTTP_SERVER . str_replace('/?route', '?route', \eMarket\Core\Valid::inSERVER('REQUEST_URI'));
             $path = str_replace('index.php', '', $path_temp);
         }
 
@@ -202,9 +202,9 @@ class Settings {
      */
     public static function path() {
 
-        if (strrpos(\eMarket\Valid::inSERVER('REQUEST_URI'), 'controller/admin/') == true) {
+        if (strrpos(\eMarket\Core\Valid::inSERVER('REQUEST_URI'), 'controller/admin/') == true) {
             $path = 'admin';
-        } elseif (strrpos(\eMarket\Valid::inSERVER('REQUEST_URI'), 'controller/install/') == true) {
+        } elseif (strrpos(\eMarket\Core\Valid::inSERVER('REQUEST_URI'), 'controller/install/') == true) {
             $path = 'install';
         } else {
             $path = 'catalog';
@@ -220,9 +220,9 @@ class Settings {
      */
     public static function titleDir() {
 
-        $title_dir = str_replace('/', '_', \eMarket\Valid::inGET('route'));
-        if (\eMarket\Valid::inGET('route_file') != '') {
-            $title_dir = $title_dir . '_page_' . \eMarket\Valid::inGET('route_file');
+        $title_dir = str_replace('/', '_', \eMarket\Core\Valid::inGET('route'));
+        if (\eMarket\Core\Valid::inGET('route_file') != '') {
+            $title_dir = $title_dir . '_page_' . \eMarket\Core\Valid::inGET('route_file');
         }
 
         if ($title_dir == '' && self::path() == 'catalog') {
@@ -245,15 +245,15 @@ class Settings {
     public static function titlePageGenerator() {
 
         if (self::path() == 'install') {
-            $title = lang('title_' . \eMarket\Settings::titleDir() . '_' . basename(\eMarket\Valid::inSERVER('PHP_SELF'), '.php'));
+            $title = lang('title_' . \eMarket\Core\Settings::titleDir() . '_' . basename(\eMarket\Core\Valid::inSERVER('PHP_SELF'), '.php'));
             return $title;
         }
 
-        if (\eMarket\Valid::inGET('route') == 'settings/modules/edit') {
-            $title = lang('modules_' . \eMarket\Valid::inGET('type') . '_' . \eMarket\Valid::inGET('name') . '_name');
+        if (\eMarket\Core\Valid::inGET('route') == 'settings/modules/edit') {
+            $title = lang('modules_' . \eMarket\Core\Valid::inGET('type') . '_' . \eMarket\Core\Valid::inGET('name') . '_name');
             return $title;
         }
-        $title = lang('title_' . \eMarket\Settings::titleDir() . '_index');
+        $title = lang('title_' . \eMarket\Core\Settings::titleDir() . '_index');
 
         return $title;
     }
@@ -265,27 +265,27 @@ class Settings {
      */
     public static function parentPartitionGenerator() {
 
-        if (\eMarket\Valid::inGET('route') == 'settings/modules/edit' && \eMarket\Valid::inGET('module_path')) {
-            $input = explode('/', \eMarket\Valid::inGET('module_path'));
+        if (\eMarket\Core\Valid::inGET('route') == 'settings/modules/edit' && \eMarket\Core\Valid::inGET('module_path')) {
+            $input = explode('/', \eMarket\Core\Valid::inGET('module_path'));
             array_pop($input);
             $module_path = implode('/', $input);
 
             if ($module_path != '') {
-                $output = '?route=settings/modules/edit&type=' . \eMarket\Valid::inGET('type') . '&name=' . \eMarket\Valid::inGET('name') . '&module_path=' . $module_path;
+                $output = '?route=settings/modules/edit&type=' . \eMarket\Core\Valid::inGET('type') . '&name=' . \eMarket\Core\Valid::inGET('name') . '&module_path=' . $module_path;
                 return $output;
             } else {
-                $output = '?route=settings/modules/edit&type=' . \eMarket\Valid::inGET('type') . '&name=' . \eMarket\Valid::inGET('name');
+                $output = '?route=settings/modules/edit&type=' . \eMarket\Core\Valid::inGET('type') . '&name=' . \eMarket\Core\Valid::inGET('name');
                 return $output;
             }
         }
 
-        if (\eMarket\Valid::inGET('route') == 'settings/modules/edit' && !\eMarket\Valid::inGET('module_path')) {
-            $output = '?route=settings/modules&active=' . \eMarket\Valid::inGET('type');
+        if (\eMarket\Core\Valid::inGET('route') == 'settings/modules/edit' && !\eMarket\Core\Valid::inGET('module_path')) {
+            $output = '?route=settings/modules&active=' . \eMarket\Core\Valid::inGET('type');
             return $output;
         }
 
-        if (\eMarket\Valid::inGET('route')) {
-            $input = explode('/', \eMarket\Valid::inGET('route'));
+        if (\eMarket\Core\Valid::inGET('route')) {
+            $input = explode('/', \eMarket\Core\Valid::inGET('route'));
             array_pop($input);
             $output = '?route=' . implode('/', $input);
 
@@ -307,18 +307,18 @@ class Settings {
         if ($marker == null) {
             $sign = ': ';
         }
-        $title = $sign . lang('title_' . basename(\eMarket\Valid::inGET('route')) . '_index');
+        $title = $sign . lang('title_' . basename(\eMarket\Core\Valid::inGET('route')) . '_index');
 
-        if (basename(\eMarket\Valid::inGET('route')) == '' && self::path() == 'catalog' OR basename(\eMarket\Valid::inGET('route')) == 'catalog' && self::path() == 'catalog') {
+        if (basename(\eMarket\Core\Valid::inGET('route')) == '' && self::path() == 'catalog' OR basename(\eMarket\Core\Valid::inGET('route')) == 'catalog' && self::path() == 'catalog') {
             $title = '';
         }
 
-        if (basename(\eMarket\Valid::inGET('route')) == 'listing' && self::path() == 'catalog') {
-            $title = $sign . \eMarket\Pdo::getCell("SELECT name FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], \eMarket\Valid::inGET('category_id')]);
+        if (basename(\eMarket\Core\Valid::inGET('route')) == 'listing' && self::path() == 'catalog') {
+            $title = $sign . \eMarket\Core\Pdo::getCell("SELECT name FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], \eMarket\Core\Valid::inGET('category_id')]);
         }
 
-        if (basename(\eMarket\Valid::inGET('route')) == 'products' && self::path() == 'catalog') {
-            $product_data = \eMarket\Products::productData(\eMarket\Valid::inGET('id'));
+        if (basename(\eMarket\Core\Valid::inGET('route')) == 'products' && self::path() == 'catalog') {
+            $product_data = \eMarket\Core\Products::productData(\eMarket\Core\Valid::inGET('id'));
             if ($product_data ['tags'] != NULL && $product_data ['tags'] != '') {
                 $title = $sign . $product_data ['tags'];
             } else {
@@ -338,8 +338,8 @@ class Settings {
 
         $keywords = '';
 
-        if (basename(\eMarket\Valid::inGET('route')) == 'products' && self::path() == 'catalog') {
-            $product_data = \eMarket\Products::productData(\eMarket\Valid::inGET('id'));
+        if (basename(\eMarket\Core\Valid::inGET('route')) == 'products' && self::path() == 'catalog') {
+            $product_data = \eMarket\Core\Products::productData(\eMarket\Core\Valid::inGET('id'));
             if ($product_data ['keyword'] != NULL && $product_data ['keyword'] != '') {
                 $keywords = $product_data ['keyword'];
             } else {
@@ -406,7 +406,7 @@ class Settings {
 
         $breadcrumb = [];
         foreach ($breadcrumb_array as $value) {
-            $name = \eMarket\Pdo::getCell("SELECT name FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], $value]);
+            $name = \eMarket\Core\Pdo::getCell("SELECT name FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], $value]);
             array_push($breadcrumb, $name);
         }
 
@@ -420,7 +420,7 @@ class Settings {
      */
     public static function modulesPath() {
 
-        return ROOT . '/modules/' . \eMarket\Valid::inGET('type') . '/' . \eMarket\Valid::inGET('name');
+        return ROOT . '/modules/' . \eMarket\Core\Valid::inGET('type') . '/' . \eMarket\Core\Valid::inGET('name');
     }
 
     /**
@@ -434,20 +434,20 @@ class Settings {
             return self::$lang_currency_path;
         }
 
-        if (\eMarket\Valid::inSERVER('REQUEST_URI') == '/') {
+        if (\eMarket\Core\Valid::inSERVER('REQUEST_URI') == '/') {
             self::$lang_currency_path = HTTP_SERVER . '?route=catalog';
-        } elseif (\eMarket\Valid::inSERVER('REQUEST_URI') == '/controller/admin/') {
+        } elseif (\eMarket\Core\Valid::inSERVER('REQUEST_URI') == '/controller/admin/') {
             self::$lang_currency_path = HTTP_SERVER . 'controller/admin/?route=dashboard';
         } else {
-            self::$lang_currency_path = \eMarket\Valid::inSERVER('REQUEST_URI');
+            self::$lang_currency_path = \eMarket\Core\Valid::inSERVER('REQUEST_URI');
         }
 
-        if (\eMarket\Valid::inGET('language')) {
-            self::$lang_currency_path = \eMarket\Func::deleteGet('language');
+        if (\eMarket\Core\Valid::inGET('language')) {
+            self::$lang_currency_path = \eMarket\Core\Func::deleteGet('language');
         }
 
-        if (\eMarket\Valid::inGET('currency_default')) {
-            self::$lang_currency_path = \eMarket\Func::deleteGet('currency_default');
+        if (\eMarket\Core\Valid::inGET('currency_default')) {
+            self::$lang_currency_path = \eMarket\Core\Func::deleteGet('currency_default');
         }
 
         return self::$lang_currency_path;
@@ -471,15 +471,15 @@ class Settings {
      */
     public static function sorties($class = null) {
 
-        if ($class != null && \eMarket\Valid::inGET('search')) {
+        if ($class != null && \eMarket\Core\Valid::inGET('search')) {
             return $class;
         }
 
-        if ($class == null && !\eMarket\Valid::inGET('search')) {
+        if ($class == null && !\eMarket\Core\Valid::inGET('search')) {
             return '<td class="sortyes sortleft-m"><div><span class="glyphicon glyphicon-move"> </span></div></td>';
         }
 
-        if ($class == null && \eMarket\Valid::inGET('search')) {
+        if ($class == null && \eMarket\Core\Valid::inGET('search')) {
             return '<td class="sortleft-m"></td> ';
         }
     }
@@ -526,7 +526,7 @@ class Settings {
      */
     public static function moduleDatabase() {
 
-        return DB_PREFIX . 'modules_' . \eMarket\Valid::inGET('type') . '_' . \eMarket\Valid::inGET('name');
+        return DB_PREFIX . 'modules_' . \eMarket\Core\Valid::inGET('type') . '_' . \eMarket\Core\Valid::inGET('name');
     }
 
     /**

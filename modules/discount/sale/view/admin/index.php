@@ -33,8 +33,8 @@
                             <input hidden name="route" value="settings/modules/edit">
                             <input hidden name="backstart" value="<?php echo $start ?>">
                             <input hidden name="backfinish" value="<?php echo $finish ?>">
-                            <input hidden name="type" value="<?php echo \eMarket\Valid::inGET('type') ?>">
-                            <input hidden name="name" value="<?php echo \eMarket\Valid::inGET('name') ?>">
+                            <input hidden name="type" value="<?php echo \eMarket\Core\Valid::inGET('type') ?>">
+                            <input hidden name="name" value="<?php echo \eMarket\Core\Valid::inGET('name') ?>">
                             <div class="b-left">
                                 <?php if ($start > 0) { ?>
                                     <button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button>
@@ -48,8 +48,8 @@
                             <input hidden name="route" value="settings/modules/edit">
                             <input hidden name="start" value="<?php echo $start ?>">
                             <input hidden name="finish" value="<?php echo $finish ?>">
-                            <input hidden name="type" value="<?php echo \eMarket\Valid::inGET('type') ?>">
-                            <input hidden name="name" value="<?php echo \eMarket\Valid::inGET('name') ?>">
+                            <input hidden name="type" value="<?php echo \eMarket\Core\Valid::inGET('type') ?>">
+                            <input hidden name="name" value="<?php echo \eMarket\Core\Valid::inGET('name') ?>">
                             <div>
                                 <?php if ($finish != count($lines)) { ?>
                                     <button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button>
@@ -86,8 +86,8 @@
 
                     <td><?php echo $lines[$start]['name'] ?></td>
                     <td class="text-center"><?php echo $lines[$start]['sale_value'] ?></td>
-                    <td class="text-center"><?php echo \eMarket\Settings::dateLocale($lines[$start]['date_start']); ?></td>
-                    <td class="text-center"><?php echo \eMarket\Settings::dateLocale($lines[$start]['date_end']); ?></td>
+                    <td class="text-center"><?php echo \eMarket\Core\Settings::dateLocale($lines[$start]['date_start']); ?></td>
+                    <td class="text-center"><?php echo \eMarket\Core\Settings::dateLocale($lines[$start]['date_end']); ?></td>
                     <?php if ($lines[$start]['default_set'] == 1) { ?>
                         <td class="text-center"><?php echo lang('confirm-yes') ?></td>
                     <?php } else { ?>

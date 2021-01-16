@@ -5,7 +5,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-namespace eMarket;
+namespace eMarket\Core;
 
 /**
  * Языковой класс
@@ -29,11 +29,11 @@ final class Lang {
 
         if ($marker == null) {
             //Получаем массив со списком путей к языковым файлам движка
-            $engine_path_array = \eMarket\Tree::filesTree(getenv('DOCUMENT_ROOT') . '/language/' . $default_language . '/' . \eMarket\Settings::path());
+            $engine_path_array = \eMarket\Core\Tree::filesTree(getenv('DOCUMENT_ROOT') . '/language/' . $default_language . '/' . \eMarket\Core\Settings::path());
 
             // Получаем список путей к языковым файлам модулей
             $modules_path = getenv('DOCUMENT_ROOT') . '/modules/';
-            $_SESSION['MODULES_INFO'] = \eMarket\Tree::allDirForPath($modules_path, 'true');
+            $_SESSION['MODULES_INFO'] = \eMarket\Core\Tree::allDirForPath($modules_path, 'true');
 
             // Готовим массив со списком путей к языковым файлам модулей
             $modules_path_array = [];
@@ -91,21 +91,21 @@ final class Lang {
     public static function defaultLang() {
 
         //Если пользователь не авторизован, то устанавливаем язык по умолчанию
-        if (!isset($_SESSION['DEFAULT_LANGUAGE']) && \eMarket\Settings::path() != 'install') {
-            $_SESSION['DEFAULT_LANGUAGE'] = \eMarket\Settings::basicSettings('primary_language');
+        if (!isset($_SESSION['DEFAULT_LANGUAGE']) && \eMarket\Core\Settings::path() != 'install') {
+            $_SESSION['DEFAULT_LANGUAGE'] = \eMarket\Core\Settings::basicSettings('primary_language');
         }
 
         //Если первый раз в инсталляторе, то устанавливаем язык по умолчанию English
-        if (!\eMarket\Valid::inPOST('language') && \eMarket\Settings::path() == 'install') {
+        if (!\eMarket\Core\Valid::inPOST('language') && \eMarket\Core\Settings::path() == 'install') {
             $_SESSION['DEFAULT_LANGUAGE'] = 'english';
         }
 
         //Если переключили язык не авторизованно или в инсталляторе
-        if (\eMarket\Valid::inPOST('language')) {
-            $_SESSION['DEFAULT_LANGUAGE'] = \eMarket\Valid::inPOST('language');
+        if (\eMarket\Core\Valid::inPOST('language')) {
+            $_SESSION['DEFAULT_LANGUAGE'] = \eMarket\Core\Valid::inPOST('language');
         }
-        if (\eMarket\Valid::inGET('language')) {
-            $_SESSION['DEFAULT_LANGUAGE'] = \eMarket\Valid::inGET('language');
+        if (\eMarket\Core\Valid::inGET('language')) {
+            $_SESSION['DEFAULT_LANGUAGE'] = \eMarket\Core\Valid::inGET('language');
         }
     }
 
@@ -115,8 +115,8 @@ final class Lang {
      */
     public static function init() {
 
-        if (\eMarket\Valid::inGET('language') && \eMarket\Settings::path() == 'admin' && isset($_SESSION['login']) && isset($_SESSION['pass'])) {
-            \eMarket\Pdo::action("UPDATE " . TABLE_ADMINISTRATORS . " SET language=? WHERE login=? AND password=?", [\eMarket\Valid::inGET('language'), $_SESSION['login'], $_SESSION['pass']]);
+        if (\eMarket\Core\Valid::inGET('language') && \eMarket\Core\Settings::path() == 'admin' && isset($_SESSION['login']) && isset($_SESSION['pass'])) {
+            \eMarket\Core\Pdo::action("UPDATE " . TABLE_ADMINISTRATORS . " SET language=? WHERE login=? AND password=?", [\eMarket\Core\Valid::inGET('language'), $_SESSION['login'], $_SESSION['pass']]);
         }
 
         setlocale(LC_ALL, lang('language_locale'));

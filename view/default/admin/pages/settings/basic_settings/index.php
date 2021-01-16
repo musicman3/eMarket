@@ -11,9 +11,9 @@
 
         <div class="panel-heading">
             <!--Выводим уведомление об успешном действии-->
-            <div id="alert_block"><?php \eMarket\Messages::alert(); ?></div>
+            <div id="alert_block"><?php \eMarket\Core\Messages::alert(); ?></div>
             <h3 class="panel-title">
-                <span class="settings_back"><button type="button" onClick='location.href = "<?php echo \eMarket\Settings::parentPartitionGenerator() ?>"' class="btn btn-primary btn-xs"><span class="back glyphicon glyphicon-share-alt"></span></button></span><span class="settings_name"><?php echo \eMarket\Settings::titlePageGenerator() ?></span>
+                <span class="settings_back"><button type="button" onClick='location.href = "<?php echo \eMarket\Core\Settings::parentPartitionGenerator() ?>"' class="btn btn-primary btn-xs"><span class="back glyphicon glyphicon-share-alt"></span></button></span><span class="settings_name"><?php echo \eMarket\Core\Settings::titlePageGenerator() ?></span>
             </h3>
         </div>
         <div class="panel-body">
@@ -34,7 +34,7 @@
                             <div class="col-sm-3 text-left"><label class=""><?php echo lang('basic_settings_primary_language') ?></label></div>
                             <div class="col-sm-9">
                                 <select name="primary_language" id="primary_language" class="input-sm form-control">
-                                    <?php if (\eMarket\Lang::$COUNT == 1) { ?>
+                                    <?php if (\eMarket\Core\Lang::$COUNT == 1) { ?>
                                         <option value="<?php echo eMarket\Admin\BasicSettings::$primary_language ?>" selected><?php echo lang('language_name', eMarket\Admin\BasicSettings::$primary_language) ?></option>
                                     <?php } else { ?>
                                         <option value="<?php echo eMarket\Admin\BasicSettings::$primary_language ?>" selected><?php echo lang('language_name', eMarket\Admin\BasicSettings::$primary_language) ?></option>
@@ -50,13 +50,13 @@
                         <div class="form-group">
                             <div class="col-sm-3 text-left"><label class="control-label"><?php echo lang('lines_on_page') ?></label></div>
                             <div class="col-sm-9">
-                                <input type="text" name="lines_on_page" class="form-control" value="<?php echo \eMarket\Settings::linesOnPage() ?>" required />
+                                <input type="text" name="lines_on_page" class="form-control" value="<?php echo \eMarket\Core\Settings::linesOnPage() ?>" required />
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-3 text-left"><label class=""><?php echo lang('session_expr_time') ?> <span data-toggle="tooltip" data-placement="right" data-original-title="<?php echo lang('session_expr_time_help') ?>" class="glyphicon glyphicon-question-sign"></span></label></div>
                             <div class="col-sm-9">
-                                <input type="text" name="session_expr_time" class="form-control" value="<?php echo \eMarket\Settings::sessionExprTime() ?>" required />
+                                <input type="text" name="session_expr_time" class="form-control" value="<?php echo \eMarket\Core\Settings::sessionExprTime() ?>" required />
                             </div>
                         </div>
                         <div class="form-group">

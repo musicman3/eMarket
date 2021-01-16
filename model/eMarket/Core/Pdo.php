@@ -5,7 +5,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-namespace eMarket;
+namespace eMarket\Core;
 
 /**
  * Класс для работы с БД через PDO
@@ -40,7 +40,7 @@ final class Pdo {
                 self::$CONNECT = new \PDO(DB_TYPE . ':host=' . DB_SERVER . ';dbname=' . DB_NAME, DB_USERNAME, DB_PASSWORD, [\PDO::ATTR_ERRMODE => \PDO::ERRMODE_WARNING, \PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4"]);
             } catch (PDOException $error) {
                 // Если ошибка соединения с БД в инсталляторе, то переадресуем на страницу ошибки
-                if (\eMarket\Settings::path() == 'install') {
+                if (\eMarket\Core\Settings::path() == 'install') {
                     header('Location: /controller/install/error.php?server_db_error=true&error_message=' . $error->getMessage());
                 } else {
                     //Выводим на экран, если не в инсталляторе
@@ -106,10 +106,10 @@ final class Pdo {
      * Если несколько вариантов, удовлетворяющих условию, то выдает только верхний.
      * Если значение не найдено, то выдает пустой массив: Array()
      * 
-     * Запрос вида: \eMarket\Pdo::getCell("SELECT language FROM table WHERE id=?", ['1']);
+     * Запрос вида: \eMarket\Core\Pdo::getCell("SELECT language FROM table WHERE id=?", ['1']);
      * выдаст конкретное значение russian - НЕ МАССИВ!
      * 
-     * Запрос вида: \eMarket\Pdo::getCell("SELECT * FROM table WHERE language=?", ['russian']);
+     * Запрос вида: \eMarket\Core\Pdo::getCell("SELECT * FROM table WHERE language=?", ['russian']);
      * выдаст значение первого поля, т.е. номер id.
      * 
      * @param string $sql (запрос из БД MYSQL)
@@ -125,7 +125,7 @@ final class Pdo {
                 AND $result = $value[0]) {
             
         }
-        return \eMarket\Func::escape_sign($result);
+        return \eMarket\Core\Func::escape_sign($result);
     }
 
     /**
@@ -136,7 +136,7 @@ final class Pdo {
      *
      * Если значение не найдено, то выдает пустой массив: Array()
      * 
-     * Если применять в запросе \eMarket\Pdo::getColRow("SELECT id FROM table WHERE language=?", ['russian']) то выдаст все значения колонки id в виде массива,
+     * Если применять в запросе \eMarket\Core\Pdo::getColRow("SELECT id FROM table WHERE language=?", ['russian']) то выдаст все значения колонки id в виде массива,
      * удовлетворяющие условию language='russian'.
      *
      * Array
@@ -152,7 +152,7 @@ final class Pdo {
      * )
      * )
      *
-     * Если применить в запросе \eMarket\Pdo::getColRow("SELECT * FROM table WHERE language=?", ['russian']), то выдаст полностью данные всех ячеек строк(и),
+     * Если применить в запросе \eMarket\Core\Pdo::getColRow("SELECT * FROM table WHERE language=?", ['russian']), то выдаст полностью данные всех ячеек строк(и),
      * содержащих это условие (в массиве). Т.е. получится строковая выборка по условию:
      *
      * Array
@@ -176,12 +176,12 @@ final class Pdo {
      * )
      * )
      *
-     * Если применить в запросе \eMarket\Pdo::getColRow("SELECT id, language FROM table", array()), то выдаст таблицу из указанных колонок в массиве.
+     * Если применить в запросе \eMarket\Core\Pdo::getColRow("SELECT id, language FROM table", array()), то выдаст таблицу из указанных колонок в массиве.
      *
-     * Если применить в запросе \eMarket\Pdo::getColRow("SELECT id, language FROM table WHERE language=?", ['russian']), то выдаст таблицу из id
+     * Если применить в запросе \eMarket\Core\Pdo::getColRow("SELECT id, language FROM table WHERE language=?", ['russian']), то выдаст таблицу из id
      * и language, удовлетворяющих требованию language='russian'.
      *
-     * Если применить в запросе \eMarket\Pdo::getColRow("SELECT * FROM table", array()), то выдаст всю таблицу в массиве.
+     * Если применить в запросе \eMarket\Core\Pdo::getColRow("SELECT * FROM table", array()), то выдаст всю таблицу в массиве.
      * 
      * @param string $sql (запрос из БД MYSQL)
      * @param array $a (параметр для execute($a))
@@ -195,7 +195,7 @@ final class Pdo {
                 AND $result = $exec->fetchAll(\PDO :: FETCH_NUM)) {
             
         }
-        return \eMarket\Func::escape_sign($result);
+        return \eMarket\Core\Func::escape_sign($result);
     }
 
     /**
@@ -206,7 +206,7 @@ final class Pdo {
      *
      * Если значение не найдено, то выдает пустой массив: Array()
      * 
-     * Если применять в запросе \eMarket\Pdo::getColRow("SELECT name FROM table WHERE language=?", ['russian']) то выдаст все значения колонки id в виде одномерного массива,
+     * Если применять в запросе \eMarket\Core\Pdo::getColRow("SELECT name FROM table WHERE language=?", ['russian']) то выдаст все значения колонки id в виде одномерного массива,
      * удовлетворяющие условию language='russian'.
      *
      * Array
@@ -227,7 +227,7 @@ final class Pdo {
                 AND $result = $exec->fetchAll(\PDO :: FETCH_COLUMN)) {
             
         }
-        return \eMarket\Func::escape_sign($result);
+        return \eMarket\Core\Func::escape_sign($result);
     }
 
     /**
@@ -238,7 +238,7 @@ final class Pdo {
      *
      * Если значение не найдено, то выдает пустой массив: Array()
      * 
-     * Если применять в запросе \eMarket\Pdo::getRow("SELECT name, age FROM table WHERE language=?", ['russian']) то выдаст все значения колонки id в виде одномерного массива,
+     * Если применять в запросе \eMarket\Core\Pdo::getRow("SELECT name, age FROM table WHERE language=?", ['russian']) то выдаст все значения колонки id в виде одномерного массива,
      * удовлетворяющие условию language='russian'.
      *
      * Array
@@ -259,7 +259,7 @@ final class Pdo {
                 AND $result = $exec->fetchAll(\PDO :: FETCH_NUM)) {
             
         }
-        return \eMarket\Func::escape_sign($result)[0];
+        return \eMarket\Core\Func::escape_sign($result)[0];
     }
 
     /**
@@ -270,7 +270,7 @@ final class Pdo {
      *
      * Если значение не найдено, то выдает пустой массив: Array()
      * 
-     * Использовать так: $a = \eMarket\Pdo::getCellFalse("SELECT permission FROM users WHERE login=? AND password=?", [$_SESSION['login'],$_SESSION['password']]);
+     * Использовать так: $a = \eMarket\Core\Pdo::getCellFalse("SELECT permission FROM users WHERE login=? AND password=?", [$_SESSION['login'],$_SESSION['password']]);
      * 
      * @param string $sql (запрос из БД MYSQL)
      * @param array $a (параметр для execute($a))
@@ -284,7 +284,7 @@ final class Pdo {
                 AND $result = $exec->fetchColumn()) {
             
         }
-        return \eMarket\Func::escape_sign($result);
+        return \eMarket\Core\Func::escape_sign($result);
     }
 
     /**
@@ -295,7 +295,7 @@ final class Pdo {
      *
      * Если значение не найдено, то выдает пустой массив: Array()
      * 
-     * Использовать так: $a = \eMarket\Pdo::getColCount("SELECT permission FROM users WHERE login=? AND password=?", [$_SESSION['login'],$_SESSION['password']]);
+     * Использовать так: $a = \eMarket\Core\Pdo::getColCount("SELECT permission FROM users WHERE login=? AND password=?", [$_SESSION['login'],$_SESSION['password']]);
      * 
      * @param string $sql (запрос из БД MYSQL)
      * @param array $a (параметр для execute($a))
@@ -320,7 +320,7 @@ final class Pdo {
      *
      * Если значение не найдено, то выдает пустой массив: Array()
      * 
-     * Использовать так: $a = \eMarket\Pdo::getRowCount("SELECT permission FROM users WHERE login=? AND password=?", [$_SESSION['login'],$_SESSION['password']]);
+     * Использовать так: $a = \eMarket\Core\Pdo::getRowCount("SELECT permission FROM users WHERE login=? AND password=?", [$_SESSION['login'],$_SESSION['password']]);
      * 
      * @param string $sql (запрос из БД MYSQL)
      * @param array $a (параметр для execute($a))
@@ -345,7 +345,7 @@ final class Pdo {
      *
      * Если значение не найдено, то выдает пустой массив: Array()
      * 
-     * Использовать так: $a = \eMarket\Pdo::selectPrepare("SELECT permission FROM users WHERE login=? AND password=?", [$_SESSION['login'],$_SESSION['password']]);
+     * Использовать так: $a = \eMarket\Core\Pdo::selectPrepare("SELECT permission FROM users WHERE login=? AND password=?", [$_SESSION['login'],$_SESSION['password']]);
      * 
      * @param string $sql (запрос из БД MYSQL)
      * @param array $a (параметр для execute($a))
@@ -360,7 +360,7 @@ final class Pdo {
                 AND $result = $value[0][0]) {
             
         }
-        return \eMarket\Func::escape_sign($result);
+        return \eMarket\Core\Func::escape_sign($result);
     }
 
     /**
@@ -372,11 +372,11 @@ final class Pdo {
      * Если значения нет, то передает пустой массив: Array()
      * Использовать так:
      * 
-     * \eMarket\Pdo::inPrepare("INSERT INTO emkt_table SET login=?, password=?", [$_SESSION['login'], $_SESSION['password']]); - создает новую строку
+     * \eMarket\Core\Pdo::inPrepare("INSERT INTO emkt_table SET login=?, password=?", [$_SESSION['login'], $_SESSION['password']]); - создает новую строку
      * 
-     * \eMarket\Pdo::inPrepare("UPDATE emkt_table SET login=?, password=? WHERE id=?", [$_SESSION['login'], $_SESSION['password'], $id]); - обновляет строку с конкретным id
+     * \eMarket\Core\Pdo::inPrepare("UPDATE emkt_table SET login=?, password=? WHERE id=?", [$_SESSION['login'], $_SESSION['password'], $id]); - обновляет строку с конкретным id
      * 
-     * \eMarket\Pdo::inPrepare("DELETE FROM emkt_table WHERE id=?", [$id]); - удаляет строку с конкретным id
+     * \eMarket\Core\Pdo::inPrepare("DELETE FROM emkt_table WHERE id=?", [$id]); - удаляет строку с конкретным id
      * 
      * Также можно применять для SELECT.
      * 
@@ -401,7 +401,7 @@ final class Pdo {
      * 
      * ПРИМЕР
      *
-     * Использовать так: $a = \eMarket\Pdo::getColAssoc("SELECT value, name FROM categories", []);
+     * Использовать так: $a = \eMarket\Core\Pdo::getColAssoc("SELECT value, name FROM categories", []);
      * 
       Возвращаем следующую строку в виде массива, индексированного именами столбцов
       Array
@@ -422,7 +422,7 @@ final class Pdo {
                 AND $result = $exec->fetchAll(\PDO :: FETCH_ASSOC)) {
             
         }
-        return \eMarket\Func::escape_sign($result);
+        return \eMarket\Core\Func::escape_sign($result);
     }
 
     /**

@@ -113,7 +113,7 @@ class HeaderMenu {
         self::$menu[self::$menu_help][1] = ['#', 'glyphicon glyphicon-globe', lang('menu_languages'), '', 'true'];
 
         for ($lng = 0; $lng < count(lang('#lang_all')); $lng++) {
-            self::$submenu[self::$menu_help][1][$lng] = [\eMarket\Settings::langCurrencyPath() . '&language=' . lang('#lang_all')[$lng], 'glyphicon glyphicon-triangle-right', lang('language_name', lang('#lang_all')[$lng]), ''];
+            self::$submenu[self::$menu_help][1][$lng] = [\eMarket\Core\Settings::langCurrencyPath() . '&language=' . lang('#lang_all')[$lng], 'glyphicon glyphicon-triangle-right', lang('language_name', lang('#lang_all')[$lng]), ''];
         }
 
         self::$menu[self::$menu_help][2] = ['/', 'glyphicon glyphicon-home', lang('menu_catalog'), 'target="_blank"', 'false'];

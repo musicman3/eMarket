@@ -31,7 +31,7 @@ class ModulesEdit {
      *
      */
     public function switch_active() {
-        $active = \eMarket\Pdo::getCellFalse("SELECT active FROM " . TABLE_MODULES . " WHERE type=? AND name=?", [\eMarket\Valid::inGET('type'), \eMarket\Valid::inGET('name')])[0];
+        $active = \eMarket\Core\Pdo::getCellFalse("SELECT active FROM " . TABLE_MODULES . " WHERE type=? AND name=?", [\eMarket\Core\Valid::inGET('type'), \eMarket\Core\Valid::inGET('name')])[0];
 
         if ($active == 1) {
             self::$switch_active = 'checked';

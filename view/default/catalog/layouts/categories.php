@@ -12,6 +12,6 @@
 <?php if (\eMarket\Catalog\Categories::$categories_and_breadcrumb != 0) { ?>
     <div id="data_breadcrumb" class="hidden"
          data-breadcrumbid='<?php echo json_encode(array_reverse(\eMarket\Catalog\Categories::$categories_and_breadcrumb)) ?>'
-         data-breadcrumbname='<?php echo json_encode(\eMarket\Settings::breadcrumbName(array_reverse(\eMarket\Catalog\Categories::$categories_and_breadcrumb))) ?>'>
+         data-breadcrumbname='<?php echo json_encode(\eMarket\Core\Settings::breadcrumbName(array_reverse(\eMarket\Catalog\Categories::$categories_and_breadcrumb))) ?>'>
     </div>
 <?php } ?>

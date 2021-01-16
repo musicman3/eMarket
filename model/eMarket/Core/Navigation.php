@@ -5,7 +5,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-namespace eMarket;
+namespace eMarket\Core;
 
 /**
  * Класс для навигации и сопутствующих элементов
@@ -42,11 +42,11 @@ class Navigation {
         }
 
         // Если нажали на кнопку вперед GET
-        if (\eMarket\Valid::inGET('finish')) {
-            $finish = \eMarket\Valid::inGET('finish') + $lines_on_page; // пересчитываем количество строк на странице
-            $start = \eMarket\Valid::inGET('start') + $lines_on_page; // задаем значение счетчика
+        if (\eMarket\Core\Valid::inGET('finish')) {
+            $finish = \eMarket\Core\Valid::inGET('finish') + $lines_on_page; // пересчитываем количество строк на странице
+            $start = \eMarket\Core\Valid::inGET('start') + $lines_on_page; // задаем значение счетчика
             if ($start >= $count_lines) {
-                $start = \eMarket\Valid::inGET('start');
+                $start = \eMarket\Core\Valid::inGET('start');
             }
             if ($finish >= $count_lines) {
                 $finish = $count_lines;
@@ -54,9 +54,9 @@ class Navigation {
             return array($start, $finish);
         }
         // Если нажали на кнопку назад GET
-        if ($count_lines > $lines_on_page && \eMarket\Valid::inGET('backfinish')) {
-            $finish = \eMarket\Valid::inGET('backstart'); // пересчитываем количество строк на странице
-            $start = \eMarket\Valid::inGET('backstart') - $lines_on_page; // задаем значение счетчика
+        if ($count_lines > $lines_on_page && \eMarket\Core\Valid::inGET('backfinish')) {
+            $finish = \eMarket\Core\Valid::inGET('backstart'); // пересчитываем количество строк на странице
+            $start = \eMarket\Core\Valid::inGET('backstart') - $lines_on_page; // задаем значение счетчика
             if ($start < 0) {
                 $start = 0;
             }
@@ -95,11 +95,11 @@ class Navigation {
         }
 
         // Если нажали на кнопку вперед POST
-        if (\eMarket\Valid::inPOST('finish')) {
-            $finish = \eMarket\Valid::inPOST('finish') + $lines_on_page; // пересчитываем количество строк на странице
-            $start = \eMarket\Valid::inPOST('start') + $lines_on_page; // задаем значение счетчика
+        if (\eMarket\Core\Valid::inPOST('finish')) {
+            $finish = \eMarket\Core\Valid::inPOST('finish') + $lines_on_page; // пересчитываем количество строк на странице
+            $start = \eMarket\Core\Valid::inPOST('start') + $lines_on_page; // задаем значение счетчика
             if ($start >= $count_lines) {
-                $start = \eMarket\Valid::inPOST('start');
+                $start = \eMarket\Core\Valid::inPOST('start');
             }
             if ($finish >= $count_lines) {
                 $finish = $count_lines;
@@ -107,9 +107,9 @@ class Navigation {
             return array($start, $finish);
         }
         // Если нажали на кнопку назад POST
-        if ($count_lines > $lines_on_page && \eMarket\Valid::inPOST('backfinish')) {
-            $finish = \eMarket\Valid::inPOST('backstart'); // пересчитываем количество строк на странице
-            $start = \eMarket\Valid::inPOST('backstart') - $lines_on_page; // задаем значение счетчика
+        if ($count_lines > $lines_on_page && \eMarket\Core\Valid::inPOST('backfinish')) {
+            $finish = \eMarket\Core\Valid::inPOST('backstart'); // пересчитываем количество строк на странице
+            $start = \eMarket\Core\Valid::inPOST('backstart') - $lines_on_page; // задаем значение счетчика
             if ($start < 0) {
                 $start = 0;
             }

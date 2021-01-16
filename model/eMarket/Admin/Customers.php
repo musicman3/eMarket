@@ -43,9 +43,9 @@ class Customers {
      *
      */
     public function status() {
-        if (\eMarket\Valid::inPOST('status')) {
+        if (\eMarket\Core\Valid::inPOST('status')) {
 
-            $status_data = \eMarket\Pdo::getCell("SELECT status FROM " . TABLE_CUSTOMERS . " WHERE id=?", [\eMarket\Valid::inPOST('status')]);
+            $status_data = \eMarket\Core\Pdo::getCell("SELECT status FROM " . TABLE_CUSTOMERS . " WHERE id=?", [\eMarket\Core\Valid::inPOST('status')]);
 
             if ($status_data == 0) {
                 self::$status = 1;
@@ -53,9 +53,9 @@ class Customers {
                 self::$status = 0;
             }
 
-            \eMarket\Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET status=? WHERE id=?", [self::$status, \eMarket\Valid::inPOST('status')]);
+            \eMarket\Core\Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET status=? WHERE id=?", [self::$status, \eMarket\Core\Valid::inPOST('status')]);
 
-            \eMarket\Messages::alert('success', lang('action_completed_successfully'));
+            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
         }
     }
 
@@ -64,11 +64,11 @@ class Customers {
      *
      */
     public function delete() {
-        if (\eMarket\Valid::inPOST('delete')) {
+        if (\eMarket\Core\Valid::inPOST('delete')) {
 
-            \eMarket\Pdo::action("DELETE FROM " . TABLE_CUSTOMERS . " WHERE id=?", [\eMarket\Valid::inPOST('delete')]);
+            \eMarket\Core\Pdo::action("DELETE FROM " . TABLE_CUSTOMERS . " WHERE id=?", [\eMarket\Core\Valid::inPOST('delete')]);
 
-            \eMarket\Messages::alert('success', lang('action_completed_successfully'));
+            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
         }
     }
 
@@ -77,14 +77,14 @@ class Customers {
      *
      */
     public function data() {
-        $search = '%' . \eMarket\Valid::inGET('search') . '%';
-        if (\eMarket\Valid::inGET('search')) {
-            $lines = \eMarket\Pdo::getColRow("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE firstname LIKE? OR lastname LIKE? OR middle_name LIKE? OR email LIKE? ORDER BY id DESC", [$search, $search, $search, $search]);
+        $search = '%' . \eMarket\Core\Valid::inGET('search') . '%';
+        if (\eMarket\Core\Valid::inGET('search')) {
+            $lines = \eMarket\Core\Pdo::getColRow("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE firstname LIKE? OR lastname LIKE? OR middle_name LIKE? OR email LIKE? ORDER BY id DESC", [$search, $search, $search, $search]);
         } else {
-            $lines = \eMarket\Pdo::getColRow("SELECT * FROM " . TABLE_CUSTOMERS . " ORDER BY id DESC", []);
+            $lines = \eMarket\Core\Pdo::getColRow("SELECT * FROM " . TABLE_CUSTOMERS . " ORDER BY id DESC", []);
         }
 
-        \eMarket\Pages::table($lines);
+        \eMarket\Core\Pages::table($lines);
     }
 
 }

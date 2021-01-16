@@ -32,17 +32,17 @@ class Error {
      *
      */
     public function data() {
-        if (\eMarket\Valid::inGET('file_configure_not_found')) {
+        if (\eMarket\Core\Valid::inGET('file_configure_not_found')) {
             self::$message = 'file_configure_not_found';
         }
-        if (\eMarket\Valid::inGET('server_db_error')) {
+        if (\eMarket\Core\Valid::inGET('server_db_error')) {
             self::$message = 'server_db_error';
         }
-        if (\eMarket\Valid::inGET('file_not_found')) {
+        if (\eMarket\Core\Valid::inGET('file_not_found')) {
             self::$message = 'file_not_found';
         }
-        if (\eMarket\Valid::inGET('error_message')) {
-            self::$error_message = \eMarket\Valid::inGET('error_message');
+        if (\eMarket\Core\Valid::inGET('error_message')) {
+            self::$error_message = \eMarket\Core\Valid::inGET('error_message');
             if (strrpos(self::$error_message, 'php_network_getaddresses') == TRUE) {
                 self::$error_message = lang('database_server_error');
             }

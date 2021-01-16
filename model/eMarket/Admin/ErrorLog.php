@@ -39,10 +39,10 @@ class ErrorLog {
      *
      */
     public function delete() {
-        if (\eMarket\Valid::inPOST('delete') == 'delete' && file_exists(ROOT . '/model/work/errors.log')) {
+        if (\eMarket\Core\Valid::inPOST('delete') == 'delete' && file_exists(ROOT . '/model/work/errors.log')) {
             unlink(ROOT . '/model/work/errors.log');
 
-            \eMarket\Messages::alert('success', lang('action_completed_successfully'));
+            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
         }
     }
 
@@ -57,7 +57,7 @@ class ErrorLog {
             $lines = [];
         }
 
-        \eMarket\Pages::table($lines);
+        \eMarket\Core\Pages::table($lines);
     }
 
 }

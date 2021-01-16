@@ -40,28 +40,28 @@ class Taxes {
      *
      */
     public function add() {
-        if (\eMarket\Valid::inPOST('add')) {
+        if (\eMarket\Core\Valid::inPOST('add')) {
 
-            if (\eMarket\Valid::inPOST('tax_type')) {
+            if (\eMarket\Core\Valid::inPOST('tax_type')) {
                 $tax_type = 1;
             } else {
                 $tax_type = 0;
             }
 
-            if (\eMarket\Valid::inPOST('fixed')) {
+            if (\eMarket\Core\Valid::inPOST('fixed')) {
                 $fixed = 1;
             } else {
                 $fixed = 0;
             }
 
-            $id_max = \eMarket\Pdo::selectPrepare("SELECT id FROM " . TABLE_TAXES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+            $id_max = \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . TABLE_TAXES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max) + 1;
 
-            for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
-                \eMarket\Pdo::action("INSERT INTO " . TABLE_TAXES . " SET id=?, name=?, language=?, rate=?, tax_type=?, zones_id=?, fixed=?, currency=?", [$id, \eMarket\Valid::inPOST('name_taxes_' . $x), lang('#lang_all')[$x], \eMarket\Valid::inPOST('rate_taxes'), $tax_type, \eMarket\Valid::inPOST('zones_id'), $fixed, \eMarket\Settings::currencyDefault()[0]]);
+            for ($x = 0; $x < \eMarket\Core\Lang::$COUNT; $x++) {
+                \eMarket\Core\Pdo::action("INSERT INTO " . TABLE_TAXES . " SET id=?, name=?, language=?, rate=?, tax_type=?, zones_id=?, fixed=?, currency=?", [$id, \eMarket\Core\Valid::inPOST('name_taxes_' . $x), lang('#lang_all')[$x], \eMarket\Core\Valid::inPOST('rate_taxes'), $tax_type, \eMarket\Core\Valid::inPOST('zones_id'), $fixed, \eMarket\Core\Settings::currencyDefault()[0]]);
             }
 
-            \eMarket\Messages::alert('success', lang('action_completed_successfully'));
+            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
         }
     }
 
@@ -70,25 +70,25 @@ class Taxes {
      *
      */
     public function edit() {
-        if (\eMarket\Valid::inPOST('edit')) {
+        if (\eMarket\Core\Valid::inPOST('edit')) {
 
-            if (\eMarket\Valid::inPOST('tax_type')) {
+            if (\eMarket\Core\Valid::inPOST('tax_type')) {
                 $tax_type = 1;
             } else {
                 $tax_type = 0;
             }
 
-            if (\eMarket\Valid::inPOST('fixed')) {
+            if (\eMarket\Core\Valid::inPOST('fixed')) {
                 $fixed = 1;
             } else {
                 $fixed = 0;
             }
 
-            for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
-                \eMarket\Pdo::action("UPDATE " . TABLE_TAXES . " SET name=?, rate=?, tax_type=?, zones_id=?, fixed=?, currency=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_taxes_' . $x), \eMarket\Valid::inPOST('rate_taxes'), $tax_type, \eMarket\Valid::inPOST('zones_id'), $fixed, \eMarket\Settings::currencyDefault()[0], \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
+            for ($x = 0; $x < \eMarket\Core\Lang::$COUNT; $x++) {
+                \eMarket\Core\Pdo::action("UPDATE " . TABLE_TAXES . " SET name=?, rate=?, tax_type=?, zones_id=?, fixed=?, currency=? WHERE id=? AND language=?", [\eMarket\Core\Valid::inPOST('name_taxes_' . $x), \eMarket\Core\Valid::inPOST('rate_taxes'), $tax_type, \eMarket\Core\Valid::inPOST('zones_id'), $fixed, \eMarket\Core\Settings::currencyDefault()[0], \eMarket\Core\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
             }
 
-            \eMarket\Messages::alert('success', lang('action_completed_successfully'));
+            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
         }
     }
 
@@ -97,10 +97,10 @@ class Taxes {
      *
      */
     public function delete() {
-        if (\eMarket\Valid::inPOST('delete')) {
-            \eMarket\Pdo::action("DELETE FROM " . TABLE_TAXES . " WHERE id=?", [\eMarket\Valid::inPOST('delete')]);
+        if (\eMarket\Core\Valid::inPOST('delete')) {
+            \eMarket\Core\Pdo::action("DELETE FROM " . TABLE_TAXES . " WHERE id=?", [\eMarket\Core\Valid::inPOST('delete')]);
 
-            \eMarket\Messages::alert('success', lang('action_completed_successfully'));
+            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
         }
     }
 
@@ -109,19 +109,19 @@ class Taxes {
      *
      */
     public function data() {
-        self::$zones = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_ZONES . " WHERE language=?", [lang('#lang_all')[0]]);
+        self::$zones = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_ZONES . " WHERE language=?", [lang('#lang_all')[0]]);
 
         self::$zones_names = [];
         foreach (self::$zones as $zones_val) {
             self::$zones_names[$zones_val['id']] = $zones_val['name'];
         }
 
-        self::$value_6 = [0 => sprintf(lang('taxes_value'), \eMarket\Settings::currencyDefault()[2]), 1 => lang('taxes_percent')];
+        self::$value_6 = [0 => sprintf(lang('taxes_value'), \eMarket\Core\Settings::currencyDefault()[2]), 1 => lang('taxes_percent')];
         self::$value_4 = [0 => lang('taxes_separately'), 1 => lang('taxes_included')];
 
-        self::$sql_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_TAXES . " ORDER BY id DESC", []);
-        $lines = \eMarket\Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
-        \eMarket\Pages::table($lines);
+        self::$sql_data = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_TAXES . " ORDER BY id DESC", []);
+        $lines = \eMarket\Core\Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
+        \eMarket\Core\Pages::table($lines);
     }
 
     /**
@@ -131,10 +131,10 @@ class Taxes {
     public function modal() {
         self::$json_data = json_encode([]);
         $name = [];
-        for ($i = \eMarket\Pages::$start; $i < \eMarket\Pages::$finish; $i++) {
-            if (isset(\eMarket\Pages::$table['lines'][$i]['id']) == TRUE) {
+        for ($i = \eMarket\Core\Pages::$start; $i < \eMarket\Core\Pages::$finish; $i++) {
+            if (isset(\eMarket\Core\Pages::$table['lines'][$i]['id']) == TRUE) {
 
-                $modal_id = \eMarket\Pages::$table['lines'][$i]['id'];
+                $modal_id = \eMarket\Core\Pages::$table['lines'][$i]['id'];
 
                 foreach (self::$sql_data as $sql_modal) {
                     if ($sql_modal['id'] == $modal_id) {

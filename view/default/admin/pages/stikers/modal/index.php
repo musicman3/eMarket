@@ -9,7 +9,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header"><div class="pull-right"><button class="close" type="button" data-dismiss="modal">×</button></div>
-                <h4 class="modal-title"><?php echo \eMarket\Settings::titlePageGenerator() ?></h4>
+                <h4 class="modal-title"><?php echo \eMarket\Core\Settings::titlePageGenerator() ?></h4>
             </div>
             <form id="form_add" name="form_add" action="javascript:void(null);" onsubmit="Ajax.callAdd()">
                 <div class="panel-body">
@@ -17,7 +17,7 @@
                     <input type="hidden" id="edit" name="edit" value="" />
 
                     <!-- Языковые панели -->
-                    <?php require_once(ROOT . '/view/' . \eMarket\Settings::template() . '/layouts/lang_tabs_add.php') ?>
+                    <?php require_once(ROOT . '/view/' . \eMarket\Core\Settings::template() . '/layouts/lang_tabs_add.php') ?>
 
                     <!-- Содержимое языковых панелей -->
                     <div class="tab-content">
@@ -31,8 +31,8 @@
                         </div>
 
                         <?php
-                        if (\eMarket\Lang::$COUNT > 1) {
-                            for ($x = 1; $x < \eMarket\Lang::$COUNT; $x++) {
+                        if (\eMarket\Core\Lang::$COUNT > 1) {
+                            for ($x = 1; $x < \eMarket\Core\Lang::$COUNT; $x++) {
                                 ?>
 
                                 <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">

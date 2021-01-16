@@ -20,7 +20,7 @@
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
                                 <select name='language' class="input-sm form-control" onchange="submit();">
                                     <option><?php echo lang('select_language') ?></option>
-                                    <?php for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) { ?>
+                                    <?php for ($x = 0; $x < \eMarket\Core\Lang::$COUNT; $x++) { ?>
                                         <option value='<?php echo lang('#lang_all')[$x] ?>'><?php echo lang('language_name', lang('#lang_all')[$x]) ?></option>
                                     <?php } ?>
                                 </select>

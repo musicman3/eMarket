@@ -31,23 +31,23 @@ class Register {
      *
      */
     public function init() {
-        if (\eMarket\Valid::inPOST('email')) {
+        if (\eMarket\Core\Valid::inPOST('email')) {
 
-            self::$user_email = \eMarket\Pdo::selectPrepare("SELECT id FROM " . TABLE_CUSTOMERS . " WHERE email=?", [\eMarket\Valid::inPOST('email')]);
+            self::$user_email = \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . TABLE_CUSTOMERS . " WHERE email=?", [\eMarket\Core\Valid::inPOST('email')]);
             if (self::$user_email == NULL) {
-                $password_hash = \eMarket\Autorize::passwordHash(\eMarket\Valid::inPOST('password'));
-                \eMarket\Pdo::action("INSERT INTO " . TABLE_CUSTOMERS . " SET firstname=?, lastname=?, date_account_created=?, email=?, telephone=?, ip_address=?, password=?", [\eMarket\Valid::inPOST('firstname'), \eMarket\Valid::inPOST('lastname'), date("Y-m-d H:i:s"), \eMarket\Valid::inPOST('email'), \eMarket\Valid::inPOST('telephone'), \eMarket\Settings::ipAddress(), $password_hash]);
+                $password_hash = \eMarket\Core\Autorize::passwordHash(\eMarket\Core\Valid::inPOST('password'));
+                \eMarket\Core\Pdo::action("INSERT INTO " . TABLE_CUSTOMERS . " SET firstname=?, lastname=?, date_account_created=?, email=?, telephone=?, ip_address=?, password=?", [\eMarket\Core\Valid::inPOST('firstname'), \eMarket\Core\Valid::inPOST('lastname'), date("Y-m-d H:i:s"), \eMarket\Core\Valid::inPOST('email'), \eMarket\Core\Valid::inPOST('telephone'), \eMarket\Core\Settings::ipAddress(), $password_hash]);
 
-                $id = \eMarket\Pdo::lastInsertId();
-                $activation_code = \eMarket\Func::getToken(64);
-                \eMarket\Pdo::action("INSERT INTO " . TABLE_CUSTOMERS_ACTIVATION . " SET id=?, activation_code=?", [$id, $activation_code]);
+                $id = \eMarket\Core\Pdo::lastInsertId();
+                $activation_code = \eMarket\Core\Func::getToken(64);
+                \eMarket\Core\Pdo::action("INSERT INTO " . TABLE_CUSTOMERS_ACTIVATION . " SET id=?, activation_code=?", [$id, $activation_code]);
 
                 $link = HTTP_SERVER . '?route=login&activation_code=' . $activation_code;
-                \eMarket\Messages::sendMail(\eMarket\Valid::inPOST('email'), lang('email_registration_subject'), sprintf(lang('email_registration_message'), $link, $link));
+                \eMarket\Core\Messages::sendMail(\eMarket\Core\Valid::inPOST('email'), lang('email_registration_subject'), sprintf(lang('email_registration_message'), $link, $link));
 
-                \eMarket\Messages::alert('success', lang('messages_registration_complete'), 7000, true);
+                \eMarket\Core\Messages::alert('success', lang('messages_registration_complete'), 7000, true);
             } else {
-                \eMarket\Messages::alert('danger', lang('messages_email_is_busy'), 7000, true);
+                \eMarket\Core\Messages::alert('danger', lang('messages_email_is_busy'), 7000, true);
             }
         }
     }

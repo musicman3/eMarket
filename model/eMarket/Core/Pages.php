@@ -5,7 +5,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-namespace eMarket;
+namespace eMarket\Core;
 
 /**
  * Класс для навигации и сопутствующих элементов
@@ -27,7 +27,7 @@ class Pages {
      */
     public static function counterStock() {
 
-        if (\eMarket\Admin\Stock::$finish == \eMarket\Admin\Stock::$count_lines_merge && (\eMarket\Admin\Stock::$finish - \eMarket\Admin\Stock::$start) <= \eMarket\Settings::linesOnPage() OR \eMarket\Admin\Stock::$finish == \eMarket\Settings::linesOnPage()) {
+        if (\eMarket\Admin\Stock::$finish == \eMarket\Admin\Stock::$count_lines_merge && (\eMarket\Admin\Stock::$finish - \eMarket\Admin\Stock::$start) <= \eMarket\Core\Settings::linesOnPage() OR \eMarket\Admin\Stock::$finish == \eMarket\Core\Settings::linesOnPage()) {
             return \eMarket\Admin\Stock::$finish;
         } else {
             return \eMarket\Admin\Stock::$finish - 1;
@@ -46,7 +46,7 @@ class Pages {
             self::$count = count($lines);
         }
         
-        $navigate = \eMarket\Navigation::getLink(self::$count, \eMarket\Settings::linesOnPage());
+        $navigate = \eMarket\Core\Navigation::getLink(self::$count, \eMarket\Core\Settings::linesOnPage());
         self::$start = $navigate[0];
         self::$finish = $navigate[1];
 

@@ -5,7 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 // ПОДКЛЮЧАЕМ КОНТЕНТ
-foreach (\eMarket\View::tlpc('content') as $path) {
+foreach (\eMarket\Core\View::tlpc('content') as $path) {
     require_once (ROOT . $path);
 }
 ?>
@@ -16,7 +16,7 @@ foreach (\eMarket\View::tlpc('content') as $path) {
 
 
 <!--Выводим уведомление об успешном действии-->
-<div id="alert_block"><?php \eMarket\Messages::alert(); ?></div>
+<div id="alert_block"><?php \eMarket\Core\Messages::alert(); ?></div>
 <h1><?php echo lang('my_address_book') ?></h1>
 
 <div id="ajax_data" class='hidden'
@@ -47,7 +47,7 @@ foreach (\eMarket\View::tlpc('content') as $path) {
                 foreach (\eMarket\Catalog\AddressBook::$address_data as $val) {
                     ?>
                     <tr>
-                        <td><img src="/view/<?php echo \eMarket\Settings::template() ?>/admin/images/worldflags/<?php echo strtolower($val['alpha_2']) ?>.png" alt="<?php echo $val['countries_name'] . ', ' . $val['regions_name'] ?>" title="<?php echo $val['countries_name'] . ', ' . $val['regions_name'] ?>" width="16" height="10" /> <?php echo $val['zip'] . ', ' . $val['city'] . ', ' . $val['address'] ?></td>
+                        <td><img src="/view/<?php echo \eMarket\Core\Settings::template() ?>/admin/images/worldflags/<?php echo strtolower($val['alpha_2']) ?>.png" alt="<?php echo $val['countries_name'] . ', ' . $val['regions_name'] ?>" title="<?php echo $val['countries_name'] . ', ' . $val['regions_name'] ?>" width="16" height="10" /> <?php echo $val['zip'] . ', ' . $val['city'] . ', ' . $val['address'] ?></td>
                         <?php if ($val['default'] == 1) { ?>
                             <td class="text-center"><?php echo lang('confirm-yes') ?></td>
                         <?php } else { ?>

@@ -38,11 +38,11 @@ class Cart {
      */
     public function jsonEchoShipping() {
 
-        if (\eMarket\Valid::inPOST('shipping_region_json')) {
-            $zones_id = \eMarket\Shipping::shippingZonesAvailable(\eMarket\Valid::inPOST('shipping_region_json'));
-            \eMarket\Shipping::loadData($zones_id);
+        if (\eMarket\Core\Valid::inPOST('shipping_region_json')) {
+            $zones_id = \eMarket\Core\Shipping::shippingZonesAvailable(\eMarket\Core\Valid::inPOST('shipping_region_json'));
+            \eMarket\Core\Shipping::loadData($zones_id);
 
-            $INTERFACE = new \eMarket\Interfaces();
+            $INTERFACE = new \eMarket\Core\Interfaces();
             $modules_data = $INTERFACE->load('shipping');
 
             $interface_data = [];
@@ -66,8 +66,8 @@ class Cart {
                     'chanel_total_tax_format' => $data['chanel_total_tax_format'],
                     'chanel_image' => $data['chanel_image'],
                     'chanel_order_to_pay' => $order_to_pay,
-                    'chanel_order_to_pay_format' => \eMarket\Ecb::formatPrice($order_to_pay, 1),
-                    'chanel_hash' => \eMarket\Autorize::passwordHash((float) $data['chanel_total_tax'] . $order_to_pay . (float) $data['chanel_total_price_with_shipping'] . \eMarket\Valid::inPOST('products_order_json') . $data['chanel_module_name'] . (float) $data['chanel_shipping_price'] . (float) $data['chanel_total_price'])
+                    'chanel_order_to_pay_format' => \eMarket\Core\Ecb::formatPrice($order_to_pay, 1),
+                    'chanel_hash' => \eMarket\Core\Autorize::passwordHash((float) $data['chanel_total_tax'] . $order_to_pay . (float) $data['chanel_total_price_with_shipping'] . \eMarket\Core\Valid::inPOST('products_order_json') . $data['chanel_module_name'] . (float) $data['chanel_shipping_price'] . (float) $data['chanel_total_price'])
                 ];
 
                 array_push($interface_data, $interface);
@@ -82,10 +82,10 @@ class Cart {
      *
      */
     public function jsonEchoPayment() {
-        if (\eMarket\Valid::inPOST('payment_shipping_json')) {
-            \eMarket\Payment::loadData(\eMarket\Valid::inPOST('payment_shipping_json'));
+        if (\eMarket\Core\Valid::inPOST('payment_shipping_json')) {
+            \eMarket\Core\Payment::loadData(\eMarket\Core\Valid::inPOST('payment_shipping_json'));
 
-            $INTERFACE = new \eMarket\Interfaces();
+            $INTERFACE = new \eMarket\Core\Interfaces();
             $modules_data = $INTERFACE->load('payment');
 
             $interface_data = [];
@@ -115,7 +115,7 @@ class Cart {
      *
      */
     public function data() {
-        self::$cart_info = \eMarket\Cart::info();
+        self::$cart_info = \eMarket\Core\Cart::info();
     }
 
     /**
@@ -125,7 +125,7 @@ class Cart {
     public function modal() {
         self::$address_data = [];
         if (isset($_SESSION['email_customer'])) {
-            self::$address_data_json = \eMarket\Pdo::getCellFalse("SELECT address_book FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']]);
+            self::$address_data_json = \eMarket\Core\Pdo::getCellFalse("SELECT address_book FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']]);
 
             if (self::$address_data_json != FALSE) {
                 self::$address_data = json_decode(self::$address_data_json, 1);
@@ -133,8 +133,8 @@ class Cart {
 
             $x = 0;
             foreach (self::$address_data as $address_val) {
-                $countries_array = \eMarket\Pdo::getColAssoc("SELECT id, name FROM " . TABLE_COUNTRIES . " WHERE language=? AND id=? ORDER BY name ASC", [lang('#lang_all')[0], $address_val['countries_id']])[0];
-                $regions_array = \eMarket\Pdo::getColAssoc("SELECT id, name FROM " . TABLE_REGIONS . " WHERE language=? AND id=? ORDER BY name ASC", [lang('#lang_all')[0], $address_val['regions_id']])[0];
+                $countries_array = \eMarket\Core\Pdo::getColAssoc("SELECT id, name FROM " . TABLE_COUNTRIES . " WHERE language=? AND id=? ORDER BY name ASC", [lang('#lang_all')[0], $address_val['countries_id']])[0];
+                $regions_array = \eMarket\Core\Pdo::getColAssoc("SELECT id, name FROM " . TABLE_REGIONS . " WHERE language=? AND id=? ORDER BY name ASC", [lang('#lang_all')[0], $address_val['regions_id']])[0];
                 if ($address_val['countries_id'] == $countries_array['id']) {
                     self::$address_data[$x]['countries_name'] = $countries_array['name'];
                     self::$address_data[$x]['regions_name'] = $regions_array['name'];

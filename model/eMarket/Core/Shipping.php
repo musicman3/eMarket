@@ -5,7 +5,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-namespace eMarket;
+namespace eMarket\Core;
 
 /**
  * Класс для модулей доставки / Class for shipping modules
@@ -22,16 +22,16 @@ final class Shipping {
      * @return array $output (выходные данные / output data)
      */
     public static function shippingZonesAvailable($region) {
-        $data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE active=? AND type=?", [1, 'shipping']);
+        $data = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE active=? AND type=?", [1, 'shipping']);
 
         $modules_data = [];
         foreach ($data as $module) {
-            $mod_array = \eMarket\Pdo::getColAssoc("SELECT * FROM " . DB_PREFIX . 'modules_shipping_' . $module['name'], []);
+            $mod_array = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . DB_PREFIX . 'modules_shipping_' . $module['name'], []);
             array_push($modules_data, $mod_array);
         }
 
         $output = [];
-        $zones_id = \eMarket\Pdo::getCellFalse("SELECT zones_id FROM " . TABLE_ZONES_VALUE . " WHERE regions_id=?", [$region]);
+        $zones_id = \eMarket\Core\Pdo::getCellFalse("SELECT zones_id FROM " . TABLE_ZONES_VALUE . " WHERE regions_id=?", [$region]);
 
         if ($zones_id != FALSE) {
             foreach ($modules_data as $mod_data_ext) {
@@ -52,11 +52,11 @@ final class Shipping {
      * @return array $output (выходные данные / output data)
      */
     public static function shippingModulesAvailable($shipping_zones_id_available) {
-        $data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE active=? AND type=?", [1, 'shipping']);
+        $data = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE active=? AND type=?", [1, 'shipping']);
 
         $modules_data = [];
         foreach ($data as $module) {
-            $mod_array = \eMarket\Pdo::getColAssoc("SELECT * FROM " . DB_PREFIX . 'modules_shipping_' . $module['name'], []);
+            $mod_array = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . DB_PREFIX . 'modules_shipping_' . $module['name'], []);
             array_push($modules_data, [$module['name'] => $mod_array]);
         }
         $output = [];
@@ -90,7 +90,7 @@ final class Shipping {
 
         $modules_data = [];
         foreach ($modules_names as $name) {
-            $namespace = '\eMarket\Modules\Shipping\\' . ucfirst($name);
+            $namespace = '\eMarket\Core\Modules\Shipping\\' . ucfirst($name);
             $load = $namespace::load($zones_id);
             if ($load != FALSE) {
                 array_push($modules_data, $load);

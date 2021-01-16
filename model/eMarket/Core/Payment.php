@@ -5,7 +5,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-namespace eMarket;
+namespace eMarket\Core;
 
 /**
  * Класс для модулей оплаты / Class for payment modules
@@ -22,11 +22,11 @@ final class Payment {
      * @return array $output (выходные данные / output data)
      */
     public static function paymentModulesAvailable($name) {
-        $data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE active=? AND type=?", [1, 'payment']);
+        $data = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE active=? AND type=?", [1, 'payment']);
 
         $output = [];
         foreach ($data as $payment_module) {
-            $shipping_val = json_decode(\eMarket\Pdo::getCellFalse("SELECT shipping_module FROM " . DB_PREFIX . 'modules_payment_' . $payment_module['name'], []), 1);
+            $shipping_val = json_decode(\eMarket\Core\Pdo::getCellFalse("SELECT shipping_module FROM " . DB_PREFIX . 'modules_payment_' . $payment_module['name'], []), 1);
             if (is_array($shipping_val) && in_array($name, $shipping_val) && !in_array($payment_module['name'], $output)) {
                 array_push($output, $payment_module['name']);
             }
@@ -46,7 +46,7 @@ final class Payment {
 
         $modules_data = [];
         foreach ($modules_names as $name) {
-            $namespace = '\eMarket\Modules\Payment\\' . ucfirst($name);
+            $namespace = '\eMarket\Core\Modules\Payment\\' . ucfirst($name);
             $load = $namespace::load();
             array_push($modules_data, $load);
         }

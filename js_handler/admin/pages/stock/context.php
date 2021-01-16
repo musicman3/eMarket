@@ -4,7 +4,7 @@
   |  https://github.com/musicman3/eMark
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-foreach (\eMarket\Modules::discountRouter('data') as $js_path) {
+foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
     echo '<script type="text/javascript" src="/modules/discount/' . $js_path . '/js_handler/admin/contextmenu/contextmenu.js"></script>';
 }
 ?>
@@ -16,8 +16,8 @@ foreach (\eMarket\Modules::discountRouter('data') as $js_path) {
         var lang = <?php echo json_encode(lang()) ?>;
         let parent_id = '<?php echo \eMarket\Admin\Stock::$parent_id ?>';
         var idsx_real_parent_id = '<?php echo \eMarket\Admin\Stock::$idsx_real_parent_id ?>';
-        var discounts = {<?php echo \eMarket\Modules::$discounts ?>};
-        var discount_dafault = {<?php echo \eMarket\Modules::$discount_default ?>};
+        var discounts = {<?php echo \eMarket\Core\Modules::$discounts ?>};
+        var discount_dafault = {<?php echo \eMarket\Core\Modules::$discount_default ?>};
         var stiker = '<?php echo \eMarket\Admin\Stikers::$stikers_flag ?>';
         var stikers = {<?php echo \eMarket\Admin\Stikers::$stikers ?>};
         var stikers_default = '<?php echo \eMarket\Admin\Stikers::$stikers_default ?>';
@@ -326,7 +326,7 @@ foreach (\eMarket\Modules::discountRouter('data') as $js_path) {
                     }
                 },
 
-                "discount_separator": <?php echo \eMarket\Modules::discountRouter('functions') ?>,
+                "discount_separator": <?php echo \eMarket\Core\Modules::discountRouter('functions') ?>,
 
                 "fold3": {
                     "name": lang['button_stiker'],

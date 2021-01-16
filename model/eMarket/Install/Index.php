@@ -31,12 +31,12 @@ class Index {
      *
      */
     public function lang() {
-        if (!\eMarket\Valid::inPOST('language') && \eMarket\Settings::path() == 'install') {
+        if (!\eMarket\Core\Valid::inPOST('language') && \eMarket\Core\Settings::path() == 'install') {
             self::$DEFAULT_LANGUAGE = 'english';
         }
 
-        if (\eMarket\Valid::inPOST('language')) {
-            self::$DEFAULT_LANGUAGE = \eMarket\Valid::inPOST('language');
+        if (\eMarket\Core\Valid::inPOST('language')) {
+            self::$DEFAULT_LANGUAGE = \eMarket\Core\Valid::inPOST('language');
         }
     }
 

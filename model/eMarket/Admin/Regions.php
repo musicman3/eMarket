@@ -38,11 +38,11 @@ class Regions {
      *
      */
     public function countryId() {
-        if (\eMarket\Valid::inGET('country_id')) {
-            self::$country_id = \eMarket\Valid::inGET('country_id');
+        if (\eMarket\Core\Valid::inGET('country_id')) {
+            self::$country_id = \eMarket\Core\Valid::inGET('country_id');
         }
-        if (\eMarket\Valid::inPOST('country_id')) {
-            self::$country_id = \eMarket\Valid::inPOST('country_id');
+        if (\eMarket\Core\Valid::inPOST('country_id')) {
+            self::$country_id = \eMarket\Core\Valid::inPOST('country_id');
         }
         if (self::$country_id == FALSE) {
             self::$country_id = 0;
@@ -54,16 +54,16 @@ class Regions {
      *
      */
     public function add() {
-        if (\eMarket\Valid::inPOST('add')) {
+        if (\eMarket\Core\Valid::inPOST('add')) {
 
-            $id_max = \eMarket\Pdo::selectPrepare("SELECT id FROM " . TABLE_REGIONS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+            $id_max = \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . TABLE_REGIONS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max) + 1;
 
-            for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
-                \eMarket\Pdo::action("INSERT INTO " . TABLE_REGIONS . " SET id=?, country_id=?, name=?, language=?, region_code=?", [$id, self::$country_id, \eMarket\Valid::inPOST('name_regions_' . $x), lang('#lang_all')[$x], \eMarket\Valid::inPOST('region_code_regions')]);
+            for ($x = 0; $x < \eMarket\Core\Lang::$COUNT; $x++) {
+                \eMarket\Core\Pdo::action("INSERT INTO " . TABLE_REGIONS . " SET id=?, country_id=?, name=?, language=?, region_code=?", [$id, self::$country_id, \eMarket\Core\Valid::inPOST('name_regions_' . $x), lang('#lang_all')[$x], \eMarket\Core\Valid::inPOST('region_code_regions')]);
             }
 
-            \eMarket\Messages::alert('success', lang('action_completed_successfully'));
+            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
         }
     }
 
@@ -72,13 +72,13 @@ class Regions {
      *
      */
     public function edit() {
-        if (\eMarket\Valid::inPOST('edit')) {
+        if (\eMarket\Core\Valid::inPOST('edit')) {
 
-            for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
-                \eMarket\Pdo::action("UPDATE " . TABLE_REGIONS . " SET name=?, region_code=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_regions_' . $x), \eMarket\Valid::inPOST('region_code_regions'), \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
+            for ($x = 0; $x < \eMarket\Core\Lang::$COUNT; $x++) {
+                \eMarket\Core\Pdo::action("UPDATE " . TABLE_REGIONS . " SET name=?, region_code=? WHERE id=? AND language=?", [\eMarket\Core\Valid::inPOST('name_regions_' . $x), \eMarket\Core\Valid::inPOST('region_code_regions'), \eMarket\Core\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
             }
 
-            \eMarket\Messages::alert('success', lang('action_completed_successfully'));
+            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
         }
     }
 
@@ -87,11 +87,11 @@ class Regions {
      *
      */
     public function delete() {
-        if (\eMarket\Valid::inPOST('delete')) {
+        if (\eMarket\Core\Valid::inPOST('delete')) {
 
-            \eMarket\Pdo::action("DELETE FROM " . TABLE_REGIONS . " WHERE country_id=? AND id=?", [self::$country_id, \eMarket\Valid::inPOST('delete')]);
+            \eMarket\Core\Pdo::action("DELETE FROM " . TABLE_REGIONS . " WHERE country_id=? AND id=?", [self::$country_id, \eMarket\Core\Valid::inPOST('delete')]);
 
-            \eMarket\Messages::alert('success', lang('action_completed_successfully'));
+            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
         }
     }
 
@@ -100,9 +100,9 @@ class Regions {
      *
      */
     public function data() {
-        self::$sql_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_REGIONS . " WHERE country_id=? ORDER BY name", [self::$country_id]);
-        $lines = \eMarket\Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
-        \eMarket\Pages::table($lines);
+        self::$sql_data = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_REGIONS . " WHERE country_id=? ORDER BY name", [self::$country_id]);
+        $lines = \eMarket\Core\Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
+        \eMarket\Core\Pages::table($lines);
     }
 
     /**
@@ -112,8 +112,8 @@ class Regions {
     public function modal() {
         self::$json_data = json_encode([]);
         $name = [];
-        $lines = \eMarket\Pages::$table['lines'];
-        for ($i = \eMarket\Pages::$start; $i < \eMarket\Pages::$finish; $i++) {
+        $lines = \eMarket\Core\Pages::$table['lines'];
+        for ($i = \eMarket\Core\Pages::$start; $i < \eMarket\Core\Pages::$finish; $i++) {
             if (isset($lines[$i]['id']) == TRUE) {
 
                 $modal_id = $lines[$i]['id'];

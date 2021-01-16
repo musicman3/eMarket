@@ -5,13 +5,13 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 // ПОДКЛЮЧАЕМ КОНТЕНТ
-foreach (\eMarket\View::tlpc('content') as $path) {
+foreach (\eMarket\Core\View::tlpc('content') as $path) {
     require_once (ROOT . $path);
 }
 ?>
 
 <!--Выводим уведомление об успешном действии-->
-<div id="alert_block"><?php \eMarket\Messages::alert(); ?></div>
+<div id="alert_block"><?php \eMarket\Core\Messages::alert(); ?></div>
 
 <?php if (isset(\Market\Catalog\RecoveryPass::$customer_id) && \Market\Catalog\RecoveryPass::$customer_id != FALSE) { ?>
     <h1><?php echo lang('register_password_recovery') ?></h1>

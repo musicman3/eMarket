@@ -39,7 +39,7 @@
 
     $('#index_product').on('hidden.bs.modal', function (event) {
         // Destroy Summernote
-        var count_lang = '<?php echo \eMarket\Lang::$COUNT ?>';
+        var count_lang = '<?php echo \eMarket\Core\Lang::$COUNT ?>';
         for (var x = 0; x < count_lang; x++) {
             $('#description_product_stock_' + x).summernote('destroy');
         }

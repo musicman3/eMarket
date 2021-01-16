@@ -12,7 +12,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-namespace eMarket\Modules\Discount;
+namespace eMarket\Core\Modules\Discount;
 
 /**
  * Класс модуля скидок
@@ -30,7 +30,7 @@ class Sale {
      */
     public static function install($module) {
         // Инсталлируем
-        \eMarket\Modules::install($module);
+        \eMarket\Core\Modules::install($module);
     }
 
     /**
@@ -40,13 +40,13 @@ class Sale {
      */
     public static function uninstall($module) {
         // Удаляем
-        \eMarket\Modules::uninstall($module);
+        \eMarket\Core\Modules::uninstall($module);
         // Очищаем поле распродажи
-        $products_data = \eMarket\Pdo::getColAssoc("SELECT id, discount FROM " . TABLE_PRODUCTS . " WHERE language=?", [lang('#lang_all')[0]]);
+        $products_data = \eMarket\Core\Pdo::getColAssoc("SELECT id, discount FROM " . TABLE_PRODUCTS . " WHERE language=?", [lang('#lang_all')[0]]);
         foreach ($products_data as $data) {
             $discounts = json_decode($data['discount'], 1);
             unset($discounts['sale']);
-            \eMarket\Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [json_encode($discounts), $data['id']]);
+            \eMarket\Core\Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [json_encode($discounts), $data['id']]);
         }
     }
 
@@ -56,7 +56,7 @@ class Sale {
      * @return string|FALSE (данные по статусу модуля)
      */
     public static function status() {
-        $module_active = \eMarket\Pdo::getCellFalse("SELECT active FROM " . TABLE_MODULES . " WHERE name=? AND type=?", ['sale', 'discount']);
+        $module_active = \eMarket\Core\Pdo::getCellFalse("SELECT active FROM " . TABLE_MODULES . " WHERE name=? AND type=?", ['sale', 'discount']);
         return $module_active;
     }
 
@@ -75,9 +75,9 @@ class Sale {
 
         $discount_val = json_decode($input['discount'], 1);
         $currency = $input['currency'];
-        $input_price = \eMarket\Ecb::currencyPrice($input['price'], $currency);
+        $input_price = \eMarket\Core\Ecb::currencyPrice($input['price'], $currency);
         
-        $INTERFACE = new \eMarket\Interfaces();
+        $INTERFACE = new \eMarket\Core\Interfaces();
 
         if (array_key_exists('sale', $discount_val) && count($discount_val['sale']) > 0 && self::status() != FALSE && self::status() == 1) {
 
@@ -85,7 +85,7 @@ class Sale {
             $discount_names = [];
 
             foreach ($discount_val['sale'] as $val) {
-                $data = \eMarket\Pdo::getColAssoc("SELECT sale_value, name, UNIX_TIMESTAMP (date_start), UNIX_TIMESTAMP (date_end) FROM " . DB_PREFIX . 'modules_discount_sale' . " WHERE language=? AND id=?", [$language, $val])[0];
+                $data = \eMarket\Core\Pdo::getColAssoc("SELECT sale_value, name, UNIX_TIMESTAMP (date_start), UNIX_TIMESTAMP (date_end) FROM " . DB_PREFIX . 'modules_discount_sale' . " WHERE language=? AND id=?", [$language, $val])[0];
                 if (count($data) > 0) {
                     $this_time = time();
                     $date_start = $data['UNIX_TIMESTAMP (date_start)'];
@@ -130,25 +130,25 @@ class Sale {
      */
     public static function initEac() {
 
-        if ((\eMarket\Valid::inPOST('idsx_sale_on_key') == 'On')
-                or ( \eMarket\Valid::inPOST('idsx_sale_off_key') == 'Off')
-                or ( \eMarket\Valid::inPOST('idsx_sale_off_all_key') == 'OffAll')) {
+        if ((\eMarket\Core\Valid::inPOST('idsx_sale_on_key') == 'On')
+                or ( \eMarket\Core\Valid::inPOST('idsx_sale_off_key') == 'Off')
+                or ( \eMarket\Core\Valid::inPOST('idsx_sale_off_all_key') == 'OffAll')) {
 
-            $parent_id_real = (int) \eMarket\Valid::inPOST('idsx_real_parent_id');
+            $parent_id_real = (int) \eMarket\Core\Valid::inPOST('idsx_real_parent_id');
 
-            if (\eMarket\Valid::inPOST('idsx_sale_on_key') == 'On') {
-                $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('idsx_sale_on_id'));
-                $discount = \eMarket\Valid::inPOST('sale');
+            if (\eMarket\Core\Valid::inPOST('idsx_sale_on_key') == 'On') {
+                $idx = \eMarket\Core\Func::deleteEmptyInArray(\eMarket\Core\Valid::inPOST('idsx_sale_on_id'));
+                $discount = \eMarket\Core\Valid::inPOST('sale');
             }
 
-            if (\eMarket\Valid::inPOST('idsx_sale_off_key') == 'Off') {
-                $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('idsx_sale_off_id'));
-                $discount = \eMarket\Valid::inPOST('sale');
+            if (\eMarket\Core\Valid::inPOST('idsx_sale_off_key') == 'Off') {
+                $idx = \eMarket\Core\Func::deleteEmptyInArray(\eMarket\Core\Valid::inPOST('idsx_sale_off_id'));
+                $discount = \eMarket\Core\Valid::inPOST('sale');
             }
 
-            if (\eMarket\Valid::inPOST('idsx_sale_off_all_key') == 'OffAll') {
-                $idx = \eMarket\Func::deleteEmptyInArray(\eMarket\Valid::inPOST('idsx_sale_off_all_id'));
-                $discount = \eMarket\Valid::inPOST('sale');
+            if (\eMarket\Core\Valid::inPOST('idsx_sale_off_all_key') == 'OffAll') {
+                $idx = \eMarket\Core\Func::deleteEmptyInArray(\eMarket\Core\Valid::inPOST('idsx_sale_off_all_id'));
+                $discount = \eMarket\Core\Valid::inPOST('sale');
             }
 
             if (is_array($idx) == FALSE) {
@@ -158,18 +158,18 @@ class Sale {
             for ($i = 0; $i < count($idx); $i++) {
                 if (strstr($idx[$i], '_', true) != 'product') {
                     // Это категория / This is category
-                    \eMarket\Eac::$parent_id = \eMarket\Eac::dataParentId($idx[$i]);
-                    $keys = \eMarket\Eac::dataKeys($idx[$i]);
+                    \eMarket\Core\Eac::$parent_id = \eMarket\Core\Eac::dataParentId($idx[$i]);
+                    $keys = \eMarket\Core\Eac::dataKeys($idx[$i]);
 
                     $count_keys = count($keys);
                     for ($x = 0; $x < $count_keys; $x++) {
 
-                        if (\eMarket\Valid::inPOST('idsx_sale_on_key') == 'On') {
+                        if (\eMarket\Core\Valid::inPOST('idsx_sale_on_key') == 'On') {
                             // Это товар / This is product
-                            $products_id = \eMarket\Pdo::getColAssoc("SELECT id FROM " . TABLE_PRODUCTS . " WHERE language=? AND parent_id=?", [lang('#lang_all')[0], $keys[$x]]);
+                            $products_id = \eMarket\Core\Pdo::getColAssoc("SELECT id FROM " . TABLE_PRODUCTS . " WHERE language=? AND parent_id=?", [lang('#lang_all')[0], $keys[$x]]);
 
                             foreach ($products_id as $val) {
-                                $discount_json = \eMarket\Pdo::getCell("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$val['id']]);
+                                $discount_json = \eMarket\Core\Pdo::getCell("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$val['id']]);
                                 $discount_array = json_decode($discount_json, 1);
 
                                 if (!array_key_exists('sale', $discount_array)) {
@@ -180,19 +180,19 @@ class Sale {
                                     }
                                 }
 
-                                \eMarket\Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [json_encode($discount_array), $val['id']]);
+                                \eMarket\Core\Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [json_encode($discount_array), $val['id']]);
                             }
 
                             if ($parent_id_real > 0) {
-                                \eMarket\Eac::$parent_id = $parent_id_real;
+                                \eMarket\Core\Eac::$parent_id = $parent_id_real;
                             }
                         }
-                        if (\eMarket\Valid::inPOST('idsx_sale_off_key') == 'Off') {
+                        if (\eMarket\Core\Valid::inPOST('idsx_sale_off_key') == 'Off') {
                             // Это товар / This is product
-                            $products_id = \eMarket\Pdo::getColAssoc("SELECT id FROM " . TABLE_PRODUCTS . " WHERE language=? AND parent_id=?", [lang('#lang_all')[0], $keys[$x]]);
+                            $products_id = \eMarket\Core\Pdo::getColAssoc("SELECT id FROM " . TABLE_PRODUCTS . " WHERE language=? AND parent_id=?", [lang('#lang_all')[0], $keys[$x]]);
 
                             foreach ($products_id as $val) {
-                                $discount_json = \eMarket\Pdo::getCell("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$val['id']]);
+                                $discount_json = \eMarket\Core\Pdo::getCell("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$val['id']]);
                                 $discount_array = json_decode($discount_json, 1);
 
                                 if (array_key_exists('sale', $discount_array)) {
@@ -203,39 +203,39 @@ class Sale {
                                     }
                                 }
 
-                                \eMarket\Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [json_encode($discount_array), $val['id']]);
+                                \eMarket\Core\Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [json_encode($discount_array), $val['id']]);
                             }
 
                             if ($parent_id_real > 0) {
-                                \eMarket\Eac::$parent_id = $parent_id_real;
+                                \eMarket\Core\Eac::$parent_id = $parent_id_real;
                             }
                         }
-                        if (\eMarket\Valid::inPOST('idsx_sale_off_all_key') == 'OffAll') {
+                        if (\eMarket\Core\Valid::inPOST('idsx_sale_off_all_key') == 'OffAll') {
                             // Это товар / This is product
-                            $products_id = \eMarket\Pdo::getColAssoc("SELECT id FROM " . TABLE_PRODUCTS . " WHERE language=? AND parent_id=?", [lang('#lang_all')[0], $keys[$x]]);
+                            $products_id = \eMarket\Core\Pdo::getColAssoc("SELECT id FROM " . TABLE_PRODUCTS . " WHERE language=? AND parent_id=?", [lang('#lang_all')[0], $keys[$x]]);
 
                             foreach ($products_id as $val) {
-                                $discount_json = \eMarket\Pdo::getCell("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$val['id']]);
+                                $discount_json = \eMarket\Core\Pdo::getCell("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$val['id']]);
                                 $discount_array = json_decode($discount_json, 1);
 
                                 if (array_key_exists('sale', $discount_array)) {
                                     unset($discount_array['sale']);
                                 }
 
-                                \eMarket\Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [json_encode($discount_array), $val['id']]);
+                                \eMarket\Core\Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [json_encode($discount_array), $val['id']]);
                             }
 
                             if ($parent_id_real > 0) {
-                                \eMarket\Eac::$parent_id = $parent_id_real;
+                                \eMarket\Core\Eac::$parent_id = $parent_id_real;
                             }
                         }
                     }
                 } else {
                     // Это товар / This is product
                     //Обновляем статус основного товара / Update gengeral product status
-                    if (\eMarket\Valid::inPOST('idsx_sale_on_key') == 'On') {
+                    if (\eMarket\Core\Valid::inPOST('idsx_sale_on_key') == 'On') {
                         $id_prod = explode('product_', $idx[$i]);
-                        $discount_json = \eMarket\Pdo::getCell("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$id_prod[1]]);
+                        $discount_json = \eMarket\Core\Pdo::getCell("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$id_prod[1]]);
                         $discount_array = json_decode($discount_json, 1);
 
                         if (!array_key_exists('sale', $discount_array)) {
@@ -246,11 +246,11 @@ class Sale {
                             }
                         }
 
-                        \eMarket\Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [json_encode($discount_array), $id_prod[1]]);
+                        \eMarket\Core\Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [json_encode($discount_array), $id_prod[1]]);
                     }
-                    if (\eMarket\Valid::inPOST('idsx_sale_off_key') == 'Off') {
+                    if (\eMarket\Core\Valid::inPOST('idsx_sale_off_key') == 'Off') {
                         $id_prod = explode('product_', $idx[$i]);
-                        $discount_json = \eMarket\Pdo::getCell("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$id_prod[1]]);
+                        $discount_json = \eMarket\Core\Pdo::getCell("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$id_prod[1]]);
                         $discount_array = json_decode($discount_json, 1);
 
                         if (array_key_exists('sale', $discount_array)) {
@@ -261,24 +261,24 @@ class Sale {
                             }
                         }
 
-                        \eMarket\Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [json_encode($discount_array), $id_prod[1]]);
+                        \eMarket\Core\Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [json_encode($discount_array), $id_prod[1]]);
                     }
-                    if (\eMarket\Valid::inPOST('idsx_sale_off_all_key') == 'OffAll') {
+                    if (\eMarket\Core\Valid::inPOST('idsx_sale_off_all_key') == 'OffAll') {
                         $id_prod = explode('product_', $idx[$i]);
-                        $discount_json = \eMarket\Pdo::getCell("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$id_prod[1]]);
+                        $discount_json = \eMarket\Core\Pdo::getCell("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$id_prod[1]]);
                         $discount_array = json_decode($discount_json, 1);
 
                         if (array_key_exists('sale', $discount_array)) {
                             unset($discount_array['sale']);
                         }
-                        \eMarket\Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [json_encode($discount_array), $id_prod[1]]);
+                        \eMarket\Core\Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [json_encode($discount_array), $id_prod[1]]);
                     }
                 }
             }
         }
 
-        if (is_array(\eMarket\Eac::$parent_id) == TRUE) {
-            \eMarket\Eac::$parent_id = 0;
+        if (is_array(\eMarket\Core\Eac::$parent_id) == TRUE) {
+            \eMarket\Core\Eac::$parent_id = 0;
         }
     }
 

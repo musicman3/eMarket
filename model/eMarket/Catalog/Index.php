@@ -22,8 +22,8 @@ class Index {
      * @return string url
      */
     public function route() {
-        if (\eMarket\Valid::inGET('route') != '') {
-            return ROOT . '/controller/catalog/pages/' . \eMarket\Valid::inGET('route') . '/index.php';
+        if (\eMarket\Core\Valid::inGET('route') != '') {
+            return ROOT . '/controller/catalog/pages/' . \eMarket\Core\Valid::inGET('route') . '/index.php';
         } else {
             return ROOT . '/controller/catalog/pages/catalog/index.php';
         }

@@ -36,37 +36,37 @@ class Length {
      *
      */
     public function add() {
-        if (\eMarket\Valid::inPOST('add')) {
+        if (\eMarket\Core\Valid::inPOST('add')) {
 
-            if (\eMarket\Valid::inPOST('default_length')) {
+            if (\eMarket\Core\Valid::inPOST('default_length')) {
                 $default_length = 1;
             } else {
                 $default_length = 0;
             }
 
-            $id_max = \eMarket\Pdo::selectPrepare("SELECT id FROM " . TABLE_LENGTH . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+            $id_max = \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . TABLE_LENGTH . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max) + 1;
 
             if ($id > 1 && $default_length != 0) {
-                \eMarket\Pdo::action("UPDATE " . TABLE_LENGTH . " SET default_length=?", [0]);
+                \eMarket\Core\Pdo::action("UPDATE " . TABLE_LENGTH . " SET default_length=?", [0]);
 
-                $value_length_all = \eMarket\Pdo::getColAssoc("SELECT id, value_length, language FROM " . TABLE_LENGTH, []);
+                $value_length_all = \eMarket\Core\Pdo::getColAssoc("SELECT id, value_length, language FROM " . TABLE_LENGTH, []);
                 $count_value_length_all = count($value_length_all);
                 for ($x = 0; $x < $count_value_length_all; $x++) {
-                    \eMarket\Pdo::action("UPDATE " . TABLE_LENGTH . " SET value_length=? WHERE id=? AND language=?", [($value_length_all[$x]['value_length'] / \eMarket\Valid::inPOST('value_length')), $value_length_all[$x]['id'], $value_length_all[$x]['language']]);
+                    \eMarket\Core\Pdo::action("UPDATE " . TABLE_LENGTH . " SET value_length=? WHERE id=? AND language=?", [($value_length_all[$x]['value_length'] / \eMarket\Core\Valid::inPOST('value_length')), $value_length_all[$x]['id'], $value_length_all[$x]['language']]);
                 }
 
-                for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
-                    \eMarket\Pdo::action("INSERT INTO " . TABLE_LENGTH . " SET id=?, name=?, language=?, code=?, value_length=?, default_length=?", [$id, \eMarket\Valid::inPOST('name_length_' . $x), lang('#lang_all')[$x], \eMarket\Valid::inPOST('code_length_' . $x), 1, $default_length]);
+                for ($x = 0; $x < \eMarket\Core\Lang::$COUNT; $x++) {
+                    \eMarket\Core\Pdo::action("INSERT INTO " . TABLE_LENGTH . " SET id=?, name=?, language=?, code=?, value_length=?, default_length=?", [$id, \eMarket\Core\Valid::inPOST('name_length_' . $x), lang('#lang_all')[$x], \eMarket\Core\Valid::inPOST('code_length_' . $x), 1, $default_length]);
                 }
             } else {
 
-                for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
-                    \eMarket\Pdo::action("INSERT INTO " . TABLE_LENGTH . " SET id=?, name=?, language=?, code=?, value_length=?, default_length=?", [$id, \eMarket\Valid::inPOST('name_length_' . $x), lang('#lang_all')[$x], \eMarket\Valid::inPOST('code_length_' . $x), \eMarket\Valid::inPOST('value_length'), $default_length]);
+                for ($x = 0; $x < \eMarket\Core\Lang::$COUNT; $x++) {
+                    \eMarket\Core\Pdo::action("INSERT INTO " . TABLE_LENGTH . " SET id=?, name=?, language=?, code=?, value_length=?, default_length=?", [$id, \eMarket\Core\Valid::inPOST('name_length_' . $x), lang('#lang_all')[$x], \eMarket\Core\Valid::inPOST('code_length_' . $x), \eMarket\Core\Valid::inPOST('value_length'), $default_length]);
                 }
             }
 
-            \eMarket\Messages::alert('success', lang('action_completed_successfully'));
+            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
         }
     }
 
@@ -75,34 +75,34 @@ class Length {
      *
      */
     public function edit() {
-        if (\eMarket\Valid::inPOST('edit')) {
+        if (\eMarket\Core\Valid::inPOST('edit')) {
 
-            if (\eMarket\Valid::inPOST('default_length')) {
+            if (\eMarket\Core\Valid::inPOST('default_length')) {
                 $default_length = 1;
             } else {
                 $default_length = 0;
             }
 
             if ($default_length != 0) {
-                \eMarket\Pdo::action("UPDATE " . TABLE_LENGTH . " SET default_length=?", [0]);
+                \eMarket\Core\Pdo::action("UPDATE " . TABLE_LENGTH . " SET default_length=?", [0]);
 
-                $value_length_all = \eMarket\Pdo::getColAssoc("SELECT id, value_length, language FROM " . TABLE_LENGTH, []);
+                $value_length_all = \eMarket\Core\Pdo::getColAssoc("SELECT id, value_length, language FROM " . TABLE_LENGTH, []);
                 $count_value_length_all = count($value_length_all);
                 for ($x = 0; $x < $count_value_length_all; $x++) {
-                    \eMarket\Pdo::action("UPDATE " . TABLE_LENGTH . " SET value_length=? WHERE id=? AND language=?", [($value_length_all[$x]['value_length'] / \eMarket\Valid::inPOST('value_length')), $value_length_all[$x]['id'], $value_length_all[$x]['language']]);
+                    \eMarket\Core\Pdo::action("UPDATE " . TABLE_LENGTH . " SET value_length=? WHERE id=? AND language=?", [($value_length_all[$x]['value_length'] / \eMarket\Core\Valid::inPOST('value_length')), $value_length_all[$x]['id'], $value_length_all[$x]['language']]);
                 }
 
-                for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
-                    \eMarket\Pdo::action("UPDATE " . TABLE_LENGTH . " SET name=?, code=?, value_length=?, default_length=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_length_' . $x), \eMarket\Valid::inPOST('code_length_' . $x), 1, $default_length, \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
+                for ($x = 0; $x < \eMarket\Core\Lang::$COUNT; $x++) {
+                    \eMarket\Core\Pdo::action("UPDATE " . TABLE_LENGTH . " SET name=?, code=?, value_length=?, default_length=? WHERE id=? AND language=?", [\eMarket\Core\Valid::inPOST('name_length_' . $x), \eMarket\Core\Valid::inPOST('code_length_' . $x), 1, $default_length, \eMarket\Core\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
                 }
             } else {
 
-                for ($x = 0; $x < \eMarket\Lang::$COUNT; $x++) {
-                    \eMarket\Pdo::action("UPDATE " . TABLE_LENGTH . " SET name=?, code=?, value_length=?, default_length=? WHERE id=? AND language=?", [\eMarket\Valid::inPOST('name_length_' . $x), \eMarket\Valid::inPOST('code_length_' . $x), \eMarket\Valid::inPOST('value_length'), $default_length, \eMarket\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
+                for ($x = 0; $x < \eMarket\Core\Lang::$COUNT; $x++) {
+                    \eMarket\Core\Pdo::action("UPDATE " . TABLE_LENGTH . " SET name=?, code=?, value_length=?, default_length=? WHERE id=? AND language=?", [\eMarket\Core\Valid::inPOST('name_length_' . $x), \eMarket\Core\Valid::inPOST('code_length_' . $x), \eMarket\Core\Valid::inPOST('value_length'), $default_length, \eMarket\Core\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
                 }
             }
 
-            \eMarket\Messages::alert('success', lang('action_completed_successfully'));
+            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
         }
     }
 
@@ -111,10 +111,10 @@ class Length {
      *
      */
     public function delete() {
-        if (\eMarket\Valid::inPOST('delete')) {
-            \eMarket\Pdo::action("DELETE FROM " . TABLE_LENGTH . " WHERE id=?", [\eMarket\Valid::inPOST('delete')]);
+        if (\eMarket\Core\Valid::inPOST('delete')) {
+            \eMarket\Core\Pdo::action("DELETE FROM " . TABLE_LENGTH . " WHERE id=?", [\eMarket\Core\Valid::inPOST('delete')]);
 
-            \eMarket\Messages::alert('success', lang('action_completed_successfully'));
+            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
         }
     }
 
@@ -123,9 +123,9 @@ class Length {
      *
      */
     public function data() {
-        self::$sql_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_LENGTH . " ORDER BY id DESC", []);
-        $lines = \eMarket\Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
-        \eMarket\Pages::table($lines);
+        self::$sql_data = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_LENGTH . " ORDER BY id DESC", []);
+        $lines = \eMarket\Core\Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
+        \eMarket\Core\Pages::table($lines);
     }
 
     /**
@@ -136,10 +136,10 @@ class Length {
         self::$json_data = json_encode([]);
         $name = [];
         $code = [];
-        for ($i = \eMarket\Pages::$start; $i < \eMarket\Pages::$finish; $i++) {
-            if (isset(\eMarket\Pages::$table['lines'][$i]['id']) == TRUE) {
+        for ($i = \eMarket\Core\Pages::$start; $i < \eMarket\Core\Pages::$finish; $i++) {
+            if (isset(\eMarket\Core\Pages::$table['lines'][$i]['id']) == TRUE) {
 
-                $modal_id = \eMarket\Pages::$table['lines'][$i]['id'];
+                $modal_id = \eMarket\Core\Pages::$table['lines'][$i]['id'];
 
                 foreach (self::$sql_data as $sql_modal) {
                     if ($sql_modal['id'] == $modal_id) {

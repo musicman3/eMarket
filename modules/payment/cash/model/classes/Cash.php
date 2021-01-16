@@ -12,7 +12,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-namespace eMarket\Modules\Payment;
+namespace eMarket\Core\Modules\Payment;
 
 /**
  * Класс модуля оплаты
@@ -30,7 +30,7 @@ class Cash {
      */
     public static function install($module) {
         // Инсталлируем
-        \eMarket\Modules::install($module);
+        \eMarket\Core\Modules::install($module);
     }
 
     /**
@@ -40,7 +40,7 @@ class Cash {
      */
     public static function uninstall($module) {
         // Удаляем
-        \eMarket\Modules::uninstall($module);
+        \eMarket\Core\Modules::uninstall($module);
     }
 
     /**
@@ -50,7 +50,7 @@ class Cash {
      */
     public static function load() {
         
-        $INTERFACE = new \eMarket\Interfaces();
+        $INTERFACE = new \eMarket\Core\Interfaces();
         // Интерфейс для модулей оплаты
         $interface = [
             'chanel_module_name' => 'cash',
