@@ -74,7 +74,7 @@ if (!\eMarket\Valid::inPOST('email')) {
 
     <?php
 }
-if (\eMarket\Valid::inPOST('email') && $user_email != NULL) {
+if (\eMarket\Valid::inPOST('email') && \eMarket\Catalog\Register::$user_email != NULL) {
     ?>
 <h1><?php echo lang('register_account') ?></h1>
 
@@ -89,7 +89,7 @@ if (\eMarket\Valid::inPOST('email') && $user_email != NULL) {
 </div>
     <?php
 }
-if (\eMarket\Valid::inPOST('email') && $user_email == NULL) {
+if (\eMarket\Valid::inPOST('email') && \eMarket\Catalog\Register::$user_email == NULL) {
     ?>
 <h1><?php echo lang('register_account') ?></h1>
 
