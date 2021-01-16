@@ -18,7 +18,7 @@ foreach (\eMarket\View::tlpc('content') as $path) {
 <div id="alert_block"><?php \eMarket\Messages::alert(); ?></div>
 <h1><?php echo lang('orders_book') ?></h1>
 
-<div id="ajax_data" class='hidden' data-orders='<?php echo $orders_edit ?>'></div>
+<div id="ajax_data" class='hidden' data-orders='<?php echo \eMarket\Catalog\Orders::$orders_edit ?>'></div>
 
 <div class="table-responsive">
     <table class="table table-hover">
@@ -68,7 +68,7 @@ foreach (\eMarket\View::tlpc('content') as $path) {
 	</thead>
 	<tbody>
 	    <?php
-	    if ($lines != FALSE) {
+	    if (\eMarket\Pages::$count > 0) {
 		for (\eMarket\Pages::$start; \eMarket\Pages::$start < \eMarket\Pages::$finish; \eMarket\Pages::$start++, \eMarket\Pages::lineUpdate()) {
 		    ?>
 		    <tr>
