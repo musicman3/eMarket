@@ -15,7 +15,7 @@ foreach (\eMarket\View::tlpc('content') as $path) {
 <!-- КОНЕЦ Модальное окно "Добавить" -->
 
 <h1><?php echo lang('shopping_cart') ?></h1>
-<?php if ($cart_info == true) { ?>
+<?php if (\eMarket\Catalog\Cart::$cart_info == true) { ?>
     <div id="cart" class="contentText">
         <div class="table-responsive">
             <table class="table table-bordered">
@@ -27,7 +27,7 @@ foreach (\eMarket\View::tlpc('content') as $path) {
                         <td class="text-center"><strong><?php echo lang('cart_quantity') ?></strong></td>
                         <td class="text-center"><strong><?php echo lang('cart_amount') ?></strong></td>
                     </tr>
-                    <?php foreach ($cart_info as $value) { ?>
+                    <?php foreach (\eMarket\Catalog\Cart::$cart_info as $value) { ?>
                         <tr>
                             <td class="text-center"><a href="/?route=products&category_id=<?php echo $value['parent_id'] ?>&id=<?php echo $value['id'] ?>"><img src="/uploads/images/products/resize_0/<?php echo $value['logo_general'] ?>" alt="<?php echo $value['name'] ?>" class="img-responsive center-block"></a></td>
                             <td class="text-center"><a href="/?route=products&category_id=<?php echo $value['parent_id'] ?>&id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></td>
@@ -63,9 +63,9 @@ foreach (\eMarket\View::tlpc('content') as $path) {
 
         <div class="input-group-btn button">
             <div class="pull-right">
-                <?php if (isset($_SESSION['email_customer']) && $address_data_json != FALSE) { ?>
+                <?php if (isset($_SESSION['email_customer']) && \eMarket\Catalog\Cart::$address_data_json != FALSE) { ?>
                     <button type="button" class="btn btn btn-primary" data-toggle="modal" data-target="#index"><span class="glyphicon glyphicon-share-alt"></span> <?php echo lang('cart_сheckout') ?></button>
-                <?php } elseif (isset($_SESSION['email_customer']) && $address_data_json == FALSE) { ?>
+                <?php } elseif (isset($_SESSION['email_customer']) && \eMarket\Catalog\Cart::$address_data_json == FALSE) { ?>
                     <button type="button" class="btn btn btn-primary" onClick='location.href = "/?route=address_book&redirect=cart"'><span class="glyphicon glyphicon-share-alt"></span> <?php echo lang('cart_сheckout') ?></button>
                 <?php } else { ?>
                     <button type="button" class="btn btn btn-primary" onClick='location.href = "/?route=login&redirect=cart"'><span class="glyphicon glyphicon-share-alt"></span> <?php echo lang('cart_сheckout') ?></button>

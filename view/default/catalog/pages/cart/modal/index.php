@@ -15,7 +15,7 @@
             <form id="form_cart" name="form_cart" action="javascript:void(null);" onsubmit="Cart.callSuccess()">
                 <div class="panel-body">
                     <input type="hidden" name="add" value="ok" />
-                    <input type="hidden" id="products_order" name="products_order" value='<?php echo $products_order ?>' />
+                    <input type="hidden" id="products_order" name="products_order" value='<?php echo \eMarket\Catalog\Cart::$products_order ?>' />
                     <input type="hidden" id="order_total_with_shipping" name="order_total_with_shipping" value="" />
                     <input type="hidden" id="order_shipping_price" name="order_shipping_price" value="" />
                     <input type="hidden" id="order_total" name="order_total" value="" />
@@ -33,7 +33,7 @@
                             <select name="address" id="address" class="input-sm form-control">
                                 <?php
                                 $x = 1;
-                                foreach ($address_data as $val) {
+                                foreach (\eMarket\Catalog\Cart::$address_data as $val) {
                                     ?>
                                     <option <?php echo $val['selected'] ?>value="<?php echo $x ?>" data-regions="<?php echo $val['regions_id'] ?>"><?php echo $val['zip'] . ', ' . $val['countries_name'] . ', ' . $val['regions_name'] . ', ' . $val['city'] . ', ' . $val['address'] ?></option>
                                     <?php
