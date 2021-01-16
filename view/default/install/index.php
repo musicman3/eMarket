@@ -37,7 +37,7 @@
                 <form action="success.php" method="post" accept-charset="utf-8" style="display: inline;" onchange="validate()">
 
                     <!-- Выбранный язык" -->
-                    <input type='hidden' name='language' value='<?php echo $DEFAULT_LANGUAGE ?>' />
+                    <input type='hidden' name='language' value='<?php echo \eMarket\Install\Index::$DEFAULT_LANGUAGE ?>' />
 
                     <div class="row">
                         <div class="col-sm-4 col-md-3 form-group">

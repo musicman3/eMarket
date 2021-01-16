@@ -9,13 +9,7 @@
 require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 /* ------------------------------------------ */
 
-if (!\eMarket\Valid::inPOST('language') && \eMarket\Settings::path() == 'install') {
-    $DEFAULT_LANGUAGE = 'english';
-}
-
-if (\eMarket\Valid::inPOST('language')) {
-    $DEFAULT_LANGUAGE = \eMarket\Valid::inPOST('language');
-}
+$eMarket = new eMarket\Install\Index();
 
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
 require_once(getenv('DOCUMENT_ROOT') . '/model/end.php');
