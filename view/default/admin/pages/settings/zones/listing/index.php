@@ -3,6 +3,8 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+
+$eMarket = new eMarket\Admin\ZonesListing();
 ?>
 <!-- Модальное окно "Добавить" -->
 <?php require_once('modal/index.php') ?>

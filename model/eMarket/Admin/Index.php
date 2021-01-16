@@ -19,13 +19,15 @@ class Index {
     /**
      * Route
      *
-     * @return string url
+     * @return string|FALSE url
      */
     public function route() {
-        if (\eMarket\Valid::inGET('route') != '') {
-            return ROOT . '/controller/admin/pages/' . \eMarket\Valid::inGET('route') . '/index.php';
+        
+        $str = ROOT . '/view/' . \eMarket\Settings::template() . '/admin/constructor.php';
+        if (file_exists($str)) {
+            return $str;
         } else {
-            return ROOT . '/controller/admin/pages/dashboard/index.php';
+            return false;
         }
     }
 
