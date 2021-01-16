@@ -14,11 +14,11 @@
             <div class="modal-body">
                 <div class="row">
                     <div id="product_image" class="col-xs-5">
-                        <img class="img-responsive center-block" src="/uploads/images/products/resize_0/<?php echo $products['logo_general'] ?>" alt="<?php echo $products['name'] ?>" />
+                        <img class="img-responsive center-block" src="/uploads/images/products/resize_0/<?php echo \eMarket\Catalog\Products::$products['logo_general'] ?>" alt="<?php echo \eMarket\Catalog\Products::$products['name'] ?>" />
                     </div>
                     <div class="col-xs-7">
-                        <p><strong><?php echo lang('listing_product') ?></strong>&nbsp;<span id="product_name"><?php echo $products['name'] ?></span></p>
-                        <p><strong><?php echo lang('listing_price') ?></strong>&nbsp;<span id="product_price_formated"><?php echo \eMarket\Ecb::priceInterface($products, 1) ?></span></p>
+                        <p><strong><?php echo lang('listing_product') ?></strong>&nbsp;<span id="product_name"><?php echo \eMarket\Catalog\Products::$products['name'] ?></span></p>
+                        <p><strong><?php echo lang('listing_price') ?></strong>&nbsp;<span id="product_price_formated"><?php echo \eMarket\Ecb::priceInterface(\eMarket\Catalog\Products::$products, 1) ?></span></p>
                         <p><strong><?php echo lang('listing_quantity') ?></strong>&nbsp;<span id="product_quantity"></span></p>
                     </div>
                 </div>
