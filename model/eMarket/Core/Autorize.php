@@ -23,9 +23,9 @@ class Autorize {
      *
      */
     public static function init() {
-        
+
         if (\eMarket\Core\Settings::path() == 'admin' && \eMarket\Core\Valid::inGET('route') != 'login') {
-                \eMarket\Core\Autorize::sessionAdmin();
+            \eMarket\Core\Autorize::sessionAdmin();
         }
 
         if (\eMarket\Core\Settings::path() == 'catalog') {
@@ -62,8 +62,11 @@ class Autorize {
                 $_SESSION['session_page'] = \eMarket\Core\Valid::inSERVER('REQUEST_URI');
                 header('Location: ?route=login');
                 exit;
-            } else {
+            } elseif (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
                 $_SESSION['DEFAULT_LANGUAGE'] = \eMarket\Core\Pdo::selectPrepare("SELECT language FROM " . TABLE_ADMINISTRATORS . " WHERE login=? AND password=?", [$_SESSION['login'], $_SESSION['pass']]);
+                return TRUE;
+            } else {
+                $_SESSION['DEFAULT_LANGUAGE'] = \eMarket\Core\Settings::basicSettings('primary_language');
                 return TRUE;
             }
         }
