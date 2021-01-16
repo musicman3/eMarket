@@ -4,7 +4,6 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-$eMarket = new eMarket\Admin\Currencies();
 ?>
 <!-- Модальное окно -->
 <?php require_once('modal/index.php') ?>

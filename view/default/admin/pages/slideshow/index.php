@@ -4,7 +4,6 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-$eMarket = new eMarket\Admin\Slideshow();
 ?>
 <!-- Модальное окно "Настройки" -->
 <?php require_once('modal/settings.php') ?>
