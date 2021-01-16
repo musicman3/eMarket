@@ -10,7 +10,7 @@ namespace eMarket\Install;
 /**
  * Success
  *
- * @package Catalog
+ * @package Install
  * @author eMarket
  * 
  */
