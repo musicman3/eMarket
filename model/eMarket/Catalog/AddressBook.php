@@ -19,8 +19,8 @@ class AddressBook {
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
     public static $regions_data;
-    public static $address_data_json;
-    public static $countries_data_json;
+    public static $address_data_json = FALSE;
+    public static $countries_data_json = FALSE;
     public static $address_data;
 
     /**
@@ -30,10 +30,11 @@ class AddressBook {
     function __construct() {
         $this->autorize();
         $this->jsonEcho();
-        $this->data();
+        $this->initData();
         $this->add();
         $this->edit();
         $this->delete();
+        $this->data();
     }
 
     /**
@@ -56,6 +57,23 @@ class AddressBook {
             self::$regions_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_REGIONS . " WHERE language=? AND country_id=? ORDER BY name ASC", [lang('#lang_all')[0], \eMarket\Valid::inPOST('countries_select')]);
             echo json_encode(self::$regions_data);
             exit;
+        }
+    }
+
+    /**
+     * Init Data
+     *
+     */
+    public function initData() {
+        $countries_array = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_COUNTRIES . " WHERE language=? ORDER BY name ASC", [lang('#lang_all')[0]]);
+        self::$countries_data_json = json_encode($countries_array);
+
+        self::$address_data_json = \eMarket\Pdo::getCellFalse("SELECT address_book FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']]);
+
+        if (self::$address_data_json == FALSE) {
+            self::$address_data = [];
+        } else {
+            self::$address_data = json_decode(self::$address_data_json, 1);
         }
     }
 
@@ -162,17 +180,6 @@ class AddressBook {
      *
      */
     public function data() {
-        $countries_array = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_COUNTRIES . " WHERE language=? ORDER BY name ASC", [lang('#lang_all')[0]]);
-        self::$countries_data_json = json_encode($countries_array);
-
-        self::$address_data_json = \eMarket\Pdo::getCellFalse("SELECT address_book FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']]);
-
-        if (self::$address_data_json == FALSE) {
-            self::$address_data = [];
-        } else {
-            self::$address_data = json_decode(self::$address_data_json, 1);
-        }
-
         $x = 0;
         foreach (self::$address_data as $address_val) {
             $countries_array = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_COUNTRIES . " WHERE language=? AND id=? ORDER BY name ASC", [lang('#lang_all')[0], $address_val['countries_id']])[0];
