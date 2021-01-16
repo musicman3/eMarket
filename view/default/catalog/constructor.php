@@ -50,7 +50,6 @@
             <div class="row">
 
                 <?php
-
                 if (\eMarket\View::tlpc('boxes-left', 'count') > 0) {
                     ?>
 
@@ -98,7 +97,10 @@
         <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/ext/bootstrap/js/bootstrap-confirmation.min.js"></script>
         <script type="text/javascript" src="/ext/jstree/jstree.min.js"></script>
-        <?php require_once ('js/breadcrumb.php') ?>
+        <?php
+        require_once ('js/breadcrumb.php');
+        require_once ('js/categories.php');
+        ?>
 
         <script type="text/javascript">
             $('[data-toggle=confirmation]').confirmation({rootSelector: '[data-toggle=confirmation]'});

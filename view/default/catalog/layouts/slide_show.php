@@ -3,9 +3,11 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-?>
 
-<?php if (\eMarket\Admin\Slideshow::$slideshow == true) { ?>
+\eMarket\Admin\Slideshow::view();
+
+if (\eMarket\Admin\Slideshow::$slideshow == true) {
+    ?>
     <div class="container-fluid">
         <div id="Carousel" class="carousel slide hidden-xs" 
              data-interval="<?php echo \eMarket\Admin\Slideshow::$slide_interval ?>" 
@@ -59,4 +61,5 @@
             <?php } ?>
         </div>
     </div>
-<?php }
+    <?php
+}

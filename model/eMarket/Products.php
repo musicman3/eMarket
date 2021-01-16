@@ -17,6 +17,7 @@ namespace eMarket;
 class Products {
 
     public static $stiker_data = FALSE;
+    public static $new_products = FALSE;
     public static $product_data = FALSE;
     public static $category_data = FALSE;
     private static $manufacturer = FALSE;
@@ -28,11 +29,11 @@ class Products {
      * Данные по новым товарам
      *
      * @param string $count (количество новых товаров)
-     * @return array $product (массив с данными по товарам)
      */
     public static function newProducts($count) {
-        $products = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE language=? AND status=? ORDER BY id DESC LIMIT " . $count . "", [lang('#lang_all')[0], 1]);
-        return $products;
+        if (self::$new_products == FALSE) {
+            self::$new_products = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE language=? AND status=? ORDER BY id DESC LIMIT " . $count . "", [lang('#lang_all')[0], 1]);
+        }
     }
 
     /**
@@ -44,14 +45,14 @@ class Products {
      */
     public static function productData($id, $language = null) {
 
-            if ($language == null) {
-                $language = lang('#lang_all')[0];
-            }
-            self::$product_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=? AND language=? AND status=?", [$id, $language, 1])[0];
-            return self::$product_data;
+        if ($language == null) {
+            $language = lang('#lang_all')[0];
+        }
+        self::$product_data = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=? AND language=? AND status=?", [$id, $language, 1])[0];
+        return self::$product_data;
     }
-    
-        /**
+
+    /**
      * Данные по категории
      *
      * @param string $id (id категории)
@@ -204,11 +205,11 @@ class Products {
         foreach (self::$stiker_data as $val) {
             $stiker_name[$val['id']] = $val['name'];
         }
-        
+
         $INTERFACE = new \eMarket\Interfaces();
         \eMarket\Ecb::discountHandler($input);
         $discount_handler = $INTERFACE->load('discountHandler', 'data', 'discounts_data');
-        
+
         $discount_total_sale = 0;
         foreach ($discount_handler as $data) {
             if ($data['discounts'] != 'false') {

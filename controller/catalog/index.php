@@ -8,9 +8,8 @@
 require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 /* ------------------------------------------ */
 
-$eMarket = new \eMarket\Catalog\Index();
-require_once($eMarket->route());
-$eMarket->init();
+$eMarketIndex = new \eMarket\Catalog\Index();
+require_once($eMarketIndex->route());
 
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
 require_once(ROOT . '/model/end.php');

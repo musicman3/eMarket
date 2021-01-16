@@ -4,12 +4,14 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-if ($products_new == true) {
+\eMarket\Products::newProducts(8);
+
+if (\eMarket\Products::$new_products == true) {
     ?>
     <div id="new_products" class="contentText">
         <h3><?php echo lang('new_products_name') ?></h3>
         <div class="row row-flex">
-            <?php foreach ($products_new as $value) {
+            <?php foreach (\eMarket\Products::$new_products as $value) {
                 ?>
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item">
                     <div class="productHolder">

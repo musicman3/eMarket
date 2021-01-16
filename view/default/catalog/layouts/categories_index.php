@@ -3,14 +3,14 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-
+\eMarket\Catalog\Categories::indexData();
 ?>
 
-<?php if ($categories == true) { ?>
+<?php if (\eMarket\Catalog\Categories::$index_data == true) { ?>
 <div id="categories_index" class="contentText">
     <h3><?php echo lang('categories_name') ?></h3>
     <div class="row grid-group">
-        <?php foreach ($categories as $value) { ?>
+        <?php foreach (\eMarket\Catalog\Categories::$index_data as $value) { ?>
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item">
                 <div class="categoriesHolder">
                     <?php if ($value[2] == true) { ?>

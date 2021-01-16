@@ -104,7 +104,6 @@ class View {
             foreach ($array_pos_value as $val) {
                 if ($val[1] == $position) {
                     $path_view = str_replace('controller', 'view/' . \eMarket\Settings::template(), $val[0]);
-                    $array_out[] = $val[0];
                     $array_out[] = $path_view;
                 }
             }
@@ -118,7 +117,6 @@ class View {
             foreach ($array_pos as $val) {
                 if ($val[1] == 'all') {
                     $path_view = str_replace('controller', 'view/' . \eMarket\Settings::template(), $val[0]);
-                    $array_out[] = $val[0];
                     $array_out[] = $path_view;
                 }
             }

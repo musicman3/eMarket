@@ -29,12 +29,4 @@ class Index {
         }
     }
 
-    /**
-     * Data
-     *
-     */
-    public function init() {
-        \eMarket\Admin\Slideshow::view();
-    }
-
 }
