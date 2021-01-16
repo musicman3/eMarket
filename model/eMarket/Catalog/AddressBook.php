@@ -16,8 +16,6 @@ namespace eMarket\Catalog;
  */
 class AddressBook {
 
-    public static $sql_data = FALSE;
-    public static $json_data = FALSE;
     public static $regions_data;
     public static $address_data_json = FALSE;
     public static $countries_data_json = FALSE;

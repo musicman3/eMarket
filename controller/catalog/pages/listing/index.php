@@ -5,44 +5,4 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-if (\eMarket\Valid::inGET('change') == 'on' OR!\eMarket\Valid::inGET('change')) {
-    $checked_stock = ' checked';
-    $qnt_flag = '';
-} else {
-    $checked_stock = '';
-    $qnt_flag = 'AND quantity>0 ';
-}
-if (!\eMarket\Valid::inGET('sort')) {
-    $sort_flag = 'on';
-} else {
-    $sort_flag = 'off';
-}
-
-if (!\eMarket\Valid::inGET('sort') OR \eMarket\Valid::inGET('sort') == 'default') {
-    $sort_parameter = $qnt_flag . 'ORDER BY id DESC';
-    $sort_name = lang('listing_sort_by_default');
-}
-if (\eMarket\Valid::inGET('sort') == 'name') {
-    $sort_parameter = $qnt_flag . 'ORDER BY name ASC';
-    $sort_name = lang('listing_sort_by_name');
-}
-if (\eMarket\Valid::inGET('sort') == 'up') {
-    $sort_parameter = $qnt_flag . 'ORDER BY price ASC';
-    $sort_name = lang('listing_sort_by_price_asc');
-}
-if (\eMarket\Valid::inGET('sort') == 'down') {
-    $sort_parameter = $qnt_flag . 'ORDER BY price DESC';
-    $sort_name = lang('listing_sort_by_price_desc');
-}
-
-if (\eMarket\Valid::inGET('search')) {
-    $search = '%' . \eMarket\Valid::inGET('search') . '%';
-    $lines = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE (name LIKE? OR description LIKE?) AND language=? AND status=? " . $sort_parameter, [$search, $search, lang('#lang_all')[0], 1]);
-} else {
-    $lines = \eMarket\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE language=? AND parent_id=? AND status=? " . $sort_parameter, [lang('#lang_all')[0], \eMarket\Valid::inGET('category_id'), 1]);
-}
-\eMarket\Pages::table($lines);
-
-$categories_name = \eMarket\Products::categoryData(\eMarket\Valid::inGET('category_id'))['name'];
-
-require_once('modal/cart_message.php');
+$eMarket = new eMarket\Catalog\Listing();

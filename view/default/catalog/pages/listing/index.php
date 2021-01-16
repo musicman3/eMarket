@@ -13,15 +13,15 @@ foreach (\eMarket\View::tlpc('content') as $path) {
 <?php require_once('modal/cart_message.php') ?>
 <!-- КОНЕЦ Модальное окно -->
 
-<?php if (\eMarket\Valid::inGET('search')) { ?><h1><?php echo lang('listing_search'); ?></h1><?php } else { ?><h1><?php echo $categories_name ?></h1><?php } ?>
+<?php if (\eMarket\Valid::inGET('search')) { ?><h1><?php echo lang('listing_search'); ?></h1><?php } else { ?><h1><?php echo \eMarket\Catalog\Listing::$categories_name ?></h1><?php } ?>
 
-<div id="ajax_data" class='hidden' data-product='<?php echo $product_edit ?>'></div>
+<div id="ajax_data" class='hidden' data-product='<?php echo \eMarket\Catalog\Listing::$product_edit ?>'></div>
 
 <?php if (\eMarket\Pages::$count > 0) { ?>
     <div id="listing" class="contentText">
         <div class="well well-sm">
             <div class="btn-group">
-                <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-sort"></span> &nbsp;<?php echo $sort_name ?></button>
+                <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-sort"></span> &nbsp;<?php echo \eMarket\Catalog\Listing::$sort_name ?></button>
                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
                 <ul class="dropdown-menu">
                     <li><a id="default" class="sorting"><?php echo lang('listing_sort_by_default') ?></a></li>
@@ -30,7 +30,7 @@ foreach (\eMarket\View::tlpc('content') as $path) {
                     <li><a id="up" class="sorting"><?php echo lang('listing_sort_by_price_asc') ?></a></li>
                 </ul>
 
-                &nbsp;&nbsp;<input class="check-box" hidden type="checkbox" data-off-color="success" data-size="normal" data-label-text="<?php echo lang('button-view-switch') ?>" data-label-width='auto' data-on-text="<?php echo lang('button-all-switch') ?>" data-off-text="<?php echo lang('button-instock-switch') ?>" data-handle-width="auto" name="show_in_stock" id="show_in_stock"<?php echo $checked_stock ?>>
+                &nbsp;&nbsp;<input class="check-box" hidden type="checkbox" data-off-color="success" data-size="normal" data-label-text="<?php echo lang('button-view-switch') ?>" data-label-width='auto' data-on-text="<?php echo lang('button-all-switch') ?>" data-off-text="<?php echo lang('button-instock-switch') ?>" data-handle-width="auto" name="show_in_stock" id="show_in_stock"<?php echo \eMarket\Catalog\Listing::$checked_stock ?>>
             </div>
 
             <div class="btn-group pull-right hidden-grid-list">
@@ -94,7 +94,7 @@ foreach (\eMarket\View::tlpc('content') as $path) {
             <div id="nav_data" class='hidden' 
                  data-prev='<?php echo eMarket\Pages::$table['navigate'][0] ?>'
                  data-next='<?php echo eMarket\Pages::$table['navigate'][1] ?>'
-                 data-sortflag='<?php echo $sort_flag ?>'
+                 data-sortflag='<?php echo \eMarket\Catalog\Listing::$sort_flag ?>'
                  ></div>
             <div class="result-inner btn-group"><?php echo \eMarket\Pages::counterPage() ?></div>
 
