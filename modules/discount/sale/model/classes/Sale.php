@@ -15,7 +15,7 @@
 namespace eMarket\Core\Modules\Discount;
 
 /**
- * Класс модуля скидок
+ * Module Sale
  *
  * @package Sale
  * @author eMarket
@@ -23,25 +23,38 @@ namespace eMarket\Core\Modules\Discount;
  */
 class Sale {
 
+    public static $sql_data = FALSE;
+    public static $json_data = FALSE;
+    public static $this_time = FALSE;
+
     /**
-     * Инсталляция модуля
+     * Constructor
      *
-     * @param array $module (входящие данные)
+     */
+    function __construct() {
+        $this->add();
+        $this->edit();
+        $this->delete();
+        $this->data();
+        $this->modal();
+    }
+
+    /**
+     * Install
+     *
+     * @param array $module (input data)
      */
     public static function install($module) {
-        // Инсталлируем
         \eMarket\Core\Modules::install($module);
     }
 
     /**
-     * Удаление модуля
+     * Delete
      *
-     * @param array $module (входящие данные)
+     * @param array $module (input data)
      */
     public static function uninstall($module) {
-        // Удаляем
         \eMarket\Core\Modules::uninstall($module);
-        // Очищаем поле распродажи
         $products_data = \eMarket\Core\Pdo::getColAssoc("SELECT id, discount FROM " . TABLE_PRODUCTS . " WHERE language=?", [lang('#lang_all')[0]]);
         foreach ($products_data as $data) {
             $discounts = json_decode($data['discount'], 1);
@@ -51,9 +64,9 @@ class Sale {
     }
 
     /**
-     * Данные по статусу модуля
+     * Status
      *
-     * @return string|FALSE (данные по статусу модуля)
+     * @return string|FALSE
      */
     public static function status() {
         $module_active = \eMarket\Core\Pdo::getCellFalse("SELECT active FROM " . TABLE_MODULES . " WHERE name=? AND type=?", ['sale', 'discount']);
@@ -61,11 +74,11 @@ class Sale {
     }
 
     /**
-     * Выходные данные для внутреннего интерфейса калькулятора
+     * Output data for calculation block
      *
-     * @param array $input (массив с входящими значениями по товару)
-     * @param string $language (язык)
-     * @return array (выходные данные по цене)
+     * @param array $input (input data)
+     * @param string $language (language)
+     * @return array (output data)
      */
     public static function dataInterface($input, $language = null) {
 
@@ -76,7 +89,7 @@ class Sale {
         $discount_val = json_decode($input['discount'], 1);
         $currency = $input['currency'];
         $input_price = \eMarket\Core\Ecb::currencyPrice($input['price'], $currency);
-        
+
         $INTERFACE = new \eMarket\Core\Interfaces();
 
         if (array_key_exists('sale', $discount_val) && count($discount_val['sale']) > 0 && self::status() != FALSE && self::status() == 1) {
@@ -112,7 +125,6 @@ class Sale {
             ];
 
             $INTERFACE->save('discount', 'sale', $out_data);
-            
         } else {
 
             $out_data = [
@@ -120,13 +132,13 @@ class Sale {
                 'names' => 'false',
                 'discounts' => 'false'
             ];
-            
+
             $INTERFACE->save('discount', 'sale', $out_data);
         }
     }
 
     /**
-     * Инициализация в EAC / EAC init
+     * EAC init
      */
     public static function initEac() {
 
@@ -157,7 +169,6 @@ class Sale {
 
             for ($i = 0; $i < count($idx); $i++) {
                 if (strstr($idx[$i], '_', true) != 'product') {
-                    // Это категория / This is category
                     \eMarket\Core\Eac::$parent_id = \eMarket\Core\Eac::dataParentId($idx[$i]);
                     $keys = \eMarket\Core\Eac::dataKeys($idx[$i]);
 
@@ -165,7 +176,6 @@ class Sale {
                     for ($x = 0; $x < $count_keys; $x++) {
 
                         if (\eMarket\Core\Valid::inPOST('idsx_sale_on_key') == 'On') {
-                            // Это товар / This is product
                             $products_id = \eMarket\Core\Pdo::getColAssoc("SELECT id FROM " . TABLE_PRODUCTS . " WHERE language=? AND parent_id=?", [lang('#lang_all')[0], $keys[$x]]);
 
                             foreach ($products_id as $val) {
@@ -188,7 +198,6 @@ class Sale {
                             }
                         }
                         if (\eMarket\Core\Valid::inPOST('idsx_sale_off_key') == 'Off') {
-                            // Это товар / This is product
                             $products_id = \eMarket\Core\Pdo::getColAssoc("SELECT id FROM " . TABLE_PRODUCTS . " WHERE language=? AND parent_id=?", [lang('#lang_all')[0], $keys[$x]]);
 
                             foreach ($products_id as $val) {
@@ -211,7 +220,6 @@ class Sale {
                             }
                         }
                         if (\eMarket\Core\Valid::inPOST('idsx_sale_off_all_key') == 'OffAll') {
-                            // Это товар / This is product
                             $products_id = \eMarket\Core\Pdo::getColAssoc("SELECT id FROM " . TABLE_PRODUCTS . " WHERE language=? AND parent_id=?", [lang('#lang_all')[0], $keys[$x]]);
 
                             foreach ($products_id as $val) {
@@ -231,8 +239,6 @@ class Sale {
                         }
                     }
                 } else {
-                    // Это товар / This is product
-                    //Обновляем статус основного товара / Update gengeral product status
                     if (\eMarket\Core\Valid::inPOST('idsx_sale_on_key') == 'On') {
                         $id_prod = explode('product_', $idx[$i]);
                         $discount_json = \eMarket\Core\Pdo::getCell("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$id_prod[1]]);
@@ -279,6 +285,163 @@ class Sale {
 
         if (is_array(\eMarket\Core\Eac::$parent_id) == TRUE) {
             \eMarket\Core\Eac::$parent_id = 0;
+        }
+    }
+
+    /**
+     * Add
+     *
+     */
+    public function add() {
+        if (\eMarket\Core\Valid::inPOST('add')) {
+
+            $MODULE_DB = \eMarket\Core\Settings::moduleDatabase();
+
+            if (\eMarket\Core\Valid::inPOST('start_date')) {
+                $start_date = date('Y-m-d', strtotime(\eMarket\Core\Valid::inPOST('start_date')));
+            } else {
+                $start_date = NULL;
+            }
+
+            if (\eMarket\Core\Valid::inPOST('end_date')) {
+                $end_date = date('Y-m-d', strtotime(\eMarket\Core\Valid::inPOST('end_date')));
+            } else {
+                $end_date = NULL;
+            }
+
+            if (\eMarket\Core\Valid::inPOST('default_module')) {
+                $default_value = 1;
+            } else {
+                $default_value = 0;
+            }
+
+            $id_max = \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . $MODULE_DB . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+            $id = intval($id_max) + 1;
+
+            if ($id > 1 && $default_value != 0) {
+                \eMarket\Core\Pdo::action("UPDATE " . $MODULE_DB . " SET default_set=?", [0]);
+            }
+
+            for ($x = 0; $x < \eMarket\Core\Lang::$COUNT; $x++) {
+                \eMarket\Core\Pdo::action("INSERT INTO " . $MODULE_DB . " SET id=?, name=?, language=?, sale_value=?, date_start=?, date_end=?, default_set=?", [$id, \eMarket\Core\Valid::inPOST('name_module_' . $x), lang('#lang_all')[$x], \eMarket\Core\Valid::inPOST('sale_value'), $start_date, $end_date, $default_value]);
+            }
+
+            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
+        }
+    }
+
+    /**
+     * Edit
+     *
+     */
+    public function edit() {
+        if (\eMarket\Core\Valid::inPOST('edit')) {
+
+            $MODULE_DB = \eMarket\Core\Settings::moduleDatabase();
+
+            if (\eMarket\Core\Valid::inPOST('start_date')) {
+                $start_date = date('Y-m-d', strtotime(\eMarket\Core\Valid::inPOST('start_date')));
+            } else {
+                $start_date = NULL;
+            }
+            if (\eMarket\Core\Valid::inPOST('end_date')) {
+                $end_date = date('Y-m-d', strtotime(\eMarket\Core\Valid::inPOST('end_date')));
+            } else {
+                $end_date = NULL;
+            }
+
+            if (\eMarket\Core\Valid::inPOST('default_module')) {
+                $default_value = 1;
+            } else {
+                $default_value = 0;
+            }
+
+            if ($default_value != 0) {
+                \eMarket\Core\Pdo::action("UPDATE " . $MODULE_DB . " SET default_set=?", [0]);
+            }
+
+            for ($x = 0; $x < \eMarket\Core\Lang::$COUNT; $x++) {
+                \eMarket\Core\Pdo::action("UPDATE " . $MODULE_DB . " SET name=?, sale_value=?, date_start=?, date_end=?, default_set=? WHERE id=? AND language=?", [\eMarket\Core\Valid::inPOST('name_module_' . $x), \eMarket\Core\Valid::inPOST('sale_value'), $start_date, $end_date, $default_value, \eMarket\Core\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
+            }
+
+            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
+        }
+    }
+
+    /**
+     * Delete
+     *
+     */
+    public function delete() {
+        if (\eMarket\Core\Valid::inPOST('delete')) {
+
+            $MODULE_DB = \eMarket\Core\Settings::moduleDatabase();
+
+            $discount_id_array = \eMarket\Core\Pdo::getCol("SELECT id FROM " . TABLE_PRODUCTS . " WHERE language=?", [lang('#lang_all')[0]]);
+
+            foreach ($discount_id_array as $discount_id_arr) {
+                $discount_str_temp = \eMarket\Core\Pdo::getCell("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$discount_id_arr]);
+                $discount_str_explode_temp = explode(',', $discount_str_temp);
+                $discount_str_explode = \eMarket\Core\Func::deleteValInArray(\eMarket\Core\Func::deleteEmptyInArray($discount_str_explode_temp), [\eMarket\Core\Valid::inPOST('delete')]);
+                $discount_str_implode = implode(',', $discount_str_explode);
+                \eMarket\Core\Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [$discount_str_implode, $discount_id_arr]);
+            }
+
+            \eMarket\Core\Pdo::action("DELETE FROM " . $MODULE_DB . " WHERE id=?", [\eMarket\Core\Valid::inPOST('delete')]);
+            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
+        }
+    }
+
+    /**
+     * Data
+     *
+     */
+    public function data() {
+        $MODULE_DB = \eMarket\Core\Settings::moduleDatabase();
+
+        self::$sql_data = \eMarket\Core\Pdo::getColAssoc("SELECT *, UNIX_TIMESTAMP (date_end) FROM " . $MODULE_DB . " ORDER BY id DESC", []);
+        $lines = \eMarket\Core\Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
+        \eMarket\Core\Pages::table($lines);
+
+        self::$this_time = time();
+    }
+
+    /**
+     * Modal
+     *
+     */
+    public function modal() {
+        self::$json_data = json_encode([]);
+        $name = [];
+        for ($i = \eMarket\Core\Pages::$start; $i < \eMarket\Core\Pages::$finish; $i++) {
+            if (isset(\eMarket\Core\Pages::$table['lines'][$i]['id']) == TRUE) {
+
+                $modal_id = \eMarket\Core\Pages::$table['lines'][$i]['id'];
+
+                foreach (self::$sql_data as $sql_modal) {
+                    //Языковые
+                    if ($sql_modal['id'] == $modal_id) {
+                        $name[array_search($sql_modal['language'], lang('#lang_all'))][$modal_id] = $sql_modal['name'];
+                    }
+                    if ($sql_modal['language'] == lang('#lang_all')[0] && $sql_modal['id'] == $modal_id) {
+                        $sale_value[$modal_id] = (float) $sql_modal['sale_value'];
+                        $date_start[$modal_id] = $sql_modal['date_start'];
+                        $date_end[$modal_id] = $sql_modal['date_end'];
+                        $default_set[$modal_id] = $sql_modal['default_set'];
+                    }
+                }
+                //Сортируем языковые
+                ksort($name);
+
+                // ПАРАМЕТРЫ ДЛЯ ПЕРЕДАЧИ В МОДАЛ
+                self::$json_data = json_encode([
+                    'name' => $name,
+                    'value' => $sale_value,
+                    'start' => $date_start,
+                    'end' => $date_end,
+                    'default' => $default_set
+                ]);
+            }
         }
     }
 
