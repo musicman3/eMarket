@@ -45,7 +45,7 @@ class HeaderMenu {
      *
      */
     public function Init() {
-        $files = glob(ROOT . '/model/eMarket/admin/*');
+        $files = glob(ROOT . '/model/eMarket/Admin/*');
         foreach ($files as $filename) {
             $namespace = '\eMarket\Admin\\' . pathinfo($filename, PATHINFO_FILENAME);
             if (method_exists($namespace, 'menu')) {
