@@ -41,7 +41,6 @@ class Autorize {
      */
     public static function sessionAdmin() {
 
-        // ЕСЛИ В АДМИНИСТРАТИВНОЙ ПАНЕЛИ
         if (\eMarket\Core\Settings::path() == 'admin' && \eMarket\Core\Settings::titleDir() != 'login') {
 
             session_start();
