@@ -3,7 +3,7 @@
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 /**
- * Листинг товаров в каталоге
+ * Listing products in the catalog
  *
  * @package ProductsListing
  * @author eMarket
@@ -11,18 +11,17 @@
  */
 class ProductsListing {
     /**
-     * Конструктор
+     * Constructor
      *
      */
     constructor() {
         ProductsListing.init();
     }
     /**
-     * Инициализация
+     * Init
      *
      */
     static init() {
-        // При загрузке страницы
         $(document).ready(function () {
             if ($('div#nav_data').data('sortflag') === 'on') {
                 sessionStorage.removeItem('sort_id');
@@ -39,7 +38,6 @@ class ProductsListing {
             });
         });
 
-        // Обработка списка сортировки
         $('.sorting').click(function (event) {
             if (document.getElementById('show_in_stock').checked) {
                 var change = 'on';
@@ -50,7 +48,6 @@ class ProductsListing {
             ProductsListing.getData(event.target.id, change);
         });
 
-        // Обработка кнопки наличия товара
         $('#show_in_stock').on('switchChange.bootstrapSwitch', function (event, state) {
             if (document.getElementById('show_in_stock').checked) {
                 var change = 'on';
@@ -66,7 +63,6 @@ class ProductsListing {
             ProductsListing.getData(sort_id, change);
         });
 
-        // Обработка навигационных кнопок
         $('.navigation').click(function (event) {
             if (document.getElementById('show_in_stock').checked) {
                 var change = 'on';
@@ -91,7 +87,7 @@ class ProductsListing {
     }
 
     /**
-     * Инициализация отображения списка
+     * List display initialization
      *
      */
     static initGrid() {
@@ -104,13 +100,13 @@ class ProductsListing {
     }
 
     /**
-     * Отправка данных на сервер
-     * @param sort_id {String} (значение sort)
-     * @param change {String} (Значение change)
-     * @param start {String} (Значение start)
-     * @param finish {String} (Значение finish)
-     * @param backstart {String} (Значение backstart)
-     * @param backfinish {String} (Значение backfinish)
+     * Sending data to server
+     * @param sort_id {String} (value sort)
+     * @param change {String} (value change)
+     * @param start {String} (value start)
+     * @param finish {String} (value finish)
+     * @param backstart {String} (value backstart)
+     * @param backfinish {String} (value backfinish)
      *
      */
     static getData(sort_id, change, start = null, finish = null, backstart = null, backfinish = null) {
@@ -122,7 +118,6 @@ class ProductsListing {
                     backstart: backstart,
                     backfinish: backfinish},
                 AjaxSuccess);
-        // Обновление страницы
         function AjaxSuccess(data) {
             $('#listing').replaceWith($(data).find('#listing'));
             $('#show_in_stock').bootstrapSwitch();
@@ -131,7 +126,7 @@ class ProductsListing {
     }
 
     /**
-     * Отображение строками
+     * Display in strings
      *
      */
     static setList() {
@@ -143,7 +138,7 @@ class ProductsListing {
     }
 
     /**
-     * Отображение сеткой
+     * Grid display
      *
      */
     static setGrid() {
@@ -155,10 +150,10 @@ class ProductsListing {
     }
 
     /**
-     * Количество товара в input
-     * @param val {String} (значение метки)
-     * @param id {String} (id товара)
-     * @param max_quantity {String} (Максимальное количество для заказа)
+     * Quantity of products in input
+     * @param val {String} (label value)
+     * @param id {String} (product id)
+     * @param max_quantity {String} (Maximum order quantity)
      *
      */
     static pcsProduct(val, id, max_quantity = null) {
@@ -184,23 +179,20 @@ class ProductsListing {
     }
 
     /**
-     * Добавить товар в корзину
-     * @param id {String} (id товара)
-     * @param pcs {String} (количество)
+     * Add to cart
+     * @param id {String} (product id)
+     * @param pcs {String} (quantity)
      *
      */
     static addToCart(id, pcs) {
-        // Установка синхронного запроса для jQuery.ajax
         if (pcs > 0) {
             jQuery.ajaxSetup({async: false});
             jQuery.get(window.location.href,
                     {add_to_cart: id,
                         add_quantity: pcs},
                     AjaxSuccess);
-            // Обновление страницы
             function AjaxSuccess(data) {
                 $('#product_image').empty();
-                // Получаем данные из data div
                 var product_edit = $('div#ajax_data').data('product')[id];
 
                 $('#product_name').html(product_edit['name']);

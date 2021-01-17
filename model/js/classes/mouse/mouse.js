@@ -3,7 +3,7 @@
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 /**
- * Действия мышью
+ * Mouse actions
  *
  * @package Mouse
  * @author eMarket
@@ -11,9 +11,9 @@
  */
 class Mouse {
     /**
-     * Конструктор
+     * Constructor
      *
-     **@param lang {Array} (языковые переменные)
+     **@param lang {Array} (language)
      */
     constructor(lang) {
 
@@ -39,11 +39,11 @@ class Mouse {
     }
 
     /**
-     * Инициализация сортировки
+     * Sort init
      * @param id {String} (id)
      * @param items {String} (items)
      * @param handle {String} (handle)
-     * @param lang {Array} (Языковые переменные)
+     * @param lang {Array} (language)
      *
      */
     static sortInit(id, items, handle, lang) {
@@ -82,8 +82,8 @@ class Mouse {
     }
 
     /**
-     * Инициализация всего
-     * @param lang {Array} (Языковые переменные)
+     * Init all
+     * @param lang {Array} (language)
      *
      */
     static sortInitAll(lang) {
@@ -97,7 +97,7 @@ class Mouse {
         if ($('tbody').is('.values_attribute')) {
             Mouse.sortInit('.values_attribute', 'tr.value-attributes-class', 'td.sortyes-value-attributes', lang);
         }
-        //Выбор мышкой
+
         $(".option").click(function () {
             $(this).find('span').toggleClass('inactive');
             $(this).toggleClass('active');
@@ -105,7 +105,7 @@ class Mouse {
     }
 
     /**
-     * Сортировка
+     * Sorting
      *
      */
     static sortList() {
@@ -114,7 +114,6 @@ class Mouse {
             ids[ids.length] = $(this).attr('unitid');
         });
 
-        // Установка синхронного запроса для jQuery.ajax
         jQuery.ajaxSetup({async: false});
         jQuery.post(window.location.href,
                 {ids: ids.join()});

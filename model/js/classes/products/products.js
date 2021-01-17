@@ -3,7 +3,7 @@
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 /**
- * Товар в каталоге
+ * Product in the catalog
  *
  * @package Products
  * @author eMarket
@@ -11,20 +11,18 @@
  */
 class Products {
     /**
-     * Добавить товар в корзину
-     * @param id {String} (id товара)
-     * @param pcs {String} (количество)
+     * Add to cart
+     * @param id {String} (id)
+     * @param pcs {String} (quantity)
      *
      */
     static addToCart(id, pcs) {
         if (pcs > 0) {
-            // Установка синхронного запроса для jQuery.ajax
             jQuery.ajaxSetup({async: false});
             jQuery.get(window.location.href,
                     {add_to_cart: id,
                         add_quantity: pcs},
                     AjaxSuccess);
-            // Обновление страницы
             function AjaxSuccess(data) {
                 $('#product_quantity').html(pcs);
                 $('#cart_bar').replaceWith($(data).find('#cart_bar'));
@@ -37,10 +35,10 @@ class Products {
     }
 
     /**
-     * Количество товара в input
-     * @param val {String} (значение метки)
-     * @param id {String} (id товара)
-     * @param max_quantity {String} (Максимальное количество для заказа)
+     * Quantity of products in input
+     * @param val {String} (label value)
+     * @param id {String} (product id)
+     * @param max_quantity {String} (Maximum order quantity)
      *
      */
     static pcsProduct(val, id, max_quantity = null) {

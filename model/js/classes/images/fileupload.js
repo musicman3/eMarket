@@ -3,7 +3,7 @@
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 /**
- * Загрузка изображений в товар
+ * Fileupload
  *
  * @package Fileupload
  * @author eMarket
@@ -11,10 +11,10 @@
  */
 class Fileupload {
     /**
-     * Конструктор
+     * Constructor
      *
-     *@param resize_max {Array} (размеры ресайза)
-     *@param lang {Array} (языковые переменные)
+     *@param resize_max {Array} (max resize)
+     *@param lang {Array} (language)
      */
     constructor(resize_max, lang) {
         Fileupload.init();
@@ -22,10 +22,10 @@ class Fileupload {
     }
 
     /**
-     * Загрузка новых изображений в модальное окно "Редактировать и Добавить"
+     * Loading new images into "Edit & Add" modal
      *
-     *@param resize_max {Array} (размеры ресайза)
-     *@param lang {Array} (языковые переменные)
+     *@param resize_max {Array} (max resize)
+     *@param lang {Array} (language)
      */
     static process(resize_max, lang) {
         'use strict';
@@ -40,7 +40,7 @@ class Fileupload {
             done: function (e, data) {
 
                 $.each(data.result.files, function (index, file) {
-                    var hash_name = md5(file.name); // Хэшируем
+                    var hash_name = md5(file.name);
 
                     jQuery.ajax({
                         type: 'POST',
@@ -48,14 +48,13 @@ class Fileupload {
                         url: window.location.href,
                         data: {image_data: file.name},
                         success: function (image_size) {
-                            // Вычисляем размеры изображения
-                            var this_width = image_size[0]; // Ширина оригинала
-                            var this_height = image_size[1]; // Высота оригинала
-                            var quality_width = resize_max[0]; // Минимальный размер ширины для качественного ресайза
-                            var quality_height = resize_max[1]; // Минимальный размер высоты для качественного ресайза
+
+                            var this_width = image_size[0];
+                            var this_height = image_size[1];
+                            var quality_width = resize_max[0];
+                            var quality_height = resize_max[1];
 
                             if (this_height < quality_height && this_width < quality_width) {
-                                // Если изображение не соответствует минимальным размерам то выводим сообщение
                                 if ($('#add').val() === 'ok') {
                                     $('#alert_messages').html('<div class="alert alert-danger">' + lang['image_resize_error'] + ' ' + quality_width + 'x' + quality_height + '</div>');
                                 }
@@ -63,7 +62,6 @@ class Fileupload {
                                     $('#alert_messages').html('<div class="alert alert-danger">' + lang['image_resize_error'] + ' ' + quality_width + 'x' + quality_height + '</div>');
                                 }
                             } else {
-                                // Если все ок, то выводим изображение
                                 if ($('#add').val() === 'ok') {
                                     $('<span class="file-upload" id="image_add_new_' + hash_name + '"/>').html('<div class="holder"><img src="/uploads/temp/thumbnail/' + file.name + '" class="thumbnail" id="general_' + hash_name + '" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="deleteImageAddNew_' + hash_name + '" onclick="Fileupload.deleteImageAddNew(\'' + file.name + '\', \'' + hash_name + '\')"><span class="glyphicon glyphicon-trash"></span></button> <button class="btn btn-primary btn-xs" type="button" name="imageGeneralAddNew_' + hash_name + '" onclick="Fileupload.imageGeneralAddNew(\'' + file.name + '\', \'' + hash_name + '\')"><span class="glyphicon glyphicon-star"></span></button></div></div>').appendTo('#logo'); // Вставляем лого
                                 }
@@ -82,7 +80,6 @@ class Fileupload {
                         'width',
                         progress + '%'
                         );
-                // Разные стили для прогресс-бара и надпись об успехе загрузки
                 $('.progress-bar').empty();
                 $('.progress-bar').removeClass('progress-bar progress-bar-success').addClass('progress-bar progress-bar-warning progress-bar-striped active');
                 if (progress === 100) {
@@ -97,18 +94,15 @@ class Fileupload {
     }
 
     /**
-     * Инициализация
+     * Init
      *
      */
     static init() {
-        //Если открыли модальное окно
         $('#index').on('show.bs.modal', function (event) {
-            // Отправка запроса для очистки временных файлов
             jQuery.post(window.location.href,
                     {file_upload: 'empty'});
         });
 
-        // Очищаем модальное окно и hidden input при закрытии
         $('#index').on('hidden.bs.modal', function (event) {
             $('.progress-bar').css('width', 0 + '%');
             $('.file-upload').detach();
@@ -117,24 +111,22 @@ class Fileupload {
             $('#general_image_edit_new').val('');
             $('#general_image_add').val('');
             $('#alert_messages').empty();
-            $(this).find('form').trigger('reset'); // Очищаем формы
+            $(this).find('form').trigger('reset');
         });
     }
 
     /**
-     * Загрузка изображений в модальное окно "Редактировать"
-     * @param logo_general_edit {String} (главное изображение)
-     * @param logo_edit {Array} (массив изображений)
-     * @param modal_id {String} (id модала)
-     * @param dir {String} (директория)
+     * Loading images into "Edit" modal window
+     * @param logo_general_edit {String} (general logo)
+     * @param logo_edit {Array} (images array)
+     * @param modal_id {String} (modal id)
+     * @param dir {String} (dir)
      */
     static getImageToEdit(logo_general_edit, logo_edit, modal_id, dir) {
-        // Добавляем данные
         for (var x = 0; x < logo_edit[modal_id].length; x++) {
             var image = logo_edit[modal_id][x];
 
-            $('<span class="file-upload" id="image_edit_' + x + '"/>').html('<div class="holder"><img src="/uploads/images/' + dir + '/resize_0/' + image + '" class="thumbnail" id="general_' + x + '" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="delete_image_' + x + '" onclick="Fileupload.deleteImageEdit(\'' + image + '\', \'' + x + '\')"><span class="glyphicon glyphicon-trash"></span></button> <button class="btn btn-primary btn-xs" type="button" name="image_general_edit' + x + '" onclick="Fileupload.imageGeneralEdit(\'' + image + '\', \'' + x + '\')"><span class="glyphicon glyphicon-star"></span></button></div></div>').appendTo('#logo'); // Вставляем лого
-            // Если это главное изображение, то выделяем его
+            $('<span class="file-upload" id="image_edit_' + x + '"/>').html('<div class="holder"><img src="/uploads/images/' + dir + '/resize_0/' + image + '" class="thumbnail" id="general_' + x + '" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="delete_image_' + x + '" onclick="Fileupload.deleteImageEdit(\'' + image + '\', \'' + x + '\')"><span class="glyphicon glyphicon-trash"></span></button> <button class="btn btn-primary btn-xs" type="button" name="image_general_edit' + x + '" onclick="Fileupload.imageGeneralEdit(\'' + image + '\', \'' + x + '\')"><span class="glyphicon glyphicon-star"></span></button></div></div>').appendTo('#logo');
             if (logo_general_edit[modal_id] === image) {
                 $('#general_' + x).addClass('img-active');
             }
@@ -142,9 +134,9 @@ class Fileupload {
     }
     
     /**
-     * Выборочное удаление изображений в модальном окне "Редактировать"
-     * @param image {String} (изображение)
-     * @param num {String} (номер)
+     * Selective deletion of images in "Edit" modal window
+     * @param image {String} (image)
+     * @param num {String} (number)
      */
     static deleteImageEdit(image, num) {
         $('#image_edit_' + num).detach();
@@ -152,12 +144,12 @@ class Fileupload {
     }
     
     /**
-     * Выборочное удаление новых не сохранненных изображений в модальном окне "Добавить"
-     * @param image {String} (изображение)
-     * @param num {String} (номер)
+     * Selective deletion of new unsaved images in "Add" modal window
+     * @param image {String} (image)
+     * @param num {String} (number)
      */
     static deleteImageAddNew(image, num) {
-        jQuery.post(window.location.href, // отправка данных POST
+        jQuery.post(window.location.href,
                 {delete_image: image,
                     delete_new_image: 'ok'},
                 AjaxSuccess);
@@ -167,12 +159,12 @@ class Fileupload {
     }
     
     /**
-     * Выборочное удаление новых не сохранненных изображений в модальном окне "Редактировать"
-     * @param image {String} (изображение)
-     * @param num {String} (номер)
+     * Selective deletion of new unsaved images in "Edit" modal window
+     * @param image {String} (image)
+     * @param num {String} (number)
      */
     static deleteImageEditNew(image, num) {
-        jQuery.post(window.location.href, // отправка данных POST
+        jQuery.post(window.location.href,
                 {delete_image: image,
                     delete_new_image: 'ok'},
                 AjaxSuccess);
@@ -182,9 +174,9 @@ class Fileupload {
     }
 
     /**
-     * Главное изображение в модальном окне "Редактировать"
-     * @param image {String} (изображение)
-     * @param num {String} (номер)
+     * Main image in "Edit" modal window
+     * @param image {String} (image)
+     * @param num {String} (number)
      */
     static imageGeneralEdit(image, num) {
         $('img').removeClass('img-active');
@@ -193,9 +185,9 @@ class Fileupload {
     }
 
     /**
-     * Главное изображение в модальном окне "Добавить"
-     * @param image {String} (изображение)
-     * @param num {String} (номер)
+     * Main image in "Add" modal window
+     * @param image {String} (image)
+     * @param num {String} (number)
      */
     static imageGeneralAddNew(image, num) {
         $('img').removeClass('img-active');
@@ -204,9 +196,9 @@ class Fileupload {
     }
 
     /**
-     * Главное изображение для нового не сохраненного изображения в модальном окне "Редактировать"
-     * @param image {String} (изображение)
-     * @param num {String} (номер)
+     * Main image for a new not saved image in "Edit" modal window
+     * @param image {String} (image)
+     * @param num {String} (number)
      */
     static imageGeneralEditNew(image, num) {
         $('img').removeClass('img-active');

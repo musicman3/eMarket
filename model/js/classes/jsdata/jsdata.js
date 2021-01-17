@@ -3,7 +3,7 @@
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 /**
- * Работа с массивами по uid
+ * Working with arrays by uid
  *
  * @package JsData
  * @author eMarket
@@ -12,11 +12,11 @@
 class JsData {
 
     /**
-     * Добавление данных в массив
+     * Adding data to an array
      * 
-     * @param data {Array} (Данные)
-     * @param array {Array} (Входной массив)
-     * @param parent {String} (родительский uid)
+     * @param data {Array} (data)
+     * @param array {Array} (input)
+     * @param parent {String} (parent uid)
      * @returns {Array}
      *
      */
@@ -39,9 +39,9 @@ class JsData {
     }
 
     /**
-     * Сортировка массива по полю sort
+     * Sorting an array by sort field
      * 
-     * @param input {Array} (Входящий массив)
+     * @param input {Array} (input)
      * @returns {Array}
      *
      */
@@ -68,10 +68,10 @@ class JsData {
     }
 
     /**
-     * Удаление данных из массива
+     * Removing data from an array
      * 
-     * @param uid {String} (uid для удаления)
-     * @param array {Array} (Входной массив)
+     * @param uid {String} (uid)
+     * @param array {Array} (input)
      * @returns {Array}
      *
      */
@@ -101,11 +101,11 @@ class JsData {
     }
 
     /**
-     * Редактирование данных в массиве по uid
+     * Editing data in an array by uid
      * 
-     * @param uid {String} (uid для удаления)
-     * @param array {Array} (Входной массив)
-     * @param data {Array} (Новые данные)
+     * @param uid {String} (uid)
+     * @param array {Array} (input)
+     * @param data {Array} (new data)
      * @returns {Array}
      *
      */
@@ -123,11 +123,11 @@ class JsData {
     }
 
     /**
-     * Выбор строки из массива по uid
+     * Selecting a string from an array by uid
      * 
-     * @param uid {String} (uid для выбора)
-     * @param array {Array} (Входной массив)
-     * @param flag {String} (флаг)
+     * @param uid {String} (uid)
+     * @param array {Array} (input)
+     * @param flag {String} (flag)
      * @returns {Array}
      *
      */
@@ -147,10 +147,10 @@ class JsData {
     }
 
     /**
-     * Выбор строк из массива по parent
+     * Selecting rows from an array by parent
      * 
-     * @param parent {String} (parent для выбора)
-     * @param array {Array} (Входной массив)
+     * @param parent {String} (parent)
+     * @param array {Array} (input)
      * @returns {Array}
      *
      */
@@ -167,10 +167,10 @@ class JsData {
     }
 
     /**
-     * Замена строк из массива по uids
+     * Replacing strings from an array by uids
      * 
-     * @param uids_array {String} (Новый массив для замены)
-     * @param array {Array} (Входной массив)
+     * @param uids_array {String} (new array)
+     * @param array {Array} (input)
      * @returns {Array}
      *
      */
@@ -188,10 +188,10 @@ class JsData {
     }
 
     /**
-     * Сортировка по указанному списку uids
+     * Sort by the specified list of uids
      * 
-     * @param uids {Array} (uids для выбора)
-     * @param array {Array} (Входной массив)
+     * @param uids {Array} (uids)
+     * @param array {Array} (input)
      * @returns {Array}
      *
      */
@@ -208,9 +208,9 @@ class JsData {
     }
 
     /**
-     * Построение дерева по parent
+     * Building a tree using parent
      * 
-     * @param array {Array} (Входной массив)
+     * @param array {Array} (input)
      * @param uid {String} (uid)
      * @returns {Array}
      *

@@ -3,7 +3,7 @@
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 /**
- * Двухдиапазонный выбор с автоматическим ограничением для bootstrap-datepicker
+ * Dual range picker with auto limit for bootstrap-datepicker
  *
  * @package SmartDatepicker
  * @author eMarket
@@ -11,9 +11,9 @@
  */
 class SmartDatepicker {
     /**
-     * Конструктор
+     * Constructor
      *
-     * @param meta string (meta для языка)
+     * @param meta string (meta for languages)
      */
     constructor(meta) {
         this.meta = meta;
@@ -21,7 +21,7 @@ class SmartDatepicker {
         this.view('#start_date', '#end_date');
     }
     /**
-     * Инициализация
+     * Init
      *
      */
     init() {
@@ -42,17 +42,16 @@ class SmartDatepicker {
             calendarWeeks: true
         });
 
-        //Очищаем при закрытии модала
         $('#index').on('hidden.bs.modal', function (event) {
             $('#start_date, #end_date').datepicker('clearDates');
         });
     }
 
     /**
-     * Вывод в datepicker
+     * Output to datepicker
      *
-     * @param start string (id start-поля datepicker)
-     * @param end string (id end-поля datepicker)
+     * @param start string (datepicker id start)
+     * @param end string (datepicker id end)
      */
     view(start, end) {
         $(start).datepicker().on('changeDate', function (e) {
