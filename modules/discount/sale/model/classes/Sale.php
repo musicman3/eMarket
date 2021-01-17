@@ -419,7 +419,6 @@ class Sale {
                 $modal_id = \eMarket\Core\Pages::$table['lines'][$i]['id'];
 
                 foreach (self::$sql_data as $sql_modal) {
-                    //Языковые
                     if ($sql_modal['id'] == $modal_id) {
                         $name[array_search($sql_modal['language'], lang('#lang_all'))][$modal_id] = $sql_modal['name'];
                     }
@@ -430,10 +429,9 @@ class Sale {
                         $default_set[$modal_id] = $sql_modal['default_set'];
                     }
                 }
-                //Сортируем языковые
+
                 ksort($name);
 
-                // ПАРАМЕТРЫ ДЛЯ ПЕРЕДАЧИ В МОДАЛ
                 self::$json_data = json_encode([
                     'name' => $name,
                     'value' => $sale_value,
