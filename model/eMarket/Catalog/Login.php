@@ -23,7 +23,7 @@ class Login {
     function __construct() {
         $this->activationCode();
         $this->passwordRecovery();
-        $this->login();
+        $this->logout();
         $this->entry();
     }
 
@@ -79,10 +79,10 @@ class Login {
     }
 
     /**
-     * Login
+     * Logout
      *
      */
-    public function login() {
+    public function logout() {
         if (\eMarket\Core\Valid::inGET('logout')) {
             unset($_SESSION['password_customer']);
             unset($_SESSION['email_customer']);
