@@ -88,15 +88,16 @@ class Login {
      */
     public function autorize() {
         if (\eMarket\Core\Valid::inPOST('autorize') == 'ok') {
+            $_SESSION['DEFAULT_LANGUAGE'] = \eMarket\Core\Settings::basicSettings('primary_language');
             $HASH = \eMarket\Core\Pdo::selectPrepare("SELECT password FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [\eMarket\Core\Valid::inPOST('login')]);
             if (!password_verify(\eMarket\Core\Valid::inPOST('pass'), $HASH)) {
                 unset($_SESSION['login']);
                 unset($_SESSION['pass']);
-                $_SESSION['default_language'] = \eMarket\Core\Settings::basicSettings('primary_language');
                 $_SESSION['login_error'] = lang('login_error');
             } else {
                 $_SESSION['login'] = \eMarket\Core\Valid::inPOST('login');
                 $_SESSION['pass'] = $HASH;
+                $_SESSION['DEFAULT_LANGUAGE'] = \eMarket\Core\Settings::basicSettings('primary_language');
                 if (isset($_SESSION['session_page'])) {
                     $session_page = $_SESSION['session_page'];
                     unset($_SESSION['session_page']);
