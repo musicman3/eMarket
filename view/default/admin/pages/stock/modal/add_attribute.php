@@ -4,7 +4,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
-<!-- Модальное окно "Атрибуты" -->
+
 <div id="add_attribute" class="modal fade" tabindex="-1">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
@@ -46,4 +46,3 @@
         </div>
     </div>
 </div>
-<!-- КОНЕЦ Модальное окно "Атрибуты" -->

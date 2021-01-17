@@ -4,17 +4,12 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-// ПОДКЛЮЧАЕМ КОНТЕНТ
 foreach (\eMarket\Core\View::tlpc('content') as $path) {
     require_once (ROOT . $path);
 }
+require_once('modal/recovery_password.php')
 ?>
 
-<!-- Модальное окно -->
-<?php require_once('modal/recovery_password.php') ?>
-<!-- КОНЕЦ Модальное окно -->
-
-<!--Выводим уведомление об успешном действии-->
 <div id="alert_block"><?php \eMarket\Core\Messages::alert(); ?></div>
 <h1><?php echo lang('login_to_account') ?></h1>
 

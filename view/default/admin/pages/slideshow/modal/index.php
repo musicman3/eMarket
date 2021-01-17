@@ -4,7 +4,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
-<!-- Модальное окно "Добавить" -->
+
 <div id="index" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -21,55 +21,54 @@
                     <input id="general_image_edit" type="hidden" name="general_image_edit" value="">
                     <input id="general_image_edit_new" type="hidden" name="general_image_edit_new" value="">
 
-                        <div class="form-group">
-                            <div class="input-group has-success">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                <input class="input-sm form-control" placeholder="<?php echo lang('slides_name') ?>" type="text" name="name" id="name" />
+                    <div class="form-group">
+                        <div class="input-group has-success">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+                            <input class="input-sm form-control" placeholder="<?php echo lang('slides_name') ?>" type="text" name="name" id="name" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group has-success">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+                            <input class="input-sm form-control" placeholder="<?php echo lang('slides_text') ?>" type="text" name="heading" id="heading" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-xs-6">
+                            <div class="input-group">
+                                <input class="check-box" type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="animation" id="animation" checked>
+                                <label for="animation"> <?php echo lang('slides_text_animation') ?></label>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="input-group has-success">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                <input class="input-sm form-control" placeholder="<?php echo lang('slides_text') ?>" type="text" name="heading" id="heading" />
+                        <div class="col-xs-6 slide-color">
+                            <div class="input-group">
+                                <input type="color" name="color" id="color" value="#ffffff" />
+                                <label for="color"> <?php echo lang('slides_text_color') ?></label>
                             </div>
                         </div>
-                        <div class="form-group row">
-			    <div class="col-xs-6">
-				<div class="input-group">
-				    <input class="check-box" type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="animation" id="animation" checked>
-				    <label for="animation"> <?php echo lang('slides_text_animation') ?></label>
-				</div>
-			    </div>
-			    <div class="col-xs-6 slide-color">
-				<div class="input-group">
-                                    <input type="color" name="color" id="color" value="#ffffff" />
-				    <label for="color"> <?php echo lang('slides_text_color') ?></label>
-				</div>
-			    </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group has-success">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
+                            <input class="input-sm form-control" placeholder="<?php echo lang('slides_url') ?>" type="text" name="url" id="url" />
                         </div>
-                        <div class="form-group">
-                            <div class="input-group has-success">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
-                                <input class="input-sm form-control" placeholder="<?php echo lang('slides_url') ?>" type="text" name="url" id="url" />
-                            </div>
+                    </div>
+                    <div class="col-left form-group">
+                        <div class="input-group has-error">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                            <input class="input-sm form-control" placeholder="<?php echo lang('slides_show_start') ?>" type="text" name="start_date" id="start_date" autocomplete="off" required />
                         </div>
-                        <div class="col-left form-group">
-                            <div class="input-group has-error">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                <input class="input-sm form-control" placeholder="<?php echo lang('slides_show_start') ?>" type="text" name="start_date" id="start_date" autocomplete="off" required />
-                            </div>
+                    </div>
+                    <div class="col-left form-group">
+                        <div class="input-group has-error">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                            <input class="input-sm form-control" placeholder="<?php echo lang('slides_show_end') ?>" type="text" name="end_date" id="end_date" autocomplete="off" required />
                         </div>
-                        <div class="col-left form-group">
-                            <div class="input-group has-error">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                <input class="input-sm form-control" placeholder="<?php echo lang('slides_show_end') ?>" type="text" name="end_date" id="end_date" autocomplete="off" required />
-                            </div>
-                        </div>
+                    </div>
 
-                    <!-- Выводим сообщения -->
                     <div id="alert_messages"></div>
 
-                    <!-- ЗАГРУЗКА jQuery-File-Upload -->
+                    <!-- jQuery-File-Upload -->
                     <div class="form-group">
                         <span class="btn btn-primary btn-sm fileinput-button">
                             <span class="glyphicon glyphicon-picture"></span><span> <?php echo lang('button_add_image') ?></span>
@@ -97,4 +96,3 @@
         </div>
     </div>
 </div>
-<!-- КОНЕЦ Модальное окно "Добавить" -->

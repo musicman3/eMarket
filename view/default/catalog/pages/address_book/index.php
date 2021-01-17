@@ -4,18 +4,12 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-// ПОДКЛЮЧАЕМ КОНТЕНТ
 foreach (\eMarket\Core\View::tlpc('content') as $path) {
     require_once (ROOT . $path);
 }
+require_once('modal/index.php')
 ?>
 
-<!-- Модальное окно -->
-<?php require_once('modal/index.php') ?>
-<!-- КОНЕЦ Модальное окно -->
-
-
-<!--Выводим уведомление об успешном действии-->
 <div id="alert_block"><?php \eMarket\Core\Messages::alert(); ?></div>
 <h1><?php echo lang('my_address_book') ?></h1>
 
@@ -55,7 +49,6 @@ foreach (\eMarket\Core\View::tlpc('content') as $path) {
                         <?php } ?>
                         <td>
                             <div class="flexbox">
-                                <!--Вызов модального окна для редактирования-->
                                 <div class="b-left">
                                     <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index" data-edit="<?php echo $x ?>"><span class="glyphicon glyphicon-edit"></span></button>
                                 </div>

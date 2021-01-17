@@ -4,7 +4,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
-<!-- Модальное окно "Добавить товар" -->
+
 <div id="index_product" class="products modal fade" tabindex="-1">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
@@ -22,7 +22,6 @@
                     <input id="general_image_edit_new_product" type="hidden" name="general_image_edit_new_product" value="" />
                     <input id="selected_attributes" type="hidden" name="selected_attributes" value="" />
 
-                    <!-- Панели формы -->
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#panel_add_product_1"><?php echo lang('stock_product_description') ?></a></li>
                         <li><a data-toggle="tab" href="#panel_add_product_2"><?php echo lang('stock_product_basic') ?></a></li>
@@ -31,16 +30,12 @@
                         <li><a data-toggle="tab" href="#panel_add_product_5"><?php echo lang('stock_product_images') ?></a></li>
                     </ul>
 
-                    <!-- Содержимое панелей формы-->
                     <div class="tab-content">
 
-                        <!-- Содержимое панели Описание -->
                         <div id="panel_add_product_1" class="tab-pane fade in active">
 
-                            <!-- Языковые панели -->
                             <?php require_once(ROOT . '/view/' . \eMarket\Core\Settings::template() . '/layouts/lang_tabs_add_product.php') ?>
 
-                            <!-- Содержимое языковых панелей -->
                             <div class="tab-content">
                                 <div id="product_<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade in active">
                                     <div class="form-group">
@@ -55,20 +50,20 @@
                                         <textarea rows="3" class="input-sm form-control summernote_add" name="description_product_stock_0" id="description_product_stock_0" /></textarea>
                                     </div>
                                     <div class="row">
-					<div class="col-sm-6">
-					    <div><small class="form-text text-muted"><?php echo lang('stock_product_keywords') ?></small></div>
-					    <div class="input-group has-success">
-						<span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-						<input class="input-sm form-control" placeholder="Keywords" type="text" name="keyword_product_stock_0" id="keyword_product_stock_0" />
-					    </div>
-					</div>
-					<div class="col-sm-6">
-					    <div><small class="form-text text-muted"><?php echo lang('stock_product_tags') ?></small></div>
-					    <div class="input-group has-success">
-						<span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-						<input class="input-sm form-control" placeholder="Tags" type="text" name="tags_product_stock_0" id="tags_product_stock_0" />
-					    </div>
-					</div>
+                                        <div class="col-sm-6">
+                                            <div><small class="form-text text-muted"><?php echo lang('stock_product_keywords') ?></small></div>
+                                            <div class="input-group has-success">
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+                                                <input class="input-sm form-control" placeholder="Keywords" type="text" name="keyword_product_stock_0" id="keyword_product_stock_0" />
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div><small class="form-text text-muted"><?php echo lang('stock_product_tags') ?></small></div>
+                                            <div class="input-group has-success">
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+                                                <input class="input-sm form-control" placeholder="Tags" type="text" name="tags_product_stock_0" id="tags_product_stock_0" />
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -90,20 +85,20 @@
                                                 <textarea rows="3" class="input-sm form-control summernote_add" name="description_product_stock_<?php echo $x ?>" id="description_product_stock_<?php echo $x ?>" /></textarea>
                                             </div>
                                             <div class="row">
-						<div class="col-sm-6">
-						    <div><small class="form-text text-muted"><?php echo lang('stock_product_keywords') ?></small></div>
-						    <div class="input-group has-success">
-							<span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-							<input class="input-sm form-control" placeholder="Keywords" type="text" name="keyword_product_stock_<?php echo $x ?>" id="keyword_product_stock_<?php echo $x ?>" />
-						    </div>
-						</div>
-						<div class="col-sm-6">
-						    <div><small class="form-text text-muted"><?php echo lang('stock_product_tags') ?></small></div>
-						    <div class="input-group has-success">
-							<span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-							<input class="input-sm form-control" placeholder="Tags" type="text" name="tags_product_stock_<?php echo $x ?>" id="tags_product_stock_<?php echo $x ?>" />
-						    </div>
-						</div>
+                                                <div class="col-sm-6">
+                                                    <div><small class="form-text text-muted"><?php echo lang('stock_product_keywords') ?></small></div>
+                                                    <div class="input-group has-success">
+                                                        <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+                                                        <input class="input-sm form-control" placeholder="Keywords" type="text" name="keyword_product_stock_<?php echo $x ?>" id="keyword_product_stock_<?php echo $x ?>" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div><small class="form-text text-muted"><?php echo lang('stock_product_tags') ?></small></div>
+                                                    <div class="input-group has-success">
+                                                        <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+                                                        <input class="input-sm form-control" placeholder="Tags" type="text" name="tags_product_stock_<?php echo $x ?>" id="tags_product_stock_<?php echo $x ?>" />
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -115,7 +110,6 @@
                             </div>
                         </div>
 
-                        <!-- Содержимое панели Основное -->
                         <div id="panel_add_product_2" class="tab-pane fade">
                             <div class="row">
                                 <div class="col-sm-6 form-group">
@@ -193,7 +187,6 @@
 
                         </div>
 
-                        <!-- Содержимое панели Дополнительное -->
                         <div id="panel_add_product_3" class="tab-pane fade">
                             <div class="row">
                                 <div class="col-sm-6 form-group">
@@ -274,18 +267,15 @@
                             </div>
                         </div>
 
-                        <!-- Содержимое панели Характеристики -->
                         <div id="panel_add_product_4" class="tab-pane fade">
                             <div class="product-attribute panel-group" id="accordion"></div>
                         </div>
 
-                        <!-- Содержимое панели Изображения -->
                         <div id="panel_add_product_5" class="tab-pane fade">
 
-                            <!-- Выводим сообщения -->
                             <div id="alert_messages_product"></div>
 
-                            <!-- ЗАГРУЗКА jQuery-File-Upload -->
+                            <!-- jQuery-File-Upload -->
                             <div class="form-group">
                                 <span class="btn btn-primary btn-sm fileinput-button">
                                     <span class="glyphicon glyphicon-picture"></span><span> <?php echo lang('button_add_image') ?></span>
@@ -324,4 +314,3 @@
         </div>
     </div>
 </div>
-<!-- КОНЕЦ Модальное окно "Добавить категорию" -->

@@ -4,7 +4,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
-<!-- Модальное окно -->
+
 <div id="privacy_policy" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -18,4 +18,3 @@
         </div>
     </div>
 </div>
-<!-- КОНЕЦ Модальное окно -->

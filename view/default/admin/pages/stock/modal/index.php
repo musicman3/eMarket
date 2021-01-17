@@ -4,7 +4,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
-<!-- Модальное окно "Добавить категорию" -->
+
 <div id="index" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -24,18 +24,15 @@
                     <input id="attributes" type="hidden" name="attributes" value="">
                     <input id="group_attributes" type="hidden" name="group_attributes" value="">
 
-                    <!-- Панели формы -->
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#panel_add_1"><?php echo lang('stock_basic') ?></a></li>
                         <li><a data-toggle="tab" href="#panel_add_2"><?php echo lang('stock_specification') ?></a></li>
                     </ul>
 
-                    <!-- Содержимое панелей формы-->
                     <div class="tab-content">
 
-                        <!-- Содержимое панели Основное -->
                         <div id="panel_add_1" class="tab-pane fade in active">
-                            <!-- Языковые панели -->
+
                             <?php require_once(ROOT . '/view/' . \eMarket\Core\Settings::template() . '/layouts/lang_tabs_add.php') ?>
 
                             <div class="tab-content">
@@ -68,10 +65,9 @@
 
                             </div>
 
-                            <!-- Выводим сообщения -->
                             <div id="alert_messages"></div>
 
-                            <!-- ЗАГРУЗКА jQuery-File-Upload -->
+                            <!-- jQuery-File-Upload -->
                             <div class="form-group">
                                 <span class="btn btn-primary btn-sm fileinput-button">
                                     <span class="glyphicon glyphicon-picture"></span><span> <?php echo lang('button_add_image') ?></span>
@@ -87,24 +83,23 @@
                             </div>
                         </div>
 
-                        <!-- Содержимое панели Атрибуты -->
                         <div id="panel_add_2" class="tab-pane fade">
 
-			    <div class="table-responsive">
-				<table class="table table-hover">
-				    <thead>
-					<tr>
-					    <th colspan="3"></th>
-					    <th>
-						<div class="flexbox"><button class="add-group-attributes btn btn-primary btn-xs" type="button"><span class="glyphicon glyphicon-plus"></span></button></div>
-					    </th>
-					</tr>
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="3"></th>
+                                            <th>
+                                                <div class="flexbox"><button class="add-group-attributes btn btn-primary btn-xs" type="button"><span class="glyphicon glyphicon-plus"></span></button></div>
+                                            </th>
+                                        </tr>
 
-				    </thead>
+                                    </thead>
 
-				    <tbody class="group-attributes"></tbody>
+                                    <tbody class="group-attributes"></tbody>
 
-				</table>
+                                </table>
                             </div>
 
                         </div>
@@ -120,4 +115,3 @@
         </div>
     </div>
 </div>
-<!-- КОНЕЦ Модальное окно "Добавить категорию" -->

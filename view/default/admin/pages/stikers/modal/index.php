@@ -1,10 +1,10 @@
 <?php
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
-  |    GNU GENERAL PUBLIC LICENSE v.3.0    |    
+  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
-<!-- Модальное окно "Добавить" -->
+
 <div id="index" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -16,10 +16,8 @@
                     <input type="hidden" id="add" name="add" value="" />
                     <input type="hidden" id="edit" name="edit" value="" />
 
-                    <!-- Языковые панели -->
                     <?php require_once(ROOT . '/view/' . \eMarket\Core\Settings::template() . '/layouts/lang_tabs_add.php') ?>
 
-                    <!-- Содержимое языковых панелей -->
                     <div class="tab-content">
                         <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade in active">
                             <div class="form-group">
@@ -45,8 +43,9 @@
                                 </div>
 
                             <?php }
-                        } ?>
-                        
+                        }
+                        ?>
+
                         <div class="form-group">
                             <input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="default_stikers" id="default_stikers" checked>
                             <label for="default_stikers"><?php echo lang('default_set') ?> </label>
@@ -63,4 +62,3 @@
         </div>
     </div>
 </div>
-<!-- КОНЕЦ Модальное окно "Добавить" -->

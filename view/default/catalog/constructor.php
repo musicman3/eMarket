@@ -18,7 +18,6 @@
         <meta name="owner" content="eMarket" />
         <meta name="copyright" content="Copyright © 2018 by eMarket Team. All right reserved." />
 
-        <!-- Автогенерация Title" -->
         <title><?php echo \eMarket\Core\Settings::titleCatalog() ?></title>
         <meta name="keywords" content="<?php echo \eMarket\Core\Settings::keywordsCatalog() ?>">
         <meta name="description" content="">
@@ -30,7 +29,6 @@
         <script type="text/javascript" src="/ext/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/ext/jquery/ui/jquery.ui.touch-punch.min.js"></script>
 
-        <!-- Всплывающие подсказки" -->
         <script type="text/javascript">
             $(function () {
                 $('[data-toggle="tooltip"]').tooltip();
@@ -40,7 +38,6 @@
     <body>
 
         <?php
-        // ЗАГРУЖАЕМ HEADER
         foreach (\eMarket\Core\View::tlpc('header') as $path) {
             require_once (ROOT . $path);
         }
@@ -75,7 +72,6 @@
 
                     <div id="columnLeft" class="col-lg-2 col-md-3 col-lg-pull-10 col-md-pull-9">
                         <?php
-                        // ЗАГРУЖАЕМ БОКСЫ
                         foreach (\eMarket\Core\View::tlpc('boxes-left') as $path) {
                             require_once (ROOT . $path);
                         }
@@ -88,7 +84,6 @@
         </div>
 
         <?php
-        // ЗАГРУЖАЕМ FOOTER
         foreach (\eMarket\Core\View::tlpc('footer') as $path) {
             require_once (ROOT . $path);
         }
@@ -114,7 +109,6 @@
             require_once(\eMarket\Core\Settings::$JS_MODULES_HANDLER . '/js.php');
         }
 
-        // Выводим отладочную информацию
         \eMarket\Core\Debug::info();
         ?>
     </body>

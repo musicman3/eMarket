@@ -4,33 +4,25 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+require_once('modal/settings.php');
+require_once('modal/index.php')
 ?>
-<!-- Модальное окно "Настройки" -->
-<?php require_once('modal/settings.php') ?>
-<!-- КОНЕЦ Модальное окно "Добавить" -->
-
-<!-- Модальное окно "Добавить" -->
-<?php require_once('modal/index.php') ?>
-<!-- КОНЕЦ Модальное окно "Добавить" -->
 
 <div id="slideshow">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <!--Выводим уведомление об успешном действии-->
             <div id="alert_block"><?php \eMarket\Core\Messages::alert(); ?></div>
             <h3 class="panel-title">
                 <?php echo \eMarket\Core\Settings::titlePageGenerator() ?>
             </h3>
         </div>
         <div class="panel-body">
-            <!--Скрытый div для передачи данных-->
             <div id="ajax_data" class='hidden' 
                  data-jsonsettings='<?php echo \eMarket\Admin\Slideshow::$settings ?>'
                  data-jsondata='<?php echo \eMarket\Admin\Slideshow::$json_data ?>'></div>
 
             <div class="pull-right slide-sett"><a href="#settings" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-cog"></span></a></div>
 
-            <!-- Языковые панели -->
             <ul class="nav nav-tabs">
                 <li class="<?php echo \eMarket\Core\Settings::activeTab(\eMarket\Admin\Slideshow::$set_language, lang('#lang_all')[0]) ?>"><a data-toggle="tab" href="#<?php echo lang('#lang_all')[0] ?>"><img src="/view/<?php echo \eMarket\Core\Settings::template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[0] ?>.png" alt="<?php echo lang('#lang_all')[0] ?>" title="<?php echo lang('#lang_all')[0] ?>" width="16" height="10" /> <?php echo lang('language_name', lang('#lang_all')[0]) ?></a></li>
 
@@ -109,7 +101,6 @@
                                         <td class="text-center"><?php echo \eMarket\Core\Settings::dateLocale(eMarket\Core\Pages::$table['line']['date_finish']); ?></td>
                                         <td>
                                             <div class="flexbox">
-                                                <!--Вызов модального окна для редактирования-->
                                                 <div class="b-left">
                                                     <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index" data-edit="<?php echo eMarket\Core\Pages::$table['line']['id'] ?>"><span class="glyphicon glyphicon-edit"></span></button>
                                                 </div>
@@ -130,9 +121,7 @@
 
                 <?php
                 if (\eMarket\Core\Lang::$COUNT > 1) {
-                    for ($x = 1; $x < \eMarket\Core\Lang::$COUNT; $x++) {
-                        \eMarket\Core\Pages::$start = \eMarket\Core\Pages::$table['navigate'][0]; 
-                        \eMarket\Core\Pages::$finish = \eMarket\Core\Pages::$table['navigate'][1];
+                    for ($x = 1; $x < \eMarket\Core\Lang::$COUNT; $x++, \eMarket\Admin\Slideshow::helper()) {
                         ?>
 
                         <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">
@@ -196,7 +185,6 @@
                                                 <td class="text-center"><?php echo \eMarket\Core\Settings::dateLocale(eMarket\Core\Pages::$table['line']['date_finish']); ?></td>
                                                 <td>
                                                     <div class="flexbox">
-                                                        <!--Вызов модального окна для редактирования-->
                                                         <div class="b-left">
                                                             <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index" data-edit="<?php echo eMarket\Core\Pages::$table['line']['id'] ?>"><span class="glyphicon glyphicon-edit"></span></button>
                                                         </div>

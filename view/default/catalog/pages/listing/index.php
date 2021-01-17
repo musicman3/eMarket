@@ -4,14 +4,11 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-// ПОДКЛЮЧАЕМ КОНТЕНТ
 foreach (\eMarket\Core\View::tlpc('content') as $path) {
     require_once (ROOT . $path);
 }
+require_once('modal/cart_message.php')
 ?>
-<!-- Модальное окно -->
-<?php require_once('modal/cart_message.php') ?>
-<!-- КОНЕЦ Модальное окно -->
 
 <?php if (\eMarket\Core\Valid::inGET('search')) { ?><h1><?php echo lang('listing_search'); ?></h1><?php } else { ?><h1><?php echo \eMarket\Catalog\Listing::$categories_name ?></h1><?php } ?>
 
@@ -57,7 +54,7 @@ foreach (\eMarket\Core\View::tlpc('content') as $path) {
                                             <label><?php echo \eMarket\Core\Products::vendorCode(eMarket\Core\Pages::$table['line']['vendor_code'])['name'] ?>: </label> 
                                             <?php echo eMarket\Core\Pages::$table['line']['vendor_code_value'] ?>
                                         </li>
-				    <?php } if (\eMarket\Core\Products::manufacturer(eMarket\Core\Pages::$table['line']['manufacturer'])['name'] != NULL && \eMarket\Core\Products::manufacturer(eMarket\Core\Pages::$table['line']['manufacturer'])['name'] != FALSE) { ?>
+                                    <?php } if (\eMarket\Core\Products::manufacturer(eMarket\Core\Pages::$table['line']['manufacturer'])['name'] != NULL && \eMarket\Core\Products::manufacturer(eMarket\Core\Pages::$table['line']['manufacturer'])['name'] != FALSE) { ?>
                                         <li>
                                             <label><?php echo lang('product_manufacturer') ?></label> <?php echo \eMarket\Core\Products::manufacturer(eMarket\Core\Pages::$table['line']['manufacturer'])['name'] ?>
                                         </li>
@@ -90,7 +87,6 @@ foreach (\eMarket\Core\View::tlpc('content') as $path) {
         </div>
 
         <div class="well well-sm">
-            <!--Скрытый div для передачи данных-->
             <div id="nav_data" class='hidden' 
                  data-prev='<?php echo eMarket\Core\Pages::$table['navigate'][0] ?>'
                  data-next='<?php echo eMarket\Core\Pages::$table['navigate'][1] ?>'

@@ -3,51 +3,30 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-
 ?>
-<!-- Вставляем модальное окно "Категория" -->
-<?php require_once('modal/index.php') ?>
 
-<!-- Вставляем модальное окно "Товар" -->
-<?php require_once('modal/index_product.php') ?>
-
-<!-- Модальное окно "Подтверждение" -->
-<?php require_once('modal/confirm.php') ?>
-<!-- КОНЕЦ Модальное окно "Подтверждение" -->
-
-<!-- Модальное окно "Атрибуты" -->
-<?php require_once('modal/attribute.php') ?>
-<!-- КОНЕЦ Модальное окно "Атрибуты" -->
-
-<!-- Модальное окно "Добавить Группу атрибутов" -->
-<?php require_once('modal/add_group_attributes.php') ?>
-<!-- КОНЕЦ Модальное окно "Добавить Группу атрибутов" -->
-
-<!-- Модальное окно "Добавить Атрибут" -->
-<?php require_once('modal/add_attribute.php') ?>
-<!-- КОНЕЦ Модальное окно "Добавить Атрибут" -->
-
-<!-- Модальное окно "Добавить имя атрибута" -->
-<?php require_once('modal/values_attribute.php') ?>
-<!-- КОНЕЦ Модальное окно "Добавить имя атрибута" -->
-
-<!-- Модальное окно "Добавить значения атрибута" -->
-<?php require_once('modal/add_values_attribute.php') ?>
-<!-- КОНЕЦ Модальное окно "Добавить значения атрибута" -->
+<?php
+require_once('modal/index.php');
+require_once('modal/index_product.php');
+require_once('modal/confirm.php');
+require_once('modal/attribute.php');
+require_once('modal/add_group_attributes.php');
+require_once('modal/add_attribute.php');
+require_once('modal/values_attribute.php');
+require_once('modal/add_values_attribute.php');
+?>
 
 <div id="stock">
     <div class="panel panel-default">
 
         <div class="panel-heading">
 
-            <!--Выводим уведомление об успешном действии-->
             <div id="alert_block"><?php \eMarket\Core\Messages::alert(); ?></div>
 
             <h3 class="panel-title">
                 <?php echo \eMarket\Core\Settings::titlePageGenerator() ?>
             </h3>
         </div>
-        <!--Скрытый div для передачи данных-->
         <div id="ajax_data" class='hidden' 
              data-jsondataproduct='<?php echo \eMarket\Admin\Stock::$json_data_product ?>'
              data-jsondatacategory='<?php echo \eMarket\Admin\Stock::$json_data_category ?>'>
@@ -76,7 +55,6 @@
                                 <th>
 
                                     <div class="flexbox">
-                                        <!-- Переключаем страницу "НАЗАД" -->
                                         <form>
                                             <input hidden name="route" value="<?php echo \eMarket\Core\Valid::inGET('route') ?>">
                                             <input hidden name="backstart" value="<?php echo \eMarket\Admin\Stock::$start ?>">
@@ -91,7 +69,6 @@
                                             </div>
                                         </form>
 
-                                        <!-- Переключаем страницу "ВПЕРЕД" -->
                                         <form>
                                             <input hidden name="route" value="<?php echo \eMarket\Core\Valid::inGET('route') ?>">
                                             <input hidden name="start" value="<?php echo \eMarket\Admin\Stock::$start ?>">
@@ -120,7 +97,6 @@
                                     <td  class="sortleft-m"></td>
                                     <td colspan="4">
 
-                                        <!-- Категории "ВВЕРХ" -->
                                         <form>
                                             <div>
                                                 <input hidden name="route" value="<?php echo \eMarket\Core\Valid::inGET('route') ?>">
@@ -141,35 +117,30 @@
 
                                     <tr class="<?php echo \eMarket\Core\Settings::sorties('info') ?> sort-list" unitid="<?php echo \eMarket\Admin\Stock::$arr_merge['cat'][\eMarket\Admin\Stock::$start]['id'] ?>">
 
-                                        <!-- Вырезанные категории "АКТИВНЫЕ" -->
                                         <?php
                                         if (isset($_SESSION['buffer']['cat']) == true && in_array(\eMarket\Admin\Stock::$arr_merge['cat'][\eMarket\Admin\Stock::$start]['id'], $_SESSION['buffer']['cat']) == true && \eMarket\Admin\Stock::$arr_merge['cat'][\eMarket\Admin\Stock::$start]['status'] == 1) {
                                             echo \eMarket\Core\Settings::sorties();
                                             ?>    
                                             <td class="sortleft"><div><a href="#" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-folder-open"> </span></a></div></td>
 
-                                            <!-- Вырезанные категории "НЕ АКТИВНЫЕ" -->
                                             <?php
                                         } elseif (isset($_SESSION['buffer']['cat']) == true && in_array(\eMarket\Admin\Stock::$arr_merge['cat'][\eMarket\Admin\Stock::$start]['id'], $_SESSION['buffer']['cat']) == true && \eMarket\Admin\Stock::$arr_merge['cat'][\eMarket\Admin\Stock::$start]['status'] == 0) {
                                             echo \eMarket\Core\Settings::sorties();
                                             ?>    
                                             <td class="sortleft"><div><a href="#" class="btn btn-default btn-xs disabled"><span class="glyphicon glyphicon-folder-open"> </span></a></div></td>
 
-                                            <!-- Категория для трансфера -->
                                             <?php
                                         } elseif (\eMarket\Admin\Stock::$transfer == \eMarket\Core\Settings::linesOnPage() + 1) {
                                             echo \eMarket\Core\Settings::sorties();
                                             ?>    
                                             <td class="sortleft"><div><a href="#" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-transfer"> </span></a></div></td>
 
-                                            <!-- Если категория НЕ АКТИВНА -->
                                             <?php
                                         } elseif (\eMarket\Admin\Stock::$arr_merge['cat'][\eMarket\Admin\Stock::$start]['status'] == 0) {
                                             echo \eMarket\Core\Settings::sorties();
                                             ?>    
                                             <td class="sortleft">
 
-                                                <!-- Неактивная категория "ВНИЗ" -->
                                                 <form>
                                                     <div>
                                                         <input hidden name="route" value="<?php echo \eMarket\Core\Valid::inGET('route') ?>">
@@ -181,12 +152,10 @@
 
                                             <?php
                                         } else {
-                                            ?>
-                                            <!-- Если категория АКТИВНА -->
-                                            <?php echo \eMarket\Core\Settings::sorties() ?>    
+                                            echo \eMarket\Core\Settings::sorties()
+                                            ?>    
                                             <td class="sortleft">
 
-                                                <!-- Активная категория "ВНИЗ" -->
                                                 <form>
                                                     <div>
                                                         <input hidden name="route" value="<?php echo \eMarket\Core\Valid::inGET('route') ?>">
@@ -199,7 +168,6 @@
                                         }
                                         ?>
 
-                                        <!-- ВЫБРАННЫЕ СТРОКИ -->
                                         <td class="option" id="<?php echo \eMarket\Admin\Stock::$arr_merge['cat'][\eMarket\Admin\Stock::$start]['id'] ?>"><span class="inactive" style="display: none;"></span>
                                             <?php if (\eMarket\Admin\Stock::$transfer == \eMarket\Core\Settings::linesOnPage() + 1) { ?>
                                                 <div class="transfer" id="<?php echo \eMarket\Admin\Stock::$arr_merge['cat'][\eMarket\Admin\Stock::$start]['id'] ?>"><?php echo lang('categories_transfer') ?></div>
@@ -214,31 +182,26 @@
                                     <?php
                                 }
 
-                                // ВЫВОДИМ ТОВАРЫ
                                 if (\eMarket\Admin\Stock::$start >= \eMarket\Admin\Stock::$count_lines_cat && \eMarket\Admin\Stock::$transfer < \eMarket\Core\Settings::linesOnPage() + 1) {
                                     ?>
                                     <tr>
 
-                                        <!-- Вырезанные товары "АКТИВНЫЕ" -->
                                         <?php if (isset($_SESSION['buffer']['prod']) == true && in_array(\eMarket\Admin\Stock::$arr_merge['prod'][\eMarket\Admin\Stock::$start . 'a']['id'], $_SESSION['buffer']['prod']) == true && \eMarket\Admin\Stock::$arr_merge['prod'][\eMarket\Admin\Stock::$start . 'a']['status'] == 1) { ?>
                                             <td class="sortleft-m"></td>    
                                             <td class="sortleft"><div><a href="#" class="btn btn-success btn-xs disabled"><span class="glyphicon glyphicon-shopping-cart"> </span></a></div></td>
 
-                                            <!-- Вырезанные товары "НЕ АКТИВНЫЕ" -->
                                         <?php } elseif (isset($_SESSION['buffer']['prod']) == true && in_array(\eMarket\Admin\Stock::$arr_merge['prod'][\eMarket\Admin\Stock::$start . 'a']['id'], $_SESSION['buffer']['prod']) == true && \eMarket\Admin\Stock::$arr_merge['prod'][\eMarket\Admin\Stock::$start . 'a']['status'] == 0) { ?>
                                             <td class="sortleft-m"></td>    
                                             <td class="sortleft"><div><a href="#" class="btn btn-default btn-xs disabled"><span class="glyphicon glyphicon-shopping-cart"> </span></a></div></td>
 
-                                            <!-- Если товар НЕ АКТИВЕН -->
                                         <?php } elseif (\eMarket\Admin\Stock::$arr_merge['prod'][\eMarket\Admin\Stock::$start . 'a']['status'] == 0) { ?>
                                             <td class="sortleft-m"></td>    
                                             <td class="sortleft"><div><a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-shopping-cart"> </span></a></div></td>
                                         <?php } else { ?>
 
-                                            <!-- Если товар АКТИВЕН -->    
                                             <td class="sortleft-m"></td>
                                             <td class="sortleft"><div><a href="#" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-shopping-cart"> </span></a></div></td>
-                                            <!-- ВЫБРАННЫЕ СТРОКИ -->
+
                                         <?php } ?>
                                         <td class="context-one option" id="product_<?php echo \eMarket\Admin\Stock::$arr_merge['prod'][\eMarket\Admin\Stock::$start . 'a']['id'] ?>"><span class="inactive" style="display: none;"></span>
                                             <div class="pull-left"><?php echo \eMarket\Admin\Stock::$arr_merge['prod'][\eMarket\Admin\Stock::$start . 'a']['name'] ?></div>
@@ -247,7 +210,7 @@
 
                                         <?php if (json_decode(\eMarket\Admin\Stock::$arr_merge['prod'][\eMarket\Admin\Stock::$start . 'a']['discount'], 1) > 0 && \eMarket\Core\Modules\Discount\Sale::status() == 1) { ?>
                                             <td class="sortleft"><span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="<?php echo \eMarket\Core\Settings::productSaleTooltip(\eMarket\Admin\Stock::$arr_merge['prod'][\eMarket\Admin\Stock::$start . 'a']['discount']) ?>" class="glyphicon glyphicon-tag text-primary"> </span></td>
-                                        <?php } elseif (json_decode(\eMarket\Admin\Stock::$arr_merge['prod'][\eMarket\Admin\Stock::$start . 'a']['discount'], 1) == 0  && \eMarket\Core\Modules\Discount\Sale::status() == 1) { ?>
+                                        <?php } elseif (json_decode(\eMarket\Admin\Stock::$arr_merge['prod'][\eMarket\Admin\Stock::$start . 'a']['discount'], 1) == 0 && \eMarket\Core\Modules\Discount\Sale::status() == 1) { ?>
                                             <td class="sortleft"><span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="<?php echo \eMarket\Core\Settings::productSaleTooltip(\eMarket\Admin\Stock::$arr_merge['prod'][\eMarket\Admin\Stock::$start . 'a']['discount']) ?>" class="glyphicon glyphicon-tags text-primary"> </span></td>
                                         <?php } else { ?>
                                             <td class="sortleft-m"><span class="glyphicon glyphicon-tag"></span></td>
@@ -303,7 +266,6 @@
                                 <td class="sortleft-m"></td>
                                 <td class="sortleft">
 
-                                    <!-- Категорий нет "ВВЕРХ" -->
                                     <form>
                                         <div>
                                             <input hidden name="route" value="<?php echo \eMarket\Core\Valid::inGET('route') ?>">

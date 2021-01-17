@@ -4,7 +4,6 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
-<!-- Модальное окно "Добавить" -->
 <div id="index" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -20,10 +19,8 @@
                     <input id="general_image_edit" type="hidden" name="general_image_edit" value="">
                     <input id="general_image_edit_new" type="hidden" name="general_image_edit_new" value="">
 
-                    <!-- Языковые панели -->
                     <?php require_once(ROOT . '/view/' . \eMarket\Core\Settings::template() . '/layouts/lang_tabs_add.php') ?>
 
-                    <!-- Содержимое языковых панелей -->
                     <div class="tab-content">
                         <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade in active">
                             <div class="form-group">
@@ -60,10 +57,9 @@
                             </div>
                         </div>
                         
-                        <!-- Выводим сообщения -->
                         <div id="alert_messages"></div>
 
-                        <!-- ЗАГРУЗКА jQuery-File-Upload -->
+                        <!-- jQuery-File-Upload -->
                         <div class="form-group">
                             <span class="btn btn-primary btn-sm fileinput-button">
                                 <span class="glyphicon glyphicon-picture"></span><span> <?php echo lang('button_add_image') ?></span>
@@ -90,4 +86,3 @@
         </div>
     </div>
 </div>
-<!-- КОНЕЦ Модальное окно "Добавить" -->

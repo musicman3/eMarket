@@ -4,8 +4,6 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-$HeaderMenu = new eMarket\Admin\HeaderMenu();
-
 if (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
     ?>
 

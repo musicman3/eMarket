@@ -16,6 +16,9 @@ title_success_index = Заказ успешно завершен
 title_orders_index = Мои заказы
 title_my_account_index = Мой аккаунт
 
+;INDEX
+index_text = eMarket Bootstrap 3 Demo
+
 ;DEBUG
 debug_page_generation_time = Время генерации страницы:
 debug_db_queries = Запросов к БД:

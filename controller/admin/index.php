@@ -10,6 +10,8 @@ require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 
 $eMarketIndex = new \eMarket\Admin\Index();
 require_once($eMarketIndex->route());
+$HeaderMenu = new eMarket\Admin\HeaderMenu();
+
 
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
 require_once(ROOT . '/model/end.php');

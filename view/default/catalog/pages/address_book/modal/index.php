@@ -4,7 +4,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
-<!-- Модальное окно "Добавить" -->
+
 <div id="index" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -24,7 +24,7 @@
                                 <option value=""></option>
                             </select>
                         </div>
-                    
+
                         <small class="form-text text-muted"><?php echo lang('address_book_region') ?></small>
                         <div class="input-group has-success">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
@@ -32,19 +32,19 @@
                                 <option value=""></option>
                             </select>
                         </div>
-                    
+
                         <small class="form-text text-muted"><?php echo lang('address_book_city') ?></small>
                         <div class="input-group has-error">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
                             <input class="input-sm form-control" placeholder="<?php echo lang('address_book_city_placeholder') ?>" type="text" name="city"  id="city" required />
                         </div>
-                    
+
                         <small class="form-text text-muted"><?php echo lang('address_book_zip') ?></small>
                         <div class="input-group has-error">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
                             <input class="input-sm form-control" placeholder="<?php echo lang('address_book_zip_placeholder') ?>" type="text" name="zip"  id="zip" required />
                         </div>
-                    
+
                         <small class="form-text text-muted"><?php echo lang('address_book_shipping_address') ?></small>
                         <div class="input-group has-error">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
@@ -65,4 +65,3 @@
         </div>
     </div>
 </div>
-<!-- КОНЕЦ Модальное окно "Добавить" -->

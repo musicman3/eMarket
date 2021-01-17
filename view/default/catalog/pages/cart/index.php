@@ -4,15 +4,11 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-// ПОДКЛЮЧАЕМ КОНТЕНТ
 foreach (\eMarket\Core\View::tlpc('content') as $path) {
     require_once (ROOT . $path);
 }
+require_once('modal/index.php')
 ?>
-
-<!-- Модальное окно "Добавить" -->
-<?php require_once('modal/index.php') ?>
-<!-- КОНЕЦ Модальное окно "Добавить" -->
 
 <h1><?php echo lang('shopping_cart') ?></h1>
 <?php if (\eMarket\Catalog\Cart::$cart_info == true) { ?>

@@ -3,14 +3,12 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-
 ?>
 
 <div id="settings_modules_edit">
     <div class="panel panel-default shadow-element">
 
         <div class="panel-heading">
-            <!--Выводим уведомление об успешном действии-->
             <div id="alert_block"><?php \eMarket\Core\Messages::alert(); ?></div>
             <h3 class="panel-title">
                 <span class="settings_back"><button type="button" onClick='location.href = "<?php echo \eMarket\Core\Settings::parentPartitionGenerator() ?>"' class="btn btn-primary btn-xs"><span class="back glyphicon glyphicon-share-alt"></span></button></span><span class="settings_name"><?php echo \eMarket\Core\Settings::titlePageGenerator() ?></span>
@@ -30,7 +28,6 @@
             </div>
             <div class="clearfix"></div></br>
 
-            <!--Выводим данные из модуля-->
             <?php require_once (\eMarket\Core\View::routingModules('controller') . '/index.php'); ?>
 
         </div>

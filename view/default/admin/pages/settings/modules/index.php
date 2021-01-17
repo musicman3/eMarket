@@ -3,21 +3,18 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-
 ?>
 
 <div id="settings_modules">
     <div class="panel panel-default">
 
         <div class="panel-heading">
-            <!--Выводим уведомление об успешном действии-->
             <div id="alert_block"><?php \eMarket\Core\Messages::alert(); ?></div>
             <h3 class="panel-title">
                 <span class="settings_back"><button type="button" onClick='location.href = "<?php echo \eMarket\Core\Settings::parentPartitionGenerator() ?>"' class="btn btn-primary btn-xs"><span class="back glyphicon glyphicon-share-alt"></span></button></span><span class="settings_name"><?php echo \eMarket\Core\Settings::titlePageGenerator() ?></span>
             </h3>
         </div>
         <div class="panel-body">
-            <!-- Панели -->
             <ul class="nav nav-tabs">
                 <?php
                 foreach ($_SESSION['MODULES_INFO'] as $type => $name) {
@@ -26,9 +23,9 @@
                 <?php } ?>
             </ul>
 
-            <!-- Содержимое панелей -->
             <div class="tab-content">
-                <?php foreach ($_SESSION['MODULES_INFO'] as $type => $name) {
+                <?php
+                foreach ($_SESSION['MODULES_INFO'] as $type => $name) {
                     $eMarket->filter($type);
                     ?>
                     <div id="<?php echo $type ?>_modules" class="<?php echo \eMarket\Admin\Modules::$class_tab ?>">
@@ -121,7 +118,6 @@
                     }
                 }
                 ?> 
-
             </div>  
         </div> 
     </div>

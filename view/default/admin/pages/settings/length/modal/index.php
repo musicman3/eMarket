@@ -5,7 +5,6 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 ?>
-<!-- Модальное окно -->
 <div id="index" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -17,10 +16,8 @@
                     <input type="hidden" id="add" name="add" value="" />
                     <input type="hidden" id="edit" name="edit" value="" />
 
-                    <!-- Языковые панели -->
                     <?php require_once(ROOT . '/view/' . \eMarket\Core\Settings::template() . '/layouts/lang_tabs_add.php') ?>
 
-                    <!-- Содержимое языковых панелей -->
                     <div class="tab-content">
                         <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade in active">
                             <div class="form-group">
@@ -84,4 +81,3 @@
         </div>
     </div>
 </div>
-<!-- КОНЕЦ Модальное окно -->

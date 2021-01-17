@@ -5,11 +5,8 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 if (\eMarket\Catalog\Products::$products != FALSE) {
+    require_once('modal/cart_message.php')
     ?>
-
-    <!-- Модальное окно -->
-    <?php require_once('modal/cart_message.php') ?>
-    <!-- КОНЕЦ Модальное окно -->
 
     <h1><?php echo \eMarket\Catalog\Products::$products['name'] ?></h1>
 
@@ -88,7 +85,7 @@ if (\eMarket\Catalog\Products::$products != FALSE) {
                     <div id="panel_description" class="tab-pane fade in active">
                         <div class="item-text"><?php echo \eMarket\Catalog\Products::$products['description'] ?></div>
                     </div>
-                    <!-- Содержимое панели Характеристики -->
+
                     <input id="selected_attributes" type="hidden" name="selected_attributes" value="" />
                     <div id="panel_attribute" class="tab-pane fade">
                         <div class="item-text product-attribute"></div>
@@ -113,7 +110,6 @@ if (\eMarket\Catalog\Products::$products != FALSE) {
     <?php
 }
 
-// ПОДКЛЮЧАЕМ КОНТЕНТ
 foreach (\eMarket\Core\View::tlpc('content') as $path) {
     require_once (ROOT . $path);
 }

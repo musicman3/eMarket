@@ -3,9 +3,7 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-
 ?>
-<!-- Модальное окно "Добавить" -->
 <div id="index" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -17,10 +15,8 @@
                     <input type="hidden" id="add" name="add" value="" />
                     <input type="hidden" id="edit" name="edit" value="" />
 
-                    <!-- Языковые панели -->
                     <?php require_once(ROOT . '/view/' . \eMarket\Core\Settings::template() . '/layouts/lang_tabs_add.php') ?>
 
-                    <!-- Содержимое языковых панелей -->
                     <div class="tab-content">
                         <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade in active">
                             <div class="form-group">
@@ -34,7 +30,6 @@
                         <?php
                         if (\eMarket\Core\Lang::$COUNT > 1) {
                             for ($x = 1; $x < \eMarket\Core\Lang::$COUNT; $x++) {
-
                                 ?>
 
                                 <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">
@@ -49,7 +44,6 @@
                                 <?php
                             }
                         }
-
                         ?>
                         <div class="form-group">
                             <div><small class="form-text text-muted"><?php echo lang('name_description') ?></small></div>
@@ -67,4 +61,3 @@
         </div>
     </div>
 </div>
-<!-- КОНЕЦ Модальное окно "Добавить" -->

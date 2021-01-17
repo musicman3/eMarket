@@ -5,7 +5,6 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
 
-<!-- Модальное окно "Изменить" -->
 <div id="index" class="products modal fade" tabindex="-1">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
@@ -22,10 +21,9 @@
                         <li><a data-toggle="tab" href="#panel_3"><?php echo lang('orders_transaction_history') ?></a></li>
                         <li><a data-toggle="tab" href="#panel_4"><?php echo lang('orders_status_history') ?></a></li>
                     </ul>
-                    <!-- Содержимое панелей формы-->
+
                     <div class="tab-content">
 
-                        <!-- Содержимое панели Описание -->
                         <div id="panel_1" class="tab-pane fade in active">
                             <div class="table-responsive">
                                 <table class="table">
@@ -132,14 +130,12 @@
                             </div>
                         </div>
 
-                        <!-- Содержимое панели История транзакций -->
                         <div id="panel_3" class="tab-pane fade">
                             <div class="col-sm-6 form-group">
 
                             </div>
                         </div>
 
-                        <!-- Содержимое панели История статусов -->
                         <div id="panel_4" class="tab-pane fade">
                             <div class="form-group">
                                 <div class="input-group has-success" id="status_history"></div><br>
@@ -166,4 +162,3 @@
         </div>
     </div>
 </div>
-<!-- КОНЕЦ Модальное окно "Изменить" -->

@@ -6,10 +6,9 @@
 
 ?>
 
-<h1>eMarket Bootstrap 3 Demo</h1>
+<h1><?php echo lang('index_text') ?></h1>
 
 <?php
-// ПОДКЛЮЧАЕМ КОНТЕНТ
 foreach (\eMarket\Core\View::tlpc('content') as $path) {
     require_once (ROOT . $path);
 }

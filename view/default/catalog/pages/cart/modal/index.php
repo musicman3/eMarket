@@ -3,9 +3,8 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-
 ?>
-<!-- Модальное окно "Корзина" -->
+
 <div id="index" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -66,7 +65,7 @@
                         </div>
                         <small class="form-text text-muted"><?php echo lang('cart_payment_method_small') ?></small>
                     </div>
-                    
+
                     <div id="total_price_modal" class="form-group text-right"></div>
                     <div id="total_tax_price" class="form-group text-right"></div>
                     <div id="shipping_price" class="form-group text-right"></div>
@@ -80,4 +79,3 @@
         </div>
     </div>
 </div>
-<!-- КОНЕЦ Модальное окно "Корзина" -->

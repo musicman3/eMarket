@@ -4,22 +4,18 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+require_once('modal/index.php')
 ?>
-<!-- Модальное окно -->
-<?php require_once('modal/index.php') ?>
-<!-- КОНЕЦ Модальное окно -->
 
 <div id="stikers">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <!--Выводим уведомление об успешном действии-->
             <div id="alert_block"><?php \eMarket\Core\Messages::alert(); ?></div>
             <h3 class="panel-title">
                 <?php echo \eMarket\Core\Settings::titlePageGenerator() ?>
             </h3>
         </div>
         <div class="panel-body">
-            <!--Скрытый div для передачи данных-->
             <div id="ajax_data" class='hidden' data-jsondata='<?php echo \eMarket\Admin\Stikers::$json_data ?>'></div>
 
             <div class="table-responsive">
@@ -77,7 +73,6 @@
                                 <?php } ?>
                                 <td>
                                     <div class="flexbox">
-                                        <!--Вызов модального окна для редактирования-->
                                         <div class="b-left">
                                             <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index" data-edit="<?php echo eMarket\Core\Pages::$table['line']['id'] ?>"><span class="glyphicon glyphicon-edit"></span></button>
                                         </div>

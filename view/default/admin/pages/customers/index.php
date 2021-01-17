@@ -9,7 +9,6 @@
 <div id="customers">
     <div class="panel panel-default">
 	<div class="panel-heading">
-	    <!--Выводим уведомление об успешном действии-->
 	    <div id="alert_block"><?php \eMarket\Core\Messages::alert(); ?></div>
 	    <h3 class="panel-title">
 		<?php echo \eMarket\Core\Settings::titlePageGenerator() ?>
@@ -85,7 +84,6 @@
     			    <td class="text-center"><?php echo \eMarket\Core\Pages::$table['line'][11] ?></td>
     			    <td>
     				<div class="flexbox">
-    				    <!--Кнопка переключения статуса-->
     				    <form id="form_status<?php echo \eMarket\Core\Pages::$table['line'][0] ?>" name="form_status" action="javascript:void(null);" onsubmit="Ajax.callAdd('form_status<?php echo \eMarket\Core\Pages::$table['line'][0] ?>')" enctype="multipart/form-data">
     					<input hidden name="status" value="<?php echo \eMarket\Core\Pages::$table['line'][0] ?>">
     					<div class="b-left">

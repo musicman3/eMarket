@@ -5,7 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
 
-<?php if (isset($_SESSION['login']) && isset($_SESSION['pass'])) { // Выводим если авторизованы   ?>
+<?php if (isset($_SESSION['login']) && isset($_SESSION['pass'])) { ?>
 <div id="dashboard">
     <div class="welcome text-center">
 	<?php echo lang('index-title') ?>

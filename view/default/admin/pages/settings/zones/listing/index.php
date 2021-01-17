@@ -4,15 +4,12 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+require_once('modal/index.php')
 ?>
-<!-- Модальное окно "Добавить" -->
-<?php require_once('modal/index.php') ?>
-<!-- КОНЕЦ Модальное окно "Добавить" -->
 
 <div id="settings_zones_listing">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <!--Выводим уведомление об успешном действии-->
             <div id="alert_block"><?php \eMarket\Core\Messages::alert(); ?></div>
             <h3 class="panel-title">
                 <span class="settings_back"><a class="btn btn-primary btn-xs" href="<?php echo \eMarket\Core\Settings::parentPartitionGenerator() ?>"><span class="back glyphicon glyphicon-share-alt"></span></a></span><span class="settings_name"><?php echo \eMarket\Core\Settings::titlePageGenerator() ?></span>

@@ -4,13 +4,11 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-// ПОДКЛЮЧАЕМ КОНТЕНТ
 foreach (\eMarket\Core\View::tlpc('content') as $path) {
     require_once (ROOT . $path);
 }
 ?>
 
-<!--Выводим уведомление об успешном действии-->
 <div id="alert_block"><?php \eMarket\Core\Messages::alert(); ?></div>
 <h1><?php echo lang('my_account_name') ?></h1>
 
@@ -21,7 +19,7 @@ foreach (\eMarket\Core\View::tlpc('content') as $path) {
 
             <div class="col-sm-6">
                 <div class="form-group">
-		    <legend><?php echo lang('my_account_personal_details') ?></legend>
+                    <legend><?php echo lang('my_account_personal_details') ?></legend>
                     <small class="form-text text-muted"><?php echo lang('my_account_firstname') ?></small>
                     <div class="input-group has-success">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
@@ -39,7 +37,7 @@ foreach (\eMarket\Core\View::tlpc('content') as $path) {
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
                         <input class="input-sm form-control" placeholder="<?php echo lang('my_account_enter_your_middlename') ?>" type="text" name="middle_name" id="middle_name" value="<?php echo \eMarket\Core\Autorize::$CUSTOMER['middle_name'] ?>" />
                     </div>
-                    
+
                     <small class="form-text text-muted"><?php echo lang('my_account_telephone') ?></small>
                     <div class="input-group has-success">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
@@ -51,7 +49,7 @@ foreach (\eMarket\Core\View::tlpc('content') as $path) {
 
             <div class="col-sm-6">
                 <div class="form-group">
-		    <legend><?php echo lang('my_account_details_password') ?></legend>
+                    <legend><?php echo lang('my_account_details_password') ?></legend>
                     <small class="form-text text-muted"><?php echo lang('my_account_password') ?></small>
                     <div class="input-group has-success password">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
@@ -63,14 +61,14 @@ foreach (\eMarket\Core\View::tlpc('content') as $path) {
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
                         <input class="input-sm form-control password-data" minlength="7" maxlength="40" placeholder="<?php echo lang('my_account_confirm_your_password') ?>" type="password" name="confirm_password" id="confirm_password" />
                     </div>
-		</div>
-	    </div>
+                </div>
+            </div>
 
-	</div>
+        </div>
 
-	<div class="text-right form-group">
-	    <input id="submit_btn" class="btn btn-primary" type="submit" value="<?php echo lang('save') ?>">
-	</div>
+        <div class="text-right form-group">
+            <input id="submit_btn" class="btn btn-primary" type="submit" value="<?php echo lang('save') ?>">
+        </div>
 
     </form>
 </div>

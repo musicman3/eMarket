@@ -10,7 +10,6 @@
     <div class="panel panel-default">
 
 	<div class="panel-heading">
-	    <!--Выводим уведомление об успешном действии-->
 	    <div id="alert_block"><?php \eMarket\Core\Messages::alert(); ?></div>
 	    <h3 class="panel-title">
 		<?php echo \eMarket\Core\Settings::titlePageGenerator() ?>

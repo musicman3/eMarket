@@ -47,6 +47,15 @@ class Slideshow {
     }
 
     /**
+     * Helper
+     * 
+     */
+    public static function helper() {
+        \eMarket\Core\Pages::$start = \eMarket\Core\Pages::$table['navigate'][0];
+        \eMarket\Core\Pages::$finish = \eMarket\Core\Pages::$table['navigate'][1];
+    }
+
+    /**
      * Menu config
      * [0] - url, [1] - icon, [2] - name, [3] - target="_blank", [4] - submenu (true/false)
      * 

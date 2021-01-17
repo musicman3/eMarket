@@ -18,7 +18,6 @@
         <meta name="owner" content="eMarket" />
         <meta name="copyright" content="Copyright © 2018 by eMarket Team. All right reserved." />
 
-        <!-- Автогенерация Title" -->
         <title><?php echo \eMarket\Core\Settings::titlePageGenerator() ?></title>
 
         <link href="/ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
@@ -32,7 +31,6 @@
         <script type="text/javascript" src="/ext/fastmd5/md5.min.js"></script>
         <script type="text/javascript" src="/ext/randomizer/randomizer.js"></script>
 
-        <!-- Всплывающие подсказки" -->
         <script type="text/javascript">
             $(function () {
                 $('[data-toggle="tooltip"]').tooltip();
@@ -48,7 +46,6 @@
     <body>
 
         <?php
-        // ЗАГРУЖАЕМ HEADER
         foreach (\eMarket\Core\View::tlpc('header') as $path) {
             require_once (ROOT . $path);
         }
@@ -58,7 +55,6 @@
             <div id="ajax">
 
                 <?php
-                // ЗАГРУЖАЕМ ТЕЛО HTML СТРАНИЦЫ
                 require_once(\eMarket\Core\View::routingAdmin());
                 ?>
 
@@ -66,10 +62,10 @@
         </div>
 
         <?php
-        // ЗАГРУЖАЕМ FOOTER
         foreach (\eMarket\Core\View::tlpc('footer') as $path) {
             require_once (ROOT . $path);
         }
+        require_once ('js/footer.php');
         ?>
 
         <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.min.js"></script>
@@ -88,7 +84,6 @@
         if (\eMarket\Core\Settings::$JS_MODULES_HANDLER != FALSE) {
             require_once(\eMarket\Core\Settings::$JS_MODULES_HANDLER . '/js.php');
         }
-        // Выводим отладочную информацию
         \eMarket\Core\Debug::info();
         ?>
 

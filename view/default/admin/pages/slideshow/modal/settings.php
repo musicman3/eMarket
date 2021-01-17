@@ -4,14 +4,14 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
-<!-- Модальное окно "Настройки" -->
+
 <div id="settings" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header"><div class="pull-right"><button class="close" type="button" data-dismiss="modal">×</button></div>
                 <h4 class="modal-title"><?php echo \eMarket\Core\Settings::titlePageGenerator() ?></h4>
             </div>
-            
+
             <form id="form_settings" name="form_settings" action="javascript:void(null);" onsubmit="Ajax.callAdd('form_settings')">
                 <div class="panel-body">
                     <input type="hidden" id="slideshow_pref" name="slideshow_pref" value="ok" />
@@ -53,4 +53,3 @@
         </div>
     </div>
 </div>
-<!-- КОНЕЦ Модальное окно "Настройки" -->

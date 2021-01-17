@@ -5,7 +5,6 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
 
-<!-- Модальное окно "Изменить" -->
 <div id="index" class="products modal fade" tabindex="-1">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
@@ -14,17 +13,15 @@
             </div>
             <div class="panel-body">
 
-                <!-- Панели формы -->
                 <ul class="nav nav-tabs">
                     <li class="active"><a data-toggle="tab" href="#panel_edit_1"><?php echo lang('orders_description') ?></a></li>
                     <li><a data-toggle="tab" href="#panel_edit_2"><?php echo lang('orders_products') ?></a></li>
                     <li><a data-toggle="tab" href="#panel_edit_3"><?php echo lang('orders_transaction_history') ?></a></li>
                     <li><a data-toggle="tab" href="#panel_edit_4"><?php echo lang('orders_status_history') ?></a></li>
                 </ul>
-                <!-- Содержимое панелей формы-->
+
                 <div class="tab-content">
 
-                    <!-- Содержимое панели Описание -->
                     <div id="panel_edit_1" class="tab-pane fade in active">
                         <div class="table-responsive">
                             <table class="table">
@@ -93,7 +90,6 @@
                         </div>
                     </div>
 
-                    <!-- Содержимое панели Товары -->
                     <div id="panel_edit_2" class="tab-pane fade">
                         <div class="table-responsive">
 
@@ -131,14 +127,12 @@
                         </div>
                     </div>
 
-                    <!-- Содержимое панели История транзакций -->
                     <div id="panel_edit_3" class="tab-pane fade">
                         <div class="col-left form-group">
 
                         </div>
                     </div>
 
-                    <!-- Содержимое панели История статусов -->
                     <div id="panel_edit_4" class="tab-pane fade">
                         <div class="form-group">
                             <div class="input-group has-success" id="status_history"></div><br>
@@ -150,4 +144,3 @@
         </div>
     </div>
 </div>
-<!-- КОНЕЦ Модальное окно "Изменить" -->
