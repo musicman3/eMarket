@@ -56,13 +56,10 @@ final class Pdo {
      */
     public static function dbInstall($path) {
 
-        // Подключаем файл БД
         $file_name = $path . DB_TYPE . '.sql';
 
-        // Устанавливаем префикс БД
         $buffer = str_replace('emkt_', DB_PREFIX, implode(file($file_name)));
 
-        //Устанавливаем семейство БД
         if (DB_FAMILY == 'myisam') {
             $buffer = str_ireplace('ENGINE=InnoDB', 'ENGINE=MyISAM', $buffer);
         }
