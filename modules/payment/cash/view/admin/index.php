@@ -13,8 +13,9 @@
         <label for="shipping_method"><?php echo lang('modules_payment_cash_admin_shipping_method') ?></label>
         <div class="input-group">
             <select id="shipping_method" name="multiselect[]" multiple="multiple">
-                <?php foreach ($shipping_method as $val) {
-                    if (is_array($shipping_val) && in_array($val['name'], $shipping_val)) {
+                <?php
+                foreach (\eMarket\Core\Modules\Payment\Cash::$shipping_method as $val) {
+                    if (is_array(\eMarket\Core\Modules\Payment\Cash::$shipping_val) && in_array($val['name'], \eMarket\Core\Modules\Payment\Cash::$shipping_val)) {
                         $selected_shipping = 'selected ';
                     } else {
                         $selected_shipping = '';
@@ -32,8 +33,8 @@
             <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
             <select name="order_status" id="order_status" class="input-sm form-control">
                 <?php
-                foreach ($order_status as $val) {
-                    if ($val['id'] == $order_status_selected) {
+                foreach (\eMarket\Core\Modules\Payment\Cash::$order_status as $val) {
+                    if ($val['id'] == \eMarket\Core\Modules\Payment\Cash::$order_status_selected) {
                         $selected = 'selected ';
                     } else {
                         $selected = '';
