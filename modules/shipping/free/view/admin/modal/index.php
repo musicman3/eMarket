@@ -3,9 +3,8 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-
 ?>
-<!-- Модальное окно "Добавить" -->
+
 <div id="index" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -17,7 +16,6 @@
                     <input type="hidden" id="add" name="add" value="" />
                     <input type="hidden" id="edit" name="edit" value="" />
 
-                    <!-- Содержимое языковых панелей -->
                     <div class="tab-content">
                         <div class="form-group">
                             <label for="zone"><?php echo lang('modules_shipping_free_admin_shipping_zone') ?></label>
@@ -25,7 +23,7 @@
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
                                 <select name="zone" id="zone" class="input-sm form-control">
                                     <?php
-                                    foreach ($zones as $val) {
+                                    foreach (\eMarket\Core\Modules\Shipping\Free::$zones as $val) {
                                         ?>
                                         <option value="<?php echo $val['id'] ?>"><?php echo $val['name'] ?></option>
                                         <?php
@@ -53,4 +51,3 @@
         </div>
     </div>
 </div>
-<!-- КОНЕЦ Модальное окно "Добавить" -->

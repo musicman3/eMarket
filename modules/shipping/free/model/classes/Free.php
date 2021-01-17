@@ -4,50 +4,58 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-?>
-<?php
-
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
-  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
-  |  https://github.com/musicman3/eMarket  |
-  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 namespace eMarket\Core\Modules\Shipping;
 
 /**
- * Класс модуля скидок
+ * Module Shipping Free
  *
- * @package Sale
+ * @package Shipping
  * @author eMarket
  * 
  */
 class Free {
 
+    public static $sql_data = FALSE;
+    public static $json_data = FALSE;
+    public static $zones_name = FALSE;
+    public static $zones = FALSE;
+
     /**
-     * Инсталляция модуля
+     * Constructor
      *
-     * @param array $module (входящие данные)
+     */
+    function __construct() {
+        $this->add();
+        $this->edit();
+        $this->delete();
+        $this->data();
+        $this->modal();
+    }
+
+    /**
+     * Install
+     *
+     * @param array $module (input data)
      */
     public static function install($module) {
-        // Инсталлируем
         \eMarket\Core\Modules::install($module);
     }
 
     /**
-     * Удаление модуля
+     * Delete
      *
-     * @param array $module (входящие данные)
+     * @param array $module (input data)
      */
     public static function uninstall($module) {
-        // Удаляем
         \eMarket\Core\Modules::uninstall($module);
     }
 
     /**
-     * Загрузка данных по модулю
+     * Load data
      *
-     * @param array $zones_id (данные по используемым зонам)
-     * @return array|FALSE $interface (выходные данные)
+     * @param array $zones_id (Zones id)
+     * @return array|FALSE (Data)
      */
     public static function load($zones_id) {
 
@@ -58,7 +66,7 @@ class Free {
         foreach ($zones_id as $zone) {
             $data_arr = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . DB_PREFIX . 'modules_shipping_free' . " WHERE shipping_zone=?", [$zone]);
             foreach ($data_arr as $data) {
-                // Интерфейс для модулей доставки
+
                 $interface_data = [
                     'chanel_id' => $data['id'],
                     'chanel_module_name' => 'free',
@@ -79,8 +87,93 @@ class Free {
             }
         }
         $interface = \eMarket\Core\Shipping::filterData($interface_data_all);
-        
+
         $INTERFACE->save('shipping', 'free', $interface);
+    }
+
+    /**
+     * Add
+     *
+     */
+    public function add() {
+        if (\eMarket\Core\Valid::inPOST('add')) {
+            $MODULE_DB = \eMarket\Core\Settings::moduleDatabase();
+            \eMarket\Core\Pdo::action("INSERT INTO " . $MODULE_DB . " SET minimum_price=?, shipping_zone=?, currency=?", [\eMarket\Core\Valid::inPOST('minimum_price'), \eMarket\Core\Valid::inPOST('zone'), \eMarket\Core\Settings::currencyDefault()[0]]);
+
+            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
+            exit;
+        }
+    }
+
+    /**
+     * Edit
+     *
+     */
+    public function edit() {
+        if (\eMarket\Core\Valid::inPOST('edit')) {
+            $MODULE_DB = \eMarket\Core\Settings::moduleDatabase();
+            \eMarket\Core\Pdo::action("UPDATE " . $MODULE_DB . " SET minimum_price=?, shipping_zone=?, currency=? WHERE id=?", [\eMarket\Core\Valid::inPOST('minimum_price'), \eMarket\Core\Valid::inPOST('zone'), \eMarket\Core\Settings::currencyDefault()[0], \eMarket\Core\Valid::inPOST('edit')]);
+
+            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
+            exit;
+        }
+    }
+
+    /**
+     * Delete
+     *
+     */
+    public function delete() {
+        if (\eMarket\Core\Valid::inPOST('delete')) {
+            $MODULE_DB = \eMarket\Core\Settings::moduleDatabase();
+            \eMarket\Core\Pdo::action("DELETE FROM " . $MODULE_DB . " WHERE id=?", [\eMarket\Core\Valid::inPOST('delete')]);
+
+            // Выводим сообщение об успехе
+            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
+            exit;
+        }
+    }
+
+    /**
+     * Data
+     *
+     */
+    public function data() {
+        $MODULE_DB = \eMarket\Core\Settings::moduleDatabase();
+
+        self::$zones = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_ZONES . " WHERE language=?", [lang('#lang_all')[0]]);
+
+        self::$zones_name = [];
+        foreach (self::$zones as $val) {
+            self::$zones_name[$val['id']] = $val['name'];
+        }
+
+        self::$sql_data = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . $MODULE_DB . " ORDER BY id DESC", []);
+        \eMarket\Core\Pages::table(self::$sql_data);
+    }
+
+    /**
+     * Modal
+     *
+     */
+    public function modal() {
+        self::$json_data = json_encode([]);
+        $MODULE_DB = \eMarket\Core\Settings::moduleDatabase();
+        for ($i = \eMarket\Core\Pages::$start; $i < \eMarket\Core\Pages::$finish; $i++) {
+            if (isset(\eMarket\Core\Pages::$table['lines'][$i]['id']) == TRUE) {
+
+                $modal_id = \eMarket\Core\Pages::$table['lines'][$i]['id'];
+
+                $query = \eMarket\Core\Pdo::getRow("SELECT minimum_price, shipping_zone, currency FROM " . $MODULE_DB . " WHERE id=?", [$modal_id]);
+                $minimum_price[$modal_id] = round(\eMarket\Core\Ecb::currencyPrice($query[0], $query[2]), 2);
+                $shipping_zone[$modal_id] = $query[1];
+
+                self::$json_data = json_encode([
+                    'price' => $minimum_price,
+                    'zone' => $shipping_zone
+                ]);
+            }
+        }
     }
 
 }
