@@ -7,7 +7,7 @@
 namespace eMarket\Core;
 
 /**
- * Класс для получения установок, настроек и др.
+ * Settings
  *
  * @package Set
  * @author eMarket
@@ -25,7 +25,7 @@ class Settings {
     public static $session_expr_time = FALSE;
 
     /**
-     * Название текущего шаблона
+     * Name of current template
      *
      * @return string $template
      */
@@ -35,10 +35,10 @@ class Settings {
     }
 
     /**
-     * Загрузка статических данных
+     * Loading static data
      *
-     * @param string $param (колонка таблицы)
-     * @return array|string data
+     * @param string $param DB col
+     * @return array|string
      */
     public static function basicSettings($param = null) {
 
@@ -54,9 +54,9 @@ class Settings {
     }
 
     /**
-     * Данные по валютам
+     * Currencies Data
      *
-     * @return array data
+     * @return array
      */
     public static function currenciesData() {
 
@@ -68,9 +68,9 @@ class Settings {
     }
 
     /**
-     * Считываем значение строк на странице
+     * Number of lines on page
      *
-     * @return string data
+     * @return string
      */
     public static function linesOnPage() {
 
@@ -78,9 +78,9 @@ class Settings {
     }
 
     /**
-     * Считываем значение времени сессии администратора
+     * Administrator session time value
      *
-     * @return string data
+     * @return string
      */
     public static function sessionExprTime() {
 
@@ -90,7 +90,7 @@ class Settings {
     /**
      * JS Handler
      *
-     * @return string data
+     * @return string
      */
     public static function jsHandler() {
         $path = getenv('DOCUMENT_ROOT') . '/js_handler/' . \eMarket\Core\Settings::path() . '/pages/' . \eMarket\Core\Valid::inGET('route');
@@ -102,7 +102,7 @@ class Settings {
     /**
      * JS Modules Handler
      *
-     * @return string data
+     * @return string
      */
     public static function jsModulesHandler() {
         $path = \eMarket\Core\View::routingModules('js_handler');
@@ -112,10 +112,10 @@ class Settings {
     }    
 
     /**
-     * Данные по тултипу для скидки на товар
+     * Tooltip data for product discounts
      *
-     * @param string $discount (данные по скидкам в строке через запятую)
-     * @return string $text
+     * @param string $discount Data on discounts in a line separated by commas
+     * @return string
      */
     public static function productSaleTooltip($discount) {
 
@@ -131,10 +131,10 @@ class Settings {
     }
 
     /**
-     * Данные по основной валюте каталога
+     * Currency default
      *
-     * @param string $language (язык)
-     * @return array $currency
+     * @param string $language Language
+     * @return array
      */
     public static function currencyDefault($language = null) {
 
@@ -175,9 +175,9 @@ class Settings {
     }
 
     /**
-     * Каноническая ссылка
+     * Canonical Path
      *
-     * @return string $path
+     * @return string
      */
     public static function canonicalPathCatalog() {
 
@@ -196,9 +196,9 @@ class Settings {
     }
 
     /**
-     * Текущая ветка (admin или catalog)
+     * Current branch (admin/catalog/install)
      *
-     * @return string $path
+     * @return string
      */
     public static function path() {
 
@@ -214,9 +214,9 @@ class Settings {
     }
 
     /**
-     * Текущая директория
+     * Current directory
      *
-     * @return string $title_dir
+     * @return string
      */
     public static function titleDir() {
 
@@ -238,9 +238,9 @@ class Settings {
     }
 
     /**
-     * Генератор титлов
+     * Tittles generator
      *
-     * @return string $title
+     * @return string
      */
     public static function titlePageGenerator() {
 
@@ -259,9 +259,9 @@ class Settings {
     }
 
     /**
-     * Генератор путей родительских разделов
+     * Parent section path generator
      *
-     * @return string $output
+     * @return string
      */
     public static function parentPartitionGenerator() {
 
@@ -294,10 +294,10 @@ class Settings {
     }
 
     /**
-     * Название раздела в каталоге
+     * Section name in catalog
      *
-     * @param string $marker (маркер для указания знака)
-     * @return string $title
+     * @param string $marker Marker
+     * @return string
      */
     public static function titleCatalog($marker = null) {
 
@@ -330,9 +330,9 @@ class Settings {
     }
 
     /**
-     * Keywords в каталоге
+     * Keywords
      *
-     * @return string $title
+     * @return string
      */
     public static function keywordsCatalog() {
 
@@ -351,17 +351,16 @@ class Settings {
     }
 
     /**
-     * Отображаем Select с учетом значения по-умолчанию
+     * Select view
      *
-     * @param array $value (массив для Select)
-     * @param string $default (идентификатор)
+     * @param array $value Select array
+     * @param string
      */
     public static function viewSelect($value, $default = null) {
 
         foreach ($value as $val) {
             if ($default != null && $val[$default] == 1) {
                 ?>
-                <!-- Строка Select по умолчанию-->
                 <option value="<?php echo $val['id'] ?>" selected><?php echo $val['name'] ?></option>
             <?php } else { ?>
                 <option value="<?php echo $val['id'] ?>" ><?php echo $val['name'] ?></option>
@@ -371,7 +370,7 @@ class Settings {
     }
 
     /**
-     * IP адрес пользователя
+     * IP address
      *
      * @return string $ipaddress
      */
@@ -397,10 +396,10 @@ class Settings {
     }
 
     /**
-     * Получаем названия для Breadcrumb
+     * Breadcrumb data
      *
-     * @param array $breadcrumb_array (массив breadcrumb в виде id)
-     * @return string $breadcrumb (массив breadcrumb в виде названия)
+     * @param array $breadcrumb_array Input array
+     * @return string
      */
     public static function breadcrumbName($breadcrumb_array) {
 
@@ -414,9 +413,9 @@ class Settings {
     }
 
     /**
-     * Получаем путь к папке модуля
+     * Path to module folder
      *
-     * @return string (путь к папке с модулем)
+     * @return string
      */
     public static function modulesPath() {
 
@@ -424,9 +423,9 @@ class Settings {
     }
 
     /**
-     * Получаем путь для переключателя языков и валют
+     * Path for language and currency switcher
      *
-     * @return string (путь для переключателя языков и валют)
+     * @return string
      */
     public static function langCurrencyPath() {
 
@@ -454,9 +453,9 @@ class Settings {
     }
 
     /**
-     * Получаем основной язык
+     * Primary language
      *
-     * @return string (основной язык)
+     * @return string
      */
     public static function primaryLanguage() {
 
@@ -464,10 +463,10 @@ class Settings {
     }
 
     /**
-     * Сортировка при поиске
+     * Sorting when searching
      *
-     * @param string $class (класс bootstrap)
-     * @return string (данные html)
+     * @param string $class Bootstrap class
+     * @return string
      */
     public static function sorties($class = null) {
 
@@ -485,14 +484,14 @@ class Settings {
     }
 
     /**
-     * Переключение класса при смене статуса
+     * Switching class when changing status
      *
-     * @param string $status (статус из БД)
-     * @param array $argument_1 (аргумент для сравнения)
-     * @param array $argument_2 (аргумент для сравнения)
-     * @param string $class (класс)
-     * @param string $class_2 (класс)
-     * @return string (класс)
+     * @param string $status Status from DB
+     * @param array $argument_1 Argument to compare
+     * @param array $argument_2 Argument to compare
+     * @param string $class Bootstrap class
+     * @param string $class_2 Bootstrap class
+     * @return string
      */
     public static function statusSwitchClass($status, $argument_1 = null, $argument_2 = null, $class = '', $class_2 = 'danger') {
 
@@ -520,9 +519,9 @@ class Settings {
     }
 
     /**
-     * Получаем название базы данных модуля
+     * Module database name
      *
-     * @return string (название базы данных модуля)
+     * @return string 
      */
     public static function moduleDatabase() {
 
@@ -530,12 +529,12 @@ class Settings {
     }
 
     /**
-     * Форматированная дата
+     * Formatted date
      * 
-     * @param string $date (дата)
-     * @param string $format (формат даты вручную)
-     * @param string $language (язык локали)
-     * @return string|FALSE форматированная дата
+     * @param string $date Date
+     * @param string $format Manual format
+     * @param string $language Language
+     * @return string|FALSE
      */
     public static function dateLocale($date, $format = null, $language = null) {
         if ($date == NULL) {
@@ -566,12 +565,12 @@ class Settings {
     }
 
     /**
-     * Класс для активной вкладки
+     * Active tab
      *
-     * @param string $active_tab (активная вкладка)
-     * @param string $active (маркер активности)
-     * @param string $class (класс)
-     * @return string (класс активности)
+     * @param string $active_tab Active tab
+     * @param string $active Active marker
+     * @param string $class Bootstrap class
+     * @return string
      */
     public static function activeTab($active_tab, $active, $class = 'active') {
 
@@ -584,4 +583,3 @@ class Settings {
     }
 
 }
-?>

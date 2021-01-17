@@ -8,9 +8,9 @@
 namespace eMarket\Core;
 
 /**
- * Класс для работы с товарами
+ * Products
  *
- * @package Product
+ * @package Products
  * @author eMarket
  * 
  */
@@ -26,9 +26,9 @@ class Products {
     private static $length = FALSE;
 
     /**
-     * Данные по новым товарам
+     * New products data
      *
-     * @param string $count (количество новых товаров)
+     * @param string $count Number of new products
      */
     public static function newProducts($count) {
         if (self::$new_products == FALSE) {
@@ -37,11 +37,11 @@ class Products {
     }
 
     /**
-     * Данные по товару
+     * Product data
      *
-     * @param string $id (id товара)
-     * @param string $language (язык отображения)
-     * @return array (данные по товару)
+     * @param string $id Product id
+     * @param string $language Language
+     * @return array
      */
     public static function productData($id, $language = null) {
 
@@ -53,11 +53,11 @@ class Products {
     }
 
     /**
-     * Данные по категории
+     * Categury data
      *
-     * @param string $id (id категории)
-     * @param string $language (язык отображения)
-     * @return array (данные по категории)
+     * @param string $id Category id
+     * @param string $language Language
+     * @return array
      */
     public static function categoryData($id, $language = null) {
 
@@ -75,10 +75,10 @@ class Products {
     }
 
     /**
-     * Вывод производителя по id
+     * Manufacturer data
      *
-     * @param string $id (id в таблице)
-     * @return array|FALSE $value (данные по производителю)
+     * @param string $id Id
+     * @return array|FALSE 
      */
     public static function manufacturer($id) {
 
@@ -95,10 +95,10 @@ class Products {
     }
 
     /**
-     * Вывод идентификатора по id
+     * Vendor code data
      *
-     * @param string $id (id в таблице)
-     * @return array|FALSE $value (данные по идентификатору)
+     * @param string $id Id
+     * @return array|FALSE
      */
     public static function vendorCode($id) {
 
@@ -115,10 +115,10 @@ class Products {
     }
 
     /**
-     * Вывод веса по id
+     * Weight data
      *
-     * @param string $id (id в таблице)
-     * @return array|FALSE $value (данные по весу)
+     * @param string $id Id
+     * @return array|FALSE
      */
     public static function weight($id) {
 
@@ -135,10 +135,10 @@ class Products {
     }
 
     /**
-     * Вывод длины по id
+     * Length data
      *
-     * @param string $id (id в таблице)
-     * @return array|FALSE $value (данные по длине)
+     * @param string $id Id
+     * @return array|FALSE
      */
     public static function length($id) {
 
@@ -155,11 +155,11 @@ class Products {
     }
 
     /**
-     * Товар на складе
+     * Stock item
      *
-     * @param string $date_available (дата появления на складе)
-     * @param string $quantity (количество)
-     * @return array (выходной массив)
+     * @param string $date_available Date_available
+     * @param string $quantity Quantity
+     * @return array
      */
     public static function inStock($date_available, $quantity) {
         if ($date_available != NULL && $date_available != FALSE && strtotime($date_available) > strtotime(date('Y-m-d'))) {
@@ -183,12 +183,12 @@ class Products {
     }
 
     /**
-     * Блок вывода стикеров
+     * Stikers
      * 
-     * @param array $input (массив с входящими значениями по товару)
-     * @param string $class (класс bootstrap для отображения стикера скидки)
-     * @param string $class2 (класс bootstrap для отображения собственного стикера)
-     * @return string (выходные данные в виде форматированной стоимости)
+     * @param array $input Input data
+     * @param string $class Bootstrap class
+     * @param string $class2 Bootstrap class
+     * @return string
      */
     public static function stikers($input, $class = null, $class2 = null) {
 
@@ -234,5 +234,3 @@ class Products {
     }
 
 }
-
-?>

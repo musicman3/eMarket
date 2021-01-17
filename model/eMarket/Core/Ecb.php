@@ -21,13 +21,13 @@ final class Ecb {
     private static $active_modules = FALSE;
 
     /**
-     * Отображение цены / View price
+     * View price
      * 
-     * @param array $input (массив с данными товара / array with products data)
-     * @param string $marker (маркер формата валюты / format currency marker)
-     * @param string $quantity (количество / quantity)
-     * @param string $class (класс bootstrap для скидки / bootstrap class for sale)
-     * @return string (выходные данные / output data)
+     * @param array $input Array with products data
+     * @param string $marker (Format currency marker
+     * @param string $quantity Quantity
+     * @param string $class (Bootstrap class for sale
+     * @return string Output data
      */
     public static function priceInterface($input, $marker, $quantity = 1, $class = null) {
 
@@ -74,11 +74,11 @@ final class Ecb {
     }
 
     /**
-     * Итого в корзине / Total in cart
+     * Total in cart
      * 
-     * @param string $marker ($marker (маркер формата валюты / format currency marker))
-     * @param string $class (класс bootstrap для скидки / bootstrap class for sale)
-     * @return string (выходные данные / output data)
+     * @param string $marker Format currency marker
+     * @param string $class Bootstrap class for sale
+     * @return string Output data
      */
     public static function totalPriceCartInterface($marker, $class = null) {
         
@@ -99,10 +99,10 @@ final class Ecb {
     }
 
     /**
-     * Ценовой терминал / Price terminal
+     * Price terminal
      * 
-     * @param string $language (язык / language)
-     * @return array (выходные данные / output data)
+     * @param string $language Language
+     * @return array Output data
      */
     public static function priceTerminal($language = null) {
 
@@ -157,12 +157,11 @@ final class Ecb {
     }
 
     /**
-     * Итоговый налог / Total tax
+     * Total tax
      * 
-     * @param array $tax_data (массив с данными по налогу / array with tax data)
-     * @param string $discounted_price (цена с учетом скидок / price with sales)
-     * @param string $currency (валюта / currency)
-     * @return string (итоговый налог / total tax)
+     * @param array $tax_data Array with tax data
+     * @param string $discounted_price Price with sales
+     * @return string Total tax
      */
     public static function totalTax($tax_data, $discounted_price) {
 
@@ -180,11 +179,11 @@ final class Ecb {
     }
 
     /**
-     * Обработчик скидок / Discount handler
+     * Discount handler
      * 
-     * @param array $input (массив с данными по товару / array with product data)
-     * @param string $language (язык /language)
-     * @return array (выходные данные / output data)
+     * @param array $input (Array with product data
+     * @param string $language Language
+     * @return array Output data
      */
     public static function discountHandler($input, $language = null) {
         
@@ -237,11 +236,11 @@ final class Ecb {
     }
 
     /**
-     * Стоимость с учетом валюты / Price with currency
+     * Price with currency
      *
-     * @param string $price (значение стоимости / price value)
-     * @param string $currency (id валюты / currency id)
-     * @return string|FALSE string (стоимость с учетом валюты / price with currency)
+     * @param string $price Price value
+     * @param string $currency Currency
+     * @return string|FALSE Price with currency
      */
     public static function currencyPrice($price, $currency) {
 
@@ -256,12 +255,12 @@ final class Ecb {
     }
 
     /**
-     * Стоимость с учетом регионального формата / Price with region format
+     * Price with region format
      *
-     * @param string $price (цена / price)
-     * @param string $format (флаг формата / format flag)
-     * @param string $language (язык / language)
-     * @return array $price (данные по стоимости / price data)
+     * @param string $price Price
+     * @param string $format Format flag
+     * @param string $language Language
+     * @return string Format price data
      */
     public static function formatPrice($price, $format = null, $language = null) {
 
@@ -311,5 +310,3 @@ final class Ecb {
     }
 
 }
-
-?>

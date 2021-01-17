@@ -8,9 +8,9 @@
 namespace eMarket\Core;
 
 /**
- * Класс для навигации и сопутствующих элементов
+ * Pages
  *
- * @package Navigation
+ * @package Pages
  * @author eMarket
  * 
  */

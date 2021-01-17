@@ -8,7 +8,7 @@
 namespace eMarket\Core;
 
 /**
- * Класс для модулей / Class for modules
+ * Modules
  *
  * @package Modules
  * @author eMarket
@@ -21,9 +21,9 @@ final class Modules {
     public static $discount_default = '';
 
     /**
-     * Инсталляция модуля / Install module
+     * Install module
      *
-     * @param array $module (входящие данные / input data)
+     * @param array $module Input data
      */
     public static function install($module) {
 
@@ -32,9 +32,9 @@ final class Modules {
     }
 
     /**
-     * Удаление модуля / Delete module
+     * Delete module
      *
-     * @param array $module (входящие данные / input data)
+     * @param array $module Input data
      */
     public static function uninstall($module) {
         \eMarket\Core\Pdo::action("DELETE FROM " . TABLE_MODULES . " WHERE name=? AND type=?", [$module[1], $module[0]]);
@@ -73,8 +73,8 @@ final class Modules {
     }
 
     /**
-     * Подключение скидок / Connecting discounts
-     * @return array $output
+     * Connecting discounts
+     * @return array
      */
     public static function discountRouter($marker) {
 

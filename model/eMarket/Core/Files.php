@@ -8,7 +8,7 @@
 namespace eMarket\Core;
 
 /**
- * Класс для работы с файлами
+ * Class for working with files
  *
  * @package Files
  * @author eMarket
@@ -17,48 +17,41 @@ namespace eMarket\Core;
 class Files {
 
     /**
-     * Загрузчик изображений
+     * Images uploader
      *
-     * @param string $TABLE (таблица в БД)
-     * @param string $dir (директория для загружаемых изображений)
-     * @param array $resize_param (параметры ресайза)
+     * @param string $TABLE DB table
+     * @param string $dir Directory for uploaded images
+     * @param array $resize_param Resize param
      */
     public static function imgUpload($TABLE, $dir, $resize_param) {
 
-        // Если получили запрос на получение данных по изображению
         self::imgThumbAndSize($resize_param);
 
-        // Новый уникальный префикс для файлов
         $prefix = time() . '_';
-        // Составляем список файлов изображений
         $files = glob(ROOT . '/uploads/temp/files/*');
         $count_files = count($files);
 
-        // Если открываем модальное окно, то очищаются папки временных файлов изображений
         if (\eMarket\Core\Valid::inPOST('file_upload') == 'empty') {
             \eMarket\Core\Tree::filesDirAction(ROOT . '/uploads/temp/originals/');
             \eMarket\Core\Tree::filesDirAction(ROOT . '/uploads/temp/thumbnail/');
             \eMarket\Core\Tree::filesDirAction(ROOT . '/uploads/temp/files/');
         }
-        // Если нажали на кнопку Добавить
+
         if (\eMarket\Core\Valid::inPOST('add')) {
-            // Делаем ресайз
             if ($count_files > 0) {
                 self::imgResize($dir, $files, $prefix, $resize_param);
             }
 
-            // Составляем новый список файлов изображений
             $files = glob(ROOT . '/uploads/temp/originals/*');
             $count_files = count($files);
             if ($count_files > 0) {
 
-                // Язык
                 if (\eMarket\Core\Valid::inPOST('set_language')) {
                     $language = \eMarket\Core\Valid::inPOST('set_language');
                 } else {
                     $language = lang('#lang_all')[0];
                 }
-                // Получаем последний id
+
                 $id_max = \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . $TABLE . " WHERE language=? ORDER BY id DESC", [$language]);
                 $id = intval($id_max);
 
@@ -68,31 +61,27 @@ class Files {
                         array_push($image_list, basename($file));
                     }
                 }
-                // "Главное изображение" по-умолчанию
+
                 if (count($image_list) > 0) {
                     $general_image_add = $image_list[0];
                 }
-                // Назначаем "Главное изображение" в модальном окне "Добавить"
+
                 if (\eMarket\Core\Valid::inPOST('general_image_add')) {
                     $general_image_add = $prefix . \eMarket\Core\Valid::inPOST('general_image_add');
                 }
-                // Перемещаем оригинальные файлы из временной папки в постоянную
+
                 \eMarket\Core\Tree::filesDirAction(ROOT . '/uploads/temp/originals/', ROOT . '/uploads/images/' . $dir . '/originals/');
 
-                // Обновляем запись для всех вкладок
                 \eMarket\Core\Pdo::action("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [json_encode($image_list), $general_image_add, $id]);
             }
         }
 
-        // Если нажали на кнопку Редактировать
         if (\eMarket\Core\Valid::inPOST('edit')) {
 
             $id = \eMarket\Core\Valid::inPOST('edit');
 
-            // Делаем ресайз
             self::imgResize($dir, $files, $prefix, $resize_param);
 
-            // Составляем новый список файлов изображений
             $files = glob(ROOT . '/uploads/temp/originals/*');
 
             $image_list = json_decode(\eMarket\Core\Pdo::selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), 1);
@@ -101,47 +90,40 @@ class Files {
                     array_push($image_list, basename($file));
                 }
             }
-            // "Главное изображение" по-умолчанию
+
             if (count($image_list) > 0) {
                 $general_image_edit = $image_list[0];
             }
-            // Назначаем "Главное изображение" в модальном окне "Редактировать"
+
             if (\eMarket\Core\Valid::inPOST('general_image_edit')) {
                 $general_image_edit = \eMarket\Core\Valid::inPOST('general_image_edit');
             }
-            // Назначаем "Главное изображение" для нового не сохраненного изображения в модальном окне "Редактировать"
+
             if (\eMarket\Core\Valid::inPOST('general_image_edit_new')) {
                 $general_image_edit = $prefix . \eMarket\Core\Valid::inPOST('general_image_edit_new');
             }
 
-            // Перемещаем оригинальные файлы из временной папки в постоянную
             \eMarket\Core\Tree::filesDirAction(ROOT . '/uploads/temp/originals/', ROOT . '/uploads/images/' . $dir . '/originals/');
 
-            // Обновляем запись
             if (isset($general_image_edit)) {
                 \eMarket\Core\Pdo::action("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [json_encode($image_list), $general_image_edit, $id]);
             } else {
                 \eMarket\Core\Pdo::action("UPDATE " . $TABLE . " SET logo=? WHERE id=?", [json_encode($image_list), $id]);
             }
 
-            // Выборочное удаление изображений в модальном окне "Редактировать"
             if (\eMarket\Core\Valid::inPOST('delete_image')) {
-                // Получаем массив удаляемых изображений
                 $delete_image_arr = explode(',', \eMarket\Core\Valid::inPOST('delete_image'), -1);
 
-                // Получаем массив изображений из БД
                 $image_list_arr = json_decode(\eMarket\Core\Pdo::selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), 1);
                 $image_list_new = [];
                 foreach ($image_list_arr as $key => $file) {
                     if (!in_array($file, $delete_image_arr)) {
                         array_push($image_list_new, $file);
                     } else {
-                        // Удаляем файлы
                         foreach ($resize_param as $key => $value) {
                             \eMarket\Core\Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $file);
                         }
                         \eMarket\Core\Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/originals/' . $file);
-                        // Если удаляемая картинка является главной, то устанавливаем маркер
                         if ($file == \eMarket\Core\Pdo::selectPrepare("SELECT logo_general FROM " . $TABLE . " WHERE id=?", [$id])) {
                             \eMarket\Core\Pdo::action("UPDATE " . $TABLE . " SET logo_general=? WHERE id=?", [NULL, $id]);
                             $logo_general_update = 'ok';
@@ -149,7 +131,6 @@ class Files {
                     }
                 }
                 if (isset($logo_general_update) && count($image_list_new) > 0) {
-                    // Если есть маркер, то устанавливаем новую первую картинку по списку главной
                     \eMarket\Core\Pdo::action("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [json_encode($image_list_new), $image_list_new[0], $id]);
                 } else {
                     \eMarket\Core\Pdo::action("UPDATE " . $TABLE . " SET logo=? WHERE id=?", [json_encode($image_list_new), $id]);
@@ -157,7 +138,6 @@ class Files {
             }
         }
 
-        // Если нажали на кнопку Удалить
         if (\eMarket\Core\Valid::inPOST('delete')) {
             if (!is_array(\eMarket\Core\Valid::inPOST('delete'))) {
                 $idx = [\eMarket\Core\Valid::inPOST('delete')];
@@ -172,7 +152,6 @@ class Files {
                         $logo_delete = json_decode(\eMarket\Core\Pdo::selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), 1);
                         if (is_countable($logo_delete)) {
                             foreach ($logo_delete as $file) {
-                                // Удаляем файлы
                                 foreach ($resize_param as $key => $value) {
                                     \eMarket\Core\Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $file);
                                 }
@@ -184,60 +163,51 @@ class Files {
             }
         }
 
-        // Выборочное удаление изображений в модальном окне "Добавить"
         if (\eMarket\Core\Valid::inPOST('delete_new_image') == 'ok' && \eMarket\Core\Valid::inPOST('delete_image')) {
             $id = \eMarket\Core\Valid::inPOST('delete_image');
 
-            // Удаляем файлы
             \eMarket\Core\Func::deleteFile(ROOT . '/uploads/temp/files/' . $id);
             \eMarket\Core\Func::deleteFile(ROOT . '/uploads/temp/thumbnail/' . $id);
         }
     }
 
     /**
-     * Загрузчик изображений
+     * Product images uploader
      *
-     * @param string $TABLE (таблица в БД)
-     * @param string $dir (директория для загружаемых изображений)
-     * @param array $resize_param (параметры ресайза)
+     * @param string $TABLE DB table
+     * @param string $dir Directory for uploaded images
+     * @param array $resize_param Resize param
      */
     public static function imgUploadProduct($TABLE, $dir, $resize_param) {
 
-        // Если получили запрос на получение данных по изображению
         self::imgThumbAndSize($resize_param);
 
-        // Новый уникальный префикс для файлов
         $prefix = time() . '_';
-        // Составляем список файлов изображений
+
         $files = glob(ROOT . '/uploads/temp/files/*');
         $count_files = count($files);
 
-        // Если открываем модальное окно, то очищаются папки временных файлов изображений
         if (\eMarket\Core\Valid::inPOST('file_upload') == 'empty') {
             \eMarket\Core\Tree::filesDirAction(ROOT . '/uploads/temp/originals/');
             \eMarket\Core\Tree::filesDirAction(ROOT . '/uploads/temp/thumbnail/');
             \eMarket\Core\Tree::filesDirAction(ROOT . '/uploads/temp/files/');
         }
-        // Если нажали на кнопку Добавить
+
         if (\eMarket\Core\Valid::inPOST('add_product')) {
-            // Делаем ресайз
             if ($count_files > 0) {
                 self::imgResize($dir, $files, $prefix, $resize_param);
             }
 
-            // Составляем новый список файлов изображений
             $files = glob(ROOT . '/uploads/temp/originals/*');
             $count_files = count($files);
             if ($count_files > 0) {
 
-                // Язык
                 if (\eMarket\Core\Valid::inPOST('set_language')) {
                     $language = \eMarket\Core\Valid::inPOST('set_language');
                 } else {
                     $language = lang('#lang_all')[0];
                 }
 
-                // Получаем последний id
                 $id_max = \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . $TABLE . " WHERE language=? ORDER BY id DESC", [$language]);
                 $id = intval($id_max);
 
@@ -247,31 +217,27 @@ class Files {
                         array_push($image_list, basename($file));
                     }
                 }
-                // "Главное изображение" по-умолчанию
+
                 if (count($image_list) > 0) {
                     $general_image_add = $image_list[0];
                 }
-                // Назначаем "Главное изображение" в модальном окне "Добавить"
+ 
                 if (\eMarket\Core\Valid::inPOST('general_image_add_product')) {
                     $general_image_add = $prefix . \eMarket\Core\Valid::inPOST('general_image_add_product');
                 }
-                // Перемещаем оригинальные файлы из временной папки в постоянную
+
                 \eMarket\Core\Tree::filesDirAction(ROOT . '/uploads/temp/originals/', ROOT . '/uploads/images/' . $dir . '/originals/');
 
-                // Обновляем запись для всех вкладок
                 \eMarket\Core\Pdo::action("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [json_encode($image_list), $general_image_add, $id]);
             }
         }
 
-        // Если нажали на кнопку Редактировать
         if (\eMarket\Core\Valid::inPOST('edit_product')) {
 
             $id = \eMarket\Core\Valid::inPOST('edit_product');
 
-            // Делаем ресайз
             self::imgResize($dir, $files, $prefix, $resize_param);
 
-            // Составляем новый список файлов изображений
             $files = glob(ROOT . '/uploads/temp/originals/*');
 
             $image_list = json_decode(\eMarket\Core\Pdo::selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), 1);
@@ -280,47 +246,40 @@ class Files {
                     array_push($image_list, basename($file));
                 }
             }
-            // "Главное изображение" по-умолчанию
+
             if (count($image_list) > 0) {
                 $general_image_edit = $image_list[0];
             }
-            // Назначаем "Главное изображение" в модальном окне "Редактировать"
+
             if (\eMarket\Core\Valid::inPOST('general_image_edit_product')) {
                 $general_image_edit = \eMarket\Core\Valid::inPOST('general_image_edit_product');
             }
-            // Назначаем "Главное изображение" для нового не сохраненного изображения в модальном окне "Редактировать"
+ 
             if (\eMarket\Core\Valid::inPOST('general_image_edit_new_product')) {
                 $general_image_edit = $prefix . \eMarket\Core\Valid::inPOST('general_image_edit_new_product');
             }
 
-            // Перемещаем оригинальные файлы из временной папки в постоянную
             \eMarket\Core\Tree::filesDirAction(ROOT . '/uploads/temp/originals/', ROOT . '/uploads/images/' . $dir . '/originals/');
 
-            // Обновляем запись
             if (isset($general_image_edit)) {
                 \eMarket\Core\Pdo::action("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [json_encode($image_list), $general_image_edit, $id]);
             } else {
                 \eMarket\Core\Pdo::action("UPDATE " . $TABLE . " SET logo=? WHERE id=?", [json_encode($image_list), $id]);
             }
 
-            // Выборочное удаление изображений в модальном окне "Редактировать"
             if (\eMarket\Core\Valid::inPOST('delete_image_product')) {
-                // Получаем массив удаляемых изображений
                 $delete_image_arr = explode(',', \eMarket\Core\Valid::inPOST('delete_image_product'), -1);
 
-                // Получаем массив изображений из БД
                 $image_list_arr = json_decode(\eMarket\Core\Pdo::selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), 1);
                 $image_list_new = [];
                 foreach ($image_list_arr as $key => $file) {
                     if (!in_array($file, $delete_image_arr)) {
                         array_push($image_list_new, $file);
                     } else {
-                        // Удаляем файлы
                         foreach ($resize_param as $key => $value) {
                             \eMarket\Core\Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $file);
                         }
                         \eMarket\Core\Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/originals/' . $file);
-                        // Если удаляемая картинка является главной, то устанавливаем маркер
                         if ($file == \eMarket\Core\Pdo::selectPrepare("SELECT logo_general FROM " . $TABLE . " WHERE id=?", [$id])) {
                             \eMarket\Core\Pdo::action("UPDATE " . $TABLE . " SET logo_general=? WHERE id=?", [NULL, $id]);
                             $logo_general_update = 'ok';
@@ -328,7 +287,6 @@ class Files {
                     }
                 }
                 if (isset($logo_general_update) && is_array($image_list_new)) {
-                    // Если есть маркер, то устанавливаем новую первую картинку по списку главной
                     \eMarket\Core\Pdo::action("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [json_encode($image_list_new), $image_list_new[0], $id]);
                 } else {
                     \eMarket\Core\Pdo::action("UPDATE " . $TABLE . " SET logo=? WHERE id=?", [json_encode($image_list_new), $id]);
@@ -336,19 +294,16 @@ class Files {
             }
         }
 
-        // Если нажали на кнопку Удалить
         if (\eMarket\Core\Valid::inPOST('delete')) {
             $idx = \eMarket\Core\Func::deleteEmptyInArray(\eMarket\Core\Valid::inPOST('delete'));
 
             for ($i = 0; $i < count($idx); $i++) {
                 if (strstr($idx[$i], '_', true) == 'product') {
-                    // Это товар
                     $id = explode('product_', $idx[$i]);
 
                     $logo_delete = json_decode(\eMarket\Core\Pdo::selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id[1]]), 1);
                     if (is_countable($logo_delete)) {
                         foreach ($logo_delete as $file) {
-                            // Удаляем файлы
                             foreach ($resize_param as $key => $value) {
                                 \eMarket\Core\Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $file);
                             }
@@ -359,33 +314,30 @@ class Files {
             }
         }
 
-        // Выборочное удаление изображений в модальном окне "Добавить"
         if (\eMarket\Core\Valid::inPOST('delete_new_image_product') == 'ok' && \eMarket\Core\Valid::inPOST('delete_image_product')) {
             $id = \eMarket\Core\Valid::inPOST('delete_image_product');
 
-            // Удаляем файлы
             \eMarket\Core\Func::deleteFile(ROOT . '/uploads/temp/files/' . $id);
             \eMarket\Core\Func::deleteFile(ROOT . '/uploads/temp/thumbnail/' . $id);
         }
     }
 
     /**
-     * Ресайз изображений
+     * РImages resize
      *
-     * @param string $dir директория для загружаемых изображений)
-     * @param array $files (массив с загружаемыми файлами)
-     * @param string $prefix (префикс к названию файлов)
-     * @param array $resize_param (параметры ресайза)
+     * @param string $dir Directory for uploaded images
+     * @param array $files Files array
+     * @param string $prefix Prefix fo files
+     * @param array $resize_param Resize param
      */
     public static function imgResize($dir, $files, $prefix, $resize_param) {
 
-        // Делаем ресайз
         $IMAGE = new \claviska\SimpleImage;
 
         $resize_max = self::imgResizeMax($resize_param);
 
         foreach ($files as $file) {
-            if (is_file($file) && file_exists($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
+            if (is_file($file) && file_exists($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') {
                 foreach ($resize_param as $key => $value) {
 
                     $width = $IMAGE->fromFile(ROOT . '/uploads/temp/files/' . basename($file))->getWidth();
@@ -395,13 +347,12 @@ class Files {
                     $quality_height = $resize_max[1];
 
                     if ($width >= $quality_width OR $height >= $quality_height) {
-                        //Копируем выбранный оригинал во временную папку
                         if (!file_exists(ROOT . '/uploads/temp/originals/' . $prefix . basename($file))) {
                             copy(ROOT . '/uploads/temp/files/' . basename($file), ROOT . '/uploads/temp/originals/' . $prefix . basename($file));
                         }
                         $IMAGE->fromFile(ROOT . '/uploads/temp/files/' . basename($file))
                                 ->autoOrient()
-                                ->bestFit($value[0], $value[1]); // ширина, высота
+                                ->bestFit($value[0], $value[1]);
                         if (\eMarket\Core\Valid::inPOST('effect-edit-product') == 'effect-sepia' OR \eMarket\Core\Valid::inPOST('effect-add-product') == 'effect-sepia') {
                             $IMAGE->sepia();
                         }
@@ -417,7 +368,7 @@ class Files {
                         $IMAGE->toFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $prefix . basename($file));
                     }
                 }
-                // Удаляем временные файлы
+
                 \eMarket\Core\Func::deleteFile(ROOT . '/uploads/temp/thumbnail/' . basename($file));
                 \eMarket\Core\Func::deleteFile(ROOT . '/uploads/temp/files/' . basename($file));
             }
@@ -425,10 +376,10 @@ class Files {
     }
 
     /**
-     * Массив максимальных размеров изображения после ресайза
+     * Array of maximum image sizes after resize
      *
-     * @param array $resize_param (параметры ресайза)
-     * @return array $resize_max (параметры ресайза для максимального качества)
+     * @param array $resize_param Resize param
+     * @return array Resize parameters for maximum quality
      */
     public static function imgResizeMax($resize_param) {
 
@@ -439,33 +390,29 @@ class Files {
     }
 
     /**
-     * Функция нарезки thumbnail и получения размера изображения по запросу Ajax
+     * Thumbnail slicing and image resizing function on Ajax request
      *
-     * @param array $resize_param (параметры ресайза)
+     * @param array $resize_param Resize param
      */
     public static function imgThumbAndSize($resize_param) {
 
         $IMAGE = new \claviska\SimpleImage;
         $resize_max = self::imgResizeMax($resize_param);
 
-        // Если получили запрос на получение данных по изображению
         if (\eMarket\Core\Valid::inPOST('image_data')) {
             $file = \eMarket\Core\Valid::inPOST('image_data');
 
-            // Массив с данными по оригинальному изображению
             $image_data = getimagesize(ROOT . '/uploads/temp/files/' . $file);
-            // Получаем ширину и высоту изображения
             $width = $image_data[0];
             $height = $image_data[1];
-            //Минимальный размер ширины и высоты для качественного ресайза
+
             $quality_width = $resize_max[0];
             $quality_height = $resize_max[1];
 
-            // Делаем ресайз временной картинки thumbnail
             if ($width >= $quality_width OR $height >= $quality_height) {
                 $IMAGE->fromFile(ROOT . '/uploads/temp/files/' . $file)
                         ->autoOrient()
-                        ->bestFit($resize_param[0][0], $resize_param[0][1]); // ширина, высота
+                        ->bestFit($resize_param[0][0], $resize_param[0][1]);
                 if (\eMarket\Core\Valid::inPOST('effect_edit') == 'effect-sepia' OR \eMarket\Core\Valid::inPOST('effect_add') == 'effect-sepia') {
                     $IMAGE->sepia();
                 }
@@ -480,12 +427,10 @@ class Files {
                 }
                 $IMAGE->toFile(ROOT . '/uploads/temp/thumbnail/' . $file);
             }
-            // Отправяем данные по изображению в ответ на запрос Ajax
+            // Ajax request
             echo json_encode($image_data);
             exit();
         }
     }
 
 }
-
-?>

@@ -1,4 +1,5 @@
 <?php
+
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -7,7 +8,7 @@
 namespace eMarket\Core;
 
 /**
- * Класс для древовидных структур
+ * Tree
  *
  * @package Tree
  * @author eMarket
@@ -16,24 +17,22 @@ namespace eMarket\Core;
 class Tree {
 
     /**
-     * ФУНКЦИЯ ПОСТРОЕНИЯ ДЕРЕВА К ФАЙЛАМ (ПУСТЫЕ ПАПКИ ИГНОРИРУЮТСЯ)
+     * Building tree to files
      *
-     * @param string $dir (путь к директории с файлами)
-     * @return array $files (список файлов)
+     * @param string $dir Path to directory with files
+     * @return array
      */
     public static function filesTree($dir) {
-        
+
         $handle = opendir($dir) or die("Error: Can't open directory $dir");
         $files = [];
         $subfiles = [];
         while (false !== ($file = readdir($handle))) {
-            if ($file != '.' && $file != '..' && $file != '.gitkeep' && $file != '.gitignore') { //Исключаемые данные
+            if ($file != '.' && $file != '..' && $file != '.gitkeep' && $file != '.gitignore') {
                 if (is_dir($dir . '/' . $file)) {
 
-                    // Получим список файлов вложенной папки...  
                     $subfiles = self::filesTree($dir . '/' . $file);
 
-                    // ...и добавим их к общему списку  
                     $files = array_merge($files, $subfiles);
                 } else {
                     $files[] = $dir . '/' . $file;
@@ -45,35 +44,35 @@ class Tree {
     }
 
     /**
-     * ФУНКЦИЯ ПЕРЕМЕЩЕНИЯ ИЛИ УДАЛЕНИЯ ФАЙЛОВ
+     * Function of moving or deleting files
      *
-     * @param string $dir (путь к директории с файлами)
-     * @param string|null $new_dir опционально (директория для перемещения)
-     * @param string|null $rename опционально (префикс к имени файла)
+     * @param string $dir Path to directory with files
+     * @param string|null $new_dir Directory to move
+     * @param string|null $rename Prefix
      */
     public static function filesDirAction($dir, $new_dir = null, $rename = null) {
-        
+
         $files = glob($dir . '*');
         foreach ($files as $file) {
-            if (is_file($file) && file_exists($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
+            if (is_file($file) && file_exists($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') {
                 if (isset($new_dir)) {
-                    copy($file, $new_dir . $rename . basename($file)); // Переименовываем и копируем файлы в новое место
+                    copy($file, $new_dir . $rename . basename($file));
                 }
                 chmod($file, 0777);
-                unlink($file); // Удаляем старые файлы
+                unlink($file);
             }
         }
     }
 
     /**
-     * ФУНКЦИЯ ПОЛУЧЕНИЯ СПИСКА ВСЕХ ДИРЕКТОРИЙ ПО УКАЗАННОМУ ПУТИ ДО 2 УРОВНЯ
+     * List of all directories up to level 2
      *
-     * @param string $path (путь к директории)
-     * @param string $marker (если true, то выдает ассоциированный массив с подкаталогами)
-     * @return array (массив директорий)
+     * @param string $path Path to directory with files
+     * @param string $marker Marker
+     * @return array
      */
     public static function allDirForPath($path, $marker = null) {
-        
+
         $level_1 = array_values(array_diff(scandir($path), ['..', '.']));
         if ($marker == 'true') {
             $level_2 = [];
@@ -87,14 +86,14 @@ class Tree {
     }
 
     /**
-     * ФУНКЦИЯ ВЫВОДА КАТЕГОРИЙ
+     * Show Categories
      *
-     * @param array $sql (массив категорий в виде объекта)
-     * @param string $id (id от которого нужно собирать предков вверх, передается через GET)
-     * @param array $array_cat2 (вспомогательный массив)
-     * @param string $parent_id (родительская категория для дерева)
-     * @param string $marker (маркер для добавления класса в первый ul)
-     * @return array $array_cat2 (массив всех предков для breadcrumb)
+     * @param array $sql Array of categories
+     * @param string $id Id
+     * @param array $array_cat2 Auxiliary array
+     * @param string $parent_id Parrent id
+     * @param string $marker Marker
+     * @return array
      */
     public static function categories($sql, $id = null, $array_cat2 = [], $parent_id = 0, $marker = null) {
 
@@ -135,11 +134,11 @@ class Tree {
         }
         return $array_cat2;
     }
-    
+
     /**
-     * Автозагрузка файлов классов для модулей
+     * Autoloading class files for modules
      *
-     * @return array $return_array (список путей к классам модулей)
+     * @return array $return_array
      */
     public static function modulesClasses() {
 
@@ -158,8 +157,6 @@ class Tree {
         }
 
         return $return_array;
-    }    
+    }
 
 }
-
-?>

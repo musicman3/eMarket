@@ -8,7 +8,7 @@
 namespace eMarket\Core;
 
 /**
- * Класс для отладочной информации / Debug class
+ * Debug class
  *
  * @package Debug
  * @author eMarket
@@ -19,9 +19,9 @@ class Debug {
     public static $TIME_START;
 
     /**
-     * Отображение массива при отладке / Array displaying when debugging
+     * Array displaying when debugging
      *
-     * @param array $var (массив / array)
+     * @param array Input array
      */
     public static function trace($var) {
         static $int = 0;
@@ -32,9 +32,9 @@ class Debug {
     }
 
     /**
-     * Отображение отладочной информации / Displaying debug information
+     * Displaying debug information
      *
-     * @param string $start_time (начальное время / start time)
+     * @param string Start time
      */
     public static function info() {
 
@@ -50,5 +50,3 @@ class Debug {
     }
 
 }
-
-?>

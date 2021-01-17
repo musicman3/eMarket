@@ -8,7 +8,7 @@
 namespace eMarket\Core;
 
 /**
- * Класс для валидации данных
+ * Validation
  *
  * @package Valid
  * @author eMarket
@@ -17,53 +17,51 @@ namespace eMarket\Core;
 class Valid {
 
     /**
-     * Валидация глобальных переменных $_POST[]
+     * POST validation
      *
-     * @param array|string $name (массив или строка $name)
-     * @return array|string $name (массив или строка $name)
+     * @param array|string $input Input data
+     * @return array|string
      */
-    public static function inPOST($name) {
-        if (filter_input(INPUT_POST, $name, FILTER_DEFAULT, FILTER_FORCE_ARRAY) == TRUE) {
-            return (isset($_POST[$name])) ? $_POST[$name] : null;
+    public static function inPOST($input) {
+        if (filter_input(INPUT_POST, $input, FILTER_DEFAULT, FILTER_FORCE_ARRAY) == TRUE) {
+            return (isset($_POST[$input])) ? $_POST[$input] : null;
         }
     }
 
     /**
-     * Валидация глобальных переменных $_GET[]
+     * GET validation
      *
-     * @param array|string $name (массив или строка $name)
-     * @return array|string $name (массив или строка $name)
+     * @param array|string $input Input data
+     * @return array|string
      */
-    public static function inGET($name) {
-        if (filter_input(INPUT_GET, $name, FILTER_DEFAULT, FILTER_FORCE_ARRAY) == TRUE) {
-            return (isset($_GET[$name])) ? $_GET[$name] : null;
+    public static function inGET($input) {
+        if (filter_input(INPUT_GET, $input, FILTER_DEFAULT, FILTER_FORCE_ARRAY) == TRUE) {
+            return (isset($_GET[$input])) ? $_GET[$input] : null;
         }
     }
 
     /**
-     * Валидация глобальных переменных $_SERVER[]
+     * $_SERVER validation
      *
-     * @param string $name (строка $name)
-     * @return string $name (строка $name)
+     * @param string $input Input data
+     * @return string
      */
-    public static function inSERVER($name) {
-        if (filter_input(INPUT_SERVER, $name, FILTER_DEFAULT, FILTER_FORCE_ARRAY) == TRUE) {
-            return (isset($_SERVER[$name])) ? $_SERVER[$name] : null;
+    public static function inSERVER($input) {
+        if (filter_input(INPUT_SERVER, $input, FILTER_DEFAULT, FILTER_FORCE_ARRAY) == TRUE) {
+            return (isset($_SERVER[$input])) ? $_SERVER[$input] : null;
         }
     }
 
     /**
-     * Валидация глобальных переменных $_COOKIE[]
+     * $_COOKIE validation
      *
-     * @param string $name (строка $name)
-     * @return string $name (строка $name)
+     * @param string $input Input data
+     * @return string
      */
-    public static function inCOOKIE($name) {
-        if (filter_input(INPUT_COOKIE, $name) == TRUE) {
-            return (isset($_COOKIE[$name])) ? $_COOKIE[$name] : null;
+    public static function inCOOKIE($input) {
+        if (filter_input(INPUT_COOKIE, $input) == TRUE) {
+            return (isset($_COOKIE[$input])) ? $_COOKIE[$input] : null;
         }
     }
 
 }
-
-?>

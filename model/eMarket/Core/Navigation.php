@@ -8,7 +8,7 @@
 namespace eMarket\Core;
 
 /**
- * Класс для навигации и сопутствующих элементов
+ * Navigation
  *
  * @package Navigation
  * @author eMarket
@@ -17,16 +17,16 @@ namespace eMarket\Core;
 class Navigation {
 
     /**
-     * КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ ДЛЯ GET
+     * Get navigation
      *
-     * @param string $count_lines (количество строк на странице)
-     * @param string $lines_on_page (максимум строк на странице)
-     * @param string $transfer (используется трансфер)
-     * @return array array($start, $finish)
+     * @param string $count_lines Number of lines per page
+     * @param string $lines_on_page Max of lines per page
+     * @param string $transfer Transfer
+     * @return array
      */
     public static function getLink($count_lines, $lines_on_page, int $transfer = null) {
 
-        $start = 0; // устанавливаем страницу в ноль при заходе
+        $start = 0;
         $finish = $lines_on_page;
 
         if ($count_lines <= $lines_on_page) {
@@ -41,10 +41,9 @@ class Navigation {
             $finish = $finish + $transfer;
         }
 
-        // Если нажали на кнопку вперед GET
         if (\eMarket\Core\Valid::inGET('finish')) {
-            $finish = \eMarket\Core\Valid::inGET('finish') + $lines_on_page; // пересчитываем количество строк на странице
-            $start = \eMarket\Core\Valid::inGET('start') + $lines_on_page; // задаем значение счетчика
+            $finish = \eMarket\Core\Valid::inGET('finish') + $lines_on_page;
+            $start = \eMarket\Core\Valid::inGET('start') + $lines_on_page;
             if ($start >= $count_lines) {
                 $start = \eMarket\Core\Valid::inGET('start');
             }
@@ -53,10 +52,10 @@ class Navigation {
             }
             return array($start, $finish);
         }
-        // Если нажали на кнопку назад GET
+
         if ($count_lines > $lines_on_page && \eMarket\Core\Valid::inGET('backfinish')) {
-            $finish = \eMarket\Core\Valid::inGET('backstart'); // пересчитываем количество строк на странице
-            $start = \eMarket\Core\Valid::inGET('backstart') - $lines_on_page; // задаем значение счетчика
+            $finish = \eMarket\Core\Valid::inGET('backstart');
+            $start = \eMarket\Core\Valid::inGET('backstart') - $lines_on_page;
             if ($start < 0) {
                 $start = 0;
             }
@@ -70,16 +69,16 @@ class Navigation {
     }
 
     /**
-     * КНОПКИ НАВИГАЦИИ НАЗАД-ВПЕРЕД И ПОСТРОЧНЫЙ ВЫВОД ТАБЛИЦЫ ДЛЯ POST
+     * Post navigation
      *
-     * @param string $count_lines (количество строк на странице)
-     * @param string $lines_on_page (максимум строк на странице)
-     * @param string $transfer (используется трансфер)
-     * @return array array($start, $finish)
+     * @param string $count_lines Number of lines per page
+     * @param string $lines_on_page Max of lines per page
+     * @param string $transfer Transfer
+     * @return array
      */
     public static function postLink($count_lines, $lines_on_page, int $transfer = null) {
 
-        $start = 0; // устанавливаем страницу в ноль при заходе
+        $start = 0;
         $finish = $lines_on_page;
 
         if ($count_lines <= $lines_on_page) {
@@ -94,10 +93,9 @@ class Navigation {
             $finish = $finish + $transfer;
         }
 
-        // Если нажали на кнопку вперед POST
         if (\eMarket\Core\Valid::inPOST('finish')) {
-            $finish = \eMarket\Core\Valid::inPOST('finish') + $lines_on_page; // пересчитываем количество строк на странице
-            $start = \eMarket\Core\Valid::inPOST('start') + $lines_on_page; // задаем значение счетчика
+            $finish = \eMarket\Core\Valid::inPOST('finish') + $lines_on_page;
+            $start = \eMarket\Core\Valid::inPOST('start') + $lines_on_page;
             if ($start >= $count_lines) {
                 $start = \eMarket\Core\Valid::inPOST('start');
             }
@@ -106,10 +104,10 @@ class Navigation {
             }
             return array($start, $finish);
         }
-        // Если нажали на кнопку назад POST
+
         if ($count_lines > $lines_on_page && \eMarket\Core\Valid::inPOST('backfinish')) {
-            $finish = \eMarket\Core\Valid::inPOST('backstart'); // пересчитываем количество строк на странице
-            $start = \eMarket\Core\Valid::inPOST('backstart') - $lines_on_page; // задаем значение счетчика
+            $finish = \eMarket\Core\Valid::inPOST('backstart');
+            $start = \eMarket\Core\Valid::inPOST('backstart') - $lines_on_page;
             if ($start < 0) {
                 $start = 0;
             }
@@ -123,5 +121,3 @@ class Navigation {
     }
 
 }
-
-?>

@@ -8,7 +8,7 @@
 namespace eMarket\Core;
 
 /**
- * Класс для работы сообщениями или уведомлениями
+ * Messages
  *
  * @package Messages
  * @author eMarket
@@ -17,12 +17,12 @@ namespace eMarket\Core;
 class Messages {
 
     /**
-     * Уведомления об ошибках, успехе и т.п.
+     * Error notifications, success, etc.
      * 
-     * @param string $class (класс bootstrap)
-     * @param string $message (сообщение)
-     * @param string $time (время показа)
-     * @param string $start (если показываем самостоятельно)
+     * @param string $class Bootstrap class
+     * @param string $message Message
+     * @param string $time Show time
+     * @param string $start Manual call
      *
      */
     public static function alert($class = null, $message = null, $time = null, $start = false) {
@@ -40,7 +40,6 @@ class Messages {
             return true;
         }
 
-        // При POST и GET по ajax + обновление страницы ШАГ 3 (обновление редиректом)
         if (isset($_SESSION['message_marker']) && $_SESSION['message_marker'] == 'ok_3') {
             if (isset($_SESSION['message'])) {
                 require_once (ROOT . '/view/' . \eMarket\Core\Settings::template() . '/layouts/alert.php');
@@ -48,7 +47,7 @@ class Messages {
             unset($_SESSION['message_marker']);
             unset($_SESSION['message']);
         }
-        // При POST и GET по ajax + обновление страницы ШАГ 4 (обновление по ajax)
+
         if (\eMarket\Core\Valid::inGET('message') == 'ok') {
             if (isset($_SESSION['message'])) {
                 require_once (ROOT . '/view/' . \eMarket\Core\Settings::template() . '/layouts/alert.php');
@@ -57,16 +56,14 @@ class Messages {
             unset($_SESSION['message']);
         }
 
-        // При POST и GET по ajax + обновление страницы ШАГ 2
         if (isset($_SESSION['message_marker']) && $_SESSION['message_marker'] == 'ok_2') {
             $_SESSION['message_marker'] = 'ok_3';
         }
-        // При POST и GET по ajax + обновление страницы ШАГ 1
+
         if (isset($_SESSION['message_marker']) && $_SESSION['message_marker'] == 'ok') {
             $_SESSION['message_marker'] = 'ok_2';
         }
 
-        // Если вызываем самостоятельно
         if (isset($_SESSION['message'][3]) && $_SESSION['message'][3] == TRUE) {
             require_once (ROOT . '/view/' . \eMarket\Core\Settings::template() . '/layouts/alert.php');
             unset($_SESSION['message']);
@@ -74,11 +71,11 @@ class Messages {
     }
 
     /**
-     * Уведомления на E-Mail
+     * Email notifications
      *
-     * @param string $email_to (E-Mail получателя. Разделитель ";")
-     * @param string $subject (текст темы E-Mail)
-     * @param string $message (Сообщение в html)
+     * @param string $email_to Recipient's e-mail. Delimiter ";"
+     * @param string $subject E-mail subject text
+     * @param string $message Html message
      */
     public static function sendMail($email_to, $subject, $message) {
 
@@ -120,5 +117,3 @@ class Messages {
     }
 
 }
-
-?>

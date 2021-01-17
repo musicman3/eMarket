@@ -21,9 +21,9 @@ final class Eac {
     private static $resize_param_product = FALSE;
 
     /**
-     * Инициализация EAC / Init EAC
-     * @param array $resize_param (параметры ресайза категорий / resize param for categories)
-     * @param array $resize_param_product (параметры ресайза товаров/ resize param for products)
+     * Init EAC
+     * @param array $resize_param Resize param for categories
+     * @param array $resize_param_product Resize param for products
      * @return array [$idsx_real_parent_id, self::$parent_id]
      */
     public static function init($resize_param, $resize_param_product) {
@@ -31,53 +31,43 @@ final class Eac {
         self::$resize_param = $resize_param;
         self::$resize_param_product = $resize_param_product;
 
-        // parent_id
         self::parentIdStart();
 
-        // Добавить / Add
         self::addCategory();
 
-        // Редактировать / Edit
         self::editCategory();
 
-        // Добавить товар / Add product
         self::addProduct();
 
-        // Редактировать товар / Edit product
         self::editProduct();
 
-        // Загручик изображений для категорий (ВСТАВЛЯТЬ ПЕРЕД УДАЛЕНИЕМ) / Image loader for categories (INSERT BEFORE DELETING)
+        //Image loader for categories (INSERT BEFORE DELETING)
         \eMarket\Core\Files::imgUpload(TABLE_CATEGORIES, 'categories', self::$resize_param);
 
-        // Загручик изображений для товаров (ВСТАВЛЯТЬ ПЕРЕД УДАЛЕНИЕМ) / Image loader for products (INSERT BEFORE DELETING)
+        //Image loader for products (INSERT BEFORE DELETING)
         \eMarket\Core\Files::imgUploadProduct(TABLE_PRODUCTS, 'products', self::$resize_param_product);
 
-        $idsx_real_parent_id = self::$parent_id; //для отправки в JS / for sent to JS
-        // Удалить / Delete
+        $idsx_real_parent_id = self::$parent_id; //for sent to JS
+
         self::delete();
 
-        // Вырезать / Cut
         self::cut();
 
-        // Вставить / Paste
         self::paste();
 
-        // Скрыть и Отобразить / Hide and Show
         self::status();
 
         self::initDiscount();
 
-        // Стикер / Stiker
         \eMarket\Admin\Stikers::initEac();
 
-        // Сортировка / Sorting
         self::sortList();
 
         return [$idsx_real_parent_id, self::$parent_id];
     }
 
     /**
-     * Инициализация скидок / discount init
+     * Discounts init
      */
     private static function initDiscount() {
 
@@ -90,7 +80,7 @@ final class Eac {
     }
 
     /**
-     * Инициализация parent_id / parent_id init
+     * Parent_id init
      */
     private static function parentIdStart() {
 
@@ -113,8 +103,7 @@ final class Eac {
     }
 
     /**
-     * Сортировка / Sorting
-     * @param string TABLE_CATEGORIES (название таблицы категорий / categories table name)
+     * Sorting
      */
     private static function sortList() {
 
@@ -140,7 +129,7 @@ final class Eac {
     }
 
     /**
-     * Добавить категорию / Add category
+     * Add category
      */
     private static function addCategory() {
 
@@ -167,7 +156,7 @@ final class Eac {
     }
 
     /**
-     * Редактировать категорию / Edit category
+     * Edit category
      */
     private static function editCategory() {
 
@@ -182,7 +171,7 @@ final class Eac {
     }
 
     /**
-     * Удалить категорию / Delete category
+     * Delete category
      */
     private static function delete() {
 
@@ -196,26 +185,26 @@ final class Eac {
 
             for ($i = 0; $i < count($idx); $i++) {
                 if (strstr($idx[$i], '_', true) != 'product') {
-                    // Это категория / This is category
+                    // This is category
                     self::$parent_id = self::dataParentId($idx[$i]);
                     $keys = self::dataKeys($idx[$i]);
 
                     $count_keys = count($keys);
                     for ($x = 0; $x < $count_keys; $x++) {
 
-                        //Удаляем товар и изображения / Removing product and images
+                        // Removing product and images
                         self::deleteImages(TABLE_PRODUCTS, $keys[$x], 'products');
                         \eMarket\Core\Pdo::action("DELETE FROM " . TABLE_PRODUCTS . " WHERE parent_id=?", [$keys[$x]]);
 
-                        //Удаляем подкатегории и изображения / Removing subcategories and images
+                        // Removing subcategories and images
                         self::deleteImages(TABLE_CATEGORIES, $keys[$x], 'categories');
                         \eMarket\Core\Pdo::action("DELETE FROM " . TABLE_CATEGORIES . " WHERE parent_id=?", [$keys[$x]]);
                     }
 
-                    //Удаляем основную категорию / Removing general category
+                    // Removing general category
                     \eMarket\Core\Pdo::action("DELETE FROM " . TABLE_CATEGORIES . " WHERE id=?", [$idx[$i]]);
 
-                    // Очищаем буфер / Buffer empty
+                    // Buffer empty
                     if (isset($_SESSION['buffer']['cat']) && $_SESSION['buffer']['cat'] != FALSE) {
                         $_SESSION['buffer']['cat'] = \eMarket\Core\Func::deleteValInArray($_SESSION['buffer']['cat'], [$idx[$i]]);
                         if (count($_SESSION['buffer']['cat']) == 0) {
@@ -223,12 +212,12 @@ final class Eac {
                         }
                     }
                 } else {
-                    // Это товар / This is product
+                    // This is product
                     $id_prod = explode('product_', $idx[$i]);
                     //Удаляем основной товар / Removing general product
                     \eMarket\Core\Pdo::action("DELETE FROM " . TABLE_PRODUCTS . " WHERE id=?", [$id_prod[1]]);
 
-                    // Очищаем буфер / Buffer empty
+                    // Buffer empty
                     if (isset($_SESSION['buffer']['prod']) && $_SESSION['buffer']['prod'] != FALSE) {
                         $_SESSION['buffer']['prod'] = \eMarket\Core\Func::deleteValInArray($_SESSION['buffer']['prod'], [$id_prod[1]]);
                         if (count($_SESSION['buffer']['prod']) == 0) {
@@ -247,7 +236,7 @@ final class Eac {
     }
 
     /**
-     * Вырезаем категорию / Cut category
+     * Cut category
      */
     private static function cut() {
 
@@ -264,11 +253,11 @@ final class Eac {
 
             for ($i = 0; $i < count($idx); $i++) {
 
-                $parent_id_real = (int) \eMarket\Core\Valid::inPOST('idsx_real_parent_id'); // получить значение из JS
+                $parent_id_real = (int) \eMarket\Core\Valid::inPOST('idsx_real_parent_id');
                 self::$parent_id = self::dataParentId($idx[$i]);
 
                 if (\eMarket\Core\Valid::inPOST('idsx_cut_key') == 'cut') {
-                    // Это категория / This is category
+                    // This is category
                     if (strstr($idx[$i], '_', true) != 'product') {
                         if (!isset($_SESSION['buffer']['cat'])) {
                             $_SESSION['buffer']['cat'] = [];
@@ -278,7 +267,7 @@ final class Eac {
                             self::$parent_id = $parent_id_real;
                         }
                     } else {
-                        // Это товар / This is product
+                        // This is product
                         if (!isset($_SESSION['buffer']['prod'])) {
                             $_SESSION['buffer']['prod'] = [];
                         }
@@ -298,7 +287,7 @@ final class Eac {
     }
 
     /**
-     * Вставляем категорию / Paste category
+     * Paste category
      */
     private static function paste() {
 
@@ -319,7 +308,7 @@ final class Eac {
             $count_session_buffer = $count_session_buffer_cat + $count_session_buffer_prod;
 
             for ($buf = 0; $buf < $count_session_buffer; $buf++) {
-                // Это категория / This is category
+                // This is category
                 if (isset($_SESSION['buffer']['cat'][$buf]) && count($_SESSION['buffer']['cat']) > 0) {
                     $sort_max = \eMarket\Core\Pdo::selectPrepare("SELECT sort_category FROM " . TABLE_CATEGORIES . " WHERE language=? AND parent_id=? ORDER BY sort_category DESC", [lang('#lang_all')[0], $parent_id_real]);
                     $sort_category = intval($sort_max) + 1;
@@ -327,11 +316,11 @@ final class Eac {
                 }
 
                 if (isset($_SESSION['buffer']['prod'][$buf]) && count($_SESSION['buffer']['prod']) > 0) {
-                    // Это товар / This is product
+                    // This is product
                     \eMarket\Core\Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET parent_id=?, attributes=? WHERE id=?", [$parent_id_real, json_encode([]), $_SESSION['buffer']['prod'][$buf]]);
                 }
             }
-            unset($_SESSION['buffer']); // очищаем буфер / Buffer empty
+            unset($_SESSION['buffer']); // Buffer empty
             if ($parent_id_real > 0) {
                 self::$parent_id = $parent_id_real; //
             }
@@ -345,7 +334,7 @@ final class Eac {
     }
 
     /**
-     * Статус категорий / Categories status
+     * Categories status
      */
     private static function status() {
 
@@ -370,7 +359,7 @@ final class Eac {
 
             for ($i = 0; $i < count($idx); $i++) {
                 if (strstr($idx[$i], '_', true) != 'product') {
-                    // Это категория / This is category
+                    // This is category
                     self::$parent_id = self::dataParentId($idx[$i]);
                     $keys = self::dataKeys($idx[$i]);
 
@@ -380,10 +369,10 @@ final class Eac {
                         if ((\eMarket\Core\Valid::inPOST('idsx_status_on_key') == 'On')
                                 or ( \eMarket\Core\Valid::inPOST('idsx_status_off_key') == 'Off')) {
 
-                            // Это категория / This is category
+                            // This is category
                             \eMarket\Core\Pdo::action("UPDATE " . TABLE_CATEGORIES . " SET status=? WHERE parent_id=?", [$status, $keys[$x]]);
 
-                            // Это товар / This is product
+                            // This is product
                             \eMarket\Core\Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET status=? WHERE parent_id=?", [$status, $keys[$x]]);
 
                             if ($parent_id_real > 0) {
@@ -397,7 +386,7 @@ final class Eac {
                         \eMarket\Core\Pdo::action("UPDATE " . TABLE_CATEGORIES . " SET status=? WHERE id=?", [$status, $idx[$i]]);
                     }
                 } else {
-                    // Это товар / This is product
+                    // This is product
                     if ((\eMarket\Core\Valid::inPOST('idsx_status_on_key') == 'On')
                             or ( \eMarket\Core\Valid::inPOST('idsx_status_off_key') == 'Off')) {
                         $id_prod = explode('product_', $idx[$i]);
@@ -413,8 +402,8 @@ final class Eac {
     }
 
     /**
-     * Установка parent_id при навигации / parent_id for navigation
-     * @param string $idx (идентификатор / identifier)
+     * Parent_id for navigation
+     * @param string $idx Identifier
      */
     public static function dataParentId($idx) {
 
@@ -427,8 +416,8 @@ final class Eac {
     }
 
     /**
-     * Ключ категорий / Categories key
-     * @param string $idx (идентификатор / identifier)
+     * Categories key
+     * @param string $idx (Identifier
      * @return array $keys
      */
     public static function dataKeys($idx) {
@@ -450,10 +439,10 @@ final class Eac {
     }
 
     /**
-     * Удаление изображений / Delete images
-     * @param string $TABLE (название таблицы / table name)
-     * @param array $keys (ключи / keys)
-     * @param string $path (путь / path)
+     * Delete images
+     * @param string $TABLE Table name
+     * @param array $keys Keys
+     * @param string $path Path
      */
     private static function deleteImages($TABLE, $keys, $path) {
 
@@ -467,7 +456,7 @@ final class Eac {
         $logo_delete = json_decode(\eMarket\Core\Pdo::getCellFalse("SELECT logo FROM " . $TABLE . " WHERE parent_id=?", [$keys]), 1);
         if (is_countable($logo_delete)) {
             foreach ($logo_delete as $file) {
-                // Удаляем файлы
+                // Delete
                 foreach ($resize as $key => $value) {
                     \eMarket\Core\Func::deleteFile(ROOT . '/uploads/images/' . $path . '/resize_' . $key . '/' . $file);
                 }
@@ -477,13 +466,13 @@ final class Eac {
     }
 
     /**
-     * Добавить товар / Add product
+     * Add product
      */
     private static function addProduct() {
 
         if (\eMarket\Core\Valid::inPOST('add_product')) {
 
-            // Формат даты после Datepicker / Format date after Datepicker
+            // Format date after Datepicker
             if (\eMarket\Core\Valid::inPOST('date_available_product_stock')) {
                 $date_available = date('Y-m-d', strtotime(\eMarket\Core\Valid::inPOST('date_available_product_stock')));
             } else {
@@ -591,13 +580,13 @@ final class Eac {
     }
 
     /**
-     * Редактировать товар / Edit product
+     * Edit product
      */
     private static function editProduct() {
 
         if (\eMarket\Core\Valid::inPOST('edit_product')) {
 
-            // Формат даты после Datepicker / Format date after Datepicker
+            // Format date after Datepicker
             if (\eMarket\Core\Valid::inPOST('date_available_product_stock')) {
                 $date_available = date('Y-m-d', strtotime(\eMarket\Core\Valid::inPOST('date_available_product_stock')));
             } else {
@@ -701,5 +690,3 @@ final class Eac {
     }
 
 }
-
-?>

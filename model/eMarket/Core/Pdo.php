@@ -8,7 +8,7 @@
 namespace eMarket\Core;
 
 /**
- * Класс для работы с БД через PDO
+ * PDO
  *
  * @package Pdo
  * @author eMarket
@@ -16,18 +16,17 @@ namespace eMarket\Core;
  */
 final class Pdo {
 
-    // Счетчик запросов к БД
     public static $QUERY_COUNT = 0;
     private static $CONNECT = null;
 
     /**
-     * Функция для соединения с БД
-     * @param string $marker (маркер)
-     * @return object $CONNECT (объект БД)
+     * Conecting to DB
+     * @param string $marker Marker
+     * @return object
      */
     public static function connect($marker = null) {
 
-        self::$QUERY_COUNT++; //Считаем запросы к БД
+        self::$QUERY_COUNT++;
 
         if ($marker == 'end') {
             self::$CONNECT = null;
@@ -39,11 +38,9 @@ final class Pdo {
             try {
                 self::$CONNECT = new \PDO(DB_TYPE . ':host=' . DB_SERVER . ';dbname=' . DB_NAME, DB_USERNAME, DB_PASSWORD, [\PDO::ATTR_ERRMODE => \PDO::ERRMODE_WARNING, \PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4"]);
             } catch (PDOException $error) {
-                // Если ошибка соединения с БД в инсталляторе, то переадресуем на страницу ошибки
                 if (\eMarket\Core\Settings::path() == 'install') {
                     header('Location: /controller/install/error.php?server_db_error=true&error_message=' . $error->getMessage());
                 } else {
-                    //Выводим на экран, если не в инсталляторе
                     print_r($error->getMessage());
                 }
             }
@@ -53,9 +50,9 @@ final class Pdo {
     }
 
     /**
-     * Инсталляция файла БД
+     * Install DB-file
      *
-     * @param string $path (путь к файлу БД)
+     * @param string $path Path to DB
      */
     public static function dbInstall($path) {
 
@@ -74,10 +71,10 @@ final class Pdo {
     }
 
     /**
-     * getQuery вместо self::connect()->query()
+     * getQuery instead self::connect()->query()
      *
-     * @param string $sql (запрос из БД MYSQL)
-     * @return $result (запрос MYSQL)
+     * @param string $sql SQL query
+     * @return data
      */
     public static function getQuery($sql) {
 
@@ -86,10 +83,10 @@ final class Pdo {
     }
 
     /**
-     * getExec вместо self::connect()->exec()
+     * getExec instead self::connect()->exec()
      *
-     * @param string $sql (запрос из БД MYSQL)
-     * @return $result (запрос MYSQL)
+     * @param string $sql SQL query
+     * @return data
      */
     public static function getExec($sql) {
 
@@ -98,23 +95,11 @@ final class Pdo {
     }
 
     /**
-     * getCell для запроса точного значения ячейки.
-     * Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах.
+     * getCell
      * 
-     * ПРИМЕР
-     *
-     * Если несколько вариантов, удовлетворяющих условию, то выдает только верхний.
-     * Если значение не найдено, то выдает пустой массив: Array()
-     * 
-     * Запрос вида: \eMarket\Core\Pdo::getCell("SELECT language FROM table WHERE id=?", ['1']);
-     * выдаст конкретное значение russian - НЕ МАССИВ!
-     * 
-     * Запрос вида: \eMarket\Core\Pdo::getCell("SELECT * FROM table WHERE language=?", ['russian']);
-     * выдаст значение первого поля, т.е. номер id.
-     * 
-     * @param string $sql (запрос из БД MYSQL)
-     * @param array $a (параметр для execute($a))
-     * @return bool|string|array $result (возвращает массив, строку или FALSE)
+     * @param string $sql SQL query
+     * @param array $a (parameter for execute($a))
+     * @return bool|string|array
      */
     public static function getCell($sql, $a) {
 
@@ -129,63 +114,11 @@ final class Pdo {
     }
 
     /**
-     * getColRow для запроса колонок, строк и участков из строк и колонок.
-     * Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах.
+     * getColRow
      * 
-     * ПРИМЕР
-     *
-     * Если значение не найдено, то выдает пустой массив: Array()
-     * 
-     * Если применять в запросе \eMarket\Core\Pdo::getColRow("SELECT id FROM table WHERE language=?", ['russian']) то выдаст все значения колонки id в виде массива,
-     * удовлетворяющие условию language='russian'.
-     *
-     * Array
-     * (
-     * [0] => Array
-     * (
-     * [0] => 2
-     * )
-     *
-     * [1] => Array
-     * (
-     * [0] => 3
-     * )
-     * )
-     *
-     * Если применить в запросе \eMarket\Core\Pdo::getColRow("SELECT * FROM table WHERE language=?", ['russian']), то выдаст полностью данные всех ячеек строк(и),
-     * содержащих это условие (в массиве). Т.е. получится строковая выборка по условию:
-     *
-     * Array
-     * (
-     * [0] => Array
-     * (
-     * [0] => 1
-     * [1] => russian
-     * [2] => mail@mail.ru
-     * [3] => b0baee9d279d34fa1dfd71aadb908c3f
-     * [4] => admin
-     * )
-     *
-     * [1] => Array
-     * (
-     * [0] => 3
-     * [1] => russian
-     * [2] => m@mail.ru
-     * [3] => b0baee9d279d34fa1dfd71aadb908c3f
-     * [4] => user
-     * )
-     * )
-     *
-     * Если применить в запросе \eMarket\Core\Pdo::getColRow("SELECT id, language FROM table", array()), то выдаст таблицу из указанных колонок в массиве.
-     *
-     * Если применить в запросе \eMarket\Core\Pdo::getColRow("SELECT id, language FROM table WHERE language=?", ['russian']), то выдаст таблицу из id
-     * и language, удовлетворяющих требованию language='russian'.
-     *
-     * Если применить в запросе \eMarket\Core\Pdo::getColRow("SELECT * FROM table", array()), то выдаст всю таблицу в массиве.
-     * 
-     * @param string $sql (запрос из БД MYSQL)
-     * @param array $a (параметр для execute($a))
-     * @return bool|array $result (возвращает массив или FALSE)
+     * @param string $sql SQL query
+     * @param array $a (parameter for execute($a))
+     * @return bool|array
      */
     public static function getColRow($sql, $a) {
 
@@ -199,25 +132,11 @@ final class Pdo {
     }
 
     /**
-     * getCol для запроса колонки в виде одномерного массива.
-     * Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах.
+     * getCol
      * 
-     * ПРИМЕР
-     *
-     * Если значение не найдено, то выдает пустой массив: Array()
-     * 
-     * Если применять в запросе \eMarket\Core\Pdo::getColRow("SELECT name FROM table WHERE language=?", ['russian']) то выдаст все значения колонки id в виде одномерного массива,
-     * удовлетворяющие условию language='russian'.
-     *
-     * Array
-     * (
-     * [0] => Name1
-     * [1] => Name2
-     * )
-     * 
-     * @param string $sql (запрос из БД MYSQL)
-     * @param array $a (параметр для execute($a))
-     * @return bool|array $result (возвращает массив или FALSE)
+     * @param string $sql SQL query
+     * @param array $a (parameter for execute($a))
+     * @return bool|array
      */
     public static function getCol($sql, $a) {
 
@@ -231,25 +150,11 @@ final class Pdo {
     }
 
     /**
-     * getRow для запроса данных из строки в виде одномерного массива.
-     * Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах.
+     * getRow 
      * 
-     * ПРИМЕР
-     *
-     * Если значение не найдено, то выдает пустой массив: Array()
-     * 
-     * Если применять в запросе \eMarket\Core\Pdo::getRow("SELECT name, age FROM table WHERE language=?", ['russian']) то выдаст все значения колонки id в виде одномерного массива,
-     * удовлетворяющие условию language='russian'.
-     *
-     * Array
-     * (
-     * [0] => John
-     * [1] => Age 18
-     * )
-     * 
-     * @param string $sql (запрос из БД MYSQL)
-     * @param array $a (параметр для execute($a))
-     * @return bool|array $result (возвращает массив или FALSE)
+     * @param string $sql SQL query
+     * @param array $a (parameter for execute($a))
+     * @return bool|array
      */
     public static function getRow($sql, $a) {
 
@@ -263,18 +168,11 @@ final class Pdo {
     }
 
     /**
-     * getCellFalse выдает значение ячейки. Если ячейка не найдена то возвращает FALSE.
-     * Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах.
+     * getCellFalse
      * 
-     * ПРИМЕР
-     *
-     * Если значение не найдено, то выдает пустой массив: Array()
-     * 
-     * Использовать так: $a = \eMarket\Core\Pdo::getCellFalse("SELECT permission FROM users WHERE login=? AND password=?", [$_SESSION['login'],$_SESSION['password']]);
-     * 
-     * @param string $sql (запрос из БД MYSQL)
-     * @param array $a (параметр для execute($a))
-     * @return bool|array $result (возвращает массив или FALSE)
+     * @param string $sql SQL query
+     * @param array $a (parameter for execute($a))
+     * @return bool|array
      */
     public static function getCellFalse($sql, $a) {
 
@@ -288,18 +186,11 @@ final class Pdo {
     }
 
     /**
-     * getColCount показывает количество столбцов в запросе. Результат выдается простым числовым значением.
-     * Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах.
+     * getColCount
      * 
-     * ПРИМЕР
-     *
-     * Если значение не найдено, то выдает пустой массив: Array()
-     * 
-     * Использовать так: $a = \eMarket\Core\Pdo::getColCount("SELECT permission FROM users WHERE login=? AND password=?", [$_SESSION['login'],$_SESSION['password']]);
-     * 
-     * @param string $sql (запрос из БД MYSQL)
-     * @param array $a (параметр для execute($a))
-     * @return bool|int|array $result (возвращает массив, целое число или FALSE)
+     * @param string $sql SQL query
+     * @param array $a (parameter for execute($a))
+     * @return bool|int|array
      */
     public static function getColCount($sql, $a) {
 
@@ -313,18 +204,11 @@ final class Pdo {
     }
 
     /**
-     * getRowCount показывает количество строк в запросе. Результат выдается простым числовым значением.
-     * Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах.
+     * getRowCount
      * 
-     * ПРИМЕР
-     *
-     * Если значение не найдено, то выдает пустой массив: Array()
-     * 
-     * Использовать так: $a = \eMarket\Core\Pdo::getRowCount("SELECT permission FROM users WHERE login=? AND password=?", [$_SESSION['login'],$_SESSION['password']]);
-     * 
-     * @param string $sql (запрос из БД MYSQL)
-     * @param array $a (параметр для execute($a))
-     * @return bool|int|array $result (возвращает массив, целое число или FALSE)
+     * @param string $sql SQL query
+     * @param array $a (parameter for execute($a))
+     * @return bool|int|array
      */
     public static function getRowCount($sql, $a) {
 
@@ -338,18 +222,11 @@ final class Pdo {
     }
 
     /**
-     * selectPrepare показывает значение ячейки (не массив).
-     * Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах.
+     * selectPrepare
      * 
-     * ПРИМЕР
-     *
-     * Если значение не найдено, то выдает пустой массив: Array()
-     * 
-     * Использовать так: $a = \eMarket\Core\Pdo::selectPrepare("SELECT permission FROM users WHERE login=? AND password=?", [$_SESSION['login'],$_SESSION['password']]);
-     * 
-     * @param string $sql (запрос из БД MYSQL)
-     * @param array $a (параметр для execute($a))
-     * @return bool|string|array $result (возвращает массив, строку или FALSE)
+     * @param string $sql SQL query
+     * @param array $a (parameter for execute($a))
+     * @return bool|string|array
      */
     public static function selectPrepare($sql, $a) {
 
@@ -364,26 +241,11 @@ final class Pdo {
     }
 
     /**
-     * inPrepare служит для INSERT INTO, DELETE и UPDATE. 
-     * Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах.
-     * 
-     * ПРИМЕР
+     * inPrepare (INSERT INTO, DELETE and UPDATE)
      *
-     * Если значения нет, то передает пустой массив: Array()
-     * Использовать так:
-     * 
-     * \eMarket\Core\Pdo::inPrepare("INSERT INTO emkt_table SET login=?, password=?", [$_SESSION['login'], $_SESSION['password']]); - создает новую строку
-     * 
-     * \eMarket\Core\Pdo::inPrepare("UPDATE emkt_table SET login=?, password=? WHERE id=?", [$_SESSION['login'], $_SESSION['password'], $id]); - обновляет строку с конкретным id
-     * 
-     * \eMarket\Core\Pdo::inPrepare("DELETE FROM emkt_table WHERE id=?", [$id]); - удаляет строку с конкретным id
-     * 
-     * Также можно применять для SELECT.
-     * 
-     * 
-     * @param string $sql (запрос из БД MYSQL)
-     * @param array $a (параметр для execute($a))
-     * @return bool|array $result (возвращает данные или FALSE)
+     * @param string $sql SQL query
+     * @param array $a (parameter for execute($a))
+     * @return bool|array
      */
     public static function action($sql, $a = null) {
 
@@ -396,23 +258,11 @@ final class Pdo {
     }
 
     /**
-     * getColAssoc для запроса колонки в виде одномерного массива.
-     * Применяется для случаев защиты от SQL-инъекций и при множественных одинаковых запросах.
+     * getColAssoc
      * 
-     * ПРИМЕР
-     *
-     * Использовать так: $a = \eMarket\Core\Pdo::getColAssoc("SELECT value, name FROM categories", []);
-     * 
-      Возвращаем следующую строку в виде массива, индексированного именами столбцов
-      Array
-      (
-      [name] => apple
-      [colour] => red
-      )
-     * 
-     * @param string $sql (запрос из БД MYSQL)
-     * @param array $a (параметр для execute($a))
-     * @return bool|array $result (возвращает данные или FALSE)
+     * @param string $sql SQL query
+     * @param array $a (parameter for execute($a))
+     * @return bool|array
      */
     public static function getColAssoc($sql, $a) {
 
@@ -426,11 +276,11 @@ final class Pdo {
     }
 
     /**
-     * getObj для запроса в виде объекта.
+     * getObj
      * 
-     * @param string $sql (запрос из БД MYSQL)
-     * @param array $a (параметр для execute($a))
-     * @return bool|array $result (возвращает данные или FALSE)
+     * @param string $sql SQL query
+     * @param array $a (parameter for execute($a))
+     * @return bool|array
      */
     public static function getObj($sql, $a) {
 
@@ -444,9 +294,9 @@ final class Pdo {
     }
 
     /**
-     * lastInsertId для запроса последнего вставленного ID
+     * lastInsertId
      * 
-     * @return string $result (возвращает данные)
+     * @return string
      */
     public static function lastInsertId() {
 
@@ -455,5 +305,3 @@ final class Pdo {
     }
 
 }
-
-?>

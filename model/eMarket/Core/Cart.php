@@ -8,7 +8,7 @@
 namespace eMarket\Core;
 
 /**
- * Класс для работы с корзиной / Class for working with a cart
+ * Class for working with a cart
  *
  * @package Cart
  * @author eMarket
@@ -17,7 +17,7 @@ namespace eMarket\Core;
 class Cart {
 
     /**
-     * Добавление товара в корзину / Add product to cart
+     * Add product to cart
      */
     public static function addProduct() {
 
@@ -51,9 +51,9 @@ class Cart {
     }
 
     /**
-     * Подсчет итогового количества товара в корзине / Counting total quantity product in cart
+     * Counting total quantity product in cart
      *
-     * @return string $total_quantity (количества товара / quantity product)
+     * @return string Quantity product
      */
     public static function totalQuantity() {
 
@@ -67,9 +67,9 @@ class Cart {
     }
 
     /**
-     * Подсчет стоимости товара в корзине / Counting product price in cart
+     * Counting product price in cart
      *
-     * @return string $total_price (количество товара / quantity product)
+     * @return string Quantity product
      */
     public static function totalPrice() {
 
@@ -84,7 +84,7 @@ class Cart {
     }
 
     /**
-     * Инициализация корзины / Init cart
+     * Init cart
      *
      */
     public static function init() {
@@ -97,9 +97,9 @@ class Cart {
     }
 
     /**
-     * Информация о товарах в корзине / Products info in cart
+     * Products info in cart
      *
-     * @return array $output (исходящие данные / output data)
+     * @return array Output data
      */
     public static function info() {
 
@@ -120,9 +120,9 @@ class Cart {
     }
 
     /**
-     * Подсчет количества товара в корзине / Counting quantity product in cart
-     * @param string $id (id товара / product id)
-     * @return string $output (количество / quantity)
+     * Counting quantity product in cart
+     * @param string $id Product id
+     * @return string Quantity
      */
     public static function productQuantity($id) {
 
@@ -138,7 +138,7 @@ class Cart {
     }
 
     /**
-     * Удаление товара из корзины / Product removing from cart
+     * Product removing from cart
      * 
      */
     public static function deleteProduct() {
@@ -155,10 +155,10 @@ class Cart {
     }
 
     /**
-     * Максимальное количество для заказа / Max. quantity for order
+     * Max. quantity for order
      * 
-     * @param array $product_data (данные о товаре / product data)
-     * @param string $flag (флаг / flag)
+     * @param array $product_data Product data
+     * @param string $flag Flag
      * @return int|false
      */
     public static function maxQuantityToOrder($product_data, $flag = null) {
@@ -188,7 +188,7 @@ class Cart {
     }
 
     /**
-     * Редактирование количества товара в корзине / Edit products quantity in cart
+     * Edit products quantity in cart
      * 
      */
     public static function editProductQuantity() {
@@ -205,5 +205,3 @@ class Cart {
     }
 
 }
-
-?>

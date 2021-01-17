@@ -8,7 +8,7 @@
 namespace eMarket\Core;
 
 /**
- * Класс для авторизации пользователей / Class for user authorization
+ * Class for user authorization
  *
  * @package Autorize
  * @author eMarket
@@ -19,7 +19,7 @@ class Autorize {
     public static $CUSTOMER;
 
     /**
-     * Инициализация сессий / Sessions init
+     * Sessions init
      *
      */
     public static function init() {
@@ -35,7 +35,7 @@ class Autorize {
     }
 
     /**
-     * Авторизация сессиями для Административной панели / Session authorization for Admin Panel
+     * Session authorization for Admin Panel
      *
      * @return string TRUE
      */
@@ -73,7 +73,7 @@ class Autorize {
     }
 
     /**
-     * Авторизация сессиями для Каталога / Session authorization for Catalog
+     * Session authorization for Catalog
      *
      */
     public static function sessionCatalog() {
@@ -104,10 +104,10 @@ class Autorize {
     }
 
     /**
-     * Хэширование пароля / Password hashing
+     * Password hashing
      *
-     * @param string $password (пароль / password)
-     * @return string $password_hash (password hash)
+     * @param string Password
+     * @return string $password Hash
      */
     public static function passwordHash($password) {
 
@@ -128,5 +128,3 @@ class Autorize {
     }
 
 }
-
-?>

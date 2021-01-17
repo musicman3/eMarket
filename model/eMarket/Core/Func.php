@@ -8,7 +8,7 @@
 namespace eMarket\Core;
 
 /**
- * Класс для вспомогательных функций
+ * Func
  *
  * @package Func
  * @author eMarket
@@ -17,74 +17,70 @@ namespace eMarket\Core;
 class Func {
 
     /**
-     * Функция выборки (фильтрации) из двухмерного массива значений по имени ключа и его значению.
+     * Array filtering to key
      * 
      * 
-     * ПРИМЕР: Есть масиив
+     * Example:
       Array
       (
       [0] => Array
       (
-      [0] => 1
-      [1] => Россия
-      [2] => Калининград
+        [0] => 1
+        [1] => Germany
+        [2] => Berlin
       )
 
       [1] => Array
       (
-      [0] => 2
-      [1] => Россия
-      [2] => Владивосток
+        [0] => 2
+        [1] => Russia
+        [2] => Moscow
       )
       [2] => Array
       (
-      [0] => 3
-      [1] => Белоруссия
-      [2] => Гомель
+        [0] => 3
+        [1] => USA
+        [2] => New York
       )
       [3] => Array
       (
-      [0] => 4
-      [1] => Белоруссия
-      [2] => Брест
+        [0] => 4
+        [1] => USA
+        [2] => Boston
       )
       )
      * 
-     * Нужно собрать в одномерный массив все значения городов для страны Россия, 
-     * и отсортировать по названию города (на увеличение).
      * 
-     * $array - исходный двухмерный массив
+     * $search_key = [1];
      * 
-     * $name_key = 1; - ключ  значения [1], по которому делаем фильтрацию
+     * $search_value = 'USA'; Country
      * 
-     * $value_key = 'Россия'; - Значение ключа (=> Россия), по которому делаем фильтрацию
-     * 
-     * $val = 2; - это ключ ячейки Город [2] из которого берется значение Города для нового одномерного массива
+     * $data_key = 2; City
      *
-     * $mass = \eMarket\Core\Func::filterArrayToKey($array, $value_key, $name_key, $val);
+     * $sort = true; Sorting
      * 
-     * на выходе получаем сортированный массив
+     * Output:
      * 
-     * [0] => Владивосток
-     * [1] => Калининград
+     * [0] => Boston
+     * [1] => New York
      * 
-     * @param array $basic_array (базовый массив)
-     * @param string $name_key (ключ  значения [1], по которому делаем фильтрацию)
-     * @param string $value_key (значение ключа (=> 'Value'), по которому делаем фильтрацию)
-     * @param string $val (это ключ ячейки [2] из которого берется значение для нового одномерного массива)
-     * @return array $arr (новый массив)
+     * @param array $basic_array Input array
+     * @param string $search_key Key 
+     * @param string $search_value Value for $search_key
+     * @param string $data_key Data key
+     * @param string $sort Sorting (null/true)
+     * @return array
      * 
      */
-    public static function filterArrayToKey($basic_array, $name_key, $value_key, $val, $sort = null) {
+    public static function filterArrayToKey($basic_array, $search_key, $search_value, $data_key, $sort = null) {
 
         $arr = [];
         foreach ($basic_array as $value) {
-            if ($value[$name_key] == $value_key) {
-                array_push($arr, $value[$val]);
+            if ($value[$search_key] == $search_value) {
+                array_push($arr, $value[$data_key]);
             }
         }
         if ($sort == null) {
-            // Сортируем массив по возрастанию (регистронезависимо)
             $array_lowercase = array_map('strtolower', $arr);
             array_multisort($array_lowercase, SORT_ASC, SORT_STRING, $arr);
         }
@@ -92,72 +88,67 @@ class Func {
     }
 
     /**
-     * Функция выборки (фильтрации) из двухмерного ассоциированного массива значений по имени ключа и его значению.
+     * Filtering an array while keeping keys
      * 
      * 
-     * ПРИМЕР: Есть масиив
+    * Example:
       Array
       (
       [0] => Array
       (
-      [0] => 1
-      [1] => Россия
-      [2] => Калининград
+        [0] => 1
+        [1] => Germany
+        [2] => Berlin
       )
 
       [1] => Array
       (
-      [0] => 2
-      [1] => Россия
-      [2] => Владивосток
+        [0] => 2
+        [1] => Russia
+        [2] => Moscow
       )
       [2] => Array
       (
-      [0] => 3
-      [1] => Белоруссия
-      [2] => Гомель
+        [0] => 3
+        [1] => USA
+        [2] => New York
       )
       [3] => Array
       (
-      [0] => 4
-      [1] => Белоруссия
-      [2] => Брест
+        [0] => 4
+        [1] => USA
+        [2] => Boston
       )
       )
      * 
-     * Нужно собрать в одномерный массив все значения городов для страны Россия, 
-     * и отсортировать по названию города (на увеличение). В качестве ключа нового массива используем значение уникальной ячейки [0]
+     * $search_key = [1];
      * 
-     * $array - исходный двухмерный массив
+     * $search_value = 'USA'; Country
      * 
-     * $name_key = 1; - ключ  значения [1], по которому делаем фильтрацию
+     * $key_1 = [2]; City
      * 
-     * $value_key = 'Россия'; - Значение ключа (=> Россия), по которому делаем фильтрацию
-     * 
-     * $val = 2; - это ключ ячейки Город [2] из которого берется значение Города для нового одномерного массива
-     * 
-     * $key = 0; - это будущий ключ массива из уникального значения ячейки
+     * $key_2] = [0]; Key
      *
-     * $mass = \eMarket\Core\Func::filterArrayToKey($array, $value_key, $name_key, $val);
      * 
-     * на выходе получаем сортированный массив
+     * Output:
      * 
-     * [2] => Владивосток
-     * [1] => Калининград
+     * [4] => Boston
+     * [3] => New York
      * 
-     * @param array $basic_array (базовый массив)
-     * @param string $name_key (ключ  значения [1], по которому делаем фильтрацию)
-     * @param string $value_key (значение ключа (=> 'Value'), по которому делаем фильтрацию)
-     * @param string $val (это ключ ячейки [2] из которого берется значение для нового одномерного массива)
-     * @param string $key (это ключ ячейки [0] из которого берется значение для нового ключа одномерного массива)
-     * @return array $arr (новый массив)
+     * 
+     * @param array $basic_array Input array
+     * @param string $search_key Search key
+     * @param string $search_value Search value
+     * @param string $key_1 Key 1
+     * @param string $key_2 Key 2
+     * @return array 
      * 
      */
-    public static function filterArrayToKeyAssoc($basic_array, $name_key, $value_key, $val, $key) {
+    public static function filterArrayToKeyAssoc($basic_array, $search_key, $search_value, $key_1, $key_2) {
 
         foreach ($basic_array as $value) {
-            if ($value[$name_key] == $value_key) {
-                $arr[$value[$key]] = $value[$val];
+            if ($value[$search_key] == $search_value) {
+                $arr[$value[$key_2]] = $value[$key_1];
             }
         }
 
@@ -167,9 +158,9 @@ class Func {
     }
 
     /**
-     * Функция создания многомерного массива из одномерного, в котором значения разделены маркером
+     * Function for creating a multidimensional array from a one-dimensional one in which the values are separated by a marker
      *
-     * ПРИМЕР: Массив на входе
+     * EXAMPLE:
       /*
       Array
       (
@@ -177,7 +168,8 @@ class Func {
       [1] => 13-1
      * 
      * 
-     * Массив на выходе
+     * Ouptut array
+     * 
       Array (
       [0] => Array
       (
@@ -191,11 +183,11 @@ class Func {
       [1] => 1
       )
      * 
-     * Использовать так: $multiselect = \eMarket\Core\Func::arrayExplode($array, '-');
+     * Use example: $multiselect = \eMarket\Core\Func::arrayExplode($array, '-');
      * 
-     * @param array $array (исходный одномерный массив с разделителем)
-     * @param string $delimiter (разделитель)
-     * @return array $array_return (новый массив)
+     * @param array $array Input array
+     * @param string $delimiter Delimiter
+     * @return array
      */
     public static function arrayExplode($array, $delimiter) {
         $array_return = [];
@@ -206,24 +198,24 @@ class Func {
     }
 
     /**
-     * Функция удаления файлов
+     * Files deleting
 
-     * @param string $file (путь к файлу)
+     * @param string $file Path
      */
     public static function deleteFile($file) {
 
         if (file_exists($file)) {
             chmod($file, 0777);
-            unlink($file); // Удаляем файлы
+            unlink($file);
         }
     }
 
     /**
-     * Функция слияния массивов с продолжением нумерации ключа
+     * Function of merging arrays with continuation of key numbering
      * 
-     * ПРИМЕР:
+     * Example:
      * 
-     * Массив 1 + параметр имени $name_1 = 'cat'
+     * Array 1 + parameter $name_1 = 'cat'
      * 
      * 0 Array
       (
@@ -232,7 +224,7 @@ class Func {
       [2] => 1
       )
      * 
-     * Массив 2 + параметр имени $name_2 = 'prod'
+     * Array 2 + parameter $name_2 = 'prod'
      * 
      * 1 Array
       (
@@ -241,7 +233,7 @@ class Func {
       [2] => 7
       )
      * 
-     * Массив на выходе
+     * Output array
      * 
      * 0 Array
       (
@@ -261,11 +253,11 @@ class Func {
 
       )
 
-     * @param string $name_1 (имя в основном массиве)
-     * @param string $name_2 (имя в дополнительном массиве)
-     * @param array $arr_1 (основной массив)
-     * @param array $arr_2 (дополнительный массив)
-     * @return array (слитый массив)
+     * @param string $name_1 Value in main array
+     * @param string $name_2 Value in optional array
+     * @param array $arr_1 Main array
+     * @param array $arr_2 Optional array
+     * @return array
      */
     public static function arrayMergeOriginKey($name_1, $name_2, $arr_1, $arr_2) {
 
@@ -284,17 +276,17 @@ class Func {
     }
 
     /**
-     * Функция удаления значения из массива
+     * Function for removing a value from an array
      *
-     * @param array $array (исходный массив)
-     * @param array $val (значения, которые необходимо удалить - ['val', 'val2']) 
-     * @return array|false $array_return (итоговый массив)
+     * @param array $array Input array
+     * @param array $val Values to be removed - ['val', 'val2']
+     * @return array|false
      */
     public static function deleteValInArray($array, $val) {
 
         if (isset($array) && is_array($array)) {
             $result = array_diff($array, $val);
-            $array_return = array_values($result); // Сбрасываем ключи
+            $array_return = array_values($result);
             return $array_return;
         } else {
             return FALSE;
@@ -302,9 +294,9 @@ class Func {
     }
 
     /**
-     * Функция сброса именованных ключей ассоциированного массива
+     * Reset function for named keys of an associated array
      * 
-     * На входе:
+     * Input:
      * 
      * 0 Array
       (
@@ -314,7 +306,7 @@ class Func {
       [price] => 2
       )
      * 
-     * На выходе:
+     * Output:
      * 
      * 0 Array
       (
@@ -324,8 +316,8 @@ class Func {
       [1] => 2
       )
      *
-     * @param array $input (исходный массив)
-     * @return array $output (итоговый массив)
+     * @param array $input Input array
+     * @return array
      */
     public static function resetKeyAssocArray($input) {
 
@@ -338,15 +330,15 @@ class Func {
     }
 
     /**
-     * Функция удаления пустого значения из массива
+     * Function to remove empty value from array
      *
-     * @param array $array (исходный массив)
-     * @return array|false $array_return (итоговый массив)
+     * @param array $array Input array
+     * @return array|false
      */
     public static function deleteEmptyInArray($array) {
         if (isset($array) && is_array($array)) {
             $result = array_filter($array);
-            $array_return = array_values($result); // Сбрасываем ключи
+            $array_return = array_values($result);
             return $array_return;
         } else {
             return FALSE;
@@ -354,10 +346,10 @@ class Func {
     }
 
     /**
-     * Функция получения случайного буквенно-цифрового токена
+     * Token
      *
-     * @param string $length (длина токена, цифрами)
-     * @return string $token (токен)
+     * @param string $length Length
+     * @return string
      */
     public static function getToken($length) {
         $token = "";
@@ -374,10 +366,10 @@ class Func {
     }
 
     /**
-     * Функция удаления GET-параметра
+     * Delete GET-parameter
      *
-     * @param string|array $key (параметр, который необходимо удалить)
-     * @return string $url (исходящая строка)
+     * @param string|array $key GET-parameter
+     * @return string
      */
     public static function deleteGet($key) {
         if (!is_array($key)) {
@@ -395,13 +387,13 @@ class Func {
     }
 
     /**
-     * Функция для экранирования специальных символов
+     * Function for escaping special characters
      *
-     * @param string|array $string (строка для экранирования символов)
-     * @return string|array $output (исходящая строка)
+     * @param string|array $string String to escape characters
+     * @return string|array
      */
     public static function escape_sign($string) {
-        //перечень символов и замен в массиве
+        // symbol and replacement
         $symbols = ["'"];
         $escape = ["&#8216;"];
 
@@ -419,10 +411,10 @@ class Func {
     /**
      * Array filtering
      *
-     * @param array $data (input array)
-     * @param string $key (key)
-     * @param string $val (value)
-     * @return array $output (output array)
+     * @param array $data Input array
+     * @param string $key Key
+     * @param string $val (Value
+     * @return array
      */
     public static function filterData($data, $key, $val) {
         $output = [];
@@ -435,5 +427,3 @@ class Func {
     }
 
 }
-
-?>

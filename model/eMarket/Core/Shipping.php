@@ -8,7 +8,7 @@
 namespace eMarket\Core;
 
 /**
- * Класс для модулей доставки / Class for shipping modules
+ * Shipping
  *
  * @package Shipping
  * @author eMarket
@@ -17,9 +17,9 @@ namespace eMarket\Core;
 final class Shipping {
 
     /**
-     * Список зон, для которых доступна доставка покупателю / List of zones for which delivery to the buyer is available
-     * @param array $region (номера регинов / regions numbers)
-     * @return array $output (выходные данные / output data)
+     * List of zones for which delivery to the buyer is available
+     * @param array $region Regions numbers
+     * @return array
      */
     public static function shippingZonesAvailable($region) {
         $data = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE active=? AND type=?", [1, 'shipping']);
@@ -47,9 +47,9 @@ final class Shipping {
     }
 
     /**
-     * Список модулей доставки, для которых доступна доставка покупателю / List of shipping modules for which delivery to the buyer is available
-     * @param array $shipping_zones_id_available (id зон, в которых находится регион / id of zones in which the region is located)
-     * @return array $output (выходные данные / output data)
+     * List of shipping modules for which delivery to the buyer is available
+     * @param array $shipping_zones_id_available Id of zones in which the region is located
+     * @return array
      */
     public static function shippingModulesAvailable($shipping_zones_id_available) {
         $data = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE active=? AND type=?", [1, 'shipping']);
@@ -79,14 +79,14 @@ final class Shipping {
     }
 
     /**
-     * Загрузка данных с модулей доставки / Loading data from shipping modules
+     * Loading data from shipping modules
      * 
-     * @param array $zones_id (данные по доступным зонам доставки для региона / data on available shipping zones for region)
-     * @return array $modules_data (output data)
+     * @param array $zones_id Data on available shipping zones for region
+     * @return array
      */
     public static function loadData($zones_id) {
-        
-        $modules_names = self::shippingModulesAvailable($zones_id); // данные в виде названия модулей
+
+        $modules_names = self::shippingModulesAvailable($zones_id);
 
         $modules_data = [];
         foreach ($modules_names as $name) {
@@ -100,10 +100,10 @@ final class Shipping {
     }
 
     /**
-     * Фильтрация и сортировка данных / Filtering and sorting data
+     * Filtering and sorting data
      * 
-     * @param array $interface_data_all (input data)
-     * @return array|FALSE $interface (output data)
+     * @param array $interface_data_all Input data
+     * @return array|FALSE
      */
     public static function filterData($interface_data_all) {
 
@@ -130,5 +130,3 @@ final class Shipping {
     }
 
 }
-
-?>
