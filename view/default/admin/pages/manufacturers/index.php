@@ -4,36 +4,44 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+use \eMarket\Core\{
+    Messages,
+    Pages,
+    Valid,
+    Settings
+};
+use \eMarket\Admin\Manufacturers;
+
 require_once('modal/index.php')
 ?>
 
 <div id="manufacturers">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <div id="alert_block"><?php \eMarket\Core\Messages::alert(); ?></div>
+            <div id="alert_block"><?php Messages::alert(); ?></div>
             <h3 class="panel-title">
-                <?php echo \eMarket\Core\Settings::titlePageGenerator() ?>
+                <?php echo Settings::titlePageGenerator() ?>
             </h3>
         </div>
         <div class="panel-body">
-            <div id="ajax_data" class='hidden' data-jsondata='<?php echo \eMarket\Admin\Manufacturers::$json_data ?>'></div>
+            <div id="ajax_data" class='hidden' data-jsondata='<?php echo Manufacturers::$json_data ?>'></div>
 
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th colspan="2"><?php echo \eMarket\Core\Pages::counterPage() ?></th>
+                            <th colspan="2"><?php echo Pages::counterPage() ?></th>
 
                             <th>
                                 <div class="flexbox">
                                     <div class="b-left"><a href="#index" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
 
                                     <form>
-                                        <input hidden name="route" value="<?php echo \eMarket\Core\Valid::inGET('route') ?>">
-                                        <input hidden name="backstart" value="<?php echo \eMarket\Core\Pages::$start ?>">
-                                        <input hidden name="backfinish" value="<?php echo \eMarket\Core\Pages::$finish ?>">
+                                        <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
+                                        <input hidden name="backstart" value="<?php echo Pages::$start ?>">
+                                        <input hidden name="backfinish" value="<?php echo Pages::$finish ?>">
                                         <div class="b-left">
-                                            <?php if (\eMarket\Core\Pages::$start > 0) { ?>
+                                            <?php if (Pages::$start > 0) { ?>
                                                 <button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button>
                                             <?php } else { ?>
                                                 <a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-left"></span></a>
@@ -42,11 +50,11 @@ require_once('modal/index.php')
                                     </form>
 
                                     <form>
-                                        <input hidden name="route" value="<?php echo \eMarket\Core\Valid::inGET('route') ?>">
-                                        <input hidden name="start" value="<?php echo \eMarket\Core\Pages::$start ?>">
-                                        <input hidden name="finish" value="<?php echo \eMarket\Core\Pages::$finish ?>">
+                                        <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
+                                        <input hidden name="start" value="<?php echo Pages::$start ?>">
+                                        <input hidden name="finish" value="<?php echo Pages::$finish ?>">
                                         <div>
-                                            <?php if (\eMarket\Core\Pages::$finish != \eMarket\Core\Pages::$count) { ?>
+                                            <?php if (Pages::$finish != Pages::$count) { ?>
                                                 <button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button>
                                             <?php } else { ?>
                                                 <a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-right"></span></a>
@@ -56,7 +64,7 @@ require_once('modal/index.php')
                                 </div>
                             </th>
                         </tr>
-                        <?php if (\eMarket\Core\Pages::$count > 0) { ?>
+                        <?php if (Pages::$count > 0) { ?>
                             <tr class="border">
                                 <th><?php echo lang('manufacturer') ?></th>
                                 <th class="text-center"><?php echo lang('site') ?></th>
@@ -65,17 +73,17 @@ require_once('modal/index.php')
                         <?php } ?>
                     </thead>
                     <tbody>
-                        <?php for (\eMarket\Core\Pages::$start; \eMarket\Core\Pages::$start < \eMarket\Core\Pages::$finish; \eMarket\Core\Pages::$start++, \eMarket\Core\Pages::lineUpdate()) { ?>
+                        <?php for (Pages::$start; Pages::$start < Pages::$finish; Pages::$start++, Pages::lineUpdate()) { ?>
                             <tr>
-                                <td><?php echo eMarket\Core\Pages::$table['line']['name'] ?></td>
-                                <td class="text-center"><?php echo eMarket\Core\Pages::$table['line']['site'] ?></td>
+                                <td><?php echo Pages::$table['line']['name'] ?></td>
+                                <td class="text-center"><?php echo Pages::$table['line']['site'] ?></td>
                                 <td>
                                     <div class="flexbox">
                                         <div class="b-left">
-                                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index" data-edit="<?php echo eMarket\Core\Pages::$table['line']['id'] ?>"><span class="glyphicon glyphicon-edit"></span></button>
+                                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index" data-edit="<?php echo Pages::$table['line']['id'] ?>"><span class="glyphicon glyphicon-edit"></span></button>
                                         </div>
-                                        <form id="form_delete<?php echo eMarket\Core\Pages::$table['line']['id'] ?>" name="form_delete" action="javascript:void(null);" onsubmit="Ajax.callDelete('<?php echo eMarket\Core\Pages::$table['line']['id'] ?>')" enctype="multipart/form-data">
-                                            <input hidden name="delete" value="<?php echo eMarket\Core\Pages::$table['line']['id'] ?>">
+                                        <form id="form_delete<?php echo Pages::$table['line']['id'] ?>" name="form_delete" action="javascript:void(null);" onsubmit="Ajax.callDelete('<?php echo Pages::$table['line']['id'] ?>')" enctype="multipart/form-data">
+                                            <input hidden name="delete" value="<?php echo Pages::$table['line']['id'] ?>">
                                             <div>
                                                 <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button>
                                             </div>
