@@ -3,6 +3,8 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+
+use \eMarket\Admin\Orders;
 ?>
 
 <div id="index" class="products modal fade" tabindex="-1">
@@ -14,7 +16,6 @@
             <form id="form_add" name="form_add" action="javascript:void(null);" onsubmit="Ajax.callAdd()">
                 <div class="panel-body">
                     <input type="hidden" id="edit" name="edit" value="" />
-                    <!-- Панели формы -->
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#panel_1"><?php echo lang('orders_description') ?></a></li>
                         <li><a data-toggle="tab" href="#panel_2"><?php echo lang('orders_products') ?></a></li>
@@ -92,7 +93,6 @@
                             </div>
                         </div>
 
-                        <!-- Содержимое панели Товары -->
                         <div id="panel_2" class="tab-pane fade">
                             <div class="table-responsive">
 
@@ -140,15 +140,15 @@
                             <div class="form-group">
                                 <div class="input-group has-success" id="status_history"></div><br>
                                 <div class="input-group has-success">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                                <select name="status_history_select" id="status_history_select" class="input-sm form-control">
-                                    <?php foreach (\eMarket\Admin\Orders::$order_status as $value) { ?>
-                                    <option value="<?php echo $value['id'] ?>"><?php echo $value['name'] ?></option>
-                                    <?php } ?>
-                                </select>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                                    <select name="status_history_select" id="status_history_select" class="input-sm form-control">
+                                        <?php foreach (Orders::$order_status as $value) { ?>
+                                            <option value="<?php echo $value['id'] ?>"><?php echo $value['name'] ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
                             </div>
-                            </div>
-                            
+
                         </div>
                     </div>
                 </div>
