@@ -7,6 +7,14 @@
 
 namespace eMarket\Admin;
 
+use \eMarket\Core\{
+    Func,
+    Messages,
+    Pdo,
+    Valid
+};
+use \eMarket\Admin\Modules;
+
 /**
  * Modules
  *
@@ -38,12 +46,12 @@ class Modules {
      *
      */
     public function add() {
-        if (\eMarket\Core\Valid::inPOST('add')) {
-            $module = explode('_', \eMarket\Core\Valid::inPOST('add'));
+        if (Valid::inPOST('add')) {
+            $module = explode('_', Valid::inPOST('add'));
             $namespace = '\eMarket\Core\Modules\\' . ucfirst($module[0]) . '\\' . ucfirst($module[1]);
             $namespace::install($module);
 
-            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('success', lang('action_completed_successfully'));
         }
     }
 
@@ -52,16 +60,16 @@ class Modules {
      *
      */
     public function edit() {
-        if (\eMarket\Core\Valid::inPOST('edit_active')) {
+        if (Valid::inPOST('edit_active')) {
 
-            if (\eMarket\Core\Valid::inPOST('switch_active') == 'on') {
+            if (Valid::inPOST('switch_active') == 'on') {
                 $active = 1;
             }
-            if (!\eMarket\Core\Valid::inPOST('switch_active')) {
+            if (!Valid::inPOST('switch_active')) {
                 $active = 0;
             }
-            $module = explode('_', \eMarket\Core\Valid::inPOST('edit_active'));
-            \eMarket\Core\Pdo::action("UPDATE " . TABLE_MODULES . " SET active=? WHERE name=? AND type=?", [$active, $module[1], $module[0]]);
+            $module = explode('_', Valid::inPOST('edit_active'));
+            Pdo::action("UPDATE " . TABLE_MODULES . " SET active=? WHERE name=? AND type=?", [$active, $module[1], $module[0]]);
         }
     }
 
@@ -70,12 +78,12 @@ class Modules {
      *
      */
     public function delete() {
-        if (\eMarket\Core\Valid::inPOST('delete')) {
-            $module = explode('_', \eMarket\Core\Valid::inPOST('delete'));
+        if (Valid::inPOST('delete')) {
+            $module = explode('_', Valid::inPOST('delete'));
             $namespace = '\eMarket\Core\Modules\\' . ucfirst($module[0]) . '\\' . ucfirst($module[1]);
             $namespace::uninstall($module);
 
-            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('success', lang('action_completed_successfully'));
         }
     }
 
@@ -84,8 +92,8 @@ class Modules {
      *
      */
     public function data() {
-        self::$installed = \eMarket\Core\Pdo::getColAssoc("SELECT name, type FROM " . TABLE_MODULES . "", []);
-        self::$installed_active = \eMarket\Core\Pdo::getColAssoc("SELECT name, type FROM " . TABLE_MODULES . " WHERE active=?", [1]);
+        self::$installed = Pdo::getColAssoc("SELECT name, type FROM " . TABLE_MODULES . "", []);
+        self::$installed_active = Pdo::getColAssoc("SELECT name, type FROM " . TABLE_MODULES . " WHERE active=?", [1]);
     }
 
     /**
@@ -95,7 +103,7 @@ class Modules {
      * @return string Bootstrap class
      */
     public function class($type) {
-        if (\eMarket\Core\Valid::inGET('active') == $type OR (!\eMarket\Core\Valid::inGET('active') && $type == array_key_first($_SESSION['MODULES_INFO']))) {
+        if (Valid::inGET('active') == $type OR (!Valid::inGET('active') && $type == array_key_first($_SESSION['MODULES_INFO']))) {
             $class = '<li class="active">';
         } else {
             $class = '<li>';
@@ -109,13 +117,13 @@ class Modules {
      * @param string $type type
      */
     public function filter($type) {
-        if (\eMarket\Core\Valid::inGET('active') == $type OR (!\eMarket\Core\Valid::inGET('active') && $type == array_key_first($_SESSION['MODULES_INFO']))) {
+        if (Valid::inGET('active') == $type OR (!Valid::inGET('active') && $type == array_key_first($_SESSION['MODULES_INFO']))) {
             self::$class_tab = 'tab-pane fade in active';
         } else {
             self::$class_tab = 'tab-pane fade';
         }
-        self::$installed_filter = \eMarket\Core\Func::filterArrayToKey(self::$installed, 'type', $type, 'name');
-        self::$installed_filter_active = \eMarket\Core\Func::filterArrayToKey(self::$installed_active, 'type', $type, 'name');
+        self::$installed_filter = Func::filterArrayToKey(self::$installed, 'type', $type, 'name');
+        self::$installed_filter_active = Func::filterArrayToKey(self::$installed_active, 'type', $type, 'name');
     }
 
     /**
@@ -125,7 +133,7 @@ class Modules {
      * @return string Bootstrap class
      */
     public function active($key) {
-        if (in_array($key, \eMarket\Admin\Modules::$installed_filter_active)) {
+        if (in_array($key, Modules::$installed_filter_active)) {
             $active = '<tr class="success">';
         } else {
             $active = '<tr class="danger">';

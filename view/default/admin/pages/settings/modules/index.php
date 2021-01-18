@@ -3,15 +3,20 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+use \eMarket\Core\{
+    Messages,
+    Settings
+};
+use \eMarket\Admin\Modules;
 ?>
 
 <div id="settings_modules">
     <div class="panel panel-default">
 
         <div class="panel-heading">
-            <div id="alert_block"><?php \eMarket\Core\Messages::alert(); ?></div>
+            <div id="alert_block"><?php Messages::alert(); ?></div>
             <h3 class="panel-title">
-                <span class="settings_back"><button type="button" onClick='location.href = "<?php echo \eMarket\Core\Settings::parentPartitionGenerator() ?>"' class="btn btn-primary btn-xs"><span class="back glyphicon glyphicon-share-alt"></span></button></span><span class="settings_name"><?php echo \eMarket\Core\Settings::titlePageGenerator() ?></span>
+                <span class="settings_back"><button type="button" onClick='location.href = "<?php echo Settings::parentPartitionGenerator() ?>"' class="btn btn-primary btn-xs"><span class="back glyphicon glyphicon-share-alt"></span></button></span><span class="settings_name"><?php echo Settings::titlePageGenerator() ?></span>
             </h3>
         </div>
         <div class="panel-body">
@@ -28,7 +33,7 @@
                 foreach ($_SESSION['MODULES_INFO'] as $type => $name) {
                     $eMarket->filter($type);
                     ?>
-                    <div id="<?php echo $type ?>_modules" class="<?php echo \eMarket\Admin\Modules::$class_tab ?>">
+                    <div id="<?php echo $type ?>_modules" class="<?php echo Modules::$class_tab ?>">
 
                         <?php if (isset($_SESSION['MODULES_INFO'][$type])) { ?>
                             <div class="table-responsive">
@@ -45,7 +50,7 @@
                                     <tbody>
                                         <?php
                                         foreach ($_SESSION['MODULES_INFO'][$type] as $key) {
-                                            if (in_array($key, \eMarket\Admin\Modules::$installed_filter)) {
+                                            if (in_array($key, Modules::$installed_filter)) {
                                                 echo $eMarket->active($key);
                                                 ?>
 
@@ -88,7 +93,7 @@
                                     <tbody>
                                         <?php
                                         foreach ($_SESSION['MODULES_INFO'][$type] as $key) {
-                                            if (!in_array($key, \eMarket\Admin\Modules::$installed_filter)) {
+                                            if (!in_array($key, Modules::$installed_filter)) {
                                                 ?>
 
                                                 <tr class="danger">
