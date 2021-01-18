@@ -147,7 +147,7 @@ class OrderStatus {
      */
     public function data() {
         self::$sql_data = Pdo::getColAssoc("SELECT * FROM " . TABLE_ORDER_STATUS . " ORDER BY sort DESC", []);
-        $lines = \Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
+        $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
         Pages::table($lines);
     }
 
