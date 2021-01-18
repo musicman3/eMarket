@@ -7,6 +7,30 @@
 
 namespace eMarket\Admin;
 
+use \eMarket\Core\{
+    Autorize,
+    Cart,
+    Debug,
+    Eac,
+    Ecb,
+    Files,
+    Func,
+    Interfaces,
+    Lang,
+    Messages,
+    Modules,
+    Navigation,
+    Pages,
+    Payment,
+    Pdo,
+    Products,
+    Settings,
+    Tree,
+    Valid,
+    View
+};
+use \eMarket\Admin\HeaderMenu;
+
 /**
  * Slideshow
  *
@@ -51,8 +75,8 @@ class Slideshow {
      * 
      */
     public static function helper() {
-        \eMarket\Core\Pages::$start = \eMarket\Core\Pages::$table['navigate'][0];
-        \eMarket\Core\Pages::$finish = \eMarket\Core\Pages::$table['navigate'][1];
+        Pages::$start = Pages::$table['navigate'][0];
+        Pages::$finish = Pages::$table['navigate'][1];
     }
 
     /**
@@ -61,7 +85,7 @@ class Slideshow {
      * 
      */
     public static function menu() {
-        \eMarket\Admin\HeaderMenu::$menu[\eMarket\Admin\HeaderMenu::$menu_marketing][] = ['?route=slideshow', 'glyphicon glyphicon-film', lang('title_slideshow_index'), '', 'false'];
+        HeaderMenu::$menu[HeaderMenu::$menu_marketing][] = ['?route=slideshow', 'glyphicon glyphicon-film', lang('title_slideshow_index'), '', 'false'];
     }
 
     /**
@@ -69,7 +93,7 @@ class Slideshow {
      *
      */
     public function settings() {
-        self::$settings = json_encode(\eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_SLIDESHOW_PREF . "", [])[0]);
+        self::$settings = json_encode(Pdo::getColAssoc("SELECT * FROM " . TABLE_SLIDESHOW_PREF . "", [])[0]);
     }
 
     /**
@@ -77,37 +101,39 @@ class Slideshow {
      *
      */
     public function slideshowPref() {
-        if (\eMarket\Core\Valid::inPOST('slideshow_pref')) {
+        if (Valid::inPOST('slideshow_pref')) {
 
-            if (\eMarket\Core\Valid::inPOST('mouse_stop')) {
+            if (Valid::inPOST('mouse_stop')) {
                 $mouse_stop = 1;
             } else {
                 $mouse_stop = 0;
             }
-            if (\eMarket\Core\Valid::inPOST('autostart')) {
+            if (Valid::inPOST('autostart')) {
                 $autostart = 1;
             } else {
                 $autostart = 0;
             }
-            if (\eMarket\Core\Valid::inPOST('cicles')) {
+            if (Valid::inPOST('cicles')) {
                 $cicles = 1;
             } else {
                 $cicles = 0;
             }
-            if (\eMarket\Core\Valid::inPOST('indicators')) {
+            if (Valid::inPOST('indicators')) {
                 $indicators = 1;
             } else {
                 $indicators = 0;
             }
-            if (\eMarket\Core\Valid::inPOST('navigation')) {
+            if (Valid::inPOST('navigation')) {
                 $navigation = 1;
             } else {
                 $navigation = 0;
             }
 
-            \eMarket\Core\Pdo::action("UPDATE " . TABLE_SLIDESHOW_PREF . " SET show_interval=?, mouse_stop=?, autostart=?, cicles=?, indicators=?, navigation=? WHERE id=?", [\eMarket\Core\Valid::inPOST('show_interval'), $mouse_stop, $autostart, $cicles, $indicators, $navigation, 1]);
+            Pdo::action("UPDATE " . TABLE_SLIDESHOW_PREF . " SET show_interval=?, mouse_stop=?, autostart=?, cicles=?, indicators=?, navigation=? WHERE id=?", [
+                Valid::inPOST('show_interval'), $mouse_stop, $autostart, $cicles, $indicators, $navigation, 1
+            ]);
 
-            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('success', lang('action_completed_successfully'));
         }
     }
 
@@ -116,35 +142,39 @@ class Slideshow {
      *
      */
     public function add() {
-        if (\eMarket\Core\Valid::inPOST('add')) {
+        if (Valid::inPOST('add')) {
 
-            if (\eMarket\Core\Valid::inPOST('view_slideshow')) {
+            if (Valid::inPOST('view_slideshow')) {
                 $view_slideshow = '1';
             } else {
                 $view_slideshow = '0';
             }
 
-            if (\eMarket\Core\Valid::inPOST('animation')) {
+            if (Valid::inPOST('animation')) {
                 $animation = '1';
             } else {
                 $animation = '0';
             }
 
-            if (\eMarket\Core\Valid::inPOST('start_date')) {
-                $start_date = date('Y-m-d', strtotime(\eMarket\Core\Valid::inPOST('start_date')));
+            if (Valid::inPOST('start_date')) {
+                $start_date = date('Y-m-d', strtotime(Valid::inPOST('start_date')));
             } else {
                 $start_date = NULL;
             }
 
-            if (\eMarket\Core\Valid::inPOST('end_date')) {
-                $end_date = date('Y-m-d', strtotime(\eMarket\Core\Valid::inPOST('end_date')));
+            if (Valid::inPOST('end_date')) {
+                $end_date = date('Y-m-d', strtotime(Valid::inPOST('end_date')));
             } else {
                 $end_date = NULL;
             }
 
-            \eMarket\Core\Pdo::action("INSERT INTO " . TABLE_SLIDESHOW . " SET language=?, url=?, name=?, heading=?, logo=?, animation=?, color=?, date_start=?, date_finish=?, status=?", [\eMarket\Core\Valid::inPOST('set_language'), \eMarket\Core\Valid::inPOST('url'), \eMarket\Core\Valid::inPOST('name'), \eMarket\Core\Valid::inPOST('heading'), json_encode([]), $animation, \eMarket\Core\Valid::inPOST('color'), $start_date, $end_date, $view_slideshow]);
+            Pdo::action("INSERT INTO " . TABLE_SLIDESHOW . " SET language=?, url=?, name=?, heading=?, logo=?, animation=?, color=?, date_start=?, date_finish=?, status=?", [
+                Valid::inPOST('set_language'), Valid::inPOST('url'), Valid::inPOST('name'),
+                Valid::inPOST('heading'), json_encode([]), $animation, Valid::inPOST('color'),
+                $start_date, $end_date, $view_slideshow
+            ]);
 
-            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('success', lang('action_completed_successfully'));
         }
     }
 
@@ -153,35 +183,38 @@ class Slideshow {
      *
      */
     public function edit() {
-        if (\eMarket\Core\Valid::inPOST('edit')) {
+        if (Valid::inPOST('edit')) {
 
-            if (\eMarket\Core\Valid::inPOST('view_slideshow')) {
+            if (Valid::inPOST('view_slideshow')) {
                 $view_slideshow = '1';
             } else {
                 $view_slideshow = '0';
             }
 
-            if (\eMarket\Core\Valid::inPOST('animation')) {
+            if (Valid::inPOST('animation')) {
                 $animation = '1';
             } else {
                 $animation = '0';
             }
 
-            if (\eMarket\Core\Valid::inPOST('start_date')) {
-                $start_date = date('Y-m-d', strtotime(\eMarket\Core\Valid::inPOST('start_date')));
+            if (Valid::inPOST('start_date')) {
+                $start_date = date('Y-m-d', strtotime(Valid::inPOST('start_date')));
             } else {
                 $start_date = NULL;
             }
 
-            if (\eMarket\Core\Valid::inPOST('end_date')) {
-                $end_date = date('Y-m-d', strtotime(\eMarket\Core\Valid::inPOST('end_date')));
+            if (Valid::inPOST('end_date')) {
+                $end_date = date('Y-m-d', strtotime(Valid::inPOST('end_date')));
             } else {
                 $end_date = NULL;
             }
 
-            \eMarket\Core\Pdo::action("UPDATE " . TABLE_SLIDESHOW . " SET url=?, name=?, heading=?, animation=?, color=?, date_start=?, date_finish=?, status=? WHERE id=?", [\eMarket\Core\Valid::inPOST('url'), \eMarket\Core\Valid::inPOST('name'), \eMarket\Core\Valid::inPOST('heading'), $animation, \eMarket\Core\Valid::inPOST('color'), $start_date, $end_date, $view_slideshow, \eMarket\Core\Valid::inPOST('edit')]);
+            Pdo::action("UPDATE " . TABLE_SLIDESHOW . " SET url=?, name=?, heading=?, animation=?, color=?, date_start=?, date_finish=?, status=? WHERE id=?", [
+                Valid::inPOST('url'), Valid::inPOST('name'), Valid::inPOST('heading'), $animation,
+                Valid::inPOST('color'), $start_date, $end_date, $view_slideshow, Valid::inPOST('edit')
+            ]);
 
-            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('success', lang('action_completed_successfully'));
         }
     }
 
@@ -198,7 +231,7 @@ class Slideshow {
         array_push(self::$resize_param, ['1600', '800']);
         array_push(self::$resize_param, ['1920', '960']);
 
-        \eMarket\Core\Files::imgUpload(TABLE_SLIDESHOW, 'slideshow', self::$resize_param);
+        Files::imgUpload(TABLE_SLIDESHOW, 'slideshow', self::$resize_param);
     }
 
     /**
@@ -206,10 +239,10 @@ class Slideshow {
      *
      */
     public function delete() {
-        if (\eMarket\Core\Valid::inPOST('delete')) {
-            \eMarket\Core\Pdo::action("DELETE FROM " . TABLE_SLIDESHOW . " WHERE id=?", [\eMarket\Core\Valid::inPOST('delete')]);
+        if (Valid::inPOST('delete')) {
+            Pdo::action("DELETE FROM " . TABLE_SLIDESHOW . " WHERE id=?", [Valid::inPOST('delete')]);
 
-            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('success', lang('action_completed_successfully'));
         }
     }
 
@@ -218,17 +251,17 @@ class Slideshow {
      *
      */
     public function data() {
-        if (\eMarket\Core\Valid::inGET('slide_lang')) {
-            self::$set_language = \eMarket\Core\Valid::inGET('slide_lang');
+        if (Valid::inGET('slide_lang')) {
+            self::$set_language = Valid::inGET('slide_lang');
         } else {
             self::$set_language = lang('#lang_all')[0];
         }
 
         self::$this_time = time();
 
-        self::$sql_data = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_SLIDESHOW . " ORDER BY id DESC", []);
-        $lines = \eMarket\Core\Func::filterData(self::$sql_data, 'language', self::$set_language);
-        \eMarket\Core\Pages::table($lines);
+        self::$sql_data = Pdo::getColAssoc("SELECT * FROM " . TABLE_SLIDESHOW . " ORDER BY id DESC", []);
+        $lines = Func::filterData(self::$sql_data, 'language', self::$set_language);
+        Pages::table($lines);
     }
 
     /**
@@ -236,8 +269,8 @@ class Slideshow {
      *
      */
     public static function view() {
-        self::$slideshow = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_SLIDESHOW . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
-        $slideshow_pref = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_SLIDESHOW_PREF . " WHERE id=?", [1])[0];
+        self::$slideshow = Pdo::getColAssoc("SELECT * FROM " . TABLE_SLIDESHOW . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+        $slideshow_pref = Pdo::getColAssoc("SELECT * FROM " . TABLE_SLIDESHOW_PREF . " WHERE id=?", [1])[0];
 
         self::$slide_interval = $slideshow_pref['show_interval'];
 
@@ -288,10 +321,10 @@ class Slideshow {
      */
     public function modal() {
         self::$json_data = json_encode([]);
-        for ($i = \eMarket\Core\Pages::$start; $i < \eMarket\Core\Pages::$finish; $i++) {
-            if (isset(\eMarket\Core\Pages::$table['lines'][$i]['id']) == TRUE) {
+        for ($i = Pages::$start; $i < Pages::$finish; $i++) {
+            if (isset(Pages::$table['lines'][$i]['id']) == TRUE) {
 
-                $modal_id = \eMarket\Core\Pages::$table['lines'][$i]['id'];
+                $modal_id = Pages::$table['lines'][$i]['id'];
 
                 foreach (self::$sql_data as $sql_modal) {
                     if ($sql_modal['id'] == $modal_id) {
