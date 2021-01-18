@@ -7,6 +7,9 @@
 
 namespace eMarket\Admin;
 
+use \eMarket\Core\{Messages, Pdo, Pages, Valid};
+use \eMarket\Admin\HeaderMenu;
+
 /**
  * Customers
  *
@@ -35,7 +38,7 @@ class Customers {
      * 
      */
     public static function menu() {
-        \eMarket\Admin\HeaderMenu::$menu[\eMarket\Admin\HeaderMenu::$menu_customers][] = ['?route=customers', 'glyphicon glyphicon glyphicon-user', lang('menu_customers'), '', 'false'];
+        HeaderMenu::$menu[HeaderMenu::$menu_customers][] = ['?route=customers', 'glyphicon glyphicon glyphicon-user', lang('menu_customers'), '', 'false'];
     }
 
     /**
@@ -43,9 +46,9 @@ class Customers {
      *
      */
     public function status() {
-        if (\eMarket\Core\Valid::inPOST('status')) {
+        if (Valid::inPOST('status')) {
 
-            $status_data = \eMarket\Core\Pdo::getCell("SELECT status FROM " . TABLE_CUSTOMERS . " WHERE id=?", [\eMarket\Core\Valid::inPOST('status')]);
+            $status_data = Pdo::getCell("SELECT status FROM " . TABLE_CUSTOMERS . " WHERE id=?", [Valid::inPOST('status')]);
 
             if ($status_data == 0) {
                 self::$status = 1;
@@ -53,9 +56,9 @@ class Customers {
                 self::$status = 0;
             }
 
-            \eMarket\Core\Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET status=? WHERE id=?", [self::$status, \eMarket\Core\Valid::inPOST('status')]);
+            Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET status=? WHERE id=?", [self::$status, Valid::inPOST('status')]);
 
-            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('success', lang('action_completed_successfully'));
         }
     }
 
@@ -64,11 +67,11 @@ class Customers {
      *
      */
     public function delete() {
-        if (\eMarket\Core\Valid::inPOST('delete')) {
+        if (Valid::inPOST('delete')) {
 
-            \eMarket\Core\Pdo::action("DELETE FROM " . TABLE_CUSTOMERS . " WHERE id=?", [\eMarket\Core\Valid::inPOST('delete')]);
+            Pdo::action("DELETE FROM " . TABLE_CUSTOMERS . " WHERE id=?", [Valid::inPOST('delete')]);
 
-            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('success', lang('action_completed_successfully'));
         }
     }
 
@@ -77,14 +80,14 @@ class Customers {
      *
      */
     public function data() {
-        $search = '%' . \eMarket\Core\Valid::inGET('search') . '%';
-        if (\eMarket\Core\Valid::inGET('search')) {
-            $lines = \eMarket\Core\Pdo::getColRow("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE firstname LIKE? OR lastname LIKE? OR middle_name LIKE? OR email LIKE? ORDER BY id DESC", [$search, $search, $search, $search]);
+        $search = '%' . Valid::inGET('search') . '%';
+        if (Valid::inGET('search')) {
+            $lines = Pdo::getColRow("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE firstname LIKE? OR lastname LIKE? OR middle_name LIKE? OR email LIKE? ORDER BY id DESC", [$search, $search, $search, $search]);
         } else {
-            $lines = \eMarket\Core\Pdo::getColRow("SELECT * FROM " . TABLE_CUSTOMERS . " ORDER BY id DESC", []);
+            $lines = Pdo::getColRow("SELECT * FROM " . TABLE_CUSTOMERS . " ORDER BY id DESC", []);
         }
 
-        \eMarket\Core\Pages::table($lines);
+        Pages::table($lines);
     }
 
 }
