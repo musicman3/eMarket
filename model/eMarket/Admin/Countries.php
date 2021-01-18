@@ -7,7 +7,14 @@
 
 namespace eMarket\Admin;
 
-use \eMarket\Core\{Func, Lang, Messages, Pages, Pdo, Valid};
+use \eMarket\Core\{
+    Func,
+    Lang,
+    Messages,
+    Pages,
+    Pdo,
+    Valid
+};
 
 /**
  * Countries

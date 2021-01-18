@@ -7,7 +7,12 @@
 
 namespace eMarket\Admin;
 
-use \eMarket\Core\{Messages, Pdo, Pages, Valid};
+use \eMarket\Core\{
+    Messages,
+    Pdo,
+    Pages,
+    Valid
+};
 use \eMarket\Admin\HeaderMenu;
 
 /**

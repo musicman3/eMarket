@@ -3,7 +3,12 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-use \eMarket\Core\{Messages, Settings, Lang};
+
+use \eMarket\Core\{
+    Messages,
+    Settings,
+    Lang
+};
 use \eMarket\Admin\BasicSettings;
 ?>
 

@@ -7,7 +7,13 @@
 
 namespace eMarket\Admin;
 
-use \eMarket\Core\{Func, Messages, Pdo, Settings, Valid};
+use \eMarket\Core\{
+    Func,
+    Messages,
+    Pdo,
+    Settings,
+    Valid
+};
 use \eMarket\Admin\HeaderMenu;
 
 /**

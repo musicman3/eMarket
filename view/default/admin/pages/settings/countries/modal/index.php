@@ -1,9 +1,13 @@
 <?php
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
-  |    GNU GENERAL PUBLIC LICENSE v.3.0    |    
+  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-use \eMarket\Core\{Lang, Settings};
+
+use \eMarket\Core\{
+    Lang,
+    Settings
+};
 ?>
 <div id="index" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
@@ -31,7 +35,6 @@ use \eMarket\Core\{Lang, Settings};
                         <?php
                         if (Lang::$COUNT > 1) {
                             for ($x = 1; $x < Lang::$COUNT; $x++) {
-
                                 ?>
 
                                 <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">
@@ -46,7 +49,6 @@ use \eMarket\Core\{Lang, Settings};
                                 <?php
                             }
                         }
-
                         ?>
 
                         <div class="form-group">

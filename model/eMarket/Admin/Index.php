@@ -7,6 +7,10 @@
 
 namespace eMarket\Admin;
 
+use \eMarket\Core\{
+    Valid
+};
+
 /**
  * Index
  *
@@ -22,8 +26,8 @@ class Index {
      * @return string url
      */
     public function route() {
-        if (\eMarket\Core\Valid::inGET('route') != '') {
-            return ROOT . '/controller/admin/pages/' . \eMarket\Core\Valid::inGET('route') . '/index.php';
+        if (Valid::inGET('route') != '') {
+            return ROOT . '/controller/admin/pages/' . Valid::inGET('route') . '/index.php';
         } else {
             return ROOT . '/controller/admin/pages/dashboard/index.php';
         }

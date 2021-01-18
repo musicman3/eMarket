@@ -7,7 +7,11 @@
 
 namespace eMarket\Admin;
 
-use \eMarket\Core\{Messages, Pages, Valid};
+use \eMarket\Core\{
+    Messages,
+    Pages,
+    Valid
+};
 use \eMarket\Admin\HeaderMenu;
 
 /**
@@ -27,7 +31,7 @@ class ErrorLog {
         $this->delete();
         $this->data();
     }
-    
+
     /**
      * Menu config
      * [0] - url, [1] - icon, [2] - name, [3] - target="_blank", [4] - submenu (true/false)
@@ -35,7 +39,7 @@ class ErrorLog {
      */
     public static function menu() {
         HeaderMenu::$menu[HeaderMenu::$menu_tools][] = ['?route=error_log', 'glyphicon glyphicon-exclamation-sign', lang('menu_error_log'), '', 'false'];
-    }    
+    }
 
     /**
      * Delete
