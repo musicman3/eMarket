@@ -7,11 +7,7 @@
 
 namespace eMarket\Admin;
 
-use \eMarket\Core\Func as Func;
-use \eMarket\Core\Lang as Lang;
-use \eMarket\Core\Pages as Pages;
-use \eMarket\Core\Pdo as Pdo;
-use \eMarket\Core\Valid as Valid;
+use \eMarket\Core\{Func, Lang, Pages, Pdo, Valid};
 
 /**
  * Currencies
