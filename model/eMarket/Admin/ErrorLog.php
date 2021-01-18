@@ -7,6 +7,9 @@
 
 namespace eMarket\Admin;
 
+use \eMarket\Core\{Messages, Pages, Valid};
+use \eMarket\Admin\HeaderMenu;
+
 /**
  * Error Log
  *
@@ -31,7 +34,7 @@ class ErrorLog {
      * 
      */
     public static function menu() {
-        \eMarket\Admin\HeaderMenu::$menu[\eMarket\Admin\HeaderMenu::$menu_tools][] = ['?route=error_log', 'glyphicon glyphicon-exclamation-sign', lang('menu_error_log'), '', 'false'];
+        HeaderMenu::$menu[HeaderMenu::$menu_tools][] = ['?route=error_log', 'glyphicon glyphicon-exclamation-sign', lang('menu_error_log'), '', 'false'];
     }    
 
     /**
@@ -39,10 +42,10 @@ class ErrorLog {
      *
      */
     public function delete() {
-        if (\eMarket\Core\Valid::inPOST('delete') == 'delete' && file_exists(ROOT . '/model/work/errors.log')) {
+        if (Valid::inPOST('delete') == 'delete' && file_exists(ROOT . '/model/work/errors.log')) {
             unlink(ROOT . '/model/work/errors.log');
 
-            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('success', lang('action_completed_successfully'));
         }
     }
 
@@ -57,7 +60,7 @@ class ErrorLog {
             $lines = [];
         }
 
-        \eMarket\Core\Pages::table($lines);
+        Pages::table($lines);
     }
 
 }
