@@ -3,6 +3,7 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+
 use \eMarket\Core\{
     Messages,
     Pages,
@@ -10,6 +11,7 @@ use \eMarket\Core\{
     Settings
 };
 use \eMarket\Admin\Countries;
+
 require_once('modal/index.php')
 ?>
 

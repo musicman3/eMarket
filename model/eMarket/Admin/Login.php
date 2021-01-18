@@ -7,6 +7,12 @@
 
 namespace eMarket\Admin;
 
+use \eMarket\Core\{
+    Pdo,
+    Settings,
+    Valid
+};
+
 /**
  * Login
  *
@@ -36,7 +42,7 @@ class Login {
      */
     public function logout() {
         session_start();
-        if (\eMarket\Core\Valid::inGET('logout') == 'ok') {
+        if (Valid::inGET('logout') == 'ok') {
             unset($_SESSION['login']);
             unset($_SESSION['pass']);
             header('Location: ?route=login');
@@ -64,7 +70,7 @@ class Login {
      *
      */
     public function loginError() {
-        if (isset($_SESSION['login_error']) == TRUE && \eMarket\Core\Valid::inPOST('login') && \eMarket\Core\Valid::inPOST('pass')) {
+        if (isset($_SESSION['login_error']) == TRUE && Valid::inPOST('login') && Valid::inPOST('pass')) {
             unset($_SESSION['login']);
             unset($_SESSION['pass']);
             self::$login_error = $_SESSION['login_error'];
@@ -76,7 +82,7 @@ class Login {
      *
      */
     public function afterInstall() {
-        if (\eMarket\Core\Valid::inPOST('install') == 'ok') {
+        if (Valid::inPOST('install') == 'ok') {
             session_destroy();
             session_start();
         }
@@ -87,17 +93,17 @@ class Login {
      *
      */
     public function autorize() {
-        if (\eMarket\Core\Valid::inPOST('autorize') == 'ok') {
-            $_SESSION['DEFAULT_LANGUAGE'] = \eMarket\Core\Settings::basicSettings('primary_language');
-            $HASH = \eMarket\Core\Pdo::selectPrepare("SELECT password FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [\eMarket\Core\Valid::inPOST('login')]);
-            if (!password_verify(\eMarket\Core\Valid::inPOST('pass'), $HASH)) {
+        if (Valid::inPOST('autorize') == 'ok') {
+            $_SESSION['DEFAULT_LANGUAGE'] = Settings::basicSettings('primary_language');
+            $HASH = Pdo::selectPrepare("SELECT password FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [Valid::inPOST('login')]);
+            if (!password_verify(Valid::inPOST('pass'), $HASH)) {
                 unset($_SESSION['login']);
                 unset($_SESSION['pass']);
                 $_SESSION['login_error'] = lang('login_error');
             } else {
-                $_SESSION['login'] = \eMarket\Core\Valid::inPOST('login');
+                $_SESSION['login'] = Valid::inPOST('login');
                 $_SESSION['pass'] = $HASH;
-                $_SESSION['DEFAULT_LANGUAGE'] = \eMarket\Core\Settings::basicSettings('primary_language');
+                $_SESSION['DEFAULT_LANGUAGE'] = Settings::basicSettings('primary_language');
                 if (isset($_SESSION['session_page'])) {
                     $session_page = $_SESSION['session_page'];
                     unset($_SESSION['session_page']);
