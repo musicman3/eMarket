@@ -7,7 +7,7 @@
 
 namespace eMarket\Admin;
 
-use \eMarket\Core\{Func, Lang, Pages, Pdo, Valid};
+use \eMarket\Core\{Func, Lang, Pages, Pdo, Valid, Messages};
 
 /**
  * Currencies
@@ -77,7 +77,7 @@ class Currencies {
                 }
             }
 
-            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('success', lang('action_completed_successfully'));
         }
     }
 
@@ -124,7 +124,7 @@ class Currencies {
                 }
             }
 
-            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('success', lang('action_completed_successfully'));
         }
     }
 
@@ -137,7 +137,7 @@ class Currencies {
 
             Pdo::action("DELETE FROM " . TABLE_CURRENCIES . " WHERE id=?", [Valid::inPOST('delete')]);
 
-            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('success', lang('action_completed_successfully'));
         }
     }
 
