@@ -7,6 +7,11 @@
 
 namespace eMarket\Admin;
 
+use \eMarket\Core\{
+    Pdo,
+    Valid
+};
+
 /**
  * Modules/Edit
  *
@@ -31,7 +36,8 @@ class ModulesEdit {
      *
      */
     public function switch_active() {
-        $active = \eMarket\Core\Pdo::getCellFalse("SELECT active FROM " . TABLE_MODULES . " WHERE type=? AND name=?", [\eMarket\Core\Valid::inGET('type'), \eMarket\Core\Valid::inGET('name')])[0];
+        $active = Pdo::getCellFalse("SELECT active FROM " . TABLE_MODULES . " WHERE type=? AND name=?", [
+                    Valid::inGET('type'), Valid::inGET('name')])[0];
 
         if ($active == 1) {
             self::$switch_active = 'checked';
