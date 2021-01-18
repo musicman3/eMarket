@@ -3,16 +3,17 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-
+use \eMarket\Core\{Messages, Settings, Lang};
+use \eMarket\Admin\BasicSettings;
 ?>
 
 <div id="settings_basic_settings">
     <div class="panel panel-default">
 
         <div class="panel-heading">
-            <div id="alert_block"><?php \eMarket\Core\Messages::alert(); ?></div>
+            <div id="alert_block"><?php Messages::alert(); ?></div>
             <h3 class="panel-title">
-                <span class="settings_back"><button type="button" onClick='location.href = "<?php echo \eMarket\Core\Settings::parentPartitionGenerator() ?>"' class="btn btn-primary btn-xs"><span class="back glyphicon glyphicon-share-alt"></span></button></span><span class="settings_name"><?php echo \eMarket\Core\Settings::titlePageGenerator() ?></span>
+                <span class="settings_back"><button type="button" onClick='location.href = "<?php echo Settings::parentPartitionGenerator() ?>"' class="btn btn-primary btn-xs"><span class="back glyphicon glyphicon-share-alt"></span></button></span><span class="settings_name"><?php echo Settings::titlePageGenerator() ?></span>
             </h3>
         </div>
         <div class="panel-body">
@@ -30,11 +31,11 @@
                             <div class="col-sm-3 text-left"><label class=""><?php echo lang('basic_settings_primary_language') ?></label></div>
                             <div class="col-sm-9">
                                 <select name="primary_language" id="primary_language" class="input-sm form-control">
-                                    <?php if (\eMarket\Core\Lang::$COUNT == 1) { ?>
-                                        <option value="<?php echo eMarket\Admin\BasicSettings::$primary_language ?>" selected><?php echo lang('language_name', eMarket\Admin\BasicSettings::$primary_language) ?></option>
+                                    <?php if (Lang::$COUNT == 1) { ?>
+                                        <option value="<?php echo BasicSettings::$primary_language ?>" selected><?php echo lang('language_name', BasicSettings::$primary_language) ?></option>
                                     <?php } else { ?>
-                                        <option value="<?php echo eMarket\Admin\BasicSettings::$primary_language ?>" selected><?php echo lang('language_name', eMarket\Admin\BasicSettings::$primary_language) ?></option>
-                                        <?php foreach (eMarket\Admin\BasicSettings::$langs_settings as $langs) { ?>
+                                        <option value="<?php echo BasicSettings::$primary_language ?>" selected><?php echo lang('language_name', BasicSettings::$primary_language) ?></option>
+                                        <?php foreach (BasicSettings::$langs_settings as $langs) { ?>
                                             <option value="<?php echo $langs ?>"><?php echo lang('language_name', $langs) ?></option>
                                             <?php
                                         }
@@ -46,20 +47,20 @@
                         <div class="form-group">
                             <div class="col-sm-3 text-left"><label class="control-label"><?php echo lang('lines_on_page') ?></label></div>
                             <div class="col-sm-9">
-                                <input type="text" name="lines_on_page" class="form-control" value="<?php echo \eMarket\Core\Settings::linesOnPage() ?>" required />
+                                <input type="text" name="lines_on_page" class="form-control" value="<?php echo Settings::linesOnPage() ?>" required />
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-3 text-left"><label class=""><?php echo lang('session_expr_time') ?> <span data-toggle="tooltip" data-placement="right" data-original-title="<?php echo lang('session_expr_time_help') ?>" class="glyphicon glyphicon-question-sign"></span></label></div>
                             <div class="col-sm-9">
-                                <input type="text" name="session_expr_time" class="form-control" value="<?php echo \eMarket\Core\Settings::sessionExprTime() ?>" required />
+                                <input type="text" name="session_expr_time" class="form-control" value="<?php echo Settings::sessionExprTime() ?>" required />
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-3 text-left"><label class=""><?php echo lang('debug_info') ?></label></div>
                             <div class="col-sm-9">
                                 <select name="debug" id="debug" class="input-sm form-control">
-                                    <?php if (eMarket\Admin\BasicSettings::$debug == 1) { ?>
+                                    <?php if (BasicSettings::$debug == 1) { ?>
                                         <option selected><?php echo lang('debug_on') ?></option>
                                         <option><?php echo lang('debug_off') ?></option>
                                     <?php } else { ?>
@@ -79,14 +80,14 @@
                         <div class="form-group">
                             <div class="col-sm-3 text-left"><label class="control-label"><?php echo lang('basic_settings_email') ?></label></div>
                             <div class="col-sm-9">
-                                <input type="email" name="email" class="form-control" value="<?php echo eMarket\Admin\BasicSettings::$email ?>" required />
+                                <input type="email" name="email" class="form-control" value="<?php echo BasicSettings::$email ?>" required />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-sm-3 text-left"><label class="control-label"><?php echo lang('basic_settings_email_name') ?></label></div>
                             <div class="col-sm-9">
-                                <input type="text" name="email_name" class="form-control" value="<?php echo eMarket\Admin\BasicSettings::$email_name ?>" required />
+                                <input type="text" name="email_name" class="form-control" value="<?php echo BasicSettings::$email_name ?>" required />
                             </div>
                         </div>
 
@@ -94,7 +95,7 @@
                             <div class="col-sm-3 text-left"><label class=""><?php echo lang('basic_settings_smtp_use') ?></label></div>
                             <div class="col-sm-9">
                                 <select name="smtp_status" id="smtp_status" class="input-sm form-control">
-                                    <?php if (eMarket\Admin\BasicSettings::$smtp_status == 1) { ?>
+                                    <?php if (BasicSettings::$smtp_status == 1) { ?>
                                         <option value="on" selected><?php echo lang('debug_on') ?></option>
                                         <option value="off"><?php echo lang('debug_off') ?></option>
                                     <?php } else { ?>
@@ -109,7 +110,7 @@
                             <div class="col-sm-3 text-left"><label class=""><?php echo lang('basic_settings_smtp_auth') ?></label></div>
                             <div class="col-sm-9">
                                 <select name="smtp_auth" id="smtp_auth" class="input-sm form-control">
-                                    <?php if (eMarket\Admin\BasicSettings::$smtp_auth == 1) { ?>
+                                    <?php if (BasicSettings::$smtp_auth == 1) { ?>
                                         <option selected><?php echo lang('debug_on') ?></option>
                                         <option><?php echo lang('debug_off') ?></option>
                                     <?php } else { ?>
@@ -123,35 +124,35 @@
                         <div class="form-group">
                             <div class="col-sm-3 text-left"><label class="control-label"><?php echo lang('basic_settings_host_email') ?></label></div>
                             <div class="col-sm-9">
-                                <input type="text" id="host_email" name="host_email" class="form-control" value="<?php echo eMarket\Admin\BasicSettings::$host_email ?>" required />
+                                <input type="text" id="host_email" name="host_email" class="form-control" value="<?php echo BasicSettings::$host_email ?>" required />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-sm-3 text-left"><label class="control-label"><?php echo lang('basic_settings_username_email') ?></label></div>
                             <div class="col-sm-9">
-                                <input type="text" id="username_email" name="username_email" class="form-control" value="<?php echo eMarket\Admin\BasicSettings::$username_email ?>" required />
+                                <input type="text" id="username_email" name="username_email" class="form-control" value="<?php echo BasicSettings::$username_email ?>" required />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-sm-3 text-left"><label class="control-label"><?php echo lang('basic_settings_password_email') ?></label></div>
                             <div class="col-sm-9">
-                                <input type="password" id="password_email" name="password_email" class="form-control" value="<?php echo eMarket\Admin\BasicSettings::$password_email ?>" required />
+                                <input type="password" id="password_email" name="password_email" class="form-control" value="<?php echo BasicSettings::$password_email ?>" required />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-sm-3 text-left"><label class="control-label"><?php echo lang('basic_settings_smtp_secure') ?></label></div>
                             <div class="col-sm-9">
-                                <input type="text" id="smtp_secure" name="smtp_secure" class="form-control" value="<?php echo eMarket\Admin\BasicSettings::$smtp_secure ?>" required />
+                                <input type="text" id="smtp_secure" name="smtp_secure" class="form-control" value="<?php echo BasicSettings::$smtp_secure ?>" required />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-sm-3 text-left"><label class="control-label"><?php echo lang('basic_settings_smtp_port') ?></label></div>
                             <div class="col-sm-9">
-                                <input type="text" id="smtp_port" name="smtp_port" class="form-control" value="<?php echo eMarket\Admin\BasicSettings::$smtp_port ?>" required />
+                                <input type="text" id="smtp_port" name="smtp_port" class="form-control" value="<?php echo BasicSettings::$smtp_port ?>" required />
                             </div>
                         </div>
 
