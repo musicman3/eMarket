@@ -7,6 +7,10 @@
 
 namespace eMarket\Core;
 
+use \eMarket\Core\{
+    Pdo
+};
+
 /**
  * Shipping
  *
@@ -22,16 +26,16 @@ final class Shipping {
      * @return array
      */
     public static function shippingZonesAvailable($region) {
-        $data = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE active=? AND type=?", [1, 'shipping']);
+        $data = Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE active=? AND type=?", [1, 'shipping']);
 
         $modules_data = [];
         foreach ($data as $module) {
-            $mod_array = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . DB_PREFIX . 'modules_shipping_' . $module['name'], []);
+            $mod_array = Pdo::getColAssoc("SELECT * FROM " . DB_PREFIX . 'modules_shipping_' . $module['name'], []);
             array_push($modules_data, $mod_array);
         }
 
         $output = [];
-        $zones_id = \eMarket\Core\Pdo::getCellFalse("SELECT zones_id FROM " . TABLE_ZONES_VALUE . " WHERE regions_id=?", [$region]);
+        $zones_id = Pdo::getCellFalse("SELECT zones_id FROM " . TABLE_ZONES_VALUE . " WHERE regions_id=?", [$region]);
 
         if ($zones_id != FALSE) {
             foreach ($modules_data as $mod_data_ext) {
@@ -52,11 +56,11 @@ final class Shipping {
      * @return array
      */
     public static function shippingModulesAvailable($shipping_zones_id_available) {
-        $data = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE active=? AND type=?", [1, 'shipping']);
+        $data = Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE active=? AND type=?", [1, 'shipping']);
 
         $modules_data = [];
         foreach ($data as $module) {
-            $mod_array = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . DB_PREFIX . 'modules_shipping_' . $module['name'], []);
+            $mod_array = Pdo::getColAssoc("SELECT * FROM " . DB_PREFIX . 'modules_shipping_' . $module['name'], []);
             array_push($modules_data, [$module['name'] => $mod_array]);
         }
         $output = [];
