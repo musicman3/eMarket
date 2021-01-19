@@ -3,20 +3,25 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+
+use \eMarket\Core\{
+    Lang,
+    Settings
+};
 ?>
 
 <div id="index" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header"><div class="pull-right"><button class="close" type="button" data-dismiss="modal">×</button></div>
-                <h4 class="modal-title"><?php echo \eMarket\Core\Settings::titlePageGenerator() ?></h4>
+                <h4 class="modal-title"><?php echo Settings::titlePageGenerator() ?></h4>
             </div>
             <form id="form_add" name="form_add" action="javascript:void(null);" onsubmit="Ajax.callAdd()">
                 <div class="panel-body">
                     <input type="hidden" id="add" name="add" value="" />
                     <input type="hidden" id="edit" name="edit" value="" />
 
-                    <?php require_once(ROOT . '/view/' . \eMarket\Core\Settings::template() . '/layouts/lang_tabs_add.php') ?>
+                    <?php require_once(ROOT . '/view/' . Settings::template() . '/layouts/lang_tabs_add.php') ?>
 
                     <div class="tab-content">
                         <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade in active">
@@ -35,8 +40,8 @@
                         </div>
 
                         <?php
-                        if (\eMarket\Core\Lang::$COUNT > 1) {
-                            for ($x = 1; $x < \eMarket\Core\Lang::$COUNT; $x++) {
+                        if (Lang::$COUNT > 1) {
+                            for ($x = 1; $x < Lang::$COUNT; $x++) {
                                 ?>
 
                                 <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">
