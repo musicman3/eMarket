@@ -3,17 +3,23 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+
+use \eMarket\Core\{
+    Lang,
+    Settings
+};
+use \eMarket\Admin\Stock;
 ?>
 
 <div id="index_product" class="products modal fade" tabindex="-1">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header"><div class="pull-right"><button class="close" type="button" data-dismiss="modal">×</button></div>
-                <h4 class="modal-title"><?php echo \eMarket\Core\Settings::titlePageGenerator() ?></h4>
+                <h4 class="modal-title"><?php echo Settings::titlePageGenerator() ?></h4>
             </div>
             <form id="form_add_product" name="form_add_product" action="javascript:void(null);" onsubmit="Ajax.callAdd('form_add_product')">
                 <div class="panel-body">
-                    <input type="hidden" name="parent_id" value="<?php echo \eMarket\Admin\Stock::$parent_id ?>" />
+                    <input type="hidden" name="parent_id" value="<?php echo Stock::$parent_id ?>" />
                     <input type="hidden" id="add_product" name="add_product" value="" />
                     <input type="hidden" id="edit_product" name="edit_product" value="" />
                     <input id="general_image_add_product" type="hidden" name="general_image_add_product" value="">
@@ -34,7 +40,7 @@
 
                         <div id="panel_add_product_1" class="tab-pane fade in active">
 
-                            <?php require_once(ROOT . '/view/' . \eMarket\Core\Settings::template() . '/layouts/lang_tabs_add_product.php') ?>
+                            <?php require_once(ROOT . '/view/' . Settings::template() . '/layouts/lang_tabs_add_product.php') ?>
 
                             <div class="tab-content">
                                 <div id="product_<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade in active">
@@ -68,8 +74,8 @@
                                 </div>
 
                                 <?php
-                                if (\eMarket\Core\Lang::$COUNT > 1) {
-                                    for ($x = 1; $x < \eMarket\Core\Lang::$COUNT; $x++) {
+                                if (Lang::$COUNT > 1) {
+                                    for ($x = 1; $x < Lang::$COUNT; $x++) {
                                         ?>
 
                                         <div id="product_<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">
@@ -124,7 +130,7 @@
                                     <div class="input-group has-error">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-euro"></span></span>
                                         <select name="currency_product_stock" id="currency_product_stock" class="form-control">
-                                            <?php \eMarket\Core\Settings::viewSelect(\eMarket\Admin\Stock::$currencies_all, 'default_value') ?>
+                                            <?php Settings::viewSelect(Stock::$currencies_all, 'default_value') ?>
                                         </select>
                                     </div>
                                 </div>
@@ -142,7 +148,7 @@
                                     <div class="input-group has-error">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-flag"></span></span>
                                         <select name="unit_product_stock" id="unit_product_stock" class="form-control">
-                                            <?php \eMarket\Core\Settings::viewSelect(\eMarket\Admin\Stock::$units_all, 'default_unit') ?>
+                                            <?php Settings::viewSelect(Stock::$units_all, 'default_unit') ?>
                                         </select>
                                     </div>
                                 </div>
@@ -160,7 +166,7 @@
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-object-align-bottom"></span></span>
                                         <select name="manufacturers_product_stock" id="manufacturers_product_stock" class="form-control">
-                                            <?php \eMarket\Core\Settings::viewSelect(\eMarket\Admin\Stock::$manufacturers_all) ?>
+                                            <?php Settings::viewSelect(Stock::$manufacturers_all) ?>
                                         </select>
                                     </div>
                                 </div>
@@ -178,7 +184,7 @@
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span></span>
                                         <select name="tax_product_stock" id="tax_product_stock" class="form-control">
-                                            <?php \eMarket\Core\Settings::viewSelect(\eMarket\Admin\Stock::$taxes_all) ?>
+                                            <?php Settings::viewSelect(Stock::$taxes_all) ?>
                                         </select>
                                     </div>
                                 </div>
@@ -201,7 +207,7 @@
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-tag"></span></span>
                                         <select name="vendor_codes_product_stock" id="vendor_codes_product_stock" class="form-control">
-                                            <?php \eMarket\Core\Settings::viewSelect(\eMarket\Admin\Stock::$vendor_codes_all, 'default_vendor_code') ?>
+                                            <?php Settings::viewSelect(Stock::$vendor_codes_all, 'default_vendor_code') ?>
                                         </select>
                                     </div>
                                 </div>
@@ -219,7 +225,7 @@
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-scale"></span></span>
                                         <select name="weight_product_stock" id="weight_product_stock" class="form-control">
-                                            <?php \eMarket\Core\Settings::viewSelect(\eMarket\Admin\Stock::$weight_all, 'default_weight') ?>
+                                            <?php Settings::viewSelect(Stock::$weight_all, 'default_weight') ?>
                                         </select>
                                     </div>
                                 </div>
@@ -237,7 +243,7 @@
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-road"></span></span>
                                         <select name="length_product_stock" id="length_product_stock" class="form-control">
-                                            <?php \eMarket\Core\Settings::viewSelect(\eMarket\Admin\Stock::$length_all, 'default_length') ?>
+                                            <?php Settings::viewSelect(Stock::$length_all, 'default_length') ?>
                                         </select>
                                     </div>
                                 </div>

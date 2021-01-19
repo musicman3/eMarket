@@ -7,6 +7,19 @@
 
 namespace eMarket\Admin;
 
+use \eMarket\Core\{
+    Eac,
+    Ecb,
+    Func,
+    Modules,
+    Navigation,
+    Pdo,
+    Settings,
+    Valid
+};
+use \eMarket\Admin\HeaderMenu;
+use \eMarket\Admin\Stikers;
+
 /**
  * Stock
  *
@@ -51,8 +64,8 @@ class Stock {
         $this->imgUploadCategories();
         $this->imgUploadProducts();
         $this->initEac();
-        \eMarket\Core\Modules::initDiscount();
-        \eMarket\Admin\Stikers::initStikers();
+        Modules::initDiscount();
+        Stikers::initStikers();
         $this->selectData();
         $this->preparedData();
         $this->data();
@@ -66,7 +79,7 @@ class Stock {
      * 
      */
     public static function menu() {
-        \eMarket\Admin\HeaderMenu::$menu[\eMarket\Admin\HeaderMenu::$menu_market][0] = ['?route=stock', 'glyphicon glyphicon-barcode', lang('title_stock_index'), '', 'false'];
+        HeaderMenu::$menu[HeaderMenu::$menu_market][0] = ['?route=stock', 'glyphicon glyphicon-barcode', lang('title_stock_index'), '', 'false'];
     }
 
     /**
@@ -96,7 +109,7 @@ class Stock {
      *
      */
     public function initEac() {
-        $EAC_ENGINE = \eMarket\Core\Eac::init(self::$resize_param, self::$resize_param_product);
+        $EAC_ENGINE = Eac::init(self::$resize_param, self::$resize_param_product);
         self::$idsx_real_parent_id = $EAC_ENGINE[0];
         self::$parent_id = $EAC_ENGINE[1];
     }
@@ -106,13 +119,13 @@ class Stock {
      *
      */
     public function selectData() {
-        self::$currencies_all = \eMarket\Core\Pdo::getColAssoc("SELECT name, default_value, id FROM " . TABLE_CURRENCIES . " WHERE language=?", [lang('#lang_all')[0]]);
-        self::$taxes_all = \eMarket\Core\Pdo::getColAssoc("SELECT name, id FROM " . TABLE_TAXES . " WHERE language=?", [lang('#lang_all')[0]]);
-        self::$units_all = \eMarket\Core\Pdo::getColAssoc("SELECT name, default_unit, id FROM " . TABLE_UNITS . " WHERE language=?", [lang('#lang_all')[0]]);
-        self::$length_all = \eMarket\Core\Pdo::getColAssoc("SELECT name, default_length, id FROM " . TABLE_LENGTH . " WHERE language=?", [lang('#lang_all')[0]]);
-        self::$weight_all = \eMarket\Core\Pdo::getColAssoc("SELECT name, default_weight, id FROM " . TABLE_WEIGHT . " WHERE language=?", [lang('#lang_all')[0]]);
-        self::$vendor_codes_all = \eMarket\Core\Pdo::getColAssoc("SELECT name, default_vendor_code, id FROM " . TABLE_VENDOR_CODES . " WHERE language=?", [lang('#lang_all')[0]]);
-        self::$manufacturers_all = \eMarket\Core\Pdo::getColAssoc("SELECT name, id FROM " . TABLE_MANUFACTURERS . " WHERE language=?", [lang('#lang_all')[0]]);
+        self::$currencies_all = Pdo::getColAssoc("SELECT name, default_value, id FROM " . TABLE_CURRENCIES . " WHERE language=?", [lang('#lang_all')[0]]);
+        self::$taxes_all = Pdo::getColAssoc("SELECT name, id FROM " . TABLE_TAXES . " WHERE language=?", [lang('#lang_all')[0]]);
+        self::$units_all = Pdo::getColAssoc("SELECT name, default_unit, id FROM " . TABLE_UNITS . " WHERE language=?", [lang('#lang_all')[0]]);
+        self::$length_all = Pdo::getColAssoc("SELECT name, default_length, id FROM " . TABLE_LENGTH . " WHERE language=?", [lang('#lang_all')[0]]);
+        self::$weight_all = Pdo::getColAssoc("SELECT name, default_weight, id FROM " . TABLE_WEIGHT . " WHERE language=?", [lang('#lang_all')[0]]);
+        self::$vendor_codes_all = Pdo::getColAssoc("SELECT name, default_vendor_code, id FROM " . TABLE_VENDOR_CODES . " WHERE language=?", [lang('#lang_all')[0]]);
+        self::$manufacturers_all = Pdo::getColAssoc("SELECT name, id FROM " . TABLE_MANUFACTURERS . " WHERE language=?", [lang('#lang_all')[0]]);
     }
 
     /**
@@ -120,8 +133,8 @@ class Stock {
      *
      */
     public function preparedData() {
-        if (\eMarket\Core\Valid::inGET('nav_parent_id')) {
-            self::$parent_id = \eMarket\Core\Valid::inGET('nav_parent_id');
+        if (Valid::inGET('nav_parent_id')) {
+            self::$parent_id = Valid::inGET('nav_parent_id');
         }
 
         if (!isset(self::$idsx_real_parent_id)) {
@@ -137,7 +150,8 @@ class Stock {
         if (self::$parent_id == 0) {
             self::$attributes_category = json_encode(json_encode([]));
         } else {
-            self::$attributes_category = json_encode(\eMarket\Core\Pdo::getColAssoc("SELECT attributes FROM " . TABLE_CATEGORIES . " WHERE id=? AND language=?", [self::$parent_id, lang('#lang_all')[0]])[0]['attributes']);
+            self::$attributes_category = json_encode(Pdo::getColAssoc("SELECT attributes FROM " . TABLE_CATEGORIES . " WHERE id=? AND language=?", [
+                        self::$parent_id, lang('#lang_all')[0]])[0]['attributes']);
         }
 
         self::$transfer = 0;
@@ -148,30 +162,35 @@ class Stock {
      *
      */
     public function data() {
-        $search = '%' . \eMarket\Core\Valid::inGET('search') . '%';
-        if (\eMarket\Core\Valid::inGET('search')) {
-            $sql_data_cat_search = \eMarket\Core\Pdo::getColAssoc("SELECT id FROM " . TABLE_CATEGORIES . " WHERE name LIKE? AND language=? ORDER BY sort_category DESC", [$search, lang('#lang_all')[0]]);
+        $search = '%' . Valid::inGET('search') . '%';
+        if (Valid::inGET('search')) {
+
+            $sql_data_cat_search = Pdo::getColAssoc("SELECT id FROM " . TABLE_CATEGORIES . " WHERE name LIKE? AND language=? ORDER BY sort_category DESC", [
+                        $search, lang('#lang_all')[0]]);
+
             self::$sql_data_cat = [];
             foreach ($sql_data_cat_search as $sql_data_cat_search_val) {
-                foreach (\eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_CATEGORIES . " WHERE id=? ORDER BY sort_category DESC", [$sql_data_cat_search_val['id']]) as $cat_array) {
+                foreach (Pdo::getColAssoc("SELECT * FROM " . TABLE_CATEGORIES . " WHERE id=? ORDER BY sort_category DESC", [
+                    $sql_data_cat_search_val['id']]) as $cat_array) {
                     self::$sql_data_cat[] = $cat_array;
                 }
             }
-            self::$lines_cat = \eMarket\Core\Func::filterData(self::$sql_data_cat, 'language', lang('#lang_all')[0]);
+            self::$lines_cat = Func::filterData(self::$sql_data_cat, 'language', lang('#lang_all')[0]);
 
-            $sql_data_prod_search = \eMarket\Core\Pdo::getColAssoc("SELECT id FROM " . TABLE_PRODUCTS . " WHERE (name LIKE? OR description LIKE?) AND language=? ORDER BY id DESC", [$search, $search, lang('#lang_all')[0]]);
+            $sql_data_prod_search = Pdo::getColAssoc("SELECT id FROM " . TABLE_PRODUCTS . " WHERE (name LIKE? OR description LIKE?) AND language=? ORDER BY id DESC", [$search, $search, lang('#lang_all')[0]]);
             self::$sql_data_prod = [];
             foreach ($sql_data_prod_search as $sql_data_prod_search_val) {
-                foreach (\eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=? ORDER BY id DESC", [$sql_data_prod_search_val['id']]) as $prod_array) {
+                foreach (Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=? ORDER BY id DESC", [
+                    $sql_data_prod_search_val['id']]) as $prod_array) {
                     self::$sql_data_prod[] = $prod_array;
                 }
             }
-            self::$lines_prod = \eMarket\Core\Func::filterData(self::$sql_data_prod, 'language', lang('#lang_all')[0]);
+            self::$lines_prod = Func::filterData(self::$sql_data_prod, 'language', lang('#lang_all')[0]);
         } else {
-            self::$sql_data_cat = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_CATEGORIES . " WHERE parent_id=? ORDER BY sort_category DESC", [self::$parent_id]);
-            self::$lines_cat = \eMarket\Core\Func::filterData(self::$sql_data_cat, 'language', lang('#lang_all')[0]);
-            self::$sql_data_prod = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE parent_id=? ORDER BY id DESC", [self::$parent_id]);
-            self::$lines_prod = \eMarket\Core\Func::filterData(self::$sql_data_prod, 'language', lang('#lang_all')[0]);
+            self::$sql_data_cat = Pdo::getColAssoc("SELECT * FROM " . TABLE_CATEGORIES . " WHERE parent_id=? ORDER BY sort_category DESC", [self::$parent_id]);
+            self::$lines_cat = Func::filterData(self::$sql_data_cat, 'language', lang('#lang_all')[0]);
+            self::$sql_data_prod = Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE parent_id=? ORDER BY id DESC", [self::$parent_id]);
+            self::$lines_prod = Func::filterData(self::$sql_data_prod, 'language', lang('#lang_all')[0]);
         }
 
         self::$count_lines_cat = count(self::$lines_cat);
@@ -179,9 +198,9 @@ class Stock {
         self::$count_lines_merge = self::$count_lines_cat + self::$count_lines_prod;
 
 
-        self::$arr_merge = \eMarket\Core\Func::arrayMergeOriginKey('cat', 'prod', self::$lines_cat, self::$lines_prod);
+        self::$arr_merge = Func::arrayMergeOriginKey('cat', 'prod', self::$lines_cat, self::$lines_prod);
 
-        $navigate = \eMarket\Core\Navigation::getLink(self::$count_lines_merge, \eMarket\Core\Settings::linesOnPage(), 1);
+        $navigate = Navigation::getLink(self::$count_lines_merge, Settings::linesOnPage(), 1);
         self::$start = $navigate[0];
         self::$finish = $navigate[1];
     }
@@ -244,8 +263,8 @@ class Stock {
                         $tags_product[array_search($sql_modal_prod['language'], lang('#lang_all'))][$modal_id_prod] = $sql_modal_prod['tags'];
                     }
                     if ($sql_modal_prod['language'] == lang('#lang_all')[0] && $sql_modal_prod['id'] == $modal_id_prod) {
-                        $price_product[$modal_id_prod] = round(\eMarket\Core\Ecb::currencyPrice($sql_modal_prod['price'], $sql_modal_prod['currency']), 2);
-                        $currency_product[$modal_id_prod] = \eMarket\Core\Settings::currencyDefault()[0];
+                        $price_product[$modal_id_prod] = round(Ecb::currencyPrice($sql_modal_prod['price'], $sql_modal_prod['currency']), 2);
+                        $currency_product[$modal_id_prod] = Settings::currencyDefault()[0];
                         $quantity_product[$modal_id_prod] = $sql_modal_prod['quantity'];
                         $units_product[$modal_id_prod] = $sql_modal_prod['unit'];
                         $model_product[$modal_id_prod] = $sql_modal_prod['model'];
@@ -268,7 +287,10 @@ class Stock {
                         if (self::$parent_id == 0) {
                             $attributes_data[$modal_id_prod] = json_encode(json_encode([]));
                         } else {
-                            $attributes_data[$modal_id_prod] = json_encode(\eMarket\Core\Pdo::getColAssoc("SELECT attributes FROM " . TABLE_CATEGORIES . " WHERE id=? AND language=?", [self::$parent_id, lang('#lang_all')[0]])[0]['attributes']);
+                            $attributes_data[$modal_id_prod] = json_encode(
+                                    Pdo::getColAssoc("SELECT attributes FROM " . TABLE_CATEGORIES . " WHERE id=? AND language=?", [
+                                        self::$parent_id, lang('#lang_all')[0]])[0]['attributes']
+                            );
                         }
                     }
                 }

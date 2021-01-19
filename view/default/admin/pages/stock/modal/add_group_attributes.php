@@ -3,6 +3,11 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+
+use \eMarket\Core\{
+    Lang,
+    Settings
+};
 ?>
 
 <div id="add_group_attributes" class="modal fade" tabindex="-1">
@@ -16,18 +21,18 @@
 
                     <div class="form-group">
                         <div class="input-group has-success">
-                            <span class="input-group-addon"><img src="/view/<?php echo \eMarket\Core\Settings::template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[0] ?>.png" alt="<?php echo lang('#lang_all')[0] ?>" title="<?php echo lang('#lang_all')[0] ?>" width="16" height="10" /></span>
+                            <span class="input-group-addon"><img src="/view/<?php echo Settings::template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[0] ?>.png" alt="<?php echo lang('#lang_all')[0] ?>" title="<?php echo lang('#lang_all')[0] ?>" width="16" height="10" /></span>
                             <input class="input-add-group-attributes input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="group_attributes_<?php echo lang('#lang_all')[0] ?>" required />
                         </div>
                     </div>
 
                     <?php
-                    if (\eMarket\Core\Lang::$COUNT > 1) {
-                        for ($x = 1; $x < \eMarket\Core\Lang::$COUNT; $x++) {
+                    if (Lang::$COUNT > 1) {
+                        for ($x = 1; $x < Lang::$COUNT; $x++) {
                             ?>
                             <div class="form-group">
                                 <div class="input-group has-success">
-                                    <span class="input-group-addon"><img src="/view/<?php echo \eMarket\Core\Settings::template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[$x] ?>.png" alt="<?php echo lang('#lang_all')[$x] ?>" title="<?php echo lang('#lang_all')[$x] ?>" width="16" height="10" /></span>
+                                    <span class="input-group-addon"><img src="/view/<?php echo Settings::template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[$x] ?>.png" alt="<?php echo lang('#lang_all')[$x] ?>" title="<?php echo lang('#lang_all')[$x] ?>" width="16" height="10" /></span>
                                     <input class="input-add-group-attributes input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="group_attributes_<?php echo lang('#lang_all')[$x] ?>" required />
                                 </div>
                             </div>
