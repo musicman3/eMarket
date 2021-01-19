@@ -4,36 +4,45 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+use \eMarket\Core\{
+    Ecb,
+    Messages,
+    Pages,
+    Settings,
+    Valid
+};
+use \eMarket\Admin\Taxes;
+
 require_once('modal/index.php')
 ?>
 
 <div id="settings_taxes">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <div id="alert_block"><?php \eMarket\Core\Messages::alert(); ?></div>
+            <div id="alert_block"><?php Messages::alert(); ?></div>
             <h3 class="panel-title">
-                <span class="settings_back"><button type="button" onClick='location.href = "<?php echo \eMarket\Core\Settings::parentPartitionGenerator() ?>"' class="btn btn-primary btn-xs"><span class="back glyphicon glyphicon-share-alt"></span></button></span><span class="settings_name"><?php echo \eMarket\Core\Settings::titlePageGenerator() ?></span>
+                <span class="settings_back"><button type="button" onClick='location.href = "<?php echo Settings::parentPartitionGenerator() ?>"' class="btn btn-primary btn-xs"><span class="back glyphicon glyphicon-share-alt"></span></button></span><span class="settings_name"><?php echo Settings::titlePageGenerator() ?></span>
             </h3>
         </div>
         <div class="panel-body">
-            <div id="ajax_data" class='hidden' data-jsondata='<?php echo \eMarket\Admin\Taxes::$json_data ?>'></div>
+            <div id="ajax_data" class='hidden' data-jsondata='<?php echo Taxes::$json_data ?>'></div>
 
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th colspan="5"><?php echo \eMarket\Core\Pages::counterPage() ?></th>
+                            <th colspan="5"><?php echo Pages::counterPage() ?></th>
 
                             <th>
                                 <div class="flexbox">
                                     <div class="b-left"><a href="#index" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
 
                                     <form>
-                                        <input hidden name="route" value="<?php echo \eMarket\Core\Valid::inGET('route') ?>">
-                                        <input hidden name="backstart" value="<?php echo \eMarket\Core\Pages::$start ?>">
-                                        <input hidden name="backfinish" value="<?php echo \eMarket\Core\Pages::$finish ?>">
+                                        <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
+                                        <input hidden name="backstart" value="<?php echo Pages::$start ?>">
+                                        <input hidden name="backfinish" value="<?php echo Pages::$finish ?>">
                                         <div class="b-left">
-                                            <?php if (\eMarket\Core\Pages::$start > 0) { ?>
+                                            <?php if (Pages::$start > 0) { ?>
                                                 <button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button>
                                             <?php } else { ?>
                                                 <a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-left"></span></a>
@@ -42,11 +51,11 @@ require_once('modal/index.php')
                                     </form>
 
                                     <form>
-                                        <input hidden name="route" value="<?php echo \eMarket\Core\Valid::inGET('route') ?>">
-                                        <input hidden name="start" value="<?php echo \eMarket\Core\Pages::$start ?>">
-                                        <input hidden name="finish" value="<?php echo \eMarket\Core\Pages::$finish ?>">
+                                        <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
+                                        <input hidden name="start" value="<?php echo Pages::$start ?>">
+                                        <input hidden name="finish" value="<?php echo Pages::$finish ?>">
                                         <div>
-                                            <?php if (\eMarket\Core\Pages::$finish != \eMarket\Core\Pages::$count) { ?>
+                                            <?php if (Pages::$finish != Pages::$count) { ?>
                                                 <button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button>
                                             <?php } else { ?>
                                                 <a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-right"></span></a>
@@ -57,7 +66,7 @@ require_once('modal/index.php')
                                 </div>
                             </th>
                         </tr>
-                        <?php if (\eMarket\Core\Pages::$count > 0) { ?>
+                        <?php if (Pages::$count > 0) { ?>
                             <tr class="border">
                                 <th><?php echo lang('taxes_name') ?></th>
                                 <th class="text-center"><?php echo lang('taxes_rate') ?></th>
@@ -69,20 +78,20 @@ require_once('modal/index.php')
                         <?php } ?>
                     </thead>
                     <tbody>
-                        <?php for (\eMarket\Core\Pages::$start; \eMarket\Core\Pages::$start < \eMarket\Core\Pages::$finish; \eMarket\Core\Pages::$start++, \eMarket\Core\Pages::lineUpdate()) { ?>
+                        <?php for (Pages::$start; Pages::$start < Pages::$finish; Pages::$start++, Pages::lineUpdate()) { ?>
                             <tr>
-                                <td><?php echo eMarket\Core\Pages::$table['line']['name'] ?></td>
-                                <td class="text-center"><?php echo round(\eMarket\Core\Ecb::currencyPrice(eMarket\Core\Pages::$table['line']['rate'], eMarket\Core\Pages::$table['line']['currency']), 2) ?></td>
-                                <td class="text-center"><?php echo \eMarket\Admin\Taxes::$value_6[eMarket\Core\Pages::$table['line']['fixed']] ?></td>
-                                <td class="text-center"><?php echo \eMarket\Admin\Taxes::$value_4[eMarket\Core\Pages::$table['line']['tax_type']] ?></td>
-                                <td class="text-center"><?php echo \eMarket\Admin\Taxes::$zones_names[eMarket\Core\Pages::$table['line']['zones_id']] ?></td>
+                                <td><?php echo Pages::$table['line']['name'] ?></td>
+                                <td class="text-center"><?php echo round(Ecb::currencyPrice(Pages::$table['line']['rate'], Pages::$table['line']['currency']), 2) ?></td>
+                                <td class="text-center"><?php echo Taxes::$value_6[Pages::$table['line']['fixed']] ?></td>
+                                <td class="text-center"><?php echo Taxes::$value_4[Pages::$table['line']['tax_type']] ?></td>
+                                <td class="text-center"><?php echo Taxes::$zones_names[Pages::$table['line']['zones_id']] ?></td>
                                 <td>
                                     <div class="flexbox">
                                         <div class="b-left">
-                                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index" data-edit="<?php echo eMarket\Core\Pages::$table['line']['id'] ?>"><span class="glyphicon glyphicon-edit"></span></button>
+                                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index" data-edit="<?php echo Pages::$table['line']['id'] ?>"><span class="glyphicon glyphicon-edit"></span></button>
                                         </div>
-                                        <form id="form_delete<?php echo eMarket\Core\Pages::$table['line']['id'] ?>" name="form_delete" action="javascript:void(null);" onsubmit="Ajax.callDelete('<?php echo eMarket\Core\Pages::$table['line']['id'] ?>')" enctype="multipart/form-data">
-                                            <input hidden name="delete" value="<?php echo eMarket\Core\Pages::$table['line']['id'] ?>">
+                                        <form id="form_delete<?php echo Pages::$table['line']['id'] ?>" name="form_delete" action="javascript:void(null);" onsubmit="Ajax.callDelete('<?php echo Pages::$table['line']['id'] ?>')" enctype="multipart/form-data">
+                                            <input hidden name="delete" value="<?php echo Pages::$table['line']['id'] ?>">
                                             <div>
                                                 <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button>
                                             </div>
