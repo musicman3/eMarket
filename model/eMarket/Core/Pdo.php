@@ -7,6 +7,11 @@
 
 namespace eMarket\Core;
 
+use \eMarket\Core\{
+    Func,
+    Settings
+};
+
 /**
  * PDO
  *
@@ -38,7 +43,7 @@ final class Pdo {
             try {
                 self::$CONNECT = new \PDO(DB_TYPE . ':host=' . DB_SERVER . ';dbname=' . DB_NAME, DB_USERNAME, DB_PASSWORD, [\PDO::ATTR_ERRMODE => \PDO::ERRMODE_WARNING, \PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4"]);
             } catch (PDOException $error) {
-                if (\eMarket\Core\Settings::path() == 'install') {
+                if (Settings::path() == 'install') {
                     header('Location: /controller/install/error.php?server_db_error=true&error_message=' . $error->getMessage());
                 } else {
                     print_r($error->getMessage());
@@ -107,7 +112,7 @@ final class Pdo {
                 AND $result = $value[0]) {
             
         }
-        return \eMarket\Core\Func::escape_sign($result);
+        return Func::escape_sign($result);
     }
 
     /**
@@ -125,7 +130,7 @@ final class Pdo {
                 AND $result = $exec->fetchAll(\PDO :: FETCH_NUM)) {
             
         }
-        return \eMarket\Core\Func::escape_sign($result);
+        return Func::escape_sign($result);
     }
 
     /**
@@ -143,7 +148,7 @@ final class Pdo {
                 AND $result = $exec->fetchAll(\PDO :: FETCH_COLUMN)) {
             
         }
-        return \eMarket\Core\Func::escape_sign($result);
+        return Func::escape_sign($result);
     }
 
     /**
@@ -161,7 +166,7 @@ final class Pdo {
                 AND $result = $exec->fetchAll(\PDO :: FETCH_NUM)) {
             
         }
-        return \eMarket\Core\Func::escape_sign($result)[0];
+        return Func::escape_sign($result)[0];
     }
 
     /**
@@ -179,7 +184,7 @@ final class Pdo {
                 AND $result = $exec->fetchColumn()) {
             
         }
-        return \eMarket\Core\Func::escape_sign($result);
+        return Func::escape_sign($result);
     }
 
     /**
@@ -234,7 +239,7 @@ final class Pdo {
                 AND $result = $value[0][0]) {
             
         }
-        return \eMarket\Core\Func::escape_sign($result);
+        return Func::escape_sign($result);
     }
 
     /**
@@ -269,7 +274,7 @@ final class Pdo {
                 AND $result = $exec->fetchAll(\PDO :: FETCH_ASSOC)) {
             
         }
-        return \eMarket\Core\Func::escape_sign($result);
+        return Func::escape_sign($result);
     }
 
     /**
