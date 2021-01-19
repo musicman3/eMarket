@@ -4,18 +4,25 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-foreach (\eMarket\Core\View::tlpc('content') as $path) {
+use \eMarket\Core\{
+    Messages,
+    Settings,
+    View
+};
+use \eMarket\Catalog\AddressBook;
+
+foreach (View::tlpc('content') as $path) {
     require_once (ROOT . $path);
 }
 require_once('modal/index.php')
 ?>
 
-<div id="alert_block"><?php \eMarket\Core\Messages::alert(); ?></div>
+<div id="alert_block"><?php Messages::alert(); ?></div>
 <h1><?php echo lang('my_address_book') ?></h1>
 
 <div id="ajax_data" class='hidden'
-     data-json='<?php echo \eMarket\Catalog\AddressBook::$address_data_json ?>'
-     data-countries='<?php echo \eMarket\Catalog\AddressBook::$countries_data_json ?>'
+     data-json='<?php echo AddressBook::$address_data_json ?>'
+     data-countries='<?php echo AddressBook::$countries_data_json ?>'
      ></div>
 
 <div class="table-responsive">
@@ -36,12 +43,12 @@ require_once('modal/index.php')
         </thead>
         <tbody>
             <?php
-            if (\eMarket\Catalog\AddressBook::$address_data_json != FALSE) {
+            if (AddressBook::$address_data_json != FALSE) {
                 $x = 1;
-                foreach (\eMarket\Catalog\AddressBook::$address_data as $val) {
+                foreach (AddressBook::$address_data as $val) {
                     ?>
                     <tr>
-                        <td><img src="/view/<?php echo \eMarket\Core\Settings::template() ?>/admin/images/worldflags/<?php echo strtolower($val['alpha_2']) ?>.png" alt="<?php echo $val['countries_name'] . ', ' . $val['regions_name'] ?>" title="<?php echo $val['countries_name'] . ', ' . $val['regions_name'] ?>" width="16" height="10" /> <?php echo $val['zip'] . ', ' . $val['city'] . ', ' . $val['address'] ?></td>
+                        <td><img src="/view/<?php echo Settings::template() ?>/admin/images/worldflags/<?php echo strtolower($val['alpha_2']) ?>.png" alt="<?php echo $val['countries_name'] . ', ' . $val['regions_name'] ?>" title="<?php echo $val['countries_name'] . ', ' . $val['regions_name'] ?>" width="16" height="10" /> <?php echo $val['zip'] . ', ' . $val['city'] . ', ' . $val['address'] ?></td>
                         <?php if ($val['default'] == 1) { ?>
                             <td class="text-center"><?php echo lang('confirm-yes') ?></td>
                         <?php } else { ?>
