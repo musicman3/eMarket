@@ -4,13 +4,18 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-foreach (\eMarket\Core\View::tlpc('content') as $path) {
+use \eMarket\Core\{
+    Messages,
+    View
+};
+
+foreach (View::tlpc('content') as $path) {
     require_once (ROOT . $path);
 }
 require_once('modal/recovery_password.php')
 ?>
 
-<div id="alert_block"><?php \eMarket\Core\Messages::alert(); ?></div>
+<div id="alert_block"><?php Messages::alert(); ?></div>
 <h1><?php echo lang('login_to_account') ?></h1>
 
 <div id="login" class="contentText">
