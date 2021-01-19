@@ -13,27 +13,34 @@ ini_set('error_log', __DIR__ . '/work/errors.log');
 //AUTOLOAD FOR CLASSES
 require_once('vendor/autoload.php');
 
-\eMarket\Core\Debug::$TIME_START = $TIME_START;
+use \eMarket\Core\{
+    Autorize,
+    Debug,
+    Lang,
+    Settings,
+    Tree
+};
+
+Debug::$TIME_START = $TIME_START;
 unset($TIME_START);
 
 //AUTOLOAD FOR FUNCTION
-foreach (\eMarket\Core\Tree::filesTree(getenv('DOCUMENT_ROOT') . '/model/functions/') as $path) {
+foreach (Tree::filesTree(getenv('DOCUMENT_ROOT') . '/model/functions/') as $path) {
     require_once($path);
 }
 
 //AUTOLOAD FOR MODULES CLASSES
-foreach (\eMarket\Core\Tree::modulesClasses() as $path) {
+foreach (Tree::modulesClasses() as $path) {
     require_once($path);
 }
 
 // Config file and etc.
-if (\eMarket\Core\Settings::path() == 'admin' OR \eMarket\Core\Settings::path() == 'catalog') {
+if (Settings::path() == 'admin' OR Settings::path() == 'catalog') {
     require_once('configure/configure.php');
 }
 //Autorize
-\eMarket\Core\Autorize::init();
+Autorize::init();
 //Languages
-\eMarket\Core\Lang::init();
+Lang::init();
 //JS Handler
-\eMarket\Core\Settings::jsHandler();
-?>
+Settings::jsHandler();
