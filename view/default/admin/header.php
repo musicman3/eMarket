@@ -4,6 +4,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+use \eMarket\Admin\HeaderMenu;
+
 if (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
     ?>
 
@@ -23,30 +25,30 @@ if (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
                 <!-- Level 1 -->
                 <ul class="nav navbar-nav">
                     <?php
-                    for ($i = 0; $i < count(\eMarket\Admin\HeaderMenu::$level); $i++) {
-                        \eMarket\Admin\HeaderMenu::setParameters('class="dropdown-toggle" data-toggle="dropdown"', '<b class="caret"></b>');
-                        \eMarket\Admin\HeaderMenu::clearParameters(\eMarket\Admin\HeaderMenu::$level[$i][2]);
+                    for ($i = 0; $i < count(HeaderMenu::$level); $i++) {
+                        HeaderMenu::setParameters('class="dropdown-toggle" data-toggle="dropdown"', '<b class="caret"></b>');
+                        HeaderMenu::clearParameters(HeaderMenu::$level[$i][2]);
                         ?>
 
                         <li>
-                            <a href="<?php echo \eMarket\Admin\HeaderMenu::$level[$i][0] ?>" <?php echo \eMarket\Admin\HeaderMenu::getParameters()[0] ?>><?php echo \eMarket\Admin\HeaderMenu::$level[$i][1] . \eMarket\Admin\HeaderMenu::getParameters()[1] ?></a>
-                            <?php if (isset(\eMarket\Admin\HeaderMenu::$menu[$i])) { ?>
+                            <a href="<?php echo HeaderMenu::$level[$i][0] ?>" <?php echo HeaderMenu::getParameters()[0] ?>><?php echo HeaderMenu::$level[$i][1] . HeaderMenu::getParameters()[1] ?></a>
+                            <?php if (isset(HeaderMenu::$menu[$i])) { ?>
                                 <!-- Level 2 -->
                                 <ul class="dropdown-menu">
                                     <?php
-                                    for ($x = 0; $x < count(\eMarket\Admin\HeaderMenu::$menu[$i]); $x++) {
-                                        \eMarket\Admin\HeaderMenu::clearParameters(\eMarket\Admin\HeaderMenu::$menu[$i][$x][4]);
+                                    for ($x = 0; $x < count(HeaderMenu::$menu[$i]); $x++) {
+                                        HeaderMenu::clearParameters(HeaderMenu::$menu[$i][$x][4]);
                                         ?>
                                         <li>
-                                            <a <?php echo \eMarket\Admin\HeaderMenu::$menu[$i][$x][3]; ?> href="<?php echo \eMarket\Admin\HeaderMenu::$menu[$i][$x][0] ?>" <?php echo \eMarket\Admin\HeaderMenu::getParameters()[0] ?>><span class="<?php echo \eMarket\Admin\HeaderMenu::$menu[$i][$x][1]; ?>"></span> <?php echo \eMarket\Admin\HeaderMenu::$menu[$i][$x][2] . ' ' . \eMarket\Admin\HeaderMenu::getParameters()[1] ?></a>
-                                            <?php if (isset(\eMarket\Admin\HeaderMenu::$submenu[$i][$x])) { ?>
+                                            <a <?php echo HeaderMenu::$menu[$i][$x][3]; ?> href="<?php echo HeaderMenu::$menu[$i][$x][0] ?>" <?php echo HeaderMenu::getParameters()[0] ?>><span class="<?php echo HeaderMenu::$menu[$i][$x][1]; ?>"></span> <?php echo HeaderMenu::$menu[$i][$x][2] . ' ' . HeaderMenu::getParameters()[1] ?></a>
+                                            <?php if (isset(HeaderMenu::$submenu[$i][$x])) { ?>
                                                 <!-- Level 3 -->
                                                 <ul class="dropdown-menu link">
                                                     <?php
-                                                    for ($y = 0; $y < count(\eMarket\Admin\HeaderMenu::$submenu[$i][$x]); $y++) {
+                                                    for ($y = 0; $y < count(HeaderMenu::$submenu[$i][$x]); $y++) {
                                                         ?>
                                                         <li>
-                                                            <a <?php echo \eMarket\Admin\HeaderMenu::$submenu[$i][$x][$y][3]; ?> href="<?php echo \eMarket\Admin\HeaderMenu::$submenu[$i][$x][$y][0]; ?>"><span class="<?php echo \eMarket\Admin\HeaderMenu::$submenu[$i][$x][$y][1]; ?>"></span> <?php echo \eMarket\Admin\HeaderMenu::$submenu[$i][$x][$y][2]; ?> </a>
+                                                            <a <?php echo HeaderMenu::$submenu[$i][$x][$y][3]; ?> href="<?php echo HeaderMenu::$submenu[$i][$x][$y][0]; ?>"><span class="<?php echo HeaderMenu::$submenu[$i][$x][$y][1]; ?>"></span> <?php echo HeaderMenu::$submenu[$i][$x][$y][2]; ?> </a>
                                                         </li><?php } ?>
                                                 </ul><?php } ?>
                                         </li><?php } ?>
