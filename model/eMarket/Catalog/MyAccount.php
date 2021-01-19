@@ -7,6 +7,13 @@
 
 namespace eMarket\Catalog;
 
+use \eMarket\Core\{
+    Autorize,
+    Messages,
+    Pdo,
+    Valid
+};
+
 /**
  * My Account
  *
@@ -30,7 +37,7 @@ class MyAccount {
      *
      */
     public function autorize() {
-        if (\eMarket\Core\Autorize::$CUSTOMER == FALSE) {
+        if (Autorize::$CUSTOMER == FALSE) {
             header('Location: ?route=login');
             exit;
         }
@@ -41,15 +48,23 @@ class MyAccount {
      *
      */
     public function edit() {
-        if (\eMarket\Core\Valid::inPOST('edit')) {
-            if (\eMarket\Core\Valid::inPOST('password') && \eMarket\Core\Valid::inPOST('confirm_password') && \eMarket\Core\Valid::inPOST('password') == \eMarket\Core\Valid::inPOST('confirm_password')) {
-                $password_hash = \eMarket\Core\Autorize::passwordHash(\eMarket\Core\Valid::inPOST('password'));
-                \eMarket\Core\Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET firstname=?, lastname=?, middle_name=?, telephone=?, password=? WHERE email=?", [\eMarket\Core\Valid::inPOST('firstname'), \eMarket\Core\Valid::inPOST('lastname'), \eMarket\Core\Valid::inPOST('middle_name'), \eMarket\Core\Valid::inPOST('telephone'), $password_hash, \eMarket\Core\Autorize::$CUSTOMER['email']]);
+        if (Valid::inPOST('edit')) {
+            if (Valid::inPOST('password') && Valid::inPOST('confirm_password') && Valid::inPOST('password') == Valid::inPOST('confirm_password')) {
+                $password_hash = Autorize::passwordHash(Valid::inPOST('password'));
+                Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET firstname=?, lastname=?, middle_name=?, telephone=?, password=? WHERE email=?", [
+                    Valid::inPOST('firstname'), Valid::inPOST('lastname'),
+                    Valid::inPOST('middle_name'), Valid::inPOST('telephone'), $password_hash,
+                    Autorize::$CUSTOMER['email']
+                ]);
             } else {
-                \eMarket\Core\Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET firstname=?, lastname=?, middle_name=?, telephone=? WHERE email=?", [\eMarket\Core\Valid::inPOST('firstname'), \eMarket\Core\Valid::inPOST('lastname'), \eMarket\Core\Valid::inPOST('middle_name'), \eMarket\Core\Valid::inPOST('telephone'), \eMarket\Core\Autorize::$CUSTOMER['email']]);
+                Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET firstname=?, lastname=?, middle_name=?, telephone=? WHERE email=?", [
+                    Valid::inPOST('firstname'), Valid::inPOST('lastname'),
+                    Valid::inPOST('middle_name'), Valid::inPOST('telephone'),
+                    Autorize::$CUSTOMER['email']
+                ]);
             }
 
-            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('success', lang('action_completed_successfully'));
         }
     }
 
