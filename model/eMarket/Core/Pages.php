@@ -7,6 +7,12 @@
 
 namespace eMarket\Core;
 
+use \eMarket\Core\{
+    Navigation,
+    Settings,
+};
+use \eMarket\Admin\Stock;
+
 /**
  * Pages
  *
@@ -27,10 +33,10 @@ class Pages {
      */
     public static function counterStock() {
 
-        if (\eMarket\Admin\Stock::$finish == \eMarket\Admin\Stock::$count_lines_merge && (\eMarket\Admin\Stock::$finish - \eMarket\Admin\Stock::$start) <= \eMarket\Core\Settings::linesOnPage() OR \eMarket\Admin\Stock::$finish == \eMarket\Core\Settings::linesOnPage()) {
-            return \eMarket\Admin\Stock::$finish;
+        if (Stock::$finish == Stock::$count_lines_merge && (Stock::$finish - Stock::$start) <= Settings::linesOnPage() OR Stock::$finish == Settings::linesOnPage()) {
+            return Stock::$finish;
         } else {
-            return \eMarket\Admin\Stock::$finish - 1;
+            return Stock::$finish - 1;
         }
     }
 
@@ -45,8 +51,8 @@ class Pages {
         if (self::$count == FALSE) {
             self::$count = count($lines);
         }
-        
-        $navigate = \eMarket\Core\Navigation::getLink(self::$count, \eMarket\Core\Settings::linesOnPage());
+
+        $navigate = Navigation::getLink(self::$count, Settings::linesOnPage());
         self::$start = $navigate[0];
         self::$finish = $navigate[1];
 
@@ -91,17 +97,17 @@ class Pages {
             return lang('no_listing');
         }
     }
-    
-        /**
+
+    /**
      * Counter
      *
      * @return string (output data)
      */
     public static function counterPageStock() {
-        $count = \eMarket\Admin\Stock::$start + 1;
+        $count = Stock::$start + 1;
 
-        if (\eMarket\Admin\Stock::$count_lines_merge > 0) {
-            return lang('with') . ' ' . $count . ' ' . lang('to') . ' ' . self::counterStock() . ' ( ' . lang('of') . ' ' . \eMarket\Admin\Stock::$count_lines_merge . ')';
+        if (Stock::$count_lines_merge > 0) {
+            return lang('with') . ' ' . $count . ' ' . lang('to') . ' ' . self::counterStock() . ' ( ' . lang('of') . ' ' . Stock::$count_lines_merge . ')';
         } else {
             return lang('no_listing');
         }
