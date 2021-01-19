@@ -7,6 +7,13 @@
 
 namespace eMarket\Core;
 
+use \eMarket\Core\{
+    Func,
+    Pdo,
+    Tree,
+    Valid
+};
+
 /**
  * Class for working with files
  *
@@ -31,13 +38,13 @@ class Files {
         $files = glob(ROOT . '/uploads/temp/files/*');
         $count_files = count($files);
 
-        if (\eMarket\Core\Valid::inPOST('file_upload') == 'empty') {
-            \eMarket\Core\Tree::filesDirAction(ROOT . '/uploads/temp/originals/');
-            \eMarket\Core\Tree::filesDirAction(ROOT . '/uploads/temp/thumbnail/');
-            \eMarket\Core\Tree::filesDirAction(ROOT . '/uploads/temp/files/');
+        if (Valid::inPOST('file_upload') == 'empty') {
+            Tree::filesDirAction(ROOT . '/uploads/temp/originals/');
+            Tree::filesDirAction(ROOT . '/uploads/temp/thumbnail/');
+            Tree::filesDirAction(ROOT . '/uploads/temp/files/');
         }
 
-        if (\eMarket\Core\Valid::inPOST('add')) {
+        if (Valid::inPOST('add')) {
             if ($count_files > 0) {
                 self::imgResize($dir, $files, $prefix, $resize_param);
             }
@@ -46,18 +53,18 @@ class Files {
             $count_files = count($files);
             if ($count_files > 0) {
 
-                if (\eMarket\Core\Valid::inPOST('set_language')) {
-                    $language = \eMarket\Core\Valid::inPOST('set_language');
+                if (Valid::inPOST('set_language')) {
+                    $language = Valid::inPOST('set_language');
                 } else {
                     $language = lang('#lang_all')[0];
                 }
 
-                $id_max = \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . $TABLE . " WHERE language=? ORDER BY id DESC", [$language]);
+                $id_max = Pdo::selectPrepare("SELECT id FROM " . $TABLE . " WHERE language=? ORDER BY id DESC", [$language]);
                 $id = intval($id_max);
 
                 $image_list = [];
                 foreach ($files as $file) {
-                    if (is_file($file) && file_exists($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
+                    if (is_file($file) && file_exists($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') {
                         array_push($image_list, basename($file));
                     }
                 }
@@ -66,27 +73,27 @@ class Files {
                     $general_image_add = $image_list[0];
                 }
 
-                if (\eMarket\Core\Valid::inPOST('general_image_add')) {
-                    $general_image_add = $prefix . \eMarket\Core\Valid::inPOST('general_image_add');
+                if (Valid::inPOST('general_image_add')) {
+                    $general_image_add = $prefix . Valid::inPOST('general_image_add');
                 }
 
-                \eMarket\Core\Tree::filesDirAction(ROOT . '/uploads/temp/originals/', ROOT . '/uploads/images/' . $dir . '/originals/');
+                Tree::filesDirAction(ROOT . '/uploads/temp/originals/', ROOT . '/uploads/images/' . $dir . '/originals/');
 
-                \eMarket\Core\Pdo::action("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [json_encode($image_list), $general_image_add, $id]);
+                Pdo::action("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [json_encode($image_list), $general_image_add, $id]);
             }
         }
 
-        if (\eMarket\Core\Valid::inPOST('edit')) {
+        if (Valid::inPOST('edit')) {
 
-            $id = \eMarket\Core\Valid::inPOST('edit');
+            $id = Valid::inPOST('edit');
 
             self::imgResize($dir, $files, $prefix, $resize_param);
 
             $files = glob(ROOT . '/uploads/temp/originals/*');
 
-            $image_list = json_decode(\eMarket\Core\Pdo::selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), 1);
+            $image_list = json_decode(Pdo::selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), 1);
             foreach ($files as $file) {
-                if (is_file($file) && file_exists($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
+                if (is_file($file) && file_exists($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') {
                     array_push($image_list, basename($file));
                 }
             }
@@ -95,67 +102,67 @@ class Files {
                 $general_image_edit = $image_list[0];
             }
 
-            if (\eMarket\Core\Valid::inPOST('general_image_edit')) {
-                $general_image_edit = \eMarket\Core\Valid::inPOST('general_image_edit');
+            if (Valid::inPOST('general_image_edit')) {
+                $general_image_edit = Valid::inPOST('general_image_edit');
             }
 
-            if (\eMarket\Core\Valid::inPOST('general_image_edit_new')) {
-                $general_image_edit = $prefix . \eMarket\Core\Valid::inPOST('general_image_edit_new');
+            if (Valid::inPOST('general_image_edit_new')) {
+                $general_image_edit = $prefix . Valid::inPOST('general_image_edit_new');
             }
 
-            \eMarket\Core\Tree::filesDirAction(ROOT . '/uploads/temp/originals/', ROOT . '/uploads/images/' . $dir . '/originals/');
+            Tree::filesDirAction(ROOT . '/uploads/temp/originals/', ROOT . '/uploads/images/' . $dir . '/originals/');
 
             if (isset($general_image_edit)) {
-                \eMarket\Core\Pdo::action("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [json_encode($image_list), $general_image_edit, $id]);
+                Pdo::action("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [json_encode($image_list), $general_image_edit, $id]);
             } else {
-                \eMarket\Core\Pdo::action("UPDATE " . $TABLE . " SET logo=? WHERE id=?", [json_encode($image_list), $id]);
+                Pdo::action("UPDATE " . $TABLE . " SET logo=? WHERE id=?", [json_encode($image_list), $id]);
             }
 
-            if (\eMarket\Core\Valid::inPOST('delete_image')) {
-                $delete_image_arr = explode(',', \eMarket\Core\Valid::inPOST('delete_image'), -1);
+            if (Valid::inPOST('delete_image')) {
+                $delete_image_arr = explode(',', Valid::inPOST('delete_image'), -1);
 
-                $image_list_arr = json_decode(\eMarket\Core\Pdo::selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), 1);
+                $image_list_arr = json_decode(Pdo::selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), 1);
                 $image_list_new = [];
                 foreach ($image_list_arr as $key => $file) {
                     if (!in_array($file, $delete_image_arr)) {
                         array_push($image_list_new, $file);
                     } else {
                         foreach ($resize_param as $key => $value) {
-                            \eMarket\Core\Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $file);
+                            Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $file);
                         }
-                        \eMarket\Core\Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/originals/' . $file);
-                        if ($file == \eMarket\Core\Pdo::selectPrepare("SELECT logo_general FROM " . $TABLE . " WHERE id=?", [$id])) {
-                            \eMarket\Core\Pdo::action("UPDATE " . $TABLE . " SET logo_general=? WHERE id=?", [NULL, $id]);
+                        Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/originals/' . $file);
+                        if ($file == Pdo::selectPrepare("SELECT logo_general FROM " . $TABLE . " WHERE id=?", [$id])) {
+                            Pdo::action("UPDATE " . $TABLE . " SET logo_general=? WHERE id=?", [NULL, $id]);
                             $logo_general_update = 'ok';
                         }
                     }
                 }
                 if (isset($logo_general_update) && count($image_list_new) > 0) {
-                    \eMarket\Core\Pdo::action("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [json_encode($image_list_new), $image_list_new[0], $id]);
+                    Pdo::action("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [json_encode($image_list_new), $image_list_new[0], $id]);
                 } else {
-                    \eMarket\Core\Pdo::action("UPDATE " . $TABLE . " SET logo=? WHERE id=?", [json_encode($image_list_new), $id]);
+                    Pdo::action("UPDATE " . $TABLE . " SET logo=? WHERE id=?", [json_encode($image_list_new), $id]);
                 }
             }
         }
 
-        if (\eMarket\Core\Valid::inPOST('delete')) {
-            if (!is_array(\eMarket\Core\Valid::inPOST('delete'))) {
-                $idx = [\eMarket\Core\Valid::inPOST('delete')];
+        if (Valid::inPOST('delete')) {
+            if (!is_array(Valid::inPOST('delete'))) {
+                $idx = [Valid::inPOST('delete')];
             } else {
-                $idx = \eMarket\Core\Func::deleteEmptyInArray(\eMarket\Core\Valid::inPOST('delete'));
+                $idx = Func::deleteEmptyInArray(Valid::inPOST('delete'));
             }
             if (is_countable($idx)) {
                 for ($i = 0; $i < count($idx); $i++) {
                     if (strstr($idx[$i], '_', true) != 'product') {
                         $id = $idx[$i];
 
-                        $logo_delete = json_decode(\eMarket\Core\Pdo::selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), 1);
+                        $logo_delete = json_decode(Pdo::selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), 1);
                         if (is_countable($logo_delete)) {
                             foreach ($logo_delete as $file) {
                                 foreach ($resize_param as $key => $value) {
-                                    \eMarket\Core\Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $file);
+                                    Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $file);
                                 }
-                                \eMarket\Core\Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/originals/' . $file);
+                                Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/originals/' . $file);
                             }
                         }
                     }
@@ -163,11 +170,11 @@ class Files {
             }
         }
 
-        if (\eMarket\Core\Valid::inPOST('delete_new_image') == 'ok' && \eMarket\Core\Valid::inPOST('delete_image')) {
-            $id = \eMarket\Core\Valid::inPOST('delete_image');
+        if (Valid::inPOST('delete_new_image') == 'ok' && Valid::inPOST('delete_image')) {
+            $id = Valid::inPOST('delete_image');
 
-            \eMarket\Core\Func::deleteFile(ROOT . '/uploads/temp/files/' . $id);
-            \eMarket\Core\Func::deleteFile(ROOT . '/uploads/temp/thumbnail/' . $id);
+            Func::deleteFile(ROOT . '/uploads/temp/files/' . $id);
+            Func::deleteFile(ROOT . '/uploads/temp/thumbnail/' . $id);
         }
     }
 
@@ -187,13 +194,13 @@ class Files {
         $files = glob(ROOT . '/uploads/temp/files/*');
         $count_files = count($files);
 
-        if (\eMarket\Core\Valid::inPOST('file_upload') == 'empty') {
-            \eMarket\Core\Tree::filesDirAction(ROOT . '/uploads/temp/originals/');
-            \eMarket\Core\Tree::filesDirAction(ROOT . '/uploads/temp/thumbnail/');
-            \eMarket\Core\Tree::filesDirAction(ROOT . '/uploads/temp/files/');
+        if (Valid::inPOST('file_upload') == 'empty') {
+            Tree::filesDirAction(ROOT . '/uploads/temp/originals/');
+            Tree::filesDirAction(ROOT . '/uploads/temp/thumbnail/');
+            Tree::filesDirAction(ROOT . '/uploads/temp/files/');
         }
 
-        if (\eMarket\Core\Valid::inPOST('add_product')) {
+        if (Valid::inPOST('add_product')) {
             if ($count_files > 0) {
                 self::imgResize($dir, $files, $prefix, $resize_param);
             }
@@ -202,18 +209,18 @@ class Files {
             $count_files = count($files);
             if ($count_files > 0) {
 
-                if (\eMarket\Core\Valid::inPOST('set_language')) {
-                    $language = \eMarket\Core\Valid::inPOST('set_language');
+                if (Valid::inPOST('set_language')) {
+                    $language = Valid::inPOST('set_language');
                 } else {
                     $language = lang('#lang_all')[0];
                 }
 
-                $id_max = \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . $TABLE . " WHERE language=? ORDER BY id DESC", [$language]);
+                $id_max = Pdo::selectPrepare("SELECT id FROM " . $TABLE . " WHERE language=? ORDER BY id DESC", [$language]);
                 $id = intval($id_max);
 
                 $image_list = [];
                 foreach ($files as $file) {
-                    if (is_file($file) && file_exists($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
+                    if (is_file($file) && file_exists($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') {
                         array_push($image_list, basename($file));
                     }
                 }
@@ -221,28 +228,28 @@ class Files {
                 if (count($image_list) > 0) {
                     $general_image_add = $image_list[0];
                 }
- 
-                if (\eMarket\Core\Valid::inPOST('general_image_add_product')) {
-                    $general_image_add = $prefix . \eMarket\Core\Valid::inPOST('general_image_add_product');
+
+                if (Valid::inPOST('general_image_add_product')) {
+                    $general_image_add = $prefix . Valid::inPOST('general_image_add_product');
                 }
 
-                \eMarket\Core\Tree::filesDirAction(ROOT . '/uploads/temp/originals/', ROOT . '/uploads/images/' . $dir . '/originals/');
+                Tree::filesDirAction(ROOT . '/uploads/temp/originals/', ROOT . '/uploads/images/' . $dir . '/originals/');
 
-                \eMarket\Core\Pdo::action("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [json_encode($image_list), $general_image_add, $id]);
+                Pdo::action("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [json_encode($image_list), $general_image_add, $id]);
             }
         }
 
-        if (\eMarket\Core\Valid::inPOST('edit_product')) {
+        if (Valid::inPOST('edit_product')) {
 
-            $id = \eMarket\Core\Valid::inPOST('edit_product');
+            $id = Valid::inPOST('edit_product');
 
             self::imgResize($dir, $files, $prefix, $resize_param);
 
             $files = glob(ROOT . '/uploads/temp/originals/*');
 
-            $image_list = json_decode(\eMarket\Core\Pdo::selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), 1);
+            $image_list = json_decode(Pdo::selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), 1);
             foreach ($files as $file) {
-                if (is_file($file) && file_exists($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') { // Исключаемые данные
+                if (is_file($file) && file_exists($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') {
                     array_push($image_list, basename($file));
                 }
             }
@@ -251,74 +258,74 @@ class Files {
                 $general_image_edit = $image_list[0];
             }
 
-            if (\eMarket\Core\Valid::inPOST('general_image_edit_product')) {
-                $general_image_edit = \eMarket\Core\Valid::inPOST('general_image_edit_product');
-            }
- 
-            if (\eMarket\Core\Valid::inPOST('general_image_edit_new_product')) {
-                $general_image_edit = $prefix . \eMarket\Core\Valid::inPOST('general_image_edit_new_product');
+            if (Valid::inPOST('general_image_edit_product')) {
+                $general_image_edit = Valid::inPOST('general_image_edit_product');
             }
 
-            \eMarket\Core\Tree::filesDirAction(ROOT . '/uploads/temp/originals/', ROOT . '/uploads/images/' . $dir . '/originals/');
+            if (Valid::inPOST('general_image_edit_new_product')) {
+                $general_image_edit = $prefix . Valid::inPOST('general_image_edit_new_product');
+            }
+
+            Tree::filesDirAction(ROOT . '/uploads/temp/originals/', ROOT . '/uploads/images/' . $dir . '/originals/');
 
             if (isset($general_image_edit)) {
-                \eMarket\Core\Pdo::action("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [json_encode($image_list), $general_image_edit, $id]);
+                Pdo::action("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [json_encode($image_list), $general_image_edit, $id]);
             } else {
-                \eMarket\Core\Pdo::action("UPDATE " . $TABLE . " SET logo=? WHERE id=?", [json_encode($image_list), $id]);
+                Pdo::action("UPDATE " . $TABLE . " SET logo=? WHERE id=?", [json_encode($image_list), $id]);
             }
 
-            if (\eMarket\Core\Valid::inPOST('delete_image_product')) {
-                $delete_image_arr = explode(',', \eMarket\Core\Valid::inPOST('delete_image_product'), -1);
+            if (Valid::inPOST('delete_image_product')) {
+                $delete_image_arr = explode(',', Valid::inPOST('delete_image_product'), -1);
 
-                $image_list_arr = json_decode(\eMarket\Core\Pdo::selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), 1);
+                $image_list_arr = json_decode(Pdo::selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), 1);
                 $image_list_new = [];
                 foreach ($image_list_arr as $key => $file) {
                     if (!in_array($file, $delete_image_arr)) {
                         array_push($image_list_new, $file);
                     } else {
                         foreach ($resize_param as $key => $value) {
-                            \eMarket\Core\Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $file);
+                            Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $file);
                         }
-                        \eMarket\Core\Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/originals/' . $file);
-                        if ($file == \eMarket\Core\Pdo::selectPrepare("SELECT logo_general FROM " . $TABLE . " WHERE id=?", [$id])) {
-                            \eMarket\Core\Pdo::action("UPDATE " . $TABLE . " SET logo_general=? WHERE id=?", [NULL, $id]);
+                        Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/originals/' . $file);
+                        if ($file == Pdo::selectPrepare("SELECT logo_general FROM " . $TABLE . " WHERE id=?", [$id])) {
+                            Pdo::action("UPDATE " . $TABLE . " SET logo_general=? WHERE id=?", [NULL, $id]);
                             $logo_general_update = 'ok';
                         }
                     }
                 }
                 if (isset($logo_general_update) && is_array($image_list_new)) {
-                    \eMarket\Core\Pdo::action("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [json_encode($image_list_new), $image_list_new[0], $id]);
+                    Pdo::action("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [json_encode($image_list_new), $image_list_new[0], $id]);
                 } else {
-                    \eMarket\Core\Pdo::action("UPDATE " . $TABLE . " SET logo=? WHERE id=?", [json_encode($image_list_new), $id]);
+                    Pdo::action("UPDATE " . $TABLE . " SET logo=? WHERE id=?", [json_encode($image_list_new), $id]);
                 }
             }
         }
 
-        if (\eMarket\Core\Valid::inPOST('delete')) {
-            $idx = \eMarket\Core\Func::deleteEmptyInArray(\eMarket\Core\Valid::inPOST('delete'));
+        if (Valid::inPOST('delete')) {
+            $idx = Func::deleteEmptyInArray(Valid::inPOST('delete'));
 
             for ($i = 0; $i < count($idx); $i++) {
                 if (strstr($idx[$i], '_', true) == 'product') {
                     $id = explode('product_', $idx[$i]);
 
-                    $logo_delete = json_decode(\eMarket\Core\Pdo::selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id[1]]), 1);
+                    $logo_delete = json_decode(Pdo::selectPrepare("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id[1]]), 1);
                     if (is_countable($logo_delete)) {
                         foreach ($logo_delete as $file) {
                             foreach ($resize_param as $key => $value) {
-                                \eMarket\Core\Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $file);
+                                Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $file);
                             }
-                            \eMarket\Core\Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/originals/' . $file);
+                            Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/originals/' . $file);
                         }
                     }
                 }
             }
         }
 
-        if (\eMarket\Core\Valid::inPOST('delete_new_image_product') == 'ok' && \eMarket\Core\Valid::inPOST('delete_image_product')) {
-            $id = \eMarket\Core\Valid::inPOST('delete_image_product');
+        if (Valid::inPOST('delete_new_image_product') == 'ok' && Valid::inPOST('delete_image_product')) {
+            $id = Valid::inPOST('delete_image_product');
 
-            \eMarket\Core\Func::deleteFile(ROOT . '/uploads/temp/files/' . $id);
-            \eMarket\Core\Func::deleteFile(ROOT . '/uploads/temp/thumbnail/' . $id);
+            Func::deleteFile(ROOT . '/uploads/temp/files/' . $id);
+            Func::deleteFile(ROOT . '/uploads/temp/thumbnail/' . $id);
         }
     }
 
@@ -353,24 +360,24 @@ class Files {
                         $IMAGE->fromFile(ROOT . '/uploads/temp/files/' . basename($file))
                                 ->autoOrient()
                                 ->bestFit($value[0], $value[1]);
-                        if (\eMarket\Core\Valid::inPOST('effect-edit-product') == 'effect-sepia' OR \eMarket\Core\Valid::inPOST('effect-add-product') == 'effect-sepia') {
+                        if (Valid::inPOST('effect-edit-product') == 'effect-sepia' OR Valid::inPOST('effect-add-product') == 'effect-sepia') {
                             $IMAGE->sepia();
                         }
-                        if (\eMarket\Core\Valid::inPOST('effect-edit-product') == 'effect-black-white' OR \eMarket\Core\Valid::inPOST('effect-add-product') == 'effect-black-white') {
+                        if (Valid::inPOST('effect-edit-product') == 'effect-black-white' OR Valid::inPOST('effect-add-product') == 'effect-black-white') {
                             $IMAGE->desaturate();
                         }
-                        if (\eMarket\Core\Valid::inPOST('effect-edit-product') == 'effect-blur-1' OR \eMarket\Core\Valid::inPOST('effect-add-product') == 'effect-blur-1') {
+                        if (Valid::inPOST('effect-edit-product') == 'effect-blur-1' OR Valid::inPOST('effect-add-product') == 'effect-blur-1') {
                             $IMAGE->blur('selective', 1);
                         }
-                        if (\eMarket\Core\Valid::inPOST('effect-edit-product') == 'effect-blur-2' OR \eMarket\Core\Valid::inPOST('effect-add-product') == 'effect-blur-2') {
+                        if (Valid::inPOST('effect-edit-product') == 'effect-blur-2' OR Valid::inPOST('effect-add-product') == 'effect-blur-2') {
                             $IMAGE->blur('selective', 2);
                         }
                         $IMAGE->toFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $prefix . basename($file));
                     }
                 }
 
-                \eMarket\Core\Func::deleteFile(ROOT . '/uploads/temp/thumbnail/' . basename($file));
-                \eMarket\Core\Func::deleteFile(ROOT . '/uploads/temp/files/' . basename($file));
+                Func::deleteFile(ROOT . '/uploads/temp/thumbnail/' . basename($file));
+                Func::deleteFile(ROOT . '/uploads/temp/files/' . basename($file));
             }
         }
     }
@@ -399,8 +406,8 @@ class Files {
         $IMAGE = new \claviska\SimpleImage;
         $resize_max = self::imgResizeMax($resize_param);
 
-        if (\eMarket\Core\Valid::inPOST('image_data')) {
-            $file = \eMarket\Core\Valid::inPOST('image_data');
+        if (Valid::inPOST('image_data')) {
+            $file = Valid::inPOST('image_data');
 
             $image_data = getimagesize(ROOT . '/uploads/temp/files/' . $file);
             $width = $image_data[0];
@@ -413,16 +420,16 @@ class Files {
                 $IMAGE->fromFile(ROOT . '/uploads/temp/files/' . $file)
                         ->autoOrient()
                         ->bestFit($resize_param[0][0], $resize_param[0][1]);
-                if (\eMarket\Core\Valid::inPOST('effect_edit') == 'effect-sepia' OR \eMarket\Core\Valid::inPOST('effect_add') == 'effect-sepia') {
+                if (Valid::inPOST('effect_edit') == 'effect-sepia' OR Valid::inPOST('effect_add') == 'effect-sepia') {
                     $IMAGE->sepia();
                 }
-                if (\eMarket\Core\Valid::inPOST('effect_edit') == 'effect-black-white' OR \eMarket\Core\Valid::inPOST('effect_add') == 'effect-black-white') {
+                if (Valid::inPOST('effect_edit') == 'effect-black-white' OR Valid::inPOST('effect_add') == 'effect-black-white') {
                     $IMAGE->desaturate();
                 }
-                if (\eMarket\Core\Valid::inPOST('effect_edit') == 'effect-blur-1' OR \eMarket\Core\Valid::inPOST('effect_add') == 'effect-blur-1') {
+                if (Valid::inPOST('effect_edit') == 'effect-blur-1' OR Valid::inPOST('effect_add') == 'effect-blur-1') {
                     $IMAGE->blur('selective', 1);
                 }
-                if (\eMarket\Core\Valid::inPOST('effect_edit') == 'effect-blur-2' OR \eMarket\Core\Valid::inPOST('effect_add') == 'effect-blur-2') {
+                if (Valid::inPOST('effect_edit') == 'effect-blur-2' OR Valid::inPOST('effect_add') == 'effect-blur-2') {
                     $IMAGE->blur('selective', 2);
                 }
                 $IMAGE->toFile(ROOT . '/uploads/temp/thumbnail/' . $file);
