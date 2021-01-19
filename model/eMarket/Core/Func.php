@@ -7,6 +7,10 @@
 
 namespace eMarket\Core;
 
+use \eMarket\Core\{
+    Valid
+};
+
 /**
  * Func
  *
@@ -25,28 +29,28 @@ class Func {
       (
       [0] => Array
       (
-        [0] => 1
-        [1] => Germany
-        [2] => Berlin
+      [0] => 1
+      [1] => Germany
+      [2] => Berlin
       )
 
       [1] => Array
       (
-        [0] => 2
-        [1] => Russia
-        [2] => Moscow
+      [0] => 2
+      [1] => Russia
+      [2] => Moscow
       )
       [2] => Array
       (
-        [0] => 3
-        [1] => USA
-        [2] => New York
+      [0] => 3
+      [1] => USA
+      [2] => New York
       )
       [3] => Array
       (
-        [0] => 4
-        [1] => USA
-        [2] => Boston
+      [0] => 4
+      [1] => USA
+      [2] => Boston
       )
       )
      * 
@@ -91,33 +95,33 @@ class Func {
      * Filtering an array while keeping keys
      * 
      * 
-    * Example:
+     * Example:
       Array
       (
       [0] => Array
       (
-        [0] => 1
-        [1] => Germany
-        [2] => Berlin
+      [0] => 1
+      [1] => Germany
+      [2] => Berlin
       )
 
       [1] => Array
       (
-        [0] => 2
-        [1] => Russia
-        [2] => Moscow
+      [0] => 2
+      [1] => Russia
+      [2] => Moscow
       )
       [2] => Array
       (
-        [0] => 3
-        [1] => USA
-        [2] => New York
+      [0] => 3
+      [1] => USA
+      [2] => New York
       )
       [3] => Array
       (
-        [0] => 4
-        [1] => USA
-        [2] => Boston
+      [0] => 4
+      [1] => USA
+      [2] => Boston
       )
       )
      * 
@@ -381,7 +385,7 @@ class Func {
             }
         }
 
-        parse_str(\eMarket\Core\Valid::inSERVER('QUERY_STRING'), $vars);
+        parse_str(Valid::inSERVER('QUERY_STRING'), $vars);
         $url = http_build_query(array_diff_key($vars, $array));
         return '?' . $url;
     }
