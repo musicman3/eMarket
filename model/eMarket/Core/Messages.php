@@ -7,6 +7,12 @@
 
 namespace eMarket\Core;
 
+use \eMarket\Core\{
+    Pdo,
+    Settings,
+    Valid
+};
+
 /**
  * Messages
  *
@@ -34,7 +40,7 @@ class Messages {
             } else {
                 $_SESSION['message'] = [$class, $message, 3000, $start];
             }
-            if (\eMarket\Core\Valid::inGET('route') == 'settings/modules/edit') {
+            if (Valid::inGET('route') == 'settings/modules/edit') {
                 self::alert();
             }
             return true;
@@ -42,15 +48,15 @@ class Messages {
 
         if (isset($_SESSION['message_marker']) && $_SESSION['message_marker'] == 'ok_3') {
             if (isset($_SESSION['message'])) {
-                require_once (ROOT . '/view/' . \eMarket\Core\Settings::template() . '/layouts/alert.php');
+                require_once (ROOT . '/view/' . Settings::template() . '/layouts/alert.php');
             }
             unset($_SESSION['message_marker']);
             unset($_SESSION['message']);
         }
 
-        if (\eMarket\Core\Valid::inGET('message') == 'ok') {
+        if (Valid::inGET('message') == 'ok') {
             if (isset($_SESSION['message'])) {
-                require_once (ROOT . '/view/' . \eMarket\Core\Settings::template() . '/layouts/alert.php');
+                require_once (ROOT . '/view/' . Settings::template() . '/layouts/alert.php');
             }
             unset($_SESSION['message_marker']);
             unset($_SESSION['message']);
@@ -65,7 +71,7 @@ class Messages {
         }
 
         if (isset($_SESSION['message'][3]) && $_SESSION['message'][3] == TRUE) {
-            require_once (ROOT . '/view/' . \eMarket\Core\Settings::template() . '/layouts/alert.php');
+            require_once (ROOT . '/view/' . Settings::template() . '/layouts/alert.php');
             unset($_SESSION['message']);
         }
     }
@@ -82,7 +88,7 @@ class Messages {
         $mail = new \PHPMailer\PHPMailer\PHPMailer();
         $mail->CharSet = 'UTF-8';
 
-        $basic_settings = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_BASIC_SETTINGS . "", [])[0];
+        $basic_settings = Pdo::getColAssoc("SELECT * FROM " . TABLE_BASIC_SETTINGS . "", [])[0];
 
         if ($basic_settings['smtp_status'] == 0) {
             $mail->isSendmail();
