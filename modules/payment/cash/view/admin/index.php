@@ -3,28 +3,7 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-use \eMarket\Core\{
-    Autorize,
-    Cart,
-    Debug,
-    Eac,
-    Ecb,
-    Files,
-    Func,
-    Interfaces,
-    Lang,
-    Messages,
-    Modules,
-    Navigation,
-    Pages,
-    Payment,
-    Pdo,
-    Products,
-    Settings,
-    Tree,
-    Valid,
-    View
-};
+
 use \eMarket\Core\Modules\Payment\Cash;
 ?>
 
