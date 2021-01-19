@@ -7,6 +7,15 @@
 
 namespace eMarket\Core\Modules\Payment;
 
+use \eMarket\Core\{
+    Interfaces,
+    Messages,
+    Modules,
+    Pdo,
+    Settings,
+    Valid
+};
+
 /**
  * Module Cash
  *
@@ -36,8 +45,7 @@ class Cash {
      * @param array $module (input data)
      */
     public static function install($module) {
-        // Инсталлируем
-        \eMarket\Core\Modules::install($module);
+        Modules::install($module);
     }
 
     /**
@@ -46,7 +54,7 @@ class Cash {
      * @param array $module (input data)
      */
     public static function uninstall($module) {
-        \eMarket\Core\Modules::uninstall($module);
+        Modules::uninstall($module);
     }
 
     /**
@@ -56,7 +64,7 @@ class Cash {
      */
     public static function load() {
 
-        $INTERFACE = new \eMarket\Core\Interfaces();
+        $INTERFACE = new Interfaces();
 
         $interface = [
             'chanel_module_name' => 'cash',
@@ -77,24 +85,24 @@ class Cash {
      *
      */
     public function save() {
-        if (\eMarket\Core\Valid::inPOST('save')) {
+        if (Valid::inPOST('save')) {
 
-            $MODULE_DB = \eMarket\Core\Settings::moduleDatabase();
+            $MODULE_DB = Settings::moduleDatabase();
 
-            $data = \eMarket\Core\Pdo::getCellFalse("SELECT * FROM " . $MODULE_DB, []);
+            $data = Pdo::getCellFalse("SELECT * FROM " . $MODULE_DB, []);
             if ($data == FALSE) {
-                if (empty(\eMarket\Core\Valid::inPOST('multiselect')) == FALSE) {
-                    $multiselect = json_encode(\eMarket\Core\Valid::inPOST('multiselect'));
-                    \eMarket\Core\Pdo::action("INSERT INTO " . $MODULE_DB . " SET order_status=?, shipping_module=?", [\eMarket\Core\Valid::inPOST('order_status'), $multiselect]);
+                if (Valid::inPOST('multiselect')) {
+                    $multiselect = json_encode(Valid::inPOST('multiselect'));
+                    Pdo::action("INSERT INTO " . $MODULE_DB . " SET order_status=?, shipping_module=?", [Valid::inPOST('order_status'), $multiselect]);
                 }
-            } elseif (empty(\eMarket\Core\Valid::inPOST('multiselect')) == FALSE) {
-                $multiselect = json_encode(\eMarket\Core\Valid::inPOST('multiselect'));
-                \eMarket\Core\Pdo::action("UPDATE " . $MODULE_DB . " SET order_status=?, shipping_module=?", [\eMarket\Core\Valid::inPOST('order_status'), $multiselect]);
+            } elseif (Valid::inPOST('multiselect')) {
+                $multiselect = json_encode(Valid::inPOST('multiselect'));
+                Pdo::action("UPDATE " . $MODULE_DB . " SET order_status=?, shipping_module=?", [Valid::inPOST('order_status'), $multiselect]);
             } else {
-                \eMarket\Core\Pdo::action("UPDATE " . $MODULE_DB . " SET order_status=?, shipping_module=?", [\eMarket\Core\Valid::inPOST('order_status'), NULL]);
+                Pdo::action("UPDATE " . $MODULE_DB . " SET order_status=?, shipping_module=?", [Valid::inPOST('order_status'), NULL]);
             }
 
-            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('success', lang('action_completed_successfully'));
             exit;
         }
     }
@@ -104,12 +112,12 @@ class Cash {
      *
      */
     public function data() {
-        $MODULE_DB = \eMarket\Core\Settings::moduleDatabase();
+        $MODULE_DB = Settings::moduleDatabase();
 
-        self::$shipping_method = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE type=? AND active=? ORDER BY name ASC", ['shipping', 1]);
-        self::$order_status = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_ORDER_STATUS . " WHERE language=? ORDER BY sort DESC", [lang('#lang_all')[0]]);
-        self::$order_status_selected = \eMarket\Core\Pdo::getCellFalse("SELECT order_status FROM " . $MODULE_DB, []);
-        self::$shipping_val = json_decode(\eMarket\Core\Pdo::getCellFalse("SELECT shipping_module FROM " . $MODULE_DB, []), 1);
+        self::$shipping_method = Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE type=? AND active=? ORDER BY name ASC", ['shipping', 1]);
+        self::$order_status = Pdo::getColAssoc("SELECT * FROM " . TABLE_ORDER_STATUS . " WHERE language=? ORDER BY sort DESC", [lang('#lang_all')[0]]);
+        self::$order_status_selected = Pdo::getCellFalse("SELECT order_status FROM " . $MODULE_DB, []);
+        self::$shipping_val = json_decode(Pdo::getCellFalse("SELECT shipping_module FROM " . $MODULE_DB, []), 1);
     }
 
 }
