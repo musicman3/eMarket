@@ -3,6 +3,13 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+
+use \eMarket\Core\{
+    Autorize,
+    Cart,
+    Ecb,
+    Settings
+};
 ?>
 
 <nav class="navbar navbar-inverse navbar-no-corners navbar-no-margin">
@@ -27,18 +34,18 @@
                 <li class="dropdown"><a data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-globe"></span><span class="hidden-sm"> <?php echo lang('navbar_languages') ?></span> <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <?php foreach (lang('#lang_all') as $value) { ?>
-                            <li><a href="<?php echo \eMarket\Core\Settings::langCurrencyPath() . '&language=' . $value ?>"><img src="/view/<?php echo \eMarket\Core\Settings::template() ?>/admin/images/langflags/<?php echo $value ?>.png"> <?php echo lang('language_name', $value) ?></a></li>
+                            <li><a href="<?php echo Settings::langCurrencyPath() . '&language=' . $value ?>"><img src="/view/<?php echo Settings::template() ?>/admin/images/langflags/<?php echo $value ?>.png"> <?php echo lang('language_name', $value) ?></a></li>
                         <?php } ?>
                     </ul>
                 </li>
                 <li class="dropdown"><a data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-credit-card"></span><span class="hidden-sm"> <?php echo lang('navbar_currencies') ?></span> <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <?php foreach (\eMarket\Core\Settings::currenciesData() as $value) { ?>
-                            <li><a href="<?php echo \eMarket\Core\Settings::langCurrencyPath() . '&currency_default=' . $value['id'] ?>"><?php echo $value['name'] ?></a></li>
+                        <?php foreach (Settings::currenciesData() as $value) { ?>
+                            <li><a href="<?php echo Settings::langCurrencyPath() . '&currency_default=' . $value['id'] ?>"><?php echo $value['name'] ?></a></li>
                         <?php } ?>
                     </ul>
                 </li>
-                <?php if (\eMarket\Core\Autorize::$CUSTOMER == FALSE) { ?>
+                <?php if (Autorize::$CUSTOMER == FALSE) { ?>
                     <li><a href="/?route=login"><span class="glyphicon glyphicon-user"></span><span class="hidden-sm"> <?php echo lang('login_to_account') ?></span></a></li>
                 <?php } else { ?>
                     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span><span class="hidden-sm"> <?php echo lang('my_account') ?></span> <span class="caret"></span></a>
@@ -52,13 +59,13 @@
                     </li>
                 <?php } ?>
 
-                <?php if (\eMarket\Core\Cart::totalQuantity() == 0) { ?>
-                    <li id="cart_bar" class="nav"><a href="#" class="disabled"><span class="glyphicon glyphicon-shopping-cart"></span> <?php echo \eMarket\Core\Cart::totalQuantity() . ' ' . lang('navbar_pcs') ?></a></li>
+                <?php if (Cart::totalQuantity() == 0) { ?>
+                    <li id="cart_bar" class="nav"><a href="#" class="disabled"><span class="glyphicon glyphicon-shopping-cart"></span> <?php echo Cart::totalQuantity() . ' ' . lang('navbar_pcs') ?></a></li>
                 <?php } else { ?>
                     <li id="cart_bar" class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-shopping-cart"></span> <?php echo \eMarket\Core\Cart::totalQuantity() . ' ' . lang('navbar_pcs') ?> <span class="caret"></span></a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-shopping-cart"></span> <?php echo Cart::totalQuantity() . ' ' . lang('navbar_pcs') ?> <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#" class="disabled"><?php echo \eMarket\Core\Ecb::totalPriceCartInterface(1) ?></a></li>
+                            <li><a href="#" class="disabled"><?php echo Ecb::totalPriceCartInterface(1) ?></a></li>
                             <li class="divider"></li>
                             <li><a href="/?route=cart"><?php echo lang('navbar_view_cart') ?></a></li>
                         </ul>
