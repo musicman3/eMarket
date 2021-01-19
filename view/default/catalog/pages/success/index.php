@@ -4,12 +4,17 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-foreach (\eMarket\Core\View::tlpc('content') as $path) {
+use \eMarket\Core\{
+    Messages,
+    View
+};
+
+foreach (View::tlpc('content') as $path) {
     require_once (ROOT . $path);
 }
 ?>
 
-<div id="alert_block"><?php \eMarket\Core\Messages::alert(); ?></div>
+<div id="alert_block"><?php Messages::alert(); ?></div>
 <h1><?php echo lang('success_text') ?></h1>
 
 <div id="success" class="contentText"><?php echo lang('success_message') ?></div>
