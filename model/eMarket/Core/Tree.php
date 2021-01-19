@@ -7,6 +7,10 @@
 
 namespace eMarket\Core;
 
+use \eMarket\Core\{
+    Valid
+};
+
 /**
  * Tree
  *
@@ -118,7 +122,7 @@ class Tree {
         }
 
         foreach ($array_cat[$parent_id] as $value) {
-            if ($value->id == \eMarket\Core\Valid::inGET('category_id') OR in_array($value->id, $array_cat2)) {
+            if ($value->id == Valid::inGET('category_id') OR in_array($value->id, $array_cat2)) {
                 echo '<li class="collapsable open" id="' . $value->id . '"><a href="?route=listing&category_id=' . $value->id . '">' . $value->name . '</a>';
             } else {
                 echo '<li class="expandable" id="' . $value->id . '"><a href="?route=listing&category_id=' . $value->id . '">' . $value->name . '</a>';
