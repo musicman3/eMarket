@@ -7,6 +7,10 @@
 
 namespace eMarket\Core;
 
+use \eMarket\Core\{
+    Pdo
+};
+
 /**
  * Modules
  *
@@ -27,8 +31,8 @@ final class Modules {
      */
     public static function install($module) {
 
-        \eMarket\Core\Pdo::action("INSERT INTO " . TABLE_MODULES . " SET name=?, type=?, active=?", [$module[1], $module[0], 1]);
-        \eMarket\Core\Pdo::dbInstall(ROOT . '/modules/' . $module[0] . '/' . $module[1] . '/install/');
+        Pdo::action("INSERT INTO " . TABLE_MODULES . " SET name=?, type=?, active=?", [$module[1], $module[0], 1]);
+        Pdo::dbInstall(ROOT . '/modules/' . $module[0] . '/' . $module[1] . '/install/');
     }
 
     /**
@@ -37,8 +41,8 @@ final class Modules {
      * @param array $module Input data
      */
     public static function uninstall($module) {
-        \eMarket\Core\Pdo::action("DELETE FROM " . TABLE_MODULES . " WHERE name=? AND type=?", [$module[1], $module[0]]);
-        \eMarket\Core\Pdo::action("DROP TABLE " . DB_PREFIX . 'modules_' . $module[0] . '_' . $module[1], []);
+        Pdo::action("DELETE FROM " . TABLE_MODULES . " WHERE name=? AND type=?", [$module[1], $module[0]]);
+        Pdo::action("DROP TABLE " . DB_PREFIX . 'modules_' . $module[0] . '_' . $module[1], []);
     }
 
     /**
@@ -46,17 +50,17 @@ final class Modules {
      *
      */
     public static function initDiscount() {
-        $active_modules = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE type=? AND active=?", ['discount', '1']);
+        $active_modules = Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE type=? AND active=?", ['discount', '1']);
 
         foreach ($active_modules as $module) {
             $discount_default_flag = 0;
             $select_array = [];
-            $discounts_all = \eMarket\Core\Pdo::getColAssoc("SELECT id, name, default_set FROM " . DB_PREFIX . 'modules_discount_' . $module['name'] . " WHERE language=?", [lang('#lang_all')[0]]);
+            $discounts_all = Pdo::getColAssoc("SELECT id, name, default_set FROM " . DB_PREFIX . 'modules_discount_' . $module['name'] . " WHERE language=?", [lang('#lang_all')[0]]);
 
             $this_time = time();
 
             foreach ($discounts_all as $val) {
-                $date_end = \eMarket\Core\Pdo::getCell("SELECT UNIX_TIMESTAMP (date_end) FROM " . DB_PREFIX . 'modules_discount_' . $module['name'] . " WHERE id=?", [$val['id']]);
+                $date_end = Pdo::getCell("SELECT UNIX_TIMESTAMP (date_end) FROM " . DB_PREFIX . 'modules_discount_' . $module['name'] . " WHERE id=?", [$val['id']]);
                 if ($this_time < $date_end) {
                     self::$discounts .= $module['name'] . '_' . $val['id'] . ': ' . "'" . $val['name'] . "', ";
                     array_push($select_array, $val['id']);
@@ -85,7 +89,7 @@ final class Modules {
             return self::$discount_router['functions'];
         }
 
-        $active_modules = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE type=? AND active=?", ['discount', '1']);
+        $active_modules = Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE type=? AND active=?", ['discount', '1']);
 
         $text = '"---------", ';
         $discount_router = [];
@@ -126,5 +130,3 @@ final class Modules {
     }
 
 }
-
-?>
