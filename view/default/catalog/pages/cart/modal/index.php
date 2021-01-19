@@ -3,18 +3,23 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+
+use \eMarket\Core\{
+    Settings
+};
+use \eMarket\Catalog\Cart;
 ?>
 
 <div id="index" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header"><div class="pull-right"><button class="close" type="button" data-dismiss="modal">×</button></div>
-                <h4 class="modal-title"><?php echo \eMarket\Core\Settings::titlePageGenerator() ?></h4>
+                <h4 class="modal-title"><?php echo Settings::titlePageGenerator() ?></h4>
             </div>
             <form id="form_cart" name="form_cart" action="javascript:void(null);" onsubmit="Cart.callSuccess()">
                 <div class="panel-body">
                     <input type="hidden" name="add" value="ok" />
-                    <input type="hidden" id="products_order" name="products_order" value='<?php echo \eMarket\Catalog\Cart::$products_order ?>' />
+                    <input type="hidden" id="products_order" name="products_order" value='<?php echo Cart::$products_order ?>' />
                     <input type="hidden" id="order_total_with_shipping" name="order_total_with_shipping" value="" />
                     <input type="hidden" id="order_shipping_price" name="order_shipping_price" value="" />
                     <input type="hidden" id="order_total" name="order_total" value="" />
@@ -32,7 +37,7 @@
                             <select name="address" id="address" class="input-sm form-control">
                                 <?php
                                 $x = 1;
-                                foreach (\eMarket\Catalog\Cart::$address_data as $val) {
+                                foreach (Cart::$address_data as $val) {
                                     ?>
                                     <option <?php echo $val['selected'] ?>value="<?php echo $x ?>" data-regions="<?php echo $val['regions_id'] ?>"><?php echo $val['zip'] . ', ' . $val['countries_name'] . ', ' . $val['regions_name'] . ', ' . $val['city'] . ', ' . $val['address'] ?></option>
                                     <?php

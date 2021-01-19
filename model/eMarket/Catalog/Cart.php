@@ -13,6 +13,7 @@ use \eMarket\Core\{
     Interfaces,
     Payment,
     Pdo,
+    Shipping,
     Valid
 };
 
