@@ -12,7 +12,6 @@ use \eMarket\Core\{
     Valid
 };
 use \eMarket\Admin\Stock;
-use \eMarket\Core\Modules\Discount\Sale;
 use \eMarket\Admin\Stikers;
 
 require_once('modal/index.php');
