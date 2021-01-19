@@ -553,19 +553,19 @@ class Settings {
             if ($language != null) {
                 setlocale(LC_ALL, lang('language_locale', $language));
             }
-            $output = strftime($format, date('U', strtotime($date)));
-            if ($language != null) {
+            if ($language == null) {
                 setlocale(LC_ALL, lang('language_locale'));
             }
+            $output = strftime($format, date('U', strtotime($date)));
             return $output;
         } else {
             if ($language != null) {
                 setlocale(LC_ALL, lang('language_locale', $language));
             }
-            $output = strftime('%x', date('U', strtotime($date)));
-            if ($language != null) {
+            if ($language == null) {
                 setlocale(LC_ALL, lang('language_locale'));
             }
+            $output = strftime('%x', date('U', strtotime($date)));
             return $output;
         }
 
