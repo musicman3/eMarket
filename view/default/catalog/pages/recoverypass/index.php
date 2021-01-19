@@ -4,12 +4,17 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-foreach (\eMarket\Core\View::tlpc('content') as $path) {
+use \eMarket\Core\{
+    Messages,
+    View
+};
+
+foreach (View::tlpc('content') as $path) {
     require_once (ROOT . $path);
 }
 ?>
 
-<div id="alert_block"><?php \eMarket\Core\Messages::alert(); ?></div>
+<div id="alert_block"><?php Messages::alert(); ?></div>
 
 <?php if (isset(\Market\Catalog\RecoveryPass::$customer_id) && \Market\Catalog\RecoveryPass::$customer_id != FALSE) { ?>
     <h1><?php echo lang('register_password_recovery') ?></h1>
@@ -38,4 +43,4 @@ foreach (\eMarket\Core\View::tlpc('content') as $path) {
 
     <h1><?php echo lang('this_page_is_not_available') ?></h1>
 
-<?php } ?>
+<?php }

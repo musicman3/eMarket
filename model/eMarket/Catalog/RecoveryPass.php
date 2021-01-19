@@ -7,6 +7,13 @@
 
 namespace eMarket\Catalog;
 
+use \eMarket\Core\{
+    Autorize,
+    Messages,
+    Pdo,
+    Valid
+};
+
 /**
  * Recovery Password
  *
@@ -15,7 +22,7 @@ namespace eMarket\Catalog;
  * 
  */
 class RecoveryPass {
-    
+
     public static $customer_id;
 
     /**
@@ -31,19 +38,23 @@ class RecoveryPass {
      *
      */
     public function recovery() {
-        if (\eMarket\Core\Valid::inGET('recovery_code')) {
-            self::$customer_id = \eMarket\Core\Pdo::getCellFalse("SELECT customer_id FROM " . TABLE_PASSWORD_RECOVERY . " WHERE recovery_code=?", [\eMarket\Core\Valid::inGET('recovery_code')]);
-            if (self::$customer_id != FALSE && \eMarket\Core\Valid::inPOST('password')) {
-                $recovery_code_created = \eMarket\Core\Pdo::selectPrepare("SELECT UNIX_TIMESTAMP (recovery_code_created) FROM " . TABLE_PASSWORD_RECOVERY . " WHERE customer_id=?", [self::$customer_id]);
+        if (Valid::inGET('recovery_code')) {
+            self::$customer_id = Pdo::getCellFalse("SELECT customer_id FROM " . TABLE_PASSWORD_RECOVERY . " WHERE recovery_code=?", [
+                        Valid::inGET('recovery_code')]
+            );
+            if (self::$customer_id != FALSE && Valid::inPOST('password')) {
+                $recovery_code_created = Pdo::selectPrepare("SELECT UNIX_TIMESTAMP (recovery_code_created) FROM " . TABLE_PASSWORD_RECOVERY . " WHERE customer_id=?", [
+                            self::$customer_id
+                ]);
                 if ($recovery_code_created + (3 * 24 * 60 * 60) > time()) {
-                    \eMarket\Core\Pdo::action("DELETE FROM " . TABLE_PASSWORD_RECOVERY . " WHERE customer_id=?", [self::$customer_id]);
+                    Pdo::action("DELETE FROM " . TABLE_PASSWORD_RECOVERY . " WHERE customer_id=?", [self::$customer_id]);
 
-                    $password_hash = \eMarket\Core\Autorize::passwordHash(\eMarket\Core\Valid::inPOST('password'));
-                    \eMarket\Core\Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET password=? WHERE id=?", [$password_hash, self::$customer_id]);
-                    \eMarket\Core\Messages::alert('success', lang('messages_recovery_password_complete'), 7000, true);
+                    $password_hash = Autorize::passwordHash(Valid::inPOST('password'));
+                    Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET password=? WHERE id=?", [$password_hash, self::$customer_id]);
+                    Messages::alert('success', lang('messages_recovery_password_complete'), 7000, true);
                 } else {
-                    \eMarket\Core\Pdo::action("DELETE FROM " . TABLE_PASSWORD_RECOVERY . " WHERE customer_id=?", [self::$customer_id]);
-                    \eMarket\Core\Messages::alert('danger', lang('messages_recovery_password_failed'), 7000, true);
+                    Pdo::action("DELETE FROM " . TABLE_PASSWORD_RECOVERY . " WHERE customer_id=?", [self::$customer_id]);
+                    Messages::alert('danger', lang('messages_recovery_password_failed'), 7000, true);
                 }
             }
         }
