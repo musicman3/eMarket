@@ -7,6 +7,15 @@
 
 namespace eMarket\Admin;
 
+use \eMarket\Core\{
+    Func,
+    Lang,
+    Messages,
+    Pages,
+    Pdo,
+    Valid,
+};
+
 /**
  * Weight
  *
@@ -36,37 +45,46 @@ class Weight {
      *
      */
     public function add() {
-        if (\eMarket\Core\Valid::inPOST('add')) {
+        if (Valid::inPOST('add')) {
 
-            if (\eMarket\Core\Valid::inPOST('default_weight')) {
+            if (Valid::inPOST('default_weight')) {
                 $default_weight = 1;
             } else {
                 $default_weight = 0;
             }
 
-            $id_max = \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . TABLE_WEIGHT . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+            $id_max = Pdo::selectPrepare("SELECT id FROM " . TABLE_WEIGHT . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max) + 1;
 
             if ($id > 1 && $default_weight != 0) {
-                \eMarket\Core\Pdo::action("UPDATE " . TABLE_WEIGHT . " SET default_weight=?", [0]);
+                Pdo::action("UPDATE " . TABLE_WEIGHT . " SET default_weight=?", [0]);
 
-                $value_weight_all = \eMarket\Core\Pdo::getColAssoc("SELECT id, value_weight, language FROM " . TABLE_WEIGHT, []);
+                $value_weight_all = Pdo::getColAssoc("SELECT id, value_weight, language FROM " . TABLE_WEIGHT, []);
                 $count_value_weight_all = count($value_weight_all);
                 for ($x = 0; $x < $count_value_weight_all; $x++) {
-                    \eMarket\Core\Pdo::action("UPDATE " . TABLE_WEIGHT . " SET value_weight=? WHERE id=? AND language=?", [($value_weight_all[$x]['value_weight'] / \eMarket\Core\Valid::inPOST('value_weight')), $value_weight_all[$x]['id'], $value_weight_all[$x]['language']]);
+                    Pdo::action("UPDATE " . TABLE_WEIGHT . " SET value_weight=? WHERE id=? AND language=?", [
+                        ($value_weight_all[$x]['value_weight'] / Valid::inPOST('value_weight')), $value_weight_all[$x]['id'],
+                        $value_weight_all[$x]['language']
+                    ]);
                 }
 
-                for ($x = 0; $x < \eMarket\Core\Lang::$COUNT; $x++) {
-                    \eMarket\Core\Pdo::action("INSERT INTO " . TABLE_WEIGHT . " SET id=?, name=?, language=?, code=?, value_weight=?, default_weight=?", [$id, \eMarket\Core\Valid::inPOST('name_weight_' . $x), lang('#lang_all')[$x], \eMarket\Core\Valid::inPOST('code_weight_' . $x), 1, $default_weight]);
+                for ($x = 0; $x < Lang::$COUNT; $x++) {
+                    Pdo::action("INSERT INTO " . TABLE_WEIGHT . " SET id=?, name=?, language=?, code=?, value_weight=?, default_weight=?", [
+                        $id, Valid::inPOST('name_weight_' . $x), lang('#lang_all')[$x],
+                        Valid::inPOST('code_weight_' . $x), 1, $default_weight
+                    ]);
                 }
             } else {
 
-                for ($x = 0; $x < \eMarket\Core\Lang::$COUNT; $x++) {
-                    \eMarket\Core\Pdo::action("INSERT INTO " . TABLE_WEIGHT . " SET id=?, name=?, language=?, code=?, value_weight=?, default_weight=?", [$id, \eMarket\Core\Valid::inPOST('name_weight_' . $x), lang('#lang_all')[$x], \eMarket\Core\Valid::inPOST('code_weight_' . $x), \eMarket\Core\Valid::inPOST('value_weight'), $default_weight]);
+                for ($x = 0; $x < Lang::$COUNT; $x++) {
+                    Pdo::action("INSERT INTO " . TABLE_WEIGHT . " SET id=?, name=?, language=?, code=?, value_weight=?, default_weight=?", [
+                        $id, \eMarket\Core\Valid::inPOST('name_weight_' . $x), lang('#lang_all')[$x],
+                        Valid::inPOST('code_weight_' . $x), Valid::inPOST('value_weight'), $default_weight
+                    ]);
                 }
             }
 
-            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('success', lang('action_completed_successfully'));
         }
     }
 
@@ -75,34 +93,42 @@ class Weight {
      *
      */
     public function edit() {
-        if (\eMarket\Core\Valid::inPOST('edit')) {
+        if (Valid::inPOST('edit')) {
 
-            if (\eMarket\Core\Valid::inPOST('default_weight')) {
+            if (Valid::inPOST('default_weight')) {
                 $default_weight = 1;
             } else {
                 $default_weight = 0;
             }
 
             if ($default_weight != 0) {
-                \eMarket\Core\Pdo::action("UPDATE " . TABLE_WEIGHT . " SET default_weight=?", [0]);
+                Pdo::action("UPDATE " . TABLE_WEIGHT . " SET default_weight=?", [0]);
 
-                $value_weight_all = \eMarket\Core\Pdo::getColAssoc("SELECT id, value_weight, language FROM " . TABLE_WEIGHT, []);
+                $value_weight_all = Pdo::getColAssoc("SELECT id, value_weight, language FROM " . TABLE_WEIGHT, []);
                 $count_value_weight_all = count($value_weight_all);
                 for ($x = 0; $x < $count_value_weight_all; $x++) {
-                    \eMarket\Core\Pdo::action("UPDATE " . TABLE_WEIGHT . " SET value_weight=? WHERE id=? AND language=?", [($value_weight_all[$x]['value_weight'] / \eMarket\Core\Valid::inPOST('value_weight')), $value_weight_all[$x]['id'], $value_weight_all[$x]['language']]);
+                    Pdo::action("UPDATE " . TABLE_WEIGHT . " SET value_weight=? WHERE id=? AND language=?", [
+                        ($value_weight_all[$x]['value_weight'] / Valid::inPOST('value_weight')), $value_weight_all[$x]['id'],
+                        $value_weight_all[$x]['language']]);
                 }
 
-                for ($x = 0; $x < \eMarket\Core\Lang::$COUNT; $x++) {
-                    \eMarket\Core\Pdo::action("UPDATE " . TABLE_WEIGHT . " SET name=?, code=?, value_weight=?, default_weight=? WHERE id=? AND language=?", [\eMarket\Core\Valid::inPOST('name_weight_' . $x), \eMarket\Core\Valid::inPOST('code_weight_' . $x), 1, $default_weight, \eMarket\Core\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
+                for ($x = 0; $x < Lang::$COUNT; $x++) {
+                    Pdo::action("UPDATE " . TABLE_WEIGHT . " SET name=?, code=?, value_weight=?, default_weight=? WHERE id=? AND language=?", [
+                        Valid::inPOST('name_weight_' . $x), Valid::inPOST('code_weight_' . $x), 1, $default_weight, Valid::inPOST('edit'),
+                        lang('#lang_all')[$x]
+                    ]);
                 }
             } else {
 
-                for ($x = 0; $x < \eMarket\Core\Lang::$COUNT; $x++) {
-                    \eMarket\Core\Pdo::action("UPDATE " . TABLE_WEIGHT . " SET name=?, code=?, value_weight=?, default_weight=? WHERE id=? AND language=?", [\eMarket\Core\Valid::inPOST('name_weight_' . $x), \eMarket\Core\Valid::inPOST('code_weight_' . $x), \eMarket\Core\Valid::inPOST('value_weight'), $default_weight, \eMarket\Core\Valid::inPOST('edit'), lang('#lang_all')[$x]]);
+                for ($x = 0; $x < Lang::$COUNT; $x++) {
+                    Pdo::action("UPDATE " . TABLE_WEIGHT . " SET name=?, code=?, value_weight=?, default_weight=? WHERE id=? AND language=?", [
+                        Valid::inPOST('name_weight_' . $x), Valid::inPOST('code_weight_' . $x), Valid::inPOST('value_weight'), $default_weight,
+                        Valid::inPOST('edit'), lang('#lang_all')[$x]
+                    ]);
                 }
             }
 
-            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('success', lang('action_completed_successfully'));
         }
     }
 
@@ -111,10 +137,10 @@ class Weight {
      *
      */
     public function delete() {
-        if (\eMarket\Core\Valid::inPOST('delete')) {
-            \eMarket\Core\Pdo::action("DELETE FROM " . TABLE_WEIGHT . " WHERE id=?", [\eMarket\Core\Valid::inPOST('delete')]);
+        if (Valid::inPOST('delete')) {
+            Pdo::action("DELETE FROM " . TABLE_WEIGHT . " WHERE id=?", [Valid::inPOST('delete')]);
 
-            \eMarket\Core\Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('success', lang('action_completed_successfully'));
         }
     }
 
@@ -123,9 +149,9 @@ class Weight {
      *
      */
     public function data() {
-        self::$sql_data = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_WEIGHT . " ORDER BY id DESC", []);
-        $lines = \eMarket\Core\Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
-        \eMarket\Core\Pages::table($lines);
+        self::$sql_data = Pdo::getColAssoc("SELECT * FROM " . TABLE_WEIGHT . " ORDER BY id DESC", []);
+        $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
+        Pages::table($lines);
     }
 
     /**
@@ -136,10 +162,10 @@ class Weight {
         self::$json_data = json_encode([]);
         $name = [];
         $code = [];
-        for ($i = \eMarket\Core\Pages::$start; $i < \eMarket\Core\Pages::$finish; $i++) {
-            if (isset(\eMarket\Core\Pages::$table['lines'][$i]['id']) == TRUE) {
+        for ($i = Pages::$start; $i < Pages::$finish; $i++) {
+            if (isset(Pages::$table['lines'][$i]['id']) == TRUE) {
 
-                $modal_id = \eMarket\Core\Pages::$table['lines'][$i]['id'];
+                $modal_id = Pages::$table['lines'][$i]['id'];
 
                 foreach (self::$sql_data as $sql_modal) {
                     if ($sql_modal['id'] == $modal_id) {
