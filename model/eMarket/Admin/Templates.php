@@ -155,15 +155,25 @@ class Templates {
      *
      */
     public function header() {
-        Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", ['catalog', 'header', Valid::inGET('template'), self::$select_page]);
-        Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", ['catalog', 'header-basket', Valid::inGET('template'), self::$select_page]);
+        Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", [
+            'catalog', 'header', Valid::inGET('template'), self::$select_page
+        ]);
+        Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", [
+            'catalog', 'header-basket', Valid::inGET('template'), self::$select_page
+        ]);
 
         if (Valid::inGET('layout_header')) {
             for ($x = 0; $x < count(Valid::inGET('layout_header')); $x++) {
                 if (Valid::inGET('layout_header')[$x] == 'header') {
-                    Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/' . Valid::inGET('layout_header')[$x] . '.php', 'catalog', 'header', self::$select_page, $x, Valid::inGET('template')]);
+                    Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", [
+                        '/controller/catalog/' . Valid::inGET('layout_header')[$x] . '.php', 'catalog', 'header', self::$select_page, $x,
+                        Valid::inGET('template')
+                    ]);
                 } else {
-                    Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/layouts/' . Valid::inGET('layout_header')[$x] . '.php', 'catalog', 'header', self::$select_page, $x, Valid::inGET('template')]);
+                    Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", [
+                        '/controller/catalog/layouts/' . Valid::inGET('layout_header')[$x] . '.php', 'catalog', 'header', self::$select_page, $x,
+                        Valid::inGET('template')
+                    ]);
                 }
             }
         }
@@ -171,9 +181,15 @@ class Templates {
         if (Valid::inGET('layout_header_basket')) {
             for ($x = 0; $x < count(Valid::inGET('layout_header_basket')); $x++) {
                 if (Valid::inGET('layout_header_basket')[$x] == 'header') {
-                    Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/' . Valid::inGET('layout_header_basket')[$x] . '.php', 'catalog', 'header-basket', self::$select_page, $x, Valid::inGET('template')]);
+                    Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", [
+                        '/controller/catalog/' . Valid::inGET('layout_header_basket')[$x] . '.php', 'catalog', 'header-basket', self::$select_page, $x,
+                        Valid::inGET('template')
+                    ]);
                 } else {
-                    Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/layouts/' . Valid::inGET('layout_header_basket')[$x] . '.php', 'catalog', 'header-basket', self::$select_page, $x, Valid::inGET('template')]);
+                    Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", [
+                        '/controller/catalog/layouts/' . Valid::inGET('layout_header_basket')[$x] . '.php', 'catalog', 'header-basket',
+                        self::$select_page, $x, Valid::inGET('template')
+                    ]);
                 }
             }
         }
@@ -184,18 +200,28 @@ class Templates {
      *
      */
     public function content() {
-        Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", ['catalog', 'content', Valid::inGET('template'), self::$select_page]);
-        Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", ['catalog', 'content-basket', Valid::inGET('template'), self::$select_page]);
+        Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", [
+            'catalog', 'content', Valid::inGET('template'), self::$select_page
+        ]);
+        Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", [
+            'catalog', 'content-basket', Valid::inGET('template'), self::$select_page
+        ]);
 
         if (Valid::inGET('layout_content')) {
             for ($x = 0; $x < count(Valid::inGET('layout_content')); $x++) {
-                Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/layouts/' . Valid::inGET('layout_content')[$x] . '.php', 'catalog', 'content', self::$select_page, $x, Valid::inGET('template')]);
+                Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", [
+                    '/controller/catalog/layouts/' . Valid::inGET('layout_content')[$x] . '.php', 'catalog', 'content', self::$select_page, $x,
+                    Valid::inGET('template')
+                ]);
             }
         }
 
         if (Valid::inGET('layout_content_basket')) {
             for ($x = 0; $x < count(Valid::inGET('layout_content_basket')); $x++) {
-                Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/layouts/' . Valid::inGET('layout_content_basket')[$x] . '.php', 'catalog', 'content-basket', self::$select_page, $x, Valid::inGET('template')]);
+                Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", [
+                    '/controller/catalog/layouts/' . Valid::inGET('layout_content_basket')[$x] . '.php', 'catalog', 'content-basket',
+                    self::$select_page, $x, Valid::inGET('template')
+                ]);
             }
         }
     }
@@ -205,25 +231,40 @@ class Templates {
      *
      */
     public function boxes() {
-        Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", ['catalog', 'boxes-left', Valid::inGET('template'), self::$select_page]);
-        Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", ['catalog', 'boxes-right', Valid::inGET('template'), self::$select_page]);
-        Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", ['catalog', 'boxes-basket', Valid::inGET('template'), self::$select_page]);
+        Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", [
+            'catalog', 'boxes-left', Valid::inGET('template'), self::$select_page
+        ]);
+        Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", [
+            'catalog', 'boxes-right', Valid::inGET('template'), self::$select_page
+        ]);
+        Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", [
+            'catalog', 'boxes-basket', Valid::inGET('template'), self::$select_page
+        ]);
 
         if (Valid::inGET('layout_boxes_left')) {
             for ($x = 0; $x < count(Valid::inGET('layout_boxes_left')); $x++) {
-                Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/layouts/' . Valid::inGET('layout_boxes_left')[$x] . '.php', 'catalog', 'boxes-left', self::$select_page, $x, Valid::inGET('template')]);
+                Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", [
+                    '/controller/catalog/layouts/' . Valid::inGET('layout_boxes_left')[$x] . '.php', 'catalog', 'boxes-left', self::$select_page, $x,
+                    Valid::inGET('template')
+                ]);
             }
         }
 
         if (Valid::inGET('layout_boxes_right')) {
             for ($x = 0; $x < count(Valid::inGET('layout_boxes_right')); $x++) {
-                Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/layouts/' . Valid::inGET('layout_boxes_right')[$x] . '.php', 'catalog', 'boxes-right', self::$select_page, $x, Valid::inGET('template')]);
+                Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", [
+                    '/controller/catalog/layouts/' . Valid::inGET('layout_boxes_right')[$x] . '.php', 'catalog', 'boxes-right', self::$select_page, $x,
+                    Valid::inGET('template')
+                ]);
             }
         }
 
         if (Valid::inGET('layout_boxes_basket')) {
             for ($x = 0; $x < count(Valid::inGET('layout_boxes_basket')); $x++) {
-                Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/layouts/' . Valid::inGET('layout_boxes_basket')[$x] . '.php', 'catalog', 'boxes-basket', self::$select_page, $x, Valid::inGET('template')]);
+                Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", [
+                    '/controller/catalog/layouts/' . Valid::inGET('layout_boxes_basket')[$x] . '.php', 'catalog', 'boxes-basket', self::$select_page, $x,
+                    Valid::inGET('template')
+                ]);
             }
         }
     }
@@ -233,15 +274,25 @@ class Templates {
      *
      */
     public function footer() {
-        Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", ['catalog', 'footer', Valid::inGET('template'), self::$select_page]);
-        Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", ['catalog', 'footer-basket', Valid::inGET('template'), self::$select_page]);
+        Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", [
+            'catalog', 'footer', Valid::inGET('template'), self::$select_page
+        ]);
+        Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", [
+            'catalog', 'footer-basket', Valid::inGET('template'), self::$select_page
+        ]);
 
         if (Valid::inGET('layout_footer')) {
             for ($x = 0; $x < count(Valid::inGET('layout_footer')); $x++) {
                 if (Valid::inGET('layout_footer')[$x] == 'footer') {
-                    Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/' . Valid::inGET('layout_footer')[$x] . '.php', 'catalog', 'footer', self::$select_page, $x, Valid::inGET('template')]);
+                    Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", [
+                        '/controller/catalog/' . Valid::inGET('layout_footer')[$x] . '.php', 'catalog', 'footer', self::$select_page, $x,
+                        Valid::inGET('template')
+                    ]);
                 } else {
-                    Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/layouts/' . Valid::inGET('layout_footer')[$x] . '.php', 'catalog', 'footer', self::$select_page, $x, Valid::inGET('template')]);
+                    Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", [
+                        '/controller/catalog/layouts/' . Valid::inGET('layout_footer')[$x] . '.php', 'catalog', 'footer', self::$select_page, $x,
+                        Valid::inGET('template')
+                    ]);
                 }
             }
         }
@@ -249,9 +300,15 @@ class Templates {
         if (Valid::inGET('layout_footer_basket')) {
             for ($x = 0; $x < count(Valid::inGET('layout_footer_basket')); $x++) {
                 if (Valid::inGET('layout_footer_basket')[$x] == 'footer') {
-                    Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/' . Valid::inGET('layout_footer_basket')[$x] . '.php', 'catalog', 'footer-basket', self::$select_page, $x, Valid::inGET('template')]);
+                    Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", [
+                        '/controller/catalog/' . Valid::inGET('layout_footer_basket')[$x] . '.php', 'catalog', 'footer-basket', self::$select_page, $x,
+                        Valid::inGET('template')
+                    ]);
                 } else {
-                    Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", ['/controller/catalog/layouts/' . Valid::inGET('layout_footer_basket')[$x] . '.php', 'catalog', 'footer-basket', self::$select_page, $x, Valid::inGET('template')]);
+                    Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", [
+                        '/controller/catalog/layouts/' . Valid::inGET('layout_footer_basket')[$x] . '.php', 'catalog', 'footer-basket',
+                        self::$select_page, $x, Valid::inGET('template')
+                    ]);
                 }
             }
         }
