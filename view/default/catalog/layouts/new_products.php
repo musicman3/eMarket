@@ -31,4 +31,3 @@ if (Products::$new_products == true) {
         </div>
     </div>
 <?php }
-?>
