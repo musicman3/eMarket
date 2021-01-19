@@ -7,6 +7,11 @@
 
 namespace eMarket\Install;
 
+use \eMarket\Core\{
+    Settings,
+    Valid
+};
+
 /**
  * Index
  *
@@ -31,12 +36,12 @@ class Index {
      *
      */
     public function lang() {
-        if (!\eMarket\Core\Valid::inPOST('language') && \eMarket\Core\Settings::path() == 'install') {
+        if (!Valid::inPOST('language') && Settings::path() == 'install') {
             self::$DEFAULT_LANGUAGE = 'english';
         }
 
-        if (\eMarket\Core\Valid::inPOST('language')) {
-            self::$DEFAULT_LANGUAGE = \eMarket\Core\Valid::inPOST('language');
+        if (Valid::inPOST('language')) {
+            self::$DEFAULT_LANGUAGE = Valid::inPOST('language');
         }
     }
 
