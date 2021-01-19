@@ -3,6 +3,12 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+
+use \eMarket\Core\{
+    Debug,
+    Settings,
+    View
+};
 ?>
 
 <!doctype html>
@@ -18,10 +24,10 @@
         <meta name="owner" content="eMarket" />
         <meta name="copyright" content="Copyright © 2018 by eMarket Team. All right reserved." />
 
-        <title><?php echo \eMarket\Core\Settings::titlePageGenerator() ?></title>
+        <title><?php echo Settings::titlePageGenerator() ?></title>
 
         <link href="/ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
-        <link rel="stylesheet" type="text/css" href="/view/<?php echo \eMarket\Core\Settings::template() ?>/admin/style.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="/view/<?php echo Settings::template() ?>/admin/style.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="/ext/contextmenu/css/jquery.contextMenu.min.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="/ext/jquery/ui/jquery-ui.min.css" media="screen" />
         <link rel="stylesheet" href="/ext/bootstrap/css/bootstrap-multiselect.css" type="text/css"/>
@@ -38,15 +44,15 @@
         </script>
 
         <?php
-        if (isset($_SESSION['login']) && isset($_SESSION['pass']) && file_exists(ROOT . '/view/' . \eMarket\Core\Settings::template() . '/admin/nav.css')) {
+        if (isset($_SESSION['login']) && isset($_SESSION['pass']) && file_exists(ROOT . '/view/' . Settings::template() . '/admin/nav.css')) {
             ?>
-            <link rel="stylesheet" type="text/css" href="/view/<?php echo \eMarket\Core\Settings::template() ?>/admin/nav.css" media="screen" />
+            <link rel="stylesheet" type="text/css" href="/view/<?php echo Settings::template() ?>/admin/nav.css" media="screen" />
         <?php } ?>
     </head>
     <body>
 
         <?php
-        foreach (\eMarket\Core\View::tlpc('header') as $path) {
+        foreach (View::tlpc('header') as $path) {
             require_once (ROOT . $path);
         }
         ?>
@@ -55,14 +61,14 @@
             <div id="ajax">
 
                 <?php
-                require_once(\eMarket\Core\View::routingAdmin());
+                require_once(View::routingAdmin());
                 ?>
 
             </div>
         </div>
 
         <?php
-        foreach (\eMarket\Core\View::tlpc('footer') as $path) {
+        foreach (View::tlpc('footer') as $path) {
             require_once (ROOT . $path);
         }
         require_once ('js/footer.php');
@@ -78,13 +84,13 @@
         </script>
 
         <?php
-        if (\eMarket\Core\Settings::$JS_HANDLER != FALSE) {
-            require_once(\eMarket\Core\Settings::$JS_HANDLER . '/js.php');
+        if (Settings::$JS_HANDLER != FALSE) {
+            require_once(Settings::$JS_HANDLER . '/js.php');
         }
-        if (\eMarket\Core\Settings::$JS_MODULES_HANDLER != FALSE) {
-            require_once(\eMarket\Core\Settings::$JS_MODULES_HANDLER . '/js.php');
+        if (Settings::$JS_MODULES_HANDLER != FALSE) {
+            require_once(Settings::$JS_MODULES_HANDLER . '/js.php');
         }
-        \eMarket\Core\Debug::info();
+        Debug::info();
         ?>
 
     </body>
