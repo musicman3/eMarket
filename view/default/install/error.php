@@ -3,6 +3,11 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+
+use \eMarket\Core\{
+    Valid
+};
+use \eMarket\Install\Error;
 ?>
 
 <div class="container">
@@ -17,10 +22,10 @@
             </div>
             <div class="panel-body">
                 <form action='index.php' method='post' accept-charset='utf-8'>
-                    <div class="alert alert-danger"><?php echo lang(\eMarket\Install\Error::$message) ?></div>
+                    <div class="alert alert-danger"><?php echo lang(Error::$message) ?></div>
 
-                    <?php if (\eMarket\Core\Valid::inGET('error_message')) { ?>
-                        <div class="alert alert-warning"><?php echo \eMarket\Install\Error::$error_message ?></div>
+                    <?php if (Valid::inGET('error_message')) { ?>
+                        <div class="alert alert-warning"><?php echo Error::$error_message ?></div>
                     <?php } ?>
 
                     <button class="btn btn-primary btn-sm" type="submit" name="button_go_login" /><?php echo lang('button_go_login') ?></button>
