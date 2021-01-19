@@ -89,10 +89,10 @@ class Pages {
      * @return string (output data)
      */
     public static function counterPage() {
-        $count = self::$start + 1;
+        $count = self::$table['navigate'][0] + 1;
 
         if (self::$count > 0) {
-            return lang('with') . ' ' . $count . ' ' . lang('to') . ' ' . self::$finish . ' ( ' . lang('of') . ' ' . self::$count . ')';
+            return lang('with') . ' ' . $count . ' ' . lang('to') . ' ' . self::$table['navigate'][1] . ' ( ' . lang('of') . ' ' . self::$count . ')';
         } else {
             return lang('no_listing');
         }
