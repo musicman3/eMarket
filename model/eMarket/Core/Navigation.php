@@ -7,6 +7,10 @@
 
 namespace eMarket\Core;
 
+use \eMarket\Core\{
+    Valid
+};
+
 /**
  * Navigation
  *
@@ -41,11 +45,11 @@ class Navigation {
             $finish = $finish + $transfer;
         }
 
-        if (\eMarket\Core\Valid::inGET('finish')) {
-            $finish = \eMarket\Core\Valid::inGET('finish') + $lines_on_page;
-            $start = \eMarket\Core\Valid::inGET('start') + $lines_on_page;
+        if (Valid::inGET('finish')) {
+            $finish = Valid::inGET('finish') + $lines_on_page;
+            $start = Valid::inGET('start') + $lines_on_page;
             if ($start >= $count_lines) {
-                $start = \eMarket\Core\Valid::inGET('start');
+                $start = Valid::inGET('start');
             }
             if ($finish >= $count_lines) {
                 $finish = $count_lines;
@@ -53,9 +57,9 @@ class Navigation {
             return array($start, $finish);
         }
 
-        if ($count_lines > $lines_on_page && \eMarket\Core\Valid::inGET('backfinish')) {
-            $finish = \eMarket\Core\Valid::inGET('backstart');
-            $start = \eMarket\Core\Valid::inGET('backstart') - $lines_on_page;
+        if ($count_lines > $lines_on_page && Valid::inGET('backfinish')) {
+            $finish = Valid::inGET('backstart');
+            $start = Valid::inGET('backstart') - $lines_on_page;
             if ($start < 0) {
                 $start = 0;
             }
@@ -93,11 +97,11 @@ class Navigation {
             $finish = $finish + $transfer;
         }
 
-        if (\eMarket\Core\Valid::inPOST('finish')) {
-            $finish = \eMarket\Core\Valid::inPOST('finish') + $lines_on_page;
-            $start = \eMarket\Core\Valid::inPOST('start') + $lines_on_page;
+        if (Valid::inPOST('finish')) {
+            $finish = Valid::inPOST('finish') + $lines_on_page;
+            $start = Valid::inPOST('start') + $lines_on_page;
             if ($start >= $count_lines) {
-                $start = \eMarket\Core\Valid::inPOST('start');
+                $start = Valid::inPOST('start');
             }
             if ($finish >= $count_lines) {
                 $finish = $count_lines;
@@ -105,9 +109,9 @@ class Navigation {
             return array($start, $finish);
         }
 
-        if ($count_lines > $lines_on_page && \eMarket\Core\Valid::inPOST('backfinish')) {
-            $finish = \eMarket\Core\Valid::inPOST('backstart');
-            $start = \eMarket\Core\Valid::inPOST('backstart') - $lines_on_page;
+        if ($count_lines > $lines_on_page && Valid::inPOST('backfinish')) {
+            $finish = Valid::inPOST('backstart');
+            $start = Valid::inPOST('backstart') - $lines_on_page;
             if ($start < 0) {
                 $start = 0;
             }
