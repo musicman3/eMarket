@@ -7,6 +7,15 @@
 
 namespace eMarket\Catalog;
 
+use \eMarket\Core\{
+    Autorize,
+    Func,
+    Messages,
+    Pdo,
+    Settings,
+    Valid
+};
+
 /**
  * Register
  *
@@ -15,7 +24,7 @@ namespace eMarket\Catalog;
  * 
  */
 class Register {
-    
+
     public static $user_email = FALSE;
 
     /**
@@ -31,23 +40,27 @@ class Register {
      *
      */
     public function init() {
-        if (\eMarket\Core\Valid::inPOST('email')) {
+        if (Valid::inPOST('email')) {
 
-            self::$user_email = \eMarket\Core\Pdo::selectPrepare("SELECT id FROM " . TABLE_CUSTOMERS . " WHERE email=?", [\eMarket\Core\Valid::inPOST('email')]);
+            self::$user_email = Pdo::selectPrepare("SELECT id FROM " . TABLE_CUSTOMERS . " WHERE email=?", [Valid::inPOST('email')]);
             if (self::$user_email == NULL) {
-                $password_hash = \eMarket\Core\Autorize::passwordHash(\eMarket\Core\Valid::inPOST('password'));
-                \eMarket\Core\Pdo::action("INSERT INTO " . TABLE_CUSTOMERS . " SET firstname=?, lastname=?, date_account_created=?, email=?, telephone=?, ip_address=?, password=?", [\eMarket\Core\Valid::inPOST('firstname'), \eMarket\Core\Valid::inPOST('lastname'), date("Y-m-d H:i:s"), \eMarket\Core\Valid::inPOST('email'), \eMarket\Core\Valid::inPOST('telephone'), \eMarket\Core\Settings::ipAddress(), $password_hash]);
+                $password_hash = Autorize::passwordHash(Valid::inPOST('password'));
+                Pdo::action("INSERT INTO " . TABLE_CUSTOMERS . " SET firstname=?, lastname=?, date_account_created=?, email=?, telephone=?, ip_address=?, password=?", [
+                    Valid::inPOST('firstname'), Valid::inPOST('lastname'), date("Y-m-d H:i:s"),
+                    Valid::inPOST('email'), Valid::inPOST('telephone'),
+                    Settings::ipAddress(), $password_hash
+                ]);
 
-                $id = \eMarket\Core\Pdo::lastInsertId();
-                $activation_code = \eMarket\Core\Func::getToken(64);
-                \eMarket\Core\Pdo::action("INSERT INTO " . TABLE_CUSTOMERS_ACTIVATION . " SET id=?, activation_code=?", [$id, $activation_code]);
+                $id = Pdo::lastInsertId();
+                $activation_code = Func::getToken(64);
+                Pdo::action("INSERT INTO " . TABLE_CUSTOMERS_ACTIVATION . " SET id=?, activation_code=?", [$id, $activation_code]);
 
                 $link = HTTP_SERVER . '?route=login&activation_code=' . $activation_code;
-                \eMarket\Core\Messages::sendMail(\eMarket\Core\Valid::inPOST('email'), lang('email_registration_subject'), sprintf(lang('email_registration_message'), $link, $link));
+                Messages::sendMail(Valid::inPOST('email'), lang('email_registration_subject'), sprintf(lang('email_registration_message'), $link, $link));
 
-                \eMarket\Core\Messages::alert('success', lang('messages_registration_complete'), 7000, true);
+                Messages::alert('success', lang('messages_registration_complete'), 7000, true);
             } else {
-                \eMarket\Core\Messages::alert('danger', lang('messages_email_is_busy'), 7000, true);
+                Messages::alert('danger', lang('messages_email_is_busy'), 7000, true);
             }
         }
     }

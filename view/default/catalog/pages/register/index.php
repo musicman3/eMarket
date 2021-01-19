@@ -4,15 +4,22 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-foreach (\eMarket\Core\View::tlpc('content') as $path) {
+use \eMarket\Core\{
+    Messages,
+    Valid,
+    View
+};
+use \eMarket\Catalog\Register;
+
+foreach (View::tlpc('content') as $path) {
     require_once (ROOT . $path);
 }
 require_once('modal/privacy_policy.php')
 ?>
 
-<div id="alert_block"><?php \eMarket\Core\Messages::alert(); ?></div>
+<div id="alert_block"><?php Messages::alert(); ?></div>
 <?php
-if (!\eMarket\Core\Valid::inPOST('email')) {
+if (!Valid::inPOST('email')) {
     ?>
     <h1><?php echo lang('register_account') ?></h1>
 
@@ -69,7 +76,7 @@ if (!\eMarket\Core\Valid::inPOST('email')) {
 
     <?php
 }
-if (\eMarket\Core\Valid::inPOST('email') && \eMarket\Catalog\Register::$user_email != NULL) {
+if (Valid::inPOST('email') && Register::$user_email != NULL) {
     ?>
     <h1><?php echo lang('register_account') ?></h1>
 
@@ -84,7 +91,7 @@ if (\eMarket\Core\Valid::inPOST('email') && \eMarket\Catalog\Register::$user_ema
     </div>
     <?php
 }
-if (\eMarket\Core\Valid::inPOST('email') && \eMarket\Catalog\Register::$user_email == NULL) {
+if (Valid::inPOST('email') && Register::$user_email == NULL) {
     ?>
     <h1><?php echo lang('register_account') ?></h1>
 
@@ -97,4 +104,4 @@ if (\eMarket\Core\Valid::inPOST('email') && \eMarket\Catalog\Register::$user_ema
             </div>
         </form>
     </div>
-<?php } ?>
+<?php }
