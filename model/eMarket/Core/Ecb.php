@@ -7,6 +7,13 @@
 
 namespace eMarket\Core;
 
+use \eMarket\Core\{
+    Cart,
+    Interfaces,
+    Pdo,
+    Settings,
+};
+
 /**
  * eMarket Calculated Block
  *
@@ -35,7 +42,7 @@ final class Ecb {
             $class = 'danger';
         }
 
-        $INTERFACE = new \eMarket\Core\Interfaces();
+        $INTERFACE = new Interfaces();
 
         self::discountHandler($input);
         $discounts_data = $INTERFACE->load('discountHandler', 'data', 'discounts_data');
@@ -55,7 +62,7 @@ final class Ecb {
 
         $input_price = self::currencyPrice($input['price'], $input['currency']);
 
-        if (\eMarket\Core\Settings::path() == 'admin') {
+        if (Settings::path() == 'admin') {
             if ($discounts_data != [] && $input_price != $discounted_price && $count == 1) {
                 return '<span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="' . $discount_names . '" class="label label-' . $class . '">' . self::formatPrice($discounted_price, $marker) . '</span> <del>' . self::formatPrice($input_price, $marker) . '</del>';
             }
@@ -65,7 +72,7 @@ final class Ecb {
             return self::formatPrice($input_price, $marker);
         }
 
-        if (\eMarket\Core\Settings::path() == 'catalog') {
+        if (Settings::path() == 'catalog') {
             if ($discounts_data != [] && $input_price != $discounted_price) {
                 return '<del>' . self::formatPrice($input_price * $quantity, $marker) . '</del><br><span class="label label-' . $class . '">' . self::formatPrice($discounted_price * $quantity, $marker) . '</span>';
             }
@@ -81,12 +88,12 @@ final class Ecb {
      * @return string Output data
      */
     public static function totalPriceCartInterface($marker, $class = null) {
-        
-        $INTERFACE = new \eMarket\Core\Interfaces();
+
+        $INTERFACE = new Interfaces();
         self::priceTerminal();
         $discounted_price = $INTERFACE->load('priceTerminal', 'data', 'discounted_price');
-        
-        $total_price = \eMarket\Core\Cart::totalPrice();
+
+        $total_price = Cart::totalPrice();
 
         if ($class == null) {
             $class = 'danger';
@@ -114,13 +121,13 @@ final class Ecb {
         $total_price_with_tax = 0;
         $price_terminal_data = [];
 
-        $INTERFACE = new \eMarket\Core\Interfaces();
+        $INTERFACE = new Interfaces();
 
-        $taxes_data = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_TAXES . " WHERE language=?", [$language]);
+        $taxes_data = Pdo::getColAssoc("SELECT * FROM " . TABLE_TAXES . " WHERE language=?", [$language]);
 
         if (isset($_SESSION['cart'])) {
             foreach ($_SESSION['cart'] as $value) {
-                $data = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=? AND language=?", [$value['id'], $language])[0];
+                $data = Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=? AND language=?", [$value['id'], $language])[0];
                 if ($data != FALSE) {
 
                     self::discountHandler($data, $language);
@@ -152,7 +159,7 @@ final class Ecb {
         }
         $price_terminal_data['discounted_price'] = $discounted_total_price;
         $price_terminal_data['total_tax_price'] = $total_price_with_tax;
-        
+
         $INTERFACE->save('priceTerminal', 'data', $price_terminal_data);
     }
 
@@ -186,18 +193,18 @@ final class Ecb {
      * @return array Output data
      */
     public static function discountHandler($input, $language = null) {
-        
+
         if (self::$active_modules == FALSE) {
-            self::$active_modules = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE type=? AND active=?", ['discount', '1']);
+            self::$active_modules = Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE type=? AND active=?", ['discount', '1']);
         }
 
-        $input_price = \eMarket\Core\Ecb::currencyPrice($input['price'], $input['currency']);
+        $input_price = self::currencyPrice($input['price'], $input['currency']);
 
         $discounts_data = [];
-        $INTERFACE = new \eMarket\Core\Interfaces();
+        $INTERFACE = new Interfaces();
 
         $total_discount = 0;
-        
+
         foreach (self::$active_modules as $module) {
             $namespace = '\eMarket\Core\Modules\Discount\\' . ucfirst($module['name']);
             $namespace::dataInterface($input, $language);
@@ -211,7 +218,7 @@ final class Ecb {
                 }
             }
         }
-        
+
         $discounted_price = $input['price'] / 100 * (100 - $total_discount);
 
         if ($discounted_price != 0 && $discounted_price != $input_price) {
@@ -223,7 +230,6 @@ final class Ecb {
             ];
 
             $INTERFACE->save('discountHandler', 'data', $out_data);
-            
         } else {
             $out_data = [
                 'out_price' => $input_price,
@@ -244,7 +250,7 @@ final class Ecb {
      */
     public static function currencyPrice($price, $currency) {
 
-        $currencies = \eMarket\Core\Settings::currenciesData();
+        $currencies = Settings::currenciesData();
 
         foreach ($currencies as $value) {
             if ($value['id'] == $currency) {
@@ -265,9 +271,9 @@ final class Ecb {
     public static function formatPrice($price, $format = null, $language = null) {
 
         if ($language == null) {
-            $CURRENCIES = \eMarket\Core\Settings::currencyDefault();
+            $CURRENCIES = Settings::currencyDefault();
         } else {
-            $CURRENCIES = \eMarket\Core\Settings::currencyDefault($language);
+            $CURRENCIES = Settings::currencyDefault($language);
         }
 
         if ($format == 0) {
