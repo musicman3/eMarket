@@ -7,6 +7,13 @@
 
 namespace eMarket\Core;
 
+use \eMarket\Core\{
+    Pdo,
+    Settings,
+    Tree,
+    Valid
+};
+
 /**
  * Languages
  *
@@ -28,10 +35,10 @@ final class Lang {
     public static function lang($default_language, $marker = null) {
 
         if ($marker == null) {
-            $engine_path_array = \eMarket\Core\Tree::filesTree(getenv('DOCUMENT_ROOT') . '/language/' . $default_language . '/' . \eMarket\Core\Settings::path());
+            $engine_path_array = Tree::filesTree(getenv('DOCUMENT_ROOT') . '/language/' . $default_language . '/' . Settings::path());
 
             $modules_path = getenv('DOCUMENT_ROOT') . '/modules/';
-            $_SESSION['MODULES_INFO'] = \eMarket\Core\Tree::allDirForPath($modules_path, 'true');
+            $_SESSION['MODULES_INFO'] = Tree::allDirForPath($modules_path, 'true');
 
             $modules_path_array = [];
             foreach ($_SESSION['MODULES_INFO'] as $modules_type => $modules_names_array) {
@@ -82,19 +89,19 @@ final class Lang {
      */
     public static function defaultLang() {
 
-        if (!isset($_SESSION['DEFAULT_LANGUAGE']) && \eMarket\Core\Settings::path() != 'install') {
-            $_SESSION['DEFAULT_LANGUAGE'] = \eMarket\Core\Settings::basicSettings('primary_language');
+        if (!isset($_SESSION['DEFAULT_LANGUAGE']) && Settings::path() != 'install') {
+            $_SESSION['DEFAULT_LANGUAGE'] = Settings::basicSettings('primary_language');
         }
 
-        if (!\eMarket\Core\Valid::inPOST('language') && \eMarket\Core\Settings::path() == 'install') {
+        if (!Valid::inPOST('language') && Settings::path() == 'install') {
             $_SESSION['DEFAULT_LANGUAGE'] = 'english';
         }
 
-        if (\eMarket\Core\Valid::inPOST('language')) {
-            $_SESSION['DEFAULT_LANGUAGE'] = \eMarket\Core\Valid::inPOST('language');
+        if (Valid::inPOST('language')) {
+            $_SESSION['DEFAULT_LANGUAGE'] = Valid::inPOST('language');
         }
-        if (\eMarket\Core\Valid::inGET('language')) {
-            $_SESSION['DEFAULT_LANGUAGE'] = \eMarket\Core\Valid::inGET('language');
+        if (Valid::inGET('language')) {
+            $_SESSION['DEFAULT_LANGUAGE'] = Valid::inGET('language');
         }
     }
 
@@ -104,8 +111,10 @@ final class Lang {
      */
     public static function init() {
 
-        if (\eMarket\Core\Valid::inGET('language') && \eMarket\Core\Settings::path() == 'admin' && isset($_SESSION['login']) && isset($_SESSION['pass'])) {
-            \eMarket\Core\Pdo::action("UPDATE " . TABLE_ADMINISTRATORS . " SET language=? WHERE login=? AND password=?", [\eMarket\Core\Valid::inGET('language'), $_SESSION['login'], $_SESSION['pass']]);
+        if (Valid::inGET('language') && Settings::path() == 'admin' && isset($_SESSION['login']) && isset($_SESSION['pass'])) {
+            Pdo::action("UPDATE " . TABLE_ADMINISTRATORS . " SET language=? WHERE login=? AND password=?", [
+                Valid::inGET('language'), $_SESSION['login'], $_SESSION['pass']
+            ]);
         }
 
         setlocale(LC_ALL, lang('language_locale'));
