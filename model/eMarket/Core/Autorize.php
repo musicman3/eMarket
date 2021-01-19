@@ -7,6 +7,13 @@
 
 namespace eMarket\Core;
 
+use \eMarket\Core\{
+    Cart,
+    Pdo,
+    Settings,
+    Valid
+};
+
 /**
  * Class for user authorization
  *
@@ -24,13 +31,13 @@ class Autorize {
      */
     public static function init() {
 
-        if (\eMarket\Core\Settings::path() == 'admin' && \eMarket\Core\Valid::inGET('route') != 'login') {
-            \eMarket\Core\Autorize::sessionAdmin();
+        if (Settings::path() == 'admin' && Valid::inGET('route') != 'login') {
+            self::sessionAdmin();
         }
 
-        if (\eMarket\Core\Settings::path() == 'catalog') {
-            \eMarket\Core\Autorize::sessionCatalog();
-            \eMarket\Core\Cart::init();
+        if (Settings::path() == 'catalog') {
+            self::sessionCatalog();
+            Cart::init();
         }
     }
 
@@ -41,15 +48,15 @@ class Autorize {
      */
     public static function sessionAdmin() {
 
-        if (\eMarket\Core\Settings::path() == 'admin' && \eMarket\Core\Settings::titleDir() != 'login') {
+        if (Settings::path() == 'admin' && Settings::titleDir() != 'login') {
 
             session_start();
 
-            if (isset($_SESSION['session_start']) && (time() - $_SESSION['session_start']) / 60 > \eMarket\Core\Settings::sessionExprTime()) {
+            if (isset($_SESSION['session_start']) && (time() - $_SESSION['session_start']) / 60 > Settings::sessionExprTime()) {
                 unset($_SESSION['login']);
                 unset($_SESSION['pass']);
                 unset($_SESSION['session_start']);
-                $_SESSION['session_page'] = \eMarket\Core\Valid::inSERVER('REQUEST_URI');
+                $_SESSION['session_page'] = Valid::inSERVER('REQUEST_URI');
                 header('Location: ?route=login');
                 exit;
             }
@@ -58,14 +65,16 @@ class Autorize {
             if (!isset($_SESSION['login'])) {
                 unset($_SESSION['login']);
                 unset($_SESSION['pass']);
-                $_SESSION['session_page'] = \eMarket\Core\Valid::inSERVER('REQUEST_URI');
+                $_SESSION['session_page'] = Valid::inSERVER('REQUEST_URI');
                 header('Location: ?route=login');
                 exit;
             } elseif (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
-                $_SESSION['DEFAULT_LANGUAGE'] = \eMarket\Core\Pdo::selectPrepare("SELECT language FROM " . TABLE_ADMINISTRATORS . " WHERE login=? AND password=?", [$_SESSION['login'], $_SESSION['pass']]);
+                $_SESSION['DEFAULT_LANGUAGE'] = Pdo::selectPrepare("SELECT language FROM " . TABLE_ADMINISTRATORS . " WHERE login=? AND password=?", [
+                            $_SESSION['login'], $_SESSION['pass']
+                ]);
                 return TRUE;
             } else {
-                $_SESSION['DEFAULT_LANGUAGE'] = \eMarket\Core\Settings::basicSettings('primary_language');
+                $_SESSION['DEFAULT_LANGUAGE'] = Settings::basicSettings('primary_language');
                 return TRUE;
             }
         }
@@ -77,16 +86,16 @@ class Autorize {
      */
     public static function sessionCatalog() {
 
-        if (\eMarket\Core\Settings::path() == 'catalog') {
+        if (Settings::path() == 'catalog') {
 
             session_start();
             if (isset($_SESSION['email_customer'])) {
-                $customer_data = \eMarket\Core\Pdo::getColAssoc("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']])[0];
+                $customer_data = Pdo::getColAssoc("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']])[0];
             } else {
                 $customer_data['status'] = 0;
             }
 
-            if (isset($_SESSION['customer_session_start']) && (time() - $_SESSION['customer_session_start']) / 60 > \eMarket\Core\Settings::sessionExprTime() OR $customer_data['status'] == 0) {
+            if (isset($_SESSION['customer_session_start']) && (time() - $_SESSION['customer_session_start']) / 60 > Settings::sessionExprTime() OR $customer_data['status'] == 0) {
                 unset($_SESSION['password_customer']);
                 unset($_SESSION['email_customer']);
                 unset($_SESSION['customer_session_start']);
