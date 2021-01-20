@@ -12,5 +12,3 @@
 foreach (\eMarket\Core\View::tlpc('content') as $path) {
     require_once (ROOT . $path);
 }
-
-?>

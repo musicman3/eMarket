@@ -16,5 +16,3 @@ $HeaderMenu = new eMarket\Admin\HeaderMenu();
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
 require_once(ROOT . '/model/end.php');
 /* ------------------------------------------ */
-
-?>

@@ -58,40 +58,40 @@ require_once('modal/index.php')
                                 <?php } ?>
                             </div>
                         </form>
-                        <div>
+                    </div>
 
-                            </th>
-                            </tr>
-                            <tr>
-                                <th><?php echo lang('orders_number') ?></th>
-                                <th class="text-center"><?php echo lang('orders_total') ?></th>
-                                <th class="text-center"><?php echo lang('orders_date_added') ?></th>
-                                <th class="text-center"><?php echo lang('orders_status') ?></th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                if (Pages::$count > 0) {
-                                    for (Pages::$start; Pages::$start < Pages::$finish; Pages::$start++, Pages::lineUpdate()) {
-                                        ?>
-                                        <tr>
-                                            <td><?php echo Pages::$table['line']['id'] ?></td>
-                                            <td class="text-center"><?php echo json_decode(Pages::$table['line']['order_total'], 1)['customer']['total_to_pay_format'] ?></td>
-                                            <td class="text-center"><?php echo Settings::dateLocale(Pages::$table['line']['date_purchased'], '%c') ?></td>
-                                            <td class="text-center"><?php echo json_decode(Pages::$table['line']['orders_status_history'], 1)[0]['customer']['status'] ?></td>
+                </th>
+            </tr>
+            <tr>
+                <th><?php echo lang('orders_number') ?></th>
+                <th class="text-center"><?php echo lang('orders_total') ?></th>
+                <th class="text-center"><?php echo lang('orders_date_added') ?></th>
+                <th class="text-center"><?php echo lang('orders_status') ?></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            if (Pages::$count > 0) {
+                for (Pages::$start; Pages::$start < Pages::$finish; Pages::$start++, Pages::lineUpdate()) {
+                    ?>
+                    <tr>
+                        <td><?php echo Pages::$table['line']['id'] ?></td>
+                        <td class="text-center"><?php echo json_decode(Pages::$table['line']['order_total'], 1)['customer']['total_to_pay_format'] ?></td>
+                        <td class="text-center"><?php echo Settings::dateLocale(Pages::$table['line']['date_purchased'], '%c') ?></td>
+                        <td class="text-center"><?php echo json_decode(Pages::$table['line']['orders_status_history'], 1)[0]['customer']['status'] ?></td>
 
-                                            <td>
-                                                <div class="flexbox">
-                                                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index" data-edit="<?php echo Pages::$table['line']['id'] ?>"><span class="glyphicon glyphicon-edit"></span></button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <?php
-                                    }
-                                }
-                                ?>
+                        <td>
+                            <div class="flexbox">
+                                <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index" data-edit="<?php echo Pages::$table['line']['id'] ?>"><span class="glyphicon glyphicon-edit"></span></button>
+                            </div>
+                        </td>
+                    </tr>
+                    <?php
+                }
+            }
+            ?>
 
-                            </tbody>
-                            </table>
-                        </div>
+        </tbody>
+    </table>
+</div>

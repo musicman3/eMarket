@@ -17,4 +17,4 @@ use \eMarket\Core\Settings;
          data-breadcrumbid='<?php echo json_encode(array_reverse(Categories::$categories_and_breadcrumb)) ?>'
          data-breadcrumbname='<?php echo json_encode(Settings::breadcrumbName(array_reverse(Categories::$categories_and_breadcrumb))) ?>'>
     </div>
-<?php } ?>
+<?php }

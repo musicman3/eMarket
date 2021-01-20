@@ -14,4 +14,3 @@ $eMarket = new eMarket\Install\Index();
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
 require_once(getenv('DOCUMENT_ROOT') . '/model/end.php');
 /* ------------------------------------------ */
-?>

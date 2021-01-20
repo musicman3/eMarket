@@ -14,5 +14,3 @@ require_once($eMarketIndex->route());
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
 require_once(ROOT . '/model/end.php');
 /* ------------------------------------------ */
-
-?>

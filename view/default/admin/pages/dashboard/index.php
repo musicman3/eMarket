@@ -13,4 +13,4 @@
         <div class="welcome_description"><?php echo lang('index-text') ?></div>
     </div>
 </div>
-<?php } ?>
+<?php }
