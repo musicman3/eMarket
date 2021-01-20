@@ -264,7 +264,7 @@ final class Ecb {
      * Price with region format
      *
      * @param string $price Price
-     * @param string $format Format flag
+     * @param string $format Format flag (Example: 0 - Dollar USA, 1 - doll., 2 - $, 3 - USD)
      * @param string $language Language
      * @return string Format price data
      */
