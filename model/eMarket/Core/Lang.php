@@ -33,6 +33,10 @@ final class Lang {
      * @return array $lang|$lang_all|$lang_trans
      */
     public static function lang($default_language, $marker = null) {
+        
+        if ($default_language == null OR $default_language == ''){
+            $default_language = Settings::basicSettings('primary_language');
+        }
 
         if ($marker == null) {
             $engine_path_array = Tree::filesTree(getenv('DOCUMENT_ROOT') . '/language/' . $default_language . '/' . Settings::path());
