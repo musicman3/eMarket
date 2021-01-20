@@ -296,10 +296,10 @@ final class Ecb {
 
         if ($format == 2) {
             if ($CURRENCIES[8] == 'left') {
-                return $price_return = $CURRENCIES[7] . ' ' . number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language));
+                return $price_return = $CURRENCIES[7] . number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language));
             }
             if ($CURRENCIES[8] == 'right') {
-                return $price_return = number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language)) . ' ' . $CURRENCIES[7];
+                return $price_return = number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language)) . $CURRENCIES[7];
             }
         }
 

@@ -18,7 +18,7 @@
                     </div>
                     <div class="col-xs-7">
                         <p><strong><?php echo lang('listing_product') ?></strong>&nbsp;<span id="product_name"><?php echo \eMarket\Catalog\Products::$products['name'] ?></span></p>
-                        <p><strong><?php echo lang('listing_price') ?></strong>&nbsp;<span id="product_price_formated"><?php echo \eMarket\Core\Ecb::priceInterface(\eMarket\Catalog\Products::$products, 1) ?></span></p>
+                        <p><strong><?php echo lang('listing_price') ?></strong>&nbsp;<span id="product_price_formated"><?php echo \eMarket\Core\Ecb::priceInterface(\eMarket\Catalog\Products::$products, 2) ?></span></p>
                         <p><strong><?php echo lang('listing_quantity') ?></strong>&nbsp;<span id="product_quantity"></span></p>
                     </div>
                 </div>

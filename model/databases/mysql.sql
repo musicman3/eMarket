@@ -10409,8 +10409,8 @@ INSERT INTO emkt_order_status VALUES (4, 'Pending payment', 'english', '1', '4')
 INSERT INTO emkt_order_status VALUES (4, 'Ожидает оплаты', 'russian', '1', '4');
 
 /* ЗАГРУЗКА ВАЛЮТ */
-INSERT INTO emkt_currencies VALUES (1, 'Russian Rouble', 'rub.', 'RUB', 'english', '1.0000000000', '1', '₽', 'right', '2', NULL);
-INSERT INTO emkt_currencies VALUES (1, 'Рубль РФ', 'руб.', 'RUB', 'russian', '1.0000000000', '1', '₽', 'right', '2', NULL);
+INSERT INTO emkt_currencies VALUES (1, 'Russian Rouble', 'rub.', 'RUB', 'english', '1.0000000000', '1', ' ₽', 'right', '2', NULL);
+INSERT INTO emkt_currencies VALUES (1, 'Рубль РФ', 'руб.', 'RUB', 'russian', '1.0000000000', '1', ' ₽', 'right', '2', NULL);
 INSERT INTO emkt_currencies VALUES (2, 'Dollar USA', 'doll.', 'USD', 'english', '0.0147000000', '0', '$', 'left', '2', NULL);
 INSERT INTO emkt_currencies VALUES (2, 'Доллар США', 'долл.', 'USD', 'russian', '0.0147000000', '0', '$', 'left', '2', NULL);
 

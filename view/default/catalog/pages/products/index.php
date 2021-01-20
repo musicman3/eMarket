@@ -36,7 +36,7 @@ if (Products::$products != FALSE) {
             <div class="col-sm-6 col-xs-12 productpage">
                 <ul>
                     <li>
-                        <span class="productpage-price"><?php echo Ecb::priceInterface(Products::$products, 1) ?></span>
+                        <span class="productpage-price"><?php echo Ecb::priceInterface(Products::$products, 2) ?></span>
                     </li>
                 </ul>
                 <hr>

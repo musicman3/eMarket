@@ -41,7 +41,7 @@ use \eMarket\Core\{
 
         <?php
         if (Settings::$JS_HANDLER != FALSE) {
-            require_once(\Settings::$JS_HANDLER . '/js.php');
+            require_once(Settings::$JS_HANDLER . '/js.php');
         }
         ?>
     </body>

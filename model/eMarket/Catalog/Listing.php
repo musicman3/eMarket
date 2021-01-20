@@ -112,7 +112,7 @@ class Listing {
 
                 $query = Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[0]])[0];
                 $product_temp[$modal_id] = $query;
-                $product_temp[$modal_id]['price_formated'] = Ecb::priceInterface($query, 1);
+                $product_temp[$modal_id]['price_formated'] = Ecb::priceInterface($query, 2);
 
                 self::$product_edit = json_encode($product_temp);
             }
