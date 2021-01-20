@@ -94,8 +94,9 @@ class Listing {
             ]);
         }
         Pages::table(self::$lines);
-
-        self::$categories_name = Products::categoryData(Valid::inGET('category_id'))['name'];
+        if (Valid::inGET('category_id')) {
+            self::$categories_name = Products::categoryData(Valid::inGET('category_id'))['name'];
+        }
     }
 
     /**
