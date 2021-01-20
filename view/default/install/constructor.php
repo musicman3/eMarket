@@ -40,8 +40,8 @@ use \eMarket\Core\{
         <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.min.js"></script>
 
         <?php
-        if (Settings::$JS_HANDLER != FALSE) {
-            require_once(Settings::$JS_HANDLER . '/js.php');
+        if (Settings::$js_handler != FALSE) {
+            require_once(Settings::$js_handler . '/js.php');
         }
         ?>
     </body>

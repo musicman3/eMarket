@@ -23,13 +23,13 @@ use \eMarket\Core\{
  */
 class Settings {
 
-    private static $DEFAULT_CURRENCY = FALSE;
+    private static $default_currency = FALSE;
     private static $active_tabs_count = 0;
     private static $lang_currency_path = FALSE;
     public static $basic_settings = FALSE;
     public static $currencies_data = FALSE;
-    public static $JS_HANDLER = FALSE;
-    public static $JS_MODULES_HANDLER = FALSE;
+    public static $js_handler = FALSE;
+    public static $js_modules_handler = FALSE;
     public static $session_expr_time = FALSE;
 
     /**
@@ -104,13 +104,13 @@ class Settings {
         if (self::path() == 'admin' OR Settings::path() == 'catalog') {
             $path = getenv('DOCUMENT_ROOT') . '/js_handler/' . self::path() . '/pages/' . Valid::inGET('route');
             if (file_exists($path . '/js.php')) {
-                self::$JS_HANDLER = $path;
+                self::$js_handler = $path;
             }
         }
         if (self::path() == 'install') {
             $path = getenv('DOCUMENT_ROOT') . '/js_handler/' . self::path() . Valid::inGET('route');
             if (file_exists($path . '/js.php')) {
-                self::$JS_HANDLER = $path;
+                self::$js_handler = $path;
             }
         }
     }
@@ -123,7 +123,7 @@ class Settings {
     public static function jsModulesHandler() {
         $path = View::routingModules('js_handler');
         if (file_exists($path . '/js.php')) {
-            self::$JS_MODULES_HANDLER = $path;
+            self::$js_modules_handler = $path;
         }
     }
 
@@ -157,10 +157,10 @@ class Settings {
         if ($language == null) {
             $language = lang('#lang_all')[0];
         } else {
-            self::$DEFAULT_CURRENCY = FALSE;
+            self::$default_currency = FALSE;
         }
 
-        if (self::$DEFAULT_CURRENCY == FALSE) {
+        if (self::$default_currency == FALSE) {
 
             if (self::path() == 'catalog') {
                 if (!isset($_SESSION['currency_default_catalog'])) {
@@ -178,15 +178,15 @@ class Settings {
                 $currency = Pdo::getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND default_value=?", [$language, 1])[0];
             }
 
-            self::$DEFAULT_CURRENCY = $currency;
+            self::$default_currency = $currency;
 
             if ($language != null) {
-                self::$DEFAULT_CURRENCY = FALSE;
+                self::$default_currency = FALSE;
             }
 
             return $currency;
         } else {
-            return self::$DEFAULT_CURRENCY;
+            return self::$default_currency;
         }
     }
 

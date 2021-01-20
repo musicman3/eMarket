@@ -84,11 +84,11 @@ use \eMarket\Core\{
         </script>
 
         <?php
-        if (Settings::$JS_HANDLER != FALSE) {
-            require_once(Settings::$JS_HANDLER . '/js.php');
+        if (Settings::$js_handler != FALSE) {
+            require_once(Settings::$js_handler . '/js.php');
         }
-        if (Settings::$JS_MODULES_HANDLER != FALSE) {
-            require_once(Settings::$JS_MODULES_HANDLER . '/js.php');
+        if (Settings::$js_modules_handler != FALSE) {
+            require_once(Settings::$js_modules_handler . '/js.php');
         }
         Debug::info();
         ?>
