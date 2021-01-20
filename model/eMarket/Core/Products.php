@@ -24,7 +24,6 @@ use \eMarket\Core\{
 class Products {
 
     public static $stiker_data = FALSE;
-    public static $stikers = FALSE;
     public static $new_products = FALSE;
     public static $product_data = FALSE;
     public static $category_data = FALSE;
@@ -226,43 +225,31 @@ class Products {
                 }
             }
         }
+        
+        $stikers = [];
 
         if (isset($discount_total_sale) && $discount_total_sale > 0 && $input['stiker'] != '' && $input['stiker'] != NULL) {
+            
+            array_push($stikers, [$class, '- ' . $discount_total_sale . '%']);
+            array_push($stikers, [$class2, $stiker_name[$input['stiker']]]);
 
-            self::$stikers = [
-                $class,
-                '- ' . $discount_total_sale . '%',
-                $class2,
-                $stiker_name[$input['stiker']]
-            ];
-
-            return 2;
+            return $stikers;
         }
 
         if ($input['stiker'] != '' && $input['stiker'] != NULL) {
+            
+            array_push($stikers, [$class2, $stiker_name[$input['stiker']]]);
 
-            self::$stikers = [
-                '',
-                '',
-                $class2,
-                $stiker_name[$input['stiker']]
-            ];
-
-            return 1;
+            return $stikers;
         }
 
         if (isset($discount_total_sale) && $discount_total_sale > 0) {
 
-            self::$stikers = [
-                $class,
-                '- ' . $discount_total_sale . '%',
-                '',
-                ''
-            ];
+            array_push($stikers, [$class, '- ' . $discount_total_sale . '%']);
 
-            return 1;
+            return $stikers;
         }
-        return '';
+        return [];
     }
 
 }

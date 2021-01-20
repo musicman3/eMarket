@@ -23,11 +23,8 @@ if (Products::$products != FALSE) {
             <div class="col-sm-6 col-xs-12">
 
                 <div class="labelsblock">
-                    <?php if (ProductsCore::stikers(Products::$products, 'label-danger', 'label-success') == 1) { ?>
-                        <div class="<?php echo ProductsCore::$stikers[2] ?>"><?php echo ProductsCore::$stikers[3] ?></div>
-                    <?php } if (ProductsCore::stikers(Products::$products, 'label-danger', 'label-success') == 2) { ?>
-                        <div class="<?php echo ProductsCore::$stikers[0] ?>"><?php echo ProductsCore::$stikers[1] ?></div>
-                        <div class="<?php echo ProductsCore::$stikers[2] ?>"><?php echo ProductsCore::$stikers[3] ?></div>
+                    <?php foreach (ProductsCore::stikers(Products::$products, 'label-danger', 'label-success') as $stiker) { ?>
+                        <div class="<?php echo $stiker[0] ?>"><?php echo $stiker[1] ?></div>
                     <?php } ?>
                 </div>
 

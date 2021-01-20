@@ -22,11 +22,8 @@ if (Products::$new_products == true) {
                     <div class="productHolder">
 
                         <div class="labelsblock">
-                            <?php if (Products::stikers($value, 'label-danger', 'label-success') == 1) { ?>
-                                <div class="<?php echo Products::$stikers[2] ?>"><?php echo Products::$stikers[3] ?></div>
-                            <?php } if (Products::stikers($value, 'label-danger', 'label-success') == 2) { ?>
-                                <div class="<?php echo Products::$stikers[0] ?>"><?php echo Products::$stikers[1] ?></div>
-                                <div class="<?php echo Products::$stikers[2] ?>"><?php echo Products::$stikers[3] ?></div>
+                            <?php foreach (Products::stikers($value, 'label-danger', 'label-success') as $stiker) { ?>
+                                <div class="<?php echo $stiker[0] ?>"><?php echo $stiker[1] ?></div>
                             <?php } ?>
                         </div>
 
