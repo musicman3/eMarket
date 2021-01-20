@@ -1,4 +1,5 @@
 <?php
+
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
@@ -370,18 +371,13 @@ class Settings {
      * Select view
      *
      * @param array $value Select array
+     * @param string $default Default sell name
      * @param string
      */
-    public static function viewSelect($value, $default = null) {
+    public static function viewSelect($value, $default) {
 
-        foreach ($value as $val) {
-            if ($default != null && $val[$default] == 1) {
-                ?>
-                <option value="<?php echo $val['id'] ?>" selected><?php echo $val['name'] ?></option>
-            <?php } else { ?>
-                <option value="<?php echo $val['id'] ?>" ><?php echo $val['name'] ?></option>
-                <?php
-            }
+        if ($value[$default] == 1) {
+            return 'selected';
         }
     }
 

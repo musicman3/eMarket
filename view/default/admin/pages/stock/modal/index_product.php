@@ -130,7 +130,9 @@ use \eMarket\Admin\Stock;
                                     <div class="input-group has-error">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-euro"></span></span>
                                         <select name="currency_product_stock" id="currency_product_stock" class="form-control">
-                                            <?php Settings::viewSelect(Stock::$currencies_all, 'default_value') ?>
+                                            <?php foreach (Stock::$currencies_all as $val) { ?>
+                                                <option value="<?php echo $val['id'] ?>" <?php echo Settings::viewSelect($val, 'default_value') ?>><?php echo $val['name'] ?></option>
+                                            <?php } ?>
                                         </select>
                                     </div>
                                 </div>
@@ -148,7 +150,9 @@ use \eMarket\Admin\Stock;
                                     <div class="input-group has-error">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-flag"></span></span>
                                         <select name="unit_product_stock" id="unit_product_stock" class="form-control">
-                                            <?php Settings::viewSelect(Stock::$units_all, 'default_unit') ?>
+                                            <?php foreach (Stock::$units_all as $val) { ?>
+                                                <option value="<?php echo $val['id'] ?>" <?php echo Settings::viewSelect($val, 'default_unit') ?>><?php echo $val['name'] ?></option>
+                                            <?php } ?>
                                         </select>
                                     </div>
                                 </div>
@@ -166,7 +170,9 @@ use \eMarket\Admin\Stock;
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-object-align-bottom"></span></span>
                                         <select name="manufacturers_product_stock" id="manufacturers_product_stock" class="form-control">
-                                            <?php Settings::viewSelect(Stock::$manufacturers_all) ?>
+                                            <?php foreach (Stock::$manufacturers_all as $val) { ?>
+                                                <option value="<?php echo $val['id'] ?>"><?php echo $val['name'] ?></option>
+                                            <?php } ?>
                                         </select>
                                     </div>
                                 </div>
@@ -184,7 +190,9 @@ use \eMarket\Admin\Stock;
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span></span>
                                         <select name="tax_product_stock" id="tax_product_stock" class="form-control">
-                                            <?php Settings::viewSelect(Stock::$taxes_all) ?>
+                                            <?php foreach (Stock::$taxes_all as $val) { ?>
+                                                <option value="<?php echo $val['id'] ?>"><?php echo $val['name'] ?></option>
+                                            <?php } ?>
                                         </select>
                                     </div>
                                 </div>
@@ -207,7 +215,9 @@ use \eMarket\Admin\Stock;
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-tag"></span></span>
                                         <select name="vendor_codes_product_stock" id="vendor_codes_product_stock" class="form-control">
-                                            <?php Settings::viewSelect(Stock::$vendor_codes_all, 'default_vendor_code') ?>
+                                            <?php foreach (Stock::$vendor_codes_all as $val) { ?>
+                                                <option value="<?php echo $val['id'] ?>" <?php echo Settings::viewSelect($val, 'default_vendor_code') ?>><?php echo $val['name'] ?></option>
+                                            <?php } ?>
                                         </select>
                                     </div>
                                 </div>
@@ -225,7 +235,9 @@ use \eMarket\Admin\Stock;
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-scale"></span></span>
                                         <select name="weight_product_stock" id="weight_product_stock" class="form-control">
-                                            <?php Settings::viewSelect(Stock::$weight_all, 'default_weight') ?>
+                                            <?php foreach (Stock::$weight_all as $val) { ?>
+                                                <option value="<?php echo $val['id'] ?>" <?php echo Settings::viewSelect($val, 'default_weight') ?>><?php echo $val['name'] ?></option>
+                                            <?php } ?>
                                         </select>
                                     </div>
                                 </div>
@@ -243,7 +255,9 @@ use \eMarket\Admin\Stock;
                                     <div class="input-group has-success">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-road"></span></span>
                                         <select name="length_product_stock" id="length_product_stock" class="form-control">
-                                            <?php Settings::viewSelect(Stock::$length_all, 'default_length') ?>
+                                            <?php foreach (Stock::$length_all as $val) { ?>
+                                                <option value="<?php echo $val['id'] ?>" <?php echo Settings::viewSelect($val, 'default_length') ?>><?php echo $val['name'] ?></option>
+                                            <?php } ?>
                                         </select>
                                     </div>
                                 </div>
