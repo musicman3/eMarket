@@ -77,7 +77,9 @@ if (Products::$products != FALSE) {
                     <?php } ?>
                     <li>
                         <label><?php echo lang('product_availability') ?></label>
-                        <?php echo \eMarket\Core\Products::inStock(Products::$products['date_available'], Products::$products['quantity']); ?>
+                        <?php foreach (ProductsCore::inStock(Products::$products['date_available'], Products::$products['quantity']) as $in_stock) { ?>
+                            <span class="<?php echo $in_stock[0] ?>"><?php echo $in_stock[1] ?></span>
+                        <?php } ?>
                     </li>
                 </ul>
                 <hr>

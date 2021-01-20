@@ -82,7 +82,10 @@ require_once('modal/cart_message.php')
                                     <?php } ?>
                                     <li>
                                         <label><?php echo lang('product_availability') ?></label>
-                                        <?php echo Products::inStock(Pages::$table['line']['date_available'], Pages::$table['line']['quantity']); ?>
+
+                                        <?php foreach (Products::inStock(Pages::$table['line']['date_available'], Pages::$table['line']['quantity']) as $in_stock) { ?>
+                                            <span class="<?php echo $in_stock[0] ?>"><?php echo $in_stock[1] ?></span>
+                                        <?php } ?>
                                     </li>
                                 </ul>
                             </div>

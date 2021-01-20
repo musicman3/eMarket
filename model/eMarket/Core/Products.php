@@ -180,13 +180,19 @@ class Products {
             $date_available_text = lang('product_in_stock');
         }
 
+        $output = [];
+
         if ($date_available_marker == 'false') {
-            return '<span class="label label-warning">' . $date_available_text . '</span>';
+            array_push($output, ['label label-warning', $date_available_text]);
+            return $output;
         } elseif ($quantity != NULL && $quantity <= 0) {
-            return '<span class="label label-danger">' . $date_available_text . '</span>';
+            array_push($output, ['label label-danger', $date_available_text]);
+            return $output;
         } else {
-            return '<span class="label label-success">' . $date_available_text . '</span>';
+            array_push($output, ['label label-success', $date_available_text]);
+            return $output;
         }
+        return [];
     }
 
     /**
@@ -225,11 +231,11 @@ class Products {
                 }
             }
         }
-        
+
         $stikers = [];
 
         if (isset($discount_total_sale) && $discount_total_sale > 0 && $input['stiker'] != '' && $input['stiker'] != NULL) {
-            
+
             array_push($stikers, [$class, '- ' . $discount_total_sale . '%']);
             array_push($stikers, [$class2, $stiker_name[$input['stiker']]]);
 
@@ -237,7 +243,7 @@ class Products {
         }
 
         if ($input['stiker'] != '' && $input['stiker'] != NULL) {
-            
+
             array_push($stikers, [$class2, $stiker_name[$input['stiker']]]);
 
             return $stikers;
