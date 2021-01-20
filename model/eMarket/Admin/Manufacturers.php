@@ -63,7 +63,7 @@ class Manufacturers {
             $id_max = Pdo::selectPrepare("SELECT id FROM " . TABLE_MANUFACTURERS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max) + 1;
 
-            for ($x = 0; $x < Lang::$COUNT; $x++) {
+            for ($x = 0; $x < Lang::$count; $x++) {
                 Pdo::action("INSERT INTO " . TABLE_MANUFACTURERS . " SET id=?, name=?, language=?, site=?, logo=?", [$id, Valid::inPOST('name_manufacturers_' . $x), lang('#lang_all')[$x], Valid::inPOST('site_manufacturers'), json_encode([])]);
             }
 
@@ -78,7 +78,7 @@ class Manufacturers {
     public function edit() {
         if (Valid::inPOST('edit')) {
 
-            for ($x = 0; $x < Lang::$COUNT; $x++) {
+            for ($x = 0; $x < Lang::$count; $x++) {
                 Pdo::action("UPDATE " . TABLE_MANUFACTURERS . " SET name=?, site=? WHERE id=? AND language=?", [Valid::inPOST('name_manufacturers_' . $x), Valid::inPOST('site_manufacturers'), Valid::inPOST('edit'), lang('#lang_all')[$x]]);
             }
 

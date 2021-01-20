@@ -21,7 +21,7 @@ use \eMarket\Core\{
     Tree
 };
 
-Debug::$TIME_START = $TIME_START;
+Debug::$time_start = $TIME_START;
 unset($TIME_START);
 
 //AUTOLOAD FOR FUNCTION

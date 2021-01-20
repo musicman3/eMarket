@@ -50,7 +50,7 @@ class Countries {
             $id_max = Pdo::selectPrepare("SELECT id FROM " . TABLE_COUNTRIES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max) + 1;
 
-            for ($x = 0; $x < Lang::$COUNT; $x++) {
+            for ($x = 0; $x < Lang::$count; $x++) {
                 Pdo::action("INSERT INTO " . TABLE_COUNTRIES . " SET id=?, name=?, language=?, alpha_2=?, alpha_3=?, address_format=?", [
                     $id, Valid::inPOST('name_countries_' . $x), lang('#lang_all')[$x], Valid::inPOST('alpha_2_countries'),
                     Valid::inPOST('alpha_3_countries'), Valid::inPOST('address_format_countries')
@@ -68,7 +68,7 @@ class Countries {
     public function edit() {
         if (Valid::inPOST('edit')) {
 
-            for ($x = 0; $x < Lang::$COUNT; $x++) {
+            for ($x = 0; $x < Lang::$count; $x++) {
                 Pdo::action("UPDATE " . TABLE_COUNTRIES . " SET name=?, alpha_2=?, alpha_3=?, address_format=? WHERE id=? AND language=?", [
                     Valid::inPOST('name_countries_' . $x), Valid::inPOST('alpha_2_countries'), Valid::inPOST('alpha_3_countries'),
                     Valid::inPOST('address_format_countries'), Valid::inPOST('edit'), lang('#lang_all')[$x]

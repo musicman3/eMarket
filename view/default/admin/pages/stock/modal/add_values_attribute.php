@@ -27,8 +27,8 @@ use \eMarket\Core\{
                     </div>
 
                     <?php
-                    if (Lang::$COUNT > 1) {
-                        for ($x = 1; $x < Lang::$COUNT; $x++) {
+                    if (Lang::$count > 1) {
+                        for ($x = 1; $x < Lang::$count; $x++) {
                             ?>
                             <div class="form-group">
                                 <div class="input-group has-success">

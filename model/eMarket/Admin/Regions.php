@@ -68,7 +68,7 @@ class Regions {
             $id_max = Pdo::selectPrepare("SELECT id FROM " . TABLE_REGIONS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max) + 1;
 
-            for ($x = 0; $x < Lang::$COUNT; $x++) {
+            for ($x = 0; $x < Lang::$count; $x++) {
                 Pdo::action("INSERT INTO " . TABLE_REGIONS . " SET id=?, country_id=?, name=?, language=?, region_code=?", [
                     $id, self::$country_id, Valid::inPOST('name_regions_' . $x), lang('#lang_all')[$x],
                     Valid::inPOST('region_code_regions')
@@ -86,7 +86,7 @@ class Regions {
     public function edit() {
         if (Valid::inPOST('edit')) {
 
-            for ($x = 0; $x < Lang::$COUNT; $x++) {
+            for ($x = 0; $x < Lang::$count; $x++) {
                 Pdo::action("UPDATE " . TABLE_REGIONS . " SET name=?, region_code=? WHERE id=? AND language=?", [
                     Valid::inPOST('name_regions_' . $x), Valid::inPOST('region_code_regions'),
                     Valid::inPOST('edit'), lang('#lang_all')[$x]

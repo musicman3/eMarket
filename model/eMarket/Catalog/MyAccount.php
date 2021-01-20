@@ -37,7 +37,7 @@ class MyAccount {
      *
      */
     public function autorize() {
-        if (Autorize::$CUSTOMER == FALSE) {
+        if (Autorize::$customer == FALSE) {
             header('Location: ?route=login');
             exit;
         }
@@ -54,13 +54,13 @@ class MyAccount {
                 Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET firstname=?, lastname=?, middle_name=?, telephone=?, password=? WHERE email=?", [
                     Valid::inPOST('firstname'), Valid::inPOST('lastname'),
                     Valid::inPOST('middle_name'), Valid::inPOST('telephone'), $password_hash,
-                    Autorize::$CUSTOMER['email']
+                    Autorize::$customer['email']
                 ]);
             } else {
                 Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET firstname=?, lastname=?, middle_name=?, telephone=? WHERE email=?", [
                     Valid::inPOST('firstname'), Valid::inPOST('lastname'),
                     Valid::inPOST('middle_name'), Valid::inPOST('telephone'),
-                    Autorize::$CUSTOMER['email']
+                    Autorize::$customer['email']
                 ]);
             }
 

@@ -75,7 +75,7 @@ class Stikers {
                 Pdo::action("UPDATE " . TABLE_STIKERS . " SET default_stikers=?", [0]);
             }
 
-            for ($x = 0; $x < Lang::$COUNT; $x++) {
+            for ($x = 0; $x < Lang::$count; $x++) {
                 Pdo::action("INSERT INTO " . TABLE_STIKERS . " SET id=?, name=?, language=?, default_stikers=?", [
                     $id, Valid::inPOST('name_stikers_' . $x), lang('#lang_all')[$x], $default_stikers
                 ]);
@@ -102,7 +102,7 @@ class Stikers {
                 Pdo::action("UPDATE " . TABLE_STIKERS . " SET default_stikers=?", [0]);
             }
 
-            for ($x = 0; $x < Lang::$COUNT; $x++) {
+            for ($x = 0; $x < Lang::$count; $x++) {
                 Pdo::action("UPDATE " . TABLE_STIKERS . " SET name=?, default_stikers=? WHERE id=? AND language=?", [
                     Valid::inPOST('name_stikers_' . $x), $default_stikers, Valid::inPOST('edit'), lang('#lang_all')[$x]
                 ]);

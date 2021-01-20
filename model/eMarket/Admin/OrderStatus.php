@@ -64,7 +64,7 @@ class OrderStatus {
             $id_max_sort = Pdo::selectPrepare("SELECT sort FROM " . TABLE_ORDER_STATUS . " WHERE language=? ORDER BY sort DESC", [lang('#lang_all')[0]]);
             $id_sort = intval($id_max_sort) + 1;
 
-            for ($x = 0; $x < Lang::$COUNT; $x++) {
+            for ($x = 0; $x < Lang::$count; $x++) {
                 Pdo::action("INSERT INTO " . TABLE_ORDER_STATUS . " SET id=?, name=?, language=?, default_order_status=?, sort=?", [
                     $id, Valid::inPOST('name_order_status_' . $x), lang('#lang_all')[$x], $default_order_status, $id_sort
                 ]);
@@ -91,7 +91,7 @@ class OrderStatus {
                 Pdo::action("UPDATE " . TABLE_ORDER_STATUS . " SET default_order_status=?", [0]);
             }
 
-            for ($x = 0; $x < Lang::$COUNT; $x++) {
+            for ($x = 0; $x < Lang::$count; $x++) {
                 Pdo::action("UPDATE " . TABLE_ORDER_STATUS . " SET name=?, default_order_status=? WHERE id=? AND language=?", [
                     Valid::inPOST('name_order_status_' . $x), $default_order_status, Valid::inPOST('edit'),
                     lang('#lang_all')[$x]

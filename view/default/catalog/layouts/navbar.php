@@ -45,7 +45,7 @@ use \eMarket\Core\{
                         <?php } ?>
                     </ul>
                 </li>
-                <?php if (Autorize::$CUSTOMER == FALSE) { ?>
+                <?php if (Autorize::$customer == FALSE) { ?>
                     <li><a href="/?route=login"><span class="glyphicon glyphicon-user"></span><span class="hidden-sm"> <?php echo lang('login_to_account') ?></span></a></li>
                 <?php } else { ?>
                     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span><span class="hidden-sm"> <?php echo lang('my_account') ?></span> <span class="caret"></span></a>

@@ -23,7 +23,7 @@ use \eMarket\Core\{
  */
 class Autorize {
 
-    public static $CUSTOMER;
+    public static $customer;
 
     /**
      * Sessions init
@@ -104,9 +104,9 @@ class Autorize {
             $_SESSION['customer_session_start'] = time();
 
             if (!isset($_SESSION['email_customer'])) {
-                self::$CUSTOMER = FALSE;
+                self::$customer = FALSE;
             } else {
-                self::$CUSTOMER = $customer_data;
+                self::$customer = $customer_data;
             }
         }
     }

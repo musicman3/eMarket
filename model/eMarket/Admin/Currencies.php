@@ -66,7 +66,7 @@ class Currencies {
                         ($value_all[$x]['value'] / Valid::inPOST('value_currencies')), $value_all[$x]['id'], $value_all[$x]['language']]);
                 }
 
-                for ($x = 0; $x < Lang::$COUNT; $x++) {
+                for ($x = 0; $x < Lang::$count; $x++) {
                     Pdo::action("INSERT INTO " . TABLE_CURRENCIES . " SET id=?, name=?, language=?, code=?, iso_4217=?, value=?, default_value=?, symbol=?, symbol_position=?, decimal_places=?", [
                         $id, Valid::inPOST('name_currencies_' . $x), lang('#lang_all')[$x], Valid::inPOST('code_currencies_' . $x),
                         Valid::inPOST('iso_4217_currencies'), 1, $default_value, Valid::inPOST('symbol_currencies'),
@@ -75,7 +75,7 @@ class Currencies {
                 }
             } else {
 
-                for ($x = 0; $x < Lang::$COUNT; $x++) {
+                for ($x = 0; $x < Lang::$count; $x++) {
                     Pdo::action("INSERT INTO " . TABLE_CURRENCIES . " SET id=?, name=?, language=?, code=?, iso_4217=?, value=?, default_value=?, symbol=?, symbol_position=?, decimal_places=?", [
                         $id, Valid::inPOST('name_currencies_' . $x), lang('#lang_all')[$x], Valid::inPOST('code_currencies_' . $x),
                         Valid::inPOST('iso_4217_currencies'), Valid::inPOST('value_currencies'), $default_value,
@@ -112,7 +112,7 @@ class Currencies {
                     ]);
                 }
 
-                for ($x = 0; $x < Lang::$COUNT; $x++) {
+                for ($x = 0; $x < Lang::$count; $x++) {
                     Pdo::action("UPDATE " . TABLE_CURRENCIES . " SET name=?, code=?, iso_4217=?, value=?, default_value=?, symbol=?, symbol_position=?, decimal_places=?, last_updated=? WHERE id=? AND language=?", [
                         Valid::inPOST('name_currencies_' . $x), Valid::inPOST('code_currencies_' . $x), Valid::inPOST('iso_4217_currencies'), 1,
                         $default_value, Valid::inPOST('symbol_currencies'), Valid::inPOST('symbol_position_currencies'),
@@ -121,7 +121,7 @@ class Currencies {
                 }
             } else {
 
-                for ($x = 0; $x < Lang::$COUNT; $x++) {
+                for ($x = 0; $x < Lang::$count; $x++) {
                     Pdo::action("UPDATE " . TABLE_CURRENCIES . " SET name=?, code=?, iso_4217=?, value=?, default_value=?, symbol=?, symbol_position=?, decimal_places=?, last_updated=? WHERE id=? AND language=?", [
                         Valid::inPOST('name_currencies_' . $x), Valid::inPOST('code_currencies_' . $x), Valid::inPOST('iso_4217_currencies'),
                         Valid::inPOST('value_currencies'), $default_value, Valid::inPOST('symbol_currencies'),

@@ -329,7 +329,7 @@ class Sale {
                 Pdo::action("UPDATE " . $MODULE_DB . " SET default_set=?", [0]);
             }
 
-            for ($x = 0; $x < Lang::$COUNT; $x++) {
+            for ($x = 0; $x < Lang::$count; $x++) {
                 Pdo::action("INSERT INTO " . $MODULE_DB . " SET id=?, name=?, language=?, sale_value=?, date_start=?, date_end=?, default_set=?", [$id, Valid::inPOST('name_module_' . $x), lang('#lang_all')[$x], Valid::inPOST('sale_value'), $start_date, $end_date, $default_value]);
             }
 
@@ -367,7 +367,7 @@ class Sale {
                 Pdo::action("UPDATE " . $MODULE_DB . " SET default_set=?", [0]);
             }
 
-            for ($x = 0; $x < Lang::$COUNT; $x++) {
+            for ($x = 0; $x < Lang::$count; $x++) {
                 Pdo::action("UPDATE " . $MODULE_DB . " SET name=?, sale_value=?, date_start=?, date_end=?, default_set=? WHERE id=? AND language=?", [Valid::inPOST('name_module_' . $x), Valid::inPOST('sale_value'), $start_date, $end_date, $default_value, Valid::inPOST('edit'), lang('#lang_all')[$x]]);
             }
 

@@ -16,14 +16,14 @@ namespace eMarket\Core;
  */
 class Interfaces {
 
-    public static $STORAGE = [];
+    public static $storage = [];
 
     /**
      * Save
      *
      */
     public function save($block, $name, $data) {
-        self::$STORAGE[$block][$name] = $data;
+        self::$storage[$block][$name] = $data;
     }
 
     /**
@@ -32,14 +32,14 @@ class Interfaces {
      * @return array Storage block
      */
     public function load($block, $name = null, $data = null) {
-        if ($name != null && $data != null && array_key_exists($block, self::$STORAGE) && array_key_exists($name, self::$STORAGE[$block]) && array_key_exists($data, self::$STORAGE[$block][$name])) {
-            return self::$STORAGE[$block][$name][$data];
+        if ($name != null && $data != null && array_key_exists($block, self::$storage) && array_key_exists($name, self::$storage[$block]) && array_key_exists($data, self::$storage[$block][$name])) {
+            return self::$storage[$block][$name][$data];
         }
-        if ($name != null && array_key_exists($block, self::$STORAGE) && array_key_exists($name, self::$STORAGE[$block])) {
-            return self::$STORAGE[$block][$name];
+        if ($name != null && array_key_exists($block, self::$storage) && array_key_exists($name, self::$storage[$block])) {
+            return self::$storage[$block][$name];
         }
-        if ($name == null && array_key_exists($block, self::$STORAGE)) {
-            return self::$STORAGE[$block];
+        if ($name == null && array_key_exists($block, self::$storage)) {
+            return self::$storage[$block];
         }
     }
 
@@ -48,8 +48,8 @@ class Interfaces {
      *
      */
     public function delete($block) {
-        if (array_key_exists($block, self::$STORAGE)) {
-            unset(self::$STORAGE[$block]);
+        if (array_key_exists($block, self::$storage)) {
+            unset(self::$storage[$block]);
         }
     }
 
@@ -58,7 +58,7 @@ class Interfaces {
      *
      */
     public function empty() {
-        self::$STORAGE = [];
+        self::$storage = [];
     }
 
 }

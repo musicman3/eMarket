@@ -23,7 +23,7 @@ use \eMarket\Core\{
  */
 final class Lang {
 
-    public static $COUNT;
+    public static $count;
 
     /**
      * Including and parsing language files
@@ -123,7 +123,7 @@ final class Lang {
 
         setlocale(LC_ALL, lang('language_locale'));
 
-        self::$COUNT = count(lang('#lang_all'));
+        self::$count = count(lang('#lang_all'));
     }
 
 }

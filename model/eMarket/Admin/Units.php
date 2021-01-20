@@ -60,7 +60,7 @@ class Units {
                 Pdo::action("UPDATE " . TABLE_UNITS . " SET default_unit=?", [0]);
             }
 
-            for ($x = 0; $x < Lang::$COUNT; $x++) {
+            for ($x = 0; $x < Lang::$count; $x++) {
                 Pdo::action("INSERT INTO " . TABLE_UNITS . " SET id=?, name=?, language=?, unit=?, default_unit=?", [
                     $id, Valid::inPOST('name_units_' . $x), lang('#lang_all')[$x], Valid::inPOST('unit_units_' . $x), $default_unit
                 ]);
@@ -87,7 +87,7 @@ class Units {
                 Pdo::action("UPDATE " . TABLE_UNITS . " SET default_unit=?", [0]);
             }
 
-            for ($x = 0; $x < Lang::$COUNT; $x++) {
+            for ($x = 0; $x < Lang::$count; $x++) {
                 Pdo::action("UPDATE " . TABLE_UNITS . " SET name=?, unit=?, default_unit=? WHERE id=? AND language=?", [
                     Valid::inPOST('name_units_' . $x), Valid::inPOST('unit_units_' . $x), $default_unit, Valid::inPOST('edit'), lang('#lang_all')[$x]
                 ]);

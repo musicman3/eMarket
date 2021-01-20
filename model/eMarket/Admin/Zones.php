@@ -50,7 +50,7 @@ class Zones {
             $id_max = Pdo::selectPrepare("SELECT id FROM " . TABLE_ZONES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max) + 1;
 
-            for ($x = 0; $x < Lang::$COUNT; $x++) {
+            for ($x = 0; $x < Lang::$count; $x++) {
                 Pdo::action("INSERT INTO " . TABLE_ZONES . " SET id=?, name=?, note=?, language=?", [$id, Valid::inPOST('name_zones_' . $x), Valid::inPOST('note_zones'), lang('#lang_all')[$x]]);
             }
 
@@ -65,7 +65,7 @@ class Zones {
     public function edit() {
         if (Valid::inPOST('edit')) {
 
-            for ($x = 0; $x < Lang::$COUNT; $x++) {
+            for ($x = 0; $x < Lang::$count; $x++) {
                 Pdo::action("UPDATE " . TABLE_ZONES . " SET name=?, note=? WHERE id=? AND language=?", [
                     Valid::inPOST('name_zones_' . $x), Valid::inPOST('note_zones'), Valid::inPOST('edit'), lang('#lang_all')[$x]
                 ]);

@@ -67,7 +67,7 @@ class Taxes {
             $id_max = Pdo::selectPrepare("SELECT id FROM " . TABLE_TAXES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max) + 1;
 
-            for ($x = 0; $x < Lang::$COUNT; $x++) {
+            for ($x = 0; $x < Lang::$count; $x++) {
                 Pdo::action("INSERT INTO " . TABLE_TAXES . " SET id=?, name=?, language=?, rate=?, tax_type=?, zones_id=?, fixed=?, currency=?", [
                     $id, Valid::inPOST('name_taxes_' . $x), lang('#lang_all')[$x], Valid::inPOST('rate_taxes'),
                     $tax_type, Valid::inPOST('zones_id'), $fixed, Settings::currencyDefault()[0]
@@ -97,7 +97,7 @@ class Taxes {
                 $fixed = 0;
             }
 
-            for ($x = 0; $x < Lang::$COUNT; $x++) {
+            for ($x = 0; $x < Lang::$count; $x++) {
                 Pdo::action("UPDATE " . TABLE_TAXES . " SET name=?, rate=?, tax_type=?, zones_id=?, fixed=?, currency=? WHERE id=? AND language=?", [
                     Valid::inPOST('name_taxes_' . $x), Valid::inPOST('rate_taxes'), $tax_type,
                     Valid::inPOST('zones_id'), $fixed, Settings::currencyDefault()[0],

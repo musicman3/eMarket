@@ -68,7 +68,7 @@ class Weight {
                     ]);
                 }
 
-                for ($x = 0; $x < Lang::$COUNT; $x++) {
+                for ($x = 0; $x < Lang::$count; $x++) {
                     Pdo::action("INSERT INTO " . TABLE_WEIGHT . " SET id=?, name=?, language=?, code=?, value_weight=?, default_weight=?", [
                         $id, Valid::inPOST('name_weight_' . $x), lang('#lang_all')[$x],
                         Valid::inPOST('code_weight_' . $x), 1, $default_weight
@@ -76,7 +76,7 @@ class Weight {
                 }
             } else {
 
-                for ($x = 0; $x < Lang::$COUNT; $x++) {
+                for ($x = 0; $x < Lang::$count; $x++) {
                     Pdo::action("INSERT INTO " . TABLE_WEIGHT . " SET id=?, name=?, language=?, code=?, value_weight=?, default_weight=?", [
                         $id, \eMarket\Core\Valid::inPOST('name_weight_' . $x), lang('#lang_all')[$x],
                         Valid::inPOST('code_weight_' . $x), Valid::inPOST('value_weight'), $default_weight
@@ -112,7 +112,7 @@ class Weight {
                         $value_weight_all[$x]['language']]);
                 }
 
-                for ($x = 0; $x < Lang::$COUNT; $x++) {
+                for ($x = 0; $x < Lang::$count; $x++) {
                     Pdo::action("UPDATE " . TABLE_WEIGHT . " SET name=?, code=?, value_weight=?, default_weight=? WHERE id=? AND language=?", [
                         Valid::inPOST('name_weight_' . $x), Valid::inPOST('code_weight_' . $x), 1, $default_weight, Valid::inPOST('edit'),
                         lang('#lang_all')[$x]
@@ -120,7 +120,7 @@ class Weight {
                 }
             } else {
 
-                for ($x = 0; $x < Lang::$COUNT; $x++) {
+                for ($x = 0; $x < Lang::$count; $x++) {
                     Pdo::action("UPDATE " . TABLE_WEIGHT . " SET name=?, code=?, value_weight=?, default_weight=? WHERE id=? AND language=?", [
                         Valid::inPOST('name_weight_' . $x), Valid::inPOST('code_weight_' . $x), Valid::inPOST('value_weight'), $default_weight,
                         Valid::inPOST('edit'), lang('#lang_all')[$x]

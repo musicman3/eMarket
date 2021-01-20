@@ -6,11 +6,11 @@
 ?>
 
 <div class="contentText">
-    <?php if (\eMarket\Core\Autorize::$CUSTOMER == FALSE) { ?>
+    <?php if (\eMarket\Core\Autorize::$customer == FALSE) { ?>
         <h3><?php echo sprintf(lang('welcome_name'), lang('welcome_guest')) ?></h3>
         <p><?php echo sprintf(lang('welcome_text')) ?></p>
     <?php } else { ?>
-        <h3><?php echo sprintf(lang('welcome_name'), \eMarket\Core\Autorize::$CUSTOMER['firstname']) ?></h3>
+        <h3><?php echo sprintf(lang('welcome_name'), \eMarket\Core\Autorize::$customer['firstname']) ?></h3>
         <p> </p>
     <?php } ?>
 </div>

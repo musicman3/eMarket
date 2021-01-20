@@ -60,7 +60,7 @@ class VendorCodes {
                 Pdo::action("UPDATE " . TABLE_VENDOR_CODES . " SET default_vendor_code=?", [0]);
             }
 
-            for ($x = 0; $x < Lang::$COUNT; $x++) {
+            for ($x = 0; $x < Lang::$count; $x++) {
                 Pdo::action("INSERT INTO " . TABLE_VENDOR_CODES . " SET id=?, name=?, language=?, vendor_code=?, default_vendor_code=?", [
                     $id, Valid::inPOST('name_vendor_codes_' . $x), lang('#lang_all')[$x], Valid::inPOST('vendor_code_' . $x), $default_vendor_code
                 ]);
@@ -87,7 +87,7 @@ class VendorCodes {
                 Pdo::action("UPDATE " . TABLE_VENDOR_CODES . " SET default_vendor_code=?", [0]);
             }
 
-            for ($x = 0; $x < Lang::$COUNT; $x++) {
+            for ($x = 0; $x < Lang::$count; $x++) {
                 Pdo::action("UPDATE " . TABLE_VENDOR_CODES . " SET name=?, vendor_code=?, default_vendor_code=? WHERE id=? AND language=?", [
                     Valid::inPOST('name_vendor_codes_' . $x), Valid::inPOST('vendor_code_' . $x), $default_vendor_code, Valid::inPOST('edit'),
                     lang('#lang_all')[$x]

@@ -47,7 +47,7 @@ class AddressBook {
      *
      */
     public function autorize() {
-        if (Autorize::$CUSTOMER == FALSE) {
+        if (Autorize::$customer == FALSE) {
             header('Location: ?route=login');
             exit;
         }

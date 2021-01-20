@@ -20,7 +20,7 @@ use \eMarket\Core\{
  */
 class Debug {
 
-    public static $TIME_START;
+    public static $time_start;
 
     /**
      * Array displaying when debugging
@@ -46,10 +46,10 @@ class Debug {
         if ($val == 1) {
             $tend = microtime(1);
 
-            $totaltime = round(($tend - self::$TIME_START), 2);
+            $totaltime = round(($tend - self::$time_start), 2);
 
             echo lang('debug_page_generation_time') . " " . $totaltime . " " . lang('debug_sec') . "<br>";
-            echo lang('debug_db_queries') . " " . Pdo::$QUERY_COUNT . " " . lang('debug_pcs') . "<br><br>";
+            echo lang('debug_db_queries') . " " . Pdo::$query_count . " " . lang('debug_pcs') . "<br><br>";
         }
     }
 

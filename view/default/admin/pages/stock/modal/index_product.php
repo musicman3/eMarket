@@ -74,8 +74,8 @@ use \eMarket\Admin\Stock;
                                 </div>
 
                                 <?php
-                                if (Lang::$COUNT > 1) {
-                                    for ($x = 1; $x < Lang::$COUNT; $x++) {
+                                if (Lang::$count > 1) {
+                                    for ($x = 1; $x < Lang::$count; $x++) {
                                         ?>
 
                                         <div id="product_<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">

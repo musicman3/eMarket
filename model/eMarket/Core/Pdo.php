@@ -21,8 +21,8 @@ use \eMarket\Core\{
  */
 final class Pdo {
 
-    public static $QUERY_COUNT = 0;
-    private static $CONNECT = null;
+    public static $query_count = 0;
+    private static $connect = null;
 
     /**
      * Conecting to DB
@@ -31,17 +31,17 @@ final class Pdo {
      */
     public static function connect($marker = null) {
 
-        self::$QUERY_COUNT++;
+        self::$query_count++;
 
         if ($marker == 'end') {
-            self::$CONNECT = null;
-            return self::$CONNECT;
+            self::$connect = null;
+            return self::$connect;
         }
 
-        if (self::$CONNECT == null && defined('DB_TYPE') && defined('DB_SERVER') && defined('DB_NAME') && defined('DB_USERNAME') && defined('DB_PASSWORD')) {
+        if (self::$connect == null && defined('DB_TYPE') && defined('DB_SERVER') && defined('DB_NAME') && defined('DB_USERNAME') && defined('DB_PASSWORD')) {
 
             try {
-                self::$CONNECT = new \PDO(DB_TYPE . ':host=' . DB_SERVER . ';dbname=' . DB_NAME, DB_USERNAME, DB_PASSWORD, [\PDO::ATTR_ERRMODE => \PDO::ERRMODE_WARNING, \PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4"]);
+                self::$connect = new \PDO(DB_TYPE . ':host=' . DB_SERVER . ';dbname=' . DB_NAME, DB_USERNAME, DB_PASSWORD, [\PDO::ATTR_ERRMODE => \PDO::ERRMODE_WARNING, \PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4"]);
             } catch (PDOException $error) {
                 if (Settings::path() == 'install') {
                     header('Location: /controller/install/error.php?server_db_error=true&error_message=' . $error->getMessage());
@@ -51,7 +51,7 @@ final class Pdo {
             }
         }
 
-        return self::$CONNECT;
+        return self::$connect;
     }
 
     /**

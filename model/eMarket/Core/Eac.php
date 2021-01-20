@@ -161,7 +161,7 @@ final class Eac {
                 $attributes = json_encode([]);
             }
 
-            for ($x = 0; $x < Lang::$COUNT; $x++) {
+            for ($x = 0; $x < Lang::$count; $x++) {
                 Pdo::action("INSERT INTO " . TABLE_CATEGORIES . " SET id=?, name=?, sort_category=?, language=?, parent_id=?, date_added=?, status=?, logo=?, attributes=?", [
                     $id, Valid::inPOST('name_categories_stock_' . $x), $sort_category, lang('#lang_all')[$x], self::$parent_id,
                     date("Y-m-d H:i:s"), 1, json_encode([]), $attributes
@@ -179,7 +179,7 @@ final class Eac {
 
         if (Valid::inPOST('edit')) {
 
-            for ($x = 0; $x < Lang::$COUNT; $x++) {
+            for ($x = 0; $x < Lang::$count; $x++) {
                 Pdo::action("UPDATE " . TABLE_CATEGORIES . " SET name=?, last_modified=?, attributes=? WHERE id=? AND language=?", [
                     Valid::inPOST('name_categories_stock_' . $x), date("Y-m-d H:i:s"), Valid::inPOST('attributes'), Valid::inPOST('edit'),
                     lang('#lang_all')[$x]
@@ -593,7 +593,7 @@ final class Eac {
             $id_max = Pdo::selectPrepare("SELECT id FROM " . TABLE_PRODUCTS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max) + 1;
 
-            for ($x = 0; $x < Lang::$COUNT; $x++) {
+            for ($x = 0; $x < Lang::$count; $x++) {
                 Pdo::action("INSERT INTO " . TABLE_PRODUCTS .
                         " SET id=?, name=?, language=?, parent_id=?, date_added=?, date_available=?, model=?, price=?, currency=?, quantity=?, "
                         . "unit=?, keyword=?, tags=?, description=?, tax=?, manufacturer=?, vendor_code=?, vendor_code_value=?, weight=?, "
@@ -712,7 +712,7 @@ final class Eac {
                 $selected_attributes_product_stock = json_encode([]);
             }
 
-            for ($x = 0; $x < Lang::$COUNT; $x++) {
+            for ($x = 0; $x < Lang::$count; $x++) {
                 Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET name=?, last_modified=?, date_available=?, model=?, price=?, currency=?, quantity=?,"
                         . " unit=?, keyword=?, tags=?, description=?, tax=?, manufacturer=?, vendor_code=?, vendor_code_value=?, weight=?, "
                         . "weight_value=?, dimension=?, length=?, width=?, height=?, min_quantity=?, attributes=? WHERE id=? AND language=?", [

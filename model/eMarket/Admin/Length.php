@@ -68,7 +68,7 @@ class Length {
                     ]);
                 }
 
-                for ($x = 0; $x < Lang::$COUNT; $x++) {
+                for ($x = 0; $x < Lang::$count; $x++) {
                     Pdo::action("INSERT INTO " . TABLE_LENGTH . " SET id=?, name=?, language=?, code=?, value_length=?, default_length=?", [
                         $id, Valid::inPOST('name_length_' . $x), lang('#lang_all')[$x], Valid::inPOST('code_length_' . $x), 1,
                         $default_length
@@ -76,7 +76,7 @@ class Length {
                 }
             } else {
 
-                for ($x = 0; $x < Lang::$COUNT; $x++) {
+                for ($x = 0; $x < Lang::$count; $x++) {
                     Pdo::action("INSERT INTO " . TABLE_LENGTH . " SET id=?, name=?, language=?, code=?, value_length=?, default_length=?", [
                         $id, Valid::inPOST('name_length_' . $x), lang('#lang_all')[$x], Valid::inPOST('code_length_' . $x),
                         Valid::inPOST('value_length'), $default_length]
@@ -113,7 +113,7 @@ class Length {
                     ]);
                 }
 
-                for ($x = 0; $x < Lang::$COUNT; $x++) {
+                for ($x = 0; $x < Lang::$count; $x++) {
                     Pdo::action("UPDATE " . TABLE_LENGTH . " SET name=?, code=?, value_length=?, default_length=? WHERE id=? AND language=?", [
                         Valid::inPOST('name_length_' . $x), Valid::inPOST('code_length_' . $x), 1, $default_length,
                         Valid::inPOST('edit'), lang('#lang_all')[$x]
@@ -121,7 +121,7 @@ class Length {
                 }
             } else {
 
-                for ($x = 0; $x < Lang::$COUNT; $x++) {
+                for ($x = 0; $x < Lang::$count; $x++) {
                     Pdo::action("UPDATE " . TABLE_LENGTH . " SET name=?, code=?, value_length=?, default_length=? WHERE id=? AND language=?", [
                         Valid::inPOST('name_length_' . $x), Valid::inPOST('code_length_' . $x),
                         Valid::inPOST('value_length'), $default_length, Valid::inPOST('edit'), lang('#lang_all')[$x]
