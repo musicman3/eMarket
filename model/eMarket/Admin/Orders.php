@@ -131,7 +131,7 @@ class Orders {
             self::$sql_data = Pdo::getColAssoc("SELECT * FROM " . TABLE_ORDERS . " ORDER BY id DESC", []);
         }
 
-        Pages::table(self::$sql_data);
+        Pages::data(self::$sql_data);
     }
 
     /**

@@ -46,7 +46,7 @@ class Pages {
      * @param array $lines (table data)
      * @return array (output data)
      */
-    public static function table($lines) {
+    public static function data($lines) {
 
         if (self::$count == FALSE) {
             self::$count = count($lines);

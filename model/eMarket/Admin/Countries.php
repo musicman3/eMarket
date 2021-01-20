@@ -101,7 +101,7 @@ class Countries {
         $_SESSION['country_page'] = Valid::inSERVER('REQUEST_URI');
         self::$sql_data = Pdo::getColAssoc("SELECT * FROM " . TABLE_COUNTRIES . " ORDER BY name", []);
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
-        Pages::table($lines);
+        Pages::data($lines);
     }
 
     /**

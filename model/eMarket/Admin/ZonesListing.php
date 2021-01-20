@@ -99,7 +99,7 @@ class ZonesListing {
 
         self::$sql_data = Pdo::getColRow("SELECT country_id FROM " . TABLE_ZONES_VALUE . " WHERE zones_id=?", [self::$zones_id]);
         self::$lines = array_values(array_unique(self::$sql_data, SORT_REGULAR));
-        Pages::table(self::$lines);
+        Pages::data(self::$lines);
     }
 
     /**

@@ -117,7 +117,7 @@ class Regions {
     public function data() {
         self::$sql_data = Pdo::getColAssoc("SELECT * FROM " . TABLE_REGIONS . " WHERE country_id=? ORDER BY name", [self::$country_id]);
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
-        Pages::table($lines);
+        Pages::data($lines);
     }
 
     /**

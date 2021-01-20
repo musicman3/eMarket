@@ -247,7 +247,7 @@ class Slideshow {
 
         self::$sql_data = Pdo::getColAssoc("SELECT * FROM " . TABLE_SLIDESHOW . " ORDER BY id DESC", []);
         $lines = Func::filterData(self::$sql_data, 'language', self::$set_language);
-        Pages::table($lines);
+        Pages::data($lines);
     }
 
     /**

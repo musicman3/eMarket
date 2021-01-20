@@ -408,7 +408,7 @@ class Sale {
 
         self::$sql_data = Pdo::getColAssoc("SELECT *, UNIX_TIMESTAMP (date_end) FROM " . $MODULE_DB . " ORDER BY id DESC", []);
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
-        Pages::table($lines);
+        Pages::data($lines);
 
         self::$this_time = time();
     }

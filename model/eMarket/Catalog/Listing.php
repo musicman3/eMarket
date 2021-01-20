@@ -93,7 +93,7 @@ class Listing {
                         lang('#lang_all')[0], Valid::inGET('category_id'), 1
             ]);
         }
-        Pages::table(self::$lines);
+        Pages::data(self::$lines);
         if (Valid::inGET('category_id')) {
             self::$categories_name = Products::categoryData(Valid::inGET('category_id'))['name'];
         }

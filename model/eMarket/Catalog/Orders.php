@@ -52,7 +52,7 @@ class Orders {
      */
     public function data() {
         self::$lines = Pdo::getColAssoc("SELECT * FROM " . TABLE_ORDERS . " WHERE email=? ORDER BY id DESC", [$_SESSION['email_customer']]);
-        Pages::table(self::$lines);
+        Pages::data(self::$lines);
     }
 
     /**

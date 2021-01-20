@@ -116,7 +116,7 @@ class Units {
     public function data() {
         self::$sql_data = Pdo::getColAssoc("SELECT * FROM " . TABLE_UNITS . " ORDER BY id DESC", []);
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
-        Pages::table($lines);
+        Pages::data($lines);
     }
 
     /**

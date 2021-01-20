@@ -160,7 +160,7 @@ class Free {
         }
 
         self::$sql_data = Pdo::getColAssoc("SELECT * FROM " . $MODULE_DB . " ORDER BY id DESC", []);
-        Pages::table(self::$sql_data);
+        Pages::data(self::$sql_data);
     }
 
     /**

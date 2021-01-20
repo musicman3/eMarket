@@ -64,7 +64,7 @@ class ErrorLog {
             $lines = [];
         }
 
-        Pages::table($lines);
+        Pages::data($lines);
     }
 
 }

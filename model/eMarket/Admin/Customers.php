@@ -92,7 +92,7 @@ class Customers {
             $lines = Pdo::getColRow("SELECT * FROM " . TABLE_CUSTOMERS . " ORDER BY id DESC", []);
         }
 
-        Pages::table($lines);
+        Pages::data($lines);
     }
 
 }
