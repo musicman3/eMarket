@@ -20,7 +20,16 @@ if (Products::$new_products == true) {
                 ?>
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item">
                     <div class="productHolder">
-                        <?php echo Products::stikers($value, 'label-danger', 'label-success') ?>
+
+                        <div class="labelsblock">
+                            <?php if (Products::stikers($value, 'label-danger', 'label-success') == 1) { ?>
+                                <div class="<?php echo Products::$stikers[2] ?>"><?php echo Products::$stikers[3] ?></div>
+                            <?php } if (Products::stikers($value, 'label-danger', 'label-success') == 2) { ?>
+                                <div class="<?php echo Products::$stikers[0] ?>"><?php echo Products::$stikers[1] ?></div>
+                                <div class="<?php echo Products::$stikers[2] ?>"><?php echo Products::$stikers[3] ?></div>
+                            <?php } ?>
+                        </div>
+
                         <a href="/?route=products&category_id=<?php echo $value['parent_id'] ?>&id=<?php echo $value['id'] ?>"><img src="/uploads/images/products/resize_1/<?php echo $value['logo_general'] ?>" alt="<?php echo $value['name']; ?>" class="img-responsive center-block"></a>
                         <h5 class="text-center item-heading"><a href="/?route=products&category_id=<?php echo $value['parent_id'] ?>&id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></h5>
                         <div class="text-center item-price"><?php echo Ecb::priceInterface($value, 2) ?></div>
@@ -30,4 +39,5 @@ if (Products::$new_products == true) {
             <?php } ?>
         </div>
     </div>
-<?php }
+    <?php
+}

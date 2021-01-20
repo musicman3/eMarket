@@ -52,7 +52,16 @@ require_once('modal/cart_message.php')
                 ?>
                 <div class="item col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item">
                     <div class="productHolder">
-                        <?php echo Products::stikers(Pages::$table['line'], 'label-danger', 'label-success') ?>
+                        
+                        <div class="labelsblock">
+                            <?php if (Products::stikers(Pages::$table['line'], 'label-danger', 'label-success') == 1) { ?>
+                                <div class="<?php echo Products::$stikers[2] ?>"><?php echo Products::$stikers[3] ?></div>
+                            <?php } if (Products::stikers(Pages::$table['line'], 'label-danger', 'label-success') == 2) { ?>
+                                <div class="<?php echo Products::$stikers[0] ?>"><?php echo Products::$stikers[1] ?></div>
+                                <div class="<?php echo Products::$stikers[2] ?>"><?php echo Products::$stikers[3] ?></div>
+                            <?php } ?>
+                        </div>
+                        
                         <a href="/?route=products&category_id=<?php echo Pages::$table['line']['parent_id'] ?>&id=<?php echo Pages::$table['line']['id'] ?>"><img src="/uploads/images/products/resize_1/<?php echo Pages::$table['line']['logo_general'] ?>" alt="<?php echo Pages::$table['line']['name'] ?>" class="img-responsive"></a>
                         <div class="caption">
                             <h5 class="item-heading"><a href="/?route=products&category_id=<?php echo Pages::$table['line']['parent_id'] ?>&id=<?php echo Pages::$table['line']['id'] ?>"><?php echo Pages::$table['line']['name'] ?></a></h5>
@@ -148,4 +157,5 @@ require_once('modal/cart_message.php')
             </div>
         </div>
     </div>
-<?php }
+    <?php
+}

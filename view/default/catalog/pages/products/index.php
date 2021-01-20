@@ -3,9 +3,11 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+
 use \eMarket\Core\{
     Cart,
     Ecb,
+    Products as ProductsCore,
     View
 };
 use \eMarket\Catalog\Products;
@@ -19,7 +21,16 @@ if (Products::$products != FALSE) {
     <div id="products" class="contentText">
         <div class="row">
             <div class="col-sm-6 col-xs-12">
-                <?php echo \eMarket\Core\Products::stikers(Products::$products, 'label-danger', 'label-success') ?>
+
+                <div class="labelsblock">
+                    <?php if (ProductsCore::stikers(Products::$products, 'label-danger', 'label-success') == 1) { ?>
+                        <div class="<?php echo ProductsCore::$stikers[2] ?>"><?php echo ProductsCore::$stikers[3] ?></div>
+                    <?php } if (ProductsCore::stikers(Products::$products, 'label-danger', 'label-success') == 2) { ?>
+                        <div class="<?php echo ProductsCore::$stikers[0] ?>"><?php echo ProductsCore::$stikers[1] ?></div>
+                        <div class="<?php echo ProductsCore::$stikers[2] ?>"><?php echo ProductsCore::$stikers[3] ?></div>
+                    <?php } ?>
+                </div>
+
                 <a href="/uploads/images/products/resize_4/<?php echo Products::$products['logo_general'] ?>" data-toggle="lightbox" data-gallery="example-gallery" data-type="image">
                     <img src="/uploads/images/products/resize_2/<?php echo Products::$products['logo_general'] ?>" alt="<?php echo Products::$products['name'] ?>" class="img-padding img-responsive center-block">
                 </a>
