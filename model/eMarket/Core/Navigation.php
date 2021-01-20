@@ -38,7 +38,7 @@ class Navigation {
         }
 
         if ($start == 0 && $finish >= $lines_on_page + $transfer && $transfer != null) {
-            return array($start, $finish + $transfer);
+            return [$start, $finish + $transfer];
         }
 
         if ($start == 0 && $count_lines >= $lines_on_page + $transfer && $transfer != null) {
@@ -54,7 +54,7 @@ class Navigation {
             if ($finish >= $count_lines) {
                 $finish = $count_lines;
             }
-            return array($start, $finish);
+            return [$start, $finish];
         }
 
         if ($count_lines > $lines_on_page && Valid::inGET('backfinish')) {
@@ -66,10 +66,10 @@ class Navigation {
             if ($finish < $lines_on_page) {
                 $finish = $lines_on_page;
             }
-            return array($start, $finish + $transfer);
+            return [$start, $finish + $transfer];
         }
 
-        return array($start, $finish);
+        return [$start, $finish];
     }
 
 }
