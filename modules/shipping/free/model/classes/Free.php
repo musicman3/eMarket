@@ -15,6 +15,7 @@ use \eMarket\Core\{
     Pages,
     Pdo,
     Settings,
+    Shipping,
     Valid
 };
 
