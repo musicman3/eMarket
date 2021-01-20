@@ -31,7 +31,7 @@ use \eMarket\Core\{
             breadcrumb();
         });
 
-<?php } elseif (Valid::inGET('route') == 'listing') {
+<?php } elseif (Valid::inGET('route') == 'listing' && Products::$category_data != FALSE) {
     ?>
         function breadcrumb() {
             var breadcrumbid = $('div#data_breadcrumb').data('breadcrumbid');
