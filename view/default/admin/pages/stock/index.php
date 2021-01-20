@@ -123,29 +123,31 @@ require_once('modal/add_values_attribute.php');
                                 if (Stock::$start < Stock::$count_lines_cat) {
                                     ?>
 
-                                    <tr class="<?php echo Settings::sorties('info') ?> sort-list" unitid="<?php echo Stock::$arr_merge['cat'][Stock::$start]['id'] ?>">
+                                    <tr class="<?php echo Settings::sortiesClass('info') ?> sort-list" unitid="<?php echo Stock::$arr_merge['cat'][Stock::$start]['id'] ?>">
 
-                                        <?php
+                                        <?php if (!Valid::inGET('search')) { ?>
+                                            <td class="sortyes sortleft-m"><div><span class="glyphicon glyphicon-move"> </span></div></td>
+                                        <?php } else { ?>
+                                            <td class="sortleft-m"></td>
+                                            <?php
+                                        }
+
                                         if (isset($_SESSION['buffer']['cat']) == true && in_array(Stock::$arr_merge['cat'][Stock::$start]['id'], $_SESSION['buffer']['cat']) == true && Stock::$arr_merge['cat'][Stock::$start]['status'] == 1) {
-                                            echo Settings::sorties();
                                             ?>    
                                             <td class="sortleft"><div><a href="#" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-folder-open"> </span></a></div></td>
 
                                             <?php
                                         } elseif (isset($_SESSION['buffer']['cat']) == true && in_array(Stock::$arr_merge['cat'][Stock::$start]['id'], $_SESSION['buffer']['cat']) == true && Stock::$arr_merge['cat'][Stock::$start]['status'] == 0) {
-                                            echo Settings::sorties();
                                             ?>    
                                             <td class="sortleft"><div><a href="#" class="btn btn-default btn-xs disabled"><span class="glyphicon glyphicon-folder-open"> </span></a></div></td>
 
                                             <?php
                                         } elseif (Stock::$transfer == Settings::linesOnPage() + 1) {
-                                            echo Settings::sorties();
                                             ?>    
                                             <td class="sortleft"><div><a href="#" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-transfer"> </span></a></div></td>
 
                                             <?php
                                         } elseif (Stock::$arr_merge['cat'][Stock::$start]['status'] == 0) {
-                                            echo Settings::sorties();
                                             ?>    
                                             <td class="sortleft">
 
@@ -160,7 +162,6 @@ require_once('modal/add_values_attribute.php');
 
                                             <?php
                                         } else {
-                                            echo Settings::sorties()
                                             ?>    
                                             <td class="sortleft">
 

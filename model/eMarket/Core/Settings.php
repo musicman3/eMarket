@@ -479,23 +479,15 @@ class Settings {
     }
 
     /**
-     * Sorting when searching
+     * Class for sorties
      *
      * @param string $class Bootstrap class
      * @return string
      */
-    public static function sorties($class = null) {
+    public static function sortiesClass($class) {
 
-        if ($class != null && Valid::inGET('search')) {
+        if (Valid::inGET('search')) {
             return $class;
-        }
-
-        if ($class == null && !Valid::inGET('search')) {
-            return '<td class="sortyes sortleft-m"><div><span class="glyphicon glyphicon-move"> </span></div></td>';
-        }
-
-        if ($class == null && Valid::inGET('search')) {
-            return '<td class="sortleft-m"></td> ';
         }
     }
 
