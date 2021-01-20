@@ -23,8 +23,6 @@ use \eMarket\Core\{
  */
 final class Ecb {
 
-    private static $currencies = FALSE;
-    private static $terminal_data = FALSE;
     private static $active_modules = FALSE;
 
     /**
