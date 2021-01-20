@@ -52,7 +52,7 @@ class Pages {
             self::$count = count($lines);
         }
 
-        $navigate = Navigation::getLink(self::$count, Settings::linesOnPage());
+        $navigate = Navigation::data(self::$count, Settings::linesOnPage());
         self::$start = $navigate[0];
         self::$finish = $navigate[1];
 

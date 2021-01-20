@@ -200,7 +200,7 @@ class Stock {
 
         self::$arr_merge = Func::arrayMergeOriginKey('cat', 'prod', self::$lines_cat, self::$lines_prod);
 
-        $navigate = Navigation::getLink(self::$count_lines_merge, Settings::linesOnPage(), 1);
+        $navigate = Navigation::data(self::$count_lines_merge, Settings::linesOnPage(), 1);
         self::$start = $navigate[0];
         self::$finish = $navigate[1];
     }

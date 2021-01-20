@@ -28,7 +28,7 @@ class Navigation {
      * @param string $transfer Transfer
      * @return array
      */
-    public static function getLink($count_lines, $lines_on_page, int $transfer = null) {
+    public static function data($count_lines, $lines_on_page, int $transfer = null) {
 
         $start = 0;
         $finish = $lines_on_page;
