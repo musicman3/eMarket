@@ -40,7 +40,7 @@ class Categories {
     }
 
     /**
-     * Index Data
+     * Listing Data
      *
      * @return string url
      */
