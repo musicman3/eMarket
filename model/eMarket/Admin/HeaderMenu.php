@@ -38,7 +38,7 @@ class HeaderMenu {
      *
      */
     function __construct() {
-        $this->Init();
+        $this->init();
         $this->levelOne();
         $this->staticLevels();
     }
@@ -47,7 +47,7 @@ class HeaderMenu {
      * Init
      *
      */
-    public function Init() {
+    public function init() {
         $files = glob(ROOT . '/model/eMarket/Admin/*');
         foreach ($files as $filename) {
             $namespace = '\eMarket\Admin\\' . pathinfo($filename, PATHINFO_FILENAME);
