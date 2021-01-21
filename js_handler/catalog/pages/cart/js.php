@@ -24,7 +24,7 @@ $lang_js = json_encode([
     'cart_shipping_is_not_available_and_min_price' => lang('cart_shipping_is_not_available_and_min_price')
         ]);
 ?>
-<script type="text/javascript" src="/model/js/classes/cart/cart.js"></script>
+<script type="text/javascript" src="/model/library/js/classes/cart/cart.js"></script>
 <script type="text/javascript">
     sessionStorage.setItem('lang', '<?php echo $lang_js ?>');
     new Cart();

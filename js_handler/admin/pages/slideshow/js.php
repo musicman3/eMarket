@@ -15,12 +15,12 @@ $lang_js = json_encode([
 <script type="text/javascript" src="/ext/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
 <link href="/ext/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
 <script type="text/javascript" src="/ext/bootstrap-datepicker/locales/bootstrap-datepicker.<?php echo lang('meta-language') ?>.min.js"></script>
-<script type="text/javascript" src="/model/js/classes/smartdatepicker.js"></script>
+<script type="text/javascript" src="/model/library/js/classes/smartdatepicker.js"></script>
 <!-- jQuery File Upload -->
 <script src = "/ext/jquery_file_upload/js/vendor/jquery.ui.widget.js"></script>
 <script src="/ext/jquery_file_upload/js/jquery.iframe-transport.js"></script>
 <script src="/ext/jquery_file_upload/js/jquery.fileupload.js"></script>
-<script type="text/javascript" src="/model/js/classes/images/fileupload.js"></script>
+<script type="text/javascript" src="/model/library/js/classes/images/fileupload.js"></script>
 
 <script type="text/javascript">
     var resize_max = JSON.parse('<?php echo $resize_max ?>');
@@ -103,7 +103,7 @@ $lang_js = json_encode([
     });
 </script>
 
-<script type="text/javascript" src="/model/js/classes/ajax/ajax.js"></script>
+<script type="text/javascript" src="/model/library/js/classes/ajax/ajax.js"></script>
 <script type="text/javascript">
     new Ajax();
     new SmartDatepicker('<?php echo lang('meta-language') ?>');

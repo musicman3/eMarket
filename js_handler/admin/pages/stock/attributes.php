@@ -5,11 +5,11 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
 
-<script type="text/javascript" src="/model/js/classes/attributes/group_attributes.js"></script>
-<script type="text/javascript" src="/model/js/classes/attributes/attributes.js"></script>
-<script type="text/javascript" src="/model/js/classes/attributes/values_attribute.js"></script>
-<script type="text/javascript" src="/model/js/classes/attributes/attributes_processing.js"></script>
-<script type="text/javascript" src="/model/js/classes/jsdata/jsdata.js"></script>
+<script type="text/javascript" src="/model/library/js/classes/attributes/group_attributes.js"></script>
+<script type="text/javascript" src="/model/library/js/classes/attributes/attributes.js"></script>
+<script type="text/javascript" src="/model/library/js/classes/attributes/values_attribute.js"></script>
+<script type="text/javascript" src="/model/library/js/classes/attributes/attributes_processing.js"></script>
+<script type="text/javascript" src="/model/library/js/classes/jsdata/jsdata.js"></script>
 
 <script type="text/javascript">
     var lang = JSON.parse('<?php echo $lang_attributes ?>');

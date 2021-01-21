@@ -25,7 +25,7 @@ Debug::$time_start = $TIME_START;
 unset($TIME_START);
 
 //AUTOLOAD FOR FUNCTION
-foreach (Tree::filesTree(getenv('DOCUMENT_ROOT') . '/model/functions/') as $path) {
+foreach (Tree::filesTree(getenv('DOCUMENT_ROOT') . '/model/library/php/functions/') as $path) {
     require_once($path);
 }
 

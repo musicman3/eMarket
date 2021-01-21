@@ -17,9 +17,9 @@ use \eMarket\Catalog\Products;
     });
 </script>
 
-<script type="text/javascript" src="/model/js/classes/attributes/attributes_processing.js"></script>
-<script type="text/javascript" src="/model/js/classes/jsdata/jsdata.js"></script>
-<script type="text/javascript" src="/model/js/classes/products/products.js"></script>
+<script type="text/javascript" src="/model/library/js/classes/attributes/attributes_processing.js"></script>
+<script type="text/javascript" src="/model/library/js/classes/jsdata/jsdata.js"></script>
+<script type="text/javascript" src="/model/library/js/classes/products/products.js"></script>
 <script type="text/javascript">
     $('#selected_attributes').val('<?php echo Products::$products['attributes'] ?>');
     new Products();
