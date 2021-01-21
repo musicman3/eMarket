@@ -8,7 +8,8 @@
 namespace eMarket\Core;
 
 use \eMarket\Core\{
-    Pdo
+    Pdo,
+    Valid
 };
 
 /**
@@ -127,6 +128,26 @@ final class Modules {
         self::$discount_router['functions'] = $output_text;
 
         return self::$discount_router;
+    }
+
+    /**
+     * Module database name
+     *
+     * @return string 
+     */
+    public static function moduleDatabase() {
+
+        return DB_PREFIX . 'modules_' . Valid::inGET('type') . '_' . Valid::inGET('name');
+    }
+
+    /**
+     * Path to module folder
+     *
+     * @return string
+     */
+    public static function modulesPath() {
+
+        return ROOT . '/modules/' . Valid::inGET('type') . '/' . Valid::inGET('name');
     }
 
 }

@@ -12,7 +12,6 @@ use \eMarket\Core\{
     Messages,
     Modules,
     Pdo,
-    Settings,
     Valid
 };
 
@@ -87,7 +86,7 @@ class Cash {
     public function save() {
         if (Valid::inPOST('save')) {
 
-            $MODULE_DB = Settings::moduleDatabase();
+            $MODULE_DB = Modules::moduleDatabase();
 
             $data = Pdo::getCellFalse("SELECT * FROM " . $MODULE_DB, []);
             if ($data == FALSE) {
@@ -112,7 +111,7 @@ class Cash {
      *
      */
     public function data() {
-        $MODULE_DB = Settings::moduleDatabase();
+        $MODULE_DB = Modules::moduleDatabase();
 
         self::$shipping_method = Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE type=? AND active=? ORDER BY name ASC", ['shipping', 1]);
         self::$order_status = Pdo::getColAssoc("SELECT * FROM " . TABLE_ORDER_STATUS . " WHERE language=? ORDER BY sort DESC", [lang('#lang_all')[0]]);

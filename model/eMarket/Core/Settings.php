@@ -425,16 +425,6 @@ class Settings {
     }
 
     /**
-     * Path to module folder
-     *
-     * @return string
-     */
-    public static function modulesPath() {
-
-        return ROOT . '/modules/' . Valid::inGET('type') . '/' . Valid::inGET('name');
-    }
-
-    /**
      * Path for language and currency switcher
      *
      * @return string
@@ -520,16 +510,6 @@ class Settings {
         } else {
             return $class;
         }
-    }
-
-    /**
-     * Module database name
-     *
-     * @return string 
-     */
-    public static function moduleDatabase() {
-
-        return DB_PREFIX . 'modules_' . Valid::inGET('type') . '_' . Valid::inGET('name');
     }
 
     /**

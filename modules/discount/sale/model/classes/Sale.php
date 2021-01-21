@@ -17,7 +17,6 @@ use \eMarket\Core\{
     Modules,
     Pages,
     Pdo,
-    Settings,
     Valid
 };
 
@@ -302,7 +301,7 @@ class Sale {
     public function add() {
         if (Valid::inPOST('add')) {
 
-            $MODULE_DB = Settings::moduleDatabase();
+            $MODULE_DB = Modules::moduleDatabase();
 
             if (Valid::inPOST('start_date')) {
                 $start_date = date('Y-m-d', strtotime(Valid::inPOST('start_date')));
@@ -344,7 +343,7 @@ class Sale {
     public function edit() {
         if (Valid::inPOST('edit')) {
 
-            $MODULE_DB = Settings::moduleDatabase();
+            $MODULE_DB = Modules::moduleDatabase();
 
             if (Valid::inPOST('start_date')) {
                 $start_date = date('Y-m-d', strtotime(Valid::inPOST('start_date')));
@@ -382,7 +381,7 @@ class Sale {
     public function delete() {
         if (Valid::inPOST('delete')) {
 
-            $MODULE_DB = Settings::moduleDatabase();
+            $MODULE_DB = Modules::moduleDatabase();
 
             $discount_id_array = Pdo::getCol("SELECT id FROM " . TABLE_PRODUCTS . " WHERE language=?", [lang('#lang_all')[0]]);
 
@@ -404,7 +403,7 @@ class Sale {
      *
      */
     public function data() {
-        $MODULE_DB = Settings::moduleDatabase();
+        $MODULE_DB = Modules::moduleDatabase();
 
         self::$sql_data = Pdo::getColAssoc("SELECT *, UNIX_TIMESTAMP (date_end) FROM " . $MODULE_DB . " ORDER BY id DESC", []);
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);

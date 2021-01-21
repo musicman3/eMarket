@@ -89,9 +89,9 @@ class View {
     public static function routingModules($path) {
 
         if (Valid::inGET('module_path')) {
-            return Settings::modulesPath() . '/' . $path . '/' . Settings::path() . '/' . Valid::inGET('module_path');
+            return Modules::modulesPath() . '/' . $path . '/' . Settings::path() . '/' . Valid::inGET('module_path');
         } else {
-            return Settings::modulesPath() . '/' . $path . '/' . Settings::path();
+            return Modules::modulesPath() . '/' . $path . '/' . Settings::path();
         }
     }
 

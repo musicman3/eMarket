@@ -109,7 +109,7 @@ class Free {
      */
     public function add() {
         if (Valid::inPOST('add')) {
-            $MODULE_DB = Settings::moduleDatabase();
+            $MODULE_DB = Modules::moduleDatabase();
             Pdo::action("INSERT INTO " . $MODULE_DB . " SET minimum_price=?, shipping_zone=?, currency=?", [Valid::inPOST('minimum_price'), Valid::inPOST('zone'), Settings::currencyDefault()[0]]);
 
             Messages::alert('success', lang('action_completed_successfully'));
@@ -123,7 +123,7 @@ class Free {
      */
     public function edit() {
         if (Valid::inPOST('edit')) {
-            $MODULE_DB = Settings::moduleDatabase();
+            $MODULE_DB = Modules::moduleDatabase();
             Pdo::action("UPDATE " . $MODULE_DB . " SET minimum_price=?, shipping_zone=?, currency=? WHERE id=?", [Valid::inPOST('minimum_price'), Valid::inPOST('zone'), Settings::currencyDefault()[0], Valid::inPOST('edit')]);
 
             Messages::alert('success', lang('action_completed_successfully'));
@@ -137,7 +137,7 @@ class Free {
      */
     public function delete() {
         if (Valid::inPOST('delete')) {
-            $MODULE_DB = Settings::moduleDatabase();
+            $MODULE_DB = Modules::moduleDatabase();
             Pdo::action("DELETE FROM " . $MODULE_DB . " WHERE id=?", [Valid::inPOST('delete')]);
 
             Messages::alert('success', lang('action_completed_successfully'));
@@ -150,7 +150,7 @@ class Free {
      *
      */
     public function data() {
-        $MODULE_DB = Settings::moduleDatabase();
+        $MODULE_DB = Modules::moduleDatabase();
 
         self::$zones = Pdo::getColAssoc("SELECT * FROM " . TABLE_ZONES . " WHERE language=?", [lang('#lang_all')[0]]);
 
@@ -169,7 +169,7 @@ class Free {
      */
     public function modal() {
         self::$json_data = json_encode([]);
-        $MODULE_DB = Settings::moduleDatabase();
+        $MODULE_DB = Modules::moduleDatabase();
         for ($i = Pages::$start; $i < Pages::$finish; $i++) {
             if (isset(Pages::$table['lines'][$i]['id']) == TRUE) {
 
