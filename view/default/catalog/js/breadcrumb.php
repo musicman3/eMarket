@@ -8,6 +8,10 @@ use \eMarket\Core\{
     Products,
     Valid
 };
+
+if (Valid::inGET('search') OR !Valid::inGET('category_id')) {
+    Products::$category_data['name'] = lang('breadcrumb_search');
+}
 ?>
 
 <script type="text/javascript" language="javascript">
@@ -31,7 +35,7 @@ use \eMarket\Core\{
             breadcrumb();
         });
 
-<?php } elseif (Valid::inGET('route') == 'listing' && Products::$category_data != FALSE) {
+<?php } elseif (Valid::inGET('route') == 'listing') {
     ?>
         function breadcrumb() {
             var breadcrumbid = $('div#data_breadcrumb').data('breadcrumbid');

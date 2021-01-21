@@ -95,6 +95,7 @@ e_mail = E-Mail
 
 ;BREADCRUMB
 breadcrumb_home = Home
+breadcrumb_search = Search
 
 ;PRODUCT
 product_manufacturer = Manufacturer:
