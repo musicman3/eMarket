@@ -10,6 +10,7 @@ namespace eMarket\Core;
 use \eMarket\Core\{
     Pdo,
     Settings,
+    Modules,
     Valid
 };
 
