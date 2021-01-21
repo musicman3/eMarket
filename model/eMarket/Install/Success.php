@@ -98,20 +98,20 @@ class Success {
      *
      */
     public function save() {
-        $fpd = fopen(self::$root . '/model/storage/configure/configure.php', 'w+');
+        $fpd = fopen(self::$root . '/storage/configure/configure.php', 'w+');
         fputs($fpd, self::$config);
         fclose($fpd);
 
-        if (file_exists(self::$root . '/model/storage/configure/configure.php')) {
-            chmod(self::$root . '/model/storage/configure/configure.php', 0644);
+        if (file_exists(self::$root . '/storage/configure/configure.php')) {
+            chmod(self::$root . '/storage/configure/configure.php', 0644);
         } else {
             header('Location: /controller/install/error.php?file_configure_not_found=true');
         }
 
-        require_once(self::$root . '/model/storage/configure/configure.php');
+        require_once(self::$root . '/storage/configure/configure.php');
 
         if (self::$db_type == 'mysql') {
-            $file_name = ROOT . '/model/storage/databases/mysql.sql';
+            $file_name = ROOT . '/storage/databases/mysql.sql';
         }
 
         if (!file_exists($file_name)) {
