@@ -21,7 +21,7 @@ use \eMarket\Core\{
                 <?php echo Settings::titlePageGenerator() ?>
             </h3>
         </div>
-        <?php if (file_exists(ROOT . '/model/work/errors.log') == true) { ?>
+        <?php if (file_exists(ROOT . '/model/storage/logs/errors.log') == true) { ?>
             <div class="panel-body">
 
                 <div class="table-responsive">

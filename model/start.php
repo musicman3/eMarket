@@ -8,7 +8,7 @@
 $TIME_START = microtime(1);
 //ENABLE LOG
 error_reporting(-1);
-ini_set('error_log', __DIR__ . '/work/errors.log');
+ini_set('error_log', __DIR__ . '/storage/logs/errors.log');
 
 //AUTOLOAD FOR CLASSES
 require_once('vendor/autoload.php');
@@ -36,7 +36,7 @@ foreach (Tree::modulesClasses() as $path) {
 
 // Config file and etc.
 if (Settings::path() == 'admin' OR Settings::path() == 'catalog') {
-    require_once('configure/configure.php');
+    require_once('storage/configure/configure.php');
 }
 //Autorize
 Autorize::init();

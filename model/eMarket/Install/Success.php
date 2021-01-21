@@ -23,7 +23,7 @@ use \eMarket\Core\{
 class Success {
 
     public static $lng;
-    public static $ROOT;
+    public static $root;
     public static $login_admin;
     public static $password_admin;
     public static $config;
@@ -44,7 +44,7 @@ class Success {
      *
      */
     public function config() {
-        self::$ROOT = getenv('DOCUMENT_ROOT');
+        self::$root = getenv('DOCUMENT_ROOT');
         self::$db_family = Valid::inPOST('database_family');
         $db_pref = Valid::inPOST('database_prefix');
         self::$db_type = Valid::inPOST('database_type');
@@ -54,7 +54,7 @@ class Success {
 
         self::$config = '<?php' . "\n" .
                 '  define(\'HTTP_SERVER\', \'' . 'http://' . Valid::inSERVER('HTTP_HOST') . '/' . '\');' . "\n" .
-                '  define(\'ROOT\', \'' . self::$ROOT . '\');' . "\n" .
+                '  define(\'ROOT\', \'' . self::$root . '\');' . "\n" .
                 '  define(\'DB_SERVER\', \'' . Valid::inPOST('server_db') . '\');' . "\n" .
                 '  define(\'DB_USERNAME\', \'' . Valid::inPOST('login_db') . '\');' . "\n" .
                 '  define(\'DB_PASSWORD\', \'' . Valid::inPOST('password_db') . '\');' . "\n" .
@@ -98,20 +98,20 @@ class Success {
      *
      */
     public function save() {
-        $fpd = fopen(self::$ROOT . '/model/configure/configure.php', 'w+');
+        $fpd = fopen(self::$root . '/model/storage/configure/configure.php', 'w+');
         fputs($fpd, self::$config);
         fclose($fpd);
 
-        if (file_exists(self::$ROOT . '/model/configure/configure.php')) {
-            chmod(self::$ROOT . '/model/configure/configure.php', 0644);
+        if (file_exists(self::$root . '/model/storage/configure/configure.php')) {
+            chmod(self::$root . '/model/storage/configure/configure.php', 0644);
         } else {
             header('Location: /controller/install/error.php?file_configure_not_found=true');
         }
 
-        require_once(self::$ROOT . '/model/configure/configure.php');
+        require_once(self::$root . '/model/storage/configure/configure.php');
 
         if (self::$db_type == 'mysql') {
-            $file_name = ROOT . '/model/databases/mysql.sql';
+            $file_name = ROOT . '/model/storage/databases/mysql.sql';
         }
 
         if (!file_exists($file_name)) {

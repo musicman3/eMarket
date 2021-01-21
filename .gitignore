@@ -1,8 +1,8 @@
 /.htaccess
 
-/model/work/errors.log
+/model/storage/logs/errors.log
 
-/model/configure/configure.php
+/model/storage/configure/configure.php
 /uploads/
 /model/nbproject/private/
 /nbproject/private/

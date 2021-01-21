@@ -46,8 +46,8 @@ class ErrorLog {
      *
      */
     public function delete() {
-        if (Valid::inPOST('delete') == 'delete' && file_exists(ROOT . '/model/work/errors.log')) {
-            unlink(ROOT . '/model/work/errors.log');
+        if (Valid::inPOST('delete') == 'delete' && file_exists(ROOT . '/model/storage/logs/errors.log')) {
+            unlink(ROOT . '/model/storage/logs/errors.log');
 
             Messages::alert('success', lang('action_completed_successfully'));
         }
@@ -58,8 +58,8 @@ class ErrorLog {
      *
      */
     public function data() {
-        if (file_exists(ROOT . '/model/work/errors.log')) {
-            $lines = array_reverse(file(ROOT . '/model/work/errors.log'));
+        if (file_exists(ROOT . '/model/storage/logs/errors.log')) {
+            $lines = array_reverse(file(ROOT . '/model/storage/logs/errors.log'));
         } else {
             $lines = [];
         }
