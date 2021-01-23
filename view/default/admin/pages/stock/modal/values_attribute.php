@@ -12,7 +12,7 @@
                 <h4 id="title_values_attribute" class="modal-title"></h4>
             </div>
 
-            <div class="panel-body">
+            <div class="modal-body">
                 <div class="tab-content">
                     <div class="table-responsive">
                         <table class="table table-hover">
@@ -20,7 +20,7 @@
                                 <tr>
                                     <th colspan="2"></th>
                                     <th>
-                                        <div class="flexbox"><button type="button" class="add-values-attribute btn btn-primary btn-xs"><span class="glyphicon glyphicon-plus"></span></button></div>
+                                        <div class="flexbox"><button type="button" class="add-values-attribute btn btn-primary btn-sm"><span class="bi-plus"></span></button></div>
                                     </th>
                                 </tr>
 

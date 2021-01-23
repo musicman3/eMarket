@@ -22,7 +22,7 @@ use \eMarket\Core\{
             </h3>
         </div>
         <?php if (file_exists(ROOT . '/storage/logs/errors.log') == true) { ?>
-            <div class="panel-body">
+            <div class="modal-body">
 
                 <div class="table-responsive">
                     <table class="table">
@@ -34,7 +34,7 @@ use \eMarket\Core\{
                                     <div class="flexbox">
                                         <form id="form_delete_log" name="form_delete_log" action="javascript:void(null);" onsubmit="Ajax.callDelete('_log')" enctype="multipart/form-data">
                                             <input hidden name="delete" value="delete">
-                                            <div class="b-left"><button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button></div>
+                                            <div class="b-left"><button type="submit" name="delete_but" class="btn btn-primary btn-sm" data-placement="left" data-bs-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="bi-trash"> </span></button></div>
                                         </form>
                                         <form>
                                             <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
@@ -42,9 +42,9 @@ use \eMarket\Core\{
                                             <input hidden name="backfinish" value="<?php echo Pages::$finish ?>">
                                             <div class="b-left">
                                                 <?php if (Pages::$start > 0) { ?>
-                                                    <button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button>
+                                                    <button type="submit" class="btn btn-primary btn-sm" formmethod="get"><span class="bi-arrow-left-short"></span></button>
                                                 <?php } else { ?>
-                                                    <a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-left"></span></a>
+                                                    <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-left-short"></span></a>
                                                 <?php } ?>
                                             </div>
                                         </form>
@@ -54,9 +54,9 @@ use \eMarket\Core\{
                                             <input hidden name="finish" value="<?php echo Pages::$finish ?>">
                                             <div>
                                                 <?php if (Pages::$finish != Pages::$count) { ?>
-                                                    <button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button>
+                                                    <button type="submit" class="btn btn-primary btn-sm" formmethod="get"><span class="bi-arrow-right-short"></span></button>
                                                 <?php } else { ?>
-                                                    <a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-right"></span></a>
+                                                    <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-right-short"></span></a>
                                                 <?php } ?>
                                             </div>
                                         </form>
@@ -99,7 +99,7 @@ use \eMarket\Core\{
                 </div>
             </div>
         <?php } else { ?>
-            <div class="panel-body"><?php echo lang('no_listing') ?></div>
+            <div class="modal-body"><?php echo lang('no_listing') ?></div>
         <?php } ?>
     </div>
 </div>

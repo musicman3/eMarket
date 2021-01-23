@@ -14,14 +14,14 @@ use \eMarket\Admin\Templates;
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">
-                <span class="settings_back"><button type="button" onClick='location.href = "<?php echo Settings::parentPartitionGenerator() ?>"' class="btn btn-primary btn-xs"><span class="back glyphicon glyphicon-share-alt"></span></button></span><span class="settings_name"><?php echo Settings::titlePageGenerator() ?></span>
+                <span class="settings_back"><button type="button" onClick='location.href = "<?php echo Settings::parentPartitionGenerator() ?>"' class="btn btn-primary btn-sm"><span class="bi-reply"></span></button></span><span class="settings_name"><?php echo Settings::titlePageGenerator() ?></span>
             </h3>
         </div>
-        <div class="panel-body">
+        <div class="modal-body">
 
             <div class="form-inline">
                 <div class="input-group has-error">
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-th-large"></span></span>
+                    <span class="input-group-text"><span class="glyphicon glyphicon-th-large"></span></span>
                     <form method="get" name="select_template" action="index.php">
                         <input hidden name="route" value="settings/templates">
                         <select name="name_templates" id="name_templates" class="input-sm form-control"  onchange="selectTemplate()">
@@ -45,7 +45,7 @@ use \eMarket\Admin\Templates;
                 </div>
 
                 <div class="input-group has-error">
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+                    <span class="input-group-text"><span class="bi-file-text"></span></span>
                     <form method="get" name="select_page">
                         <input hidden name="route" value="settings/templates">
                         <input type="hidden" name="name_templates" value="<?php echo Templates::$select_template ?>" />
@@ -79,7 +79,7 @@ use \eMarket\Admin\Templates;
                     <?php } ?>
                 </ul>
                 <ul id="sortable2" class="connectedSortable block-ul" style="width:33%">
-                    <li class="sortno border bg-primary"><span class="glyphicon glyphicon-resize-horizontal"></span><span class="glyphicon glyphicon-trash"></span></li>
+                    <li class="sortno border bg-primary"><span class="glyphicon glyphicon-resize-horizontal"></span><span class="bi-trash"></span></li>
                     <?php foreach (Templates::$layout_header_basket as $path) { ?>
                         <li id="<?php echo basename($path, '.php') ?>" class="sortyes"><?php echo basename($path, '.php') ?></li>
                     <?php } ?>
@@ -93,7 +93,7 @@ use \eMarket\Admin\Templates;
                     <?php } ?>
                 </ul>
                 <ul id="sortable4" class="connectedSortable2 block-ul" style="width:33%">
-                    <li class="sortno border bg-primary"><span class="glyphicon glyphicon-resize-horizontal"></span><span class="glyphicon glyphicon-trash"></span></li>
+                    <li class="sortno border bg-primary"><span class="glyphicon glyphicon-resize-horizontal"></span><span class="bi-trash"></span></li>
                     <?php foreach (Templates::$layout_content_basket as $path) { ?>
                         <li id="<?php echo basename($path, '.php') ?>" class="sortyes"><?php echo basename($path, '.php') ?></li>
                     <?php } ?>
@@ -113,7 +113,7 @@ use \eMarket\Admin\Templates;
                     <?php } ?>
                 </ul>
                 <ul id="sortable7" class="connectedSortable3 block-ul" style="width:33%">
-                    <li class="sortno border bg-primary"><span class="glyphicon glyphicon-resize-horizontal"></span><span class="glyphicon glyphicon-trash"></span></li>
+                    <li class="sortno border bg-primary"><span class="glyphicon glyphicon-resize-horizontal"></span><span class="bi-trash"></span></li>
                     <?php foreach (Templates::$layout_boxes_basket as $path) { ?>
                         <li id="<?php echo basename($path, '.php') ?>" class="sortyes"><?php echo basename($path, '.php') ?></li>
                     <?php } ?>
@@ -127,7 +127,7 @@ use \eMarket\Admin\Templates;
                     <?php } ?>
                 </ul>
                 <ul id="sortable9" class="connectedSortable4 block-ul" style="width:33%">
-                    <li class="sortno border bg-primary"><span class="glyphicon glyphicon-resize-horizontal"></span><span class="glyphicon glyphicon-trash"></span></li>
+                    <li class="sortno border bg-primary"><span class="glyphicon glyphicon-resize-horizontal"></span><span class="bi-trash"></span></li>
                     <?php foreach (Templates::$layout_footer_basket as $path) { ?>
                         <li id="<?php echo basename($path, '.php') ?>" class="sortyes"><?php echo basename($path, '.php') ?></li>
                         <?php } ?>

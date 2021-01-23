@@ -8,30 +8,30 @@ use \eMarket\Admin\HeaderMenu;
 
 if (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
     ?>
-
-    <nav class="navbar navbar-fixed-top navbar-inverse">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+            <div class="collapse" id="navbarToggleExternalContent">
+                <div class="bg-dark p-4">
+                    <h5 class="text-white h4">Collapsed content</h5>
+                    <span class="text-muted">Toggleable via the navbar brand.</span>
+                </div>
             </div>
 
-            <div class="collapse navbar-collapse" id="bs-navbar">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <!-- Level 1 -->
-                <ul class="nav navbar-nav">
+                <ul class="navbar-nav">
                     <?php
                     for ($i = 0; $i < count(HeaderMenu::$level); $i++) {
-                        HeaderMenu::setParameters('class="dropdown-toggle" data-toggle="dropdown"', '<b class="caret"></b>');
+                        HeaderMenu::setParameters(' dropdown-toggle"', ' role="button" data-bs-toggle="dropdown" aria-expanded="false"');
                         HeaderMenu::clearParameters(HeaderMenu::$level[$i][2]);
                         ?>
 
-                        <li>
-                            <a href="<?php echo HeaderMenu::$level[$i][0] ?>" <?php echo HeaderMenu::getParameters()[0] ?>><?php echo HeaderMenu::$level[$i][1] . HeaderMenu::getParameters()[1] ?></a>
+                        <li class="nav-item dropdown">
+                            <a href="<?php echo HeaderMenu::$level[$i][0] ?>" class="nav-link<?php echo HeaderMenu::getParameters()[0] ?>" <?php echo HeaderMenu::getParameters()[1] ?>><?php echo HeaderMenu::$level[$i][1] ?></a>
                             <?php if (isset(HeaderMenu::$menu[$i])) { ?>
                                 <!-- Level 2 -->
                                 <ul class="dropdown-menu">
@@ -40,7 +40,7 @@ if (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
                                         HeaderMenu::clearParameters(HeaderMenu::$menu[$i][$x][4]);
                                         ?>
                                         <li>
-                                            <a <?php echo HeaderMenu::$menu[$i][$x][3]; ?> href="<?php echo HeaderMenu::$menu[$i][$x][0] ?>" <?php echo HeaderMenu::getParameters()[0] ?>><span class="<?php echo HeaderMenu::$menu[$i][$x][1]; ?>"></span> <?php echo HeaderMenu::$menu[$i][$x][2] . ' ' . HeaderMenu::getParameters()[1] ?></a>
+                                            <a class="dropdown-item" <?php echo HeaderMenu::$menu[$i][$x][3]; ?> href="<?php echo HeaderMenu::$menu[$i][$x][0] ?>"> <?php echo HeaderMenu::$menu[$i][$x][2] ?></a>
                                             <?php if (isset(HeaderMenu::$submenu[$i][$x])) { ?>
                                                 <!-- Level 3 -->
                                                 <ul class="dropdown-menu link">

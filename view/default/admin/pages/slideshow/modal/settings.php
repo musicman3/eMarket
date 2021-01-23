@@ -17,41 +17,41 @@ use \eMarket\Core\{
             </div>
 
             <form id="form_settings" name="form_settings" action="javascript:void(null);" onsubmit="Ajax.callAdd('form_settings')">
-                <div class="panel-body">
+                <div class="modal-body">
                     <input type="hidden" id="slideshow_pref" name="slideshow_pref" value="ok" />
 
-                    <div class="form-group">
+                    <div class="mb-3">
                         <small class="form-text text-muted"><?php echo lang('slides_interval') ?></small>
                         <div class="input-group has-error">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                            <span class="input-group-text"><span class="glyphicon glyphicon-time"></span></span>
                             <input class="input-sm form-control" placeholder="<?php echo lang('slides_interval_placeholder') ?>" type="text" name="show_interval" id="show_interval" required />
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="mb-3">
                         <input class="check-box" type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="mouse_stop" id="mouse_stop">
                         <label><?php echo lang('slides_stop_on_hover') ?> </label>
                     </div>
-                    <div class="form-group">
+                    <div class="mb-3">
                         <input class="check-box" type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="autostart" id="autostart">
                         <label><?php echo lang('slides_auto_start') ?> </label>
                     </div>
-                    <div class="form-group">
+                    <div class="mb-3">
                         <input class="check-box" type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="cicles" id="cicles">
                         <label><?php echo lang('slides_loop_changes') ?> </label>
                     </div>
-                    <div class="form-group">
+                    <div class="mb-3">
                         <input class="check-box" type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="indicators" id="indicators">
                         <label><?php echo lang('slides_show_indicators') ?> </label>
                     </div>
-                    <div class="form-group">
+                    <div class="mb-3">
                         <input class="check-box" type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="navigation" id="navigation">
                         <label><?php echo lang('slides_show_navigation_buttons') ?> </label>
                     </div>
 
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary btn-xs" type="button" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-remove"></span> <?php echo lang('cancel') ?></button>
-                    <button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button>
+                    <button class="btn btn-primary btn-sm" type="button" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-remove"></span> <?php echo lang('cancel') ?></button>
+                    <button type="submit" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button>
                 </div>
             </form>
         </div>

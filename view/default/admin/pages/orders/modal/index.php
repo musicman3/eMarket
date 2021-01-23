@@ -14,18 +14,18 @@ use \eMarket\Admin\Orders;
                 <h4 class="modal-title" id="title"></h4>
             </div>
             <form id="form_add" name="form_add" action="javascript:void(null);" onsubmit="Ajax.callAdd()">
-                <div class="panel-body">
+                <div class="modal-body">
                     <input type="hidden" id="edit" name="edit" value="" />
                     <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#panel_1"><?php echo lang('orders_description') ?></a></li>
-                        <li><a data-toggle="tab" href="#panel_2"><?php echo lang('orders_products') ?></a></li>
-                        <li><a data-toggle="tab" href="#panel_3"><?php echo lang('orders_transaction_history') ?></a></li>
-                        <li><a data-toggle="tab" href="#panel_4"><?php echo lang('orders_status_history') ?></a></li>
+                        <li class="active"><a data-bs-toggle="tab" href="#panel_1"><?php echo lang('orders_description') ?></a></li>
+                        <li><a data-bs-toggle="tab" href="#panel_2"><?php echo lang('orders_products') ?></a></li>
+                        <li><a data-bs-toggle="tab" href="#panel_3"><?php echo lang('orders_transaction_history') ?></a></li>
+                        <li><a data-bs-toggle="tab" href="#panel_4"><?php echo lang('orders_status_history') ?></a></li>
                     </ul>
 
                     <div class="tab-content">
 
-                        <div id="panel_1" class="tab-pane fade in active">
+                        <div id="panel_1" class="tab-pane fade show in active">
                             <div class="table-responsive">
                                 <table class="table">
                                     <tbody>
@@ -131,16 +131,16 @@ use \eMarket\Admin\Orders;
                         </div>
 
                         <div id="panel_3" class="tab-pane fade">
-                            <div class="col-sm-6 form-group">
+                            <div class="col-sm-6 mb-3">
 
                             </div>
                         </div>
 
                         <div id="panel_4" class="tab-pane fade">
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <div class="input-group has-success" id="status_history"></div><br>
                                 <div class="input-group has-success">
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                                    <span class="input-group-text"><span class="bi-pen"></span></span>
                                     <select name="status_history_select" id="status_history_select" class="input-sm form-control">
                                         <?php foreach (Orders::$order_status as $value) { ?>
                                             <option value="<?php echo $value['id'] ?>"><?php echo $value['name'] ?></option>
@@ -154,8 +154,8 @@ use \eMarket\Admin\Orders;
                 </div>
 
                 <div class="modal-footer">
-                    <button class="btn btn-primary btn-xs" type="button" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-remove"></span> <?php echo lang('cancel') ?></button>
-                    <button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button>
+                    <button class="btn btn-primary btn-sm" type="button" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-remove"></span> <?php echo lang('cancel') ?></button>
+                    <button type="submit" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button>
                 </div>
 
             </form>

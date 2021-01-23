@@ -20,7 +20,7 @@ use \eMarket\Core\{
                 <?php echo Settings::titlePageGenerator() ?>
             </h3>
         </div>
-        <div class="panel-body">
+        <div class="modal-body">
 
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 offset-0">
                 <form>
@@ -50,9 +50,9 @@ use \eMarket\Core\{
                                         <input hidden name="backfinish" value="<?php echo Pages::$finish ?>">
                                         <div class="b-left">
                                             <?php if (Pages::$start > 0) { ?>
-                                                <button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button>
+                                                <button type="submit" class="btn btn-primary btn-sm" formmethod="get"><span class="bi-arrow-left-short"></span></button>
                                             <?php } else { ?>
-                                                <a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-left"></span></a>
+                                                <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-left-short"></span></a>
                                             <?php } ?>
                                         </div>
                                     </form>
@@ -62,9 +62,9 @@ use \eMarket\Core\{
                                         <input hidden name="finish" value="<?php echo Pages::$finish ?>">
                                         <div>
                                             <?php if (Pages::$finish != Pages::$count) { ?>
-                                                <button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button>
+                                                <button type="submit" class="btn btn-primary btn-sm" formmethod="get"><span class="bi-arrow-right-short"></span></button>
                                             <?php } else { ?>
-                                                <a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-right"></span></a>
+                                                <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-right-short"></span></a>
                                             <?php } ?>
                                         </div>
                                     </form>
@@ -93,13 +93,13 @@ use \eMarket\Core\{
                                         <form id="form_status<?php echo Pages::$table['line'][0] ?>" name="form_status" action="javascript:void(null);" onsubmit="Ajax.callAdd('form_status<?php echo Pages::$table['line'][0] ?>')" enctype="multipart/form-data">
                                             <input hidden name="status" value="<?php echo Pages::$table['line'][0] ?>">
                                             <div class="b-left">
-                                                <button type="submit" name="status_but" class="btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-status') ?>"><span class="glyphicon glyphicon-off"> </span></button>
+                                                <button type="submit" name="status_but" class="btn btn-primary btn-sm" data-placement="left" data-bs-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-status') ?>"><span class="glyphicon glyphicon-off"> </span></button>
                                             </div>
                                         </form>
                                         <form id="form_delete<?php echo Pages::$table['line'][0] ?>" name="form_delete" action="javascript:void(null);" onsubmit="Ajax.callDelete('<?php echo Pages::$table['line'][0] ?>')" enctype="multipart/form-data">
                                             <input hidden name="delete" value="<?php echo Pages::$table['line'][0] ?>">
                                             <div>
-                                                <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button>
+                                                <button type="submit" name="delete_but" class="btn btn-primary btn-sm" data-placement="left" data-bs-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="bi-trash"> </span></button>
                                             </div>
                                         </form>
                                     </div>

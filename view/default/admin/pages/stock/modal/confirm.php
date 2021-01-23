@@ -11,10 +11,10 @@
             <div class="modal-header"><div class="pull-right">&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
                 <h4 id="confirm_title" class="modal-title"></h4>
             </div>
-            <div id="confirm_body" class="panel-body"></div>
+            <div id="confirm_body" class="modal-body"></div>
             <div class="modal-footer">
-                <button class="btn btn-success btn-xs" type="button" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> <?php echo lang('confirm-no') ?></button>
-                <button type="button" id="confirmation" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-ok"></span> <?php echo lang('confirm-yes') ?></button>
+                <button class="btn btn-success btn-sm" type="button" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> <?php echo lang('confirm-no') ?></button>
+                <button type="button" id="confirmation" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-ok"></span> <?php echo lang('confirm-yes') ?></button>
             </div>
         </div>
     </div>

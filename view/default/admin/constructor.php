@@ -26,11 +26,13 @@ use \eMarket\Core\{
 
         <title><?php echo Settings::titlePageGenerator() ?></title>
 
-        <link href="/ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
         <link rel="stylesheet" type="text/css" href="/view/<?php echo Settings::template() ?>/admin/style.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="/ext/contextmenu/css/jquery.contextMenu.min.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="/ext/jquery/ui/jquery-ui.min.css" media="screen" />
         <link rel="stylesheet" href="/ext/bootstrap/css/bootstrap-multiselect.css" type="text/css"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
         <script type="text/javascript" src="/ext/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/ext/jquery/ui/jquery-ui.min.js"></script>
         <script type="text/javascript" src="/ext/jquery/ui/jquery.ui.touch-punch.min.js"></script>
@@ -39,7 +41,7 @@ use \eMarket\Core\{
 
         <script type="text/javascript">
             $(function () {
-                $('[data-toggle="tooltip"]').tooltip();
+                $('[data-bs-toggle="tooltip"]').tooltip();
             });
         </script>
 
@@ -74,13 +76,13 @@ use \eMarket\Core\{
         require_once ('js/footer.php');
         ?>
 
-        <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
         <script type="text/javascript" src="/ext/bootstrap/js/bootstrap-confirmation.min.js"></script>
         <script type="text/javascript" src="/ext/contextmenu/js/jquery.contextMenu.min.js"></script>
         <script type="text/javascript" src="/ext/bootstrap/js/bootstrap-multiselect.js"></script>
 
         <script type="text/javascript">
-            $('[data-toggle=confirmation]').confirmation({rootSelector: '[data-toggle=confirmation]'});
+            $('[data-bs-toggle=confirmation]').confirmation({rootSelector: '[data-bs-toggle=confirmation]'});
         </script>
 
         <?php

@@ -17,11 +17,11 @@ use \eMarket\Core\{
                 <h4 class="modal-title"><?php echo lang('stock_tittle_specification_name') ?></h4>
             </div>
             <form id="attribute_add_form">
-                <div class="panel-body">
+                <div class="modal-body">
 
-                    <div class="form-group">
+                    <div class="mb-3">
                         <div class="input-group has-success">
-                            <span class="input-group-addon"><img src="/view/<?php echo Settings::template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[0] ?>.png" alt="<?php echo lang('#lang_all')[0] ?>" title="<?php echo lang('#lang_all')[0] ?>" width="16" height="10" /></span>
+                            <span class="input-group-text"><img src="/view/<?php echo Settings::template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[0] ?>.png" alt="<?php echo lang('#lang_all')[0] ?>" title="<?php echo lang('#lang_all')[0] ?>" width="16" height="10" /></span>
                             <input class="input-add-attribute input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="attribute_<?php echo lang('#lang_all')[0] ?>" required />
                         </div>
                     </div>
@@ -30,9 +30,9 @@ use \eMarket\Core\{
                     if (Lang::$count > 1) {
                         for ($x = 1; $x < Lang::$count; $x++) {
                             ?>
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <div class="input-group has-success">
-                                    <span class="input-group-addon"><img src="/view/<?php echo Settings::template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[$x] ?>.png" alt="<?php echo lang('#lang_all')[$x] ?>" title="<?php echo lang('#lang_all')[$x] ?>" width="16" height="10" /></span>
+                                    <span class="input-group-text"><img src="/view/<?php echo Settings::template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[$x] ?>.png" alt="<?php echo lang('#lang_all')[$x] ?>" title="<?php echo lang('#lang_all')[$x] ?>" width="16" height="10" /></span>
                                     <input class="input-add-attribute input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="attribute_<?php echo lang('#lang_all')[$x] ?>" required />
                                 </div>
                             </div>
@@ -45,8 +45,8 @@ use \eMarket\Core\{
                 </div>
             </form>
             <div class="modal-footer">
-                <button class="btn btn-primary btn-xs" type="button" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-remove"></span> <?php echo lang('cancel') ?></button>
-                <button id="save_attribute_button" type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button>
+                <button class="btn btn-primary btn-sm" type="button" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-remove"></span> <?php echo lang('cancel') ?></button>
+                <button id="save_attribute_button" type="submit" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button>
             </div>
         </div>
     </div>

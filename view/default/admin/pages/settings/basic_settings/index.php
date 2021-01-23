@@ -18,21 +18,21 @@ use \eMarket\Admin\BasicSettings;
         <div class="panel-heading">
             <div id="alert_block"><?php Messages::alert(); ?></div>
             <h3 class="panel-title">
-                <span class="settings_back"><button type="button" onClick='location.href = "<?php echo Settings::parentPartitionGenerator() ?>"' class="btn btn-primary btn-xs"><span class="back glyphicon glyphicon-share-alt"></span></button></span><span class="settings_name"><?php echo Settings::titlePageGenerator() ?></span>
+                <span class="settings_back"><button type="button" onClick='location.href = "<?php echo Settings::parentPartitionGenerator() ?>"' class="btn btn-primary btn-sm"><span class="bi-reply"></span></button></span><span class="settings_name"><?php echo Settings::titlePageGenerator() ?></span>
             </h3>
         </div>
-        <div class="panel-body">
+        <div class="modal-body">
             <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#general"><?php echo lang('basic_settigs_general') ?></a></li>
-                <li><a data-toggle="tab" href="#email"><?php echo lang('basic_settigs_email') ?></a></li>
+                <li class="active"><a data-bs-toggle="tab" href="#general"><?php echo lang('basic_settigs_general') ?></a></li>
+                <li><a data-bs-toggle="tab" href="#email"><?php echo lang('basic_settigs_email') ?></a></li>
             </ul>
 
             <div class="tab-content">
-                <div id="general" class="tab-pane fade in active">
+                <div id="general" class="tab-pane fade show in active">
                     <form id="form_add" name="form_add" class="form-horizontal" action="javascript:void(null);" onsubmit="Ajax.callAdd()">
                         <input hidden name="add" value="ok">
 
-                        <div class="form-group">
+                        <div class="mb-3">
                             <div class="col-sm-3 text-left"><label class=""><?php echo lang('basic_settings_primary_language') ?></label></div>
                             <div class="col-sm-9">
                                 <select name="primary_language" id="primary_language" class="input-sm form-control">
@@ -49,19 +49,19 @@ use \eMarket\Admin\BasicSettings;
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="mb-3">
                             <div class="col-sm-3 text-left"><label class="control-label"><?php echo lang('lines_on_page') ?></label></div>
                             <div class="col-sm-9">
                                 <input type="text" name="lines_on_page" class="form-control" value="<?php echo Settings::linesOnPage() ?>" required />
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="col-sm-3 text-left"><label class=""><?php echo lang('session_expr_time') ?> <span data-toggle="tooltip" data-placement="right" data-original-title="<?php echo lang('session_expr_time_help') ?>" class="glyphicon glyphicon-question-sign"></span></label></div>
+                        <div class="mb-3">
+                            <div class="col-sm-3 text-left"><label class=""><?php echo lang('session_expr_time') ?> <span data-bs-toggle="tooltip" data-placement="right" data-original-title="<?php echo lang('session_expr_time_help') ?>" class="glyphicon glyphicon-question-sign"></span></label></div>
                             <div class="col-sm-9">
                                 <input type="text" name="session_expr_time" class="form-control" value="<?php echo Settings::sessionExprTime() ?>" required />
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="mb-3">
                             <div class="col-sm-3 text-left"><label class=""><?php echo lang('debug_info') ?></label></div>
                             <div class="col-sm-9">
                                 <select name="debug" id="debug" class="input-sm form-control">
@@ -75,28 +75,28 @@ use \eMarket\Admin\BasicSettings;
                                 </select>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button>
+                        <button type="submit" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button>
                     </form>
                 </div>
                 <div id="email" class="tab-pane fade">
                     <form id="form_email" name="form_email" class="form-horizontal" action="javascript:void(null);" onsubmit="Ajax.callAdd('form_email')">
                         <input hidden name="add" value="ok">
 
-                        <div class="form-group">
+                        <div class="mb-3">
                             <div class="col-sm-3 text-left"><label class="control-label"><?php echo lang('basic_settings_email') ?></label></div>
                             <div class="col-sm-9">
                                 <input type="email" name="email" class="form-control" value="<?php echo BasicSettings::$email ?>" required />
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="mb-3">
                             <div class="col-sm-3 text-left"><label class="control-label"><?php echo lang('basic_settings_email_name') ?></label></div>
                             <div class="col-sm-9">
                                 <input type="text" name="email_name" class="form-control" value="<?php echo BasicSettings::$email_name ?>" required />
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="mb-3">
                             <div class="col-sm-3 text-left"><label class=""><?php echo lang('basic_settings_smtp_use') ?></label></div>
                             <div class="col-sm-9">
                                 <select name="smtp_status" id="smtp_status" class="input-sm form-control">
@@ -111,7 +111,7 @@ use \eMarket\Admin\BasicSettings;
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="mb-3">
                             <div class="col-sm-3 text-left"><label class=""><?php echo lang('basic_settings_smtp_auth') ?></label></div>
                             <div class="col-sm-9">
                                 <select name="smtp_auth" id="smtp_auth" class="input-sm form-control">
@@ -126,42 +126,42 @@ use \eMarket\Admin\BasicSettings;
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="mb-3">
                             <div class="col-sm-3 text-left"><label class="control-label"><?php echo lang('basic_settings_host_email') ?></label></div>
                             <div class="col-sm-9">
                                 <input type="text" id="host_email" name="host_email" class="form-control" value="<?php echo BasicSettings::$host_email ?>" required />
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="mb-3">
                             <div class="col-sm-3 text-left"><label class="control-label"><?php echo lang('basic_settings_username_email') ?></label></div>
                             <div class="col-sm-9">
                                 <input type="text" id="username_email" name="username_email" class="form-control" value="<?php echo BasicSettings::$username_email ?>" required />
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="mb-3">
                             <div class="col-sm-3 text-left"><label class="control-label"><?php echo lang('basic_settings_password_email') ?></label></div>
                             <div class="col-sm-9">
                                 <input type="password" id="password_email" name="password_email" class="form-control" value="<?php echo BasicSettings::$password_email ?>" required />
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="mb-3">
                             <div class="col-sm-3 text-left"><label class="control-label"><?php echo lang('basic_settings_smtp_secure') ?></label></div>
                             <div class="col-sm-9">
                                 <input type="text" id="smtp_secure" name="smtp_secure" class="form-control" value="<?php echo BasicSettings::$smtp_secure ?>" required />
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="mb-3">
                             <div class="col-sm-3 text-left"><label class="control-label"><?php echo lang('basic_settings_smtp_port') ?></label></div>
                             <div class="col-sm-9">
                                 <input type="text" id="smtp_port" name="smtp_port" class="form-control" value="<?php echo BasicSettings::$smtp_port ?>" required />
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button>
+                        <button type="submit" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button>
                     </form>
 
                 </div>

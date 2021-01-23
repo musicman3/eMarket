@@ -23,7 +23,7 @@ require_once('modal/index.php')
                 <?php echo Settings::titlePageGenerator() ?>
             </h3>
         </div>
-        <div class="panel-body">
+        <div class="modal-body">
             <div id="ajax_data" class='hidden' data-jsondata='<?php echo Manufacturers::$json_data ?>'></div>
 
             <div class="table-responsive">
@@ -34,7 +34,7 @@ require_once('modal/index.php')
 
                             <th>
                                 <div class="flexbox">
-                                    <div class="b-left"><a href="#index" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
+                                    <div class="b-left"><a href="#index" class="btn btn-primary btn-sm" data-bs-toggle="modal"><span class="bi-plus"></span></a></div>
 
                                     <form>
                                         <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
@@ -42,9 +42,9 @@ require_once('modal/index.php')
                                         <input hidden name="backfinish" value="<?php echo Pages::$finish ?>">
                                         <div class="b-left">
                                             <?php if (Pages::$start > 0) { ?>
-                                                <button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button>
+                                                <button type="submit" class="btn btn-primary btn-sm" formmethod="get"><span class="bi-arrow-left-short"></span></button>
                                             <?php } else { ?>
-                                                <a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-left"></span></a>
+                                                <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-left-short"></span></a>
                                             <?php } ?>
                                         </div>
                                     </form>
@@ -55,9 +55,9 @@ require_once('modal/index.php')
                                         <input hidden name="finish" value="<?php echo Pages::$finish ?>">
                                         <div>
                                             <?php if (Pages::$finish != Pages::$count) { ?>
-                                                <button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button>
+                                                <button type="submit" class="btn btn-primary btn-sm" formmethod="get"><span class="bi-arrow-right-short"></span></button>
                                             <?php } else { ?>
-                                                <a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-right"></span></a>
+                                                <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-right-short"></span></a>
                                             <?php } ?>
                                         </div>
                                     </form>
@@ -80,12 +80,12 @@ require_once('modal/index.php')
                                 <td>
                                     <div class="flexbox">
                                         <div class="b-left">
-                                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index" data-edit="<?php echo Pages::$table['line']['id'] ?>"><span class="glyphicon glyphicon-edit"></span></button>
+                                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#index" data-edit="<?php echo Pages::$table['line']['id'] ?>"><span class="bi-pencil-square"></span></button>
                                         </div>
                                         <form id="form_delete<?php echo Pages::$table['line']['id'] ?>" name="form_delete" action="javascript:void(null);" onsubmit="Ajax.callDelete('<?php echo Pages::$table['line']['id'] ?>')" enctype="multipart/form-data">
                                             <input hidden name="delete" value="<?php echo Pages::$table['line']['id'] ?>">
                                             <div>
-                                                <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button>
+                                                <button type="submit" name="delete_but" class="btn btn-primary btn-sm" data-placement="left" data-bs-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="bi-trash"> </span></button>
                                             </div>
                                         </form>
                                     </div>

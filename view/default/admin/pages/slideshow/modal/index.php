@@ -17,7 +17,7 @@ use \eMarket\Admin\Slideshow;
                 <h4 class="modal-title"><?php echo Settings::titlePageGenerator() ?></h4>
             </div>
             <form id="form_add" name="form_add" action="javascript:void(null);" onsubmit="Ajax.callAdd(null, null, '<?php echo lang('alert_wait') ?>')">
-                <div class="panel-body">
+                <div class="modal-body">
                     <input type="hidden" id="add" name="add" value="" />
                     <input type="hidden" id="edit" name="edit" value="" />
                     <input type="hidden" id="set_language" name="set_language" value="<?php echo Slideshow::$set_language ?>" />
@@ -26,19 +26,19 @@ use \eMarket\Admin\Slideshow;
                     <input id="general_image_edit" type="hidden" name="general_image_edit" value="">
                     <input id="general_image_edit_new" type="hidden" name="general_image_edit_new" value="">
 
-                    <div class="form-group">
+                    <div class="mb-3">
                         <div class="input-group has-success">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+                            <span class="input-group-text"><span class="bi-file-text"></span></span>
                             <input class="input-sm form-control" placeholder="<?php echo lang('slides_name') ?>" type="text" name="name" id="name" />
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="mb-3">
                         <div class="input-group has-success">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+                            <span class="input-group-text"><span class="bi-file-text"></span></span>
                             <input class="input-sm form-control" placeholder="<?php echo lang('slides_text') ?>" type="text" name="heading" id="heading" />
                         </div>
                     </div>
-                    <div class="form-group row">
+                    <div class="mb-3 row">
                         <div class="col-xs-6">
                             <div class="input-group">
                                 <input class="check-box" type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="animation" id="animation" checked>
@@ -52,21 +52,21 @@ use \eMarket\Admin\Slideshow;
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="mb-3">
                         <div class="input-group has-success">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
+                            <span class="input-group-text"><span class="glyphicon glyphicon-globe"></span></span>
                             <input class="input-sm form-control" placeholder="<?php echo lang('slides_url') ?>" type="text" name="url" id="url" />
                         </div>
                     </div>
-                    <div class="col-left form-group">
+                    <div class="col-left mb-3">
                         <div class="input-group has-error">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                            <span class="input-group-text"><span class="glyphicon glyphicon-calendar"></span></span>
                             <input class="input-sm form-control" placeholder="<?php echo lang('slides_show_start') ?>" type="text" name="start_date" id="start_date" autocomplete="off" required />
                         </div>
                     </div>
-                    <div class="col-left form-group">
+                    <div class="col-left mb-3">
                         <div class="input-group has-error">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                            <span class="input-group-text"><span class="glyphicon glyphicon-calendar"></span></span>
                             <input class="input-sm form-control" placeholder="<?php echo lang('slides_show_end') ?>" type="text" name="end_date" id="end_date" autocomplete="off" required />
                         </div>
                     </div>
@@ -74,7 +74,7 @@ use \eMarket\Admin\Slideshow;
                     <div id="alert_messages"></div>
 
                     <!-- jQuery-File-Upload -->
-                    <div class="form-group">
+                    <div class="mb-3">
                         <span class="btn btn-primary btn-sm fileinput-button">
                             <span class="glyphicon glyphicon-picture"></span><span> <?php echo lang('button_add_image') ?></span>
                             <input class="input-sm form-control" id="fileupload" type="file" name="files[]" accept="image/jpeg,image/png,image/gif" multiple>
@@ -88,14 +88,14 @@ use \eMarket\Admin\Slideshow;
                         <div id="logo" class="text-center"></div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="mb-3">
                         <input class="check-box" type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="view_slideshow" id="view_slideshow" checked>
                         <label for="view_slideshow"><?php echo lang('display') ?> </label>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary btn-xs" type="button" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-remove"></span> <?php echo lang('cancel') ?></button>
-                    <button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button>
+                    <button class="btn btn-primary btn-sm" type="button" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-remove"></span> <?php echo lang('cancel') ?></button>
+                    <button type="submit" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button>
                 </div>
             </form>
         </div>

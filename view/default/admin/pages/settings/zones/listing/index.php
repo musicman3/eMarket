@@ -21,10 +21,10 @@ require_once('modal/index.php')
         <div class="panel-heading">
             <div id="alert_block"><?php Messages::alert(); ?></div>
             <h3 class="panel-title">
-                <span class="settings_back"><a class="btn btn-primary btn-xs" href="<?php echo Settings::parentPartitionGenerator() ?>"><span class="back glyphicon glyphicon-share-alt"></span></a></span><span class="settings_name"><?php echo Settings::titlePageGenerator() ?></span>
+                <span class="settings_back"><a class="btn btn-primary btn-sm" href="<?php echo Settings::parentPartitionGenerator() ?>"><span class="bi-reply"></span></a></span><span class="settings_name"><?php echo Settings::titlePageGenerator() ?></span>
             </h3>
         </div>
-        <div class="panel-body">
+        <div class="modal-body">
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
@@ -34,7 +34,7 @@ require_once('modal/index.php')
                             <th>
                                 <div class="flexbox">
 
-                                    <div class="b-left"><a href="#index" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-pencil"></span></a></div>
+                                    <div class="b-left"><a href="#index" class="btn btn-primary btn-sm" data-bs-toggle="modal"><span class="bi-pen"></span></a></div>
 
                                     <form>
                                         <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
@@ -43,9 +43,9 @@ require_once('modal/index.php')
                                         <input hidden name="zone_id" value="<?php echo ZonesListing::$zones_id ?>">
                                         <div class="b-left">
                                             <?php if (Pages::$start > 0) { ?>
-                                                <button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button>
+                                                <button type="submit" class="btn btn-primary btn-sm" formmethod="get"><span class="bi-arrow-left-short"></span></button>
                                             <?php } else { ?>
-                                                <a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-left"></span></a>
+                                                <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-left-short"></span></a>
                                             <?php } ?>
                                         </div>
                                     </form>
@@ -57,9 +57,9 @@ require_once('modal/index.php')
                                         <input hidden name="zone_id" value="<?php echo ZonesListing::$zones_id ?>">
                                         <div>
                                             <?php if (Pages::$finish != Pages::$count) { ?>
-                                                <button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button>
+                                                <button type="submit" class="btn btn-primary btn-sm" formmethod="get"><span class="bi-arrow-right-short"></span></button>
                                             <?php } else { ?>
-                                                <a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-right"></span></a>
+                                                <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-right-short"></span></a>
                                             <?php } ?>
                                         </div>
                                     </form>
@@ -80,7 +80,7 @@ require_once('modal/index.php')
                         for (Pages::$start, ZonesListing::$count = 0; Pages::$start < Pages::$finish; Pages::$start++, Pages::lineUpdate()) {
                             ?>
                             <tr>
-                                <td class="sortleft"><span data-toggle="tooltip" data-html="true" data-placement="right" data-original-title="<?php echo ZonesListing::$text_arr[ZonesListing::$count] ?>" class="btn btn-primary btn-xs glyphicon glyphicon-eye-open"></span></td>
+                                <td class="sortleft"><span data-bs-toggle="tooltip" data-html="true" data-placement="right" data-original-title="<?php echo ZonesListing::$text_arr[ZonesListing::$count] ?>" class="btn btn-primary btn-sm glyphicon glyphicon-eye-open"></span></td>
                                 <td><?php echo Func::filterArrayToKey(ZonesListing::$countries_multiselect_temp, 0, Pages::$table['line'][0], 1)[0] ?></td>
                                 <td> </td>
                             </tr>
