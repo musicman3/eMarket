@@ -12,8 +12,9 @@ use \eMarket\Core\{
 <div id="settings" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header"><div class="pull-right"><button class="close" type="button" data-dismiss="modal">×</button></div>
-                <h4 class="modal-title"><?php echo Settings::titlePageGenerator() ?></h4>
+            <div class="modal-header">
+                <h5 class="modal-title"><?php echo Settings::titlePageGenerator() ?></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
 
             <form id="form_settings" name="form_settings" action="javascript:void(null);" onsubmit="Ajax.callAdd('form_settings')">

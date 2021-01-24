@@ -14,8 +14,9 @@ use \eMarket\Admin\Stock;
 <div id="index_product" class="products modal fade" tabindex="-1">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
-            <div class="modal-header"><div class="pull-right"><button class="close" type="button" data-dismiss="modal">×</button></div>
-                <h4 class="modal-title"><?php echo Settings::titlePageGenerator() ?></h4>
+            <div class="modal-header">
+                <h5 class="modal-title"><?php echo Settings::titlePageGenerator() ?></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <form id="form_add_product" name="form_add_product" action="javascript:void(null);" onsubmit="Ajax.callAdd('form_add_product')">
                 <div class="modal-body">

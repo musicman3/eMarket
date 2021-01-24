@@ -10,8 +10,9 @@ use \eMarket\Admin\Orders;
 <div id="index" class="products modal fade" tabindex="-1">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
-            <div class="modal-header"><div class="pull-right"><button class="close" type="button" data-dismiss="modal">×</button></div>
-                <h4 class="modal-title" id="title"></h4>
+            <div class="modal-header">
+                <h5 class="modal-title" id="title"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <form id="form_add" name="form_add" action="javascript:void(null);" onsubmit="Ajax.callAdd()">
                 <div class="modal-body">
