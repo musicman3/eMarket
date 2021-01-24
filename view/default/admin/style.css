@@ -36,7 +36,7 @@ body {background:#e4e4da;font-family: 'Open Sans';background-image:url('images/s
 #login .login_logo {position: absolute;top: 20px;padding: 15px;text-align: left;font-size: 110px;color: #707070;text-shadow: 0px 1px 1px #575757;}
 #login .login-box {width: 200px;height: 136px;position: absolute;margin-top: -68px;top: 50%;left: 70%;padding: 15px;text-align: center}
 #login .login-box .btn, .login-box .btn a:active {border: 1px solid #000;color:#fff;background: none; font-size:15px;}
-#login .alert-danger {position: absolute;top: 10%;margin: 0 10px 0 10px;padding: 5px;}
+#login .alert-danger {position: absolute;top: 10%;margin: 0 10px 0 -2px;padding: 5px;}
 
 #settings_basic_settings .tooltip-inner {font-family: 'Open Sans';min-width:200px;}
 
