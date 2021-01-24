@@ -75,7 +75,7 @@ use \eMarket\Admin\BasicSettings;
                                 </select>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button>
+                        <button type="submit" class="btn btn-primary btn-sm"><span class="bi-check-circle"></span> <?php echo lang('save') ?></button>
                     </form>
                 </div>
                 <div id="email" class="tab-pane fade">
@@ -161,7 +161,7 @@ use \eMarket\Admin\BasicSettings;
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button>
+                        <button type="submit" class="btn btn-primary btn-sm"><span class="bi-check-circle"></span> <?php echo lang('save') ?></button>
                     </form>
 
                 </div>
