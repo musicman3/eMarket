@@ -17,7 +17,7 @@ if (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
                 </div>
             </div>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -26,7 +26,7 @@ if (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
                 <ul class="navbar-nav">
                     <?php
                     for ($i = 0; $i < count(HeaderMenu::$level); $i++) {
-                        HeaderMenu::setParameters(' dropdown-toggle"', ' role="button" data-bs-toggle="dropdown" aria-expanded="false"');
+                        HeaderMenu::setParameters(' dropdown-toggle"', ' role="button" data-bs-toggle="dropdown"');
                         HeaderMenu::clearParameters(HeaderMenu::$level[$i][2]);
                         ?>
 
