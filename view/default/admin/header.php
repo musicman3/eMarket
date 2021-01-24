@@ -40,7 +40,8 @@ if (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
                                         HeaderMenu::clearParameters(HeaderMenu::$menu[$i][$x][4]);
                                         ?>
                                         <li>
-                                            <a class="dropdown-item" <?php echo HeaderMenu::$menu[$i][$x][3]; ?> href="<?php echo HeaderMenu::$menu[$i][$x][0] ?>"> <?php echo HeaderMenu::$menu[$i][$x][2] ?></a>
+                                            <a class="dropdown-item" <?php echo HeaderMenu::$menu[$i][$x][3]; ?> href="<?php echo HeaderMenu::$menu[$i][$x][0] ?>"><span class="<?php echo \eMarket\Admin\HeaderMenu::$menu[$i][$x][1]; ?>"></span> <?php echo \eMarket\Admin\HeaderMenu::$menu[$i][$x][2] ?></a>
+
                                             <?php if (isset(HeaderMenu::$submenu[$i][$x])) { ?>
                                                 <!-- Level 3 -->
                                                 <ul class="dropdown-menu link">

@@ -50,7 +50,7 @@ class Manufacturers {
      * 
      */
     public static function menu() {
-        HeaderMenu::$menu[HeaderMenu::$menu_market][1] = ['?route=manufacturers', 'glyphicon glyphicon-object-align-bottom', lang('title_manufacturers_index'), '', 'false'];
+        HeaderMenu::$menu[HeaderMenu::$menu_market][1] = ['?route=manufacturers', 'bi-building', lang('title_manufacturers_index'), '', 'false'];
     }
 
     /**
