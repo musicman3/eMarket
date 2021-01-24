@@ -34,7 +34,7 @@ use \eMarket\Core\{
                                     <div class="flexbox">
                                         <form id="form_delete_log" name="form_delete_log" action="javascript:void(null);" onsubmit="Ajax.callDelete('_log')" enctype="multipart/form-data">
                                             <input hidden name="delete" value="delete">
-                                            <div class="b-left"><button type="submit" name="delete_but" class="btn btn-primary btn-sm" data-placement="left" data-bs-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="bi-trash"> </span></button></div>
+                                            <div class="b-left"><button type="submit" name="delete_but" class="btn btn-primary btn-sm" data-bs-placement="left" data-bs-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="bi-trash"> </span></button></div>
                                         </form>
                                         <form>
                                             <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">

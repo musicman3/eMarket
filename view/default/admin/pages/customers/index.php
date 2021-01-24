@@ -93,13 +93,13 @@ use \eMarket\Core\{
                                         <form id="form_status<?php echo Pages::$table['line'][0] ?>" name="form_status" action="javascript:void(null);" onsubmit="Ajax.callAdd('form_status<?php echo Pages::$table['line'][0] ?>')" enctype="multipart/form-data">
                                             <input hidden name="status" value="<?php echo Pages::$table['line'][0] ?>">
                                             <div class="b-left">
-                                                <button type="submit" name="status_but" class="btn btn-primary btn-sm" data-placement="left" data-bs-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-status') ?>"><span class="bi-power"> </span></button>
+                                                <button type="submit" name="status_but" class="btn btn-primary btn-sm" data-bs-placement="left" data-bs-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-status') ?>"><span class="bi-power"> </span></button>
                                             </div>
                                         </form>
                                         <form id="form_delete<?php echo Pages::$table['line'][0] ?>" name="form_delete" action="javascript:void(null);" onsubmit="Ajax.callDelete('<?php echo Pages::$table['line'][0] ?>')" enctype="multipart/form-data">
                                             <input hidden name="delete" value="<?php echo Pages::$table['line'][0] ?>">
                                             <div>
-                                                <button type="submit" name="delete_but" class="btn btn-primary btn-sm" data-placement="left" data-bs-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="bi-trash"> </span></button>
+                                                <button type="submit" name="delete_but" class="btn btn-primary btn-sm" data-bs-placement="left" data-bs-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="bi-trash"> </span></button>
                                             </div>
                                         </form>
                                     </div>

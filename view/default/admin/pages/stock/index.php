@@ -218,9 +218,9 @@ require_once('modal/add_values_attribute.php');
                                         </td>
 
                                         <?php if (json_decode(Stock::$arr_merge['prod'][Stock::$start . 'a']['discount'], 1)) { ?>
-                                            <td class="sortleft"><span data-bs-toggle="tooltip" data-placement="left" data-html="true" data-original-title="<?php echo Settings::productSaleTooltip(Stock::$arr_merge['prod'][Stock::$start . 'a']['discount']) ?>" class="bi-tag-fill text-primary"> </span></td>
+                                            <td class="sortleft"><span data-bs-toggle="tooltip" data-bs-placement="left" data-bs-html="true" title="<?php echo Settings::productSaleTooltip(Stock::$arr_merge['prod'][Stock::$start . 'a']['discount']) ?>" class="bi-tag-fill text-primary"> </span></td>
                                         <?php } elseif (json_decode(Stock::$arr_merge['prod'][Stock::$start . 'a']['discount'], 1) == 0) { ?>
-                                            <td class="sortleft"><span data-bs-toggle="tooltip" data-placement="left" data-html="true" data-original-title="<?php echo Settings::productSaleTooltip(Stock::$arr_merge['prod'][Stock::$start . 'a']['discount']) ?>" class="bi-tag-fills text-primary"> </span></td>
+                                            <td class="sortleft"><span data-bs-toggle="tooltip" data-bs-placement="left" data-bs-html="true" title="<?php echo Settings::productSaleTooltip(Stock::$arr_merge['prod'][Stock::$start . 'a']['discount']) ?>" class="bi-tag-fills text-primary"> </span></td>
                                         <?php } else { ?>
                                             <td class="sortleft-m"><span class="bi-tag-fill"></span></td>
                                         <?php } ?>

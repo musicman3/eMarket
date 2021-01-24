@@ -62,10 +62,10 @@ final class Ecb {
 
         if (Settings::path() == 'admin') {
             if ($discounts_data != [] && $input_price != $discounted_price && $count == 1) {
-                return '<span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="' . $discount_names . '" class="badge bg-' . $class . '">' . self::formatPrice($discounted_price, $marker) . '</span> <del>' . self::formatPrice($input_price, $marker) . '</del>';
+                return '<span data-bs-toggle="tooltip" data-bs-placement="left" data-bs-html="true" title="' . $discount_names . '" class="badge bg-' . $class . '">' . self::formatPrice($discounted_price, $marker) . '</span> <del>' . self::formatPrice($input_price, $marker) . '</del>';
             }
             if ($discounts_data != [] && $input_price != $discounted_price && $count > 1) {
-                return '<span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="' . lang('modules_discount_sale_admin_tooltip_warning') . $discount_names . '" class="badge bg-warning"><u>' . self::formatPrice($discounted_price, $marker) . '</u></span> <del>' . self::formatPrice($input_price, $marker) . '</del>';
+                return '<span data-bs-toggle="tooltip" data-bs-placement="left" data-bs-html="true" title="' . lang('modules_discount_sale_admin_tooltip_warning') . $discount_names . '" class="badge bg-warning"><u>' . self::formatPrice($discounted_price, $marker) . '</u></span> <del>' . self::formatPrice($input_price, $marker) . '</del>';
             }
             return self::formatPrice($input_price, $marker);
         }
