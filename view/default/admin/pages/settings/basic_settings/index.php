@@ -23,8 +23,8 @@ use \eMarket\Admin\BasicSettings;
         </div>
         <div class="modal-body">
             <ul class="nav nav-tabs">
-                <li class="active"><a data-bs-toggle="tab" href="#general"><?php echo lang('basic_settigs_general') ?></a></li>
-                <li><a data-bs-toggle="tab" href="#email"><?php echo lang('basic_settigs_email') ?></a></li>
+                <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#general"><?php echo lang('basic_settigs_general') ?></a></li>
+                <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#email"><?php echo lang('basic_settigs_email') ?></a></li>
             </ul>
 
             <div class="tab-content">
