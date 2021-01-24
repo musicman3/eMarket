@@ -78,7 +78,7 @@ use \eMarket\Core\{
                         <div class="mb-3">
                             <div class="input-group has-success">
                                 <span class="input-group-text"><span class="bi-pen"></span></span>
-                                <select name="symbol_position_currencies" id="symbol_position_currencies" class="input-sm form-control">
+                                <select name="symbol_position_currencies" id="symbol_position_currencies" class="form-select">
                                     <option value="right"><?php echo lang('symbol_right') ?></option>
                                     <option value="left" selected><?php echo lang('symbol_left') ?></option>
                                 </select>

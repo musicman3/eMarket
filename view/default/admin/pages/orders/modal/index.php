@@ -142,7 +142,7 @@ use \eMarket\Admin\Orders;
                                 <div class="input-group has-success" id="status_history"></div><br>
                                 <div class="input-group has-success">
                                     <span class="input-group-text"><span class="bi-pen"></span></span>
-                                    <select name="status_history_select" id="status_history_select" class="input-sm form-control">
+                                    <select name="status_history_select" id="status_history_select" class="form-select">
                                         <?php foreach (Orders::$order_status as $value) { ?>
                                             <option value="<?php echo $value['id'] ?>"><?php echo $value['name'] ?></option>
                                         <?php } ?>

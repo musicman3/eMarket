@@ -69,7 +69,7 @@ use \eMarket\Core\{
                         <div class="mb-3">
                             <div class="input-group has-success">
                                 <span class="input-group-text"><span class="bi-pen"></span></span>
-                                <select name="zones_id" id="zones_id" class="input-sm form-control"></select>
+                                <select name="zones_id" id="zones_id" class="form-select"></select>
                             </div>
                             <small class="form-text text-muted"><?php echo lang('taxes_modal_zones_desc') ?></small>
                         </div>

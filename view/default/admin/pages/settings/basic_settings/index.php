@@ -35,7 +35,7 @@ use \eMarket\Admin\BasicSettings;
                         <div class="mb-3">
                             <div class="col-sm-3 text-left"><label class=""><?php echo lang('basic_settings_primary_language') ?></label></div>
                             <div class="col-sm-9">
-                                <select name="primary_language" id="primary_language" class="input-sm form-control">
+                                <select name="primary_language" id="primary_language" class="form-select">
                                     <?php if (Lang::$count == 1) { ?>
                                         <option value="<?php echo BasicSettings::$primary_language ?>" selected><?php echo lang('language_name', BasicSettings::$primary_language) ?></option>
                                     <?php } else { ?>
@@ -64,7 +64,7 @@ use \eMarket\Admin\BasicSettings;
                         <div class="mb-3">
                             <div class="col-sm-3 text-left"><label class=""><?php echo lang('debug_info') ?></label></div>
                             <div class="col-sm-9">
-                                <select name="debug" id="debug" class="input-sm form-control">
+                                <select name="debug" id="debug" class="form-select">
                                     <?php if (BasicSettings::$debug == 1) { ?>
                                         <option selected><?php echo lang('debug_on') ?></option>
                                         <option><?php echo lang('debug_off') ?></option>
@@ -99,7 +99,7 @@ use \eMarket\Admin\BasicSettings;
                         <div class="mb-3">
                             <div class="col-sm-3 text-left"><label class=""><?php echo lang('basic_settings_smtp_use') ?></label></div>
                             <div class="col-sm-9">
-                                <select name="smtp_status" id="smtp_status" class="input-sm form-control">
+                                <select name="smtp_status" id="smtp_status" class="form-select">
                                     <?php if (BasicSettings::$smtp_status == 1) { ?>
                                         <option value="on" selected><?php echo lang('debug_on') ?></option>
                                         <option value="off"><?php echo lang('debug_off') ?></option>
@@ -114,7 +114,7 @@ use \eMarket\Admin\BasicSettings;
                         <div class="mb-3">
                             <div class="col-sm-3 text-left"><label class=""><?php echo lang('basic_settings_smtp_auth') ?></label></div>
                             <div class="col-sm-9">
-                                <select name="smtp_auth" id="smtp_auth" class="input-sm form-control">
+                                <select name="smtp_auth" id="smtp_auth" class="form-select">
                                     <?php if (BasicSettings::$smtp_auth == 1) { ?>
                                         <option selected><?php echo lang('debug_on') ?></option>
                                         <option><?php echo lang('debug_off') ?></option>
