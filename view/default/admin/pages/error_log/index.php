@@ -73,19 +73,19 @@ use \eMarket\Core\{
                                 if (isset(Pages::$table['line']) == TRUE) {
 
                                     if (strrpos(Pages::$table['line'], 'PHP Notice:') == TRUE) {
-                                        ?><tr class="success"><td colspan="2"><?php echo Pages::$table['line'] . '</td></tr>'; ?><?php
+                                        ?><tr class="table-success"><td colspan="2"><?php echo Pages::$table['line'] . '</td></tr>'; ?><?php
                                     } elseif
                                     (strrpos(Pages::$table['line'], 'PHP Warning:') == TRUE) {
-                                        ?><tr class="warning"><td colspan="2"><?php echo Pages::$table['line'] . '</td></tr>'; ?><?php
+                                        ?><tr class="table-warning"><td colspan="2"><?php echo Pages::$table['line'] . '</td></tr>'; ?><?php
                                             } elseif
                                             (strrpos(Pages::$table['line'], 'PHP Catchable fatal error:') == TRUE) {
-                                                ?><tr class="danger"><td colspan="2"><?php echo Pages::$table['line'] . '</td></tr>'; ?><?php
+                                                ?><tr class="table-danger"><td colspan="2"><?php echo Pages::$table['line'] . '</td></tr>'; ?><?php
                                             } elseif
                                             (strrpos(Pages::$table['line'], 'PHP Fatal error:') == TRUE) {
-                                                ?><tr class="danger"><td colspan="2"><?php echo Pages::$table['line'] . '</td></tr>'; ?><?php
+                                                ?><tr class="table-danger"><td colspan="2"><?php echo Pages::$table['line'] . '</td></tr>'; ?><?php
                                             } elseif
                                             (strrpos(Pages::$table['line'], 'PHP Parse error:') == TRUE) {
-                                                ?><tr class="info"><td colspan="2"><?php echo Pages::$table['line'] . '</td></tr>'; ?><?php } else {
+                                                ?><tr class="table-info"><td colspan="2"><?php echo Pages::$table['line'] . '</td></tr>'; ?><?php } else {
                                                 ?><tr><td colspan="2"><?php
                                                 echo Pages::$table['line'] . '</td></tr>';
                                             }
