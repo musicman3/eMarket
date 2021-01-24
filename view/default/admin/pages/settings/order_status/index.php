@@ -63,7 +63,7 @@ require_once('modal/index.php')
                             </th>
                         </tr>
                         <?php if (Pages::$count > 0) { ?>
-                            <tr class="border">
+                            <tr>
                                 <th class="sortleft-m"><div></div></th>
                                 <th><?php echo lang('order_status_name') ?></th>
                                 <th class="text-center"><?php echo lang('default') ?></th>

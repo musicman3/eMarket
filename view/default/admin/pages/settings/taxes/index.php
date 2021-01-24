@@ -67,7 +67,7 @@ require_once('modal/index.php')
                             </th>
                         </tr>
                         <?php if (Pages::$count > 0) { ?>
-                            <tr class="border">
+                            <tr>
                                 <th><?php echo lang('taxes_name') ?></th>
                                 <th class="text-center"><?php echo lang('taxes_rate') ?></th>
                                 <th class="text-center"><?php echo lang('taxes_fixed_desc') ?></th>

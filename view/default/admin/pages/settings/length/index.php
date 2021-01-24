@@ -62,7 +62,7 @@ require_once('modal/index.php')
                             </th>
                         </tr>
                         <?php if (Pages::$count > 0) { ?>
-                            <tr class="border">
+                            <tr>
                                 <th><?php echo lang('name_full') ?></th>
                                 <th class="text-center"><?php echo lang('name_little') ?></th>
                                 <th class="text-center"><?php echo lang('value') ?></th>

@@ -68,7 +68,7 @@ require_once('modal/index.php')
                             </th>
                         </tr>
                         <?php if (Pages::$count > 0) { ?>
-                            <tr class="border">
+                            <tr>
                                 <th> </th>
                                 <th><?php echo lang('country') ?></th>
                                 <th> </th>

@@ -72,7 +72,7 @@ use \eMarket\Core\{
                             </th>
                         </tr>
                         <?php if (Pages::$finish > 0) { ?>
-                            <tr class="border">
+                            <tr>
                                 <th><?php echo lang('customers_firstname') ?></th>
                                 <th class="text-center"><?php echo lang('customers_lastname') ?></th>
                                 <th class="text-center"><?php echo lang('customers_date_created') ?></th>

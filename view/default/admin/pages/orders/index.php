@@ -76,7 +76,7 @@ require_once('modal/index.php')
                             </th>
                         </tr>
                         <?php if (Pages::$count > 0) { ?>
-                            <tr class="border">
+                            <tr>
                                 <th><?php echo lang('orders_number') ?></th>
                                 <th class="text-center"><?php echo lang('orders_client') ?></th>
                                 <th class="text-center"><?php echo lang('orders_email') ?></th>

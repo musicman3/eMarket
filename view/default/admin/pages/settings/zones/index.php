@@ -67,7 +67,7 @@ require_once('modal/index.php')
                             </th>
                         </tr>
                         <?php if (Pages::$count > 0) { ?>
-                            <tr class="border">
+                            <tr>
                                 <th class="sortleft"></th>
                                 <th><?php echo lang('zone') ?></th>
                                 <th><?php echo lang('name_description') ?></th>

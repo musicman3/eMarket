@@ -67,7 +67,7 @@ require_once('modal/index.php')
                             </th>
                         </tr>
                         <?php if (Pages::$count > 0) { ?>
-                            <tr class="border">
+                            <tr>
                                 <th><?php echo lang('product_vendor_code') ?></th>
                                 <th class="text-center"><?php echo lang('name_description') ?></th>
                                 <th class="text-center"><?php echo lang('default') ?></th>
