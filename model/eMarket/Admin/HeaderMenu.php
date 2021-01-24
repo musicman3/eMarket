@@ -25,8 +25,9 @@ class HeaderMenu {
     public static $menu_marketing = '2';
     public static $menu_customers = '3';
     public static $menu_tools = '4';
-    public static $menu_help = '5';
-    public static $menu_exit = '6';
+    public static $menu_languages = '5';
+    public static $menu_help = '6';
+    public static $menu_exit = '7';
     public static $level = [];
     public static $menu = [];
     public static $submenu = [];
@@ -62,13 +63,14 @@ class HeaderMenu {
      *
      */
     public function levelOne() {
-        self::$level[self::$menu_market] = ['#', lang('menu_market'), 'true'];
-        self::$level[self::$menu_sales] = ['#', lang('menu_sellings'), 'true'];
-        self::$level[self::$menu_marketing] = ['#', lang('menu_marketing'), 'true'];
-        self::$level[self::$menu_customers] = ['#', lang('menu_customers'), 'true'];
-        self::$level[self::$menu_tools] = ['#', lang('menu_tools'), 'true'];
-        self::$level[self::$menu_help] = ['#', lang('menu_extra'), 'true'];
-        self::$level[self::$menu_exit] = ['?route=login&logout=ok', lang('menu_exit'), 'false'];
+        self::$level[self::$menu_market] = ['#', lang('menu_market'), 'true', 'bi-cart4'];
+        self::$level[self::$menu_sales] = ['#', lang('menu_sellings'), 'true', 'bi-calculator'];
+        self::$level[self::$menu_marketing] = ['#', lang('menu_marketing'), 'true', 'bi-graph-up'];
+        self::$level[self::$menu_customers] = ['#', lang('menu_customers'), 'true', 'bi-person-lines-fill'];
+        self::$level[self::$menu_tools] = ['#', lang('menu_tools'), 'true', 'bi-tools'];
+        self::$level[self::$menu_languages] = ['#', lang('menu_languages'), 'true', 'bi-spellcheck'];
+        self::$level[self::$menu_help] = ['#', lang('menu_extra'), 'true', 'bi-lightbulb-fill'];
+        self::$level[self::$menu_exit] = ['?route=login&logout=ok', lang('menu_exit'), 'false', 'bi-box-arrow-right'];
     }
 
     /**
@@ -105,23 +107,15 @@ class HeaderMenu {
      *
      */
     public function staticLevels() {
-        //HELP
-        self::$level[self::$menu_help] = ['#', lang('menu_extra'), 'true'];
-
-        //SUPPORT
-        self::$menu[self::$menu_help][0] = ['#', 'glyphicon glyphicon-equalizer', lang('menu_help'), '', 'true'];
-        self::$submenu[self::$menu_help][0][0] = ['http://emarketforum.com', 'glyphicon glyphicon-triangle-right', lang('menu_support'), 'target="_blank"'];
 
         //LANGUAGES
-        self::$menu[self::$menu_help][1] = ['#', 'glyphicon glyphicon-globe', lang('menu_languages'), '', 'true'];
-
         for ($lng = 0; $lng < count(lang('#lang_all')); $lng++) {
-            self::$submenu[self::$menu_help][1][$lng] = [Settings::langCurrencyPath() . '&language=' . lang('#lang_all')[$lng], 'glyphicon glyphicon-triangle-right', lang('language_name', lang('#lang_all')[$lng]), ''];
+            self::$menu[self::$menu_languages][$lng] = [Settings::langCurrencyPath() . '&language=' . lang('#lang_all')[$lng], 'bi-caret-right-fill', lang('language_name', lang('#lang_all')[$lng]), '', 'false'];
         }
-
-        self::$menu[self::$menu_help][2] = ['/', 'glyphicon glyphicon-home', lang('menu_catalog'), 'target="_blank"', 'false'];
-        //EXIT
-        self::$level[self::$menu_exit] = ['?route=login&logout=ok', lang('menu_exit'), 'false'];
+        
+        //HELP
+        self::$menu[self::$menu_help][0] = ['http://emarketforum.com', 'bi-chat-quote', lang('menu_support'), 'target="_blank"', 'false'];
+        self::$menu[self::$menu_help][1] = ['/', 'bi-bag', lang('menu_catalog'), 'target="_blank"', 'false'];
     }
 
 }
