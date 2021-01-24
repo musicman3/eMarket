@@ -30,7 +30,7 @@ use \eMarket\Admin\Login;
                 <input type="password" name="pass" class="input-sm form-control" placeholder="<?php echo lang('password') ?>">
             </div>
 
-            <input type="submit" class="btn btn-block btn-sm" value="<?php echo lang('entrance') ?>">
+            <input type="submit" class="btn w-100 btn-sm" value="<?php echo lang('entrance') ?>">
         </form>
     </div>
 </div>
