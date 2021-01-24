@@ -46,9 +46,7 @@ require_once('modal/add_values_attribute.php');
                         <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
                         <div class="input-group mb-3">
                             <input type="search" id="search" name="search" placeholder="<?php echo lang('search') ?>" class="form-control">
-                            <button type="submit" class="btn btn-primary">
-                                <span class="bi-search"></span>
-                            </button>
+                            <button type="submit" class="bi-search btn btn-primary"></button>
                         </div>
                     </form>
                 </div>
