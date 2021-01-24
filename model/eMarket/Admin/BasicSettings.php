@@ -66,7 +66,7 @@ class BasicSettings {
      * 
      */
     public static function menu() {
-        HeaderMenu::$menu[HeaderMenu::$menu_market][2] = ['?route=settings', 'glyphicon glyphicon-cog', lang('title_settings_index'), '', 'false'];
+        HeaderMenu::$menu[HeaderMenu::$menu_market][2] = ['?route=settings', 'bi-gear-fill', lang('title_settings_index'), '', 'false'];
     }
 
     /**

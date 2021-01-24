@@ -46,7 +46,7 @@ class Orders {
      * 
      */
     public static function menu() {
-        HeaderMenu::$menu[HeaderMenu::$menu_sales][] = ['?route=orders', 'glyphicon glyphicon-shopping-cart', lang('title_orders_index'), '', 'false'];
+        HeaderMenu::$menu[HeaderMenu::$menu_sales][] = ['?route=orders', 'bi-cart4', lang('title_orders_index'), '', 'false'];
     }
 
     /**

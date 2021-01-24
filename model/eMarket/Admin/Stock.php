@@ -79,7 +79,7 @@ class Stock {
      * 
      */
     public static function menu() {
-        HeaderMenu::$menu[HeaderMenu::$menu_market][0] = ['?route=stock', 'glyphicon glyphicon-barcode', lang('title_stock_index'), '', 'false'];
+        HeaderMenu::$menu[HeaderMenu::$menu_market][0] = ['?route=stock', 'bi-shop-window', lang('title_stock_index'), '', 'false'];
     }
 
     /**
