@@ -41,7 +41,7 @@ class DiscountSale {
         var output = {
             name: lang['modules_discount_sale_admin_button_sale'],
             icon: function () {
-                return 'context-menu-icon glyphicon-tag';
+                return 'context-menu-icon bi-tag';
             },
             disabled: function () {
                 if (discounts.length === 0 || $('div#ajax_data').data('jsondataproduct')['name'] === undefined && $('div#ajax_data').data('jsondatacategory')['name'] === undefined) {
@@ -83,14 +83,14 @@ class DiscountSale {
                                 AjaxSuccess);
                     },
                     icon: function () {
-                        return 'context-menu-icon glyphicon-star';
+                        return 'context-menu-icon bi-star-fill';
                     }
                 },
 
                 saleOff: {
                     name: lang['modules_discount_sale_admin_button_sale_off'],
                     icon: function () {
-                        return 'context-menu-icon glyphicon-star-empty';
+                        return 'context-menu-icon bi-star';
                     },
                     disabled: function () {
                         if ($('div#ajax_data').data('jsondataproduct')['name'] === undefined && $('div#ajax_data').data('jsondatacategory')['name'] === undefined) {
@@ -128,7 +128,7 @@ class DiscountSale {
                 saleOffAll: {
                     name: lang['modules_discount_sale_admin_button_sale_off_all'],
                     icon: function () {
-                        return 'context-menu-icon glyphicon-flash';
+                        return 'context-menu-icon bi-lightning-fill';
                     },
                     disabled: function () {
                         if ($('div#ajax_data').data('jsondataproduct')['name'] === undefined && $('div#ajax_data').data('jsondatacategory')['name'] === undefined) {

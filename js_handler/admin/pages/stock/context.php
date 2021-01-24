@@ -39,7 +39,7 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                 "add_product": {
                     name: lang['add_product'],
                     icon: function () {
-                        return 'context-menu-icon glyphicon-shopping-cart';
+                        return 'context-menu-icon bi-cart-plus';
                     },
                     disabled: function () {
                         let params = (new URL(document.location)).searchParams;
@@ -65,7 +65,7 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                 "add": {
                     name: lang['add_category'],
                     icon: function () {
-                        return 'context-menu-icon glyphicon-folder-open';
+                        return 'context-menu-icon bi-folder-plus';
                     },
                     disabled: function () {
                         let params = (new URL(document.location)).searchParams;
@@ -86,7 +86,7 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                 "edit": {
                     name: lang['button_edit'],
                     icon: function () {
-                        return 'context-menu-icon glyphicon-edit';
+                        return 'context-menu-icon bi-pencil-square';
                     },
                     disabled: function () {
                         if ($('div#ajax_data').data('jsondataproduct')['name'] === undefined && $('div#ajax_data').data('jsondatacategory')['name'] === undefined) {
@@ -171,7 +171,7 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                 "fold": {
                     "name": lang['button_action'],
                     icon: function () {
-                        return 'context-menu-icon glyphicon-hand-right';
+                        return 'context-menu-icon bi-box-arrow-in-right';
                     },
                     disabled: function () {
                         if ($('div#ajax_data').data('jsondataproduct')['name'] === undefined && $('div#ajax_data').data('jsondatacategory')['name'] === undefined && session === '0') {
@@ -183,7 +183,7 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                         "statusOn": {
                             name: lang['button_show'],
                             icon: function () {
-                                return 'context-menu-icon glyphicon-eye-open';
+                                return 'context-menu-icon bi-eye';
                             },
                             disabled: function () {
                                 if ($('div#ajax_data').data('jsondataproduct')['name'] === undefined && $('div#ajax_data').data('jsondatacategory')['name'] === undefined) {
@@ -209,7 +209,7 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                         "statusOff": {
                             name: lang['button_hide'],
                             icon: function () {
-                                return 'context-menu-icon glyphicon-eye-close';
+                                return 'context-menu-icon bi-eye-slash';
                             },
                             disabled: function () {
                                 if ($('div#ajax_data').data('jsondataproduct')['name'] === undefined && $('div#ajax_data').data('jsondatacategory')['name'] === undefined) {
@@ -238,7 +238,7 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                         "cut": {
                             name: lang['cut'],
                             icon: function () {
-                                return 'context-menu-icon glyphicon-scissors';
+                                return 'context-menu-icon bi-scissors';
                             },
                             disabled: function () {
                                 if ($('div#ajax_data').data('jsondataproduct')['name'] === undefined && $('div#ajax_data').data('jsondatacategory')['name'] === undefined) {
@@ -267,7 +267,7 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                         "paste": {
                             name: lang['paste'],
                             icon: function () {
-                                return 'context-menu-icon glyphicon-paste';
+                                return 'context-menu-icon bi-clipboard-check';
                             },
                             disabled: function () {
                                 let params = (new URL(document.location)).searchParams;
@@ -293,7 +293,7 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                         "delete": {
                             name: lang['button_delete'],
                             icon: function () {
-                                return 'context-menu-icon glyphicon-trash';
+                                return 'context-menu-icon bi-trash';
                             },
                             disabled: function () {
                                 if ($('div#ajax_data').data('jsondataproduct')['name'] === undefined && $('div#ajax_data').data('jsondatacategory')['name'] === undefined) {
@@ -331,7 +331,7 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                 "fold3": {
                     "name": lang['button_stiker'],
                     icon: function () {
-                        return 'context-menu-icon glyphicon-bookmark';
+                        return 'context-menu-icon bi-bookmark';
                     },
                     disabled: function () {
                         if (stiker === '0') {
@@ -354,7 +354,7 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                         'stikerOn': {
                             name: lang['button_stiker_add'],
                             icon: function () {
-                                return 'context-menu-icon glyphicon-plus';
+                                return 'context-menu-icon bi-bookmark-plus';
                             },
                             disabled: function () {
 
@@ -382,7 +382,7 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                         "stikerOff": {
                             name: lang['button_stiker_delete'],
                             icon: function () {
-                                return 'context-menu-icon glyphicon-trash';
+                                return 'context-menu-icon bi-bookmark-dash';
                             },
                             disabled: function () {
 
@@ -420,7 +420,7 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                 "quit": {
                     name: lang['menu_exit'],
                     icon: function () {
-                        return 'context-menu-icon glyphicon-remove';
+                        return 'context-menu-icon bi-box-arrow-right';
                     },
                     callback: function (itemKey, opt, rootMenu, originalEvent) {
                         opt.$menu.trigger("contextmenu:hide");
