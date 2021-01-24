@@ -8,7 +8,7 @@ use \eMarket\Admin\Orders;
 ?>
 
 <div id="index" class="products modal fade" tabindex="-1">
-    <div class="modal-dialog modal-md">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="title"></h5>

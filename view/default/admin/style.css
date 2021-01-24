@@ -24,7 +24,7 @@ body {background:#e4e4da;font-family: 'Open Sans';background-image:url('images/s
 #bs-navbar .dropdown-menu > li > a {color:#ffffff;}
 #bs-navbar .dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover {background:#505050;color:#ffffff;}
 
-@media (min-width:768px){.modal-md {width:750px;}}
+@media (min-width:768px){.modal-lg {width:750px;}}
 
 #dashboard .welcome {text-align: center;font-size: 40px;color: #c6c6c6;text-shadow: 0px 1px 1px #FFF;padding-top: 60px;}
 #dashboard .welcome_logo {padding-top: 30px;padding-bottom: 30px;font-size: 70px;}
