@@ -68,7 +68,7 @@ use \eMarket\Core\{
                         <!-- jQuery-File-Upload -->
                         <div class="mb-3">
                             <span class="btn btn-primary btn-sm fileinput-button">
-                                <span class="glyphicon glyphicon-picture"></span><span> <?php echo lang('button_add_image') ?></span>
+                                <span class="bi-image"></span><span> <?php echo lang('button_add_image') ?></span>
                                 <input class="input-sm form-control" id="fileupload" type="file" name="files[]" accept="image/jpeg,image/png,image/gif" multiple>
                             </span>
                             <?php echo lang('max') ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>
