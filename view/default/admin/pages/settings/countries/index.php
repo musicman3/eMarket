@@ -86,7 +86,7 @@ require_once('modal/index.php')
                                     <form>
                                         <input hidden name="route" value="settings/countries/regions">
                                         <input hidden name="country_id" value="<?php echo Pages::$table['line']['id'] ?>">
-                                        <button type="submit" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-cog"></span></button>
+                                        <button type="submit" class="btn btn-primary btn-sm"><span class="bi-gear-fill"></span></button>
                                     </form>
                                 </td>
                                 <td><?php echo Pages::$table['line']['name'] ?></td>

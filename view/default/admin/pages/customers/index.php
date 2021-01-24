@@ -29,7 +29,7 @@ use \eMarket\Core\{
                         <input type="search" id="search" name="search" placeholder="<?php echo lang('search') ?>" class="form-control">
                         <span class="input-group-btn">
                             <button type="submit" class="btn btn-primary">
-                                <span class="glyphicon glyphicon-search"></span>
+                                <span class="bi-search"></span>
                             </button>
                         </span>
                     </div>
@@ -93,7 +93,7 @@ use \eMarket\Core\{
                                         <form id="form_status<?php echo Pages::$table['line'][0] ?>" name="form_status" action="javascript:void(null);" onsubmit="Ajax.callAdd('form_status<?php echo Pages::$table['line'][0] ?>')" enctype="multipart/form-data">
                                             <input hidden name="status" value="<?php echo Pages::$table['line'][0] ?>">
                                             <div class="b-left">
-                                                <button type="submit" name="status_but" class="btn btn-primary btn-sm" data-placement="left" data-bs-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-status') ?>"><span class="glyphicon glyphicon-off"> </span></button>
+                                                <button type="submit" name="status_but" class="btn btn-primary btn-sm" data-placement="left" data-bs-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-status') ?>"><span class="bi-power"> </span></button>
                                             </div>
                                         </form>
                                         <form id="form_delete<?php echo Pages::$table['line'][0] ?>" name="form_delete" action="javascript:void(null);" onsubmit="Ajax.callDelete('<?php echo Pages::$table['line'][0] ?>')" enctype="multipart/form-data">

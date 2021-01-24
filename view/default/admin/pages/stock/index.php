@@ -48,7 +48,7 @@ require_once('modal/add_values_attribute.php');
                             <input type="search" id="search" name="search" placeholder="<?php echo lang('search') ?>" class="form-control">
                             <span class="input-group-btn">
                                 <button type="submit" class="btn btn-primary">
-                                    <span class="glyphicon glyphicon-search"></span>
+                                    <span class="bi-search"></span>
                                 </button>
                             </span>
                         </div>
@@ -108,7 +108,7 @@ require_once('modal/add_values_attribute.php');
                                         <form>
                                             <div>
                                                 <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
-                                                <button name="parent_up" value="<?php echo Stock::$parent_id ?>" class="btn btn-default btn-sm" title="" action="index.php" formmethod="get"><span class="glyphicon glyphicon-option-horizontal"></span></button>
+                                                <button name="parent_up" value="<?php echo Stock::$parent_id ?>" class="btn btn-primary btn-sm" title="" action="index.php" formmethod="get"><span class="bi-folder-symlink"></span></button>
                                             </div>
                                         </form>
 
@@ -126,7 +126,7 @@ require_once('modal/add_values_attribute.php');
                                     <tr class="<?php echo Settings::sortiesClass('info') ?> sort-list" unitid="<?php echo Stock::$arr_merge['cat'][Stock::$start]['id'] ?>">
 
                                         <?php if (!Valid::inGET('search')) { ?>
-                                            <td class="sortyes sortleft-m"><div><span class="glyphicon glyphicon-move"> </span></div></td>
+                                            <td class="sortyes sortleft-m"><div><span class="bi-arrows-move"> </span></div></td>
                                         <?php } else { ?>
                                             <td class="sortleft-m"></td>
                                             <?php
@@ -134,17 +134,17 @@ require_once('modal/add_values_attribute.php');
 
                                         if (isset($_SESSION['buffer']['cat']) == true && in_array(Stock::$arr_merge['cat'][Stock::$start]['id'], $_SESSION['buffer']['cat']) == true && Stock::$arr_merge['cat'][Stock::$start]['status'] == 1) {
                                             ?>    
-                                            <td class="sortleft"><div><a href="#" class="btn btn-primary btn-sm disabled"><span class="glyphicon glyphicon-folder-open"> </span></a></div></td>
+                                            <td class="sortleft"><div><a href="#" class="btn btn-primary btn-sm disabled"><span class="bi-folder2-open"> </span></a></div></td>
 
                                             <?php
                                         } elseif (isset($_SESSION['buffer']['cat']) == true && in_array(Stock::$arr_merge['cat'][Stock::$start]['id'], $_SESSION['buffer']['cat']) == true && Stock::$arr_merge['cat'][Stock::$start]['status'] == 0) {
                                             ?>    
-                                            <td class="sortleft"><div><a href="#" class="btn btn-default btn-sm disabled"><span class="glyphicon glyphicon-folder-open"> </span></a></div></td>
+                                            <td class="sortleft"><div><a href="#" class="btn btn-default btn-sm disabled"><span class="bi-folder2-open"> </span></a></div></td>
 
                                             <?php
                                         } elseif (Stock::$transfer == Settings::linesOnPage() + 1) {
                                             ?>    
-                                            <td class="sortleft"><div><a href="#" class="btn btn-primary btn-sm disabled"><span class="glyphicon glyphicon-transfer"> </span></a></div></td>
+                                            <td class="sortleft"><div><a href="#" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-left-right"> </span></a></div></td>
 
                                             <?php
                                         } elseif (Stock::$arr_merge['cat'][Stock::$start]['status'] == 0) {
@@ -154,7 +154,7 @@ require_once('modal/add_values_attribute.php');
                                                 <form>
                                                     <div>
                                                         <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
-                                                        <button name="parent_down" value="<?php echo Stock::$arr_merge['cat'][Stock::$start]['id'] ?>" class="btn btn-default btn-sm" title="<?php echo Stock::$arr_merge['cat'][Stock::$start]['name'] ?>" action="index.php" formmethod="get"><span class="glyphicon glyphicon-folder-open"> </span></button>
+                                                        <button name="parent_down" value="<?php echo Stock::$arr_merge['cat'][Stock::$start]['id'] ?>" class="btn btn-default btn-sm" title="<?php echo Stock::$arr_merge['cat'][Stock::$start]['name'] ?>" action="index.php" formmethod="get"><span class="bi-folder2-open"> </span></button>
                                                     </div>
                                                 </form>
 
@@ -168,7 +168,7 @@ require_once('modal/add_values_attribute.php');
                                                 <form>
                                                     <div>
                                                         <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
-                                                        <button name="parent_down" value="<?php echo Stock::$arr_merge['cat'][Stock::$start]['id'] ?>" class="btn btn-primary btn-sm" title="<?php echo Stock::$arr_merge['cat'][Stock::$start]['name'] ?>" action="index.php" formmethod="get"><span class="glyphicon glyphicon-folder-open"> </span></button>
+                                                        <button name="parent_down" value="<?php echo Stock::$arr_merge['cat'][Stock::$start]['id'] ?>" class="btn btn-primary btn-sm" title="<?php echo Stock::$arr_merge['cat'][Stock::$start]['name'] ?>" action="index.php" formmethod="get"><span class="bi-folder2-open"> </span></button>
                                                     </div>
                                                 </form>
 
@@ -197,19 +197,19 @@ require_once('modal/add_values_attribute.php');
 
                                         <?php if (isset($_SESSION['buffer']['prod']) == true && in_array(Stock::$arr_merge['prod'][Stock::$start . 'a']['id'], $_SESSION['buffer']['prod']) == true && Stock::$arr_merge['prod'][Stock::$start . 'a']['status'] == 1) { ?>
                                             <td class="sortleft-m"></td>    
-                                            <td class="sortleft"><div><a href="#" class="btn btn-success btn-sm disabled"><span class="glyphicon glyphicon-shopping-cart"> </span></a></div></td>
+                                            <td class="sortleft"><div><a href="#" class="btn btn-success btn-sm disabled"><span class="bi-cart-check-fill"> </span></a></div></td>
 
                                         <?php } elseif (isset($_SESSION['buffer']['prod']) == true && in_array(Stock::$arr_merge['prod'][Stock::$start . 'a']['id'], $_SESSION['buffer']['prod']) == true && Stock::$arr_merge['prod'][Stock::$start . 'a']['status'] == 0) { ?>
                                             <td class="sortleft-m"></td>    
-                                            <td class="sortleft"><div><a href="#" class="btn btn-default btn-sm disabled"><span class="glyphicon glyphicon-shopping-cart"> </span></a></div></td>
+                                            <td class="sortleft"><div><a href="#" class="btn btn-default btn-sm disabled"><span class="bi-cart-check-fill"> </span></a></div></td>
 
                                         <?php } elseif (Stock::$arr_merge['prod'][Stock::$start . 'a']['status'] == 0) { ?>
                                             <td class="sortleft-m"></td>    
-                                            <td class="sortleft"><div><a href="#" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-shopping-cart"> </span></a></div></td>
+                                            <td class="sortleft"><div><a href="#" class="btn btn-default btn-sm"><span class="bi-cart-check-fill"> </span></a></div></td>
                                         <?php } else { ?>
 
                                             <td class="sortleft-m"></td>
-                                            <td class="sortleft"><div><a href="#" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-shopping-cart"> </span></a></div></td>
+                                            <td class="sortleft"><div><a href="#" class="btn btn-success btn-sm"><span class="bi-cart-check-fill"> </span></a></div></td>
 
                                         <?php } ?>
                                         <td class="context-one option" id="product_<?php echo Stock::$arr_merge['prod'][Stock::$start . 'a']['id'] ?>"><span class="inactive" style="display: none;"></span>
@@ -218,15 +218,15 @@ require_once('modal/add_values_attribute.php');
                                         </td>
 
                                         <?php if (json_decode(Stock::$arr_merge['prod'][Stock::$start . 'a']['discount'], 1)) { ?>
-                                            <td class="sortleft"><span data-bs-toggle="tooltip" data-placement="left" data-html="true" data-original-title="<?php echo Settings::productSaleTooltip(Stock::$arr_merge['prod'][Stock::$start . 'a']['discount']) ?>" class="glyphicon glyphicon-tag text-primary"> </span></td>
+                                            <td class="sortleft"><span data-bs-toggle="tooltip" data-placement="left" data-html="true" data-original-title="<?php echo Settings::productSaleTooltip(Stock::$arr_merge['prod'][Stock::$start . 'a']['discount']) ?>" class="bi-tag-fill text-primary"> </span></td>
                                         <?php } elseif (json_decode(Stock::$arr_merge['prod'][Stock::$start . 'a']['discount'], 1) == 0) { ?>
-                                            <td class="sortleft"><span data-bs-toggle="tooltip" data-placement="left" data-html="true" data-original-title="<?php echo Settings::productSaleTooltip(Stock::$arr_merge['prod'][Stock::$start . 'a']['discount']) ?>" class="glyphicon glyphicon-tags text-primary"> </span></td>
+                                            <td class="sortleft"><span data-bs-toggle="tooltip" data-placement="left" data-html="true" data-original-title="<?php echo Settings::productSaleTooltip(Stock::$arr_merge['prod'][Stock::$start . 'a']['discount']) ?>" class="bi-tag-fills text-primary"> </span></td>
                                         <?php } else { ?>
-                                            <td class="sortleft-m"><span class="glyphicon glyphicon-tag"></span></td>
+                                            <td class="sortleft-m"><span class="bi-tag-fill"></span></td>
                                         <?php } ?>
 
                                         <?php if (Stock::$arr_merge['prod'][Stock::$start . 'a']['stiker'] != '' && Stock::$arr_merge['prod'][Stock::$start . 'a']['stiker'] != NULL) { ?>
-                                            <td class="sortleft"><span class="label label-success"><?php echo Stikers::$stiker_name[Stock::$arr_merge['prod'][Stock::$start . 'a']['stiker']] ?></span></td>
+                                            <td class="sortleft"><span class="badge bg-success"><?php echo Stikers::$stiker_name[Stock::$arr_merge['prod'][Stock::$start . 'a']['stiker']] ?></span></td>
                                         <?php } else { ?>
                                             <td class="sortleft-m"></td>
                                         <?php } ?>

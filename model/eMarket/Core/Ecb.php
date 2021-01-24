@@ -62,17 +62,17 @@ final class Ecb {
 
         if (Settings::path() == 'admin') {
             if ($discounts_data != [] && $input_price != $discounted_price && $count == 1) {
-                return '<span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="' . $discount_names . '" class="label label-' . $class . '">' . self::formatPrice($discounted_price, $marker) . '</span> <del>' . self::formatPrice($input_price, $marker) . '</del>';
+                return '<span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="' . $discount_names . '" class="badge bg-' . $class . '">' . self::formatPrice($discounted_price, $marker) . '</span> <del>' . self::formatPrice($input_price, $marker) . '</del>';
             }
             if ($discounts_data != [] && $input_price != $discounted_price && $count > 1) {
-                return '<span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="' . lang('modules_discount_sale_admin_tooltip_warning') . $discount_names . '" class="label label-warning"><u>' . self::formatPrice($discounted_price, $marker) . '</u></span> <del>' . self::formatPrice($input_price, $marker) . '</del>';
+                return '<span data-toggle="tooltip" data-placement="left" data-html="true" data-original-title="' . lang('modules_discount_sale_admin_tooltip_warning') . $discount_names . '" class="badge bg-warning"><u>' . self::formatPrice($discounted_price, $marker) . '</u></span> <del>' . self::formatPrice($input_price, $marker) . '</del>';
             }
             return self::formatPrice($input_price, $marker);
         }
 
         if (Settings::path() == 'catalog') {
             if ($discounts_data != [] && $input_price != $discounted_price) {
-                return '<del>' . self::formatPrice($input_price * $quantity, $marker) . '</del><br><span class="label label-' . $class . '">' . self::formatPrice($discounted_price * $quantity, $marker) . '</span>';
+                return '<del>' . self::formatPrice($input_price * $quantity, $marker) . '</del><br><span class="badge bg-' . $class . '">' . self::formatPrice($discounted_price * $quantity, $marker) . '</span>';
             }
             return self::formatPrice($input_price * $quantity, $marker);
         }

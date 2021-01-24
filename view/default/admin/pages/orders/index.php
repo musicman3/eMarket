@@ -33,7 +33,7 @@ require_once('modal/index.php')
                         <input type="search" id="search" name="search" placeholder="<?php echo lang('search') ?>" class="form-control">
                         <span class="input-group-btn">
                             <button type="submit" class="btn btn-primary">
-                                <span class="glyphicon glyphicon-search"></span>
+                                <span class="bi-search"></span>
                             </button>
                         </span>
                     </div>
