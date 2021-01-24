@@ -80,7 +80,7 @@ require_once('modal/index.php')
                         for (Pages::$start, ZonesListing::$count = 0; Pages::$start < Pages::$finish; Pages::$start++, Pages::lineUpdate()) {
                             ?>
                             <tr>
-                                <td class="sortleft"><span data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="right" title="<?php echo ZonesListing::$text_arr[ZonesListing::$count] ?>" class="btn btn-primary btn-sm glyphicon glyphicon-eye-open"></span></td>
+                                <td class="sortleft"><span data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="right" title="<?php echo ZonesListing::$text_arr[ZonesListing::$count] ?>" class="btn btn-primary btn-sm bi-eye-fill"></span></td>
                                 <td><?php echo Func::filterArrayToKey(ZonesListing::$countries_multiselect_temp, 0, Pages::$table['line'][0], 1)[0] ?></td>
                                 <td> </td>
                             </tr>

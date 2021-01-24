@@ -52,7 +52,7 @@ class Stikers {
      * 
      */
     public static function menu() {
-        HeaderMenu::$menu[HeaderMenu::$menu_marketing][] = ['?route=stikers', 'glyphicon glyphicon-bookmark', lang('title_stikers_index'), '', 'false'];
+        HeaderMenu::$menu[HeaderMenu::$menu_marketing][] = ['?route=stikers', 'bi-bookmark-star-fill', lang('title_stikers_index'), '', 'false'];
     }
 
     /**

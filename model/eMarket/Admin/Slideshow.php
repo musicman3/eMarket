@@ -71,7 +71,7 @@ class Slideshow {
      * 
      */
     public static function menu() {
-        HeaderMenu::$menu[HeaderMenu::$menu_marketing][] = ['?route=slideshow', 'glyphicon glyphicon-film', lang('title_slideshow_index'), '', 'false'];
+        HeaderMenu::$menu[HeaderMenu::$menu_marketing][] = ['?route=slideshow', 'bi-film', lang('title_slideshow_index'), '', 'false'];
     }
 
     /**
