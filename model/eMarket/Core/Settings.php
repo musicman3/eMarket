@@ -487,7 +487,7 @@ class Settings {
      * @param string $class_2 Bootstrap class
      * @return string
      */
-    public static function statusSwitchClass($status, $argument_1 = null, $argument_2 = null, $class = '', $class_2 = 'danger') {
+    public static function statusSwitchClass($status, $argument_1 = null, $argument_2 = null, $class = '', $class_2 = 'table-danger') {
 
         if ($argument_1 == null) {
             $arg_1 = null;
