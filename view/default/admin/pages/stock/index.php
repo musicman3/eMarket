@@ -44,13 +44,11 @@ require_once('modal/add_values_attribute.php');
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 offset-0">
                     <form>
                         <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
-                        <div class="input-group">
+                        <div class="input-group mb-3">
                             <input type="search" id="search" name="search" placeholder="<?php echo lang('search') ?>" class="form-control">
-                            <span class="input-group-btn">
-                                <button type="submit" class="btn btn-primary">
-                                    <span class="bi-search"></span>
-                                </button>
-                            </span>
+                            <button type="submit" class="btn btn-primary">
+                                <span class="bi-search"></span>
+                            </button>
                         </div>
                     </form>
                 </div>

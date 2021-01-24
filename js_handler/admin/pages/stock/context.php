@@ -434,7 +434,7 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
         setTimeout(function () {
             $('#ajax').replaceWith($(data).find('#ajax'));
             Mouse.sortInitAll();
-            $('[data-toggle="tooltip"]').tooltip();
+            $('[data-bs-toggle="tooltip"]').tooltip();
         }, 100);
     }
 </script>

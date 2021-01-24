@@ -27,11 +27,9 @@ use \eMarket\Core\{
                     <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
                     <div class="input-group">
                         <input type="search" id="search" name="search" placeholder="<?php echo lang('search') ?>" class="form-control">
-                        <span class="input-group-btn">
-                            <button type="submit" class="btn btn-primary">
-                                <span class="bi-search"></span>
-                            </button>
-                        </span>
+                        <button type="submit" class="btn btn-primary">
+                            <span class="bi-search"></span>
+                        </button>
                     </div>
                 </form>
             </div>
