@@ -13,10 +13,10 @@ use \eMarket\Core\{
 ?>
 
 <div id="customers">
-    <div class="panel panel-default">
-        <div class="panel-heading">
+    <div class="card">
+        <div class="card-header">
             <div id="alert_block"><?php Messages::alert(); ?></div>
-            <h3 class="panel-title">
+            <h3 class="card-title">
                 <?php echo Settings::titlePageGenerator() ?>
             </h3>
         </div>

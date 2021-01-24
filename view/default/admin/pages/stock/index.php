@@ -25,13 +25,13 @@ require_once('modal/add_values_attribute.php');
 ?>
 
 <div id="stock">
-    <div class="panel panel-default">
+    <div class="card">
 
-        <div class="panel-heading">
+        <div class="card-header">
 
             <div id="alert_block"><?php Messages::alert(); ?></div>
 
-            <h3 class="panel-title">
+            <h3 class="card-title">
                 <?php echo Settings::titlePageGenerator() ?>
             </h3>
         </div>

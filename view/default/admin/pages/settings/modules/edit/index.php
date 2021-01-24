@@ -14,11 +14,11 @@ use \eMarket\Admin\ModulesEdit;
 ?>
 
 <div id="settings_modules_edit">
-    <div class="panel panel-default shadow-element">
+    <div class="card shadow-element">
 
-        <div class="panel-heading">
+        <div class="card-header">
             <div id="alert_block"><?php Messages::alert(); ?></div>
-            <h3 class="panel-title">
+            <h3 class="card-title">
                 <span class="settings_back"><button type="button" onClick='location.href = "<?php echo Settings::parentPartitionGenerator() ?>"' class="btn btn-primary btn-sm"><span class="bi-reply"></span></button></span><span class="settings_name"><?php echo Settings::titlePageGenerator() ?></span>
             </h3>
         </div>

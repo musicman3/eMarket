@@ -6,9 +6,9 @@
 ?>
 
 <div id="settings">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">
                 <?php echo lang('title_settings_index') ?>
             </h3>
         </div>
