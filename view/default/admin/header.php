@@ -34,7 +34,7 @@ if (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
                             <a href="<?php echo HeaderMenu::$level[$i][0] ?>" class="nav-link<?php echo HeaderMenu::getParameters()[0] ?>" <?php echo HeaderMenu::getParameters()[1] ?>><?php echo HeaderMenu::$level[$i][1] ?></a>
                             <?php if (isset(HeaderMenu::$menu[$i])) { ?>
                                 <!-- Level 2 -->
-                                <ul class="dropdown-menu">
+                                <ul class="dropdown-menu dropdown-menu-dark">
                                     <?php
                                     for ($x = 0; $x < count(HeaderMenu::$menu[$i]); $x++) {
                                         HeaderMenu::clearParameters(HeaderMenu::$menu[$i][$x][4]);
@@ -44,7 +44,7 @@ if (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
 
                                             <?php if (isset(HeaderMenu::$submenu[$i][$x])) { ?>
                                                 <!-- Level 3 -->
-                                                <ul class="dropdown-menu link">
+                                                <ul class="dropdown-menu dropdown-menu-dark dropend">
                                                     <?php
                                                     for ($y = 0; $y < count(HeaderMenu::$submenu[$i][$x]); $y++) {
                                                         ?>
