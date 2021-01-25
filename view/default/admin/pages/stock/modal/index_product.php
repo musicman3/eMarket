@@ -57,14 +57,14 @@ use \eMarket\Admin\Stock;
                                         <textarea rows="3" class="input-sm form-control summernote_add" name="description_product_stock_0" id="description_product_stock_0" /></textarea>
                                     </div>
                                     <div class="row">
-                                        <div class="col-sm-6">
+                                        <div class="col-md-6">
                                             <div><small class="form-text text-muted"><?php echo lang('stock_product_keywords') ?></small></div>
                                             <div class="input-group has-success">
                                                 <span class="input-group-text"><span class="bi-file-text"></span></span>
                                                 <input class="input-sm form-control" placeholder="Keywords" type="text" name="keyword_product_stock_0" id="keyword_product_stock_0" />
                                             </div>
                                         </div>
-                                        <div class="col-sm-6">
+                                        <div class="col-md-6">
                                             <div><small class="form-text text-muted"><?php echo lang('stock_product_tags') ?></small></div>
                                             <div class="input-group has-success">
                                                 <span class="input-group-text"><span class="bi-file-text"></span></span>
@@ -92,14 +92,14 @@ use \eMarket\Admin\Stock;
                                                 <textarea rows="3" class="input-sm form-control summernote_add" name="description_product_stock_<?php echo $x ?>" id="description_product_stock_<?php echo $x ?>" /></textarea>
                                             </div>
                                             <div class="row">
-                                                <div class="col-sm-6">
+                                                <div class="col-md-6">
                                                     <div><small class="form-text text-muted"><?php echo lang('stock_product_keywords') ?></small></div>
                                                     <div class="input-group has-success">
                                                         <span class="input-group-text"><span class="bi-file-text"></span></span>
                                                         <input class="input-sm form-control" placeholder="Keywords" type="text" name="keyword_product_stock_<?php echo $x ?>" id="keyword_product_stock_<?php echo $x ?>" />
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-6">
+                                                <div class="col-md-6">
                                                     <div><small class="form-text text-muted"><?php echo lang('stock_product_tags') ?></small></div>
                                                     <div class="input-group has-success">
                                                         <span class="input-group-text"><span class="bi-file-text"></span></span>
@@ -119,14 +119,14 @@ use \eMarket\Admin\Stock;
 
                         <div id="panel_add_product_2" class="tab-pane fade">
                             <div class="row">
-                                <div class="col-sm-6 mb-3">
+                                <div class="col-md-6 mb-3">
                                     <div><small class="form-text text-muted"><?php echo lang('stock_product_price') ?></small></div>
                                     <div class="input-group has-error">
                                         <span class="input-group-text"><span class="glyphicon glyphicon-sort-by-order"></span></span>
                                         <input class="input-sm form-control" placeholder="0.00" type="text" name="price_product_stock" id="price_product_stock" required />
                                     </div>
                                 </div>
-                                <div class="col-sm-6 mb-3">
+                                <div class="col-md-6 mb-3">
                                     <div><small class="form-text text-muted"><?php echo lang('stock_product_currency') ?></small></div>
                                     <div class="input-group has-error">
                                         <span class="input-group-text"><span class="glyphicon glyphicon-euro"></span></span>
@@ -139,14 +139,14 @@ use \eMarket\Admin\Stock;
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-6 mb-3">
+                                <div class="col-md-6 mb-3">
                                     <div><small class="form-text text-muted"><?php echo lang('stock_product_quantity_in_stock') ?></small></div>
                                     <div class="input-group has-error">
                                         <span class="input-group-text"><span class="glyphicon glyphicon-sort-by-order"></span></span>
                                         <input class="input-sm form-control" placeholder="1" type="text" name="quantity_product_stock" id="quantity_product_stock" required />
                                     </div>
                                 </div>
-                                <div class="col-sm-6 mb-3">
+                                <div class="col-md-6 mb-3">
                                     <div><small class="form-text text-muted"><?php echo lang('stock_product_quantity_unit') ?></small></div>
                                     <div class="input-group has-error">
                                         <span class="input-group-text"><span class="glyphicon glyphicon-flag"></span></span>
@@ -159,14 +159,14 @@ use \eMarket\Admin\Stock;
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-6 mb-3">
+                                <div class="col-md-6 mb-3">
                                     <div><small class="form-text text-muted"><?php echo lang('stock_product_model') ?></small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-text"><span class="bi-file-text"></span></span>
                                         <input class="input-sm form-control" placeholder="ABC123" type="text" name="model_product_stock" id="model_product_stock" />
                                     </div>
                                 </div>
-                                <div class="col-sm-6 mb-3">
+                                <div class="col-md-6 mb-3">
                                     <div><small class="form-text text-muted"><?php echo lang('stock_product_manufacturer') ?></small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-text"><span class="glyphicon glyphicon-object-align-bottom"></span></span>
@@ -179,14 +179,14 @@ use \eMarket\Admin\Stock;
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-6 mb-3">
+                                <div class="col-md-6 mb-3">
                                     <div><small class="form-text text-muted"><?php echo lang('stock_product_receipt_date') ?></small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-text"><span class="glyphicon glyphicon-calendar"></span></span>
                                         <input class="input-sm form-control" placeholder="<?php echo lang('stock_product_receipt_date') ?>" type="text" name="date_available_product_stock" id="date_available_product_stock" autocomplete="off" />
                                     </div>
                                 </div>
-                                <div class="col-sm-6 mb-3">
+                                <div class="col-md-6 mb-3">
                                     <div><small class="form-text text-muted"><?php echo lang('stock_product_tax') ?></small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-text"><span class="glyphicon glyphicon-briefcase"></span></span>
@@ -204,14 +204,14 @@ use \eMarket\Admin\Stock;
 
                         <div id="panel_add_product_3" class="tab-pane fade">
                             <div class="row">
-                                <div class="col-sm-6 mb-3">
+                                <div class="col-md-6 mb-3">
                                     <div><small class="form-text text-muted"><?php echo lang('stock_product_vendor_code_value') ?></small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-text"><span class="bi-file-text"></span></span>
                                         <input class="input-sm form-control" placeholder="ABC123" type="text" name="vendor_code_value_product_stock" id="vendor_code_value_product_stock" />
                                     </div>
                                 </div>
-                                <div class="col-sm-6 mb-3">
+                                <div class="col-md-6 mb-3">
                                     <div><small class="form-text text-muted"><?php echo lang('stock_product_vendor_code') ?></small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-text"><span class="glyphicon glyphicon-tag"></span></span>
@@ -224,14 +224,14 @@ use \eMarket\Admin\Stock;
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-6 mb-3">
+                                <div class="col-md-6 mb-3">
                                     <div><small class="form-text text-muted"><?php echo lang('stock_product_weight_value') ?></small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-text"><span class="glyphicon glyphicon-sort-by-order"></span></span>
                                         <input class="input-sm form-control" placeholder="0.00" type="text" name="weight_value_product_stock" id="weight_value_product_stock" />
                                     </div>
                                 </div>
-                                <div class="col-sm-6 mb-3">
+                                <div class="col-md-6 mb-3">
                                     <div><small class="form-text text-muted"><?php echo lang('stock_product_weight') ?></small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-text"><span class="glyphicon glyphicon-scale"></span></span>
@@ -244,14 +244,14 @@ use \eMarket\Admin\Stock;
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-6 mb-3">
+                                <div class="col-md-6 mb-3">
                                     <div><small class="form-text text-muted"><?php echo lang('stock_product_minimum_order_quantity') ?></small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-text"><span class="glyphicon glyphicon-sort-by-order"></span></span>
                                         <input class="input-sm form-control" placeholder="1" type="text" name="min_quantity_product_stock" id="min_quantity_product_stock" />
                                     </div>
                                 </div>
-                                <div class="col-sm-6 mb-3">
+                                <div class="col-md-6 mb-3">
                                     <div><small class="form-text text-muted"><?php echo lang('stock_product_length_unit') ?></small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-text"><span class="glyphicon glyphicon-road"></span></span>
@@ -264,21 +264,21 @@ use \eMarket\Admin\Stock;
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-4 mb-3">
+                                <div class="col-md-4 mb-3">
                                     <div><small class="form-text text-muted"><?php echo lang('stock_product_length_value') ?></small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-text"><span class="glyphicon glyphicon-sort-by-order"></span></span>
                                         <input class="input-sm form-control" placeholder="0.00" type="text" name="value_length_product_stock" id="value_length_product_stock" />
                                     </div>
                                 </div>
-                                <div class="col-sm-4 mb-3">
+                                <div class="col-md-4 mb-3">
                                     <div><small class="form-text text-muted"><?php echo lang('stock_product_width_value') ?></small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-text"><span class="glyphicon glyphicon-sort-by-order"></span></span>
                                         <input class="input-sm form-control" placeholder="0.00" type="text" name="value_width_product_stock" id="value_width_product_stock" />
                                     </div>
                                 </div>
-                                <div class="col-sm-4 mb-3">
+                                <div class="col-md-4 mb-3">
                                     <div><small class="form-text text-muted"><?php echo lang('stock_product_height_value') ?></small></div>
                                     <div class="input-group has-success">
                                         <span class="input-group-text"><span class="glyphicon glyphicon-sort-by-order"></span></span>

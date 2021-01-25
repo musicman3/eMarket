@@ -132,7 +132,7 @@ use \eMarket\Admin\Orders;
                         </div>
 
                         <div id="panel_3" class="tab-pane fade">
-                            <div class="col-sm-6 mb-3">
+                            <div class="col-md-6 mb-3">
 
                             </div>
                         </div>
