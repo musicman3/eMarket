@@ -175,6 +175,11 @@ site = Сайт
 ;ORDER STATUS
 order_status_name = Статус заказа
 
+;WEIGHT
+weight_name_little = Сокращенное наименование
+weight_name_full = Полное наименование
+weight_value = Значение
+
 ;CURRENCIES
 currencies_currency_symbol = Символ валюты
 currencies_decimal_places = Количество десятичных знаков

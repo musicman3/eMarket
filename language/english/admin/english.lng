@@ -175,6 +175,11 @@ site = Site
 ;ORDER STATUS
 order_status_name = Order status
 
+;WEIGHT
+weight_name_little = Little name
+weight_name_full = Full name
+weight_value = Value
+
 ;CURRENCIES
 currencies_currency_symbol = Currency symbol
 currencies_decimal_places = Decimal places
