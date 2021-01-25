@@ -8,7 +8,7 @@
 <div id="confirm" class="modal fade" tabindex="-1">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
-            <div class="modal-header"><div class="pull-right">&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
+            <div class="modal-header"><div class="float-end">&nbsp;&nbsp;<button class="close" type="button" data-dismiss="modal">×</button></div>
                 <h4 id="confirm_title" class="modal-title"></h4>
             </div>
             <div id="confirm_body" class="modal-body"></div>
