@@ -48,8 +48,8 @@ use \eMarket\Admin\Slideshow;
                         </div>
                         <div class="col-md-6 slide-color">
                             <div class="input-group">
-                                <input type="color" name="color" id="color" value="#ffffff" />
                                 <label for="color"> <?php echo lang('slides_text_color') ?></label>
+                                <input type="color" class="form-control form-control-color" name="color" id="color" value="#ffffff" />
                             </div>
                         </div>
                     </div>
