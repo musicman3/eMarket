@@ -27,14 +27,14 @@ use \eMarket\Core\{
                         <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade show in active">
                             <div class="mb-2">
                                 <small class="form-text text-muted"><?php echo lang('currencies_name_full') ?></small>
-                                <div class="input-group">
+                                <div class="input-group input-group-sm">
                                     <span class="input-group-text"><span class="bi-file-text"></span></span>
                                     <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_currencies_0" id="name_currencies_0" required />
                                 </div>
                             </div>
                             <div class="mb-2">
                                 <small class="form-text text-muted"><?php echo lang('currencies_name_little') ?></small>
-                                <div class="input-group">
+                                <div class="input-group input-group-sm">
                                     <span class="input-group-text"><span class="bi-file-text"></span></span>
                                     <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="code_currencies_0" id="code_currencies_0" required />
                                 </div>
@@ -49,14 +49,14 @@ use \eMarket\Core\{
                                 <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">
                                     <div class="mb-2">
                                         <small class="form-text text-muted"><?php echo lang('currencies_name_full') ?></small>
-                                        <div class="input-group">
+                                        <div class="input-group input-group-sm">
                                             <span class="input-group-text"><span class="bi-file-text"></span></span>
                                             <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_currencies_<?php echo $x ?>" id="name_currencies_<?php echo $x ?>" required />
                                         </div>
                                     </div>
                                     <div class="mb-2">
                                         <small class="form-text text-muted"><?php echo lang('currencies_name_little') ?></small>
-                                        <div class="input-group">
+                                        <div class="input-group input-group-sm">
                                             <span class="input-group-text"><span class="bi-file-text"></span></span>
                                             <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="code_currencies_<?php echo $x ?>" id="code_currencies_<?php echo $x ?>" required />
                                         </div>
@@ -69,21 +69,21 @@ use \eMarket\Core\{
                         ?>
                         <div class="mb-2">
                             <small class="form-text text-muted"><?php echo lang('currencies_iso_4217') ?></small>
-                            <div class="input-group">
+                            <div class="input-group input-group-sm">
                                 <span class="input-group-text"><span class="bi-file-text"></span></span>
                                 <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" pattern="[A-Za-z]{3}" name="iso_4217_currencies" id="iso_4217_currencies" required />
                             </div>
                         </div>
                         <div class="mb-2">
                             <small class="form-text text-muted"><?php echo lang('currencies_currency_symbol') ?></small>
-                            <div class="input-group">
+                            <div class="input-group input-group-sm">
                                 <span class="input-group-text"><span class="bi-file-text"></span></span>
                                 <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="symbol_currencies" id="symbol_currencies" />
                             </div>
                         </div>
                         <div class="mb-2">
                             <small class="form-text text-muted"><?php echo lang('currencies_position') ?></small>
-                            <div class="input-group">
+                            <div class="input-group input-group-sm">
                                 <span class="input-group-text"><span class="bi-arrow-down-up"></span></span>
                                 <select name="symbol_position_currencies" id="symbol_position_currencies" class="form-select">
                                     <option value="right"><?php echo lang('currencies_symbol_right') ?></option>
@@ -93,14 +93,14 @@ use \eMarket\Core\{
                         </div>
                         <div class="mb-2">
                             <small class="form-text text-muted"><?php echo lang('currencies_decimal_places') ?></small>
-                            <div class="input-group">
+                            <div class="input-group input-group-sm">
                                 <span class="input-group-text"><span class="bi-calculator"></span></span>
                                 <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" pattern="[0-9]{0,1}" name="decimal_places_currencies" id="decimal_places_currencies" required />
                             </div>
                         </div>
                         <div class="mb-2">
                             <small class="form-text text-muted"><?php echo lang('currencies_value') ?></small>
-                            <div class="input-group">
+                            <div class="input-group input-group-sm">
                                 <span class="input-group-text"><span class="bi-calculator"></span></span>
                                 <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" pattern="\d+(\.\d{0,10})?" name="value_currencies" id="value_currencies" required />
                             </div>

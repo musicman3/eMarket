@@ -27,14 +27,14 @@ use \eMarket\Core\{
                         <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade show in active">
                             <div class="mb-2">
                                 <small class="form-text text-muted"><?php echo lang('units_name_full') ?></small>
-                                <div class="input-group">
+                                <div class="input-group input-group-sm">
                                     <span class="input-group-text"><span class="bi-file-text"></span></span>
                                     <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_units_0" id="name_units_0" required />
                                 </div>
                             </div>
                             <div class="mb-2">
                                 <small class="form-text text-muted"><?php echo lang('units_name_little') ?></small>
-                                <div class="input-group">
+                                <div class="input-group input-group-sm">
                                     <span class="input-group-text"><span class="bi-file-text"></span></span>
                                     <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="unit_units_0" id="unit_units_0" required />
                                 </div>
@@ -49,14 +49,14 @@ use \eMarket\Core\{
                                 <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">
                                     <div class="mb-2">
                                         <small class="form-text text-muted"><?php echo lang('units_name_full') ?></small>
-                                        <div class="input-group">
+                                        <div class="input-group input-group-sm">
                                             <span class="input-group-text"><span class="bi-file-text"></span></span>
                                             <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_units_<?php echo $x ?>" id="name_units_<?php echo $x ?>" required />
                                         </div>
                                     </div>
                                     <div class="mb-2">
                                         <small class="form-text text-muted"><?php echo lang('units_name_little') ?></small>
-                                        <div class="input-group">
+                                        <div class="input-group input-group-sm">
                                             <span class="input-group-text"><span class="bi-file-text"></span></span>
                                             <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="unit_units_<?php echo $x ?>" id="unit_units_<?php echo $x ?>" required />
                                         </div>
