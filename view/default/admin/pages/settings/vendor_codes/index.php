@@ -67,15 +67,9 @@ require_once('modal/index.php')
                             </th>
                         </tr>
                         <?php if (Pages::$count > 0) { ?>
-<<<<<<< HEAD
                             <tr class="align-middle">
-                                <th><?php echo lang('product_vendor_code') ?></th>
-                                <th class="text-center"><?php echo lang('name_description') ?></th>
-=======
-                            <tr>
                                 <th><?php echo lang('vendor_codes_name') ?></th>
                                 <th class="text-center"><?php echo lang('vendor_codes_description') ?></th>
->>>>>>> bootstrap-5
                                 <th class="text-center"><?php echo lang('default') ?></th>
                                 <th></th>
                             </tr>
