@@ -31,7 +31,6 @@ if (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
                                 <ul class="dropdown-menu dropdown-menu-dark">
                                     <?php
                                     for ($x = 0; $x < count(HeaderMenu::$menu[$i]); $x++) {
-                                        HeaderMenu::clearParameters(HeaderMenu::$menu[$i][$x][4]);
                                         ?>
                                         <li>
                                             <a class="dropdown-item" <?php echo HeaderMenu::$menu[$i][$x][3]; ?> href="<?php echo HeaderMenu::$menu[$i][$x][0] ?>"><span class="<?php echo \eMarket\Admin\HeaderMenu::$menu[$i][$x][1]; ?>"></span> <?php echo \eMarket\Admin\HeaderMenu::$menu[$i][$x][2] ?></a>
