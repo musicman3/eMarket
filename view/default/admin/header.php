@@ -8,7 +8,7 @@ use \eMarket\Admin\HeaderMenu;
 
 if (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
     ?>
-    <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
