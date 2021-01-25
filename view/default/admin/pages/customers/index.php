@@ -35,7 +35,7 @@ use \eMarket\Core\{
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
-                        <tr>
+                        <tr class="align-middle">
                             <th colspan="4"><?php echo Pages::counterPage() ?></th>
 
                             <th>
@@ -68,7 +68,7 @@ use \eMarket\Core\{
                             </th>
                         </tr>
                         <?php if (Pages::$finish > 0) { ?>
-                            <tr>
+                            <tr class="align-middle">
                                 <th><?php echo lang('customers_firstname') ?></th>
                                 <th class="text-center"><?php echo lang('customers_lastname') ?></th>
                                 <th class="text-center"><?php echo lang('customers_date_created') ?></th>
@@ -79,7 +79,7 @@ use \eMarket\Core\{
                     </thead>
                     <tbody>
                         <?php for (Pages::$start; Pages::$start < Pages::$finish; Pages::$start++, Pages::lineUpdate()) { ?>
-                            <tr class="<?php echo Settings::statusSwitchClass(Pages::$table['line'][18]) ?>">
+                            <tr class="<?php echo Settings::statusSwitchClass(Pages::$table['line'][18]) ?> align-middle">
                                 <td><?php echo Pages::$table['line'][3] ?></td>
                                 <td class="text-center"><?php echo Pages::$table['line'][4] ?></td>
                                 <td class="text-center"><?php echo Settings::dateLocale(Pages::$table['line'][6]) ?></td>

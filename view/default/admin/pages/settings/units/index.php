@@ -28,7 +28,7 @@ require_once('modal/index.php')
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
-                        <tr>
+                        <tr class="align-middle">
                             <th colspan="3"><?php echo Pages::counterPage() ?></th>
 
                             <th>
@@ -66,9 +66,15 @@ require_once('modal/index.php')
                             </th>
                         </tr>
                         <?php if (Pages::$count > 0) { ?>
+<<<<<<< HEAD
+                            <tr class="align-middle">
+                                <th><?php echo lang('name_full') ?></th>
+                                <th class="text-center"><?php echo lang('name_little') ?></th>
+=======
                             <tr>
                                 <th><?php echo lang('units_name_full') ?></th>
                                 <th class="text-center"><?php echo lang('units_name_little') ?></th>
+>>>>>>> bootstrap-5
                                 <th class="text-center"><?php echo lang('default') ?></th>
                                 <th></th>
                             </tr>
@@ -76,7 +82,7 @@ require_once('modal/index.php')
                     </thead>
                     <tbody>
                         <?php for (Pages::$start; Pages::$start < Pages::$finish; Pages::$start++, Pages::lineUpdate()) { ?>
-                            <tr>
+                            <tr class="align-middle">
                                 <td><?php echo Pages::$table['line']['name'] ?></td>
                                 <td class="text-center"><?php echo Pages::$table['line']['unit'] ?></td>
                                 <?php if (Pages::$table['line']['default_unit'] == 1) { ?>

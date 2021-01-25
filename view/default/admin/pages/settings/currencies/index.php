@@ -29,7 +29,7 @@ require_once('modal/index.php')
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
-                        <tr>
+                        <tr class="align-middle">
                             <th colspan="5"><?php echo Pages::counterPage() ?></th>
 
                             <th>
@@ -63,7 +63,7 @@ require_once('modal/index.php')
                             </th>
                         </tr>
                         <?php if (Pages::$count > 0) { ?>
-                            <tr>
+                            <tr class="align-middle">
                                 <th><?php echo lang('name_full') ?></th>
                                 <th class="text-center"><?php echo lang('currencies_name_little') ?></th>
                                 <th class="text-center"><?php echo lang('currencies_iso_4217') ?></th>
@@ -75,7 +75,7 @@ require_once('modal/index.php')
                     </thead>
                     <tbody>
                         <?php for (Pages::$start; Pages::$start < Pages::$finish; Pages::$start++, Pages::lineUpdate()) { ?>
-                            <tr>
+                            <tr class="align-middle">
                                 <td><?php echo Pages::$table['line']['name'] ?></td>
                                 <td class="text-center"><?php echo Pages::$table['line']['code'] ?></td>
                                 <td class="text-center"><?php echo Pages::$table['line']['iso_4217'] ?></td>

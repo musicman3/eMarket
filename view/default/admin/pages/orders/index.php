@@ -39,7 +39,7 @@ require_once('modal/index.php')
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
-                        <tr>
+                        <tr class="align-middle">
                             <th colspan="7"><?php echo Pages::counterPage() ?></th>
 
                             <th>
@@ -72,7 +72,7 @@ require_once('modal/index.php')
                             </th>
                         </tr>
                         <?php if (Pages::$count > 0) { ?>
-                            <tr>
+                            <tr class="align-middle">
                                 <th><?php echo lang('orders_number') ?></th>
                                 <th class="text-center"><?php echo lang('orders_client') ?></th>
                                 <th class="text-center"><?php echo lang('orders_email') ?></th>
@@ -86,7 +86,7 @@ require_once('modal/index.php')
                     </thead>
                     <tbody>
                         <?php for (Pages::$start; Pages::$start < Pages::$finish; Pages::$start++, Pages::lineUpdate()) { ?>
-                            <tr>
+                            <tr class="align-middle">
                                 <td><?php echo Pages::$table['line']['id'] ?></td>
                                 <td class="text-center"><?php echo json_decode(Pages::$table['line']['customer_data'], 1)['firstname'] . ' ' . json_decode(Pages::$table['line']['customer_data'], 1)['lastname'] ?></td>
                                 <td class="text-center"><?php echo Pages::$table['line']['email'] ?></td>

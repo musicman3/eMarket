@@ -29,7 +29,7 @@ require_once('modal/index.php')
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
-                        <tr>
+                        <tr class="align-middle">
                             <th colspan="3"><?php echo Pages::counterPage() ?></th>
 
                             <th>
@@ -63,7 +63,7 @@ require_once('modal/index.php')
                             </th>
                         </tr>
                         <?php if (Pages::$count > 0) { ?>
-                            <tr>
+                            <tr class="align-middle">
                                 <th class="sortleft-m"><div></div></th>
                                 <th><?php echo lang('order_status_name') ?></th>
                                 <th class="text-center"><?php echo lang('default') ?></th>
@@ -73,7 +73,7 @@ require_once('modal/index.php')
                     </thead>
                     <tbody id="sort-list">
                         <?php for (Pages::$start; Pages::$start < Pages::$finish; Pages::$start++, Pages::lineUpdate()) { ?>
-                            <tr class="sort-list" unitid="<?php echo Pages::$table['line']['id'] ?>">
+                            <tr class="sort-list align-middle" unitid="<?php echo Pages::$table['line']['id'] ?>">
                                 <td class="sortyes sortleft-m"><div><span class="glyphicon glyphicon-move"> </span></div></td> 
                                 <td><?php echo Pages::$table['line']['name'] ?></td>
                                 <?php if (Pages::$table['line']['default_order_status'] == 1) { ?>

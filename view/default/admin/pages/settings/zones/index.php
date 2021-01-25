@@ -29,7 +29,7 @@ require_once('modal/index.php')
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
-                        <tr>
+                        <tr class="align-middle">
                             <th colspan="3"><?php echo Pages::counterPage() ?></th>
 
                             <th>
@@ -67,7 +67,7 @@ require_once('modal/index.php')
                             </th>
                         </tr>
                         <?php if (Pages::$count > 0) { ?>
-                            <tr>
+                            <tr class="align-middle">
                                 <th class="sortleft"></th>
                                 <th><?php echo lang('zone') ?></th>
                                 <th><?php echo lang('name_description') ?></th>
@@ -77,7 +77,7 @@ require_once('modal/index.php')
                     </thead>
                     <tbody>
                         <?php for (Pages::$start; Pages::$start < Pages::$finish; Pages::$start++, Pages::lineUpdate()) { ?>
-                            <tr>
+                            <tr class="align-middle">
                                 <td class="sortleft">
                                     <form method="get">
                                         <input hidden name="route" value="settings/zones/listing">

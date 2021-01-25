@@ -54,7 +54,7 @@ require_once('modal/add_values_attribute.php');
                 <div class="table-responsive">
                     <table class="table table-hover">
                         <thead>
-                            <tr>
+                            <tr class="align-middle">
                                 <th colspan="4"><?php echo Pages::counterPageStock() ?></th>
                                 <th>
 
@@ -97,7 +97,7 @@ require_once('modal/add_values_attribute.php');
                             if (Stock::$parent_id > 0) {
                                 ?>
 
-                                <tr class="sortno">
+                                <tr class="sortno align-middle">
                                     <td  class="sortleft-m"></td>
                                     <td colspan="4">
 
@@ -119,7 +119,7 @@ require_once('modal/add_values_attribute.php');
                                 if (Stock::$start < Stock::$count_lines_cat) {
                                     ?>
 
-                                    <tr class="<?php echo Settings::sortiesClass('info') ?> sort-list" unitid="<?php echo Stock::$arr_merge['cat'][Stock::$start]['id'] ?>">
+                                    <tr class="<?php echo Settings::sortiesClass('info') ?> sort-list align-middle" unitid="<?php echo Stock::$arr_merge['cat'][Stock::$start]['id'] ?>">
 
                                         <?php if (!Valid::inGET('search')) { ?>
                                             <td class="sortyes sortleft-m"><div><span class="bi-arrows-move"> </span></div></td>
@@ -189,7 +189,7 @@ require_once('modal/add_values_attribute.php');
 
                                 if (Stock::$start >= Stock::$count_lines_cat && Stock::$transfer < Settings::linesOnPage() + 1) {
                                     ?>
-                                    <tr>
+                                    <tr class="align-middle">
 
                                         <?php if (isset($_SESSION['buffer']['prod']) == true && in_array(Stock::$arr_merge['prod'][Stock::$start . 'a']['id'], $_SESSION['buffer']['prod']) == true && Stock::$arr_merge['prod'][Stock::$start . 'a']['status'] == 1) { ?>
                                             <td class="sortleft-m"></td>    
@@ -260,14 +260,14 @@ require_once('modal/add_values_attribute.php');
                 <div class="table-responsive">
                     <table class="table table-hover">
                         <thead>
-                            <tr>
+                            <tr class="align-middle">
                                 <th colspan="3">
                                     <div><?php echo lang('no_listing') ?></div>
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="sortno">
+                            <tr class="sortno align-middle">
                                 <td class="sortleft-m"></td>
                                 <td class="sortleft">
 
@@ -306,14 +306,14 @@ require_once('modal/add_values_attribute.php');
                 <div class="table-responsive">
                     <table class="table table-hover">
                         <thead>
-                            <tr>
+                            <tr class="align-middle">
                                 <th colspan="3">
                                     <div><?php echo lang('no_listing') ?></div>
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <tr class="align-middle">
                                 <td class="sortleft-m"></td>
                                 <td class="sortleft-m"></td>
                                 <td class="options"><div class="context-one"><?php echo lang('no_listing') ?></div></td>

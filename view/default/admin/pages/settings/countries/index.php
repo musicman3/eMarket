@@ -29,7 +29,7 @@ require_once('modal/index.php')
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
-                        <tr>
+                        <tr class="align-middle">
                             <th colspan="5"><?php echo Pages::counterPage() ?></th>
 
                             <th>
@@ -69,7 +69,7 @@ require_once('modal/index.php')
                             </th>
                         </tr>
                         <?php if (Pages::$count > 0) { ?>
-                            <tr>
+                            <tr class="align-middle">
                                 <th class="sortleft"></th>
                                 <th><?php echo lang('country') ?></th>
                                 <th class="text-center"><?php echo lang('alpha_2') ?></th>
@@ -81,7 +81,7 @@ require_once('modal/index.php')
                     </thead>
                     <tbody>
                         <?php for (Pages::$start; Pages::$start < Pages::$finish; Pages::$start++, Pages::lineUpdate()) { ?>
-                            <tr>
+                            <tr class="align-middle">
                                 <td class="sortleft">
                                     <form>
                                         <input hidden name="route" value="settings/countries/regions">

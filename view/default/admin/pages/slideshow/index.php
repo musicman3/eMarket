@@ -54,7 +54,7 @@ require_once('modal/index.php')
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead>
-                                <tr>
+                                <tr class="align-middle">
                                     <th colspan="5"><?php echo Pages::counterPage() ?></th>
 
                                     <th>
@@ -90,7 +90,7 @@ require_once('modal/index.php')
                                     </th>
                                 </tr>
                                 <?php if (Pages::$count > 0) { ?>
-                                    <tr>
+                                    <tr class="align-middle">
                                         <th><?php echo lang('slides_image') ?></th>
                                         <th class="text-center"><?php echo lang('slides_quantity') ?></th>
                                         <th class="text-center"><?php echo lang('slides_name') ?></th>
@@ -102,7 +102,7 @@ require_once('modal/index.php')
                             <?php } ?>
                             <tbody>
                                 <?php for (Pages::$start; Pages::$start < Pages::$finish; Pages::$start++, Pages::lineUpdate()) { ?>
-                                    <tr class="<?php echo Settings::statusSwitchClass(Pages::$table['line']['status'], [Slideshow::$this_time, strtotime(Pages::$table['line']['date_start'])], [strtotime(Pages::$table['line']['date_finish']), Slideshow::$this_time]) ?>">
+                                    <tr class="<?php echo Settings::statusSwitchClass(Pages::$table['line']['status'], [Slideshow::$this_time, strtotime(Pages::$table['line']['date_start'])], [strtotime(Pages::$table['line']['date_finish']), Slideshow::$this_time]) ?> align-middle">
                                         <td><img src="/uploads/images/slideshow/resize_0/<?php echo Pages::$table['line']['logo_general'] ?>" /></td>
                                         <td class="text-center"><?php echo count(json_decode(Pages::$table['line']['logo'])) ?></td>
                                         <td class="text-center"><?php echo Pages::$table['line']['name'] ?></td>
@@ -138,7 +138,7 @@ require_once('modal/index.php')
                                 <table class="table table-hover">
 
                                     <thead>
-                                        <tr>
+                                        <tr class="align-middle">
                                             <th colspan="4"><?php echo Pages::counterPage() ?></th>
 
                                             <th>
@@ -174,7 +174,7 @@ require_once('modal/index.php')
                                             </th>
                                         </tr>
 
-                                        <tr>
+                                        <tr class="align-middle">
                                             <th><?php echo lang('slides_image') ?></th>
                                             <th class="text-center"><?php echo lang('slides_quantity') ?></th>
                                             <th class="text-center"><?php echo lang('slides_name') ?></th>
@@ -186,7 +186,7 @@ require_once('modal/index.php')
 
                                     <tbody>
                                         <?php for (Pages::$start; Pages::$start < Pages::$finish; Pages::$start++, Pages::lineUpdate()) { ?>
-                                            <tr class="<?php echo Settings::statusSwitchClass(Pages::$table['line']['status'], [Slideshow::$this_time, strtotime(Pages::$table['line']['date_start'])], [strtotime(Pages::$table['line']['date_finish']), Slideshow::$this_time]) ?>">
+                                            <tr class="<?php echo Settings::statusSwitchClass(Pages::$table['line']['status'], [Slideshow::$this_time, strtotime(Pages::$table['line']['date_start'])], [strtotime(Pages::$table['line']['date_finish']), Slideshow::$this_time]) ?> align-middle">
                                                 <td><img src="/uploads/images/slideshow/resize_0/<?php echo Pages::$table['line']['logo_general'] ?>" /></td>
                                                 <td class="text-center"><?php echo count(json_decode(Pages::$table['line']['logo'])) ?></td>
                                                 <td class="text-center"><?php echo Pages::$table['line']['name'] ?></td>

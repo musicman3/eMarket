@@ -27,7 +27,7 @@ use \eMarket\Core\{
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
-                            <tr>
+                            <tr class="align-middle">
                                 <th><?php echo Pages::counterPage() ?></th>
 
                                 <th>
@@ -73,20 +73,20 @@ use \eMarket\Core\{
                                 if (isset(Pages::$table['line']) == TRUE) {
 
                                     if (strrpos(Pages::$table['line'], 'PHP Notice:') == TRUE) {
-                                        ?><tr class="table-success"><td colspan="2"><?php echo Pages::$table['line'] . '</td></tr>'; ?><?php
+                                        ?><tr class="table-success align-middle"><td colspan="2"><?php echo Pages::$table['line'] . '</td></tr>'; ?><?php
                                     } elseif
                                     (strrpos(Pages::$table['line'], 'PHP Warning:') == TRUE) {
-                                        ?><tr class="table-warning"><td colspan="2"><?php echo Pages::$table['line'] . '</td></tr>'; ?><?php
+                                        ?><tr class="table-warning align-middle"><td colspan="2"><?php echo Pages::$table['line'] . '</td></tr>'; ?><?php
                                             } elseif
                                             (strrpos(Pages::$table['line'], 'PHP Catchable fatal error:') == TRUE) {
-                                                ?><tr class="table-danger"><td colspan="2"><?php echo Pages::$table['line'] . '</td></tr>'; ?><?php
+                                                ?><tr class="table-danger align-middle"><td colspan="2"><?php echo Pages::$table['line'] . '</td></tr>'; ?><?php
                                             } elseif
                                             (strrpos(Pages::$table['line'], 'PHP Fatal error:') == TRUE) {
-                                                ?><tr class="table-danger"><td colspan="2"><?php echo Pages::$table['line'] . '</td></tr>'; ?><?php
+                                                ?><tr class="table-danger align-middle"><td colspan="2"><?php echo Pages::$table['line'] . '</td></tr>'; ?><?php
                                             } elseif
                                             (strrpos(Pages::$table['line'], 'PHP Parse error:') == TRUE) {
-                                                ?><tr class="table-info"><td colspan="2"><?php echo Pages::$table['line'] . '</td></tr>'; ?><?php } else {
-                                                ?><tr><td colspan="2"><?php
+                                                ?><tr class="table-info align-middle"><td colspan="2"><?php echo Pages::$table['line'] . '</td></tr>'; ?><?php } else {
+                                                ?><tr class="align-middle"><td colspan="2"><?php
                                                 echo Pages::$table['line'] . '</td></tr>';
                                             }
                                         }

@@ -28,7 +28,7 @@ require_once('modal/index.php')
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
-                        <tr>
+                        <tr class="align-middle">
                             <th colspan="2"><?php echo Pages::counterPage() ?></th>
 
                             <th>
@@ -68,7 +68,7 @@ require_once('modal/index.php')
                             </th>
                         </tr>
                         <?php if (Pages::$count > 0) { ?>
-                            <tr>
+                            <tr class="align-middle">
                                 <th> </th>
                                 <th><?php echo lang('country') ?></th>
                                 <th> </th>
@@ -79,7 +79,7 @@ require_once('modal/index.php')
                         <?php
                         for (Pages::$start, ZonesListing::$count = 0; Pages::$start < Pages::$finish; Pages::$start++, Pages::lineUpdate()) {
                             ?>
-                            <tr>
+                            <tr class="align-middle">
                                 <td class="sortleft"><span data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="right" title="<?php echo ZonesListing::$text_arr[ZonesListing::$count] ?>" class="btn btn-primary btn-sm bi-eye-fill"></span></td>
                                 <td><?php echo Func::filterArrayToKey(ZonesListing::$countries_multiselect_temp, 0, Pages::$table['line'][0], 1)[0] ?></td>
                                 <td> </td>

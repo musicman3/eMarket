@@ -40,7 +40,7 @@ use \eMarket\Admin\Modules;
                                 <table class="table table-hover table-radius">
                                     <thead>
 
-                                        <tr class="bg-primary">
+                                        <tr class="bg-primary align-middle">
                                             <td><?php echo lang('installed_modules') ?></td>
                                             <td></td>
                                         </tr>
@@ -96,7 +96,7 @@ use \eMarket\Admin\Modules;
                                             if (!in_array($key, Modules::$installed_filter)) {
                                                 ?>
 
-                                                <tr class="danger">
+                                                <tr class="danger align-middle">
                                                     <td><?php echo lang('modules_' . $type . '_' . $key . '_name') ?></td>
 
                                                     <?php ?>
