@@ -12,7 +12,7 @@ input:active, textarea:active {outline: none;}
 html {position: relative;min-height: 100%;}
 body {background:#e4e4da;font-family: 'Open Sans';background-image:url('images/sep-half.png');}
 
-.navbar {min-height: 30px;padding: 5px 0 5px 0;}
+/*.navbar {min-height: 30px;padding: 5px 0 5px 0;}
 .navbar-inverse .navbar-nav > li > a {color:#ffffff;}
 .nav > li > a {padding: 5px;}
 .nav .open > a, .nav .open > a:focus, .nav .open > a:hover {background:#505050;color:#ffffff;}
@@ -22,7 +22,7 @@ body {background:#e4e4da;font-family: 'Open Sans';background-image:url('images/s
 #bs-navbar .dropdown-menu {background:#000000;min-width: 0px;}
 #bs-navbar .dropdown-menu > ul {margin-top:5px;}
 #bs-navbar .dropdown-menu > li > a {color:#ffffff;}
-#bs-navbar .dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover {background:#505050;color:#ffffff;}
+#bs-navbar .dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover {background:#505050;color:#ffffff;}*/
 
 @media (min-width:768px){.modal-lg {width:750px;}}
 
