@@ -179,6 +179,10 @@ weight_name_little = Little name
 weight_name_full = Full name
 weight_value = Value
 
+;UNITS
+units_name_little = Little name
+units_name_full = Full name
+
 ;VENDOR_CODES
 vendor_codes_name = Vendor code
 vendor_codes_description = Description
