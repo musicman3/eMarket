@@ -176,11 +176,15 @@ site = Site
 order_status_name = Order status
 
 ;CURRENCIES
-currency_symbol = Currency symbol
-decimal_places = Decimal places
-symbol_left = Symbol left
-symbol_right = Symbol right
-iso_4217 = Code ISO 4217
+currencies_currency_symbol = Currency symbol
+currencies_decimal_places = Decimal places
+currencies_symbol_left = Symbol left
+currencies_symbol_right = Symbol right
+currencies_iso_4217 = Code ISO 4217
+currencies_name_little = Little name
+currencies_name_full = Full name
+currencies_value = Value
+currencies_position = Позиция
 
 ;TAXES
 taxes_modal_name = Name

@@ -4,11 +4,6 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
-<link rel="stylesheet" href="/ext/bootstrap-switch/css/bootstrap-switch.min.css" type="text/css"/>
-<script type="text/javascript" src="/ext/bootstrap-switch/js/bootstrap-switch.min.js"></script>
-<script type="text/javascript">
-    $('#default_value_currencies').bootstrapSwitch();
-</script>
 
 <script type="text/javascript">
     $('#index').on('show.bs.modal', function (event) {
@@ -16,7 +11,6 @@
         var modal_id = Number(button.dataset.edit);
 
         if (Number.isInteger(modal_id)) {
-            $('#default_value_currencies').bootstrapSwitch('destroy', true);
             var json_data = JSON.parse(document.querySelector('#ajax_data').dataset.jsondata);
 
             document.querySelector('#edit').value = modal_id;
@@ -32,7 +26,6 @@
             document.querySelector('#symbol_currencies').value = json_data.symbol[modal_id];
             document.querySelector('#decimal_places_currencies').value = json_data.decimal_places[modal_id];
             document.querySelector('#default_value_currencies').checked = json_data.default_value[modal_id];
-            $('#default_value_currencies').bootstrapSwitch();
 
             if (json_data.symbol_position[modal_id] === 'left') {
                 document.querySelector('#symbol_position_currencies option[value="left"]').selected = true;

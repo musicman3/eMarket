@@ -176,11 +176,15 @@ site = Сайт
 order_status_name = Статус заказа
 
 ;CURRENCIES
-currency_symbol = Символ валюты
-decimal_places = Количество десятичных знаков
-symbol_left = Символ слева
-symbol_right = Символ справа
-iso_4217 = Код ISO 4217
+currencies_currency_symbol = Символ валюты
+currencies_decimal_places = Количество десятичных знаков
+currencies_symbol_left = Символ слева
+currencies_symbol_right = Символ справа
+currencies_iso_4217 = Код ISO 4217
+currencies_name_little = Сокращенное наименование
+currencies_name_full = Полное наименование
+currencies_value = Значение
+currencies_position = Позиция
 
 ;TAXES
 taxes_modal_name = Название
