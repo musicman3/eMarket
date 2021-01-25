@@ -22,7 +22,7 @@ use \eMarket\Core\{
         </div>
         <div class="modal-body">
 
-            <div class="col-lg-3 col-md-4 col-sm-6 col-12 offset-0">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-sm-12 offset-0">
                 <form>
                     <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
                     <div class="input-group">
