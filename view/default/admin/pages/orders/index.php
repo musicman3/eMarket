@@ -26,7 +26,7 @@ require_once('modal/index.php')
         <div class="modal-body">
             <div id="ajax_data" class='hidden' data-orders='<?php echo Orders::$json_data ?>'></div>
 
-            <div class="col-lg-3 col-md-4 col-md-6 col-md-12 offset-0">
+            <div class="col-lg-3 col-lg-4 col-md-6 col-sm-12 offset-0">
                 <form>
                     <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
                     <div class="input-group">
