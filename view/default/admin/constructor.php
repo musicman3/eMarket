@@ -74,7 +74,6 @@ use \eMarket\Core\{
         foreach (View::tlpc('footer') as $path) {
             require_once (ROOT . $path);
         }
-        require_once ('js/footer.php');
         ?>
 
         <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.bundle.min.js"></script>
