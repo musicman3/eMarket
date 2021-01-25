@@ -104,7 +104,7 @@ require_once('modal/add_values_attribute.php');
                                         <form>
                                             <div>
                                                 <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
-                                                <button name="parent_up" value="<?php echo Stock::$parent_id ?>" class="btn btn-primary btn-sm" title="" action="index.php" formmethod="get"><span class="bi-folder-symlink"></span></button>
+                                                <button name="parent_up" value="<?php echo Stock::$parent_id ?>" class="btn btn-outline-secondary btn-sm" title="" action="index.php" formmethod="get"><span class="bi-three-dots"></span></button>
                                             </div>
                                         </form>
 
