@@ -41,7 +41,7 @@ require_once('modal/add_values_attribute.php');
         </div>
         <?php if (Stock::$count_lines_merge > 0) { ?>
             <div class="modal-body">
-                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 offset-0">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12 offset-0">
                     <form>
                         <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
                         <div class="input-group mb-3">
@@ -243,7 +243,7 @@ require_once('modal/add_values_attribute.php');
             ?>
 
             <div class="modal-body">
-                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 offset-0">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12 offset-0">
                     <form>
                         <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
                         <div class="input-group">
@@ -289,7 +289,7 @@ require_once('modal/add_values_attribute.php');
         } else {
             ?>
             <div class="modal-body">
-                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 offset-0">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12 offset-0">
                     <form>
                         <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
                         <div class="input-group">
