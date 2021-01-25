@@ -64,15 +64,16 @@ use \eMarket\Core\{
                             }
                         }
                         ?>
-                        <div class="mb-3">
-                            <input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="default_vendor_code" id="default_vendor_code" checked>
-                            <label for="default_vendor_code"><?php echo lang('default_set') ?> </label>
+                        
+                        <div class="mb-3 form-check form-switch">
+                            <input class="form-check-input" type="checkbox" name="default_vendor_code" id="default_vendor_code" checked>
+                            <label class="form-check-label" for="default_vendor_code"><?php echo lang('default_set') ?></label>
                         </div>
                     </div>
                 </div>
 
                 <div class="modal-footer">
-                    <button class="btn btn-primary btn-sm" type="button" data-dismiss="modal"><span class="bi-x-circle"></span> <?php echo lang('cancel') ?></button>
+                    <button class="btn btn-primary btn-sm" type="button" data-bs-dismiss="modal"><span class="bi-x-circle"></span> <?php echo lang('cancel') ?></button>
                     <button type="submit" class="btn btn-primary btn-sm"><span class="bi-check-circle"></span> <?php echo lang('save') ?></button>
                 </div>
 

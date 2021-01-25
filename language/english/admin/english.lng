@@ -128,6 +128,7 @@ attention = ATTENTION!
 confirm_delete_product_or_category = Are you sure you want to delete a category or product?
 confirm_delete_stiker = Are you sure you want to remove stiker?
 alert_wait = Please wait. Processing is in progress...
+enter_value = Enter value
 
 ;DEBUG
 debug_page_generation_time = Page generation time:
@@ -188,8 +189,8 @@ taxes_modal_percent = PERCENT
 taxes_modal_value = VALUE
 taxes_modal_included = INCLUDING
 taxes_modal_separately = SEPARATELY
-taxes_modal_fixed_desc = Percent / Fixed value
-taxes_modal_included_desc = Tax included / Separately
+taxes_modal_fixed_desc = Fixed value / Percent
+taxes_modal_included_desc = Separately / Tax included
 taxes_modal_zones_desc = Tax zone
 taxes_rate = Rate
 taxes_name = Tax
@@ -197,8 +198,8 @@ taxes_percent = %
 taxes_value = %s
 taxes_included = INCLUDING
 taxes_separately = SEPARATELY
-taxes_fixed_desc = Percent / Fixed value
-taxes_included_desc = Tax included / Separately
+taxes_fixed_desc = Fixed value / Percent
+taxes_included_desc = Separately / Tax included
 taxes_zones_desc = Tax zone
 
 ;CATEGORIES

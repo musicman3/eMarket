@@ -25,10 +25,11 @@ use \eMarket\Core\{
 
                     <div class="tab-content">
                         <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade show in active">
-                            <div class="mb-3">
-                                <div class="input-group has-error">
+                            <div class="mb-2">
+                                <small class="form-text text-muted"><?php echo lang('taxes_modal_name') ?></small>
+                                <div class="input-group">
                                     <span class="input-group-text"><span class="bi-file-text"></span></span>
-                                    <input class="input-sm form-control" placeholder="<?php echo lang('taxes_modal_name') ?>" type="text" name="name_taxes_0" id="name_taxes_0" required />
+                                    <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_taxes_0" id="name_taxes_0" required />
                                 </div>
                             </div>
                         </div>
@@ -39,10 +40,11 @@ use \eMarket\Core\{
                                 ?>
 
                                 <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">
-                                    <div class="mb-3">
-                                        <div class="input-group has-error">
+                                    <div class="mb-2">
+                                        <small class="form-text text-muted"><?php echo lang('taxes_modal_name') ?></small>
+                                        <div class="input-group">
                                             <span class="input-group-text"><span class="bi-file-text"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo lang('taxes_modal_name') ?>" type="text" name="name_taxes_<?php echo $x ?>" id="name_taxes_<?php echo $x ?>" required />
+                                            <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_taxes_<?php echo $x ?>" id="name_taxes_<?php echo $x ?>" required />
                                         </div>
                                     </div>
                                 </div>
@@ -52,32 +54,33 @@ use \eMarket\Core\{
                         }
                         ?>
 
-                        <div class="mb-3">
-                            <div class="input-group has-error">
+                        <div class="mb-2">
+                            <small class="form-text text-muted"><?php echo lang('taxes_modal_rate') ?></small>
+                            <div class="input-group">
                                 <span class="input-group-text"><?php echo Settings::currencyDefault()[3] ?></span>
-                                <input class="input-sm form-control" placeholder="<?php echo lang('taxes_modal_rate') ?>" type="text" pattern="\d+(\.\d{0,2})?" name="rate_taxes" id="rate_taxes" required />
+                                <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" pattern="\d+(\.\d{0,2})?" name="rate_taxes" id="rate_taxes" required />
                             </div>
                         </div>
-                        <div class="mb-3">
-                            <input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="mini" data-handle-width="70" data-on-text="<?php echo lang('taxes_modal_percent') ?>" data-off-text="<?php echo lang('taxes_modal_value') ?>" name="fixed" id="fixed" checked>
-                            <br><small class="form-text text-muted"><?php echo lang('taxes_modal_fixed_desc') ?></small>
+                        <div class="mb-2 form-check form-switch">
+                            <input class="form-check-input" type="checkbox" name="fixed" id="fixed" checked>
+                            <label class="form-check-label" for="fixed"><?php echo lang('taxes_modal_fixed_desc') ?></label>
                         </div>
-                        <div class="mb-3">
-                            <input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="mini" data-handle-width="70" data-on-text="<?php echo lang('taxes_modal_included') ?>" data-off-text="<?php echo lang('taxes_modal_separately') ?>" name="tax_type" id="tax_type" checked>
-                            <br><small class="form-text text-muted"><?php echo lang('taxes_modal_included_desc') ?></small>
+                        <div class="mb-2 form-check form-switch">
+                            <input class="form-check-input" type="checkbox" name="tax_type" id="tax_type" checked>
+                            <label class="form-check-label" for="tax_type"><?php echo lang('taxes_modal_included_desc') ?></label>
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-2">
+                            <small class="form-text text-muted"><?php echo lang('taxes_modal_zones_desc') ?></small>
                             <div class="input-group has-success">
-                                <span class="input-group-text"><span class="bi-pen"></span></span>
+                                <span class="input-group-text"><span class="bi-arrow-down-up"></span></span>
                                 <select name="zones_id" id="zones_id" class="form-select"></select>
                             </div>
-                            <small class="form-text text-muted"><?php echo lang('taxes_modal_zones_desc') ?></small>
                         </div>
                     </div>
                 </div>
 
                 <div class="modal-footer">
-                    <button class="btn btn-primary btn-sm" type="button" data-dismiss="modal"><span class="bi-x-circle"></span> <?php echo lang('cancel') ?></button>
+                    <button class="btn btn-primary btn-sm" type="button" data-bs-dismiss="modal"><span class="bi-x-circle"></span> <?php echo lang('cancel') ?></button>
                     <button type="submit" class="btn btn-primary btn-sm"><span class="bi-check-circle"></span> <?php echo lang('save') ?></button>
                 </div>
 

@@ -4,18 +4,12 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
-<link rel="stylesheet" href="/ext/bootstrap-switch/css/bootstrap-switch.min.css" type="text/css"/>
-<script type="text/javascript" src="/ext/bootstrap-switch/js/bootstrap-switch.min.js"></script>
-<script type="text/javascript">
-    $('#tax_type, #fixed').bootstrapSwitch();
-</script>
 
 <script type="text/javascript">
     $('#index').on('show.bs.modal', function (event) {
         var button = event.relatedTarget;
         var modal_id = Number(button.dataset.edit);
         if (Number.isInteger(modal_id)) {
-            $('#tax_type, #fixed').bootstrapSwitch('destroy', true);
             var json_data = JSON.parse(document.querySelector('#ajax_data').dataset.jsondata);
 
             document.querySelector('#edit').value = modal_id;
@@ -27,7 +21,6 @@
             document.querySelector('#rate_taxes').value = json_data.rate[modal_id];
             document.querySelector('#tax_type').checked = json_data.tax_type[modal_id];
             document.querySelector('#fixed').checked = json_data.fixed[modal_id];
-            $('#tax_type, #fixed').bootstrapSwitch();
             
             document.querySelector('#zones_id').innerHTML = '';
 

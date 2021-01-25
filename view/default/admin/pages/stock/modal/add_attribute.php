@@ -13,7 +13,7 @@ use \eMarket\Core\{
 <div id="add_attribute" class="modal fade" tabindex="-1">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
-            <div class="modal-header"><div class="float-end"><button class="close" type="button" data-dismiss="modal">×</button></div>
+            <div class="modal-header"><div class="float-end"><button class="close" type="button" data-bs-dismiss="modal">×</button></div>
                 <h4 class="modal-title"><?php echo lang('stock_tittle_specification_name') ?></h4>
             </div>
             <form id="attribute_add_form">
@@ -45,7 +45,7 @@ use \eMarket\Core\{
                 </div>
             </form>
             <div class="modal-footer">
-                <button class="btn btn-primary btn-sm" type="button" data-dismiss="modal"><span class="bi-x-circle"></span> <?php echo lang('cancel') ?></button>
+                <button class="btn btn-primary btn-sm" type="button" data-bs-dismiss="modal"><span class="bi-x-circle"></span> <?php echo lang('cancel') ?></button>
                 <button id="save_attribute_button" type="submit" class="btn btn-primary btn-sm"><span class="bi-check-circle"></span> <?php echo lang('save') ?></button>
             </div>
         </div>

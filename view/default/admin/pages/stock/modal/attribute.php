@@ -8,7 +8,7 @@
 <div id="attribute" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header"><div class="float-end"><button class="close" type="button" data-dismiss="modal">×</button></div>
+            <div class="modal-header"><div class="float-end"><button class="close" type="button" data-bs-dismiss="modal">×</button></div>
                 <h4 id="title_attribute" class="modal-title"></h4>
             </div>
 

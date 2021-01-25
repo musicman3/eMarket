@@ -128,6 +128,7 @@ attention = ВНИМАНИЕ!
 confirm_delete_product_or_category = Вы уверены что хотите удалить категорию или товар?
 confirm_delete_stiker = Вы уверены что хотите удалить стикер?
 alert_wait = Пожалуйста подождите. Идет обработка...
+enter_value = Введите значение
 
 ;DEBUG
 debug_page_generation_time = Время генерации страницы:
@@ -188,8 +189,8 @@ taxes_modal_percent = ПРОЦЕНТ
 taxes_modal_value = ЗНАЧЕНИЕ
 taxes_modal_included = ВКЛЮЧЕН
 taxes_modal_separately = ОТДЕЛЬНО
-taxes_modal_fixed_desc = Процент / фиксированное значение
-taxes_modal_included_desc = Включен в стоимость / отдельно
+taxes_modal_fixed_desc = Фиксированное значение / Процент
+taxes_modal_included_desc = Отдельно / Включен в стоимость
 taxes_modal_zones_desc = Зона действия налога
 taxes_rate = Ставка
 taxes_name = Налог
@@ -197,8 +198,8 @@ taxes_percent = %
 taxes_value = %s
 taxes_included = ВКЛЮЧЕН
 taxes_separately = ОТДЕЛЬНО
-taxes_fixed_desc = Процент / фиксированное значение
-taxes_included_desc = Включен в стоимость / отдельно
+taxes_fixed_desc = Фиксированное значение / Процент
+taxes_included_desc = Отдельно / Включен в стоимость
 taxes_zones_desc = Зона действия налога
 
 ;CATEGORIES
