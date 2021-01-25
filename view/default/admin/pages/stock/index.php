@@ -135,7 +135,7 @@ require_once('modal/add_values_attribute.php');
                                             <?php
                                         } elseif (isset($_SESSION['buffer']['cat']) == true && in_array(Stock::$arr_merge['cat'][Stock::$start]['id'], $_SESSION['buffer']['cat']) == true && Stock::$arr_merge['cat'][Stock::$start]['status'] == 0) {
                                             ?>    
-                                            <td class="sortleft"><div><a href="#" class="btn btn-default btn-sm disabled"><span class="bi-folder2-open"> </span></a></div></td>
+                                            <td class="sortleft"><div><a href="#" class="btn btn-secondary btn-sm disabled"><span class="bi-folder2-open"> </span></a></div></td>
 
                                             <?php
                                         } elseif (Stock::$transfer == Settings::linesOnPage() + 1) {
@@ -150,7 +150,7 @@ require_once('modal/add_values_attribute.php');
                                                 <form>
                                                     <div>
                                                         <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
-                                                        <button name="parent_down" value="<?php echo Stock::$arr_merge['cat'][Stock::$start]['id'] ?>" class="btn btn-default btn-sm" title="<?php echo Stock::$arr_merge['cat'][Stock::$start]['name'] ?>" action="index.php" formmethod="get"><span class="bi-folder2-open"> </span></button>
+                                                        <button name="parent_down" value="<?php echo Stock::$arr_merge['cat'][Stock::$start]['id'] ?>" class="btn btn-secondary btn-sm" title="<?php echo Stock::$arr_merge['cat'][Stock::$start]['name'] ?>" action="index.php" formmethod="get"><span class="bi-folder2-open"> </span></button>
                                                     </div>
                                                 </form>
 
@@ -197,11 +197,11 @@ require_once('modal/add_values_attribute.php');
 
                                         <?php } elseif (isset($_SESSION['buffer']['prod']) == true && in_array(Stock::$arr_merge['prod'][Stock::$start . 'a']['id'], $_SESSION['buffer']['prod']) == true && Stock::$arr_merge['prod'][Stock::$start . 'a']['status'] == 0) { ?>
                                             <td class="sortleft-m"></td>    
-                                            <td class="sortleft"><div><a href="#" class="btn btn-default btn-sm disabled"><span class="bi-cart-check-fill"> </span></a></div></td>
+                                            <td class="sortleft"><div><a href="#" class="btn btn-secondary btn-sm disabled"><span class="bi-cart-check-fill"> </span></a></div></td>
 
                                         <?php } elseif (Stock::$arr_merge['prod'][Stock::$start . 'a']['status'] == 0) { ?>
                                             <td class="sortleft-m"></td>    
-                                            <td class="sortleft"><div><a href="#" class="btn btn-default btn-sm"><span class="bi-cart-check-fill"> </span></a></div></td>
+                                            <td class="sortleft"><div><a href="#" class="btn btn-secondary btn-sm"><span class="bi-cart-check-fill"> </span></a></div></td>
                                         <?php } else { ?>
 
                                             <td class="sortleft-m"></td>
@@ -274,7 +274,7 @@ require_once('modal/add_values_attribute.php');
                                     <form>
                                         <div>
                                             <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
-                                            <button name="parent_up" value="<?php echo Stock::$parent_id ?>" class="btn btn-default btn-sm" title="" action="index.php" formmethod="get"><span class="glyphicon glyphicon-option-horizontal"></span></button>
+                                            <button name="parent_up" value="<?php echo Stock::$parent_id ?>" class="btn btn-secondary btn-sm" title="" action="index.php" formmethod="get"><span class="glyphicon glyphicon-option-horizontal"></span></button>
                                         </div>
                                     </form>
 
