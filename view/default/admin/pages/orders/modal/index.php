@@ -31,7 +31,7 @@ use \eMarket\Admin\Orders;
                                 <table class="table">
                                     <tbody>
                                         <tr>
-                                            <td class="text-left">
+                                            <td class="text-start">
                                                 <div class="label label-primary"><?php echo lang('orders_client') ?></div>
                                                 <div>
                                                     <small class="form-text text-muted">
@@ -41,7 +41,7 @@ use \eMarket\Admin\Orders;
                                                     </small>
                                                 </div>
                                             </td>
-                                            <td class="text-left">
+                                            <td class="text-start">
                                                 <div class="label label-primary"><?php echo lang('orders_payment_method') ?></div>
                                                 <div>
                                                     <small class="form-text text-muted">
@@ -51,7 +51,7 @@ use \eMarket\Admin\Orders;
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="text-left">
+                                            <td class="text-start">
                                                 <div class="label label-primary"><?php echo lang('orders_shipping') ?></div>
                                                 <div>
                                                     <small class="form-text text-muted">
@@ -61,7 +61,7 @@ use \eMarket\Admin\Orders;
                                                     </small>
                                                 </div>
                                             </td>
-                                            <td class="text-left">
+                                            <td class="text-start">
                                                 <div class="label label-primary"><?php echo lang('orders_billing_address') ?></div>
                                                 <div>
                                                     <small class="form-text text-muted">
@@ -72,7 +72,7 @@ use \eMarket\Admin\Orders;
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="text-left">
+                                            <td class="text-start">
                                                 <div class="label label-primary"><?php echo lang('orders_status') ?></div>
                                                 <div>
                                                     <small class="form-text text-muted">
@@ -80,7 +80,7 @@ use \eMarket\Admin\Orders;
                                                     </small>
                                                 </div>
                                             </td>
-                                            <td class="text-left">
+                                            <td class="text-start">
                                                 <div class="label label-primary"><?php echo lang('orders_total') ?></div>
                                                 <div>
                                                     <small class="form-text text-muted">
@@ -100,30 +100,30 @@ use \eMarket\Admin\Orders;
                                 <table class="table table-radius">
                                     <thead>
                                         <tr class="bg-primary">
-                                            <td class="text-left"><small><?php echo lang('orders_stiker') ?></small></td>
+                                            <td class="text-start"><small><?php echo lang('orders_stiker') ?></small></td>
                                             <td class="text-center"><small><?php echo lang('orders_product') ?></small></td>
                                             <td class="text-center"><small><?php echo lang('orders_price') ?></small></td>
                                             <td class="text-center"><small><?php echo lang('orders_quantity') ?></small></td>
-                                            <td class="text-right"><small><?php echo lang('orders_amount') ?></small></td>
+                                            <td class="text-end"><small><?php echo lang('orders_amount') ?></small></td>
                                         </tr>
                                     </thead>
                                     <tbody id="invoice"></tbody>
                                     <tbody>
                                         <tr>
-                                            <td colspan="3" class="text-right"><small><?php echo lang('orders_subtotal') ?>:</small></td>
-                                            <td colspan="2" class="text-right"><small id="invoice_order_total"></small></td>
+                                            <td colspan="3" class="text-end"><small><?php echo lang('orders_subtotal') ?>:</small></td>
+                                            <td colspan="2" class="text-end"><small id="invoice_order_total"></small></td>
                                         </tr>
                                         <tr>
-                                            <td colspan="3" class="text-right"><small><?php echo lang('orders_estimated_taxes') ?></small></td>
-                                            <td colspan="2" class="text-right"><small id="invoice_taxes"></small></td>
+                                            <td colspan="3" class="text-end"><small><?php echo lang('orders_estimated_taxes') ?></small></td>
+                                            <td colspan="2" class="text-end"><small id="invoice_taxes"></small></td>
                                         </tr>
                                         <tr>
-                                            <td colspan="3" class="text-right"><small class="label label-success" id="invoice_shipping_method"></small></td>
-                                            <td colspan="2" class="text-right"><small id="invoice_shipping_price"></small></td>
+                                            <td colspan="3" class="text-end"><small class="label label-success" id="invoice_shipping_method"></small></td>
+                                            <td colspan="2" class="text-end"><small id="invoice_shipping_price"></small></td>
                                         </tr>
                                         <tr>
-                                            <td colspan="3" class="text-right"><div class="label label-danger"><?php echo lang('orders_total') ?>:</div></td>
-                                            <td colspan="2" class="text-right"><small class="label label-danger" id="invoice_order_total_to_pay"></small></td>
+                                            <td colspan="3" class="text-end"><div class="label label-danger"><?php echo lang('orders_total') ?>:</div></td>
+                                            <td colspan="2" class="text-end"><small class="label label-danger" id="invoice_order_total_to_pay"></small></td>
                                         </tr>
                                     </tbody>
                                 </table>
