@@ -10,7 +10,7 @@ button::-moz-focus-inner {border: 0 !important;}
 input, textarea {outline: none;}
 input:active, textarea:active {outline: none;}
 html {position: relative;min-height: 100%;}
-body {background:#e4e4da;font-family: 'Open Sans';background-image:url('images/sep-half.png');margin-bottom: 80px;}
+body {background:#e4e4da;font-family: 'Open Sans';background-image:url('images/sep-half.png');}
 
 .navbar {min-height: 30px;padding: 5px 0 5px 0;}
 .navbar-inverse .navbar-nav > li > a {color:#ffffff;}
@@ -67,7 +67,7 @@ body {background:#e4e4da;font-family: 'Open Sans';background-image:url('images/s
 .slide-color input {cursor: pointer;}
 
 
-#footerwrap {width: 100%;background: #4c453d;border-top: 8px solid #312d27;background-image: url('images/sep-half.png');text-align: center;position: absolute;bottom: 0;height: 80px;}
+#footerwrap {width: 100%;background: #4c453d;border-top: 8px solid #312d27;background-image: url('images/sep-half.png');text-align: center;position: absolute;bottom: 0;}
 #footerwrap p {color: white;font-size: 12px;}
 
 .table {margin-bottom:0px;}

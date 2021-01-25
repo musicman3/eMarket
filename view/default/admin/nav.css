@@ -1,2 +1,1 @@
-body {padding-top:60px;}
-@media screen and (max-height:420px) and (orientation:landscape) {body {padding-top:80px;}}
+body {padding-top:60px;padding-bottom: 105px;}
