@@ -98,7 +98,6 @@ entrance = Entrance
 product_price = Price
 product_quantity = Quantity
 product_unit = Unit
-product_vendor_code = Vendor code
 product_description = Description
 name_little = Little name
 name_full = Full name
@@ -179,6 +178,10 @@ order_status_name = Order status
 weight_name_little = Little name
 weight_name_full = Full name
 weight_value = Value
+
+;VENDOR_CODES
+vendor_codes_name = Vendor code
+vendor_codes_description = Description
 
 ;CURRENCIES
 currencies_currency_symbol = Currency symbol

@@ -98,7 +98,6 @@ entrance = Вход
 product_price = Цена
 product_quantity = Количество
 product_unit = Единица измерения
-product_vendor_code = Идентификатор товара
 product_description = Описание
 name_little = Сокращенное наименование
 name_full = Полное наименование
@@ -179,6 +178,10 @@ order_status_name = Статус заказа
 weight_name_little = Сокращенное наименование
 weight_name_full = Полное наименование
 weight_value = Значение
+
+;VENDOR_CODES
+vendor_codes_name = Идентификатор товара
+vendor_codes_description = Описание
 
 ;CURRENCIES
 currencies_currency_symbol = Символ валюты

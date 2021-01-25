@@ -26,16 +26,18 @@ use \eMarket\Core\{
 
                     <div class="tab-content">
                         <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade show in active">
-                            <div class="mb-3">
-                                <div class="input-group has-error">
+                            <div class="mb-2">
+                                <small class="form-text text-muted"><?php echo lang('vendor_codes_name') ?></small>
+                                <div class="input-group">
                                     <span class="input-group-text"><span class="bi-file-text"></span></span>
-                                    <input class="input-sm form-control" placeholder="<?php echo lang('product_vendor_code') ?>" type="text" name="name_vendor_codes_0" id="name_vendor_codes_0" required />
+                                    <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_vendor_codes_0" id="name_vendor_codes_0" required />
                                 </div>
                             </div>
-                            <div class="mb-3">
-                                <div class="input-group has-success">
+                            <div class="mb-2">
+                                <small class="form-text text-muted"><?php echo lang('vendor_codes_description') ?></small>
+                                <div class="input-group">
                                     <span class="input-group-text"><span class="bi-file-text"></span></span>
-                                    <input class="input-sm form-control" placeholder="<?php echo lang('name_description') ?>" type="text" name="vendor_code_0" id="vendor_code_0" />
+                                    <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="vendor_code_0" id="vendor_code_0" />
                                 </div>
                             </div>
                         </div>
@@ -46,16 +48,18 @@ use \eMarket\Core\{
                                 ?>
 
                                 <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">
-                                    <div class="mb-3">
-                                        <div class="input-group has-error">
+                                    <div class="mb-2">
+                                        <small class="form-text text-muted"><?php echo lang('vendor_codes_name') ?></small>
+                                        <div class="input-group">
                                             <span class="input-group-text"><span class="bi-file-text"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo lang('product_vendor_code') ?>" type="text" name="name_vendor_codes_<?php echo $x ?>" id="name_vendor_codes_<?php echo $x ?>" required />
+                                            <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_vendor_codes_<?php echo $x ?>" id="name_vendor_codes_<?php echo $x ?>" required />
                                         </div>
                                     </div>
-                                    <div class="mb-3">
-                                        <div class="input-group has-success">
+                                    <div class="mb-2">
+                                        <small class="form-text text-muted"><?php echo lang('vendor_codes_description') ?></small>
+                                        <div class="input-group">
                                             <span class="input-group-text"><span class="bi-file-text"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo lang('name_description') ?>" type="text" name="vendor_code_<?php echo $x ?>" id="vendor_code_<?php echo $x ?>" />
+                                            <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="vendor_code_<?php echo $x ?>" id="vendor_code_<?php echo $x ?>" />
                                         </div>
                                     </div>
                                 </div>
@@ -65,7 +69,7 @@ use \eMarket\Core\{
                         }
                         ?>
                         
-                        <div class="mb-3 form-check form-switch">
+                        <div class="mb-2 form-check form-switch">
                             <input class="form-check-input" type="checkbox" name="default_vendor_code" id="default_vendor_code" checked>
                             <label class="form-check-label" for="default_vendor_code"><?php echo lang('default_set') ?></label>
                         </div>
