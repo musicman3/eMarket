@@ -26,7 +26,7 @@ if (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
                 <ul class="navbar-nav">
                     <?php
                     for ($i = 0; $i < count(HeaderMenu::$level); $i++) {
-                        HeaderMenu::setParameters(' dropdown-toggle"', ' role="button" data-bs-toggle="dropdown"');
+                        HeaderMenu::setParameters(' dropdown-toggle','data-bs-toggle="dropdown"');
                         HeaderMenu::clearParameters(HeaderMenu::$level[$i][2]);
                         ?>
 
