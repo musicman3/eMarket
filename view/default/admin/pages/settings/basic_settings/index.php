@@ -32,8 +32,8 @@ use \eMarket\Admin\BasicSettings;
                     <form id="form_add" name="form_add" class="form-horizontal" action="javascript:void(null);" onsubmit="Ajax.callAdd()">
                         <input hidden name="add" value="ok">
 
-                        <div class="mb-3">
-                            <label class="form-label"><?php echo lang('basic_settings_primary_language') ?></label>
+                        <div class="mb-3 row">
+                            <label class="col-form-label col-md-3"><?php echo lang('basic_settings_primary_language') ?></label>
                             <div class="col-md-9">
                                 <select name="primary_language" id="primary_language" class="form-select">
                                     <?php if (Lang::$count == 1) { ?>
@@ -49,20 +49,20 @@ use \eMarket\Admin\BasicSettings;
                                 </select>
                             </div>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label"><?php echo lang('lines_on_page') ?></label>
+                        <div class="mb-3 row">
+                            <label class="col-form-label col-md-3"><?php echo lang('lines_on_page') ?></label>
                             <div class="col-md-9">
                                 <input type="text" name="lines_on_page" class="form-control" value="<?php echo Settings::linesOnPage() ?>" required />
                             </div>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label"><?php echo lang('session_expr_time') ?> <span data-bs-toggle="tooltip" data-bs-placement="right" title="<?php echo lang('session_expr_time_help') ?>" class="bi-question-circle"></span></label>
+                        <div class="mb-3 row">
+                            <label class="col-form-label col-md-3"><?php echo lang('session_expr_time') ?> <span data-bs-toggle="tooltip" data-bs-placement="right" title="<?php echo lang('session_expr_time_help') ?>" class="bi-question-circle"></span></label>
                             <div class="col-md-9">
                                 <input type="text" name="session_expr_time" class="form-control" value="<?php echo Settings::sessionExprTime() ?>" required />
                             </div>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label"><?php echo lang('debug_info') ?></label>
+                        <div class="mb-3 row">
+                            <label class="col-form-label col-md-3"><?php echo lang('debug_info') ?></label>
                             <div class="col-md-9">
                                 <select name="debug" id="debug" class="form-select">
                                     <?php if (BasicSettings::$debug == 1) { ?>
@@ -82,22 +82,22 @@ use \eMarket\Admin\BasicSettings;
                     <form id="form_email" name="form_email" class="form-horizontal" action="javascript:void(null);" onsubmit="Ajax.callAdd('form_email')">
                         <input hidden name="add" value="ok">
 
-                        <div class="mb-3">
-                            <label class="form-label"><?php echo lang('basic_settings_email') ?></label>
+                        <div class="mb-3 row">
+                            <label class="col-form-label col-md-3"><?php echo lang('basic_settings_email') ?></label>
                             <div class="col-md-9">
                                 <input type="email" name="email" class="form-control" value="<?php echo BasicSettings::$email ?>" required />
                             </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label"><?php echo lang('basic_settings_email_name') ?></label>
+                        <div class="mb-3 row">
+                            <label class="col-form-label col-md-3"><?php echo lang('basic_settings_email_name') ?></label>
                             <div class="col-md-9">
                                 <input type="text" name="email_name" class="form-control" value="<?php echo BasicSettings::$email_name ?>" required />
                             </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label"><?php echo lang('basic_settings_smtp_use') ?></label>
+                        <div class="mb-3 row">
+                            <label class="col-form-label col-md-3"><?php echo lang('basic_settings_smtp_use') ?></label>
                             <div class="col-md-9">
                                 <select name="smtp_status" id="smtp_status" class="form-select">
                                     <?php if (BasicSettings::$smtp_status == 1) { ?>
@@ -111,8 +111,8 @@ use \eMarket\Admin\BasicSettings;
                             </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label"><?php echo lang('basic_settings_smtp_auth') ?></label>
+                        <div class="mb-3 row">
+                            <label class="col-form-label col-md-3"><?php echo lang('basic_settings_smtp_auth') ?></label>
                             <div class="col-md-9">
                                 <select name="smtp_auth" id="smtp_auth" class="form-select">
                                     <?php if (BasicSettings::$smtp_auth == 1) { ?>
@@ -126,36 +126,36 @@ use \eMarket\Admin\BasicSettings;
                             </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label"><?php echo lang('basic_settings_host_email') ?></label>
+                        <div class="mb-3 row">
+                            <label class="col-form-label col-md-3"><?php echo lang('basic_settings_host_email') ?></label>
                             <div class="col-md-9">
                                 <input type="text" id="host_email" name="host_email" class="form-control" value="<?php echo BasicSettings::$host_email ?>" required />
                             </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label"><?php echo lang('basic_settings_username_email') ?></label>
+                        <div class="mb-3 row">
+                            <label class="col-form-label col-md-3"><?php echo lang('basic_settings_username_email') ?></label>
                             <div class="col-md-9">
                                 <input type="text" id="username_email" name="username_email" class="form-control" value="<?php echo BasicSettings::$username_email ?>" required />
                             </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label"><?php echo lang('basic_settings_password_email') ?></label>
+                        <div class="mb-3 row">
+                            <label class="col-form-label col-md-3"><?php echo lang('basic_settings_password_email') ?></label>
                             <div class="col-md-9">
                                 <input type="password" id="password_email" name="password_email" class="form-control" value="<?php echo BasicSettings::$password_email ?>" required />
                             </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label"><?php echo lang('basic_settings_smtp_secure') ?></label>
+                        <div class="mb-3 row">
+                            <label class="col-form-label col-md-3"><?php echo lang('basic_settings_smtp_secure') ?></label>
                             <div class="col-md-9">
                                 <input type="text" id="smtp_secure" name="smtp_secure" class="form-control" value="<?php echo BasicSettings::$smtp_secure ?>" required />
                             </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label"><?php echo lang('basic_settings_smtp_port') ?></label>
+                        <div class="mb-3 row">
+                            <label class="col-form-label col-md-3"><?php echo lang('basic_settings_smtp_port') ?></label>
                             <div class="col-md-9">
                                 <input type="text" id="smtp_port" name="smtp_port" class="form-control" value="<?php echo BasicSettings::$smtp_port ?>" required />
                             </div>
