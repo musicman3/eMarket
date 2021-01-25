@@ -22,7 +22,7 @@ $lang_js = json_encode([
     new Fileupload(resize_max, lang);
     new Ajax();
 
-    $('#index').on('show.bs.modal', function (event) {
+    document.querySelector('#index').addEventListener('show.bs.modal', function (event) {
 
         var button = event.relatedTarget;
         var modal_id = Number(button.dataset.edit);

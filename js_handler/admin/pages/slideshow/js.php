@@ -29,7 +29,7 @@ $lang_js = json_encode([
 
     $('#mouse_stop, #autostart, #cicles, #indicators, #navigation, #view_slideshow', '#animation').bootstrapSwitch();
 
-    $('#settings').on('show.bs.modal', function (event) {
+    document.querySelector('#settings').addEventListener('show.bs.modal', function (event) {
         $('#mouse_stop, #autostart, #cicles, #indicators, #navigation').bootstrapSwitch('destroy', true);
         var json_data = JSON.parse(document.querySelector('#ajax_data').dataset.jsonsettings);
 
@@ -62,7 +62,7 @@ $lang_js = json_encode([
         }
     });
 
-    $('#index').on('show.bs.modal', function (event) {
+    document.querySelector('#index').addEventListener('show.bs.modal', function (event) {
         var button = event.relatedTarget;
         var modal_id = Number(button.dataset.edit);
         if (Number.isInteger(modal_id)) {

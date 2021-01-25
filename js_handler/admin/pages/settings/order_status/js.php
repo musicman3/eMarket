@@ -10,7 +10,7 @@
 </script>
 
 <script type="text/javascript">
-    $('#index').on('show.bs.modal', function (event) {
+    document.querySelector('#index').addEventListener('show.bs.modal', function (event) {
         var button = event.relatedTarget;
         var modal_id = Number(button.dataset.edit);
         if (Number.isInteger(modal_id)) {
