@@ -16,14 +16,22 @@ class Confirm {
      *
      *@param id {String} (id)
      */
-    del (id) {
+    del(id) {
         $('#confirm').modal('show');
-
         confirmation.onclick = function () {
-            $('#confirm').modal('hide');
-            $('#confirm').on('hidden.bs.modal', function (event) {
-                Ajax.callDelete(id);
-            });
+            Ajax.callDelete(id);
+        };
+    }
+
+    /**
+     * Init for confirm add
+     *
+     *@param name {String} (name)
+     */
+    update(name) {
+        $('#confirm').modal('show');
+        confirmation.onclick = function () {
+            Ajax.callAdd(name);
 
         };
     }

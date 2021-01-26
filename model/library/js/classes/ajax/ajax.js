@@ -61,7 +61,14 @@ class Ajax {
         xhr.open('POST', window.location.href, false);
         xhr.send(data);
         if (xhr.status === 200) {
-            Ajax.getUpdate(url);
+            if (document.querySelector('.modal')) {
+                $('.modal').modal('hide');
+                $('.modal').on('hidden.bs.modal', function () {
+                    Ajax.getUpdate(url);
+                });
+            } else {
+                Ajax.getUpdate(url);
+            }
         }
     }
 
