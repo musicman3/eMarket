@@ -74,7 +74,7 @@ use \eMarket\Admin\Templates;
             </div>
 
             <div class="clearfix"></br></div>
-            <div class="center-block">
+            <div class="d-flex justify-content-center">
                 <ul id="sortable1" class="connectedSortable block-ul" style="width:66.3%">
                     <li class="sortno border bg-primary text-center text-white">header &nbsp;<span class="glyphicon glyphicon-resize-horizontal"></span></li>
                     <?php foreach (Templates::$layout_header as $path) { ?>
@@ -88,7 +88,7 @@ use \eMarket\Admin\Templates;
                     <?php } ?>
                 </ul>
             </div>
-            <div class="center-block">
+            <div class="d-flex justify-content-center">
                 <ul id="sortable3" class="connectedSortable2 block-ul" style="width:66.3%">
                     <li class="sortno border bg-primary text-center text-white">content &nbsp;<span class="glyphicon glyphicon-resize-horizontal"></span></li>
                     <?php foreach (Templates::$layout_content as $path) { ?>
@@ -102,7 +102,7 @@ use \eMarket\Admin\Templates;
                     <?php } ?>
                 </ul>
             </div>
-            <div class="center-block">
+            <div class="d-flex justify-content-center">
                 <ul id="sortable5" class="connectedSortable3 block-l" style="width:33.2%;">
                     <li class="sortno border-l bg-primary text-center text-white">boxes-left &nbsp;<span class="glyphicon glyphicon-resize-horizontal"></span></li>
                     <?php foreach (Templates::$layout_boxes_left as $path) { ?>
@@ -122,7 +122,7 @@ use \eMarket\Admin\Templates;
                     <?php } ?>
                 </ul>
             </div>
-            <div class="center-block">
+            <div class="d-flex justify-content-center">
                 <ul id="sortable8" class="connectedSortable4 block-ul" style="width:66.3%">
                     <li class="sortno border bg-primary text-center text-white">footer &nbsp;<span class="glyphicon glyphicon-resize-horizontal"></span></li>
                     <?php foreach (Templates::$layout_footer as $path) { ?>
