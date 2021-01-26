@@ -25,7 +25,7 @@ use \eMarket\Admin\ZonesListing;
                     <input type="hidden" name="add" value="ok" />
                     <input hidden name="zone_id" value="<?php echo ZonesListing::$zones_id ?>">
 
-                    <span class="multiselect-native-select">
+                    <span class="multiselect-native-select me-auto">
                         <select id="multiselect" name="multiselect[]" multiple="multiple">
                             <?php
                             foreach (ZonesListing::$countries_multiselect as $k => $v) {
