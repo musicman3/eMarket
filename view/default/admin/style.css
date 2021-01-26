@@ -94,7 +94,7 @@ body {background:#e4e4da;font-family: 'Open Sans';background-image:url('images/s
 .multiselect-add {color:#ffa500;}
 .transfer {color: #777;padding:5px;}
 .fileinput-button {position: relative;overflow: hidden;display: inline-block;}
-.fileinput-button input {position: absolute;top: 0;right: 0;margin: 0;opacity: 0;-ms-filter: 'alpha(opacity=0)';direction: ltr;cursor: pointer;font-size: 1px !important;}
+.fileinput-button input {position: absolute;top: 0;right: 0;margin: 0;opacity: 0;-ms-filter: 'alpha(opacity=0)';direction: ltr;cursor: pointer;line-height: 1;}
 @media screen\9 {.fileinput-button input {filter: alpha(opacity=0);font-size: 100%;height: 100%;}}
 .settings_back {padding: 1px 0 5px 0;border: 1px solid #ddd;border-radius: 4px 0 0 4px;}
 .settings_name {padding: 1px 5px 5px 5px;border: 1px solid #ddd;border-radius: 0 4px 4px 0;}
