@@ -36,7 +36,7 @@ require_once('modal/index.php')
                                 <?php if (Pages::$finish != Pages::$count) { ?>
                                     <button type="submit" class="btn btn-primary btn-sm" formmethod="get"><span class="bi-arrow-left-short"></span></button>
                                 <?php } else { ?>
-                                    <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-right-short"></span></a>
+                                    <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-left-short"></span></a>
                                 <?php } ?>
                         </form>
 
@@ -49,7 +49,7 @@ require_once('modal/index.php')
                                 <?php if (Pages::$finish != Pages::$count) { ?>
                                     <button type="submit" class="btn btn-primary btn-sm" formmethod="get"><span class="bi-arrow-right-short"></span></button>
                                 <?php } else { ?>
-                                    <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-left-short"></span></a>
+                                    <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-right-short"></span></a>
                                 <?php } ?>
                         </form>
 
