@@ -41,8 +41,7 @@ body {background:#e4e4da;font-family: 'Open Sans';background-image:url('images/s
 #settings_basic_settings .tooltip-inner {font-family: 'Open Sans';min-width:200px;}
 
 #settings_templates .block-ul {display:inline-block;border:1px solid #dddddd;border-top-left-radius: 5px;border-top-right-radius: 5px;vertical-align:top;padding-left:0;}
-#settings_templates .sortno {list-style-type: none;text-align:center;padding: 5px 0 5px 0;margin-bottom: 3px;}
-#settings_templates li.sortno {border-bottom:1px solid #dddddd;}
+#settings_templates .sortno {color: #ffffff;list-style-type: none;text-align:center;padding: 5px 0 5px 0;margin-bottom: 3px;}
 #settings_templates .sortyes {list-style-type: none;text-align:center;padding-bottom: 3px;}
 #settings_templates .block-m {margin-left:-3.45px;}
 #settings_templates .block-l {display:inline-block;border:1px solid #dddddd;border-top-left-radius: 5px;vertical-align:top;padding-left:0;}
@@ -65,6 +64,8 @@ body {background:#e4e4da;font-family: 'Open Sans';background-image:url('images/s
 #slideshow .slide-sett {padding: 3px 5px 0 0;}
 #slideshow .slide-color label {vertical-align: middle;}
 #slideshow .slide-color input {cursor: pointer;}
+
+#discount_modules .table > thead > tr > td, #shipping_modules .table > thead > tr > td, #payment_modules .table > thead > tr > td {color: #ffffff;}
 
 #footerwrap {width: 100%;background: #4c453d;border-top: 8px solid #312d27;background-image: url('images/sep-half.png');text-align: center;position: absolute;bottom: 0;}
 #footerwrap p {color: white;font-size: 12px;}
