@@ -32,7 +32,7 @@ use \eMarket\Admin\ZonesListing;
                                 if (in_array(array($k), ZonesListing::$lines) == TRUE && count(ZonesListing::$regions) != 0) {
                                     ?>
 
-                                    <optgroup label="<span class='multiselect-add'><?php echo $v ?></span>">
+                                    <optgroup class="multiselect-add" label="<?php echo $v ?>">
                                     <?php } else {
                                         ?>
 
