@@ -42,7 +42,7 @@ use \eMarket\Admin\Modules;
                                 <table class="table table-hover table-radius">
                                     <thead>
 
-                                        <tr class="bg-primary align-middle">
+                                        <tr class="bg-primary align-middle text-white">
                                             <td><?php echo lang('installed_modules') ?></td>
                                             <td></td>
                                         </tr>
@@ -81,7 +81,7 @@ use \eMarket\Admin\Modules;
                                 <table class="table table-hover table-radius">
                                     <thead>
 
-                                        <tr class="bg-primary">
+                                        <tr class="bg-primary text-white">
                                             <td><?php echo lang('uninstalled_modules') ?></td>
                                             <td></td>
                                         </tr>
