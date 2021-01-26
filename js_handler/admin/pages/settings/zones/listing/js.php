@@ -18,7 +18,7 @@
             selectAllText: '<?php echo lang('select_all') ?>',
             selectAllJustVisible: false,
             enableHTML: true,
-            buttonClass: 'btn btn-primary btn-xs',
+            buttonClass: 'btn btn-primary btn-sm',
 
             buttonTitle: function () {
                 return '<?php echo lang('select_country_and_region') ?>';
