@@ -33,11 +33,11 @@ require_once('modal/index.php')
                             <input hidden name="backfinish" value="<?php echo Pages::$finish ?>">
                             <input hidden name="type" value="<?php echo Valid::inGET('type') ?>">
                             <input hidden name="name" value="<?php echo Valid::inGET('name') ?>">
-                                <?php if (Pages::$finish != Pages::$count) { ?>
-                                    <button type="submit" class="btn btn-primary btn-sm" formmethod="get"><span class="bi-arrow-left-short"></span></button>
-                                <?php } else { ?>
-                                    <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-left-short"></span></a>
-                                <?php } ?>
+                            <?php if (Pages::$finish != Pages::$count) { ?>
+                                <button type="submit" class="btn btn-primary btn-sm" formmethod="get"><span class="bi-arrow-left-short"></span></button>
+                            <?php } else { ?>
+                                <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-left-short"></span></a>
+                            <?php } ?>
                         </form>
 
                         <form>
@@ -46,11 +46,11 @@ require_once('modal/index.php')
                             <input hidden name="finish" value="<?php echo Pages::$finish ?>">
                             <input hidden name="type" value="<?php echo Valid::inGET('type') ?>">
                             <input hidden name="name" value="<?php echo Valid::inGET('name') ?>">
-                                <?php if (Pages::$finish != Pages::$count) { ?>
-                                    <button type="submit" class="btn btn-primary btn-sm" formmethod="get"><span class="bi-arrow-right-short"></span></button>
-                                <?php } else { ?>
-                                    <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-right-short"></span></a>
-                                <?php } ?>
+                            <?php if (Pages::$finish != Pages::$count) { ?>
+                                <button type="submit" class="btn btn-primary btn-sm" formmethod="get"><span class="bi-arrow-right-short"></span></button>
+                            <?php } else { ?>
+                                <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-right-short"></span></a>
+                            <?php } ?>
                         </form>
 
                     </div>
