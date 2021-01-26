@@ -44,8 +44,10 @@ use \eMarket\Core\{
         <script type="text/javascript" src="/ext/jquery/ui/jquery.ui.touch-punch.min.js"></script>
         <script type="text/javascript" src="/ext/fastmd5/md5.min.js"></script>
         <script type="text/javascript" src="/ext/randomizer/randomizer.js"></script>
+        <script type="text/javascript" src="/model/library/js/classes/confirm/confirm.js"></script>
 
         <script type="text/javascript">
+            var Confirmation = new Confirm();
             $(function () {
                 $('[data-bs-toggle="tooltip"]').tooltip();
             });
@@ -64,6 +66,7 @@ use \eMarket\Core\{
             <div id="ajax">
 
                 <?php
+                require_once('confirm.php');
                 require_once(View::routingAdmin());
                 ?>
 
@@ -77,13 +80,8 @@ use \eMarket\Core\{
         ?>
 
         <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script type="text/javascript" src="/ext/bootstrap/js/bootstrap-confirmation.min.js"></script>
         <script type="text/javascript" src="/ext/contextmenu/js/jquery.contextMenu.min.js"></script>
         <script type="text/javascript" src="/ext/bootstrap/js/bootstrap-multiselect.js"></script>
-
-        <script type="text/javascript">
-            $('[data-bs-toggle=confirmation]').confirmation({rootSelector: '[data-bs-toggle=confirmation]'});
-        </script>
 
         <?php
         if (Settings::$js_handler != FALSE) {

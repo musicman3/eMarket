@@ -33,9 +33,9 @@ use \eMarket\Core\{
                                 <th>
                                     <div class="gap-2 d-flex justify-content-end">
 
-                                        <form id="form_delete_log" name="form_delete_log" action="javascript:void(null);" onsubmit="Ajax.callDelete('_log')" enctype="multipart/form-data">
+                                        <form id="form_delete_log" name="form_delete_log" action="javascript:void(null);" enctype="multipart/form-data">
                                             <input hidden name="delete" value="delete">
-                                            <button type="submit" name="delete_but" class="btn btn-primary btn-sm" data-bs-placement="left" data-bs-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="bi-trash"> </span></button>
+                                            <button type="button" name="delete_but" class="btn btn-primary btn-sm" onclick="Confirmation.init('_log')"><span class="bi-trash"> </span></button>
                                         </form>
 
                                         <form>
