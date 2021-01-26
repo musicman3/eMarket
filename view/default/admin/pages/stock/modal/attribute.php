@@ -20,7 +20,9 @@
                                 <tr>
                                     <th colspan="3"></th>
                                     <th>
-                                        <div class="flexbox"><button type="button" class="add-attribute btn btn-primary btn-sm"><span class="bi-plus"></span></button></div>
+                                        <div class="gap-2 d-flex justify-content-end">
+					    <button type="button" class="add-attribute btn btn-primary btn-sm"><span class="bi-plus"></span></button>
+					</div>
                                     </th>
                                 </tr>
 

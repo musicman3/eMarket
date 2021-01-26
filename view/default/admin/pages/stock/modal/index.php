@@ -98,7 +98,9 @@ use \eMarket\Admin\Stock;
                                         <tr>
                                             <th colspan="3"></th>
                                             <th>
-                                                <div class="flexbox"><button class="add-group-attributes btn btn-primary btn-sm" type="button"><span class="bi-plus"></span></button></div>
+                                                <div class="gap-2 d-flex justify-content-end">
+						    <button class="add-group-attributes btn btn-primary btn-sm" type="button"><span class="bi-plus"></span></button>
+						</div>
                                             </th>
                                         </tr>
 

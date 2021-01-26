@@ -33,31 +33,29 @@ require_once('modal/index.php')
                             <th colspan="3"><?php echo Pages::counterPage() ?></th>
 
                             <th>
-                                <div class="flexbox">
-                                    <div class="b-left"><a href="#index" class="btn btn-primary btn-sm" data-bs-toggle="modal"><span class="bi-plus"></span></a></div>
+                                <div class="gap-2 d-flex justify-content-end">
+
+                                    <a href="#index" class="btn btn-primary btn-sm" data-bs-toggle="modal"><span class="bi-plus"></span></a>
+
                                     <form>
                                         <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
                                         <input hidden name="backstart" value="<?php echo Pages::$start ?>">
                                         <input hidden name="backfinish" value="<?php echo Pages::$finish ?>">
-                                        <div class="b-left">
-                                            <?php if (Pages::$start > 0) { ?>
-                                                <button type="submit" class="btn btn-primary btn-sm" formmethod="get"><span class="bi-arrow-left-short"></span></button>
-                                            <?php } else { ?>
-                                                <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-left-short"></span></a>
-                                            <?php } ?>
-                                        </div>
+                                        <?php if (Pages::$start > 0) { ?>
+                                            <button type="submit" class="btn btn-primary btn-sm" formmethod="get"><span class="bi-arrow-left-short"></span></button>
+                                        <?php } else { ?>
+                                            <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-left-short"></span></a>
+                                        <?php } ?>
                                     </form>
                                     <form>
                                         <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
                                         <input hidden name="start" value="<?php echo Pages::$start ?>">
                                         <input hidden name="finish" value="<?php echo Pages::$finish ?>">
-                                        <div>
-                                            <?php if (Pages::$finish != Pages::$count) { ?>
-                                                <button type="submit" class="btn btn-primary btn-sm" formmethod="get"><span class="bi-arrow-right-short"></span></button>
-                                            <?php } else { ?>
-                                                <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-right-short"></span></a>
-                                            <?php } ?>
-                                        </div>
+                                        <?php if (Pages::$finish != Pages::$count) { ?>
+                                            <button type="submit" class="btn btn-primary btn-sm" formmethod="get"><span class="bi-arrow-right-short"></span></button>
+                                        <?php } else { ?>
+                                            <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-right-short"></span></a>
+                                        <?php } ?>
                                     </form>
                                 </div>
                             </th>
@@ -82,15 +80,11 @@ require_once('modal/index.php')
                                     <td class="text-center"><?php echo lang('confirm-no') ?></td>
                                 <?php } ?>
                                 <td>
-                                    <div class="flexbox">
-                                        <div class="b-left">
-                                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#index" data-edit="<?php echo Pages::$table['line']['id'] ?>"><span class="bi-pencil-square"></span></button>
-                                        </div>
+                                    <div class="gap-2 d-flex justify-content-end">
+                                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#index" data-edit="<?php echo Pages::$table['line']['id'] ?>"><span class="bi-pencil-square"></span></button>
                                         <form id="form_delete<?php echo Pages::$table['line']['id'] ?>" name="form_delete" action="javascript:void(null);" onsubmit="Ajax.callDelete('<?php echo Pages::$table['line']['id'] ?>')" enctype="multipart/form-data">
                                             <input hidden name="delete" value="<?php echo Pages::$table['line']['id'] ?>">
-                                            <div>
-                                                <button type="submit" name="delete_but" class="btn btn-primary btn-sm" data-bs-placement="left" data-bs-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="bi-trash"> </span></button>
-                                            </div>
+                                            <button type="submit" name="delete_but" class="btn btn-primary btn-sm" data-bs-placement="left" data-bs-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="bi-trash"> </span></button>
                                         </form>
                                     </div>
                                 </td>

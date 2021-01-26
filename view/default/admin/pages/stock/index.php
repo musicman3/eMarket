@@ -57,20 +57,18 @@ require_once('modal/add_values_attribute.php');
                             <tr class="align-middle">
                                 <th colspan="4"><?php echo Pages::counterPageStock() ?></th>
                                 <th>
+                                    <div class="gap-2 d-flex justify-content-end">
 
-                                    <div class="flexbox">
                                         <form>
                                             <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
                                             <input hidden name="backstart" value="<?php echo Stock::$start ?>">
                                             <input hidden name="backfinish" value="<?php echo Stock::$finish ?>">
                                             <input hidden name="nav_parent_id" value="<?php echo Stock::$parent_id ?>">
-                                            <div class="b-left">
-                                                <?php if (Stock::$start > 0) { ?>
-                                                    <button type="submit" class="btn btn-primary btn-sm" action="index.php" formmethod="get"><span class="bi-arrow-left-short"></span></button>
-                                                <?php } else { ?>
-                                                    <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-left-short"></span></a>
-                                                <?php } ?>
-                                            </div>
+                                            <?php if (Stock::$start > 0) { ?>
+                                                <button type="submit" class="btn btn-primary btn-sm" action="index.php" formmethod="get"><span class="bi-arrow-left-short"></span></button>
+                                            <?php } else { ?>
+                                                <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-left-short"></span></a>
+                                            <?php } ?>
                                         </form>
 
                                         <form>
@@ -78,16 +76,14 @@ require_once('modal/add_values_attribute.php');
                                             <input hidden name="start" value="<?php echo Stock::$start ?>">
                                             <input hidden name="finish" value="<?php echo Stock::$finish ?>">
                                             <input hidden name="nav_parent_id" value="<?php echo Stock::$parent_id ?>">
-                                            <div>
-                                                <?php if (Pages::counterStock() < Stock::$count_lines_merge) { ?>
-                                                    <button type="submit" class="btn btn-primary btn-sm" action="index.php" formmethod="get"><span class="bi-arrow-right-short"></span></button>
-                                                <?php } else { ?>
-                                                    <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-right-short"></span></a>
-                                                <?php } ?>
-                                            </div>
+                                            <?php if (Pages::counterStock() < Stock::$count_lines_merge) { ?>
+                                                <button type="submit" class="btn btn-primary btn-sm" action="index.php" formmethod="get"><span class="bi-arrow-right-short"></span></button>
+                                            <?php } else { ?>
+                                                <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-right-short"></span></a>
+                                            <?php } ?>
                                         </form>
-                                    </div>
 
+                                    </div>
                                 </th>
                             </tr>
                         </thead>

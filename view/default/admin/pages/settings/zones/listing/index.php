@@ -32,22 +32,20 @@ require_once('modal/index.php')
                             <th colspan="2"><?php echo Pages::counterPage() ?></th>
 
                             <th>
-                                <div class="flexbox">
+                                <div class="gap-2 d-flex justify-content-end">
 
-                                    <div class="b-left"><a href="#index" class="btn btn-primary btn-sm" data-bs-toggle="modal"><span class="bi-pen"></span></a></div>
+                                    <a href="#index" class="btn btn-primary btn-sm" data-bs-toggle="modal"><span class="bi-pen"></span></a>
 
                                     <form>
                                         <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
                                         <input hidden name="backstart" value="<?php echo Pages::$start ?>">
                                         <input hidden name="backfinish" value="<?php echo Pages::$finish ?>">
                                         <input hidden name="zone_id" value="<?php echo ZonesListing::$zones_id ?>">
-                                        <div class="b-left">
-                                            <?php if (Pages::$start > 0) { ?>
-                                                <button type="submit" class="btn btn-primary btn-sm" formmethod="get"><span class="bi-arrow-left-short"></span></button>
-                                            <?php } else { ?>
-                                                <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-left-short"></span></a>
-                                            <?php } ?>
-                                        </div>
+                                        <?php if (Pages::$start > 0) { ?>
+                                            <button type="submit" class="btn btn-primary btn-sm" formmethod="get"><span class="bi-arrow-left-short"></span></button>
+                                        <?php } else { ?>
+                                            <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-left-short"></span></a>
+                                        <?php } ?>
                                     </form>
 
                                     <form>
@@ -55,13 +53,11 @@ require_once('modal/index.php')
                                         <input hidden name="start" value="<?php echo Pages::$start ?>">
                                         <input hidden name="finish" value="<?php echo Pages::$finish ?>">
                                         <input hidden name="zone_id" value="<?php echo ZonesListing::$zones_id ?>">
-                                        <div>
-                                            <?php if (Pages::$finish != Pages::$count) { ?>
-                                                <button type="submit" class="btn btn-primary btn-sm" formmethod="get"><span class="bi-arrow-right-short"></span></button>
-                                            <?php } else { ?>
-                                                <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-right-short"></span></a>
-                                            <?php } ?>
-                                        </div>
+                                        <?php if (Pages::$finish != Pages::$count) { ?>
+                                            <button type="submit" class="btn btn-primary btn-sm" formmethod="get"><span class="bi-arrow-right-short"></span></button>
+                                        <?php } else { ?>
+                                            <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-right-short"></span></a>
+                                        <?php } ?>
                                     </form>
 
                                 </div>
