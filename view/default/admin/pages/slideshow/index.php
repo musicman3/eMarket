@@ -102,8 +102,8 @@ require_once('modal/index.php')
                                         <th class="text-center"><?php echo lang('slides_show_end') ?></th>
                                         <th></th>
                                     </tr>
-                                </thead>
-                            <?php } ?>
+				<?php } ?>
+                            </thead>
                             <tbody>
                                 <?php for (Pages::$start; Pages::$start < Pages::$finish; Pages::$start++, Pages::lineUpdate()) { ?>
                                     <tr class="<?php echo Settings::statusSwitchClass(Pages::$table['line']['status'], [Slideshow::$this_time, strtotime(Pages::$table['line']['date_start'])], [strtotime(Pages::$table['line']['date_finish']), Slideshow::$this_time]) ?> align-middle">
@@ -174,14 +174,16 @@ require_once('modal/index.php')
                                             </th>
                                         </tr>
 
-                                        <tr class="align-middle">
-                                            <th><?php echo lang('slides_image') ?></th>
-                                            <th class="text-center"><?php echo lang('slides_quantity') ?></th>
-                                            <th class="text-center"><?php echo lang('slides_name') ?></th>
-                                            <th class="text-center"><?php echo lang('slides_show_start') ?></th>
-                                            <th class="text-center"><?php echo lang('slides_show_end') ?></th>
-                                            <th></th>
-                                        </tr>
+                                        <?php if (Pages::$count > 0) { ?>
+					    <tr class="align-middle">
+						<th><?php echo lang('slides_image') ?></th>
+						<th class="text-center"><?php echo lang('slides_quantity') ?></th>
+						<th class="text-center"><?php echo lang('slides_name') ?></th>
+						<th class="text-center"><?php echo lang('slides_show_start') ?></th>
+						<th class="text-center"><?php echo lang('slides_show_end') ?></th>
+						<th></th>
+					    </tr>
+					<?php } ?>
                                     </thead>
 
                                     <tbody>
