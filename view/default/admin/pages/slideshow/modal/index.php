@@ -41,12 +41,12 @@ use \eMarket\Admin\Slideshow;
                     </div>
                     <div class="mb-3 row">
                         <div class="col-md-6">
-                            <input class="check-box" type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="animation" id="animation" checked>
-                            <label for="animation"> <?php echo lang('slides_text_animation') ?></label>
+			    <input class="check-box" type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="animation" id="animation" checked>
+			    <label class="col-form-label" for="animation"> <?php echo lang('slides_text_animation') ?></label>
                         </div>
-                        <div class="col-md-6 slide-color">
-                            <div class="input-group">
-                                <label for="color"> <?php echo lang('slides_text_color') ?></label>
+                        <div class="col-md-6">
+                            <div class="input-group input-group-sm">
+                                <label class="input-group-text" for="color"> <?php echo lang('slides_text_color') ?></label>
                                 <input type="color" class="form-control form-control-color" name="color" id="color" value="#ffffff" />
                             </div>
                         </div>
