@@ -44,7 +44,7 @@ $lang_js = json_encode([
         $('#mouse_stop, #autostart, #cicles, #indicators, #navigation').bootstrapSwitch();
     });
 
-    $('[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+    $('[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
         var tab = e.target['hash'].slice(1);
         document.querySelector('#set_language').value = tab;
         window.history.pushState(null, null, "?route=slideshow&slide_lang=" + tab);
@@ -58,7 +58,6 @@ $lang_js = json_encode([
             dataXHR.innerHTML = data;
             document.querySelector('.ajax-tab').replaceWith(dataXHR.querySelector('.ajax-tab'));
             document.querySelector('#ajax_data').replaceWith(dataXHR.querySelector('#ajax_data'));
-            $('[data-toggle=confirmation]').confirmation({rootSelector: '[data-toggle=confirmation]'});
         }
     });
 
@@ -94,7 +93,8 @@ $lang_js = json_encode([
 
             Fileupload.getImageToEdit(json_data.logo_general, json_data.logo, modal_id, 'slideshow');
         }
-        if (!Number.isInteger(modal_id) && button.dataset.toggle === 'modal') {
+
+        if (!Number.isInteger(modal_id) && button.dataset.bsToggle === 'modal') {
             document.querySelector('#edit').value = '';
             document.querySelector('#add').value = 'ok';
             document.querySelector('form').reset();

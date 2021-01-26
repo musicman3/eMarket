@@ -43,7 +43,7 @@ require_once('modal/index.php')
                         ?>
 
                         <li class="nav-item">
-			    <a class="nav-link <?php echo Settings::activeTab(Slideshow::$set_language, lang('#lang_all')[$x]) ?>"data-bs-toggle="tab" href="#<?php echo lang('#lang_all')[$x] ?>"><img src="/view/<?php echo Settings::template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[$x] ?>.png" alt="<?php echo lang('#lang_all')[$x] ?>" title="<?php echo lang('#lang_all')[$x] ?>" width="16" height="10" /> <?php echo lang('language_name', lang('#lang_all')[$x]) ?></a>
+			    <a class="nav-link <?php echo Settings::activeTab(Slideshow::$set_language, lang('#lang_all')[$x]) ?>" data-bs-toggle="tab" href="#<?php echo lang('#lang_all')[$x] ?>"><img src="/view/<?php echo Settings::template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[$x] ?>.png" alt="<?php echo lang('#lang_all')[$x] ?>" title="<?php echo lang('#lang_all')[$x] ?>" width="16" height="10" /> <?php echo lang('language_name', lang('#lang_all')[$x]) ?></a>
 			</li>
 
                         <?php
@@ -115,9 +115,9 @@ require_once('modal/index.php')
                                         <td>
                                             <div class="gap-2 d-flex justify-content-end">
                                                 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#index" data-edit="<?php echo Pages::$table['line']['id'] ?>"><span class="bi-pencil-square"></span></button>
-                                                <form id="form_delete<?php echo Pages::$table['line']['id'] ?>" name="form_delete" action="javascript:void(null);" onsubmit="Ajax.callDelete('<?php echo Pages::$table['line']['id'] ?>')" enctype="multipart/form-data">
+                                                <form id="form_delete<?php echo Pages::$table['line']['id'] ?>" name="form_delete" action="javascript:void(null);" enctype="multipart/form-data">
                                                     <input hidden name="delete" value="<?php echo Pages::$table['line']['id'] ?>">
-                                                    <button type="submit" name="delete_but" class="btn btn-primary btn-sm" data-bs-placement="left" data-bs-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="bi-trash"> </span></button>
+                                                    <button type="button" name="delete_but" class="btn btn-primary btn-sm" onclick="Confirmation.init('<?php echo Pages::$table['line']['id'] ?>')"> </span></button>
                                                 </form>
                                             </div>
                                         </td>
@@ -197,9 +197,9 @@ require_once('modal/index.php')
                                                 <td>
                                                     <div class="gap-2 d-flex justify-content-end">
                                                         <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#index" data-edit="<?php echo Pages::$table['line']['id'] ?>"><span class="bi-pencil-square"></span></button>
-                                                        <form id="form_delete<?php echo Pages::$table['line']['id'] ?>" name="form_delete" action="javascript:void(null);" onsubmit="Ajax.callDelete('<?php echo Pages::$table['line']['id'] ?>')" enctype="multipart/form-data">
+                                                        <form id="form_delete<?php echo Pages::$table['line']['id'] ?>" name="form_delete" action="javascript:void(null);" enctype="multipart/form-data">
                                                             <input hidden name="delete" value="<?php echo Pages::$table['line']['id'] ?>">
-                                                            <button type="submit" name="delete_but" class="btn btn-primary btn-sm" data-bs-placement="left" data-bs-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="bi-trash"> </span></button>
+                                                            <button type="button" name="delete_but" class="btn btn-primary btn-sm" onclick="Confirmation.init('<?php echo Pages::$table['line']['id'] ?>')"><span class="bi-trash"> </span></button>
                                                         </form>
                                                     </div>
                                                 </td>
