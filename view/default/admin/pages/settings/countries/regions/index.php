@@ -84,7 +84,7 @@ require_once('modal/index.php')
                                         <form id="form_delete<?php echo Pages::$table['line']['id'] ?>" name="form_delete" action="javascript:void(null);" enctype="multipart/form-data">
                                             <input hidden name="delete" value="<?php echo Pages::$table['line']['id'] ?>">
                                             <input hidden name="country_id" value="<?php echo Valid::inGET('country_id') ?>">
-                                            <button type="button" name="delete_but" class="btn btn-primary btn-sm" onclick="Confirmation.init('<?php echo Pages::$table['line']['id'] ?>')"><span class="bi-trash"> </span></button>
+                                            <button type="button" name="delete_but" class="btn btn-primary btn-sm" onclick="Confirmation.del('<?php echo Pages::$table['line']['id'] ?>')"><span class="bi-trash"> </span></button>
                                         </form>
                                     </div>
                                 </td>

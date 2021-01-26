@@ -35,7 +35,7 @@ use \eMarket\Core\{
 
                                         <form id="form_delete_log" name="form_delete_log" action="javascript:void(null);" enctype="multipart/form-data">
                                             <input hidden name="delete" value="delete">
-                                            <button type="button" name="delete_but" class="btn btn-primary btn-sm" onclick="Confirmation.init('_log')"><span class="bi-trash"> </span></button>
+                                            <button type="button" name="delete_but" class="btn btn-primary btn-sm" onclick="Confirmation.del('_log')"><span class="bi-trash"> </span></button>
                                         </form>
 
                                         <form>

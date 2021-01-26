@@ -91,7 +91,7 @@ use \eMarket\Core\{
                                         </form>
                                         <form id="form_delete<?php echo Pages::$table['line'][0] ?>" name="form_delete" action="javascript:void(null);" enctype="multipart/form-data">
                                             <input hidden name="delete" value="<?php echo Pages::$table['line'][0] ?>">
-                                            <button type="button" name="delete_but" class="btn btn-primary btn-sm" onclick="Confirmation.init('<?php echo Pages::$table['line'][0] ?>')"><span class="bi-trash"> </span></button>
+                                            <button type="button" name="delete_but" class="btn btn-primary btn-sm" onclick="Confirmation.del('<?php echo Pages::$table['line'][0] ?>')"><span class="bi-trash"> </span></button>
                                         </form>
                                     </div>
                                 </td>

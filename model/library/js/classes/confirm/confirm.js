@@ -12,11 +12,11 @@
 class Confirm {
 
     /**
-     * Init for confirm
+     * Init for confirm delete
      *
      *@param id {String} (id)
      */
-    init(id) {
+    del (id) {
         $('#confirm').modal('show');
 
         confirmation.onclick = function () {
