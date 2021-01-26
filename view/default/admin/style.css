@@ -83,8 +83,6 @@ body {background:#e4e4da;font-family: 'Open Sans';background-image:url('images/s
 .table .sortleft-m {color:#d8d8cf;width:25px;vertical-align: middle;text-align: center;}
 .table .sortno:hover {background: none;}
 .table > tbody > tr > td.active {background-color: #f0f0f0;}
-.table > tbody > tr > td.option, .table > tbody > tr > td.options {padding:0px;}
-div.context-one, .table > tbody > tr > td.context-one {padding:5px;}
 .tab-content {padding-top: 10px;}
 .input-group .data {position: static;}
 .back {transform: scale(-1, 1);}
