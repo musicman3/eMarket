@@ -62,7 +62,7 @@ body {background:#e4e4da;font-family: 'Open Sans';background-image:url('images/s
 
 #alert {padding:0;margin:0;float:right;line-height:1.4;}
 
-#slideshow .slide-sett {padding: 5px 5px 0 0;}
+#slideshow .slide-sett {padding: 3px 5px 0 0;}
 #slideshow .slide-color label {vertical-align: middle;}
 #slideshow .slide-color input {cursor: pointer;}
 
