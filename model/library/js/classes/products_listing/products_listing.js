@@ -131,8 +131,8 @@ class ProductsListing {
      */
     static setList() {
         $('.popover').popover('hide');
-        $('#listing .item').removeClass('col-xl-3 col-lg-4 col-md-6 col-sm-12 grid-group-item');
-        $('#listing .item').addClass('col-sm-12 list-group-item');
+        $('#listing .item').removeClass('col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item');
+        $('#listing .item').addClass('col-xs-12 list-group-item');
         $('#listing .item-grid').removeClass('active');
         $('#listing .item-list').addClass('active');
     }
@@ -143,8 +143,8 @@ class ProductsListing {
      */
     static setGrid() {
         $('.popover').popover('hide');
-        $('#listing .item').removeClass('col-sm-12 list-group-item');
-        $('#listing .item').addClass('col-xl-3 col-lg-4 col-md-6 col-sm-12 grid-group-item');
+        $('#listing .item').removeClass('col-xs-12 list-group-item');
+        $('#listing .item').addClass('col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item');
         $('#listing .item-list').removeClass('active');
         $('#listing .item-grid').addClass('active');
     }
