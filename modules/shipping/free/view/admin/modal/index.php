@@ -25,7 +25,7 @@ use \eMarket\Core\Modules\Shipping\Free;
                         <div class="form-group">
                             <label for="zone"><?php echo lang('modules_shipping_free_admin_shipping_zone') ?></label>
                             <div class="input-group has-success">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                                <span class="input-group-addon"><span class="bi-pencil"></span></span>
                                 <select name="zone" id="zone" class="input-sm form-control">
                                     <?php
                                     foreach (Free::$zones as $val) {
@@ -48,8 +48,8 @@ use \eMarket\Core\Modules\Shipping\Free;
                 </div>
 
                 <div class="modal-footer">
-                    <button class="btn btn-primary btn-sm" type="button" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-remove"></span> <?php echo lang('cancel') ?></button>
-                    <button type="submit" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button>
+                    <button class="btn btn-primary btn-sm" type="button" data-dismiss="modal"><span class="bi-x-circle"></span> <?php echo lang('cancel') ?></button>
+                    <button type="submit" class="btn btn-primary btn-sm"><span class="bi-check-circle"></span> <?php echo lang('save') ?></button>
                 </div>
 
             </form>
