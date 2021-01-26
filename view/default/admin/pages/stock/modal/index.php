@@ -32,8 +32,8 @@ use \eMarket\Admin\Stock;
                     <input id="group_attributes" type="hidden" name="group_attributes" value="">
 
                     <ul class="nav nav-tabs">
-                        <li class="active"><a data-bs-toggle="tab" href="#panel_add_1"><?php echo lang('stock_basic') ?></a></li>
-                        <li><a data-bs-toggle="tab" href="#panel_add_2"><?php echo lang('stock_specification') ?></a></li>
+                        <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#panel_add_1"><?php echo lang('stock_basic') ?></a></li>
+                        <li><a class="nav-link" data-bs-toggle="tab" href="#panel_add_2"><?php echo lang('stock_specification') ?></a></li>
                     </ul>
 
                     <div class="tab-content">

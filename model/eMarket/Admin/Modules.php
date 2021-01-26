@@ -104,9 +104,9 @@ class Modules {
      */
     public function class($type) {
         if (Valid::inGET('active') == $type OR (!Valid::inGET('active') && $type == array_key_first($_SESSION['MODULES_INFO']))) {
-            $class = '<li class="active">';
+            $class = 'active';
         } else {
-            $class = '<li>';
+            $class = '';
         }
         return $class;
     }

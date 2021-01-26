@@ -24,7 +24,9 @@ use \eMarket\Admin\Modules;
                 <?php
                 foreach ($_SESSION['MODULES_INFO'] as $type => $name) {
                     ?>
-                    <?php echo $eMarket->class($type) ?><a data-bs-toggle="tab" href="#<?php echo $type ?>_modules"><?php echo lang($type . '_modules') ?></a></li>
+                    <li class="nav-item">
+			<a class="nav-link <?php echo $eMarket->class($type) ?>" data-bs-toggle="tab" href="#<?php echo $type ?>_modules"><?php echo lang($type . '_modules') ?></a>
+		    </li>
                 <?php } ?>
             </ul>
 

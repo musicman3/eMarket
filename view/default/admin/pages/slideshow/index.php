@@ -33,14 +33,18 @@ require_once('modal/index.php')
             <div class="float-end slide-sett"><a href="#settings" class="btn btn-primary btn-sm" data-bs-toggle="modal"><span class="bi-gear-fill"></span></a></div>
 
             <ul class="nav nav-tabs">
-                <li class="<?php echo Settings::activeTab(Slideshow::$set_language, lang('#lang_all')[0]) ?>"><a data-bs-toggle="tab" href="#<?php echo lang('#lang_all')[0] ?>"><img src="/view/<?php echo Settings::template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[0] ?>.png" alt="<?php echo lang('#lang_all')[0] ?>" title="<?php echo lang('#lang_all')[0] ?>" width="16" height="10" /> <?php echo lang('language_name', lang('#lang_all')[0]) ?></a></li>
+                <li class="nav-item">
+		    <a class="nav-link <?php echo Settings::activeTab(Slideshow::$set_language, lang('#lang_all')[0]) ?>" data-bs-toggle="tab" href="#<?php echo lang('#lang_all')[0] ?>"><img src="/view/<?php echo Settings::template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[0] ?>.png" alt="<?php echo lang('#lang_all')[0] ?>" title="<?php echo lang('#lang_all')[0] ?>" width="16" height="10" /> <?php echo lang('language_name', lang('#lang_all')[0]) ?></a>
+		</li>
 
                 <?php
                 if (Lang::$count > 1) {
                     for ($x = 1; $x < Lang::$count; $x++) {
                         ?>
 
-                        <li class="<?php echo Settings::activeTab(Slideshow::$set_language, lang('#lang_all')[$x]) ?>"><a data-bs-toggle="tab" href="#<?php echo lang('#lang_all')[$x] ?>"><img src="/view/<?php echo Settings::template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[$x] ?>.png" alt="<?php echo lang('#lang_all')[$x] ?>" title="<?php echo lang('#lang_all')[$x] ?>" width="16" height="10" /> <?php echo lang('language_name', lang('#lang_all')[$x]) ?></a></li>
+                        <li class="nav-item">
+			    <a class="nav-link <?php echo Settings::activeTab(Slideshow::$set_language, lang('#lang_all')[$x]) ?>"data-bs-toggle="tab" href="#<?php echo lang('#lang_all')[$x] ?>"><img src="/view/<?php echo Settings::template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[$x] ?>.png" alt="<?php echo lang('#lang_all')[$x] ?>" title="<?php echo lang('#lang_all')[$x] ?>" width="16" height="10" /> <?php echo lang('language_name', lang('#lang_all')[$x]) ?></a>
+			</li>
 
                         <?php
                     }

@@ -18,10 +18,10 @@ use \eMarket\Admin\Orders;
                 <div class="modal-body">
                     <input type="hidden" id="edit" name="edit" value="" />
                     <ul class="nav nav-tabs">
-                        <li class="active"><a data-bs-toggle="tab" href="#panel_1"><?php echo lang('orders_description') ?></a></li>
-                        <li><a data-bs-toggle="tab" href="#panel_2"><?php echo lang('orders_products') ?></a></li>
-                        <li><a data-bs-toggle="tab" href="#panel_3"><?php echo lang('orders_transaction_history') ?></a></li>
-                        <li><a data-bs-toggle="tab" href="#panel_4"><?php echo lang('orders_status_history') ?></a></li>
+                        <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#panel_1"><?php echo lang('orders_description') ?></a></li>
+                        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#panel_2"><?php echo lang('orders_products') ?></a></li>
+                        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#panel_3"><?php echo lang('orders_transaction_history') ?></a></li>
+                        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#panel_4"><?php echo lang('orders_status_history') ?></a></li>
                     </ul>
 
                     <div class="tab-content">

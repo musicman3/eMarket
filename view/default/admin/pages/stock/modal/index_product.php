@@ -30,11 +30,11 @@ use \eMarket\Admin\Stock;
                     <input id="selected_attributes" type="hidden" name="selected_attributes" value="" />
 
                     <ul class="nav nav-tabs">
-                        <li class="active"><a data-bs-toggle="tab" href="#panel_add_product_1"><?php echo lang('stock_product_description') ?></a></li>
-                        <li><a data-bs-toggle="tab" href="#panel_add_product_2"><?php echo lang('stock_product_basic') ?></a></li>
-                        <li><a data-bs-toggle="tab" href="#panel_add_product_3"><?php echo lang('stock_product_additional') ?></a></li>
-                        <li><a data-bs-toggle="tab" href="#panel_add_product_4"><?php echo lang('stock_product_specification') ?></a></li>
-                        <li><a data-bs-toggle="tab" href="#panel_add_product_5"><?php echo lang('stock_product_images') ?></a></li>
+                        <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#panel_add_product_1"><?php echo lang('stock_product_description') ?></a></li>
+                        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#panel_add_product_2"><?php echo lang('stock_product_basic') ?></a></li>
+                        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#panel_add_product_3"><?php echo lang('stock_product_additional') ?></a></li>
+                        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#panel_add_product_4"><?php echo lang('stock_product_specification') ?></a></li>
+                        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#panel_add_product_5"><?php echo lang('stock_product_images') ?></a></li>
                     </ul>
 
                     <div class="tab-content">
