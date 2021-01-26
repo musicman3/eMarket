@@ -41,10 +41,8 @@ use \eMarket\Admin\Slideshow;
                     </div>
                     <div class="mb-3 row">
                         <div class="col-md-6">
-                            <div class="input-group">
-                                <input class="check-box" type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="animation" id="animation" checked>
-                                <label for="animation"> <?php echo lang('slides_text_animation') ?></label>
-                            </div>
+                            <input class="check-box" type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="animation" id="animation" checked>
+                            <label for="animation"> <?php echo lang('slides_text_animation') ?></label>
                         </div>
                         <div class="col-md-6 slide-color">
                             <div class="input-group">
