@@ -36,9 +36,9 @@ class Ajax {
             if (alert !== undefined && alert !== null) {
                 document.querySelector('#alert_block').innerHTML = '<div id="alert" class="alert text-danger fade in"><span class="bi-alert-triangle"></span> ' + alert + '</div>';
             }
-            if (document.querySelector('.modal')) {
-                bootstrap.Modal.getInstance(document.querySelector('.modal')).hide();
-                document.querySelector('.modal').addEventListener('hidden.bs.modal', function () {
+            if (document.querySelector('#index')) {
+                bootstrap.Modal.getInstance(document.querySelector('#index')).hide();
+                document.querySelector('#index').addEventListener('hidden.bs.modal', function () {
                     Ajax.getUpdate(url);
                 });
             } else {
@@ -61,9 +61,9 @@ class Ajax {
         xhr.open('POST', window.location.href, false);
         xhr.send(data);
         if (xhr.status === 200) {
-            if (document.querySelector('.modal')) {
-                bootstrap.Modal.getInstance(document.querySelector('.modal')).hide();
-                document.querySelector('.modal').addEventListener('hidden.bs.modal', function () {
+            if (document.querySelector('#confirm')) {
+                bootstrap.Modal.getInstance(document.querySelector('#confirm')).hide();
+                document.querySelector('#confirm').addEventListener('hidden.bs.modal', function () {
                     Ajax.getUpdate(url);
                 });
             } else {
