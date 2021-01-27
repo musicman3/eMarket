@@ -142,7 +142,7 @@ use \eMarket\Admin\Stock;
                                 <div class="col-md-6 mb-3">
                                     <div><small class="form-text text-muted"><?php echo lang('stock_product_quantity_in_stock') ?></small></div>
                                     <div class="input-group has-error">
-                                        <span class="input-group-text"><span class="sort-numeric-down"></span></span>
+                                        <span class="input-group-text"><span class="bi-sort-numeric-down"></span></span>
                                         <input class="input-sm form-control" placeholder="1" type="text" name="quantity_product_stock" id="quantity_product_stock" required />
                                     </div>
                                 </div>
