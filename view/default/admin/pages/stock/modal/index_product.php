@@ -129,7 +129,7 @@ use \eMarket\Admin\Stock;
                                 <div class="col-md-6 mb-3">
                                     <div><small class="form-text text-muted"><?php echo lang('stock_product_currency') ?></small></div>
                                     <div class="input-group has-error">
-                                        <span class="input-group-text"><span class="bi-basket"></span></span>
+                                        <span class="input-group-text"><span class="bi-cash"></span></span>
                                         <select name="currency_product_stock" id="currency_product_stock" class="form-control">
                                             <?php foreach (Stock::$currencies_all as $val) { ?>
                                                 <option value="<?php echo $val['id'] ?>" <?php echo Settings::viewSelect($val, 'default_value') ?>><?php echo $val['name'] ?></option>
