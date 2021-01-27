@@ -44,10 +44,7 @@
             $('#description_product_stock_' + x).summernote('destroy');
         }
     });
-    // Fix modal to modal
-    $(document).on('hidden.bs.modal', '.modal', function (event) {
-        $('.modal:visible').length && $('body').addClass('modal-open');
-    });
+
     // Fix Fullscreen
     $(document).on('click', '.btn-fullscreen', function () {
         $('body').css({overflow: 'hidden'});
