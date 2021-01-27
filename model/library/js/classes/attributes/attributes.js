@@ -82,7 +82,7 @@ class Attributes {
         });
 
         $('#save_attribute_button').click(function () {
-            $('#add_attribute').modal('hide');
+            bootstrap.Modal.getInstance(document.querySelector('#add_attribute')).hide();
 
             var attributes_bank = $('#attribute_add_form').serializeArray();
             var data_id = sessionStorage.getItem('level_1');
@@ -105,7 +105,7 @@ class Attributes {
                 Attributes.add(lang, parse_attributes_view);
             }
 
-            $('.input-add-attribute').val('');
+            document.querySelector('.input-add-attribute').value = '';
             Attributes.deleteValue(lang);
         });
     }
@@ -191,7 +191,7 @@ class Attributes {
         var jsdata = new JsData();
         var parse_attributes_sort = jsdata.sort(parse);
 
-        $('.attribute').empty();
+        document.querySelector('.attribute').innerHTML = '';
         parse.forEach((string, index) => {
             var sort_id = string.length - 1;
             string.forEach((item, i) => {

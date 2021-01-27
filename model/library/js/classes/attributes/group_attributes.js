@@ -86,7 +86,7 @@ class GroupAttributes {
         });
 
         $(document).on('click', '#save_group_attributes_button', function () {
-            $('#add_group_attributes').modal('hide');
+            bootstrap.Modal.getInstance(document.querySelector('#add_group_attributes')).hide();
 
             var attributes_bank = $('#group_attributes_add_form').serializeArray();
             var data_id = 'false';
@@ -109,7 +109,7 @@ class GroupAttributes {
                 GroupAttributes.add(lang, parse_attributes_view);
             }
 
-            $('.input-add-group-attributes').val('');
+            document.querySelector('.input-add-group-attributes').value = '';
             GroupAttributes.deleteValue(lang);
         });
     }
@@ -192,7 +192,7 @@ class GroupAttributes {
         var jsdata = new JsData();
         var parse_attributes_sort = jsdata.sort(parse);
 
-        $('.group-attributes').empty();
+        document.querySelector('.group-attributes').innerHTML = '';
         parse.forEach((string, index) => {
             var sort_id = string.length - 1;
             string.forEach((item, i) => {

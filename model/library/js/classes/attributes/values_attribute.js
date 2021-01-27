@@ -65,7 +65,7 @@ class ValuesAttribute {
         });
 
         $(document).on('click', '#save_add_values_attribute', function () {
-            $('#add_values_attribute').modal('hide');
+            bootstrap.Modal.getInstance(document.querySelector('#add_values_attribute')).hide();
 
             var attributes_bank = $('#add_values_attribute_form').serializeArray();
             var data_id = sessionStorage.getItem('level_2');
@@ -88,7 +88,7 @@ class ValuesAttribute {
                 ValuesAttribute.add(lang, parse_attributes_view);
             }
 
-            $('.input-add-values-attribute').val('');
+            document.querySelector('.input-add-values-attribute').value = '';
             ValuesAttribute.deleteValue(lang);
         });
 
@@ -172,7 +172,7 @@ class ValuesAttribute {
         var jsdata = new JsData();
         var parse_attributes_sort = jsdata.sort(parse);
 
-        $('.values_attribute').empty();
+        document.querySelector('.values_attribute').innerHTML = '';
         parse.forEach((string, index) => {
             var sort_id = string.length - 1;
             string.forEach((item, i) => {
