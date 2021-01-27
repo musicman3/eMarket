@@ -105,12 +105,12 @@ class ValuesAttribute {
      */
     static addValue(id, value, lang) {
         $('.values_attribute').prepend(
-                '<tr class="value-attributes-class" id="valueattributes_' + id + '">' +
+                '<tr class="value-attributes-class align-middle" id="valueattributes_' + id + '">' +
                 '<td class="sortyes-value-attributes sortleft-m"><div><span class="bi-arrows-move"> </span></div></td>' +
                 '<td>' + value + '</td>' +
                 '<td>' +
-                '<div class="flexbox"><div class="b-left"><button type="button" class="edit-value-attribute btn btn-primary btn-sm title="' + lang[3] + '"><span class="bi-pencil-square"> </span></button></div>' +
-                '<div><button type="button" class="delete-value-attribute btn btn-primary btn-sm"><span class="bi-trash"> </span></button></div></div>' +
+                '<div class="gap-2 d-flex justify-content-end"><button type="button" class="edit-value-attribute btn btn-primary btn-sm title="' + lang[3] + '"><span class="bi-pencil-square"> </span></button>' +
+                '<button type="button" class="delete-value-attribute btn btn-primary btn-sm"><span class="bi-trash"> </span></button></div>' +
                 '</td>' +
                 '</tr>'
                 );

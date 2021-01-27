@@ -121,13 +121,13 @@ class Attributes {
      */
     static addValue(id, value, lang) {
         $('.attribute').prepend(
-                '<tr class="attributes-class" id="attributes_' + id + '">' +
+                '<tr class="attributes-class align-middle" id="attributes_' + id + '">' +
                 '<td class="sortyes-attributes sortleft-m"><div><span class="bi-arrows-move"> </span></div></td>' +
                 '<td class="sortleft-m"><button type="button" class="values-attribute btn btn-primary btn-sm"><span class="bi-gear"></span></button></td>' +
                 '<td>' + value + '</td>' +
                 '<td>' +
-                '<div class="flexbox"><div class="b-left"><button type="button" class="edit-attribute btn btn-primary btn-xs" title="' + lang[3] + '"><span class="bi-pencil-square"> </span></button></div>' +
-                '<div><button type="button" class="delete-attribute btn btn-primary btn-sm"><span class="bi-trash"> </span></button></div></div>' +
+                '<div class="gap-2 d-flex justify-content-end"><button type="button" class="edit-attribute btn btn-primary btn-xs" title="' + lang[3] + '"><span class="bi-pencil-square"> </span></button>' +
+                '<button type="button" class="delete-attribute btn btn-primary btn-sm"><span class="bi-trash"> </span></button></div>' +
                 '</td>' +
                 '</tr>'
                 );

@@ -125,13 +125,13 @@ class GroupAttributes {
      */
     static addValue(id, value, lang) {
         $('.group-attributes').prepend(
-                '<tr class="groupattributes" id="groupattributes_' + id + '">' +
+                '<tr class="groupattributes align-middle" id="groupattributes_' + id + '">' +
                 '<td class="sortyes-group sortleft-m"><div><span class="bi-arrows-move"> </span></div></td>' +
                 '<td class="sortleft-m"><button type="button" class="values-group-attribute btn btn-primary btn-sm"><span class="bi-gear"></span></button></td>' +
                 '<td>' + value + '</td>' +
                 '<td>' +
-                '<div class="flexbox"><div class="b-left"><button type="button" class="edit-group-attribute btn btn-primary btn-sm" title="' + lang[3] + '"><span class="bi-pencil-square"> </span></button></div>' +
-                '<div><button type="button" class="delete-group-attribute btn btn-primary btn-sm"><span class="bi-trash"> </span></button></div></div>' +
+                '<div class="gap-2 d-flex justify-content-end"><button type="button" class="edit-group-attribute btn btn-primary btn-sm" title="' + lang[3] + '"><span class="bi-pencil-square"> </span></button>' +
+                '<button type="button" class="delete-group-attribute btn btn-primary btn-sm"><span class="bi-trash"> </span></button></div>' +
                 '</td>' +
                 '</tr>'
                 );

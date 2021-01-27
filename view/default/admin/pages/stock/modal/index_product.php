@@ -289,7 +289,7 @@ use \eMarket\Admin\Stock;
                         </div>
 
                         <div id="panel_add_product_4" class="tab-pane fade">
-                            <div class="product-attribute panel-group" id="accordion"></div>
+                            <div class="product-attribute" id="accordion"></div>
                         </div>
 
                         <div id="panel_add_product_5" class="tab-pane fade">
