@@ -143,7 +143,7 @@ class Attributes {
 
         var buttons = document.querySelectorAll('.delete-attribute');
         buttons.forEach(function (button) {
-            button.addEventListener("click", function (e) {
+            button.addEventListener('click', function (e) {
                 var elem = e.currentTarget;
                 new bootstrap.Modal(document.querySelector('#confirm')).show();
                 confirmation.onclick = function () {
