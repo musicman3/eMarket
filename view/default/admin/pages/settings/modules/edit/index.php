@@ -14,7 +14,7 @@ use \eMarket\Admin\ModulesEdit;
 ?>
 
 <div id="settings_modules_edit">
-    <div class="card shadow-element">
+    <div class="card">
 
         <div class="card-header">
             <div id="alert_block"><?php Messages::alert(); ?></div>

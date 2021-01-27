@@ -41,8 +41,6 @@ body {background:#e4e4da;font-family: 'Open Sans';background-image:url('images/s
 #settings_templates .border-r {border-top-right-radius: 4px;}
 #settings_templates .input-sm {padding: 0 10px;}
 
-#settings_modules_edit .shadow-element {box-shadow: 0 5px 15px rgba(0,0,0,.5);}
-
 #index_product .product-attribute h5 {font-size: 16px;padding: 0px;}
 #index_product .product-attribute-table td {padding-left: 10px;}
 
