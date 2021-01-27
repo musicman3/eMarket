@@ -41,8 +41,10 @@ body {background:#e4e4da;font-family: 'Open Sans';background-image:url('images/s
 #settings_templates .border-r {border-top-right-radius: 4px;}
 #settings_templates .input-sm {padding: 0 10px;}
 
-#index_product .product-attribute h5 {font-size: 16px;padding: 0px;}
-#index_product .product-attribute-table td {padding-left: 10px;}
+#index_product .accordion-button, #index_product .accordion-body {padding: 7px 12px;}
+#index_product .product-attribute-table td {padding-left: 10px;background: none;}
+#index_product .table > tbody > tr > td.selector {width: 30%;}
+#index_product .form-control, #index_product .input-group-text {padding: 3px 5px;}
 
 #alert {padding:0;margin:0;float:right;line-height:1.4;}
 
@@ -61,9 +63,7 @@ body {background:#e4e4da;font-family: 'Open Sans';background-image:url('images/s
 .card-title {font-size: 18px;padding:2px 0px 2px 0px;}
 .modal-body, .input-sm {font-size: 14px;}
 .modal-header {background-color: #f5f5f5;padding: 10px 15px;}
-.table > tbody > tr > td.selector {width: 30%;}
-.table > tbody > tr > td.attribute {vertical-align: middle;}
-.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {padding:5px;}
+.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {padding:3px;}
 .sortyes, .sortyes-group, .sortyes-attributes, .sortyes-value-attributes {cursor:move;}
 .table .sortleft {width:30px;}
 .table .sortleft-m {color:#d8d8cf;width:25px;text-align: center;}
