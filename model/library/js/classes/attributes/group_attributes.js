@@ -119,16 +119,15 @@ class GroupAttributes {
      *
      * @param id {String} (string id)
      * @param value {String} (string value)
-     * @param lang {Array} (lang)
      */
-    static addValue(id, value, lang) {
+    static addValue(id, value) {
         $('.group-attributes').prepend(
                 '<tr class="groupattributes align-middle" id="groupattributes_' + id + '">' +
                 '<td class="sortyes-group sortleft-m"><div><span class="bi-arrows-move"> </span></div></td>' +
                 '<td class="sortleft-m"><button type="button" class="values-group-attribute btn btn-primary btn-sm"><span class="bi-gear"></span></button></td>' +
                 '<td>' + value + '</td>' +
                 '<td>' +
-                '<div class="gap-2 d-flex justify-content-end"><button type="button" class="edit-group-attribute btn btn-primary btn-sm" title="' + lang[3] + '"><span class="bi-pencil-square"> </span></button>' +
+                '<div class="gap-2 d-flex justify-content-end"><button type="button" class="edit-group-attribute btn btn-primary btn-sm"><span class="bi-pencil-square"> </span></button>' +
                 '<button type="button" class="delete-group-attribute btn btn-primary btn-sm"><span class="bi-trash"> </span></button></div>' +
                 '</td>' +
                 '</tr>'
@@ -198,7 +197,7 @@ class GroupAttributes {
             var sort_id = string.length - 1;
             string.forEach((item, i) => {
                 if (item.name === 'group_attributes_' + lang[4]) {
-                    GroupAttributes.addValue(parse_attributes_sort[index][sort_id].uid, parse_attributes_sort[index][i].value, lang);
+                    GroupAttributes.addValue(parse_attributes_sort[index][sort_id].uid, parse_attributes_sort[index][i].value);
                 }
             });
         });

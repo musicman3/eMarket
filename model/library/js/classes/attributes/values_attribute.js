@@ -99,15 +99,14 @@ class ValuesAttribute {
      *
      * @param id {String} (string id)
      * @param value {String} (string value)
-     * @param lang {Array} (lang)
      */
-    static addValue(id, value, lang) {
+    static addValue(id, value) {
         $('.values_attribute').prepend(
                 '<tr class="value-attributes-class align-middle" id="valueattributes_' + id + '">' +
                 '<td class="sortyes-value-attributes sortleft-m"><div><span class="bi-arrows-move"> </span></div></td>' +
                 '<td>' + value + '</td>' +
                 '<td>' +
-                '<div class="gap-2 d-flex justify-content-end"><button type="button" class="edit-value-attribute btn btn-primary btn-sm title="' + lang[3] + '"><span class="bi-pencil-square"> </span></button>' +
+                '<div class="gap-2 d-flex justify-content-end"><button type="button" class="edit-value-attribute btn btn-primary btn-sm"><span class="bi-pencil-square"> </span></button>' +
                 '<button type="button" class="delete-value-attribute btn btn-primary btn-sm"><span class="bi-trash"> </span></button></div>' +
                 '</td>' +
                 '</tr>'
@@ -178,7 +177,7 @@ class ValuesAttribute {
             var sort_id = string.length - 1;
             string.forEach((item, i) => {
                 if (item.name === 'add_values_attribute_' + lang[4]) {
-                    ValuesAttribute.addValue(parse_attributes_sort[index][sort_id].uid, parse_attributes_sort[index][i].value, lang);
+                    ValuesAttribute.addValue(parse_attributes_sort[index][sort_id].uid, parse_attributes_sort[index][i].value);
                 }
             });
         });
