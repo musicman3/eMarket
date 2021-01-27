@@ -9,6 +9,7 @@ button:active, button:focus {outline: none !important;}
 button::-moz-focus-inner {border: 0 !important;}
 input, textarea {outline: none;}
 input:active, textarea:active {outline: none;}
+
 html {position: relative;min-height: 100%;}
 body {background:#e4e4da;font-family: 'Open Sans';background-image:url('images/sep-half.png');}
 
@@ -41,9 +42,6 @@ body {background:#e4e4da;font-family: 'Open Sans';background-image:url('images/s
 #settings_templates .input-sm {padding: 0 10px;}
 
 #settings_modules_edit .shadow-element {box-shadow: 0 5px 15px rgba(0,0,0,.5);}
-
-#settings .settings {float: left;padding-left: 5px;}
-#settings .settings .btn {margin-right: 10px;}
 
 #index_product .product-attribute h5 {font-size: 16px;padding: 0px;}
 #index_product .product-attribute-table td {padding-left: 10px;}
