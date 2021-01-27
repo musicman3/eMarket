@@ -34,11 +34,11 @@ class Ajax {
         xhr.send(data);
         if (xhr.status === 200) {
             if (alert !== undefined && alert !== null) {
-                document.querySelector('#alert_block').innerHTML = '<div id="alert" class="alert text-danger fade in"><span class="glyphicon glyphicon-alert"></span> ' + alert + '</div>';
+                document.querySelector('#alert_block').innerHTML = '<div id="alert" class="alert text-danger fade in"><span class="bi-alert-triangle"></span> ' + alert + '</div>';
             }
             if (document.querySelector('.modal')) {
-                $('.modal').modal('hide');
-                $('.modal').on('hidden.bs.modal', function () {
+                bootstrap.Modal.getInstance(document.querySelector('.modal')).hide();
+                document.querySelector('.modal').addEventListener('hidden.bs.modal', function () {
                     Ajax.getUpdate(url);
                 });
             } else {
@@ -62,8 +62,8 @@ class Ajax {
         xhr.send(data);
         if (xhr.status === 200) {
             if (document.querySelector('.modal')) {
-                $('.modal').modal('hide');
-                $('.modal').on('hidden.bs.modal', function () {
+                bootstrap.Modal.getInstance(document.querySelector('.modal')).hide();
+                document.querySelector('.modal').addEventListener('hidden.bs.modal', function () {
                     Ajax.getUpdate(url);
                 });
             } else {

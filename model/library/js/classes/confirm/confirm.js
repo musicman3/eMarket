@@ -17,7 +17,8 @@ class Confirm {
      *@param id {String} (id)
      */
     del(id) {
-        $('#confirm').modal('show');
+        var modal = new bootstrap.Modal(document.querySelector('#confirm'));
+        modal.show();
         confirmation.onclick = function () {
             Ajax.callDelete(id);
         };
@@ -29,7 +30,8 @@ class Confirm {
      *@param name {String} (name)
      */
     update(name) {
-        $('#confirm').modal('show');
+        var modal = new bootstrap.Modal(document.querySelector('#confirm'));
+        modal.show();
         confirmation.onclick = function () {
             Ajax.callAdd(name);
 
