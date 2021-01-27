@@ -42,9 +42,6 @@ class ValuesAttribute {
             $('.values_attribute').empty();
         });
 
-        $('#add_values_attribute').on('hidden.bs.modal', function (event) {
-            $('.input-add-values-attribute').val('');
-        });
     }
 
     /**
@@ -55,6 +52,7 @@ class ValuesAttribute {
     click(lang) {
 
         $(document).on('click', '.add-values-attribute', function () {
+            $('.input-add-values-attribute').val('');
             $('#add_values_attribute').modal('show');
             sessionStorage.setItem('action', 'add');
         });

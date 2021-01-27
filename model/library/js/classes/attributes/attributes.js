@@ -42,9 +42,6 @@ class Attributes {
             $('.attribute').empty();
         });
 
-        $('#add_attribute').on('hidden.bs.modal', function (event) {
-            $('.input-add-attribute').val('');
-        });
     }
 
     /**
@@ -72,8 +69,9 @@ class Attributes {
         });
 
         $(document).on('click', '.add-attribute', function () {
-            sessionStorage.setItem('action', 'add');
+            $('.input-add-attribute').val('');
             $('#add_attribute').modal('show');
+            sessionStorage.setItem('action', 'add');
         });
 
         $(document).on('click', '.edit-attribute', function () {

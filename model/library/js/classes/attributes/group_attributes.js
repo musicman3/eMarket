@@ -46,9 +46,6 @@ class GroupAttributes {
             $('.product-attribute').empty();
         });
 
-        $('#add_group_attributes').on('hidden.bs.modal', function (event) {
-            $('.input-add-group-attributes').val('');
-        });
     }
 
     /**
@@ -77,6 +74,7 @@ class GroupAttributes {
         });
 
         $(document).on('click', '.add-group-attributes', function () {
+            $('.input-add-group-attributes').val('');
             $('#add_group_attributes').modal('show');
             sessionStorage.setItem('action', 'add');
         });
