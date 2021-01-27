@@ -131,7 +131,7 @@ class GroupAttributes {
                 '<td>' + value + '</td>' +
                 '<td>' +
                 '<div class="flexbox"><div class="b-left"><button type="button" class="edit-group-attribute btn btn-primary btn-sm" title="' + lang[3] + '"><span class="bi-pencil-square"> </span></button></div>' +
-                '<div><button type="button" class="delete-group-attribute btn btn-primary btn-sm" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="' + lang[0] + '" data-btn-cancel-label="' + lang[1] + '" title="' + lang[2] + '"><span class="bi-trash"> </span></button></div></div>' +
+                '<div><button type="button" class="delete-group-attribute btn btn-primary btn-sm"><span class="bi-trash"> </span></button></div></div>' +
                 '</td>' +
                 '</tr>'
                 );
@@ -144,22 +144,27 @@ class GroupAttributes {
      *
      */
     static deleteValue(lang) {
-        $('.delete-group-attribute').confirmation({
-            rootSelector: '[data-toggle=confirmation]',
-            onConfirm: function (event) {
-                $(this).closest('tr').remove();
+        var buttons = document.querySelectorAll('.delete-group-attribute');
+        buttons.forEach(function (button) {
+            button.addEventListener("click", function (e) {
+                var elem = e.currentTarget;
+                new bootstrap.Modal(document.querySelector('#confirm')).show();
+                confirmation.onclick = function () {
+                    bootstrap.Modal.getInstance(document.querySelector('#confirm')).hide();
+                    elem.closest('tr').remove();
 
-                var jsdata = new JsData();
-                var data_id = 'false';
-                var parse_attributes = JSON.parse(sessionStorage.getItem('attributes'));
+                    var jsdata = new JsData();
+                    var data_id = 'false';
+                    var parse_attributes = JSON.parse(sessionStorage.getItem('attributes'));
 
-                var parse_attributes_delete = jsdata.deleteUid($(this).closest('tr').attr('id').split('_')[1], parse_attributes);
-                sessionStorage.setItem('attributes', JSON.stringify(parse_attributes_delete));
+                    var parse_attributes_delete = jsdata.deleteUid(elem.closest('tr').id.split('_')[1], parse_attributes);
+                    sessionStorage.setItem('attributes', JSON.stringify(parse_attributes_delete));
 
-                var parse_attributes_add = jsdata.selectParentUids(data_id, JSON.parse(sessionStorage.getItem('attributes')));
-                GroupAttributes.add(lang, parse_attributes_add);
-                GroupAttributes.deleteValue(lang);
-            }
+                    var parse_attributes_add = jsdata.selectParentUids(data_id, JSON.parse(sessionStorage.getItem('attributes')));
+                    GroupAttributes.add(lang, parse_attributes_add);
+                    GroupAttributes.deleteValue(lang);
+                };
+            });
         });
     }
 

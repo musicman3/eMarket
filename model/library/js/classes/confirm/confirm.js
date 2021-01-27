@@ -24,7 +24,7 @@ class Confirm {
     }
 
     /**
-     * Init for confirm add
+     * Init for confirm update
      *
      *@param name {String} (name)
      */

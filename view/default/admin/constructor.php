@@ -66,8 +66,8 @@ use \eMarket\Core\{
             <div id="ajax">
 
                 <?php
-                require_once('confirm.php');
                 require_once(View::routingAdmin());
+                require_once('confirm.php');
                 ?>
 
             </div>
