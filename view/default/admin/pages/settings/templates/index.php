@@ -82,7 +82,7 @@ use \eMarket\Admin\Templates;
                     <?php } ?>
                 </ul>
                 <ul id="sortable2" class="connectedSortable block-ul" style="width:33.3%">
-                    <li class="sortno border bg-primary text-center text-white"><span class="bi-arrow-left-right"></span><span class="bi-trash"></span></li>
+                    <li class="sortno border bg-primary text-center text-white"><span class="bi-arrow-left-right"></span> <span class="bi-trash"></span></li>
                     <?php foreach (Templates::$layout_header_basket as $path) { ?>
                         <li id="<?php echo basename($path, '.php') ?>" class="sortyes text-center"><?php echo basename($path, '.php') ?></li>
                     <?php } ?>
@@ -96,7 +96,7 @@ use \eMarket\Admin\Templates;
                     <?php } ?>
                 </ul>
                 <ul id="sortable4" class="connectedSortable2 block-ul" style="width:33.3%">
-                    <li class="sortno border bg-primary text-center text-white"><span class="bi-arrow-left-right"></span><span class="bi-trash"></span></li>
+                    <li class="sortno border bg-primary text-center text-white"><span class="bi-arrow-left-right"></span> <span class="bi-trash"></span></li>
                     <?php foreach (Templates::$layout_content_basket as $path) { ?>
                         <li id="<?php echo basename($path, '.php') ?>" class="sortyes text-center"><?php echo basename($path, '.php') ?></li>
                     <?php } ?>
@@ -116,7 +116,7 @@ use \eMarket\Admin\Templates;
                     <?php } ?>
                 </ul>
                 <ul id="sortable7" class="connectedSortable3 block-ul" style="width:33.2%">
-                    <li class="sortno border bg-primary text-white"><span class="bi-arrow-left-right"></span><span class="bi-trash"></span></li>
+                    <li class="sortno border bg-primary text-center text-white"><span class="bi-arrow-left-right"></span> <span class="bi-trash"></span></li>
                     <?php foreach (Templates::$layout_boxes_basket as $path) { ?>
                         <li id="<?php echo basename($path, '.php') ?>" class="sortyes text-center"><?php echo basename($path, '.php') ?></li>
                     <?php } ?>
@@ -130,7 +130,7 @@ use \eMarket\Admin\Templates;
                     <?php } ?>
                 </ul>
                 <ul id="sortable9" class="connectedSortable4 block-ul" style="width:33.3%">
-                    <li class="sortno border bg-primary text-center text-white"><span class="bi-arrow-left-right"></span><span class="bi-trash"></span></li>
+                    <li class="sortno border bg-primary text-center text-white"><span class="bi-arrow-left-right"></span> <span class="bi-trash"></span></li>
                     <?php foreach (Templates::$layout_footer_basket as $path) { ?>
                         <li id="<?php echo basename($path, '.php') ?>" class="sortyes text-center"><?php echo basename($path, '.php') ?></li>
                         <?php } ?>
