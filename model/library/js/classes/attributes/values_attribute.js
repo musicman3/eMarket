@@ -44,7 +44,7 @@ class ValuesAttribute {
 
         $('#add_values_attribute').on('hidden.bs.modal', function (event) {
             $('.input-add-values-attribute').val('');
-            ValuesAttribute.deleteValue(lang);
+            //ValuesAttribute.deleteValue(lang);
         });
     }
 

@@ -17,9 +17,9 @@ use \eMarket\Admin\Stikers;
 require_once('modal/index.php');
 require_once('modal/index_product.php');
 require_once('modal/attribute.php');
+require_once('modal/values_attribute.php');
 require_once('modal/add_group_attributes.php');
 require_once('modal/add_attribute.php');
-require_once('modal/values_attribute.php');
 require_once('modal/add_values_attribute.php');
 ?>
 
