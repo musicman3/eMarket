@@ -48,7 +48,6 @@ class GroupAttributes {
 
         $('#add_group_attributes').on('hidden.bs.modal', function (event) {
             $('.input-add-group-attributes').val('');
-            GroupAttributes.deleteValue(lang);
         });
     }
 
@@ -113,6 +112,7 @@ class GroupAttributes {
             }
 
             $('.input-add-group-attributes').val('');
+            GroupAttributes.deleteValue(lang);
         });
     }
 

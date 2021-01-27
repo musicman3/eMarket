@@ -44,7 +44,6 @@ class Attributes {
 
         $('#add_attribute').on('hidden.bs.modal', function (event) {
             $('.input-add-attribute').val('');
-            Attributes.deleteValue(lang);
         });
     }
 
@@ -109,6 +108,7 @@ class Attributes {
             }
 
             $('.input-add-attribute').val('');
+            Attributes.deleteValue(lang);
         });
     }
 
