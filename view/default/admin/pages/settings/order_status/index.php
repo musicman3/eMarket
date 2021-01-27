@@ -72,7 +72,7 @@ require_once('modal/index.php')
                     <tbody id="sort-list">
                         <?php for (Pages::$start; Pages::$start < Pages::$finish; Pages::$start++, Pages::lineUpdate()) { ?>
                             <tr class="sort-list align-middle" unitid="<?php echo Pages::$table['line']['id'] ?>">
-                                <td class="sortyes sortleft-m"><div><span class="glyphicon glyphicon-move"> </span></div></td> 
+                                <td class="sortyes sortleft-m"><div><span class="bi-arrows-move"> </span></div></td> 
                                 <td><?php echo Pages::$table['line']['name'] ?></td>
                                 <?php if (Pages::$table['line']['default_order_status'] == 1) { ?>
                                     <td class="text-center"><?php echo lang('confirm-yes') ?></td>

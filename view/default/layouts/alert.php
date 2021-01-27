@@ -7,7 +7,7 @@
 ?>
 <!--Выводим уведомление об успешном действии-->
 <div id="alert" class="alert text-<?php echo $_SESSION['message'][0] ?> fade in">
-    <span class="glyphicon glyphicon-alert"></span> <?php echo $_SESSION['message'][1] ?>
+    <span class="bi-exclamation-triangle"></span> <?php echo $_SESSION['message'][1] ?>
 </div>
 
 <!--Автозакрытие уведомлений-->

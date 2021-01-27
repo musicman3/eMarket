@@ -22,7 +22,7 @@ use \eMarket\Admin\Templates;
             <div class="row">
 		<div class="col-2">
 		    <div class="input-group has-error">
-			<span class="input-group-text"><span class="glyphicon glyphicon-th-large"></span></span>
+			<span class="input-group-text"><span class="bi-grid-fill"></span></span>
 			<form method="get" name="select_template" action="index.php">
 			    <input hidden name="route" value="settings/templates">
 			    <select name="name_templates" id="name_templates" class="form-select"  onchange="selectTemplate()">
@@ -76,13 +76,13 @@ use \eMarket\Admin\Templates;
             <div class="clearfix"></br></div>
             <div class="d-flex justify-content-center">
                 <ul id="sortable1" class="connectedSortable block-ul" style="width:66.3%">
-                    <li class="sortno border bg-primary text-center text-white">header &nbsp;<span class="glyphicon glyphicon-resize-horizontal"></span></li>
+                    <li class="sortno border bg-primary text-center text-white">header &nbsp;<span class="bi-arrow-left-right"></span></li>
                     <?php foreach (Templates::$layout_header as $path) { ?>
                         <li id="<?php echo basename($path, '.php') ?>" class="sortyes text-center"><?php echo basename($path, '.php') ?></li>
                     <?php } ?>
                 </ul>
                 <ul id="sortable2" class="connectedSortable block-ul" style="width:33.3%">
-                    <li class="sortno border bg-primary text-center text-white"><span class="glyphicon glyphicon-resize-horizontal"></span><span class="bi-trash"></span></li>
+                    <li class="sortno border bg-primary text-center text-white"><span class="bi-arrow-left-right"></span><span class="bi-trash"></span></li>
                     <?php foreach (Templates::$layout_header_basket as $path) { ?>
                         <li id="<?php echo basename($path, '.php') ?>" class="sortyes text-center"><?php echo basename($path, '.php') ?></li>
                     <?php } ?>
@@ -90,13 +90,13 @@ use \eMarket\Admin\Templates;
             </div>
             <div class="d-flex justify-content-center">
                 <ul id="sortable3" class="connectedSortable2 block-ul" style="width:66.3%">
-                    <li class="sortno border bg-primary text-center text-white">content &nbsp;<span class="glyphicon glyphicon-resize-horizontal"></span></li>
+                    <li class="sortno border bg-primary text-center text-white">content &nbsp;<span class="bi-arrow-left-right"></span></li>
                     <?php foreach (Templates::$layout_content as $path) { ?>
                         <li id="<?php echo basename($path, '.php') ?>" class="sortyes text-center"><?php echo basename($path, '.php') ?></li>
                     <?php } ?>
                 </ul>
                 <ul id="sortable4" class="connectedSortable2 block-ul" style="width:33.3%">
-                    <li class="sortno border bg-primary text-center text-white"><span class="glyphicon glyphicon-resize-horizontal"></span><span class="bi-trash"></span></li>
+                    <li class="sortno border bg-primary text-center text-white"><span class="bi-arrow-left-right"></span><span class="bi-trash"></span></li>
                     <?php foreach (Templates::$layout_content_basket as $path) { ?>
                         <li id="<?php echo basename($path, '.php') ?>" class="sortyes text-center"><?php echo basename($path, '.php') ?></li>
                     <?php } ?>
@@ -104,19 +104,19 @@ use \eMarket\Admin\Templates;
             </div>
             <div class="d-flex justify-content-center">
                 <ul id="sortable5" class="connectedSortable3 block-l" style="width:33.2%;">
-                    <li class="sortno border-l bg-primary text-center text-white">boxes-left &nbsp;<span class="glyphicon glyphicon-resize-horizontal"></span></li>
+                    <li class="sortno border-l bg-primary text-center text-white">boxes-left &nbsp;<span class="bi-arrow-left-right"></span></li>
                     <?php foreach (Templates::$layout_boxes_left as $path) { ?>
                         <li id="<?php echo basename($path, '.php') ?>" class="sortyes text-center"><?php echo basename($path, '.php') ?></li>
                     <?php } ?>
                 </ul>
                 <ul id="sortable6" class="connectedSortable3 block-m block-r" style="width:33.2%;">
-                    <li class="sortno border-r bg-primary text-center text-white">boxes-right &nbsp;<span class="glyphicon glyphicon-resize-horizontal"></span></li>
+                    <li class="sortno border-r bg-primary text-center text-white">boxes-right &nbsp;<span class="bi-arrow-left-right"></span></li>
                     <?php foreach (Templates::$layout_boxes_right as $path) { ?>
                         <li id="<?php echo basename($path, '.php') ?>" class="sortyes text-center"><?php echo basename($path, '.php') ?></li>
                     <?php } ?>
                 </ul>
                 <ul id="sortable7" class="connectedSortable3 block-ul" style="width:33.2%">
-                    <li class="sortno border bg-primary text-white"><span class="glyphicon glyphicon-resize-horizontal"></span><span class="bi-trash"></span></li>
+                    <li class="sortno border bg-primary text-white"><span class="bi-arrow-left-right"></span><span class="bi-trash"></span></li>
                     <?php foreach (Templates::$layout_boxes_basket as $path) { ?>
                         <li id="<?php echo basename($path, '.php') ?>" class="sortyes text-center"><?php echo basename($path, '.php') ?></li>
                     <?php } ?>
@@ -124,13 +124,13 @@ use \eMarket\Admin\Templates;
             </div>
             <div class="d-flex justify-content-center">
                 <ul id="sortable8" class="connectedSortable4 block-ul" style="width:66.3%">
-                    <li class="sortno border bg-primary text-center text-white">footer &nbsp;<span class="glyphicon glyphicon-resize-horizontal"></span></li>
+                    <li class="sortno border bg-primary text-center text-white">footer &nbsp;<span class="bi-arrow-left-right"></span></li>
                     <?php foreach (Templates::$layout_footer as $path) { ?>
                         <li id="<?php echo basename($path, '.php') ?>" class="sortyes text-center"><?php echo basename($path, '.php') ?></li>
                     <?php } ?>
                 </ul>
                 <ul id="sortable9" class="connectedSortable4 block-ul" style="width:33.3%">
-                    <li class="sortno border bg-primary text-center text-white"><span class="glyphicon glyphicon-resize-horizontal"></span><span class="bi-trash"></span></li>
+                    <li class="sortno border bg-primary text-center text-white"><span class="bi-arrow-left-right"></span><span class="bi-trash"></span></li>
                     <?php foreach (Templates::$layout_footer_basket as $path) { ?>
                         <li id="<?php echo basename($path, '.php') ?>" class="sortyes text-center"><?php echo basename($path, '.php') ?></li>
                         <?php } ?>

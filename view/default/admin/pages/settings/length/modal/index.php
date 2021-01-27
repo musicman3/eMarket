@@ -66,7 +66,7 @@ use \eMarket\Core\{
 
                         <div class="mb-3">
                             <div class="input-group has-error">
-                                <span class="input-group-text"><span class="glyphicon glyphicon-sort-by-order"></span></span>
+                                <span class="input-group-text"><span class="bi-sort-numeric-down"></span></span>
                                 <input class="input-sm form-control" placeholder="<?php echo lang('value') ?>" type="text" pattern="\d+(\.\d{0,7})?" name="value_length" id="value_length" required />
                             </div>
                         </div>

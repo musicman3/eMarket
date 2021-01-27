@@ -24,7 +24,7 @@ use \eMarket\Core\{
                     <div class="mb-3">
                         <small class="form-text text-muted"><?php echo lang('slides_interval') ?></small>
                         <div class="input-group has-error">
-                            <span class="input-group-text"><span class="glyphicon glyphicon-time"></span></span>
+                            <span class="input-group-text"><span class="bi-watch"></span></span>
                             <input class="input-sm form-control" placeholder="<?php echo lang('slides_interval_placeholder') ?>" type="text" name="show_interval" id="show_interval" required />
                         </div>
                     </div>

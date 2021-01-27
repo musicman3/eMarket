@@ -245,7 +245,7 @@ require_once('modal/add_values_attribute.php');
                             <input type="search" id="search" name="search" placeholder="<?php echo lang('search') ?>" class="form-control">
                             <span class="input-group-btn">
                                 <button type="submit" class="btn btn-primary">
-                                    <span class="glyphicon glyphicon-search"></span>
+                                    <span class="bi-search"></span>
                                 </button>
                             </span>
                         </div>
@@ -269,7 +269,7 @@ require_once('modal/add_values_attribute.php');
                                     <form>
                                         <div>
                                             <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
-                                            <button name="parent_up" value="<?php echo Stock::$parent_id ?>" class="btn btn-secondary btn-sm" title="" action="index.php" formmethod="get"><span class="glyphicon glyphicon-option-horizontal"></span></button>
+                                            <button name="parent_up" value="<?php echo Stock::$parent_id ?>" class="btn btn-secondary btn-sm" title="" action="index.php" formmethod="get"><span class="bi-three-dots"></span></button>
                                         </div>
                                     </form>
 
@@ -291,7 +291,7 @@ require_once('modal/add_values_attribute.php');
                             <input type="search" id="search" name="search" placeholder="<?php echo lang('search') ?>" class="form-control">
                             <span class="input-group-btn">
                                 <button type="submit" class="btn btn-primary">
-                                    <span class="glyphicon glyphicon-search"></span>
+                                    <span class="bi-search"></span>
                                 </button>
                             </span>
                         </div>

@@ -35,9 +35,9 @@ use \eMarket\Admin\Orders;
                                                 <div class="label label-primary"><?php echo lang('orders_client') ?></div>
                                                 <div>
                                                     <small class="form-text text-muted">
-                                                        <span class="glyphicon glyphicon-user"></span> <span id="description_client_name"></span><br>
-                                                        <span class="glyphicon glyphicon-phone"></span> <span id="description_client_phone"></span><br>
-                                                        <span class="glyphicon glyphicon-envelope"></span> <span id="description_client_email"></span>
+                                                        <span class="bi-person"></span> <span id="description_client_name"></span><br>
+                                                        <span class="bi-phone"></span> <span id="description_client_phone"></span><br>
+                                                        <span class="bi-envelope"></span> <span id="description_client_email"></span>
                                                     </small>
                                                 </div>
                                             </td>
@@ -45,7 +45,7 @@ use \eMarket\Admin\Orders;
                                                 <div class="label label-primary"><?php echo lang('orders_payment_method') ?></div>
                                                 <div>
                                                     <small class="form-text text-muted">
-                                                        <span class="glyphicon glyphicon-credit-card"></span> <span id="description_payment_method"></span>
+                                                        <span class="bi-credit-card"></span> <span id="description_payment_method"></span>
                                                     </small>
                                                 </div>
                                             </td>
@@ -55,9 +55,9 @@ use \eMarket\Admin\Orders;
                                                 <div class="label label-primary"><?php echo lang('orders_shipping') ?></div>
                                                 <div>
                                                     <small class="form-text text-muted">
-                                                        <span class="glyphicon glyphicon-plane"></span> <span class="label label-success" id="description_shipping_method"></span><br>
-                                                        <span class="glyphicon glyphicon-globe"></span> <span id="description_shipping_country"></span><br>
-                                                        <span class="glyphicon glyphicon-home"></span> <span id="description_shipping_address"></span>
+                                                        <span class="bi-truck"></span> <span class="label label-success" id="description_shipping_method"></span><br>
+                                                        <span class="bi-globe"></span> <span id="description_shipping_country"></span><br>
+                                                        <span class="bi-house"></span> <span id="description_shipping_address"></span>
                                                     </small>
                                                 </div>
                                             </td>
@@ -65,8 +65,8 @@ use \eMarket\Admin\Orders;
                                                 <div class="label label-primary"><?php echo lang('orders_billing_address') ?></div>
                                                 <div>
                                                     <small class="form-text text-muted">
-                                                        <span class="glyphicon glyphicon-globe"></span> <span id="description_billing_country"></span><br>
-                                                        <span class="glyphicon glyphicon-home"></span> <span id="description_billing_address"></span>
+                                                        <span class="bi-globe"></span> <span id="description_billing_country"></span><br>
+                                                        <span class="bi-house"></span> <span id="description_billing_address"></span>
                                                     </small>
                                                 </div>
                                             </td>
@@ -76,7 +76,7 @@ use \eMarket\Admin\Orders;
                                                 <div class="label label-primary"><?php echo lang('orders_status') ?></div>
                                                 <div>
                                                     <small class="form-text text-muted">
-                                                        <span class="glyphicon glyphicon-time"></span> <span id="description_date_purchased"></span><br>
+                                                        <span class="bi-alarm"></span> <span id="description_date_purchased"></span><br>
                                                     </small>
                                                 </div>
                                             </td>
@@ -84,7 +84,7 @@ use \eMarket\Admin\Orders;
                                                 <div class="label label-primary"><?php echo lang('orders_total') ?></div>
                                                 <div>
                                                     <small class="form-text text-muted">
-                                                        <span class="glyphicon glyphicon-barcode"></span> <span id="description_order_total"></span>
+                                                        <span class="bi-upc"></span> <span id="description_order_total"></span>
                                                     </small>
                                                 </div>
                                             </td>

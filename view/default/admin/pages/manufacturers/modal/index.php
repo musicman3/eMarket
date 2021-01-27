@@ -58,7 +58,7 @@ use \eMarket\Core\{
 
                         <div class="mb-3">
                             <div class="input-group has-success">
-                                <span class="input-group-text"><span class="glyphicon glyphicon-globe"></span></span>
+                                <span class="input-group-text"><span class="bi-globe"></span></span>
                                 <input class="input-sm form-control" placeholder="<?php echo lang('site') ?>" type="text" name="site_manufacturers" id="site_manufacturers" />
                             </div>
                         </div>

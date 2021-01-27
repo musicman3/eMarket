@@ -106,11 +106,11 @@ class ValuesAttribute {
     static addValue(id, value, lang) {
         $('.values_attribute').prepend(
                 '<tr class="value-attributes-class" id="valueattributes_' + id + '">' +
-                '<td class="sortyes-value-attributes sortleft-m"><div><span class="glyphicon glyphicon-move"> </span></div></td>' +
+                '<td class="sortyes-value-attributes sortleft-m"><div><span class="bi-arrows-move"> </span></div></td>' +
                 '<td>' + value + '</td>' +
                 '<td>' +
-                '<div class="flexbox"><div class="b-left"><button type="button" class="edit-value-attribute btn btn-primary btn-sm title="' + lang[3] + '"><span class="glyphicon glyphicon-edit"> </span></button></div>' +
-                '<div><button type="button" class="delete-value-attribute btn btn-primary btn-sm" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="' + lang[0] + '" data-btn-cancel-label="' + lang[1] + '" title="' + lang[2] + '"><span class="glyphicon glyphicon-trash"> </span></button></div></div>' +
+                '<div class="flexbox"><div class="b-left"><button type="button" class="edit-value-attribute btn btn-primary btn-sm title="' + lang[3] + '"><span class="bi-pencil-square"> </span></button></div>' +
+                '<div><button type="button" class="delete-value-attribute btn btn-primary btn-sm" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="' + lang[0] + '" data-btn-cancel-label="' + lang[1] + '" title="' + lang[2] + '"><span class="bi-trash"> </span></button></div></div>' +
                 '</td>' +
                 '</tr>'
                 );

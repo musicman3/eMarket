@@ -53,19 +53,19 @@ use \eMarket\Admin\Slideshow;
                     </div>
                     <div class="mb-3">
                         <div class="input-group has-success">
-                            <span class="input-group-text"><span class="glyphicon glyphicon-globe"></span></span>
+                            <span class="input-group-text"><span class="bi-globe"></span></span>
                             <input class="input-sm form-control" placeholder="<?php echo lang('slides_url') ?>" type="text" name="url" id="url" />
                         </div>
                     </div>
                     <div class="col-left mb-3">
                         <div class="input-group has-error">
-                            <span class="input-group-text"><span class="glyphicon glyphicon-calendar"></span></span>
+                            <span class="input-group-text"><span class="bi-calendar"></span></span>
                             <input class="input-sm form-control" placeholder="<?php echo lang('slides_show_start') ?>" type="text" name="start_date" id="start_date" autocomplete="off" required />
                         </div>
                     </div>
                     <div class="col-left mb-3">
                         <div class="input-group has-error">
-                            <span class="input-group-text"><span class="glyphicon glyphicon-calendar"></span></span>
+                            <span class="input-group-text"><span class="bi-calendar"></span></span>
                             <input class="input-sm form-control" placeholder="<?php echo lang('slides_show_end') ?>" type="text" name="end_date" id="end_date" autocomplete="off" required />
                         </div>
                     </div>
