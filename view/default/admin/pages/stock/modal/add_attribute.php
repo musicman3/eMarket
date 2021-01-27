@@ -13,8 +13,9 @@ use \eMarket\Core\{
 <div id="add_attribute" class="modal fade" tabindex="-1">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
-            <div class="modal-header"><div class="float-end"><button class="close" type="button" data-bs-dismiss="modal">×</button></div>
-                <h4 class="modal-title"><?php echo lang('stock_tittle_specification_name') ?></h4>
+            <div class="modal-header">
+                <h5 class="modal-title"><?php echo lang('stock_tittle_specification_name') ?></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <form id="attribute_add_form">
                 <div class="modal-body">
