@@ -44,7 +44,7 @@ body {background:#e4e4da;font-family: 'Open Sans';background-image:url('images/s
 #index_product .accordion-button, #index_product .accordion-body {padding: 7px 12px;}
 #index_product .product-attribute-table td {padding-left: 10px;background: none;}
 #index_product .table > tbody > tr > td.selector {width: 30%;}
-#index_product .form-control, #index_product .input-group-text {padding: 3px 5px;}
+#index_product .input-group-text {padding: 3px 5px;}
 
 #alert {padding:0;margin:0;float:right;line-height:1.4;}
 
