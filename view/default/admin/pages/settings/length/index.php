@@ -60,9 +60,9 @@ require_once('modal/index.php')
                         </tr>
                         <?php if (Pages::$count > 0) { ?>
                             <tr class="align-middle">
-                                <th><?php echo lang('name_full') ?></th>
-                                <th class="text-center"><?php echo lang('name_little') ?></th>
-                                <th class="text-center"><?php echo lang('value') ?></th>
+                                <th><?php echo lang('length_name_full') ?></th>
+                                <th class="text-center"><?php echo lang('length_name_little') ?></th>
+                                <th class="text-center"><?php echo lang('length_value') ?></th>
                                 <th class="text-center"><?php echo lang('default') ?></th>
                                 <th></th>
                             </tr>
