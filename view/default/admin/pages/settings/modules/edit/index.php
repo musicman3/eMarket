@@ -18,11 +18,11 @@ use \eMarket\Admin\ModulesEdit;
 
         <div class="card-header">
             <div id="alert_block"><?php Messages::alert(); ?></div>
-            <h3 class="card-title">
+            <h5 class="card-title">
                 <span class="settings_back"><button type="button" onClick='location.href = "<?php echo Settings::parentPartitionGenerator() ?>"' class="btn btn-primary btn-sm"><span class="bi-reply"></span></button></span><span class="settings_name"><?php echo Settings::titlePageGenerator() ?></span>
-            </h3>
+            </h5>
         </div>
-        <div class="modal-body">
+        <div class="card-body">
             <form id="form_edit_active" name="form_edit_active" enctype="multipart/form-data">
                 <input id="edit_active" type="hidden" name="edit_active" value="<?php echo Valid::inGET('type') . '_' . Valid::inGET('name') ?>" />
                 <div class="float-end">

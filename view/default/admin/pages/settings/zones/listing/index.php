@@ -24,7 +24,7 @@ require_once('modal/index.php')
                 <span class="settings_back"><a class="btn btn-primary btn-sm" href="<?php echo Settings::parentPartitionGenerator() ?>"><span class="bi-reply"></span></a></span><span class="settings_name"><?php echo Settings::titlePageGenerator() ?></span>
             </h5>
         </div>
-        <div class="modal-body">
+        <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>

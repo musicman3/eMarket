@@ -22,7 +22,7 @@ use \eMarket\Core\{
             </h5>
         </div>
         <?php if (file_exists(ROOT . '/storage/logs/errors.log') == true) { ?>
-            <div class="modal-body">
+            <div class="card-body">
 
                 <div class="table-responsive">
                     <table class="table">
@@ -99,7 +99,7 @@ use \eMarket\Core\{
                 </div>
             </div>
         <?php } else { ?>
-            <div class="modal-body"><?php echo lang('no_listing') ?></div>
+            <div class="card-body"><?php echo lang('no_listing') ?></div>
         <?php } ?>
     </div>
 </div>

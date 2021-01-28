@@ -21,7 +21,7 @@ use \eMarket\Admin\BasicSettings;
                 <span class="settings_back"><button type="button" onClick='location.href = "<?php echo Settings::parentPartitionGenerator() ?>"' class="btn btn-primary btn-sm"><span class="bi-reply"></span></button></span><span class="settings_name"><?php echo Settings::titlePageGenerator() ?></span>
             </h5>
         </div>
-        <div class="modal-body">
+        <div class="card-body">
             <ul class="nav nav-tabs">
                 <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#general"><?php echo lang('basic_settigs_general') ?></a></li>
                 <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#email"><?php echo lang('basic_settigs_email') ?></a></li>

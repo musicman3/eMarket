@@ -23,7 +23,7 @@ require_once('modal/index.php')
                 <?php echo Settings::titlePageGenerator() ?>
             </h5>
         </div>
-        <div class="modal-body">
+        <div class="card-body">
             <div id="ajax_data" class='hidden' data-jsondata='<?php echo Manufacturers::$json_data ?>'></div>
 
             <div class="table-responsive">

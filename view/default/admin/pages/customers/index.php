@@ -20,7 +20,7 @@ use \eMarket\Core\{
                 <?php echo Settings::titlePageGenerator() ?>
             </h5>
         </div>
-        <div class="modal-body">
+        <div class="card-body">
 
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 offset-0">
                 <form>

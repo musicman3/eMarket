@@ -12,7 +12,7 @@
                 <?php echo lang('title_settings_index') ?>
             </h5>
         </div>
-        <div class="modal-body">
+        <div class="card-body">
             <div class="table-responsive">
                 <table class="table">
                     <tbody>

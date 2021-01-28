@@ -17,7 +17,7 @@ use \eMarket\Admin\Templates;
                 <span class="settings_back"><button type="button" onClick='location.href = "<?php echo Settings::parentPartitionGenerator() ?>"' class="btn btn-primary btn-sm"><span class="bi-reply"></span></button></span><span class="settings_name"><?php echo Settings::titlePageGenerator() ?></span>
             </h5>
         </div>
-        <div class="modal-body">
+        <div class="card-body">
 
             <div class="row">
 		<div class="col-2">

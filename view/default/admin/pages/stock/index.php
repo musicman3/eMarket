@@ -30,16 +30,16 @@ require_once('modal/add_values_attribute.php');
 
             <div id="alert_block"><?php Messages::alert(); ?></div>
 
-            <h3 class="card-title">
+            <h5 class="card-title">
                 <?php echo Settings::titlePageGenerator() ?>
-            </h3>
+            </h5>
         </div>
         <div id="ajax_data" class='hidden' 
              data-jsondataproduct='<?php echo Stock::$json_data_product ?>'
              data-jsondatacategory='<?php echo Stock::$json_data_category ?>'>
         </div>
         <?php if (Stock::$count_lines_merge > 0) { ?>
-            <div class="modal-body">
+            <div class="card-body">
                 <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 offset-0">
                     <form>
                         <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
@@ -237,7 +237,7 @@ require_once('modal/add_values_attribute.php');
         } elseif (Stock::$count_lines_cat > 0 && Stock::$parent_id > 0) {
             ?>
 
-            <div class="modal-body">
+            <div class="card-body">
                 <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 offset-0">
                     <form>
                         <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
@@ -283,7 +283,7 @@ require_once('modal/add_values_attribute.php');
             <?php
         } else {
             ?>
-            <div class="modal-body">
+            <div class="card-body">
                 <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 offset-0">
                     <form>
                         <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
