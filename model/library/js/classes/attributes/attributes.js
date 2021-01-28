@@ -2,6 +2,8 @@
  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+/* global bootstrap, confirmation */
+
 /**
  * Attributes
  *
@@ -115,7 +117,6 @@ class Attributes {
      *
      * @param id {String} (id)
      * @param value {String} (value)
-     * @param lang {Array} (lang)
      */
     static addValue(id, value) {
         $('.attribute').prepend(

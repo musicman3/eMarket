@@ -44,6 +44,7 @@ use \eMarket\Core\{
         <script type="text/javascript" src="/ext/jquery/ui/jquery.ui.touch-punch.min.js"></script>
         <script type="text/javascript" src="/ext/fastmd5/md5.min.js"></script>
         <script type="text/javascript" src="/ext/randomizer/randomizer.js"></script>
+        <script type="text/javascript" src="/model/library/js/classes/helpers/helpers.js"></script>
         <script type="text/javascript" src="/model/library/js/classes/confirm/confirm.js"></script>
 
         <script type="text/javascript">

@@ -2,6 +2,8 @@
  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+/* global Helpers, bootstrap, confirmation */
+
 /**
  * Attribute group
  *
@@ -45,7 +47,6 @@ class GroupAttributes {
             GroupAttributes.clearAttributes();
             $('.product-attribute').empty();
         });
-
     }
 
     /**
@@ -54,13 +55,13 @@ class GroupAttributes {
      *@param lang {Array} (lang)
      */
     click(lang) {
-        $(document).on('click', '.values-group-attribute', function () {
+        Helpers.on('body', 'click', '.values-group-attribute', function (e) {
             var jsdata = new JsData();
-            var data_id = $(this).closest('tr').attr('id').split('_')[1];
+            var data_id = e.target.closest('tr').id.split('_')[1];
             var parse_attributes = jsdata.selectParentUids('false', JSON.parse(sessionStorage.getItem('attributes')));
             sessionStorage.setItem('level_1', data_id);
 
-            $('#attribute').modal('show');
+            new bootstrap.Modal(document.querySelector('#attribute')).show();
             var level_length = parse_attributes[0].length;
 
             for (var x = 0; x < level_length; x++) {
@@ -69,23 +70,23 @@ class GroupAttributes {
                 }
             }
 
-            $('#title_attribute').html(jsdata.selectUid(data_id, parse_attributes)[language]['value']);
+            document.querySelector('#title_attribute').innerHTML = jsdata.selectUid(data_id, parse_attributes)[language]['value'];
 
         });
 
-        $(document).on('click', '.add-group-attributes', function () {
-            $('.input-add-group-attributes').val('');
-            $('#add_group_attributes').modal('show');
+        Helpers.on('body', 'click', '.add-group-attributes', function (e) {
+            document.querySelector('#group_attributes_add_form').reset();
+            new bootstrap.Modal(document.querySelector('#add_group_attributes')).show();
             sessionStorage.setItem('action', 'add');
         });
 
-        $(document).on('click', '.edit-group-attribute', function () {
-            $('#add_group_attributes').modal('show');
+        Helpers.on('body', 'click', '.edit-group-attribute', function (e) {
+            new bootstrap.Modal(document.querySelector('#add_group_attributes')).show();
             var processing = new AttributesProcessing();
-            processing.clickEdit($(this).closest('tr').attr('id').split('_')[1], 'false', 'level_1');
+            processing.clickEdit(e.target.closest('tr').id.split('_')[1], 'false', 'level_1');
         });
 
-        $(document).on('click', '#save_group_attributes_button', function () {
+            Helpers.on('body', 'click', '#save_group_attributes_button', function (e) {
             bootstrap.Modal.getInstance(document.querySelector('#add_group_attributes')).hide();
 
             var attributes_bank = $('#group_attributes_add_form').serializeArray();
@@ -109,7 +110,6 @@ class GroupAttributes {
                 GroupAttributes.add(lang, parse_attributes_view);
             }
 
-            document.querySelector('.input-add-group-attributes').value = '';
             GroupAttributes.deleteValue(lang);
         });
     }
