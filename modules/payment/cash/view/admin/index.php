@@ -31,7 +31,7 @@ use \eMarket\Core\Modules\Payment\Cash;
     </div>
     <div class="form-group">
         <label for="order_status"><?php echo lang('modules_payment_cash_admin_order_status') ?></label>
-        <div class="input-group has-success">
+        <div class="input-group">
             <span class="input-group-text"><span class="bi-pencil"></span></span>
             <select name="order_status" id="order_status" class="form-select">
                 <?php

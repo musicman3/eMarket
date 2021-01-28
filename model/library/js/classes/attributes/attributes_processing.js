@@ -71,9 +71,9 @@ class AttributesProcessing {
                 if (marker === 'admin') {
 
                     if (level_3[lang] !== undefined) {
-                        var light = 'has-success';
+                        var light = '';
                     } else {
-                        var light = 'has-error';
+                        var light = '';
                     }
 
                     $('#table_' + level_1[data_id]['uid']).prepend(
