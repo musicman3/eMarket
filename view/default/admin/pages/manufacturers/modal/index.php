@@ -16,7 +16,7 @@ use \eMarket\Core\{
                 <h5 class="modal-title"><?php echo Settings::titlePageGenerator() ?></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-            <form id="form_add" name="form_add" action="javascript:void(null);" onsubmit="Ajax.callAdd()">
+            <form id="form_add" class="was-validated" name="form_add" action="javascript:void(null);" onsubmit="Ajax.callAdd()">
                 <div class="modal-body">
                     <input type="hidden" id="add" name="add" value="" />
                     <input type="hidden" id="edit" name="edit" value="" />
@@ -32,7 +32,7 @@ use \eMarket\Core\{
                             <div class="mb-3">
                                 <div class="input-group">
                                     <span class="input-group-text"><span class="bi-file-text"></span></span>
-                                    <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="name_manufacturers_0" id="name_manufacturers_0" required />
+                                    <input class="input-sm form-control is-invalid" placeholder="<?php echo lang('name') ?>" type="text" name="name_manufacturers_0" id="name_manufacturers_0" required />
                                 </div>
                             </div>
                         </div>
@@ -44,9 +44,9 @@ use \eMarket\Core\{
 
                                 <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">
                                     <div class="mb-3">
-                                        <div class="input-group has-error">
+                                        <div class="input-group">
                                             <span class="input-group-text"><span class="bi-file-text"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="name_manufacturers_<?php echo $x ?>" id="name_manufacturers_<?php echo $x ?>" required />
+                                            <input class="input-sm form-control is-invalid" placeholder="<?php echo lang('name') ?>" type="text" name="name_manufacturers_<?php echo $x ?>" id="name_manufacturers_<?php echo $x ?>" required />
                                         </div>
                                     </div>
                                 </div>
@@ -59,7 +59,7 @@ use \eMarket\Core\{
                         <div class="mb-3">
                             <div class="input-group">
                                 <span class="input-group-text"><span class="bi-globe"></span></span>
-                                <input class="input-sm form-control" placeholder="<?php echo lang('site') ?>" type="text" name="site_manufacturers" id="site_manufacturers" />
+                                <input class="input-sm form-control is-valid" placeholder="<?php echo lang('site') ?>" type="text" name="site_manufacturers" id="site_manufacturers" />
                             </div>
                         </div>
 
@@ -69,7 +69,7 @@ use \eMarket\Core\{
                         <div class="mb-3">
                             <span class="btn btn-primary btn-sm fileinput-button">
                                 <span class="bi-image"></span><span> <?php echo lang('button_add_image') ?></span>
-                                <input class="input-sm form-control" id="fileupload" type="file" name="files[]" accept="image/jpeg,image/png,image/gif" multiple>
+                                <input class="input-sm form-control is-valid" id="fileupload" type="file" name="files[]" accept="image/jpeg,image/png,image/gif" multiple>
                             </span>
                             <?php echo lang('max') ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>
                             <br>
