@@ -18,7 +18,7 @@ use \eMarket\Admin\Stock;
                 <h5 class="modal-title"><?php echo Settings::titlePageGenerator() ?></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-            <form id="form_add_product" name="form_add_product" action="javascript:void(null);" onsubmit="Ajax.callAdd('form_add_product')">
+            <form id="form_add_product" class="was-validated" name="form_add_product" action="javascript:void(null);" onsubmit="Ajax.callAdd('form_add_product')">
                 <div class="modal-body">
                     <input type="hidden" name="parent_id" value="<?php echo Stock::$parent_id ?>" />
                     <input type="hidden" id="add_product" name="add_product" value="" />

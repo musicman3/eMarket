@@ -17,7 +17,7 @@ use \eMarket\Admin\Slideshow;
                 <h5 class="modal-title"><?php echo Settings::titlePageGenerator() ?></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-            <form id="form_add" name="form_add" action="javascript:void(null);" onsubmit="Ajax.callAdd(null, null, '<?php echo lang('alert_wait') ?>')">
+            <form id="form_add" class="was-validated" name="form_add" action="javascript:void(null);" onsubmit="Ajax.callAdd(null, null, '<?php echo lang('alert_wait') ?>')">
                 <div class="modal-body">
                     <input type="hidden" id="add" name="add" value="" />
                     <input type="hidden" id="edit" name="edit" value="" />

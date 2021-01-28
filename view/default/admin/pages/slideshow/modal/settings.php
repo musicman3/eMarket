@@ -17,7 +17,7 @@ use \eMarket\Core\{
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
 
-            <form id="form_settings" name="form_settings" action="javascript:void(null);" onsubmit="Ajax.callAdd('form_settings')">
+            <form id="form_settings" class="was-validated" name="form_settings" action="javascript:void(null);" onsubmit="Ajax.callAdd('form_settings')">
                 <div class="modal-body">
                     <input type="hidden" id="slideshow_pref" name="slideshow_pref" value="ok" />
 

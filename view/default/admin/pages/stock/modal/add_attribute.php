@@ -17,7 +17,7 @@ use \eMarket\Core\{
                 <h5 class="modal-title"><?php echo lang('stock_tittle_specification_name') ?></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-            <form id="attribute_add_form">
+            <form id="attribute_add_form" class="was-validated">
                 <div class="modal-body">
 
                     <div class="mb-3">

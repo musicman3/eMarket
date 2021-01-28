@@ -23,7 +23,7 @@ use \eMarket\Admin\Templates;
 		<div class="col-2">
 		    <div class="input-group">
 			<span class="input-group-text"><span class="bi-grid-fill"></span></span>
-			<form method="get" name="select_template" action="index.php">
+			<form method="get" class="was-validated" name="select_template" action="index.php">
 			    <input hidden name="route" value="settings/templates">
 			    <select name="name_templates" id="name_templates" class="form-select"  onchange="selectTemplate()" required >
 				<option><?php echo Settings::template() ?></option>
@@ -48,7 +48,7 @@ use \eMarket\Admin\Templates;
 		<div class="col">
 		    <div class="input-group">
 			<span class="input-group-text"><span class="bi-file-text"></span></span>
-			<form method="get" name="select_page">
+			<form method="get" class="was-validated" name="select_page">
 			    <input hidden name="route" value="settings/templates">
 			    <input type="hidden" name="name_templates" value="<?php echo Templates::$select_template ?>" />
 			    <select name="layout_pages_templates" id="layout_pages_templates" class="form-select" onchange="selectPage()" required >
