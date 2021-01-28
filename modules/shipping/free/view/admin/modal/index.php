@@ -26,7 +26,7 @@ use \eMarket\Core\Modules\Shipping\Free;
                             <label for="zone"><?php echo lang('modules_shipping_free_admin_shipping_zone') ?></label>
                             <div class="input-group has-success">
                                 <span class="input-group-text"><span class="bi-pencil"></span></span>
-                                <select name="zone" id="zone" class="input-sm form-control">
+                                <select name="zone" id="zone" class="form-select">
                                     <?php
                                     foreach (Free::$zones as $val) {
                                         ?>

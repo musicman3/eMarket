@@ -130,7 +130,7 @@ use \eMarket\Admin\Stock;
                                     <div><small class="form-text text-muted"><?php echo lang('stock_product_currency') ?></small></div>
                                     <div class="input-group">
                                         <span class="input-group-text"><span class="bi-cash"></span></span>
-                                        <select name="currency_product_stock" id="currency_product_stock" class="form-control">
+                                        <select name="currency_product_stock" id="currency_product_stock" class="form-select">
                                             <?php foreach (Stock::$currencies_all as $val) { ?>
                                                 <option value="<?php echo $val['id'] ?>" <?php echo Settings::viewSelect($val, 'default_value') ?>><?php echo $val['name'] ?></option>
                                             <?php } ?>
@@ -150,7 +150,7 @@ use \eMarket\Admin\Stock;
                                     <div><small class="form-text text-muted"><?php echo lang('stock_product_quantity_unit') ?></small></div>
                                     <div class="input-group">
                                         <span class="input-group-text"><span class="bi-flag"></span></span>
-                                        <select name="unit_product_stock" id="unit_product_stock" class="form-control">
+                                        <select name="unit_product_stock" id="unit_product_stock" class="form-select">
                                             <?php foreach (Stock::$units_all as $val) { ?>
                                                 <option value="<?php echo $val['id'] ?>" <?php echo Settings::viewSelect($val, 'default_unit') ?>><?php echo $val['name'] ?></option>
                                             <?php } ?>
@@ -170,7 +170,7 @@ use \eMarket\Admin\Stock;
                                     <div><small class="form-text text-muted"><?php echo lang('stock_product_manufacturer') ?></small></div>
                                     <div class="input-group">
                                         <span class="input-group-text"><span class="bi-align-bottom"></span></span>
-                                        <select name="manufacturers_product_stock" id="manufacturers_product_stock" class="form-control">
+                                        <select name="manufacturers_product_stock" id="manufacturers_product_stock" class="form-select">
                                             <?php foreach (Stock::$manufacturers_all as $val) { ?>
                                                 <option value="<?php echo $val['id'] ?>"><?php echo $val['name'] ?></option>
                                             <?php } ?>
@@ -190,7 +190,7 @@ use \eMarket\Admin\Stock;
                                     <div><small class="form-text text-muted"><?php echo lang('stock_product_tax') ?></small></div>
                                     <div class="input-group">
                                         <span class="input-group-text"><span class="bi-briefcase"></span></span>
-                                        <select name="tax_product_stock" id="tax_product_stock" class="form-control">
+                                        <select name="tax_product_stock" id="tax_product_stock" class="form-select">
                                             <?php foreach (Stock::$taxes_all as $val) { ?>
                                                 <option value="<?php echo $val['id'] ?>"><?php echo $val['name'] ?></option>
                                             <?php } ?>
@@ -215,7 +215,7 @@ use \eMarket\Admin\Stock;
                                     <div><small class="form-text text-muted"><?php echo lang('stock_product_vendor_code') ?></small></div>
                                     <div class="input-group">
                                         <span class="input-group-text"><span class="bi-tag"></span></span>
-                                        <select name="vendor_codes_product_stock" id="vendor_codes_product_stock" class="form-control">
+                                        <select name="vendor_codes_product_stock" id="vendor_codes_product_stock" class="form-select">
                                             <?php foreach (Stock::$vendor_codes_all as $val) { ?>
                                                 <option value="<?php echo $val['id'] ?>" <?php echo Settings::viewSelect($val, 'default_vendor_code') ?>><?php echo $val['name'] ?></option>
                                             <?php } ?>
@@ -235,7 +235,7 @@ use \eMarket\Admin\Stock;
                                     <div><small class="form-text text-muted"><?php echo lang('stock_product_weight') ?></small></div>
                                     <div class="input-group">
                                         <span class="input-group-text"><span class="bi-inbox"></span></span>
-                                        <select name="weight_product_stock" id="weight_product_stock" class="form-control">
+                                        <select name="weight_product_stock" id="weight_product_stock" class="form-select">
                                             <?php foreach (Stock::$weight_all as $val) { ?>
                                                 <option value="<?php echo $val['id'] ?>" <?php echo Settings::viewSelect($val, 'default_weight') ?>><?php echo $val['name'] ?></option>
                                             <?php } ?>
@@ -255,7 +255,7 @@ use \eMarket\Admin\Stock;
                                     <div><small class="form-text text-muted"><?php echo lang('stock_product_length_unit') ?></small></div>
                                     <div class="input-group">
                                         <span class="input-group-text"><span class="bi-rulers"></span></span>
-                                        <select name="length_product_stock" id="length_product_stock" class="form-control">
+                                        <select name="length_product_stock" id="length_product_stock" class="form-select">
                                             <?php foreach (Stock::$length_all as $val) { ?>
                                                 <option value="<?php echo $val['id'] ?>" <?php echo Settings::viewSelect($val, 'default_length') ?>><?php echo $val['name'] ?></option>
                                             <?php } ?>
@@ -308,7 +308,7 @@ use \eMarket\Admin\Stock;
                                 <div><small class="form-text text-muted"><?php echo lang('stock_product_effects_for_image_processing') ?></small></div>
                                 <div class="input-group">
                                     <span class="input-group-text"><span class="bi-circle-half"></span></span>
-                                    <select name="effect-product" id="effect-product" class="form-control">
+                                    <select name="effect-product" id="effect-product" class="form-select">
                                         <option value="effect-off" selected><?php echo lang('stock_product_no_effects') ?></option>
                                         <option value="effect-sepia"><?php echo lang('stock_product_sepia_effect') ?></option>
                                         <option value="effect-black-white"><?php echo lang('stock_product_black_and_white_effect') ?></option>

@@ -14,7 +14,7 @@ use \eMarket\Core\Modules\Payment\Cash;
     <div class="form-group">
         <label for="shipping_method"><?php echo lang('modules_payment_cash_admin_shipping_method') ?></label>
         <div class="input-group">
-            <select id="shipping_method" name="multiselect[]" multiple="multiple">
+            <select id="shipping_method" class="form-select" name="multiselect[]" multiple="multiple">
                 <?php
                 foreach (Cash::$shipping_method as $val) {
                     if (is_array(Cash::$shipping_val) && in_array($val['name'], Cash::$shipping_val)) {
@@ -33,7 +33,7 @@ use \eMarket\Core\Modules\Payment\Cash;
         <label for="order_status"><?php echo lang('modules_payment_cash_admin_order_status') ?></label>
         <div class="input-group has-success">
             <span class="input-group-text"><span class="bi-pencil"></span></span>
-            <select name="order_status" id="order_status" class="input-sm form-control">
+            <select name="order_status" id="order_status" class="form-select">
                 <?php
                 foreach (Cash::$order_status as $val) {
                     if ($val['id'] == Cash::$order_status_selected) {
