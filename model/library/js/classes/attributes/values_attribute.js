@@ -2,7 +2,7 @@
  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-/* global bootstrap, confirmation */
+/* global bootstrap, confirmation, Helpers */
 
 /**
  * Values Attributes
@@ -29,7 +29,7 @@ class ValuesAttribute {
      */
     modal(lang) {
 
-        $('#values_attribute').on('show.bs.modal', function (event) {
+        document.querySelector('#values_attribute').addEventListener('show.bs.modal', function (event) {
 
             var jsdata = new JsData();
             var data_id = sessionStorage.getItem('level_2');
@@ -40,8 +40,8 @@ class ValuesAttribute {
 
         });
 
-        $('#values_attribute').on('hidden.bs.modal', function (event) {
-            $('.values_attribute').empty();
+        document.querySelector('#values_attribute').addEventListener('hidden.bs.modal', function (event) {
+            document.querySelector('.values_attribute').innerHTML = '';
         });
 
     }
@@ -53,23 +53,23 @@ class ValuesAttribute {
      */
     click(lang) {
 
-        $(document).on('click', '.add-values-attribute', function () {
-            $('.input-add-values-attribute').val('');
-            $('#add_values_attribute').modal('show');
+        Helpers.on('body', 'click', '.add-values-attribute', function (e) {
+            document.querySelector('#add_values_attribute_form').reset();
+            new bootstrap.Modal(document.querySelector('#add_values_attribute')).show();
             sessionStorage.setItem('action', 'add');
         });
 
-        $(document).on('click', '.edit-value-attribute', function () {
-            $('#add_values_attribute').modal('show');
+        Helpers.on('body', 'click', '.edit-value-attribute', function (e) {
+            new bootstrap.Modal(document.querySelector('#add_values_attribute')).show();
             var processing = new AttributesProcessing();
-            processing.clickEdit($(this).closest('tr').attr('id').split('_')[1], sessionStorage.getItem('level_2'), 'level_3');
+            processing.clickEdit(e.target.closest('tr').id.split('_')[1], sessionStorage.getItem('level_2'), 'level_3');
 
         });
 
-        $(document).on('click', '#save_add_values_attribute', function () {
+        Helpers.on('body', 'click', '#save_add_values_attribute', function (e) {
             bootstrap.Modal.getInstance(document.querySelector('#add_values_attribute')).hide();
 
-            var attributes_bank = $('#add_values_attribute_form').serializeArray();
+            var attributes_bank = Helpers.serializeArray('#add_values_attribute_form');
             var data_id = sessionStorage.getItem('level_2');
             var jsdata = new JsData();
             var parse_attributes = JSON.parse(sessionStorage.getItem('attributes'));
@@ -103,7 +103,7 @@ class ValuesAttribute {
      * @param value {String} (string value)
      */
     static addValue(id, value) {
-        $('.values_attribute').prepend(
+        document.querySelector('.values_attribute').insertAdjacentHTML('afterbegin',
                 '<tr class="value-attributes-class align-middle" id="valueattributes_' + id + '">' +
                 '<td class="sortyes-value-attributes sortleft-m"><div><span class="bi-arrows-move"> </span></div></td>' +
                 '<td>' + value + '</td>' +
