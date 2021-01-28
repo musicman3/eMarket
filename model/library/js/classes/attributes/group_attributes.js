@@ -29,8 +29,7 @@ class GroupAttributes {
      */
     modal(lang) {
 
-        $('#index').on('show.bs.modal', function (event) {
-
+        document.querySelector('#index').addEventListener('show.bs.modal', function (event) {
             var jsdata = new JsData();
             var data_id = 'false';
             if (sessionStorage.getItem('attributes') === null) {
@@ -42,9 +41,11 @@ class GroupAttributes {
             GroupAttributes.deleteValue(lang);
         });
 
-        $('#index, #index_product').on('hidden.bs.modal', function (event) {
-            $('.group-attributes').empty();
+        document.querySelector('#index').addEventListener('hidden.bs.modal', function (event) {
             GroupAttributes.clearAttributes();
+        });
+
+        document.querySelector('#index_product').addEventListener('hidden.bs.modal', function (event) {
             $('.product-attribute').empty();
         });
     }
@@ -55,6 +56,7 @@ class GroupAttributes {
      *@param lang {Array} (lang)
      */
     click(lang) {
+
         Helpers.on('body', 'click', '.values-group-attribute', function (e) {
             var jsdata = new JsData();
             var data_id = e.target.closest('tr').id.split('_')[1];
@@ -71,7 +73,6 @@ class GroupAttributes {
             }
 
             document.querySelector('#title_attribute').innerHTML = jsdata.selectUid(data_id, parse_attributes)[language]['value'];
-
         });
 
         Helpers.on('body', 'click', '.add-group-attributes', function (e) {
@@ -86,7 +87,7 @@ class GroupAttributes {
             processing.clickEdit(e.target.closest('tr').id.split('_')[1], 'false', 'level_1');
         });
 
-            Helpers.on('body', 'click', '#save_group_attributes_button', function (e) {
+        Helpers.on('body', 'click', '#save_group_attributes_button', function (e) {
             bootstrap.Modal.getInstance(document.querySelector('#add_group_attributes')).hide();
 
             var attributes_bank = $('#group_attributes_add_form').serializeArray();
