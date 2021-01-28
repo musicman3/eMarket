@@ -125,7 +125,7 @@ class Attributes {
                 '<td class="sortleft"><button type="button" class="values-attribute btn btn-primary btn-sm"><span class="bi-gear"></span></button></td>' +
                 '<td>' + value + '</td>' +
                 '<td>' +
-                '<div class="gap-2 d-flex justify-content-end"><button type="button" class="edit-attribute btn btn-primary btn-xs"><span class="bi-pencil-square"> </span></button>' +
+                '<div class="gap-2 d-flex justify-content-end"><button type="button" class="edit-attribute btn btn-primary btn-sm"><span class="bi-pencil-square"> </span></button>' +
                 '<button type="button" class="delete-attribute btn btn-primary btn-sm"><span class="bi-trash"> </span></button></div>' +
                 '</td>' +
                 '</tr>'
