@@ -19,9 +19,9 @@ require_once('modal/index.php')
     <div class="card">
         <div class="card-header">
             <div id="alert_block"><?php Messages::alert(); ?></div>
-            <h3 class="card-title">
+            <h5 class="card-title">
                 <span class="settings_back"><button type="button" onClick='location.href = "<?php echo Settings::parentPartitionGenerator() ?>"' class="btn btn-primary btn-sm"><span class="bi-reply"></span></button></span><span class="settings_name"><?php echo Settings::titlePageGenerator() ?></span>
-            </h3>
+            </h5>
         </div>
         <div class="modal-body">
             <div id="ajax_data" class='hidden' data-jsondata='<?php echo Weight::$json_data ?>'></div>

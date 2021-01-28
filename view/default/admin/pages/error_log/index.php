@@ -17,9 +17,9 @@ use \eMarket\Core\{
 
         <div class="card-header">
             <div id="alert_block"><?php Messages::alert(); ?></div>
-            <h3 class="card-title">
+            <h5 class="card-title">
                 <?php echo Settings::titlePageGenerator() ?>
-            </h3>
+            </h5>
         </div>
         <?php if (file_exists(ROOT . '/storage/logs/errors.log') == true) { ?>
             <div class="modal-body">

@@ -8,9 +8,9 @@
 <div id="settings">
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">
+            <h5 class="card-title">
                 <?php echo lang('title_settings_index') ?>
-            </h3>
+            </h5>
         </div>
         <div class="modal-body">
             <div class="table-responsive">

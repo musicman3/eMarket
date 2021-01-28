@@ -20,9 +20,9 @@ require_once('modal/index.php')
     <div class="card">
         <div class="card-header">
             <div id="alert_block"><?php Messages::alert(); ?></div>
-            <h3 class="card-title">
+            <h5 class="card-title">
                 <span class="settings_back"><a class="btn btn-primary btn-sm" href="<?php echo Settings::parentPartitionGenerator() ?>"><span class="bi-reply"></span></a></span><span class="settings_name"><?php echo Settings::titlePageGenerator() ?></span>
-            </h3>
+            </h5>
         </div>
         <div class="modal-body">
             <div class="table-responsive">

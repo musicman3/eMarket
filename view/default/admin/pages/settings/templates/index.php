@@ -13,9 +13,9 @@ use \eMarket\Admin\Templates;
 <div id="settings_templates">
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">
+            <h5 class="card-title">
                 <span class="settings_back"><button type="button" onClick='location.href = "<?php echo Settings::parentPartitionGenerator() ?>"' class="btn btn-primary btn-sm"><span class="bi-reply"></span></button></span><span class="settings_name"><?php echo Settings::titlePageGenerator() ?></span>
-            </h3>
+            </h5>
         </div>
         <div class="modal-body">
 
