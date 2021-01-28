@@ -46,7 +46,7 @@ class GroupAttributes {
         });
 
         document.querySelector('#index_product').addEventListener('hidden.bs.modal', function (event) {
-            $('.product-attribute').empty();
+            document.querySelector('.product-attribute').innerHTML = '';
         });
     }
 
@@ -90,7 +90,7 @@ class GroupAttributes {
         Helpers.on('body', 'click', '#save_group_attributes_button', function (e) {
             bootstrap.Modal.getInstance(document.querySelector('#add_group_attributes')).hide();
 
-            var attributes_bank = $('#group_attributes_add_form').serializeArray();
+            var attributes_bank = Helpers.serializeArray('#group_attributes_add_form');;
             var data_id = 'false';
             var jsdata = new JsData();
             var parse_attributes = JSON.parse(sessionStorage.getItem('attributes'));
@@ -122,7 +122,7 @@ class GroupAttributes {
      * @param value {String} (string value)
      */
     static addValue(id, value) {
-        $('.group-attributes').prepend(
+        document.querySelector('.group-attributes').insertAdjacentHTML('afterbegin', 
                 '<tr class="groupattributes align-middle" id="groupattributes_' + id + '">' +
                 '<td class="sortyes-group sortleft-m"><div><span class="bi-arrows-move"> </span></div></td>' +
                 '<td class="sortleft"><button type="button" class="values-group-attribute btn btn-primary btn-sm"><span class="bi-gear"></span></button></td>' +
