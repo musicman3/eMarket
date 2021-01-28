@@ -318,7 +318,7 @@ use \eMarket\Admin\Stock;
                                 </div>
                                 <br>
                                 <div id="progress_product" class="progress">
-                                    <div class="progress-bar progress-bar-warning progress-bar-striped active"></div>
+                                    <div class="progress-bar bg-danger progress-bar-striped progress-bar-animated"></div>
                                 </div>
                                 <div id="logo-product" class="text-center"></div>
                             </div>

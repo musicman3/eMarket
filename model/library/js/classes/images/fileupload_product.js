@@ -81,11 +81,11 @@ class FileuploadProduct {
                         progress + '%'
                         );
                 $('.progress-bar').empty();
-                $('.progress-bar').removeClass('progress-bar progress-bar-success').addClass('progress-bar progress-bar-warning progress-bar-striped active');
+                $('.progress-bar').removeClass('progress-bar bg-success').addClass('progress-bar bg-danger progress-bar-striped progress-bar-animated');
                 if (progress === 100) {
                     setTimeout(function () {
                         $('.progress-bar').html(lang['download_complete']);
-                        $('.progress-bar').removeClass('progress-bar progress-bar-warning progress-bar-striped active').addClass('progress-bar progress-bar-success');
+                        $('.progress-bar').removeClass('progress-bar bg-danger progress-bar-striped progress-bar-animated').addClass('progress-bar bg-success');
                     }, 1000);
                 }
             }
