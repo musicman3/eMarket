@@ -122,7 +122,7 @@ class Attributes {
         $('.attribute').prepend(
                 '<tr class="attributes-class align-middle" id="attributes_' + id + '">' +
                 '<td class="sortyes-attributes sortleft-m"><div><span class="bi-arrows-move"> </span></div></td>' +
-                '<td class="sortleft-m"><button type="button" class="values-attribute btn btn-primary btn-sm"><span class="bi-gear"></span></button></td>' +
+                '<td class="sortleft"><button type="button" class="values-attribute btn btn-primary btn-sm"><span class="bi-gear"></span></button></td>' +
                 '<td>' + value + '</td>' +
                 '<td>' +
                 '<div class="gap-2 d-flex justify-content-end"><button type="button" class="edit-attribute btn btn-primary btn-xs"><span class="bi-pencil-square"> </span></button>' +

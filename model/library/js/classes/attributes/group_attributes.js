@@ -125,7 +125,7 @@ class GroupAttributes {
         $('.group-attributes').prepend(
                 '<tr class="groupattributes align-middle" id="groupattributes_' + id + '">' +
                 '<td class="sortyes-group sortleft-m"><div><span class="bi-arrows-move"> </span></div></td>' +
-                '<td class="sortleft-m"><button type="button" class="values-group-attribute btn btn-primary btn-sm"><span class="bi-gear"></span></button></td>' +
+                '<td class="sortleft"><button type="button" class="values-group-attribute btn btn-primary btn-sm"><span class="bi-gear"></span></button></td>' +
                 '<td>' + value + '</td>' +
                 '<td>' +
                 '<div class="gap-2 d-flex justify-content-end"><button type="button" class="edit-group-attribute btn btn-primary btn-sm"><span class="bi-pencil-square"> </span></button>' +

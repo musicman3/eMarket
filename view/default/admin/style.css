@@ -65,7 +65,7 @@ body {background:#e4e4da;font-family: 'Open Sans';background-image:url('images/s
 .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {padding:3px;}
 .sortyes, .sortyes-group, .sortyes-attributes, .sortyes-value-attributes {cursor:move;}
 .table .sortleft {width:30px;}
-.table .sortleft-m {color:#d8d8cf;width:25px;text-align: center;}
+.table .sortleft-m {color:#9b9b9b;width:25px;text-align: center;}
 .table .sortno:hover {background: none;}
 .table > tbody > tr > td.active {background-color: #f0f0f0;}
 .tab-content {padding-top: 10px;}
@@ -80,3 +80,4 @@ body {background:#e4e4da;font-family: 'Open Sans';background-image:url('images/s
 .table-radius {overflow: hidden;border-top-left-radius: 4px;border-top-right-radius: 4px;}
 .offset-0 {padding-left: 0;padding-right: 0;}
 #color {box-sizing: content-box;}
+/*.was-validated .form-select:valid, .was-validated .form-select:invalid {background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");}*/
