@@ -26,14 +26,14 @@ use \eMarket\Core\{
                     <div class="tab-content">
                         <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade show in active">
                             <div class="mb-2">
-                                <small class="form-text text-muted"><?php echo lang('name_full') ?></small>
+                                <small class="form-text text-muted"><?php echo lang('length_name_full') ?></small>
                                 <div class="input-group input-group-sm">
                                     <span class="input-group-text"><span class="bi-file-text"></span></span>
                                     <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_length_0" id="name_length_0" required />
                                 </div>
                             </div>
                             <div class="mb-2">
-                                <small class="form-text text-muted"><?php echo lang('name_little') ?></small>
+                                <small class="form-text text-muted"><?php echo lang('length_name_little') ?></small>
                                 <div class="input-group input-group-sm">
                                     <span class="input-group-text"><span class="bi-file-text"></span></span>
                                     <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="code_length_0" id="code_length_0" required />
@@ -48,14 +48,14 @@ use \eMarket\Core\{
 
                                 <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">
                                     <div class="mb-2">
-                                        <small class="form-text text-muted"><?php echo lang('name_full') ?></small>
+                                        <small class="form-text text-muted"><?php echo lang('length_name_full') ?></small>
                                         <div class="input-group input-group-sm">
                                             <span class="input-group-text"><span class="bi-file-text"></span></span>
                                             <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_length_<?php echo $x ?>" id="name_length_<?php echo $x ?>" required />
                                         </div>
                                     </div>
                                     <div class="mb-2">
-                                        <small class="form-text text-muted"><?php echo lang('name_little') ?></small>
+                                        <small class="form-text text-muted"><?php echo lang('length_name_little') ?></small>
                                         <div class="input-group input-group-sm">
                                             <span class="input-group-text"><span class="bi-file-text"></span></span>
                                             <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="code_length_<?php echo $x ?>" id="code_length_<?php echo $x ?>" required />
@@ -69,7 +69,7 @@ use \eMarket\Core\{
                         ?>
 
                         <div class="mb-2">
-                            <small class="form-text text-muted"><?php echo lang('value') ?></small>
+                            <small class="form-text text-muted"><?php echo lang('length_value') ?></small>
                             <div class="input-group input-group-sm">
                                 <span class="input-group-text"><span class="bi-calculator"></span></span>
                                 <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" pattern="\d+(\.\d{0,7})?" name="value_length" id="value_length" required />
