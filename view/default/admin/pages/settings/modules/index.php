@@ -3,6 +3,7 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+
 use \eMarket\Core\{
     Messages,
     Settings
@@ -25,8 +26,8 @@ use \eMarket\Admin\Modules;
                 foreach ($_SESSION['MODULES_INFO'] as $type => $name) {
                     ?>
                     <li class="nav-item">
-			<a class="nav-link <?php echo $eMarket->class($type) ?>" data-bs-toggle="tab" href="#<?php echo $type ?>_modules"><?php echo lang($type . '_modules') ?></a>
-		    </li>
+                        <a class="nav-link <?php echo $eMarket->class($type) ?>" data-bs-toggle="tab" href="#<?php echo $type ?>_modules"><?php echo lang($type . '_modules') ?></a>
+                    </li>
                 <?php } ?>
             </ul>
 
@@ -53,26 +54,26 @@ use \eMarket\Admin\Modules;
                                         <?php
                                         foreach ($_SESSION['MODULES_INFO'][$type] as $key) {
                                             if (in_array($key, Modules::$installed_filter)) {
-                                                echo $eMarket->active($key);
                                                 ?>
+                                                <tr class="<?php echo $eMarket->active($key) ?>">
 
-                                            <td><?php echo lang('modules_' . $type . '_' . $key . '_name') ?></td>
+                                                    <td><?php echo lang('modules_' . $type . '_' . $key . '_name') ?></td>
 
-                                            <?php ?>
-                                            <td>
-                                                <div class="gap-2 d-flex justify-content-end">
-                                                    <button type="button" onClick='location.href = "?route=settings/modules/edit&type=<?php echo $type ?>&name=<?php echo $key ?>"' class="btn btn-primary btn-sm"><span class="bi-pencil-square"> </span></button>
-                                                    <form id="form_delete<?php echo $type . '_' . $key ?>" name="form_delete" action="javascript:void(null);" onsubmit="Ajax.callDelete('<?php echo $type . '_' . $key ?>', '?route=settings/modules&active=<?php echo $type ?>')" enctype="multipart/form-data">
-                                                        <input hidden name="delete" value="<?php echo $type . '_' . $key ?>">
-                                                        <button type="submit" name="delete_but" class="btn btn-primary btn-sm" data-bs-placement="left" data-bs-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="bi-trash"> </span></button>
-                                                    </form>
-                                                </div>
-                                            </td>
-                                            </tr>
-                                            <?php
+                                                    <?php ?>
+                                                    <td>
+                                                        <div class="gap-2 d-flex justify-content-end">
+                                                            <button type="button" onClick='location.href = "?route=settings/modules/edit&type=<?php echo $type ?>&name=<?php echo $key ?>"' class="btn btn-primary btn-sm"><span class="bi-pencil-square"> </span></button>
+                                                            <form id="form_delete<?php echo $type . '_' . $key ?>" name="form_delete" action="javascript:void(null);" onsubmit="Ajax.callDelete('<?php echo $type . '_' . $key ?>', '?route=settings/modules&active=<?php echo $type ?>')" enctype="multipart/form-data">
+                                                                <input hidden name="delete" value="<?php echo $type . '_' . $key ?>">
+                                                                <button type="submit" name="delete_but" class="btn btn-primary btn-sm" data-bs-placement="left" data-bs-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="bi-trash"> </span></button>
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <?php
+                                            }
                                         }
-                                    }
-                                    ?> 
+                                        ?> 
                                     </tbody>
                                 </table>
                             </div>
@@ -94,7 +95,7 @@ use \eMarket\Admin\Modules;
                                             if (!in_array($key, Modules::$installed_filter)) {
                                                 ?>
 
-                                                <tr class="danger align-middle">
+                                                <tr class="<?php echo $eMarket->active($key) ?> align-middle">
                                                     <td><?php echo lang('modules_' . $type . '_' . $key . '_name') ?></td>
 
                                                     <?php ?>
