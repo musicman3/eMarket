@@ -26,7 +26,7 @@ use \eMarket\Core\{
                     <div class="tab-content">
                         <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade show in active">
                             <div class="mb-3">
-                                <div class="input-group has-error">
+                                <div class="input-group">
                                     <span class="input-group-text"><span class="bi-file-text"></span></span>
                                     <input class="input-sm form-control" placeholder="<?php echo lang('name_zone') ?>" type="text" name="name_zones_0" id="name_zones_0" required />
                                 </div>
@@ -40,7 +40,7 @@ use \eMarket\Core\{
 
                                 <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">
                                     <div class="mb-3">
-                                        <div class="input-group has-error">
+                                        <div class="input-group">
                                             <span class="input-group-text"><span class="bi-file-text"></span></span>
                                             <input class="input-sm form-control" placeholder="<?php echo lang('name_zone') ?>" type="text" name="name_zones_<?php echo $x ?>" id="name_zones_<?php echo $x ?>" required />
                                         </div>

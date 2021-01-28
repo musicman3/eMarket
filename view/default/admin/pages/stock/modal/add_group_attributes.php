@@ -21,7 +21,7 @@ use \eMarket\Core\{
                 <div class="modal-body">
 
                     <div class="mb-3">
-                        <div class="input-group has-success">
+                        <div class="input-group">
                             <span class="input-group-text"><img src="/view/<?php echo Settings::template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[0] ?>.png" alt="<?php echo lang('#lang_all')[0] ?>" title="<?php echo lang('#lang_all')[0] ?>" width="16" height="10" /></span>
                             <input class="input-add-group-attributes input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="group_attributes_<?php echo lang('#lang_all')[0] ?>" required />
                         </div>
@@ -32,7 +32,7 @@ use \eMarket\Core\{
                         for ($x = 1; $x < Lang::$count; $x++) {
                             ?>
                             <div class="mb-3">
-                                <div class="input-group has-success">
+                                <div class="input-group">
                                     <span class="input-group-text"><img src="/view/<?php echo Settings::template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[$x] ?>.png" alt="<?php echo lang('#lang_all')[$x] ?>" title="<?php echo lang('#lang_all')[$x] ?>" width="16" height="10" /></span>
                                     <input class="input-add-group-attributes input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="group_attributes_<?php echo lang('#lang_all')[$x] ?>" required />
                                 </div>

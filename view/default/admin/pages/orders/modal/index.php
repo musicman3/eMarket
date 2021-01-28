@@ -139,8 +139,8 @@ use \eMarket\Admin\Orders;
 
                         <div id="panel_4" class="tab-pane fade">
                             <div class="mb-3">
-                                <div class="input-group has-success" id="status_history"></div><br>
-                                <div class="input-group has-success">
+                                <div class="input-group" id="status_history"></div><br>
+                                <div class="input-group">
                                     <span class="input-group-text"><span class="bi-pen"></span></span>
                                     <select name="status_history_select" id="status_history_select" class="form-select">
                                         <?php foreach (Orders::$order_status as $value) { ?>

@@ -26,7 +26,7 @@ use \eMarket\Core\{
                     <div class="tab-content">
                         <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade show in active">
                             <div class="mb-3">
-                                <div class="input-group has-error">
+                                <div class="input-group">
                                     <span class="input-group-text"><span class="bi-file-text"></span></span>
                                     <input class="input-sm form-control" placeholder="<?php echo lang('name_full') ?>" type="text" name="name_length_0" id="name_length_0" required />
                                 </div>
@@ -46,13 +46,13 @@ use \eMarket\Core\{
 
                                 <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">
                                     <div class="mb-3">
-                                        <div class="input-group has-error">
+                                        <div class="input-group">
                                             <span class="input-group-text"><span class="bi-file-text"></span></span>
                                             <input class="input-sm form-control" placeholder="<?php echo lang('name_full') ?>" type="text" name="name_length_<?php echo $x ?>" id="name_length_<?php echo $x ?>" required />
                                         </div>
                                     </div>
                                     <div class="mb-3">
-                                        <div class="input-group has-error">
+                                        <div class="input-group">
                                             <span class="input-group-text"><span class="bi-pen"></span></span>
                                             <input class="input-sm form-control" placeholder="<?php echo lang('name_little') ?>" type="text" name="code_length_<?php echo $x ?>" id="code_length_<?php echo $x ?>" required />
                                         </div>
@@ -65,7 +65,7 @@ use \eMarket\Core\{
                         ?>
 
                         <div class="mb-3">
-                            <div class="input-group has-error">
+                            <div class="input-group">
                                 <span class="input-group-text"><span class="bi-sort-numeric-down"></span></span>
                                 <input class="input-sm form-control" placeholder="<?php echo lang('value') ?>" type="text" pattern="\d+(\.\d{0,7})?" name="value_length" id="value_length" required />
                             </div>

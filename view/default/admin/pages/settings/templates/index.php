@@ -21,11 +21,11 @@ use \eMarket\Admin\Templates;
 
             <div class="row">
 		<div class="col-2">
-		    <div class="input-group has-error">
+		    <div class="input-group">
 			<span class="input-group-text"><span class="bi-grid-fill"></span></span>
 			<form method="get" name="select_template" action="index.php">
 			    <input hidden name="route" value="settings/templates">
-			    <select name="name_templates" id="name_templates" class="form-select"  onchange="selectTemplate()">
+			    <select name="name_templates" id="name_templates" class="form-select"  onchange="selectTemplate()" required >
 				<option><?php echo Settings::template() ?></option>
 				<?php
 				foreach (Templates::$name_template as $path) {
@@ -46,12 +46,12 @@ use \eMarket\Admin\Templates;
 		    </div>
 		</div>
 		<div class="col">
-		    <div class="input-group has-error">
+		    <div class="input-group">
 			<span class="input-group-text"><span class="bi-file-text"></span></span>
 			<form method="get" name="select_page">
 			    <input hidden name="route" value="settings/templates">
 			    <input type="hidden" name="name_templates" value="<?php echo Templates::$select_template ?>" />
-			    <select name="layout_pages_templates" id="layout_pages_templates" class="form-select" onchange="selectPage()">
+			    <select name="layout_pages_templates" id="layout_pages_templates" class="form-select" onchange="selectPage()" required >
 				<option value="all"><?php echo lang('all_pages_template') ?></option>
 				<?php
 				foreach (Templates::$layout_pages as $path) {

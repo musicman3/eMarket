@@ -28,13 +28,13 @@ use \eMarket\Admin\Slideshow;
                     <input id="general_image_edit_new" type="hidden" name="general_image_edit_new" value="">
 
                     <div class="mb-3">
-                        <div class="input-group has-success">
+                        <div class="input-group">
                             <span class="input-group-text"><span class="bi-file-text"></span></span>
                             <input class="input-sm form-control" placeholder="<?php echo lang('slides_name') ?>" type="text" name="name" id="name" />
                         </div>
                     </div>
                     <div class="mb-3">
-                        <div class="input-group has-success">
+                        <div class="input-group">
                             <span class="input-group-text"><span class="bi-file-text"></span></span>
                             <input class="input-sm form-control" placeholder="<?php echo lang('slides_text') ?>" type="text" name="heading" id="heading" />
                         </div>
@@ -52,19 +52,19 @@ use \eMarket\Admin\Slideshow;
                         </div>
                     </div>
                     <div class="mb-3">
-                        <div class="input-group has-success">
+                        <div class="input-group">
                             <span class="input-group-text"><span class="bi-globe"></span></span>
                             <input class="input-sm form-control" placeholder="<?php echo lang('slides_url') ?>" type="text" name="url" id="url" />
                         </div>
                     </div>
                     <div class="col-left mb-3">
-                        <div class="input-group has-error">
+                        <div class="input-group">
                             <span class="input-group-text"><span class="bi-calendar"></span></span>
                             <input class="input-sm form-control" placeholder="<?php echo lang('slides_show_start') ?>" type="text" name="start_date" id="start_date" autocomplete="off" required />
                         </div>
                     </div>
                     <div class="col-left mb-3">
-                        <div class="input-group has-error">
+                        <div class="input-group">
                             <span class="input-group-text"><span class="bi-calendar"></span></span>
                             <input class="input-sm form-control" placeholder="<?php echo lang('slides_show_end') ?>" type="text" name="end_date" id="end_date" autocomplete="off" required />
                         </div>
