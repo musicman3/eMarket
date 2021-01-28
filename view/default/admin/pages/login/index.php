@@ -19,18 +19,18 @@ use \eMarket\Admin\Login;
 
 
     <div class="login-box side-form">
-        <form action='?route=login' method='post'>
+        <form action='?route=login' method='post' class="was-validated">
 
             <input hidden name="autorize" value="ok">
 
             <div class="mb-3">
-                <input type="text" name="login" class="input-sm form-control" placeholder="<?php echo lang('email') ?>">
+                <input type="text" name="login" class="input-sm form-control" placeholder="<?php echo lang('email') ?>" required />
             </div>
             <div class="mb-3">
-                <input type="password" name="pass" class="input-sm form-control" placeholder="<?php echo lang('password') ?>">
+                <input type="password" name="pass" class="input-sm form-control" placeholder="<?php echo lang('password') ?>" required />
             </div>
 
-            <input type="submit" class="btn w-100 btn-sm" value="<?php echo lang('entrance') ?>">
+            <input type="submit" class="btn w-100 btn-sm" value="<?php echo lang('entrance') ?>" />
         </form>
     </div>
 </div>
