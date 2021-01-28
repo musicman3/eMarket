@@ -90,7 +90,7 @@ class GroupAttributes {
         Helpers.on('body', 'click', '#save_group_attributes_button', function (e) {
             bootstrap.Modal.getInstance(document.querySelector('#add_group_attributes')).hide();
 
-            var attributes_bank = Helpers.serializeArray('#group_attributes_add_form');;
+            var attributes_bank = Helpers.serializeArray('#group_attributes_add_form');
             var data_id = 'false';
             var jsdata = new JsData();
             var parse_attributes = JSON.parse(sessionStorage.getItem('attributes'));

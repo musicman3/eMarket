@@ -2,7 +2,7 @@
  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-/* global bootstrap, confirmation */
+/* global bootstrap, confirmation, Helpers */
 
 /**
  * Attributes
@@ -29,7 +29,7 @@ class Attributes {
      */
     modal(lang) {
 
-        $('#attribute').on('show.bs.modal', function (event) {
+        document.querySelector('#attribute').addEventListener('show.bs.modal', function (event) {
 
             var jsdata = new JsData();
             var data_id = sessionStorage.getItem('level_1');
@@ -40,8 +40,8 @@ class Attributes {
 
         });
 
-        $('#attribute').on('hidden.bs.modal', function (event) {
-            $('.attribute').empty();
+        document.querySelector('#attribute').addEventListener('hidden.bs.modal', function (event) {
+            document.querySelector('.attribute').innerHTML = '';
         });
 
     }
@@ -52,13 +52,13 @@ class Attributes {
      *@param lang {Array} (lang)
      */
     click(lang) {
-        $(document).on('click', '.values-attribute', function () {
+        Helpers.on('body', 'click', '.values-attribute', function (e) {
             var jsdata = new JsData();
-            var data_id = $(this).closest('tr').attr('id').split('_')[1];
+            var data_id = e.target.closest('tr').id.split('_')[1];
             var parse_attributes = jsdata.selectParentUids(sessionStorage.getItem('level_1'), JSON.parse(sessionStorage.getItem('attributes')));
             sessionStorage.setItem('level_2', data_id);
 
-            $('#values_attribute').modal('show');
+            new bootstrap.Modal(document.querySelector('#values_attribute')).show();
             var level_length = parse_attributes[0].length;
 
             for (var x = 0; x < level_length; x++) {
@@ -67,26 +67,26 @@ class Attributes {
                 }
             }
 
-            $('#title_values_attribute').html(jsdata.selectUid(data_id, parse_attributes)[language]['value']);
+            document.querySelector('#title_values_attribute').innerHTML = jsdata.selectUid(data_id, parse_attributes)[language]['value'];
         });
 
-        $(document).on('click', '.add-attribute', function () {
-            $('.input-add-attribute').val('');
-            $('#add_attribute').modal('show');
+        Helpers.on('body', 'click', '.add-attribute', function (e) {
+            document.querySelector('#attribute_add_form').reset();
+            new bootstrap.Modal(document.querySelector('#add_attribute')).show();
             sessionStorage.setItem('action', 'add');
         });
 
-        $(document).on('click', '.edit-attribute', function () {
-            $('#add_attribute').modal('show');
+        Helpers.on('body', 'click', '.edit-attribute', function (e) {
+            new bootstrap.Modal(document.querySelector('#add_attribute')).show();
             var processing = new AttributesProcessing();
-            processing.clickEdit($(this).closest('tr').attr('id').split('_')[1], sessionStorage.getItem('level_1'), 'level_2');
+            processing.clickEdit(e.target.closest('tr').id.split('_')[1], sessionStorage.getItem('level_1'), 'level_2');
 
         });
 
-        $('#save_attribute_button').click(function () {
+        Helpers.on('body', 'click', '#save_attribute_button', function (e) {
             bootstrap.Modal.getInstance(document.querySelector('#add_attribute')).hide();
 
-            var attributes_bank = $('#attribute_add_form').serializeArray();
+            var attributes_bank = Helpers.serializeArray('#attribute_add_form');
             var data_id = sessionStorage.getItem('level_1');
             var jsdata = new JsData();
             var parse_attributes = JSON.parse(sessionStorage.getItem('attributes'));
@@ -119,7 +119,7 @@ class Attributes {
      * @param value {String} (value)
      */
     static addValue(id, value) {
-        $('.attribute').prepend(
+        document.querySelector('.attribute').insertAdjacentHTML('afterbegin',
                 '<tr class="attributes-class align-middle" id="attributes_' + id + '">' +
                 '<td class="sortyes-attributes sortleft-m"><div><span class="bi-arrows-move"> </span></div></td>' +
                 '<td class="sortleft"><button type="button" class="values-attribute btn btn-primary btn-sm"><span class="bi-gear"></span></button></td>' +
