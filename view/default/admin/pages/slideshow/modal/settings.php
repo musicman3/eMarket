@@ -23,30 +23,30 @@ use \eMarket\Core\{
 
                     <div class="mb-3">
                         <small class="form-text text-muted"><?php echo lang('slides_interval') ?></small>
-                        <div class="input-group">
+                        <div class="input-group input-group-sm">
                             <span class="input-group-text"><span class="bi-watch"></span></span>
                             <input class="input-sm form-control" placeholder="<?php echo lang('slides_interval_placeholder') ?>" type="text" name="show_interval" id="show_interval" required />
                         </div>
                     </div>
-                    <div class="mb-3">
-                        <input class="check-box" type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="mouse_stop" id="mouse_stop">
-                        <label><?php echo lang('slides_stop_on_hover') ?> </label>
+                    <div class="mb-3 form-check form-switch">
+                        <input class="form-check-input" type="checkbox" name="mouse_stop" id="mouse_stop" checked>
+                        <label class="form-check-label" for="mouse_stop"><?php echo lang('slides_stop_on_hover') ?></label>
                     </div>
-                    <div class="mb-3">
-                        <input class="check-box" type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="autostart" id="autostart">
-                        <label><?php echo lang('slides_auto_start') ?> </label>
+                    <div class="mb-3 form-check form-switch">
+                        <input class="form-check-input" type="checkbox" name="autostart" id="autostart" checked>
+                        <label class="form-check-label" for="autostart"><?php echo lang('slides_auto_start') ?></label>
                     </div>
-                    <div class="mb-3">
-                        <input class="check-box" type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="cicles" id="cicles">
-                        <label><?php echo lang('slides_loop_changes') ?> </label>
+                    <div class="mb-3 form-check form-switch">
+                        <input class="form-check-input" type="checkbox" name="cicles" id="cicles" checked>
+                        <label class="form-check-label" for="cicles"><?php echo lang('slides_loop_changes') ?></label>
                     </div>
-                    <div class="mb-3">
-                        <input class="check-box" type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="indicators" id="indicators">
-                        <label><?php echo lang('slides_show_indicators') ?> </label>
+                    <div class="mb-3 form-check form-switch">
+                        <input class="form-check-input" type="checkbox" name="indicators" id="indicators" checked>
+                        <label class="form-check-label" for="indicators"><?php echo lang('slides_show_indicators') ?></label>
                     </div>
-                    <div class="mb-3">
-                        <input class="check-box" type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="navigation" id="navigation">
-                        <label><?php echo lang('slides_show_navigation_buttons') ?> </label>
+                    <div class="mb-3 form-check form-switch">
+                        <input class="form-check-input" type="checkbox" name="navigation" id="navigation" checked>
+                        <label class="form-check-label" for="navigation"><?php echo lang('slides_show_navigation_buttons') ?></label>
                     </div>
 
                 </div>

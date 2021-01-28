@@ -28,21 +28,21 @@ use \eMarket\Admin\Slideshow;
                     <input id="general_image_edit_new" type="hidden" name="general_image_edit_new" value="">
 
                     <div class="mb-3">
-                        <div class="input-group">
+                        <div class="input-group input-group-sm">
                             <span class="input-group-text"><span class="bi-file-text"></span></span>
                             <input class="input-sm form-control" placeholder="<?php echo lang('slides_name') ?>" type="text" name="name" id="name" />
                         </div>
                     </div>
                     <div class="mb-3">
-                        <div class="input-group">
+                        <div class="input-group input-group-sm">
                             <span class="input-group-text"><span class="bi-file-text"></span></span>
                             <input class="input-sm form-control" placeholder="<?php echo lang('slides_text') ?>" type="text" name="heading" id="heading" />
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <div class="col-md-6">
-			    <input class="check-box" type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="animation" id="animation" checked>
-			    <label class="col-form-label" for="animation"> <?php echo lang('slides_text_animation') ?></label>
+                        <div class="col-md-6 form-check form-switch">
+                            <input class="form-check-input" type="checkbox" name="animation" id="animation" checked>
+                            <label class="form-check-label" for="animation"><?php echo lang('slides_text_animation') ?></label>
                         </div>
                         <div class="col-md-6">
                             <div class="input-group input-group-sm">
@@ -52,20 +52,20 @@ use \eMarket\Admin\Slideshow;
                         </div>
                     </div>
                     <div class="mb-3">
-                        <div class="input-group">
+                        <div class="input-group input-group-sm">
                             <span class="input-group-text"><span class="bi-globe"></span></span>
                             <input class="input-sm form-control" placeholder="<?php echo lang('slides_url') ?>" type="text" name="url" id="url" />
                         </div>
                     </div>
                     <div class="col-left mb-3">
-                        <div class="input-group">
-                            <span class="input-group-text"><span class="bi-calendar"></span></span>
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-text"><span class="bi-calendar3"></span></span>
                             <input class="input-sm form-control" placeholder="<?php echo lang('slides_show_start') ?>" type="text" name="start_date" id="start_date" autocomplete="off" required />
                         </div>
                     </div>
                     <div class="col-left mb-3">
-                        <div class="input-group">
-                            <span class="input-group-text"><span class="bi-calendar"></span></span>
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-text"><span class="bi-calendar3"></span></span>
                             <input class="input-sm form-control" placeholder="<?php echo lang('slides_show_end') ?>" type="text" name="end_date" id="end_date" autocomplete="off" required />
                         </div>
                     </div>
@@ -87,9 +87,9 @@ use \eMarket\Admin\Slideshow;
                         <div id="logo" class="text-center"></div>
                     </div>
 
-                    <div class="mb-3">
-                        <input class="check-box" type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="view_slideshow" id="view_slideshow" checked>
-                        <label for="view_slideshow"><?php echo lang('display') ?> </label>
+                    <div class="mb-3 form-check form-switch">
+                        <input class="form-check-input" type="checkbox" name="view_slideshow" id="view_slideshow" checked>
+                        <label class="form-check-label" for="view_slideshow"><?php echo lang('display') ?></label>
                     </div>
                 </div>
                 <div class="modal-footer">
