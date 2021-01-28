@@ -29,7 +29,7 @@ use \eMarket\Admin\BasicSettings;
 
             <div class="tab-content">
                 <div id="general" class="tab-pane fade show in active">
-                    <form id="form_add" class="was-validated" name="form_add" class="form-horizontal" action="javascript:void(null);" onsubmit="Ajax.callAdd()">
+                    <form id="form_add" class="was-validated" name="form_add" action="javascript:void(null);" onsubmit="Ajax.callAdd()">
                         <input hidden name="add" value="ok">
 
                         <div class="mb-3 row">
@@ -79,7 +79,7 @@ use \eMarket\Admin\BasicSettings;
                     </form>
                 </div>
                 <div id="email" class="tab-pane fade">
-                    <form id="form_email" class="was-validated" name="form_email" class="form-horizontal" action="javascript:void(null);" onsubmit="Ajax.callAdd('form_email')">
+                    <form id="form_email" class="was-validated" name="form_email" action="javascript:void(null);" onsubmit="Ajax.callAdd('form_email')">
                         <input hidden name="add" value="ok">
 
                         <div class="mb-3 row">
