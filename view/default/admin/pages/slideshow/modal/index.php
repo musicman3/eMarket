@@ -27,19 +27,21 @@ use \eMarket\Admin\Slideshow;
                     <input id="general_image_edit" type="hidden" name="general_image_edit" value="">
                     <input id="general_image_edit_new" type="hidden" name="general_image_edit_new" value="">
 
-                    <div class="mb-3">
+                    <div class="mb-2">
+                        <small class="form-text text-muted"><?php echo lang('slides_name') ?></small>
                         <div class="input-group input-group-sm">
                             <span class="input-group-text"><span class="bi-file-text"></span></span>
-                            <input class="input-sm form-control" placeholder="<?php echo lang('slides_name') ?>" type="text" name="name" id="name" />
+                            <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name" id="name" />
                         </div>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-2">
+                        <small class="form-text text-muted"><?php echo lang('slides_text') ?></small>
                         <div class="input-group input-group-sm">
                             <span class="input-group-text"><span class="bi-file-text"></span></span>
-                            <input class="input-sm form-control" placeholder="<?php echo lang('slides_text') ?>" type="text" name="heading" id="heading" />
+                            <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="heading" id="heading" />
                         </div>
                     </div>
-                    <div class="mb-3 row">
+                    <div class="mb-2 row">
                         <div class="col-md-6 form-check form-switch">
                             <input class="form-check-input" type="checkbox" name="animation" id="animation" checked>
                             <label class="form-check-label" for="animation"><?php echo lang('slides_text_animation') ?></label>
@@ -51,29 +53,32 @@ use \eMarket\Admin\Slideshow;
                             </div>
                         </div>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-2">
+                        <small class="form-text text-muted"><?php echo lang('slides_url') ?></small>
                         <div class="input-group input-group-sm">
                             <span class="input-group-text"><span class="bi-globe"></span></span>
-                            <input class="input-sm form-control" placeholder="<?php echo lang('slides_url') ?>" type="text" name="url" id="url" />
+                            <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="url" id="url" />
                         </div>
                     </div>
-                    <div class="col-left mb-3">
+                    <div class="col-left mb-2">
+                        <small class="form-text text-muted"><?php echo lang('slides_show_start') ?></small>
                         <div class="input-group input-group-sm">
                             <span class="input-group-text"><span class="bi-calendar3"></span></span>
-                            <input class="input-sm form-control" placeholder="<?php echo lang('slides_show_start') ?>" type="text" name="start_date" id="start_date" autocomplete="off" required />
+                            <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="start_date" id="start_date" autocomplete="off" required />
                         </div>
                     </div>
-                    <div class="col-left mb-3">
+                    <div class="col-left mb-2">
+                        <small class="form-text text-muted"><?php echo lang('slides_show_end') ?></small>
                         <div class="input-group input-group-sm">
                             <span class="input-group-text"><span class="bi-calendar3"></span></span>
-                            <input class="input-sm form-control" placeholder="<?php echo lang('slides_show_end') ?>" type="text" name="end_date" id="end_date" autocomplete="off" required />
+                            <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="end_date" id="end_date" autocomplete="off" required />
                         </div>
                     </div>
 
                     <div id="alert_messages"></div>
 
                     <!-- jQuery-File-Upload -->
-                    <div class="mb-3">
+                    <div class="mb-2">
                         <span class="btn btn-primary btn-sm fileinput-button">
                             <span class="bi-image"></span><span> <?php echo lang('button_add_image') ?></span>
                             <input class="input-sm form-control" id="fileupload" type="file" name="files[]" accept="image/jpeg,image/png,image/gif" multiple>
@@ -87,7 +92,7 @@ use \eMarket\Admin\Slideshow;
                         <div id="logo" class="text-center"></div>
                     </div>
 
-                    <div class="mb-3 form-check form-switch">
+                    <div class="mb-2 form-check form-switch">
                         <input class="form-check-input" type="checkbox" name="view_slideshow" id="view_slideshow" checked>
                         <label class="form-check-label" for="view_slideshow"><?php echo lang('display') ?></label>
                     </div>
