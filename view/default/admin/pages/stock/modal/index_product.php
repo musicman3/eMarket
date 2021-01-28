@@ -130,7 +130,7 @@ use \eMarket\Admin\Stock;
                                     <div><small class="form-text text-muted"><?php echo lang('stock_product_currency') ?></small></div>
                                     <div class="input-group">
                                         <span class="input-group-text"><span class="bi-cash"></span></span>
-                                        <select name="currency_product_stock" id="currency_product_stock" class="form-control" required >
+                                        <select name="currency_product_stock" id="currency_product_stock" class="form-control">
                                             <?php foreach (Stock::$currencies_all as $val) { ?>
                                                 <option value="<?php echo $val['id'] ?>" <?php echo Settings::viewSelect($val, 'default_value') ?>><?php echo $val['name'] ?></option>
                                             <?php } ?>
@@ -150,7 +150,7 @@ use \eMarket\Admin\Stock;
                                     <div><small class="form-text text-muted"><?php echo lang('stock_product_quantity_unit') ?></small></div>
                                     <div class="input-group">
                                         <span class="input-group-text"><span class="bi-flag"></span></span>
-                                        <select name="unit_product_stock" id="unit_product_stock" class="form-control" required >
+                                        <select name="unit_product_stock" id="unit_product_stock" class="form-control">
                                             <?php foreach (Stock::$units_all as $val) { ?>
                                                 <option value="<?php echo $val['id'] ?>" <?php echo Settings::viewSelect($val, 'default_unit') ?>><?php echo $val['name'] ?></option>
                                             <?php } ?>
