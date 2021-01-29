@@ -1,0 +1,61 @@
+[24-Nov-2020 12:35:52 Europe/Moscow] PHP Warning:  Use of undefined constant TABLE_STIKERS - assumed 'TABLE_STIKERS' (this will throw an Error in a future version of PHP) in D:\OpenServer\domains\localhost\model\vendor\eMarket\Ecb.php on line 75
+[24-Nov-2020 12:35:53 Europe/Moscow] PHP Warning:  PDOStatement::execute(): SQLSTATE[42S02]: Base table or view not found: 1146 Table 'base.table_stikers' doesn't exist in D:\OpenServer\domains\localhost\model\vendor\eMarket\Pdo.php on line 420
+[24-Nov-2020 12:35:53 Europe/Moscow] PHP Warning:  Invalid argument supplied for foreach() in D:\OpenServer\domains\localhost\model\vendor\eMarket\Ecb.php on line 77
+[24-Nov-2020 12:35:53 Europe/Moscow] PHP Notice:  Undefined index: stiker in D:\OpenServer\domains\localhost\model\vendor\eMarket\Ecb.php on line 88
+[12-Jan-2021 15:51:08 Europe/Moscow] PHP Notice:  Undefined variable: order_status in D:\OpenServer\domains\localhost\view\default\admin\pages\orders\modal\index.php on line 149
+[12-Jan-2021 15:51:08 Europe/Moscow] PHP Warning:  Invalid argument supplied for foreach() in D:\OpenServer\domains\localhost\view\default\admin\pages\orders\modal\index.php on line 149
+[12-Jan-2021 15:57:49 Europe/Moscow] PHP Warning:  parse_ini_file(D:/OpenServer/domains/localhost/language//admin/lang.lng): failed to open stream: No such file or directory in D:\OpenServer\domains\localhost\model\eMarket\Lang.php on line 63
+[12-Jan-2021 15:57:49 Europe/Moscow] PHP Warning:  array_merge(): Expected parameter 1 to be an array, bool given in D:\OpenServer\domains\localhost\model\eMarket\Lang.php on line 72
+[12-Jan-2021 15:57:49 Europe/Moscow] PHP Warning:  array_merge(): Expected parameter 1 to be an array, null given in D:\OpenServer\domains\localhost\model\eMarket\Lang.php on line 72
+[12-Jan-2021 15:57:49 Europe/Moscow] PHP Warning:  parse_ini_file(D:/OpenServer/domains/localhost/language//admin/lang.lng): failed to open stream: No such file or directory in D:\OpenServer\domains\localhost\model\eMarket\Lang.php on line 63
+[12-Jan-2021 15:57:49 Europe/Moscow] PHP Warning:  array_merge(): Expected parameter 1 to be an array, bool given in D:\OpenServer\domains\localhost\model\eMarket\Lang.php on line 72
+[12-Jan-2021 15:57:49 Europe/Moscow] PHP Warning:  array_merge(): Expected parameter 1 to be an array, null given in D:\OpenServer\domains\localhost\model\eMarket\Lang.php on line 72
+[12-Jan-2021 15:57:49 Europe/Moscow] PHP Warning:  opendir(D:/OpenServer/domains/localhost/language//admin,D:/OpenServer/domains/localhost/language//admin): �� ������ ����� �������� ����. (code: 2) in D:\OpenServer\domains\localhost\model\eMarket\Tree.php on line 26
+[12-Jan-2021 15:57:49 Europe/Moscow] PHP Warning:  opendir(D:/OpenServer/domains/localhost/language//admin): failed to open dir: No such file or directory in D:\OpenServer\domains\localhost\model\eMarket\Tree.php on line 26
+[12-Jan-2021 15:57:52 Europe/Moscow] PHP Warning:  parse_ini_file(D:/OpenServer/domains/localhost/language//admin/lang.lng): failed to open stream: No such file or directory in D:\OpenServer\domains\localhost\model\eMarket\Lang.php on line 63
+[12-Jan-2021 15:57:52 Europe/Moscow] PHP Warning:  array_merge(): Expected parameter 1 to be an array, bool given in D:\OpenServer\domains\localhost\model\eMarket\Lang.php on line 72
+[12-Jan-2021 15:57:53 Europe/Moscow] PHP Warning:  array_merge(): Expected parameter 1 to be an array, null given in D:\OpenServer\domains\localhost\model\eMarket\Lang.php on line 72
+[12-Jan-2021 15:57:53 Europe/Moscow] PHP Warning:  parse_ini_file(D:/OpenServer/domains/localhost/language//admin/lang.lng): failed to open stream: No such file or directory in D:\OpenServer\domains\localhost\model\eMarket\Lang.php on line 63
+[12-Jan-2021 15:57:53 Europe/Moscow] PHP Warning:  array_merge(): Expected parameter 1 to be an array, bool given in D:\OpenServer\domains\localhost\model\eMarket\Lang.php on line 72
+[12-Jan-2021 15:57:53 Europe/Moscow] PHP Warning:  array_merge(): Expected parameter 1 to be an array, null given in D:\OpenServer\domains\localhost\model\eMarket\Lang.php on line 72
+[12-Jan-2021 15:57:53 Europe/Moscow] PHP Warning:  opendir(D:/OpenServer/domains/localhost/language//admin,D:/OpenServer/domains/localhost/language//admin): �� ������ ����� �������� ����. (code: 2) in D:\OpenServer\domains\localhost\model\eMarket\Tree.php on line 26
+[12-Jan-2021 15:57:53 Europe/Moscow] PHP Warning:  opendir(D:/OpenServer/domains/localhost/language//admin): failed to open dir: No such file or directory in D:\OpenServer\domains\localhost\model\eMarket\Tree.php on line 26
+[12-Jan-2021 15:57:58 Europe/Moscow] PHP Warning:  parse_ini_file(D:/OpenServer/domains/localhost/language//admin/lang.lng): failed to open stream: No such file or directory in D:\OpenServer\domains\localhost\model\eMarket\Lang.php on line 63
+[12-Jan-2021 15:57:58 Europe/Moscow] PHP Warning:  array_merge(): Expected parameter 1 to be an array, bool given in D:\OpenServer\domains\localhost\model\eMarket\Lang.php on line 72
+[12-Jan-2021 15:57:58 Europe/Moscow] PHP Warning:  array_merge(): Expected parameter 1 to be an array, null given in D:\OpenServer\domains\localhost\model\eMarket\Lang.php on line 72
+[12-Jan-2021 15:57:58 Europe/Moscow] PHP Warning:  parse_ini_file(D:/OpenServer/domains/localhost/language//admin/lang.lng): failed to open stream: No such file or directory in D:\OpenServer\domains\localhost\model\eMarket\Lang.php on line 63
+[12-Jan-2021 15:57:58 Europe/Moscow] PHP Warning:  array_merge(): Expected parameter 1 to be an array, bool given in D:\OpenServer\domains\localhost\model\eMarket\Lang.php on line 72
+[12-Jan-2021 15:57:58 Europe/Moscow] PHP Warning:  array_merge(): Expected parameter 1 to be an array, null given in D:\OpenServer\domains\localhost\model\eMarket\Lang.php on line 72
+[12-Jan-2021 15:57:58 Europe/Moscow] PHP Warning:  opendir(D:/OpenServer/domains/localhost/language//admin,D:/OpenServer/domains/localhost/language//admin): �� ������ ����� �������� ����. (code: 2) in D:\OpenServer\domains\localhost\model\eMarket\Tree.php on line 26
+[12-Jan-2021 15:57:58 Europe/Moscow] PHP Warning:  opendir(D:/OpenServer/domains/localhost/language//admin): failed to open dir: No such file or directory in D:\OpenServer\domains\localhost\model\eMarket\Tree.php on line 26
+[12-Jan-2021 15:58:25 Europe/Moscow] PHP Warning:  parse_ini_file(D:/OpenServer/domains/localhost/language//admin/lang.lng): failed to open stream: No such file or directory in D:\OpenServer\domains\localhost\model\eMarket\Lang.php on line 63
+[12-Jan-2021 15:58:25 Europe/Moscow] PHP Warning:  array_merge(): Expected parameter 1 to be an array, bool given in D:\OpenServer\domains\localhost\model\eMarket\Lang.php on line 72
+[12-Jan-2021 15:58:25 Europe/Moscow] PHP Warning:  array_merge(): Expected parameter 1 to be an array, null given in D:\OpenServer\domains\localhost\model\eMarket\Lang.php on line 72
+[12-Jan-2021 15:58:25 Europe/Moscow] PHP Warning:  parse_ini_file(D:/OpenServer/domains/localhost/language//admin/lang.lng): failed to open stream: No such file or directory in D:\OpenServer\domains\localhost\model\eMarket\Lang.php on line 63
+[12-Jan-2021 15:58:25 Europe/Moscow] PHP Warning:  array_merge(): Expected parameter 1 to be an array, bool given in D:\OpenServer\domains\localhost\model\eMarket\Lang.php on line 72
+[12-Jan-2021 15:58:25 Europe/Moscow] PHP Warning:  array_merge(): Expected parameter 1 to be an array, null given in D:\OpenServer\domains\localhost\model\eMarket\Lang.php on line 72
+[12-Jan-2021 15:58:25 Europe/Moscow] PHP Warning:  opendir(D:/OpenServer/domains/localhost/language//admin,D:/OpenServer/domains/localhost/language//admin): �� ������ ����� �������� ����. (code: 2) in D:\OpenServer\domains\localhost\model\eMarket\Tree.php on line 26
+[12-Jan-2021 15:58:25 Europe/Moscow] PHP Warning:  opendir(D:/OpenServer/domains/localhost/language//admin): failed to open dir: No such file or directory in D:\OpenServer\domains\localhost\model\eMarket\Tree.php on line 26
+[12-Jan-2021 16:01:13 Europe/Moscow] PHP Notice:  Undefined variable: order_status in D:\OpenServer\domains\localhost\view\default\admin\pages\orders\modal\index.php on line 149
+[12-Jan-2021 16:01:13 Europe/Moscow] PHP Warning:  Invalid argument supplied for foreach() in D:\OpenServer\domains\localhost\view\default\admin\pages\orders\modal\index.php on line 149
+[12-Jan-2021 16:01:21 Europe/Moscow] PHP Notice:  Undefined variable: order_status in D:\OpenServer\domains\localhost\view\default\admin\pages\orders\modal\index.php on line 149
+[12-Jan-2021 16:01:21 Europe/Moscow] PHP Warning:  Invalid argument supplied for foreach() in D:\OpenServer\domains\localhost\view\default\admin\pages\orders\modal\index.php on line 149
+[12-Jan-2021 16:01:24 Europe/Moscow] PHP Notice:  Undefined variable: order_status in D:\OpenServer\domains\localhost\view\default\admin\pages\orders\modal\index.php on line 149
+[12-Jan-2021 16:01:24 Europe/Moscow] PHP Warning:  Invalid argument supplied for foreach() in D:\OpenServer\domains\localhost\view\default\admin\pages\orders\modal\index.php on line 149
+[12-Jan-2021 16:02:40 Europe/Moscow] PHP Notice:  Undefined variable: order_status in D:\OpenServer\domains\localhost\view\default\admin\pages\orders\modal\index.php on line 149
+[12-Jan-2021 16:02:40 Europe/Moscow] PHP Warning:  Invalid argument supplied for foreach() in D:\OpenServer\domains\localhost\view\default\admin\pages\orders\modal\index.php on line 149
+[12-Jan-2021 16:02:46 Europe/Moscow] PHP Notice:  Undefined variable: order_status in D:\OpenServer\domains\localhost\view\default\admin\pages\orders\modal\index.php on line 149
+[12-Jan-2021 16:02:46 Europe/Moscow] PHP Warning:  Invalid argument supplied for foreach() in D:\OpenServer\domains\localhost\view\default\admin\pages\orders\modal\index.php on line 149
+[12-Jan-2021 16:10:09 Europe/Moscow] PHP Notice:  Undefined variable: order_status in D:\OpenServer\domains\localhost\view\default\admin\pages\orders\modal\index.php on line 149
+[12-Jan-2021 16:10:09 Europe/Moscow] PHP Warning:  Invalid argument supplied for foreach() in D:\OpenServer\domains\localhost\view\default\admin\pages\orders\modal\index.php on line 149
+[14-Jan-2021 16:37:54 Europe/Moscow] PHP Fatal error:  Uncaught Error: Cannot access self:: when no class scope is active in D:\OpenServer\domains\localhost\controller\admin\pages\orders\index.php:14
+Stack trace:
+#0 D:\OpenServer\domains\localhost\controller\admin\index.php(12): require_once()
+#1 {main}
+  thrown in D:\OpenServer\domains\localhost\controller\admin\pages\orders\index.php on line 14
+[14-Jan-2021 16:56:23 Europe/Moscow] PHP Fatal error:  Uncaught Error: Call to undefined method eMarket\Interfaces::addadd() in D:\OpenServer\domains\localhost\controller\admin\pages\orders\index.php:13
+Stack trace:
+#0 D:\OpenServer\domains\localhost\controller\admin\index.php(12): require_once()
+#1 {main}
+  thrown in D:\OpenServer\domains\localhost\controller\admin\pages\orders\index.php on line 13
+[14-Jan-2021 17:34:13 Europe/Moscow] PHP Notice:  Undefined index: total_price_with_sale in D:\OpenServer\domains\localhost\model\eMarket\Ecb.php on line 174

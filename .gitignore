@@ -1,7 +1,6 @@
 /.htaccess
 
 /storage/logs/errors.log
-
 /storage/configure/configure.php
 /uploads/
 /model/nbproject/private/
