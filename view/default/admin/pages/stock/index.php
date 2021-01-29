@@ -43,9 +43,9 @@ require_once('modal/add_values_attribute.php');
                 <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 offset-0">
                     <form>
                         <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
-                        <div class="input-group mb-3">
-                            <input type="search" id="search" name="search" placeholder="<?php echo lang('search') ?>" class="form-control">
-                            <button type="submit" class="bi-search btn btn-primary"></button>
+                        <div class="input-group">
+                            <input type="search" id="search" name="search" placeholder="<?php echo lang('search') ?>" class="input-sm form-control">
+                            <button type="submit" class="btn btn-primary btn-sm"><span class="bi-search"></span></button>
                         </div>
                     </form>
                 </div>
@@ -242,12 +242,8 @@ require_once('modal/add_values_attribute.php');
                     <form>
                         <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
                         <div class="input-group">
-                            <input type="search" id="search" name="search" placeholder="<?php echo lang('search') ?>" class="form-control">
-                            <span class="input-group-btn">
-                                <button type="submit" class="btn btn-primary">
-                                    <span class="bi-search"></span>
-                                </button>
-                            </span>
+                            <input type="search" id="search" name="search" placeholder="<?php echo lang('search') ?>" class="input-sm form-control">
+                            <button type="submit" class="btn btn-primary btn-sm"><span class="bi-search"></span></button>
                         </div>
                     </form>
                 </div>
@@ -288,12 +284,8 @@ require_once('modal/add_values_attribute.php');
                     <form>
                         <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
                         <div class="input-group">
-                            <input type="search" id="search" name="search" placeholder="<?php echo lang('search') ?>" class="form-control">
-                            <span class="input-group-btn">
-                                <button type="submit" class="btn btn-primary">
-                                    <span class="bi-search"></span>
-                                </button>
-                            </span>
+                            <input type="search" id="search" name="search" placeholder="<?php echo lang('search') ?>" class="input-sm form-control">
+                            <button type="submit" class="btn btn-primary btn-sm"><span class="bi-search"></span></button>
                         </div>
                     </form>
                 </div>
