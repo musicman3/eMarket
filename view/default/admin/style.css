@@ -68,7 +68,7 @@ body {background:#e4e4da;font-family: 'Open Sans';background-image:url('images/s
 .table .sortno:hover {background: none;}
 .table > tbody > tr > td.active {background-color: #f0f0f0;}
 .tab-content {padding-top: 10px;}
-.input-group .data {position: static;}
+/*.input-group .data {position: static;} временно коммент за ненадобностью*/
 .multiselect-add {color:#ffa500;}
 .transfer {color: #777;padding:5px;}
 .fileinput-button {position: relative;overflow: hidden;display: inline-block;}
