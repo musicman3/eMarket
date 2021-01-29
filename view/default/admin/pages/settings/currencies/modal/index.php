@@ -78,7 +78,7 @@ use \eMarket\Core\{
                             <small class="form-text text-muted"><?php echo lang('currencies_currency_symbol') ?></small>
                             <div class="input-group input-group-sm">
                                 <span class="input-group-text"><span class="bi-file-text"></span></span>
-                                <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="symbol_currencies" id="symbol_currencies" />
+                                <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="symbol_currencies" id="symbol_currencies" required />
                             </div>
                         </div>
                         <div class="mb-2">
