@@ -32,7 +32,7 @@ use \eMarket\Admin\Orders;
                                     <tbody>
                                         <tr>
                                             <td class="text-start">
-                                                <div class="label label-primary"><?php echo lang('orders_client') ?></div>
+                                                <div class="badge bg-primary"><?php echo lang('orders_client') ?></div>
                                                 <div>
                                                     <small class="form-text text-muted">
                                                         <span class="bi-person"></span> <span id="description_client_name"></span><br>
@@ -42,7 +42,7 @@ use \eMarket\Admin\Orders;
                                                 </div>
                                             </td>
                                             <td class="text-start">
-                                                <div class="label label-primary"><?php echo lang('orders_payment_method') ?></div>
+                                                <div class="badge bg-primary"><?php echo lang('orders_payment_method') ?></div>
                                                 <div>
                                                     <small class="form-text text-muted">
                                                         <span class="bi-credit-card"></span> <span id="description_payment_method"></span>
@@ -52,17 +52,17 @@ use \eMarket\Admin\Orders;
                                         </tr>
                                         <tr>
                                             <td class="text-start">
-                                                <div class="label label-primary"><?php echo lang('orders_shipping') ?></div>
+                                                <div class="badge bg-primary"><?php echo lang('orders_shipping') ?></div>
                                                 <div>
                                                     <small class="form-text text-muted">
-                                                        <span class="bi-truck"></span> <span class="label label-success" id="description_shipping_method"></span><br>
+                                                        <span class="bi-truck"></span> <span class="badge bg-success" id="description_shipping_method"></span><br>
                                                         <span class="bi-globe"></span> <span id="description_shipping_country"></span><br>
                                                         <span class="bi-house"></span> <span id="description_shipping_address"></span>
                                                     </small>
                                                 </div>
                                             </td>
                                             <td class="text-start">
-                                                <div class="label label-primary"><?php echo lang('orders_billing_address') ?></div>
+                                                <div class="badge bg-primary"><?php echo lang('orders_billing_address') ?></div>
                                                 <div>
                                                     <small class="form-text text-muted">
                                                         <span class="bi-globe"></span> <span id="description_billing_country"></span><br>
@@ -73,7 +73,7 @@ use \eMarket\Admin\Orders;
                                         </tr>
                                         <tr>
                                             <td class="text-start">
-                                                <div class="label label-primary"><?php echo lang('orders_status') ?></div>
+                                                <div class="badge bg-primary"><?php echo lang('orders_status') ?></div>
                                                 <div>
                                                     <small class="form-text text-muted">
                                                         <span class="bi-alarm"></span> <span id="description_date_purchased"></span><br>
@@ -81,7 +81,7 @@ use \eMarket\Admin\Orders;
                                                 </div>
                                             </td>
                                             <td class="text-start">
-                                                <div class="label label-primary"><?php echo lang('orders_total') ?></div>
+                                                <div class="badge bg-primary"><?php echo lang('orders_total') ?></div>
                                                 <div>
                                                     <small class="form-text text-muted">
                                                         <span class="bi-upc"></span> <span id="description_order_total"></span>
@@ -98,7 +98,7 @@ use \eMarket\Admin\Orders;
                             <div class="table-responsive">
 
                                 <table class="table table-radius">
-                                    <thead>
+                                    <thead class="table-dark">
                                         <tr class="bg-primary">
                                             <td class="text-start"><small><?php echo lang('orders_stiker') ?></small></td>
                                             <td class="text-center"><small><?php echo lang('orders_product') ?></small></td>
@@ -118,12 +118,12 @@ use \eMarket\Admin\Orders;
                                             <td colspan="2" class="text-end"><small id="invoice_taxes"></small></td>
                                         </tr>
                                         <tr>
-                                            <td colspan="3" class="text-end"><small class="label label-success" id="invoice_shipping_method"></small></td>
+                                            <td colspan="3" class="text-end"><small class="badge bg-success" id="invoice_shipping_method"></small></td>
                                             <td colspan="2" class="text-end"><small id="invoice_shipping_price"></small></td>
                                         </tr>
                                         <tr>
-                                            <td colspan="3" class="text-end"><div class="label label-danger"><?php echo lang('orders_total') ?>:</div></td>
-                                            <td colspan="2" class="text-end"><small class="label label-danger" id="invoice_order_total_to_pay"></small></td>
+                                            <td colspan="3" class="text-end"><div class="badge bg-danger"><?php echo lang('orders_total') ?>:</div></td>
+                                            <td colspan="2" class="text-end"><small class="badge bg-danger" id="invoice_order_total_to_pay"></small></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -139,7 +139,7 @@ use \eMarket\Admin\Orders;
 
                         <div id="panel_4" class="tab-pane fade">
                             <div class="mb-3">
-                                <div class="input-group" id="status_history"></div><br>
+                                <div id="status_history"></div><br>
                                 <div class="input-group">
                                     <span class="input-group-text"><span class="bi-pen"></span></span>
                                     <select name="status_history_select" id="status_history_select" class="form-select">
