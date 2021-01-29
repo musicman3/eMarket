@@ -99,7 +99,7 @@ use \eMarket\Admin\Orders;
 
                                 <table class="table table-radius">
                                     <thead class="table-dark">
-                                        <tr class="bg-primary">
+                                        <tr>
                                             <td class="text-start"><small><?php echo lang('orders_stiker') ?></small></td>
                                             <td class="text-center"><small><?php echo lang('orders_product') ?></small></td>
                                             <td class="text-center"><small><?php echo lang('orders_price') ?></small></td>
