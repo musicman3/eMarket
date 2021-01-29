@@ -25,7 +25,7 @@ require_once('modal/index.php')
                 <th>
                     <div class="gap-2 d-flex justify-content-end">
 
-                        <a href="#index" class="btn btn-primary btn-sm" data-toggle="modal"><span class="bi-plus"></span></a>
+                        <a href="#index" class="btn btn-primary btn-sm" data-bs-toggle="modal"><span class="bi-plus"></span></a>
 
                         <form>
                             <input hidden name="route" value="settings/modules/edit">
