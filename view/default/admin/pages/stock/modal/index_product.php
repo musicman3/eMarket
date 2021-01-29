@@ -182,7 +182,7 @@ use \eMarket\Admin\Stock;
                                 <div class="col-md-6 mb-3">
                                     <div><small class="form-text text-muted"><?php echo lang('stock_product_receipt_date') ?></small></div>
                                     <div class="input-group">
-                                        <span class="input-group-text"><span class="bi-calendar"></span></span>
+                                        <span class="input-group-text"><span class="bi-calendar3"></span></span>
                                         <input class="input-sm form-control" placeholder="<?php echo lang('stock_product_receipt_date') ?>" type="text" name="date_available_product_stock" id="date_available_product_stock" autocomplete="off" />
                                     </div>
                                 </div>
