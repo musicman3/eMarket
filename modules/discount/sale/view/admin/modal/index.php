@@ -25,7 +25,7 @@ use \eMarket\Core\{
                     <?php require_once(ROOT . '/view/' . Settings::template() . '/layouts/lang_tabs_add.php') ?>
 
                     <div class="tab-content">
-                        <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade in active">
+                        <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade show in active">
                             <div class="input-group mb-3">
                                 <span class="input-group-text"><span class="bi-file-text"></span></span>
                                 <input class="input-sm form-control" placeholder="<?php echo lang('modules_discount_sale_admin_name') ?>" type="text" name="name_module_0" id="name_module_0" required />
