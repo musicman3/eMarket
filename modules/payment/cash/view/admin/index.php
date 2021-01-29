@@ -33,7 +33,7 @@ use \eMarket\Core\Modules\Payment\Cash;
         <label for="order_status"><?php echo lang('modules_payment_cash_admin_order_status') ?></label>
         <div class="input-group">
             <span class="input-group-text"><span class="bi-pencil"></span></span>
-            <select name="order_status" id="order_status" class="form-select">
+            <select name="order_status" id="order_status" class="input-sm form-select">
                 <?php
                 foreach (Cash::$order_status as $val) {
                     if ($val['id'] == Cash::$order_status_selected) {
@@ -50,7 +50,7 @@ use \eMarket\Core\Modules\Payment\Cash;
     </div>
 
     <div class="text-right">
-        <button type="submit" class="btn btn-primary"><span class="bi-check-circle"></span> <?php echo lang('save') ?></button>
+        <button type="submit" class="btn btn-primary btn-sm"><span class="bi-check-circle"></span> <?php echo lang('save') ?></button>
     </div>
 
 </form>

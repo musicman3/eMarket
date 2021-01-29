@@ -15,7 +15,7 @@
             selectAllText: '<?php echo lang('select_all') ?>',
             selectAllJustVisible: false,
             enableHTML: true,
-            buttonClass: 'btn btn-primary',
+            buttonClass: 'btn btn-primary btn-sm',
 
             buttonTitle: function () {
                 return '<?php echo lang('modules_payment_cash_admin_shipping_module_select') ?>';
