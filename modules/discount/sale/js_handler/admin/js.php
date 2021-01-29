@@ -13,7 +13,6 @@
 
 <script type="text/javascript">
     new SmartDatepicker('<?php echo lang('meta-language') ?>');
-    $('#default_module').bootstrapSwitch();
 </script>
 
 <script type="text/javascript">
@@ -23,7 +22,6 @@
         var modal_id = button.data('edit');
 
         if (Number.isInteger(modal_id)) {
-            $('#default_module').bootstrapSwitch('destroy', true);
             var json_data = $('div#ajax_data').data('jsondata');
 
             for (x = 0; x < json_data['name'].length; x++) {
@@ -43,7 +41,6 @@
             }
 
             $('#default_module').prop('checked', Number(json_data['default'][modal_id]));
-            $('#default_module').bootstrapSwitch();
         }
 
         if (!Number.isInteger(modal_id) && button.data('toggle') === 'modal') {

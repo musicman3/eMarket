@@ -13,8 +13,9 @@ use \eMarket\Core\{
 <div id="index" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header"><div class="pull-right"><button class="close" type="button" data-dismiss="modal">×</button></div>
-                <h4 class="modal-title"><?php echo Settings::titlePageGenerator() ?></h4>
+            <div class="modal-header">
+                <h5 class="modal-title"><?php echo Settings::titlePageGenerator() ?></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <form id="form_add_mod" name="form_add_mod" action="javascript:void(null);" onsubmit="Ajax.callAdd('form_add_mod')">
                 <div class="panel-body">
@@ -69,9 +70,9 @@ use \eMarket\Core\{
                                 <input class="input-sm form-control" placeholder="<?php echo lang('modules_discount_sale_admin_value') ?>" type="text" name="sale_value" pattern="\d+(\.\d{0,2})?" id="sale_value" required />
                             </div>
                         </div>
-                        <div class="form-group">
-                            <input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="default_module" id="default_module" checked>
-                            <label for="default_module"><?php echo lang('default_set') ?> </label>
+                        <div class="mb-2 form-check form-switch">
+                            <input class="form-check-input" type="checkbox" name="default_module" id="default_module" checked>
+                            <label class="form-check-label" for="default_module"><?php echo lang('default_set') ?></label>
                         </div>
                     </div>
                 </div>
