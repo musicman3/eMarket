@@ -41,13 +41,15 @@ use \eMarket\Admin\Slideshow;
                             <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="heading" id="heading" />
                         </div>
                     </div>
-                    <div class="mb-2 list-group list-group-horizontal">
-                        <div class="col-md-6 form-check form-switch">
-                            <input class="form-check-input" type="checkbox" name="animation" id="animation" checked>
-                            <label class="form-check-label" for="animation"><?php echo lang('slides_text_animation') ?></label>
+                    <div class="mb-2 row">
+                        <div class="col-md-6 d-flex align-items-center">
+			    <div class="form-check form-switch">
+				<input class="form-check-input" type="checkbox" name="animation" id="animation" checked>
+				<label class="form-check-label" for="animation"><?php echo lang('slides_text_animation') ?></label>
+			    </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="input-group input-group-sm">
+                            <div class="input-group input-group-sm justify-content-end">
                                 <label class="input-group-text" for="color"> <?php echo lang('slides_text_color') ?></label>
                                 <input type="color" class="form-control form-control-color" name="color" id="color" value="#ffffff" />
                             </div>
