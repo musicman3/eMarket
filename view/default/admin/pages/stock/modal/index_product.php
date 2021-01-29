@@ -234,7 +234,7 @@ use \eMarket\Admin\Stock;
                                 <div class="col-md-6 mb-3">
                                     <div><small class="form-text text-muted"><?php echo lang('stock_product_weight') ?></small></div>
                                     <div class="input-group">
-                                        <span class="input-group-text"><span class="bi-inbox"></span></span>
+                                        <span class="input-group-text"><span class="bi-minecart-loaded"></span></span>
                                         <select name="weight_product_stock" id="weight_product_stock" class="input-sm form-select">
                                             <?php foreach (Stock::$weight_all as $val) { ?>
                                                 <option value="<?php echo $val['id'] ?>" <?php echo Settings::viewSelect($val, 'default_weight') ?>><?php echo $val['name'] ?></option>
