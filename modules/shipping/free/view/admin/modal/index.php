@@ -18,7 +18,7 @@ use \eMarket\Core\Modules\Shipping\Free;
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <form id="form_add_mod" name="form_add_mod" action="javascript:void(null);" onsubmit="Ajax.callAdd('form_add_mod')">
-                <div class="panel-body">
+                <div class="modal-body">
                     <input type="hidden" id="add" name="add" value="" />
                     <input type="hidden" id="edit" name="edit" value="" />
 
@@ -49,7 +49,7 @@ use \eMarket\Core\Modules\Shipping\Free;
                 </div>
 
                 <div class="modal-footer">
-                    <button class="btn btn-primary btn-sm" type="button" data-dismiss="modal"><span class="bi-x-circle"></span> <?php echo lang('cancel') ?></button>
+                    <button class="btn btn-primary btn-sm" type="button" data-bs-dismiss="modal"><span class="bi-x-circle"></span> <?php echo lang('cancel') ?></button>
                     <button type="submit" class="btn btn-primary btn-sm"><span class="bi-check-circle"></span> <?php echo lang('save') ?></button>
                 </div>
 
