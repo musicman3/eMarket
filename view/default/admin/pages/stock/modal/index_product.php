@@ -320,7 +320,7 @@ use \eMarket\Admin\Stock;
                                 <div id="progress_product" class="progress">
                                     <div class="progress-bar bg-danger progress-bar-striped progress-bar-animated"></div>
                                 </div>
-                                <div id="logo-product" class="text-center"></div>
+                                <div id="logo-product" class="gap-2 d-flex justify-content-center"></div>
                             </div>
                         </div>
 
