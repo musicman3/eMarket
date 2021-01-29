@@ -4,12 +4,9 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
-<link rel="stylesheet" href="/ext/bootstrap-switch/css/bootstrap-switch.min.css" type="text/css"/>
-<script type="text/javascript" src="/ext/bootstrap-switch/js/bootstrap-switch.min.js"></script>
 
 <script type="text/javascript">
-    $('#switch_active').bootstrapSwitch();
-    $('#switch_active').on('switchChange.bootstrapSwitch', function (event, state) {
+    Helpers.on('body', 'click', '#switch_active', function (e) {
         var msg = document.forms.form_edit_active;
         let data = new FormData(msg);
         let xhr = new XMLHttpRequest();
