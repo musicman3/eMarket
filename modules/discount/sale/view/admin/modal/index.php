@@ -18,7 +18,7 @@ use \eMarket\Core\{
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <form id="form_add_mod" name="form_add_mod" action="javascript:void(null);" onsubmit="Ajax.callAdd('form_add_mod')">
-                <div class="panel-body">
+                <div class="modal-body">
                     <input type="hidden" id="add" name="add" value="" />
                     <input type="hidden" id="edit" name="edit" value="" />
 
@@ -52,13 +52,13 @@ use \eMarket\Core\{
                             }
                         }
                         ?>
-                        <div class="col-left form-group">
+                        <div class="form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-text"><span class="bi-calendar"></span></span>
                                 <input class="input-sm form-control" placeholder="<?php echo lang('modules_discount_sale_admin_sale_start_date') ?>" type="text" name="start_date" id="start_date" autocomplete="off" required />
                             </div>
                         </div>
-                        <div class="col-left form-group">
+                        <div class="form-group">
                             <div class="input-group has-error">
                                 <span class="input-group-text"><span class="bi-calendar"></span></span>
                                 <input class="input-sm form-control" placeholder="<?php echo lang('modules_discount_sale_admin_sale_end_date') ?>" type="text" name="end_date" id="end_date" autocomplete="off" required />
@@ -78,7 +78,7 @@ use \eMarket\Core\{
                 </div>
 
                 <div class="modal-footer">
-                    <button class="btn btn-primary btn-sm" type="button" data-dismiss="modal"><span class="bi-x-circle"></span> <?php echo lang('cancel') ?></button>
+                    <button class="btn btn-primary btn-sm" type="button" data-bs-dismiss="modal"><span class="bi-x-circle"></span> <?php echo lang('cancel') ?></button>
                     <button type="submit" class="btn btn-primary btn-sm"><span class="bi-check-circle"></span> <?php echo lang('save') ?></button>
                 </div>
 
