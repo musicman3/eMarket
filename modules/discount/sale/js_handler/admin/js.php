@@ -43,7 +43,7 @@
             $('#default_module').prop('checked', Number(json_data['default'][modal_id]));
         }
 
-        if (!Number.isInteger(modal_id) && button.data('toggle') === 'modal') {
+        if (!Number.isInteger(modal_id) && button.data('bs-toggle') === 'modal') {
             $('#edit').val('');
             $('#add').val('ok');
             $(this).find('form').trigger('reset');
