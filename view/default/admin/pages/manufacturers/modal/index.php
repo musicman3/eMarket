@@ -77,7 +77,7 @@ use \eMarket\Core\{
                             <div id="progress" class="progress">
                                 <div class="progress-bar bg-danger progress-bar-striped progress-bar-animated"></div>
                             </div>
-                            <div id="logo" class="gap-2 d-flex justify-content-center"></div>
+                            <div id="logo" class="gap-2 d-flex justify-content-center flex-wrap"></div>
                         </div>
 
                     </div>
