@@ -72,7 +72,7 @@
         document.querySelector('#invoice_order_total_to_pay').innerHTML = order_total.admin.total_to_pay_format;
 
         for (x = 0; x < history_status.length; x++) {
-            document.querySelector('#status_history').insertAdjacentHTML('afterbegin', '<span class="badge bg-success">' + history_status[x].admin.status + '</span><span class="bi-check"></span><small> ' + history_status[x].admin.date + ' </small><br>');
+            document.querySelector('#status_history').insertAdjacentHTML('beforeend', '<span class="badge bg-success">' + history_status[x].admin.status + '</span><span class="bi-check"></span><small> ' + history_status[x].admin.date + ' </small><br>');
         }
     });
 </script>
