@@ -41,8 +41,8 @@ use \eMarket\Admin\Slideshow;
                             <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="heading" id="heading" />
                         </div>
                     </div>
-                    <div class="mb-2 row">
-                        <div class="col-md-6 d-flex align-items-center">
+                    <div class="mb-2 row align-items-center">
+                        <div class="col-md-6">
 			    <div class="form-check form-switch">
 				<input class="form-check-input" type="checkbox" name="animation" id="animation" checked>
 				<label class="form-check-label" for="animation"><?php echo lang('slides_text_animation') ?></label>
@@ -62,14 +62,14 @@ use \eMarket\Admin\Slideshow;
                             <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="url" id="url" />
                         </div>
                     </div>
-                    <div class="col-left mb-2">
+                    <div class="mb-2">
                         <small class="form-text text-muted"><?php echo lang('slides_show_start') ?></small>
                         <div class="input-group input-group-sm">
                             <span class="input-group-text"><span class="bi-calendar3"></span></span>
                             <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="start_date" id="start_date" autocomplete="off" required />
                         </div>
                     </div>
-                    <div class="col-left mb-2">
+                    <div class="mb-2">
                         <small class="form-text text-muted"><?php echo lang('slides_show_end') ?></small>
                         <div class="input-group input-group-sm">
                             <span class="input-group-text"><span class="bi-calendar3"></span></span>
