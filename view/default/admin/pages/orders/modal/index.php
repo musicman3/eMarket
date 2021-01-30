@@ -98,7 +98,7 @@ use \eMarket\Admin\Orders;
                             <div class="table-responsive">
 
                                 <table class="table table-radius">
-                                    <thead class="table-dark">
+                                    <thead class="bg-primary text-light">
                                         <tr>
                                             <td class="text-start"><small><?php echo lang('orders_stiker') ?></small></td>
                                             <td class="text-center"><small><?php echo lang('orders_product') ?></small></td>
