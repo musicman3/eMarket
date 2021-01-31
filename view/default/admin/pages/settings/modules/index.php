@@ -63,9 +63,9 @@ use \eMarket\Admin\Modules;
                                                     <td>
                                                         <div class="gap-2 d-flex justify-content-end">
                                                             <button type="button" onClick='location.href = "?route=settings/modules/edit&type=<?php echo $type ?>&name=<?php echo $key ?>"' class="btn btn-primary btn-sm"><span class="bi-pencil-square"> </span></button>
-                                                            <form id="form_delete<?php echo $type . '_' . $key ?>" name="form_delete" action="javascript:void(null);" onsubmit="Ajax.callDelete('<?php echo $type . '_' . $key ?>', '?route=settings/modules&active=<?php echo $type ?>')" enctype="multipart/form-data">
+                                                            <form id="form_delete<?php echo $type . '_' . $key ?>" name="form_delete" action="javascript:void(null);" enctype="multipart/form-data">
                                                                 <input hidden name="delete" value="<?php echo $type . '_' . $key ?>">
-                                                                <button type="submit" name="delete_but" class="btn btn-primary btn-sm" data-bs-placement="left" data-bs-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="bi-trash"> </span></button>
+                                                                <button type="button" name="delete_but" class="btn btn-primary btn-sm" onclick="Confirmation.del('<?php echo $type . '_' . $key ?>', '?route=settings/modules&active=<?php echo $type ?>')"><span class="bi-trash"> </span></button>
                                                             </form>
                                                         </div>
                                                     </td>
