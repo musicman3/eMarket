@@ -25,9 +25,9 @@ use \eMarket\Core\{
 
         <title><?php echo lang('title_' . Settings::titleDir() . '_' . basename(Valid::inSERVER('PHP_SELF'), '.php')) ?></title>
 
-        <link href="/ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+        <link rel="stylesheet" type="text/css" href="/ext/bootstrap/css/bootstrap5.min.css" media="screen" />
+        <link rel="stylesheet" href="/ext/bootstrap/css/bootstrap-icons.css" type="text/css"/>
         <link rel="stylesheet" type="text/css" href="/view/<?php echo Settings::template() ?>/install/style.css" media="screen" />
-        <script type="text/javascript" src="/ext/jquery/jquery.min.js"></script>
     </head>
     <body>
         <?php
@@ -37,7 +37,7 @@ use \eMarket\Core\{
         require_once (getenv('DOCUMENT_ROOT') . '/view/' . Settings::template() . '/install/footer.php');
         ?>
 
-        <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.bundle.min.js"></script>
 
         <?php
         if (Settings::$js_handler != FALSE) {
