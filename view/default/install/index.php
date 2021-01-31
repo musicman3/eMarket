@@ -30,7 +30,7 @@
                     <div class="col-md-5 col-lg-4 mb-2">
                         <div class="server_db input-group">
                             <span class="input-group-text"><span class="bi-hdd"></span></span>
-                            <input class="input-sm form-select" id="server_db" minlength="1" placeholder="<?php echo lang('server_db') ?>" type="text" name="server_db" required />
+                            <input class="input-sm form-control" id="server_db" minlength="1" placeholder="<?php echo lang('server_db') ?>" type="text" name="server_db" required />
                         </div>
                     </div>
                     <div class="col-md-5 col-lg-4 mb-2">
@@ -48,7 +48,7 @@
                     <div class="col-md-5 col-lg-4 mb-2">
                         <div class="login_db input-group">
                             <span class="input-group-text"><span class="bi-hdd"></span></span>
-                            <input class="input-sm form-select" id="login_db" minlength="1" placeholder="<?php echo lang('login_db') ?>" type="text" name="login_db" required />
+                            <input class="input-sm form-control" id="login_db" minlength="1" placeholder="<?php echo lang('login_db') ?>" type="text" name="login_db" required />
                         </div>
                     </div>
                     <div class="col-md-5 col-lg-4 mb-2">
@@ -67,7 +67,7 @@
                     <div class="col-md-5 col-lg-4 mb-2">
                         <div class="database_name input-group">
                             <span class="input-group-text"><span class="bi-hdd"></span></span>
-                            <input class="input-sm form-select" id="database_name" minlength="1" placeholder="<?php echo lang('database_name') ?>" type="text" name="database_name" required />
+                            <input class="input-sm form-control" id="database_name" minlength="1" placeholder="<?php echo lang('database_name') ?>" type="text" name="database_name" required />
                         </div>
                     </div>
                     <div class="col-md-5 col-lg-4 mb-2">
@@ -87,13 +87,13 @@
                     <div class="col-md-5 col-lg-4 mb-2">
                         <div class="password_db input-group">
                             <span class="input-group-text"><span class="bi-hdd"></span></span>
-                            <input class="input-sm form-select" id="password_db" placeholder="<?php echo lang('password_db') ?>" type="password" name="password_db" required />
+                            <input class="input-sm form-control" id="password_db" placeholder="<?php echo lang('password_db') ?>" type="password" name="password_db" required />
                         </div>
                     </div>
                     <div class="col-md-5 col-lg-4 mb-2">
                         <div class="email input-group">
                             <span class="input-group-text"><span class="bi-layout-text-sidebar"></span></span>
-                            <input class="input-sm form-select" id="email" placeholder="<?php echo lang('login_admin') ?>" type="email" name="login_admin" required />
+                            <input class="input-sm form-control" id="email" placeholder="<?php echo lang('login_admin') ?>" type="email" name="login_admin" required />
                         </div>
                     </div>
                 </div>
@@ -101,13 +101,13 @@
                     <div class="col-md-5 col-lg-4 mb-2">
                         <div class="input-group">
                             <span class="input-group-text"><span class="bi-hdd"></span></span>
-                            <input class="input-sm form-select" placeholder="<?php echo lang('database_prefix') ?>" type="text" name="database_prefix" value="emkt_" required />
+                            <input class="input-sm form-control" placeholder="<?php echo lang('database_prefix') ?>" type="text" name="database_prefix" value="emkt_" required />
                         </div>
                     </div>
                     <div class="col-md-5 col-lg-4 mb-2">
                         <div class="password input-group">
                             <span class="input-group-text"><span class="bi-layout-text-sidebar"></span></span>
-                            <input class="input-sm form-select" id="password_admin" minlength="7" maxlength="40" placeholder="<?php echo lang('password_admin') ?>" type="password" name="password_admin" required />
+                            <input class="input-sm form-control" id="password_admin" minlength="7" maxlength="40" placeholder="<?php echo lang('password_admin') ?>" type="password" name="password_admin" required />
                         </div>
                     </div>
                 </div>
@@ -115,13 +115,13 @@
                     <div class="col-md-5 col-lg-4 mb-2">
                         <div class="input-group">
                             <span class="input-group-text"><span class="bi-hdd"></span></span>
-                            <input class="input-sm form-select" placeholder="<?php echo lang('database_port') ?>" type="text" name="database_port" value="3306" required />
+                            <input class="input-sm form-control" placeholder="<?php echo lang('database_port') ?>" type="text" name="database_port" value="3306" required />
                         </div>
                     </div>
                     <div class="col-md-5 col-lg-4 mb-2">
                         <div class="confirm input-group">
                             <span class="input-group-text"><span class="bi-layout-text-sidebar"></span></span>
-                            <input class="input-sm form-select" id="password_admin_confirm" minlength="7" maxlength="40" placeholder="<?php echo lang('password_admin_confirm') ?>" type="password" name="password_admin_confirm" required />
+                            <input class="input-sm form-control" id="password_admin_confirm" minlength="7" maxlength="40" placeholder="<?php echo lang('password_admin_confirm') ?>" type="password" name="password_admin_confirm" required />
                         </div>
                     </div>
                 </div>
