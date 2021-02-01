@@ -29,7 +29,7 @@ use \eMarket\Core\{
                                 <small class="form-text text-muted"><?php echo lang('taxes_modal_name') ?></small>
                                 <div class="input-group input-group-sm">
                                     <span class="input-group-text"><span class="bi-file-text"></span></span>
-                                    <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_taxes_0" id="name_taxes_0" required />
+                                    <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_taxes_0" id="name_taxes_0" required />
                                 </div>
                             </div>
                         </div>
@@ -44,7 +44,7 @@ use \eMarket\Core\{
                                         <small class="form-text text-muted"><?php echo lang('taxes_modal_name') ?></small>
                                         <div class="input-group input-group-sm">
                                             <span class="input-group-text"><span class="bi-file-text"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_taxes_<?php echo $x ?>" id="name_taxes_<?php echo $x ?>" required />
+                                            <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_taxes_<?php echo $x ?>" id="name_taxes_<?php echo $x ?>" required />
                                         </div>
                                     </div>
                                 </div>
@@ -58,7 +58,7 @@ use \eMarket\Core\{
                             <small class="form-text text-muted"><?php echo lang('taxes_modal_rate') ?></small>
                             <div class="input-group input-group-sm">
                                 <span class="input-group-text"><?php echo Settings::currencyDefault()[3] ?></span>
-                                <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" pattern="\d+(\.\d{0,2})?" name="rate_taxes" id="rate_taxes" required />
+                                <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" pattern="\d+(\.\d{0,2})?" name="rate_taxes" id="rate_taxes" required />
                             </div>
                         </div>
                         <div class="mb-2 form-check form-switch">
