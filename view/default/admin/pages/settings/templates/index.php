@@ -21,7 +21,7 @@ use \eMarket\Admin\Templates;
 
             <div class="row">
 		<div class="col-2">
-		    <div class="input-group">
+		    <div class="input-group input-group-sm">
 			<span class="input-group-text"><span class="bi-grid-fill"></span></span>
 			<form method="get" class="was-validated" name="select_template" action="index.php">
 			    <input hidden name="route" value="settings/templates">
@@ -46,7 +46,7 @@ use \eMarket\Admin\Templates;
 		    </div>
 		</div>
 		<div class="col">
-		    <div class="input-group">
+		    <div class="input-group input-group-sm">
 			<span class="input-group-text"><span class="bi-file-text"></span></span>
 			<form method="get" class="was-validated" name="select_page">
 			    <input hidden name="route" value="settings/templates">
