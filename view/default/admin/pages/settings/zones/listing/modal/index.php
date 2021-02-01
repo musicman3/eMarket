@@ -12,7 +12,7 @@ use \eMarket\Admin\ZonesListing;
 ?>
 
 <div id="index" class="modal fade" tabindex="-1">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title"><?php echo Settings::titlePageGenerator() ?></h5>

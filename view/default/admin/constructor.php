@@ -31,7 +31,6 @@ use \eMarket\Core\{
         <link rel="stylesheet" type="text/css" href="/view/<?php echo Settings::template() ?>/admin/style.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="/ext/contextmenu/css/jquery.contextMenu.min.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="/ext/jquery/ui/jquery-ui.min.css" media="screen" />
-        <link rel="stylesheet" href="/ext/bootstrap/css/bootstrap-multiselect.css" type="text/css"/>
 
         <?php
         if (isset($_SESSION['login']) && isset($_SESSION['pass']) && file_exists(ROOT . '/view/' . Settings::template() . '/admin/nav.css')) {
@@ -82,7 +81,6 @@ use \eMarket\Core\{
 
         <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script type="text/javascript" src="/ext/contextmenu/js/jquery.contextMenu.min.js"></script>
-        <script type="text/javascript" src="/ext/bootstrap/js/bootstrap-multiselect.js"></script>
 
         <?php
         if (Settings::$js_handler != FALSE) {
