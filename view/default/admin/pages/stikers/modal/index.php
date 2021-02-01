@@ -30,7 +30,7 @@ use \eMarket\Core\{
                                 <small class="form-text text-muted"><?php echo lang('stikers_name') ?></small>
                                 <div class="input-group input-group-sm">
                                     <span class="input-group-text"><span class="bi-file-text"></span></span>
-                                    <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_stikers_0" id="name_stikers_0" required />
+                                    <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_stikers_0" id="name_stikers_0" required />
                                 </div>
                             </div>
                         </div>
@@ -45,7 +45,7 @@ use \eMarket\Core\{
                                         <small class="form-text text-muted"><?php echo lang('stikers_name') ?></small>
                                         <div class="input-group input-group-sm">
                                             <span class="input-group-text"><span class="bi-file-text"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_stikers_<?php echo $x ?>" id="name_stikers_<?php echo $x ?>" required />
+                                            <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_stikers_<?php echo $x ?>" id="name_stikers_<?php echo $x ?>" required />
                                         </div>
                                     </div>
                                 </div>
