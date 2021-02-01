@@ -45,9 +45,9 @@ use \eMarket\Admin\Stock;
                             <div class="tab-content">
                                 <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade show in active">
                                     <div class="mb-3">
-                                        <div class="input-group">
+                                        <div class="input-group input-group-sm">
                                             <span class="input-group-text"><span class="bi-file-text"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="name_categories_stock_0" id="name_categories_stock_0" required />
+                                            <input class="form-control" placeholder="<?php echo lang('name') ?>" type="text" name="name_categories_stock_0" id="name_categories_stock_0" required />
                                         </div>
                                     </div>
                                 </div>
@@ -58,9 +58,9 @@ use \eMarket\Admin\Stock;
 
                                         <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">
                                             <div class="mb-3">
-                                                <div class="input-group">
+                                                <div class="input-group input-group-sm">
                                                     <span class="input-group-text"><span class="bi-file-text"></span></span>
-                                                    <input class="input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="name_categories_stock_<?php echo $x ?>" id="name_categories_stock_<?php echo $x ?>" required />
+                                                    <input class="form-control" placeholder="<?php echo lang('name') ?>" type="text" name="name_categories_stock_<?php echo $x ?>" id="name_categories_stock_<?php echo $x ?>" required />
                                                 </div>
                                             </div>
                                         </div>

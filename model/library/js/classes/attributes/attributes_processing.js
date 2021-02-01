@@ -78,8 +78,8 @@ class AttributesProcessing {
 
                     $('#table_' + level_1[data_id]['uid']).prepend(
                             '<tr class="align-middle"><td class="attribute"><span class="product-attribute-specification">' + item[lang]['value'] + '</span></td>' +
-                            '<td class="selector"><div class="input-group ' + light + '"><span class="input-group-text"><span class="bi-layout-text-sidebar-reverse"></span></span>' +
-                            '<select class="form-select form-select-sm selectattr" id="selectattr_' + item[data_id]['uid'] + '"></select></div></td></tr>'
+                            '<td class="selector"><div class="input-group input-group-sm ' + light + '"><span class="input-group-text"><span class="bi-layout-text-sidebar-reverse"></span></span>' +
+                            '<select class="form-select selectattr" id="selectattr_' + item[data_id]['uid'] + '"></select></div></td></tr>'
                             );
                     $('#selectattr_' + item[data_id]['uid']).empty();
                     level_3.forEach((string, i) => {

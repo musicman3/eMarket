@@ -21,9 +21,9 @@ use \eMarket\Core\{
                 <div class="modal-body">
 
                     <div class="mb-3">
-                        <div class="input-group">
+                        <div class="input-group input-group-sm">
                             <span class="input-group-text"><img src="/view/<?php echo Settings::template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[0] ?>.png" alt="<?php echo lang('#lang_all')[0] ?>" title="<?php echo lang('#lang_all')[0] ?>" width="16" height="10" /></span>
-                            <input class="input-add-values-attribute input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="add_values_attribute_<?php echo lang('#lang_all')[0] ?>" required />
+                            <input class="input-add-values-attribute form-control" placeholder="<?php echo lang('name') ?>" type="text" name="add_values_attribute_<?php echo lang('#lang_all')[0] ?>" required />
                         </div>
                     </div>
 
@@ -32,9 +32,9 @@ use \eMarket\Core\{
                         for ($x = 1; $x < Lang::$count; $x++) {
                             ?>
                             <div class="mb-3">
-                                <div class="input-group">
+                                <div class="input-group input-group-sm">
                                     <span class="input-group-text"><img src="/view/<?php echo Settings::template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[$x] ?>.png" alt="<?php echo lang('#lang_all')[$x] ?>" title="<?php echo lang('#lang_all')[$x] ?>" width="16" height="10" /></span>
-                                    <input class="input-add-values-attribute input-sm form-control" placeholder="<?php echo lang('name') ?>" type="text" name="add_values_attribute_<?php echo lang('#lang_all')[$x] ?>" required />
+                                    <input class="input-add-values-attribute form-control" placeholder="<?php echo lang('name') ?>" type="text" name="add_values_attribute_<?php echo lang('#lang_all')[$x] ?>" required />
                                 </div>
                             </div>
 
