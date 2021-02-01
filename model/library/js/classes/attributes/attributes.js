@@ -120,7 +120,7 @@ class Attributes {
      */
     static addValue(id, value) {
         document.querySelector('.attribute').insertAdjacentHTML('afterbegin',
-                '<tr class="attributes-class align-middle" data-id="attributes_' + id + '">' +
+                '<tr class="attributes-class align-middle" data-id="attributes_' + id + '" id="attributes_' + id + '">' +
                 '<td class="sortyes-attributes sortleft-m"><div><span class="bi-arrows-move"> </span></div></td>' +
                 '<td class="sortleft"><button type="button" class="values-attribute btn btn-primary btn-sm"><span class="bi-gear"></span></button></td>' +
                 '<td>' + value + '</td>' +

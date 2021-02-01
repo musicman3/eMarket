@@ -103,7 +103,7 @@ class ValuesAttribute {
      */
     static addValue(id, value) {
         document.querySelector('.values_attribute').insertAdjacentHTML('afterbegin',
-                '<tr class="value-attributes-class align-middle" data-id="valueattributes_' + id + '">' +
+                '<tr class="value-attributes-class align-middle" data-id="valueattributes_' + id + '" id="valueattributes_' + id + '">' +
                 '<td class="sortyes-value-attributes sortleft-m"><div><span class="bi-arrows-move"> </span></div></td>' +
                 '<td>' + value + '</td>' +
                 '<td>' +
