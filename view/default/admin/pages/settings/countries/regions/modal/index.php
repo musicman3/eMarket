@@ -28,9 +28,9 @@ use \eMarket\Core\{
                     <div class="tab-content">
                         <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade show in active">
                             <div class="mb-3">
-                                <div class="input-group">
+                                <div class="input-group input-group-sm">
                                     <span class="input-group-text"><span class="bi-file-text"></span></span>
-                                    <input class="input-sm form-control" placeholder="<?php echo lang('name_region') ?>" type="text" name="name_regions_0" id="name_regions_0" required />
+                                    <input class="form-control" placeholder="<?php echo lang('name_region') ?>" type="text" name="name_regions_0" id="name_regions_0" required />
                                 </div>
                             </div>
                         </div>
@@ -42,9 +42,9 @@ use \eMarket\Core\{
 
                                 <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">
                                     <div class="mb-3">
-                                        <div class="input-group">
+                                        <div class="input-group input-group-sm">
                                             <span class="input-group-text"><span class="bi-file-text"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo lang('name_region') ?>" type="text" name="name_regions_<?php echo $x ?>" id="name_regions_<?php echo $x ?>" required />
+                                            <input class="form-control" placeholder="<?php echo lang('name_region') ?>" type="text" name="name_regions_<?php echo $x ?>" id="name_regions_<?php echo $x ?>" required />
                                         </div>
                                     </div>
                                 </div>
@@ -55,9 +55,9 @@ use \eMarket\Core\{
                         ?>
 
                         <div class="mb-3">
-                            <div class="input-group">
+                            <div class="input-group input-group-sm">
                                 <span class="input-group-text"><span class="bi-file-text"></span></span>
-                                <input class="input-sm form-control" placeholder="<?php echo lang('region_code') ?>" type="text" name="region_code_regions" id="region_code_regions" required />
+                                <input class="form-control" placeholder="<?php echo lang('region_code') ?>" type="text" name="region_code_regions" id="region_code_regions" required />
                             </div>
                         </div>
                     </div>
