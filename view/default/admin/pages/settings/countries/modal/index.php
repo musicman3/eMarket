@@ -66,7 +66,7 @@ use \eMarket\Core\{
                         </div>
                         <div class="mb-3">
                             <div><small class="form-text text-muted"><?php echo lang('address_format') ?></small></div>
-                            <textarea class="form-control" placeholder="<?php echo lang('add_address_format') ?>" rows="5" name="address_format_countries" id="address_format_countries"></textarea>
+                            <textarea class="input-sm form-control" placeholder="<?php echo lang('add_address_format') ?>" rows="5" name="address_format_countries" id="address_format_countries"></textarea>
                         </div> 
                     </div>
                 </div>
