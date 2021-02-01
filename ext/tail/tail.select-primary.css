@@ -325,6 +325,7 @@
     letter-spacing: 0;
     text-transform: none;
     color: #dc3545;
+    font-weight: bold;
 }
 .tail-select .select-dropdown ul li.optgroup-title button{
     float: right;
