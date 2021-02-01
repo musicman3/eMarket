@@ -4,6 +4,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
+<script src="/ext/sortablejs/sortable.min.js"></script>
 <script type="text/javascript" src="/model/library/js/classes/mouse/mouse.js"></script>
 <script type="text/javascript">
     new Mouse(null);

@@ -52,7 +52,6 @@ class ValuesAttribute {
      *@param lang {Array} (lang)
      */
     click(lang) {
-
         Helpers.on('body', 'click', '.add-values-attribute', function (e) {
             document.querySelector('#add_values_attribute_form').reset();
             new bootstrap.Modal(document.querySelector('#add_values_attribute')).show();
@@ -62,7 +61,7 @@ class ValuesAttribute {
         Helpers.on('body', 'click', '.edit-value-attribute', function (e) {
             new bootstrap.Modal(document.querySelector('#add_values_attribute')).show();
             var processing = new AttributesProcessing();
-            processing.clickEdit(e.target.closest('tr').id.split('_')[1], sessionStorage.getItem('level_2'), 'level_3');
+            processing.clickEdit(e.target.closest('tr').dataset.id.split('_')[1], sessionStorage.getItem('level_2'), 'level_3');
 
         });
 
@@ -104,7 +103,7 @@ class ValuesAttribute {
      */
     static addValue(id, value) {
         document.querySelector('.values_attribute').insertAdjacentHTML('afterbegin',
-                '<tr class="value-attributes-class align-middle" id="valueattributes_' + id + '">' +
+                '<tr class="value-attributes-class align-middle" data-id="valueattributes_' + id + '">' +
                 '<td class="sortyes-value-attributes sortleft-m"><div><span class="bi-arrows-move"> </span></div></td>' +
                 '<td>' + value + '</td>' +
                 '<td>' +
@@ -151,10 +150,11 @@ class ValuesAttribute {
      * Sorting
      * 
      * @param lang {Array} (lang)
+     * @param sortable {Object} (sortable)
      *
      */
-    sort(lang) {
-        var sortedIDs = $(".values_attribute").sortable("toArray").reverse();
+    sort(lang, sortable) {
+        var sortedIDs = sortable.toArray().reverse();
         var processing = new AttributesProcessing();
         var parse_attributes_add = processing.sorted(sortedIDs, sessionStorage.getItem('level_2'));
 

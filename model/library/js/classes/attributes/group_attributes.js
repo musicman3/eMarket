@@ -56,10 +56,9 @@ class GroupAttributes {
      *@param lang {Array} (lang)
      */
     click(lang) {
-
         Helpers.on('body', 'click', '.values-group-attribute', function (e) {
             var jsdata = new JsData();
-            var data_id = e.target.closest('tr').id.split('_')[1];
+            var data_id = e.target.closest('tr').dataset.id.split('_')[1];
             var parse_attributes = jsdata.selectParentUids('false', JSON.parse(sessionStorage.getItem('attributes')));
             sessionStorage.setItem('level_1', data_id);
 
@@ -123,7 +122,7 @@ class GroupAttributes {
      */
     static addValue(id, value) {
         document.querySelector('.group-attributes').insertAdjacentHTML('afterbegin', 
-                '<tr class="groupattributes align-middle" id="groupattributes_' + id + '">' +
+                '<tr class="groupattributes align-middle" data-id="groupattributes_' + id + '">' +
                 '<td class="sortyes-group sortleft-m"><div><span class="bi-arrows-move"> </span></div></td>' +
                 '<td class="sortleft"><button type="button" class="values-group-attribute btn btn-primary btn-sm"><span class="bi-gear"></span></button></td>' +
                 '<td>' + value + '</td>' +
@@ -170,10 +169,11 @@ class GroupAttributes {
      * Sorting
      * 
      * @param lang {Array} (lang)
+     * @param sortable {Object} (sortable)
      *
      */
-    sort(lang) {
-        var sortedIDs = $(".group-attributes").sortable("toArray").reverse();
+    sort(lang, sortable) {
+        var sortedIDs = sortable.toArray().reverse();
         var processing = new AttributesProcessing();
         var parse_attributes_add = processing.sorted(sortedIDs, 'false');
 

@@ -18,64 +18,34 @@ class Mouse {
     constructor(lang) {
 
         this.lang = lang;
-
-        this.start = function (e, ui) {
-            let $originals = ui.helper.children();
-            ui.placeholder.children().each(function (index) {
-                $(this).width($originals.eq(index).width());
-            });
-        };
-
-        this.helper = function (e, tr) {
-            let $helper = tr.clone();
-            let $originals = tr.children();
-            $helper.children().each(function (index) {
-                $(this).width($originals.eq(index).outerWidth(true));
-            });
-            return $helper;
-        };
-
         Mouse.sortInitAll(lang);
     }
 
     /**
      * Sort init
      * @param id {String} (id)
-     * @param items {String} (items)
-     * @param handle {String} (handle)
      * @param lang {Array} (language)
      *
      */
-    static sortInit(id, items, handle, lang) {
-        $(id).sortable({
-            items: items,
-            handle: handle,
-            axis: "y",
-            helper: this.helper,
-            start: this.start,
-            over: function (event, ui) {
-                ui.helper.css("opacity", "0.7"),
-                        ui.helper.css("background-color", "#F5F5F5");
-            },
-            beforeStop: function (event, ui) {
-                ui.helper.css("opacity", "1.0"),
-                        ui.helper.css("background-color", "");
-            },
-            stop: function (event, ui) {
+    static sortInit(id, lang) {
+        var sortable = new Sortable(document.querySelector(id), {
+            animation: 150,
+            ghostClass: 'table-primary',
+            onEnd: function () {
                 if (id === '#sort-list') {
                     Mouse.sortList();
                 }
                 if (id === '.group-attributes') {
                     var GroupAttributesObj = new GroupAttributes(lang);
-                    GroupAttributesObj.sort(lang);
+                    GroupAttributesObj.sort(lang, sortable);
                 }
                 if (id === '.attribute') {
                     var AttributesObj = new Attributes(lang);
-                    AttributesObj.sort(lang);
+                    AttributesObj.sort(lang, sortable);
                 }
                 if (id === '.values_attribute') {
                     var ValuesAttributeObj = new ValuesAttribute(lang);
-                    ValuesAttributeObj.sort(lang);
+                    ValuesAttributeObj.sort(lang, sortable);
                 }
             }
         });
@@ -87,18 +57,18 @@ class Mouse {
      *
      */
     static sortInitAll(lang) {
-        Mouse.sortInit('#sort-list', 'tr.sort-list', 'td.sortyes');
+        Mouse.sortInit('#sort-list', lang);
         if ($('tbody').is('.group-attributes')) {
-            Mouse.sortInit('.group-attributes', 'tr.groupattributes', 'td.sortyes-group', lang);
+            Mouse.sortInit('.group-attributes', lang);
         }
         if ($('tbody').is('.attribute')) {
-            Mouse.sortInit('.attribute', 'tr.attributes-class', 'td.sortyes-attributes', lang);
+            Mouse.sortInit('.attribute', lang);
         }
         if ($('tbody').is('.values_attribute')) {
-            Mouse.sortInit('.values_attribute', 'tr.value-attributes-class', 'td.sortyes-value-attributes', lang);
+            Mouse.sortInit('.values_attribute', lang);
         }
 
-        $(".option").click(function () {
+        $('.option').click(function () {
             $(this).find('span').toggleClass('inactive');
             $(this).toggleClass('active');
         });
@@ -110,7 +80,7 @@ class Mouse {
      */
     static sortList() {
         var ids = [];
-        $("#sort-list tr").each(function () {
+        $('#sort-list tr').each(function () {
             ids[ids.length] = $(this).attr('unitid');
         });
 
