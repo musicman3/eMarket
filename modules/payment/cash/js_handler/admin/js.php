@@ -10,7 +10,6 @@
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function () {
         tail.select(document.querySelector('#shipping_method'), {
-            search: true,
             multiSelectAll: true,
             height: 600,
             width: 450,
