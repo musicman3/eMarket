@@ -9,7 +9,7 @@
 
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function () {
-        tail.select('select', {
+        tail.select(document.querySelector('#multiselect'), {
             search: true,
             multiSelectAll: true,
             height: 600,
@@ -41,7 +41,6 @@
         });
         return select;
     }));
-
 </script>
 
 <script type="text/javascript" src="/model/library/js/classes/ajax/ajax.js"></script>
