@@ -14,67 +14,67 @@ html {position: relative;min-height: 100%;}
 body {background:#e4e4da;font-family: 'Open Sans';background-image:url('images/sep-half.png');}
 
 @media (max-width: 991px) {#navbarNavDropdown {max-height: 80vh;overflow: auto;}}
-@media (min-width:768px){.modal-lg {width:750px;}}
+@media (min-width:768px){.modal-lg {width:46.875rem;}}
 
-#dashboard .welcome {text-align: center;font-size: 40px;color: #c6c6c6;text-shadow: 0px 1px 1px #FFF;padding-top: 60px;}
-#dashboard .welcome_logo {padding-top: 30px;padding-bottom: 30px;font-size: 70px;}
-#dashboard .welcome_description {font-size: 24px;padding-bottom: 50px;color: #aaaaaa;}
+#dashboard .welcome {text-align: center;font-size: 2.2rem;color: #c6c6c6;text-shadow: 0 0.0625rem 0.0625rem #FFF;padding-top: 3.75rem;}
+#dashboard .welcome_logo {padding-top: 1.875rem;padding-bottom: 1.875rem;font-size: 4.375rem;}
+#dashboard .welcome_description {font-size: 1.5rem;padding-bottom: 3.125rem;color: #aaaaaa;}
 
 #login [class*=lbox-] {background:rgba(0,0,0,.4);position:absolute}
-#login .lbox-horz {height: 154px;width: 100%;padding-left: 50px;margin-top: -63px;top: 50%}
-#login .lbox-vert {height: 100%;width: 200px;left: 70%;}
-#login .login_logo {position: absolute;top: 20px;padding: 15px;text-align: left;font-size: 110px;color: #707070;text-shadow: 0px 1px 1px #575757;}
-#login .login-box {width: 200px;height: 136px;position: absolute;margin-top: -68px;top: 50%;left: 70%;padding: 15px;text-align: center}
-#login .login-box .btn, .login-box .btn a:active {border: 1px solid #000;color:#fff;background: none; font-size:15px;}
-#login .alert-danger {position: absolute;top: 10%;margin: 0 10px 0 -2px;padding: 5px;}
+#login .lbox-horz {height: 9.625rem;width: 100%;padding-left: 3.125rem;margin-top: -3.9375rem;top: 50%}
+#login .lbox-vert {height: 100%;width: 12.5rem;left: 70%;}
+#login .login_logo {position: absolute;top: 1.25rem;padding: 0.9375rem;text-align: left;font-size: 6.875rem;color: #707070;text-shadow: 0 0.0625rem 0.0625rem #575757;}
+#login .login-box {width: 12.5rem;height: 8.5rem;position: absolute;margin-top: -4.25rem;top: 50%;left: 70%;padding: 0.9375rem;text-align: center}
+#login .login-box .btn, .login-box .btn a:active {border: 0.0625rem solid #000;color:#fff;background: none; font-size:0.9375rem;}
+#login .alert-danger {position: absolute;top: 10%;margin: 0 0.625rem 0 -0.125rem;padding: 0.3125rem;}
 
-#settings_basic_settings .tooltip-inner {font-family: 'Open Sans';min-width:200px;}
+#settings_basic_settings .tooltip-inner {font-family: 'Open Sans';min-width:12.5rem;}
 
-#settings_templates .block-ul {display:inline-block;border:1px solid #dddddd;border-top-left-radius: 5px;border-top-right-radius: 5px;vertical-align:top;padding-left:0;}
-#settings_templates .sortno {list-style-type: none;padding: 5px 0 5px 0;margin-bottom: 3px;}
-#settings_templates .sortyes {list-style-type: none;padding-bottom: 3px;}
-#settings_templates .block-m {margin-left:-3.45px;}
-#settings_templates .block-l {display:inline-block;border:1px solid #dddddd;border-top-left-radius: 5px;vertical-align:top;padding-left:0;}
-#settings_templates .block-r {display:inline-block;border:1px solid #dddddd;border-top-right-radius: 5px;vertical-align:top;padding-left:0;}
-#settings_templates .border {border-top-left-radius: 4px;border-top-right-radius: 4px;}
-#settings_templates .border-l {border-top-left-radius: 4px;}
-#settings_templates .border-r {border-top-right-radius: 4px;}
-#settings_templates .input-sm {padding: 0 10px;}
+#settings_templates .block-ul {display:inline-block;border:0.0625rem solid #dddddd;border-top-left-radius: 0.3125rem;border-top-right-radius: 0.3125rem;vertical-align:top;padding-left:0;}
+#settings_templates .sortno {list-style-type: none;padding: 0.3125rem 0 0.3125rem 0;margin-bottom: 0.1875rem;}
+#settings_templates .sortyes {list-style-type: none;padding-bottom: 0.1875rem;}
+#settings_templates .block-m {margin-left:-0.1875rem;}
+#settings_templates .block-l {display:inline-block;border:0.0625rem solid #dddddd;border-top-left-radius: 0.3125rem;vertical-align:top;padding-left:0;}
+#settings_templates .block-r {display:inline-block;border:0.0625rem solid #dddddd;border-top-right-radius: 0.3125rem;vertical-align:top;padding-left:0;}
+#settings_templates .border {border-top-left-radius: 0.25rem;border-top-right-radius: 0.25rem;}
+#settings_templates .border-l {border-top-left-radius: 0.25rem;}
+#settings_templates .border-r {border-top-right-radius: 0.25rem;}
+#settings_templates .input-sm {padding: 0 0.625rem;}
 
-#index_product .accordion-button, #index_product .accordion-body {padding: 7px 12px;}
-#index_product .product-attribute-table td {padding-left: 10px;background: none;}
+#index_product .accordion-button, #index_product .accordion-body {padding: 0.4375rem 0.75rem;}
+#index_product .product-attribute-table td {padding-left: 0.625rem;background: none;}
 #index_product .table > tbody > tr > td.selector {width: 30%;}
-#index_product .input-group-text {padding: 3px 5px;}
+#index_product .input-group-text {padding: 0.1875rem 0.3125rem;}
 
 #alert {padding:0;margin:0;float:right;line-height:1.4;}
 
-#slideshow .slide-sett {padding: 3px 5px 0 0;}
+#slideshow .slide-sett {padding: 0.1875rem 0.3125rem 0 0;}
 
-#footerwrap {width: 100%;background: #4c453d;border-top: 8px solid #312d27;background-image: url('images/sep-half.png');text-align: center;position: absolute;bottom: 0;}
-#footerwrap p {color: white;font-size: 12px;}
+#footerwrap {width: 100%;background: #4c453d;border-top: 0.5rem solid #312d27;background-image: url('images/sep-half.png');text-align: center;position: absolute;bottom: 0;}
+#footerwrap p {color: white;font-size: 0.75rem;}
 
 #color {box-sizing: content-box;}
 
-.file-upload {position:relative;}
+.file-upload {position: relative;}
 .file-upload:hover .block {display: flex !important;}
-.block {position:absolute;bottom:0;top:0;width: 100%;display:none;}
-.img-active {border: 1px solid #a94442;border-radius: 4px;}
-.progress {margin-bottom: 10px;}
-.table {margin-bottom:0px;}
-.card-body, .modal-body, .input-sm {font-size: 14px;}
-.modal-header {background-color: #f5f5f5;padding: 10px 15px;}
-.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {padding:3px;}
+.block {position: absolute;bottom: 0;top:0;width: 100%;display: none;}
+.img-active {border: 0.0625rem solid #a94442;border-radius: 0.25rem;}
+.progress {margin-bottom: 0.625rem;}
+.table {margin-bottom: 0;}
+.card-body, .modal-body, .input-sm {font-size: 0.875rem;}
+.modal-header {background-color: #f5f5f5;padding: 0.625rem 0.9375rem;}
+.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {padding:0.1875rem;}
 .sortyes, .sortyes-group, .sortyes-attributes, .sortyes-value-attributes {cursor:move;}
-.table .sortleft {width:30px;}
-.table .sortleft-m {color:#9b9b9b;width:25px;text-align: center;}
+.table .sortleft {width:1.875rem;}
+.table .sortleft-m {color:#9b9b9b;width:1.5625rem;text-align: center;}
 .table .sortno:hover {background: none;}
 .table > tbody > tr > td.active {background-color: #f0f0f0;}
-.tab-content {padding-top: 10px;}
-.transfer {color: #777;padding:5px;}
+.tab-content {padding-top: 0.625rem;}
+.transfer {color: #777;padding:0.3125rem;}
 .fileinput-button {position: relative;overflow: hidden;display: inline-block;}
-.fileinput-button input {position: absolute;top: 0;right: 0;margin: 0;opacity: 0;font-size: 1px;line-height: 15;}
+.fileinput-button input {position: absolute;top: 0;right: 0;margin: 0;opacity: 0;font-size: 0.0625rem;line-height: 15;}
 @media screen\9 {.fileinput-button input {filter: alpha(opacity=0);font-size: 100%;height: 100%;}}
-.settings_back {padding: 0 0 5px 0;border: 1px solid #ddd;border-right: 0;border-radius: 4px 0 0 4px;}
-.settings_name {padding: 0 5px 5px 5px;border: 1px solid #ddd;border-left: 0;border-radius: 0 4px 4px 0;}
-.table-radius {overflow: hidden;border-top-left-radius: 4px;border-top-right-radius: 4px;}
+.settings_back {padding: 0 0 0.3125rem 0;border: 0.0625rem solid #ddd;border-right: 0;border-radius: 0.25rem 0 0 0.25rem;}
+.settings_name {padding: 0 0.3125rem 0.3125rem 0.3125rem;border: 0.0625rem solid #ddd;border-left: 0;border-radius: 0 0.25rem 0.25rem 0;}
+.table-radius {overflow: hidden;border-top-left-radius: 0.25rem;border-top-right-radius: 0.25rem;}
 .offset-0 {padding-left: 0;padding-right: 0;}
