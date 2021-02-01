@@ -25,8 +25,8 @@ use \eMarket\Core\{
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 offset-0">
                 <form>
                     <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
-                    <div class="input-group">
-                        <input type="search" id="search" name="search" placeholder="<?php echo lang('search') ?>" class="input-sm form-control">
+                    <div class="input-group input-group-sm">
+                        <input type="search" id="search" name="search" placeholder="<?php echo lang('search') ?>" class="form-control">
                         <button type="submit" class="btn btn-primary btn-sm"><span class="bi-search"></span></button>
                     </div>
                 </form>
