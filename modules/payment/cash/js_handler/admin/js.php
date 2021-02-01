@@ -36,7 +36,7 @@
             none: '<?php echo lang('cancel') ?>',
             actionAll: '<?php echo lang('select_all') ?>',
             empty: '<?php echo lang('no_listing') ?>',
-            placeholder: '<?php echo lang('select_country_and_region') ?>',
+            placeholder: '<?php echo lang('modules_payment_cash_admin_shipping_module_select') ?>',
             search: '<?php echo lang('search') ?>'
         });
         return select;

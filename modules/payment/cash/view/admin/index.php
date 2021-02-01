@@ -29,6 +29,7 @@ use \eMarket\Core\Modules\Payment\Cash;
         </div>
         <small id="shipping_method_action" class="form-text text-muted"><?php echo lang('modules_payment_cash_admin_shipping_method_select') ?></small>
     </div>
+    <br>
     <div class="form-group">
         <label for="order_status"><?php echo lang('modules_payment_cash_admin_order_status') ?></label>
         <div class="input-group input-group-sm">
