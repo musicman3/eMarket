@@ -36,7 +36,7 @@ use \eMarket\Core\{
                                 <small class="form-text text-muted"><?php echo lang('currencies_name_little') ?></small>
                                 <div class="input-group input-group-sm">
                                     <span class="input-group-text"><span class="bi-file-text"></span></span>
-                                    <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="code_currencies_0" id="code_currencies_0" required />
+                                    <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="code_currencies_0" id="code_currencies_0" required />
                                 </div>
                             </div>
                         </div>
