@@ -30,14 +30,14 @@ use \eMarket\Core\{
                                 <small class="form-text text-muted"><?php echo lang('vendor_codes_name') ?></small>
                                 <div class="input-group input-group-sm">
                                     <span class="input-group-text"><span class="bi-file-text"></span></span>
-                                    <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_vendor_codes_0" id="name_vendor_codes_0" required />
+                                    <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_vendor_codes_0" id="name_vendor_codes_0" required />
                                 </div>
                             </div>
                             <div class="mb-2">
                                 <small class="form-text text-muted"><?php echo lang('vendor_codes_description') ?></small>
                                 <div class="input-group input-group-sm">
                                     <span class="input-group-text"><span class="bi-file-text"></span></span>
-                                    <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="vendor_code_0" id="vendor_code_0" />
+                                    <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="vendor_code_0" id="vendor_code_0" />
                                 </div>
                             </div>
                         </div>
@@ -52,14 +52,14 @@ use \eMarket\Core\{
                                         <small class="form-text text-muted"><?php echo lang('vendor_codes_name') ?></small>
                                         <div class="input-group input-group-sm">
                                             <span class="input-group-text"><span class="bi-file-text"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_vendor_codes_<?php echo $x ?>" id="name_vendor_codes_<?php echo $x ?>" required />
+                                            <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_vendor_codes_<?php echo $x ?>" id="name_vendor_codes_<?php echo $x ?>" required />
                                         </div>
                                     </div>
                                     <div class="mb-2">
                                         <small class="form-text text-muted"><?php echo lang('vendor_codes_description') ?></small>
                                         <div class="input-group input-group-sm">
                                             <span class="input-group-text"><span class="bi-file-text"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="vendor_code_<?php echo $x ?>" id="vendor_code_<?php echo $x ?>" />
+                                            <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="vendor_code_<?php echo $x ?>" id="vendor_code_<?php echo $x ?>" />
                                         </div>
                                     </div>
                                 </div>
