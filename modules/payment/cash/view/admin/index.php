@@ -13,7 +13,7 @@ use \eMarket\Core\Modules\Payment\Cash;
 
     <div class="form-group">
         <label for="shipping_method"><?php echo lang('modules_payment_cash_admin_shipping_method') ?></label>
-        <div class="input-group">
+        <div class="input-group input-group-sm">
             <select id="shipping_method" class="form-select" name="multiselect[]" multiple="multiple">
                 <?php
                 foreach (Cash::$shipping_method as $val) {
@@ -31,7 +31,7 @@ use \eMarket\Core\Modules\Payment\Cash;
     </div>
     <div class="form-group">
         <label for="order_status"><?php echo lang('modules_payment_cash_admin_order_status') ?></label>
-        <div class="input-group">
+        <div class="input-group input-group-sm">
             <span class="input-group-text"><span class="bi-pencil"></span></span>
             <select name="order_status" id="order_status" class="form-select">
                 <?php
