@@ -11,7 +11,7 @@
             <h5 class="card-title d-flex">
                 <div class="me-auto d-flex align-items-center"><?php echo lang('install_panel') ?></div>
                 <form action="index.php" method="post" accept-charset="utf-8">
-                    <div class="input-group">
+                    <div class="input-group input-group-sm">
                         <span class="input-group-text"><span class="bi-globe"></span></span>
                         <select name='language' class="input-sm form-select" onchange="submit();">
                             <option><?php echo lang('select_language') ?></option>
@@ -28,15 +28,15 @@
                 <input type='hidden' name='language' value='<?php echo \eMarket\Install\Index::$DEFAULT_LANGUAGE ?>' />
                 <div class="row">
                     <div class="col-md-5 col-lg-4 mb-2">
-                        <div class="server_db input-group">
+                        <div class="server_db input-group input-group-sm">
                             <span class="input-group-text"><span class="bi-hdd"></span></span>
-                            <input class="input-sm form-control" id="server_db" minlength="1" placeholder="<?php echo lang('server_db') ?>" type="text" name="server_db" required />
+                            <input class="form-control" id="server_db" minlength="1" placeholder="<?php echo lang('server_db') ?>" type="text" name="server_db" required />
                         </div>
                     </div>
                     <div class="col-md-5 col-lg-4 mb-2">
-                        <div class="input-group">
+                        <div class="input-group input-group-sm">
                             <span class="input-group-text"><span class="bi-hdd"></span></span>
-                            <select name="database_family" class="input-sm form-select">
+                            <select name="database_family" class="form-select">
                                 <option value='innodb'>-- <?php echo lang('database_family') ?> --</option>
                                 <option value='innodb'><?php echo lang('database_innodb') ?></option>
                                 <option value='myisam'><?php echo lang('database_myisam') ?></option>
@@ -46,15 +46,15 @@
                 </div>
                 <div class="row">
                     <div class="col-md-5 col-lg-4 mb-2">
-                        <div class="login_db input-group">
+                        <div class="login_db input-group input-group-sm">
                             <span class="input-group-text"><span class="bi-hdd"></span></span>
-                            <input class="input-sm form-control" id="login_db" minlength="1" placeholder="<?php echo lang('login_db') ?>" type="text" name="login_db" required />
+                            <input class="form-control" id="login_db" minlength="1" placeholder="<?php echo lang('login_db') ?>" type="text" name="login_db" required />
                         </div>
                     </div>
                     <div class="col-md-5 col-lg-4 mb-2">
-                        <div class="input-group">
+                        <div class="input-group input-group-sm">
                             <span class="input-group-text"><span class="bi-shield-lock"></span></span>
-                            <select name="hash_method" class="input-sm form-select">
+                            <select name="hash_method" class="form-select">
                                 <option value='PASSWORD_DEFAULT'>-- <?php echo lang('hash_method') ?> --</option>
                                 <option value='PASSWORD_DEFAULT'><?php echo lang('hash_recommended') ?></option>
                                 <option value='PASSWORD_BCRYPT'><?php echo lang('hash_blowfish') ?></option>
@@ -65,15 +65,15 @@
                 </div>
                 <div class="row">
                     <div class="col-md-5 col-lg-4 mb-2">
-                        <div class="database_name input-group">
+                        <div class="database_name input-group input-group-sm">
                             <span class="input-group-text"><span class="bi-hdd"></span></span>
-                            <input class="input-sm form-control" id="database_name" minlength="1" placeholder="<?php echo lang('database_name') ?>" type="text" name="database_name" required />
+                            <input class="form-control" id="database_name" minlength="1" placeholder="<?php echo lang('database_name') ?>" type="text" name="database_name" required />
                         </div>
                     </div>
                     <div class="col-md-5 col-lg-4 mb-2">
-                        <div class="input-group">
+                        <div class="input-group input-group-sm">
                             <span class="input-group-text"><span class="bi-shield-lock"></span></span>
-                            <select name="crypt_method" class="input-sm form-select">
+                            <select name="crypt_method" class="form-select">
                                 <option value='aes-128-cbc'>-- <?php echo lang('crypt_method') ?> --</option>
                                 <option value='aes-128-cbc'>aes-128-cbc</option>
                                 <option value='aes-256-cbc'>aes-256-cbc</option>
@@ -85,60 +85,58 @@
                 </div>
                 <div class="row">
                     <div class="col-md-5 col-lg-4 mb-2">
-                        <div class="password_db input-group">
+                        <div class="password_db input-group input-group-sm">
                             <span class="input-group-text"><span class="bi-hdd"></span></span>
-                            <input class="input-sm form-control" id="password_db" placeholder="<?php echo lang('password_db') ?>" type="password" name="password_db" required />
+                            <input class="form-control" id="password_db" placeholder="<?php echo lang('password_db') ?>" type="password" name="password_db" required />
                         </div>
                     </div>
                     <div class="col-md-5 col-lg-4 mb-2">
-                        <div class="email input-group">
+                        <div class="email input-group input-group-sm">
                             <span class="input-group-text"><span class="bi-layout-text-sidebar"></span></span>
-                            <input class="input-sm form-control" id="email" placeholder="<?php echo lang('login_admin') ?>" type="email" name="login_admin" required />
+                            <input class="form-control" id="email" placeholder="<?php echo lang('login_admin') ?>" type="email" name="login_admin" required />
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-5 col-lg-4 mb-2">
-                        <div class="input-group">
+                        <div class="input-group input-group-sm">
                             <span class="input-group-text"><span class="bi-hdd"></span></span>
-                            <input class="input-sm form-control" placeholder="<?php echo lang('database_prefix') ?>" type="text" name="database_prefix" value="emkt_" required />
+                            <input class="form-control" placeholder="<?php echo lang('database_prefix') ?>" type="text" name="database_prefix" value="emkt_" required />
                         </div>
                     </div>
                     <div class="col-md-5 col-lg-4 mb-2">
-                        <div class="password input-group">
+                        <div class="password input-group input-group-sm">
                             <span class="input-group-text"><span class="bi-layout-text-sidebar"></span></span>
-                            <input class="input-sm form-control" id="password_admin" minlength="7" maxlength="40" placeholder="<?php echo lang('password_admin') ?>" type="password" name="password_admin" required />
+                            <input class="form-control" id="password_admin" minlength="7" maxlength="40" placeholder="<?php echo lang('password_admin') ?>" type="password" name="password_admin" required />
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-5 col-lg-4 mb-2">
-                        <div class="input-group">
+                        <div class="input-group input-group-sm">
                             <span class="input-group-text"><span class="bi-hdd"></span></span>
-                            <input class="input-sm form-control" placeholder="<?php echo lang('database_port') ?>" type="text" name="database_port" value="3306" required />
+                            <input class="form-control" placeholder="<?php echo lang('database_port') ?>" type="text" name="database_port" value="3306" required />
                         </div>
                     </div>
                     <div class="col-md-5 col-lg-4 mb-2">
-                        <div class="confirm input-group">
+                        <div class="confirm input-group input-group-sm">
                             <span class="input-group-text"><span class="bi-layout-text-sidebar"></span></span>
-                            <input class="input-sm form-control" id="password_admin_confirm" minlength="7" maxlength="40" placeholder="<?php echo lang('password_admin_confirm') ?>" type="password" name="password_admin_confirm" required />
+                            <input class="form-control" id="password_admin_confirm" minlength="7" maxlength="40" placeholder="<?php echo lang('password_admin_confirm') ?>" type="password" name="password_admin_confirm" required />
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-5 col-lg-4 mb-2">
-                        <div class="input-group">
+                        <div class="input-group input-group-sm">
                             <span class="input-group-text"><span class="bi-hdd"></span></span>
-                            <select name="database_type" class="input-sm form-select">
+                            <select name="database_type" class="form-select">
                                 <option value='mysql'>-- <?php echo lang('database_type') ?> --</option>
                                 <option value='mysql'><?php echo lang('database_family_mysql') ?></option>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-5 col-lg-4 mb-2">
-                        <div class="input-group">
-                            <button class="btn btn-primary" type="submit" name="install_button" /><?php echo lang('install_button') ?></button>
-                        </div>
+                            <button class="btn btn-primary btn-sm" type="submit" name="install_button" /><?php echo lang('install_button') ?></button>
                     </div>
                 </div>
             </form>
