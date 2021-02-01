@@ -31,14 +31,14 @@ use \eMarket\Admin\Slideshow;
                         <small class="form-text text-muted"><?php echo lang('slides_name') ?></small>
                         <div class="input-group input-group-sm">
                             <span class="input-group-text"><span class="bi-file-text"></span></span>
-                            <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name" id="name" />
+                            <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name" id="name" />
                         </div>
                     </div>
                     <div class="mb-2">
                         <small class="form-text text-muted"><?php echo lang('slides_text') ?></small>
                         <div class="input-group input-group-sm">
                             <span class="input-group-text"><span class="bi-file-text"></span></span>
-                            <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="heading" id="heading" />
+                            <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="heading" id="heading" />
                         </div>
                     </div>
                     <div class="mb-2 row align-items-center">
@@ -59,21 +59,21 @@ use \eMarket\Admin\Slideshow;
                         <small class="form-text text-muted"><?php echo lang('slides_url') ?></small>
                         <div class="input-group input-group-sm">
                             <span class="input-group-text"><span class="bi-globe"></span></span>
-                            <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="url" id="url" />
+                            <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="url" id="url" />
                         </div>
                     </div>
                     <div class="mb-2">
                         <small class="form-text text-muted"><?php echo lang('slides_show_start') ?></small>
                         <div class="input-group input-group-sm">
                             <span class="input-group-text"><span class="bi-calendar3"></span></span>
-                            <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="start_date" id="start_date" autocomplete="off" required />
+                            <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="start_date" id="start_date" autocomplete="off" required />
                         </div>
                     </div>
                     <div class="mb-2">
                         <small class="form-text text-muted"><?php echo lang('slides_show_end') ?></small>
                         <div class="input-group input-group-sm">
                             <span class="input-group-text"><span class="bi-calendar3"></span></span>
-                            <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="end_date" id="end_date" autocomplete="off" required />
+                            <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="end_date" id="end_date" autocomplete="off" required />
                         </div>
                     </div>
 
