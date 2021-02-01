@@ -30,14 +30,14 @@ use \eMarket\Core\{
                                 <small class="form-text text-muted"><?php echo lang('weight_name_full') ?></small>
                                 <div class="input-group input-group-sm">
                                     <span class="input-group-text"><span class="bi-file-text"></span></span>
-                                    <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_weight_0" id="name_weight_0" required />
+                                    <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_weight_0" id="name_weight_0" required />
                                 </div>
                             </div>
                             <div class="mb-2">
                                 <small class="form-text text-muted"><?php echo lang('weight_name_little') ?></small>
                                 <div class="input-group input-group-sm">
                                     <span class="input-group-text"><span class="bi-file-text"></span></span>
-                                    <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="code_weight_0" id="code_weight_0" required />
+                                    <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="code_weight_0" id="code_weight_0" required />
                                 </div>
                             </div>
                         </div>
@@ -52,14 +52,14 @@ use \eMarket\Core\{
                                         <small class="form-text text-muted"><?php echo lang('weight_name_full') ?></small>
                                         <div class="input-group input-group-sm">
                                             <span class="input-group-text"><span class="bi-file-text"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_weight_<?php echo $x ?>" id="name_weight_<?php echo $x ?>" required />
+                                            <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_weight_<?php echo $x ?>" id="name_weight_<?php echo $x ?>" required />
                                         </div>
                                     </div>
                                     <div class="mb-2">
                                         <small class="form-text text-muted"><?php echo lang('weight_name_little') ?></small>
                                         <div class="input-group input-group-sm">
                                             <span class="input-group-text"><span class="bi-file-text"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="code_weight_<?php echo $x ?>" id="code_weight_<?php echo $x ?>" required />
+                                            <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="code_weight_<?php echo $x ?>" id="code_weight_<?php echo $x ?>" required />
                                         </div>
                                     </div>
                                 </div>
@@ -73,7 +73,7 @@ use \eMarket\Core\{
                             <small class="form-text text-muted"><?php echo lang('weight_value') ?></small>
                             <div class="input-group input-group-sm">
                                 <span class="input-group-text"><span class="bi-calculator"></span></span>
-                                <input class="input-sm form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="value_weight" pattern="\d+(\.\d{0,7})?" id="value_weight" required />
+                                <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="value_weight" pattern="\d+(\.\d{0,7})?" id="value_weight" required />
                             </div>
                         </div>
                         <div class="mb-2 form-check form-switch">
