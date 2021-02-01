@@ -11,8 +11,8 @@ use \eMarket\Core\Modules\Payment\Cash;
 
     <input type="hidden" name="save" value="ok" />
 
-    <div class="form-group">
-        <label for="shipping_method"><?php echo lang('modules_payment_cash_admin_shipping_method') ?></label>
+    <div class="mb-2">
+        <small id="shipping_method_action" class="form-text text-muted"><?php echo lang('modules_payment_cash_admin_shipping_method_select') ?></small>
         <div class="input-group input-group-sm">
             <select id="shipping_method" class="form-select" name="multiselect[]" multiple="multiple">
                 <?php
@@ -27,11 +27,9 @@ use \eMarket\Core\Modules\Payment\Cash;
                 <?php } ?>
             </select>
         </div>
-        <small id="shipping_method_action" class="form-text text-muted"><?php echo lang('modules_payment_cash_admin_shipping_method_select') ?></small>
     </div>
-    <br>
-    <div class="form-group">
-        <label for="order_status"><?php echo lang('modules_payment_cash_admin_order_status') ?></label>
+    <div class="mb-2">
+        <small id="order_status_action" class="form-text text-muted"><?php echo lang('modules_payment_cash_admin_order_status_select') ?></small>
         <div class="input-group input-group-sm">
             <span class="input-group-text"><span class="bi-pencil"></span></span>
             <select name="order_status" id="order_status" class="form-select">
@@ -47,10 +45,10 @@ use \eMarket\Core\Modules\Payment\Cash;
                 <?php } ?>
             </select>
         </div>
-        <small id="order_status_action" class="form-text text-muted"><?php echo lang('modules_payment_cash_admin_order_status_select') ?></small>
     </div>
+    <br>
 
-    <div class="text-right">
+    <div class="text-left">
         <button type="submit" class="btn btn-primary btn-sm"><span class="bi-check-circle"></span> <?php echo lang('save') ?></button>
     </div>
 
