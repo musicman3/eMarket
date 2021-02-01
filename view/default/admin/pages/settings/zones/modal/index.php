@@ -26,9 +26,9 @@ use \eMarket\Core\{
                     <div class="tab-content">
                         <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade show in active">
                             <div class="mb-3">
-                                <div class="input-group">
+                                <div class="input-group input-group-sm">
                                     <span class="input-group-text"><span class="bi-file-text"></span></span>
-                                    <input class="input-sm form-control" placeholder="<?php echo lang('name_zone') ?>" type="text" name="name_zones_0" id="name_zones_0" required />
+                                    <input class="form-control" placeholder="<?php echo lang('name_zone') ?>" type="text" name="name_zones_0" id="name_zones_0" required />
                                 </div>
                             </div>
                         </div>
@@ -40,9 +40,9 @@ use \eMarket\Core\{
 
                                 <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">
                                     <div class="mb-3">
-                                        <div class="input-group">
+                                        <div class="input-group input-group-sm">
                                             <span class="input-group-text"><span class="bi-file-text"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo lang('name_zone') ?>" type="text" name="name_zones_<?php echo $x ?>" id="name_zones_<?php echo $x ?>" required />
+                                            <input class="form-control" placeholder="<?php echo lang('name_zone') ?>" type="text" name="name_zones_<?php echo $x ?>" id="name_zones_<?php echo $x ?>" required />
                                         </div>
                                     </div>
                                 </div>
@@ -53,7 +53,7 @@ use \eMarket\Core\{
                         ?>
                         <div class="mb-3">
                             <div><small class="form-text text-muted"><?php echo lang('name_description') ?></small></div>
-                            <textarea class="form-control" placeholder="<?php echo lang('add_name_description') ?>" rows="5" name="note_zones" id="note_zones"></textarea>
+                            <textarea class="input-sm form-control" placeholder="<?php echo lang('add_name_description') ?>" rows="5" name="note_zones" id="note_zones"></textarea>
                         </div> 
                     </div>
                 </div>
