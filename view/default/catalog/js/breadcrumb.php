@@ -52,16 +52,5 @@ if (Valid::inGET('search') OR !Valid::inGET('category_id')) {
         $(document).ready(function () {
             breadcrumb();
         });
-<?php } elseif (Valid::inGET('route') != '') { ?>
-        function breadcrumb() {
-            var breadcrumbid = $('div#data_breadcrumb').data('breadcrumbid');
-            var breadcrumbname = $('div#data_breadcrumb').data('breadcrumbname');
-
-            $('#breadcrumb').append('<li class="breadcrumb-item"><?php echo lang('title_' . basename(Valid::inGET('route')) . '_index') ?></li>');
-        }
-
-        $(document).ready(function () {
-            breadcrumb();
-        });
 <?php } ?>
 </script>
