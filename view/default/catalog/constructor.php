@@ -30,7 +30,7 @@ use \eMarket\Core\{
 
         <link type="image/x-icon" rel="shortcut icon" href="favicon.ico">
         <link rel="canonical" href="<?php echo Settings::canonicalPathCatalog() ?>" />
-        <link href="/ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+        <link rel="stylesheet" type="text/css" href="/ext/bootstrap/css/bootstrap5.min.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="/view/<?php echo Settings::template() ?>/catalog/style.css" media="screen" />
         <script type="text/javascript" src="/ext/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/ext/jquery/ui/jquery.ui.touch-punch.min.js"></script>
@@ -52,38 +52,32 @@ use \eMarket\Core\{
         <div id="bodyWrapper" class="container-fluid">
             <div class="row">
 
-                <?php
-                if (View::tlpc('boxes-left', 'count') > 0) {
-                    ?>
-
-                    <div id="bodyContent" class="col-lg-10 col-md-9 col-lg-push-2 col-md-push-3">
-                        <?php
-                        require_once(View::routingCatalog());
-                        ?>
-                    </div>
-
-                <?php } else { ?>
-
-                    <div id="bodyContent" class="col-xs-12">
-                        <?php
-                        require_once(View::routingCatalog());
-                        ?>
-                    </div>
-
+		<?php
+		    if (View::tlpc('boxes-left', 'count') > 0) {
+		?>
+                <div id="columnLeft" class="col-xxl-2 col-xl-3 col-lg-3">
                     <?php
-                }
-
-                if (View::tlpc('boxes-left', 'count') > 0) {
-                    ?>
-
-                    <div id="columnLeft" class="col-lg-2 col-md-3 col-lg-pull-10 col-md-pull-9">
-                        <?php
                         foreach (View::tlpc('boxes-left') as $path) {
                             require_once (ROOT . $path);
                         }
+                    ?>
+                </div>
+                <?php } ?>
+
+                <?php
+                if (View::tlpc('boxes-left', 'count') > 0) {
+                    ?>
+                    <div id="bodyContent" class="col-xxl-10 col-xl-9 col-lg-9">
+                        <?php
+                        require_once(View::routingCatalog());
                         ?>
                     </div>
-
+                <?php } else { ?>
+                    <div id="bodyContent" class="col-12">
+                        <?php
+                        require_once(View::routingCatalog());
+                        ?>
+                    </div>
                 <?php } ?>
 
             </div>
@@ -95,7 +89,7 @@ use \eMarket\Core\{
         }
         ?>
 
-        <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script type="text/javascript" src="/ext/bootstrap/js/bootstrap-confirmation.min.js"></script>
         <script type="text/javascript" src="/ext/jstree/jstree.min.js"></script>
         <?php
