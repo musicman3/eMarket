@@ -40,7 +40,7 @@ require_once('modal/add_values_attribute.php');
         </div>
         <?php if (Stock::$count_lines_merge > 0) { ?>
             <div class="card-body">
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 offset-0">
+                <div class="col-xl-3 col-lg-4 col-md-6 col-12 offset-0">
                     <form>
                         <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
                         <div class="input-group input-group-sm">
@@ -238,7 +238,7 @@ require_once('modal/add_values_attribute.php');
             ?>
 
             <div class="card-body">
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 offset-0">
+                <div class="col-xl-3 col-lg-4 col-md-6 col-12 offset-0">
                     <form>
                         <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
                         <div class="input-group input-group-sm">
@@ -280,7 +280,7 @@ require_once('modal/add_values_attribute.php');
         } else {
             ?>
             <div class="card-body">
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 offset-0">
+                <div class="col-xl-3 col-lg-4 col-md-6 col-12 offset-0">
                     <form>
                         <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
                         <div class="input-group input-group-sm">
