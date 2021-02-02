@@ -27,14 +27,14 @@ use \eMarket\Core\{
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><span class="bi-globe"></span><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('navbar_languages') ?></span></a>
-                    <ul class="dropdown-menu dropdown-menu-dark">
+                    <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
                         <?php foreach (lang('#lang_all') as $value) { ?>
                             <li><a href="<?php echo Settings::langCurrencyPath() . '&language=' . $value ?>" class="dropdown-item"><img src="/view/<?php echo Settings::template() ?>/admin/images/langflags/<?php echo $value ?>.png"> <?php echo lang('language_name', $value) ?></a></li>
                         <?php } ?>
                     </ul>
                 </li>
                 <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><span class="bi-credit-card"></span><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('navbar_currencies') ?></span></a>
-                    <ul class="dropdown-menu dropdown-menu-dark">
+                    <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
                         <?php foreach (Settings::currenciesData() as $value) { ?>
                             <li><a href="<?php echo Settings::langCurrencyPath() . '&currency_default=' . $value['id'] ?>" class="dropdown-item"><span class="bi-caret-right-fill"></span> <?php echo $value['name'] ?></a></li>
                         <?php } ?>
@@ -44,7 +44,7 @@ use \eMarket\Core\{
                     <li class="nav-item dropdown"><a href="/?route=login" class="nav-link"><span class="bi-person"></span><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('login_to_account') ?></span></a></li>
                 <?php } else { ?>
                     <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><span class="bi-person"></span><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('my_account') ?></span></a>
-                        <ul class="dropdown-menu dropdown-menu-dark">
+                        <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
                             <li><a href="/?route=login&logout=ok" class="dropdown-item"><?php echo lang('navbar_logout') ?></a></li>
                             <li class="dropdown-divider"></li>
                             <li><a href="/?route=my_account" class="dropdown-item"><?php echo lang('title_my_account_index') ?></a></li>
