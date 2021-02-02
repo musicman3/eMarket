@@ -4,18 +4,19 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 @font-face {font-family: 'Open Sans';src: url('../../../ext/fonts/OpenSans-Regular.ttf');}
 :focus {outline:none;}
-a:active, a:focus {outline: none;}
+a:active, a:focus, a:hover {outline: none;}
 button:active, button:focus {outline: none !important;}
 button::-moz-focus-inner {border: 0 !important;}
 input, textarea {outline: none;}
 input:active, textarea:active {outline: none;}
 html {position: relative;min-height: 100%;}
 body {font-family: 'Open Sans';margin-bottom: 90px;}
+a {text-decoration: none;}
 
-@media (min-width:768px){.modal-md {width:750px;}}
+@media (min-width:768px){.modal-lg {width:750px;}}
 
 #header, #bodyWrapper, #Carousel, #breadcrumb {margin-top:5px;margin-bottom:5px;}
-/*.breadcrumb {white-space: nowrap;overflow: auto;}*/
+.breadcrumb {padding: 8px 15px;list-style: none;background-color: #f5f5f5;border-radius: 4px;}
 
 #Carousel .left {border-radius: 4px;}
 #Carousel .right {border-radius: 4px;}
