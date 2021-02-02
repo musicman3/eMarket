@@ -15,9 +15,7 @@ body {font-family: 'Open Sans';margin-bottom: 90px;}
 @media (min-width:768px){.modal-md {width:750px;}}
 
 #header, #bodyWrapper, #Carousel, #breadcrumb {margin-top:5px;margin-bottom:5px;}
-.breadcrumb {white-space: nowrap;overflow: auto;}
-#header .searchbox-margin {padding-top: 18px;}
-#header .logo {padding: 0 10px 0 0;}
+/*.breadcrumb {white-space: nowrap;overflow: auto;}*/
 
 #Carousel .left {border-radius: 4px;}
 #Carousel .right {border-radius: 4px;}
