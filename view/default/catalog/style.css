@@ -19,23 +19,6 @@ body {font-family: 'Open Sans';margin-bottom: 90px;}
 #header .searchbox-margin {padding-top: 18px;}
 #header .logo {padding: 0 10px 0 0;}
 
-nav .disabled {pointer-events: none;}
-.navbar {min-height: 30px;margin-bottom: 10px;border-radius:0;}
-.navbar-left {margin-left:-15px}
-.container-fluid > .navbar-collapse {margin-left:-15px;margin-right:-15px;}
-.navbar-inverse .navbar-nav > li > a {color:#999999;}
-.navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus {color:#ffffff;}
-.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {color:#ffffff;}
-.navbar-no-margin {margin-bottom: 0 !important;}
-.navbar-no-corners {border-radius: 0 !important;border-left: none;border-right: none;}
-.navbar-inverse .dropdown-menu {background:#222222;min-width:0;}
-.navbar-inverse .dropdown-menu > li > a {color:#999999;padding: 3px 10px;}
-.navbar-inverse .dropdown-menu > li > a:focus, .navbar-inverse .dropdown-menu > li > a:hover {background:#505050;}
-.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:focus, .navbar-inverse .navbar-nav > .open > a:hover {background:#222222;}
-.nav .open > a, .nav .open > a:focus, .nav .open > a:hover {background:#505050;color:#ffffff;}
-.navbar-toggle {margin-top: 0;margin-bottom: 0;}
-@media (max-width:767px) {.navbar-nav .dropdown-menu .link > li > a {padding: 5px 10px 5px 40px;}}
-
 #Carousel .left {border-radius: 4px;}
 #Carousel .right {border-radius: 4px;}
 #Carousel .glyphicon-chevron-left {opacity:0;left:0;transition: all .5s ease;}
