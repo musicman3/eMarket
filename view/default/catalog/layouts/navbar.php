@@ -12,7 +12,7 @@ use \eMarket\Core\{
 };
 ?>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
             <span class="navbar-toggler-icon"></span>
@@ -20,20 +20,20 @@ use \eMarket\Core\{
 
         <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
             <ul class="navbar-nav">
-                <li class="nav-item dropdown"><a href="/" class="nav-link"><span class="bi-house-door"></span><span class="hidden-sm"> <?php echo lang('breadcrumb_home') ?></span></a></li>
-                <!--<li class="nav-item dropdown"><a href="#" class="nav-link"><span class="bi-"></span><span class="hidden-sm">  <?php echo lang('sale') ?></span></a></li>
-                <li class="nav-item dropdown"><a href="#" class="nav-link"><span class="bi-"></span><span class="hidden-sm"> <?php echo lang('recommended') ?></span></a></li>
-                <li class="nav-item dropdown"><a href="#" class="nav-link"><span class="bi-"></span><span class="hidden-sm"> <?php echo lang('articles') ?></span></a></li>-->
+                <li class="nav-item dropdown"><a href="/" class="nav-link"><span class="bi-house-door"></span><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('breadcrumb_home') ?></span></a></li>
+                <!--<li class="nav-item dropdown"><a href="#" class="nav-link"><span class="bi-"></span><span class="d-inline d-md-none d-lg-inline">  <?php echo lang('sale') ?></span></a></li>
+                <li class="nav-item dropdown"><a href="#" class="nav-link"><span class="bi-"></span><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('recommended') ?></span></a></li>
+                <li class="nav-item dropdown"><a href="#" class="nav-link"><span class="bi-"></span><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('articles') ?></span></a></li>-->
             </ul>
             <ul class="navbar-nav">
-                <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><span class="bi-globe"></span><span class="hidden-sm"> <?php echo lang('navbar_languages') ?></span></a>
+                <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><span class="bi-globe"></span><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('navbar_languages') ?></span></a>
                     <ul class="dropdown-menu dropdown-menu-dark">
                         <?php foreach (lang('#lang_all') as $value) { ?>
                             <li><a href="<?php echo Settings::langCurrencyPath() . '&language=' . $value ?>" class="dropdown-item"><img src="/view/<?php echo Settings::template() ?>/admin/images/langflags/<?php echo $value ?>.png"> <?php echo lang('language_name', $value) ?></a></li>
                         <?php } ?>
                     </ul>
                 </li>
-                <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><span class="bi-credit-card"></span><span class="hidden-sm"> <?php echo lang('navbar_currencies') ?></span></a>
+                <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><span class="bi-credit-card"></span><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('navbar_currencies') ?></span></a>
                     <ul class="dropdown-menu dropdown-menu-dark">
                         <?php foreach (Settings::currenciesData() as $value) { ?>
                             <li><a href="<?php echo Settings::langCurrencyPath() . '&currency_default=' . $value['id'] ?>" class="dropdown-item"><span class="bi-caret-right-fill"></span> <?php echo $value['name'] ?></a></li>
@@ -41,9 +41,9 @@ use \eMarket\Core\{
                     </ul>
                 </li>
                 <?php if (Autorize::$customer == FALSE) { ?>
-                    <li class="nav-item dropdown"><a href="/?route=login" class="nav-link"><span class="bi-person"></span><span class="hidden-sm"> <?php echo lang('login_to_account') ?></span></a></li>
+                    <li class="nav-item dropdown"><a href="/?route=login" class="nav-link"><span class="bi-person"></span><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('login_to_account') ?></span></a></li>
                 <?php } else { ?>
-                    <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><span class="bi-person"></span><span class="hidden-sm"> <?php echo lang('my_account') ?></span></a>
+                    <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><span class="bi-person"></span><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('my_account') ?></span></a>
                         <ul class="dropdown-menu dropdown-menu-dark">
                             <li><a href="/?route=login&logout=ok" class="dropdown-item"><?php echo lang('navbar_logout') ?></a></li>
                             <li class="dropdown-divider"></li>
