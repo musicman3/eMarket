@@ -52,7 +52,7 @@ h6 {font-size:14px;}
 #layouts-categories .category_block .hitarea.expandable-hitarea:before {font-family: bootstrap-icons;content: '\bi-plus';color: #0d6efd;}
 #layouts-categories .category_block .hitarea.collapsable-hitarea:before {font-family: bootstrap-icons;content: '\bi-dash';color: #0d6efd;}
 
-#columnLeft .card-header, #columnRight .card-header {font-size: 16px;padding:5px 10px;}
+#columnLeft .card-header, #columnRight .card-header {font-size: 18px;padding:5px 10px;}
 #columnLeft .card-body, #columnRight .card-body {padding:10px;}
 
 #new_products .grid-group-item, #categories_listing .grid-group-item, #categories_index .grid-group-item, #listing .grid-group-item {margin-bottom: 20px;}
