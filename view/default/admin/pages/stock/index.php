@@ -277,7 +277,39 @@ require_once('modal/add_values_attribute.php');
                 </div>
             </div>
             <?php
-        } else {
+        } elseif (Stock::$parent_id == 0) {
+            ?>
+            <div class="card-body">
+                <div class="col-xl-3 col-lg-4 col-md-6 col-12 offset-0">
+                    <form>
+                        <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
+                        <div class="input-group input-group-sm">
+                            <input type="search" id="search" name="search" placeholder="<?php echo lang('search') ?>" class="form-control">
+                            <button type="submit" class="btn btn-primary btn-sm"><span class="bi-search"></span></button>
+                        </div>
+                    </form>
+                </div>
+                <div class="clearfix"></div>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr class="align-middle">
+                                <th colspan="3">
+                                    <div><?php echo lang('no_listing') ?></div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="align-middle">
+                                <td class="sortleft-m"></td>
+                                <td class="sortleft-m"></td>
+                                <td class="options"><div class="context-one"><?php echo lang('no_listing') ?></div></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        <?php } else {
             ?>
             <div class="card-body">
                 <div class="col-xl-3 col-lg-4 col-md-6 col-12 offset-0">
