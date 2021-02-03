@@ -302,7 +302,14 @@ require_once('modal/add_values_attribute.php');
                         <tbody>
                             <tr class="align-middle">
                                 <td class="sortleft-m"></td>
-                                <td class="sortleft-m"></td>
+                                <td class="sortleft">
+                                    <form>
+                                        <div>
+                                            <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
+                                            <button name="parent_up" value="<?php echo Stock::$parent_id ?>" class="btn btn-outline-secondary btn-sm" title="" action="index.php" formmethod="get"><span class="bi-three-dots"></span></button>
+                                        </div>
+                                    </form>
+                                </td>
                                 <td class="options"><div class="context-one"><?php echo lang('no_listing') ?></div></td>
                             </tr>
                         </tbody>
