@@ -282,7 +282,7 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                         disabled: stiker === '0',
                         subMenu: [
                             {
-                                text: '<span><select name="context-menu-input-stiker">' + stikers_options + '</select></span>'
+                                text: '<span><select class="form-select" name="context-menu-input-stiker">' + stikers_options + '</select></span>'
                             },
                             {
                                 text: '<span class="bi-bookmark-plus"> ' + lang['button_stiker_add'] + '</span>',
