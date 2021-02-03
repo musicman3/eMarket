@@ -137,7 +137,7 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
 
                                 $('#index_product').modal('show');
                             } else {
-                                var modal_id = elem.id;
+                                var modal_id = modal_edit.split('category_')[1];
 
                                 var json_data = $('div#ajax_data').data('jsondatacategory');
 
