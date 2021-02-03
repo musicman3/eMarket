@@ -257,7 +257,7 @@ require_once('modal/add_values_attribute.php');
                                 </th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="sort-list">
                             <tr class="sortno align-middle">
                                 <td class="sortleft-m"></td>
                                 <td class="sortleft">
@@ -270,7 +270,7 @@ require_once('modal/add_values_attribute.php');
                                     </form>
 
                                 </td>
-                                <td class="options"><div class="context-one"><?php echo lang('no_listing') ?></div></td>
+                                <td id="parent" class="context-one options"><div><?php echo lang('no_listing') ?></div></td>
                             </tr>
                         </tbody>
                     </table>
@@ -299,11 +299,11 @@ require_once('modal/add_values_attribute.php');
                                 </th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="sort-list">
                             <tr class="align-middle">
                                 <td class="sortleft-m"></td>
                                 <td class="sortleft-m"></td>
-                                <td class="options"><div class="context-one"><?php echo lang('no_listing') ?></div></td>
+                                <td id="parent" class="context-one options"><div><?php echo lang('no_listing') ?></div></td>
                             </tr>
                         </tbody>
                     </table>
@@ -331,7 +331,7 @@ require_once('modal/add_values_attribute.php');
                                 </th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="sort-list">
                             <tr class="align-middle">
                                 <td class="sortleft-m"></td>
                                 <td class="sortleft">
@@ -342,7 +342,7 @@ require_once('modal/add_values_attribute.php');
                                         </div>
                                     </form>
                                 </td>
-                                <td class="options"><div class="context-one"><?php echo lang('no_listing') ?></div></td>
+                                <td id="parent" class="context-one options"><div><?php echo lang('no_listing') ?></div></td>
                             </tr>
                         </tbody>
                     </table>
