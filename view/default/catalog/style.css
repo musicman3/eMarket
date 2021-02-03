@@ -49,11 +49,11 @@ h6 {font-size:14px;}
 #layouts-categories .category_block .hitarea {float: right;}
 #layouts-categories .category_block .hitarea.expandable-hitarea {cursor: pointer;}
 #layouts-categories .category_block .hitarea.collapsable-hitarea {cursor: pointer;}
-#layouts-categories .category_block .hitarea.expandable-hitarea:before {font-family: 'Glyphicons Halflings';content: '\002b';color: #4586bd;opacity: 0.7;font-size: 10px;}
-#layouts-categories .category_block .hitarea.collapsable-hitarea:before {font-family: 'Glyphicons Halflings';content: '\2212';color: #4586bd;opacity: 0.7;font-size: 10px;}
+#layouts-categories .category_block .hitarea.expandable-hitarea:before {font-family: bootstrap-icons;content: '\bi-plus';color: #0d6efd;}
+#layouts-categories .category_block .hitarea.collapsable-hitarea:before {font-family: bootstrap-icons;content: '\bi-dash';color: #0d6efd;}
 
-#columnLeft .panel-heading, #columnRight .panel-heading {font-size: 16px;padding:5px 10px;}
-#columnLeft .panel-body, #columnRight .panel-body {padding:10px;}
+#columnLeft .card-header, #columnRight .card-header {font-size: 16px;padding:5px 10px;}
+#columnLeft .card-body, #columnRight .card-body {padding:10px;}
 
 #new_products .grid-group-item, #categories_listing .grid-group-item, #categories_index .grid-group-item, #listing .grid-group-item {margin-bottom: 20px;}
 #new_products .productHolder, #listing .productHolder, #categories_listing .categoriesHolder, #categories_index .categoriesHolder {border: 1px solid #dddddd;padding: 10px;border-radius: 4px;}
@@ -123,7 +123,7 @@ h6 {font-size:14px;}
 
 #alert {padding:0;margin:0;float:right;line-height:2.3;}
 
-.modal-body, .panel-body, .input-sm {font-size: 14px;}
+.modal-body, .card-body, .input-sm {font-size: 14px;}
 .modal-content {font-weight:normal;}
 .modal-header {background-color: #f5f5f5;padding: 10px 15px;border-top-left-radius: 6px;border-top-right-radius: 6px;}
 .b-left {padding-right:10px;}
