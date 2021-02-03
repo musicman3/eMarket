@@ -10,7 +10,7 @@ button::-moz-focus-inner {border: 0 !important;}
 input, textarea {outline: none;}
 input:active, textarea:active {outline: none;}
 html {position: relative;min-height: 100%;}
-body {font-family: 'Open Sans';margin-bottom: 90px;}
+body {font-family: 'Open Sans';margin-bottom: 70px;}
 a {text-decoration: none;}
 
 @media (min-width:768px){.modal-lg {width:750px;}}
@@ -129,4 +129,4 @@ h6 {font-size:14px;}
 .b-left {padding-right:10px;}
 .flexbox {display: flex;justify-content: flex-end;}
 .table-radius {overflow: hidden;border-top-left-radius: 4px;border-top-right-radius: 4px;}
-.footerwrap {position: absolute;bottom: 0;width: 100%;font-size: 13px;}
+.footerwrap {position: absolute;bottom: 0;width: 100%;font-size: 13px;height: 70px;}

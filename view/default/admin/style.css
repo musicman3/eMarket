@@ -50,7 +50,7 @@ body {background: #e4e4da;font-family: 'Open Sans';background-image: url('images
 
 #slideshow .slide-sett {padding: 0.1875rem 0.3125rem 0 0;}
 
-#footerwrap {width: 100%;background: #4c453d;border-top: 0.5rem solid #312d27;background-image: url('images/sep-half.png');text-align: center;position: absolute;bottom: 0;}
+#footerwrap {width: 100%;background: #4c453d;border-top: 0.5rem solid #312d27;background-image: url('images/sep-half.png');text-align: center;position: absolute;bottom: 0;height: 5.9375rem;}
 #footerwrap p {color: white;font-size: 0.75rem;}
 
 #color {box-sizing: content-box;}
