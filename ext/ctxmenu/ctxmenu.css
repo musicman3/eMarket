@@ -45,10 +45,11 @@
 }
 /* any menu item that has a submenu */
 .ctxmenu li.submenu::after{
-    content:'\276F';
+    content:'\bi-caret-right';
     position:absolute;
     display:block;
     top:0;
     right:0.3em;
+    font-family:bootstrap-icons;
     line-height:22px;
 }
