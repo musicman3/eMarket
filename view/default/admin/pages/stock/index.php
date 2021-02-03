@@ -172,7 +172,7 @@ require_once('modal/add_values_attribute.php');
                                             <?php if (Stock::$transfer == Settings::linesOnPage() + 1) { ?>
                                                 <div class="transfer" id="<?php echo Stock::$arr_merge['cat'][Stock::$start]['id'] ?>"><?php echo lang('categories_transfer') ?></div>
                                             <?php } else { ?>
-                                                <div class="context-one" id="<?php echo Stock::$arr_merge['cat'][Stock::$start]['id'] ?>"><?php echo Stock::$arr_merge['cat'][Stock::$start]['name'] ?></div>
+                                                <div class="context-one" id="category_<?php echo Stock::$arr_merge['cat'][Stock::$start]['id'] ?>"><?php echo Stock::$arr_merge['cat'][Stock::$start]['name'] ?></div>
                                             <?php } ?>
                                         </td>	
                                         <td class="sortleft-m"></td>
