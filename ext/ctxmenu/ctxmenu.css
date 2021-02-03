@@ -45,11 +45,10 @@
 }
 /* any menu item that has a submenu */
 .ctxmenu li.submenu::after{
-    content:'>';
+    content:'\276F';
     position:absolute;
     display:block;
     top:0;
     right:0.3em;
-    font-family:monospace;
     line-height:22px;
 }
