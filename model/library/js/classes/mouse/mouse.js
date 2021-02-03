@@ -37,15 +37,15 @@ class Mouse {
                     Mouse.sortList();
                 }
                 if (id === '.group-attributes') {
-                    var GroupAttributesObj = new GroupAttributes(lang);
+                    var GroupAttributesObj = new GroupAttributes();
                     GroupAttributesObj.sort(lang, sortable);
                 }
                 if (id === '.attribute') {
-                    var AttributesObj = new Attributes(lang);
+                    var AttributesObj = new Attributes();
                     AttributesObj.sort(lang, sortable);
                 }
                 if (id === '.values_attribute') {
-                    var ValuesAttributeObj = new ValuesAttribute(lang);
+                    var ValuesAttributeObj = new ValuesAttribute();
                     ValuesAttributeObj.sort(lang, sortable);
                 }
             }

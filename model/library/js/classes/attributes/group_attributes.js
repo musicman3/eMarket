@@ -18,8 +18,10 @@ class GroupAttributes {
      * @param lang {Json} (lang)
      */
     constructor(lang) {
-        this.modal(lang);
-        this.click(lang);
+        if (lang !== undefined) {
+            this.modal(lang);
+            this.click(lang);
+        }
     }
 
     /**
@@ -121,7 +123,7 @@ class GroupAttributes {
      * @param value {String} (string value)
      */
     static addValue(id, value) {
-        document.querySelector('.group-attributes').insertAdjacentHTML('afterbegin', 
+        document.querySelector('.group-attributes').insertAdjacentHTML('afterbegin',
                 '<tr class="groupattributes align-middle" data-id="groupattributes_' + id + '" id="groupattributes_' + id + '">' +
                 '<td class="sortyes sortleft-m"><div><span class="bi-arrows-move"> </span></div></td>' +
                 '<td class="sortleft"><button type="button" class="values-group-attribute btn btn-primary btn-sm"><span class="bi-gear"></span></button></td>' +

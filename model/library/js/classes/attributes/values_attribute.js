@@ -18,8 +18,10 @@ class ValuesAttribute {
      * @param lang {Json} (lang)
      */
     constructor(lang) {
-        this.modal(lang);
-        this.click(lang);
+        if (lang !== undefined) {
+            this.modal(lang);
+            this.click(lang);
+        }
     }
 
     /**
