@@ -1,55 +1,23 @@
 /*! ctxMenu v1.1.1 | (c) Nikolaj Kappler | https://github.com/nkappler/ctxmenu/blob/master/LICENSE !*/
 
 /* the main menu div */
-.ctxmenu{
-    border-radius: 3px 3px 3px 3px;
-    border:1px solid #999;
-    padding:2px 0;
-    box-shadow:3px 3px 3px #aaa;
-    background:#fff;
-    margin:0;
-    font-size:15px;
-    font-family:Verdana,sans-serif;
-    z-index:9999
-}
+.ctxmenu {border-radius: 3px 3px 3px 3px;border: 1px solid #999;padding: 2px 0;box-shadow: 3px 3px 3px #aaa;background: #fff;margin: 0;font-size: 15px;z-index: 9999}
+
 /* any menu item */
-.ctxmenu li{
-    margin:1px 0;
-    display:block;
-    position:relative;
-}
+.ctxmenu li {margin: 1px 0;display: block;position: relative;}
+.ctxmenu li span,.ctxmenu li a {display: flex; align-items: center !important; padding: 5px 10px;cursor: pointer;}
+.ctxmenu li span::before {padding-right: 5px ;}
+.ctxmenu [class^="bi-"]::before, .ctxmenu [class*=" bi-"]::before {color: #0D6EFD;}
 
-.ctxmenu li span,.ctxmenu li a{
-    display:block;
-    padding:2px 20px;
-    cursor:default;
-}
 /* any horizontal divider */
-.ctxmenu li a{
-    color:inherit;
-    text-decoration:none;
-    color:#e6e6e6;
-}
-/* any disabled menu item */
-.ctxmenu li.disabled{
-    color:#ccc
-}
+.ctxmenu li a {text-decoration: none;color: #e6e6e6;}
 
-.ctxmenu li.divider{
-    border-bottom:1px solid #aaa;
-    margin:5px 0;
-}
+/* any disabled menu item */
+.ctxmenu li.disabled {color: #ccc}
+.ctxmenu li.divider {border-bottom: 1px solid #aaa;margin: 3px 0;}
+
 /* any interactive item (anchor, action item, submenu)*/
-.ctxmenu li.interactive:hover{
-    background:rgba(0,0,0,0.1);
-}
+.ctxmenu li.interactive:hover {background: rgba(0,0,0,0.1);}
+
 /* any menu item that has a submenu */
-.ctxmenu li.submenu::after{
-    content:'\bi-caret-right';
-    position:absolute;
-    display:block;
-    top:0;
-    right:0.3em;
-    font-family:bootstrap-icons;
-    line-height:22px;
-}
+.ctxmenu li.submenu::after {content: '\bi-caret-right';position: absolute;top: 5px;right: 0.5em;font-family: bootstrap-icons;}
