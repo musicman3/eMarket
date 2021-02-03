@@ -31,6 +31,7 @@ class Mouse {
         var sortable = new Sortable(document.querySelector(id), {
             animation: 150,
             ghostClass: 'table-primary',
+            handle: '.sortyes',
             onEnd: function () {
                 if (id === '#sort-list') {
                     Mouse.sortList();
