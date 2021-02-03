@@ -14,12 +14,12 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
 <script type="text/javascript">
 
     $(document).ready(function () {
-        menuInit();
+        contextMenuInit();
     });
     
     ctxmenu.attach('body', []);
 
-    function menuInit() {
+    function contextMenuInit() {
         var buttons = document.querySelectorAll('.context-one');
         buttons.forEach(function (button) {
             button.addEventListener('mousedown', function (e) {
@@ -359,7 +359,7 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
     function AjaxSuccess(data) {
         setTimeout(function () {
             $('#ajax').replaceWith($(data).find('#ajax'));
-            menuInit();
+            contextMenuInit();
             Mouse.sortInitAll();
             $('[data-bs-toggle="tooltip"]').tooltip();
         }, 100);
