@@ -17,7 +17,7 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
         contextMenuInit();
     });
     
-    ctxmenu.attach('body', []);
+    ctxmenu.attach('#sort-list', []);
 
     function contextMenuInit() {
         var buttons = document.querySelectorAll('.context-one');
