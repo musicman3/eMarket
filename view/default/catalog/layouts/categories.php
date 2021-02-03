@@ -8,7 +8,7 @@ use \eMarket\Catalog\Categories;
 use \eMarket\Core\Settings;
 ?>
 
-<div id="layouts-categories" class="card">
+<div id="layouts-categories" class="card mb-2">
     <div class="card-header"><?php echo lang('categories_name') ?></div>
     <div class="card-body category_block"><?php Categories::data(); ?></div>
 </div>
