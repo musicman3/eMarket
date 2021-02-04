@@ -2,7 +2,7 @@
  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-/* global AjaxSuccess, confirmation */
+/* global AjaxSuccess, confirmation, json_data_category, json_data_product */
 
 /**
  * DiscountSale
@@ -45,10 +45,13 @@ class DiscountSale {
         var parent_id = discounts_interface[1];
         var idsx_real_parent_id = discounts_interface[2];
 
+        var json_data_product = JSON.parse(document.querySelector('#ajax_data').dataset.jsondataproduct);
+        var json_data_category = JSON.parse(document.querySelector('#ajax_data').dataset.jsondatacategory);
+
         var output = {
 
             text: '<span class="bi-star"> ' + lang['modules_discount_sale_admin_button_sale'] + '</span>',
-            disabled: discounts.length === 0 || $('div#ajax_data').data('jsondataproduct')['name'] === undefined && $('div#ajax_data').data('jsondatacategory')['name'] === undefined,
+            disabled: discounts.length === 0 || json_data_product.name === undefined && json_data_category.name === undefined,
             subMenu: [
                 {
                     text: '<span><select class="form-select" name="context-menu-input-sale">' + discounts_options + '</select></span>'
@@ -72,7 +75,7 @@ class DiscountSale {
                                 {parent_down: parent_id},
                                 AjaxSuccess);
                     },
-                    disabled: $('div#ajax_data').data('jsondataproduct')['name'] === undefined && $('div#ajax_data').data('jsondatacategory')['name'] === undefined
+                    disabled: json_data_product.name === undefined && json_data_category.name === undefined
 
                 },
                 {
@@ -101,7 +104,7 @@ class DiscountSale {
                                     AjaxSuccess);
                         };
                     },
-                    disabled: $('div#ajax_data').data('jsondataproduct')['name'] === undefined && $('div#ajax_data').data('jsondatacategory')['name'] === undefined
+                    disabled: json_data_product.name === undefined && json_data_category.name === undefined
 
                 },
                 {
@@ -129,7 +132,7 @@ class DiscountSale {
                                     AjaxSuccess);
                         };
                     },
-                    disabled: $('div#ajax_data').data('jsondataproduct')['name'] === undefined && $('div#ajax_data').data('jsondatacategory')['name'] === undefined
+                    disabled: json_data_product.name === undefined && json_data_category.name === undefined
                 }
             ]
         };
