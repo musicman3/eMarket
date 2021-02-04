@@ -10,7 +10,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title"><?php echo \eMarket\Core\Settings::titlePageGenerator() ?></h3>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal"></button>
             </div>
             <form id="form_add" class="was-validated" name="form_add" action="javascript:void(null);" onsubmit="Ajax.callAdd()">
                 <div class="modal-body">
