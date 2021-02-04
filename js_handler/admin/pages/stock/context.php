@@ -141,8 +141,6 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                             } else {
                                 var modal_id = modal_edit.split('category_')[1];
 
-                                json_data_category
-
                                 for (var x = 0; x < json_data_category['name'].length; x++) {
                                     document.querySelector('#name_categories_stock_' + x).value = json_data_category.name[x][modal_id];
                                 }
