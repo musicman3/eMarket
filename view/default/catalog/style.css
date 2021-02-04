@@ -3,7 +3,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 @font-face {font-family: 'Open Sans';src: url('../../../ext/fonts/OpenSans-Regular.ttf');}
-:focus {outline:none;}
+:focus {outline: none;}
 a:active, a:focus, a:hover {outline: none;}
 button:active, button:focus {outline: none !important;}
 button::-moz-focus-inner {border: 0 !important;}
@@ -13,13 +13,13 @@ html {position: relative;min-height: 100%;}
 body {font-family: 'Open Sans';margin-bottom: 70px;}
 a {text-decoration: none;}
 
-@media (min-width:768px){.modal-lg {width:750px;}}
+@media (min-width: 768px){.modal-lg {width: 750px;}}
 
-#header, #bodyWrapper, #Carousel, #breadcrumb {margin-top:5px;margin-bottom:5px;}
+#header, #bodyWrapper, #Carousel, #breadcrumb {margin-top: 5px;margin-bottom: 5px;}
 .breadcrumb {padding: 8px 15px;list-style: none;background-color: #f5f5f5;border-radius: 4px;}
 
-#Carousel .bi-chevron-left, #Carousel .bi-chevron-right {opacity:0;}
-#Carousel:hover .bi-chevron-left, #Carousel:hover .bi-chevron-right {opacity:1;}
+#Carousel .bi-chevron-left, #Carousel .bi-chevron-right {opacity: 0;}
+#Carousel:hover .bi-chevron-left, #Carousel:hover .bi-chevron-right {opacity: 1;}
 #Carousel .bi-chevron-left, #Carousel .bi-chevron-right {font-size: 30px;}
 #Carousel .carousel-inner {border-radius: 4px;}
 #Carousel .slide-text-anime h3 {animation: anime-H3 1.3s ease-out;transform: translate(0); }
@@ -52,8 +52,8 @@ h6 {font-size: 14px;}
 #layouts-categories .category_block .hitarea.expandable-hitarea:before {font-family: bootstrap-icons;content: '\bi-plus';color: #0d6efd;}
 #layouts-categories .category_block .hitarea.collapsable-hitarea:before {font-family: bootstrap-icons;content: '\bi-dash';color: #0d6efd;}
 
-#columnLeft .card-header, #columnRight .card-header {font-size: 20px;padding:5px 10px;}
-#columnLeft .card-body, #columnRight .card-body {padding:10px;}
+#columnLeft .card-header, #columnRight .card-header {font-size: 20px;padding: 5px 10px;}
+#columnLeft .card-body, #columnRight .card-body {padding: 10px;}
 
 #new_products .grid-group-item, #categories_listing .grid-group-item, #categories_index .grid-group-item, #listing .grid-group-item {/*margin-bottom: 20px;*/}
 #new_products .productHolder, #listing .productHolder, #categories_listing .categoriesHolder, #categories_index .categoriesHolder {border: 1px solid #dddddd;padding: 10px;border-radius: 4px;}
@@ -86,11 +86,11 @@ h6 {font-size: 14px;}
 #listing .list-group-item {border: none;padding: 0px 15px;/*margin-bottom: 20px;*/}
 #listing .list-group-item img {float: left;margin-right: 100px;}
 #listing .list-group-item .item-price {color: #000000;font-weight: 600;margin-bottom: 10px;}
-#listing .list-group-item .caption {margin-top:-10px;float: left;}
-#listing .list-group-item .block-button {float:right;}
+#listing .list-group-item .caption {margin-top: -10px;float: left;}
+#listing .list-group-item .block-button {float: right;}
 #listing .grid-group-item .item-price {color: #000000;font-weight: 600;margin-bottom: 10px;text-align: center;}
 #listing .grid-group-item .block-button {margin-left: -5px;margin-right: -5px;}
-#listing .grid-group-item .buy-now {float:right;}
+#listing .grid-group-item .buy-now {float: right;}
 #listing .grid-group-item .item-heading {text-align: center;}
 #listing .grid-group-item .item-text {display: none;}
 #listing .grid-group-item img {display: block;margin-right: auto;margin-left: auto;}
@@ -100,10 +100,10 @@ h6 {font-size: 14px;}
 @media (max-width:429px) {#listing .navigate-normal {display: none !important;}}
 @media (min-width:430px) {#listing .navigate-mini {display: none !important;}}
 @media (max-width:529px) {#listing .list-group-item img {margin-bottom: 10px;}}
-#listing .dropdown-menu > li > a {color: #000000;padding: 3px 10px;cursor:pointer;}
+#listing .dropdown-menu > li > a {color: #000000;padding: 3px 10px;cursor: pointer;}
 #listing .result-inner {margin: 5px 0 5px 0;}
 #listing .item-text ul {list-style: none;padding: 0;margin: 0;}
-#listing .check-box {margin:8px 0 0 0;}
+#listing .check-box {margin: 8px 0 0 0;}
 #listing .quantity {all: unset;appearance: textfield;width: 35px;text-align: center;vertical-align: middle;border: 1px solid #2e6da4;border-radius: 3px;padding: 6px 0 6px 0;}
 #listing .buy-now {padding: 6px 9px;}
 #listing .labelsblock {position: absolute;margin: -5px 0 0 -5px;}
@@ -122,9 +122,9 @@ h6 {font-size: 14px;}
 
 #panel_attribute .selector {width: 30%}
 
-#alert {padding:0;margin:0;float:right;line-height:2.3;}
+#alert {padding:0;margin:0;float: right;line-height: 2.3;}
 
-.modal-content {font-size: 14px;font-weight:normal;}
+.modal-content {font-size: 14px;font-weight: normal;}
 .modal-header {background-color: #f5f5f5;padding: 10px 15px;}
 .table-radius {overflow: hidden;border-top-left-radius: 4px;border-top-right-radius: 4px;}
 .form-text {font-size: 12px}
