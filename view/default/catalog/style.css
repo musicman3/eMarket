@@ -16,7 +16,7 @@ a {text-decoration: none;}
 @media (min-width: 768px){.modal-lg {width: 750px;}}
 
 #header, #bodyWrapper, #Carousel, #breadcrumb {margin-top: 5px;margin-bottom: 5px;}
-.breadcrumb {padding: 8px 15px;list-style: none;background-color: #f5f5f5;border-radius: 4px;}
+.breadcrumb {padding: 8px 15px;border-radius: 4px;}
 
 #Carousel .bi-chevron-left, #Carousel .bi-chevron-right {opacity: 0;}
 #Carousel:hover .bi-chevron-left, #Carousel:hover .bi-chevron-right {opacity: 1;}
@@ -91,7 +91,7 @@ h6 {font-size: 14px;}
 #listing .grid-group-item .item-price {color: #000000;font-weight: 600;margin-bottom: 10px;text-align: center;}
 #listing .grid-group-item .block-button {margin-left: -5px;margin-right: -5px;}
 #listing .grid-group-item .buy-now {float: right;}
-#listing .grid-group-item .item-heading {text-align: center;}
+#listing .grid-group-item .item-heading {text-align: center;margin-top: 8px;}
 #listing .grid-group-item .item-text {display: none;}
 #listing .grid-group-item img {display: block;margin-right: auto;margin-left: auto;}
 #listing .navigate-normal, #listing .navigate-mini {margin-top: -2px;}
@@ -124,8 +124,10 @@ h6 {font-size: 14px;}
 
 #alert {padding:0;margin:0;float: right;line-height: 2.3;}
 
+.well-text {padding: 15px 9px;border-radius: 4px;border: 1px solid rgba(0,0,0,.125);}
+.well {padding: 8px;border-radius: 4px;border: 1px solid rgba(0,0,0,.125);}
 .modal-content {font-size: 14px;font-weight: normal;}
 .modal-header {background-color: #f5f5f5;padding: 10px 15px;}
 .table-radius {overflow: hidden;border-top-left-radius: 4px;border-top-right-radius: 4px;}
 .form-text {font-size: 12px}
-.footerwrap {position: absolute;bottom: 0;width: 100%;font-size: 13px;height: 70px;}
+.footerwrap {position: absolute;bottom: 0;width: 100%;font-size: 14px;height: 70px;}

@@ -75,10 +75,8 @@ require_once('modal/index.php')
     </div>  
 <?php } else { ?>
     <div id="cart" class="contentText">
-        <div class="card bg-light">
-            <div class="card-body">
-                <p class="card-text"><?php echo lang('cart_shopping_cart_empty') ?></p>
-            </div>
+        <div class="well-text bg-light">
+            <p class="card-text"><?php echo lang('cart_shopping_cart_empty') ?></p>
         </div>
     </div>
 <?php }
