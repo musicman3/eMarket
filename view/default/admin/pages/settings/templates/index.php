@@ -20,7 +20,7 @@ use \eMarket\Admin\Templates;
         <div class="card-body">
 
             <div class="row">
-		<div class="col-2">
+		<div class="col-auto">
 		    <div class="input-group input-group-sm">
 			<span class="input-group-text"><span class="bi-grid-fill"></span></span>
 			<form method="get" class="was-validated" name="select_template" action="index.php">
