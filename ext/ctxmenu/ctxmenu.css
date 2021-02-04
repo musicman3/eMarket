@@ -8,13 +8,13 @@
 .ctxmenu li span,.ctxmenu li a {display: flex; align-items: center !important; padding: 5px 10px;cursor: pointer;}
 .ctxmenu li span::before {padding-right: 5px ;}
 .ctxmenu [class^="bi-"]::before, .ctxmenu [class*=" bi-"]::before {color: #0D6EFD;}
+.ctxmenu li a {text-decoration: none;color: #e6e6e6;}
 
 /* any horizontal divider */
-.ctxmenu li a {text-decoration: none;color: #e6e6e6;}
+.ctxmenu li.divider {border-bottom: 1px solid #aaa;margin: 3px 0;}
 
 /* any disabled menu item */
 .ctxmenu li.disabled {color: #ccc}
-.ctxmenu li.divider {border-bottom: 1px solid #aaa;margin: 3px 0;}
 
 /* any interactive item (anchor, action item, submenu)*/
 .ctxmenu li.interactive:hover {background: rgba(0,0,0,0.1);}
