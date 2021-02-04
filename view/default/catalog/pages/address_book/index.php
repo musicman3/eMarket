@@ -25,51 +25,53 @@ require_once('modal/index.php')
      data-countries='<?php echo AddressBook::$countries_data_json ?>'
      ></div>
 
-<div class="table-responsive">
-    <table class="table table-hover">
-        <thead>
-            <tr class="align-middle">
-                <th colspan="2">
-                </th>
-                <th>
-                    <div class="d-flex justify-content-end"><a href="#index" class="btn btn-primary btn-sm" data-bs-toggle="modal"><span class="bi-plus"></span></a></div>
-                </th>
-            </tr>
-            <tr>
-                <th><?php echo lang('address_book_shipping_address') ?></th>
-                <th class="text-center"><?php echo lang('default') ?></th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            if (AddressBook::$address_data_json != FALSE) {
-                $x = 1;
-                foreach (AddressBook::$address_data as $val) {
-                    ?>
-                    <tr class="align-middle">
-                        <td><img src="/view/<?php echo Settings::template() ?>/admin/images/worldflags/<?php echo strtolower($val['alpha_2']) ?>.png" alt="<?php echo $val['countries_name'] . ', ' . $val['regions_name'] ?>" title="<?php echo $val['countries_name'] . ', ' . $val['regions_name'] ?>" width="16" height="10" /> <?php echo $val['zip'] . ', ' . $val['city'] . ', ' . $val['address'] ?></td>
-                        <?php if ($val['default'] == 1) { ?>
-                            <td class="text-center"><?php echo lang('confirm-yes') ?></td>
-                        <?php } else { ?>
-                            <td class="text-center"><?php echo lang('confirm-no') ?></td>
-                        <?php } ?>
-                        <td>
-                            <div class="gap-2 d-flex justify-content-end">
-                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#index" data-edit="<?php echo $x ?>"><span class="bi-pencil-square"></span></button>
-                                <form id="form_delete<?php echo $x ?>" name="form_delete" action="javascript:void(null);" onsubmit="Ajax.callDelete('<?php echo $x ?>')" enctype="multipart/form-data">
-                                    <input hidden name="delete" value="<?php echo $x ?>">
-                                    <button type="submit" name="delete_but" class="btn btn-primary btn-sm" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="bi-trash"> </span></button>
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
-                    <?php
-                    $x++;
-                }
-            }
-            ?>
+<div id="address_book" class="contentText">
+    <div class="table-responsive">
+	<table class="table table-hover">
+	    <thead>
+		<tr class="align-middle">
+		    <th colspan="2">
+		    </th>
+		    <th>
+			<div class="d-flex justify-content-end"><a href="#index" class="btn btn-primary btn-sm" data-bs-toggle="modal"><span class="bi-plus"></span></a></div>
+		    </th>
+		</tr>
+		<tr>
+		    <th><?php echo lang('address_book_shipping_address') ?></th>
+		    <th class="text-center"><?php echo lang('default') ?></th>
+		    <th></th>
+		</tr>
+	    </thead>
+	    <tbody>
+		<?php
+		if (AddressBook::$address_data_json != FALSE) {
+		    $x = 1;
+		    foreach (AddressBook::$address_data as $val) {
+			?>
+			<tr class="align-middle">
+			    <td><img src="/view/<?php echo Settings::template() ?>/admin/images/worldflags/<?php echo strtolower($val['alpha_2']) ?>.png" alt="<?php echo $val['countries_name'] . ', ' . $val['regions_name'] ?>" title="<?php echo $val['countries_name'] . ', ' . $val['regions_name'] ?>" width="16" height="10" /> <?php echo $val['zip'] . ', ' . $val['city'] . ', ' . $val['address'] ?></td>
+			    <?php if ($val['default'] == 1) { ?>
+				<td class="text-center"><?php echo lang('confirm-yes') ?></td>
+			    <?php } else { ?>
+				<td class="text-center"><?php echo lang('confirm-no') ?></td>
+			    <?php } ?>
+			    <td>
+				<div class="gap-2 d-flex justify-content-end">
+				    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#index" data-edit="<?php echo $x ?>"><span class="bi-pencil-square"></span></button>
+				    <form id="form_delete<?php echo $x ?>" name="form_delete" action="javascript:void(null);" onsubmit="Ajax.callDelete('<?php echo $x ?>')" enctype="multipart/form-data">
+					<input hidden name="delete" value="<?php echo $x ?>">
+					<button type="submit" name="delete_but" class="btn btn-primary btn-sm" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="bi-trash"> </span></button>
+				    </form>
+				</div>
+			    </td>
+			</tr>
+			<?php
+			$x++;
+		    }
+		}
+		?>
 
-        </tbody>
-    </table>
+	    </tbody>
+	</table>
+    </div>
 </div>
