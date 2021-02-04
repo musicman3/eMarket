@@ -87,73 +87,75 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                             var modal_edit = elem.id;
                             if (modal_edit.search('product_') > -1) {
 
-                                $('.progress-bar').css('width', 0 + '%');
-                                $('.file-upload').detach();
-                                $('#delete_image_product').val('');
-                                $('#general_image_edit_product').val('');
-                                $('#alert_messages_edit_product').empty();
+                                document.querySelectorAll('.progress-bar').forEach(e => e.setAttribute("style", "width: 0%;"));
+                                document.querySelectorAll('.file-upload').forEach(e => e.innerHTML = '');
+
+                                document.querySelector('#delete_image_product').value = '';
+                                document.querySelector('#general_image_edit_product').value = '';
                                 var modal_id = modal_edit.split('product_')[1];
-                                var json_data = $('div#ajax_data').data('jsondataproduct');
+                                var json_data = JSON.parse(document.querySelector('#ajax_data').dataset.jsondataproduct);
 
                                 $('.summernote_add').summernote(summernote_pref);
 
-                                for (var x = 0; x < json_data['name'].length; x++) {
-                                    $('#name_product_stock_' + x).val(json_data['name'][x][modal_id]);
+                                for (var x = 0; x < json_data.name.length; x++) {
+                                    document.querySelector('#name_product_stock_' + x).value = json_data.name[x][modal_id];
                                     $('#description_product_stock_' + x).summernote('code', json_data['description'][x][modal_id]);
-                                    $('#keyword_product_stock_' + x).val(json_data['keyword'][x][modal_id]);
-                                    $('#tags_product_stock_' + x).val(json_data['tags'][x][modal_id]);
+                                    document.querySelector('#keyword_product_stock_' + x).value = json_data.keyword[x][modal_id];
+                                    document.querySelector('#tags_product_stock_' + x).value = json_data.tags[x][modal_id];
                                 }
 
-                                $('#price_product_stock').val(json_data['price'][modal_id]);
-                                $('#currency_product_stock').val(json_data['currency'][modal_id]);
-                                $('#quantity_product_stock').val(json_data['quantity'][modal_id]);
-                                $('#unit_product_stock').val(json_data['units'][modal_id]);
-                                $('#model_product_stock').val(json_data['model'][modal_id]);
-                                $('#manufacturers_product_stock').val(json_data['manufacturers'][modal_id]);
+                                document.querySelector('#price_product_stock').value = json_data.price[modal_id];
+                                document.querySelector('#currency_product_stock').value = json_data.currency[modal_id];
+                                document.querySelector('#quantity_product_stock').value = json_data.quantity[modal_id];
+                                document.querySelector('#unit_product_stock').value = json_data.units[modal_id];
+                                document.querySelector('#model_product_stock').value = json_data.model[modal_id];
+                                document.querySelector('#manufacturers_product_stock').value = json_data.manufacturers[modal_id];
 
-                                if (json_data['date_available'][modal_id] === null) {
+                                if (json_data.date_available[modal_id] === null) {
                                     $('#date_available_product_stock').datepicker('setDate', '');
                                 } else {
-                                    $('#date_available_product_stock').datepicker('setDate', new Date(json_data['date_available'][modal_id]));
+                                    $('#date_available_product_stock').datepicker('setDate', new Date(json_data.date_available[modal_id]));
                                 }
 
-                                $('#tax_product_stock').val(json_data['tax'][modal_id]);
-                                $('#vendor_code_value_product_stock').val(json_data['vendor_code_value'][modal_id]);
-                                $('#vendor_codes_product_stock').val(json_data['vendor_code'][modal_id]);
-                                $('#weight_value_product_stock').val(json_data['weight_value'][modal_id]);
-                                $('#weight_product_stock').val(json_data['weight'][modal_id]);
-                                $('#min_quantity_product_stock').val(json_data['min_quantity'][modal_id]);
-                                $('#length_product_stock').val(json_data['dimension'][modal_id]);
-                                $('#value_length_product_stock').val(json_data['length'][modal_id]);
-                                $('#value_width_product_stock').val(json_data['width'][modal_id]);
-                                $('#value_height_product_stock').val(json_data['height'][modal_id]);
-                                $('#selected_attributes').val(JSON.stringify(json_data['attributes'][modal_id]));
+                                document.querySelector('#tax_product_stock').value = json_data.tax[modal_id];
+                                document.querySelector('#vendor_code_value_product_stock').value = json_data.vendor_code_value[modal_id];
+                                document.querySelector('#vendor_codes_product_stock').value = json_data.vendor_code[modal_id];
+                                document.querySelector('#weight_value_product_stock').value = json_data.weight_value[modal_id];
+                                document.querySelector('#weight_product_stock').value = json_data.weight[modal_id];
+                                document.querySelector('#min_quantity_product_stock').value = json_data.min_quantity[modal_id];
+                                document.querySelector('#length_product_stock').value = json_data.dimension[modal_id];
+                                document.querySelector('#value_length_product_stock').value = json_data.length[modal_id];
+                                document.querySelector('#value_width_product_stock').value = json_data.width[modal_id];
+                                document.querySelector('#value_height_product_stock').value = json_data.height[modal_id];
+                                document.querySelector('#selected_attributes').value = JSON.stringify(json_data.attributes[modal_id]);
 
-                                AttributesProcessing.add('admin', json_data['attributes_data'][modal_id], '<?php echo lang('#lang_all')[0] ?>');
+                                AttributesProcessing.add('admin', json_data.attributes_data[modal_id], '<?php echo lang('#lang_all')[0] ?>');
+                                
+                                document.querySelector('#edit_product').value = modal_id;
+                                document.querySelector('#add_product').value = '';
+                                FileuploadProduct.getImageToEditProduct(json_data.logo_general, json_data.logo, modal_id, 'products');
 
-                                $('#edit_product').val(modal_id);
-                                $('#add_product').val('');
-                                FileuploadProduct.getImageToEditProduct(json_data['logo_general'], json_data['logo'], modal_id, 'products');
-
-                                $('#index_product').modal('show');
+                                new bootstrap.Modal(document.querySelector('#index_product')).show();
                             } else {
                                 var modal_id = modal_edit.split('category_')[1];
 
-                                var json_data = $('div#ajax_data').data('jsondatacategory');
+                                var json_data = JSON.parse(document.querySelector('#ajax_data').dataset.jsondatacategory);
 
                                 for (var x = 0; x < json_data['name'].length; x++) {
-                                    $('#name_categories_stock_' + x).val(json_data['name'][x][modal_id]);
+                                    document.querySelector('#name_categories_stock_' + x).value = json_data.name[x][modal_id];
                                 }
                                 $('#attributes').val(json_data['attributes']);
+                                document.querySelector('#attributes').value = json_data.attributes;
+                                
+                                document.querySelector('#edit').value = modal_id;
+                                document.querySelector('#add').value = '';
 
-                                $('#edit').val(modal_id);
-                                $('#add').val('');
-                                Fileupload.getImageToEdit(json_data['logo_general'], json_data['logo'], modal_id, 'categories');
-                                sessionStorage.setItem('attributes', JSON.stringify(json_data['attributes'][modal_id]));
-                                $('#index').modal('show');
+                                Fileupload.getImageToEdit(json_data.logo_general, json_data.logo, modal_id, 'categories');
+                                sessionStorage.setItem('attributes', JSON.stringify(json_data.attributes[modal_id]));
+                                new bootstrap.Modal(document.querySelector('#index')).show();
                             }
                         },
-                        disabled: $('div#ajax_data').data('jsondataproduct')['name'] === undefined && $('div#ajax_data').data('jsondatacategory')['name'] === undefined
+                        disabled: JSON.parse(document.querySelector('#ajax_data').dataset.jsondataproduct).name === undefined && JSON.parse(document.querySelector('#ajax_data').dataset.jsondatacategory).name === undefined
                     },
 
                     {isDivider: true},
