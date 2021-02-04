@@ -53,15 +53,15 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                     {
                         text: '<span class="bi-cart-plus"> ' + lang['add_product'] + '</span>',
                         action: function () {
-                            $('#selected_attributes').val(JSON.stringify([]));
+                            document.querySelector('#selected_attributes').value = JSON.stringify([]);
                             AttributesProcessing.add('admin', attributes_category, '<?php echo lang('#lang_all')[0] ?>');
-
-                            $('#edit_product').val('');
-                            $('#add_product').val('ok');
-                            $(this).find('form').trigger('reset');
-                            $('.summernote_add').val('');
+                            
+                            document.querySelector('#edit_product').value = '';
+                            document.querySelector('#add_product').value = 'ok';
+                            document.querySelector('form').reset();
+                            document.querySelector('.summernote_add').value = '';
                             $('.summernote_add').summernote(summernote_pref);
-                            $('#index_product').modal('show');
+                            new bootstrap.Modal(document.querySelector('#index_product')).show();
                         },
                         disabled: (new URL(document.location)).searchParams.get('search') !== null || Number(parent_id) === 0
                     },
@@ -71,10 +71,10 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                     {
                         text: '<span class="bi-folder-plus"> ' + lang['add_category'] + '</span>',
                         action: function () {
-                            $('#edit').val('');
-                            $('#add').val('ok');
-                            $(this).find('form').trigger('reset');
-                            $('#index').modal('show');
+                            document.querySelector('#edit').value = '';
+                            document.querySelector('#add').value = 'ok';
+                            document.querySelector('form').reset();
+                            new bootstrap.Modal(document.querySelector('#index')).show();
                         },
                         disabled: (new URL(document.location)).searchParams.get('search') !== null
                     },
