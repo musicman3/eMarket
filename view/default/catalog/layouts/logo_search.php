@@ -13,9 +13,9 @@
         <div class="col-8">
             <form>
                 <input hidden name="route" value="listing">
-                <div class="input-group input-group-sm">
+                <div class="input-group">
                     <input type="search" id="search" name="search" placeholder="<?php echo lang('search_name') ?>" class="form-control" required>
-                    <button type="submit" class="btn btn-primary btn-sm"><span class="bi-search"></span></button>
+                    <button type="submit" class="btn btn-primary"><span class="bi-search"></span></button>
                 </div>
             </form>
         </div>
