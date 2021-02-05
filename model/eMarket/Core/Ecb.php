@@ -98,7 +98,7 @@ final class Ecb {
         }
 
         if ($total_price != $discounted_price) {
-            return '<del>' . self::formatPrice($total_price, $marker) . '</del><br><span class="label label-' . $class . '">' . self::formatPrice($discounted_price, $marker) . '</span>';
+            return '<del>' . self::formatPrice($total_price, $marker) . '</del><br><span class="badge bg-' . $class . '">' . self::formatPrice($discounted_price, $marker) . '</span>';
         }
         return self::formatPrice($total_price, $marker);
     }

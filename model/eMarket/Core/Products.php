@@ -183,13 +183,13 @@ class Products {
         $output = [];
 
         if ($date_available_marker == 'false') {
-            array_push($output, ['label label-warning', $date_available_text]);
+            array_push($output, ['badge bg-warning', $date_available_text]);
             return $output;
         } elseif ($quantity != NULL && $quantity <= 0) {
-            array_push($output, ['label label-danger', $date_available_text]);
+            array_push($output, ['badge bg-danger', $date_available_text]);
             return $output;
         } else {
-            array_push($output, ['label label-success', $date_available_text]);
+            array_push($output, ['badge bg-success', $date_available_text]);
             return $output;
         }
         return [];
