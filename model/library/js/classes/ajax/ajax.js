@@ -69,9 +69,9 @@ class Ajax {
     static closeModals(url) {
         var modals = document.querySelectorAll('.modal');
         modals.forEach(function (modal) {
-            if (bootstrap.Modal.getInstance(document.querySelector('#' + modal['id'])) !== null) {
-                bootstrap.Modal.getInstance(document.querySelector('#' + modal['id'])).hide();
-                document.querySelector('#' + modal['id']).addEventListener('hidden.bs.modal', function () {
+            if (bootstrap.Modal.getInstance(document.querySelector('#' + modal.id)) !== null) {
+                bootstrap.Modal.getInstance(document.querySelector('#' + modal.id)).hide();
+                document.querySelector('#' + modal.id).addEventListener('hidden.bs.modal', function () {
                     Ajax.getUpdate(url);
                 });
             }
