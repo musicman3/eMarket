@@ -20,28 +20,28 @@ if (Products::$products != FALSE) {
 
     <div id="products" class="contentText">
         <div class="row">
-            <div class="col-sm-6 col-xs-12">
+            <div class="col-md-6 col-12">
 
                 <div class="labelsblock">
-                    <?php foreach (ProductsCore::stikers(Products::$products, 'label-danger', 'label-success') as $stiker) { ?>
+                    <?php foreach (ProductsCore::stikers(Products::$products, 'bg-danger', 'bg-success') as $stiker) { ?>
                         <div class="<?php echo $stiker[0] ?>"><?php echo $stiker[1] ?></div>
                     <?php } ?>
                 </div>
 
-                <a href="/uploads/images/products/resize_4/<?php echo Products::$products['logo_general'] ?>" data-toggle="lightbox" data-gallery="example-gallery" data-type="image">
-                    <img src="/uploads/images/products/resize_2/<?php echo Products::$products['logo_general'] ?>" alt="<?php echo Products::$products['name'] ?>" class="img-padding img-responsive center-block">
+                <a href="/uploads/images/products/resize_4/<?php echo Products::$products['logo_general'] ?>" data-bs-toggle="lightbox" data-gallery="example-gallery" data-type="image">
+                    <img src="/uploads/images/products/resize_2/<?php echo Products::$products['logo_general'] ?>" alt="<?php echo Products::$products['name'] ?>" class="img-padding img-fluid mx-auto d-block">
                 </a>
                 <div class="row">
                     <?php foreach (Products::$images as $val) { ?>
-                        <div class="col-md-3 col-sm-4 col-xs-6">
-                            <a href="/uploads/images/products/resize_4/<?php echo $val ?>" data-toggle="lightbox" data-gallery="example-gallery" data-type="image" class="thumbnail">
-                                <img src="/uploads/images/products/resize_1/<?php echo $val ?>" alt="<?php echo Products::$products['name'] ?>">
+                        <div class="col-lg-3 col-md-4 col-6">
+                            <a href="/uploads/images/products/resize_4/<?php echo $val ?>" data-bs-toggle="lightbox" data-gallery="example-gallery" data-type="image">
+                                <img src="/uploads/images/products/resize_1/<?php echo $val ?>" alt="<?php echo Products::$products['name'] ?>" class="img-thumbnail">
                             </a>
                         </div>
                     <?php } ?>
                 </div>
             </div>
-            <div class="col-sm-6 col-xs-12 productpage">
+            <div class="col-md-6 col-12 productpage">
                 <ul>
                     <li>
                         <span class="productpage-price"><?php echo Ecb::priceInterface(Products::$products, 2) ?></span>
@@ -84,9 +84,9 @@ if (Products::$products != FALSE) {
                 </ul>
                 <hr>
                 <div>
-                    <button class="btn btn-primary" type="button" onclick="Products.pcsProduct('minus', <?php echo Products::$products['id'] ?>, <?php echo Products::$products['quantity'] ?>)"><span class="glyphicon glyphicon-minus"></span></button>
+                    <button class="btn btn-primary" type="button" onclick="Products.pcsProduct('minus', <?php echo Products::$products['id'] ?>, <?php echo Products::$products['quantity'] ?>)"><span class="bi-dash"></span></button>
                     <input id="number_<?php echo Products::$products['id'] ?>" data-placement="top" data-content="<?php echo lang('listing_no_more_in_stock') ?>" type="number" min="1" value="<?php echo Cart::maxQuantityToOrder(Products::$products) ?>" class="quantity" disabled>
-                    <button class="btn btn-primary button-plus" type="button" onclick="Products.pcsProduct('plus', <?php echo Products::$products['id'] ?>, <?php echo Cart::maxQuantityToOrder(Products::$products, 'true') ?>)"><span class="glyphicon glyphicon-plus"></span></button>
+                    <button class="btn btn-primary button-plus" type="button" onclick="Products.pcsProduct('plus', <?php echo Products::$products['id'] ?>, <?php echo Cart::maxQuantityToOrder(Products::$products, 'true') ?>)"><span class="bi-plus"></span></button>
                     <button class="btn btn-primary plus<?php echo Cart::maxQuantityToOrder(Products::$products, 'class') ?>" onclick="Products.addToCart(<?php echo Products::$products['id'] ?>, $('#number_<?php echo Products::$products['id'] ?>').val())"><?php echo lang('add_to_cart') ?></button>
                 </div>
             </div>
@@ -94,16 +94,16 @@ if (Products::$products != FALSE) {
         <div class="row">
             <div class="list-group-item">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#panel_description"><?php echo lang('product_description') ?></a></li>
-                    <li><a data-toggle="tab" href="#panel_attribute"><?php echo lang('product_specification') ?></a></li>
+                    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#panel_description"><?php echo lang('product_description') ?></a></li>
+                    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#panel_attribute"><?php echo lang('product_specification') ?></a></li>
                 </ul>
                 <div class="tab-content">
-                    <div id="panel_description" class="tab-pane fade in active">
+                    <div id="panel_description" class="tab-pane fade show active">
                         <div class="item-text"><?php echo Products::$products['description'] ?></div>
                     </div>
 
                     <input id="selected_attributes" type="hidden" name="selected_attributes" value="" />
-                    <div id="panel_attribute" class="tab-pane fade">
+                    <div id="panel_attribute" class="tab-pane fade show">
                         <div class="item-text product-attribute"></div>
                     </div>
                 </div>
@@ -117,10 +117,8 @@ if (Products::$products != FALSE) {
     <h1><?php echo lang('product_not_found') ?></h1>
 
     <div id="products" class="contentText">
-        <div class="well well-sm">
-            <div class="no">
-                <?php echo lang('product_not_found_message') ?>
-            </div>
+        <div class="well-text bg-light">
+            <p class="card-text"><?php echo lang('product_not_found_message') ?></p>
         </div>
     </div>
     <?php
