@@ -8,6 +8,6 @@
 
 <div class="container-fluid">
     <nav>
-	<ol class="breadcrumb" id="breadcrumb"></ol>
+	<ol class="breadcrumb bg-light" id="breadcrumb"></ol>
     </nav>
 </div>
