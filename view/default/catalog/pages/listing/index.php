@@ -26,10 +26,10 @@ require_once('modal/cart_message.php')
 
 <?php if (Pages::$count > 0) { ?>
     <div id="listing" class="contentText">
-        <div class="well well-sm">
+        <div class="well bg-light mb-3">
             <div class="btn-group">
-                <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-sort"></span> &nbsp;<?php echo Listing::$sort_name ?></button>
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+                <button type="button" class="btn btn-primary"><span class="bi-arrow-down-up"></span> &nbsp;<?php echo Listing::$sort_name ?></button>
+                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"></button>
                 <ul class="dropdown-menu">
                     <li><a id="default" class="sorting"><?php echo lang('listing_sort_by_default') ?></a></li>
                     <li><a id="name" class="sorting"><?php echo lang('listing_sort_by_name') ?></a></li>
@@ -37,29 +37,29 @@ require_once('modal/cart_message.php')
                     <li><a id="up" class="sorting"><?php echo lang('listing_sort_by_price_asc') ?></a></li>
                 </ul>
 
-                &nbsp;&nbsp;<input class="check-box" hidden type="checkbox" data-off-color="success" data-size="normal" data-label-text="<?php echo lang('button-view-switch') ?>" data-label-width='auto' data-on-text="<?php echo lang('button-all-switch') ?>" data-off-text="<?php echo lang('button-instock-switch') ?>" data-handle-width="auto" name="show_in_stock" id="show_in_stock"<?php echo Listing::$checked_stock ?>>
+                &nbsp;&nbsp;<input class="check-box" hidden type="checkbox" data-off-color="success" data-size="large" data-label-text="<?php echo lang('button-view-switch') ?>" data-label-width='auto' data-on-text="<?php echo lang('button-all-switch') ?>" data-off-text="<?php echo lang('button-instock-switch') ?>" data-handle-width="auto" name="show_in_stock" id="show_in_stock"<?php echo Listing::$checked_stock ?>>
             </div>
 
-            <div class="btn-group pull-right hidden-grid-list">
-                <a id="grid" class="btn btn-default item-grid active"><span class="glyphicon glyphicon-th"></span></a>
-                <a id="list" class="btn btn-default item-list"><span class="glyphicon glyphicon-th-list"></span></a>
+            <div class="btn-group float-end hidden-grid-list">
+                <a id="grid" class="btn btn-outline-secondary item-grid active"><span class="bi-grid-3x3-gap"></span></a>
+                <a id="list" class="btn btn-outline-secondary item-list"><span class="bi-list"></span></a>
             </div>
         </div>
 
-        <div id="product-data" class="row row-flex">
+        <div id="product-data" class="row">
             <?php
             for (Pages::$start; Pages::$start < Pages::$finish; Pages::$start++, Pages::lineUpdate()) {
                 ?>
-                <div class="item col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item">
+                <div class="item col-xl-3 col-lg-4 col-md-6 col-12 grid-group-item">
                     <div class="productHolder">
 
                         <div class="labelsblock">
-                            <?php foreach (Products::stikers(Pages::$table['line'], 'label-danger', 'label-success') as $stiker) { ?>
+                            <?php foreach (Products::stikers(Pages::$table['line'], 'bg-danger', 'bg-success') as $stiker) { ?>
                                 <div class="<?php echo $stiker[0] ?>"><?php echo $stiker[1] ?></div>
                             <?php } ?>
                         </div>
 
-                        <a href="/?route=products&category_id=<?php echo Pages::$table['line']['parent_id'] ?>&id=<?php echo Pages::$table['line']['id'] ?>"><img src="/uploads/images/products/resize_1/<?php echo Pages::$table['line']['logo_general'] ?>" alt="<?php echo Pages::$table['line']['name'] ?>" class="img-responsive"></a>
+                        <a href="/?route=products&category_id=<?php echo Pages::$table['line']['parent_id'] ?>&id=<?php echo Pages::$table['line']['id'] ?>"><img src="/uploads/images/products/resize_1/<?php echo Pages::$table['line']['logo_general'] ?>" alt="<?php echo Pages::$table['line']['name'] ?>" class="img-fluid mx-auto d-block"></a>
                         <div class="caption">
                             <h5 class="item-heading"><a href="/?route=products&category_id=<?php echo Pages::$table['line']['parent_id'] ?>&id=<?php echo Pages::$table['line']['id'] ?>"><?php echo Pages::$table['line']['name'] ?></a></h5>
                             <div class="item-price"><?php echo Ecb::priceInterface(Pages::$table['line'], 2) ?></div>
@@ -90,14 +90,12 @@ require_once('modal/cart_message.php')
                                 </ul>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="block-button">
-                                    <button class="btn btn-primary" type="button" onclick="ProductsListing.pcsProduct('minus', <?php echo Pages::$table['line']['id'] ?>)"><span class="glyphicon glyphicon-minus"></span></button>
-                                    <input id="number_<?php echo Pages::$table['line']['id'] ?>" data-placement="top" data-content="<?php echo lang('listing_no_more_in_stock') ?>" type="number" min="1" value="<?php echo Cart::maxQuantityToOrder(Pages::$table['line']) ?>" class="quantity" disabled>
-                                    <button class="btn btn-primary button-plus" type="button" onclick="ProductsListing.pcsProduct('plus', <?php echo Pages::$table['line']['id'] ?>, <?php echo Cart::maxQuantityToOrder(Pages::$table['line'], 'true') ?>)"><span class="glyphicon glyphicon-plus"></span></button>
-                                    <button class="btn btn-primary buy-now<?php echo Cart::maxQuantityToOrder(Pages::$table['line'], 'class') ?>" onclick="ProductsListing.addToCart(<?php echo Pages::$table['line']['id'] ?>, $('#number_<?php echo Pages::$table['line']['id'] ?>').val())"><?php echo lang('buy_now') ?></button>
-                                </div>
+                        <div class="col-12 item-button">
+                            <div class="block-button">
+                                <button class="btn btn-primary" type="button" onclick="ProductsListing.pcsProduct('minus', <?php echo Pages::$table['line']['id'] ?>)"><span class="bi-dash"></span></button>
+                                <input id="number_<?php echo Pages::$table['line']['id'] ?>" data-placement="top" data-content="<?php echo lang('listing_no_more_in_stock') ?>" type="number" min="1" value="<?php echo Cart::maxQuantityToOrder(Pages::$table['line']) ?>" class="quantity" disabled>
+                                <button class="btn btn-primary button-plus" type="button" onclick="ProductsListing.pcsProduct('plus', <?php echo Pages::$table['line']['id'] ?>, <?php echo Cart::maxQuantityToOrder(Pages::$table['line'], 'true') ?>)"><span class="bi-plus"></span></button>
+                                <button class="btn btn-primary buy-now<?php echo Cart::maxQuantityToOrder(Pages::$table['line'], 'class') ?>" onclick="ProductsListing.addToCart(<?php echo Pages::$table['line']['id'] ?>, $('#number_<?php echo Pages::$table['line']['id'] ?>').val())"><?php echo lang('buy_now') ?></button>
                             </div>
                         </div>
                     </div>
@@ -105,7 +103,7 @@ require_once('modal/cart_message.php')
             <?php } ?>  
         </div>
 
-        <div class="well well-sm">
+        <div class="well bg-light mb-3">
             <div id="nav_data" class='hidden' 
                  data-prev='<?php echo Pages::$table['navigate'][0] ?>'
                  data-next='<?php echo Pages::$table['navigate'][1] ?>'
@@ -113,48 +111,48 @@ require_once('modal/cart_message.php')
                  ></div>
             <div class="result-inner btn-group"><?php echo Pages::counterPage() ?></div>
 
-            <div class="btn-group pull-right navigate-normal">
+            <div class="btn-group float-end navigate-normal">
                 <?php if (Pages::$table['navigate'][0] > 0) { ?> 
-                    <button id="prev" type="button" class="btn btn-default navigation">&larr; <?php echo lang('button_previous') ?></button>
+                    <button id="prev" type="button" class="btn btn-outline-secondary navigation">&larr; <?php echo lang('button_previous') ?></button>
                 <?php } else { ?> 
-                    <a id="prev" class="btn btn-default disabled">&larr; <?php echo lang('button_previous') ?></a>
+                    <a id="prev" class="btn btn-outline-secondary disabled">&larr; <?php echo lang('button_previous') ?></a>
                     <?php
                 }
                 if (Pages::$table['navigate'][1] != Pages::$count) {
                     ?> 
-                    <button id="next" type="button" class="btn btn-default navigation"><?php echo lang('button_next') ?> &rarr;</button>
+                    <button id="next" type="button" class="btn btn-outline-secondary navigation"><?php echo lang('button_next') ?> &rarr;</button>
                 <?php } else { ?> 
-                    <a id="next" class="btn btn-default disabled"><?php echo lang('button_next') ?> &rarr;</a>
+                    <a id="next" class="btn btn-outline-secondary disabled"><?php echo lang('button_next') ?> &rarr;</a>
                 <?php } ?>
             </div>
-            <div class="btn-group pull-right navigate-mini">
+            <div class="btn-group float-end navigate-mini">
                 <?php if (Pages::$table['navigate'][0] > 0) { ?> 
-                    <button id="prev" type="button" class="btn btn-default navigation">&larr;</button>
+                    <button id="prev" type="button" class="btn btn-outline-secondary navigation">&larr;</button>
                 <?php } else { ?> 
-                    <a id="prev" class="btn btn-default disabled">&larr;</a>
+                    <a id="prev" class="btn btn-outline-secondary disabled">&larr;</a>
                     <?php
                 }
                 if (Pages::$table['navigate'][1] != Pages::$count) {
                     ?> 
-                    <button id="next" type="button" class="btn btn-default navigation">&rarr;</button>
+                    <button id="next" type="button" class="btn btn-outline-secondary navigation">&rarr;</button>
                 <?php } else { ?> 
-                    <a id="next" class="btn btn-default disabled">&rarr;</a>
+                    <a id="next" class="btn btn-outline-secondary disabled">&rarr;</a>
                 <?php } ?>
             </div>
         </div>
     </div>
 <?php } else { ?>
     <div id="listing" class="contentText">
-        <div class="well well-sm">
-            <div class="no">
-                <?php
-                if (Valid::inGET('search')) {
-                    echo lang('listing_no_search');
-                } else {
-                    echo lang('listing_no');
-                }
-                ?>
-            </div>
+        <div class="well-text bg-light mb-3">
+	    <p class="card-text">
+		<?php
+		if (Valid::inGET('search')) {
+		    echo lang('listing_no_search');
+		} else {
+		    echo lang('listing_no');
+		}
+		?>
+	    </p>
         </div>
     </div>
     <?php
