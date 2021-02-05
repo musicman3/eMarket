@@ -9,12 +9,12 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <div class="pull-right"><button class="close" type="button" data-dismiss="modal">×</button></div>
-                <h4 class="modal-title"><?php echo lang('register_password_recovery') ?></h4>
+                <h3 class="modal-title"><?php echo lang('register_password_recovery') ?></h3>
+                <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal"></button>
             </div>
-            <form enctype="multipart/form-data" method="post" action="">
+            <form class="was-validated" enctype="multipart/form-data" method="post" action="">
                 <div class="modal-body">
-                    <div class="has-error email">
+                    <div class="email">
                         <input class="form-control" type="email" placeholder="<?php echo lang('e_mail') ?>" id="email_for_recovery" name="email_for_recovery" required>
                     </div>
                 </div>

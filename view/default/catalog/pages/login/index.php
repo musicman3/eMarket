@@ -20,31 +20,31 @@ require_once('modal/recovery_password.php')
 
 <div id="login" class="contentText">
     <div class="row">
-        <div class="col-sm-6">
-            <div class="panel panel-info">
-                <div class="panel-body">
-                    <form enctype="multipart/form-data" method="post" action="">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <form class="was-validated" enctype="multipart/form-data" method="post" action="">
                         <legend><?php echo lang('regular_customer') ?></legend>
-                        <div class="form-group has-error email">
+                        <div class="mb-3 email">
                             <input class="form-control" type="email" placeholder="<?php echo lang('e_mail') ?>" id="email" name="email" required>
                         </div>
-                        <div class="form-group has-error password">
+                        <div class="mb-3 password">
                             <input class="form-control" type="password" minlength="7" maxlength="40" placeholder="<?php echo lang('password') ?>" id="password" name="password" required>
                         </div>
-                        <div class="form-group">
-                            <button class="btn btn-primary btn-block" type="submit"><?php echo lang('sign_in') ?></button>
+                        <div class="mb-3">
+                            <button class="btn btn-primary w-100" type="submit"><?php echo lang('sign_in') ?></button>
                         </div>
                     </form>
-                    <a class="btn btn-default" href="#forgot_password" data-toggle="modal"><?php echo lang('forgot_your_password') ?></a>
+                    <a class="btn btn-outline-secondary" href="#forgot_password" data-bs-toggle="modal"><?php echo lang('forgot_your_password') ?></a>
                 </div>
             </div>
         </div>
-        <div class="col-sm-6">
-            <div class="panel panel-info">
-                <div class="panel-body">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
                     <legend><?php echo lang('new_customer') ?></legend>
                     <p><?php echo lang('login_description') ?></p>
-                    <a href="/?route=register" class="btn btn-primary btn-block"><?php echo lang('continue') ?></a>
+                    <a href="/?route=register" class="btn btn-primary w-100"><?php echo lang('continue') ?></a>
                 </div>
             </div>
         </div>
