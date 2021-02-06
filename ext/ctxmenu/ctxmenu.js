@@ -243,11 +243,11 @@ var ContextMenu = function () {
     };
 
     ContextMenu.addStylesToDom = function addStylesToDom() {
-        var append = function append() {
+        /*var append = function append() {
             var styles = document.createElement("style");
             styles.innerHTML = ".ctxmenu{border:1px solid #999;padding:2px 0;box-shadow:3px 3px 3px #aaa;background:#fff;margin:0;font-size:15px;font-family:Verdana,sans-serif;z-index:9999}.ctxmenu li{margin:1px 0;display:block;position:relative}.ctxmenu li span,.ctxmenu li a{display:block;padding:2px 20px;cursor:default}.ctxmenu li a{color:inherit;text-decoration:none}.ctxmenu li.disabled{color:#ccc}.ctxmenu li.divider{border-bottom:1px solid #aaa;margin:5px 0}.ctxmenu li.interactive:hover{background:rgba(0,0,0,0.1)}.ctxmenu li.submenu::after{content:'>';position:absolute;display:block;top:0;right:0.3em;font-family:monospace;line-height:22px}";
             document.head.insertBefore(styles, document.head.childNodes[0]);
-        };
+        };*/
         if (document.readyState === "interactive") {
             append();
         } else {
