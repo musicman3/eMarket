@@ -52,7 +52,7 @@
                                             <div class="badge bg-primary"><?php echo lang('orders_shipping') ?></div>
                                             <div>
                                                 <small class="form-text text-muted">
-                                                    <span class="bi-cart4"></span> <span class="badge bg-success" id="description_shipping_method"></span><br>
+                                                    <span class="bi-cart4"></span> <span id="description_shipping_method"></span><br>
                                                     <span class="bi-globe"></span> <span id="description_shipping_country"></span><br>
                                                     <span class="bi-house-door-fill"></span> <span id="description_shipping_address"></span>
                                                 </small>
