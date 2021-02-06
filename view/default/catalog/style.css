@@ -100,7 +100,6 @@ h6 {font-size: 14px;}
 #listing .dropdown-menu > li > a {cursor: pointer;}
 #listing .result-inner {margin: 7px 0 7px 0;}
 #listing .item-text ul {list-style: none;padding: 0;margin: 0;}
-#listing .check-box {margin: 8px 0 0 0;}
 #listing .quantity {all: unset;appearance: textfield;width: 35px;text-align: center;vertical-align: middle;border: 1px solid #2e6da4;border-radius: 3px;padding: 6px 0 6px 0;}
 #listing .buy-now {padding: 6px 9px;}
 #listing .labelsblock {position: absolute;margin: -5px 0 0 -5px;}
