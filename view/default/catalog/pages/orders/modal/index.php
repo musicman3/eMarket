@@ -32,9 +32,9 @@
                                             <div class="badge bg-primary"><?php echo lang('orders_client') ?></div>
                                             <div>
                                                 <small class="form-text text-muted">
-                                                    <span class="bi-person-fill"></span> <span id="description_client_name"></span><br>
-                                                    <span class="bi-phone-fill"></span> <span id="description_client_phone"></span><br>
-                                                    <span class="bi-envelope-fill"></span> <span id="description_client_email"></span>
+                                                    <span class="bi-person"></span> <span id="description_client_name"></span><br>
+                                                    <span class="bi-phone"></span> <span id="description_client_phone"></span><br>
+                                                    <span class="bi-envelope"></span> <span id="description_client_email"></span>
                                                 </small>
                                             </div>
                                         </td>
@@ -42,7 +42,7 @@
                                             <div class="badge bg-primary"><?php echo lang('orders_payment_method') ?></div>
                                             <div>
                                                 <small class="form-text text-muted">
-                                                    <span class="bi-credit-card-fill"></span> <span id="description_payment_method"></span>
+                                                    <span class="bi-credit-card"></span> <span id="description_payment_method"></span>
                                                 </small>
                                             </div>
                                         </td>
@@ -54,7 +54,7 @@
                                                 <small class="form-text text-muted">
                                                     <span class="bi-truck"></span> <span id="description_shipping_method"></span><br>
                                                     <span class="bi-globe"></span> <span id="description_shipping_country"></span><br>
-                                                    <span class="bi-house-door-fill"></span> <span id="description_shipping_address"></span>
+                                                    <span class="bi-house-door"></span> <span id="description_shipping_address"></span>
                                                 </small>
                                             </div>
                                         </td>
@@ -63,7 +63,7 @@
                                             <div>
                                                 <small class="form-text text-muted">
                                                     <span class="bi-globe"></span> <span id="description_billing_country"></span><br>
-                                                    <span class="bi-house-door-fill"></span> <span id="description_billing_address"></span>
+                                                    <span class="bi-house-door"></span> <span id="description_billing_address"></span>
                                                 </small>
                                             </div>
                                         </td>
@@ -73,7 +73,7 @@
                                             <div class="badge bg-primary"><?php echo lang('orders_status') ?></div>
                                             <div>
                                                 <small class="form-text text-muted">
-                                                    <span class="bi-clock-fill"></span> <span id="description_date_purchased"></span><br>
+                                                    <span class="bi-clock"></span> <span id="description_date_purchased"></span><br>
                                                 </small>
                                             </div>
                                         </td>
