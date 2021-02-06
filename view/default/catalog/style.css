@@ -97,7 +97,7 @@ h6 {font-size: 14px;}
 @media (max-width:529px) {#listing .bootstrap-switch {display: none !important;}}
 @media (max-width:449px) {#listing .navigate-normal {display: none !important;}}
 @media (min-width:450px) {#listing .navigate-mini {display: none !important;}}
-#listing .dropdown-menu > li > a {color: #000000;padding: 3px 10px;cursor: pointer;}
+#listing .dropdown-menu > li > a {cursor: pointer;}
 #listing .result-inner {margin: 7px 0 7px 0;}
 #listing .item-text ul {list-style: none;padding: 0;margin: 0;}
 #listing .check-box {margin: 8px 0 0 0;}

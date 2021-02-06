@@ -31,10 +31,10 @@ require_once('modal/cart_message.php')
                 <button type="button" class="btn btn-primary"><span class="bi-arrow-down-up"></span> &nbsp;<?php echo Listing::$sort_name ?></button>
                 <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"></button>
                 <ul class="dropdown-menu">
-                    <li><a id="default" class="sorting"><?php echo lang('listing_sort_by_default') ?></a></li>
-                    <li><a id="name" class="sorting"><?php echo lang('listing_sort_by_name') ?></a></li>
-                    <li><a id="down" class="sorting"><?php echo lang('listing_sort_by_price_desc') ?></a></li>
-                    <li><a id="up" class="sorting"><?php echo lang('listing_sort_by_price_asc') ?></a></li>
+                    <li><a id="default" class="sorting dropdown-item"><?php echo lang('listing_sort_by_default') ?></a></li>
+                    <li><a id="name" class="sorting dropdown-item"><?php echo lang('listing_sort_by_name') ?></a></li>
+                    <li><a id="down" class="sorting dropdown-item"><?php echo lang('listing_sort_by_price_desc') ?></a></li>
+                    <li><a id="up" class="sorting dropdown-item"><?php echo lang('listing_sort_by_price_asc') ?></a></li>
                 </ul>
 
                 &nbsp;&nbsp;<input class="check-box" hidden type="checkbox" data-off-color="success" data-size="large" data-label-text="<?php echo lang('button-view-switch') ?>" data-label-width='auto' data-on-text="<?php echo lang('button-all-switch') ?>" data-off-text="<?php echo lang('button-instock-switch') ?>" data-handle-width="auto" name="show_in_stock" id="show_in_stock"<?php echo Listing::$checked_stock ?>>
