@@ -49,7 +49,7 @@
             } else {
                 var stiker = '';
             }
-            document.querySelector('#invoice').insertAdjacentHTML('beforeend', '<tr>\n\
+            document.querySelector('#invoice').insertAdjacentHTML('beforeend', '<tr class="align-middle">\n\
                                         <td class="text-left"><span class="badge bg-success">' + stiker + '</span></td>\n\
                                         <td class="text-center"><small>' + invoice[x].admin.name + '</small></td>\n\
                                         <td class="text-center"><small>' + invoice[x].admin.price + '</small></td>\n\
