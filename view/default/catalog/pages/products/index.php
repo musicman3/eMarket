@@ -94,8 +94,8 @@ if (Products::$products != FALSE) {
         <div class="row">
             <div class="list-group-item">
                 <ul class="nav nav-tabs">
-                    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#panel_description"><?php echo lang('product_description') ?></a></li>
-                    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#panel_attribute"><?php echo lang('product_specification') ?></a></li>
+                    <li class="nav-item bg-light"><a class="nav-link active" data-bs-toggle="tab" href="#panel_description"><?php echo lang('product_description') ?></a></li>
+                    <li class="nav-item bg-light"><a class="nav-link" data-bs-toggle="tab" href="#panel_attribute"><?php echo lang('product_specification') ?></a></li>
                 </ul>
                 <div class="tab-content">
                     <div id="panel_description" class="tab-pane fade show active">
