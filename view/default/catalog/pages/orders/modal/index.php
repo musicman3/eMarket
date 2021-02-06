@@ -27,7 +27,7 @@
                         <div class="table-responsive">
                             <table class="table">
                                 <tbody>
-                                    <tr>
+                                    <tr class="align-middle">
                                         <td class="text-start">
                                             <div class="badge bg-primary"><?php echo lang('orders_client') ?></div>
                                             <div>
@@ -68,7 +68,7 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <tr class="align-middle">
                                         <td class="text-start">
                                             <div class="badge bg-primary"><?php echo lang('orders_status') ?></div>
                                             <div>
@@ -96,7 +96,7 @@
 
                             <table class="table table-radius">
                                 <thead>
-                                    <tr class="bg-primary text-white">
+                                    <tr class="bg-primary text-light align-middle">
                                         <td class="text-start"><small><?php echo lang('orders_stiker') ?></small></td>
                                         <td class="text-center"><small><?php echo lang('orders_product') ?></small></td>
                                         <td class="text-center"><small><?php echo lang('orders_price') ?></small></td>
@@ -106,19 +106,19 @@
                                 </thead>
                                 <tbody id="invoice"></tbody>
                                 <tbody>
-                                    <tr>
+                                    <tr class="align-middle">
                                         <td colspan="3" class="text-end"><small><?php echo lang('orders_subtotal') ?>:</small></td>
                                         <td colspan="2" class="text-end"><small id="invoice_order_total"></small></td>
                                     </tr>
-                                    <tr>
+                                    <tr class="align-middle">
                                         <td  colspan="3" class="text-end"><small><?php echo lang('orders_estimated_taxes') ?></small></td>
                                         <td  colspan="2" class="text-end"><small id="invoice_taxes"></small></td>
                                     </tr>
-                                    <tr>
+                                    <tr class="align-middle">
                                         <td colspan="3" class="text-end"><small class="badge bg-success" id="invoice_shipping_method"></small></td>
                                         <td colspan="2" class="text-end"><small id="invoice_shipping_price"></small></td>
                                     </tr>
-                                    <tr>
+                                    <tr class="align-middle">
                                         <td colspan="3" class="text-end"><div class="badge bg-danger"><?php echo lang('orders_total') ?>:</div></td>
                                         <td colspan="2" class="text-end"><small class="badge bg-danger" id="invoice_order_total_to_pay"></small></td>
                                     </tr>
