@@ -23,7 +23,7 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer justify-content-evenly">
                 <button type="submit" class="btn btn-primary btn-sm" data-bs-dismiss="modal"><?php echo lang('button_continue_shopping') ?></button> <button type="submit" class="btn btn-success btn-sm" onClick='location.href = "/?route=cart"'><?php echo lang('button_proceed_to_checkout') ?></button>
             </div>
         </div>
