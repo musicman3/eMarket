@@ -2,7 +2,7 @@
  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-/* global bootstrap */
+/* global bootstrap, fetch */
 
 /**
  * Ajax requests
@@ -13,6 +13,13 @@
  */
 class Ajax {
 
+    /**
+     * Ajax POST
+     *
+     * @param url {String} (url)
+     * @param data {Obj} (data)
+     * @param reload {String} (reload marker)
+     */
     static async postData(url = '', data = {}, reload = null) {
         const response = await fetch(url, {
             method: 'POST',
