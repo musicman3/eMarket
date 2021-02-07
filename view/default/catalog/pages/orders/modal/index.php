@@ -27,7 +27,7 @@
                         <div class="table-responsive">
                             <table class="table">
                                 <tbody>
-                                    <tr class="align-middle">
+                                    <tr>
                                         <td class="text-start">
                                             <div class="badge bg-primary"><?php echo lang('orders_client') ?></div>
                                             <div>
@@ -68,7 +68,7 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr class="align-middle">
+                                    <tr>
                                         <td class="text-start">
                                             <div class="badge bg-primary"><?php echo lang('orders_status') ?></div>
                                             <div>

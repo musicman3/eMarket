@@ -30,7 +30,7 @@ use \eMarket\Admin\Orders;
                             <div class="table-responsive">
                                 <table class="table">
                                     <tbody>
-                                        <tr class="align-middle">
+                                        <tr>
                                             <td class="text-start">
                                                 <div class="badge bg-primary"><?php echo lang('orders_client') ?></div>
                                                 <div>
@@ -71,7 +71,7 @@ use \eMarket\Admin\Orders;
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr class="align-middle">
+                                        <tr>
                                             <td class="text-start">
                                                 <div class="badge bg-primary"><?php echo lang('orders_status') ?></div>
                                                 <div>
@@ -99,7 +99,7 @@ use \eMarket\Admin\Orders;
 
                                 <table class="table table-radius">
                                     <thead>
-                                        <tr class="align-middle bg-primary text-light">
+                                        <tr class="bg-primary text-light align-middle">
                                             <td class="text-start"><small><?php echo lang('orders_stiker') ?></small></td>
                                             <td class="text-center"><small><?php echo lang('orders_product') ?></small></td>
                                             <td class="text-center"><small><?php echo lang('orders_price') ?></small></td>
