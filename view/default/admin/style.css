@@ -46,7 +46,7 @@ body {background: #e4e4da;font-family: 'Open Sans';background-image: url('images
 #index_product .table > tbody > tr > td.selector {width: 30%;}
 #index_product .input-group-text {padding: 0.1875rem 0.3125rem;}
 
-#alert {padding: 0;margin: 0;float: right;line-height: 1.4;}
+#alert {padding: 4px;margin: 0;float: right;line-height: 1.4;}
 
 #slideshow .slide-sett {padding: 0.1875rem 0.3125rem 0 0;}
 
