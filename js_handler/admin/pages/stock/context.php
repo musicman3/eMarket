@@ -64,6 +64,7 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                             document.querySelector('form').reset();
                             document.querySelector('.summernote_add').value = '';
                             $('.summernote_add').summernote(summernote_pref);
+                            ctxmenu.closeMenu();
                             new bootstrap.Modal(document.querySelector('#index_product')).show();
                         },
                         disabled: (new URL(document.location)).searchParams.get('search') !== null || Number(parent_id) === 0
@@ -77,6 +78,7 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                             document.querySelector('#edit').value = '';
                             document.querySelector('#add').value = 'ok';
                             document.querySelector('form').reset();
+                            ctxmenu.closeMenu();
                             new bootstrap.Modal(document.querySelector('#index')).show();
                         },
                         disabled: (new URL(document.location)).searchParams.get('search') !== null
@@ -136,7 +138,8 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                 document.querySelector('#edit_product').value = modal_id;
                                 document.querySelector('#add_product').value = '';
                                 FileuploadProduct.getImageToEditProduct(json_data_product.logo_general, json_data_product.logo, modal_id, 'products');
-
+                                
+                                ctxmenu.closeMenu();
                                 new bootstrap.Modal(document.querySelector('#index_product')).show();
                             } else {
                                 var modal_id = modal_edit.split('category_')[1];
@@ -152,6 +155,7 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
 
                                 Fileupload.getImageToEdit(json_data_category.logo_general, json_data_category.logo, modal_id, 'categories');
                                 sessionStorage.setItem('attributes', JSON.stringify(json_data_category.attributes[modal_id]));
+                                ctxmenu.closeMenu();
                                 new bootstrap.Modal(document.querySelector('#index')).show();
                             }
                         },
