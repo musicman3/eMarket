@@ -49,14 +49,16 @@ class DiscountSale {
         var json_data_category = JSON.parse(document.querySelector('#ajax_data').dataset.jsondatacategory);
 
         var output = {
-
+            // ---------- Sale ----------
             text: '<span class="bi-star"> ' + lang['modules_discount_sale_admin_button_sale'] + '</span>',
             disabled: discounts.length === 0 || json_data_product.name === undefined && json_data_category.name === undefined,
             subMenu: [
                 {
+                    // ---------- Sale select ----------
                     html: '<span><select class="form-select" name="context-menu-input-sale">' + discounts_options + '</select></span>'
                 },
                 {
+                    // ---------- Add to sale ----------
                     text: '<span class="bi-star-fill"> ' + lang['modules_discount_sale_admin_button_sale_on'] + '</span>',
                     action: function () {
                         var selected_id = $('select[name="context-menu-input-sale"] option:selected').val();
@@ -79,6 +81,7 @@ class DiscountSale {
 
                 },
                 {
+                    // ---------- Remove from sale ----------
                     text: '<span class="bi-star"> ' + lang['modules_discount_sale_admin_button_sale_off'] + '</span>',
                     action: function () {
                         $('#confirm').modal('show');
@@ -107,6 +110,7 @@ class DiscountSale {
 
                 },
                 {
+                    // ---------- Remove all sales ----------
                     text: '<span class="bi-lightning-fill"> ' + lang['modules_discount_sale_admin_button_sale_off_all'] + '</span>',
                     action: function () {
                         $('#confirm').modal('show');
