@@ -54,7 +54,7 @@ class DiscountSale {
             disabled: discounts.length === 0 || json_data_product.name === undefined && json_data_category.name === undefined,
             subMenu: [
                 {
-                    text: '<span><select class="form-select" name="context-menu-input-sale">' + discounts_options + '</select></span>'
+                    html: '<span><select class="form-select" name="context-menu-input-sale">' + discounts_options + '</select></span>'
                 },
                 {
                     text: '<span class="bi-star-fill"> ' + lang['modules_discount_sale_admin_button_sale_on'] + '</span>',
