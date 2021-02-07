@@ -54,6 +54,7 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
 
                 var menuDefinition = [
                     {
+                        // ---------- Add product ----------
                         text: '<span class="bi-cart-plus"> ' + lang['add_product'] + '</span>',
                         action: function () {
                             document.querySelector('#selected_attributes').value = JSON.stringify([]);
@@ -72,6 +73,7 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                     {isDivider: true},
 
                     {
+                        // ---------- Add Category ----------
                         text: '<span class="bi-folder-plus"> ' + lang['add_category'] + '</span>',
                         action: function () {
                             document.querySelector('#edit').value = '';
@@ -85,6 +87,7 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                     {isDivider: true},
 
                     {
+                        // ---------- Edit ----------
                         text: '<span class="bi-pencil-square"> ' + lang['button_edit'] + '</span>',
                         action: function () {
                             var modal_edit = elem.id;
@@ -136,7 +139,6 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                 document.querySelector('#edit_product').value = modal_id;
                                 document.querySelector('#add_product').value = '';
                                 FileuploadProduct.getImageToEditProduct(json_data_product.logo_general, json_data_product.logo, modal_id, 'products');
-
                                 new bootstrap.Modal(document.querySelector('#index_product')).show();
                             } else {
                                 var modal_id = modal_edit.split('category_')[1];
@@ -161,10 +163,12 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                     {isDivider: true},
 
                     {
+                        // ---------- Action ----------
                         text: '<span class="bi-box-arrow-in-right"> ' + lang['button_action'] + '</span>',
                         disabled: json_data_product.name === undefined && json_data_category.name === undefined && session === '0',
                         subMenu: [
                             {
+                                // ---------- Show ----------
                                 text: '<span class="bi-eye"> ' + lang['button_show'] + '</span>',
                                 action: function () {
                                     var idArray = [];
@@ -172,7 +176,6 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                         if (!$(this).children().hasClass('inactive'))
                                             idArray[i] = this.id;
                                     });
-
                                     Ajax.postData(window.location.href, {
                                         idsx_status_on_id: idArray,
                                         idsx_real_parent_id: idsx_real_parent_id,
@@ -181,12 +184,11 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                     Ajax.postData(window.location.href, {
                                         parent_down: parent_id
                                     });
-
                                 },
                                 disabled: json_data_product.name === undefined && json_data_category.name === undefined
-
                             },
                             {
+                                // ---------- Hide ----------
                                 text: '<span class="bi-eye-slash"> ' + lang['button_hide'] + '</span>',
                                 action: function () {
                                     var idArray = [];
@@ -194,7 +196,6 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                         if (!$(this).children().hasClass('inactive'))
                                             idArray[i] = this.id;
                                     });
-
                                     Ajax.postData(window.location.href, {
                                         idsx_status_off_id: idArray,
                                         idsx_real_parent_id: idsx_real_parent_id,
@@ -203,12 +204,11 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                     Ajax.postData(window.location.href, {
                                         parent_down: parent_id
                                     });
-
                                 },
                                 disabled: json_data_product.name === undefined && json_data_category.name === undefined
-
                             },
                             {
+                                // ---------- Cut ----------
                                 text: '<span class="bi-scissors"> ' + lang['cut'] + '</span>',
                                 action: function () {
                                     Ajax.postData(window.location.href, {idsx_cut_marker: 'cut'}, false);
@@ -217,7 +217,6 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                         if (!$(this).children().hasClass('inactive'))
                                             idArray[i] = this.id;
                                     });
-
                                     Ajax.postData(window.location.href, {
                                         idsx_real_parent_id: idsx_real_parent_id,
                                         idsx_cut_id: idArray,
@@ -228,9 +227,9 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                     });
                                 },
                                 disabled: json_data_product.name === undefined && json_data_category.name === undefined
-
                             },
                             {
+                                // ---------- Paste ----------
                                 text: '<span class="bi-clipboard-check"> ' + lang['paste'] + '</span>',
                                 action: function () {
                                     Ajax.postData(window.location.href, {
@@ -243,12 +242,12 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                     });
                                 },
                                 disabled: session === '0' || (new URL(document.location)).searchParams.get('search') !== null
-
                             },
 
                             {isDivider: true},
 
                             {
+                                // ---------- Delete ----------
                                 text: '<span class="bi-trash"> ' + lang['button_delete'] + '</span>',
                                 action: function () {
                                     $('#confirm').modal('show');
@@ -272,22 +271,20 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                     };
                                 },
                                 disabled: json_data_product.name === undefined && json_data_category.name === undefined
-
                             }
-
                         ]
-                    },
-
-<?php echo \eMarket\Core\Modules::discountRouter('functions') ?>,
-
+                    },<?php echo \eMarket\Core\Modules::discountRouter('functions') ?>, // ---------- Discounts ----------
                     {
+                        // ---------- Stiker ----------
                         text: '<span class="bi-bookmark"> ' + lang['button_stiker'] + '</span>',
                         disabled: stiker === '0',
                         subMenu: [
                             {
+                                // ---------- Stiker select ----------
                                 html: '<span><select class="form-select" name="context-menu-input-stiker">' + stikers_options + '</select></span>'
                             },
                             {
+                                // ---------- Add stiker ----------
                                 text: '<span class="bi-bookmark-plus"> ' + lang['button_stiker_add'] + '</span>',
                                 action: function () {
                                     var selected_id = $('select[name="context-menu-input-stiker"] option:selected').val();
@@ -296,7 +293,6 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                         if (!$(this).children().hasClass('inactive'))
                                             idArray[i] = this.id;
                                     });
-
                                     Ajax.postData(window.location.href, {
                                         idsx_stiker_on_id: idArray,
                                         idsx_real_parent_id: idsx_real_parent_id,
@@ -308,9 +304,9 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                     });
                                 },
                                 disabled: false
-
                             },
                             {
+                                // ---------- Delete stiker ----------
                                 text: '<span class="bi-bookmark-dash"> ' + lang['button_stiker_delete'] + '</span>',
                                 action: function () {
                                     $('#confirm').modal('show');
@@ -337,24 +333,20 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                     };
                                 },
                                 disabled: false
-
                             }
-
                         ]
                     },
 
                     {isDivider: true},
 
                     {
+                    // ---------- Exit ----------
                         text: '<span class="bi-box-arrow-right"> ' + lang['menu_exit'] + '</span>',
                         action: function () {
-
                         },
                         disabled: false
                     }
-
                 ];
-
                 ctxmenu.update('#' + elem.id, menuDefinition);
             });
         });
