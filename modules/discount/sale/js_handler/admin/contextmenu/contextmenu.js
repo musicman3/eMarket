@@ -2,7 +2,7 @@
  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-/* global AjaxSuccess, confirmation, json_data_category, json_data_product */
+/* global AjaxSuccess, confirmation, json_data_category, json_data_product, Ajax */
 
 /**
  * DiscountSale
@@ -60,20 +60,20 @@ class DiscountSale {
                     text: '<span class="bi-star-fill"> ' + lang['modules_discount_sale_admin_button_sale_on'] + '</span>',
                     action: function () {
                         var selected_id = $('select[name="context-menu-input-sale"] option:selected').val();
-                        jQuery.ajaxSetup({async: false});
                         var idArray = [];
                         $(".option").each(function (i) {
                             if (!$(this).children().hasClass('inactive'))
                                 idArray[i] = this.id;
                         });
-                        jQuery.post(window.location.href,
-                                {idsx_sale_on_id: idArray,
-                                    idsx_real_parent_id: idsx_real_parent_id,
-                                    sale: selected_id,
-                                    idsx_sale_on_key: 'On'});
-                        jQuery.get(window.location.href,
-                                {parent_down: parent_id},
-                                AjaxSuccess);
+                        Ajax.postData(window.location.href, {
+                            idsx_sale_on_id: idArray,
+                            idsx_real_parent_id: idsx_real_parent_id,
+                            sale: selected_id,
+                            idsx_sale_on_key: 'On'
+                        }, false);
+                        Ajax.postData(window.location.href, {
+                            parent_down: parent_id
+                        });
                     },
                     disabled: json_data_product.name === undefined && json_data_category.name === undefined
 
@@ -87,21 +87,20 @@ class DiscountSale {
                         var selected_id = $('select[name="context-menu-input-sale"] option:selected').val();
                         confirmation.onclick = function () {
                             $('#confirm').modal('hide');
-
-                            jQuery.ajaxSetup({async: false});
                             var idArray = [];
                             $(".option").each(function (i) {
                                 if (!$(this).children().hasClass('inactive'))
                                     idArray[i] = this.id;
                             });
-                            jQuery.post(window.location.href,
-                                    {idsx_sale_off_id: idArray,
-                                        idsx_real_parent_id: idsx_real_parent_id,
-                                        sale: selected_id,
-                                        idsx_sale_off_key: 'Off'});
-                            jQuery.get(window.location.href,
-                                    {parent_down: parent_id},
-                                    AjaxSuccess);
+                            Ajax.postData(window.location.href, {
+                                idsx_sale_off_id: idArray,
+                                idsx_real_parent_id: idsx_real_parent_id,
+                                sale: selected_id,
+                                idsx_sale_off_key: 'Off'
+                            }, false);
+                            Ajax.postData(window.location.href, {
+                                parent_down: parent_id
+                            });
                         };
                     },
                     disabled: json_data_product.name === undefined && json_data_category.name === undefined
@@ -117,19 +116,20 @@ class DiscountSale {
                         confirmation.onclick = function () {
                             $('#confirm').modal('hide');
                             var selected_id = $('select[name="context-menu-input-sale"] option:selected').val();
-                            jQuery.ajaxSetup({async: false});
                             var idArray = [];
                             $(".option").each(function (i) {
                                 if (!$(this).children().hasClass('inactive'))
                                     idArray[i] = this.id;
                             });
-                            jQuery.post(window.location.href,
-                                    {idsx_sale_off_all_id: idArray,
-                                        idsx_real_parent_id: idsx_real_parent_id,
-                                        idsx_sale_off_all_key: 'OffAll'});
-                            jQuery.get(window.location.href,
-                                    {parent_down: parent_id},
-                                    AjaxSuccess);
+
+                            Ajax.postData(window.location.href, {
+                                idsx_sale_off_all_id: idArray,
+                                idsx_real_parent_id: idsx_real_parent_id,
+                                idsx_sale_off_all_key: 'OffAll'
+                            }, false);
+                            Ajax.postData(window.location.href, {
+                                parent_down: parent_id
+                            });
                         };
                     },
                     disabled: json_data_product.name === undefined && json_data_category.name === undefined

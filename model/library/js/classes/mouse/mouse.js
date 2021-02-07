@@ -16,9 +16,10 @@ class Mouse {
      **@param lang {Array} (language)
      */
     constructor(lang) {
-
-        this.lang = lang;
-        Mouse.sortInitAll(lang);
+        if (lang !== undefined) {
+            this.lang = lang;
+            Mouse.sortInitAll(lang);
+        }
     }
 
     /**

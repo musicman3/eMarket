@@ -64,4 +64,21 @@ class Valid {
         }
     }
 
+    /**
+     * JSON POST validation
+     *
+     * @param string $input Input data
+     * @return array
+     */
+    public static function inPostJson($input) {
+        $postData = file_get_contents('php://input');
+        if (is_string($postData) && is_array(json_decode($postData, true)) && (json_last_error() == JSON_ERROR_NONE)) {
+            $data = json_decode($postData, true);
+            if (isset($data[$input])) {
+                return $data[$input];
+            }
+        }
+        return false;
+    }
+
 }

@@ -16,7 +16,7 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
     $(document).ready(function () {
         contextMenuInit();
     });
-    
+
     ctxmenu.attach('#sort-list', []);
 
     function contextMenuInit() {
@@ -48,7 +48,7 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                 for (key in stikers) {
                     stikers_options = stikers_options + '<option value="' + key + '">' + stikers[key] + '</option>';
                 }
-                
+
                 var json_data_product = JSON.parse(document.querySelector('#ajax_data').dataset.jsondataproduct);
                 var json_data_category = JSON.parse(document.querySelector('#ajax_data').dataset.jsondatacategory);
 
@@ -58,7 +58,7 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                         action: function () {
                             document.querySelector('#selected_attributes').value = JSON.stringify([]);
                             AttributesProcessing.add('admin', attributes_category, '<?php echo lang('#lang_all')[0] ?>');
-                            
+
                             document.querySelector('#edit_product').value = '';
                             document.querySelector('#add_product').value = 'ok';
                             document.querySelector('form').reset();
@@ -132,7 +132,7 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                 document.querySelector('#selected_attributes').value = JSON.stringify(json_data_product.attributes[modal_id]);
 
                                 AttributesProcessing.add('admin', json_data_product.attributes_data[modal_id], '<?php echo lang('#lang_all')[0] ?>');
-                                
+
                                 document.querySelector('#edit_product').value = modal_id;
                                 document.querySelector('#add_product').value = '';
                                 FileuploadProduct.getImageToEditProduct(json_data_product.logo_general, json_data_product.logo, modal_id, 'products');
@@ -146,7 +146,7 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                 }
                                 $('#attributes').val(json_data_category['attributes']);
                                 document.querySelector('#attributes').value = json_data_category.attributes;
-                                
+
                                 document.querySelector('#edit').value = modal_id;
                                 document.querySelector('#add').value = '';
 
@@ -167,19 +167,21 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                             {
                                 text: '<span class="bi-eye"> ' + lang['button_show'] + '</span>',
                                 action: function () {
-                                    jQuery.ajaxSetup({async: false});
                                     var idArray = [];
                                     $(".option").each(function (i) {
                                         if (!$(this).children().hasClass('inactive'))
                                             idArray[i] = this.id;
                                     });
-                                    jQuery.post(window.location.href,
-                                            {idsx_status_on_id: idArray,
-                                                idsx_real_parent_id: idsx_real_parent_id,
-                                                idsx_status_on_key: 'On'});
-                                    jQuery.get(window.location.href,
-                                            {parent_down: parent_id},
-                                            AjaxSuccess);
+
+                                    Ajax.postData(window.location.href, {
+                                        idsx_status_on_id: idArray,
+                                        idsx_real_parent_id: idsx_real_parent_id,
+                                        idsx_status_on_key: 'On'
+                                    }, false);
+                                    Ajax.postData(window.location.href, {
+                                        parent_down: parent_id
+                                    });
+
                                 },
                                 disabled: json_data_product.name === undefined && json_data_category.name === undefined
 
@@ -187,19 +189,21 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                             {
                                 text: '<span class="bi-eye-slash"> ' + lang['button_hide'] + '</span>',
                                 action: function () {
-                                    jQuery.ajaxSetup({async: false});
                                     var idArray = [];
                                     $(".option").each(function (i) {
                                         if (!$(this).children().hasClass('inactive'))
                                             idArray[i] = this.id;
                                     });
-                                    jQuery.post(window.location.href,
-                                            {idsx_status_off_id: idArray,
-                                                idsx_real_parent_id: idsx_real_parent_id,
-                                                idsx_status_off_key: 'Off'});
-                                    jQuery.get(window.location.href,
-                                            {parent_down: parent_id},
-                                            AjaxSuccess);
+
+                                    Ajax.postData(window.location.href, {
+                                        idsx_status_off_id: idArray,
+                                        idsx_real_parent_id: idsx_real_parent_id,
+                                        idsx_status_off_key: 'Off'
+                                    }, false);
+                                    Ajax.postData(window.location.href, {
+                                        parent_down: parent_id
+                                    });
+
                                 },
                                 disabled: json_data_product.name === undefined && json_data_category.name === undefined
 
@@ -207,22 +211,21 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                             {
                                 text: '<span class="bi-scissors"> ' + lang['cut'] + '</span>',
                                 action: function () {
-                                    jQuery.ajaxSetup({async: false});
-                                    jQuery.post(window.location.href,
-                                            {idsx_cut_marker: 'cut'});
+                                    Ajax.postData(window.location.href, {idsx_cut_marker: 'cut'}, false);
                                     var idArray = [];
                                     $(".option").each(function (i) {
                                         if (!$(this).children().hasClass('inactive'))
                                             idArray[i] = this.id;
                                     });
-                                    jQuery.post(window.location.href,
-                                            {idsx_real_parent_id: idsx_real_parent_id,
-                                                idsx_cut_id: idArray,
-                                                parent_down: parent_id,
-                                                idsx_cut_key: 'cut'});
-                                    jQuery.get(window.location.href,
-                                            {parent_down: parent_id},
-                                            AjaxSuccess);
+
+                                    Ajax.postData(window.location.href, {
+                                        idsx_real_parent_id: idsx_real_parent_id,
+                                        idsx_cut_id: idArray,
+                                        idsx_cut_key: 'cut'
+                                    }, false);
+                                    Ajax.postData(window.location.href, {
+                                        parent_down: parent_id
+                                    });
                                 },
                                 disabled: json_data_product.name === undefined && json_data_category.name === undefined
 
@@ -230,15 +233,14 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                             {
                                 text: '<span class="bi-clipboard-check"> ' + lang['paste'] + '</span>',
                                 action: function () {
-                                    jQuery.ajaxSetup({async: false});
-                                    jQuery.post(window.location.href,
-                                            {idsx_real_parent_id: idsx_real_parent_id,
-                                                parent_down: parent_id,
-                                                idsx_paste_key: 'paste'});
-                                    jQuery.get(window.location.href,
-                                            {parent_down: parent_id,
-                                                message: 'ok'},
-                                            AjaxSuccess);
+                                    Ajax.postData(window.location.href, {
+                                        idsx_real_parent_id: idsx_real_parent_id,
+                                        idsx_paste_key: 'paste'
+                                    }, false);
+                                    Ajax.postData(window.location.href, {
+                                        parent_down: parent_id,
+                                        message: 'ok'
+                                    });
                                 },
                                 disabled: session === '0' || (new URL(document.location)).searchParams.get('search') !== null
 
@@ -255,19 +257,18 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
 
                                     confirmation.onclick = function () {
                                         $('#confirm').modal('hide');
-                                        jQuery.ajaxSetup({async: false});
                                         var idArray = [];
                                         $(".option").each(function (i) {
                                             if (!$(this).children().hasClass('inactive'))
                                                 idArray[i] = this.id;
                                         });
-                                        jQuery.post(window.location.href,
-                                                {delete: idArray,
-                                                    parent_down: parent_id});
-                                        jQuery.get(window.location.href,
-                                                {parent_down: parent_id,
-                                                    message: 'ok'},
-                                                AjaxSuccess);
+                                        Ajax.postData(window.location.href, {
+                                            delete: idArray
+                                        }, false);
+                                        Ajax.postData(window.location.href, {
+                                            parent_down: parent_id,
+                                            message: 'ok'
+                                        });
                                     };
                                 },
                                 disabled: json_data_product.name === undefined && json_data_category.name === undefined
@@ -290,20 +291,21 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                 text: '<span class="bi-bookmark-plus"> ' + lang['button_stiker_add'] + '</span>',
                                 action: function () {
                                     var selected_id = $('select[name="context-menu-input-stiker"] option:selected').val();
-                                    jQuery.ajaxSetup({async: false});
                                     var idArray = [];
                                     $(".option").each(function (i) {
                                         if (!$(this).children().hasClass('inactive'))
                                             idArray[i] = this.id;
                                     });
-                                    jQuery.post(window.location.href,
-                                            {idsx_stiker_on_id: idArray,
-                                                idsx_real_parent_id: idsx_real_parent_id,
-                                                stiker: selected_id,
-                                                idsx_stikerOn_key: 'On'});
-                                    jQuery.get(window.location.href,
-                                            {parent_down: parent_id},
-                                            AjaxSuccess);
+
+                                    Ajax.postData(window.location.href, {
+                                        idsx_stiker_on_id: idArray,
+                                        idsx_real_parent_id: idsx_real_parent_id,
+                                        stiker: selected_id,
+                                        idsx_stikerOn_key: 'On'
+                                    }, false);
+                                    Ajax.postData(window.location.href, {
+                                        parent_down: parent_id
+                                    });
                                 },
                                 disabled: false
 
@@ -318,20 +320,20 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                     confirmation.onclick = function () {
                                         $('#confirm').modal('hide');
                                         var selected_id = $('select[name="context-menu-input-stiker"] option:selected').val();
-                                        jQuery.ajaxSetup({async: false});
                                         var idArray = [];
                                         $(".option").each(function (i) {
                                             if (!$(this).children().hasClass('inactive'))
                                                 idArray[i] = this.id;
                                         });
-                                        jQuery.post(window.location.href,
-                                                {idsx_stiker_off_id: idArray,
-                                                    idsx_real_parent_id: idsx_real_parent_id,
-                                                    stiker: selected_id,
-                                                    idsx_stikerOff_key: 'Off'});
-                                        jQuery.get(window.location.href,
-                                                {parent_down: parent_id},
-                                                AjaxSuccess);
+                                        Ajax.postData(window.location.href, {
+                                            idsx_stiker_off_id: idArray,
+                                            idsx_real_parent_id: idsx_real_parent_id,
+                                            stiker: selected_id,
+                                            idsx_stikerOff_key: 'Off'
+                                        }, false);
+                                        Ajax.postData(window.location.href, {
+                                            parent_down: parent_id
+                                        });
                                     };
                                 },
                                 disabled: false
