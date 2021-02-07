@@ -9,7 +9,7 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
 }
 ?>
 <link rel="stylesheet" type="text/css" href="/ext/ctxmenu/ctxmenu.css" media="screen" />
-<script src="/ext/ctxmenu/ctxmenu.js"></script>
+<script src="/ext/ctxmenu/ctxmenu.min.js"></script>
 
 <script type="text/javascript">
 
