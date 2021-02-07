@@ -54,7 +54,7 @@ class Messages {
             unset($_SESSION['message']);
         }
 
-        if (Valid::inGET('message') == 'ok') {
+        if (Valid::inPostJson('message') == 'ok') {
             if (isset($_SESSION['message'])) {
                 require_once (ROOT . '/view/' . Settings::template() . '/layouts/alert.php');
             }
