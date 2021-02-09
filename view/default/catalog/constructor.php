@@ -91,7 +91,6 @@ use \eMarket\Core\{
         ?>
 
         <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script type="text/javascript" src="/ext/bootstrap/js/bootstrap-confirmation.min.js"></script>
         <script type="text/javascript" src="/ext/jstree/jstree.min.js"></script>
         <?php
         require_once ('js/breadcrumb.php');
