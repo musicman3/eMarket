@@ -38,7 +38,7 @@ $lang_attributes = json_encode([
 </script>
 
 <script src="/ext/sortablejs/sortable.min.js"></script>
-<script src="/ext/table-select/table-select.min.js"></script>
+<script src="/ext/table-select/table-select.js"></script>
 <script type="text/javascript" src="/model/library/js/classes/ajax/ajax.js"></script>
 <script type="text/javascript">
     new Ajax();
