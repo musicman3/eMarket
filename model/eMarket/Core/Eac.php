@@ -208,7 +208,7 @@ final class Eac {
             }
 
             for ($i = 0; $i < count($idx); $i++) {
-                if (strstr($idx[$i], '_', true) != 'product') {
+                if (strstr($idx[$i], '_', true) != 'products') {
                     // This is category
                     self::$parent_id = self::dataParentId($idx[$i]);
                     $keys = self::dataKeys($idx[$i]);
@@ -237,7 +237,7 @@ final class Eac {
                     }
                 } else {
                     // This is product
-                    $id_prod = explode('product_', $idx[$i]);
+                    $id_prod = explode('products_', $idx[$i]);
                     //Удаляем основной товар / Removing general product
                     Pdo::action("DELETE FROM " . TABLE_PRODUCTS . " WHERE id=?", [$id_prod[1]]);
 
@@ -282,7 +282,7 @@ final class Eac {
 
                 if (Valid::inPostJson('idsx_cut_key') == 'cut') {
                     // This is category
-                    if (strstr($idx[$i], '_', true) != 'product') {
+                    if (strstr($idx[$i], '_', true) != 'products') {
                         if (!isset($_SESSION['buffer']['cat'])) {
                             $_SESSION['buffer']['cat'] = [];
                         }
@@ -295,7 +295,7 @@ final class Eac {
                         if (!isset($_SESSION['buffer']['prod'])) {
                             $_SESSION['buffer']['prod'] = [];
                         }
-                        $id_prod = explode('product_', $idx[$i]);
+                        $id_prod = explode('products_', $idx[$i]);
                         array_push($_SESSION['buffer']['prod'], $id_prod[1]);
                         if ($parent_id_real > 0) {
                             self::$parent_id = $parent_id_real;
@@ -388,7 +388,7 @@ final class Eac {
             }
 
             for ($i = 0; $i < count($idx); $i++) {
-                if (strstr($idx[$i], '_', true) != 'product') {
+                if (strstr($idx[$i], '_', true) != 'products') {
                     // This is category
                     self::$parent_id = self::dataParentId($idx[$i]);
                     $keys = self::dataKeys($idx[$i]);
@@ -419,7 +419,7 @@ final class Eac {
                     // This is product
                     if ((Valid::inPostJson('idsx_status_on_key') == 'On')
                             or (Valid::inPostJson('idsx_status_off_key') == 'Off')) {
-                        $id_prod = explode('product_', $idx[$i]);
+                        $id_prod = explode('products_', $idx[$i]);
                         Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET status=? WHERE id=?", [$status, $id_prod[1]]);
                     }
                 }

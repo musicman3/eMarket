@@ -172,10 +172,10 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                 text: '<span class="bi-eye"> ' + lang['button_show'] + '</span>',
                                 action: function () {
                                     var idArray = [];
-                                    $(".option").each(function (i) {
-                                        if (!$(this).children().hasClass('inactive'))
-                                            idArray[i] = this.id;
+                                    $(".table-primary").each(function (i) {
+                                        idArray[i] = this.id;
                                     });
+                                    console.log(idArray);
                                     Ajax.postData(window.location.href, {
                                         idsx_status_on_id: idArray,
                                         idsx_real_parent_id: idsx_real_parent_id,
@@ -192,9 +192,8 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                 text: '<span class="bi-eye-slash"> ' + lang['button_hide'] + '</span>',
                                 action: function () {
                                     var idArray = [];
-                                    $(".option").each(function (i) {
-                                        if (!$(this).children().hasClass('inactive'))
-                                            idArray[i] = this.id;
+                                    $(".table-primary").each(function (i) {
+                                        idArray[i] = this.id;
                                     });
                                     Ajax.postData(window.location.href, {
                                         idsx_status_off_id: idArray,
@@ -213,9 +212,8 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                 action: function () {
                                     Ajax.postData(window.location.href, {idsx_cut_marker: 'cut'}, false);
                                     var idArray = [];
-                                    $(".option").each(function (i) {
-                                        if (!$(this).children().hasClass('inactive'))
-                                            idArray[i] = this.id;
+                                    $(".table-primary").each(function (i) {
+                                        idArray[i] = this.id;
                                     });
                                     Ajax.postData(window.location.href, {
                                         idsx_real_parent_id: idsx_real_parent_id,
@@ -257,9 +255,8 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                     confirmation.onclick = function () {
                                         $('#confirm').modal('hide');
                                         var idArray = [];
-                                        $(".option").each(function (i) {
-                                            if (!$(this).children().hasClass('inactive'))
-                                                idArray[i] = this.id;
+                                        $(".table-primary").each(function (i) {
+                                            idArray[i] = this.id;
                                         });
                                         Ajax.postData(window.location.href, {
                                             delete: idArray
@@ -289,9 +286,8 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                 action: function () {
                                     var selected_id = $('select[name="context-menu-input-stiker"] option:selected').val();
                                     var idArray = [];
-                                    $(".option").each(function (i) {
-                                        if (!$(this).children().hasClass('inactive'))
-                                            idArray[i] = this.id;
+                                    $(".table-primary").each(function (i) {
+                                        idArray[i] = this.id;
                                     });
                                     Ajax.postData(window.location.href, {
                                         idsx_stiker_on_id: idArray,
@@ -317,9 +313,8 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                         $('#confirm').modal('hide');
                                         var selected_id = $('select[name="context-menu-input-stiker"] option:selected').val();
                                         var idArray = [];
-                                        $(".option").each(function (i) {
-                                            if (!$(this).children().hasClass('inactive'))
-                                                idArray[i] = this.id;
+                                        $(".table-primary").each(function (i) {
+                                            idArray[i] = this.id;
                                         });
                                         Ajax.postData(window.location.href, {
                                             idsx_stiker_off_id: idArray,
@@ -340,7 +335,7 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                     {isDivider: true},
 
                     {
-                    // ---------- Exit ----------
+                        // ---------- Exit ----------
                         text: '<span class="bi-box-arrow-right"> ' + lang['menu_exit'] + '</span>',
                         action: function () {
                         },
@@ -358,6 +353,17 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
             contextMenuInit();
             Mouse.sortInitAll();
             $('[data-bs-toggle="tooltip"]').tooltip();
+            new TableSelect(document.getElementById('table-id'), {
+                selectedClassName: 'table-primary',
+                shouldSelectRow(row) {
+                    return !row.classList.contains('unselectable');
+                }
+            });
+            document.querySelector('#table-id').addEventListener('mousedown', function (event) {
+                if (event.ctrlKey) {
+                    event.preventDefault();
+                }
+            });
         }, 100);
     }
 </script>

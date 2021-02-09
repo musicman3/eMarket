@@ -183,7 +183,7 @@ class Stikers {
             }
 
             for ($i = 0; $i < count($idx); $i++) {
-                if (strstr($idx[$i], '_', true) != 'product') {
+                if (strstr($idx[$i], '_', true) != 'products') {
                     Eac::$parent_id = self::dataParentId($idx[$i]);
                     $keys = self::dataKeys($idx[$i]);
 
@@ -207,7 +207,7 @@ class Stikers {
                     }
                 } else {
                     if (Valid::inPostJson('idsx_stikerOn_key') == 'On' OR Valid::inPostJson('idsx_stikerOff_key') == 'Off') {
-                        $id_prod = explode('product_', $idx[$i]);
+                        $id_prod = explode('products_', $idx[$i]);
                         Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET stiker=? WHERE id=?", [$stiker, $id_prod[1]]);
                     }
                 }

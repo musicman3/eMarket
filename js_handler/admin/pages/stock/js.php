@@ -38,9 +38,21 @@ $lang_attributes = json_encode([
 </script>
 
 <script src="/ext/sortablejs/sortable.min.js"></script>
+<script src="/ext/table-select/table-select.min.js"></script>
 <script type="text/javascript" src="/model/library/js/classes/ajax/ajax.js"></script>
 <script type="text/javascript">
     new Ajax();
+
+new TableSelect(document.getElementById('table-id'), {
+  selectedClassName: 'table-primary',
+  shouldSelectRow(row) { return !row.classList.contains('unselectable'); }
+});
+
+document.querySelector('#table-id').addEventListener('mousedown', function (event) {
+    if (event.ctrlKey) {
+        event.preventDefault();
+    }
+});
 </script>
 
 <?php

@@ -7,6 +7,8 @@
 
 namespace eMarket\Core;
 
+use \eMarket\Admin\Stock;
+
 use \eMarket\Core\{
     Func,
     Pdo,
@@ -473,6 +475,19 @@ class Settings {
     public static function sortiesClass($class) {
 
         if (Valid::inGET('search')) {
+            return $class;
+        }
+    }
+    
+        /**
+     * Class for transfer
+     *
+     * @param string $class class
+     * @return string
+     */
+    public static function transferClass($class) {
+
+        if (Stock::$transfer == self::linesOnPage()) {
             return $class;
         }
     }

@@ -63,9 +63,8 @@ class DiscountSale {
                     action: function () {
                         var selected_id = $('select[name="context-menu-input-sale"] option:selected').val();
                         var idArray = [];
-                        $(".option").each(function (i) {
-                            if (!$(this).children().hasClass('inactive'))
-                                idArray[i] = this.id;
+                        $(".table-primary").each(function (i) {
+                            idArray[i] = this.id;
                         });
                         Ajax.postData(window.location.href, {
                             idsx_sale_on_id: idArray,
@@ -91,9 +90,8 @@ class DiscountSale {
                         confirmation.onclick = function () {
                             $('#confirm').modal('hide');
                             var idArray = [];
-                            $(".option").each(function (i) {
-                                if (!$(this).children().hasClass('inactive'))
-                                    idArray[i] = this.id;
+                            $(".table-primary").each(function (i) {
+                                idArray[i] = this.id;
                             });
                             Ajax.postData(window.location.href, {
                                 idsx_sale_off_id: idArray,
@@ -121,9 +119,8 @@ class DiscountSale {
                             $('#confirm').modal('hide');
                             var selected_id = $('select[name="context-menu-input-sale"] option:selected').val();
                             var idArray = [];
-                            $(".option").each(function (i) {
-                                if (!$(this).children().hasClass('inactive'))
-                                    idArray[i] = this.id;
+                            $(".table-primary").each(function (i) {
+                                idArray[i] = this.id;
                             });
 
                             Ajax.postData(window.location.href, {

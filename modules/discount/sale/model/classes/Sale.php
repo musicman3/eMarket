@@ -174,7 +174,7 @@ class Sale {
             }
 
             for ($i = 0; $i < count($idx); $i++) {
-                if (strstr($idx[$i], '_', true) != 'product') {
+                if (strstr($idx[$i], '_', true) != 'products') {
                     Eac::$parent_id = Eac::dataParentId($idx[$i]);
                     $keys = Eac::dataKeys($idx[$i]);
 
@@ -246,7 +246,7 @@ class Sale {
                     }
                 } else {
                     if (Valid::inPostJson('idsx_sale_on_key') == 'On') {
-                        $id_prod = explode('product_', $idx[$i]);
+                        $id_prod = explode('products_', $idx[$i]);
                         $discount_json = Pdo::getCell("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$id_prod[1]]);
                         $discount_array = json_decode($discount_json, 1);
 
@@ -261,7 +261,7 @@ class Sale {
                         Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [json_encode($discount_array), $id_prod[1]]);
                     }
                     if (Valid::inPostJson('idsx_sale_off_key') == 'Off') {
-                        $id_prod = explode('product_', $idx[$i]);
+                        $id_prod = explode('products_', $idx[$i]);
                         $discount_json = Pdo::getCell("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$id_prod[1]]);
                         $discount_array = json_decode($discount_json, 1);
 
@@ -276,7 +276,7 @@ class Sale {
                         Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [json_encode($discount_array), $id_prod[1]]);
                     }
                     if (Valid::inPostJson('idsx_sale_off_all_key') == 'OffAll') {
-                        $id_prod = explode('product_', $idx[$i]);
+                        $id_prod = explode('products_', $idx[$i]);
                         $discount_json = Pdo::getCell("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$id_prod[1]]);
                         $discount_array = json_decode($discount_json, 1);
 

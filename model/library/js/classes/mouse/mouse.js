@@ -2,6 +2,8 @@
  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+/* global AjaxSuccess */
+
 /**
  * Mouse actions
  *
@@ -87,7 +89,12 @@ class Mouse {
         });
 
         jQuery.ajaxSetup({async: false});
-        jQuery.post(window.location.href,
-                {ids: ids.join()});
+        if (typeof AjaxSuccess === 'function') {
+            jQuery.post(window.location.href,
+                    {ids: ids.join()}, AjaxSuccess);
+        } else {
+            jQuery.post(window.location.href,
+                    {ids: ids.join()});
+        }
     }
 }

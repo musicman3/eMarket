@@ -51,7 +51,7 @@ require_once('modal/add_values_attribute.php');
                 </div>
                 <div class="clearfix"></div>
                 <div class="table-responsive">
-                    <table class="table table-hover">
+                    <table id="table-id" class="table table-hover">
                         <thead>
                             <tr class="align-middle">
                                 <th colspan="4"><?php echo Pages::counterPageStock() ?></th>
@@ -92,7 +92,7 @@ require_once('modal/add_values_attribute.php');
                             if (Stock::$parent_id > 0) {
                                 ?>
 
-                                <tr class="sortno align-middle">
+                                <tr class="sortno align-middle unselectable">
                                     <td  class="sortleft-m"></td>
                                     <td colspan="4">
 
@@ -114,7 +114,7 @@ require_once('modal/add_values_attribute.php');
                                 if (Stock::$start < Stock::$count_lines_cat) {
                                     ?>
 
-                                    <tr class="<?php echo Settings::sortiesClass('info') ?> sort-list align-middle" unitid="<?php echo Stock::$arr_merge['cat'][Stock::$start]['id'] ?>">
+                                    <tr id="<?php echo Stock::$arr_merge['cat'][Stock::$start]['id'] ?>" class="<?php echo Settings::sortiesClass('info') . ' ' . Settings::transferClass('unselectable') ?> sort-list align-middle" unitid="<?php echo Stock::$arr_merge['cat'][Stock::$start]['id'] ?>">
 
                                         <?php if (!Valid::inGET('search')) { ?>
                                             <td class="sortyes sortleft-m"><div><span class="bi-arrows-move"> </span></div></td>
@@ -133,7 +133,7 @@ require_once('modal/add_values_attribute.php');
                                             <td class="sortleft"><div><a href="#" class="btn btn-secondary btn-sm disabled"><span class="bi-folder2-open"> </span></a></div></td>
 
                                             <?php
-                                        } elseif (Stock::$transfer == Settings::linesOnPage() + 1) {
+                                        } elseif (Stock::$transfer == Settings::linesOnPage()) {
                                             ?>    
                                             <td class="sortleft"><div><a href="#" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-left-right"> </span></a></div></td>
 
@@ -168,8 +168,8 @@ require_once('modal/add_values_attribute.php');
                                         }
                                         ?>
 
-                                        <td class="option" id="<?php echo Stock::$arr_merge['cat'][Stock::$start]['id'] ?>"><span class="inactive" style="display: none;"></span>
-                                            <?php if (Stock::$transfer == Settings::linesOnPage() + 1) { ?>
+                                        <td id="<?php echo Stock::$arr_merge['cat'][Stock::$start]['id'] ?>"><span class="inactive" style="display: none;"></span>
+                                            <?php if (Stock::$transfer == Settings::linesOnPage()) { ?>
                                                 <div class="transfer" id="<?php echo Stock::$arr_merge['cat'][Stock::$start]['id'] ?>"><?php echo lang('categories_transfer') ?></div>
                                             <?php } else { ?>
                                                 <div class="context-one" id="category_<?php echo Stock::$arr_merge['cat'][Stock::$start]['id'] ?>"><?php echo Stock::$arr_merge['cat'][Stock::$start]['name'] ?></div>
@@ -182,9 +182,9 @@ require_once('modal/add_values_attribute.php');
                                     <?php
                                 }
 
-                                if (Stock::$start >= Stock::$count_lines_cat && Stock::$transfer < Settings::linesOnPage() + 1) {
+                                if (Stock::$start >= Stock::$count_lines_cat && Stock::$transfer < Settings::linesOnPage()) {
                                     ?>
-                                    <tr class="align-middle">
+                                    <tr id="products_<?php echo Stock::$arr_merge['prod'][Stock::$start . 'a']['id'] ?>" class="align-middle">
 
                                         <?php if (isset($_SESSION['buffer']['prod']) == true && in_array(Stock::$arr_merge['prod'][Stock::$start . 'a']['id'], $_SESSION['buffer']['prod']) == true && Stock::$arr_merge['prod'][Stock::$start . 'a']['status'] == 1) { ?>
                                             <td class="sortleft-m"></td>    
@@ -203,7 +203,7 @@ require_once('modal/add_values_attribute.php');
                                             <td class="sortleft"><div><a href="#" class="btn btn-success btn-sm"><span class="bi-cart-check-fill"> </span></a></div></td>
 
                                         <?php } ?>
-                                        <td class="context-one option" id="product_<?php echo Stock::$arr_merge['prod'][Stock::$start . 'a']['id'] ?>"><span class="inactive" style="display: none;"></span>
+                                        <td class="context-one" id="contextproduct_<?php echo Stock::$arr_merge['prod'][Stock::$start . 'a']['id'] ?>"><span class="inactive" style="display: none;"></span>
                                             <div class="float-start"><?php echo Stock::$arr_merge['prod'][Stock::$start . 'a']['name'] ?></div>
                                             <div class="float-end"><?php echo Ecb::priceInterface(Stock::$arr_merge['prod'][Stock::$start . 'a'], 1) ?></div>
                                         </td>
@@ -258,7 +258,7 @@ require_once('modal/add_values_attribute.php');
                             </tr>
                         </thead>
                         <tbody id="sort-list">
-                            <tr class="sortno align-middle">
+                            <tr class="sortno align-middle unselectable">
                                 <td class="sortleft-m"></td>
                                 <td class="sortleft">
 
@@ -270,7 +270,7 @@ require_once('modal/add_values_attribute.php');
                                     </form>
 
                                 </td>
-                                <td id="parent" class="context-one options"><div><?php echo lang('no_listing') ?></div></td>
+                                <td id="parent" class="context-one"><div><?php echo lang('no_listing') ?></div></td>
                             </tr>
                         </tbody>
                     </table>
@@ -300,10 +300,10 @@ require_once('modal/add_values_attribute.php');
                             </tr>
                         </thead>
                         <tbody id="sort-list">
-                            <tr class="align-middle">
+                            <tr class="align-middle unselectable">
                                 <td class="sortleft-m"></td>
                                 <td class="sortleft-m"></td>
-                                <td id="parent" class="context-one options"><div><?php echo lang('no_listing') ?></div></td>
+                                <td id="parent" class="context-one"><div><?php echo lang('no_listing') ?></div></td>
                             </tr>
                         </tbody>
                     </table>
@@ -332,7 +332,7 @@ require_once('modal/add_values_attribute.php');
                             </tr>
                         </thead>
                         <tbody id="sort-list">
-                            <tr class="align-middle">
+                            <tr class="align-middle unselectable">
                                 <td class="sortleft-m"></td>
                                 <td class="sortleft">
                                     <form>
@@ -342,7 +342,7 @@ require_once('modal/add_values_attribute.php');
                                         </div>
                                     </form>
                                 </td>
-                                <td id="parent" class="context-one options"><div><?php echo lang('no_listing') ?></div></td>
+                                <td id="parent" class="context-one"><div><?php echo lang('no_listing') ?></div></td>
                             </tr>
                         </tbody>
                     </table>
