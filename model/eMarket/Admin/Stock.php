@@ -331,4 +331,93 @@ class Stock {
         }
     }
 
+    /**
+     * Class for categories status
+     *
+     * @param string $class1 class
+     * @param string $class2 class
+     * @return string
+     */
+    public static function statusCatClass($class1, $class2) {
+
+        if (self::$arr_merge['cat'][self::$start]['status'] == 1) {
+            return $class1;
+        } else {
+            return $class2;
+        }
+    }
+
+    /**
+     * Class for products status
+     *
+     * @param string $class1 class
+     * @param string $class2 class
+     * @param string $class3 class
+     * @return string
+     */
+    public static function statusProdClass($class1, $class2, $class3 = null) {
+        if ($class3 == null) {
+            $disabled = '';
+        }
+        if (isset($_SESSION['buffer']['prod']) == true && in_array(self::$arr_merge['prod'][self::$start . 'a']['id'], $_SESSION['buffer']['prod']) == true) {
+            $disabled = $class3;
+        } else {
+            $disabled = '';
+        }
+        if (self::$arr_merge['prod'][self::$start . 'a']['status'] == 1) {
+            return $class1 . ' ' . $disabled;
+        } else {
+            return $class2 . ' ' . $disabled;
+        }
+    }
+
+    /**
+     * Class for discount
+     *
+     * @param string $class1 class
+     * @param string $class2 class
+     * @return string
+     */
+    public static function discountClass($class1, $class2) {
+
+        if (json_decode(Stock::$arr_merge['prod'][Stock::$start . 'a']['discount'], 1)) {
+            return $class1;
+        }
+        if (json_decode(Stock::$arr_merge['prod'][Stock::$start . 'a']['discount'], 1) == 0) {
+            return $class2;
+        }
+    }
+
+    /**
+     * Class for transfer
+     *
+     * @param string $class class
+     * @return string
+     */
+    public static function transferClass($class) {
+
+        if (self::$transfer == Settings::linesOnPage()) {
+            return $class;
+        }
+    }
+
+    /**
+     * Tooltip data for product discounts
+     *
+     * @param string $discount Data on discounts in a line separated by commas
+     * @return string
+     */
+    public static function productSaleTooltip($discount) {
+
+        $discount_json = json_decode($discount, 1);
+        $text = '';
+        foreach ($discount_json as $key => $id) {
+            foreach ($id as $val_id) {
+                $text .= lang('modules_discount_' . $key . '_name') . ': ' . Pdo::getCellFalse("SELECT name FROM " . DB_PREFIX . 'modules_discount_' . $key . "  WHERE language=? AND id=?", [lang('#lang_all')[0], $val_id]) . '<br>';
+            }
+        }
+
+        return $text;
+    }
+
 }

@@ -114,7 +114,7 @@ require_once('modal/add_values_attribute.php');
                                 if (Stock::$start < Stock::$count_lines_cat) {
                                     ?>
 
-                                    <tr id="<?php echo Stock::$arr_merge['cat'][Stock::$start]['id'] ?>" class="<?php echo Settings::sortiesClass('info') . ' ' . Settings::transferClass('unselectable') ?> sort-list align-middle" unitid="<?php echo Stock::$arr_merge['cat'][Stock::$start]['id'] ?>">
+                                    <tr id="<?php echo Stock::$arr_merge['cat'][Stock::$start]['id'] ?>" class="<?php echo Settings::sortiesClass('info') . ' ' . Stock::transferClass('unselectable') ?> sort-list align-middle" unitid="<?php echo Stock::$arr_merge['cat'][Stock::$start]['id'] ?>">
 
                                         <?php if (!Valid::inGET('search')) { ?>
                                             <td class="sortyes sortleft-m"><div><span class="bi-arrows-move"> </span></div></td>
@@ -123,23 +123,15 @@ require_once('modal/add_values_attribute.php');
                                             <?php
                                         }
 
-                                        if (isset($_SESSION['buffer']['cat']) == true && in_array(Stock::$arr_merge['cat'][Stock::$start]['id'], $_SESSION['buffer']['cat']) == true && Stock::$arr_merge['cat'][Stock::$start]['status'] == 1) {
+                                        if (isset($_SESSION['buffer']['cat']) == true && in_array(Stock::$arr_merge['cat'][Stock::$start]['id'], $_SESSION['buffer']['cat']) == true) {
                                             ?>    
-                                            <td class="sortleft"><div><a href="#" class="btn btn-primary btn-sm disabled"><span class="bi-folder2-open"> </span></a></div></td>
+                                            <td class="sortleft"><div><a href="#" class="btn <?php echo Stock::statusCatClass('btn-primary', 'btn-secondary') ?> btn-sm disabled"><span class="bi-folder2-open"> </span></a></div></td>
 
-                                            <?php
-                                        } elseif (isset($_SESSION['buffer']['cat']) == true && in_array(Stock::$arr_merge['cat'][Stock::$start]['id'], $_SESSION['buffer']['cat']) == true && Stock::$arr_merge['cat'][Stock::$start]['status'] == 0) {
-                                            ?>    
-                                            <td class="sortleft"><div><a href="#" class="btn btn-secondary btn-sm disabled"><span class="bi-folder2-open"> </span></a></div></td>
+                                        <?php } elseif (Stock::$transfer == Settings::linesOnPage()) { ?>    
 
-                                            <?php
-                                        } elseif (Stock::$transfer == Settings::linesOnPage()) {
-                                            ?>    
                                             <td class="sortleft"><div><a href="#" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-left-right"> </span></a></div></td>
 
-                                            <?php
-                                        } elseif (Stock::$arr_merge['cat'][Stock::$start]['status'] == 0) {
-                                            ?>    
+                                        <?php } elseif (Stock::$arr_merge['cat'][Stock::$start]['status'] == 0) { ?>    
                                             <td class="sortleft">
 
                                                 <form>
@@ -168,7 +160,7 @@ require_once('modal/add_values_attribute.php');
                                         }
                                         ?>
 
-                                        <td id="<?php echo Stock::$arr_merge['cat'][Stock::$start]['id'] ?>"><span class="inactive" style="display: none;"></span>
+                                        <td id="<?php echo Stock::$arr_merge['cat'][Stock::$start]['id'] ?>">
                                             <?php if (Stock::$transfer == Settings::linesOnPage()) { ?>
                                                 <div class="transfer" id="<?php echo Stock::$arr_merge['cat'][Stock::$start]['id'] ?>"><?php echo lang('categories_transfer') ?></div>
                                             <?php } else { ?>
@@ -185,33 +177,15 @@ require_once('modal/add_values_attribute.php');
                                 if (Stock::$start >= Stock::$count_lines_cat && Stock::$transfer < Settings::linesOnPage()) {
                                     ?>
                                     <tr id="products_<?php echo Stock::$arr_merge['prod'][Stock::$start . 'a']['id'] ?>" class="align-middle">
-
-                                        <?php if (isset($_SESSION['buffer']['prod']) == true && in_array(Stock::$arr_merge['prod'][Stock::$start . 'a']['id'], $_SESSION['buffer']['prod']) == true && Stock::$arr_merge['prod'][Stock::$start . 'a']['status'] == 1) { ?>
-                                            <td class="sortleft-m"></td>    
-                                            <td class="sortleft"><div><a href="#" class="btn btn-success btn-sm disabled"><span class="bi-cart-check-fill"> </span></a></div></td>
-
-                                        <?php } elseif (isset($_SESSION['buffer']['prod']) == true && in_array(Stock::$arr_merge['prod'][Stock::$start . 'a']['id'], $_SESSION['buffer']['prod']) == true && Stock::$arr_merge['prod'][Stock::$start . 'a']['status'] == 0) { ?>
-                                            <td class="sortleft-m"></td>    
-                                            <td class="sortleft"><div><a href="#" class="btn btn-secondary btn-sm disabled"><span class="bi-cart-check-fill"> </span></a></div></td>
-
-                                        <?php } elseif (Stock::$arr_merge['prod'][Stock::$start . 'a']['status'] == 0) { ?>
-                                            <td class="sortleft-m"></td>    
-                                            <td class="sortleft"><div><a href="#" class="btn btn-secondary btn-sm"><span class="bi-cart-check-fill"> </span></a></div></td>
-                                        <?php } else { ?>
-
-                                            <td class="sortleft-m"></td>
-                                            <td class="sortleft"><div><a href="#" class="btn btn-success btn-sm"><span class="bi-cart-check-fill"> </span></a></div></td>
-
-                                        <?php } ?>
-                                        <td class="context-one" id="contextproduct_<?php echo Stock::$arr_merge['prod'][Stock::$start . 'a']['id'] ?>"><span class="inactive" style="display: none;"></span>
+                                        <td class="sortleft-m"></td>    
+                                        <td class="sortleft"><div><a href="#" class="btn <?php echo Stock::statusProdClass('btn-primary', 'btn-secondary', 'disabled') ?> btn-sm"><span class="bi-cart-check-fill"> </span></a></div></td>
+                                        <td class="context-one" id="contextproduct_<?php echo Stock::$arr_merge['prod'][Stock::$start . 'a']['id'] ?>">
                                             <div class="float-start"><?php echo Stock::$arr_merge['prod'][Stock::$start . 'a']['name'] ?></div>
                                             <div class="float-end"><?php echo Ecb::priceInterface(Stock::$arr_merge['prod'][Stock::$start . 'a'], 1) ?></div>
                                         </td>
 
                                         <?php if (json_decode(Stock::$arr_merge['prod'][Stock::$start . 'a']['discount'], 1)) { ?>
-                                            <td class="sortleft"><span data-bs-toggle="tooltip" data-bs-placement="left" data-bs-html="true" title="<?php echo Settings::productSaleTooltip(Stock::$arr_merge['prod'][Stock::$start . 'a']['discount']) ?>" class="bi-tag-fill text-primary"> </span></td>
-                                        <?php } elseif (json_decode(Stock::$arr_merge['prod'][Stock::$start . 'a']['discount'], 1) == 0) { ?>
-                                            <td class="sortleft"><span data-bs-toggle="tooltip" data-bs-placement="left" data-bs-html="true" title="<?php echo Settings::productSaleTooltip(Stock::$arr_merge['prod'][Stock::$start . 'a']['discount']) ?>" class="bi-tag-fills text-primary"> </span></td>
+                                            <td class="sortleft"><span data-bs-toggle="tooltip" data-bs-placement="left" data-bs-html="true" title="<?php echo Stock::productSaleTooltip(Stock::$arr_merge['prod'][Stock::$start . 'a']['discount']) ?>" class="<?php echo Stock::statusProdClass('bi-tag-fill', 'bi-tag-fills') ?> text-primary"> </span></td>
                                         <?php } else { ?>
                                             <td class="sortleft-m"><span class="bi-tag-fill"></span></td>
                                         <?php } ?>
