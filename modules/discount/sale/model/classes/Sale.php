@@ -148,25 +148,25 @@ class Sale {
      */
     public static function initEac() {
 
-        if ((Valid::inPOST('idsx_sale_on_key') == 'On')
-                or (Valid::inPOST('idsx_sale_off_key') == 'Off')
-                or (Valid::inPOST('idsx_sale_off_all_key') == 'OffAll')) {
+        if ((Valid::inPostJson('idsx_sale_on_key') == 'On')
+                or (Valid::inPostJson('idsx_sale_off_key') == 'Off')
+                or (Valid::inPostJson('idsx_sale_off_all_key') == 'OffAll')) {
 
-            $parent_id_real = (int) Valid::inPOST('idsx_real_parent_id');
+            $parent_id_real = (int) Valid::inPostJson('idsx_real_parent_id');
 
-            if (Valid::inPOST('idsx_sale_on_key') == 'On') {
-                $idx = Func::deleteEmptyInArray(Valid::inPOST('idsx_sale_on_id'));
-                $discount = Valid::inPOST('sale');
+            if (Valid::inPostJson('idsx_sale_on_key') == 'On') {
+                $idx = Func::deleteEmptyInArray(Valid::inPostJson('idsx_sale_on_id'));
+                $discount = Valid::inPostJson('sale');
             }
 
-            if (Valid::inPOST('idsx_sale_off_key') == 'Off') {
-                $idx = Func::deleteEmptyInArray(Valid::inPOST('idsx_sale_off_id'));
-                $discount = Valid::inPOST('sale');
+            if (Valid::inPostJson('idsx_sale_off_key') == 'Off') {
+                $idx = Func::deleteEmptyInArray(Valid::inPostJson('idsx_sale_off_id'));
+                $discount = Valid::inPostJson('sale');
             }
 
-            if (Valid::inPOST('idsx_sale_off_all_key') == 'OffAll') {
-                $idx = Func::deleteEmptyInArray(Valid::inPOST('idsx_sale_off_all_id'));
-                $discount = Valid::inPOST('sale');
+            if (Valid::inPostJson('idsx_sale_off_all_key') == 'OffAll') {
+                $idx = Func::deleteEmptyInArray(Valid::inPostJson('idsx_sale_off_all_id'));
+                $discount = Valid::inPostJson('sale');
             }
 
             if (is_array($idx) == FALSE) {
@@ -174,14 +174,14 @@ class Sale {
             }
 
             for ($i = 0; $i < count($idx); $i++) {
-                if (strstr($idx[$i], '_', true) != 'product') {
+                if (strstr($idx[$i], '_', true) != 'products') {
                     Eac::$parent_id = Eac::dataParentId($idx[$i]);
                     $keys = Eac::dataKeys($idx[$i]);
 
                     $count_keys = count($keys);
                     for ($x = 0; $x < $count_keys; $x++) {
 
-                        if (Valid::inPOST('idsx_sale_on_key') == 'On') {
+                        if (Valid::inPostJson('idsx_sale_on_key') == 'On') {
                             $products_id = Pdo::getColAssoc("SELECT id FROM " . TABLE_PRODUCTS . " WHERE language=? AND parent_id=?", [lang('#lang_all')[0], $keys[$x]]);
 
                             foreach ($products_id as $val) {
@@ -203,7 +203,7 @@ class Sale {
                                 Eac::$parent_id = $parent_id_real;
                             }
                         }
-                        if (Valid::inPOST('idsx_sale_off_key') == 'Off') {
+                        if (Valid::inPostJson('idsx_sale_off_key') == 'Off') {
                             $products_id = Pdo::getColAssoc("SELECT id FROM " . TABLE_PRODUCTS . " WHERE language=? AND parent_id=?", [lang('#lang_all')[0], $keys[$x]]);
 
                             foreach ($products_id as $val) {
@@ -225,7 +225,7 @@ class Sale {
                                 Eac::$parent_id = $parent_id_real;
                             }
                         }
-                        if (Valid::inPOST('idsx_sale_off_all_key') == 'OffAll') {
+                        if (Valid::inPostJson('idsx_sale_off_all_key') == 'OffAll') {
                             $products_id = Pdo::getColAssoc("SELECT id FROM " . TABLE_PRODUCTS . " WHERE language=? AND parent_id=?", [lang('#lang_all')[0], $keys[$x]]);
 
                             foreach ($products_id as $val) {
@@ -245,8 +245,8 @@ class Sale {
                         }
                     }
                 } else {
-                    if (Valid::inPOST('idsx_sale_on_key') == 'On') {
-                        $id_prod = explode('product_', $idx[$i]);
+                    if (Valid::inPostJson('idsx_sale_on_key') == 'On') {
+                        $id_prod = explode('products_', $idx[$i]);
                         $discount_json = Pdo::getCell("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$id_prod[1]]);
                         $discount_array = json_decode($discount_json, 1);
 
@@ -260,8 +260,8 @@ class Sale {
 
                         Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [json_encode($discount_array), $id_prod[1]]);
                     }
-                    if (Valid::inPOST('idsx_sale_off_key') == 'Off') {
-                        $id_prod = explode('product_', $idx[$i]);
+                    if (Valid::inPostJson('idsx_sale_off_key') == 'Off') {
+                        $id_prod = explode('products_', $idx[$i]);
                         $discount_json = Pdo::getCell("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$id_prod[1]]);
                         $discount_array = json_decode($discount_json, 1);
 
@@ -275,8 +275,8 @@ class Sale {
 
                         Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [json_encode($discount_array), $id_prod[1]]);
                     }
-                    if (Valid::inPOST('idsx_sale_off_all_key') == 'OffAll') {
-                        $id_prod = explode('product_', $idx[$i]);
+                    if (Valid::inPostJson('idsx_sale_off_all_key') == 'OffAll') {
+                        $id_prod = explode('products_', $idx[$i]);
                         $discount_json = Pdo::getCell("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$id_prod[1]]);
                         $discount_array = json_decode($discount_json, 1);
 

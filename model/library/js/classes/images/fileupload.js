@@ -63,10 +63,10 @@ class Fileupload {
                                 }
                             } else {
                                 if ($('#add').val() === 'ok') {
-                                    $('<span class="file-upload" id="image_add_new_' + hash_name + '"/>').html('<div class="holder"><img src="/uploads/temp/thumbnail/' + file.name + '" class="thumbnail" id="general_' + hash_name + '" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="deleteImageAddNew_' + hash_name + '" onclick="Fileupload.deleteImageAddNew(\'' + file.name + '\', \'' + hash_name + '\')"><span class="glyphicon glyphicon-trash"></span></button> <button class="btn btn-primary btn-xs" type="button" name="imageGeneralAddNew_' + hash_name + '" onclick="Fileupload.imageGeneralAddNew(\'' + file.name + '\', \'' + hash_name + '\')"><span class="glyphicon glyphicon-star"></span></button></div></div>').appendTo('#logo'); // Вставляем лого
+                                    $('<div class="file-upload" id="image_add_new_' + hash_name + '"/>').html('<img src="/uploads/temp/thumbnail/' + file.name + '" class="img-thumbnail" id="general_' + hash_name + '" /><div class="block align-items-center justify-content-evenly"><button class="btn btn-primary btn-sm" type="button" name="deleteImageAddNew_' + hash_name + '" onclick="Fileupload.deleteImageAddNew(\'' + file.name + '\', \'' + hash_name + '\')"><span class="bi-trash"></span></button> <button class="btn btn-primary btn-sm" type="button" name="imageGeneralAddNew_' + hash_name + '" onclick="Fileupload.imageGeneralAddNew(\'' + file.name + '\', \'' + hash_name + '\')"><span class="bi-star"></span></button></div></div>').appendTo('#logo'); // Вставляем лого
                                 }
                                 if ($('#edit').val() !== '') {
-                                    $('<span class="file-upload" id="image_edit_new_' + hash_name + '"/>').html('<div class="holder"><img src="/uploads/temp/thumbnail/' + file.name + '" class="thumbnail" id="general_edit_' + hash_name + '" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="FdeleteImageEditNew_' + hash_name + '" onclick="Fileupload.deleteImageEditNew(\'' + file.name + '\', \'' + hash_name + '\')"><span class="glyphicon glyphicon-trash"></span></button> <button class="btn btn-primary btn-xs" type="button" name="imageGeneralEditNew_' + hash_name + '" onclick="Fileupload.imageGeneralEditNew(\'' + file.name + '\', \'' + hash_name + '\')"><span class="glyphicon glyphicon-star"></span></button></div></div>').appendTo('#logo'); // Вставляем лого
+                                    $('<div class="file-upload" id="image_edit_new_' + hash_name + '"/>').html('<img src="/uploads/temp/thumbnail/' + file.name + '" class="img-thumbnail" id="general_edit_' + hash_name + '" /><div class="block align-items-center justify-content-evenly"><button class="btn btn-primary btn-sm" type="button" name="FdeleteImageEditNew_' + hash_name + '" onclick="Fileupload.deleteImageEditNew(\'' + file.name + '\', \'' + hash_name + '\')"><span class="bi-trash"></span></button> <button class="btn btn-primary btn-sm" type="button" name="imageGeneralEditNew_' + hash_name + '" onclick="Fileupload.imageGeneralEditNew(\'' + file.name + '\', \'' + hash_name + '\')"><span class="bi-star"></span></button></div></div>').appendTo('#logo'); // Вставляем лого
                                 }
                             }
                         }
@@ -81,11 +81,11 @@ class Fileupload {
                         progress + '%'
                         );
                 $('.progress-bar').empty();
-                $('.progress-bar').removeClass('progress-bar progress-bar-success').addClass('progress-bar progress-bar-warning progress-bar-striped active');
+                $('.progress-bar').removeClass('progress-bar bg-success').addClass('progress-bar bg-danger progress-bar-striped progress-bar-animated');
                 if (progress === 100) {
                     setTimeout(function () {
                         $('.progress-bar').html(lang['download_complete']);
-                        $('.progress-bar').removeClass('progress-bar progress-bar-warning progress-bar-striped active').addClass('progress-bar progress-bar-success');
+                        $('.progress-bar').removeClass('progress-bar bg-danger progress-bar-striped progress-bar-animated').addClass('progress-bar bg-success');
                     }, 1000);
                 }
             }
@@ -126,7 +126,7 @@ class Fileupload {
         for (var x = 0; x < logo_edit[modal_id].length; x++) {
             var image = logo_edit[modal_id][x];
 
-            $('<span class="file-upload" id="image_edit_' + x + '"/>').html('<div class="holder"><img src="/uploads/images/' + dir + '/resize_0/' + image + '" class="thumbnail" id="general_' + x + '" /><div class="block"><button class="btn btn-primary btn-xs" type="button" name="delete_image_' + x + '" onclick="Fileupload.deleteImageEdit(\'' + image + '\', \'' + x + '\')"><span class="glyphicon glyphicon-trash"></span></button> <button class="btn btn-primary btn-xs" type="button" name="image_general_edit' + x + '" onclick="Fileupload.imageGeneralEdit(\'' + image + '\', \'' + x + '\')"><span class="glyphicon glyphicon-star"></span></button></div></div>').appendTo('#logo');
+            $('<div class="file-upload" id="image_edit_' + x + '"/>').html('<img src="/uploads/images/' + dir + '/resize_0/' + image + '" class="img-thumbnail" id="general_' + x + '" /><div class="block align-items-center justify-content-evenly"><button class="btn btn-primary btn-sm" type="button" name="delete_image_' + x + '" onclick="Fileupload.deleteImageEdit(\'' + image + '\', \'' + x + '\')"><span class="bi-trash"></span></button> <button class="btn btn-primary btn-sm" type="button" name="image_general_edit' + x + '" onclick="Fileupload.imageGeneralEdit(\'' + image + '\', \'' + x + '\')"><span class="bi-star"></span></button></div></div>').appendTo('#logo');
             if (logo_general_edit[modal_id] === image) {
                 $('#general_' + x).addClass('img-active');
             }

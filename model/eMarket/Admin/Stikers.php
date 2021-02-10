@@ -52,7 +52,7 @@ class Stikers {
      * 
      */
     public static function menu() {
-        HeaderMenu::$menu[HeaderMenu::$menu_marketing][] = ['?route=stikers', 'glyphicon glyphicon-bookmark', lang('title_stikers_index'), '', 'false'];
+        HeaderMenu::$menu[HeaderMenu::$menu_marketing][] = ['?route=stikers', 'bi-bookmark-star-fill', lang('title_stikers_index'), '', 'false'];
     }
 
     /**
@@ -163,18 +163,18 @@ class Stikers {
      */
     public static function initEac() {
 
-        if ((Valid::inPOST('idsx_stikerOn_key') == 'On')
-                or (Valid::inPOST('idsx_stikerOff_key') == 'Off')) {
+        if ((Valid::inPostJson('idsx_stikerOn_key') == 'On')
+                or (Valid::inPostJson('idsx_stikerOff_key') == 'Off')) {
 
-            $parent_id_real = (int) Valid::inPOST('idsx_real_parent_id');
+            $parent_id_real = (int) Valid::inPostJson('idsx_real_parent_id');
 
-            if (Valid::inPOST('idsx_stikerOn_key') == 'On') {
-                $idx = Func::deleteEmptyInArray(Valid::inPOST('idsx_stiker_on_id'));
-                $stiker = Valid::inPOST('stiker');
+            if (Valid::inPostJson('idsx_stikerOn_key') == 'On') {
+                $idx = Func::deleteEmptyInArray(Valid::inPostJson('idsx_stiker_on_id'));
+                $stiker = Valid::inPostJson('stiker');
             }
 
-            if (Valid::inPOST('idsx_stikerOff_key') == 'Off') {
-                $idx = Func::deleteEmptyInArray(Valid::inPOST('idsx_stiker_off_id'));
+            if (Valid::inPostJson('idsx_stikerOff_key') == 'Off') {
+                $idx = Func::deleteEmptyInArray(Valid::inPostJson('idsx_stiker_off_id'));
                 $stiker = '';
             }
 
@@ -183,14 +183,14 @@ class Stikers {
             }
 
             for ($i = 0; $i < count($idx); $i++) {
-                if (strstr($idx[$i], '_', true) != 'product') {
+                if (strstr($idx[$i], '_', true) != 'products') {
                     Eac::$parent_id = self::dataParentId($idx[$i]);
                     $keys = self::dataKeys($idx[$i]);
 
                     $count_keys = count($keys);
                     for ($x = 0; $x < $count_keys; $x++) {
 
-                        if (Valid::inPOST('idsx_stikerOn_key') == 'On' OR Valid::inPOST('idsx_stikerOff_key') == 'Off') {
+                        if (Valid::inPostJson('idsx_stikerOn_key') == 'On' OR Valid::inPostJson('idsx_stikerOff_key') == 'Off') {
 
                             $stiker_id_array = Pdo::getCol("SELECT id FROM " . TABLE_PRODUCTS . " WHERE language=? AND parent_id=?", [
                                         lang('#lang_all')[0], $keys[$x]
@@ -206,8 +206,8 @@ class Stikers {
                         }
                     }
                 } else {
-                    if (Valid::inPOST('idsx_stikerOn_key') == 'On' OR Valid::inPOST('idsx_stikerOff_key') == 'Off') {
-                        $id_prod = explode('product_', $idx[$i]);
+                    if (Valid::inPostJson('idsx_stikerOn_key') == 'On' OR Valid::inPostJson('idsx_stikerOff_key') == 'Off') {
+                        $id_prod = explode('products_', $idx[$i]);
                         Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET stiker=? WHERE id=?", [$stiker, $id_prod[1]]);
                     }
                 }

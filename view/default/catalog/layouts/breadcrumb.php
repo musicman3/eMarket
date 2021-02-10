@@ -7,5 +7,7 @@
 ?>
 
 <div class="container-fluid">
-    <div class="breadcrumb" id="breadcrumb"></div>
+    <nav>
+	<ol class="breadcrumb bg-light" id="breadcrumb"></ol>
+    </nav>
 </div>

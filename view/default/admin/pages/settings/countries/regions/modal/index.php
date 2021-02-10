@@ -13,11 +13,12 @@ use \eMarket\Core\{
 <div id="index" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header"><div class="pull-right"><button class="close" type="button" data-dismiss="modal">×</button></div>
-                <h4 class="modal-title"><?php echo Settings::titlePageGenerator() ?></h4>
+            <div class="modal-header">
+                <h5 class="modal-title"><?php echo Settings::titlePageGenerator() ?></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-            <form id="form_add" name="form_add" action="javascript:void(null);" onsubmit="Ajax.callAdd()">
-                <div class="panel-body">
+            <form id="form_add" class="was-validated" name="form_add" action="javascript:void(null);" onsubmit="Ajax.callAdd()">
+                <div class="modal-body">
                     <input type="hidden" id="add" name="add" value="" />
                     <input type="hidden" id="edit" name="edit" value="" />
                     <input hidden name="country_id" value="<?php echo Valid::inGET('country_id') ?>">
@@ -25,11 +26,11 @@ use \eMarket\Core\{
                     <?php require_once(ROOT . '/view/' . Settings::template() . '/layouts/lang_tabs_add.php') ?>
 
                     <div class="tab-content">
-                        <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade in active">
-                            <div class="form-group">
-                                <div class="input-group has-error">
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="input-sm form-control" placeholder="<?php echo lang('name_region') ?>" type="text" name="name_regions_0" id="name_regions_0" required />
+                        <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade show in active">
+                            <div class="mb-3">
+                                <div class="input-group input-group-sm">
+                                    <span class="input-group-text"><span class="bi-file-text"></span></span>
+                                    <input class="form-control" placeholder="<?php echo lang('name_region') ?>" type="text" name="name_regions_0" id="name_regions_0" required />
                                 </div>
                             </div>
                         </div>
@@ -40,10 +41,10 @@ use \eMarket\Core\{
                                 ?>
 
                                 <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">
-                                    <div class="form-group">
-                                        <div class="input-group has-error">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo lang('name_region') ?>" type="text" name="name_regions_<?php echo $x ?>" id="name_regions_<?php echo $x ?>" required />
+                                    <div class="mb-3">
+                                        <div class="input-group input-group-sm">
+                                            <span class="input-group-text"><span class="bi-file-text"></span></span>
+                                            <input class="form-control" placeholder="<?php echo lang('name_region') ?>" type="text" name="name_regions_<?php echo $x ?>" id="name_regions_<?php echo $x ?>" required />
                                         </div>
                                     </div>
                                 </div>
@@ -53,18 +54,18 @@ use \eMarket\Core\{
                         }
                         ?>
 
-                        <div class="form-group">
-                            <div class="input-group has-error">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                <input class="input-sm form-control" placeholder="<?php echo lang('region_code') ?>" type="text" name="region_code_regions" id="region_code_regions" required />
+                        <div class="mb-3">
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-text"><span class="bi-file-text"></span></span>
+                                <input class="form-control" placeholder="<?php echo lang('region_code') ?>" type="text" name="region_code_regions" id="region_code_regions" required />
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="modal-footer">
-                    <button class="btn btn-primary btn-xs" type="button" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-remove"></span> <?php echo lang('cancel') ?></button>
-                    <button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button>
+                    <button class="btn btn-primary btn-sm" type="button" data-bs-dismiss="modal"><span class="bi-x-circle"></span> <?php echo lang('cancel') ?></button>
+                    <button type="submit" class="btn btn-primary btn-sm"><span class="bi-check-circle"></span> <?php echo lang('save') ?></button>
                 </div>
 
             </form>

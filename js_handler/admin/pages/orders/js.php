@@ -49,8 +49,8 @@
             } else {
                 var stiker = '';
             }
-            document.querySelector('#invoice').insertAdjacentHTML('beforeend', '<tr class="bg-success">\n\
-                                        <td class="text-left"><span class="label label-success">' + stiker + '</span></td>\n\
+            document.querySelector('#invoice').insertAdjacentHTML('beforeend', '<tr class="align-middle">\n\
+                                        <td class="text-left"><span class="badge bg-success">' + stiker + '</span></td>\n\
                                         <td class="text-center"><small>' + invoice[x].admin.name + '</small></td>\n\
                                         <td class="text-center"><small>' + invoice[x].admin.price + '</small></td>\n\
                                         <td class="text-center"><small>' + invoice[x].data.quantity + ' ' + invoice[x].admin.unit + '</small></td>\n\
@@ -72,7 +72,7 @@
         document.querySelector('#invoice_order_total_to_pay').innerHTML = order_total.admin.total_to_pay_format;
 
         for (x = 0; x < history_status.length; x++) {
-            document.querySelector('#status_history').insertAdjacentHTML('beforeend', '<span class="glyphicon glyphicon-ok"></span><small> ' + history_status[x].admin.date + ' </small><span class="label label-success">' + history_status[x].admin.status + '</span><br>');
+            document.querySelector('#status_history').insertAdjacentHTML('beforeend', '<span class="badge bg-success">' + history_status[x].admin.status + '</span><span class="bi-check"></span><small> ' + history_status[x].admin.date + ' </small><br>');
         }
     });
 </script>

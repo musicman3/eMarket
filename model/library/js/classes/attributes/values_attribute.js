@@ -2,6 +2,8 @@
  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+/* global bootstrap, confirmation, Helpers */
+
 /**
  * Values Attributes
  *
@@ -16,8 +18,10 @@ class ValuesAttribute {
      * @param lang {Json} (lang)
      */
     constructor(lang) {
-        this.modal(lang);
-        this.click(lang);
+        if (lang !== undefined) {
+            this.modal(lang);
+            this.click(lang);
+        }
     }
 
     /**
@@ -27,7 +31,7 @@ class ValuesAttribute {
      */
     modal(lang) {
 
-        $('#values_attribute').on('show.bs.modal', function (event) {
+        document.querySelector('#values_attribute').addEventListener('show.bs.modal', function (event) {
 
             var jsdata = new JsData();
             var data_id = sessionStorage.getItem('level_2');
@@ -38,14 +42,10 @@ class ValuesAttribute {
 
         });
 
-        $('#values_attribute').on('hidden.bs.modal', function (event) {
-            $('.values_attribute').empty();
+        document.querySelector('#values_attribute').addEventListener('hidden.bs.modal', function (event) {
+            document.querySelector('.values_attribute').innerHTML = '';
         });
 
-        $('#add_values_attribute').on('hidden.bs.modal', function (event) {
-            $('.input-add-values-attribute').val('');
-            ValuesAttribute.deleteValue(lang);
-        });
     }
 
     /**
@@ -54,23 +54,23 @@ class ValuesAttribute {
      *@param lang {Array} (lang)
      */
     click(lang) {
-
-        $(document).on('click', '.add-values-attribute', function () {
-            $('#add_values_attribute').modal('show');
+        Helpers.on('body', 'click', '.add-values-attribute', function (e) {
+            document.querySelector('#add_values_attribute_form').reset();
+            new bootstrap.Modal(document.querySelector('#add_values_attribute')).show();
             sessionStorage.setItem('action', 'add');
         });
 
-        $(document).on('click', '.edit-value-attribute', function () {
-            $('#add_values_attribute').modal('show');
+        Helpers.on('body', 'click', '.edit-value-attribute', function (e) {
+            new bootstrap.Modal(document.querySelector('#add_values_attribute')).show();
             var processing = new AttributesProcessing();
-            processing.clickEdit($(this).closest('tr').attr('id').split('_')[1], sessionStorage.getItem('level_2'), 'level_3');
+            processing.clickEdit(e.target.closest('tr').dataset.id.split('_')[1], sessionStorage.getItem('level_2'), 'level_3');
 
         });
 
-        $(document).on('click', '#save_add_values_attribute', function () {
-            $('#add_values_attribute').modal('hide');
+        Helpers.on('body', 'click', '#save_add_values_attribute', function (e) {
+            bootstrap.Modal.getInstance(document.querySelector('#add_values_attribute')).hide();
 
-            var attributes_bank = $('#add_values_attribute_form').serializeArray();
+            var attributes_bank = Helpers.serializeArray('#add_values_attribute_form');
             var data_id = sessionStorage.getItem('level_2');
             var jsdata = new JsData();
             var parse_attributes = JSON.parse(sessionStorage.getItem('attributes'));
@@ -91,7 +91,8 @@ class ValuesAttribute {
                 ValuesAttribute.add(lang, parse_attributes_view);
             }
 
-            $('.input-add-values-attribute').val('');
+            document.querySelector('.input-add-values-attribute').value = '';
+            ValuesAttribute.deleteValue(lang);
         });
 
     }
@@ -101,16 +102,15 @@ class ValuesAttribute {
      *
      * @param id {String} (string id)
      * @param value {String} (string value)
-     * @param lang {Array} (lang)
      */
-    static addValue(id, value, lang) {
-        $('.values_attribute').prepend(
-                '<tr class="value-attributes-class" id="valueattributes_' + id + '">' +
-                '<td class="sortyes-value-attributes sortleft-m"><div><span class="glyphicon glyphicon-move"> </span></div></td>' +
+    static addValue(id, value) {
+        document.querySelector('.values_attribute').insertAdjacentHTML('afterbegin',
+                '<tr class="value-attributes-class align-middle" data-id="valueattributes_' + id + '" id="valueattributes_' + id + '">' +
+                '<td class="sortyes sortleft-m"><div><span class="bi-arrows-move"> </span></div></td>' +
                 '<td>' + value + '</td>' +
                 '<td>' +
-                '<div class="flexbox"><div class="b-left"><button type="button" class="edit-value-attribute btn btn-primary btn-xs" title="' + lang[3] + '"><span class="glyphicon glyphicon-edit"> </span></button></div>' +
-                '<div><button type="button" class="delete-value-attribute btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="' + lang[0] + '" data-btn-cancel-label="' + lang[1] + '" title="' + lang[2] + '"><span class="glyphicon glyphicon-trash"> </span></button></div></div>' +
+                '<div class="gap-2 d-flex justify-content-end"><button type="button" class="edit-value-attribute btn btn-primary btn-sm"><span class="bi-pencil-square"> </span></button>' +
+                '<button type="button" class="delete-value-attribute btn btn-primary btn-sm"><span class="bi-trash"> </span></button></div>' +
                 '</td>' +
                 '</tr>'
                 );
@@ -123,32 +123,40 @@ class ValuesAttribute {
      *
      */
     static deleteValue(lang) {
-        $('.delete-value-attribute').confirmation({
-            rootSelector: '[data-toggle=confirmation]',
-            onConfirm: function (event) {
-                $(this).closest('tr').remove();
 
-                var jsdata = new JsData();
-                var data_id = sessionStorage.getItem('level_2');
-                var parse_attributes = JSON.parse(sessionStorage.getItem('attributes'));
+        var buttons = document.querySelectorAll('.delete-value-attribute');
+        buttons.forEach(function (button) {
+            button.addEventListener('click', function (e) {
+                var elem = e.currentTarget;
+                new bootstrap.Modal(document.querySelector('#confirm')).show();
+                confirmation.onclick = function () {
+                    bootstrap.Modal.getInstance(document.querySelector('#confirm')).hide();
+                    elem.closest('tr').remove();
 
-                var parse_attributes_delete = jsdata.deleteUid($(this).closest('tr').attr('id').split('_')[1], parse_attributes);
-                sessionStorage.setItem('attributes', JSON.stringify(parse_attributes_delete));
+                    var jsdata = new JsData();
+                    var data_id = sessionStorage.getItem('level_2');
+                    var parse_attributes = JSON.parse(sessionStorage.getItem('attributes'));
 
-                var parse_attributes_add = jsdata.selectParentUids(data_id, JSON.parse(sessionStorage.getItem('attributes')));
-                ValuesAttribute.add(lang, parse_attributes_add);
-                ValuesAttribute.deleteValue(lang);
-            }});
+                    var parse_attributes_delete = jsdata.deleteUid(elem.closest('tr').id.split('_')[1], parse_attributes);
+                    sessionStorage.setItem('attributes', JSON.stringify(parse_attributes_delete));
+
+                    var parse_attributes_add = jsdata.selectParentUids(data_id, JSON.parse(sessionStorage.getItem('attributes')));
+                    ValuesAttribute.add(lang, parse_attributes_add);
+                    ValuesAttribute.deleteValue(lang);
+                };
+            });
+        });
     }
 
     /**
      * Sorting
      * 
      * @param lang {Array} (lang)
+     * @param sortable {Object} (sortable)
      *
      */
-    sort(lang) {
-        var sortedIDs = $(".values_attribute").sortable("toArray").reverse();
+    sort(lang, sortable) {
+        var sortedIDs = sortable.toArray().reverse();
         var processing = new AttributesProcessing();
         var parse_attributes_add = processing.sorted(sortedIDs, sessionStorage.getItem('level_2'));
 
@@ -168,12 +176,12 @@ class ValuesAttribute {
         var jsdata = new JsData();
         var parse_attributes_sort = jsdata.sort(parse);
 
-        $('.values_attribute').empty();
+        document.querySelector('.values_attribute').innerHTML = '';
         parse.forEach((string, index) => {
             var sort_id = string.length - 1;
             string.forEach((item, i) => {
                 if (item.name === 'add_values_attribute_' + lang[4]) {
-                    ValuesAttribute.addValue(parse_attributes_sort[index][sort_id].uid, parse_attributes_sort[index][i].value, lang);
+                    ValuesAttribute.addValue(parse_attributes_sort[index][sort_id].uid, parse_attributes_sort[index][i].value);
                 }
             });
         });

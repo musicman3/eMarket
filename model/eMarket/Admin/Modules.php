@@ -104,9 +104,9 @@ class Modules {
      */
     public function class($type) {
         if (Valid::inGET('active') == $type OR (!Valid::inGET('active') && $type == array_key_first($_SESSION['MODULES_INFO']))) {
-            $class = '<li class="active">';
+            $class = 'active';
         } else {
-            $class = '<li>';
+            $class = '';
         }
         return $class;
     }
@@ -118,7 +118,7 @@ class Modules {
      */
     public function filter($type) {
         if (Valid::inGET('active') == $type OR (!Valid::inGET('active') && $type == array_key_first($_SESSION['MODULES_INFO']))) {
-            self::$class_tab = 'tab-pane fade in active';
+            self::$class_tab = 'tab-pane fade show in active';
         } else {
             self::$class_tab = 'tab-pane fade';
         }
@@ -134,9 +134,9 @@ class Modules {
      */
     public function active($key) {
         if (in_array($key, Modules::$installed_filter_active)) {
-            $active = '<tr class="success">';
+            $active = 'table-success';
         } else {
-            $active = '<tr class="danger">';
+            $active = 'table-danger';
         }
         return $active;
     }

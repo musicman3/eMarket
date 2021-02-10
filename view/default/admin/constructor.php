@@ -26,28 +26,31 @@ use \eMarket\Core\{
 
         <title><?php echo Settings::titlePageGenerator() ?></title>
 
-        <link href="/ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+        <link rel="stylesheet" type="text/css" href="/ext/bootstrap/css/bootstrap5.min.css" media="screen" />
+        <link rel="stylesheet" href="/ext/bootstrap/css/bootstrap-icons.css" type="text/css"/>
         <link rel="stylesheet" type="text/css" href="/view/<?php echo Settings::template() ?>/admin/style.css" media="screen" />
-        <link rel="stylesheet" type="text/css" href="/ext/contextmenu/css/jquery.contextMenu.min.css" media="screen" />
-        <link rel="stylesheet" type="text/css" href="/ext/jquery/ui/jquery-ui.min.css" media="screen" />
-        <link rel="stylesheet" href="/ext/bootstrap/css/bootstrap-multiselect.css" type="text/css"/>
-        <script type="text/javascript" src="/ext/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="/ext/jquery/ui/jquery-ui.min.js"></script>
-        <script type="text/javascript" src="/ext/jquery/ui/jquery.ui.touch-punch.min.js"></script>
-        <script type="text/javascript" src="/ext/fastmd5/md5.min.js"></script>
-        <script type="text/javascript" src="/ext/randomizer/randomizer.js"></script>
-
-        <script type="text/javascript">
-            $(function () {
-                $('[data-toggle="tooltip"]').tooltip();
-            });
-        </script>
 
         <?php
         if (isset($_SESSION['login']) && isset($_SESSION['pass']) && file_exists(ROOT . '/view/' . Settings::template() . '/admin/nav.css')) {
             ?>
             <link rel="stylesheet" type="text/css" href="/view/<?php echo Settings::template() ?>/admin/nav.css" media="screen" />
         <?php } ?>
+
+        <script type="text/javascript" src="/ext/jquery/jquery.min.js"></script>
+
+        <script type="text/javascript" src="/ext/jquery/ui/jquery.ui.touch-punch.min.js"></script>
+        <script type="text/javascript" src="/ext/fastmd5/md5.min.js"></script>
+        <script type="text/javascript" src="/ext/randomizer/randomizer.js"></script>
+        <script type="text/javascript" src="/model/library/js/classes/helpers/helpers.js"></script>
+        <script type="text/javascript" src="/model/library/js/classes/confirm/confirm.js"></script>
+
+        <script type="text/javascript">
+            var Confirmation = new Confirm();
+            $(function () {
+                $('[data-bs-toggle="tooltip"]').tooltip();
+            });
+        </script>
+
     </head>
     <body>
 
@@ -62,6 +65,7 @@ use \eMarket\Core\{
 
                 <?php
                 require_once(View::routingAdmin());
+                require_once('confirm.php');
                 ?>
 
             </div>
@@ -71,17 +75,9 @@ use \eMarket\Core\{
         foreach (View::tlpc('footer') as $path) {
             require_once (ROOT . $path);
         }
-        require_once ('js/footer.php');
         ?>
 
-        <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="/ext/bootstrap/js/bootstrap-confirmation.min.js"></script>
-        <script type="text/javascript" src="/ext/contextmenu/js/jquery.contextMenu.min.js"></script>
-        <script type="text/javascript" src="/ext/bootstrap/js/bootstrap-multiselect.js"></script>
-
-        <script type="text/javascript">
-            $('[data-toggle=confirmation]').confirmation({rootSelector: '[data-toggle=confirmation]'});
-        </script>
+        <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.bundle.min.js"></script>
 
         <?php
         if (Settings::$js_handler != FALSE) {

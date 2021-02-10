@@ -11,8 +11,6 @@ modules_payment_cash_version = 1.0
 [admin]
 
 ;TITLE
-modules_payment_cash_admin_shipping_method = Shipping method
-modules_payment_cash_admin_order_status = Order status
 modules_payment_cash_admin_shipping_method_select = Select shipping method
 modules_payment_cash_admin_shipping_module_select = Select shipping module
 modules_payment_cash_admin_order_status_select = Select order status

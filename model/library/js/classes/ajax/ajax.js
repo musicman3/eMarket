@@ -2,6 +2,8 @@
  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+/* global bootstrap, fetch */
+
 /**
  * Ajax requests
  *
@@ -10,6 +12,38 @@
  * 
  */
 class Ajax {
+
+    /**
+     * Ajax POST
+     *
+     * @param url {String} (url)
+     * @param data {Obj} (data)
+     * @param reload {String} (reload marker)
+     */
+    static async postData(url = '', data = {}, reload = null) {
+        const response = await fetch(url, {
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            redirect: 'follow',
+            referrerPolicy: 'no-referrer',
+            body: JSON.stringify(data)
+        }).then(
+                data => {
+                    return data.text();
+                }
+        ).then(
+                text => {
+                    if (reload !== false) {
+                        AjaxSuccess(text);
+                    }
+                }
+        );
+    }
 
     /**
      * Add
@@ -34,16 +68,10 @@ class Ajax {
         xhr.send(data);
         if (xhr.status === 200) {
             if (alert !== undefined && alert !== null) {
-                document.querySelector('#alert_block').innerHTML = '<div id="alert" class="alert text-danger fade in"><span class="glyphicon glyphicon-alert"></span> ' + alert + '</div>';
+                document.querySelector('#alert_block').innerHTML = '<div id="alert" class="alert text-danger fade in"><span class="bi-alert-triangle"></span> ' + alert + '</div>';
             }
-            if (document.querySelector('.modal')) {
-                $('.modal').modal('hide');
-                $('.modal').on('hidden.bs.modal', function () {
-                    Ajax.getUpdate(url);
-                });
-            } else {
-                Ajax.getUpdate(url);
-            }
+            Ajax.closeModals(url);
+
         }
     }
 
@@ -61,8 +89,26 @@ class Ajax {
         xhr.open('POST', window.location.href, false);
         xhr.send(data);
         if (xhr.status === 200) {
-            Ajax.getUpdate(url);
+            Ajax.closeModals(url);
         }
+    }
+
+    /**
+     * Close modals
+     *
+     *@param url {String} (url)
+     */
+    static closeModals(url) {
+        var modals = document.querySelectorAll('.modal');
+        modals.forEach(function (modal) {
+            if (bootstrap.Modal.getInstance(document.querySelector('#' + modal.id)) !== null) {
+                bootstrap.Modal.getInstance(document.querySelector('#' + modal.id)).hide();
+                document.querySelector('#' + modal.id).addEventListener('hidden.bs.modal', function () {
+                    Ajax.getUpdate(url);
+                });
+            }
+        });
+        Ajax.getUpdate(url);
     }
 
     /**

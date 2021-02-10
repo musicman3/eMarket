@@ -92,12 +92,12 @@ final class Modules {
 
         $active_modules = Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE type=? AND active=?", ['discount', '1']);
 
-        $text = '"---------", ';
+        $text = '{isDivider: true},';
         $discount_router = [];
         $output_modules = [];
         foreach ($active_modules as $module) {
             if (file_exists(ROOT . '/modules/discount/' . $module['name'] . '/js_handler/admin/contextmenu/contextmenu.js')) {
-                $text .= $module['name'] . ': Discount' . ucfirst($module['name']) . '.context(discounts_interface), ';
+                $text .= 'Discount' . ucfirst($module['name']) . '.context(discounts_interface), ';
                 $output_text = substr($text, 0, -2);
                 array_push($output_modules, $module['name']);
             }
@@ -105,7 +105,7 @@ final class Modules {
 
         if (count($active_modules) == 0) {
             self::$discount_router['data'] = [];
-            self::$discount_router['functions'] = '"---------" ';
+            self::$discount_router['functions'] = '{isDivider: true} ';
 
             if ($marker == 'data') {
                 return self::$discount_router['data'];
@@ -115,7 +115,7 @@ final class Modules {
             }
         }
 
-        $output_text .= ', "discount_separator_end": "---------"';
+        $output_text .= ', {isDivider: true}';
 
         if ($marker == 'data') {
             return $output_modules;

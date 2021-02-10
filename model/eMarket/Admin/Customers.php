@@ -43,7 +43,7 @@ class Customers {
      * 
      */
     public static function menu() {
-        HeaderMenu::$menu[HeaderMenu::$menu_customers][] = ['?route=customers', 'glyphicon glyphicon glyphicon-user', lang('menu_customers'), '', 'false'];
+        HeaderMenu::$menu[HeaderMenu::$menu_customers][] = ['?route=customers', 'bi-people-fill', lang('menu_customers'), '', 'false'];
     }
 
     /**

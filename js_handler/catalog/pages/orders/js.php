@@ -47,12 +47,12 @@
             } else {
                 var stiker = '';
             }
-            $("#invoice").append('<tr class="bg-success">\n\
-                                        <td class="text-left"><span class="label label-success">' + stiker + '</span></td>\n\
+            $("#invoice").append('<tr class="align-middle">\n\
+                                        <td class="text-end"><span class="badge bg-success">' + stiker + '</span></td>\n\
                                         <td class="text-center"><small>' + invoice[x]['customer']['name'] + '</small></td>\n\
                                         <td class="text-center"><small>' + invoice[x]['customer']['price'] + '</small></td>\n\
                                         <td class="text-center"><small>' + invoice[x]['data']['quantity'] + ' ' + invoice[x]['customer']['unit'] + '</small></td>\n\
-                                        <td class="text-right"><small>' + invoice[x]['customer']['amount'] + '</small></td>\n\
+                                        <td class="text-end"><small>' + invoice[x]['customer']['amount'] + '</small></td>\n\
                                   </tr>');
         }
 
@@ -70,7 +70,7 @@
         $('#invoice_order_total_to_pay').html(order_total['customer']['total_to_pay_format']);
 
         for (x = 0; x < history_status.length; x++) {
-            $("#status_history").append('<span class="glyphicon glyphicon-ok"></span><small> ' + history_status[x]['customer']['date'] + ' </small><span class="label label-success">' + history_status[x]['customer']['status'] + '</span><br>');
+            $("#status_history").append('<span class="badge bg-success">' + history_status[x]['customer']['status'] + '</span> <span class="bi-check"></span><small> ' + history_status[x]['customer']['date'] + ' </small><br>');
         }
 
     });

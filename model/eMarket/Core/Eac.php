@@ -106,6 +106,10 @@ final class Eac {
         if (Valid::inGET('parent_down')) {
             self::$parent_id = Valid::inGET('parent_down');
         }
+        
+        if (Valid::inPostJson('parent_down')) {
+            self::$parent_id = Valid::inPostJson('parent_down');
+        }
 
         if (Valid::inGET('nav_parent_id')) {
             self::$parent_id = Valid::inGET('nav_parent_id');
@@ -195,16 +199,16 @@ final class Eac {
      */
     private static function delete() {
 
-        if (Valid::inPOST('delete')) {
+        if (Valid::inPostJson('delete')) {
 
-            $idx = Func::deleteEmptyInArray(Valid::inPOST('delete'));
+            $idx = Func::deleteEmptyInArray(Valid::inPostJson('delete'));
 
             if (is_array($idx) == FALSE) {
                 $idx = [];
             }
 
             for ($i = 0; $i < count($idx); $i++) {
-                if (strstr($idx[$i], '_', true) != 'product') {
+                if (strstr($idx[$i], '_', true) != 'products') {
                     // This is category
                     self::$parent_id = self::dataParentId($idx[$i]);
                     $keys = self::dataKeys($idx[$i]);
@@ -233,7 +237,7 @@ final class Eac {
                     }
                 } else {
                     // This is product
-                    $id_prod = explode('product_', $idx[$i]);
+                    $id_prod = explode('products_', $idx[$i]);
                     //Удаляем основной товар / Removing general product
                     Pdo::action("DELETE FROM " . TABLE_PRODUCTS . " WHERE id=?", [$id_prod[1]]);
 
@@ -260,12 +264,12 @@ final class Eac {
      */
     private static function cut() {
 
-        if (Valid::inPOST('idsx_cut_marker') == 'cut') {
+        if (Valid::inPostJson('idsx_cut_marker') == 'cut') {
             unset($_SESSION['buffer']);
         }
 
-        if ((Valid::inPOST('idsx_cut_key') == 'cut')) {
-            $idx = Func::deleteEmptyInArray(Valid::inPOST('idsx_cut_id'));
+        if ((Valid::inPostJson('idsx_cut_key') == 'cut')) {
+            $idx = Func::deleteEmptyInArray(Valid::inPostJson('idsx_cut_id'));
 
             if (is_array($idx) == FALSE) {
                 $idx = [];
@@ -273,12 +277,12 @@ final class Eac {
 
             for ($i = 0; $i < count($idx); $i++) {
 
-                $parent_id_real = (int) Valid::inPOST('idsx_real_parent_id');
+                $parent_id_real = (int) Valid::inPostJson('idsx_real_parent_id');
                 self::$parent_id = self::dataParentId($idx[$i]);
 
-                if (Valid::inPOST('idsx_cut_key') == 'cut') {
+                if (Valid::inPostJson('idsx_cut_key') == 'cut') {
                     // This is category
-                    if (strstr($idx[$i], '_', true) != 'product') {
+                    if (strstr($idx[$i], '_', true) != 'products') {
                         if (!isset($_SESSION['buffer']['cat'])) {
                             $_SESSION['buffer']['cat'] = [];
                         }
@@ -291,7 +295,7 @@ final class Eac {
                         if (!isset($_SESSION['buffer']['prod'])) {
                             $_SESSION['buffer']['prod'] = [];
                         }
-                        $id_prod = explode('product_', $idx[$i]);
+                        $id_prod = explode('products_', $idx[$i]);
                         array_push($_SESSION['buffer']['prod'], $id_prod[1]);
                         if ($parent_id_real > 0) {
                             self::$parent_id = $parent_id_real;
@@ -311,9 +315,9 @@ final class Eac {
      */
     private static function paste() {
 
-        if (Valid::inPOST('idsx_paste_key') == 'paste' && isset($_SESSION['buffer']) == TRUE) {
+        if (Valid::inPostJson('idsx_paste_key') == 'paste' && isset($_SESSION['buffer']) == TRUE) {
 
-            $parent_id_real = (int) Valid::inPOST('idsx_real_parent_id');
+            $parent_id_real = (int) Valid::inPostJson('idsx_real_parent_id');
             if (isset($_SESSION['buffer']['cat'])) {
                 $count_session_buffer_cat = count($_SESSION['buffer']['cat']);
             } else {
@@ -364,18 +368,18 @@ final class Eac {
      */
     private static function status() {
 
-        if ((Valid::inPOST('idsx_status_on_key') == 'On')
-                or (Valid::inPOST('idsx_status_off_key') == 'Off')) {
+        if ((Valid::inPostJson('idsx_status_on_key') == 'On')
+                or (Valid::inPostJson('idsx_status_off_key') == 'Off')) {
 
-            $parent_id_real = (int) Valid::inPOST('idsx_real_parent_id');
+            $parent_id_real = (int) Valid::inPostJson('idsx_real_parent_id');
 
-            if (Valid::inPOST('idsx_status_on_key') == 'On') {
-                $idx = Func::deleteEmptyInArray(Valid::inPOST('idsx_status_on_id'));
+            if (Valid::inPostJson('idsx_status_on_key') == 'On') {
+                $idx = Func::deleteEmptyInArray(Valid::inPostJson('idsx_status_on_id'));
                 $status = 1;
             }
 
-            if (Valid::inPOST('idsx_status_off_key') == 'Off') {
-                $idx = Func::deleteEmptyInArray(Valid::inPOST('idsx_status_off_id'));
+            if (Valid::inPostJson('idsx_status_off_key') == 'Off') {
+                $idx = Func::deleteEmptyInArray(Valid::inPostJson('idsx_status_off_id'));
                 $status = 0;
             }
 
@@ -384,7 +388,7 @@ final class Eac {
             }
 
             for ($i = 0; $i < count($idx); $i++) {
-                if (strstr($idx[$i], '_', true) != 'product') {
+                if (strstr($idx[$i], '_', true) != 'products') {
                     // This is category
                     self::$parent_id = self::dataParentId($idx[$i]);
                     $keys = self::dataKeys($idx[$i]);
@@ -392,8 +396,8 @@ final class Eac {
                     $count_keys = count($keys);
                     for ($x = 0; $x < $count_keys; $x++) {
 
-                        if ((Valid::inPOST('idsx_status_on_key') == 'On')
-                                or (Valid::inPOST('idsx_status_off_key') == 'Off')) {
+                        if ((Valid::inPostJson('idsx_status_on_key') == 'On')
+                                or (Valid::inPostJson('idsx_status_off_key') == 'Off')) {
 
                             // This is category
                             Pdo::action("UPDATE " . TABLE_CATEGORIES . " SET status=? WHERE parent_id=?", [$status, $keys[$x]]);
@@ -407,15 +411,15 @@ final class Eac {
                         }
                     }
 
-                    if ((Valid::inPOST('idsx_status_on_key') == 'On')
-                            or (Valid::inPOST('idsx_status_off_key') == 'Off')) {
+                    if ((Valid::inPostJson('idsx_status_on_key') == 'On')
+                            or (Valid::inPostJson('idsx_status_off_key') == 'Off')) {
                         Pdo::action("UPDATE " . TABLE_CATEGORIES . " SET status=? WHERE id=?", [$status, $idx[$i]]);
                     }
                 } else {
                     // This is product
-                    if ((Valid::inPOST('idsx_status_on_key') == 'On')
-                            or (Valid::inPOST('idsx_status_off_key') == 'Off')) {
-                        $id_prod = explode('product_', $idx[$i]);
+                    if ((Valid::inPostJson('idsx_status_on_key') == 'On')
+                            or (Valid::inPostJson('idsx_status_off_key') == 'Off')) {
+                        $id_prod = explode('products_', $idx[$i]);
                         Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET status=? WHERE id=?", [$status, $id_prod[1]]);
                     }
                 }

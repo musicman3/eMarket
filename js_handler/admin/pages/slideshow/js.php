@@ -9,8 +9,6 @@ $lang_js = json_encode([
     'download_complete' => lang('download_complete')
         ]);
 ?>
-<link rel="stylesheet" href="/ext/bootstrap-switch/css/bootstrap-switch.min.css" type="text/css"/>
-<script type="text/javascript" src="/ext/bootstrap-switch/js/bootstrap-switch.min.js"></script>
 <!-- Bootstrap Datepicker" -->
 <script type="text/javascript" src="/ext/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
 <link href="/ext/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
@@ -27,10 +25,7 @@ $lang_js = json_encode([
     var lang = JSON.parse('<?php echo $lang_js ?>');
     new Fileupload(resize_max, lang);
 
-    $('#mouse_stop, #autostart, #cicles, #indicators, #navigation, #view_slideshow', '#animation').bootstrapSwitch();
-
-    $('#settings').on('show.bs.modal', function (event) {
-        $('#mouse_stop, #autostart, #cicles, #indicators, #navigation').bootstrapSwitch('destroy', true);
+    document.querySelector('#settings').addEventListener('show.bs.modal', function (event) {
         var json_data = JSON.parse(document.querySelector('#ajax_data').dataset.jsonsettings);
 
         document.querySelector('#show_interval').value = json_data.show_interval;
@@ -41,10 +36,9 @@ $lang_js = json_encode([
         document.querySelector('#indicators').checked = Number(json_data.indicators);
         document.querySelector('#navigation').checked = Number(json_data.navigation);
 
-        $('#mouse_stop, #autostart, #cicles, #indicators, #navigation').bootstrapSwitch();
     });
 
-    $('[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+    $('[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
         var tab = e.target['hash'].slice(1);
         document.querySelector('#set_language').value = tab;
         window.history.pushState(null, null, "?route=slideshow&slide_lang=" + tab);
@@ -58,15 +52,13 @@ $lang_js = json_encode([
             dataXHR.innerHTML = data;
             document.querySelector('.ajax-tab').replaceWith(dataXHR.querySelector('.ajax-tab'));
             document.querySelector('#ajax_data').replaceWith(dataXHR.querySelector('#ajax_data'));
-            $('[data-toggle=confirmation]').confirmation({rootSelector: '[data-toggle=confirmation]'});
         }
     });
 
-    $('#index').on('show.bs.modal', function (event) {
+    document.querySelector('#index').addEventListener('show.bs.modal', function (event) {
         var button = event.relatedTarget;
         var modal_id = Number(button.dataset.edit);
         if (Number.isInteger(modal_id)) {
-            $('#view_slideshow, #animation').bootstrapSwitch('destroy', true);
             var json_data = JSON.parse(document.querySelector('#ajax_data').dataset.jsondata);
 
             document.querySelector('#edit').value = modal_id;
@@ -76,7 +68,6 @@ $lang_js = json_encode([
             var end = json_data.date_finish[modal_id];
             document.querySelector('#view_slideshow').checked = json_data.status[modal_id];
             document.querySelector('#animation').checked = json_data.animation[modal_id];
-            $('#view_slideshow, #animation').bootstrapSwitch();
 
             document.querySelector('#color').value = json_data.color[modal_id];
             document.querySelector('#url').value = json_data.url[modal_id];
@@ -94,11 +85,11 @@ $lang_js = json_encode([
 
             Fileupload.getImageToEdit(json_data.logo_general, json_data.logo, modal_id, 'slideshow');
         }
-        if (!Number.isInteger(modal_id) && button.dataset.toggle === 'modal') {
+
+        if (!Number.isInteger(modal_id) && button.dataset.bsToggle === 'modal') {
             document.querySelector('#edit').value = '';
             document.querySelector('#add').value = 'ok';
             document.querySelector('form').reset();
-            $('#view_slideshow, #animation').bootstrapSwitch();
         }
     });
 </script>

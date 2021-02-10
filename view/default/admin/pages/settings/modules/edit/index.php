@@ -14,25 +14,25 @@ use \eMarket\Admin\ModulesEdit;
 ?>
 
 <div id="settings_modules_edit">
-    <div class="panel panel-default shadow-element">
+    <div class="card">
 
-        <div class="panel-heading">
+        <div class="card-header">
             <div id="alert_block"><?php Messages::alert(); ?></div>
-            <h3 class="panel-title">
-                <span class="settings_back"><button type="button" onClick='location.href = "<?php echo Settings::parentPartitionGenerator() ?>"' class="btn btn-primary btn-xs"><span class="back glyphicon glyphicon-share-alt"></span></button></span><span class="settings_name"><?php echo Settings::titlePageGenerator() ?></span>
-            </h3>
+            <h5 class="card-title">
+                <span class="settings_back"><button type="button" onClick='location.href = "<?php echo Settings::parentPartitionGenerator() ?>"' class="btn btn-primary btn-sm"><span class="bi-reply"></span></button></span><span class="settings_name"><?php echo Settings::titlePageGenerator() ?></span>
+            </h5>
         </div>
-        <div class="panel-body">
+        <div class="card-body">
             <form id="form_edit_active" name="form_edit_active" enctype="multipart/form-data">
                 <input id="edit_active" type="hidden" name="edit_active" value="<?php echo Valid::inGET('type') . '_' . Valid::inGET('name') ?>" />
-                <div class="pull-right">
-                    <input hidden type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('button_on') ?>" data-off-text="<?php echo lang('button_off') ?>" name="switch_active" id="switch_active" <?php echo ModulesEdit::$switch_active ?>>
+                <div class="float-end form-switch">
+                    <input class="form-check-input" type="checkbox" name="switch_active" id="switch_active" <?php echo ModulesEdit::$switch_active ?>>
                 </div>
             </form>
-            <div class="pull-left">
-                <div class="text-left"><?php echo lang('modules_name') ?> <?php echo lang('modules_' . Valid::inGET('type') . '_' . Valid::inGET('name') . '_name') ?></div>
-                <div class="text-left"><?php echo lang('modules_author') ?> <?php echo lang('modules_' . Valid::inGET('type') . '_' . Valid::inGET('name') . '_author') ?></div>
-                <div class="text-left"><?php echo lang('modules_version') ?> <?php echo lang('modules_' . Valid::inGET('type') . '_' . Valid::inGET('name') . '_version') ?></div>
+            <div class="float-start">
+                <div class="text-start"><?php echo lang('modules_name') ?> <?php echo lang('modules_' . Valid::inGET('type') . '_' . Valid::inGET('name') . '_name') ?></div>
+                <div class="text-start"><?php echo lang('modules_author') ?> <?php echo lang('modules_' . Valid::inGET('type') . '_' . Valid::inGET('name') . '_author') ?></div>
+                <div class="text-start"><?php echo lang('modules_version') ?> <?php echo lang('modules_' . Valid::inGET('type') . '_' . Valid::inGET('name') . '_version') ?></div>
             </div>
             <div class="clearfix"></div></br>
 

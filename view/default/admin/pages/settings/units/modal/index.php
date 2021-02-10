@@ -12,28 +12,31 @@ use \eMarket\Core\{
 <div id="index" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header"><div class="pull-right"><button class="close" type="button" data-dismiss="modal">×</button></div>
-                <h4 class="modal-title"><?php echo Settings::titlePageGenerator() ?></h4>
+            <div class="modal-header">
+                <h5 class="modal-title"><?php echo Settings::titlePageGenerator() ?></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-            <form id="form_add" name="form_add" action="javascript:void(null);" onsubmit="Ajax.callAdd()">
-                <div class="panel-body">
+            <form id="form_add" class="was-validated" name="form_add" action="javascript:void(null);" onsubmit="Ajax.callAdd()">
+                <div class="modal-body">
                     <input type="hidden" id="add" name="add" value="" />
                     <input type="hidden" id="edit" name="edit" value="" />
 
                     <?php require_once(ROOT . '/view/' . Settings::template() . '/layouts/lang_tabs_add.php') ?>
 
                     <div class="tab-content">
-                        <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade in active">
-                            <div class="form-group">
-                                <div class="input-group has-error">
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                    <input class="input-sm form-control" placeholder="<?php echo lang('name_full') ?>" type="text" name="name_units_0" id="name_units_0" required />
+                        <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade show in active">
+                            <div class="mb-2">
+                                <small class="form-text text-muted"><?php echo lang('units_name_full') ?></small>
+                                <div class="input-group input-group-sm">
+                                    <span class="input-group-text"><span class="bi-file-text"></span></span>
+                                    <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_units_0" id="name_units_0" required />
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="input-group has-error">
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                                    <input class="input-sm form-control" placeholder="<?php echo lang('name_little') ?>" type="text" name="unit_units_0" id="unit_units_0" required />
+                            <div class="mb-2">
+                                <small class="form-text text-muted"><?php echo lang('units_name_little') ?></small>
+                                <div class="input-group input-group-sm">
+                                    <span class="input-group-text"><span class="bi-file-text"></span></span>
+                                    <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="unit_units_0" id="unit_units_0" required />
                                 </div>
                             </div>
                         </div>
@@ -44,16 +47,18 @@ use \eMarket\Core\{
                                 ?>
 
                                 <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">
-                                    <div class="form-group">
-                                        <div class="input-group has-error">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo lang('name_full') ?>" type="text" name="name_units_<?php echo $x ?>" id="name_units_<?php echo $x ?>" required />
+                                    <div class="mb-2">
+                                        <small class="form-text text-muted"><?php echo lang('units_name_full') ?></small>
+                                        <div class="input-group input-group-sm">
+                                            <span class="input-group-text"><span class="bi-file-text"></span></span>
+                                            <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_units_<?php echo $x ?>" id="name_units_<?php echo $x ?>" required />
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <div class="input-group has-error">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                                            <input class="input-sm form-control" placeholder="<?php echo lang('name_little') ?>" type="text" name="unit_units_<?php echo $x ?>" id="unit_units_<?php echo $x ?>" required />
+                                    <div class="mb-2">
+                                        <small class="form-text text-muted"><?php echo lang('units_name_little') ?></small>
+                                        <div class="input-group input-group-sm">
+                                            <span class="input-group-text"><span class="bi-file-text"></span></span>
+                                            <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="unit_units_<?php echo $x ?>" id="unit_units_<?php echo $x ?>" required />
                                         </div>
                                     </div>
                                 </div>
@@ -63,16 +68,16 @@ use \eMarket\Core\{
                         }
                         ?>
 
-                        <div class="form-group">
-                            <input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="default_unit" id="default_unit" checked>
-                            <label for="default_unit"><?php echo lang('default_set') ?> </label>
+                        <div class="mb-2 form-check form-switch">
+                            <input class="form-check-input" type="checkbox" name="default_unit" id="default_unit" checked>
+                            <label class="form-check-label" for="default_unit"><?php echo lang('default_set') ?></label>
                         </div>
                     </div>
                 </div>
 
                 <div class="modal-footer">
-                    <button class="btn btn-primary btn-xs" type="button" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-remove"></span> <?php echo lang('cancel') ?></button>
-                    <button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button>
+                    <button class="btn btn-primary btn-sm" type="button" data-bs-dismiss="modal"><span class="bi-x-circle"></span> <?php echo lang('cancel') ?></button>
+                    <button type="submit" class="btn btn-primary btn-sm"><span class="bi-check-circle"></span> <?php echo lang('save') ?></button>
                 </div>
 
             </form>

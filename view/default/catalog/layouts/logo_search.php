@@ -6,24 +6,18 @@
 ?>
 
 <div id="header" class="container-fluid">
-    <div class="row">
-        <div class="col-sm-4">
-            <a href="/"><img src="/view/<?php echo \eMarket\Core\Settings::template() ?>/catalog/images/emarket.png" alt="" class="logo img-responsive pull-left"></a>
+    <div class="row align-items-center">
+        <div class="col-4">
+            <a href="/"><img src="/view/<?php echo \eMarket\Core\Settings::template() ?>/catalog/images/emarket.png" alt="" class="logo img-fluid float-start"></a>
         </div>
-        <div class="col-sm-8">
-            <div class="searchbox-margin">
-                <form>
-                    <input hidden name="route" value="listing">
-                    <div class="input-group">
-                        <input type="search" id="search" name="search" placeholder="<?php echo lang('search_name') ?>" class="form-control" required>
-                        <span class="input-group-btn">
-                            <button type="submit" class="btn btn-primary">
-                                <span class="glyphicon glyphicon-search"></span>
-                            </button>
-                        </span>
-                    </div>
-                </form>
-            </div>
+        <div class="col-8">
+            <form>
+                <input hidden name="route" value="listing">
+                <div class="input-group">
+                    <input type="search" id="search" name="search" placeholder="<?php echo lang('search_name') ?>" class="form-control" required>
+                    <button type="submit" class="btn btn-primary"><span class="bi-search"></span></button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

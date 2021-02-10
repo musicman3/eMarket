@@ -4,18 +4,12 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
-<link rel="stylesheet" href="/ext/bootstrap-switch/css/bootstrap-switch.min.css" type="text/css"/>
-<script type="text/javascript" src="/ext/bootstrap-switch/js/bootstrap-switch.min.js"></script>
-<script type="text/javascript">
-    $('#default_weight').bootstrapSwitch();
-</script>
 
 <script type="text/javascript">
-    $('#index').on('show.bs.modal', function (event) {
+    document.querySelector('#index').addEventListener('show.bs.modal', function (event) {
         var button = event.relatedTarget;
         var modal_id = Number(button.dataset.edit);
         if (Number.isInteger(modal_id)) {
-            $('#default_weight').bootstrapSwitch('destroy', true);
             var json_data = JSON.parse(document.querySelector('#ajax_data').dataset.jsondata);
 
             document.querySelector('#edit').value = modal_id;
@@ -28,7 +22,6 @@
 
             document.querySelector('#value_weight').value = json_data.value[modal_id];
             document.querySelector('#default_weight').checked = json_data.status[modal_id];
-            $('#default_weight').bootstrapSwitch();
         } else {
             document.querySelector('#edit').value = '';
             document.querySelector('#add').value = 'ok';

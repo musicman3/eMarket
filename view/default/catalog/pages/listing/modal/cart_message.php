@@ -8,21 +8,21 @@
 <div id="cart_message" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <h4 id="confirm_title" class="modal-title text-center"><?php echo lang('listing_product_added_to_cart') ?></h4>
+            <div class="modal-header justify-content-center">
+                <h3 id="confirm_title" class="modal-title text-center"><?php echo lang('listing_product_added_to_cart') ?></h3>
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div id="product_image" class="col-xs-5"></div>
-                    <div class="col-xs-7">
-                        <p><strong><?php echo lang('listing_product') ?></strong>&nbsp;<span id="product_name"></span></p>
-                        <p><strong><?php echo lang('listing_price') ?></strong>&nbsp;<span id="product_price_formated"></span></p>
-                        <p><strong><?php echo lang('listing_quantity') ?></strong>&nbsp;<span id="product_quantity"></span></p>
+                    <div id="product_image" class="col-5 d-flex align-items-center"></div>
+                    <div class="col-7 d-grid align-items-center">
+                        <div><strong><?php echo lang('listing_product') ?></strong>&nbsp;<span id="product_name"></span></div>
+                        <div><strong><?php echo lang('listing_price') ?></strong>&nbsp;<span id="product_price_formated"></span></div>
+                        <div><strong><?php echo lang('listing_quantity') ?></strong>&nbsp;<span id="product_quantity"></span></div>
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary" data-dismiss="modal"><?php echo lang('button_continue_shopping') ?></button> <button type="submit" class="btn btn-success" onClick='location.href = "/?route=cart"'><?php echo lang('button_proceed_to_checkout') ?></button>
+            <div class="modal-footer justify-content-evenly">
+                <button type="submit" class="btn btn-primary btn-sm" data-bs-dismiss="modal"><?php echo lang('button_continue_shopping') ?></button> <button type="submit" class="btn btn-success btn-sm" onClick='location.href = "/?route=cart"'><?php echo lang('button_proceed_to_checkout') ?></button>
             </div>
         </div>
     </div>

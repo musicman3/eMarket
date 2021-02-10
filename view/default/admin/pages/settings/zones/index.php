@@ -16,58 +16,54 @@ require_once('modal/index.php')
 ?>
 
 <div id="settings_zones">
-    <div class="panel panel-default">
-        <div class="panel-heading">
+    <div class="card">
+        <div class="card-header">
             <div id="alert_block"><?php Messages::alert(); ?></div>
-            <h3 class="panel-title">
-                <span class="settings_back"><button type="button" onClick='location.href = "<?php echo Settings::parentPartitionGenerator() ?>"' class="btn btn-primary btn-xs"><span class="back glyphicon glyphicon-share-alt"></span></button></span><span class="settings_name"><?php echo Settings::titlePageGenerator() ?></span>
-            </h3>
+            <h5 class="card-title">
+                <span class="settings_back"><button type="button" onClick='location.href = "<?php echo Settings::parentPartitionGenerator() ?>"' class="btn btn-primary btn-sm"><span class="bi-reply"></span></button></span><span class="settings_name"><?php echo Settings::titlePageGenerator() ?></span>
+            </h5>
         </div>
-        <div class="panel-body">
+        <div class="card-body">
             <div id="ajax_data" class='hidden' data-jsondata='<?php echo Zones::$json_data ?>'></div>
 
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
-                        <tr>
+                        <tr class="align-middle">
                             <th colspan="3"><?php echo Pages::counterPage() ?></th>
 
                             <th>
-                                <div class="flexbox">
+                                <div class="gap-2 d-flex justify-content-end">
 
-                                    <div class="b-left"><a href="#index" class="btn btn-primary btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></div>
+                                    <a href="#index" class="btn btn-primary btn-sm" data-bs-toggle="modal"><span class="bi-plus"></span></a>
 
                                     <form>
                                         <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
                                         <input hidden name="backstart" value="<?php echo Pages::$start ?>">
                                         <input hidden name="backfinish" value="<?php echo Pages::$finish ?>">
-                                        <div class="b-left">
-                                            <?php if (Pages::$start > 0) { ?>
-                                                <button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-left"></span></button>
-                                            <?php } else { ?>
-                                                <a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-left"></span></a>
-                                            <?php } ?>
-                                        </div>
+                                        <?php if (Pages::$start > 0) { ?>
+                                            <button type="submit" class="btn btn-primary btn-sm" formmethod="get"><span class="bi-arrow-left-short"></span></button>
+                                        <?php } else { ?>
+                                            <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-left-short"></span></a>
+                                        <?php } ?>
                                     </form>
 
                                     <form>
                                         <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
                                         <input hidden name="start" value="<?php echo Pages::$start ?>">
                                         <input hidden name="finish" value="<?php echo Pages::$finish ?>">
-                                        <div>
-                                            <?php if (Pages::$finish != Pages::$count) { ?>
-                                                <button type="submit" class="btn btn-primary btn-xs" formmethod="get"><span class="glyphicon glyphicon-chevron-right"></span></button>
-                                            <?php } else { ?>
-                                                <a type="submit" class="btn btn-primary btn-xs disabled"><span class="glyphicon glyphicon-chevron-right"></span></a>
-                                            <?php } ?>
-                                        </div>
+                                        <?php if (Pages::$finish != Pages::$count) { ?>
+                                            <button type="submit" class="btn btn-primary btn-sm" formmethod="get"><span class="bi-arrow-right-short"></span></button>
+                                        <?php } else { ?>
+                                            <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-right-short"></span></a>
+                                        <?php } ?>
                                     </form>
 
                                 </div>
                             </th>
                         </tr>
                         <?php if (Pages::$count > 0) { ?>
-                            <tr class="border">
+                            <tr class="align-middle">
                                 <th class="sortleft"></th>
                                 <th><?php echo lang('zone') ?></th>
                                 <th><?php echo lang('name_description') ?></th>
@@ -77,26 +73,22 @@ require_once('modal/index.php')
                     </thead>
                     <tbody>
                         <?php for (Pages::$start; Pages::$start < Pages::$finish; Pages::$start++, Pages::lineUpdate()) { ?>
-                            <tr>
+                            <tr class="align-middle">
                                 <td class="sortleft">
                                     <form method="get">
                                         <input hidden name="route" value="settings/zones/listing">
                                         <input hidden name="zone_id" value="<?php echo Pages::$table['line']['id'] ?>">
-                                        <button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-cog"></span></button>
+                                        <button type="submit" class="btn btn-primary btn-sm"><span class="bi-gear-fill"></span></button>
                                     </form>
                                 </td>
                                 <td><?php echo Pages::$table['line']['name'] ?></td>
                                 <td><?php echo Pages::$table['line']['note'] ?></td>
                                 <td>
-                                    <div class="flexbox">
-                                        <div class="b-left">
-                                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#index" data-edit="<?php echo Pages::$table['line']['id'] ?>"><span class="glyphicon glyphicon-edit"></span></button>
-                                        </div>
-                                        <form id="form_delete<?php echo Pages::$table['line']['id'] ?>" name="form_delete" action="javascript:void(null);" onsubmit="Ajax.callDelete('<?php echo Pages::$table['line']['id'] ?>')" enctype="multipart/form-data">
+                                    <div class="gap-2 d-flex justify-content-end">
+                                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#index" data-edit="<?php echo Pages::$table['line']['id'] ?>"><span class="bi-pencil-square"></span></button>
+                                        <form id="form_delete<?php echo Pages::$table['line']['id'] ?>" name="form_delete" action="javascript:void(null);" enctype="multipart/form-data">
                                             <input hidden name="delete" value="<?php echo Pages::$table['line']['id'] ?>">
-                                            <div>
-                                                <button type="submit" name="delete_but" class="btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="glyphicon glyphicon-trash"> </span></button>
-                                            </div>
+                                            <button type="button" name="delete_but" class="btn btn-primary btn-sm" onclick="Confirmation.del('<?php echo Pages::$table['line']['id'] ?>')"><span class="bi-trash"> </span></button>
                                         </form>
                                     </div>
                                 </td>

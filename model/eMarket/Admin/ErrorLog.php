@@ -38,7 +38,7 @@ class ErrorLog {
      * 
      */
     public static function menu() {
-        HeaderMenu::$menu[HeaderMenu::$menu_tools][] = ['?route=error_log', 'glyphicon glyphicon-exclamation-sign', lang('menu_error_log'), '', 'false'];
+        HeaderMenu::$menu[HeaderMenu::$menu_tools][] = ['?route=error_log', 'bi-exclamation-circle', lang('menu_error_log'), '', 'false'];
     }
 
     /**

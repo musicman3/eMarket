@@ -12,26 +12,27 @@ use \eMarket\Admin\ZonesListing;
 ?>
 
 <div id="index" class="modal fade" tabindex="-1">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header"><div class="pull-right"><button class="close" type="button" data-dismiss="modal">×</button></div>
-                <h4 class="modal-title"><?php echo Settings::titlePageGenerator() ?></h4>
+            <div class="modal-header">
+                <h5 class="modal-title"><?php echo Settings::titlePageGenerator() ?></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-            <form id="form_add" name="form_add" action="javascript:void(null);" onsubmit="Ajax.callAdd()">
+            <form id="form_add" name="form_add" action="javascript:void(null);">
 
                 <div class="modal-footer">
                     <input hidden name="route" value="settings/zones/listing">
                     <input type="hidden" name="add" value="ok" />
                     <input hidden name="zone_id" value="<?php echo ZonesListing::$zones_id ?>">
 
-                    <span class="multiselect-native-select">
+                    <span class="multiselect-native-select me-auto">
                         <select id="multiselect" name="multiselect[]" multiple="multiple">
                             <?php
                             foreach (ZonesListing::$countries_multiselect as $k => $v) {
                                 if (in_array(array($k), ZonesListing::$lines) == TRUE && count(ZonesListing::$regions) != 0) {
                                     ?>
 
-                                    <optgroup label="<span class='multiselect-add'><?php echo $v ?></span>">
+                                    <optgroup class="multiselect-add" label="<?php echo $v ?>">
                                     <?php } else {
                                         ?>
 
@@ -59,8 +60,8 @@ use \eMarket\Admin\ZonesListing;
                         </select>
                     </span>
 
-                    <button class="btn btn-primary btn-xs" type="button" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-remove"></span> <?php echo lang('cancel') ?></button>
-                    <button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button>
+                    <button class="btn btn-primary btn-sm" type="button" data-bs-dismiss="modal"><span class="bi-x-circle"></span> <?php echo lang('cancel') ?></button>
+                    <button type="submit" onclick="Ajax.callAdd()" class="btn btn-primary btn-sm"><span class="bi-check-circle"></span> <?php echo lang('save') ?></button>
                 </div>
 
             </form>

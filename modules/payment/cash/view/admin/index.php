@@ -11,10 +11,10 @@ use \eMarket\Core\Modules\Payment\Cash;
 
     <input type="hidden" name="save" value="ok" />
 
-    <div class="form-group">
-        <label for="shipping_method"><?php echo lang('modules_payment_cash_admin_shipping_method') ?></label>
-        <div class="input-group">
-            <select id="shipping_method" name="multiselect[]" multiple="multiple">
+    <div class="mb-2">
+        <small id="shipping_method_action" class="form-text text-muted"><?php echo lang('modules_payment_cash_admin_shipping_method_select') ?></small>
+        <div class="input-group input-group-sm">
+            <select id="shipping_method" class="form-select" name="multiselect[]" multiple="multiple">
                 <?php
                 foreach (Cash::$shipping_method as $val) {
                     if (is_array(Cash::$shipping_val) && in_array($val['name'], Cash::$shipping_val)) {
@@ -27,13 +27,12 @@ use \eMarket\Core\Modules\Payment\Cash;
                 <?php } ?>
             </select>
         </div>
-        <small id="shipping_method_action" class="form-text text-muted"><?php echo lang('modules_payment_cash_admin_shipping_method_select') ?></small>
     </div>
-    <div class="form-group">
-        <label for="order_status"><?php echo lang('modules_payment_cash_admin_order_status') ?></label>
-        <div class="input-group has-success">
-            <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-            <select name="order_status" id="order_status" class="input-sm form-control">
+    <div class="mb-2">
+        <small id="order_status_action" class="form-text text-muted"><?php echo lang('modules_payment_cash_admin_order_status_select') ?></small>
+        <div class="input-group input-group-sm">
+            <span class="input-group-text"><span class="bi-pencil"></span></span>
+            <select name="order_status" id="order_status" class="form-select">
                 <?php
                 foreach (Cash::$order_status as $val) {
                     if ($val['id'] == Cash::$order_status_selected) {
@@ -46,11 +45,11 @@ use \eMarket\Core\Modules\Payment\Cash;
                 <?php } ?>
             </select>
         </div>
-        <small id="order_status_action" class="form-text text-muted"><?php echo lang('modules_payment_cash_admin_order_status_select') ?></small>
     </div>
+    <br>
 
-    <div class="text-right">
-        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> <?php echo lang('save') ?></button>
+    <div class="text-left">
+        <button type="submit" class="btn btn-primary btn-sm"><span class="bi-check-circle"></span> <?php echo lang('save') ?></button>
     </div>
 
 </form>

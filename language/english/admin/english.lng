@@ -57,7 +57,7 @@ button_delete = Delete
 button_edit = Edit
 button_move = Move
 cancel = Cancel
-confirm-del = Delete?
+confirm-del = Are you sure you want to delete? ?
 confirm-no = No
 confirm-yes = Yes
 confirm-install = Install?
@@ -98,7 +98,6 @@ entrance = Entrance
 product_price = Price
 product_quantity = Quantity
 product_unit = Unit
-product_vendor_code = Vendor code
 product_description = Description
 name_little = Little name
 name_full = Full name
@@ -128,6 +127,7 @@ attention = ATTENTION!
 confirm_delete_product_or_category = Are you sure you want to delete a category or product?
 confirm_delete_stiker = Are you sure you want to remove stiker?
 alert_wait = Please wait. Processing is in progress...
+enter_value = Enter value
 
 ;DEBUG
 debug_page_generation_time = Page generation time:
@@ -174,12 +174,34 @@ site = Site
 ;ORDER STATUS
 order_status_name = Order status
 
+;LENGTH
+length_name_little = Little name
+length_name_full = Full name
+length_value = Value
+
+;WEIGHT
+weight_name_little = Little name
+weight_name_full = Full name
+weight_value = Value
+
+;UNITS
+units_name_little = Little name
+units_name_full = Full name
+
+;VENDOR_CODES
+vendor_codes_name = Vendor code
+vendor_codes_description = Description
+
 ;CURRENCIES
-currency_symbol = Currency symbol
-decimal_places = Decimal places
-symbol_left = Symbol left
-symbol_right = Symbol right
-iso_4217 = Code ISO 4217
+currencies_currency_symbol = Currency symbol
+currencies_decimal_places = Decimal places
+currencies_symbol_left = Symbol left
+currencies_symbol_right = Symbol right
+currencies_iso_4217 = Code ISO 4217
+currencies_name_little = Little name
+currencies_name_full = Full name
+currencies_value = Value
+currencies_position = Позиция
 
 ;TAXES
 taxes_modal_name = Name
@@ -188,8 +210,8 @@ taxes_modal_percent = PERCENT
 taxes_modal_value = VALUE
 taxes_modal_included = INCLUDING
 taxes_modal_separately = SEPARATELY
-taxes_modal_fixed_desc = Percent / Fixed value
-taxes_modal_included_desc = Tax included / Separately
+taxes_modal_fixed_desc = Fixed value / Percent
+taxes_modal_included_desc = Separately / Tax included
 taxes_modal_zones_desc = Tax zone
 taxes_rate = Rate
 taxes_name = Tax
@@ -197,8 +219,8 @@ taxes_percent = %
 taxes_value = %s
 taxes_included = INCLUDING
 taxes_separately = SEPARATELY
-taxes_fixed_desc = Percent / Fixed value
-taxes_included_desc = Tax included / Separately
+taxes_fixed_desc = Fixed value / Percent
+taxes_included_desc = Separately / Tax included
 taxes_zones_desc = Tax zone
 
 ;CATEGORIES

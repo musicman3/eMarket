@@ -8,11 +8,12 @@
 <div id="values_attribute" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header"><div class="pull-right"><button class="close" type="button" data-dismiss="modal">×</button></div>
-                <h4 id="title_values_attribute" class="modal-title"></h4>
+            <div class="modal-header">
+                <h5 id="title_values_attribute" class="modal-title"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
 
-            <div class="panel-body">
+            <div class="modal-body">
                 <div class="tab-content">
                     <div class="table-responsive">
                         <table class="table table-hover">
@@ -20,7 +21,9 @@
                                 <tr>
                                     <th colspan="2"></th>
                                     <th>
-                                        <div class="flexbox"><button type="button" class="add-values-attribute btn btn-primary btn-xs"><span class="glyphicon glyphicon-plus"></span></button></div>
+                                        <div class="gap-2 d-flex justify-content-end">
+					    <button type="button" class="add-values-attribute btn btn-primary btn-sm"><span class="bi-plus"></span></button>
+					</div>
                                     </th>
                                 </tr>
 

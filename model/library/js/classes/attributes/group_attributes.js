@@ -2,6 +2,8 @@
  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+/* global Helpers, bootstrap, confirmation */
+
 /**
  * Attribute group
  *
@@ -16,8 +18,10 @@ class GroupAttributes {
      * @param lang {Json} (lang)
      */
     constructor(lang) {
-        this.modal(lang);
-        this.click(lang);
+        if (lang !== undefined) {
+            this.modal(lang);
+            this.click(lang);
+        }
     }
 
     /**
@@ -27,8 +31,7 @@ class GroupAttributes {
      */
     modal(lang) {
 
-        $('#index').on('show.bs.modal', function (event) {
-
+        document.querySelector('#index').addEventListener('show.bs.modal', function (event) {
             var jsdata = new JsData();
             var data_id = 'false';
             if (sessionStorage.getItem('attributes') === null) {
@@ -40,15 +43,12 @@ class GroupAttributes {
             GroupAttributes.deleteValue(lang);
         });
 
-        $('#index, #index_product').on('hidden.bs.modal', function (event) {
-            $('.group-attributes').empty();
+        document.querySelector('#index').addEventListener('hidden.bs.modal', function (event) {
             GroupAttributes.clearAttributes();
-            $('.product-attribute').empty();
         });
 
-        $('#add_group_attributes').on('hidden.bs.modal', function (event) {
-            $('.input-add-group-attributes').val('');
-            GroupAttributes.deleteValue(lang);
+        document.querySelector('#index_product').addEventListener('hidden.bs.modal', function (event) {
+            document.querySelector('.product-attribute').innerHTML = '';
         });
     }
 
@@ -58,13 +58,13 @@ class GroupAttributes {
      *@param lang {Array} (lang)
      */
     click(lang) {
-        $(document).on('click', '.values-group-attribute', function () {
+        Helpers.on('body', 'click', '.values-group-attribute', function (e) {
             var jsdata = new JsData();
-            var data_id = $(this).closest('tr').attr('id').split('_')[1];
+            var data_id = e.target.closest('tr').dataset.id.split('_')[1];
             var parse_attributes = jsdata.selectParentUids('false', JSON.parse(sessionStorage.getItem('attributes')));
             sessionStorage.setItem('level_1', data_id);
 
-            $('#attribute').modal('show');
+            new bootstrap.Modal(document.querySelector('#attribute')).show();
             var level_length = parse_attributes[0].length;
 
             for (var x = 0; x < level_length; x++) {
@@ -73,25 +73,25 @@ class GroupAttributes {
                 }
             }
 
-            $('#title_attribute').html(jsdata.selectUid(data_id, parse_attributes)[language]['value']);
-
+            document.querySelector('#title_attribute').innerHTML = jsdata.selectUid(data_id, parse_attributes)[language]['value'];
         });
 
-        $(document).on('click', '.add-group-attributes', function () {
-            $('#add_group_attributes').modal('show');
+        Helpers.on('body', 'click', '.add-group-attributes', function (e) {
+            document.querySelector('#group_attributes_add_form').reset();
+            new bootstrap.Modal(document.querySelector('#add_group_attributes')).show();
             sessionStorage.setItem('action', 'add');
         });
 
-        $(document).on('click', '.edit-group-attribute', function () {
-            $('#add_group_attributes').modal('show');
+        Helpers.on('body', 'click', '.edit-group-attribute', function (e) {
+            new bootstrap.Modal(document.querySelector('#add_group_attributes')).show();
             var processing = new AttributesProcessing();
-            processing.clickEdit($(this).closest('tr').attr('id').split('_')[1], 'false', 'level_1');
+            processing.clickEdit(e.target.closest('tr').id.split('_')[1], 'false', 'level_1');
         });
 
-        $(document).on('click', '#save_group_attributes_button', function () {
-            $('#add_group_attributes').modal('hide');
+        Helpers.on('body', 'click', '#save_group_attributes_button', function (e) {
+            bootstrap.Modal.getInstance(document.querySelector('#add_group_attributes')).hide();
 
-            var attributes_bank = $('#group_attributes_add_form').serializeArray();
+            var attributes_bank = Helpers.serializeArray('#group_attributes_add_form');
             var data_id = 'false';
             var jsdata = new JsData();
             var parse_attributes = JSON.parse(sessionStorage.getItem('attributes'));
@@ -112,7 +112,7 @@ class GroupAttributes {
                 GroupAttributes.add(lang, parse_attributes_view);
             }
 
-            $('.input-add-group-attributes').val('');
+            GroupAttributes.deleteValue(lang);
         });
     }
 
@@ -121,17 +121,16 @@ class GroupAttributes {
      *
      * @param id {String} (string id)
      * @param value {String} (string value)
-     * @param lang {Array} (lang)
      */
-    static addValue(id, value, lang) {
-        $('.group-attributes').prepend(
-                '<tr class="groupattributes" id="groupattributes_' + id + '">' +
-                '<td class="sortyes-group sortleft-m"><div><span class="glyphicon glyphicon-move"> </span></div></td>' +
-                '<td class="sortleft-m"><button type="button" class="values-group-attribute btn btn-primary btn-xs"><span class="glyphicon glyphicon-cog"></span></button></td>' +
+    static addValue(id, value) {
+        document.querySelector('.group-attributes').insertAdjacentHTML('afterbegin',
+                '<tr class="groupattributes align-middle" data-id="groupattributes_' + id + '" id="groupattributes_' + id + '">' +
+                '<td class="sortyes sortleft-m"><div><span class="bi-arrows-move"> </span></div></td>' +
+                '<td class="sortleft"><button type="button" class="values-group-attribute btn btn-primary btn-sm"><span class="bi-gear"></span></button></td>' +
                 '<td>' + value + '</td>' +
                 '<td>' +
-                '<div class="flexbox"><div class="b-left"><button type="button" class="edit-group-attribute btn btn-primary btn-xs" title="' + lang[3] + '"><span class="glyphicon glyphicon-edit"> </span></button></div>' +
-                '<div><button type="button" class="delete-group-attribute btn btn-primary btn-xs" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="' + lang[0] + '" data-btn-cancel-label="' + lang[1] + '" title="' + lang[2] + '"><span class="glyphicon glyphicon-trash"> </span></button></div></div>' +
+                '<div class="gap-2 d-flex justify-content-end"><button type="button" class="edit-group-attribute btn btn-primary btn-sm"><span class="bi-pencil-square"> </span></button>' +
+                '<button type="button" class="delete-group-attribute btn btn-primary btn-sm"><span class="bi-trash"> </span></button></div>' +
                 '</td>' +
                 '</tr>'
                 );
@@ -144,22 +143,27 @@ class GroupAttributes {
      *
      */
     static deleteValue(lang) {
-        $('.delete-group-attribute').confirmation({
-            rootSelector: '[data-toggle=confirmation]',
-            onConfirm: function (event) {
-                $(this).closest('tr').remove();
+        var buttons = document.querySelectorAll('.delete-group-attribute');
+        buttons.forEach(function (button) {
+            button.addEventListener('click', function (e) {
+                var elem = e.currentTarget;
+                new bootstrap.Modal(document.querySelector('#confirm')).show();
+                confirmation.onclick = function () {
+                    bootstrap.Modal.getInstance(document.querySelector('#confirm')).hide();
+                    elem.closest('tr').remove();
 
-                var jsdata = new JsData();
-                var data_id = 'false';
-                var parse_attributes = JSON.parse(sessionStorage.getItem('attributes'));
+                    var jsdata = new JsData();
+                    var data_id = 'false';
+                    var parse_attributes = JSON.parse(sessionStorage.getItem('attributes'));
 
-                var parse_attributes_delete = jsdata.deleteUid($(this).closest('tr').attr('id').split('_')[1], parse_attributes);
-                sessionStorage.setItem('attributes', JSON.stringify(parse_attributes_delete));
+                    var parse_attributes_delete = jsdata.deleteUid(elem.closest('tr').id.split('_')[1], parse_attributes);
+                    sessionStorage.setItem('attributes', JSON.stringify(parse_attributes_delete));
 
-                var parse_attributes_add = jsdata.selectParentUids(data_id, JSON.parse(sessionStorage.getItem('attributes')));
-                GroupAttributes.add(lang, parse_attributes_add);
-                GroupAttributes.deleteValue(lang);
-            }
+                    var parse_attributes_add = jsdata.selectParentUids(data_id, JSON.parse(sessionStorage.getItem('attributes')));
+                    GroupAttributes.add(lang, parse_attributes_add);
+                    GroupAttributes.deleteValue(lang);
+                };
+            });
         });
     }
 
@@ -167,10 +171,11 @@ class GroupAttributes {
      * Sorting
      * 
      * @param lang {Array} (lang)
+     * @param sortable {Object} (sortable)
      *
      */
-    sort(lang) {
-        var sortedIDs = $(".group-attributes").sortable("toArray").reverse();
+    sort(lang, sortable) {
+        var sortedIDs = sortable.toArray().reverse();
         var processing = new AttributesProcessing();
         var parse_attributes_add = processing.sorted(sortedIDs, 'false');
 
@@ -190,12 +195,12 @@ class GroupAttributes {
         var jsdata = new JsData();
         var parse_attributes_sort = jsdata.sort(parse);
 
-        $('.group-attributes').empty();
+        document.querySelector('.group-attributes').innerHTML = '';
         parse.forEach((string, index) => {
             var sort_id = string.length - 1;
             string.forEach((item, i) => {
                 if (item.name === 'group_attributes_' + lang[4]) {
-                    GroupAttributes.addValue(parse_attributes_sort[index][sort_id].uid, parse_attributes_sort[index][i].value, lang);
+                    GroupAttributes.addValue(parse_attributes_sort[index][sort_id].uid, parse_attributes_sort[index][i].value);
                 }
             });
         });

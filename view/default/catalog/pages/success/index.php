@@ -17,4 +17,14 @@ foreach (View::tlpc('content') as $path) {
 <div id="alert_block"><?php Messages::alert(); ?></div>
 <h1><?php echo lang('success_text') ?></h1>
 
-<div id="success" class="contentText"><?php echo lang('success_message') ?></div>
+<div id="success" class="contentText">
+    <div class="well-text bg-light mb-3">
+	<p class="card-text"><?php echo lang('success_message') ?></p>
+    </div>
+    <form>
+        <input hidden name="route" value="orders">
+        <div class="text-end">
+            <input class="btn btn-primary" type="submit" value="<?php echo lang('continue') ?>">
+        </div>
+    </form>
+</div>

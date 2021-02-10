@@ -58,7 +58,7 @@ class AttributesProcessing {
             var check = AttributesProcessing.checkSelect(data, selected, level_1[data_id]['uid']);
 
             if (marker === 'admin' && level_2[0] !== undefined) {
-                $('.product-attribute').prepend('<div class="panel panel-default"><div class="panel-heading"><h5 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#' + level_1[data_id]['uid'] + '">' + level_1[lang]['value'] + '</a></h5></div><div id="' + level_1[data_id]['uid'] + '" class="panel-collapse collapse"><div class="panel-body"><table class="table table-striped product-attribute-table"><tbody id="table_' + level_1[data_id]['uid'] + '"></tbody></table></div></div></div>');
+                $('.product-attribute').prepend('<div class="accordion-item"><h5 class="accordion-header" id="headingOne"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#A_' + level_1[data_id]['uid'] + '">' + level_1[lang]['value'] + '</button></h5><div id="A_' + level_1[data_id]['uid'] + '" class="accordion-collapse collapse" data-bs-parent="#accordion"><div class="accordion-body"><table class="table table-striped product-attribute-table"><tbody id="table_' + level_1[data_id]['uid'] + '"></tbody></table></div></div></div>');
             } else {
                 if (check === 'true') {
                     $('.product-attribute').prepend('<h5>' + level_1[lang]['value'] + '</h5><table class="table table-striped product-attribute-table"><tbody id="table_' + level_1[data_id]['uid'] + '"></tbody></table>');
@@ -71,15 +71,15 @@ class AttributesProcessing {
                 if (marker === 'admin') {
 
                     if (level_3[lang] !== undefined) {
-                        var light = 'has-success';
+                        var light = '';
                     } else {
-                        var light = 'has-error';
+                        var light = '';
                     }
 
                     $('#table_' + level_1[data_id]['uid']).prepend(
-                            '<tr><td class="attribute"><span class="product-attribute-specification">' + item[lang]['value'] + '</span></td>' +
-                            '<td class="selector"><div class="input-group ' + light + '"><span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>' +
-                            '<select class="form-control selectattr" id="selectattr_' + item[data_id]['uid'] + '"></select></div></td></tr>'
+                            '<tr class="align-middle"><td class="attribute"><span class="product-attribute-specification">' + item[lang]['value'] + '</span></td>' +
+                            '<td class="selector"><div class="input-group input-group-sm ' + light + '"><span class="input-group-text"><span class="bi-layout-text-sidebar-reverse"></span></span>' +
+                            '<select class="form-select selectattr" id="selectattr_' + item[data_id]['uid'] + '"></select></div></td></tr>'
                             );
                     $('#selectattr_' + item[data_id]['uid']).empty();
                     level_3.forEach((string, i) => {

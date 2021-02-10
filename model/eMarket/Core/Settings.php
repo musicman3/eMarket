@@ -129,25 +129,6 @@ class Settings {
     }
 
     /**
-     * Tooltip data for product discounts
-     *
-     * @param string $discount Data on discounts in a line separated by commas
-     * @return string
-     */
-    public static function productSaleTooltip($discount) {
-
-        $discount_json = json_decode($discount, 1);
-        $text = '';
-        foreach ($discount_json as $key => $id) {
-            foreach ($id as $val_id) {
-                $text .= lang('modules_discount_' . $key . '_name') . ': ' . Pdo::getCellFalse("SELECT name FROM " . DB_PREFIX . 'modules_discount_' . $key . "  WHERE language=? AND id=?", [lang('#lang_all')[0], $val_id]) . '<br>';
-            }
-        }
-
-        return $text;
-    }
-
-    /**
      * Currency default
      *
      * @param string $language Language
@@ -487,7 +468,7 @@ class Settings {
      * @param string $class_2 Bootstrap class
      * @return string
      */
-    public static function statusSwitchClass($status, $argument_1 = null, $argument_2 = null, $class = '', $class_2 = 'danger') {
+    public static function statusSwitchClass($status, $argument_1 = null, $argument_2 = null, $class = '', $class_2 = 'table-danger') {
 
         if ($argument_1 == null) {
             $arg_1 = null;

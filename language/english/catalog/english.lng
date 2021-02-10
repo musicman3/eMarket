@@ -194,7 +194,7 @@ register_password_recovery_message_success = Password recovery message sent to y
 register_password_recovery_message_failed = Please, enter correct E-Mail
 register_problem_message = Dear Customer. Something went wrong. Please enter correct information and try again. If you still have problems with registration, please contact us to resolve this issue.
 register_complete_message = Dear Customer. You have just registered in our online store. We hope that the purchases made with us will be successful and profitable for you. To complete the registration, check your E-Mail and confirm the registration operation by clicking on the link in the letter.
-register_privacy_statement_agree = I have read and agreed to your <a href="%s" data-toggle="modal" class="agree">privacy statement</a>.
+register_privacy_statement_agree = I have read and agreed to your <a href="%s" data-bs-toggle="modal" class="agree">privacy statement</a>.
 register_account = Registration
 register_personal_details = Personal details
 register_first_name = First Name
@@ -207,7 +207,7 @@ register_privacy_policy_text = Privacy policy text...
 
 ;WELCOME
 welcome_name = Welcome %s!
-welcome_text = The default shopping cart comes with by Bootstrap 3 and Bootstrap Lightbox making it lighter, faster and responsive.
+welcome_text = The default shopping cart comes with by Bootstrap 5 and Bootstrap Lightbox making it lighter, faster and responsive.
 welcome_guest = Guest
 
 ;E-MAIL MESSAGES

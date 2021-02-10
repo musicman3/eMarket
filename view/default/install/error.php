@@ -10,27 +10,21 @@ use \eMarket\Core\{
 use \eMarket\Install\Error;
 ?>
 
-<div class="container">
-    <div class="row">
-        <div class="panel panel-default">
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title"><?php echo lang('install_panel') ?></h5>
+        </div>
+        <div class="card-body">
+            <form action='index.php' method='post' accept-charset='utf-8'>
+                <div class="alert alert-danger"><?php echo lang(Error::$message) ?></div>
 
-            <div class="panel-heading">
-                <h3 class="panel-title">
-                    <div class="pull-left"><b><?php echo lang('install_panel') ?></b></div>
-                    <div class="clearfix"></div>
-                </h3>
-            </div>
-            <div class="panel-body">
-                <form action='index.php' method='post' accept-charset='utf-8'>
-                    <div class="alert alert-danger"><?php echo lang(Error::$message) ?></div>
+                <?php if (Valid::inGET('error_message')) { ?>
+                    <div class="alert alert-warning"><?php echo Error::$error_message ?></div>
+                <?php } ?>
 
-                    <?php if (Valid::inGET('error_message')) { ?>
-                        <div class="alert alert-warning"><?php echo Error::$error_message ?></div>
-                    <?php } ?>
-
-                    <button class="btn btn-primary btn-sm" type="submit" name="button_go_login" /><?php echo lang('button_go_login') ?></button>
-                </form>
-            </div>
+                <button class="btn btn-primary" type="submit" name="button_go_login" /><?php echo lang('button_go_login') ?></button>
+            </form>
         </div>
     </div>
 </div>
