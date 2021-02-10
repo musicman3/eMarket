@@ -170,9 +170,8 @@ require_once('modal/add_values_attribute.php');
                 </div>
             </div>
 
-            <?php
-        } else {
-            ?>
+        <?php } else { ?>
+
             <div class="card-body">
                 <div class="col-xl-3 col-lg-4 col-md-6 col-12 offset-0">
                     <form>
@@ -196,7 +195,7 @@ require_once('modal/add_values_attribute.php');
                         <tbody id="sort-list">
                             <tr class="align-middle unselectable">
                                 <td class="sortleft-m"></td>
-                                
+
                                 <?php if (Stock::$parent_id > 0) { ?>
 
                                     <td class="sortleft">
@@ -220,6 +219,7 @@ require_once('modal/add_values_attribute.php');
                     </table>
                 </div>
             </div>
+        
         <?php } ?>
 
     </div>
