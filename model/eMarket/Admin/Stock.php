@@ -420,4 +420,22 @@ class Stock {
         return $text;
     }
 
+    /**
+     * Text for categories
+     *
+     * @return array
+     */
+    public static function categoriesText() {
+        if (self::$transfer == Settings::linesOnPage()) {
+            $class = 'transfer';
+            $id = self::$arr_merge['cat'][self::$start]['id'];
+            $text = lang('categories_transfer');
+        } else {
+            $class = 'context-one';
+            $id = 'category_' . self::$arr_merge['cat'][self::$start]['id'];
+            $text = self::$arr_merge['cat'][Stock::$start]['name'];
+        }
+        return [$class, $id, $text];
+    }
+
 }
