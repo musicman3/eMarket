@@ -348,6 +348,24 @@ class Stock {
     }
 
     /**
+     * Class for categories button
+     *
+     * @param string $class1 class
+     * @param string $class2 class
+     * @return string
+     */
+    public static function statusCatButton($class1, $class2) {
+
+        if (isset($_SESSION['buffer']['cat']) == true && in_array(self::$arr_merge['cat'][self::$start]['id'], $_SESSION['buffer']['cat']) == true) {
+            return $class1;
+        } elseif (self::$transfer == Settings::linesOnPage()) {
+            return $class2;
+        } else {
+            return false;
+        }
+    }
+
+    /**
      * Class for products status
      *
      * @param string $class1 class
@@ -423,15 +441,17 @@ class Stock {
     /**
      * Text for categories
      *
+     * @param string $class1 class
+     * @param string $class2 class
      * @return array
      */
-    public static function categoriesText() {
+    public static function categoriesText($class1, $class2) {
         if (self::$transfer == Settings::linesOnPage()) {
-            $class = 'transfer';
+            $class = $class1;
             $id = self::$arr_merge['cat'][self::$start]['id'];
             $text = lang('categories_transfer');
         } else {
-            $class = 'context-one';
+            $class = $class2;
             $id = 'category_' . self::$arr_merge['cat'][self::$start]['id'];
             $text = self::$arr_merge['cat'][Stock::$start]['name'];
         }

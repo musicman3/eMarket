@@ -123,14 +123,9 @@ require_once('modal/add_values_attribute.php');
                                             <?php
                                         }
 
-                                        if (isset($_SESSION['buffer']['cat']) == true && in_array(Stock::$arr_merge['cat'][Stock::$start]['id'], $_SESSION['buffer']['cat']) == true) {
+                                        if (Stock::statusCatButton('bi-folder2-open', 'bi-arrow-left-right') != false) {
                                             ?>    
-                                            <td class="sortleft"><div><a href="#" class="btn <?php echo Stock::statusCatClass('btn-primary', 'btn-secondary') ?> btn-sm disabled"><span class="bi-folder2-open"> </span></a></div></td>
-
-                                        <?php } elseif (Stock::$transfer == Settings::linesOnPage()) { ?>    
-
-                                            <td class="sortleft"><div><a href="#" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-left-right"> </span></a></div></td>
-
+                                            <td class="sortleft"><div><a href="#" class="btn <?php echo Stock::statusCatClass('btn-primary', 'btn-secondary') ?> btn-sm disabled"><span class="<?php echo Stock::statusCatButton('bi-folder2-open', 'bi-arrow-left-right') ?>"> </span></a></div></td>
                                         <?php } else { ?>    
                                             <td class="sortleft">
 
@@ -144,7 +139,7 @@ require_once('modal/add_values_attribute.php');
                                             </td>
                                         <?php } ?>    
 
-                                        <td class="<?php echo Stock::categoriesText()[0] ?>" id="<?php echo Stock::categoriesText()[1] ?>"><?php echo Stock::categoriesText()[2] ?></td>
+                                        <td class="<?php echo Stock::categoriesText('transfer', 'context-one')[0] ?>" id="<?php echo Stock::categoriesText('transfer', 'context-one')[1] ?>"><?php echo Stock::categoriesText('transfer', 'context-one')[2] ?></td>
                                         <td class="sortleft-m"></td>
                                         <td class="sortleft-m"></td>
                                     </tr>
