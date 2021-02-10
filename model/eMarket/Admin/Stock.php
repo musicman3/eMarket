@@ -407,6 +407,21 @@ class Stock {
     }
 
     /**
+     * Data for stiker
+     *
+     * @param string $data Stiker data
+     * @return string
+     */
+    public static function stikerData($span1, $span2) {
+
+        if (Stock::$arr_merge['prod'][Stock::$start . 'a']['stiker'] != '' && Stock::$arr_merge['prod'][Stock::$start . 'a']['stiker'] != NULL) {
+            return $span1 . Stikers::$stiker_name[Stock::$arr_merge['prod'][Stock::$start . 'a']['stiker']] . $span2;
+        } else {
+            return '';
+        }
+    }
+
+    /**
      * Class for transfer
      *
      * @param string $class class

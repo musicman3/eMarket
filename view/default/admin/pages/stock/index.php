@@ -163,11 +163,7 @@ require_once('modal/add_values_attribute.php');
                                             <td class="sortleft-m"><span class="bi-tag-fill"></span></td>
                                         <?php } ?>
 
-                                        <?php if (Stock::$arr_merge['prod'][Stock::$start . 'a']['stiker'] != '' && Stock::$arr_merge['prod'][Stock::$start . 'a']['stiker'] != NULL) { ?>
-                                            <td class="sortleft"><span class="badge bg-success"><?php echo Stikers::$stiker_name[Stock::$arr_merge['prod'][Stock::$start . 'a']['stiker']] ?></span></td>
-                                        <?php } else { ?>
-                                            <td class="sortleft-m"></td>
-                                        <?php } ?>
+                                            <td class="sortleft"><?php echo Stock::stikerData('<span class="badge bg-success">', '</span>') ?></td>
                                     </tr>
 
                                     <?php
