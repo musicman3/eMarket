@@ -71,9 +71,10 @@ class DiscountSale {
                             idsx_real_parent_id: idsx_real_parent_id,
                             sale: selected_id,
                             idsx_sale_on_key: 'On'
-                        }, false);
-                        Ajax.postData(window.location.href, {
-                            parent_down: parent_id
+                        }, false).then((data) => {
+                            Ajax.postData(window.location.href, {
+                                parent_down: parent_id
+                            });
                         });
                     },
                     disabled: json_data_product.name === undefined && json_data_category.name === undefined
@@ -98,9 +99,10 @@ class DiscountSale {
                                 idsx_real_parent_id: idsx_real_parent_id,
                                 sale: selected_id,
                                 idsx_sale_off_key: 'Off'
-                            }, false);
-                            Ajax.postData(window.location.href, {
-                                parent_down: parent_id
+                            }, false).then((data) => {
+                                Ajax.postData(window.location.href, {
+                                    parent_down: parent_id
+                                });
                             });
                         };
                     },
@@ -127,9 +129,10 @@ class DiscountSale {
                                 idsx_sale_off_all_id: idArray,
                                 idsx_real_parent_id: idsx_real_parent_id,
                                 idsx_sale_off_all_key: 'OffAll'
-                            }, false);
-                            Ajax.postData(window.location.href, {
-                                parent_down: parent_id
+                            }, false).then((data) => {
+                                Ajax.postData(window.location.href, {
+                                    parent_down: parent_id
+                                });
                             });
                         };
                     },

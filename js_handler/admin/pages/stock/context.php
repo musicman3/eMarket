@@ -180,10 +180,12 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                         idsx_status_on_id: idArray,
                                         idsx_real_parent_id: idsx_real_parent_id,
                                         idsx_status_on_key: 'On'
-                                    }, false);
-                                    Ajax.postData(window.location.href, {
-                                        parent_down: parent_id
+                                    }, false).then((data) => {
+                                        Ajax.postData(window.location.href, {
+                                            parent_down: parent_id
+                                        });
                                     });
+
                                 },
                                 disabled: json_data_product.name === undefined && json_data_category.name === undefined
                             },
@@ -199,9 +201,10 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                         idsx_status_off_id: idArray,
                                         idsx_real_parent_id: idsx_real_parent_id,
                                         idsx_status_off_key: 'Off'
-                                    }, false);
-                                    Ajax.postData(window.location.href, {
-                                        parent_down: parent_id
+                                    }, false).then((data) => {
+                                        Ajax.postData(window.location.href, {
+                                            parent_down: parent_id
+                                        });
                                     });
                                 },
                                 disabled: json_data_product.name === undefined && json_data_category.name === undefined
@@ -219,9 +222,10 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                         idsx_real_parent_id: idsx_real_parent_id,
                                         idsx_cut_id: idArray,
                                         idsx_cut_key: 'cut'
-                                    }, false);
-                                    Ajax.postData(window.location.href, {
-                                        parent_down: parent_id
+                                    }, false).then((data) => {
+                                        Ajax.postData(window.location.href, {
+                                            parent_down: parent_id
+                                        });
                                     });
                                 },
                                 disabled: json_data_product.name === undefined && json_data_category.name === undefined
@@ -233,10 +237,11 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                     Ajax.postData(window.location.href, {
                                         idsx_real_parent_id: idsx_real_parent_id,
                                         idsx_paste_key: 'paste'
-                                    }, false);
-                                    Ajax.postData(window.location.href, {
-                                        parent_down: parent_id,
-                                        message: 'ok'
+                                    }, false).then((data) => {
+                                        Ajax.postData(window.location.href, {
+                                            parent_down: parent_id,
+                                            message: 'ok'
+                                        });
                                     });
                                 },
                                 disabled: session === '0' || (new URL(document.location)).searchParams.get('search') !== null
@@ -260,10 +265,11 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                         });
                                         Ajax.postData(window.location.href, {
                                             delete: idArray
-                                        }, false);
-                                        Ajax.postData(window.location.href, {
-                                            parent_down: parent_id,
-                                            message: 'ok'
+                                        }, false).then((data) => {
+                                            Ajax.postData(window.location.href, {
+                                                parent_down: parent_id,
+                                                message: 'ok'
+                                            });
                                         });
                                     };
                                 },
@@ -294,9 +300,10 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                         idsx_real_parent_id: idsx_real_parent_id,
                                         stiker: selected_id,
                                         idsx_stikerOn_key: 'On'
-                                    }, false);
-                                    Ajax.postData(window.location.href, {
-                                        parent_down: parent_id
+                                    }, false).then((data) => {
+                                        Ajax.postData(window.location.href, {
+                                            parent_down: parent_id
+                                        });
                                     });
                                 },
                                 disabled: false
@@ -321,9 +328,10 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                             idsx_real_parent_id: idsx_real_parent_id,
                                             stiker: selected_id,
                                             idsx_stikerOff_key: 'Off'
-                                        }, false);
-                                        Ajax.postData(window.location.href, {
-                                            parent_down: parent_id
+                                        }, false).then((data) => {
+                                            Ajax.postData(window.location.href, {
+                                                parent_down: parent_id
+                                            });
                                         });
                                     };
                                 },
