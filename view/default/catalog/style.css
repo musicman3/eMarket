@@ -91,8 +91,8 @@ h6 {font-size: 14px;}
 #listing .grid-group-item .buy-now {float: right;}
 #listing .grid-group-item .item-heading {text-align: center;margin-top: 8px;}
 #listing .grid-group-item .item-text {display: none;}
-@media (max-width:619px) {#listing .hidden-grid-list {display: none !important;}}
-@media (max-width:529px) {#listing .bootstrap-switch {display: none !important;}}
+@media (max-width:669px) {#listing .hidden-grid-list {display: none !important;}}
+@media (max-width:579px) {#listing .bootstrap-switch {display: none !important;}}
 @media (max-width:449px) {#listing .navigate-normal {display: none !important;}}
 @media (min-width:450px) {#listing .navigate-mini {display: none !important;}}
 #listing .dropdown-menu > li > a {cursor: pointer;}
