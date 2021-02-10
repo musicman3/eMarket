@@ -409,7 +409,8 @@ class Stock {
     /**
      * Data for stiker
      *
-     * @param string $data Stiker data
+     * @param string $span1 span start
+     * @param string $span2 span end
      * @return string
      */
     public static function stikerData($span1, $span2) {
@@ -451,6 +452,22 @@ class Stock {
         }
 
         return $text;
+    }
+
+    /**
+     * Data for stiker
+     *
+     * @param string $span1 span
+     * @param string $span2 span
+     * @return string
+     */
+    public static function discountLabel($span1, $span2) {
+
+        if (json_decode(Stock::$arr_merge['prod'][Stock::$start . 'a']['discount'], 1)) {
+            return $span1;
+        } else {
+            return $span2;
+        }
     }
 
     /**
