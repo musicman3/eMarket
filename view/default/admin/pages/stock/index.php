@@ -117,7 +117,7 @@ require_once('modal/add_values_attribute.php');
                                     <tr id="<?php echo Stock::$arr_merge['cat'][Stock::$start]['id'] ?>" class="<?php echo Settings::sortiesClass('info') . ' ' . Stock::transferClass('unselectable') ?> sort-list align-middle" unitid="<?php echo Stock::$arr_merge['cat'][Stock::$start]['id'] ?>">
 
                                         <?php if (!Valid::inGET('search')) { ?>
-                                            <td class="sortyes sortleft-m"><div><span class="bi-arrows-move"> </span></div></td>
+                                            <td class="sortyes sortleft-m"><span class="bi-arrows-move"> </span></td>
                                         <?php } else { ?>
                                             <td class="sortleft-m"></td>
                                             <?php
