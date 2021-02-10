@@ -171,7 +171,7 @@ require_once('modal/add_values_attribute.php');
             </div>
 
             <?php
-        } elseif (Stock::$parent_id > 0) {
+        } else {
             ?>
             <div class="card-body">
                 <div class="col-xl-3 col-lg-4 col-md-6 col-12 offset-0">
@@ -196,46 +196,24 @@ require_once('modal/add_values_attribute.php');
                         <tbody id="sort-list">
                             <tr class="align-middle unselectable">
                                 <td class="sortleft-m"></td>
-                                <td class="sortleft">
-                                    <form>
-                                        <div>
-                                            <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
-                                            <button name="parent_up" value="<?php echo Stock::$parent_id ?>" class="btn btn-outline-secondary btn-sm" title="" action="index.php" formmethod="get"><span class="bi-three-dots"></span></button>
-                                        </div>
-                                    </form>
-                                </td>
-                                <td id="parent" class="context-one"><div><?php echo lang('no_listing') ?></div></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        <?php } else {
-            ?>
-            <div class="card-body">
-                <div class="col-xl-3 col-lg-4 col-md-6 col-12 offset-0">
-                    <form>
-                        <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
-                        <div class="input-group input-group-sm">
-                            <input type="search" id="search" name="search" placeholder="<?php echo lang('search') ?>" class="form-control">
-                            <button type="submit" class="btn btn-primary btn-sm"><span class="bi-search"></span></button>
-                        </div>
-                    </form>
-                </div>
-                <div class="clearfix"></div>
-                <div class="table-responsive">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr class="align-middle">
-                                <th colspan="3">
-                                    <div><?php echo lang('no_listing') ?></div>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody id="sort-list">
-                            <tr class="align-middle unselectable">
-                                <td class="sortleft-m"></td>
-                                <td class="sortleft-m"></td>
+                                
+                                <?php if (Stock::$parent_id > 0) { ?>
+
+                                    <td class="sortleft">
+                                        <form>
+                                            <div>
+                                                <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
+                                                <button name="parent_up" value="<?php echo Stock::$parent_id ?>" class="btn btn-outline-secondary btn-sm" title="" action="index.php" formmethod="get"><span class="bi-three-dots"></span></button>
+                                            </div>
+                                        </form>
+                                    </td>
+
+                                <?php } else { ?>
+
+                                    <td class="sortleft-m"></td>
+
+                                <?php } ?>
+
                                 <td id="parent" class="context-one"><div><?php echo lang('no_listing') ?></div></td>
                             </tr>
                         </tbody>
@@ -243,5 +221,6 @@ require_once('modal/add_values_attribute.php');
                 </div>
             </div>
         <?php } ?>
+
     </div>
 </div>
