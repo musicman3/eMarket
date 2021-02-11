@@ -19,7 +19,7 @@ a {text-decoration: none;}
 .breadcrumb {padding: 8px 15px;border-radius: 4px;}
 
 #Carousel .bi-chevron-left, #Carousel .bi-chevron-right {opacity: 0;transition: 1s opacity;}
-#Carousel:hover .bi-chevron-left, #Carousel:hover .bi-chevron-right {opacity: 1;}
+#Carousel:hover .bi-chevron-left, #Carousel:hover .bi-chevron-right {opacity: 1;transition: 1s opacity;}
 #Carousel .bi-chevron-left, #Carousel .bi-chevron-right {font-size: 30px;}
 #Carousel .carousel-inner {border-radius: 4px;}
 #Carousel .slide-text-anime h3 {animation: anime-H3 1.3s ease-out;transform: translate(0); }
