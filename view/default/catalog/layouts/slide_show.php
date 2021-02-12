@@ -20,12 +20,12 @@ if (Slideshow::$slideshow == true) {
              data-bs-touch="true" 
              data-bs-keyboard="true">
                  <?php if (Slideshow::$indicators == 'true') { ?>
-                <ol class="carousel-indicators">
-                    <li data-bs-target="#Carousel" data-bs-slide-to="0" class="active"></li>
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#Carousel" data-bs-slide-to="0" class="active"></button>
                     <?php for ($x = 1; $x < count(Slideshow::$slideshow_array); $x++) { ?>
-                        <li data-bs-target="#Carousel" data-bs-slide-to="<?php echo $x ?>"></li>
+                        <button type="button" data-bs-target="#Carousel" data-bs-slide-to="<?php echo $x ?>"></button>
                     <?php } ?>
-                </ol>
+                </div>
             <?php } ?>
             <div class="carousel-inner">
                 <?php
