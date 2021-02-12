@@ -356,10 +356,12 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
 
     function AjaxSuccess(data) {
         setTimeout(function () {
-            $('#ajax').replaceWith($(data).find('#ajax'));
+            var ajax_data = document.createElement('div');
+            ajax_data.innerHTML = data;
+            document.querySelector('#ajax').replaceWith(ajax_data.querySelector('#ajax'));
             contextMenuInit();
             Mouse.sortInitAll();
-            
+
             var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
             var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
                 return new bootstrap.Tooltip(tooltipTriggerEl);
