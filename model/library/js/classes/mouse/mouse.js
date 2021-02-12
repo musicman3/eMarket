@@ -71,11 +71,6 @@ class Mouse {
         if ($('tbody').is('.values_attribute')) {
             Mouse.sortInit('.values_attribute', lang);
         }
-
-        $('.option').click(function () {
-            $(this).find('span').toggleClass('inactive');
-            $(this).toggleClass('active');
-        });
     }
 
     /**
