@@ -63,8 +63,8 @@ class DiscountSale {
                     action: function () {
                         var selected_id = $('select[name="context-menu-input-sale"] option:selected').val();
                         var idArray = [];
-                        $(".table-primary").each(function (i) {
-                            idArray[i] = this.id;
+                        document.querySelectorAll('.table-primary').forEach(function (string, index) {
+                            idArray[index] = string.id;
                         });
                         Ajax.postData(window.location.href, {
                             idsx_sale_on_id: idArray,
@@ -91,8 +91,8 @@ class DiscountSale {
                         confirmation.onclick = function () {
                             $('#confirm').modal('hide');
                             var idArray = [];
-                            $(".table-primary").each(function (i) {
-                                idArray[i] = this.id;
+                            document.querySelectorAll('.table-primary').forEach(function (string, index) {
+                                idArray[index] = string.id;
                             });
                             Ajax.postData(window.location.href, {
                                 idsx_sale_off_id: idArray,
@@ -121,8 +121,8 @@ class DiscountSale {
                             $('#confirm').modal('hide');
                             var selected_id = $('select[name="context-menu-input-sale"] option:selected').val();
                             var idArray = [];
-                            $(".table-primary").each(function (i) {
-                                idArray[i] = this.id;
+                            document.querySelectorAll('.table-primary').forEach(function (string, index) {
+                                idArray[index] = string.id;
                             });
 
                             Ajax.postData(window.location.href, {

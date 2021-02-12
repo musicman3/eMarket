@@ -146,7 +146,6 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                 for (var x = 0; x < json_data_category['name'].length; x++) {
                                     document.querySelector('#name_categories_stock_' + x).value = json_data_category.name[x][modal_id];
                                 }
-                                $('#attributes').val(json_data_category['attributes']);
                                 document.querySelector('#attributes').value = json_data_category.attributes;
 
                                 document.querySelector('#edit').value = modal_id;
@@ -172,8 +171,8 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                 text: '<span class="bi-eye"> ' + lang['button_show'] + '</span>',
                                 action: function () {
                                     var idArray = [];
-                                    $(".table-primary").each(function (i) {
-                                        idArray[i] = this.id;
+                                    document.querySelectorAll('.table-primary').forEach(function (string, index) {
+                                        idArray[index] = string.id;
                                     });
                                     console.log(idArray);
                                     Ajax.postData(window.location.href, {
@@ -194,8 +193,8 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                 text: '<span class="bi-eye-slash"> ' + lang['button_hide'] + '</span>',
                                 action: function () {
                                     var idArray = [];
-                                    $(".table-primary").each(function (i) {
-                                        idArray[i] = this.id;
+                                    document.querySelectorAll('.table-primary').forEach(function (string, index) {
+                                        idArray[index] = string.id;
                                     });
                                     Ajax.postData(window.location.href, {
                                         idsx_status_off_id: idArray,
@@ -215,8 +214,8 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                 action: function () {
                                     Ajax.postData(window.location.href, {idsx_cut_marker: 'cut'}, false);
                                     var idArray = [];
-                                    $(".table-primary").each(function (i) {
-                                        idArray[i] = this.id;
+                                    document.querySelectorAll('.table-primary').forEach(function (string, index) {
+                                        idArray[index] = string.id;
                                     });
                                     Ajax.postData(window.location.href, {
                                         idsx_real_parent_id: idsx_real_parent_id,
@@ -260,8 +259,8 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                     confirmation.onclick = function () {
                                         $('#confirm').modal('hide');
                                         var idArray = [];
-                                        $(".table-primary").each(function (i) {
-                                            idArray[i] = this.id;
+                                        document.querySelectorAll('.table-primary').forEach(function (string, index) {
+                                            idArray[index] = string.id;
                                         });
                                         Ajax.postData(window.location.href, {
                                             delete: idArray
@@ -292,8 +291,8 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                 action: function () {
                                     var selected_id = $('select[name="context-menu-input-stiker"] option:selected').val();
                                     var idArray = [];
-                                    $(".table-primary").each(function (i) {
-                                        idArray[i] = this.id;
+                                    document.querySelectorAll('.table-primary').forEach(function (string, index) {
+                                        idArray[index] = string.id;
                                     });
                                     Ajax.postData(window.location.href, {
                                         idsx_stiker_on_id: idArray,
@@ -320,8 +319,8 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                         $('#confirm').modal('hide');
                                         var selected_id = $('select[name="context-menu-input-stiker"] option:selected').val();
                                         var idArray = [];
-                                        $(".table-primary").each(function (i) {
-                                            idArray[i] = this.id;
+                                        document.querySelectorAll('.table-primary').forEach(function (string, index) {
+                                            idArray[index] = string.id;
                                         });
                                         Ajax.postData(window.location.href, {
                                             idsx_stiker_off_id: idArray,
