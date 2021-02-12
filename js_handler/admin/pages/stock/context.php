@@ -252,12 +252,12 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                 // ---------- Delete ----------
                                 text: '<span class="bi-trash"> ' + lang['button_delete'] + '</span>',
                                 action: function () {
-                                    $('#confirm').modal('show');
+                                    new bootstrap.Modal(document.querySelector('#confirm')).show();
                                     $('#confirm_title').html(lang['attention']);
                                     $('#confirm_body').html(lang['confirm_delete_product_or_category']);
 
                                     confirmation.onclick = function () {
-                                        $('#confirm').modal('hide');
+                                        bootstrap.Modal.getInstance(document.querySelector('#confirm')).hide();
                                         var idArray = [];
                                         document.querySelectorAll('.table-primary').forEach(function (string, index) {
                                             idArray[index] = string.id;
@@ -311,12 +311,12 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                 // ---------- Delete stiker ----------
                                 text: '<span class="bi-bookmark-dash"> ' + lang['button_stiker_delete'] + '</span>',
                                 action: function () {
-                                    $('#confirm').modal('show');
+                                    new bootstrap.Modal(document.querySelector('#confirm')).show();
                                     $('#confirm_title').html(lang['attention']);
                                     $('#confirm_body').html(lang['confirm_delete_stiker']);
 
                                     confirmation.onclick = function () {
-                                        $('#confirm').modal('hide');
+                                        bootstrap.Modal.getInstance(document.querySelector('#confirm')).hide();
                                         var selected_id = $('select[name="context-menu-input-stiker"] option:selected').val();
                                         var idArray = [];
                                         document.querySelectorAll('.table-primary').forEach(function (string, index) {
@@ -365,7 +365,7 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                 return new bootstrap.Tooltip(tooltipTriggerEl);
             });
 
-            new TableSelect(document.getElementById('table-id'), {
+            new TableSelect(document.querySelector('#table-id'), {
                 selectedClassName: 'table-primary',
                 shouldSelectRow(row) {
                     return !row.classList.contains('unselectable');

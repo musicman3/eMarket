@@ -84,12 +84,12 @@ class DiscountSale {
                     // ---------- Remove from sale ----------
                     text: '<span class="bi-star"> ' + lang['modules_discount_sale_admin_button_sale_off'] + '</span>',
                     action: function () {
-                        $('#confirm').modal('show');
+                        new bootstrap.Modal(document.querySelector('#confirm')).show();
                         $('#confirm_title').html(lang['modules_discount_sale_admin_attention']);
                         $('#confirm_body').html(lang['modules_discount_sale_admin_confirm_delete_sale']);
                         var selected_id = $('select[name="context-menu-input-sale"] option:selected').val();
                         confirmation.onclick = function () {
-                            $('#confirm').modal('hide');
+                            bootstrap.Modal.getInstance(document.querySelector('#confirm')).hide();
                             var idArray = [];
                             document.querySelectorAll('.table-primary').forEach(function (string, index) {
                                 idArray[index] = string.id;
@@ -113,12 +113,12 @@ class DiscountSale {
                     // ---------- Remove all sales ----------
                     text: '<span class="bi-lightning-fill"> ' + lang['modules_discount_sale_admin_button_sale_off_all'] + '</span>',
                     action: function () {
-                        $('#confirm').modal('show');
+                        new bootstrap.Modal(document.querySelector('#confirm')).show();
                         $('#confirm_title').html(lang['modules_discount_sale_admin_attention']);
                         $('#confirm_body').html(lang['modules_discount_sale_admin_confirm_delete_sales']);
 
                         confirmation.onclick = function () {
-                            $('#confirm').modal('hide');
+                            bootstrap.Modal.getInstance(document.querySelector('#confirm')).hide();
                             var selected_id = $('select[name="context-menu-input-sale"] option:selected').val();
                             var idArray = [];
                             document.querySelectorAll('.table-primary').forEach(function (string, index) {
