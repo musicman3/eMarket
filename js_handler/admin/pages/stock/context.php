@@ -13,7 +13,7 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
 
 <script type="text/javascript">
 
-    $(document).ready(function () {
+    document.addEventListener("DOMContentLoaded", function () {
         contextMenuInit();
     });
 
