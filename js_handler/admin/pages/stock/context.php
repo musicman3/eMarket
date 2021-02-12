@@ -359,7 +359,12 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
             $('#ajax').replaceWith($(data).find('#ajax'));
             contextMenuInit();
             Mouse.sortInitAll();
-            $('[data-bs-toggle="tooltip"]').tooltip();
+            
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+
             new TableSelect(document.getElementById('table-id'), {
                 selectedClassName: 'table-primary',
                 shouldSelectRow(row) {
