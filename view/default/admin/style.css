@@ -13,7 +13,6 @@ input:active, textarea:active {outline: none;}
 html {position: relative;min-height: 100%;}
 body {background: #e4e4da;font-family: 'Open Sans';background-image: url('images/sep-half.png');}
 
-@media (max-width: 991px) {#navbarNavDropdown {max-height: 80vh;overflow: auto;}}
 @media (min-width:768px){.modal-lg {width: 46.875rem;}}
 
 #dashboard .welcome {text-align: center;font-size: 2.2rem;color: #c6c6c6;text-shadow: 0 0.0625rem 0.0625rem #FFF;padding-top: 3.75rem;}
