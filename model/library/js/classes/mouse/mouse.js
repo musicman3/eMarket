@@ -62,13 +62,14 @@ class Mouse {
      */
     static sortInitAll(lang) {
         Mouse.sortInit('#sort-list', lang);
-        if ($('tbody').is('.group-attributes')) {
+        
+        if (document.querySelector('.group-attributes') !== null) {
             Mouse.sortInit('.group-attributes', lang);
         }
-        if ($('tbody').is('.attribute')) {
+        if (document.querySelector('.attribute') !== null) {
             Mouse.sortInit('.attribute', lang);
         }
-        if ($('tbody').is('.values_attribute')) {
+        if (document.querySelector('.values_attribute') !== null) {
             Mouse.sortInit('.values_attribute', lang);
         }
     }

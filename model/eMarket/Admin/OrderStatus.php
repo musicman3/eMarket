@@ -119,8 +119,8 @@ class OrderStatus {
      *
      */
     public function sorting() {
-        if (Valid::inPOST('ids')) {
-            $sort_array_id_ajax = explode(',', Valid::inPOST('ids'));
+        if (Valid::inPostJson('ids')) {
+            $sort_array_id_ajax = explode(',', Valid::inPostJson('ids'));
             $sort_array_id = Func::deleteEmptyInArray($sort_array_id_ajax);
             $sort_array_order_status = [];
 
