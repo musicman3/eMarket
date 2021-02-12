@@ -51,7 +51,7 @@ require_once('modal/cart_message.php')
             for (Pages::$start; Pages::$start < Pages::$finish; Pages::$start++, Pages::lineUpdate()) {
                 ?>
                 <div class="item col-xl-3 col-lg-4 col-md-6 col-12 grid-group-item">
-                    <div class="productHolder">
+                    <div class="border rounded p-2">
 
                         <div class="labelsblock">
                             <?php foreach (Products::stikers(Pages::$table['line'], 'bg-danger', 'bg-success') as $stiker) { ?>

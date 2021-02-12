@@ -15,7 +15,7 @@ Categories::listingData();
         <div class="row">
             <?php foreach (Categories::$listing_data as $value) { ?>
                 <div class="col-xl-3 col-lg-4 col-md-6 col-12 grid-group-item">
-                    <div class="categoriesHolder">
+                    <div class="border rounded p-2">
                         <?php if ($value[2] == true) { ?>
                             <a href="/?route=listing&category_id=<?php echo $value[0] ?>"><img src="/uploads/images/categories/resize_0/<?php echo $value[2] ?>" alt="<?php echo $value[1] ?>" class="img-fluid rounded mx-auto d-block"></a>
                         <?php } ?>

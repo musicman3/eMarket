@@ -19,7 +19,7 @@ if (Products::$new_products == true) {
             <?php foreach (Products::$new_products as $value) {
                 ?>
                 <div class="col-xl-3 col-lg-4 col-md-6 col-12 grid-group-item">
-                    <div class="productHolder">
+                    <div class="border rounded p-2">
 
                         <div class="labelsblock">
                             <?php foreach (Products::stikers($value, 'bg-danger', 'bg-success') as $stiker) { ?>

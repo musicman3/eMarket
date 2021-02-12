@@ -56,7 +56,6 @@ h6 {font-size: 14px;}
 #columnLeft .card-body, #columnRight .card-body {padding: 10px;}
 
 #new_products .grid-group-item, #categories_listing .grid-group-item, #categories_index .grid-group-item, #listing .grid-group-item {margin-bottom: 16px;}
-#new_products .productHolder, #listing .productHolder, #categories_listing .categoriesHolder, #categories_index .categoriesHolder {border: 1px solid #dddddd;padding: 10px;border-radius: 4px;}
 #new_products .item-heading {margin-top: 8px;}
 #new_products .item-price {font-weight: 700;}
 #new_products .labelsblock {position: absolute;margin: -5px 0 0 -5px;}
@@ -85,7 +84,7 @@ h6 {font-size: 14px;}
 #listing .list-group-item .block-button {float: right;}
 #listing .list-group-item .item-button {display: flex;justify-content: end;}
 #listing .grid-group-item .item-price {font-weight: 700;margin-bottom: 10px;text-align: center;}
-#listing .grid-group-item .block-button {margin-left: -8px;margin-right: -8px;}
+#listing .grid-group-item .block-button {margin-left: -5px;margin-right: -5px;}
 #listing .grid-group-item .buy-now {float: right;}
 #listing .grid-group-item .item-heading {text-align: center;margin-top: 8px;}
 #listing .grid-group-item .item-text {display: none;}
@@ -97,7 +96,7 @@ h6 {font-size: 14px;}
 #listing .result-inner {margin: 7px 0 7px 0;}
 #listing .item-text ul {list-style: none;padding: 0;margin: 0;}
 #listing .quantity {all: unset;appearance: textfield;width: 35px;text-align: center;vertical-align: middle;border: 1px solid #2e6da4;border-radius: 3px;padding: 6px 0 6px 0;}
-#listing .buy-now {padding: 6px 9px;}
+#listing .buy-now {padding: 6px 8px;}
 #listing .labelsblock {position: absolute;margin: -5px 0 0 -5px;}
 #listing .labelsblock div {display: table;padding: 4px 7px;color: #ffffff;font-size: 12px;margin: 0 0 4px 0;border-radius: 3px;text-transform: uppercase;font-weight: 700;}
 
