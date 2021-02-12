@@ -131,8 +131,8 @@ class ProductsListing {
      */
     static setList() {
         $('.popover').popover('hide');
-        $('#listing .item').removeClass('col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item');
-        $('#listing .item').addClass('col-xs-12 list-group-item');
+        $('#listing .item').removeClass('col-xl-3 col-lg-4 col-md-6 col-12 grid-group-item');
+        $('#listing .item').addClass('col-12 list-group-item');
         $('#listing .item-grid').removeClass('active');
         $('#listing .item-list').addClass('active');
     }
@@ -143,8 +143,8 @@ class ProductsListing {
      */
     static setGrid() {
         $('.popover').popover('hide');
-        $('#listing .item').removeClass('col-xs-12 list-group-item');
-        $('#listing .item').addClass('col-lg-3 col-md-4 col-sm-6 col-xs-12 grid-group-item');
+        $('#listing .item').removeClass('col-12 list-group-item');
+        $('#listing .item').addClass('col-xl-3 col-lg-4 col-md-6 col-12 grid-group-item');
         $('#listing .item-list').removeClass('active');
         $('#listing .item-grid').addClass('active');
     }
@@ -198,7 +198,7 @@ class ProductsListing {
                 $('#product_name').html(product_edit['name']);
                 $('#product_price_formated').html(product_edit['price_formated']);
                 $('#product_quantity').html(pcs);
-                $('#product_image').append('<img class="img-responsive center-block" src="/uploads/images/products/resize_0/' + product_edit['logo_general'] + '" alt="' + product_edit['name'] + '" />');
+                $('#product_image').append('<img class="img-thumbnail mx-auto d-block" src="/uploads/images/products/resize_0/' + product_edit['logo_general'] + '" alt="' + product_edit['name'] + '" />');
 
                 $('#cart_bar').replaceWith($(data).find('#cart_bar'));
                 $('#product-data').replaceWith($(data).find('#product-data'));
