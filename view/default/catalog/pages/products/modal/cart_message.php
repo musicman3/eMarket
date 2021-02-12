@@ -14,7 +14,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div id="product_image" class="col-5 d-flex align-items-center">
-                        <img class="img-fluid mx-auto d-block" src="/uploads/images/products/resize_0/<?php echo \eMarket\Catalog\Products::$products['logo_general'] ?>" alt="<?php echo \eMarket\Catalog\Products::$products['name'] ?>" />
+                        <img class="img-thumbnail mx-auto d-block" src="/uploads/images/products/resize_0/<?php echo \eMarket\Catalog\Products::$products['logo_general'] ?>" alt="<?php echo \eMarket\Catalog\Products::$products['name'] ?>" />
                     </div>
                     <div class="col-7 d-grid align-items-center">
                         <div><strong><?php echo lang('listing_product') ?></strong>&nbsp;<span id="product_name"><?php echo \eMarket\Catalog\Products::$products['name'] ?></span></div>

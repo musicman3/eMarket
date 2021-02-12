@@ -20,7 +20,7 @@ if (Products::$products != FALSE) {
 
     <div id="products" class="contentText">
         <div class="row">
-            <div class="col-md-6 col-12">
+            <div class="col-md-6 col-12 mb-3">
 
                 <div class="labelsblock">
                     <?php foreach (ProductsCore::stikers(Products::$products, 'bg-danger', 'bg-success') as $stiker) { ?>
@@ -29,11 +29,11 @@ if (Products::$products != FALSE) {
                 </div>
 
                 <a href="/uploads/images/products/resize_4/<?php echo Products::$products['logo_general'] ?>" data-bs-toggle="lightbox" data-gallery="example-gallery" data-type="image">
-                    <img src="/uploads/images/products/resize_2/<?php echo Products::$products['logo_general'] ?>" alt="<?php echo Products::$products['name'] ?>" class="img-padding img-fluid mx-auto d-block">
+                    <img src="/uploads/images/products/resize_2/<?php echo Products::$products['logo_general'] ?>" alt="<?php echo Products::$products['name'] ?>" class="img-fluid rounded mx-auto d-block mb-3 ">
                 </a>
-                <div class="row">
+                <div class="row justify-content-center">
                     <?php foreach (Products::$images as $val) { ?>
-                        <div class="col-lg-3 col-md-4 col-6">
+                        <div class="col-xl-3 col-md-4 col-5">
                             <a href="/uploads/images/products/resize_4/<?php echo $val ?>" data-bs-toggle="lightbox" data-gallery="example-gallery" data-type="image">
                                 <img src="/uploads/images/products/resize_1/<?php echo $val ?>" alt="<?php echo Products::$products['name'] ?>" class="img-thumbnail">
                             </a>
@@ -41,7 +41,7 @@ if (Products::$products != FALSE) {
                     <?php } ?>
                 </div>
             </div>
-            <div class="col-md-6 col-12 productpage">
+            <div class="col-md-6 col-12 mb-3 productpage">
                 <ul>
                     <li>
                         <span class="productpage-price"><?php echo Ecb::priceInterface(Products::$products, 2) ?></span>

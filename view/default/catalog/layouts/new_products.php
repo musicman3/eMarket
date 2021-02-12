@@ -18,7 +18,7 @@ if (Products::$new_products == true) {
         <div class="row">
             <?php foreach (Products::$new_products as $value) {
                 ?>
-                <div class="col-xl-3 col-lg-4 col-md-6 col-12 grid-group-item">
+                <div class="col-xxl-2 col-xl-3 col-md-4 col-sm-6 col-12 grid-group-item">
                     <div class="productHolder">
 
                         <div class="labelsblock">
@@ -27,7 +27,7 @@ if (Products::$new_products == true) {
                             <?php } ?>
                         </div>
 
-                        <a href="/?route=products&category_id=<?php echo $value['parent_id'] ?>&id=<?php echo $value['id'] ?>"><img src="/uploads/images/products/resize_1/<?php echo $value['logo_general'] ?>" alt="<?php echo $value['name']; ?>" class="img-fluid mx-auto d-block"></a>
+                        <a href="/?route=products&category_id=<?php echo $value['parent_id'] ?>&id=<?php echo $value['id'] ?>"><img src="/uploads/images/products/resize_1/<?php echo $value['logo_general'] ?>" alt="<?php echo $value['name']; ?>" class="img-fluid rounded mx-auto d-block"></a>
                         <h5 class="text-center item-heading"><a href="/?route=products&category_id=<?php echo $value['parent_id'] ?>&id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></h5>
                         <div class="text-center item-price"><?php echo Ecb::priceInterface($value, 2) ?></div>
 
