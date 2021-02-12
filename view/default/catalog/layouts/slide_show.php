@@ -17,7 +17,6 @@ if (Slideshow::$slideshow == true) {
              data-bs-pause="<?php echo Slideshow::$slide_pause ?>" 
              data-bs-ride="<?php echo Slideshow::$autostart ?>" 
              data-bs-wrap="<?php echo Slideshow::$cicles ?>" 
-             data-bs-slide="true"
              data-bs-touch="true" 
              data-bs-keyboard="true">
                  <?php if (Slideshow::$indicators == 'true') { ?>
