@@ -253,8 +253,8 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                 text: '<span class="bi-trash"> ' + lang['button_delete'] + '</span>',
                                 action: function () {
                                     new bootstrap.Modal(document.querySelector('#confirm')).show();
-                                    $('#confirm_title').html(lang['attention']);
-                                    $('#confirm_body').html(lang['confirm_delete_product_or_category']);
+                                    document.querySelector('#confirm_title').innerHTML = lang['attention'];
+                                    document.querySelector('#confirm_body').innerHTML = lang['confirm_delete_product_or_category'];
 
                                     confirmation.onclick = function () {
                                         bootstrap.Modal.getInstance(document.querySelector('#confirm')).hide();
@@ -289,7 +289,7 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                 // ---------- Add stiker ----------
                                 text: '<span class="bi-bookmark-plus"> ' + lang['button_stiker_add'] + '</span>',
                                 action: function () {
-                                    var selected_id = $('select[name="context-menu-input-stiker"] option:selected').val();
+                                    var selected_id = document.querySelector('[name="context-menu-input-stiker"]').value;
                                     var idArray = [];
                                     document.querySelectorAll('.table-primary').forEach(function (string, index) {
                                         idArray[index] = string.id;
@@ -312,12 +312,12 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                 text: '<span class="bi-bookmark-dash"> ' + lang['button_stiker_delete'] + '</span>',
                                 action: function () {
                                     new bootstrap.Modal(document.querySelector('#confirm')).show();
-                                    $('#confirm_title').html(lang['attention']);
-                                    $('#confirm_body').html(lang['confirm_delete_stiker']);
+                                    document.querySelector('#confirm_title').innerHTML = lang['attention'];
+                                    document.querySelector('#confirm_body').innerHTML = lang['confirm_delete_stiker'];
+                                    var selected_id = document.querySelector('[name="context-menu-input-stiker"]').value;
 
                                     confirmation.onclick = function () {
                                         bootstrap.Modal.getInstance(document.querySelector('#confirm')).hide();
-                                        var selected_id = $('select[name="context-menu-input-stiker"] option:selected').val();
                                         var idArray = [];
                                         document.querySelectorAll('.table-primary').forEach(function (string, index) {
                                             idArray[index] = string.id;

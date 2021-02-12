@@ -2,7 +2,7 @@
  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-/* global AjaxSuccess, confirmation, json_data_category, json_data_product, Ajax */
+/* global AjaxSuccess, confirmation, json_data_category, json_data_product, Ajax, bootstrap */
 
 /**
  * DiscountSale
@@ -61,7 +61,7 @@ class DiscountSale {
                     // ---------- Add to sale ----------
                     text: '<span class="bi-star-fill"> ' + lang['modules_discount_sale_admin_button_sale_on'] + '</span>',
                     action: function () {
-                        var selected_id = $('select[name="context-menu-input-sale"] option:selected').val();
+                        var selected_id = document.querySelector('[name="context-menu-input-sale"]').value;
                         var idArray = [];
                         document.querySelectorAll('.table-primary').forEach(function (string, index) {
                             idArray[index] = string.id;
@@ -85,9 +85,9 @@ class DiscountSale {
                     text: '<span class="bi-star"> ' + lang['modules_discount_sale_admin_button_sale_off'] + '</span>',
                     action: function () {
                         new bootstrap.Modal(document.querySelector('#confirm')).show();
-                        $('#confirm_title').html(lang['modules_discount_sale_admin_attention']);
-                        $('#confirm_body').html(lang['modules_discount_sale_admin_confirm_delete_sale']);
-                        var selected_id = $('select[name="context-menu-input-sale"] option:selected').val();
+                        document.querySelector('#confirm_title').innerHTML = lang['modules_discount_sale_admin_attention'];
+                        document.querySelector('#confirm_body').innerHTML = lang['modules_discount_sale_admin_confirm_delete_sale'];
+                        var selected_id = document.querySelector('[name="context-menu-input-sale"]').value;
                         confirmation.onclick = function () {
                             bootstrap.Modal.getInstance(document.querySelector('#confirm')).hide();
                             var idArray = [];
@@ -114,12 +114,11 @@ class DiscountSale {
                     text: '<span class="bi-lightning-fill"> ' + lang['modules_discount_sale_admin_button_sale_off_all'] + '</span>',
                     action: function () {
                         new bootstrap.Modal(document.querySelector('#confirm')).show();
-                        $('#confirm_title').html(lang['modules_discount_sale_admin_attention']);
-                        $('#confirm_body').html(lang['modules_discount_sale_admin_confirm_delete_sales']);
+                        document.querySelector('#confirm_title').innerHTML = lang['modules_discount_sale_admin_attention'];
+                        document.querySelector('#confirm_body').innerHTML = lang['modules_discount_sale_admin_confirm_delete_sales'];
 
                         confirmation.onclick = function () {
                             bootstrap.Modal.getInstance(document.querySelector('#confirm')).hide();
-                            var selected_id = $('select[name="context-menu-input-sale"] option:selected').val();
                             var idArray = [];
                             document.querySelectorAll('.table-primary').forEach(function (string, index) {
                                 idArray[index] = string.id;
