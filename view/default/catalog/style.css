@@ -15,8 +15,6 @@ a {text-decoration: none;}
 
 @media (min-width: 768px){.modal-lg {width: 750px;}}
 
-.breadcrumb {padding: 8px 15px;border-radius: 4px;}
-
 #Carousel .bi-chevron-left, #Carousel .bi-chevron-right {opacity: 0;transition: 1s opacity;}
 #Carousel:hover .bi-chevron-left, #Carousel:hover .bi-chevron-right {opacity: 1;transition: 1s opacity;}
 #Carousel .bi-chevron-left, #Carousel .bi-chevron-right {font-size: 30px;}
