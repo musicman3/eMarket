@@ -128,7 +128,7 @@ class Fileupload {
 
             $('<div class="file-upload" id="image_edit_' + x + '"/>').html('<img src="/uploads/images/' + dir + '/resize_0/' + image + '" class="img-thumbnail" id="general_' + x + '" /><div class="block align-items-center justify-content-evenly"><button class="btn btn-primary btn-sm" type="button" name="delete_image_' + x + '" onclick="Fileupload.deleteImageEdit(\'' + image + '\', \'' + x + '\')"><span class="bi-trash"></span></button> <button class="btn btn-primary btn-sm" type="button" name="image_general_edit' + x + '" onclick="Fileupload.imageGeneralEdit(\'' + image + '\', \'' + x + '\')"><span class="bi-star"></span></button></div></div>').appendTo('#logo');
             if (logo_general_edit[modal_id] === image) {
-                $('#general_' + x).addClass('border border-danger rounded');
+                $('#general_' + x).addClass('border-danger');
             }
         }
     }
@@ -179,8 +179,8 @@ class Fileupload {
      * @param num {String} (number)
      */
     static imageGeneralEdit(image, num) {
-        $('img').removeClass('border border-danger rounded');
-        $('#general_' + num).addClass('border border-danger rounded');
+        $('img').removeClass('border-danger');
+        $('#general_' + num).addClass('border-danger');
         $('#general_image_edit').val(image);
     }
 
@@ -190,8 +190,8 @@ class Fileupload {
      * @param num {String} (number)
      */
     static imageGeneralAddNew(image, num) {
-        $('img').removeClass('border border-danger rounded');
-        $('#general_' + num).addClass('border border-danger rounded');
+        $('img').removeClass('border-danger');
+        $('#general_' + num).addClass('border-danger');
         $('#general_image_add').val(image);
     }
 
@@ -201,8 +201,8 @@ class Fileupload {
      * @param num {String} (number)
      */
     static imageGeneralEditNew(image, num) {
-        $('img').removeClass('border border-danger rounded');
-        $('#general_edit_' + num).addClass('border border-danger rounded');
+        $('img').removeClass('border-danger');
+        $('#general_edit_' + num).addClass('border-danger');
         $('#general_image_edit_new').val(image);
     }
 
