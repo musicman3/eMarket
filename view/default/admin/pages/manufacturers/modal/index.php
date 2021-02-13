@@ -74,7 +74,7 @@ use \eMarket\Core\{
                             <?php echo lang('max') ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>
                             <br>
                             <br>
-                            <div id="progress" class="progress">
+                            <div id="progress" class="mb-2">
                                 <div class="progress-bar bg-danger progress-bar-striped progress-bar-animated"></div>
                             </div>
                             <div id="logo" class="gap-2 d-flex justify-content-center flex-wrap"></div>
