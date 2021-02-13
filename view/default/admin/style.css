@@ -41,7 +41,6 @@ body {background: #e4e4da;font-family: 'Open Sans';background-image: url('images
 
 #color {box-sizing: content-box;}
 
-.file-upload {position: relative;}
 .file-upload:hover .block {display: flex !important;}
 .block {position: absolute;bottom: 0;top: 0;width: 100%;display: none;}
 .progress {margin-bottom: .625rem;}
