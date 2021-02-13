@@ -8,7 +8,7 @@
 <div id="cart_message" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header justify-content-center">
+            <div class="modal-header justify-content-center bg-light py-2 px-3">
                 <h3 id="confirm_title" class="modal-title text-center"><?php echo lang('listing_product_added_to_cart') ?></h3>
             </div>
             <div class="modal-body">

@@ -8,7 +8,7 @@
 <div id="forgot_password" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-light py-2 px-3">
                 <h3 class="modal-title"><?php echo lang('register_password_recovery') ?></h3>
                 <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal"></button>
             </div>
