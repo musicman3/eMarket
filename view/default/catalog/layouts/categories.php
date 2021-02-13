@@ -9,8 +9,8 @@ use \eMarket\Core\Settings;
 ?>
 
 <div id="layouts-categories" class="card mb-2">
-    <div class="card-header"><?php echo lang('categories_name') ?></div>
-    <div class="card-body category_block"><?php Categories::data(); ?></div>
+    <div class="card-header p-2"><h3 class="mb-0"><?php echo lang('categories_name') ?></h3></div>
+    <div class="card-body category_block p-2"><?php Categories::data(); ?></div>
 </div>
 <?php if (Categories::$categories_and_breadcrumb != 0) { ?>
     <div id="data_breadcrumb" class="hidden"
