@@ -109,7 +109,7 @@ require_once('modal/cart_message.php')
                  data-next='<?php echo Pages::$table['navigate'][1] ?>'
                  data-sortflag='<?php echo Listing::$sort_flag ?>'
                  ></div>
-            <div class="result-inner btn-group"><?php echo Pages::counterPage() ?></div>
+            <div class="mt-2 mb-2 btn-group"><?php echo Pages::counterPage() ?></div>
 
             <div class="btn-group float-end navigate-normal">
                 <?php if (Pages::$table['navigate'][0] > 0) { ?> 
