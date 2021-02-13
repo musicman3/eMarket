@@ -5,7 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
 
-<div id="header" class="container-fluid">
+<div id="header" class="container-fluid mt-3 mb-3">
     <div class="row align-items-center">
         <div class="col-4">
             <a href="/"><img src="/view/<?php echo \eMarket\Core\Settings::template() ?>/catalog/images/emarket.png" alt="" class="logo img-fluid float-start"></a>

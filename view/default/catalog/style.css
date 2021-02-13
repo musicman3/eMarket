@@ -15,7 +15,6 @@ a {text-decoration: none;}
 
 @media (min-width: 768px){.modal-lg {width: 750px;}}
 
-#header, #bodyWrapper, #Carousel, #breadcrumb {margin-top: 10px;margin-bottom: 10px;}
 .breadcrumb {padding: 8px 15px;border-radius: 4px;}
 
 #Carousel .bi-chevron-left, #Carousel .bi-chevron-right {opacity: 0;transition: 1s opacity;}

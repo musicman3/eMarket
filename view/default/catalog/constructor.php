@@ -50,7 +50,7 @@ use \eMarket\Core\{
         }
         ?>
 
-        <div id="bodyWrapper" class="container-fluid">
+        <div id="bodyWrapper" class="container-fluid mt-3">
             <div class="row">
 
 		<?php

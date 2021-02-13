@@ -6,7 +6,7 @@
 
 ?>
 
-<div class="container-fluid">
+<div class="container-fluid mt-3 mb-3">
     <nav>
 	<ol class="breadcrumb bg-light" id="breadcrumb"></ol>
     </nav>

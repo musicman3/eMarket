@@ -11,7 +11,7 @@ Slideshow::view();
 
 if (Slideshow::$slideshow == true) {
     ?>
-    <div class="container-fluid">
+    <div class="container-fluid mt-3 mb-3">
         <div id="Carousel" class="carousel slide carousel-fade d-none d-md-block" 
              data-bs-interval="<?php echo Slideshow::$slide_interval ?>" 
              data-bs-pause="<?php echo Slideshow::$slide_pause ?>" 
