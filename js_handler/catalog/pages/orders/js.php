@@ -48,7 +48,7 @@
                 var stiker = '';
             }
             $("#invoice").append('<tr class="align-middle">\n\
-                                        <td class="text-end"><span class="badge bg-success">' + stiker + '</span></td>\n\
+                                        <td class="text-start"><span class="badge bg-success">' + stiker + '</span></td>\n\
                                         <td class="text-center"><small>' + invoice[x]['customer']['name'] + '</small></td>\n\
                                         <td class="text-center"><small>' + invoice[x]['customer']['price'] + '</small></td>\n\
                                         <td class="text-center"><small>' + invoice[x]['data']['quantity'] + ' ' + invoice[x]['customer']['unit'] + '</small></td>\n\
