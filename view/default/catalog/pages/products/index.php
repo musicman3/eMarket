@@ -92,7 +92,7 @@ if (Products::$products != FALSE) {
             </div>
         </div>
         <div class="row">
-            <div class="list-group-item">
+            <div class="list-group-item border-0">
                 <ul class="nav nav-tabs">
                     <li class="nav-item bg-light"><a class="nav-link active" data-bs-toggle="tab" href="#panel_description"><?php echo lang('product_description') ?></a></li>
                     <li class="nav-item bg-light"><a class="nav-link" data-bs-toggle="tab" href="#panel_attribute"><?php echo lang('product_specification') ?></a></li>
