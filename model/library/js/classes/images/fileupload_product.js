@@ -128,7 +128,7 @@ class FileuploadProduct {
 
             $('<div class="file-upload" id="image_edit_product_' + x + '"/>').html('<img src="/uploads/images/' + dir + '/resize_0/' + image + '" class="img-thumbnail" id="general_product_' + x + '" /><div class="block align-items-center justify-content-evenly"><button class="btn btn-primary btn-sm" type="button" name="delete_image_product_' + x + '" onclick="FileuploadProduct.deleteImageEditProduct(\'' + image + '\', \'' + x + '\')"><span class="bi-trash"></span></button> <button class="btn btn-primary btn-sm" type="button" name="image_general_edit_product' + x + '" onclick="FileuploadProduct.imageGeneralEditProduct(\'' + image + '\', \'' + x + '\')"><span class="bi-star"></span></button></div></div>').appendTo('#logo-product');
             if (logo_general_edit[modal_id] === image) {
-                $('#general_product_' + x).addClass('img-active');
+                $('#general_product_' + x).addClass('border border-danger rounded');
             }
         }
     }
@@ -179,8 +179,8 @@ class FileuploadProduct {
      * @param num {String} (number)
      */
     static imageGeneralEditProduct(image, num) {
-        $('img').removeClass('img-active');
-        $('#general_product_' + num).addClass('img-active');
+        $('img').removeClass('border border-danger rounded');
+        $('#general_product_' + num).addClass('border border-danger rounded');
         $('#general_image_edit_product').val(image);
     }
 
@@ -190,8 +190,8 @@ class FileuploadProduct {
      * @param num {String} (number)
      */
     static imageGeneralAddNewProduct(image, num) {
-        $('img').removeClass('img-active');
-        $('#general_product_' + num).addClass('img-active');
+        $('img').removeClass('border border-danger rounded');
+        $('#general_product_' + num).addClass('border border-danger rounded');
         $('#general_image_add_product').val(image);
     }
 
@@ -201,8 +201,8 @@ class FileuploadProduct {
      * @param num {String} (number)
      */
     static imageGeneralEditNewProduct(image, num) {
-        $('img').removeClass('img-active');
-        $('#general_edit_product_' + num).addClass('img-active');
+        $('img').removeClass('border border-danger rounded');
+        $('#general_edit_product_' + num).addClass('border border-danger rounded');
         $('#general_image_edit_new_product').val(image);
     }
 

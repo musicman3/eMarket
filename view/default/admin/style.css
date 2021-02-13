@@ -44,7 +44,6 @@ body {background: #e4e4da;font-family: 'Open Sans';background-image: url('images
 .file-upload {position: relative;}
 .file-upload:hover .block {display: flex !important;}
 .block {position: absolute;bottom: 0;top: 0;width: 100%;display: none;}
-.img-active {border: .0625rem solid #a94442;border-radius: .25rem;}
 .progress {margin-bottom: .625rem;}
 .table {margin-bottom: 0;}
 .card-body, .modal-body, .input-sm {font-size: .875rem;}
