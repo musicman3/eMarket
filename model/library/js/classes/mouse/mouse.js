@@ -62,7 +62,7 @@ class Mouse {
      */
     static sortInitAll(lang) {
         Mouse.sortInit('#sort-list', lang);
-        
+
         if (document.querySelector('.group-attributes') !== null) {
             Mouse.sortInit('.group-attributes', lang);
         }
@@ -84,17 +84,9 @@ class Mouse {
             ids[index] = string.getAttribute('unitid');
         });
 
-        if (typeof AjaxSuccess === 'function') {
-            Ajax.postData(window.location.href, {
-                ids: ids.join()
-            }, false).then((data) => {
-                AjaxSuccess;
-            });
-        } else {
-            Ajax.postData(window.location.href, {
-                ids: ids.join()
-            }, false);
-        }
+        Ajax.postData(window.location.href, {
+            ids: ids.join()
+        }, false);
 
     }
 }

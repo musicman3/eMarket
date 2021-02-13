@@ -38,7 +38,7 @@ class Ajax {
                 }
         ).then(
                 text => {
-                    if (reload !== false) {
+                    if (reload !== false && typeof AjaxSuccess === 'function') {
                         AjaxSuccess(text);
                     }
                 }
