@@ -26,7 +26,7 @@ require_once('modal/cart_message.php')
 
 <?php if (Pages::$count > 0) { ?>
     <div id="listing" class="contentText">
-        <div class="well bg-light mb-3">
+        <div class="bg-light mb-3 p-2 border rounded">
             <div class="btn-group">
                 <button type="button" class="btn btn-primary"><span class="bi-arrow-down-up"></span> &nbsp;<?php echo Listing::$sort_name ?></button>
                 <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"></button>
@@ -103,7 +103,7 @@ require_once('modal/cart_message.php')
             <?php } ?>  
         </div>
 
-        <div class="well bg-light mb-3">
+        <div class="bg-light mb-3 p-2 border rounded">
             <div id="nav_data" class='hidden' 
                  data-prev='<?php echo Pages::$table['navigate'][0] ?>'
                  data-next='<?php echo Pages::$table['navigate'][1] ?>'
