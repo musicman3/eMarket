@@ -94,7 +94,7 @@
                     <div id="panel_edit_2" class="tab-pane fade show">
                         <div class="table-responsive">
 
-                            <table class="table table-radius">
+                            <table class="table overflow-hidden rounded-top">
                                 <thead>
                                     <tr class="bg-primary text-light align-middle">
                                         <td class="text-start"><small><?php echo lang('orders_stiker') ?></small></td>
