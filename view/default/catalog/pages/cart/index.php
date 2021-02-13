@@ -22,7 +22,7 @@ require_once('modal/index.php')
         <div class="table-responsive">
             <table class="table">
                 <tbody>
-                    <tr class="trtop align-middle">
+                    <tr class="border-top border-end border-start align-middle">
                         <td class="text-center"> </td>
                         <td class="text-center"><strong><?php echo lang('cart_product') ?></strong></td>
                         <td class="text-center"><strong><?php echo lang('cart_price') ?></strong></td>
@@ -30,7 +30,7 @@ require_once('modal/index.php')
                         <td class="text-center"><strong><?php echo lang('cart_amount') ?></strong></td>
                     </tr>
                     <?php foreach (Cart::$cart_info as $value) { ?>
-                        <tr class="trbottom align-middle">
+                        <tr class="border-end border-start align-middle">
                             <td class="text-center"><a href="/?route=products&category_id=<?php echo $value['parent_id'] ?>&id=<?php echo $value['id'] ?>"><img src="/uploads/images/products/resize_0/<?php echo $value['logo_general'] ?>" alt="<?php echo $value['name'] ?>" class="img-thumbnail mx-auto d-block"></a></td>
                             <td class="text-center"><a href="/?route=products&category_id=<?php echo $value['parent_id'] ?>&id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></td>
                             <td class="text-center"><?php echo Ecb::priceInterface($value, 1) ?></td>
@@ -46,6 +46,9 @@ require_once('modal/index.php')
                             <td class="text-center"><?php echo Ecb::priceInterface($value, 1, \eMarket\Core\Cart::productQuantity($value['id'], 1)) ?></td>
                         </tr>
                     <?php } ?>
+		    <tr class="border-end border-start border-bottom align-middle">
+			<td colspan="5"> </td>
+		    </tr>
                 </tbody>
             </table>
         </div>
@@ -54,7 +57,7 @@ require_once('modal/index.php')
             <div class="col-auto">
                 <table class="table">
                     <tbody>
-                        <tr class="trcenter align-middle">
+                        <tr class="border align-middle">
                             <td class="text-end"><strong><?php echo lang('cart_subtotal') ?></strong></td>
                             <td class="text-end"><?php echo Ecb::totalPriceCartInterface(1) ?></td>
                         </tr>

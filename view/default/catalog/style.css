@@ -91,7 +91,7 @@ h6 {font-size: 14px;}
 #cart .trtop {border-width: 1px 1px 0 1px;}
 #cart .trbottom {border-width: 0 1px 1px 1px;}
 #cart .trcenter {border-width: 1px;}
-#cart .quantity {all: unset;appearance: textfield;width: 30px;text-align: center;border: 1px solid #2e6da4;border-radius: 4px;padding: 0 0 5px 0;}
+#cart .quantity {all: unset;appearance: textfield;width: 30px;text-align: center;vertical-align: middle;border: 1px solid #2e6da4;border-radius: 4px;padding: 3px 0 3px 0;}
 
 #cart input[type="number"]::-webkit-inner-spin-button, #cart input[type="number"]::-webkit-outer-spin-button, #products input[type="number"]::-webkit-inner-spin-button, #products input[type="number"]::-webkit-outer-spin-button, #listing input[type="number"]::-webkit-inner-spin-button, #listing input[type="number"]::-webkit-outer-spin-button {-webkit-appearance: none;}
 
