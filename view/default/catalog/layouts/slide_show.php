@@ -27,7 +27,7 @@ if (Slideshow::$slideshow == true) {
                     <?php } ?>
                 </div>
             <?php } ?>
-            <div class="carousel-inner">
+            <div class="carousel-inner rounded">
                 <?php
                 foreach (Slideshow::$slideshow as $images_data) {
                     foreach (json_decode($images_data['logo'], 1) as $logo) {
