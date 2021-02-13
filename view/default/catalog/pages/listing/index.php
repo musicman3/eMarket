@@ -50,7 +50,7 @@ require_once('modal/cart_message.php')
             <?php
             for (Pages::$start; Pages::$start < Pages::$finish; Pages::$start++, Pages::lineUpdate()) {
                 ?>
-                <div class="item col-xl-3 col-lg-4 col-md-6 col-12 grid-group-item">
+                <div class="item mb-3 col-xl-3 col-lg-4 col-md-6 col-12 grid-group-item">
                     <div class="border rounded p-2">
 
                         <div class="labelsblock">

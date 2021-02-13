@@ -48,7 +48,6 @@ h6 {font-size: 14px;}
 #layouts-categories .category_block .hitarea.expandable-hitarea:before {font-family: bootstrap-icons;content: '\bi-plus';color: #0d6efd;}
 #layouts-categories .category_block .hitarea.collapsable-hitarea:before {font-family: bootstrap-icons;content: '\bi-dash';color: #0d6efd;}
 
-#new_products .grid-group-item, #categories_listing .grid-group-item, #categories_index .grid-group-item, #listing .grid-group-item {margin-bottom: 16px;}
 #new_products .item-heading {margin-top: 8px;}
 #new_products .item-price {font-weight: 700;}
 #new_products .labelsblock {position: absolute;margin: -5px 0 0 -5px;}
