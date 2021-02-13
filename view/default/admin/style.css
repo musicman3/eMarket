@@ -27,17 +27,6 @@ body {background: #e4e4da;font-family: 'Open Sans';background-image: url('images
 #login .login-box .btn, .login-box .btn a:active {border: .0625rem solid #000;color: #fff;background: none; font-size: .9375rem;}
 #login .alert-danger {position: absolute;top: 10%;margin: 0 .625rem 0 -.125rem;padding: .3125rem;}
 
-#settings_templates .block-ul {display: inline-block;border: .0625rem solid #dddddd;border-top-left-radius: .25rem;border-top-right-radius: .25rem;vertical-align: top;padding-left: 0;}
-#settings_templates .sortno {list-style-type: none;padding: .3125rem 0 .3125rem 0;margin-bottom: .1875rem;}
-#settings_templates .sortyes {list-style-type: none;padding-bottom: .1875rem;}
-#settings_templates .block-m {margin-left: -.1875rem;}
-#settings_templates .block-l {display: inline-block;border: .0625rem solid #dddddd;border-top-left-radius: .25rem;vertical-align: top;padding-left: 0;}
-#settings_templates .block-r {display: inline-block;border: .0625rem solid #dddddd;border-top-right-radius: .25rem;vertical-align: top;padding-left: 0;}
-#settings_templates .border {border-top-left-radius: .25rem;border-top-right-radius: .25rem;}
-#settings_templates .border-l {border-top-left-radius: .25rem;}
-#settings_templates .border-r {border-top-right-radius: .25rem;}
-#settings_templates .input-sm {padding: 0 .625rem;}
-
 #index_product .accordion-button, #index_product .accordion-body {padding: .4375rem .75rem;}
 #index_product .product-attribute-table td {padding-left: .625rem;background: none;}
 #index_product .table > tbody > tr > td.selector {width: 30%;}
