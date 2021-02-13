@@ -48,7 +48,7 @@ use \eMarket\Core\Modules\Payment\Cash;
     </div>
     <br>
 
-    <div class="text-left">
+    <div class="text-start">
         <button type="submit" class="btn btn-primary btn-sm"><span class="bi-check-circle"></span> <?php echo lang('save') ?></button>
     </div>
 
