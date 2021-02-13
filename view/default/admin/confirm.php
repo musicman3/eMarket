@@ -8,7 +8,7 @@
 <div id="confirm" class="modal fade" tabindex="-1">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-light py-2 px-3">
                 <h5 id="confirm_title" class="modal-title"><?php echo lang('attention') ?></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
