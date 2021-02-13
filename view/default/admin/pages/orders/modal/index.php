@@ -28,7 +28,7 @@ use \eMarket\Admin\Orders;
 
                         <div id="panel_1" class="tab-pane fade show in active">
                             <div class="table-responsive">
-                                <table class="table">
+                                <table class="table mb-0">
                                     <tbody>
                                         <tr>
                                             <td class="text-start">
@@ -97,7 +97,7 @@ use \eMarket\Admin\Orders;
                         <div id="panel_2" class="tab-pane fade">
                             <div class="table-responsive">
 
-                                <table class="table table-radius">
+                                <table class="table table-radius mb-0">
                                     <thead>
                                         <tr class="bg-primary text-light align-middle">
                                             <td class="text-start"><small><?php echo lang('orders_stiker') ?></small></td>

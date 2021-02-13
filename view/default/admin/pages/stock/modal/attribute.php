@@ -16,7 +16,7 @@
             <div class="modal-body">
                 <div class="tab-content pt-2">
                     <div class="table-responsive">
-                        <table class="table table-hover">
+                        <table class="table table-hover mb-0">
                             <thead>
                                 <tr>
                                     <th colspan="3"></th>

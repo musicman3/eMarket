@@ -93,7 +93,7 @@ use \eMarket\Admin\Stock;
                         <div id="panel_add_2" class="tab-pane fade">
 
                             <div class="table-responsive">
-                                <table class="table table-hover">
+                                <table class="table table-hover mb-0">
                                     <thead>
                                         <tr>
                                             <th colspan="3"></th>

@@ -37,7 +37,7 @@ require_once('modal/index.php')
             </div>
             <div class="clearfix"></div>
             <div class="table-responsive">
-                <table class="table table-hover">
+                <table class="table table-hover mb-0">
                     <thead>
                         <tr class="align-middle">
                             <th colspan="7"><?php echo Pages::counterPage() ?></th>

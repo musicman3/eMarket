@@ -26,7 +26,7 @@ require_once('modal/index.php')
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-hover">
+                <table class="table table-hover mb-0">
                     <thead>
                         <tr class="align-middle">
                             <th colspan="2"><?php echo Pages::counterPage() ?></th>

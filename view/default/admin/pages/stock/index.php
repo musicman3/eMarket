@@ -51,7 +51,7 @@ require_once('modal/add_values_attribute.php');
                 </div>
                 <div class="clearfix"></div>
                 <div class="table-responsive">
-                    <table id="table-id" class="table table-hover">
+                    <table id="table-id" class="table table-hover mb-0">
                         <thead>
                             <tr class="align-middle">
                                 <th colspan="4"><?php echo Pages::counterPageStock() ?></th>
@@ -184,7 +184,7 @@ require_once('modal/add_values_attribute.php');
                 </div>
                 <div class="clearfix"></div>
                 <div class="table-responsive">
-                    <table class="table table-hover">
+                    <table class="table table-hover mb-0">
                         <thead>
                             <tr class="align-middle">
                                 <th colspan="3">

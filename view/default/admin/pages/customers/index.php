@@ -33,7 +33,7 @@ use \eMarket\Core\{
             </div>
             <div class="clearfix"></div>
             <div class="table-responsive">
-                <table class="table table-hover">
+                <table class="table table-hover mb-0">
                     <thead>
                         <tr class="align-middle">
                             <th colspan="4"><?php echo Pages::counterPage() ?></th>

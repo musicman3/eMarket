@@ -40,7 +40,7 @@ use \eMarket\Admin\Modules;
 
                         <?php if (isset($_SESSION['MODULES_INFO'][$type])) { ?>
                             <div class="table-responsive">
-                                <table class="table table-hover table-radius">
+                                <table class="table table-hover table-radius mb-0">
                                     <thead>
 
                                         <tr class="bg-primary align-middle text-white">
@@ -79,7 +79,7 @@ use \eMarket\Admin\Modules;
                             </div>
                             </br>
                             <div class="table-responsive">
-                                <table class="table table-hover table-radius">
+                                <table class="table table-hover table-radius mb-0">
                                     <thead>
 
                                         <tr class="bg-primary text-white">

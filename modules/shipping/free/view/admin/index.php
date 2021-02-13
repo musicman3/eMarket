@@ -17,7 +17,7 @@ require_once('modal/index.php')
 <div id="ajax_data" class='hidden' data-jsondata='<?php echo Free::$json_data ?>'></div>
 
 <div class="table-responsive">
-    <table class="table table-hover">
+    <table class="table table-hover mb-0">
         <thead>
             <tr>
                 <th colspan="2"><?php echo Pages::counterPage() ?></th>

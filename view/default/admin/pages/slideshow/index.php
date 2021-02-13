@@ -56,7 +56,7 @@ require_once('modal/index.php')
             <div class="ajax-tab tab-content pt-2">
                 <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade show in active">
                     <div class="table-responsive">
-                        <table class="table table-hover">
+                        <table class="table table-hover mb-0">
                             <thead>
                                 <tr class="align-middle">
                                     <th colspan="5"><?php echo Pages::counterPage() ?></th>
@@ -135,7 +135,7 @@ require_once('modal/index.php')
 
                         <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">
                             <div class="table-responsive">
-                                <table class="table table-hover">
+                                <table class="table table-hover mb-0">
 
                                     <thead>
                                         <tr class="align-middle">
