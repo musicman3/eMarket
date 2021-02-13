@@ -22,7 +22,7 @@ use \eMarket\Core\Modules\Shipping\Free;
                     <input type="hidden" id="add" name="add" value="" />
                     <input type="hidden" id="edit" name="edit" value="" />
 
-                    <div class="tab-content">
+                    <div class="tab-content pt-2">
                         <div class="form-group">
                             <label for="zone"><?php echo lang('modules_shipping_free_admin_shipping_zone') ?></label>
                             <div class="input-group input-group-sm">

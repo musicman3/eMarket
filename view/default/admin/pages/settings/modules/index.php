@@ -31,7 +31,7 @@ use \eMarket\Admin\Modules;
                 <?php } ?>
             </ul>
 
-            <div class="tab-content">
+            <div class="tab-content pt-2">
                 <?php
                 foreach ($_SESSION['MODULES_INFO'] as $type => $name) {
                     $eMarket->filter($type);

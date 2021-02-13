@@ -27,7 +27,7 @@ use \eMarket\Admin\BasicSettings;
                 <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#email"><?php echo lang('basic_settigs_email') ?></a></li>
             </ul>
 
-            <div class="tab-content">
+            <div class="tab-content pt-2">
                 <div id="general" class="tab-pane fade show in active">
                     <form id="form_add" class="was-validated" name="form_add" action="javascript:void(null);" onsubmit="Ajax.callAdd()">
                         <input hidden name="add" value="ok">

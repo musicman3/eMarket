@@ -23,7 +23,7 @@ use \eMarket\Core\{
 
                     <?php require_once(ROOT . '/view/' . Settings::template() . '/layouts/lang_tabs_add.php') ?>
 
-                    <div class="tab-content">
+                    <div class="tab-content pt-2">
                         <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade show in active">
                             <div class="mb-3">
                                 <div class="input-group input-group-sm">

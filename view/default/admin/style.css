@@ -68,7 +68,6 @@ body {background: #e4e4da;font-family: 'Open Sans';background-image: url('images
 .table .sortleft-m {color: #9b9b9b;width: 1.5625rem;text-align: center;}
 .table .sortno:hover {background: none;}
 .table > tbody > tr > td.active {background-color: #f0f0f0;}
-.tab-content {padding-top: 0.625rem;}
 .transfer {color: #777;padding: 0.3125rem;}
 .fileinput-button {position: relative;overflow: hidden;display: inline-block;}
 .fileinput-button input {position: absolute;top: 0;right: 0;margin: 0;opacity: 0;font-size: 0.0625rem;line-height: 15;}

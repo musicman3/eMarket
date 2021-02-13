@@ -36,13 +36,13 @@ use \eMarket\Admin\Stock;
                         <li><a class="nav-link" data-bs-toggle="tab" href="#panel_add_2"><?php echo lang('stock_specification') ?></a></li>
                     </ul>
 
-                    <div class="tab-content">
+                    <div class="tab-content pt-2">
 
                         <div id="panel_add_1" class="tab-pane fade show in active">
 
                             <?php require_once(ROOT . '/view/' . Settings::template() . '/layouts/lang_tabs_add.php') ?>
 
-                            <div class="tab-content">
+                            <div class="tab-content pt-2">
                                 <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade show in active">
                                     <div class="mb-3">
                                         <div class="input-group input-group-sm">

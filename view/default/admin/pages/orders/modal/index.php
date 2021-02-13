@@ -24,7 +24,7 @@ use \eMarket\Admin\Orders;
                         <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#panel_4"><?php echo lang('orders_status_history') ?></a></li>
                     </ul>
 
-                    <div class="tab-content">
+                    <div class="tab-content pt-2">
 
                         <div id="panel_1" class="tab-pane fade show in active">
                             <div class="table-responsive">

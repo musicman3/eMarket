@@ -53,7 +53,7 @@ require_once('modal/index.php')
 
             </ul>
 
-            <div class="ajax-tab tab-content">
+            <div class="ajax-tab tab-content pt-2">
                 <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade show in active">
                     <div class="table-responsive">
                         <table class="table table-hover">

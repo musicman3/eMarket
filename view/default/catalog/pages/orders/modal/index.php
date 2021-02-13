@@ -21,7 +21,7 @@
                     <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#panel_edit_4"><?php echo lang('orders_status_history') ?></a></li>
                 </ul>
 
-                <div class="tab-content">
+                <div class="tab-content pt-2">
 
                     <div id="panel_edit_1" class="tab-pane fade show active">
                         <div class="table-responsive">
