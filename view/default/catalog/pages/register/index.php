@@ -81,7 +81,7 @@ if (Valid::inPOST('email') && Register::$user_email != NULL) {
     <h1><?php echo lang('register_account') ?></h1>
 
     <div id="register" class="contentText">
-	<div class="well-text bg-light mb-3">
+	<div class="bg-light border rounded mb-3 py-3 px-2">
 	    <p class="card-text"><?php echo lang('register_problem_message') ?></p>
 	</div>
 	<form>
@@ -98,7 +98,7 @@ if (Valid::inPOST('email') && Register::$user_email == NULL) {
     <h1><?php echo lang('register_account') ?></h1>
 
     <div id="register" class="contentText">
-	<div class="well-text bg-light mb-3">
+	<div class="bg-light border rounded mb-3 py-3 px-2">
 	    <p class="card-text"><?php echo lang('register_complete_message') ?></p>
 	</div>
         <form>

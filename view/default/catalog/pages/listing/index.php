@@ -143,7 +143,7 @@ require_once('modal/cart_message.php')
     </div>
 <?php } else { ?>
     <div id="listing" class="contentText">
-        <div class="well-text bg-light mb-3">
+        <div class="bg-light border rounded mb-3 py-3 px-2">
 	    <p class="card-text">
 		<?php
 		if (Valid::inGET('search')) {

@@ -117,7 +117,7 @@ if (Products::$products != FALSE) {
     <h1><?php echo lang('product_not_found') ?></h1>
 
     <div id="products" class="contentText">
-        <div class="well-text bg-light">
+        <div class="bg-light border rounded mb-3 py-3 px-2">
             <p class="card-text"><?php echo lang('product_not_found_message') ?></p>
         </div>
     </div>
