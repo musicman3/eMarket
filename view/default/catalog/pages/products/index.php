@@ -99,12 +99,12 @@ if (Products::$products != FALSE) {
                 </ul>
                 <div class="tab-content">
                     <div id="panel_description" class="tab-pane fade show active">
-                        <div class="item-text"><?php echo Products::$products['description'] ?></div>
+                        <div class="item-text border border-top-0 rounded-bottom p-2"><?php echo Products::$products['description'] ?></div>
                     </div>
 
                     <input id="selected_attributes" type="hidden" name="selected_attributes" value="" />
                     <div id="panel_attribute" class="tab-pane fade show">
-                        <div class="item-text product-attribute"></div>
+                        <div class="item-text border border-top-0 rounded-bottom p-2 product-attribute"></div>
                     </div>
                 </div>
             </div>
