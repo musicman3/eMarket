@@ -68,16 +68,16 @@ h6 {font-size: 14px;}
 
 #index .tab-content {padding-top: 10px;}
 
-#listing .list-group-item {border: none;padding: 0px 12px;margin-bottom: 16px;}
+#listing .list-group-item {border: none;padding: 0px 12px;}
 #listing .list-group-item img {float: left;padding-right: 100px;}
-#listing .list-group-item .item-price {font-weight: 700;margin-bottom: 10px;}
+#listing .list-group-item .item-price {font-weight: 700;}
 #listing .list-group-item .caption {float: left;}
 #listing .list-group-item .block-button {float: right;}
 #listing .list-group-item .item-button {display: flex;justify-content: end;}
-#listing .grid-group-item .item-price {font-weight: 700;margin-bottom: 10px;text-align: center;}
+#listing .grid-group-item .item-price {font-weight: 700;text-align: center;}
 #listing .grid-group-item .block-button {margin-left: -5px;margin-right: -5px;}
 #listing .grid-group-item .buy-now {float: right;}
-#listing .grid-group-item .item-heading {text-align: center;margin-top: 8px;}
+#listing .grid-group-item .item-heading {text-align: center;}
 #listing .grid-group-item .item-text {display: none;}
 @media (max-width:669px) {#listing .hidden-grid-list {display: none !important;}}
 @media (max-width:579px) {#listing .bootstrap-switch {display: none !important;}}

@@ -59,10 +59,10 @@ require_once('modal/cart_message.php')
                             <?php } ?>
                         </div>
 
-                        <a href="/?route=products&category_id=<?php echo Pages::$table['line']['parent_id'] ?>&id=<?php echo Pages::$table['line']['id'] ?>"><img src="/uploads/images/products/resize_1/<?php echo Pages::$table['line']['logo_general'] ?>" alt="<?php echo Pages::$table['line']['name'] ?>" class="img-fluid rounded mx-auto d-block"></a>
+                        <a href="/?route=products&category_id=<?php echo Pages::$table['line']['parent_id'] ?>&id=<?php echo Pages::$table['line']['id'] ?>"><img src="/uploads/images/products/resize_1/<?php echo Pages::$table['line']['logo_general'] ?>" alt="<?php echo Pages::$table['line']['name'] ?>" class="img-fluid rounded mx-auto d-block mb-2"></a>
                         <div class="caption">
                             <h5 class="item-heading"><a href="/?route=products&category_id=<?php echo Pages::$table['line']['parent_id'] ?>&id=<?php echo Pages::$table['line']['id'] ?>"><?php echo Pages::$table['line']['name'] ?></a></h5>
-                            <div class="item-price"><?php echo Ecb::priceInterface(Pages::$table['line'], 2) ?></div>
+                            <div class="item-price mb-2"><?php echo Ecb::priceInterface(Pages::$table['line'], 2) ?></div>
                             <div class="item-text">
                                 <ul>
                                     <?php if (Pages::$table['line']['vendor_code'] != NULL && Pages::$table['line']['vendor_code'] != FALSE && Pages::$table['line']['vendor_code_value'] != NULL && Pages::$table['line']['vendor_code_value'] != FALSE) { ?>
