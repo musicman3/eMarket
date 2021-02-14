@@ -13,7 +13,12 @@
 <script src="/ext/sortablejs/sortable.min.js"></script>
 
 <script type="text/javascript" language="javascript">
-
+    /**
+     * idHandler
+     *
+     * @param selector {String} (selector)
+     * @return idArray {Array} (id Array)
+     */
     function idHandler(selector) {
         var idArray = [];
         var data = Array.from(document.querySelector(selector).children);
@@ -25,7 +30,11 @@
         });
         return idArray;
     }
-
+    
+    /**
+     * update Data
+     *
+     */
     function updateData() {
         Ajax.postData(window.location.href, {
             layout_header: idHandler('#sortable1'),
@@ -41,7 +50,13 @@
             page: document.querySelector('#layout_pages_templates').value
         });
     }
-
+    
+    /**
+     * Sortable pref
+     *
+     * @param selector {String} (selector)
+     * @param group {String} (group)
+     */
     function sortablePref(selector, group) {
         new Sortable(document.querySelector(selector), {
             group: group,
@@ -69,9 +84,9 @@
 
 <script type="text/javascript" language="javascript">
     selectTemplate = function () {
-        document.forms["select_template"].submit();
+        document.forms['select_template'].submit();
     };
     selectPage = function () {
-        document.forms["select_page"].submit();
+        document.forms['select_page'].submit();
     };
 </script>
