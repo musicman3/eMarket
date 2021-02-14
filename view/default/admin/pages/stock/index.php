@@ -193,7 +193,7 @@ require_once('modal/add_values_attribute.php');
                             </tr>
                         </thead>
                         <tbody id="sort-list">
-                            <tr class="align-middle unselectable">
+                            <tr class="sortno align-middle unselectable">
                                 <td class="sortleft-m"></td>
 
                                 <?php if (Stock::$parent_id > 0) { ?>
