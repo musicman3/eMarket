@@ -463,7 +463,7 @@ class Stock {
      */
     public static function discountLabel($span1, $span2) {
 
-        if (json_decode(Stock::$arr_merge['prod'][Stock::$start . 'a']['discount'], 1)) {
+        if (self::productSaleTooltip(Stock::$arr_merge['prod'][Stock::$start . 'a']['discount']) != '') {
             return $span1;
         } else {
             return $span2;
