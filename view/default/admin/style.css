@@ -44,18 +44,14 @@ body {background: #e4e4da;font-family: 'Open Sans';background-image: url('images
 .file-upload:hover .block {display: flex !important;}
 .block {position: absolute;bottom: 0;top: 0;width: 100%;display: none;}
 .card-body, .modal-body, .input-sm {font-size: .875rem;}
-
-.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {padding: .2rem .5rem;}
+.table > :not(caption) > * > * {padding: .2rem .5rem;}
 .sortyes, .sortyes-group, .sortyes-attributes, .sortyes-value-attributes {cursor: move;}
-.table .sortleft {width: 1.875rem;}
-.table .sortleft-m {color: #9b9b9b;width: 1.5625rem;text-align: center;}
-.table .sortno:hover {background: none;}
-.table > tbody > tr > td.active {background-color: #f0f0f0;}
-.transfer {color: #777;padding: .3125rem;}
+.table .sortleft {width: 2rem;}
+.table .sortleft-m {width: 2rem;opacity: 0.8;text-align: center;}
+.table > tbody > tr.sortno:hover {--bs-table-accent-bg: none;}
+/*.transfer {color: #777;padding: .3125rem;}*/
 .fileinput-button {position: relative;overflow: hidden;display: inline-block;}
 .fileinput-button input {position: absolute;top: 0;right: 0;margin: 0;opacity: 0;font-size: .0625rem;line-height: 15;}
 @media screen\9 {.fileinput-button input {filter: alpha(opacity=0);font-size: 100%;height: 100%;}}
 .settings_back {padding: 0 0 .3125rem 0;border: .0625rem solid #ddd;border-right: 0;border-radius: .25rem 0 0 .25rem;}
 .settings_name {padding: 0 .3125rem .3125rem .3125rem;border: .0625rem solid #ddd;border-left: 0;border-radius: 0 .25rem .25rem 0;}
-.table-radius {overflow: hidden;border-top-left-radius: .25rem;border-top-right-radius: .25rem;}
-.offset-0 {padding-left: 0;padding-right: 0;}

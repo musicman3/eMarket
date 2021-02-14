@@ -97,7 +97,7 @@ use \eMarket\Admin\Orders;
                         <div id="panel_2" class="tab-pane fade">
                             <div class="table-responsive">
 
-                                <table class="table table-radius mb-0">
+                                <table class="table overflow-hidden rounded-top mb-0">
                                     <thead>
                                         <tr class="bg-primary text-light align-middle">
                                             <td class="text-start"><small><?php echo lang('orders_stiker') ?></small></td>
