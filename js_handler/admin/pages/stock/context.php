@@ -117,9 +117,9 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                 document.querySelector('#manufacturers_product_stock').value = json_data_product.manufacturers[modal_id];
 
                                 if (json_data_product.date_available[modal_id] === null) {
-                                    $('#date_available_product_stock').datepicker('setDate', '');
+                                    picker.setDate('');
                                 } else {
-                                    $('#date_available_product_stock').datepicker('setDate', new Date(json_data_product.date_available[modal_id]));
+                                    picker.setDate(new Date(json_data_product.date_available[modal_id]));
                                 }
 
                                 document.querySelector('#tax_product_stock').value = json_data_product.tax[modal_id];

@@ -9,16 +9,25 @@ $lang_js = json_encode([
     'download_complete' => lang('download_complete')
         ]);
 ?>
-<!-- Bootstrap Datepicker" -->
-<script type="text/javascript" src="/ext/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
-<link href="/ext/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
-<script type="text/javascript" src="/ext/bootstrap-datepicker/locales/bootstrap-datepicker.<?php echo lang('meta-language') ?>.min.js"></script>
+
+<!-- Datepicker" -->
+<script src="/ext/moment/moment.min.js"></script>
+<?php if (lang('meta-language') != 'en') { ?>
+    <script type="text/javascript" src="/ext/moment/locale/<?php echo lang('meta-language') ?>.js"></script>
+<?php } ?>
+<script src="/ext/pikaday/pikaday.js"></script>
+<link rel="stylesheet" type="text/css" href="/ext/pikaday/pikaday.css">
 <script type="text/javascript" src="/model/library/js/classes/smartdatepicker.js"></script>
+
 <!-- jQuery File Upload -->
 <script src = "/ext/jquery_file_upload/js/vendor/jquery.ui.widget.js"></script>
 <script src="/ext/jquery_file_upload/js/jquery.iframe-transport.js"></script>
 <script src="/ext/jquery_file_upload/js/jquery.fileupload.js"></script>
 <script type="text/javascript" src="/model/library/js/classes/images/fileupload.js"></script>
+<script type="text/javascript" src="/model/library/js/classes/ajax/ajax.js"></script>
+<script type="text/javascript">
+    new Ajax();
+</script>
 
 <script type="text/javascript">
     var resize_max = JSON.parse('<?php echo $resize_max ?>');
@@ -27,15 +36,12 @@ $lang_js = json_encode([
 
     document.querySelector('#settings').addEventListener('show.bs.modal', function (event) {
         var json_data = JSON.parse(document.querySelector('#ajax_data').dataset.jsonsettings);
-
         document.querySelector('#show_interval').value = json_data.show_interval;
-
         document.querySelector('#mouse_stop').checked = Number(json_data.mouse_stop);
         document.querySelector('#autostart').checked = Number(json_data.autostart);
         document.querySelector('#cicles').checked = Number(json_data.cicles);
         document.querySelector('#indicators').checked = Number(json_data.indicators);
         document.querySelector('#navigation').checked = Number(json_data.navigation);
-
     });
 
     $('[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
@@ -64,8 +70,6 @@ $lang_js = json_encode([
             document.querySelector('#edit').value = modal_id;
             document.querySelector('#add').value = '';
 
-            var start = json_data.date_start[modal_id];
-            var end = json_data.date_finish[modal_id];
             document.querySelector('#view_slideshow').checked = json_data.status[modal_id];
             document.querySelector('#animation').checked = json_data.animation[modal_id];
 
@@ -73,15 +77,10 @@ $lang_js = json_encode([
             document.querySelector('#url').value = json_data.url[modal_id];
             document.querySelector('#name').value = json_data.name[modal_id];
             document.querySelector('#heading').value = json_data.heading[modal_id];
-
-            var day_start = new Date(start);
-            $('#start_date').datepicker('setDate', day_start);
-            $('#end_date').datepicker('setDate', new Date(end));
-
-            if (day_start.setDate(day_start.getDate()) < new Date()) {
-                $('#start_date').datepicker('setStartDate', new Date());
-                $('#start_date').datepicker('setDate', new Date());
-            }
+            
+            var start = json_data.date_start[modal_id];
+            var end = json_data.date_finish[modal_id];
+            new SmartDatepicker(start, end);
 
             Fileupload.getImageToEdit(json_data.logo_general, json_data.logo, modal_id, 'slideshow');
         }
@@ -90,12 +89,7 @@ $lang_js = json_encode([
             document.querySelector('#edit').value = '';
             document.querySelector('#add').value = 'ok';
             document.querySelector('form').reset();
+            new SmartDatepicker();
         }
     });
-</script>
-
-<script type="text/javascript" src="/model/library/js/classes/ajax/ajax.js"></script>
-<script type="text/javascript">
-    new Ajax();
-    new SmartDatepicker('<?php echo lang('meta-language') ?>');
 </script>

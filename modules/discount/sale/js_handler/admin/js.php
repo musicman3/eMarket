@@ -5,15 +5,14 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
 
-<!-- Bootstrap Datepicker" -->
-<script type="text/javascript" src="/ext/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
-<link href="/ext/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
-<script type="text/javascript" src="/ext/bootstrap-datepicker/locales/bootstrap-datepicker.<?php echo lang('meta-language') ?>.min.js"></script>
+<!-- Datepicker" -->
+<script src="/ext/moment/moment.min.js"></script>
+<?php if (lang('meta-language') != 'en') { ?>
+    <script type="text/javascript" src="/ext/moment/locale/<?php echo lang('meta-language') ?>.js"></script>
+<?php } ?>
+<script src="/ext/pikaday/pikaday.js"></script>
+<link rel="stylesheet" type="text/css" href="/ext/pikaday/pikaday.css">
 <script type="text/javascript" src="/model/library/js/classes/smartdatepicker.js"></script>
-
-<script type="text/javascript">
-    new SmartDatepicker('<?php echo lang('meta-language') ?>');
-</script>
 
 <script type="text/javascript">
     $('#index').on('show.bs.modal', function (event) {
@@ -32,13 +31,9 @@
             $('#edit').val(modal_id);
             $('#add').val('');
 
-            var day_start = new Date(json_data['start'][modal_id]);
-            $('#start_date').datepicker('setDate', day_start);
-            $('#end_date').datepicker('setDate', new Date(json_data['end'][modal_id]));
-            if (day_start.setDate(day_start.getDate()) < new Date()) {
-                $('#start_date').datepicker('setStartDate', new Date());
-                $('#start_date').datepicker('setDate', new Date());
-            }
+            var start = json_data.start[modal_id];
+            var end = json_data.end[modal_id];
+            new SmartDatepicker(start, end);
 
             $('#default_module').prop('checked', Number(json_data['default'][modal_id]));
         }
@@ -47,6 +42,7 @@
             $('#edit').val('');
             $('#add').val('ok');
             $(this).find('form').trigger('reset');
+            new SmartDatepicker();
         }
     });
 </script>
