@@ -27,7 +27,7 @@ use \eMarket\Core\{
                         <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade show in active">
                             <div class="mb-3">
                                 <div class="input-group input-group-sm">
-                                    <span class="input-group-text"><span class="bi-file-text"></span></span>
+                                    <span class="input-group-text bi-file-text"></span>
                                     <input class="form-control" placeholder="<?php echo lang('name_zone') ?>" type="text" name="name_zones_0" id="name_zones_0" required />
                                 </div>
                             </div>
@@ -41,7 +41,7 @@ use \eMarket\Core\{
                                 <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">
                                     <div class="mb-3">
                                         <div class="input-group input-group-sm">
-                                            <span class="input-group-text"><span class="bi-file-text"></span></span>
+                                            <span class="input-group-text bi-file-text"></span>
                                             <input class="form-control" placeholder="<?php echo lang('name_zone') ?>" type="text" name="name_zones_<?php echo $x ?>" id="name_zones_<?php echo $x ?>" required />
                                         </div>
                                     </div>
@@ -59,8 +59,8 @@ use \eMarket\Core\{
                 </div>
 
                 <div class="modal-footer">
-                    <button class="btn btn-primary btn-sm" type="button" data-bs-dismiss="modal"><span class="bi-x-circle"></span> <?php echo lang('cancel') ?></button>
-                    <button type="submit" class="btn btn-primary btn-sm"><span class="bi-check-circle"></span> <?php echo lang('save') ?></button>
+                    <button class="btn btn-primary btn-sm" type="button bi-x-circle" data-bs-dismiss="modal"> <?php echo lang('cancel') ?></button>
+                    <button class="btn btn-primary btn-sm bi-check-circle" type="submit"> <?php echo lang('save') ?></button>
                 </div>
 
             </form>

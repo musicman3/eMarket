@@ -14,7 +14,7 @@ use \eMarket\Admin\Templates;
     <div class="card">
         <div class="card-header">
             <h5 class="card-title">
-                <span class="settings_back"><button type="button" onClick='location.href = "<?php echo Settings::parentPartitionGenerator() ?>"' class="btn btn-primary btn-sm"><span class="bi-reply"></span></button></span><span class="settings_name"><?php echo Settings::titlePageGenerator() ?></span>
+                <span class="settings_back"><button type="button" onClick='location.href = "<?php echo Settings::parentPartitionGenerator() ?>"' class="btn btn-primary btn-sm bi-reply"></button></span><span class="settings_name"><?php echo Settings::titlePageGenerator() ?></span>
             </h5>
         </div>
         <div class="card-body">
@@ -22,7 +22,7 @@ use \eMarket\Admin\Templates;
             <div class="row">
 		<div class="col-auto">
 		    <div class="input-group input-group-sm">
-			<span class="input-group-text"><span class="bi-grid-fill"></span></span>
+			<span class="input-group-text bi-grid-fill"></span>
 			<form method="get" class="was-validated" name="select_template" action="index.php">
 			    <input hidden name="route" value="settings/templates">
 			    <select name="name_templates" id="name_templates" class="form-select"  onchange="selectTemplate()">
@@ -47,7 +47,7 @@ use \eMarket\Admin\Templates;
 		</div>
 		<div class="col">
 		    <div class="input-group input-group-sm">
-			<span class="input-group-text"><span class="bi-file-text"></span></span>
+			<span class="input-group-text bi-file-text"></span>
 			<form method="get" class="was-validated" name="select_page">
 			    <input hidden name="route" value="settings/templates">
 			    <input type="hidden" name="name_templates" value="<?php echo Templates::$select_template ?>" />
@@ -82,7 +82,7 @@ use \eMarket\Admin\Templates;
                     <?php } ?>
                 </ul>
                 <ul id="sortable2" class="border rounded-top ps-0 list-unstyled" style="width:33.3%">
-                    <li class="sortno rounded-top bg-primary text-center text-white py-1 mb-1"><span class="bi-arrow-left-right"></span> <span class="bi-trash"></span></li>
+                    <li class="sortno rounded-top bg-primary text-center text-white py-1 mb-1 bi-arrow-left-right"> <span class="bi-trash"></span></li>
                     <?php foreach (Templates::$layout_header_basket as $path) { ?>
                         <li id="<?php echo basename($path, '.php') ?>" class="sortyes text-center pb-1"><?php echo basename($path, '.php') ?></li>
                     <?php } ?>
@@ -96,7 +96,7 @@ use \eMarket\Admin\Templates;
                     <?php } ?>
                 </ul>
                 <ul id="sortable4" class="border rounded-top ps-0 list-unstyled" style="width:33.3%">
-                    <li class="sortno rounded-top bg-primary text-center text-white py-1 mb-1"><span class="bi-arrow-left-right"></span> <span class="bi-trash"></span></li>
+                    <li class="sortno rounded-top bg-primary text-center text-white py-1 mb-1 bi-arrow-left-right"> <span class="bi-trash"></span></li>
                     <?php foreach (Templates::$layout_content_basket as $path) { ?>
                         <li id="<?php echo basename($path, '.php') ?>" class="sortyes text-center pb-1"><?php echo basename($path, '.php') ?></li>
                     <?php } ?>
@@ -116,7 +116,7 @@ use \eMarket\Admin\Templates;
                     <?php } ?>
                 </ul>
                 <ul id="sortable7" class="border rounded-top ps-0 list-unstyled" style="width:33.2%">
-                    <li class="sortno rounded-top bg-primary text-center text-white py-1 mb-1"><span class="bi-arrow-left-right"></span> <span class="bi-trash"></span></li>
+                    <li class="sortno rounded-top bg-primary text-center text-white py-1 mb-1 bi-arrow-left-right"> <span class="bi-trash"></span></li>
                     <?php foreach (Templates::$layout_boxes_basket as $path) { ?>
                         <li id="<?php echo basename($path, '.php') ?>" class="sortyes text-center pb-1"><?php echo basename($path, '.php') ?></li>
                     <?php } ?>
@@ -130,7 +130,7 @@ use \eMarket\Admin\Templates;
                     <?php } ?>
                 </ul>
                 <ul id="sortable9" class="border rounded-top ps-0 list-unstyled" style="width:33.3%">
-                    <li class="sortno rounded-top bg-primary text-center text-white py-1 mb-1"><span class="bi-arrow-left-right"></span> <span class="bi-trash"></span></li>
+                    <li class="sortno rounded-top bg-primary text-center text-white py-1 mb-1 bi-arrow-left-right"> <span class="bi-trash"></span></li>
                     <?php foreach (Templates::$layout_footer_basket as $path) { ?>
                         <li id="<?php echo basename($path, '.php') ?>" class="sortyes text-center pb-1"><?php echo basename($path, '.php') ?></li>
                         <?php } ?>

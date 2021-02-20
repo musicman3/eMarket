@@ -21,7 +21,7 @@ require_once('modal/index.php')
         <div class="card-header">
             <div id="alert_block"><?php Messages::alert(); ?></div>
             <h5 class="card-title">
-                <span class="settings_back"><button type="button" onClick='location.href = "<?php echo Settings::parentPartitionGenerator() ?>"' class="btn btn-primary btn-sm"><span class="bi-reply"></span></button></span><span class="settings_name"><?php echo Settings::titlePageGenerator() ?></span>
+                <span class="settings_back"><button type="button" onClick='location.href = "<?php echo Settings::parentPartitionGenerator() ?>"' class="btn btn-primary btn-sm bi-reply"></button></span><span class="settings_name"><?php echo Settings::titlePageGenerator() ?></span>
             </h5>
         </div>
         <div class="card-body">
@@ -36,16 +36,16 @@ require_once('modal/index.php')
                             <th>
                                 <div class="gap-2 d-flex justify-content-end">
 
-                                    <a href="#index" class="btn btn-primary btn-sm" data-bs-toggle="modal"><span class="bi-plus"></span></a>
+                                    <a href="#index" class="btn btn-primary btn-sm bi-plus" data-bs-toggle="modal"></a>
 
                                     <form>
                                         <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
                                         <input hidden name="backstart" value="<?php echo Pages::$start ?>">
                                         <input hidden name="backfinish" value="<?php echo Pages::$finish ?>">
                                         <?php if (Pages::$start > 0) { ?>
-                                            <button type="submit" class="btn btn-primary btn-sm" formmethod="get"><span class="bi-arrow-left-short"></span></button>
+                                            <button type="submit" class="btn btn-primary btn-sm bi-arrow-left-short" formmethod="get"></button>
                                         <?php } else { ?>
-                                            <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-left-short"></span></a>
+                                            <a type="submit" class="btn btn-primary btn-sm disabled bi-arrow-left-short"></a>
                                         <?php } ?>
                                     </form>
 
@@ -54,9 +54,9 @@ require_once('modal/index.php')
                                         <input hidden name="start" value="<?php echo Pages::$start ?>">
                                         <input hidden name="finish" value="<?php echo Pages::$finish ?>">
                                         <?php if (Pages::$finish != Pages::$count) { ?>
-                                            <button type="submit" class="btn btn-primary btn-sm" formmethod="get"><span class="bi-arrow-right-short"></span></button>
+                                            <button type="submit" class="btn btn-primary btn-sm bi-arrow-right-short" formmethod="get"></button>
                                         <?php } else { ?>
-                                            <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-right-short"></span></a>
+                                            <a type="submit" class="btn btn-primary btn-sm disabled bi-arrow-right-short"></a>
                                         <?php } ?>
                                     </form>
 
@@ -84,10 +84,10 @@ require_once('modal/index.php')
                                 <td class="text-center"><?php echo Taxes::$zones_names[Pages::$table['line']['zones_id']] ?></td>
                                 <td>
                                     <div class="gap-2 d-flex justify-content-end">
-                                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#index" data-edit="<?php echo Pages::$table['line']['id'] ?>"><span class="bi-pencil-square"></span></button>
+                                        <button type="button" class="btn btn-primary btn-sm bi-pencil-square" data-bs-toggle="modal" data-bs-target="#index" data-edit="<?php echo Pages::$table['line']['id'] ?>"></button>
                                         <form id="form_delete<?php echo Pages::$table['line']['id'] ?>" name="form_delete" action="javascript:void(null);" enctype="multipart/form-data">
                                             <input hidden name="delete" value="<?php echo Pages::$table['line']['id'] ?>">
-                                            <button type="button" name="delete_but" class="btn btn-primary btn-sm" onclick="Confirmation.del('<?php echo Pages::$table['line']['id'] ?>')"><span class="bi-trash"> </span></button>
+                                            <button type="button" name="delete_but" class="btn btn-primary btn-sm bi-trash" onclick="Confirmation.del('<?php echo Pages::$table['line']['id'] ?>')"></button>
                                         </form>
                                     </div>
                                 </td>

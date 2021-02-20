@@ -28,7 +28,7 @@ use \eMarket\Core\{
                             <div class="mb-2">
                                 <small class="form-text text-muted"><?php echo lang('taxes_modal_name') ?></small>
                                 <div class="input-group input-group-sm">
-                                    <span class="input-group-text"><span class="bi-file-text"></span></span>
+                                    <span class="input-group-text bi-file-text"></span>
                                     <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_taxes_0" id="name_taxes_0" required />
                                 </div>
                             </div>
@@ -43,7 +43,7 @@ use \eMarket\Core\{
                                     <div class="mb-2">
                                         <small class="form-text text-muted"><?php echo lang('taxes_modal_name') ?></small>
                                         <div class="input-group input-group-sm">
-                                            <span class="input-group-text"><span class="bi-file-text"></span></span>
+                                            <span class="input-group-text bi-file-text"></span>
                                             <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_taxes_<?php echo $x ?>" id="name_taxes_<?php echo $x ?>" required />
                                         </div>
                                     </div>
@@ -72,7 +72,7 @@ use \eMarket\Core\{
                         <div class="mb-2">
                             <small class="form-text text-muted"><?php echo lang('taxes_modal_zones_desc') ?></small>
                             <div class="input-group input-group-sm">
-                                <span class="input-group-text"><span class="bi-arrow-down-up"></span></span>
+                                <span class="input-group-text bi-arrow-down-up"></span>
                                 <select name="zones_id" id="zones_id" class="form-select"></select>
                             </div>
                         </div>
@@ -80,8 +80,8 @@ use \eMarket\Core\{
                 </div>
 
                 <div class="modal-footer">
-                    <button class="btn btn-primary btn-sm" type="button" data-bs-dismiss="modal"><span class="bi-x-circle"></span> <?php echo lang('cancel') ?></button>
-                    <button type="submit" class="btn btn-primary btn-sm"><span class="bi-check-circle"></span> <?php echo lang('save') ?></button>
+                    <button class="btn btn-primary btn-sm bi-x-circle" type="button" data-bs-dismiss="modal"> <?php echo lang('cancel') ?></button>
+                    <button class="btn btn-primary btn-sm bi-check-circle" type="submit"> <?php echo lang('save') ?></button>
                 </div>
 
             </form>

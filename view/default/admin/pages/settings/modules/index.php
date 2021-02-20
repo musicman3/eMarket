@@ -17,7 +17,7 @@ use \eMarket\Admin\Modules;
         <div class="card-header">
             <div id="alert_block"><?php Messages::alert(); ?></div>
             <h5 class="card-title">
-                <span class="settings_back"><button type="button" onClick='location.href = "<?php echo Settings::parentPartitionGenerator() ?>"' class="btn btn-primary btn-sm"><span class="bi-reply"></span></button></span><span class="settings_name"><?php echo Settings::titlePageGenerator() ?></span>
+                <span class="settings_back"><button type="button" onClick='location.href = "<?php echo Settings::parentPartitionGenerator() ?>"' class="btn btn-primary btn-sm bi-reply"></button></span><span class="settings_name"><?php echo Settings::titlePageGenerator() ?></span>
             </h5>
         </div>
         <div class="card-body">
@@ -62,10 +62,10 @@ use \eMarket\Admin\Modules;
                                                     <?php ?>
                                                     <td>
                                                         <div class="gap-2 d-flex justify-content-end">
-                                                            <button type="button" onClick='location.href = "?route=settings/modules/edit&type=<?php echo $type ?>&name=<?php echo $key ?>"' class="btn btn-primary btn-sm"><span class="bi-pencil-square"> </span></button>
+                                                            <button type="button" onClick='location.href = "?route=settings/modules/edit&type=<?php echo $type ?>&name=<?php echo $key ?>"' class="btn btn-primary btn-sm bi-pencil-square"></button>
                                                             <form id="form_delete<?php echo $type . '_' . $key ?>" name="form_delete" action="javascript:void(null);" enctype="multipart/form-data">
                                                                 <input hidden name="delete" value="<?php echo $type . '_' . $key ?>">
-                                                                <button type="button" name="delete_but" class="btn btn-primary btn-sm" onclick="Confirmation.del('<?php echo $type . '_' . $key ?>', '?route=settings/modules&active=<?php echo $type ?>')"><span class="bi-trash"> </span></button>
+                                                                <button type="button" name="delete_but" class="btn btn-primary btn-sm bi-trash" onclick="Confirmation.del('<?php echo $type . '_' . $key ?>', '?route=settings/modules&active=<?php echo $type ?>')"></button>
                                                             </form>
                                                         </div>
                                                     </td>
@@ -103,7 +103,7 @@ use \eMarket\Admin\Modules;
                                                         <div class="gap-2 d-flex justify-content-end">
                                                             <form id="form_add_<?php echo $type . '_' . $key ?>" name="form_add" action="javascript:void(null);" onsubmit="Ajax.callAdd('form_add_<?php echo $type . '_' . $key ?>', '?route=settings/modules&active=<?php echo $type ?>')" enctype="multipart/form-data">
                                                                 <input hidden name="add" value="<?php echo $type . '_' . $key ?>">
-                                                                <button type="submit" name="add_but" class="btn btn-primary btn-sm" data-bs-placement="left" data-bs-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-install') ?>"><span class="bi-plus"> </span></button>
+                                                                <button type="submit" name="add_but" class="btn btn-primary btn-sm bi-plus" data-bs-placement="left" data-bs-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-install') ?>"></button>
                                                             </form>
                                                         </div>
                                                     </td>

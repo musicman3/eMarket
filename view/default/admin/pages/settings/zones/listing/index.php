@@ -21,7 +21,7 @@ require_once('modal/index.php')
         <div class="card-header">
             <div id="alert_block"><?php Messages::alert(); ?></div>
             <h5 class="card-title">
-                <span class="settings_back"><a class="btn btn-primary btn-sm" href="<?php echo Settings::parentPartitionGenerator() ?>"><span class="bi-reply"></span></a></span><span class="settings_name"><?php echo Settings::titlePageGenerator() ?></span>
+                <span class="settings_back"><a class="btn btn-primary btn-sm bi-reply" href="<?php echo Settings::parentPartitionGenerator() ?>"></a></span><span class="settings_name"><?php echo Settings::titlePageGenerator() ?></span>
             </h5>
         </div>
         <div class="card-body">
@@ -34,7 +34,7 @@ require_once('modal/index.php')
                             <th>
                                 <div class="gap-2 d-flex justify-content-end">
 
-                                    <a href="#index" class="btn btn-primary btn-sm" data-bs-toggle="modal"><span class="bi-pen"></span></a>
+                                    <a href="#index" class="btn btn-primary btn-sm bi-pen" data-bs-toggle="modal"></a>
 
                                     <form>
                                         <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
@@ -42,9 +42,9 @@ require_once('modal/index.php')
                                         <input hidden name="backfinish" value="<?php echo Pages::$finish ?>">
                                         <input hidden name="zone_id" value="<?php echo ZonesListing::$zones_id ?>">
                                         <?php if (Pages::$start > 0) { ?>
-                                            <button type="submit" class="btn btn-primary btn-sm" formmethod="get"><span class="bi-arrow-left-short"></span></button>
+                                            <button type="submit" class="btn btn-primary btn-sm bi-arrow-left-short" formmethod="get"></button>
                                         <?php } else { ?>
-                                            <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-left-short"></span></a>
+                                            <a type="submit" class="btn btn-primary btn-sm disabled bi-arrow-left-short"></a>
                                         <?php } ?>
                                     </form>
 
@@ -54,9 +54,9 @@ require_once('modal/index.php')
                                         <input hidden name="finish" value="<?php echo Pages::$finish ?>">
                                         <input hidden name="zone_id" value="<?php echo ZonesListing::$zones_id ?>">
                                         <?php if (Pages::$finish != Pages::$count) { ?>
-                                            <button type="submit" class="btn btn-primary btn-sm" formmethod="get"><span class="bi-arrow-right-short"></span></button>
+                                            <button type="submit" class="btn btn-primary btn-sm bi-arrow-right-short" formmethod="get"></button>
                                         <?php } else { ?>
-                                            <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-right-short"></span></a>
+                                            <a type="submit" class="btn btn-primary btn-sm disabled bi-arrow-right-short"></a>
                                         <?php } ?>
                                     </form>
 
