@@ -6,9 +6,7 @@
 
 ?>
 <!--Выводим уведомление об успешном действии-->
-<div id="alert" class="alert alert-<?php echo $_SESSION['message'][0] ?> fade show">
-    <span class="bi-exclamation-triangle"></span> <?php echo $_SESSION['message'][1] ?>
-</div>
+<div id="alert" class="alert alert-<?php echo $_SESSION['message'][0] ?> fade show bi-exclamation-triangle"> <?php echo $_SESSION['message'][1] ?></div>
 
 <!--Автозакрытие уведомлений-->
 <script>
