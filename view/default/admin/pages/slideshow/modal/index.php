@@ -30,14 +30,14 @@ use \eMarket\Admin\Slideshow;
                     <div class="mb-2">
                         <small class="form-text text-muted"><?php echo lang('slides_name') ?></small>
                         <div class="input-group input-group-sm">
-                            <span class="input-group-text"><span class="bi-file-text"></span></span>
+                            <span class="input-group-text bi-file-text"></span>
                             <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name" id="name" />
                         </div>
                     </div>
                     <div class="mb-2">
                         <small class="form-text text-muted"><?php echo lang('slides_text') ?></small>
                         <div class="input-group input-group-sm">
-                            <span class="input-group-text"><span class="bi-file-text"></span></span>
+                            <span class="input-group-text bi-file-text"></span>
                             <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="heading" id="heading" />
                         </div>
                     </div>
@@ -58,21 +58,21 @@ use \eMarket\Admin\Slideshow;
                     <div class="mb-2">
                         <small class="form-text text-muted"><?php echo lang('slides_url') ?></small>
                         <div class="input-group input-group-sm">
-                            <span class="input-group-text"><span class="bi-globe"></span></span>
+                            <span class="input-group-text bi-globe"></span>
                             <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="url" id="url" />
                         </div>
                     </div>
                     <div class="mb-2">
                         <small class="form-text text-muted"><?php echo lang('slides_show_start') ?></small>
                         <div class="input-group input-group-sm">
-                            <span class="input-group-text"><span class="bi-calendar3"></span></span>
+                            <span class="input-group-text bi-calendar3"></span>
                             <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="start_date" id="start_date" autocomplete="off" required />
                         </div>
                     </div>
                     <div class="mb-2">
                         <small class="form-text text-muted"><?php echo lang('slides_show_end') ?></small>
                         <div class="input-group input-group-sm">
-                            <span class="input-group-text"><span class="bi-calendar3"></span></span>
+                            <span class="input-group-text bi-calendar3"></span>
                             <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="end_date" id="end_date" autocomplete="off" required />
                         </div>
                     </div>
@@ -81,8 +81,8 @@ use \eMarket\Admin\Slideshow;
 
                     <!-- jQuery-File-Upload -->
                     <div class="mb-2">
-                        <span class="btn btn-primary btn-sm fileinput-button">
-                            <span class="bi-image"></span><span> <?php echo lang('button_add_image') ?></span>
+                        <span class="btn btn-primary btn-sm fileinput-button bi-image">
+                            <span> <?php echo lang('button_add_image') ?></span>
                             <input class="input-sm form-control" id="fileupload" type="file" name="files[]" accept="image/jpeg,image/png,image/gif" multiple>
                         </span>
                         <?php echo lang('max') ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>
@@ -100,8 +100,8 @@ use \eMarket\Admin\Slideshow;
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary btn-sm" type="button" data-bs-dismiss="modal"><span class="bi-x-circle"></span> <?php echo lang('cancel') ?></button>
-                    <button type="submit" class="btn btn-primary btn-sm"><span class="bi-check-circle"></span> <?php echo lang('save') ?></button>
+                    <button class="btn btn-primary btn-sm bi-x-circle" type="button" data-bs-dismiss="modal"> <?php echo lang('cancel') ?></button>
+                    <button class="btn btn-primary btn-sm bi-check-circle" type="submit"> <?php echo lang('save') ?></button>
                 </div>
             </form>
         </div>

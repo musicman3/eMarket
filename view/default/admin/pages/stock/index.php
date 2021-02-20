@@ -45,7 +45,7 @@ require_once('modal/add_values_attribute.php');
                         <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
                         <div class="input-group input-group-sm">
                             <input type="search" id="search" name="search" placeholder="<?php echo lang('search') ?>" class="form-control">
-                            <button type="submit" class="btn btn-primary btn-sm"><span class="bi-search"></span></button>
+                            <button type="submit" class="btn btn-primary btn-sm bi-search"></button>
                         </div>
                     </form>
                 </div>
@@ -64,9 +64,9 @@ require_once('modal/add_values_attribute.php');
                                             <input hidden name="backfinish" value="<?php echo Stock::$finish ?>">
                                             <input hidden name="nav_parent_id" value="<?php echo Stock::$parent_id ?>">
                                             <?php if (Stock::$start > 0) { ?>
-                                                <button type="submit" class="btn btn-primary btn-sm" action="index.php" formmethod="get"><span class="bi-arrow-left-short"></span></button>
+                                                <button type="submit" class="btn btn-primary btn-sm bi-arrow-left-short" action="index.php" formmethod="get"></button>
                                             <?php } else { ?>
-                                                <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-left-short"></span></a>
+                                                <a type="submit" class="btn btn-primary btn-sm disabled bi-arrow-left-short"></a>
                                             <?php } ?>
                                         </form>
 
@@ -76,9 +76,9 @@ require_once('modal/add_values_attribute.php');
                                             <input hidden name="finish" value="<?php echo Stock::$finish ?>">
                                             <input hidden name="nav_parent_id" value="<?php echo Stock::$parent_id ?>">
                                             <?php if (Pages::counterStock() < Stock::$count_lines_merge) { ?>
-                                                <button type="submit" class="btn btn-primary btn-sm" action="index.php" formmethod="get"><span class="bi-arrow-right-short"></span></button>
+                                                <button type="submit" class="btn btn-primary btn-sm bi-arrow-right-short" action="index.php" formmethod="get"></button>
                                             <?php } else { ?>
-                                                <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-right-short"></span></a>
+                                                <a type="submit" class="btn btn-primary btn-sm disabled bi-arrow-right-short"></a>
                                             <?php } ?>
                                         </form>
 
@@ -99,7 +99,7 @@ require_once('modal/add_values_attribute.php');
                                         <form>
                                             <div>
                                                 <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
-                                                <button name="parent_up" value="<?php echo Stock::$parent_id ?>" class="btn btn-outline-secondary btn-sm" title="" action="index.php" formmethod="get"><span class="bi-three-dots"></span></button>
+                                                <button name="parent_up" value="<?php echo Stock::$parent_id ?>" class="btn btn-outline-secondary btn-sm bi-three-dots" title="" action="index.php" formmethod="get"></button>
                                             </div>
                                         </form>
 
@@ -117,7 +117,7 @@ require_once('modal/add_values_attribute.php');
                                     <tr id="<?php echo Stock::$arr_merge['cat'][Stock::$start]['id'] ?>" class="<?php echo Settings::sortiesClass('info') . ' ' . Stock::transferClass('unselectable') ?> sort-list align-middle" unitid="<?php echo Stock::$arr_merge['cat'][Stock::$start]['id'] ?>">
 
                                         <?php if (!Valid::inGET('search')) { ?>
-                                            <td class="sortyes sortleft-m"><span class="bi-arrows-move"> </span></td>
+                                            <td class="sortyes sortleft-m bi-arrows-move"></td>
                                         <?php } else { ?>
                                             <td class="sortleft-m"></td>
                                             <?php
@@ -132,7 +132,7 @@ require_once('modal/add_values_attribute.php');
                                                 <form>
                                                     <div>
                                                         <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
-                                                        <button name="parent_down" value="<?php echo Stock::$arr_merge['cat'][Stock::$start]['id'] ?>" class="btn <?php echo Stock::statusCatClass('btn-primary', 'btn-secondary') ?> btn-sm" title="<?php echo Stock::$arr_merge['cat'][Stock::$start]['name'] ?>" action="index.php" formmethod="get"><span class="bi-folder2-open"> </span></button>
+                                                        <button name="parent_down" value="<?php echo Stock::$arr_merge['cat'][Stock::$start]['id'] ?>" class="btn <?php echo Stock::statusCatClass('btn-primary', 'btn-secondary') ?> btn-sm bi-folder2-open" title="<?php echo Stock::$arr_merge['cat'][Stock::$start]['name'] ?>" action="index.php" formmethod="get"></button>
                                                     </div>
                                                 </form>
 
@@ -151,7 +151,7 @@ require_once('modal/add_values_attribute.php');
                                     ?>
                                     <tr id="products_<?php echo Stock::$arr_merge['prod'][Stock::$start . 'a']['id'] ?>" class="align-middle">
                                         <td class="sortleft-m"></td>    
-                                        <td class="sortleft"><div><a href="#" class="btn <?php echo Stock::statusProdClass('btn-success', 'btn-secondary', 'disabled') ?> btn-sm"><span class="bi-cart-check-fill"> </span></a></div></td>
+                                        <td class="sortleft"><div><a href="#" class="btn <?php echo Stock::statusProdClass('btn-success', 'btn-secondary', 'disabled') ?> btn-sm bi-cart-check-fill"></a></div></td>
                                         <td class="context-one" id="contextproduct_<?php echo Stock::$arr_merge['prod'][Stock::$start . 'a']['id'] ?>">
                                             <div class="float-start"><?php echo Stock::$arr_merge['prod'][Stock::$start . 'a']['name'] ?></div>
                                             <div class="float-end"><?php echo Ecb::priceInterface(Stock::$arr_merge['prod'][Stock::$start . 'a'], 1) ?></div>
@@ -178,7 +178,7 @@ require_once('modal/add_values_attribute.php');
                         <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
                         <div class="input-group input-group-sm">
                             <input type="search" id="search" name="search" placeholder="<?php echo lang('search') ?>" class="form-control">
-                            <button type="submit" class="btn btn-primary btn-sm"><span class="bi-search"></span></button>
+                            <button type="submit" class="btn btn-primary btn-sm bi-search"></button>
                         </div>
                     </form>
                 </div>
@@ -202,7 +202,7 @@ require_once('modal/add_values_attribute.php');
                                         <form>
                                             <div>
                                                 <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
-                                                <button name="parent_up" value="<?php echo Stock::$parent_id ?>" class="btn btn-outline-secondary btn-sm" title="" action="index.php" formmethod="get"><span class="bi-three-dots"></span></button>
+                                                <button name="parent_up" value="<?php echo Stock::$parent_id ?>" class="btn btn-outline-secondary btn-sm bi-three-dots" title="" action="index.php" formmethod="get"></button>
                                             </div>
                                         </form>
                                     </td>

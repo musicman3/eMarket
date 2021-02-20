@@ -11,7 +11,7 @@ use \eMarket\Admin\Login;
     <div class="lbox-horz"></div>
     <div class="lbox-vert">
         <?php if (Login::$login_error == TRUE) { ?>
-            <div id="alert" class="alert alert-danger"><span class="bi-exclamation-circle"></span> <?php echo Login::$login_error ?></div>
+            <div id="alert" class="alert alert-danger bi-exclamation-circle"> <?php echo Login::$login_error ?></div>
         <?php } ?>
     </div>
 

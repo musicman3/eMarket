@@ -24,7 +24,7 @@ use \eMarket\Core\{
                     <div class="mb-3">
                         <small class="form-text text-muted"><?php echo lang('slides_interval') ?></small>
                         <div class="input-group input-group-sm">
-                            <span class="input-group-text"><span class="bi-watch"></span></span>
+                            <span class="input-group-text bi-watch"></span>
                             <input class="form-control" placeholder="<?php echo lang('slides_interval_placeholder') ?>" type="text" name="show_interval" id="show_interval" required />
                         </div>
                     </div>
@@ -51,8 +51,8 @@ use \eMarket\Core\{
 
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary btn-sm" type="button" data-bs-dismiss="modal"><span class="bi-x-circle"></span> <?php echo lang('cancel') ?></button>
-                    <button type="submit" class="btn btn-primary btn-sm"><span class="bi-check-circle"></span> <?php echo lang('save') ?></button>
+                    <button class="btn btn-primary btn-sm bi-x-circle" type="button" data-bs-dismiss="modal"> <?php echo lang('cancel') ?></button>
+                    <button class="btn btn-primary btn-sm bi-check-circle" type="submit"> <?php echo lang('save') ?></button>
                 </div>
             </form>
         </div>

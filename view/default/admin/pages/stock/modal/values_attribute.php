@@ -22,7 +22,7 @@
                                     <th colspan="2"></th>
                                     <th>
                                         <div class="gap-2 d-flex justify-content-end">
-					    <button type="button" class="add-values-attribute btn btn-primary btn-sm"><span class="bi-plus"></span></button>
+					    <button type="button" class="add-values-attribute btn btn-primary btn-sm bi-plus"></button>
 					</div>
                                     </th>
                                 </tr>

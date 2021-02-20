@@ -30,7 +30,7 @@ require_once('modal/index.php')
                  data-jsonsettings='<?php echo Slideshow::$settings ?>'
                  data-jsondata='<?php echo Slideshow::$json_data ?>'></div>
 
-            <div class="float-end slide-sett"><a href="#settings" class="btn btn-primary btn-sm" data-bs-toggle="modal"><span class="bi-gear-fill"></span></a></div>
+            <div class="float-end slide-sett"><a href="#settings" class="btn btn-primary btn-sm bi-gear-fill" data-bs-toggle="modal"></a></div>
 
             <ul class="nav nav-tabs">
                 <li class="nav-item">
@@ -64,7 +64,7 @@ require_once('modal/index.php')
                                     <th>
                                         <div class="gap-2 d-flex justify-content-end">
 
-                                            <a href="#index" class="btn btn-primary btn-sm" data-bs-toggle="modal"><span class="bi-plus"></span></a>
+                                            <a href="#index" class="btn btn-primary btn-sm bi-plus" data-bs-toggle="modal"></a>
  
                                             <form>
                                                 <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
@@ -72,9 +72,9 @@ require_once('modal/index.php')
                                                 <input hidden name="backstart" value="<?php echo Pages::$start ?>">
                                                 <input hidden name="backfinish" value="<?php echo Pages::$finish ?>">
                                                 <?php if (Pages::$start > 0) { ?>
-                                                    <button type="submit" class="btn btn-primary btn-sm" formmethod="get"><span class="bi-arrow-left-short"></span></button>
+                                                    <button type="submit" class="btn btn-primary btn-sm bi-arrow-left-short" formmethod="get"></button>
                                                 <?php } else { ?>
-                                                    <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-left-short"></span></a>
+                                                    <a type="submit" class="btn btn-primary btn-sm disabled bi-arrow-left-short"></a>
                                                 <?php } ?>
                                             </form>
 
@@ -84,9 +84,9 @@ require_once('modal/index.php')
                                                 <input hidden name="start" value="<?php echo Pages::$start ?>">
                                                 <input hidden name="finish" value="<?php echo Pages::$finish ?>">
                                                 <?php if (Pages::$finish != Pages::$count) { ?>
-                                                    <button type="submit" class="btn btn-primary btn-sm" formmethod="get"><span class="bi-arrow-right-short"></span></button>
+                                                    <button type="submit" class="btn btn-primary btn-sm bi-arrow-right-short" formmethod="get"></button>
                                                 <?php } else { ?>
-                                                    <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-right-short"></span></a>
+                                                    <a type="submit" class="btn btn-primary btn-sm disabled bi-arrow-right-short"></a>
                                                 <?php } ?>
                                             </form>
 
@@ -114,10 +114,10 @@ require_once('modal/index.php')
                                         <td class="text-center"><?php echo Settings::dateLocale(Pages::$table['line']['date_finish']); ?></td>
                                         <td>
                                             <div class="gap-2 d-flex justify-content-end">
-                                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#index" data-edit="<?php echo Pages::$table['line']['id'] ?>"><span class="bi-pencil-square"></span></button>
+                                                <button type="button" class="btn btn-primary btn-sm bi-pencil-square" data-bs-toggle="modal" data-bs-target="#index" data-edit="<?php echo Pages::$table['line']['id'] ?>"></button>
                                                 <form id="form_delete<?php echo Pages::$table['line']['id'] ?>" name="form_delete" action="javascript:void(null);" enctype="multipart/form-data">
                                                     <input hidden name="delete" value="<?php echo Pages::$table['line']['id'] ?>">
-                                                    <button type="button" name="delete_but" class="btn btn-primary btn-sm" onclick="Confirmation.del('<?php echo Pages::$table['line']['id'] ?>')"><span class="bi-trash"> </span></button>
+                                                    <button type="button" name="delete_but" class="btn btn-primary btn-sm bi-trash" onclick="Confirmation.del('<?php echo Pages::$table['line']['id'] ?>')"></button>
                                                 </form>
                                             </div>
                                         </td>
@@ -144,7 +144,7 @@ require_once('modal/index.php')
                                             <th>
                                                 <div class="gap-2 d-flex justify-content-end">
 
-                                                    <a href="#index" class="btn btn-primary btn-sm" data-bs-toggle="modal"><span class="bi-plus"></span></a>
+                                                    <a href="#index" class="btn btn-primary btn-sm bi-plus" data-bs-toggle="modal"></a>
 
                                                     <form>
                                                         <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
@@ -152,9 +152,9 @@ require_once('modal/index.php')
                                                         <input hidden name="backstart" value="<?php echo Pages::$start ?>">
                                                         <input hidden name="backfinish" value="<?php echo Pages::$finish ?>">
                                                         <?php if (Pages::$start > 0) { ?>
-                                                            <button type="submit" class="btn btn-primary btn-sm" formmethod="get"><span class="bi-arrow-left-short"></span></button>
+                                                            <button type="submit" class="btn btn-primary btn-sm bi-arrow-left-short" formmethod="get"></button>
                                                         <?php } else { ?>
-                                                            <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-left-short"></span></a>
+                                                            <a type="submit" class="btn btn-primary btn-sm disabled bi-arrow-left-short"></a>
                                                         <?php } ?>
                                                     </form>
 
@@ -164,9 +164,9 @@ require_once('modal/index.php')
                                                         <input hidden name="start" value="<?php echo Pages::$start ?>">
                                                         <input hidden name="finish" value="<?php echo Pages::$finish ?>">
                                                         <?php if (Pages::$finish != Pages::$count) { ?>
-                                                            <button type="submit" class="btn btn-primary btn-sm" formmethod="get"><span class="bi-arrow-right-short"></span></button>
+                                                            <button type="submit" class="btn btn-primary btn-sm bi-arrow-right-short" formmethod="get"></button>
                                                         <?php } else { ?>
-                                                            <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-right-short"></span></a>
+                                                            <a type="submit" class="btn btn-primary btn-sm disabled bi-arrow-right-short"></a>
                                                         <?php } ?>
                                                     </form>
 
@@ -196,10 +196,10 @@ require_once('modal/index.php')
                                                 <td class="text-center"><?php echo Settings::dateLocale(Pages::$table['line']['date_finish']); ?></td>
                                                 <td>
                                                     <div class="gap-2 d-flex justify-content-end">
-                                                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#index" data-edit="<?php echo Pages::$table['line']['id'] ?>"><span class="bi-pencil-square"></span></button>
+                                                        <button type="button" class="btn btn-primary btn-sm bi-pencil-square" data-bs-toggle="modal" data-bs-target="#index" data-edit="<?php echo Pages::$table['line']['id'] ?>"></button>
                                                         <form id="form_delete<?php echo Pages::$table['line']['id'] ?>" name="form_delete" action="javascript:void(null);" enctype="multipart/form-data">
                                                             <input hidden name="delete" value="<?php echo Pages::$table['line']['id'] ?>">
-                                                            <button type="button" name="delete_but" class="btn btn-primary btn-sm" onclick="Confirmation.del('<?php echo Pages::$table['line']['id'] ?>')"><span class="bi-trash"> </span></button>
+                                                            <button type="button" name="delete_but" class="btn btn-primary btn-sm bi-trash" onclick="Confirmation.del('<?php echo Pages::$table['line']['id'] ?>')"></button>
                                                         </form>
                                                     </div>
                                                 </td>

@@ -35,7 +35,7 @@ use \eMarket\Core\{
 
                                         <form id="form_delete_log" name="form_delete_log" action="javascript:void(null);" enctype="multipart/form-data">
                                             <input hidden name="delete" value="delete">
-                                            <button type="button" name="delete_but" class="btn btn-primary btn-sm" onclick="Confirmation.del('_log')"><span class="bi-trash"> </span></button>
+                                            <button type="button" name="delete_but" class="btn btn-primary btn-sm bi-trash" onclick="Confirmation.del('_log')"></button>
                                         </form>
 
                                         <form>
@@ -43,9 +43,9 @@ use \eMarket\Core\{
                                             <input hidden name="backstart" value="<?php echo Pages::$start ?>">
                                             <input hidden name="backfinish" value="<?php echo Pages::$finish ?>">
                                             <?php if (Pages::$start > 0) { ?>
-                                                <button type="submit" class="btn btn-primary btn-sm" formmethod="get"><span class="bi-arrow-left-short"></span></button>
+                                                <button type="submit" class="btn btn-primary btn-sm bi-arrow-left-short" formmethod="get"></button>
                                             <?php } else { ?>
-                                                <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-left-short"></span></a>
+                                                <a type="submit" class="btn btn-primary btn-sm disabled bi-arrow-left-short"></a>
                                             <?php } ?>
                                         </form>
 
@@ -54,9 +54,9 @@ use \eMarket\Core\{
                                             <input hidden name="start" value="<?php echo Pages::$start ?>">
                                             <input hidden name="finish" value="<?php echo Pages::$finish ?>">
                                             <?php if (Pages::$finish != Pages::$count) { ?>
-                                                <button type="submit" class="btn btn-primary btn-sm" formmethod="get"><span class="bi-arrow-right-short"></span></button>
+                                                <button type="submit" class="btn btn-primary btn-sm bi-arrow-right-short" formmethod="get"></button>
                                             <?php } else { ?>
-                                                <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-right-short"></span></a>
+                                                <a type="submit" class="btn btn-primary btn-sm disabled bi-arrow-right-short"></a>
                                             <?php } ?>
                                         </form>
 

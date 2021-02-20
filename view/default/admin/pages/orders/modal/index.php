@@ -141,7 +141,7 @@ use \eMarket\Admin\Orders;
                             <div class="mb-3">
                                 <div id="status_history"></div><br>
                                 <div class="input-group input-group-sm">
-                                    <span class="input-group-text"><span class="bi-pen"></span></span>
+                                    <span class="input-group-text bi-pen"></span>
                                     <select name="status_history_select" id="status_history_select" class="form-select">
                                         <?php foreach (Orders::$order_status as $value) { ?>
                                             <option value="<?php echo $value['id'] ?>"><?php echo $value['name'] ?></option>
@@ -155,8 +155,8 @@ use \eMarket\Admin\Orders;
                 </div>
 
                 <div class="modal-footer">
-                    <button class="btn btn-primary btn-sm" type="button" data-bs-dismiss="modal"><span class="bi-x-circle"></span> <?php echo lang('cancel') ?></button>
-                    <button type="submit" class="btn btn-primary btn-sm"><span class="bi-check-circle"></span> <?php echo lang('save') ?></button>
+                    <button class="btn btn-primary btn-sm bi-x-circle" type="button" data-bs-dismiss="modal"> <?php echo lang('cancel') ?></button>
+                    <button class="btn btn-primary btn-sm bi-check-circle" type="submit"> <?php echo lang('save') ?></button>
                 </div>
 
             </form>

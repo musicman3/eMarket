@@ -31,7 +31,7 @@ require_once('modal/index.php')
                     <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
                     <div class="input-group input-group-sm">
                         <input type="search" id="search" name="search" placeholder="<?php echo lang('search') ?>" class="form-control">
-                        <button type="submit" class="btn btn-primary btn-sm"><span class="bi-search"></span></button>
+                        <button type="submit" class="btn btn-primary btn-sm bi-search"></button>
                     </div>
                 </form>
             </div>
@@ -50,9 +50,9 @@ require_once('modal/index.php')
                                         <input hidden name="backstart" value="<?php echo Pages::$start ?>">
                                         <input hidden name="backfinish" value="<?php echo Pages::$finish ?>">
                                         <?php if (Pages::$start > 0) { ?>
-                                            <button type="submit" class="btn btn-primary btn-sm" formmethod="get"><span class="bi-arrow-left-short"></span></button>
+                                            <button type="submit" class="btn btn-primary btn-sm bi-arrow-left-short" formmethod="get"></button>
                                         <?php } else { ?>
-                                            <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-left-short"></span></a>
+                                            <a type="submit" class="btn btn-primary btn-sm disabled bi-arrow-left-short"></a>
                                         <?php } ?>
                                     </form>
 
@@ -61,9 +61,9 @@ require_once('modal/index.php')
                                         <input hidden name="start" value="<?php echo Pages::$start ?>">
                                         <input hidden name="finish" value="<?php echo Pages::$finish ?>">
                                         <?php if (Pages::$finish != Pages::$count) { ?>
-                                            <button type="submit" class="btn btn-primary btn-sm" formmethod="get"><span class="bi-arrow-right-short"></span></button>
+                                            <button type="submit" class="btn btn-primary btn-sm bi-arrow-right-short" formmethod="get"></button>
                                         <?php } else { ?>
-                                            <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-right-short"></span></a>
+                                            <a type="submit" class="btn btn-primary btn-sm disabled bi-arrow-right-short"></a>
                                         <?php } ?>
                                     </form>
 
@@ -95,10 +95,10 @@ require_once('modal/index.php')
                                 <td class="text-center"><?php echo json_decode(Pages::$table['line']['orders_status_history'], 1)[0]['admin']['status'] ?></td>
                                 <td>
                                     <div class="gap-2 d-flex justify-content-end">
-                                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#index" data-edit="<?php echo Pages::$table['line']['id'] ?>"><span class="bi-pencil-square"></span></button>
+                                        <button type="button" class="btn btn-primary btn-sm bi-pencil-square" data-bs-toggle="modal" data-bs-target="#index" data-edit="<?php echo Pages::$table['line']['id'] ?>"></button>
                                         <form id="form_delete<?php echo Pages::$table['line']['id'] ?>" name="form_delete" action="javascript:void(null);" enctype="multipart/form-data">
                                             <input hidden name="delete" value="<?php echo Pages::$table['line']['id'] ?>">
-                                            <button type="button" name="delete_but" class="btn btn-primary btn-sm" onclick="Confirmation.del('<?php echo Pages::$table['line']['id'] ?>')"><span class="bi-trash"> </span></button>
+                                            <button type="button" name="delete_but" class="btn btn-primary btn-sm bi-trash" onclick="Confirmation.del('<?php echo Pages::$table['line']['id'] ?>')"></button>
                                         </form>
                                     </div>
                                 </td>

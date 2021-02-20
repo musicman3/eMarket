@@ -31,7 +31,7 @@ use \eMarket\Core\{
                         <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade show in active">
                             <div class="mb-3">
                                 <div class="input-group input-group-sm">
-                                    <span class="input-group-text"><span class="bi-file-text"></span></span>
+                                    <span class="input-group-text bi-file-text"></span>
                                     <input class="form-control" placeholder="<?php echo lang('name') ?>" type="text" name="name_manufacturers_0" id="name_manufacturers_0" required />
                                 </div>
                             </div>
@@ -45,7 +45,7 @@ use \eMarket\Core\{
                                 <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">
                                     <div class="mb-3">
                                         <div class="input-group input-group-sm">
-                                            <span class="input-group-text"><span class="bi-file-text"></span></span>
+                                            <span class="input-group-text bi-file-text"></span>
                                             <input class="form-control" placeholder="<?php echo lang('name') ?>" type="text" name="name_manufacturers_<?php echo $x ?>" id="name_manufacturers_<?php echo $x ?>" required />
                                         </div>
                                     </div>
@@ -58,7 +58,7 @@ use \eMarket\Core\{
 
                         <div class="mb-3">
                             <div class="input-group input-group-sm">
-                                <span class="input-group-text"><span class="bi-globe"></span></span>
+                                <span class="input-group-text bi-globe"></span>
                                 <input class="form-control" placeholder="<?php echo lang('site') ?>" type="text" name="site_manufacturers" id="site_manufacturers" />
                             </div>
                         </div>
@@ -67,8 +67,8 @@ use \eMarket\Core\{
 
                         <!-- jQuery-File-Upload -->
                         <div class="mb-3">
-                            <span class="btn btn-primary btn-sm fileinput-button">
-                                <span class="bi-image"></span><span> <?php echo lang('button_add_image') ?></span>
+                            <span class="btn btn-primary btn-sm fileinput-button bi-image">
+                                <span> <?php echo lang('button_add_image') ?></span>
                                 <input class="input-sm form-control" id="fileupload" type="file" name="files[]" accept="image/jpeg,image/png,image/gif" multiple>
                             </span>
                             <?php echo lang('max') ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>
@@ -84,8 +84,8 @@ use \eMarket\Core\{
                 </div>
 
                 <div class="modal-footer">
-                    <button class="btn btn-primary btn-sm" type="button" data-bs-dismiss="modal"><span class="bi-x-circle"></span> <?php echo lang('cancel') ?></button>
-                    <button type="submit" class="btn btn-primary btn-sm"><span class="bi-check-circle"></span> <?php echo lang('save') ?></button>
+                    <button class="btn btn-primary btn-sm bi-x-circle" type="button" data-bs-dismiss="modal"> <?php echo lang('cancel') ?></button>
+                    <button class="btn btn-primary btn-sm bi-check-circle" type="submit"> <?php echo lang('save') ?></button>
                 </div>
 
             </form>
