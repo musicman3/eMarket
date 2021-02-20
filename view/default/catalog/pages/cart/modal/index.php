@@ -34,7 +34,7 @@ use \eMarket\Catalog\Cart;
                     <div class="mb-1">
                         <label for="address"><?php echo lang('cart_shipping_address') ?></label>
                         <div id="address_class" class="input-group input-group-sm">
-                            <span class="input-group-text"><span class="bi-pencil"></span></span>
+                            <span class="input-group-text bi-pencil"></span>
                             <select name="address" id="address" class="form-control">
                                 <?php
                                 $x = 1;
@@ -53,7 +53,7 @@ use \eMarket\Catalog\Cart;
                     <div class="mb-1">
                         <label for="shipping_method"><?php echo lang('cart_shipping_method') ?></label>
                         <div id="shipping_method_class" class="input-group input-group-sm">
-                            <span class="input-group-text"><span class="bi-pencil"></span></span>
+                            <span class="input-group-text bi-pencil"></span>
                             <select name="shipping_method" id="shipping_method" class="form-control">
                                 <option value="" data-shipping=""></option>
                             </select>
@@ -64,7 +64,7 @@ use \eMarket\Catalog\Cart;
                     <div class="mb-1">
                         <label for="payment_method"><?php echo lang('cart_payment_method') ?></label>
                         <div id="payment_method_class" class="input-group input-group-sm">
-                            <span class="input-group-text"><span class="bi-pencil"></span></span>
+                            <span class="input-group-text bi-pencil"></span>
                             <select name="payment_method" id="payment_method" class="form-control">
                                 <option value=""></option>
                             </select>
@@ -81,7 +81,7 @@ use \eMarket\Catalog\Cart;
 
                 </div> 
                 <div class="modal-footer">
-                    <button id="complete" type="submit" class="btn btn-primary btn-sm"><span class="bi-check"></span> <?php echo lang('cart_complete_button') ?></button>
+                    <button id="complete" type="submit" class="btn btn-primary btn-sm bi-check"> <?php echo lang('cart_complete_button') ?></button>
                 </div>
             </form>
         </div>

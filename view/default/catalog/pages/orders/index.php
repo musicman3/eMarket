@@ -38,9 +38,9 @@ require_once('modal/index.php')
                             <input hidden name="backstart" value="<?php echo Pages::$start ?>">
                             <input hidden name="backfinish" value="<?php echo Pages::$finish ?>">
                             <?php if (Pages::$start > 0) { ?>
-                                <button type="submit" class="btn btn-primary btn-sm" formmethod="get"><span class="bi-arrow-left-short"></span></button>
+                                <button type="submit" class="btn btn-primary btn-sm bi-arrow-left-short" formmethod="get"></button>
                             <?php } else { ?>
-                                <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-left-short"></span></a>
+                                <a type="submit" class="btn btn-primary btn-sm disabled bi-arrow-left-short"></a>
                             <?php } ?>
                         </form>
 
@@ -50,9 +50,9 @@ require_once('modal/index.php')
                             <input hidden name="finish" value="<?php echo Pages::$finish ?>">
                             <div>
                                 <?php if (Pages::$finish != Pages::$count) { ?>
-                                    <button type="submit" class="btn btn-primary btn-sm" formmethod="get"><span class="bi-arrow-right-short"></span></button>
+                                    <button type="submit" class="btn btn-primary btn-sm bi-arrow-right-short" formmethod="get"></button>
                                 <?php } else { ?>
-                                    <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-right-short"></span></a>
+                                    <a type="submit" class="btn btn-primary btn-sm disabled bi-arrow-right-short"></a>
                                 <?php } ?>
                             </div>
                         </form>
@@ -81,7 +81,7 @@ require_once('modal/index.php')
 
                         <td>
                             <div class="d-flex justify-content-end">
-                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#index" data-edit="<?php echo Pages::$table['line']['id'] ?>"><span class="bi-pencil-square"></span></button>
+                                <button type="button" class="btn btn-primary btn-sm bi-pencil-square" data-bs-toggle="modal" data-bs-target="#index" data-edit="<?php echo Pages::$table['line']['id'] ?>"></button>
                             </div>
                         </td>
                     </tr>

@@ -28,25 +28,25 @@ foreach (View::tlpc('content') as $path) {
                     <legend><?php echo lang('my_account_personal_details') ?></legend>
                     <small class="form-text text-muted"><?php echo lang('my_account_firstname') ?></small>
                     <div class="input-group">
-                        <span class="input-group-text"><span class="bi-pencil"></span></span>
+                        <span class="input-group-text bi-pencil"></span>
                         <input class="form-control" placeholder="<?php echo lang('my_account_enter_your_firstname') ?>" type="text" name="firstname" id="firstname" value="<?php echo Autorize::$customer['firstname'] ?>" />
                     </div>
 
                     <small class="form-text text-muted"><?php echo lang('my_account_lastname') ?></small>
                     <div class="input-group">
-                        <span class="input-group-text"><span class="bi-pencil"></span></span>
+                        <span class="input-group-text bi-pencil"></span>
                         <input class="form-control" placeholder="<?php echo lang('my_account_enter_your_lastname') ?>" type="text" name="lastname" id="lastname" value="<?php echo Autorize::$customer['lastname'] ?>" />
                     </div>
 
                     <small class="form-text text-muted"><?php echo lang('my_account_middlename') ?></small>
                     <div class="input-group">
-                        <span class="input-group-text"><span class="bi-pencil"></span></span>
+                        <span class="input-group-text bi-pencil"></span>
                         <input class="form-control" placeholder="<?php echo lang('my_account_enter_your_middlename') ?>" type="text" name="middle_name" id="middle_name" value="<?php echo Autorize::$customer['middle_name'] ?>" />
                     </div>
 
                     <small class="form-text text-muted"><?php echo lang('my_account_telephone') ?></small>
                     <div class="input-group">
-                        <span class="input-group-text"><span class="bi-pencil"></span></span>
+                        <span class="input-group-text bi-pencil"></span>
                         <input class="form-control" placeholder="<?php echo lang('my_account_enter_your_phone') ?>" type="text" name="telephone" id="lastname" value="<?php echo \eMarket\Core\Autorize::$customer['telephone'] ?>" />
                     </div>
 
@@ -58,13 +58,13 @@ foreach (View::tlpc('content') as $path) {
                     <legend><?php echo lang('my_account_details_password') ?></legend>
                     <small class="form-text text-muted"><?php echo lang('my_account_password') ?></small>
                     <div class="input-group password">
-                        <span class="input-group-text"><span class="bi-pencil"></span></span>
+                        <span class="input-group-text bi-pencil"></span>
                         <input class="form-control password-data" minlength="7" maxlength="40" placeholder="<?php echo lang('my_account_enter_your_password') ?>" type="password" name="password" id="password" />
                     </div>
 
                     <small class="form-text text-muted"><?php echo lang('my_account_confirm_password') ?></small>
                     <div class="input-group confirm">
-                        <span class="input-group-text"><span class="bi-pencil"></span></span>
+                        <span class="input-group-text bi-pencil"></span>
                         <input class="form-control password-data" minlength="7" maxlength="40" placeholder="<?php echo lang('my_account_confirm_your_password') ?>" type="password" name="confirm_password" id="confirm_password" />
                     </div>
                 </div>

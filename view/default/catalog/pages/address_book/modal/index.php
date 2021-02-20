@@ -20,7 +20,7 @@
                     <div class="mb-3">
                         <small class="form-text text-muted"><?php echo lang('address_book_country') ?></small>
                         <div class="input-group input-group-sm">
-                            <span class="input-group-text"><span class="bi-pencil"></span></span>
+                            <span class="input-group-text bi-pencil"></span>
                             <select name="countries" id="countries" class="form-select">
                                 <option value=""></option>
                             </select>
@@ -28,7 +28,7 @@
 
                         <small class="form-text text-muted"><?php echo lang('address_book_region') ?></small>
                         <div class="input-group input-group-sm">
-                            <span class="input-group-text"><span class="bi-pencil"></span></span>
+                            <span class="input-group-text bi-pencil"></span>
                             <select name="regions" id="regions" class="form-select">
                                 <option value=""></option>
                             </select>
@@ -36,19 +36,19 @@
 
                         <small class="form-text text-muted"><?php echo lang('address_book_city') ?></small>
                         <div class="input-group input-group-sm">
-                            <span class="input-group-text"><span class="bi-pencil"></span></span>
+                            <span class="input-group-text bi-pencil"></span>
                             <input class="form-control" placeholder="<?php echo lang('address_book_city_placeholder') ?>" type="text" name="city"  id="city" required />
                         </div>
 
                         <small class="form-text text-muted"><?php echo lang('address_book_zip') ?></small>
                         <div class="input-group input-group-sm">
-                            <span class="input-group-text"><span class="bi-pencil"></span></span>
+                            <span class="input-group-text bi-pencil"></span>
                             <input class="form-control" placeholder="<?php echo lang('address_book_zip_placeholder') ?>" type="text" name="zip"  id="zip" required />
                         </div>
 
                         <small class="form-text text-muted"><?php echo lang('address_book_shipping_address') ?></small>
                         <div class="input-group input-group-sm">
-                            <span class="input-group-text"><span class="bi-pencil"></span></span>
+                            <span class="input-group-text bi-pencil"></span>
                             <input class="form-control" placeholder="<?php echo lang('address_book_address_placeholder') ?>" type="text" name="address"  id="address" required />
                         </div>
                     </div>
@@ -59,8 +59,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary btn-sm" type="button" data-bs-dismiss="modal"><span class="bi-x-circle"></span> <?php echo lang('cancel') ?></button>
-                    <button type="submit" class="btn btn-primary btn-sm"><span class="bi-check-circle"></span> <?php echo lang('save') ?></button>
+                    <button class="btn btn-primary btn-sm bi-x-circle" type="button" data-bs-dismiss="modal"> <?php echo lang('cancel') ?></button>
+                    <button type="submit" class="btn btn-primary btn-sm bi-check-circle"> <?php echo lang('save') ?></button>
                 </div>
             </form>
         </div>

@@ -84,9 +84,9 @@ if (Products::$products != FALSE) {
                 </ul>
                 <hr>
                 <div>
-                    <button class="btn btn-primary" type="button" onclick="Products.pcsProduct('minus', <?php echo Products::$products['id'] ?>, <?php echo Products::$products['quantity'] ?>)"><span class="bi-dash"></span></button>
+                    <button class="btn btn-primary bi-dash" type="button" onclick="Products.pcsProduct('minus', <?php echo Products::$products['id'] ?>, <?php echo Products::$products['quantity'] ?>)"></button>
                     <input id="number_<?php echo Products::$products['id'] ?>" data-placement="top" data-content="<?php echo lang('listing_no_more_in_stock') ?>" type="number" min="1" value="<?php echo Cart::maxQuantityToOrder(Products::$products) ?>" class="quantity" disabled>
-                    <button class="btn btn-primary button-plus" type="button" onclick="Products.pcsProduct('plus', <?php echo Products::$products['id'] ?>, <?php echo Cart::maxQuantityToOrder(Products::$products, 'true') ?>)"><span class="bi-plus"></span></button>
+                    <button class="btn btn-primary button-plus bi-plus" type="button" onclick="Products.pcsProduct('plus', <?php echo Products::$products['id'] ?>, <?php echo Cart::maxQuantityToOrder(Products::$products, 'true') ?>)"></button>
                     <button class="btn btn-primary plus<?php echo Cart::maxQuantityToOrder(Products::$products, 'class') ?>" onclick="Products.addToCart(<?php echo Products::$products['id'] ?>, $('#number_<?php echo Products::$products['id'] ?>').val())"><?php echo lang('add_to_cart') ?></button>
                 </div>
             </div>

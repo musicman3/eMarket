@@ -28,7 +28,7 @@ require_once('modal/cart_message.php')
     <div id="listing" class="contentText">
         <div class="bg-light mb-3 p-2 border rounded">
             <div class="btn-group">
-                <button type="button" class="btn btn-primary"><span class="bi-arrow-down-up"></span> &nbsp;<?php echo Listing::$sort_name ?></button>
+                <button type="button" class="btn btn-primary bi-arrow-down-up"> <?php echo Listing::$sort_name ?></button>
                 <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"></button>
                 <ul class="dropdown-menu">
                     <li><a id="default" class="sorting dropdown-item"><?php echo lang('listing_sort_by_default') ?></a></li>
@@ -41,8 +41,8 @@ require_once('modal/cart_message.php')
             </div>
 
             <div class="btn-group float-end hidden-grid-list">
-                <a id="grid" class="btn btn-outline-secondary item-grid active"><span class="bi-grid-3x3-gap"></span></a>
-                <a id="list" class="btn btn-outline-secondary item-list"><span class="bi-list"></span></a>
+                <a id="grid" class="btn btn-outline-secondary item-grid active bi-grid-3x3-gap"></a>
+                <a id="list" class="btn btn-outline-secondary item-list bi-list"></a>
             </div>
         </div>
 
@@ -92,9 +92,9 @@ require_once('modal/cart_message.php')
                         </div>
                         <div class="col-12 item-button">
                             <div class="block-button">
-                                <button class="btn btn-primary" type="button" onclick="ProductsListing.pcsProduct('minus', <?php echo Pages::$table['line']['id'] ?>)"><span class="bi-dash"></span></button>
+                                <button class="btn btn-primary bi-dash" type="button" onclick="ProductsListing.pcsProduct('minus', <?php echo Pages::$table['line']['id'] ?>)"></button>
                                 <input id="number_<?php echo Pages::$table['line']['id'] ?>" data-placement="top" data-content="<?php echo lang('listing_no_more_in_stock') ?>" type="number" min="1" value="<?php echo Cart::maxQuantityToOrder(Pages::$table['line']) ?>" class="quantity" disabled>
-                                <button class="btn btn-primary button-plus" type="button" onclick="ProductsListing.pcsProduct('plus', <?php echo Pages::$table['line']['id'] ?>, <?php echo Cart::maxQuantityToOrder(Pages::$table['line'], 'true') ?>)"><span class="bi-plus"></span></button>
+                                <button class="btn btn-primary button-plus bi-plus" type="button" onclick="ProductsListing.pcsProduct('plus', <?php echo Pages::$table['line']['id'] ?>, <?php echo Cart::maxQuantityToOrder(Pages::$table['line'], 'true') ?>)"></button>
                                 <button class="btn btn-primary buy-now<?php echo Cart::maxQuantityToOrder(Pages::$table['line'], 'class') ?>" onclick="ProductsListing.addToCart(<?php echo Pages::$table['line']['id'] ?>, $('#number_<?php echo Pages::$table['line']['id'] ?>').val())"><?php echo lang('buy_now') ?></button>
                             </div>
                         </div>

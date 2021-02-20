@@ -20,20 +20,20 @@ use \eMarket\Core\{
 
         <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
             <ul class="navbar-nav">
-                <li class="nav-item dropdown"><a href="/" class="nav-link"><span class="bi-house-door"></span><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('breadcrumb_home') ?></span></a></li>
-                <!--<li class="nav-item dropdown"><a href="#" class="nav-link"><span class="bi-"></span><span class="d-inline d-md-none d-lg-inline">  <?php echo lang('sale') ?></span></a></li>
-                <li class="nav-item dropdown"><a href="#" class="nav-link"><span class="bi-"></span><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('recommended') ?></span></a></li>
-                <li class="nav-item dropdown"><a href="#" class="nav-link"><span class="bi-"></span><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('articles') ?></span></a></li>-->
+                <li class="nav-item dropdown"><a href="/" class="nav-link bi-house-door"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('breadcrumb_home') ?></span></a></li>
+                <!--<li class="nav-item dropdown"><a href="#" class="nav-link"><span class="d-inline d-md-none d-lg-inline">  <?php echo lang('sale') ?></span></a></li>
+                <li class="nav-item dropdown"><a href="#" class="nav-link"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('recommended') ?></span></a></li>
+                <li class="nav-item dropdown"><a href="#" class="nav-link"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('articles') ?></span></a></li>-->
             </ul>
             <ul class="navbar-nav">
-                <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><span class="bi-globe"></span><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('navbar_languages') ?></span></a>
+                <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle bi-globe" data-bs-toggle="dropdown"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('navbar_languages') ?></span></a>
                     <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
                         <?php foreach (lang('#lang_all') as $value) { ?>
                             <li><a href="<?php echo Settings::langCurrencyPath() . '&language=' . $value ?>" class="dropdown-item"><img src="/view/<?php echo Settings::template() ?>/admin/images/langflags/<?php echo $value ?>.png"> <?php echo lang('language_name', $value) ?></a></li>
                         <?php } ?>
                     </ul>
                 </li>
-                <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><span class="bi-credit-card"></span><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('navbar_currencies') ?></span></a>
+                <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle bi-credit-card" data-bs-toggle="dropdown"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('navbar_currencies') ?></span></a>
                     <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
                         <?php foreach (Settings::currenciesData() as $value) { ?>
                             <li><a href="<?php echo Settings::langCurrencyPath() . '&currency_default=' . $value['id'] ?>" class="dropdown-item"><?php echo $value['name'] ?></a></li>
@@ -41,9 +41,9 @@ use \eMarket\Core\{
                     </ul>
                 </li>
                 <?php if (Autorize::$customer == FALSE) { ?>
-                    <li class="nav-item dropdown"><a href="/?route=login" class="nav-link"><span class="bi-person"></span><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('login_to_account') ?></span></a></li>
+                    <li class="nav-item dropdown"><a href="/?route=login" class="nav-link bi-person"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('login_to_account') ?></span></a></li>
                 <?php } else { ?>
-                    <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><span class="bi-person"></span><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('my_account') ?></span></a>
+                    <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle bi-person" data-bs-toggle="dropdown"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('my_account') ?></span></a>
                         <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
                             <li><a href="/?route=login&logout=ok" class="dropdown-item"><?php echo lang('navbar_logout') ?></a></li>
                             <li class="dropdown-divider"></li>
@@ -55,10 +55,10 @@ use \eMarket\Core\{
                 <?php } ?>
 
                 <?php if (Cart::totalQuantity() == 0) { ?>
-                    <li id="cart_bar" class="nav-item dropdown"><a href="#" class="nav-link disabled"><span class="bi-basket"></span> <?php echo Cart::totalQuantity() . ' ' . lang('navbar_pcs') ?></a></li>
+                    <li id="cart_bar" class="nav-item dropdown"><a href="#" class="nav-link disabled bi-basket"> <?php echo Cart::totalQuantity() . ' ' . lang('navbar_pcs') ?></a></li>
                 <?php } else { ?>
                     <li id="cart_bar" class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" ><span class="bi-basket"></span> <?php echo Cart::totalQuantity() . ' ' . lang('navbar_pcs') ?></a>
+                        <a href="#" class="nav-link dropdown-toggle bi-basket" data-bs-toggle="dropdown" > <?php echo Cart::totalQuantity() . ' ' . lang('navbar_pcs') ?></a>
                         <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
                             <li><a href="#" class="dropdown-item disabled"><?php echo Ecb::totalPriceCartInterface(1) ?></a></li>
                             <li class="dropdown-divider"></li>

@@ -30,22 +30,22 @@ if (!Valid::inPOST('email')) {
                     <fieldset id="account">
                         <legend><?php echo lang('register_personal_details') ?></legend>
                         <div class="input-group firstname">
-                            <span class="input-group-text"><span class="bi-person"></span></span>
+                            <span class="input-group-text bi-person"></span>
                             <input class="form-control" type="text" placeholder="<?php echo lang('register_first_name') ?>" minlength="1" id="input-firstname" value="" name="firstname" required>
                         </div>
                         <br>
                         <div class="input-group lastname">
-                            <span class="input-group-text"><span class="bi-person"></span></span>
+                            <span class="input-group-text bi-person"></span>
                             <input class="form-control" type="text" placeholder="<?php echo lang('register_last_name') ?>" minlength="1" id="input-lastname" value="" name="lastname" required>
                         </div>
                         <br>
                         <div class="input-group email">
-                            <span class="input-group-text"><span class="bi-envelope"></span></span>
+                            <span class="input-group-text bi-envelope"></span>
                             <input class="form-control" type="email" placeholder="<?php echo lang('register_e_mail') ?>" id="input-email" value="" name="email" required>
                         </div>
                         <br>
                         <div class="input-group">
-                            <span class="input-group-text"><span class="bi-telephone"></span></span>
+                            <span class="input-group-text bi-telephone"></span>
                             <input class="form-control" type="tel" placeholder="<?php echo lang('register_telephone') ?>" id="input-telephone" value="" name="telephone">
                         </div>
                         <br>
@@ -55,12 +55,12 @@ if (!Valid::inPOST('email')) {
                     <fieldset>
                         <legend><?php echo lang('register_details_password') ?></legend>
                         <div class="input-group password">
-                            <span class="input-group-text"><span class="bi-lock"></span></span>
+                            <span class="input-group-text bi-lock"></span>
                             <input class="form-control" type="password" minlength="7" maxlength="40" placeholder="<?php echo lang('password') ?>" id="input-password" value="" name="password" required>
                         </div>
                         <br>
                         <div class="input-group confirm">
-                            <span class="input-group-text"><span class="bi-lock"></span></span>
+                            <span class="input-group-text bi-lock"></span>
                             <input class="form-control" type="password" minlength="7" maxlength="40" placeholder="<?php echo lang('confirm_password') ?>" id="input-confirm" value="" name="confirm" required>
                         </div>
                         <br>

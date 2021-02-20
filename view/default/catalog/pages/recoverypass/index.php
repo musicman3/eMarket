@@ -23,12 +23,12 @@ foreach (View::tlpc('content') as $path) {
             <fieldset>
                 <legend><?php echo lang('enter_a_new_password') ?></legend>
                 <div class="input-group password">
-                    <span class="input-group-text"><span class="bi-lock-fill"></span></span>
+                    <span class="input-group-text bi-lock"></span>
                     <input class="form-control" type="password" minlength="7" maxlength="40" placeholder="<?php echo lang('password') ?>" id="input-password" value="" name="password" required>
                 </div>
                 <br>
                 <div class="input-group confirm">
-                    <span class="input-group-text"><span class="bi-lock-fill"></span></span>
+                    <span class="input-group-text bi-lock"></span>
                     <input class="form-control" type="password" minlength="7" maxlength="40" placeholder="<?php echo lang('confirm_password') ?>" id="input-confirm" value="" name="confirm" required>
                 </div>
                 <br>

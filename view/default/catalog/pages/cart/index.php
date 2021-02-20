@@ -36,11 +36,11 @@ require_once('modal/index.php')
                             <td class="text-center"><?php echo Ecb::priceInterface($value, 1) ?></td>
                             <td nowrap class="text-center">
                                 <form id="quantity_product" name="quantity_product" action="javascript:void(null);" onsubmit="Cart.quantityProduct(<?php echo $value['id'] ?>, $('#number_<?php echo $value['id'] ?>').val())">
-                                    <button class="btn btn-primary btn-sm" type="button" onclick="Cart.pcsProduct('minus', <?php echo $value['id'] ?>)"><span class="bi-dash"></span></button>
+                                    <button class="btn btn-primary btn-sm bi-dash" type="button" onclick="Cart.pcsProduct('minus', <?php echo $value['id'] ?>)"></button>
                                     <input id="number_<?php echo $value['id'] ?>" data-placement="top" data-content="<?php echo lang('listing_no_more_in_stock') ?>" type="number" min="1" value="<?php echo \eMarket\Core\Cart::productQuantity($value['id']) ?>" class="quantity">
-                                    <button class="btn btn-primary btn-sm button-plus" type="button" onclick="Cart.pcsProduct('plus', <?php echo $value['id'] ?>, <?php echo $value['quantity'] ?>)"><span class="bi-plus"></span></button>
-                                    <button class="btn btn-primary btn-sm" type="submit"><span class="bi-arrow-repeat"></span></button>
-                                    <button class="btn btn-primary btn-sm" type="button" onclick="Cart.deleteProduct(<?php echo $value['id'] ?>)"><span class="bi-trash"></span></button>
+                                    <button class="btn btn-primary btn-sm button-plus bi-plus" type="button" onclick="Cart.pcsProduct('plus', <?php echo $value['id'] ?>, <?php echo $value['quantity'] ?>)"></button>
+                                    <button class="btn btn-primary btn-sm bi-arrow-repeat" type="submit"></button>
+                                    <button class="btn btn-primary btn-sm bi-trash" type="button" onclick="Cart.deleteProduct(<?php echo $value['id'] ?>)"></button>
                                 </form>
                             </td>
                             <td class="text-center"><?php echo Ecb::priceInterface($value, 1, \eMarket\Core\Cart::productQuantity($value['id'], 1)) ?></td>

@@ -57,12 +57,8 @@ if (Slideshow::$slideshow == true) {
                 ?>
             </div>
             <?php if (Slideshow::$navigation_key == 'true') { ?>
-                <a class="carousel-control-prev" href="#Carousel" data-bs-slide="prev">
-                    <span class="bi-chevron-left"></span>
-                </a>
-                <a class="carousel-control-next" href="#Carousel" data-bs-slide="next">
-                    <span class="bi-chevron-right"></span>
-                </a>
+                <a class="carousel-control-prev bi-chevron-left" href="#Carousel" data-bs-slide="prev"></a>
+                <a class="carousel-control-next bi-chevron-right" href="#Carousel" data-bs-slide="next"></a>
             <?php } ?>
         </div>
     </div>
