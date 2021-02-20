@@ -123,12 +123,12 @@ class Attributes {
     static addValue(id, value) {
         document.querySelector('.attribute').insertAdjacentHTML('afterbegin',
                 '<tr class="attributes-class align-middle" data-id="attributes_' + id + '" id="attributes_' + id + '">' +
-                '<td class="sortyes sortleft-m"><div><span class="bi-arrows-move"> </span></div></td>' +
-                '<td class="sortleft"><button type="button" class="values-attribute btn btn-primary btn-sm"><span class="bi-gear"></span></button></td>' +
+                '<td class="sortyes sortleft-m bi-arrows-move"></td>' +
+                '<td class="sortleft"><button type="button" class="values-attribute btn btn-primary btn-sm bi-gear"></button></td>' +
                 '<td>' + value + '</td>' +
                 '<td>' +
-                '<div class="gap-2 d-flex justify-content-end"><button type="button" class="edit-attribute btn btn-primary btn-sm"><span class="bi-pencil-square"> </span></button>' +
-                '<button type="button" class="delete-attribute btn btn-primary btn-sm"><span class="bi-trash"> </span></button></div>' +
+                '<div class="gap-2 d-flex justify-content-end"><button type="button" class="edit-attribute btn btn-primary btn-sm bi-pencil-square"></button>' +
+                '<button type="button" class="delete-attribute btn btn-primary btn-sm bi-trash"></button></div>' +
                 '</td>' +
                 '</tr>'
                 );

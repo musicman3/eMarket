@@ -106,11 +106,11 @@ class ValuesAttribute {
     static addValue(id, value) {
         document.querySelector('.values_attribute').insertAdjacentHTML('afterbegin',
                 '<tr class="value-attributes-class align-middle" data-id="valueattributes_' + id + '" id="valueattributes_' + id + '">' +
-                '<td class="sortyes sortleft-m"><div><span class="bi-arrows-move"> </span></div></td>' +
+                '<td class="sortyes sortleft-m bi-arrows-move"></td>' +
                 '<td>' + value + '</td>' +
                 '<td>' +
-                '<div class="gap-2 d-flex justify-content-end"><button type="button" class="edit-value-attribute btn btn-primary btn-sm"><span class="bi-pencil-square"> </span></button>' +
-                '<button type="button" class="delete-value-attribute btn btn-primary btn-sm"><span class="bi-trash"> </span></button></div>' +
+                '<div class="gap-2 d-flex justify-content-end"><button type="button" class="edit-value-attribute btn btn-primary btn-sm bi-pencil-square"></button>' +
+                '<button type="button" class="delete-value-attribute btn btn-primary btn-sm bi-trash"></button></div>' +
                 '</td>' +
                 '</tr>'
                 );

@@ -68,7 +68,7 @@ class Ajax {
         xhr.send(data);
         if (xhr.status === 200) {
             if (alert !== undefined && alert !== null) {
-                document.querySelector('#alert_block').innerHTML = '<div id="alert" class="alert text-danger fade in"><span class="bi-alert-triangle"></span> ' + alert + '</div>';
+                document.querySelector('#alert_block').innerHTML = '<div id="alert" class="alert text-danger fade in bi-alert-triangle"> ' + alert + '</div>';
             }
             Ajax.closeModals(url);
 
