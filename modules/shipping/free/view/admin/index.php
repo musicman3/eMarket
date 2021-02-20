@@ -25,7 +25,7 @@ require_once('modal/index.php')
                 <th>
                     <div class="gap-2 d-flex justify-content-end">
 
-                        <a href="#index" class="btn btn-primary btn-sm" data-bs-toggle="modal"><span class="bi-plus"></span></a>
+                        <a href="#index" class="btn btn-primary btn-sm bi-plus" data-bs-toggle="modal"></a>
 
                         <form>
                             <input hidden name="route" value="settings/modules/edit">
@@ -34,9 +34,9 @@ require_once('modal/index.php')
                             <input hidden name="type" value="<?php echo Valid::inGET('type') ?>">
                             <input hidden name="name" value="<?php echo Valid::inGET('name') ?>">
                             <?php if (Pages::$start > 0) { ?>
-                                <button type="submit" class="btn btn-primary btn-sm" formmethod="get"><span class="bi-arrow-left-short"></span></button>
+                                <button type="submit" class="btn btn-primary btn-sm bi-arrow-left-short" formmethod="get"></button>
                             <?php } else { ?>
-                                <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-left-short"></span></a>
+                                <a type="submit" class="btn btn-primary btn-sm disabled bi-arrow-left-short"></a>
                             <?php } ?>
                         </form>
 
@@ -47,9 +47,9 @@ require_once('modal/index.php')
                             <input hidden name="type" value="<?php echo Valid::inGET('type') ?>">
                             <input hidden name="name" value="<?php echo Valid::inGET('name') ?>">
                             <?php if (Pages::$finish != Pages::$count) { ?>
-                                <button type="submit" class="btn btn-primary btn-sm" formmethod="get"><span class="bi-arrow-right-short"></span></button>
+                                <button type="submit" class="btn btn-primary btn-sm bi-arrow-right-short" formmethod="get"></button>
                             <?php } else { ?>
-                                <a type="submit" class="btn btn-primary btn-sm disabled"><span class="bi-arrow-right-short"></span></a>
+                                <a type="submit" class="btn btn-primary btn-sm disabled bi-arrow-right-short"></a>
                             <?php } ?>
                         </form>
 
@@ -73,10 +73,10 @@ require_once('modal/index.php')
                     <td class="text-center"><?php echo Ecb::formatPrice(Ecb::currencyPrice(Pages::$table['line']['minimum_price'], Pages::$table['line']['currency']), 1) ?></td>
                     <td>
                         <div class="gap-2 d-flex justify-content-end">
-                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#index" data-edit="<?php echo Pages::$table['line']['id'] ?>"><span class="bi-pencil-square"></span></button>
+                            <button type="button" class="btn btn-primary btn-sm bi-pencil-square" data-bs-toggle="modal" data-bs-target="#index" data-edit="<?php echo Pages::$table['line']['id'] ?>"></button>
                             <form id="form_delete<?php echo Pages::$table['line']['id'] ?>" name="form_delete" action="javascript:void(null);" onsubmit="Ajax.callDelete('<?php echo Pages::$table['line']['id'] ?>')" enctype="multipart/form-data">
                                 <input hidden name="delete" value="<?php echo Pages::$table['line']['id'] ?>">
-                                <button type="submit" name="delete_but" class="btn btn-primary btn-sm" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"><span class="bi-trash"> </span></button>
+                                <button type="submit" name="delete_but" class="btn btn-primary btn-sm bi-trash" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"></button>
                             </form>
                         </div>
                     </td>
