@@ -15,7 +15,7 @@
             <div id="confirm_body" class="modal-body"><?php echo lang('confirm-del') ?></div>
             <div class="modal-footer">
                 <button class="btn btn-success btn-sm bi-x-circle" type="button" data-bs-dismiss="modal"> <?php echo lang('confirm-no') ?></button>
-                <button type="button" id="confirmation" class="btn btn-danger btn-sm bi-check-circle"> <?php echo lang('confirm-yes') ?></button>
+                <button id="confirmation" class="btn btn-danger btn-sm bi-check-circle" type="button"> <?php echo lang('confirm-yes') ?></button>
             </div>
         </div>
     </div>

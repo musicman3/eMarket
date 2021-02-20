@@ -69,7 +69,7 @@ use \eMarket\Core\{
 
                 <div class="modal-footer">
                     <button class="btn btn-primary btn-sm bi-x-circle" type="button" data-bs-dismiss="modal"> <?php echo lang('cancel') ?></button>
-                    <button type="submit" class="btn btn-primary btn-sm bi-check-circle"> <?php echo lang('save') ?></button>
+                    <button class="btn btn-primary btn-sm bi-check-circle" type="submit"> <?php echo lang('save') ?></button>
                 </div>
 
             </form>
