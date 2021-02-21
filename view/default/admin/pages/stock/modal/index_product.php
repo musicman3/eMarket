@@ -207,7 +207,7 @@ use \eMarket\Admin\Stock;
                                 <div class="col-md-6 mb-3">
                                     <div><small class="form-text text-muted"><?php echo lang('stock_product_vendor_code_value') ?></small></div>
                                     <div class="input-group input-group-sm">
-                                        <span class="input-group-text"><span class="bi-file-text"></span></span>
+                                        <span class="input-group-text bi-file-text"></span>
                                         <input class="form-control" placeholder="ABC123" type="text" name="vendor_code_value_product_stock" id="vendor_code_value_product_stock" />
                                     </div>
                                 </div>

@@ -29,7 +29,7 @@
                 <div class="row">
                     <div class="col-md-5 col-lg-4 mb-2">
                         <div class="server_db input-group input-group-sm">
-                            <span class="input-group-text"><span class="bi-hdd"></span></span>
+                            <span class="input-group-text bi-hdd"></span>
                             <input class="form-control" id="server_db" minlength="1" placeholder="<?php echo lang('server_db') ?>" type="text" name="server_db" required />
                         </div>
                     </div>
