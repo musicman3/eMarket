@@ -20,14 +20,8 @@ a {text-decoration: none;}
 #Carousel .bi-chevron-left, #Carousel .bi-chevron-right {font-size: 1.875rem;}
 #Carousel .slide-text-anime h3 {animation: anime-H3 1.3s ease-out;transform: translate(0); }
 #Carousel .slide-text-anime p {animation: anime-P 1.5s ease-out;transform: translate(0); }
-@media (min-width:1400px) {#Carousel .carousel-inner h3 {font-size: 1.625rem;}}
-@media (min-width:1400px) {#Carousel .carousel-inner p {font-size: 1rem;}}
-@media (min-width:1200px) and (max-width:1399px) {#Carousel .carousel-inner h3 {font-size: 1.5rem;}}
-@media (min-width:1200px) and (max-width:1399px) {#Carousel .carousel-inner p {font-size: .875rem;}}
-@media (min-width:992px) and (max-width:1199px) {#Carousel .carousel-inner h3 {font-size: 1.375rem;}}
-@media (min-width:992px) and (max-width:1199px) {#Carousel .carousel-inner p {font-size: .75rem;}}
-@media (max-width:991px) {#Carousel .carousel-inner h3 {font-size: 1.25rem;}}
-@media (max-width:991px) {#Carousel .carousel-inner p {font-size: .625rem;}}
+#Carousel .carousel-inner h3 {font-size: 2vw;}
+#Carousel .carousel-inner p {font-size: 1.5vw;}
 @keyframes anime-H3 { from { opacity: 0; transform: translateX(-2000px); } to { opacity: 1; transform: translateX(0); } }
 @keyframes anime-P { from { opacity: 0; transform: translateX(2000px); } to { opacity: 1; transform: translateX(0); } }
 
