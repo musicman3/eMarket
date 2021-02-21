@@ -279,7 +279,7 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                     {
                         // ---------- Stiker ----------
                         text: '<span class="bi-bookmark"> ' + lang['button_stiker'] + '</span>',
-                        disabled: stiker === '0',
+                        disabled: stiker === '0' || json_data_product.name === undefined,
                         subMenu: [
                             {
                                 // ---------- Stiker select ----------
