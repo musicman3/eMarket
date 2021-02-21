@@ -48,13 +48,11 @@ require_once('modal/index.php')
                             <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
                             <input hidden name="start" value="<?php echo Pages::$start ?>">
                             <input hidden name="finish" value="<?php echo Pages::$finish ?>">
-                            <div>
-                                <?php if (Pages::$finish != Pages::$count) { ?>
-                                    <button type="submit" class="btn btn-primary btn-sm bi-arrow-right-short" formmethod="get"></button>
-                                <?php } else { ?>
-                                    <a type="submit" class="btn btn-primary btn-sm disabled bi-arrow-right-short"></a>
-                                <?php } ?>
-                            </div>
+                            <?php if (Pages::$finish != Pages::$count) { ?>
+                                <button type="submit" class="btn btn-primary btn-sm bi-arrow-right-short" formmethod="get"></button>
+                            <?php } else { ?>
+                                <a type="submit" class="btn btn-primary btn-sm disabled bi-arrow-right-short"></a>
+                            <?php } ?>
                         </form>
                     </div>
 
