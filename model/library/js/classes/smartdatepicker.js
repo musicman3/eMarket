@@ -28,8 +28,6 @@ class SmartDatepicker {
      * @param end string (end date)
      */
     init(start, end) {
-        var new_date = new Date();
-
         var startDate,
                 endDate,
                 updateStartDate = function () {
@@ -39,8 +37,8 @@ class SmartDatepicker {
                 },
                 updateEndDate = function () {
                     startPicker.setEndRange(endDate);
+                    startPicker.setMaxDate(endDate);
                     endPicker.setEndRange(endDate);
-                    startPicker.setMaxDate(moment(endDate - 1)._d);
                 },
                 startPicker = new Pikaday({
                     field: document.querySelector('#start_date'),
@@ -62,7 +60,7 @@ class SmartDatepicker {
                         moment.locale(document.documentElement.lang);
                         return moment(date).format('L');
                     },
-                    minDate: new Date(new_date.setDate(new_date.getDate() + 1)),
+                    minDate: new Date(),
                     onSelect: function () {
                         endDate = this.getDate();
                         updateEndDate();
