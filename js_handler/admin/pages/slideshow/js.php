@@ -44,21 +44,23 @@ $lang_js = json_encode([
         document.querySelector('#navigation').checked = Number(json_data.navigation);
     });
 
-    $('[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
-        var tab = e.target['hash'].slice(1);
-        document.querySelector('#set_language').value = tab;
-        window.history.pushState(null, null, "?route=slideshow&slide_lang=" + tab);
+    document.querySelectorAll('[data-bs-toggle="tab"]').forEach(function (tab) {
+        tab.addEventListener('shown.bs.tab', function (e) {
+            var tab = e.target['hash'].slice(1);
+            document.querySelector('#set_language').value = tab;
+            window.history.pushState(null, null, "?route=slideshow&slide_lang=" + tab);
 
-        let xhr = new XMLHttpRequest();
-        xhr.open('GET', window.location.href, false);
-        xhr.send({slide_lang: tab});
-        if (xhr.status === 200) {
-            var data = xhr.response;
-            var dataXHR = document.createElement('div');
-            dataXHR.innerHTML = data;
-            document.querySelector('.ajax-tab').replaceWith(dataXHR.querySelector('.ajax-tab'));
-            document.querySelector('#ajax_data').replaceWith(dataXHR.querySelector('#ajax_data'));
-        }
+            let xhr = new XMLHttpRequest();
+            xhr.open('GET', window.location.href, false);
+            xhr.send({slide_lang: tab});
+            if (xhr.status === 200) {
+                var data = xhr.response;
+                var dataXHR = document.createElement('div');
+                dataXHR.innerHTML = data;
+                document.querySelector('.ajax-tab').replaceWith(dataXHR.querySelector('.ajax-tab'));
+                document.querySelector('#ajax_data').replaceWith(dataXHR.querySelector('#ajax_data'));
+            }
+        });
     });
 
     document.querySelector('#index').addEventListener('show.bs.modal', function (event) {
@@ -77,7 +79,7 @@ $lang_js = json_encode([
             document.querySelector('#url').value = json_data.url[modal_id];
             document.querySelector('#name').value = json_data.name[modal_id];
             document.querySelector('#heading').value = json_data.heading[modal_id];
-            
+
             var start = json_data.date_start[modal_id];
             var end = json_data.date_finish[modal_id];
             new SmartDatepicker(start, end);
