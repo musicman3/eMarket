@@ -113,7 +113,7 @@ http://nicolasgallagher.com/micro-clearfix-hack/
 }
 
 .pika-select {
-    display: inline-block;
+    display: none;
 }
 
 .pika-table {
