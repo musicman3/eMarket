@@ -57,7 +57,7 @@ document.querySelector('#table-id').addEventListener('mousedown', function (even
 
 <?php
 require_once ('attributes.php');
-require_once ('summernote.php');
+require_once ('tinymce.php');
 require_once ('context.php');
 require_once ('mouse.php');
 require_once ('datepicker.php');

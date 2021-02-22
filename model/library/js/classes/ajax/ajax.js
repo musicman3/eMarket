@@ -2,7 +2,7 @@
  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-/* global bootstrap, fetch */
+/* global bootstrap, fetch, tinymce */
 
 /**
  * Ajax requests
@@ -55,6 +55,9 @@ class Ajax {
     static callAdd(name, url, alert) {
         if (document.querySelector('#attributes') !== null) {
             document.querySelector('#attributes').value = sessionStorage.getItem('attributes');
+        }
+        if (typeof tinymce !== 'undefined') {
+            tinymce.triggerSave();
         }
         if (name === undefined || name === null) {
             var msg = document.forms.form_add;

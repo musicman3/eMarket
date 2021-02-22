@@ -28,6 +28,10 @@ class SmartDatepicker {
      * @param end string (end date)
      */
     init(start, end) {
+        var months = moment.months();
+        var weekdays = moment.weekdays();
+        var weekdays_min = moment.weekdaysMin();
+        
         var startDate,
                 endDate,
                 updateStartDate = function () {
@@ -53,9 +57,9 @@ class SmartDatepicker {
                         updateStartDate();
                     },
                     i18n: {
-                        months: [moment.months()[0], moment.months()[1], moment.months()[2], moment.months()[3], moment.months()[4], moment.months()[5], moment.months()[6], moment.months()[7], moment.months()[8], moment.months()[9], moment.months()[10], moment.months()[11]],
-                        weekdays: [moment.weekdays()[0], moment.weekdays()[1], moment.weekdays()[2], moment.weekdays()[3], moment.weekdays()[4], moment.weekdays()[5], moment.weekdays()[6]],
-                        weekdaysShort: [moment.weekdaysMin()[0], moment.weekdaysMin()[1], moment.weekdaysMin()[2], moment.weekdaysMin()[3], moment.weekdaysMin()[4], moment.weekdaysMin()[5], moment.weekdaysMin()[6]]
+                        months: [months[0], months[1], months[2], months[3], months[4], months[5], months[6], months[7], months[8], months[9], months[10], months[11]],
+                        weekdays: [weekdays[0], weekdays[1], weekdays[2], weekdays[3], weekdays[4], weekdays[5], weekdays[6]],
+                        weekdaysShort: [weekdays_min[0], weekdays_min[1], weekdays_min[2], weekdays_min[3], weekdays_min[4], weekdays_min[5], weekdays_min[6]]
                     }
                 }),
                 endPicker = new Pikaday({
@@ -71,9 +75,9 @@ class SmartDatepicker {
                         updateEndDate();
                     },
                     i18n: {
-                        months: [moment.months()[0], moment.months()[1], moment.months()[2], moment.months()[3], moment.months()[4], moment.months()[5], moment.months()[6], moment.months()[7], moment.months()[8], moment.months()[9], moment.months()[10], moment.months()[11]],
-                        weekdays: [moment.weekdays()[0], moment.weekdays()[1], moment.weekdays()[2], moment.weekdays()[3], moment.weekdays()[4], moment.weekdays()[5], moment.weekdays()[6]],
-                        weekdaysShort: [moment.weekdaysMin()[0], moment.weekdaysMin()[1], moment.weekdaysMin()[2], moment.weekdaysMin()[3], moment.weekdaysMin()[4], moment.weekdaysMin()[5], moment.weekdaysMin()[6]]
+                        months: [months[0], months[1], months[2], months[3], months[4], months[5], months[6], months[7], months[8], months[9], months[10], months[11]],
+                        weekdays: [weekdays[0], weekdays[1], weekdays[2], weekdays[3], weekdays[4], weekdays[5], weekdays[6]],
+                        weekdaysShort: [weekdays_min[0], weekdays_min[1], weekdays_min[2], weekdays_min[3], weekdays_min[4], weekdays_min[5], weekdays_min[6]]
                     }
                 }),
                 _startDate = startPicker.setDate(new Date(start)),

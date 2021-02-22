@@ -54,7 +54,7 @@ use \eMarket\Admin\Stock;
                                     </div>
                                     <div class="mb-3">
                                         <div><small class="form-text text-muted"><?php echo lang('stock_product_description') ?></small></div>
-                                        <textarea rows="3" class="input-sm form-control summernote_add" name="description_product_stock_0" id="description_product_stock_0" /></textarea>
+                                        <textarea rows="3" class="input-sm form-control wysiwyg" name="description_product_stock_0" id="description_product_stock_0" /></textarea>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
@@ -89,7 +89,7 @@ use \eMarket\Admin\Stock;
                                             </div>
                                             <div class="mb-3">
                                                 <div><small class="form-text text-muted"><?php echo lang('stock_product_description') ?></small></div>
-                                                <textarea rows="3" class="input-sm form-control summernote_add" name="description_product_stock_<?php echo $x ?>" id="description_product_stock_<?php echo $x ?>" /></textarea>
+                                                <textarea rows="3" class="input-sm form-control wysiwyg" name="description_product_stock_<?php echo $x ?>" id="description_product_stock_<?php echo $x ?>" /></textarea>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6">

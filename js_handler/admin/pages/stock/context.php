@@ -63,8 +63,7 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                             document.querySelector('#edit_product').value = '';
                             document.querySelector('#add_product').value = 'ok';
                             document.querySelector('form').reset();
-                            document.querySelector('.summernote_add').value = '';
-                            $('.summernote_add').summernote(summernote_pref);
+                            document.querySelector('.wysiwyg').value = '';
                             new bootstrap.Modal(document.querySelector('#index_product')).show();
                         },
                         disabled: (new URL(document.location)).searchParams.get('search') !== null || Number(parent_id) === 0
@@ -100,11 +99,9 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                 document.querySelector('#general_image_edit_product').value = '';
                                 var modal_id = modal_edit.split('product_')[1];
 
-                                $('.summernote_add').summernote(summernote_pref);
-
                                 for (var x = 0; x < json_data_product.name.length; x++) {
                                     document.querySelector('#name_product_stock_' + x).value = json_data_product.name[x][modal_id];
-                                    $('#description_product_stock_' + x).summernote('code', json_data_product['description'][x][modal_id]);
+                                    tinymce.get('description_product_stock_' + x).setContent(json_data_product.description[x][modal_id]);
                                     document.querySelector('#keyword_product_stock_' + x).value = json_data_product.keyword[x][modal_id];
                                     document.querySelector('#tags_product_stock_' + x).value = json_data_product.tags[x][modal_id];
                                 }
