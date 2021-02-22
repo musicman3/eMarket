@@ -22,10 +22,13 @@
         image_advtab: true,
         language: document.documentElement.lang
     });
-    // tiny and modal
+    // tinymce and modal
     document.addEventListener('focusin', function (e) {
-        if ($(e.target).closest(".tox-tinymce-aux, .moxman-window, .tam-assetmanager-root").length) {
+        if (e.target.closest('.tox-tinymce-aux, .moxman-window, .tam-assetmanager-root') !== null) {
             e.stopImmediatePropagation();
         }
     });
+
+
+
 </script>
