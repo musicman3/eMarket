@@ -47,9 +47,9 @@ class AttributesProcessing {
         group_attributes_data.forEach((level_1) => {
             var level_length = level_1.length;
             var data_id = level_length - 1;
-            
-            for(var x = 0; x < level_length; x++){
-                if (level_1[x]['name'] === 'group_attributes_' + language){
+
+            for (var x = 0; x < level_length; x++) {
+                if (level_1[x]['name'] === 'group_attributes_' + language) {
                     var lang = x;
                 }
             }
@@ -105,8 +105,13 @@ class AttributesProcessing {
         });
 
         document.querySelector('#selected_attributes').value = JSON.stringify(AttributesProcessing.changeData());
-        $('.selectattr').change(function () {
-            document.querySelector('#selected_attributes').value = JSON.stringify(AttributesProcessing.changeData());
+        var buttons = document.querySelectorAll('.selectattr');
+        buttons.forEach(function (button) {
+            button.addEventListener('change', function (e) {
+       
+                    document.querySelector('#selected_attributes').value = JSON.stringify(AttributesProcessing.changeData());
+              
+            });
         });
     }
 
@@ -127,7 +132,7 @@ class AttributesProcessing {
         sessionStorage.setItem(name, id);
 
         for (var x = 0; x < uid_string.length - 1; x++) {
-            $('input[name="' + uid_string[x]['name'] + '"]').val(uid_string[x]['value']);
+            document.querySelector('input[name="' + uid_string[x]['name'] + '"]').value = uid_string[x]['value'];
         }
     }
 

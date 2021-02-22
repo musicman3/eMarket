@@ -20,6 +20,7 @@
         autosave_restore_when_empty: false,
         autosave_retention: '2m',
         image_advtab: true,
+        toolbar_mode: 'sliding',
         language: document.documentElement.lang
     });
     // tinymce and modal
