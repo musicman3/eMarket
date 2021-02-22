@@ -15,9 +15,8 @@ a {text-decoration: none;}
 
 @media (min-width: 768px){.modal-lg {width: 46.875rem;}}
 
-#Carousel .bi-chevron-left, #Carousel .bi-chevron-right {opacity: 0;transition: 1s opacity;}
-#Carousel:hover .bi-chevron-left, #Carousel:hover .bi-chevron-right {opacity: 1;transition: 1s opacity;}
-#Carousel .bi-chevron-left, #Carousel .bi-chevron-right {font-size: 1.875rem;}
+#Carousel .bi-chevron-left, #Carousel .bi-chevron-right {font-size: 1.875rem;opacity: 0;transition: 1s;}
+#Carousel:hover .bi-chevron-left, #Carousel:hover .bi-chevron-right {opacity: 1;transition: 1s;}
 #Carousel .slide-text-anime h3 {animation: anime-H3 1.3s ease-out;transform: translate(0); }
 #Carousel .slide-text-anime p {animation: anime-P 1.5s ease-out;transform: translate(0); }
 #Carousel .carousel-inner h3 {font-size: 2vw;}
