@@ -22,7 +22,7 @@
         image_advtab: true,
         language: document.documentElement.lang
     });
-
+    // tiny and modal
     document.addEventListener('focusin', function (e) {
         if ($(e.target).closest(".tox-tinymce-aux, .moxman-window, .tam-assetmanager-root").length) {
             e.stopImmediatePropagation();
