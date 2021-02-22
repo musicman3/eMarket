@@ -29,7 +29,4 @@
             e.stopImmediatePropagation();
         }
     });
-
-
-
 </script>
