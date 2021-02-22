@@ -20,6 +20,7 @@
         autosave_retention: '2m',
         image_advtab: true,
         toolbar_mode: 'sliding',
+        contextmenu: 'link image imagetools table',
         image_caption: true,
         quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote quickimage quicktable',
         language: document.documentElement.lang
