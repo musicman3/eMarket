@@ -42,7 +42,7 @@ class AttributesProcessing {
         }
 
         var group_attributes_data = jsdata.sort(jsdata.selectParentUids('false', data));
-        var selected = JSON.parse($('#selected_attributes').val());
+        var selected = JSON.parse(document.querySelector('#selected_attributes').value);
 
         group_attributes_data.forEach((level_1) => {
             var level_length = level_1.length;
@@ -58,10 +58,10 @@ class AttributesProcessing {
             var check = AttributesProcessing.checkSelect(data, selected, level_1[data_id]['uid']);
 
             if (marker === 'admin' && level_2[0] !== undefined) {
-                $('.product-attribute').prepend('<div class="accordion-item"><h5 class="accordion-header" id="headingOne"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#A_' + level_1[data_id]['uid'] + '">' + level_1[lang]['value'] + '</button></h5><div id="A_' + level_1[data_id]['uid'] + '" class="accordion-collapse collapse" data-bs-parent="#accordion"><div class="accordion-body"><table class="table table-striped product-attribute-table"><tbody id="table_' + level_1[data_id]['uid'] + '"></tbody></table></div></div></div>');
+                document.querySelector('.product-attribute').insertAdjacentHTML('afterbegin', '<div class="accordion-item"><h5 class="accordion-header" id="headingOne"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#A_' + level_1[data_id]['uid'] + '">' + level_1[lang]['value'] + '</button></h5><div id="A_' + level_1[data_id]['uid'] + '" class="accordion-collapse collapse" data-bs-parent="#accordion"><div class="accordion-body"><table class="table table-striped product-attribute-table"><tbody id="table_' + level_1[data_id]['uid'] + '"></tbody></table></div></div></div>');
             } else {
                 if (check === 'true') {
-                    $('.product-attribute').prepend('<h5>' + level_1[lang]['value'] + '</h5><table class="table table-striped product-attribute-table"><tbody id="table_' + level_1[data_id]['uid'] + '"></tbody></table>');
+                    document.querySelector('.product-attribute').insertAdjacentHTML('afterbegin', '<h5>' + level_1[lang]['value'] + '</h5><table class="table table-striped product-attribute-table"><tbody id="table_' + level_1[data_id]['uid'] + '"></tbody></table>');
                 }
             }
 
@@ -76,12 +76,12 @@ class AttributesProcessing {
                         var light = '';
                     }
 
-                    $('#table_' + level_1[data_id]['uid']).prepend(
+                    document.querySelector('#table_' + level_1[data_id]['uid']).insertAdjacentHTML('afterbegin',
                             '<tr class="align-middle"><td class="attribute"><span class="product-attribute-specification">' + item[lang]['value'] + '</span></td>' +
                             '<td class="selector"><div class="input-group input-group-sm ' + light + '"><span class="input-group-text bi-layout-text-sidebar-reverse"></span>' +
                             '<select class="form-select selectattr" id="selectattr_' + item[data_id]['uid'] + '"></select></div></td></tr>'
                             );
-                    $('#selectattr_' + item[data_id]['uid']).empty();
+                    document.querySelector('#selectattr_' + item[data_id]['uid']).innerHTML = '';
                     level_3.forEach((string, i) => {
                         $('#selectattr_' + item[data_id]['uid']).prepend($('<option></option>').val(string[data_id]['uid']).html(string[lang]['value']));
                         if (selected.length !== 0 && selected.includes(string[data_id]['uid']) === true) {
@@ -90,13 +90,13 @@ class AttributesProcessing {
                     });
                 } else {
                     if (check === 'true') {
-                        $('#table_' + level_1[data_id]['uid']).prepend(
+                        document.querySelector('#table_' + level_1[data_id]['uid']).insertAdjacentHTML('afterbegin',
                                 '<tr><td class="attribute"><span class="product-attribute-specification">' + item[lang]['value'] + '</span></td>' +
                                 '<td class="selector"><div class="selectattr" id="selectattr_' + item[data_id]['uid'] + '"></div></td></tr>'
                                 );
                         level_3.forEach((string, i) => {
                             if (selected.length !== 0 && selected.includes(string[data_id]['uid']) === true) {
-                                $('#selectattr_' + item[data_id]['uid']).html(string[lang]['value']);
+                                document.querySelector('#selectattr_' + item[data_id]['uid']).innerHTML = (string[lang]['value']);
                             }
                         });
                     }
@@ -104,9 +104,9 @@ class AttributesProcessing {
             });
         });
 
-        $('#selected_attributes').val(JSON.stringify(AttributesProcessing.changeData()));
+        document.querySelector('#selected_attributes').value = JSON.stringify(AttributesProcessing.changeData());
         $('.selectattr').change(function () {
-            $('#selected_attributes').val(JSON.stringify(AttributesProcessing.changeData()));
+            document.querySelector('#selected_attributes').value = JSON.stringify(AttributesProcessing.changeData());
         });
     }
 
