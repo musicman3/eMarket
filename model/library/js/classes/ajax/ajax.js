@@ -2,7 +2,7 @@
  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-/* global bootstrap, fetch, tinymce */
+/* global bootstrap, fetch, tinymce, AjaxSuccess */
 
 /**
  * Ajax requests
