@@ -18,11 +18,11 @@ class AttributesProcessing {
     static changeData() {
         var selected_attr = [];
 
-        for (var x = 0; x < $('.selectattr').length; x++) {
-            if ($('.selectattr')[x]['selectedOptions'] !== undefined && $('.selectattr')[x]['selectedOptions'].length > 0) {
-                selected_attr.push($('.selectattr')[x]['selectedOptions'][0]['value']);
+        document.querySelectorAll('.selectattr').forEach(function (selector) {
+            if (selector.selectedOptions !== undefined && selector.selectedOptions.length > 0) {
+                selected_attr.push(selector.selectedOptions[0].value);
             }
-        }
+        });
 
         return selected_attr;
     }
@@ -83,9 +83,12 @@ class AttributesProcessing {
                             );
                     document.querySelector('#selectattr_' + item[data_id]['uid']).innerHTML = '';
                     level_3.forEach((string, i) => {
-                        $('#selectattr_' + item[data_id]['uid']).prepend($('<option></option>').val(string[data_id]['uid']).html(string[lang]['value']));
-                        if (selected.length !== 0 && selected.includes(string[data_id]['uid']) === true) {
-                            $('#selectattr_' + item[data_id]['uid'] + ' option[value=' + string[data_id]['uid'] + ']').prop('selected', true);
+                        document.querySelector('#selectattr_' + item[data_id]['uid']).insertAdjacentHTML('afterbegin', '<option value="' + string[data_id]['uid'] + '">' + string[lang]['value'] + '</option>');
+                        var select = document.querySelector('#selectattr_' + item[data_id]['uid']).getElementsByTagName('option');
+                        for (let i = 0; i < select.length; i++) {
+                            if (selected.length !== 0 && selected.includes(string[data_id]['uid']) === true && select[i].value === string[data_id]['uid']) {
+                                select[i].selected = true;
+                            }
                         }
                     });
                 } else {
@@ -108,9 +111,9 @@ class AttributesProcessing {
         var buttons = document.querySelectorAll('.selectattr');
         buttons.forEach(function (button) {
             button.addEventListener('change', function (e) {
-       
-                    document.querySelector('#selected_attributes').value = JSON.stringify(AttributesProcessing.changeData());
-              
+
+                document.querySelector('#selected_attributes').value = JSON.stringify(AttributesProcessing.changeData());
+
             });
         });
     }
