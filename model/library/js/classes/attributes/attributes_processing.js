@@ -58,7 +58,7 @@ class AttributesProcessing {
             var check = AttributesProcessing.checkSelect(data, selected, level_1[data_id]['uid']);
 
             if (marker === 'admin' && level_2[0] !== undefined) {
-                document.querySelector('.product-attribute').insertAdjacentHTML('afterbegin', '<div class="accordion-item"><h5 class="accordion-header" id="headingOne"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#A_' + level_1[data_id]['uid'] + '">' + level_1[lang]['value'] + '</button></h5><div id="A_' + level_1[data_id]['uid'] + '" class="accordion-collapse collapse" data-bs-parent="#accordion"><div class="accordion-body"><table class="table table-striped product-attribute-table"><tbody id="table_' + level_1[data_id]['uid'] + '"></tbody></table></div></div></div>');
+                document.querySelector('.product-attribute').insertAdjacentHTML('afterbegin', '<div class="accordion-item"><h5 class="accordion-header" id="headingOne"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#A_' + level_1[data_id]['uid'] + '">' + level_1[lang]['value'] + '</button></h5><div id="A_' + level_1[data_id]['uid'] + '" class="accordion-collapse collapse" data-bs-parent="#accordion"><div class="accordion-body table-responsive"><table class="table table-striped product-attribute-table"><tbody id="table_' + level_1[data_id]['uid'] + '"></tbody></table></div></div></div>');
             } else {
                 if (check === 'true') {
                     document.querySelector('.product-attribute').insertAdjacentHTML('afterbegin', '<h5>' + level_1[lang]['value'] + '</h5><table class="table table-striped product-attribute-table"><tbody id="table_' + level_1[data_id]['uid'] + '"></tbody></table>');
@@ -78,7 +78,7 @@ class AttributesProcessing {
 
                     document.querySelector('#table_' + level_1[data_id]['uid']).insertAdjacentHTML('afterbegin',
                             '<tr class="align-middle"><td class="attribute"><span class="product-attribute-specification">' + item[lang]['value'] + '</span></td>' +
-                            '<td class="selector"><div class="input-group input-group-sm ' + light + '"><span class="input-group-text bi-layout-text-sidebar-reverse"></span>' +
+                            '<td class="selector"><div class="input-group input-group-sm flex-nowrap ' + light + '"><span class="input-group-text bi-layout-text-sidebar-reverse"></span>' +
                             '<select class="form-select selectattr" id="selectattr_' + item[data_id]['uid'] + '"></select></div></td></tr>'
                             );
                     document.querySelector('#selectattr_' + item[data_id]['uid']).innerHTML = '';
