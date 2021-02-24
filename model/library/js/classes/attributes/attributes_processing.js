@@ -61,7 +61,7 @@ class AttributesProcessing {
                 document.querySelector('.product-attribute').insertAdjacentHTML('afterbegin', '<div class="accordion-item"><h5 class="accordion-header" id="headingOne"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#A_' + level_1[data_id]['uid'] + '">' + level_1[lang]['value'] + '</button></h5><div id="A_' + level_1[data_id]['uid'] + '" class="accordion-collapse collapse" data-bs-parent="#accordion"><div class="accordion-body table-responsive"><table class="table table-striped product-attribute-table"><tbody id="table_' + level_1[data_id]['uid'] + '"></tbody></table></div></div></div>');
             } else {
                 if (check === 'true') {
-                    document.querySelector('.product-attribute').insertAdjacentHTML('afterbegin', '<h5>' + level_1[lang]['value'] + '</h5><table class="table table-striped product-attribute-table"><tbody id="table_' + level_1[data_id]['uid'] + '"></tbody></table>');
+                    document.querySelector('.product-attribute').insertAdjacentHTML('afterbegin', '<h5>' + level_1[lang]['value'] + '</h5><div class="table-responsive"><table class="table table-striped product-attribute-table"><tbody id="table_' + level_1[data_id]['uid'] + '"></tbody></table></div>');
                 }
             }
 
