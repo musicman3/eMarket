@@ -43,16 +43,18 @@ $lang_attributes = json_encode([
 <script type="text/javascript">
     new Ajax();
 
-new TableSelect(document.getElementById('table-id'), {
-  selectedClassName: 'table-primary',
-  shouldSelectRow(row) { return !row.classList.contains('unselectable'); }
-});
+    new TableSelect(document.querySelector('#table-id'), {
+        selectedClassName: 'table-primary',
+        shouldSelectRow(row) {
+            return !row.classList.contains('unselectable');
+        }
+    });
 
-document.querySelector('#table-id').addEventListener('mousedown', function (event) {
-    if (event.ctrlKey) {
-        event.preventDefault();
-    }
-});
+    document.querySelector('#table-id').addEventListener('mousedown', function (event) {
+        if (event.ctrlKey) {
+            event.preventDefault();
+        }
+    });
 </script>
 
 <?php
