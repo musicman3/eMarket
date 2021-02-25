@@ -28,8 +28,7 @@ require_once('modal/cart_message.php')
     <div id="listing" class="contentText">
         <div class="bg-light mb-3 p-2 border rounded">
             <div class="btn-group">
-                <button type="button" class="btn btn-primary bi-arrow-down-up"> <?php echo Listing::$sort_name ?></button>
-                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"></button>
+                <button type="button" class="btn btn-primary dropdown-toggle bi-arrow-down-up" data-bs-toggle="dropdown"> <?php echo Listing::$sort_name ?> </button>
                 <ul class="dropdown-menu">
                     <li><a id="default" class="sorting dropdown-item"><?php echo lang('listing_sort_by_default') ?></a></li>
                     <li><a id="name" class="sorting dropdown-item"><?php echo lang('listing_sort_by_name') ?></a></li>
