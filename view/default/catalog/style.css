@@ -45,7 +45,7 @@ h6 {font-size: .875rem;}
 #new_products .labelsblock {position: absolute;margin: -.3125rem 0 0 -.3125rem;}
 #new_products .labelsblock div {display: table;padding: .25rem .4375rem;color: #ffffff;font-size: .75rem;margin: 0 0 .25rem 0;border-radius: .25rem;text-transform: uppercase;font-weight: 700;}
 
-#products .quantity {all: unset;appearance: textfield;width: 2.1875rem;text-align: center;vertical-align: middle;border: .0625rem solid #2e6da4;border-radius: .25rem;padding: .395rem 0 .375rem 0;}
+#products .quantity {all: unset;appearance: textfield;width: 2.5rem;text-align: center;vertical-align: middle;border: .0625rem solid #2e6da4;border-radius: .25rem;padding: .395rem 0 .375rem 0;}
 #products .productpage ul li {list-style: none;}
 #products .productpage ul {padding: 0;margin: 0;}
 #products .productpage-price {font-size: 1.125rem;color: #000000;font-weight: 700;}
@@ -74,13 +74,13 @@ h6 {font-size: .875rem;}
 @media (min-width:450px) {#listing .navigate-mini {display: none !important;}}
 #listing .dropdown-menu > li > a {cursor: pointer;}
 #listing .item-text ul {list-style: none;padding: 0;margin: 0;}
-#listing .quantity {all: unset;appearance: textfield;width: 2.1875rem;text-align: center;vertical-align: middle;border: .0625rem solid #2e6da4;border-radius: .25rem;padding: .395rem 0 .375rem 0;}
+#listing .quantity {all: unset;appearance: textfield;width: 2.5rem;text-align: center;vertical-align: middle;border: .0625rem solid #2e6da4;border-radius: .25rem;padding: .395rem 0 .375rem 0;}
 #listing .buy-now {padding: .375rem .5rem;}
 #listing .labelsblock {position: absolute;margin: -.3125rem 0 0 -.3125rem;}
 #listing .labelsblock div {display: table;padding: .25rem .4375rem;color: #ffffff;font-size: .75rem;margin: 0 0 .25rem 0;border-radius: .25rem;text-transform: uppercase;font-weight: 700;}
 
 #cart .table > :not(caption) > * > * {border-width: 0}
-#cart .quantity {all: unset;appearance: textfield;width: 1.875rem;text-align: center;vertical-align: middle;border: 1px solid #2e6da4;border-radius: .25rem;padding: .1875rem 0 .1875rem 0;}
+#cart .quantity {all: unset;appearance: textfield;width: 1.875rem;text-align: center;vertical-align: middle;border: 1px solid #2e6da4;border-radius: .25rem;padding: .172rem 0 .172rem 0;}
 
 #cart input[type="number"]::-webkit-inner-spin-button, #cart input[type="number"]::-webkit-outer-spin-button, #products input[type="number"]::-webkit-inner-spin-button, #products input[type="number"]::-webkit-outer-spin-button, #listing input[type="number"]::-webkit-inner-spin-button, #listing input[type="number"]::-webkit-outer-spin-button {-webkit-appearance: none;}
 
