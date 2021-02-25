@@ -64,7 +64,7 @@ h6 {font-size: .875rem;}
 #listing .list-group-item .block-button {float: right;}
 #listing .list-group-item .item-button {display: flex;justify-content: end;}
 #listing .grid-group-item .item-price {font-weight: 700;text-align: center;}
-#listing .grid-group-item .block-button {margin-left: -.3125rem;margin-right: -.3125rem;}
+#listing .grid-group-item .block-button {margin-left: -.45rem;margin-right: -.45rem;}
 #listing .grid-group-item .buy-now {float: right;}
 #listing .grid-group-item .item-heading {text-align: center;}
 #listing .grid-group-item .item-text {display: none;}
