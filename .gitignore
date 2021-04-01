@@ -3,9 +3,6 @@
 /storage/logs/errors.log
 /storage/configure/configure.php
 /uploads/
-/model/nbproject/private/
-/nbproject/private/
-/nbproject/
 /model/vendor/claviska/simpleimage/LICENSE.md
 /model/vendor/claviska/simpleimage/example/
 /model/vendor/claviska/simpleimage/composer.json
@@ -21,3 +18,4 @@
 /model/vendor/phpmailer/phpmailer/SECURITY.md
 /model/vendor/phpmailer/phpmailer/LICENSE
 /model/vendor/phpmailer/phpmailer/language/
+/model/nbproject/
