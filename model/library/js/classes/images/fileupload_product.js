@@ -55,18 +55,18 @@ class FileuploadProduct {
                             var quality_height = resize_max[1];
 
                             if (this_height < quality_height && this_width < quality_width) {
-                                if ($('#add_product').val() === 'ok') {
+                                if (document.querySelector('#add_product').value === 'ok') {
                                     $('#alert_messages_product').html('<div class="alert alert-danger">' + lang['image_resize_error'] + ' ' + quality_width + 'x' + quality_height + '</div>');
                                 }
-                                if ($('#edit_product').val() !== '') {
+                                if (document.querySelector('#edit_product').value !== '') {
                                     $('#alert_messages_product').html('<div class="alert alert-danger">' + lang['image_resize_error'] + ' ' + quality_width + 'x' + quality_height + '</div>');
                                 }
                             } else {
-                                if ($('#add_product').val() === 'ok') {
-                                    $('<div class="file-upload position-relative" id="image_add_new_product_' + hash_name + '"/>').html('<img src="/uploads/temp/thumbnail/' + file.name + '?' + Math.random() + '" class="img-thumbnail" id="general_product_' + hash_name + '" /><div class="block align-items-center justify-content-evenly"><button class="btn btn-primary btn-sm bi-trash" type="button" name="deleteImageAddNewProduct_' + hash_name + '" onclick="FileuploadProduct.deleteImageAddNewProduct(\'' + file.name + '\', \'' + hash_name + '\')"></button> <button class="btn btn-primary btn-sm bi-star" type="button" name="imageGeneralAddNewProduct_' + hash_name + '" onclick="FileuploadProduct.imageGeneralAddNewProduct(\'' + file.name + '\', \'' + hash_name + '\')"></button></div></div>').appendTo('#logo-product'); // Вставляем лого
+                                if (document.querySelector('#add_product').value === 'ok') {
+                                    $('<div class="file-upload position-relative" id="image_add_new_product_' + hash_name + '"/>').html('<img src="/uploads/temp/thumbnail/' + file.name + '?' + Math.random() + '" class="img-thumbnail" id="general_product_' + hash_name + '" /><div class="block align-items-center justify-content-evenly"><button class="btn btn-primary btn-sm bi-trash" type="button" name="deleteImageAddNewProduct_' + hash_name + '" onclick="FileuploadProduct.deleteImageAddNewProduct(\'' + file.name + '\', \'' + hash_name + '\')"></button> <button class="btn btn-primary btn-sm bi-star" type="button" name="imageGeneralAddNewProduct_' + hash_name + '" onclick="FileuploadProduct.imageGeneralAddNewProduct(\'' + file.name + '\', \'' + hash_name + '\')"></button></div></div>').appendTo('#logo-product');
                                 }
-                                if ($('#edit_product').val() !== '') {
-                                    $('<div class="file-upload position-relative" id="image_edit_new_product_' + hash_name + '"/>').html('<img src="/uploads/temp/thumbnail/' + file.name + '?' + Math.random() + '" class="img-thumbnail" id="general_edit_product_' + hash_name + '" /><div class="block align-items-center justify-content-evenly"><button class="btn btn-primary btn-sm bi-trash" type="button" name="deleteImageEditNewProduct_' + hash_name + '" onclick="FileuploadProduct.deleteImageEditNewProduct(\'' + file.name + '\', \'' + hash_name + '\')"></button> <button class="btn btn-primary btn-sm bi-star" type="button" name="imageGeneralEditNewProduct_' + hash_name + '" onclick="FileuploadProduct.imageGeneralEditNewProduct(\'' + file.name + '\', \'' + hash_name + '\')"></button></div></div>').appendTo('#logo-product'); // Вставляем лого
+                                if (document.querySelector('#edit_product').value !== '') {
+                                    $('<div class="file-upload position-relative" id="image_edit_new_product_' + hash_name + '"/>').html('<img src="/uploads/temp/thumbnail/' + file.name + '?' + Math.random() + '" class="img-thumbnail" id="general_edit_product_' + hash_name + '" /><div class="block align-items-center justify-content-evenly"><button class="btn btn-primary btn-sm bi-trash" type="button" name="deleteImageEditNewProduct_' + hash_name + '" onclick="FileuploadProduct.deleteImageEditNewProduct(\'' + file.name + '\', \'' + hash_name + '\')"></button> <button class="btn btn-primary btn-sm bi-star" type="button" name="imageGeneralEditNewProduct_' + hash_name + '" onclick="FileuploadProduct.imageGeneralEditNewProduct(\'' + file.name + '\', \'' + hash_name + '\')"></button></div></div>').appendTo('#logo-product');
                                 }
                             }
                         }
@@ -106,10 +106,10 @@ class FileuploadProduct {
         $('#index_product').on('hidden.bs.modal', function (event) {
             $('.progress-bar').css('width', 0 + '%');
             $('.file-upload').detach();
-            $('#delete_image_product').val('');
-            $('#general_image_edit_product').val('');
-            $('#general_image_edit_new_product').val('');
-            $('#general_image_add_product').val('');
+            document.querySelector('#delete_image_product').value = '';
+            document.querySelector('#general_image_edit_product').value = '';
+            document.querySelector('#general_image_edit_new_product').value = '';
+            document.querySelector('#general_image_add_product').value = '';
             $('#alert_messages_product').empty();
             $(this).find('form').trigger('reset'); // Очищаем формы
         });
@@ -140,7 +140,7 @@ class FileuploadProduct {
      */
     static deleteImageEditProduct(image, num) {
         $('#image_edit_product_' + num).detach();
-        $('#delete_image_product').val($('#delete_image_product').val() + image + ',');
+        document.querySelector('#delete_image_product').value = (document.querySelector('#delete_image_product').value + image + ',');
     }
 
     /**
@@ -181,7 +181,7 @@ class FileuploadProduct {
     static imageGeneralEditProduct(image, num) {
         $('img').removeClass('border-danger');
         $('#general_product_' + num).addClass('border-danger');
-        $('#general_image_edit_product').val(image);
+        document.querySelector('#general_image_edit_product').value = image;
     }
 
     /**
@@ -192,7 +192,7 @@ class FileuploadProduct {
     static imageGeneralAddNewProduct(image, num) {
         $('img').removeClass('border-danger');
         $('#general_product_' + num).addClass('border-danger');
-        $('#general_image_add_product').val(image);
+        document.querySelector('#general_image_add_product').value = image;
     }
 
     /**
@@ -203,7 +203,7 @@ class FileuploadProduct {
     static imageGeneralEditNewProduct(image, num) {
         $('img').removeClass('border-danger');
         $('#general_edit_product_' + num).addClass('border-danger');
-        $('#general_image_edit_new_product').val(image);
+        document.querySelector('#general_image_edit_new_product').value = image;
     }
 
 }
