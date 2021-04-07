@@ -179,8 +179,8 @@ class FileuploadProduct {
      * @param num {String} (number)
      */
     static imageGeneralEditProduct(image, num) {
-        $('img').removeClass('border-danger');
-        $('#general_product_' + num).addClass('border-danger');
+        document.querySelectorAll('img').forEach(e => e.classList.remove('border-danger'));
+        document.querySelectorAll('#general_product_' + num).forEach(e => e.classList.add('border-danger'));
         document.querySelector('#general_image_edit_product').value = image;
     }
 
@@ -190,8 +190,8 @@ class FileuploadProduct {
      * @param num {String} (number)
      */
     static imageGeneralAddNewProduct(image, num) {
-        $('img').removeClass('border-danger');
-        $('#general_product_' + num).addClass('border-danger');
+        document.querySelectorAll('img').forEach(e => e.classList.remove('border-danger'));
+        document.querySelectorAll('#general_product_' + num).forEach(e => e.classList.add('border-danger'));
         document.querySelector('#general_image_add_product').value = image;
     }
 
@@ -201,8 +201,8 @@ class FileuploadProduct {
      * @param num {String} (number)
      */
     static imageGeneralEditNewProduct(image, num) {
-        $('img').removeClass('border-danger');
-        $('#general_edit_product_' + num).addClass('border-danger');
+        document.querySelectorAll('img').forEach(e => e.classList.remove('border-danger'));
+        document.querySelectorAll('#general_edit_product_' + num).forEach(e => e.classList.add('border-danger'));
         document.querySelector('#general_image_edit_new_product').value = image;
     }
 
