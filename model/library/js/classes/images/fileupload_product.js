@@ -105,7 +105,7 @@ class FileuploadProduct {
 
         $('#index_product').on('hidden.bs.modal', function (event) {
             $('.progress-bar').css('width', 0 + '%');
-            $('.file-upload').detach();
+            document.querySelector('.file-upload').remove();
             document.querySelector('#delete_image_product').value = '';
             document.querySelector('#general_image_edit_product').value = '';
             document.querySelector('#general_image_edit_new_product').value = '';
@@ -128,7 +128,7 @@ class FileuploadProduct {
 
             $('<div class="file-upload position-relative" id="image_edit_product_' + x + '"/>').html('<img src="/uploads/images/' + dir + '/resize_0/' + image + '" class="img-thumbnail" id="general_product_' + x + '" /><div class="block align-items-center justify-content-evenly"><button class="btn btn-primary btn-sm bi-trash" type="button" name="delete_image_product_' + x + '" onclick="FileuploadProduct.deleteImageEditProduct(\'' + image + '\', \'' + x + '\')"></button> <button class="btn btn-primary btn-sm bi-star" type="button" name="image_general_edit_product' + x + '" onclick="FileuploadProduct.imageGeneralEditProduct(\'' + image + '\', \'' + x + '\')"></button></div></div>').appendTo('#logo-product');
             if (logo_general_edit[modal_id] === image) {
-                $('#general_product_' + x).addClass('border-danger');
+                document.querySelector('#general_product_' + x).classList.add('border-danger');
             }
         }
     }
@@ -139,7 +139,7 @@ class FileuploadProduct {
      * @param num {String} (number)
      */
     static deleteImageEditProduct(image, num) {
-        $('#image_edit_product_' + num).detach();
+        document.querySelector('#image_edit_product_' + num).remove();
         document.querySelector('#delete_image_product').value = (document.querySelector('#delete_image_product').value + image + ',');
     }
 
@@ -154,7 +154,7 @@ class FileuploadProduct {
                     delete_new_image: 'ok'},
                 AjaxSuccess);
         function AjaxSuccess(data) {
-            $('#image_add_new_product_' + num).detach();
+            document.querySelector('#image_add_new_product_' + num).remove();
         }
     }
 
@@ -169,7 +169,7 @@ class FileuploadProduct {
                     delete_new_image: 'ok'},
                 AjaxSuccess);
         function AjaxSuccess(data) {
-            $('#image_edit_new_product_' + num).detach();
+            document.querySelector('#image_edit_new_product_' + num).remove();
         }
     }
 
