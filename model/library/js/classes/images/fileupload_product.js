@@ -110,8 +110,8 @@ class FileuploadProduct {
             document.querySelector('#general_image_edit_product').value = '';
             document.querySelector('#general_image_edit_new_product').value = '';
             document.querySelector('#general_image_add_product').value = '';
-            $('#alert_messages_product').empty();
-            $(this).find('form').trigger('reset'); // Очищаем формы
+            document.querySelector('#alert_messages_product').innerHTML = '';
+            $(this).find('form').trigger('reset');
         });
     }
 
@@ -164,7 +164,7 @@ class FileuploadProduct {
      * @param num {String} (number)
      */
     static deleteImageEditNewProduct(image, num) {
-        jQuery.post(window.location.href, // отправка данных POST
+        jQuery.post(window.location.href,
                 {delete_image: image,
                     delete_new_image: 'ok'},
                 AjaxSuccess);

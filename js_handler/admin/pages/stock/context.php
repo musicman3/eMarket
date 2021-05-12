@@ -171,7 +171,6 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                     document.querySelectorAll('.table-primary').forEach(function (string, index) {
                                         idArray[index] = string.id;
                                     });
-                                    console.log(idArray);
                                     Ajax.postData(window.location.href, {
                                         idsx_status_on_id: idArray,
                                         idsx_real_parent_id: idsx_real_parent_id,

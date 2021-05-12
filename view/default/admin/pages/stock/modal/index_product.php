@@ -298,13 +298,9 @@ use \eMarket\Admin\Stock;
 
                             <!-- jQuery-File-Upload -->
                             <div class="mb-3">
-                                <span class="btn btn-primary btn-sm fileinput-button bi-image">
-                                    <span> <?php echo lang('button_add_image') ?></span>
-                                    <input class="form-control" id="fileupload-product" type="file" name="files[]" accept="image/jpeg,image/png,image/gif" multiple>
-                                </span>
-                                <?php echo lang('max') ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>
-                                <br>
-                                <br>
+
+                                <div><small class="form-text text-muted"><?php echo lang('button_add_image') ?> (<?php echo lang('max') ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>)</small></div>
+                                <input class="form-control form-control-sm" id="fileupload-product" type="file" name="files[]" accept="image/jpeg,image/png,image/gif" multiple>
                                 <div><small class="form-text text-muted"><?php echo lang('stock_product_effects_for_image_processing') ?></small></div>
                                 <div class="input-group input-group-sm">
                                     <span class="input-group-text bi-circle-half"></span>
