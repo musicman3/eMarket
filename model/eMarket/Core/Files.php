@@ -38,7 +38,7 @@ class Files {
         $files = glob(ROOT . '/uploads/temp/files/*');
         $count_files = count($files);
 
-        if (Valid::inPOST('file_upload') == 'empty') {
+        if (Valid::inPostJson('file_upload') == 'empty') {
             Tree::filesDirAction(ROOT . '/uploads/temp/originals/');
             Tree::filesDirAction(ROOT . '/uploads/temp/thumbnail/');
             Tree::filesDirAction(ROOT . '/uploads/temp/files/');
@@ -170,8 +170,8 @@ class Files {
             }
         }
 
-        if (Valid::inPOST('delete_new_image') == 'ok' && Valid::inPOST('delete_image')) {
-            $id = Valid::inPOST('delete_image');
+        if (Valid::inPostJson('delete_new_image') == 'ok' && Valid::inPostJson('delete_image')) {
+            $id = Valid::inPostJson('delete_image');
 
             Func::deleteFile(ROOT . '/uploads/temp/files/' . $id);
             Func::deleteFile(ROOT . '/uploads/temp/thumbnail/' . $id);
@@ -194,7 +194,7 @@ class Files {
         $files = glob(ROOT . '/uploads/temp/files/*');
         $count_files = count($files);
 
-        if (Valid::inPOST('file_upload') == 'empty') {
+        if (Valid::inPostJson('file_upload') == 'empty') {
             Tree::filesDirAction(ROOT . '/uploads/temp/originals/');
             Tree::filesDirAction(ROOT . '/uploads/temp/thumbnail/');
             Tree::filesDirAction(ROOT . '/uploads/temp/files/');
@@ -321,8 +321,8 @@ class Files {
             }
         }
 
-        if (Valid::inPOST('delete_new_image_product') == 'ok' && Valid::inPOST('delete_image_product')) {
-            $id = Valid::inPOST('delete_image_product');
+        if (Valid::inPostJson('delete_new_image_product') == 'ok' && Valid::inPostJson('delete_image_product')) {
+            $id = Valid::inPostJson('delete_image_product');
 
             Func::deleteFile(ROOT . '/uploads/temp/files/' . $id);
             Func::deleteFile(ROOT . '/uploads/temp/thumbnail/' . $id);

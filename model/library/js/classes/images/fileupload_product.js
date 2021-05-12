@@ -2,6 +2,8 @@
  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+/* global Ajax */
+
 /**
  * Product Fileupload
  *
@@ -99,8 +101,10 @@ class FileuploadProduct {
      */
     static init() {
         document.querySelector('#index_product').addEventListener('show.bs.modal', function (event) {
-            jQuery.post(window.location.href,
-                    {file_upload: 'empty'});
+            Ajax.postData(window.location.href, {
+                file_upload: 'empty'
+            }, false).then((data) => {
+            });
         });
 
         document.querySelector('#index_product').addEventListener('hidden.bs.modal', function (event) {
@@ -150,13 +154,12 @@ class FileuploadProduct {
      * @param num {String} (number)
      */
     static deleteImageAddNewProduct(image, num) {
-        jQuery.post(window.location.href,
-                {delete_image: image,
-                    delete_new_image: 'ok'},
-                AjaxSuccess);
-        function AjaxSuccess(data) {
+        Ajax.postData(window.location.href, {
+            delete_image: image,
+            delete_new_image: 'ok'
+        }, false).then((data) => {
             document.querySelector('#image_add_new_product_' + num).remove();
-        }
+        });
     }
 
     /**
@@ -165,13 +168,12 @@ class FileuploadProduct {
      * @param num {String} (number)
      */
     static deleteImageEditNewProduct(image, num) {
-        jQuery.post(window.location.href,
-                {delete_image: image,
-                    delete_new_image: 'ok'},
-                AjaxSuccess);
-        function AjaxSuccess(data) {
+        Ajax.postData(window.location.href, {
+            delete_image: image,
+            delete_new_image: 'ok'
+        }, false).then((data) => {
             document.querySelector('#image_edit_new_product_' + num).remove();
-        }
+        });
     }
 
     /**
