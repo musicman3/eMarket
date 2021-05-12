@@ -98,20 +98,21 @@ class FileuploadProduct {
      *
      */
     static init() {
-        $('#index_product').on('show.bs.modal', function (event) {
+        document.querySelector('#index_product').addEventListener('show.bs.modal', function (event) {
             jQuery.post(window.location.href,
                     {file_upload: 'empty'});
         });
 
-        $('#index_product').on('hidden.bs.modal', function (event) {
-            $('.progress-bar').css('width', 0 + '%');
-            document.querySelector('.file-upload').remove();
+        document.querySelector('#index_product').addEventListener('hidden.bs.modal', function (event) {
+            document.querySelectorAll('.progress-bar').forEach(e => e.style.width = 0 + '%');
+            document.querySelectorAll('.file-upload').forEach(e => e.remove());
             document.querySelector('#delete_image_product').value = '';
             document.querySelector('#general_image_edit_product').value = '';
             document.querySelector('#general_image_edit_new_product').value = '';
             document.querySelector('#general_image_add_product').value = '';
             document.querySelector('#alert_messages_product').innerHTML = '';
-            $(this).find('form').trigger('reset');
+            document.querySelector('#logo-product').innerHTML = '';
+            document.querySelector('form').reset();
         });
     }
 
