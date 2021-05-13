@@ -19,9 +19,10 @@ class Ajax {
      * @param url {String} (url)
      * @param data {Obj} (data)
      * @param reload {String} (reload marker)
+     * @param relay {String} (relay marker)
      */
-    static async postData(url = '', data = {}, reload = null) {
-        const response = await fetch(url, {
+    static async postData(url = '', data = {}, reload = null, relay = null) {
+        var pref = {
             method: 'POST',
             mode: 'cors',
             cache: 'no-cache',
@@ -32,17 +33,24 @@ class Ajax {
             redirect: 'follow',
             referrerPolicy: 'no-referrer',
             body: JSON.stringify(data)
-        }).then(
-                data => {
-                    return data.text();
-                }
-        ).then(
-                text => {
-                    if (reload !== false && typeof AjaxSuccess === 'function') {
-                        AjaxSuccess(text);
+        };
+        if (relay === null) {
+            const response = await fetch(url, pref).then(
+                    data => {
+                        return data.text();
                     }
-                }
-        );
+            ).then(
+                    text => {
+                        if (reload !== false && typeof AjaxSuccess === 'function') {
+                            AjaxSuccess(text);
+                        }
+                    }
+            );
+        } else {
+            const response = await fetch(url, pref);
+            return await response.json();
+    }
+
     }
 
     /**

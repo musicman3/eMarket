@@ -2,7 +2,7 @@
  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-/* global Ajax */
+/* global Ajax, ss */
 
 /**
  * Product Fileupload
@@ -33,66 +33,65 @@ class FileuploadProduct {
         'use strict';
         var url = '/uploads/temp/';
 
-        $('#fileupload-product').fileupload({
+        var uploader = new ss.SimpleUpload({
+            button: 'fileupload-product',
             url: url,
-            dataType: 'json',
-            submit: function (e, data) {
-                $('#alert_messages_product').empty();
+            responseType: 'json',
+            name: 'uploadfile',
+            multiple: true,
+            multipleSelect: true,
+            allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
+            onSubmit: function (filename, extension) {
+                document.querySelector('#alert_messages_product').innerHTML = '';
             },
-            done: function (e, data) {
-
-                $.each(data.result.files, function (index, file) {
-                    var hash_name = md5(file.name);
-
-                    jQuery.ajax({
-                        type: 'POST',
-                        dataType: 'json',
-                        url: window.location.href,
-                        data: {image_data: file.name,
-                            effect_edit: $('#effect-product').val()},
-                        success: function (image_size) {
-                            var this_width = image_size[0];
-                            var this_height = image_size[1];
-                            var quality_width = resize_max[0];
-                            var quality_height = resize_max[1];
-
-                            if (this_height < quality_height && this_width < quality_width) {
-                                if (document.querySelector('#add_product').value === 'ok') {
-                                    $('#alert_messages_product').html('<div class="alert alert-danger">' + lang['image_resize_error'] + ' ' + quality_width + 'x' + quality_height + '</div>');
-                                }
-                                if (document.querySelector('#edit_product').value !== '') {
-                                    $('#alert_messages_product').html('<div class="alert alert-danger">' + lang['image_resize_error'] + ' ' + quality_width + 'x' + quality_height + '</div>');
-                                }
-                            } else {
-                                if (document.querySelector('#add_product').value === 'ok') {
-                                    $('<div class="file-upload position-relative" id="image_add_new_product_' + hash_name + '"/>').html('<img src="/uploads/temp/thumbnail/' + file.name + '?' + Math.random() + '" class="img-thumbnail" id="general_product_' + hash_name + '" /><div class="block align-items-center justify-content-evenly"><button class="btn btn-primary btn-sm bi-trash" type="button" name="deleteImageAddNewProduct_' + hash_name + '" onclick="FileuploadProduct.deleteImageAddNewProduct(\'' + file.name + '\', \'' + hash_name + '\')"></button> <button class="btn btn-primary btn-sm bi-star" type="button" name="imageGeneralAddNewProduct_' + hash_name + '" onclick="FileuploadProduct.imageGeneralAddNewProduct(\'' + file.name + '\', \'' + hash_name + '\')"></button></div></div>').appendTo('#logo-product');
-                                }
-                                if (document.querySelector('#edit_product').value !== '') {
-                                    $('<div class="file-upload position-relative" id="image_edit_new_product_' + hash_name + '"/>').html('<img src="/uploads/temp/thumbnail/' + file.name + '?' + Math.random() + '" class="img-thumbnail" id="general_edit_product_' + hash_name + '" /><div class="block align-items-center justify-content-evenly"><button class="btn btn-primary btn-sm bi-trash" type="button" name="deleteImageEditNewProduct_' + hash_name + '" onclick="FileuploadProduct.deleteImageEditNewProduct(\'' + file.name + '\', \'' + hash_name + '\')"></button> <button class="btn btn-primary btn-sm bi-star" type="button" name="imageGeneralEditNewProduct_' + hash_name + '" onclick="FileuploadProduct.imageGeneralEditNewProduct(\'' + file.name + '\', \'' + hash_name + '\')"></button></div></div>').appendTo('#logo-product');
-                                }
-                            }
-                        }
-                    });
-
-                });
-            },
-            progressall: function (e, data) {
-                var progress = parseInt(data.loaded / data.total * 100, 10);
-                $('.progress-bar').css(
-                        'width',
-                        progress + '%'
-                        );
-                $('.progress-bar').empty();
+            onProgress: function (pct) {
+                document.querySelectorAll('.progress-bar').forEach(e => e.style.width = pct + '%');
+                document.querySelectorAll('.progress-bar').forEach(e => e.innerHTML = '');
                 $('.progress-bar').removeClass('progress-bar bg-success').addClass('progress-bar bg-danger progress-bar-striped progress-bar-animated');
-                if (progress === 100) {
+                if (pct === 100) {
                     setTimeout(function () {
-                        $('.progress-bar').html(lang['download_complete']);
+                        document.querySelectorAll('.progress-bar').forEach(e => e.innerHTML = lang['download_complete']);
                         $('.progress-bar').removeClass('progress-bar bg-danger progress-bar-striped progress-bar-animated').addClass('progress-bar bg-success');
                     }, 1000);
                 }
+            },
+            onComplete: function (filename, response) {
+                if (!response) {
+                    alert(filename + 'upload failed');
+                    return false;
+                }
+                var hash_name = md5(filename);
+
+                Ajax.postData(window.location.href, {
+                    image_data: filename,
+                    effect_edit: document.querySelector('#effect-product').value
+                }, false, false).then((data) => {
+                    console.log(data);
+                    var this_width = data[0];
+                        var this_height = data[1];
+                        var quality_width = resize_max[0];
+                        var quality_height = resize_max[1];
+
+                        if (this_height < quality_height && this_width < quality_width) {
+                            if (document.querySelector('#add_product').value === 'ok') {
+                                document.querySelector('#alert_messages_product').innerHTML = '<div class="alert alert-danger">' + lang['image_resize_error'] + ' ' + quality_width + 'x' + quality_height + '</div>';
+                            }
+                            if (document.querySelector('#edit_product').value !== '') {
+                                document.querySelector('#alert_messages_product').innerHTML = '<div class="alert alert-danger">' + lang['image_resize_error'] + ' ' + quality_width + 'x' + quality_height + '</div>';
+                            }
+                        } else {
+                            if (document.querySelector('#add_product').value === 'ok') {
+                                $('<div class="file-upload position-relative" id="image_add_new_product_' + hash_name + '"/>').html('<img src="/uploads/temp/thumbnail/' + filename + '?' + Math.random() + '" class="img-thumbnail" id="general_product_' + hash_name + '" /><div class="block align-items-center justify-content-evenly"><button class="btn btn-primary btn-sm bi-trash" type="button" name="deleteImageAddNewProduct_' + hash_name + '" onclick="FileuploadProduct.deleteImageAddNewProduct(\'' + filename + '\', \'' + hash_name + '\')"></button> <button class="btn btn-primary btn-sm bi-star" type="button" name="imageGeneralAddNewProduct_' + hash_name + '" onclick="FileuploadProduct.imageGeneralAddNewProduct(\'' + filename + '\', \'' + hash_name + '\')"></button></div></div>').appendTo('#logo-product');
+                            }
+                            if (document.querySelector('#edit_product').value !== '') {
+                                $('<div class="file-upload position-relative" id="image_edit_new_product_' + hash_name + '"/>').html('<img src="/uploads/temp/thumbnail/' + filename + '?' + Math.random() + '" class="img-thumbnail" id="general_edit_product_' + hash_name + '" /><div class="block align-items-center justify-content-evenly"><button class="btn btn-primary btn-sm bi-trash" type="button" name="deleteImageEditNewProduct_' + hash_name + '" onclick="FileuploadProduct.deleteImageEditNewProduct(\'' + filename + '\', \'' + hash_name + '\')"></button> <button class="btn btn-primary btn-sm bi-star" type="button" name="imageGeneralEditNewProduct_' + hash_name + '" onclick="FileuploadProduct.imageGeneralEditNewProduct(\'' + filename + '\', \'' + hash_name + '\')"></button></div></div>').appendTo('#logo-product');
+                            }
+                        }
+                });
+
+
             }
-        }).prop('disabled', !$.support.fileInput)
-                .parent().addClass($.support.fileInput ? undefined : 'disabled');
+        });
     }
 
     /**

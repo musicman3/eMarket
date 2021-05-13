@@ -7,5 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+    'FileUpload' => $vendorDir . '/lpology/uploader/uploader.php',
     'UploadHandler' => $vendorDir . '/blueimp/fileupload/UploadHandler.php',
 );

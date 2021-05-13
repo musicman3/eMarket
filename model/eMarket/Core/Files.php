@@ -406,8 +406,8 @@ class Files {
         $IMAGE = new \claviska\SimpleImage;
         $resize_max = self::imgResizeMax($resize_param);
 
-        if (Valid::inPOST('image_data')) {
-            $file = Valid::inPOST('image_data');
+        if (Valid::inPostJson('image_data')) {
+            $file = Valid::inPostJson('image_data');
 
             $image_data = getimagesize(ROOT . '/uploads/temp/files/' . $file);
             $width = $image_data[0];
@@ -420,16 +420,16 @@ class Files {
                 $IMAGE->fromFile(ROOT . '/uploads/temp/files/' . $file)
                         ->autoOrient()
                         ->bestFit($resize_param[0][0], $resize_param[0][1]);
-                if (Valid::inPOST('effect_edit') == 'effect-sepia' OR Valid::inPOST('effect_add') == 'effect-sepia') {
+                if (Valid::inPostJson('effect_edit') == 'effect-sepia' OR Valid::inPostJson('effect_add') == 'effect-sepia') {
                     $IMAGE->sepia();
                 }
-                if (Valid::inPOST('effect_edit') == 'effect-black-white' OR Valid::inPOST('effect_add') == 'effect-black-white') {
+                if (Valid::inPostJson('effect_edit') == 'effect-black-white' OR Valid::inPostJson('effect_add') == 'effect-black-white') {
                     $IMAGE->desaturate();
                 }
-                if (Valid::inPOST('effect_edit') == 'effect-blur-1' OR Valid::inPOST('effect_add') == 'effect-blur-1') {
+                if (Valid::inPostJson('effect_edit') == 'effect-blur-1' OR Valid::inPostJson('effect_add') == 'effect-blur-1') {
                     $IMAGE->blur('selective', 1);
                 }
-                if (Valid::inPOST('effect_edit') == 'effect-blur-2' OR Valid::inPOST('effect_add') == 'effect-blur-2') {
+                if (Valid::inPostJson('effect_edit') == 'effect-blur-2' OR Valid::inPostJson('effect_add') == 'effect-blur-2') {
                     $IMAGE->blur('selective', 2);
                 }
                 $IMAGE->toFile(ROOT . '/uploads/temp/thumbnail/' . $file);
