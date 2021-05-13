@@ -2,7 +2,7 @@
 
 /storage/logs/errors.log
 /storage/configure/configure.php
-
+/uploads/
 /model/vendor/claviska/simpleimage/LICENSE.md
 /model/vendor/claviska/simpleimage/example/
 /model/vendor/claviska/simpleimage/composer.json
