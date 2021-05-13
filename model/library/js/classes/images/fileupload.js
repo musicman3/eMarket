@@ -2,8 +2,10 @@
  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+/* global Ajax, ss */
+
 /**
- * Fileupload
+ *  Fileupload
  *
  * @package Fileupload
  * @author eMarket
@@ -31,66 +33,64 @@ class Fileupload {
         'use strict';
         var url = '/uploads/temp/';
 
-        $('#fileupload').fileupload({
+        var uploader = new ss.SimpleUpload({
+            button: 'fileupload',
             url: url,
-            dataType: 'json',
-            submit: function (e, data) {
-                $('#alert_messages').empty();
+            responseType: 'json',
+            name: 'uploadfile',
+            multiple: true,
+            multipleSelect: true,
+            allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
+            onSubmit: function (filename, extension) {
+                document.querySelector('#alert_messages').innerHTML = '';
             },
-            done: function (e, data) {
+            onProgress: function (pct) {
+                document.querySelectorAll('.progress-bar').forEach(e => e.style.width = pct + '%');
+                document.querySelectorAll('.progress-bar').forEach(e => e.innerHTML = '');
+                document.querySelectorAll('.progress-bar').forEach(e => e.classList.remove('bg-success'));
+                document.querySelectorAll('.progress-bar').forEach(e => e.classList.add('bg-danger', 'progress-bar-striped', 'progress-bar-animated'));
 
-                $.each(data.result.files, function (index, file) {
-                    var hash_name = md5(file.name);
-
-                    jQuery.ajax({
-                        type: 'POST',
-                        dataType: 'json',
-                        url: window.location.href,
-                        data: {image_data: file.name},
-                        success: function (image_size) {
-
-                            var this_width = image_size[0];
-                            var this_height = image_size[1];
-                            var quality_width = resize_max[0];
-                            var quality_height = resize_max[1];
-
-                            if (this_height < quality_height && this_width < quality_width) {
-                                if ($('#add').val() === 'ok') {
-                                    $('#alert_messages').html('<div class="alert alert-danger">' + lang['image_resize_error'] + ' ' + quality_width + 'x' + quality_height + '</div>');
-                                }
-                                if ($('#edit').val() !== '') {
-                                    $('#alert_messages').html('<div class="alert alert-danger">' + lang['image_resize_error'] + ' ' + quality_width + 'x' + quality_height + '</div>');
-                                }
-                            } else {
-                                if ($('#add').val() === 'ok') {
-                                    $('<div class="file-upload position-relative" id="image_add_new_' + hash_name + '"/>').html('<img src="/uploads/temp/thumbnail/' + file.name + '" class="img-thumbnail" id="general_' + hash_name + '" /><div class="block align-items-center justify-content-evenly"><button class="btn btn-primary btn-sm bi-trash" type="button" name="deleteImageAddNew_' + hash_name + '" onclick="Fileupload.deleteImageAddNew(\'' + file.name + '\', \'' + hash_name + '\')"></button> <button class="btn btn-primary btn-sm bi-star" type="button" name="imageGeneralAddNew_' + hash_name + '" onclick="Fileupload.imageGeneralAddNew(\'' + file.name + '\', \'' + hash_name + '\')"></button></div></div>').appendTo('#logo'); // Вставляем лого
-                                }
-                                if ($('#edit').val() !== '') {
-                                    $('<div class="file-upload position-relative" id="image_edit_new_' + hash_name + '"/>').html('<img src="/uploads/temp/thumbnail/' + file.name + '" class="img-thumbnail" id="general_edit_' + hash_name + '" /><div class="block align-items-center justify-content-evenly"><button class="btn btn-primary btn-sm bi-trash" type="button" name="FdeleteImageEditNew_' + hash_name + '" onclick="Fileupload.deleteImageEditNew(\'' + file.name + '\', \'' + hash_name + '\')"></button> <button class="btn btn-primary btn-sm bi-star" type="button" name="imageGeneralEditNew_' + hash_name + '" onclick="Fileupload.imageGeneralEditNew(\'' + file.name + '\', \'' + hash_name + '\')"></button></div></div>').appendTo('#logo'); // Вставляем лого
-                                }
-                            }
-                        }
-                    });
-
-                });
-            },
-            progressall: function (e, data) {
-                var progress = parseInt(data.loaded / data.total * 100, 10);
-                $('.progress-bar').css(
-                        'width',
-                        progress + '%'
-                        );
-                $('.progress-bar').empty();
-                $('.progress-bar').removeClass('progress-bar bg-success').addClass('progress-bar bg-danger progress-bar-striped progress-bar-animated');
-                if (progress === 100) {
+                if (pct === 100) {
                     setTimeout(function () {
-                        $('.progress-bar').html(lang['download_complete']);
-                        $('.progress-bar').removeClass('progress-bar bg-danger progress-bar-striped progress-bar-animated').addClass('progress-bar bg-success');
+                        document.querySelectorAll('.progress-bar').forEach(e => e.innerHTML = lang['download_complete']);
+                        document.querySelectorAll('.progress-bar').forEach(e => e.classList.remove('bg-danger', 'progress-bar-striped', 'progress-bar-animated'));
+                        document.querySelectorAll('.progress-bar').forEach(e => e.classList.add('bg-success'));
                     }, 1000);
                 }
+            },
+            onComplete: function (filename, response) {
+                if (!response) {
+                    alert(filename + 'upload failed');
+                    return false;
+                }
+                var hash_name = md5(filename);
+
+                Ajax.postData(window.location.href, {
+                    image_data: filename
+                }, false, false).then((data) => {
+                    var this_width = data[0];
+                    var this_height = data[1];
+                    var quality_width = resize_max[0];
+                    var quality_height = resize_max[1];
+
+                    if (this_height < quality_height && this_width < quality_width) {
+                        if (document.querySelector('#add').value === 'ok') {
+                            document.querySelector('#alert_messages').innerHTML = '<div class="alert alert-danger">' + lang['image_resize_error'] + ' ' + quality_width + 'x' + quality_height + '</div>';
+                        }
+                        if (document.querySelector('#edit').value !== '') {
+                            document.querySelector('#alert_messages').innerHTML = '<div class="alert alert-danger">' + lang['image_resize_error'] + ' ' + quality_width + 'x' + quality_height + '</div>';
+                        }
+                    } else {
+                        if (document.querySelector('#add').value === 'ok') {
+                            document.querySelector('#logo').insertAdjacentHTML('beforeend', '<div class="file-upload position-relative" id="image_add_new_' + hash_name + '"/><img src="/uploads/temp/thumbnail/' + filename + '?' + Math.random() + '" class="img-thumbnail" id="general_' + hash_name + '" /><div class="block align-items-center justify-content-evenly"><button class="btn btn-primary btn-sm bi-trash" type="button" name="deleteImageAddNew_' + hash_name + '" onclick="Fileupload.deleteImageAddNew(\'' + filename + '\', \'' + hash_name + '\')"></button> <button class="btn btn-primary btn-sm bi-star" type="button" name="imageGeneralAddNew_' + hash_name + '" onclick="Fileupload.imageGeneralAddNew(\'' + filename + '\', \'' + hash_name + '\')"></button></div></div></div>');
+                        }
+                        if (document.querySelector('#edit').value !== '') {
+                            document.querySelector('#logo').insertAdjacentHTML('beforeend', '<div class="file-upload position-relative" id="image_edit_new_' + hash_name + '"/><img src="/uploads/temp/thumbnail/' + filename + '?' + Math.random() + '" class="img-thumbnail" id="general_edit_' + hash_name + '" /><div class="block align-items-center justify-content-evenly"><button class="btn btn-primary btn-sm bi-trash" type="button" name="deleteImageEditNew_' + hash_name + '" onclick="Fileupload.deleteImageEditNew(\'' + filename + '\', \'' + hash_name + '\')"></button> <button class="btn btn-primary btn-sm bi-star" type="button" name="imageGeneralEditNew_' + hash_name + '" onclick="Fileupload.imageGeneralEditNew(\'' + filename + '\', \'' + hash_name + '\')"></button></div></div></div>');
+                        }
+                    }
+                });
             }
-        }).prop('disabled', !$.support.fileInput)
-                .parent().addClass($.support.fileInput ? undefined : 'disabled');
+        });
     }
 
     /**
@@ -98,20 +98,23 @@ class Fileupload {
      *
      */
     static init() {
-        $('#index').on('show.bs.modal', function (event) {
-            jQuery.post(window.location.href,
-                    {file_upload: 'empty'});
+        document.querySelector('#index').addEventListener('show.bs.modal', function (event) {
+            Ajax.postData(window.location.href, {
+                file_upload: 'empty'
+            }, false).then((data) => {
+            });
         });
 
-        $('#index').on('hidden.bs.modal', function (event) {
-            $('.progress-bar').css('width', 0 + '%');
-            $('.file-upload').detach();
-            $('#delete_image').val('');
-            $('#general_image_edit').val('');
-            $('#general_image_edit_new').val('');
-            $('#general_image_add').val('');
-            $('#alert_messages').empty();
-            $(this).find('form').trigger('reset');
+        document.querySelector('#index').addEventListener('hidden.bs.modal', function (event) {
+            document.querySelectorAll('.progress-bar').forEach(e => e.style.width = 0 + '%');
+            document.querySelectorAll('.file-upload').forEach(e => e.remove());
+            document.querySelector('#delete_image').value = '';
+            document.querySelector('#general_image_edit').value = '';
+            document.querySelector('#general_image_edit_new').value = '';
+            document.querySelector('#general_image_add').value = '';
+            document.querySelector('#alert_messages').innerHTML = '';
+            document.querySelector('#logo').innerHTML = '';
+            document.querySelector('form').reset();
         });
     }
 
@@ -125,52 +128,50 @@ class Fileupload {
     static getImageToEdit(logo_general_edit, logo_edit, modal_id, dir) {
         for (var x = 0; x < logo_edit[modal_id].length; x++) {
             var image = logo_edit[modal_id][x];
-
-            $('<div class="file-upload position-relative" id="image_edit_' + x + '"/>').html('<img src="/uploads/images/' + dir + '/resize_0/' + image + '" class="img-thumbnail" id="general_' + x + '" /><div class="block align-items-center justify-content-evenly"><button class="btn btn-primary btn-sm bi-trash" type="button" name="delete_image_' + x + '" onclick="Fileupload.deleteImageEdit(\'' + image + '\', \'' + x + '\')"></button> <button class="btn btn-primary btn-sm bi-star" type="button" name="image_general_edit' + x + '" onclick="Fileupload.imageGeneralEdit(\'' + image + '\', \'' + x + '\')"></button></div></div>').appendTo('#logo');
+            
+            document.querySelector('#logo').insertAdjacentHTML('beforeend', '<div class="file-upload position-relative" id="image_edit_' + x + '"/><img src="/uploads/images/' + dir + '/resize_0/' + image + '" class="img-thumbnail" id="general_' + x + '" /><div class="block align-items-center justify-content-evenly"><button class="btn btn-primary btn-sm bi-trash" type="button" name="delete_image_' + x + '" onclick="Fileupload.deleteImageEdit(\'' + image + '\', \'' + x + '\')"></button> <button class="btn btn-primary btn-sm bi-star" type="button" name="image_general_edit' + x + '" onclick="Fileupload.imageGeneralEdit(\'' + image + '\', \'' + x + '\')"></button></div></div></div>');
             if (logo_general_edit[modal_id] === image) {
-                $('#general_' + x).addClass('border-danger');
+                document.querySelector('#general_' + x).classList.add('border-danger');
             }
         }
     }
-    
+
     /**
      * Selective deletion of images in "Edit" modal window
      * @param image {String} (image)
      * @param num {String} (number)
      */
     static deleteImageEdit(image, num) {
-        $('#image_edit_' + num).detach();
-        $('#delete_image').val($('#delete_image').val() + image + ',');
+        document.querySelector('#image_edit_' + num).remove();
+        document.querySelector('#delete_image').value = (document.querySelector('#delete_image').value + image + ',');
     }
-    
+
     /**
      * Selective deletion of new unsaved images in "Add" modal window
      * @param image {String} (image)
      * @param num {String} (number)
      */
     static deleteImageAddNew(image, num) {
-        jQuery.post(window.location.href,
-                {delete_image: image,
-                    delete_new_image: 'ok'},
-                AjaxSuccess);
-        function AjaxSuccess(data) {
-            $('#image_add_new_' + num).detach();
-        }
+        Ajax.postData(window.location.href, {
+            delete_image: image,
+            delete_new_image: 'ok'
+        }, false).then((data) => {
+            document.querySelector('#image_add_new_' + num).remove();
+        });
     }
-    
+
     /**
      * Selective deletion of new unsaved images in "Edit" modal window
      * @param image {String} (image)
      * @param num {String} (number)
      */
     static deleteImageEditNew(image, num) {
-        jQuery.post(window.location.href,
-                {delete_image: image,
-                    delete_new_image: 'ok'},
-                AjaxSuccess);
-        function AjaxSuccess(data) {
-            $('#image_edit_new_' + num).detach();
-        }
+        Ajax.postData(window.location.href, {
+            delete_image: image,
+            delete_new_image: 'ok'
+        }, false).then((data) => {
+            document.querySelector('#image_edit_new_' + num).remove();
+        });
     }
 
     /**
@@ -179,9 +180,9 @@ class Fileupload {
      * @param num {String} (number)
      */
     static imageGeneralEdit(image, num) {
-        $('img').removeClass('border-danger');
-        $('#general_' + num).addClass('border-danger');
-        $('#general_image_edit').val(image);
+        document.querySelectorAll('img').forEach(e => e.classList.remove('border-danger'));
+        document.querySelectorAll('#general_' + num).forEach(e => e.classList.add('border-danger'));
+        document.querySelector('#general_image_edit').value = image;
     }
 
     /**
@@ -190,9 +191,9 @@ class Fileupload {
      * @param num {String} (number)
      */
     static imageGeneralAddNew(image, num) {
-        $('img').removeClass('border-danger');
-        $('#general_' + num).addClass('border-danger');
-        $('#general_image_add').val(image);
+        document.querySelectorAll('img').forEach(e => e.classList.remove('border-danger'));
+        document.querySelectorAll('#general_' + num).forEach(e => e.classList.add('border-danger'));
+        document.querySelector('#general_image_add').value = image;
     }
 
     /**
@@ -201,9 +202,9 @@ class Fileupload {
      * @param num {String} (number)
      */
     static imageGeneralEditNew(image, num) {
-        $('img').removeClass('border-danger');
-        $('#general_edit_' + num).addClass('border-danger');
-        $('#general_image_edit_new').val(image);
+        document.querySelectorAll('img').forEach(e => e.classList.remove('border-danger'));
+        document.querySelectorAll('#general_edit_' + num).forEach(e => e.classList.add('border-danger'));
+        document.querySelector('#general_image_edit_new').value = image;
     }
 
 }

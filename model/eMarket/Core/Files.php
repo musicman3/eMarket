@@ -330,7 +330,7 @@ class Files {
     }
 
     /**
-     * РImages resize
+     * Images resize
      *
      * @param string $dir Directory for uploaded images
      * @param array $files Files array
