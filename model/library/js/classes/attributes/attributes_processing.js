@@ -111,9 +111,7 @@ class AttributesProcessing {
         var buttons = document.querySelectorAll('.selectattr');
         buttons.forEach(function (button) {
             button.addEventListener('change', function (e) {
-
                 document.querySelector('#selected_attributes').value = JSON.stringify(AttributesProcessing.changeData());
-
             });
         });
     }
