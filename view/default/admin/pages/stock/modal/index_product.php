@@ -296,7 +296,7 @@ use \eMarket\Admin\Stock;
 
                             <div id="alert_messages_product"></div>
 
-                            <!-- jQuery-File-Upload -->
+                            <!-- File-Upload -->
                             <div class="mb-3">
 
                                 <div><small class="form-text text-muted"><?php echo lang('button_add_image') ?> (<?php echo lang('max') ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>)</small></div>
