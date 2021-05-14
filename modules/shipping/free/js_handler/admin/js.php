@@ -6,20 +6,20 @@
 ?>
 
 <script type="text/javascript">
-    $('#index').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget);
-        var modal_id = button.data('edit');
+    document.querySelector('#index').addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget;
+        var modal_id = Number(button.dataset.edit);
         if (Number.isInteger(modal_id)) {
-            var json_data = $('div#ajax_data').data('jsondata');
+            var json_data = JSON.parse(document.querySelector('#ajax_data').dataset.jsondata);
 
-            $('#zone').val(json_data['zone'][modal_id]);
-            $('#minimum_price').val(json_data['price'][modal_id]);
-            $('#edit').val(modal_id);
-            $('#add').val('');
+            document.querySelector('#zone').value = json_data['zone'][modal_id];
+            document.querySelector('#minimum_price').value = json_data['price'][modal_id];
+            document.querySelector('#edit').value = modal_id;
+            document.querySelector('#add').value = '';
         } else {
-            $('#edit').val('');
-            $('#add').val('ok');
-            $(this).find('form').trigger('reset');
+            document.querySelector('#edit').value = '';
+            document.querySelector('#add').value = 'ok';
+            document.querySelector('form').reset();
 
         }
     });

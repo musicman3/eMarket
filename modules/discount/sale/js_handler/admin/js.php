@@ -15,33 +15,32 @@
 <script type="text/javascript" src="/model/library/js/classes/smartdatepicker.js"></script>
 
 <script type="text/javascript">
-    $('#index').on('show.bs.modal', function (event) {
-
-        var button = $(event.relatedTarget);
-        var modal_id = button.data('edit');
+    document.querySelector('#index').addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget;
+        var modal_id = Number(button.dataset.edit);
 
         if (Number.isInteger(modal_id)) {
-            var json_data = $('div#ajax_data').data('jsondata');
+            var json_data = JSON.parse(document.querySelector('#ajax_data').dataset.jsondata);
 
-            for (x = 0; x < json_data['name'].length; x++) {
-                $('#name_module_' + x).val(json_data['name'][x][modal_id]);
+            for (var x = 0; x < json_data.name.length; x++) {
+                document.querySelector('#name_module_' + x).value = json_data['name'][x][modal_id];
             }
 
-            $('#sale_value').val(json_data['value'][modal_id]);
-            $('#edit').val(modal_id);
-            $('#add').val('');
+            document.querySelector('#sale_value').value = json_data['value'][modal_id];
+            document.querySelector('#edit').value = modal_id;
+            document.querySelector('#add').value = '';
 
             var start = json_data.start[modal_id];
             var end = json_data.end[modal_id];
             new SmartDatepicker(start, end);
 
-            $('#default_module').prop('checked', Number(json_data['default'][modal_id]));
+            document.querySelector('#default_module').checked = json_data.default[modal_id];
         }
 
         if (!Number.isInteger(modal_id) && button.data('bs-toggle') === 'modal') {
-            $('#edit').val('');
-            $('#add').val('ok');
-            $(this).find('form').trigger('reset');
+            document.querySelector('#edit').value = '';
+            document.querySelector('#add').value = 'ok';
+            document.querySelector('form').reset();
             new SmartDatepicker();
         }
     });

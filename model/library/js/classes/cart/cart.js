@@ -2,6 +2,8 @@
  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+/* global bootstrap */
+
 /**
  * Cart
  *
@@ -125,20 +127,20 @@ class Cart {
                 AjaxSuccess);
         function AjaxSuccess(data) {
             var payment_method = JSON.parse(data);
-            $("#payment_method").empty();
+            document.querySelector('#payment_method').innerHTML = '';
 
             if ($("#shipping_method_class").attr("class") !== 'input-group has-success' || payment_method.length < 1) {
                 $("#payment_method").append($('<option value="no">' + lang['cart_payment_is_not_available'] + '</option>'));
-                $('#payment_method_class').removeClass('has-success');
-                $('#payment_method_class').addClass('has-error');
+                document.querySelector('#payment_method_class').classList.remove('has-success');
+                document.querySelector('#payment_method_class').classList.add('has-error');
             } else {
                 for (var payment_val of payment_method) {
                     $("#payment_method").append($('<option value="' + payment_val['chanel_module_name'] + '">' + payment_val['chanel_name'] + '</option>'));
-                    $('#payment_method_class').removeClass('has-error');
-                    $('#payment_method_class').addClass('has-success');
-                    $('#callback_url').val(payment_val['chanel_callback_url']);
-                    $('#callback_type').val(payment_val['chanel_callback_type']);
-                    $('#callback_data').val(payment_val['chanel_callback_data']);
+                    document.querySelector('#payment_method_class').classList.remove('has-error');
+                    document.querySelector('#payment_method_class').classList.add('has-success');
+                    document.querySelector('#callback_url').value = payment_val['chanel_callback_url'];
+                    document.querySelector('#callback_type').value = payment_val['chanel_callback_type'];
+                    document.querySelector('#callback_data').value = payment_val['chanel_callback_data'];
                 }
             }
             Cart.buttonClass();
@@ -152,49 +154,49 @@ class Cart {
     static shippingData(lang) {
         jQuery.post(window.location.href,
                 {shipping_region_json: $(':selected', '#address').data('regions'),
-                    products_order_json: $('#products_order').val()},
+                    products_order_json: document.querySelector('#products_order').value},
                 AjaxSuccess);
         function AjaxSuccess(data) {
             var shipping_method = JSON.parse(data);
-            $("#shipping_method").empty();
+            document.querySelector('#shipping_method').innerHTML = '';
 
             if (shipping_method.length < 1) {
                 $("#shipping_method").append($('<option value="no">' + lang['cart_shipping_is_not_available'] + '</option>'));
-                $('#shipping_method_class').removeClass('has-success');
-                $('#shipping_method_class').addClass('has-error');
-                $('#shipping_price').html(lang['cart_shipping_price'] + ' <b>' + lang['product_price'] + '</b>');
-                $('#total_price_modal').html(lang['cart_subtotal'] + ' <b>' + lang['total_price_cart_with_sale'] + '</b>');
+                document.querySelector('#shipping_method_class').classList.remove('has-success');
+                document.querySelector('#shipping_method_class').classList.add('has-error');
+                document.querySelector('#shipping_price').innerHTML = lang['cart_shipping_price'] + ' <b>' + lang['product_price'] + '</b>';
+                document.querySelector('#total_price_modal').innerHTML = lang['cart_subtotal'] + ' <b>' + lang['total_price_cart_with_sale'] + '</b>';
             } else {
                 for (var shipping_val of shipping_method) {
                     if (shipping_val['chanel_total_price'] < shipping_val['chanel_minimum_price']) {
                         $("#shipping_method").append($('<option value="no">' + shipping_val['chanel_name'] + lang['cart_shipping_is_not_available_and_min_price'] + ' ' + shipping_val['chanel_minimum_price_format'] + '</option>'));
-                        $('#shipping_method_class').removeClass('has-success');
-                        $('#shipping_method_class').addClass('has-error');
-                        $('#shipping_price').html(lang['cart_shipping_price'] + ' <b>' + shipping_val['chanel_shipping_price_format'] + '</b>');
-                        $('#total_price_modal').html(lang['cart_subtotal'] +  + ' <b>' + shipping_val['chanel_total_price_with_shipping_format'] + '</b>');
+                        document.querySelector('#payment_method_class').classList.remove('has-success');
+                        document.querySelector('#payment_method_class').classList.add('has-error');
+                        document.querySelector('#shipping_price').innerHTML = lang['cart_shipping_price'] + ' <b>' + shipping_val['chanel_shipping_price_format'] + '</b>';
+                        document.querySelector('#total_price_modal').innerHTML = lang['cart_subtotal'] + +' <b>' + shipping_val['chanel_total_price_with_shipping_format'] + '</b>';
                         // input hidden
-                        $('#order_total').val(shipping_val['chanel_total_price_with_shipping']);
-                        $('#hash').val(shipping_val['chanel_hash']);
+                        document.querySelector('#order_total').value = shipping_val['chanel_total_price_with_shipping'];
+                        document.querySelector('#hash').value = shipping_val['chanel_hash'];
                     } else {
                         $("#shipping_method").append($('<option value="' + shipping_val['chanel_module_name'] + '" data-shipping="' + shipping_val['chanel_id'] + '">' + shipping_val['chanel_name'] + '</option>'));
-                        $('#shipping_method_class').removeClass('has-error');
-                        $('#shipping_method_class').addClass('has-success');
-                        $('#shipping_price').html(lang['cart_shipping_price'] + ' <b>' + shipping_val['chanel_shipping_price_format'] + '</b>');
-                        $('#total_price_modal').html(lang['cart_subtotal'] + ' <b>' + shipping_val['chanel_total_price_with_shipping_format'] + '</b>');
+                        document.querySelector('#payment_method_class').classList.remove('has-error');
+                        document.querySelector('#payment_method_class').classList.add('has-success');
+                        document.querySelector('#shipping_price').innerHTML = lang['cart_shipping_price'] + ' <b>' + shipping_val['chanel_shipping_price_format'] + '</b>';
+                        document.querySelector('#total_price_modal').innerHTML = lang['cart_subtotal'] + ' <b>' + shipping_val['chanel_total_price_with_shipping_format'] + '</b>';
                         if (shipping_val['chanel_total_tax'] > 0) {
-                            $('#total_tax_price').html(lang['cart_estimated_taxes'] + ' <b>' + shipping_val['chanel_total_tax_format'] + '</b>');
+                            document.querySelector('#total_tax_price').innerHTML = lang['cart_estimated_taxes'] + ' <b>' + shipping_val['chanel_total_tax_format'] + '</b>';
                         }
                         if (shipping_val['chanel_total_tax'] === 0) {
-                            $('#total_tax_price').html(lang['cart_price_including_all_taxes']);
+                            document.querySelector('#total_tax_price').innerHTML = lang['cart_price_including_all_taxes'];
                         }
-                        $('#total_price_to_pay_modal').html('<h5>' + lang['cart_total'] + ' ' + shipping_val['chanel_order_to_pay_format'] + '</h5>');
+                        document.querySelector('#total_price_to_pay_modal').innerHTML = '<h5>' + lang['cart_total'] + ' ' + shipping_val['chanel_order_to_pay_format'] + '</h5>';
                         // input hidden
-                        $('#order_to_pay').val(shipping_val['chanel_order_to_pay']);
-                        $('#order_total').val(shipping_val['chanel_total_price']);
-                        $('#order_shipping_price').val(shipping_val['chanel_shipping_price']);
-                        $('#order_total_tax').val(shipping_val['chanel_total_tax']);
-                        $('#order_total_with_shipping').val(shipping_val['chanel_total_price_with_shipping']);
-                        $('#hash').val(shipping_val['chanel_hash']);
+                        document.querySelector('#order_to_pay').value = shipping_val['chanel_order_to_pay'];
+                        document.querySelector('#order_total').value = shipping_val['chanel_total_price'];
+                        document.querySelector('#order_shipping_price').value = shipping_val['chanel_shipping_price'];
+                        document.querySelector('#order_total_tax').value = shipping_val['chanel_total_tax'];
+                        document.querySelector('#order_total_with_shipping').value = shipping_val['chanel_total_price_with_shipping'];
+                        document.querySelector('#hash').value = shipping_val['chanel_hash'];
                     }
                 }
             }
@@ -225,9 +227,9 @@ class Cart {
      */
     static callSuccess() {
         var msg = $('#form_cart').serialize();
-        var callback_url = $('#callback_url').val();
-        var callback_type = $('#callback_type').val();
-        var callback_data = $('#callback_data').val();
+        var callback_url = document.querySelector('#callback_url').value;
+        var callback_type = document.querySelector('#callback_type').value;
+        var callback_data = document.querySelector('#callback_data').value;
 
         jQuery.ajaxSetup({async: false});
         jQuery.ajax({
@@ -235,7 +237,7 @@ class Cart {
             url: '?route=success',
             data: msg,
             beforeSend: function () {
-                $('#index').modal('hide');
+                new bootstrap.Modal(document.querySelector('#index')).hide();
             },
             success: function (data) {
                 if (data !== 'false') {
