@@ -22,7 +22,7 @@ $lang_attributes = json_encode([
     lang('#lang_all')[0]
         ]);
 ?>
-<!-- jQuery File Upload -->
+<!-- File Upload -->
 <script type="text/javascript" src="/ext/lpology/SimpleAjaxUploader.min.js"></script>
 <script type="text/javascript" src="/model/library/js/classes/images/fileupload.js"></script>
 <script type="text/javascript" src="/model/library/js/classes/images/fileupload_product.js"></script>

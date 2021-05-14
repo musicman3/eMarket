@@ -43,10 +43,10 @@ use \eMarket\Admin\Slideshow;
                     </div>
                     <div class="mb-2 row align-items-center">
                         <div class="col-md-6">
-			    <div class="form-check form-switch">
-				<input class="form-check-input" type="checkbox" name="animation" id="animation" checked>
-				<label class="form-check-label" for="animation"><?php echo lang('slides_text_animation') ?></label>
-			    </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" name="animation" id="animation" checked>
+                                <label class="form-check-label" for="animation"><?php echo lang('slides_text_animation') ?></label>
+                            </div>
                         </div>
                         <div class="col-md-6">
                             <div class="input-group input-group-sm justify-content-end">
@@ -79,14 +79,10 @@ use \eMarket\Admin\Slideshow;
 
                     <div id="alert_messages"></div>
 
-                    <!-- jQuery-File-Upload -->
+                    <!-- File-Upload -->
                     <div class="mb-2">
-                        <span class="btn btn-primary btn-sm fileinput-button bi-image">
-                            <span> <?php echo lang('button_add_image') ?></span>
-                            <input class="input-sm form-control" id="fileupload" type="file" name="files[]" accept="image/jpeg,image/png,image/gif" multiple>
-                        </span>
-                        <?php echo lang('max') ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>
-                        <br>
+                        <div><small class="form-text text-muted"><?php echo lang('button_add_image') ?> (<?php echo lang('max') ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>)</small></div>
+                        <input class="form-control form-control-sm" id="fileupload" type="file" name="files[]" accept="image/jpeg,image/png,image/gif" multiple>
                         <br>
                         <div id="progress" class="progress mb-3" style="height: 1.5rem;">
                             <div class="progress-bar bg-danger progress-bar-striped progress-bar-animated"></div>

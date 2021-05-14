@@ -19,10 +19,8 @@ $lang_js = json_encode([
 <link rel="stylesheet" type="text/css" href="/ext/pikaday/pikaday.css">
 <script type="text/javascript" src="/model/library/js/classes/smartdatepicker.js"></script>
 
-<!-- jQuery File Upload -->
-<script src = "/ext/jquery_file_upload/js/vendor/jquery.ui.widget.js"></script>
-<script src="/ext/jquery_file_upload/js/jquery.iframe-transport.js"></script>
-<script src="/ext/jquery_file_upload/js/jquery.fileupload.js"></script>
+<!--File Upload -->
+<script type="text/javascript" src="/ext/lpology/SimpleAjaxUploader.min.js"></script>
 <script type="text/javascript" src="/model/library/js/classes/images/fileupload.js"></script>
 <script type="text/javascript" src="/model/library/js/classes/ajax/ajax.js"></script>
 <script type="text/javascript">

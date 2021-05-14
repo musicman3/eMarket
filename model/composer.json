@@ -6,7 +6,7 @@
         "psr-4": {
             "eMarket\\": "eMarket/"
         },
-        "classmap": ["vendor/blueimp/", "vendor/lpology/"]
+        "classmap": ["vendor/lpology/"]
     },
     "require": {
         "claviska/simpleimage": "^3.3",
