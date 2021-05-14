@@ -18,4 +18,5 @@
 /model/vendor/phpmailer/phpmailer/SECURITY.md
 /model/vendor/phpmailer/phpmailer/LICENSE
 /model/vendor/phpmailer/phpmailer/language/
+/model/vendor/phpmailer/phpmailer/phpunit.xml.dist
 /model/nbproject/
