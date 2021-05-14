@@ -36,9 +36,6 @@ use \eMarket\Core\{
             <link rel="stylesheet" type="text/css" href="/view/<?php echo Settings::template() ?>/admin/nav.css" media="screen" />
         <?php } ?>
 
-        <script type="text/javascript" src="/ext/jquery/jquery.min.js"></script>
-
-        <script type="text/javascript" src="/ext/jquery/ui/jquery.ui.touch-punch.min.js"></script>
         <script type="text/javascript" src="/ext/fastmd5/md5.min.js"></script>
         <script type="text/javascript" src="/ext/randomizer/randomizer.js"></script>
         <script type="text/javascript" src="/model/library/js/classes/helpers/helpers.js"></script>
