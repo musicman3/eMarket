@@ -38,8 +38,8 @@ h6 {font-size: .875rem;}
 #layouts-categories .category_block .hitarea {float: right;}
 #layouts-categories .category_block .hitarea.expandable-hitarea {cursor: pointer;}
 #layouts-categories .category_block .hitarea.collapsable-hitarea {cursor: pointer;}
-#layouts-categories .category_block .hitarea.expandable-hitarea:before {font-family: bootstrap-icons;content: '\bi-plus';color: #0d6efd;}
-#layouts-categories .category_block .hitarea.collapsable-hitarea:before {font-family: bootstrap-icons;content: '\bi-dash';color: #0d6efd;}
+#layouts-categories .category_block .hitarea.expandable-hitarea:before {font-family: bootstrap-icons;content: 'bi-plus';color: #0d6efd;}
+#layouts-categories .category_block .hitarea.collapsable-hitarea:before {font-family: bootstrap-icons;content: 'bi-dash';color: #0d6efd;}
 
 #new_products .item-price {font-weight: 700;}
 #new_products .labelsblock {position: absolute;margin: -.3125rem 0 0 -.3125rem;}
