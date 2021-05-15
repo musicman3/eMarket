@@ -2,7 +2,7 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-@font-face {font-family: 'Open Sans';src: url('../../../ext/fonts/OpenSans-Regular.ttf');}
+@font-face {font-family: 'Open Sans';src: url("../../../ext/fonts/OpenSans-Regular-webfont.woff2") format("woff2"), url("../../../ext/fonts/OpenSans-Regular-webfont.woff") format("woff");}
 :focus {outline:none;}
 a:active, a:focus {outline: none;}
 button:active, button:focus {outline: none !important;}
