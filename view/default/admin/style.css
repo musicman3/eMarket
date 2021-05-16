@@ -51,7 +51,7 @@ body {background: #e4e4da;font-family: 'Open Sans';background-image: url('images
 .table > tbody > tr.sortno:hover {--bs-table-accent-bg: none;}
 /*.transfer {color: #777;padding: .3125rem;}*/
 .fileinput-button {position: relative;overflow: hidden;display: inline-block;}
-.fileinput-button input {position: absolute;top: 0;right: 0;margin: 0;opacity: 0;font-size: .0625rem;line-height: 15;}
+.fileinput-button input {position: absolute;top: 0;right: 0;margin: 0;opacity: 0;font-size: .0625rem;line-height: 20;}
 @media screen\9 {.fileinput-button input {filter: alpha(opacity=0);font-size: 100%;height: 100%;}}
 .settings_back {padding: 0 0 .3125rem 0;border: .0625rem solid #ddd;border-right: 0;border-radius: .25rem 0 0 .25rem;}
 .settings_name {padding: 0 .3125rem .3125rem .3125rem;border: .0625rem solid #ddd;border-left: 0;border-radius: 0 .25rem .25rem 0;}

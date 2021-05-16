@@ -77,7 +77,10 @@ use \eMarket\Admin\Stock;
                             <!-- File-Upload -->
                             <div class="mb-3">
                                 <div><small class="form-text text-muted"><?php echo lang('button_add_image') ?> (<?php echo lang('max') ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>)</small></div>
-                                <input class="form-control form-control-sm" id="fileupload" type="file" name="files[]" accept="image/jpeg,image/png,image/gif" multiple>
+				<span class="btn btn-primary btn-sm bi-card-image fileinput-button mb-1">
+				    <span> Добавить изображение...</span>
+				    <input class="form-control form-control-sm" id="fileupload" type="file" name="files[]" accept="image/jpeg,image/png,image/gif" multiple>
+				</span>
                                 <br>
                                 <div id="progress" class="progress mb-3" style="height: 1.5rem;">
                                     <div class="progress-bar bg-danger progress-bar-striped progress-bar-animated"></div>
