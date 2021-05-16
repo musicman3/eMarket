@@ -47,12 +47,12 @@ class Cart {
     static pcsProduct(val, id, max_quantity = null) {
         var a = document.querySelector('#number_' + id).value;
 
-        $(document).click(function (e) {
-            if ($(e.target).closest('.button-plus').length) {
+        document.querySelector('body').addEventListener('click', (e) => {
+            if (e.target.closest('.button-plus') !== null) {
                 return;
             }
             document.querySelectorAll('.popover').forEach(e => bootstrap.Popover.getInstance(e).hide());
-            
+
         });
 
         if (val === 'minus' && a > 1) {
