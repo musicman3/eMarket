@@ -45,23 +45,24 @@ class Cart {
      *
      */
     static pcsProduct(val, id, max_quantity = null) {
-        var a = $('#number_' + id).val();
+        var a = document.querySelector('#number_' + id).value;
 
         $(document).click(function (e) {
             if ($(e.target).closest('.button-plus').length) {
                 return;
             }
-            $('.popover').popover('hide');
+            document.querySelectorAll('.popover').forEach(e => bootstrap.Popover.getInstance(e).hide());
+            
         });
 
         if (val === 'minus' && a > 1) {
-            $('#number_' + id).val(+a - 1);
+            document.querySelector('#number_' + id).value = +a - 1;
         }
         if (val === 'plus' && Number(a) < Number(max_quantity)) {
-            $('#number_' + id).val(+a + 1);
+            document.querySelector('#number_' + id).value = +a + 1;
         }
         if (Number(a) === Number(max_quantity)) {
-            $('#number_' + id).popover('show');
+            new bootstrap.Popover(document.querySelector('#number_' + id)).show();
     }
 
     }
