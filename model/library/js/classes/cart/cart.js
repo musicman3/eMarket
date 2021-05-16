@@ -28,11 +28,11 @@ class Cart {
      *@param lang {Array} (lang)
      */
     static init(lang) {
-        $('#address').change(function (event) {
+        document.querySelector('#address').addEventListener('change', (e) => {
             Cart.shippingData(lang);
         });
 
-        $('#shipping_method').change(function (event) {
+        document.querySelector('#shipping_method').addEventListener('change', (e) => {
             Cart.paymentData(lang);
         });
     }
