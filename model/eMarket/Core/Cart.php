@@ -153,10 +153,10 @@ class Cart {
      */
     public static function deleteProduct() {
 
-        if (Valid::inGET('delete_product') && isset($_SESSION['cart'])) {
+        if (Valid::inPostJson('delete_product') && isset($_SESSION['cart'])) {
             $array = [];
             foreach ($_SESSION['cart'] as $value) {
-                if ($value['id'] != Valid::inGET('delete_product')) {
+                if ($value['id'] != Valid::inPostJson('delete_product')) {
                     array_push($array, $value);
                 }
             }

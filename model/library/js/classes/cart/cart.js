@@ -74,12 +74,10 @@ class Cart {
      *@param pcs {Int} (quantity)
      */
     static quantityProduct(id, pcs) {
-
         Ajax.postData(window.location.href, {
             quantity_product_id: id,
             pcs_product: pcs
         }, true).then((data) => {});
-
     }
 
     /**
@@ -88,16 +86,9 @@ class Cart {
      *@param id {String} (product id)
      */
     static deleteProduct(id) {
-        jQuery.ajaxSetup({async: false});
-        jQuery.get(window.location.href,
-                {delete_product: id},
-                AjaxSuccess);
-        function AjaxSuccess(data) {
-            $('#cart_bar').replaceWith($(data).find('#cart_bar'));
-            $('#cart').replaceWith($(data).find('#cart'));
-            $('#index').replaceWith($(data).find('#index'));
-            new Cart();
-        }
+        Ajax.postData(window.location.href, {
+            delete_product: id
+        }, true).then((data) => {});
     }
 
     /**
