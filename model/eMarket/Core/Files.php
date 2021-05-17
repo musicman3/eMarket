@@ -360,16 +360,16 @@ class Files {
                         $IMAGE->fromFile(ROOT . '/uploads/temp/files/' . basename($file))
                                 ->autoOrient()
                                 ->bestFit($value[0], $value[1]);
-                        if (Valid::inPOST('effect-edit-product') == 'effect-sepia' OR Valid::inPOST('effect-add-product') == 'effect-sepia') {
+                        if (Valid::inPOST('effect-product') == 'effect-sepia') {
                             $IMAGE->sepia();
                         }
-                        if (Valid::inPOST('effect-edit-product') == 'effect-black-white' OR Valid::inPOST('effect-add-product') == 'effect-black-white') {
+                        if (Valid::inPOST('effect-product') == 'effect-black-white') {
                             $IMAGE->desaturate();
                         }
-                        if (Valid::inPOST('effect-edit-product') == 'effect-blur-1' OR Valid::inPOST('effect-add-product') == 'effect-blur-1') {
+                        if (Valid::inPOST('effect-product') == 'effect-blur-1') {
                             $IMAGE->blur('selective', 1);
                         }
-                        if (Valid::inPOST('effect-edit-product') == 'effect-blur-2' OR Valid::inPOST('effect-add-product') == 'effect-blur-2') {
+                        if (Valid::inPOST('effect-product') == 'effect-blur-2') {
                             $IMAGE->blur('selective', 2);
                         }
                         $IMAGE->toFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $prefix . basename($file));
@@ -420,16 +420,16 @@ class Files {
                 $IMAGE->fromFile(ROOT . '/uploads/temp/files/' . $file)
                         ->autoOrient()
                         ->bestFit($resize_param[0][0], $resize_param[0][1]);
-                if (Valid::inPostJson('effect_edit') == 'effect-sepia' OR Valid::inPostJson('effect_add') == 'effect-sepia') {
+                if (Valid::inPostJson('effect_edit') == 'effect-sepia') {
                     $IMAGE->sepia();
                 }
-                if (Valid::inPostJson('effect_edit') == 'effect-black-white' OR Valid::inPostJson('effect_add') == 'effect-black-white') {
+                if (Valid::inPostJson('effect_edit') == 'effect-black-white') {
                     $IMAGE->desaturate();
                 }
-                if (Valid::inPostJson('effect_edit') == 'effect-blur-1' OR Valid::inPostJson('effect_add') == 'effect-blur-1') {
+                if (Valid::inPostJson('effect_edit') == 'effect-blur-1') {
                     $IMAGE->blur('selective', 1);
                 }
-                if (Valid::inPostJson('effect_edit') == 'effect-blur-2' OR Valid::inPostJson('effect_add') == 'effect-blur-2') {
+                if (Valid::inPostJson('effect_edit') == 'effect-blur-2') {
                     $IMAGE->blur('selective', 2);
                 }
                 $IMAGE->toFile(ROOT . '/uploads/temp/thumbnail/' . $file);

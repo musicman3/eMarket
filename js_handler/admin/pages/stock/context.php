@@ -350,6 +350,11 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
         });
     }
 
+    /**
+     * Ajax Success
+     *
+     *@param data {Object} (ajax data)
+     */
     function AjaxSuccess(data) {
         setTimeout(function () {
             var ajax_data = document.createElement('div');

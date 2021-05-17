@@ -203,11 +203,11 @@ class Cart {
      */
     public static function editProductQuantity() {
 
-        if (Valid::inGET('quantity_product_id') && isset($_SESSION['cart'])) {
+        if (Valid::inPostJson('quantity_product_id') && isset($_SESSION['cart'])) {
             $count = 0;
             foreach ($_SESSION['cart'] as $value) {
-                if ($value['id'] == Valid::inGET('quantity_product_id') && Valid::inGET('pcs_product') != 'true') {
-                    $_SESSION['cart'][$count]['quantity'] = Valid::inGET('pcs_product');
+                if ($value['id'] == Valid::inPostJson('quantity_product_id') && Valid::inPostJson('pcs_product') != 'true') {
+                    $_SESSION['cart'][$count]['quantity'] = Valid::inPostJson('pcs_product');
                 }
                 $count++;
             }

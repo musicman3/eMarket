@@ -25,7 +25,23 @@ $lang_js = json_encode([
         ]);
 ?>
 <script type="text/javascript" src="/model/library/js/classes/cart/cart.js"></script>
+<script type="text/javascript" src="/model/library/js/classes/ajax/ajax.js"></script>
 <script type="text/javascript">
     sessionStorage.setItem('lang', '<?php echo $lang_js ?>');
     new Cart();
+    new Ajax();
+
+    /**
+     * Ajax Success
+     *
+     *@param data {Object} (ajax data)
+     */
+    function AjaxSuccess(data) {
+        setTimeout(function () {
+            $('#cart_bar').replaceWith($(data).find('#cart_bar'));
+            $('#cart').replaceWith($(data).find('#cart'));
+            $('#index').replaceWith($(data).find('#index'));
+            new Cart();
+        }, 100);
+    }
 </script>
