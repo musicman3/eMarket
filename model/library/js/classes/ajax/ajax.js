@@ -20,8 +20,9 @@ class Ajax {
      * @param data {Obj} (data)
      * @param reload {String} (reload marker)
      * @param relay {String} (relay marker)
+     * @param func {Object} (function)
      */
-    static async postData(url = '', data = {}, reload = null, relay = null) {
+    static async postData(url = '', data = {}, reload = null, relay = null, func = null) {
         var pref = {
             method: 'POST',
             mode: 'cors',
@@ -41,8 +42,11 @@ class Ajax {
                     }
             ).then(
                     text => {
-                        if (reload !== false && typeof AjaxSuccess === 'function') {
+                        if (reload !== false && typeof AjaxSuccess === 'function' && func === null) {
                             AjaxSuccess(text);
+                        }
+                        if (func !== null && func !== false && typeof func === 'function') {
+                            func(text);
                         }
                     }
             );

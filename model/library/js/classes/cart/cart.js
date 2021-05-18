@@ -2,7 +2,7 @@
  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-/* global bootstrap */
+/* global bootstrap, Ajax */
 
 /**
  * Cart
@@ -35,6 +35,20 @@ class Cart {
         document.querySelector('#shipping_method').addEventListener('change', (e) => {
             Cart.paymentData(lang);
         });
+    }
+    
+    /**
+     * Ajax Success
+     *
+     *@param data {Object} (ajax data)
+     */
+    static AjaxSuccess(data) {
+        setTimeout(function () {
+            $('#cart_bar').replaceWith($(data).find('#cart_bar'));
+            $('#cart').replaceWith($(data).find('#cart'));
+            $('#index').replaceWith($(data).find('#index'));
+            new Cart();
+        }, 100);
     }
 
     /**
@@ -77,7 +91,7 @@ class Cart {
         Ajax.postData(window.location.href, {
             quantity_product_id: id,
             pcs_product: pcs
-        }, true).then((data) => {});
+        }, true, null, Cart.AjaxSuccess).then((data) => {});
     }
 
     /**
@@ -88,7 +102,7 @@ class Cart {
     static deleteProduct(id) {
         Ajax.postData(window.location.href, {
             delete_product: id
-        }, true).then((data) => {});
+        }, true, null, Cart.AjaxSuccess).then((data) => {});
     }
 
     /**

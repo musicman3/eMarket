@@ -30,18 +30,4 @@ $lang_js = json_encode([
     sessionStorage.setItem('lang', '<?php echo $lang_js ?>');
     new Cart();
     new Ajax();
-
-    /**
-     * Ajax Success
-     *
-     *@param data {Object} (ajax data)
-     */
-    function AjaxSuccess(data) {
-        setTimeout(function () {
-            $('#cart_bar').replaceWith($(data).find('#cart_bar'));
-            $('#cart').replaceWith($(data).find('#cart'));
-            $('#index').replaceWith($(data).find('#index'));
-            new Cart();
-        }, 100);
-    }
 </script>
