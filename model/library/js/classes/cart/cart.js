@@ -44,9 +44,11 @@ class Cart {
      */
     static AjaxSuccess(data) {
         setTimeout(function () {
-            $('#cart_bar').replaceWith($(data).find('#cart_bar'));
-            $('#cart').replaceWith($(data).find('#cart'));
-            $('#index').replaceWith($(data).find('#index'));
+            var ajax_data = document.createElement('div');
+            ajax_data.innerHTML = data;
+            document.querySelector('#cart_bar').replaceWith(ajax_data.querySelector('#cart_bar'));
+            document.querySelector('#cart').replaceWith(ajax_data.querySelector('#cart'));
+            document.querySelector('#index').replaceWith(ajax_data.querySelector('#index'));
             new Cart();
         }, 100);
     }
