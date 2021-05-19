@@ -35,10 +35,16 @@ use \eMarket\Core\{
         <link rel="stylesheet" type="text/css" href="/view/<?php echo Settings::template() ?>/catalog/style.css" media="screen" />
         <script type="text/javascript" src="/ext/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/ext/jquery/ui/jquery.ui.touch-punch.min.js"></script>
+        <script type="text/javascript" src="/model/library/js/classes/helpers/helpers.js"></script>
+        <script type="text/javascript" src="/model/library/js/classes/confirm/confirm.js"></script>
 
         <script type="text/javascript">
-            $(function () {
-                $('[data-toggle="tooltip"]').tooltip();
+            var Confirmation = new Confirm();
+            document.addEventListener("DOMContentLoaded", function () {
+                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+                var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                    return new bootstrap.Tooltip(tooltipTriggerEl);
+                });
             });
         </script>
     </head>
@@ -95,13 +101,7 @@ use \eMarket\Core\{
         <?php
         require_once ('js/breadcrumb.php');
         require_once ('js/categories.php');
-        ?>
 
-        <script type="text/javascript">
-            $('[data-toggle=confirmation]').confirmation({rootSelector: '[data-toggle=confirmation]'});
-        </script>
-
-        <?php
         if (Settings::$js_handler != FALSE) {
             require_once(Settings::$js_handler . '/js.php');
         }
