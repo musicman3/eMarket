@@ -17,7 +17,7 @@ use \eMarket\Catalog\Cart;
                 <h3 class="modal-title"><?php echo Settings::titlePageGenerator() ?></h3>
                 <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal"></button>
             </div>
-            <form id="form_cart" class="was-validated" name="form_cart" action="javascript:void(null);" onsubmit="Cart.callSuccess()">
+            <form id="form_cart" name="form_cart" action="javascript:void(null);" onsubmit="Cart.callSuccess()">
                 <div class="modal-body">
                     <input type="hidden" name="add" value="ok" />
                     <input type="hidden" id="products_order" name="products_order" value='<?php echo Cart::$products_order ?>' />
@@ -35,7 +35,7 @@ use \eMarket\Catalog\Cart;
                         <label for="address"><?php echo lang('cart_shipping_address') ?></label>
                         <div id="address_class" class="input-group input-group-sm">
                             <span class="input-group-text bi-pencil"></span>
-                            <select name="address" id="address" class="form-control">
+                            <select name="address" id="address" class="form-control is-valid">
                                 <?php
                                 $x = 1;
                                 foreach (Cart::$address_data as $val) {
@@ -54,7 +54,7 @@ use \eMarket\Catalog\Cart;
                         <label for="shipping_method"><?php echo lang('cart_shipping_method') ?></label>
                         <div id="shipping_method_class" class="input-group input-group-sm">
                             <span class="input-group-text bi-pencil"></span>
-                            <select name="shipping_method" id="shipping_method" class="form-control">
+                            <select name="shipping_method" id="shipping_method" class="form-control is-valid">
                                 <option value="" data-shipping=""></option>
                             </select>
                         </div>
@@ -65,7 +65,7 @@ use \eMarket\Catalog\Cart;
                         <label for="payment_method"><?php echo lang('cart_payment_method') ?></label>
                         <div id="payment_method_class" class="input-group input-group-sm">
                             <span class="input-group-text bi-pencil"></span>
-                            <select name="payment_method" id="payment_method" class="form-control">
+                            <select name="payment_method" id="payment_method" class="form-control is-valid">
                                 <option value=""></option>
                             </select>
                         </div>

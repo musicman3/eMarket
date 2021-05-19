@@ -48,39 +48,41 @@ class Cart {
      */
     public function jsonEchoShipping() {
 
-        if (Valid::inPOST('shipping_region_json')) {
-            $zones_id = Shipping::shippingZonesAvailable(Valid::inPOST('shipping_region_json'));
+        if (Valid::inPostJson('shipping_region_json')) {
+            $zones_id = Shipping::shippingZonesAvailable(Valid::inPostJson('shipping_region_json'));
             Shipping::loadData($zones_id);
 
             $INTERFACE = new Interfaces();
             $modules_data = $INTERFACE->load('shipping');
 
             $interface_data = [];
-            foreach ($modules_data as $data) {
+            if (is_array($modules_data)) {
+                foreach ($modules_data as $data) {
 
-                $order_to_pay = (float) $data['chanel_total_price_with_shipping'] + (float) $data['chanel_total_tax'];
-                // INTERFACE
-                $interface = [
-                    'chanel_id' => $data['chanel_id'],
-                    'chanel_module_name' => $data['chanel_module_name'],
-                    'chanel_name' => $data['chanel_name'],
-                    'chanel_total_price' => $data['chanel_total_price'],
-                    'chanel_total_price_format' => $data['chanel_total_price_format'],
-                    'chanel_minimum_price' => $data['chanel_minimum_price'],
-                    'chanel_minimum_price_format' => $data['chanel_minimum_price_format'],
-                    'chanel_shipping_price' => $data['chanel_shipping_price'],
-                    'chanel_shipping_price_format' => $data['chanel_shipping_price_format'],
-                    'chanel_total_price_with_shipping' => $data['chanel_total_price_with_shipping'],
-                    'chanel_total_price_with_shipping_format' => $data['chanel_total_price_with_shipping_format'],
-                    'chanel_total_tax' => $data['chanel_total_tax'],
-                    'chanel_total_tax_format' => $data['chanel_total_tax_format'],
-                    'chanel_image' => $data['chanel_image'],
-                    'chanel_order_to_pay' => $order_to_pay,
-                    'chanel_order_to_pay_format' => Ecb::formatPrice($order_to_pay, 1),
-                    'chanel_hash' => Autorize::passwordHash((float) $data['chanel_total_tax'] . $order_to_pay . (float) $data['chanel_total_price_with_shipping'] . Valid::inPOST('products_order_json') . $data['chanel_module_name'] . (float) $data['chanel_shipping_price'] . (float) $data['chanel_total_price'])
-                ];
+                    $order_to_pay = (float) $data['chanel_total_price_with_shipping'] + (float) $data['chanel_total_tax'];
+                    // INTERFACE
+                    $interface = [
+                        'chanel_id' => $data['chanel_id'],
+                        'chanel_module_name' => $data['chanel_module_name'],
+                        'chanel_name' => $data['chanel_name'],
+                        'chanel_total_price' => $data['chanel_total_price'],
+                        'chanel_total_price_format' => $data['chanel_total_price_format'],
+                        'chanel_minimum_price' => $data['chanel_minimum_price'],
+                        'chanel_minimum_price_format' => $data['chanel_minimum_price_format'],
+                        'chanel_shipping_price' => $data['chanel_shipping_price'],
+                        'chanel_shipping_price_format' => $data['chanel_shipping_price_format'],
+                        'chanel_total_price_with_shipping' => $data['chanel_total_price_with_shipping'],
+                        'chanel_total_price_with_shipping_format' => $data['chanel_total_price_with_shipping_format'],
+                        'chanel_total_tax' => $data['chanel_total_tax'],
+                        'chanel_total_tax_format' => $data['chanel_total_tax_format'],
+                        'chanel_image' => $data['chanel_image'],
+                        'chanel_order_to_pay' => $order_to_pay,
+                        'chanel_order_to_pay_format' => Ecb::formatPrice($order_to_pay, 1),
+                        'chanel_hash' => Autorize::passwordHash((float) $data['chanel_total_tax'] . $order_to_pay . (float) $data['chanel_total_price_with_shipping'] . Valid::inPostJson('products_order_json') . $data['chanel_module_name'] . (float) $data['chanel_shipping_price'] . (float) $data['chanel_total_price'])
+                    ];
 
-                array_push($interface_data, $interface);
+                    array_push($interface_data, $interface);
+                }
             }
             echo json_encode($interface_data);
             exit;
@@ -92,28 +94,30 @@ class Cart {
      *
      */
     public function jsonEchoPayment() {
-        if (Valid::inPOST('payment_shipping_json')) {
-            Payment::loadData(Valid::inPOST('payment_shipping_json'));
+        if (Valid::inPostJson('payment_shipping_json')) {
+            Payment::loadData(Valid::inPostJson('payment_shipping_json'));
 
             $INTERFACE = new Interfaces();
             $modules_data = $INTERFACE->load('payment');
 
             $interface_data = [];
-            foreach ($modules_data as $data) {
+            if (is_array($modules_data)) {
+                foreach ($modules_data as $data) {
 
-                // INTERFACE
-                $interface = [
-                    'chanel_module_name' => $data['chanel_module_name'],
-                    'chanel_name' => $data['chanel_name'],
-                    'chanel_payment_price' => $data['chanel_payment_price'],
-                    'chanel_payment_currency' => $data['chanel_payment_currency'],
-                    'chanel_callback_url' => $data['chanel_callback_url'],
-                    'chanel_callback_type' => $data['chanel_callback_type'],
-                    'chanel_callback_data' => $data['chanel_callback_data'],
-                    'chanel_image' => $data['chanel_image']
-                ];
+                    // INTERFACE
+                    $interface = [
+                        'chanel_module_name' => $data['chanel_module_name'],
+                        'chanel_name' => $data['chanel_name'],
+                        'chanel_payment_price' => $data['chanel_payment_price'],
+                        'chanel_payment_currency' => $data['chanel_payment_currency'],
+                        'chanel_callback_url' => $data['chanel_callback_url'],
+                        'chanel_callback_type' => $data['chanel_callback_type'],
+                        'chanel_callback_data' => $data['chanel_callback_data'],
+                        'chanel_image' => $data['chanel_image']
+                    ];
 
-                array_push($interface_data, $interface);
+                    array_push($interface_data, $interface);
+                }
             }
             echo json_encode($interface_data);
             exit;
