@@ -12,9 +12,9 @@
         var modal_id = Number(button.dataset.edit);
         document.querySelector('#invoice').innerHTML = '';
         document.querySelector('#status_history').innerHTML = '';
-        
+
         var orders_edit = JSON.parse(document.querySelector('#ajax_data').dataset.orders)[modal_id];
-        
+
         var customer_data = JSON.parse(orders_edit.customer_data);
         var invoice = JSON.parse(orders_edit.invoice);
         var order_total = JSON.parse(orders_edit.order_total);
