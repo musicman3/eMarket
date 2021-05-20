@@ -58,9 +58,9 @@ class AddressBook {
      *
      */
     public function jsonEcho() {
-        if (Valid::inPOST('countries_select')) {
+        if (Valid::inPostJson('countries_select')) {
             self::$regions_data = Pdo::getColAssoc("SELECT * FROM " . TABLE_REGIONS . " WHERE language=? AND country_id=? ORDER BY name ASC", [
-                        lang('#lang_all')[0], Valid::inPOST('countries_select')
+                        lang('#lang_all')[0], Valid::inPostJson('countries_select')
             ]);
             echo json_encode(self::$regions_data);
             exit;

@@ -145,12 +145,12 @@ class Cart {
                 document.querySelector('#payment_method').classList.add('is-invalid');
             } else {
                 for (var payment_val of payment_method) {
-                    document.querySelector('#payment_method').insertAdjacentHTML('beforeend', '<option value="' + payment_val['chanel_module_name'] + '">' + payment_val['chanel_name'] + '</option>');
+                    document.querySelector('#payment_method').insertAdjacentHTML('beforeend', '<option value="' + payment_val.chanel_module_name + '">' + payment_val.chanel_name + '</option>');
                     document.querySelector('#payment_method').classList.remove('is-invalid');
                     document.querySelector('#payment_method').classList.add('is-valid');
-                    document.querySelector('#callback_url').value = payment_val['chanel_callback_url'];
-                    document.querySelector('#callback_type').value = payment_val['chanel_callback_type'];
-                    document.querySelector('#callback_data').value = payment_val['chanel_callback_data'];
+                    document.querySelector('#callback_url').value = payment_val.chanel_callback_url;
+                    document.querySelector('#callback_type').value = payment_val.chanel_callback_type;
+                    document.querySelector('#callback_data').value = payment_val.chanel_callback_data;
                 }
             }
             Cart.buttonClass();
@@ -163,7 +163,7 @@ class Cart {
      */
     static shippingData(lang) {
         Ajax.postData(window.location.href, {
-            shipping_region_json: document.querySelector('#address').selectedOptions[0].dataset['regions'],
+            shipping_region_json: document.querySelector('#address').selectedOptions[0].dataset.regions,
             products_order_json: document.querySelector('#products_order').value
         }, true, null, AjaxSuccess).then((data) => {
         });
@@ -173,42 +173,42 @@ class Cart {
             document.querySelector('#shipping_method').innerHTML = '';
 
             if (shipping_method.length < 1) {
-                document.querySelector('#shipping_method').insertAdjacentHTML('beforeend', '<option value="no">' + lang['cart_shipping_is_not_available'] + '</option>');
+                document.querySelector('#shipping_method').insertAdjacentHTML('beforeend', '<option value="no">' + lang.cart_shipping_is_not_available + '</option>');
                 document.querySelector('#shipping_method').classList.remove('is-valid');
                 document.querySelector('#shipping_method').classList.add('is-invalid');
-                document.querySelector('#shipping_price').innerHTML = lang['cart_shipping_price'] + ' <b>' + lang['product_price'] + '</b>';
-                document.querySelector('#total_price_modal').innerHTML = lang['cart_subtotal'] + ' <b>' + lang['total_price_cart_with_sale'] + '</b>';
+                document.querySelector('#shipping_price').innerHTML = lang.cart_shipping_price + ' <b>' + lang.product_price + '</b>';
+                document.querySelector('#total_price_modal').innerHTML = lang.cart_subtotal + ' <b>' + lang.total_price_cart_with_sale + '</b>';
             } else {
                 for (var shipping_val of shipping_method) {
-                    if (shipping_val['chanel_total_price'] < shipping_val['chanel_minimum_price']) {
-                        document.querySelector('#shipping_method').insertAdjacentHTML('beforeend', '<option value="no">' + shipping_val['chanel_name'] + lang['cart_shipping_is_not_available_and_min_price'] + ' ' + shipping_val['chanel_minimum_price_format'] + '</option>');
+                    if (shipping_val['chanel_total_price'] < shipping_val.chanel_minimum_price) {
+                        document.querySelector('#shipping_method').insertAdjacentHTML('beforeend', '<option value="no">' + shipping_val.chanel_name + lang.cart_shipping_is_not_available_and_min_price + ' ' + shipping_val.chanel_minimum_price_format + '</option>');
                         document.querySelector('#shipping_method').classList.remove('is-valid');
                         document.querySelector('#shipping_method').classList.add('is-invalid');
-                        document.querySelector('#shipping_price').innerHTML = lang['cart_shipping_price'] + ' <b>' + shipping_val['chanel_shipping_price_format'] + '</b>';
-                        document.querySelector('#total_price_modal').innerHTML = lang['cart_subtotal'] + +' <b>' + shipping_val['chanel_total_price_with_shipping_format'] + '</b>';
+                        document.querySelector('#shipping_price').innerHTML = lang.cart_shipping_price + ' <b>' + shipping_val.chanel_shipping_price_format + '</b>';
+                        document.querySelector('#total_price_modal').innerHTML = lang.cart_subtotal + +' <b>' + shipping_val.chanel_total_price_with_shipping_format + '</b>';
                         // input hidden
-                        document.querySelector('#order_total').value = shipping_val['chanel_total_price_with_shipping'];
-                        document.querySelector('#hash').value = shipping_val['chanel_hash'];
+                        document.querySelector('#order_total').value = shipping_val.chanel_total_price_with_shipping;
+                        document.querySelector('#hash').value = shipping_val.chanel_hash;
                     } else {
-                        document.querySelector('#shipping_method').insertAdjacentHTML('beforeend', '<option value="' + shipping_val['chanel_module_name'] + '" data-shipping="' + shipping_val['chanel_id'] + '">' + shipping_val['chanel_name'] + '</option>');
+                        document.querySelector('#shipping_method').insertAdjacentHTML('beforeend', '<option value="' + shipping_val.chanel_module_name + '" data-shipping="' + shipping_val.chanel_id + '">' + shipping_val.chanel_name + '</option>');
                         document.querySelector('#shipping_method').classList.remove('is-invalid');
                         document.querySelector('#shipping_method').classList.add('is-valid');
-                        document.querySelector('#shipping_price').innerHTML = lang['cart_shipping_price'] + ' <b>' + shipping_val['chanel_shipping_price_format'] + '</b>';
-                        document.querySelector('#total_price_modal').innerHTML = lang['cart_subtotal'] + ' <b>' + shipping_val['chanel_total_price_with_shipping_format'] + '</b>';
-                        if (shipping_val['chanel_total_tax'] > 0) {
-                            document.querySelector('#total_tax_price').innerHTML = lang['cart_estimated_taxes'] + ' <b>' + shipping_val['chanel_total_tax_format'] + '</b>';
+                        document.querySelector('#shipping_price').innerHTML = lang.cart_shipping_price + ' <b>' + shipping_val.chanel_shipping_price_format + '</b>';
+                        document.querySelector('#total_price_modal').innerHTML = lang.cart_subtotal + ' <b>' + shipping_val.chanel_total_price_with_shipping_format + '</b>';
+                        if (shipping_val.chanel_total_tax > 0) {
+                            document.querySelector('#total_tax_price').innerHTML = lang.cart_estimated_taxes + ' <b>' + shipping_val.chanel_total_tax_format + '</b>';
                         }
-                        if (shipping_val['chanel_total_tax'] === 0) {
-                            document.querySelector('#total_tax_price').innerHTML = lang['cart_price_including_all_taxes'];
+                        if (shipping_val.chanel_total_tax === 0) {
+                            document.querySelector('#total_tax_price').innerHTML = lang.cart_price_including_all_taxes;
                         }
-                        document.querySelector('#total_price_to_pay_modal').innerHTML = '<h5>' + lang['cart_total'] + ' ' + shipping_val['chanel_order_to_pay_format'] + '</h5>';
+                        document.querySelector('#total_price_to_pay_modal').innerHTML = '<h5>' + lang.cart_total + ' ' + shipping_val.chanel_order_to_pay_format + '</h5>';
                         // input hidden
-                        document.querySelector('#order_to_pay').value = shipping_val['chanel_order_to_pay'];
-                        document.querySelector('#order_total').value = shipping_val['chanel_total_price'];
-                        document.querySelector('#order_shipping_price').value = shipping_val['chanel_shipping_price'];
-                        document.querySelector('#order_total_tax').value = shipping_val['chanel_total_tax'];
-                        document.querySelector('#order_total_with_shipping').value = shipping_val['chanel_total_price_with_shipping'];
-                        document.querySelector('#hash').value = shipping_val['chanel_hash'];
+                        document.querySelector('#order_to_pay').value = shipping_val.chanel_order_to_pay;
+                        document.querySelector('#order_total').value = shipping_val.chanel_total_price;
+                        document.querySelector('#order_shipping_price').value = shipping_val.chanel_shipping_price;
+                        document.querySelector('#order_total_tax').value = shipping_val.chanel_total_tax;
+                        document.querySelector('#order_total_with_shipping').value = shipping_val.chanel_total_price_with_shipping;
+                        document.querySelector('#hash').value = shipping_val.chanel_hash;
                     }
                 }
             }

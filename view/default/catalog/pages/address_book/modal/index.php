@@ -52,9 +52,9 @@
                             <input class="form-control" placeholder="<?php echo lang('address_book_address_placeholder') ?>" type="text" name="address"  id="address" required />
                         </div>
                     </div>
-                    <div class="mb-3">
-                        <input class="check-box" hidden type="checkbox" data-off-color="danger" data-size="mini" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" name="default" id="default" checked>
-                        <label for="default"><?php echo lang('default_set') ?> </label>
+                    <div class="mb-3 form-check form-switch">
+                        <input class="form-check-input" type="checkbox" name="default" id="default" checked>
+                        <label class="form-check-label" for="default"><?php echo lang('default_set') ?> </label>
                     </div>
 
                 </div>
