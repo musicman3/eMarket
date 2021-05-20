@@ -6,71 +6,72 @@
 ?>
 
 <script type="text/javascript">
-    $('#index').on('show.bs.modal', function (event) {
+    document.querySelector('#index').addEventListener('show.bs.modal', function (event) {
 
-        var button = $(event.relatedTarget);
-        var modal_id = button.data('edit');
-        $('#invoice').empty();
-        $('#status_history').empty();
+        var button = event.relatedTarget;
+        var modal_id = Number(button.dataset.edit);
+        document.querySelector('#invoice').innerHTML = '';
+        document.querySelector('#status_history').innerHTML = '';
+        
+        var orders_edit = JSON.parse(document.querySelector('#ajax_data').dataset.orders)[modal_id];
+        
+        var customer_data = JSON.parse(orders_edit.customer_data);
+        var invoice = JSON.parse(orders_edit.invoice);
+        var order_total = JSON.parse(orders_edit.order_total);
+        var address_book = JSON.parse(customer_data.address_book);
+        var history_status = JSON.parse(orders_edit.orders_status_history);
+        var shipping_method = JSON.parse(orders_edit.shipping_method).customer;
+        var payment_method = JSON.parse(orders_edit.payment_method).customer;
 
-        var orders_edit = $('div#ajax_data').data('orders')[modal_id];
-        var customer_data = JSON.parse(orders_edit['customer_data']);
-        var invoice = JSON.parse(orders_edit['invoice']);
-        var order_total = JSON.parse(orders_edit['order_total']);
-        var address_book = JSON.parse(customer_data['address_book']);
-        var history_status = JSON.parse(orders_edit['orders_status_history']);
-        var shipping_method = JSON.parse(orders_edit['shipping_method'])['customer'];
-        var payment_method = JSON.parse(orders_edit['payment_method'])['customer'];
+        document.querySelector('#title').innerHTML = '<?php echo lang('orders_number') ?>: ' + orders_edit.id;
 
-        $('#title').html('<?php echo lang('orders_number') ?>: ' + orders_edit['id']);
+        document.querySelector('#description_client_name').innerHTML = customer_data.firstname + ' ' + customer_data.lastname;
+        document.querySelector('#description_client_phone').innerHTML = customer_data.telephone;
+        document.querySelector('#description_client_email').innerHTML = orders_edit.email;
 
-        $('#description_client_name').html(customer_data['firstname'] + ' ' + customer_data['lastname']);
-        $('#description_client_phone').html(customer_data['telephone']);
-        $('#description_client_email').html(orders_edit['email']);
+        document.querySelector('#description_payment_method').innerHTML = payment_method;
 
-        $('#description_payment_method').html(payment_method);
+        document.querySelector('#description_shipping_method').innerHTML = '<b>' + shipping_method + '</b>';
+        document.querySelector('#description_shipping_country').innerHTML = address_book.zip + ', ' + address_book.country + ', ' + address_book.region;
+        document.querySelector('#description_shipping_address').innerHTML = address_book.city + ', ' + address_book.address;
 
-        $('#description_shipping_method').html('<b>' + shipping_method + '</b>');
-        $('#description_shipping_country').html(address_book['zip'] + ', ' + address_book['country'] + ', ' + address_book['region']);
-        $('#description_shipping_address').html(address_book['city'] + ', ' + address_book['address']);
+        document.querySelector('#description_billing_country').innerHTML = address_book.zip + ', ' + address_book.country + ', ' + address_book.region;
+        document.querySelector('#description_billing_address').innerHTML = address_book.city + ', ' + address_book.address;
 
-        $('#description_billing_country').html(address_book['zip'] + ', ' + address_book['country'] + ', ' + address_book['region']);
-        $('#description_billing_address').html(address_book['city'] + ', ' + address_book['address']);
+        document.querySelector('#description_date_purchased').innerHTML = history_status[0].customer.status + ': ' + history_status[0].customer.date;
 
-        $('#description_date_purchased').html(history_status[0]['customer']['status'] + ': ' + history_status[0]['customer']['date']);
+        document.querySelector('#description_order_total').innerHTML = order_total.customer.total_to_pay_format;
 
-        $('#description_order_total').html(order_total['customer']['total_to_pay_format']);
-
-        for (x = 0; x < invoice.length; x++) {
-            if (invoice[x]['customer']['stiker'] !== null && invoice[x]['customer']['stiker'] !== undefined) {
-                var stiker = invoice[x]['customer']['stiker'];
+        for (var x = 0; x < invoice.length; x++) {
+            if (invoice[x].customer.stiker !== null && invoice[x].customer.stiker !== undefined) {
+                var stiker = invoice[x].customer.stiker;
             } else {
                 var stiker = '';
             }
-            $("#invoice").append('<tr class="align-middle">\n\
+            document.querySelector('#invoice').insertAdjacentHTML('beforeend', '<tr class="align-middle">\n\
                                         <td class="text-start"><span class="badge bg-success">' + stiker + '</span></td>\n\
-                                        <td class="text-center"><small>' + invoice[x]['customer']['name'] + '</small></td>\n\
-                                        <td class="text-center"><small>' + invoice[x]['customer']['price'] + '</small></td>\n\
-                                        <td class="text-center"><small>' + invoice[x]['data']['quantity'] + ' ' + invoice[x]['customer']['unit'] + '</small></td>\n\
-                                        <td class="text-end"><small>' + invoice[x]['customer']['amount'] + '</small></td>\n\
+                                        <td class="text-center"><small>' + invoice[x].customer.name + '</small></td>\n\
+                                        <td class="text-center"><small>' + invoice[x].customer.price + '</small></td>\n\
+                                        <td class="text-center"><small>' + invoice[x].data.quantity + ' ' + invoice[x].customer.unit + '</small></td>\n\
+                                        <td class="text-end"><small>' + invoice[x].customer.amount + '</small></td>\n\
                                   </tr>');
         }
 
-        $('#invoice_shipping_method').html('<b>' + shipping_method + '</b>');
-        $('#invoice_shipping_price').html(order_total['customer']['shipping_price_format']);
-        $('#invoice_order_total').html(order_total['customer']['total_format']);
+        document.querySelector('#invoice_shipping_method').innerHTML = '<b>' + shipping_method + '</b>';
+        document.querySelector('#invoice_shipping_price').innerHTML = order_total.customer.shipping_price_format;
+        document.querySelector('#invoice_order_total').innerHTML = order_total.customer.total_format;
 
-        if (Number(order_total['data']['order_total_tax']) > 0) {
-            $('#invoice_taxes').html(order_total['customer']['order_total_tax_format']);
+        if (Number(order_total.data.order_total_tax) > 0) {
+            document.querySelector('#invoice_taxes').innerHTML = order_total.customer.order_total_tax_format;
         }
-        if (Number(order_total['data']['order_total_tax']) === 0) {
-            $('#invoice_taxes').html('<?php echo lang('orders_price_including_all_taxes') ?>');
+        if (Number(order_total.data.order_total_tax) === 0) {
+            document.querySelector('#invoice_taxes').innerHTML = '<?php echo lang('orders_price_including_all_taxes') ?>';
         }
 
-        $('#invoice_order_total_to_pay').html(order_total['customer']['total_to_pay_format']);
+        document.querySelector('#invoice_order_total_to_pay').innerHTML = order_total.customer.total_to_pay_format;
 
-        for (x = 0; x < history_status.length; x++) {
-            $("#status_history").append('<span class="badge bg-success">' + history_status[x]['customer']['status'] + '</span> <span class="bi-check"></span><small> ' + history_status[x]['customer']['date'] + ' </small><br>');
+        for (var x = 0; x < history_status.length; x++) {
+            document.querySelector('#status_history').insertAdjacentHTML('beforeend', '<span class="badge bg-success">' + history_status[x].customer.status + '</span> <span class="bi-check"></span><small> ' + history_status[x].customer.date + ' </small><br>');
         }
 
     });
