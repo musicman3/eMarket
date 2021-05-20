@@ -58,9 +58,9 @@ require_once('modal/index.php')
 			    <td>
 				<div class="gap-2 d-flex justify-content-end">
 				    <button type="button" class="btn btn-primary btn-sm bi-pencil-square" data-bs-toggle="modal" data-bs-target="#index" data-edit="<?php echo $x ?>"></button>
-				    <form id="form_delete<?php echo $x ?>" name="form_delete" action="javascript:void(null);" onsubmit="Ajax.callDelete('<?php echo $x ?>')" enctype="multipart/form-data">
+				    <form id="form_delete<?php echo $x ?>" name="form_delete" action="javascript:void(null);" enctype="multipart/form-data">
 					<input hidden name="delete" value="<?php echo $x ?>">
-					<button type="submit" name="delete_but" class="btn btn-primary btn-sm bi-trash" data-placement="left" data-toggle="confirmation" data-singleton="true" data-popout="true" data-btn-ok-label="<?php echo lang('confirm-yes') ?>" data-btn-cancel-label="<?php echo lang('confirm-no') ?>" title="<?php echo lang('confirm-del') ?>"></button>
+					<button type="button" name="delete_but" class="btn btn-primary btn-sm bi-trash" onclick="Confirmation.del('<?php echo $x ?>')"></button>
 				    </form>
 				</div>
 			    </td>

@@ -51,6 +51,7 @@ use \eMarket\Core\{
     <body>
 
         <?php
+        require_once('confirm.php');
         foreach (View::tlpc('header') as $path) {
             require_once (ROOT . $path);
         }

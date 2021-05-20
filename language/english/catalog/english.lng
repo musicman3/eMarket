@@ -170,6 +170,7 @@ add_to_cart = Add to Cart
 action_completed_successfully = Action completed successfully!
 action_failed = Action failed!
 no_listing = No listing
+attention = ATTENTION!
 
 ;MESSAGES
 messages_email_is_busy = This E-Mail is busy! Please enter another email.
