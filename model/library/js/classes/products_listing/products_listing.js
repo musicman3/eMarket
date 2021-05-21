@@ -137,8 +137,8 @@ class ProductsListing {
      */
     static setList() {
         document.querySelectorAll('.popover').forEach(e => bootstrap.Popover.getInstance(e).hide());
-        document.querySelector('.item').classList.remove('col-xl-3', 'col-lg-4', 'col-md-6', 'col-12', 'grid-group-item');
-        document.querySelector('.item').classList.add('col-12', 'list-group-item');
+        document.querySelectorAll('.item').forEach(e => e.classList.remove('col-xl-3', 'col-lg-4', 'col-md-6', 'col-12', 'grid-group-item'));
+        document.querySelectorAll('.item').forEach(e => e.classList.add('col-12', 'list-group-item'));
         document.querySelector('.item-grid').classList.remove('active');
         document.querySelector('.item-list').classList.add('active');
     }
@@ -149,8 +149,8 @@ class ProductsListing {
      */
     static setGrid() {
         document.querySelectorAll('.popover').forEach(e => bootstrap.Popover.getInstance(e).hide());
-        document.querySelector('.item').classList.remove('col-12', 'list-group-item');
-        document.querySelector('.item').classList.add('col-xl-3', 'col-lg-4', 'col-md-6', 'col-12', 'grid-group-item');
+        document.querySelectorAll('.item').forEach(e => e.classList.remove('col-12', 'list-group-item'));
+        document.querySelectorAll('.item').forEach(e => e.classList.add('col-xl-3', 'col-lg-4', 'col-md-6', 'col-12', 'grid-group-item'));
         document.querySelector('.item-list').classList.remove('active');
         document.querySelector('.item-grid').classList.add('active');
     }
