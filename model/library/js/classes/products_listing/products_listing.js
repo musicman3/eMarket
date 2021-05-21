@@ -126,6 +126,7 @@ class ProductsListing {
             var data = xhr.response;
             var dataXHR = document.createElement('div');
             dataXHR.innerHTML = data;
+            document.querySelector('.button-sort').replaceWith(dataXHR.querySelector('.button-sort'));
             document.querySelector('#listing').replaceWith(dataXHR.querySelector('#listing'));
             ProductsListing.initGrid();
     }
