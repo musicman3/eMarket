@@ -3,23 +3,23 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-
 ?>
 <script type="text/javascript">
 
     function replaceClass(nameClass, reverse = true) {
         if (reverse === true) {
-            $(nameClass).removeClass('has-error');
-            $(nameClass).addClass('has-success');
+            document.querySelector(nameClass).classList.remove('is-invalid');
+            document.querySelector(nameClass).classList.add('is-valid');
         } else {
-            $(nameClass).removeClass('has-success');
-            $(nameClass).addClass('has-error');
-    }
-    }
+            document.querySelector(nameClass).classList.remove('is-valid');
+            document.querySelector(nameClass).classList.add('is-invalid');
 
-    $('#input-confirm').on('input', function () {
-        var password = $('#input-password').val();
-        var confirm = $('#input-confirm').val();
+    }
+    }
+    
+    Helpers.on('input', 'on', '#input-confirm', function (e) {
+        var password = document.querySelector('#input-password').value;
+        var confirm = document.querySelector('#input-confirm').value;
         if (confirm === password && password.length > 6 && confirm.length > 6 && password.length < 41 && confirm.length < 41) {
             replaceClass('.confirm', true);
             replaceClass('.password', true);
@@ -28,11 +28,11 @@
             replaceClass('.password', false);
         }
     });
-
-    function validate() {
-        var confirm = $('#input-confirm').get(0);
-        if ($('#input-password').val() !== $('#input-confirm').val()) {
-            confirm.setCustomValidity("<?php echo lang('register_password_check') ?>");
+    
+        function validate() {
+        var confirm = document.querySelector('#input-confirm');
+        if (document.querySelector('#input-password').value !== document.querySelector('#input-confirm').value) {
+            confirm.setCustomValidity('<?php echo lang('register_password_check') ?>');
         } else {
             confirm.setCustomValidity('');
         }

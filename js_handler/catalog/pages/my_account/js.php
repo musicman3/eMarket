@@ -31,7 +31,6 @@
 
     function validate() {
         var confirm = document.querySelector('#confirm_password');
-        console.log(confirm);
         if (document.querySelector('#password').value !== document.querySelector('#confirm_password').value) {
             confirm.setCustomValidity('<?php echo lang('my_account_password_check') ?>');
         } else {

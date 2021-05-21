@@ -16,10 +16,10 @@ foreach (View::tlpc('content') as $path) {
 
 <div id="alert_block"><?php Messages::alert(); ?></div>
 
-<?php if (isset(\Market\Catalog\RecoveryPass::$customer_id) && \Market\Catalog\RecoveryPass::$customer_id != FALSE) { ?>
+<?php if (isset(\eMarket\Catalog\RecoveryPass::$customer_id) && \eMarket\Catalog\RecoveryPass::$customer_id != FALSE) { ?>
     <h1><?php echo lang('register_password_recovery') ?></h1>
     <div id="forgotpass" class="contentText">
-        <form class="was-validated" enctype="multipart/form-data" method="post" action="" onchange="validate()">
+        <form class="was-validated" enctype="multipart/form-data" method="post" action="" oninput="validate()">
             <fieldset>
                 <legend><?php echo lang('enter_a_new_password') ?></legend>
                 <div class="input-group password">
