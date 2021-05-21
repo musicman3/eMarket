@@ -23,11 +23,11 @@ use \eMarket\Core\{
         <meta name="author" content="eMarket" />
         <meta name="owner" content="eMarket" />
         <meta name="copyright" content="Copyright © 2018 by eMarket Team. All right reserved." />
-
-        <title><?php echo Settings::titleCatalog() ?></title>
         <meta name="keywords" content="<?php echo Settings::keywordsCatalog() ?>">
         <meta name="description" content="">
 
+        <title><?php echo Settings::titleCatalog() ?></title>
+        
         <link type="image/x-icon" rel="shortcut icon" href="favicon.ico">
         <link rel="canonical" href="<?php echo Settings::canonicalPathCatalog() ?>" />
         <link rel="stylesheet" type="text/css" href="/ext/bootstrap/css/bootstrap.min.css" media="screen" />
