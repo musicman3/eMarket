@@ -2,6 +2,8 @@
  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+/* global bootstrap, Ajax */
+
 /**
  * Product in the catalog
  *
@@ -18,17 +20,19 @@ class Products {
      */
     static addToCart(id, pcs) {
         if (pcs > 0) {
-            jQuery.ajaxSetup({async: false});
-            jQuery.get(window.location.href,
-                    {add_to_cart: id,
-                        add_quantity: pcs},
-                    AjaxSuccess);
+            Ajax.postData(window.location.href, {
+                add_to_cart: id,
+                add_quantity: pcs
+            }, true, null, AjaxSuccess).then((data) => {
+            });
             function AjaxSuccess(data) {
-                $('#product_quantity').html(pcs);
-                $('#cart_bar').replaceWith($(data).find('#cart_bar'));
-                $('#products').replaceWith($(data).find('#products'));
+                document.querySelector('#product_quantity').innerHTML = pcs;
+                var ajax_data = document.createElement('div');
+                ajax_data.innerHTML = data;
+                document.querySelector('#cart_bar').replaceWith(ajax_data.querySelector('#cart_bar'));
+                document.querySelector('#products').replaceWith(ajax_data.querySelector('#products'));
+                new bootstrap.Modal(document.querySelector('#cart_message')).show();
                 $('#cart_message').modal('show');
-
                 new Products();
             }
         }
@@ -42,25 +46,24 @@ class Products {
      *
      */
     static pcsProduct(val, id, max_quantity = null) {
-        var a = $('#number_' + id).val();
+        var a = document.querySelector('#number_' + id).value;
 
-        $(document).click(function (e) {
-            if ($(e.target).closest('.button-plus').length) {
+        document.querySelector('body').addEventListener('click', (e) => {
+            if (e.target.closest('.button-plus') !== null) {
                 return;
             }
-            $('.popover').popover('hide');
+            document.querySelectorAll('.popover').forEach(e => bootstrap.Popover.getInstance(e).hide());
         });
 
         if (val === 'minus' && a > 1) {
-            $('#number_' + id).val(+a - 1);
+            document.querySelector('#number_' + id).value = +a - 1;
         }
         if (val === 'plus' && Number(a) < Number(max_quantity)) {
-            $('#number_' + id).val(+a + 1);
+            document.querySelector('#number_' + id).value = +a + 1;
         }
         if (Number(a) === Number(max_quantity)) {
-            $('#number_' + id).popover('show');
+            new bootstrap.Popover(document.querySelector('#number_' + id)).show();
     }
-
     }
 
 }

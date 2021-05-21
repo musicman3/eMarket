@@ -7,20 +7,12 @@
 use \eMarket\Catalog\Products;
 ?>
 
-<!-- Ekko Lightbox" -->
-<script type="text/javascript" src="/ext/ekko-lightbox/ekko-lightbox.min.js"></script>
-<link href="/ext/ekko-lightbox/ekko-lightbox.min.css" rel="stylesheet">
-<script type="text/javascript">
-    $(document).on('click', '[data-toggle="lightbox"]', function (event) {
-        event.preventDefault();
-        $(this).ekkoLightbox();
-    });
-</script>
-
 <script type="text/javascript" src="/model/library/js/classes/attributes/attributes_processing.js"></script>
 <script type="text/javascript" src="/model/library/js/classes/jsdata/jsdata.js"></script>
 <script type="text/javascript" src="/model/library/js/classes/products/products.js"></script>
+<script type="text/javascript" src="/model/library/js/classes/ajax/ajax.js"></script>
 <script type="text/javascript">
+    new Ajax();
     document.querySelector('#selected_attributes').value = '<?php echo Products::$products['attributes'] ?>';
     new Products();
     new AttributesProcessing();
