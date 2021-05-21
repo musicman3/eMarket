@@ -6,10 +6,10 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 ?>
-<script>
-    $(function () {
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
         window.setTimeout(function () {
-            $('#alert').alert('close');
+            new bootstrap.Alert(document.querySelector('#alert')).close();
         }, 3000);
     });
 </script>
