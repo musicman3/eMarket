@@ -29,13 +29,22 @@ class Cart {
      */
     public static function addProduct() {
 
-        if (Valid::inGET('add_to_cart')) {
-            $id = Valid::inGET('add_to_cart');
+        if (Valid::inGET('add_to_cart') || Valid::inPostJson('add_to_cart')) {
+            if (Valid::inGET('add_to_cart')) {
+                $id = Valid::inGET('add_to_cart');
+            }
+            if (Valid::inPostJson('add_to_cart')) {
+                $id = Valid::inPostJson('add_to_cart');
+            }
 
-            if (!Valid::inGET('add_quantity')) {
+            if (!Valid::inGET('add_quantity') && !Valid::inPostJson('add_quantity')) {
                 $quantity = 1;
-            } else {
+            }
+            if (Valid::inGET('add_quantity')) {
                 $quantity = Valid::inGET('add_quantity');
+            }
+            if (Valid::inPostJson('add_quantity')) {
+                $quantity = Valid::inPostJson('add_quantity');
             }
 
             $count = 0;

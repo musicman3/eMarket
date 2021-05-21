@@ -72,5 +72,23 @@ class Helpers {
         });
         return arr;
     }
-    
+
+    /**
+     * Url from array
+     *
+     *@param url {String} (URL)
+     *@param array {Array} (name array)
+     *@return url {String} (URL)
+     */
+    static urlFromArray(url, array) {
+        let url_out = new URL(url);
+        let params = new URLSearchParams(url_out.search.slice(1));
+        
+        for (var key in array) {
+            params.append(key, array[key]);
+        }
+        return '?' + params.toString();
+        
+    }
+
 }

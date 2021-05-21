@@ -25,7 +25,6 @@ require_once('modal/cart_message.php')
 <div id="ajax_data" class='hidden' data-product='<?php echo Listing::$product_edit ?>'></div>
 
 <?php if (Pages::$count > 0) { ?>
-    <div id="listing" class="contentText">
         <div class="bg-light mb-3 p-2 border rounded">
             <div class="btn-group">
                 <button type="button" class="btn btn-primary dropdown-toggle bi-arrow-down-up" data-bs-toggle="dropdown"> <?php echo Listing::$sort_name ?> </button>
@@ -35,8 +34,13 @@ require_once('modal/cart_message.php')
                     <li><a id="down" class="sorting dropdown-item"><?php echo lang('listing_sort_by_price_desc') ?></a></li>
                     <li><a id="up" class="sorting dropdown-item"><?php echo lang('listing_sort_by_price_asc') ?></a></li>
                 </ul>
+            </div>
 
-                &nbsp;&nbsp;<input class="check-box" hidden type="checkbox" data-off-color="success" data-size="large" data-label-text="<?php echo lang('button-view-switch') ?>" data-label-width='auto' data-on-text="<?php echo lang('button-all-switch') ?>" data-off-text="<?php echo lang('button-instock-switch') ?>" data-handle-width="auto" name="show_in_stock" id="show_in_stock"<?php echo Listing::$checked_stock ?>>
+            <div class="btn-group">
+                <input type="radio" class="btn-check" name="show_in_stock" id="primary-outlined" autocomplete="off" <?php echo Listing::$checked_stock ?>>
+                <label class="btn btn-outline-primary" for="primary-outlined"><?php echo lang('button-all-switch') ?></label>
+                <input type="radio" class="btn-check" name="show_in_stock" id="success-outlined" autocomplete="off">
+                <label class="btn btn-outline-success" for="success-outlined"><?php echo lang('button-instock-switch') ?></label>
             </div>
 
             <div class="btn-group float-end hidden-grid-list">
@@ -44,6 +48,7 @@ require_once('modal/cart_message.php')
                 <a id="list" class="btn btn-outline-secondary item-list bi-list"></a>
             </div>
         </div>
+    <div id="listing" class="contentText">
 
         <div id="product-data" class="row">
             <?php
@@ -92,7 +97,7 @@ require_once('modal/cart_message.php')
                         <div class="col-12 item-button">
                             <div class="block-button">
                                 <button class="btn btn-primary bi-dash" type="button" onclick="ProductsListing.pcsProduct('minus', <?php echo Pages::$table['line']['id'] ?>)"></button>
-                                <input id="number_<?php echo Pages::$table['line']['id'] ?>" data-placement="top" data-content="<?php echo lang('listing_no_more_in_stock') ?>" type="number" min="1" value="<?php echo Cart::maxQuantityToOrder(Pages::$table['line']) ?>" class="quantity" disabled>
+                                <input id="number_<?php echo Pages::$table['line']['id'] ?>" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="<?php echo lang('listing_no_more_in_stock') ?>" type="number" min="1" value="<?php echo Cart::maxQuantityToOrder(Pages::$table['line']) ?>" class="quantity" disabled>
                                 <button class="btn btn-primary button-plus bi-plus" type="button" onclick="ProductsListing.pcsProduct('plus', <?php echo Pages::$table['line']['id'] ?>, <?php echo Cart::maxQuantityToOrder(Pages::$table['line'], 'true') ?>)"></button>
                                 <button class="btn btn-primary buy-now<?php echo Cart::maxQuantityToOrder(Pages::$table['line'], 'class') ?>" onclick="ProductsListing.addToCart(<?php echo Pages::$table['line']['id'] ?>, $('#number_<?php echo Pages::$table['line']['id'] ?>').val())"><?php echo lang('buy_now') ?></button>
                             </div>
@@ -143,15 +148,15 @@ require_once('modal/cart_message.php')
 <?php } else { ?>
     <div id="listing" class="contentText">
         <div class="bg-light border rounded mb-3 py-3 px-2">
-	    <p class="card-text">
-		<?php
-		if (Valid::inGET('search')) {
-		    echo lang('listing_no_search');
-		} else {
-		    echo lang('listing_no');
-		}
-		?>
-	    </p>
+            <p class="card-text">
+                <?php
+                if (Valid::inGET('search')) {
+                    echo lang('listing_no_search');
+                } else {
+                    echo lang('listing_no');
+                }
+                ?>
+            </p>
         </div>
     </div>
     <?php

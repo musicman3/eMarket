@@ -68,7 +68,6 @@ class Cart {
                 return;
             }
             document.querySelectorAll('.popover').forEach(e => bootstrap.Popover.getInstance(e).hide());
-
         });
 
         if (val === 'minus' && a > 1) {

@@ -2,6 +2,8 @@
  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+/* global Helpers, bootstrap, Ajax */
+
 /**
  * Listing products in the catalog
  *
@@ -22,24 +24,24 @@ class ProductsListing {
      *
      */
     static init() {
-        $(document).ready(function () {
-            if ($('div#nav_data').data('sortflag') === 'on') {
+        document.addEventListener("DOMContentLoaded", function () {
+            if (document.querySelector('#nav_data').dataset.sortflag === 'on') {
                 sessionStorage.removeItem('sort_id');
             }
             ProductsListing.initGrid();
 
-            $('#list').click(function () {
+            document.querySelector('#list').addEventListener('click', (e) => {
                 ProductsListing.setList();
                 sessionStorage.setItem('grid_list', 'list');
             });
-            $('#grid').click(function () {
+            document.querySelector('#grid').addEventListener('click', (e) => {
                 ProductsListing.setGrid();
                 sessionStorage.setItem('grid_list', 'grid');
             });
         });
 
-        $('.sorting').click(function (event) {
-            if (document.getElementById('show_in_stock').checked) {
+        Helpers.on('body', 'click', '.sorting', function (e) {
+            if (document.querySelector('#primary-outlined').checked) {
                 var change = 'on';
             } else {
                 var change = 'off';
@@ -48,8 +50,8 @@ class ProductsListing {
             ProductsListing.getData(event.target.id, change);
         });
 
-        $('#show_in_stock').on('switchChange.bootstrapSwitch', function (event, state) {
-            if (document.getElementById('show_in_stock').checked) {
+        Helpers.on('body', 'click', 'input[name="show_in_stock"]', function (e) {
+            if (document.querySelector('#primary-outlined').checked) {
                 var change = 'on';
             } else {
                 var change = 'off';
@@ -59,12 +61,11 @@ class ProductsListing {
             } else {
                 var sort_id = sessionStorage.getItem('sort_id');
             }
-
             ProductsListing.getData(sort_id, change);
         });
 
-        $('.navigation').click(function (event) {
-            if (document.getElementById('show_in_stock').checked) {
+        Helpers.on('body', 'click', '.navigation', function (e) {
+            if (document.querySelector('#primary-outlined').checked) {
                 var change = 'on';
             } else {
                 var change = 'off';
@@ -74,11 +75,11 @@ class ProductsListing {
             } else {
                 var sort_id = sessionStorage.getItem('sort_id');
             }
-            var prev = $('div#nav_data').data('prev');
-            var next = $('div#nav_data').data('next');
+            var prev = document.querySelector('#nav_data').dataset.prev;
+            var next = document.querySelector('#nav_data').dataset.next;
 
             if (event.target.id === 'prev') {
-                ProductsListing.getData(sort_id, change, null, null, prev, next);
+                ProductsListing.getData(sort_id, change, '', '', prev, next);
             }
             if (event.target.id === 'next') {
                 ProductsListing.getData(sort_id, change, prev, next);
@@ -109,19 +110,24 @@ class ProductsListing {
      * @param backfinish {String} (value backfinish)
      *
      */
-    static getData(sort_id, change, start = null, finish = null, backstart = null, backfinish = null) {
-        jQuery.get(window.location.href,
-                {sort: sort_id,
-                    change: change,
-                    start: start,
-                    finish: finish,
-                    backstart: backstart,
-                    backfinish: backfinish},
-                AjaxSuccess);
-        function AjaxSuccess(data) {
-            $('#listing').replaceWith($(data).find('#listing'));
-            $('#show_in_stock').bootstrapSwitch();
-            new ProductsListing();
+    static getData(sort_id, change, start = '', finish = '', backstart = '', backfinish = '') {
+        let xhr = new XMLHttpRequest();
+        var url = Helpers.urlFromArray(window.location.href, {
+            sort: sort_id,
+            change: change,
+            start: start,
+            finish: finish,
+            backstart: backstart,
+            backfinish: backfinish
+        });
+        xhr.open('GET', url, false);
+        xhr.send();
+        if (xhr.status === 200) {
+            var data = xhr.response;
+            var dataXHR = document.createElement('div');
+            dataXHR.innerHTML = data;
+            document.querySelector('#listing').replaceWith(dataXHR.querySelector('#listing'));
+            ProductsListing.initGrid();
     }
     }
 
@@ -130,11 +136,11 @@ class ProductsListing {
      *
      */
     static setList() {
-        $('.popover').popover('hide');
-        $('#listing .item').removeClass('col-xl-3 col-lg-4 col-md-6 col-12 grid-group-item');
-        $('#listing .item').addClass('col-12 list-group-item');
-        $('#listing .item-grid').removeClass('active');
-        $('#listing .item-list').addClass('active');
+        document.querySelectorAll('.popover').forEach(e => bootstrap.Popover.getInstance(e).hide());
+        document.querySelector('.item').classList.remove('col-xl-3', 'col-lg-4', 'col-md-6', 'col-12', 'grid-group-item');
+        document.querySelector('.item').classList.add('col-12', 'list-group-item');
+        document.querySelector('.item-grid').classList.remove('active');
+        document.querySelector('.item-list').classList.add('active');
     }
 
     /**
@@ -142,11 +148,11 @@ class ProductsListing {
      *
      */
     static setGrid() {
-        $('.popover').popover('hide');
-        $('#listing .item').removeClass('col-12 list-group-item');
-        $('#listing .item').addClass('col-xl-3 col-lg-4 col-md-6 col-12 grid-group-item');
-        $('#listing .item-list').removeClass('active');
-        $('#listing .item-grid').addClass('active');
+        document.querySelectorAll('.popover').forEach(e => bootstrap.Popover.getInstance(e).hide());
+        document.querySelector('.item').classList.remove('col-12', 'list-group-item');
+        document.querySelector('.item').classList.add('col-xl-3', 'col-lg-4', 'col-md-6', 'col-12', 'grid-group-item');
+        document.querySelector('.item-list').classList.remove('active');
+        document.querySelector('.item-grid').classList.add('active');
     }
 
     /**
@@ -157,23 +163,23 @@ class ProductsListing {
      *
      */
     static pcsProduct(val, id, max_quantity = null) {
-        var a = $('#number_' + id).val();
+        var a = document.querySelector('#number_' + id).value;
 
-        $(document).click(function (e) {
-            if ($(e.target).closest('.button-plus').length) {
+        document.querySelector('body').addEventListener('click', (e) => {
+            if (e.target.closest('.button-plus') !== null) {
                 return;
             }
-            $('.popover').popover('hide');
+            document.querySelectorAll('.popover').forEach(e => bootstrap.Popover.getInstance(e).hide());
         });
 
         if (val === 'minus' && a > 1) {
-            $('#number_' + id).val(+a - 1);
+            document.querySelector('#number_' + id).value = +a - 1;
         }
         if (val === 'plus' && Number(a) < Number(max_quantity)) {
-            $('#number_' + id).val(+a + 1);
+            document.querySelector('#number_' + id).value = +a + 1;
         }
         if (Number(a) === Number(max_quantity)) {
-            $('#number_' + id).popover('show');
+            new bootstrap.Popover(document.querySelector('#number_' + id)).show();
     }
 
     }
@@ -186,27 +192,27 @@ class ProductsListing {
      */
     static addToCart(id, pcs) {
         if (pcs > 0) {
-            jQuery.ajaxSetup({async: false});
-            jQuery.get(window.location.href,
-                    {add_to_cart: id,
-                        add_quantity: pcs},
-                    AjaxSuccess);
+            Ajax.postData(window.location.href, {
+                add_to_cart: id,
+                add_quantity: pcs
+            }, true, null, AjaxSuccess).then((data) => {
+            });
             function AjaxSuccess(data) {
-                $('#product_image').empty();
-                var product_edit = $('div#ajax_data').data('product')[id];
+                document.querySelector('#product_image').innerHTML = '';
+                var product_edit = JSON.parse(document.querySelector('#ajax_data').dataset.product)[id];
 
-                $('#product_name').html(product_edit['name']);
-                $('#product_price_formated').html(product_edit['price_formated']);
-                $('#product_quantity').html(pcs);
-                $('#product_image').append('<img class="img-thumbnail mx-auto d-block" src="/uploads/images/products/resize_0/' + product_edit['logo_general'] + '" alt="' + product_edit['name'] + '" />');
+                document.querySelector('#product_name').innerHTML = product_edit.name;
+                document.querySelector('#product_price_formated').innerHTML = product_edit.price_formated;
+                document.querySelector('#product_quantity').innerHTML = pcs;
+                document.querySelector('#product_image').insertAdjacentHTML('afterbegin', '<img class="img-thumbnail mx-auto d-block" src="/uploads/images/products/resize_0/' + product_edit.logo_general + '" alt="' + product_edit.name + '" />');
 
-                $('#cart_bar').replaceWith($(data).find('#cart_bar'));
-                $('#product-data').replaceWith($(data).find('#product-data'));
-                $('#cart_message').modal('show');
-                $('#show_in_stock').bootstrapSwitch();
+                var ajax_data = document.createElement('div');
+                ajax_data.innerHTML = data;
+                document.querySelector('#cart_bar').replaceWith(ajax_data.querySelector('#cart_bar'));
+                document.querySelector('#product-data').replaceWith(ajax_data.querySelector('#product-data'));
+                new bootstrap.Modal(document.querySelector('#cart_message')).show();
                 new ProductsListing();
-
-                new ProductsListing();
+                ProductsListing.initGrid();
             }
         }
     }
