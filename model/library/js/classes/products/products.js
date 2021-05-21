@@ -32,7 +32,6 @@ class Products {
                 document.querySelector('#cart_bar').replaceWith(ajax_data.querySelector('#cart_bar'));
                 document.querySelector('#products').replaceWith(ajax_data.querySelector('#products'));
                 new bootstrap.Modal(document.querySelector('#cart_message')).show();
-                $('#cart_message').modal('show');
                 new Products();
             }
         }

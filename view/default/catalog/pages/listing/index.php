@@ -100,7 +100,7 @@ require_once('modal/cart_message.php')
                                 <button class="btn btn-primary bi-dash" type="button" onclick="ProductsListing.pcsProduct('minus', <?php echo Pages::$table['line']['id'] ?>)"></button>
                                 <input id="number_<?php echo Pages::$table['line']['id'] ?>" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="<?php echo lang('listing_no_more_in_stock') ?>" type="number" min="1" value="<?php echo Cart::maxQuantityToOrder(Pages::$table['line']) ?>" class="quantity" disabled>
                                 <button class="btn btn-primary button-plus bi-plus" type="button" onclick="ProductsListing.pcsProduct('plus', <?php echo Pages::$table['line']['id'] ?>, <?php echo Cart::maxQuantityToOrder(Pages::$table['line'], 'true') ?>)"></button>
-                                <button class="btn btn-primary buy-now<?php echo Cart::maxQuantityToOrder(Pages::$table['line'], 'class') ?>" onclick="ProductsListing.addToCart(<?php echo Pages::$table['line']['id'] ?>, $('#number_<?php echo Pages::$table['line']['id'] ?>').val())"><?php echo lang('buy_now') ?></button>
+                                <button class="btn btn-primary buy-now<?php echo Cart::maxQuantityToOrder(Pages::$table['line'], 'class') ?>" onclick="ProductsListing.addToCart(<?php echo Pages::$table['line']['id'] ?>,  document.querySelector('#number_<?php echo Pages::$table['line']['id'] ?>').value)"><?php echo lang('buy_now') ?></button>
                             </div>
                         </div>
                     </div>
