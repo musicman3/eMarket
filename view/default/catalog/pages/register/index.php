@@ -24,7 +24,7 @@ if (!Valid::inPOST('email')) {
     <h1><?php echo lang('register_account') ?></h1>
 
     <div id="register" class="contentText">
-        <form class="was-validated" enctype="multipart/form-data" method="post" action="" onchange="validate()">
+        <form class="was-validated" enctype="multipart/form-data" method="post" action="" oninput="validate()">
             <div class="row">
                 <div class="col-md-6">
                     <fieldset id="account">
@@ -67,8 +67,10 @@ if (!Valid::inPOST('email')) {
                     </fieldset>
                 </div>
             </div>
-            <div class="text-end mb-3"><?php echo sprintf(lang('register_privacy_statement_agree'), '#privacy_policy') ?>&nbsp;
-                <input type="checkbox" name="agree_privacy_policy" id="agree_privacy_policy" data-size="large" data-on-color="success" data-off-color="danger" data-on-text="<?php echo lang('confirm-yes-switch') ?>" data-off-text="<?php echo lang('confirm-no-switch') ?>" required>&nbsp;
+        
+            <div class="text-end mb-3 form-check form-switch">
+                <?php echo sprintf(lang('register_privacy_statement_agree'), '#privacy_policy') ?>&nbsp;
+                <input class="form-check-input" type="checkbox" name="agree_privacy_policy" id="agree_privacy_policy" required>&nbsp;
                 <input class="btn btn-primary" type="submit" value="<?php echo lang('continue') ?>">
             </div>
         </form>
@@ -81,15 +83,15 @@ if (Valid::inPOST('email') && Register::$user_email != NULL) {
     <h1><?php echo lang('register_account') ?></h1>
 
     <div id="register" class="contentText">
-	<div class="bg-light border rounded mb-3 py-3 px-2">
-	    <p class="card-text"><?php echo lang('register_problem_message') ?></p>
-	</div>
-	<form>
-	    <input hidden name="route" value="register">
-	    <div class="text-end">
-		<input class="btn btn-primary" type="submit" value="<?php echo lang('continue') ?>">
-	    </div>
-	</form>
+        <div class="bg-light border rounded mb-3 py-3 px-2">
+            <p class="card-text"><?php echo lang('register_problem_message') ?></p>
+        </div>
+        <form>
+            <input hidden name="route" value="register">
+            <div class="text-end">
+                <input class="btn btn-primary" type="submit" value="<?php echo lang('continue') ?>">
+            </div>
+        </form>
     </div>
     <?php
 }
@@ -98,9 +100,9 @@ if (Valid::inPOST('email') && Register::$user_email == NULL) {
     <h1><?php echo lang('register_account') ?></h1>
 
     <div id="register" class="contentText">
-	<div class="bg-light border rounded mb-3 py-3 px-2">
-	    <p class="card-text"><?php echo lang('register_complete_message') ?></p>
-	</div>
+        <div class="bg-light border rounded mb-3 py-3 px-2">
+            <p class="card-text"><?php echo lang('register_complete_message') ?></p>
+        </div>
         <form>
             <input hidden name="route" value="catalog">
             <div class="text-end">
@@ -108,4 +110,5 @@ if (Valid::inPOST('email') && Register::$user_email == NULL) {
             </div>
         </form>
     </div>
-<?php }
+<?php
+}

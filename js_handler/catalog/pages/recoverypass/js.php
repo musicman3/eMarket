@@ -13,7 +13,6 @@
         } else {
             document.querySelector(nameClass).classList.remove('is-valid');
             document.querySelector(nameClass).classList.add('is-invalid');
-
     }
     }
     
@@ -33,8 +32,8 @@
         var confirm = document.querySelector('#input-confirm');
         if (document.querySelector('#input-password').value !== document.querySelector('#input-confirm').value) {
             confirm.setCustomValidity('<?php echo lang('register_password_check') ?>');
-        } else {
-            confirm.setCustomValidity('');
-        }
-    }
+                } else {
+                    confirm.setCustomValidity('');
+                }
+            }
 </script>
