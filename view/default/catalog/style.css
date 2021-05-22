@@ -72,12 +72,12 @@ h6 {font-size: .875rem;}
 @media (max-width:449px) {#listing-block .switch {display: none !important;}}
 @media (max-width:469px) {#listing .navigate-normal {display: none !important;}}
 @media (min-width:470px) {#listing .navigate-mini {display: none !important;}}
-#listing_block .dropdown-menu > li > a {cursor: pointer;}
 #listing .item-text ul {list-style: none;padding: 0;margin: 0;}
 #listing .quantity {all: unset;appearance: textfield;width: 2.5rem;text-align: center;vertical-align: middle;border: .0625rem solid #0D6EFD;border-radius: .25rem;padding: .391rem 0 .391rem 0;}
 #listing .buy-now {padding: .391rem .5rem;}
 #listing .labelsblock {position: absolute;margin: -.3125rem 0 0 -.3125rem;}
 #listing .labelsblock div {display: table;padding: .25rem .4375rem;color: #ffffff;font-size: .75rem;margin: 0 0 .25rem 0;border-radius: .25rem;text-transform: uppercase;font-weight: 700;}
+#listing-block .dropdown-menu > li > a {cursor: pointer;}
 
 #cart .table > :not(caption) > * > * {border-width: 0}
 #cart .quantity {all: unset;appearance: textfield;width: 1.875rem;text-align: center;vertical-align: middle;border: 1px solid #0D6EFD;border-radius: .25rem;padding: .172rem 0 .172rem 0;}
