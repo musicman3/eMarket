@@ -24,7 +24,7 @@ require_once('modal/cart_message.php')
 
 <div id="ajax_data" class='hidden' data-product='<?php echo Listing::$product_edit ?>'></div>
 
-<div id="listing_block" class="bg-light mb-3 p-2 border rounded">
+<div id="listing-block" class="bg-light mb-3 p-2 border rounded">
     <div class="btn-group button-sort">
         <button type="button" class="btn btn-primary dropdown-toggle bi-arrow-down-up" data-bs-toggle="dropdown"> <?php echo Listing::$sort_name ?> </button>
         <ul class="dropdown-menu">

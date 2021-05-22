@@ -68,8 +68,8 @@ h6 {font-size: .875rem;}
 #listing .grid-group-item .buy-now {float: right;}
 #listing .grid-group-item .item-heading {text-align: center;}
 #listing .grid-group-item .item-text {display: none;}
-@media (max-width:534px) {#listing_block .hidden-grid-list {display: none !important;}}
-@media (max-width:449px) {#listing_block .switch {display: none !important;}}
+@media (max-width:534px) {#listing-block .hidden-grid-list {display: none !important;}}
+@media (max-width:449px) {#listing-block .switch {display: none !important;}}
 @media (max-width:469px) {#listing .navigate-normal {display: none !important;}}
 @media (min-width:470px) {#listing .navigate-mini {display: none !important;}}
 #listing_block .dropdown-menu > li > a {cursor: pointer;}
