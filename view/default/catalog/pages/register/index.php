@@ -68,7 +68,7 @@ if (!Valid::inPOST('email')) {
                 </div>
             </div>
         
-            <div class="text-end mb-3 form-check form-switch">
+            <div class="text-end mb-3 form-switch">
                 <?php echo sprintf(lang('register_privacy_statement_agree'), '#privacy_policy') ?>&nbsp;
                 <input class="form-check-input" type="checkbox" name="agree_privacy_policy" id="agree_privacy_policy" required>&nbsp;
                 <input class="btn btn-primary" type="submit" value="<?php echo lang('continue') ?>">
