@@ -11,6 +11,10 @@ use \eMarket\Catalog\Products;
 <script type="text/javascript" src="/model/library/js/classes/jsdata/jsdata.js"></script>
 <script type="text/javascript" src="/model/library/js/classes/products/products.js"></script>
 <script type="text/javascript" src="/model/library/js/classes/ajax/ajax.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/ext/baguettebox/baguetteBox.min.css" />
+<script type="text/javascript" src="/ext/baguettebox/baguetteBox.min.js"></script>
+
 <script type="text/javascript">
     new Ajax();
     document.querySelector('#selected_attributes').value = '<?php echo Products::$products['attributes'] ?>';
