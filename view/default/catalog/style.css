@@ -94,7 +94,7 @@ h6 {font-size: .875rem;}
 
 #register legend, #login legend, #forgotpass legend, #my_account legend {font-size: .875rem;text-transform: uppercase;padding: 0 0 .3125rem;color: #666;border-bottom: .0625rem solid #e5e5e5;}
 
-#register .form-check-input {margin-left: 0;margin-top: .6em;}
+#register .form-check-input {margin-left: 0;margin-top: .6em;cursor: pointer;}
 
 #panel_attribute .selector {width: 30%}
 
