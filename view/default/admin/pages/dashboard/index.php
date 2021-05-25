@@ -9,7 +9,7 @@
 <div id="dashboard">
     <div class="welcome text-center">
 	<?php echo lang('index-title') ?>
-        <div class="welcome_logo">eMarket <small>V1.0 Alpha 4</small></div>
+        <div class="welcome_logo">eMarket <small>V1.0 Beta 1</small></div>
         <div class="welcome_description"><?php echo lang('index-text') ?></div>
     </div>
 </div>
