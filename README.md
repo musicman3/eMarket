@@ -7,6 +7,8 @@
   - Javascript >= ES6
   - HTML 5
 
+Features: Vanilla JS and Bootstrap 5.
+
 ### Install  
 Copy files to server and open page: http://localhost/controller/install
 
