@@ -44,7 +44,7 @@ h6 {font-size: .875rem;}
 /* Hide collapsed */
 [aria-expand="false"] {display: none;}
 /* Add icon to parents */
-.menu-parent > span::after {content: 'plus-square-dotted';display: inline-block;font-family: bootstrap-icons;margin-left: 0.5rem;transition: transform 1s ease;color: #0d6efd;}
+.menu-parent > span::after {content: 'plus-square-dotted';display: inline-block;font-family: bootstrap-icons;margin-left: 0.5rem;transition: transform 1s ease;color: #0d6efd;vertical-align: middle;cursor: pointer;}
 /* Flip the icon */
 .menu-parent > span.menu-btn-active::after {transform: rotate(360deg);content: 'dash-square-dotted';color: #0d6efd;}
 .menu-bold {font-weight: bold;}
