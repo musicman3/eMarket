@@ -28,13 +28,13 @@ if (Products::$products != FALSE) {
                     <?php } ?>
                 </div>
 
-                <a href="/uploads/images/products/resize_4/<?php echo Products::$products['logo_general'] ?>" data-bs-toggle="lightbox" data-gallery="example-gallery" data-type="image">
+                <a href="/uploads/images/products/resize_4/<?php echo Products::$products['logo_general'] ?>" data-litebox>
                     <img src="/uploads/images/products/resize_2/<?php echo Products::$products['logo_general'] ?>" alt="<?php echo Products::$products['name'] ?>" class="img-fluid rounded mx-auto d-block mb-3 ">
                 </a>
                 <div class="row justify-content-center">
                     <?php foreach (Products::$images as $val) { ?>
                         <div class="col-xl-3 col-md-4 col-5">
-                            <a href="/uploads/images/products/resize_4/<?php echo $val ?>" data-bs-toggle="lightbox" data-gallery="example-gallery" data-type="image">
+                            <a href="/uploads/images/products/resize_4/<?php echo $val ?>" data-litebox>
                                 <img src="/uploads/images/products/resize_1/<?php echo $val ?>" alt="<?php echo Products::$products['name'] ?>" class="img-thumbnail">
                             </a>
                         </div>

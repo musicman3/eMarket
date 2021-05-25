@@ -17,4 +17,7 @@ use \eMarket\Catalog\Products;
     new Products();
     new AttributesProcessing();
     AttributesProcessing.add('catalog', <?php echo json_encode(Products::$attributes_data) ?>, '<?php echo lang('#lang_all')[0] ?>');
+    
+    // Litebox
+    new Litebox();
 </script>

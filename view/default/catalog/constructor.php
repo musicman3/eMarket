@@ -31,12 +31,14 @@ use \eMarket\Core\{
         <link type="image/x-icon" rel="shortcut icon" href="favicon.ico">
         <link rel="canonical" href="<?php echo Settings::canonicalPathCatalog() ?>" />
         <link rel="stylesheet" type="text/css" href="/ext/bootstrap/css/bootstrap.min.css" media="screen" />
-        <link rel="stylesheet" href="/ext/bootstrap/css/bootstrap-icons.css" type="text/css"/>
+        <link rel="stylesheet" type="text/css" href="/ext/bootstrap/css/bootstrap-icons.css"/>
         <link rel="stylesheet" type="text/css" href="/view/<?php echo Settings::template() ?>/catalog/style.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="/ext/andreasremdt/css/litebox.css" />
         
         <script type="text/javascript" src="/model/library/js/classes/helpers/helpers.js"></script>
         <script type="text/javascript" src="/model/library/js/classes/confirm/confirm.js"></script>
-        <script src="/ext/kyleschaeffer/menu.js"></script>
+        <script type="text/javascript" src="/ext/kyleschaeffer/menu.js"></script>
+        <script type="text/javascript" src="/ext/andreasremdt/js/litebox.min.js"></script>
 
         <script type="text/javascript">
             var Confirmation = new Confirm();
