@@ -116,27 +116,30 @@ class Tree {
         }
 
         if ($marker != TRUE) {
-            echo '<ul class="box-category treeview">';
+            echo '<ul class="box-category">';
         } else {
             echo '<ul>';
         }
 
         foreach ($array_cat[$parent_id] as $value) {
-            if ($value->id == Valid::inGET('category_id') OR in_array($value->id, $array_cat2)) {
-                echo '<li class="collapsable open" id="' . $value->id . '"><a href="?route=listing&category_id=' . $value->id . '">' . $value->name . '</a>';
-            } else {
-                echo '<li class="expandable" id="' . $value->id . '"><a href="?route=listing&category_id=' . $value->id . '">' . $value->name . '</a>';
-            }
+            echo '<li id="cat_' . $value->id . '"><a id="namecat_' . $value->id . '" href="?route=listing&category_id=' . $value->id . '">' . $value->name . '</a><span></span>';
             self::categories($sql, null, $array_cat2, $value->id, TRUE);
             echo '</li>';
         }
 
-        if ($marker != TRUE) {
-            echo '</ul>';
-        } else {
-            echo '</ul>';
-        }
+        echo '</ul>';
+
         return $array_cat2;
+    }
+
+    /**
+     * Autoloading class files for modules
+     *
+     * @return array $return_array
+     */
+    public static function treeUp() {
+        $sql = \eMarket\Core\Pdo::getObj("SELECT id, name, status, parent_id FROM " . TABLE_CATEGORIES . " WHERE language=? AND status=? ORDER BY sort_category DESC", [lang('#lang_all')[0], 1]);
+        self::$categories_and_breadcrumb = \eMarket\Core\Func::escape_sign(\eMarket\Core\Tree::categories($sql, \eMarket\Core\Valid::inGET('category_id')));
     }
 
     /**

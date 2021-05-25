@@ -41,6 +41,30 @@ h6 {font-size: .875rem;}
 #layouts-categories .category_block .hitarea.expandable-hitarea:before {font-family: bootstrap-icons;content: 'bi-plus';color: #0d6efd;}
 #layouts-categories .category_block .hitarea.collapsable-hitarea:before {font-family: bootstrap-icons;content: 'bi-dash';color: #0d6efd;}
 
+/* Hide collapsed */
+[aria-expanded="false"] {
+  display: none;
+}
+
+/* Add icon to parents */
+.toggle-parent > span::after {
+  content: 'plus-square-dotted';
+  display: inline-block;
+  font-family: bootstrap-icons;
+  margin-left: 0.5rem;
+  transition: transform 1s ease;
+  color: #0d6efd;
+}
+
+/* Flip the icon */
+.toggle-parent > span.toggle-btn-active::after {
+  transform: rotate(360deg);
+  content: 'dash-square-dotted';
+  color: #0d6efd;
+}
+
+.toggle-bold {font-weight: bold;}
+
 #new_products .item-price {font-weight: 700;}
 #new_products .labelsblock {position: absolute;margin: -.3125rem 0 0 -.3125rem;}
 #new_products .labelsblock div {display: table;padding: .25rem .4375rem;color: #ffffff;font-size: .75rem;margin: 0 0 .25rem 0;border-radius: .25rem;text-transform: uppercase;font-weight: 700;}
