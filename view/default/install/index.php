@@ -24,7 +24,7 @@
             </h5>
         </div>
         <div class="card-body">
-            <form class="was-validated" action="success.php" method="post" accept-charset="utf-8" onchange="validate()">
+            <form class="was-validated" action="success.php" method="post" accept-charset="utf-8" oninput="validate()">
                 <input type='hidden' name='language' value='<?php echo \eMarket\Install\Index::$DEFAULT_LANGUAGE ?>' />
                 <div class="row">
                     <div class="col-md-5 col-lg-4 mb-2">

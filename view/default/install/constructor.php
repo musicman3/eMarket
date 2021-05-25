@@ -28,6 +28,7 @@ use \eMarket\Core\{
         <link rel="stylesheet" type="text/css" href="/ext/bootstrap/css/bootstrap.min.css" media="screen" />
         <link rel="stylesheet" href="/ext/bootstrap/css/bootstrap-icons.css" type="text/css"/>
         <link rel="stylesheet" type="text/css" href="/view/<?php echo Settings::template() ?>/install/style.css" media="screen" />
+        <script type="text/javascript" src="/model/library/js/classes/helpers/helpers.js"></script>
     </head>
     <body>
         <?php

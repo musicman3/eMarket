@@ -8,65 +8,65 @@
 <script type="text/javascript">
     function replaceClass(nameClass, reverse = true) {
         if (reverse === true) {
-            $(nameClass).removeClass('has-error');
-            $(nameClass).addClass('has-success');
+            document.querySelector(nameClass).classList.remove('is-invalid');
+            document.querySelector(nameClass).classList.add('is-valid');
         } else {
-            $(nameClass).removeClass('has-success');
-            $(nameClass).addClass('has-error');
+            document.querySelector(nameClass).classList.remove('is-valid');
+            document.querySelector(nameClass).classList.add('is-invalid');
     }
     }
 
-    if ($('#server_db').val() !== '') {
+    if (document.querySelector('#server_db').value !== '') {
         replaceClass('.server_db', true);
     }
-    if ($('#login_db').val() !== '') {
+    if (document.querySelector('#login_db').value !== '') {
         replaceClass('.login_db', true);
     }
-    if ($('#database_name').val() !== '') {
+    if (document.querySelector('#database_name').value !== '') {
         replaceClass('.database_name', true);
     }
-    if ($('#password_db').val() !== '') {
+    if (document.querySelector('#password_db').value !== '') {
         replaceClass('.password_db', true);
     }
 
-    if ($('#email').val().match(/^[a-zA-Zа-яА-Я_\d][-a-zA-Zа-яА-Я0-9_\.\d]*\@[a-zA-Zа-яА-Я\d][-a-zA-Zа-яА-Я\.\d]*\.[a-zA-Zа-яА-Я]{2,4}$/)) {
+    if (document.querySelector('#email').value.match(/^[a-zA-Zа-яА-Я_\d][-a-zA-Zа-яА-Я0-9_\.\d]*\@[a-zA-Zа-яА-Я\d][-a-zA-Zа-яА-Я\.\d]*\.[a-zA-Zа-яА-Я]{2,4}$/)) {
         replaceClass('.email', true);
     }
 
-    $('#server_db').on('input', function () {
-        if ($('#server_db').val() !== '') {
+    Helpers.on('input', 'on', '#server_db', function (e) {
+        if (document.querySelector('#server_db').value !== '') {
             replaceClass('.server_db', true);
         } else {
             replaceClass('.server_db', false);
         }
     });
 
-    $('#login_db').on('input', function () {
-        if ($('#login_db').val() !== '') {
+    Helpers.on('input', 'on', '#login_db', function (e) {
+        if (document.querySelector('#login_db').value !== '') {
             replaceClass('.login_db', true);
         } else {
             replaceClass('.login_db', false);
         }
     });
 
-    $('#database_name').on('input', function () {
-        if ($('#database_name').val() !== '') {
+    Helpers.on('input', 'on', '#database_name', function (e) {
+        if (document.querySelector('#database_name').value !== '') {
             replaceClass('.database_name', true);
         } else {
             replaceClass('.database_name', false);
         }
     });
 
-    $('#password_db').on('input', function () {
-        if ($('#password_db').val() !== '') {
+    Helpers.on('input', 'on', '#password_db', function (e) {
+        if (document.querySelector('#password_db').value !== '') {
             replaceClass('.password_db', true);
         } else {
             replaceClass('.password_db', false);
         }
     });
 
-    $('#email').on('input', function () {
-        var email = $('#email').val();
+    Helpers.on('input', 'on', '#email', function (e) {
+        var email = document.querySelector('#email').value;
         if (!email.match(/^[a-zA-Zа-яА-Я_\d][-a-zA-Zа-яА-Я0-9_\.\d]*\@[a-zA-Zа-яА-Я\d][-a-zA-Zа-яА-Я\.\d]*\.[a-zA-Zа-яА-Я]{2,4}$/)) {
             replaceClass('.email', false);
         } else {
@@ -74,9 +74,9 @@
         }
     });
 
-    $('#password_admin_confirm').on('input', function () {
-        var password = $('#password_admin').val();
-        var confirm = $('#password_admin_confirm').val();
+        Helpers.on('input', 'on', '#password_admin_confirm', function (e) {
+        var password = document.querySelector('#password_admin').value;
+        var confirm = document.querySelector('#password_admin_confirm').value;
         if (confirm === password && password.length > 6 && confirm.length > 6 && password.length < 41 && confirm.length < 41) {
             replaceClass('.confirm', true);
             replaceClass('.password', true);
@@ -88,10 +88,10 @@
     });
 
     function validate() {
-        var password = $("#password_admin").val();
-        var password_2 = $("#password_admin_confirm").val();
-        var email = $('#email').get(0);
-        var confirm = $("#password_admin_confirm").get(0);
+        var password = document.querySelector("#password_admin").value;
+        var password_2 = document.querySelector("#password_admin_confirm").value;
+        var email = document.querySelector('#email');
+        var confirm = document.querySelector("#password_admin_confirm");
 
         if (password !== password_2) {
             confirm.setCustomValidity("<?php echo lang('password_check') ?>");
