@@ -33,12 +33,12 @@ use \eMarket\Core\{
         <link rel="stylesheet" type="text/css" href="/ext/bootstrap/css/bootstrap.min.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="/ext/bootstrap/css/bootstrap-icons.css"/>
         <link rel="stylesheet" type="text/css" href="/view/<?php echo Settings::template() ?>/catalog/style.css" media="screen" />
-        <link rel="stylesheet" type="text/css" href="/ext/andreasremdt/css/litebox.css" />
+        <link rel="stylesheet" type="text/css" href="/ext/baguettebox/baguetteBox.min.css" />
         
         <script type="text/javascript" src="/model/library/js/classes/helpers/helpers.js"></script>
         <script type="text/javascript" src="/model/library/js/classes/confirm/confirm.js"></script>
         <script type="text/javascript" src="/ext/kyleschaeffer/menu.js"></script>
-        <script type="text/javascript" src="/ext/andreasremdt/js/litebox.min.js"></script>
+        <script type="text/javascript" src="/ext/baguettebox/baguetteBox.min.js"></script>
 
         <script type="text/javascript">
             var Confirmation = new Confirm();

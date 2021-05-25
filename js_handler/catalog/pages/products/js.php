@@ -19,5 +19,5 @@ use \eMarket\Catalog\Products;
     AttributesProcessing.add('catalog', <?php echo json_encode(Products::$attributes_data) ?>, '<?php echo lang('#lang_all')[0] ?>');
     
     // Litebox
-    new Litebox();
+    baguetteBox.run('.gallery');
 </script>
