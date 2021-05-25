@@ -57,7 +57,7 @@ h6 {font-size: .875rem;}
 }
 
 /* Flip the icon */
-.menu-parent > span.toggle-btn-active::after {
+.menu-parent > span.menu-btn-active::after {
   transform: rotate(360deg);
   content: 'dash-square-dotted';
   color: #0d6efd;

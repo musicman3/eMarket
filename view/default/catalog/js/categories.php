@@ -15,7 +15,7 @@
         }
 
         var toggle = new Toggle({
-            buttonClassExpanded: 'toggle-btn-active',
+            buttonClassExpanded: 'menu-btn-active',
             buttonSelector: 'span',
             parentClass: 'menu-parent',
             singleSibling: true,
