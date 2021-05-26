@@ -27,11 +27,10 @@ use \eMarket\Core\{
 
                     <div class="tab-content pt-2">
                         <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade show in active">
-                            <div class="mb-3">
-                                <div class="input-group input-group-sm">
-                                    <span class="input-group-text bi-file-text"></span>
-                                    <input class="form-control" placeholder="<?php echo lang('name_region') ?>" type="text" name="name_regions_0" id="name_regions_0" required />
-                                </div>
+                            <small class="form-text text-muted" for="name_regions_0"><?php echo lang('name_region') ?></small>
+                            <div class="input-group input-group-sm mb-2">
+                                <span class="input-group-text bi-file-text"></span>
+                                <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_regions_0" id="name_regions_0" required />
                             </div>
                         </div>
 
@@ -41,11 +40,10 @@ use \eMarket\Core\{
                                 ?>
 
                                 <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">
-                                    <div class="mb-3">
-                                        <div class="input-group input-group-sm">
-                                            <span class="input-group-text bi-file-text"></span>
-                                            <input class="form-control" placeholder="<?php echo lang('name_region') ?>" type="text" name="name_regions_<?php echo $x ?>" id="name_regions_<?php echo $x ?>" required />
-                                        </div>
+                                    <small class="form-text text-muted" for="name_regions_<?php echo $x ?>"><?php echo lang('name_region') ?></small>
+                                    <div class="input-group input-group-sm mb-2">
+                                        <span class="input-group-text bi-file-text"></span>
+                                        <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_regions_<?php echo $x ?>" id="name_regions_<?php echo $x ?>" required />
                                     </div>
                                 </div>
 
@@ -54,10 +52,11 @@ use \eMarket\Core\{
                         }
                         ?>
 
-                        <div class="mb-3">
+                        <div class="mb-2">
+                            <small class="form-text text-muted" for="region_code_regions"><?php echo lang('region_code') ?></small>
                             <div class="input-group input-group-sm">
                                 <span class="input-group-text bi-file-text"></span>
-                                <input class="form-control" placeholder="<?php echo lang('region_code') ?>" type="text" name="region_code_regions" id="region_code_regions" required />
+                                <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="region_code_regions" id="region_code_regions" required />
                             </div>
                         </div>
                     </div>

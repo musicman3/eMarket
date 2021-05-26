@@ -25,11 +25,10 @@ use \eMarket\Core\{
 
                     <div class="tab-content pt-2">
                         <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade show in active">
-                            <div class="mb-3">
-                                <div class="input-group input-group-sm">
-                                    <span class="input-group-text bi-file-text"></span>
-                                    <input class="form-control" placeholder="<?php echo lang('name_country') ?>" type="text" name="name_countries_0" id="name_countries_0" required />
-                                </div>
+                            <small class="form-text text-muted" for="name_countries_0"><?php echo lang('name_country') ?></small>
+                            <div class="input-group input-group-sm mb-2">
+                                <span class="input-group-text bi-file-text"></span>
+                                <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_countries_0" id="name_countries_0" required />
                             </div>
                         </div>
 
@@ -39,11 +38,10 @@ use \eMarket\Core\{
                                 ?>
 
                                 <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">
-                                    <div class="mb-3">
-                                        <div class="input-group input-group-sm">
-                                            <span class="input-group-text bi-file-text"></span>
-                                            <input class="form-control" placeholder="<?php echo lang('name_country') ?>" type="text" name="name_countries_<?php echo $x ?>" id="name_countries_<?php echo $x ?>" required />
-                                        </div>
+                                    <small class="form-text text-muted" for="name_countries_<?php echo $x ?>"><?php echo lang('name_country') ?></small>
+                                    <div class="input-group input-group-sm mb-2">
+                                        <span class="input-group-text bi-file-text"></span>
+                                        <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_countries_<?php echo $x ?>" id="name_countries_<?php echo $x ?>" required />
                                     </div>
                                 </div>
 
@@ -52,19 +50,21 @@ use \eMarket\Core\{
                         }
                         ?>
 
-                        <div class="mb-3">
+                        <div class="mb-2">
+                            <small class="form-text text-muted" for="alpha_2_countries"><?php echo lang('alpha_2') ?></small>
                             <div class="input-group input-group-sm">
                                 <span class="input-group-text bi-file-text"></span>
-                                <input class="form-control" placeholder="<?php echo lang('alpha_2') ?>" type="text" name="alpha_2_countries" id="alpha_2_countries" required />
+                                <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="alpha_2_countries" id="alpha_2_countries" required />
                             </div>
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-2">
+                            <small class="form-text text-muted" for="alpha_3_countries"><?php echo lang('alpha_3') ?></small>
                             <div class="input-group input-group-sm">
                                 <span class="input-group-text bi-file-text"></span>
-                                <input class="form-control" placeholder="<?php echo lang('alpha_3') ?>" type="text" name="alpha_3_countries" id="alpha_3_countries" required />
+                                <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="alpha_3_countries" id="alpha_3_countries" required />
                             </div>
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-2">
                             <div><small class="form-text text-muted"><?php echo lang('address_format') ?></small></div>
                             <textarea class="input-sm form-control" placeholder="<?php echo lang('add_address_format') ?>" rows="5" name="address_format_countries" id="address_format_countries"></textarea>
                         </div> 
