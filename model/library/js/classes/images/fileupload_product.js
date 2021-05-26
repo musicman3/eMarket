@@ -115,7 +115,7 @@ class FileuploadProduct {
             document.querySelector('#general_image_add_product').value = '';
             document.querySelector('#alert_messages_product').innerHTML = '';
             document.querySelector('#logo-product').innerHTML = '';
-            document.querySelector('form').reset();
+            document.querySelectorAll('form').forEach(e => e.reset());
         });
     }
 

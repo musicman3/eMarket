@@ -40,7 +40,7 @@ $lang_js = json_encode([
         } else {
             document.querySelector('#edit').value = '';
             document.querySelector('#add').value = 'ok';
-            document.querySelector('form').reset();
+            document.querySelectorAll('form').forEach(e => e.reset());
         }
     });
 </script>

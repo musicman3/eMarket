@@ -114,7 +114,7 @@ class Fileupload {
             document.querySelector('#general_image_add').value = '';
             document.querySelector('#alert_messages').innerHTML = '';
             document.querySelector('#logo').innerHTML = '';
-            document.querySelector('form').reset();
+            document.querySelectorAll('form').forEach(e => e.reset());
         });
     }
 

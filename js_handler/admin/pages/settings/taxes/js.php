@@ -36,7 +36,7 @@
 
             document.querySelector('#edit').value = '';
             document.querySelector('#add').value = 'ok';
-            document.querySelector('form').reset();
+            document.querySelectorAll('form').forEach(e => e.reset());
 
             var json_data = JSON.parse(document.querySelector('#ajax_data').dataset.jsondata);
             document.querySelector('#zones_id').innerHTML = '';

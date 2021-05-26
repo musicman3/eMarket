@@ -62,7 +62,7 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
 
                             document.querySelector('#edit_product').value = '';
                             document.querySelector('#add_product').value = 'ok';
-                            document.querySelector('form').reset();
+                            document.querySelectorAll('form').forEach(e => e.reset());
                             document.querySelector('.wysiwyg').value = '';
                             new bootstrap.Modal(document.querySelector('#index_product')).show();
                         },
@@ -77,7 +77,7 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                         action: function () {
                             document.querySelector('#edit').value = '';
                             document.querySelector('#add').value = 'ok';
-                            document.querySelector('form').reset();
+                            document.querySelectorAll('form').forEach(e => e.reset());
                             new bootstrap.Modal(document.querySelector('#index')).show();
                         },
                         disabled: (new URL(document.location)).searchParams.get('search') !== null
