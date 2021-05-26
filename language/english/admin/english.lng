@@ -201,7 +201,7 @@ currencies_iso_4217 = Code ISO 4217
 currencies_name_little = Little name
 currencies_name_full = Full name
 currencies_value = Value
-currencies_position = Позиция
+currencies_position = Position
 
 ;TAXES
 taxes_modal_name = Name
