@@ -32,11 +32,10 @@ class DiscountSale {
         var discounts_view = 0;
         for (key in discounts) {
             discounts_options = discounts_options + '<option value="' + key + '">' + discounts[key] + '</option>';
-            if (key !== '' || key !== undefined){
+            if (key !== '' || key !== undefined) {
                 discounts_view++;
+            }
         }
-        }
-        console.log(discounts_view);
 
         var discount_dafault = '';
         for (var key in discounts_interface[4]) {
