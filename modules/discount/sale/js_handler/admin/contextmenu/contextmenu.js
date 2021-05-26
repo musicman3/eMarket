@@ -29,9 +29,14 @@ class DiscountSale {
         }
 
         var discounts_options = '';
+        var discounts_view = 0;
         for (key in discounts) {
             discounts_options = discounts_options + '<option value="' + key + '">' + discounts[key] + '</option>';
+            if (key !== '' || key !== undefined){
+                discounts_view++;
         }
+        }
+        console.log(discounts_view);
 
         var discount_dafault = '';
         for (var key in discounts_interface[4]) {
@@ -51,7 +56,7 @@ class DiscountSale {
         var output = {
             // ---------- Sale ----------
             text: '<span class="bi-star"> ' + lang['modules_discount_sale_admin_button_sale'] + '</span>',
-            disabled: discounts.length === 0 || json_data_product.name === undefined && json_data_category.name === undefined,
+            disabled: discounts_view === 0 || discounts.length === 0 || json_data_product.name === undefined && json_data_category.name === undefined,
             subMenu: [
                 {
                     // ---------- Sale select ----------

@@ -35,12 +35,10 @@
             new SmartDatepicker(start, end);
 
             document.querySelector('#default_module').checked = json_data.default[modal_id];
-        }
-
-        if (!Number.isInteger(modal_id) && button.data('bs-toggle') === 'modal') {
+        } else {
             document.querySelector('#edit').value = '';
             document.querySelector('#add').value = 'ok';
-            document.querySelector('form').reset();
+            document.querySelectorAll('form').forEach(e => e.reset());
             new SmartDatepicker();
         }
     });
