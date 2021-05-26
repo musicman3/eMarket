@@ -12,7 +12,6 @@ modules_shipping_free_version = 1.0
 
 ;TITLE
 modules_shipping_free_admin_shipping_zone = Зона доставки
-modules_shipping_free_admin_shipping_zone_select = Выберите зону доставки
 modules_shipping_free_admin_minimum_order_price = Минимальная сумма заказа
 modules_shipping_free_admin_minimum_order_price_for_free_shipping = Минимальная сумма заказа для бесплатной доставки
 

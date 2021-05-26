@@ -23,8 +23,8 @@ use \eMarket\Core\Modules\Shipping\Free;
                     <input type="hidden" id="edit" name="edit" value="" />
 
                     <div class="tab-content pt-2">
-                        <div class="form-group">
-                            <label for="zone"><?php echo lang('modules_shipping_free_admin_shipping_zone') ?></label>
+                        <div class="mb-2">
+                            <small class="form-text text-muted" for="zone"><?php echo lang('modules_shipping_free_admin_shipping_zone') ?></small>
                             <div class="input-group input-group-sm">
                                 <span class="input-group-text bi-pencil"></span>
                                 <select name="zone" id="zone" class="form-select">
@@ -37,9 +37,10 @@ use \eMarket\Core\Modules\Shipping\Free;
                                     ?>
                                 </select>
                             </div>
-                            <small id="zone_action" class="form-text text-muted"><?php echo lang('modules_shipping_free_admin_shipping_zone_select') ?></small>
+                            
                         </div>
-                        <div class="form-group">
+                        <div class="mb-2">
+                            <small class="form-text text-muted" for="zone"><?php echo lang('modules_shipping_free_admin_minimum_order_price') ?></small>
                             <div class="input-group input-group-sm">
                                 <span class="input-group-text"><?php echo Settings::currencyDefault()[3] ?></span>
                                 <input class="form-control" placeholder="<?php echo lang('modules_shipping_free_admin_minimum_order_price_for_free_shipping') ?>" type="text" name="minimum_price" id="minimum_price" autocomplete="off" required />
