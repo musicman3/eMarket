@@ -81,16 +81,16 @@ use \eMarket\Admin\Slideshow;
 
                     <!-- File-Upload -->
                     <div class="mb-2">
-                            <span class="btn btn-primary btn-sm bi-card-image fileinput-button mb-1">
-                                <span><?php echo lang('button_add_image') ?></span>
-                                <input class="form-control form-control-sm" id="fileupload" type="file" name="files[]" accept="image/jpeg,image/png,image/gif" multiple>
-                            </span>
-                            <br>
-                            <div id="progress" class="progress mb-3" style="height: 1.5rem;">
-                                <div class="progress-bar bg-danger progress-bar-striped progress-bar-animated"></div>
-                            </div>
-                            <div id="logo" class="gap-2 d-flex justify-content-center flex-wrap"></div>
+                        <span class="btn btn-primary btn-sm bi-card-image fileinput-button mb-1">
+                            <span><?php echo lang('button_add_image') ?></span>
+                            <input class="form-control form-control-sm" id="fileupload" type="file" name="files[]" accept="image/jpeg,image/png,image/gif" multiple>
+                        </span>
+                        <br>
+                        <div id="progress" class="progress mb-3" style="height: 1.5rem;">
+                            <div class="progress-bar bg-danger progress-bar-striped progress-bar-animated"></div>
                         </div>
+                        <div id="logo" class="gap-2 d-flex justify-content-center flex-wrap"></div>
+                    </div>
 
                     <div class="mb-2 form-check form-switch">
                         <input class="form-check-input" type="checkbox" name="view_slideshow" id="view_slideshow" checked>
