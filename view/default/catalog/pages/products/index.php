@@ -84,7 +84,7 @@ if (Products::$products != FALSE) {
                 </ul>
                 <hr>
                 <button class="btn btn-primary bi-dash" type="button" onclick="Products.pcsProduct('minus', <?php echo Products::$products['id'] ?>, <?php echo Products::$products['quantity'] ?>)"></button>
-                <input id="number_<?php echo Products::$products['id'] ?>" data-placement="top" data-content="<?php echo lang('listing_no_more_in_stock') ?>" type="number" min="1" value="<?php echo Cart::maxQuantityToOrder(Products::$products) ?>" class="quantity" disabled>
+                <input id="number_<?php echo Products::$products['id'] ?>" data-bs-placement="top" data-bs-content="<?php echo lang('listing_no_more_in_stock') ?>" type="number" min="1" value="<?php echo Cart::maxQuantityToOrder(Products::$products) ?>" class="quantity" disabled>
                 <button class="btn btn-primary button-plus bi-plus" type="button" onclick="Products.pcsProduct('plus', <?php echo Products::$products['id'] ?>, <?php echo Cart::maxQuantityToOrder(Products::$products, 'true') ?>)"></button>
                 <button class="btn btn-primary plus<?php echo Cart::maxQuantityToOrder(Products::$products, 'class') ?>" onclick="Products.addToCart(<?php echo Products::$products['id'] ?>,  document.querySelector('#number_<?php echo Products::$products['id'] ?>').value)"><?php echo lang('add_to_cart') ?></button>
             </div>
