@@ -379,6 +379,10 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                     event.preventDefault();
                 }
             });
+
+            setTimeout(function () {
+                new bootstrap.Alert(document.querySelector('#alert')).close();
+            }, 3000);
         }, 100);
     }
 </script>
