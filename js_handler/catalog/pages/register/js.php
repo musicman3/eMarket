@@ -72,7 +72,7 @@
         } else {
             confirm.setCustomValidity('');
         }
-        if (!document.querySelector('#input-email').value.match(/^[a-zA-Zа-яА-Я_\d][-a-zA-Zа-яА-Я0-9_\.\d]*\@[a-zA-Zа-яА-Я\d][-a-zA-Zа-яА-Я\.\d]*\.[a-zA-Zа-яА-Я]{2,4}$/)) {
+        if (!email.value.match(/^[a-zA-Zа-яА-Я_\d][-a-zA-Zа-яА-Я0-9_\.\d]*\@[a-zA-Zа-яА-Я\d][-a-zA-Zа-яА-Я\.\d]*\.[a-zA-Zа-яА-Я]{2,4}$/)) {
             email.setCustomValidity("<?php echo lang('register_email_check') ?>");
         } else {
             email.setCustomValidity('');
