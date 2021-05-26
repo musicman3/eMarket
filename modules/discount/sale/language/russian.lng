@@ -23,6 +23,8 @@ modules_discount_sale_admin_button_sale = Распродажа
 modules_discount_sale_admin_confirm_delete_sale = Вы уверены что хотите убрать из распродажи?
 modules_discount_sale_admin_confirm_delete_sales = Вы уверены что хотите убрать все распродажи?
 modules_discount_sale_admin_attention = ВНИМАНИЕ!
+modules_discount_sale_admin_enter_value = Введите значение
+modules_discount_sale_admin_enter_date = Введите дату
 
 [catalog]
 

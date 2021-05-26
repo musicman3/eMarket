@@ -26,9 +26,10 @@ use \eMarket\Core\{
 
                     <div class="tab-content pt-2">
                         <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade show in active">
-                            <div class="input-group input-group-sm mb-3">
+                            <small class="form-text text-muted" for="name_module_0"><?php echo lang('modules_discount_sale_admin_name') ?></small>
+                            <div class="input-group input-group-sm mb-2">
                                 <span class="input-group-text bi-file-text"></span>
-                                <input class="form-control" placeholder="<?php echo lang('modules_discount_sale_admin_name') ?>" type="text" name="name_module_0" id="name_module_0" required />
+                                <input class="form-control" placeholder="<?php echo lang('modules_discount_sale_admin_enter_value') ?>" type="text" name="name_module_0" id="name_module_0" required />
                             </div>
                         </div>
 
@@ -38,9 +39,10 @@ use \eMarket\Core\{
                                 ?>
 
                                 <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">
-                                    <div class="input-group input-group-sm mb-3">
+                                    <small class="form-text text-muted" for="name_module_<?php echo $x ?>"><?php echo lang('modules_discount_sale_admin_name') ?></small>
+                                    <div class="input-group input-group-sm mb-2">
                                         <span class="input-group-text bi-file-text"></span>
-                                        <input class="form-control" placeholder="<?php echo lang('modules_discount_sale_admin_name') ?>" type="text" name="name_module_<?php echo $x ?>" id="name_module_<?php echo $x ?>" required />
+                                        <input class="form-control" placeholder="<?php echo lang('modules_discount_sale_admin_enter_value') ?>" type="text" name="name_module_<?php echo $x ?>" id="name_module_<?php echo $x ?>" required />
                                     </div>
                                 </div>
 
@@ -48,17 +50,26 @@ use \eMarket\Core\{
                             }
                         }
                         ?>
-                        <div class="input-group input-group-sm mb-3">
-                            <span class="input-group-text bi-calendar"></span>
-                            <input class="form-control" placeholder="<?php echo lang('modules_discount_sale_admin_sale_start_date') ?>" type="text" name="start_date" id="start_date" autocomplete="off" required />
-                        </div>
-                        <div class="input-group input-group-sm mb-3">
-                            <span class="input-group-text bi-calendar"></span>
-                            <input class="form-control" placeholder="<?php echo lang('modules_discount_sale_admin_sale_end_date') ?>" type="text" name="end_date" id="end_date" autocomplete="off" required />
+                        <div class="mb-2">
+                            <small class="form-text text-muted" for="start_date"><?php echo lang('modules_discount_sale_admin_sale_start_date') ?></small>
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-text bi-calendar"></span>
+                                <input class="form-control" placeholder="<?php echo lang('modules_discount_sale_admin_enter_date') ?>" type="text" name="start_date" id="start_date" autocomplete="off" required />
                             </div>
-                        <div class="input-group input-group-sm mb-3">
-                            <span class="input-group-text bi-sort-numeric-down"></span>
-                            <input class="form-control" placeholder="<?php echo lang('modules_discount_sale_admin_value') ?>" type="text" name="sale_value" pattern="\d+(\.\d{0,2})?" id="sale_value" required />
+                        </div>
+                        <div class="mb-2">
+                            <small class="form-text text-muted" for="end_date"><?php echo lang('modules_discount_sale_admin_sale_end_date') ?></small>
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-text bi-calendar"></span>
+                                <input class="form-control" placeholder="<?php echo lang('modules_discount_sale_admin_enter_date') ?>" type="text" name="end_date" id="end_date" autocomplete="off" required />
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <small class="form-text text-muted" for="sale_value"><?php echo lang('modules_discount_sale_admin_value') ?></small>
+                            <div class="input-group input-group-sm mb-2">
+                                <span class="input-group-text bi-sort-numeric-down"></span>
+                                <input class="form-control" placeholder="<?php echo lang('modules_discount_sale_admin_enter_value') ?>" type="text" name="sale_value" pattern="\d+(\.\d{0,2})?" id="sale_value" required />
+                            </div>
                         </div>
                         <div class="mb-2 form-check form-switch">
                             <input class="form-check-input" type="checkbox" name="default_module" id="default_module" checked>

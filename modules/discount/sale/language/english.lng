@@ -24,6 +24,8 @@ modules_discount_sale_admin_button_sale = Sale
 modules_discount_sale_admin_confirm_delete_sale = Are you sure you want to remove from the sale?
 modules_discount_sale_admin_confirm_delete_sales = Are you sure you want to remove all sales?
 modules_discount_sale_admin_attention = ATTENTION!
+modules_discount_sale_admin_enter_value = Enter value
+modules_discount_sale_admin_enter_date = Enter date
 
 [catalog]
 
