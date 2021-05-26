@@ -208,7 +208,7 @@ register_privacy_policy_text = Privacy policy text...
 
 ;WELCOME
 welcome_name = Welcome %s!
-welcome_text = The default shopping cart comes with by Bootstrap 5 and Bootstrap Lightbox making it lighter, faster and responsive.
+welcome_text = The default shopping cart comes with by Bootstrap 5 and Vanilla JS making it lighter, faster and responsive.
 welcome_guest = Guest
 
 ;E-MAIL MESSAGES
