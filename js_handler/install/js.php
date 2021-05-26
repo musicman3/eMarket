@@ -74,7 +74,7 @@
         }
     });
 
-        Helpers.on('input', 'on', '#password_admin_confirm', function (e) {
+    Helpers.on('input', 'on', '#password_admin_confirm', function (e) {
         var password = document.querySelector('#password_admin').value;
         var confirm = document.querySelector('#password_admin_confirm').value;
         if (confirm === password && password.length > 6 && confirm.length > 6 && password.length < 41 && confirm.length < 41) {
