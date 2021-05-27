@@ -40,8 +40,8 @@ class Success {
      *
      */
     function __construct() {
-        $this->data();
         $this->verify();
+        $this->data();
     }
 
     /**
