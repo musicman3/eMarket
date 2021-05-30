@@ -77,6 +77,21 @@ class Messages {
     }
 
     /**
+     * Providers notifications
+     *
+     * @param string $to ('To' contact)
+     * @param string $body (message)
+     */
+    public static function sendProviders($to, $body) {
+        $active_modules = Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE type=? AND active=?", ['providers', '1']);
+        foreach ($active_modules as $module) {
+            $namespace = '\eMarket\Core\Modules\Providers\\' . ucfirst($module['name']);
+            $namespace::data();
+            $namespace::send($to, $body);
+        }
+    }
+
+    /**
      * Email notifications
      *
      * @param string $email_to Recipient's e-mail. Delimiter ";"

@@ -219,6 +219,9 @@ email_recovery_password_message = Click the link below to enter a new password t
 email_order_success_subject = Order #%s successfully completed (%s).
 email_order_success_message = Dear customer. Thank you for purchasing from eMarket. Your order #%s has been successfully completed. <br><br>Order status: %s. <br><br>Details of the order can be found in your personal account: <a href="%s" target="_blank">%s</a>
 
+;PROVIDERS
+providers_order_success = Order #%s successfully completed (%s).
+
 ;ORDERS
 orders_book = Orders book
 orders_total = Total

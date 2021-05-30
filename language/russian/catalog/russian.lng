@@ -219,6 +219,9 @@ email_recovery_password_message = Нажмите на ссылку, указан
 email_order_success_subject = Заказ №%s успешно оформлен (%s).
 email_order_success_message = Уважаемый покупатель. Спасибо за покупку в интернет-магазине eMarket. Ваш заказ №%s успешно оформлен. <br><br>Статус заказа: %s. <br><br>Подробности заказа можно посмотреть в Вашем личном кабинете: <a href="%s" target="_blank">%s</a>
 
+;PROVIDERS
+providers_order_success = Заказ №%s успешно оформлен (%s).
+
 ;ORDERS
 orders_book = Книга заказов
 orders_total = Итого

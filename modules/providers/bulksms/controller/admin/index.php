@@ -5,7 +5,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-$eMarketShippingFree = new \eMarket\Core\Modules\Shipping\Free();
+$eMarketHandlerBulksms = new \eMarket\Core\Modules\Providers\Bulksms();
 
 \eMarket\Core\Settings::jsModulesHandler();
 

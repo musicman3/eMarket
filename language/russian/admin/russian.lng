@@ -139,6 +139,7 @@ debug_pcs = шт.
 payment_modules = Оплата
 shipping_modules = Доставка
 discount_modules = Скидки
+providers_modules = Провайдеры
 cart_modules = Корзина
 other_modules = Другое
 installed_modules = Установленные модули
@@ -255,6 +256,7 @@ orders_price_including_all_taxes = Стоимость товаров указа�
 orders_email = E-mail
 orders_change_status_subject = Статус заказа №%s успешно изменен (%s).
 orders_change_status_message = Уважаемый покупатель. Статус Вашего заказа №%s изменен. <br><br>Новый статус заказа: %s. <br><br>Подробности заказа можно посмотреть в Вашем личном кабинете: <a href="%s" target="_blank">%s</a>
+orders_change_status_message_providers = Статус заказа №%s успешно изменен (%s).
 
 ;STOCK
 stock_tittle_specification_group_name = Название группы характеристик

@@ -91,7 +91,9 @@ class Orders {
 
                 $email_subject = sprintf(lang('orders_change_status_subject'), Valid::inPOST('edit'), $customer_status_history_select);
                 $email_message = sprintf(lang('orders_change_status_message'), Valid::inPOST('edit'), mb_strtolower($customer_status_history_select), HTTP_SERVER . '?route=success', HTTP_SERVER . '?route=success');
+                $providers_message = sprintf(lang('orders_change_status_message_providers'), Valid::inPOST('edit'), $customer_status_history_select);
                 Messages::sendMail($order_data['email'], $email_subject, $email_message);
+                Messages::sendProviders(json_decode($order_data['customer_data'], 1)['telephone'], $providers_message);
             } else {
                 exit;
             }

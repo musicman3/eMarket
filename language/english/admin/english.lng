@@ -139,6 +139,7 @@ debug_pcs = pcs.
 payment_modules = Payment
 shipping_modules = Shipping
 discount_modules = Discount
+providers_modules = Providers
 cart_modules = Cart
 other_modules = Other
 installed_modules = Installed modules
@@ -255,6 +256,7 @@ orders_price_including_all_taxes = Products subtotal is including all taxes
 orders_email = E-mail
 orders_change_status_subject = Status order #%s has been changed (%s).
 orders_change_status_message = Dear customer. The status of your order #%s has been changed <br><br>New order status: %s. <br><br>Details of the order can be found in your personal account: <a href="%s" target="_blank">%s</a>
+orders_change_status_message_providers = Status order #%s has been changed (%s).
 
 ;STOCK
 stock_tittle_specification_group_name = Specification group name

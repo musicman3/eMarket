@@ -47,7 +47,7 @@ foreach (View::tlpc('content') as $path) {
                     <small class="form-text text-muted"><?php echo lang('my_account_telephone') ?></small>
                     <div class="input-group">
                         <span class="input-group-text bi-pencil"></span>
-                        <input class="form-control" placeholder="<?php echo lang('my_account_enter_your_phone') ?>" type="text" name="telephone" id="lastname" value="<?php echo \eMarket\Core\Autorize::$customer['telephone'] ?>" />
+                        <input class="form-control" placeholder="<?php echo lang('my_account_enter_your_phone') ?>" type="tel" pattern="(\+[0-9]{10,13})" name="telephone" id="lastname" value="<?php echo Autorize::$customer['telephone'] ?>" />
                     </div>
 
                 </div>

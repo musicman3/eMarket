@@ -88,7 +88,7 @@ class Success {
             $this->paymentData();
             $this->shippingData();
             $this->save();
-            $this->sendEmail();
+            $this->sendMessages();
         }
     }
 
@@ -239,12 +239,14 @@ class Success {
      * Send Email
      *
      */
-    public function sendEmail() {
+    public function sendMessages() {
         $customer_order_data = Pdo::getColAssoc("SELECT * FROM " . TABLE_ORDERS . " WHERE email=? ORDER BY id DESC", [$_SESSION['email_customer']])[0];
 
         $email_subject = sprintf(lang('email_order_success_subject'), $customer_order_data['id'], self::$customer_orders_status_history);
         $email_message = sprintf(lang('email_order_success_message'), $customer_order_data['id'], mb_strtolower(self::$customer_orders_status_history), HTTP_SERVER . '?route=success', HTTP_SERVER . '?route=success');
+        $providers_message = sprintf(lang('providers_order_success'), $customer_order_data['id'], self::$customer_orders_status_history);
         Messages::sendMail($_SESSION['email_customer'], $email_subject, $email_message);
+        Messages::sendProviders(json_decode($customer_order_data['customer_data'], 1)['telephone'], $providers_message);
     }
 
     /**
