@@ -46,7 +46,7 @@ if (!Valid::inPOST('email')) {
                         <br>
                         <div class="input-group">
                             <span class="input-group-text bi-telephone"></span>
-                            <input class="form-control" type="tel" placeholder="<?php echo lang('register_telephone') ?>" id="input-telephone" value="" name="telephone">
+                            <input class="form-control" placeholder="<?php echo lang('register_telephone') ?>" type="tel" pattern="(\+[0-9]{10,13})" id="input-telephone" value="" name="telephone">
                         </div>
                         <br>
                     </fieldset>
