@@ -16,13 +16,13 @@ use \eMarket\Core\{
 };
 
 /**
- * Module Bulksms
+ * Module Smsc
  *
- * @package Bulksms
+ * @package Smsc
  * @author eMarket
  * 
  */
-class Bulksms {
+class Smsc {
 
     public static $data;
     public static $order_status;
@@ -67,12 +67,14 @@ class Bulksms {
         $username = self::$data['login'];
         $password = self::$data['password'];
         $sender = self::$data['sender'];
-        $messages = [
-            ['from' => $sender, 'to' => $to_phone_number, 'body' => $body]
-        ];
+        $messages = ['sender' => $sender, 'phones' => $to_phone_number, 'mes' => $body, 'login' => $username, 'psw' => $password];
 
-        $result = self::curl(json_encode($messages), 'https://api.bulksms.com/v1/messages?auto-unicode=true&longMessageMaxParts=30', $username, $password);
+        foreach ($messages as $name => $value) {
+            $encoded .= urlencode($name) . '=' . urlencode($value) . '&';
+        }
 
+        $result = self::curl($encoded, 'https://smsc.ru/sys/send.php');
+        
         if ($result['http_status'] != 201) {
             echo 'error';
         } else {
@@ -85,14 +87,11 @@ class Bulksms {
      *
      * @param array $post_body (json post body)
      * @param string $url (url)
-     * @param string $username (username)
-     * @param string $password (password)
      */
-    public static function curl($post_body, $url, $username, $password) {
+    public static function curl($post_body, $url) {
         $ch = curl_init();
         $headers = [
-            'Content-Type:application/json',
-            'Authorization:Basic ' . base64_encode("$username:$password")
+            'Content-Type:application/x-www-form-urlencoded'
         ];
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -107,7 +106,6 @@ class Bulksms {
         $output['http_status'] = $curl_info['http_code'];
         $output['error'] = curl_error($ch);
         curl_close($ch);
-        return $output;
     }
 
     /**
@@ -120,10 +118,10 @@ class Bulksms {
         $INTERFACE = new Interfaces();
 
         $interface = [
-            'chanel_module_name' => 'bulksms'
+            'chanel_module_name' => 'smsc'
         ];
 
-        $INTERFACE->save('providers', 'bulksms', $interface);
+        $INTERFACE->save('providers', 'smsc', $interface);
     }
 
     /**
@@ -152,7 +150,7 @@ class Bulksms {
      *
      */
     public static function data() {
-        $data = Pdo::getColAssoc("SELECT * FROM " . DB_PREFIX . 'modules_providers_bulksms', []);
+        $data = Pdo::getColAssoc("SELECT * FROM " . DB_PREFIX . 'modules_providers_smsc', []);
         if (count($data) > 0) {
             self::$data = $data[0];
         } else {

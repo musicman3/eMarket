@@ -1,0 +1,21 @@
+;=-=-=-= Copyright © 2018 eMarket =-=-=-=-=;
+;     GNU GENERAL PUBLIC LICENSE v.3.0     ;
+;   https://github.com/musicman3/eMarket   ;
+;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
+
+[all]
+modules_providers_smsc_name = Smsc.ru
+modules_providers_smsc_author = eMarket
+modules_providers_smsc_version = 1.0
+
+[admin]
+
+;TITLE
+modules_providers_smsc_admin_sender = Sender name
+modules_providers_smsc_admin_login = Login
+modules_providers_smsc_admin_password = Password
+
+[catalog]
+
+;TITLE
+modules_providers_smsc_catalog_test = Test
