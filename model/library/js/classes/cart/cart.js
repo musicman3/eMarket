@@ -35,6 +35,11 @@ class Cart {
         document.querySelector('#shipping_method').addEventListener('change', (e) => {
             Cart.paymentData(lang);
         });
+
+        document.querySelector('#payment_method').addEventListener('change', (e) => {
+            Cart.paymentClickValue(lang);
+        });
+
     }
 
     /**
@@ -147,14 +152,40 @@ class Cart {
                     document.querySelector('#payment_method').insertAdjacentHTML('beforeend', '<option value="' + payment_val.chanel_module_name + '">' + payment_val.chanel_name + '</option>');
                     document.querySelector('#payment_method').classList.remove('is-invalid');
                     document.querySelector('#payment_method').classList.add('is-valid');
-                    document.querySelector('#callback_url').value = payment_val.chanel_callback_url;
-                    document.querySelector('#callback_type').value = payment_val.chanel_callback_type;
-                    document.querySelector('#callback_data').value = payment_val.chanel_callback_data;
+                    if (payment_val.chanel_module_name === document.querySelector('#payment_method').value) {
+                        document.querySelector('#callback_url').value = payment_val.chanel_callback_url;
+                        document.querySelector('#callback_type').value = payment_val.chanel_callback_type;
+                        document.querySelector('#callback_data').value = payment_val.chanel_callback_data;
+                    }
                 }
             }
             Cart.buttonClass();
         }
     }
+
+    /**
+     * Values for selected payment module
+     *
+     *@param lang {Array} (lang)
+     */
+    static paymentClickValue(lang) {
+        Ajax.postData(window.location.href, {
+            payment_shipping_json: document.querySelector('#shipping_method').value
+        }, true, null, AjaxSuccess).then((data) => {
+        });
+        function AjaxSuccess(data) {
+            var payment_method = JSON.parse(data);
+
+            for (var payment_val of payment_method) {
+                if (payment_val.chanel_module_name === document.querySelector('#payment_method').value) {
+                    document.querySelector('#callback_url').value = payment_val.chanel_callback_url;
+                    document.querySelector('#callback_type').value = payment_val.chanel_callback_type;
+                    document.querySelector('#callback_data').value = payment_val.chanel_callback_data;
+                }
+            }
+        }
+    }
+
     /**
      * Data for shipping modules
      *
@@ -226,7 +257,7 @@ class Cart {
     static redirect(callback_url, callback_data, callback_type) {
         var form = '';
         var callback_data_arr = JSON.parse(callback_data);
-        callback_data_arr.forEach (function (key, value) {
+        callback_data_arr.forEach(function (key, value) {
             form += '<input type="hidden" name="' + key + '" value="' + value + '">';
         });
         document.querySelector('#index').insertAdjacentHTML('afterbegin', '<form id="redirect" action="' + callback_url + '" method="' + callback_type + '">' + form + '</form>');

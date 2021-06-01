@@ -88,7 +88,7 @@ class Success {
             $this->paymentData();
             $this->shippingData();
             $this->save();
-            $this->sendMessages();
+            $this->end();
         }
     }
 
@@ -236,10 +236,10 @@ class Success {
     }
 
     /**
-     * Send Email
+     * End
      *
      */
-    public function sendMessages() {
+    public function end() {
         $customer_order_data = Pdo::getColAssoc("SELECT * FROM " . TABLE_ORDERS . " WHERE email=? ORDER BY id DESC", [$_SESSION['email_customer']])[0];
 
         $email_subject = sprintf(lang('email_order_success_subject'), $customer_order_data['id'], self::$customer_orders_status_history);
