@@ -29,9 +29,9 @@ final class Ecb {
      * View price
      * 
      * @param array $input Array with products data
-     * @param string $marker (Format currency marker
+     * @param string $marker Format currency marker
      * @param string $quantity Quantity
-     * @param string $class (Bootstrap class for sale
+     * @param string $class Bootstrap class for sale
      * @return string Output data
      */
     public static function priceInterface($input, $marker, $quantity = 1, $class = null) {
