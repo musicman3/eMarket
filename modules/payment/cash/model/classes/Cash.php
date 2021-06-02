@@ -12,6 +12,7 @@ use \eMarket\Core\{
     Messages,
     Modules,
     Pdo,
+    Settings,
     Valid
 };
 
@@ -34,8 +35,11 @@ class Cash {
      *
      */
     function __construct() {
-        $this->save();
-        $this->data();
+        Settings::jsModulesHandler();
+        if (Settings::path() == 'admin') {
+            $this->save();
+            $this->data();
+        }
     }
 
     /**

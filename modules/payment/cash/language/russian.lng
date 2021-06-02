@@ -18,4 +18,6 @@ modules_payment_cash_admin_order_status_select = Выберите статус �
 [catalog]
 
 ;TITLE
-modules_payment_cash_catalog_test = Тест
+modules_payment_cash_catalog_complete_button = Завершить
+modules_payment_cash_catalog_text = Ваш заказ подготовлен. Вы можете оплатить наличными при получении заказа. Завершите покупку, чтобы заказ был принят.
+modules_payment_cash_catalog_amount_to_pay = Сумма к оплате:

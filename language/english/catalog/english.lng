@@ -146,7 +146,6 @@ cart_shipping_method = Shipping
 cart_shipping_method_small = Please, enter your shipping method
 cart_payment_method = Payment
 cart_payment_method_small = Please, enter your payment method
-cart_complete_button = Complete
 cart_product = Product
 cart_price = Price
 cart_quantity = Quantity
@@ -163,6 +162,9 @@ cart_payment_is_not_available = Payment for this shipping method is not availabl
 cart_shipping_is_not_available_and_min_price = . Min. order price:
 cart_shipping_price = Shipping price:
 cart_subtotal = Products subtotal:
+
+;CHECKOUT
+checkout_text = Order prepared
 
 ;OTHER
 buy_now = Buy Now

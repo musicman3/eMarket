@@ -17,7 +17,7 @@ use \eMarket\Catalog\Cart;
                 <h3 class="modal-title"><?php echo Settings::titlePageGenerator() ?></h3>
                 <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal"></button>
             </div>
-            <form id="form_cart" name="form_cart" action="javascript:void(null);" onsubmit="Cart.callSuccess()">
+            <form id="form_cart" name="form_cart" action="?route=checkout" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
                     <input type="hidden" name="add" value="ok" />
                     <input type="hidden" id="products_order" name="products_order" value='<?php echo Cart::$products_order ?>' />
@@ -81,7 +81,7 @@ use \eMarket\Catalog\Cart;
 
                 </div> 
                 <div class="modal-footer">
-                    <button id="complete" type="submit" class="btn btn-primary btn-sm bi-check"> <?php echo lang('cart_complete_button') ?></button>
+                    <button id="complete" type="button" onclick="Cart.callSuccess()" class="btn btn-primary btn-sm bi-check"> <?php echo lang('cart_сheckout') ?></button>
                 </div>
             </form>
         </div>

@@ -249,39 +249,13 @@ class Cart {
     }
 
     /**
-     * Redirect
-     *@param callback_url {String} (redirect url)
-     *@param callback_data {Array} (callback data)
-     *@param callback_type {String} (post/get)
-     */
-    static redirect(callback_url, callback_data, callback_type) {
-        var form = '';
-        var callback_data_arr = JSON.parse(callback_data);
-        callback_data_arr.forEach(function (key, value) {
-            form += '<input type="hidden" name="' + key + '" value="' + value + '">';
-        });
-        document.querySelector('#index').insertAdjacentHTML('afterbegin', '<form id="redirect" action="' + callback_url + '" method="' + callback_type + '">' + form + '</form>');
-        document.querySelector('#redirect').submit();
-    }
-
-    /**
      * Success
      *
      */
     static callSuccess() {
-        var callback_url = document.querySelector('#callback_url').value;
-        var callback_type = document.querySelector('#callback_type').value;
-        var callback_data = document.querySelector('#callback_data').value;
         bootstrap.Modal.getInstance(document.querySelector('#index')).hide();
         document.querySelector('#index').addEventListener('hidden.bs.modal', function (event) {
-            let data = new FormData(document.forms.form_cart);
-            let xhr = new XMLHttpRequest();
-            xhr.open('POST', '?route=success', false);
-            xhr.send(data);
-            if (xhr.status === 200 && data !== 'false') {
-                sessionStorage.removeItem('lang');
-                Cart.redirect(callback_url, callback_data, callback_type);
-            }
+            document.querySelector('#form_cart').submit();
         });
     }
 }

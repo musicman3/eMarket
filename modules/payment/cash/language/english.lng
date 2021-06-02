@@ -18,4 +18,6 @@ modules_payment_cash_admin_order_status_select = Select order status
 [catalog]
 
 ;TITLE
-modules_payment_cash_catalog_test = Test
+modules_payment_cash_catalog_complete_button = Complete
+modules_payment_cash_catalog_text = Your order has been prepared. You can pay in cash upon receipt of your order. Complete your purchase for the order to be accepted. 
+modules_payment_cash_catalog_amount_to_pay = Amount to pay:

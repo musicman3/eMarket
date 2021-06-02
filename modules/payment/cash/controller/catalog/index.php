@@ -7,4 +7,4 @@
 
 $eMarketPaymentCash = new \eMarket\Core\Modules\Payment\Cash();
 
-require_once (\eMarket\Core\View::routingModules('view') . '/index.php');
+require_once (ROOT . '/modules/payment/' . \eMarket\Core\Valid::inPOST('payment_method') . '/view/catalog/index.php');

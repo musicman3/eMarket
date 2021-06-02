@@ -5,6 +5,4 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-$eMarketPaymentCash = new \eMarket\Core\Modules\Payment\Cash();
-
-require_once (\eMarket\Core\View::routingModules('view') . '/index.php');
+$eMarket = new eMarket\Catalog\Checkout();

@@ -122,9 +122,17 @@ class Settings {
      * @return string
      */
     public static function jsModulesHandler() {
-        $path = View::routingModules('js_handler');
-        if (file_exists($path . '/js.php')) {
-            self::$js_modules_handler = $path;
+        if (self::path() == 'admin') {
+            $path = View::routingModules('js_handler');
+            if (file_exists($path . '/js.php')) {
+                self::$js_modules_handler = $path;
+            }
+        }
+        if (self::path() == 'catalog') {
+            $path = ROOT . '/modules/payment/' . Valid::inPOST('payment_method') . '/js_handler/catalog';
+            if (file_exists($path . '/js.php')) {
+                self::$js_modules_handler = $path;
+            }
         }
     }
 
@@ -420,6 +428,8 @@ class Settings {
             self::$lang_currency_path = HTTP_SERVER . '?route=catalog';
         } elseif (Valid::inSERVER('REQUEST_URI') == '/controller/admin/') {
             self::$lang_currency_path = HTTP_SERVER . 'controller/admin/?route=dashboard';
+        } elseif (Valid::inSERVER('REQUEST_URI') == '/?route=checkout') {
+            self::$lang_currency_path = HTTP_SERVER . '?route=cart';
         } else {
             self::$lang_currency_path = Valid::inSERVER('REQUEST_URI');
         }
