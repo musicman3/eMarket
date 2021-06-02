@@ -15,7 +15,7 @@ use \eMarket\Core\{
 };
 
 /**
- * Класс для шаблонизатора
+ * View class
  *
  * @package View
  * @author eMarket
@@ -24,9 +24,9 @@ use \eMarket\Core\{
 class View {
 
     /**
-     * Роутинг данных из View
+     * Routing
      *
-     * @return string $str (роутинг на view)
+     * @return string $str (routing)
      */
     public static function routing() {
 
@@ -36,9 +36,9 @@ class View {
     }
 
     /**
-     * Роутинг данных из View для административной панели
+     * View routing for admin
      *
-     * @return string $str (роутинг на view)
+     * @return string $str (view routing)
      */
     public static function routingAdmin() {
 
@@ -63,9 +63,9 @@ class View {
     }
 
     /**
-     * Роутинг данных из View для каталога
+     * View routing for admin
      *
-     * @return string $str (роутинг на view)
+     * @return string $str (view routing)
      */
     public static function routingCatalog() {
 
@@ -82,10 +82,10 @@ class View {
     }
 
     /**
-     * Роутинг данных для модулей
+     * Modules routing
      *
-     * @param string $path (маркер пути controller/view)
-     * @return string $str (роутинг для модулей)
+     * @param string $path (path marker controller/view)
+     * @return string $str (modules routing)
      */
     public static function routingModules($path) {
 
@@ -99,9 +99,9 @@ class View {
     /**
      * Template Layers Positioning Controller
      * 
-     * @param string $position (позиция)
-     * @param string $count (маркер счетчика)
-     * @return array|string (массив настроек позиций для конкретного пути)
+     * @param string $position (position)
+     * @param string $count (counter marker)
+     * @return array|string (positions for paths)
      */
     public static function tlpc($position, $count = null) {
 
