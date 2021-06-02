@@ -144,7 +144,7 @@ class Cart {
             document.querySelector('#payment_method').innerHTML = '';
 
             if (document.querySelector('#shipping_method').className !== 'form-control is-valid' || payment_method.length < 1) {
-                document.querySelector('#payment_method').insertAdjacentHTML('beforeend', '<option value="no">' + lang['cart_payment_is_not_available'] + '</option>');
+                document.querySelector('#payment_method').insertAdjacentHTML('beforeend', '<option value="no">' + lang.cart_payment_is_not_available + '</option>');
                 document.querySelector('#payment_method').classList.remove('is-valid');
                 document.querySelector('#payment_method').classList.add('is-invalid');
             } else {
@@ -278,11 +278,9 @@ class Cart {
             let xhr = new XMLHttpRequest();
             xhr.open('POST', '?route=success', false);
             xhr.send(data);
-            if (xhr.status === 200) {
-                if (data !== 'false') {
-                    sessionStorage.removeItem('lang');
-                    Cart.redirect(callback_url, callback_data, callback_type);
-                }
+            if (xhr.status === 200 && data !== 'false') {
+                sessionStorage.removeItem('lang');
+                Cart.redirect(callback_url, callback_data, callback_type);
             }
         });
     }
