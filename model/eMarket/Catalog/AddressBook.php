@@ -79,6 +79,7 @@ class AddressBook {
 
         if (self::$address_data_json == FALSE) {
             self::$address_data = [];
+            self::$address_data_json = json_encode([]);
         } else {
             self::$address_data = json_decode(self::$address_data_json, 1);
         }
