@@ -19,13 +19,13 @@ use \eMarket\Core\Modules\Providers\Smsc;
         </div>
         
         <small class="form-text text-muted"><?php echo lang('modules_providers_smsc_admin_login') ?></small>
-        <div class="input-group password">
+        <div class="input-group login">
             <span class="input-group-text bi-pencil"></span>
             <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="login" id="login" value="<?php echo Smsc::$data['login'] ?>" required />
         </div>
 
         <small class="form-text text-muted"><?php echo lang('modules_providers_smsc_admin_password') ?></small>
-        <div class="input-group confirm">
+        <div class="input-group password">
             <span class="input-group-text bi-pencil"></span>
             <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="password" name="password" id="password" value="<?php echo Smsc::$data['password'] ?>" required />
         </div>

@@ -19,13 +19,13 @@ use \eMarket\Core\Modules\Providers\Bulksms;
         </div>
         
         <small class="form-text text-muted"><?php echo lang('modules_providers_bulksms_admin_login') ?></small>
-        <div class="input-group password">
+        <div class="input-group login">
             <span class="input-group-text bi-pencil"></span>
             <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="login" id="login" value="<?php echo Bulksms::$data['login'] ?>" required />
         </div>
 
         <small class="form-text text-muted"><?php echo lang('modules_providers_bulksms_admin_password') ?></small>
-        <div class="input-group confirm">
+        <div class="input-group password">
             <span class="input-group-text bi-pencil"></span>
             <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="password" name="password" id="password" value="<?php echo Bulksms::$data['password'] ?>" required />
         </div>
