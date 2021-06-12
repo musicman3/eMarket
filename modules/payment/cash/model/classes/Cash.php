@@ -74,9 +74,9 @@ class Cash {
             'chanel_name' => lang('modules_payment_cash_name'),
             'chanel_payment_price' => 0,
             'chanel_payment_currency' => '',
-            'chanel_callback_url' => '?route=success', // example: https://w3s.webmoney.ru/asp/XMLInvoice.asp
-            'chanel_callback_type' => 'post', // post/get
-            'chanel_callback_data' => json_encode([]), // example: ['id' => '', 'price' => '']
+            'chanel_callback_url' => '', // example: https://w3s.webmoney.ru/asp/XMLInvoice.asp
+            'chanel_callback_type' => 'get', // post/get
+            'chanel_callback_data' => json_encode(['route' => 'success']), // example: ['route' => 'success', 'id' => '', 'price' => '']
             'chanel_image' => ''
         ];
 

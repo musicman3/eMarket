@@ -15,6 +15,7 @@ title_address_book_index = Адресная книга
 title_success_index = Заказ успешно завершен
 title_orders_index = Мои заказы
 title_my_account_index = Мой аккаунт
+title_checkout_index = Заказ подготовлен
 
 ;INDEX
 index_text = eMarket Bootstrap 3 Demo

@@ -68,7 +68,7 @@ class Smsc {
         $password = self::$data['password'];
         $sender = self::$data['sender'];
         $messages = ['sender' => $sender, 'phones' => $to_phone_number, 'mes' => $body, 'login' => $username, 'psw' => $password];
-
+        $encoded = '';
         foreach ($messages as $name => $value) {
             $encoded .= urlencode($name) . '=' . urlencode($value) . '&';
         }

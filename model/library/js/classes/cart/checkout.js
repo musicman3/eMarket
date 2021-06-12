@@ -21,10 +21,10 @@ class Checkout {
     static redirect(callback_url, callback_data, callback_type) {
         var form = '';
         var callback_data_arr = JSON.parse(callback_data);
-        callback_data_arr.forEach(function (key, value) {
-            form += '<input type="hidden" name="' + key + '" value="' + value + '">';
-        });
-        document.querySelector('#checkout').insertAdjacentHTML('afterbegin', '<form id="redirect" action="' + callback_url + '" method="' + callback_type + '">' + form + '</form>');
+        for(let key in callback_data_arr) {
+            form += '<input type="hidden" name="' + key + '" value="' + callback_data_arr[key] + '">';
+        };
+        document.querySelector('#checkout').insertAdjacentHTML('afterbegin', '<form name="redirect" id="redirect" action="' + callback_url + '" method="' + callback_type + '">' + form + '</form>');
         document.querySelector('#redirect').submit();
     }
 

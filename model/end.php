@@ -10,14 +10,15 @@
 //
 use \eMarket\Core\{
     Pdo,
-    Settings
+    Settings,
+    Valid
 };
 
 if (Settings::path() == 'admin') {
     require_once(getenv('DOCUMENT_ROOT') . '/view/' . Settings::template() . '/admin/constructor.php');
 }
 
-if (Settings::path() == 'catalog') {
+if (Settings::path() == 'catalog' && Valid::inGET('route') !== 'callback') {
     require_once(getenv('DOCUMENT_ROOT') . '/view/' . Settings::template() . '/catalog/constructor.php');
 }
 

@@ -7,6 +7,8 @@
 ?>
 
 <script type="text/javascript" src="/model/library/js/classes/cart/checkout.js"></script>
+<script type="text/javascript" src="/model/library/js/classes/ajax/ajax.js"></script>
 <script type="text/javascript">
     new Checkout();
+    new Ajax();
 </script>

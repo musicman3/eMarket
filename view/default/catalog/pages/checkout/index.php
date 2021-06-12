@@ -25,7 +25,7 @@ foreach (View::tlpc('content') as $path) {
     <input type="hidden" id="order_total_tax" name="order_total_tax" value="<?php echo Valid::inPOST('order_total_tax') ?>" />
     <input type="hidden" id="callback_url" name="callback_url" value="<?php echo Valid::inPOST('callback_url') ?>" />
     <input type="hidden" id="callback_type" name="callback_type" value="<?php echo Valid::inPOST('callback_type') ?>" />
-    <input type="hidden" id="callback_data" name="callback_data" value="<?php echo Valid::inPOST('callback_data') ?>" />
+    <input type="hidden" id="callback_data" name="callback_data" value='<?php echo Valid::inPOST('callback_data') ?>' />
     <input type="hidden" id="hash" name="hash" value="<?php echo Valid::inPOST('hash') ?>" />
     <input type="hidden" id="address" name="address" value="<?php echo Valid::inPOST('address') ?>" />
     <input type="hidden" id="shipping_method" name="shipping_method" value="<?php echo Valid::inPOST('shipping_method') ?>" />
