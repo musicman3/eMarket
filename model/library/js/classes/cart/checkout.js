@@ -23,7 +23,7 @@ class Checkout {
         var callback_data_arr = JSON.parse(callback_data);
         for(let key in callback_data_arr) {
             form += '<input type="hidden" name="' + key + '" value="' + callback_data_arr[key] + '">';
-        };
+        }
         document.querySelector('#checkout').insertAdjacentHTML('afterbegin', '<form name="redirect" id="redirect" action="' + callback_url + '" method="' + callback_type + '">' + form + '</form>');
         document.querySelector('#redirect').submit();
     }
