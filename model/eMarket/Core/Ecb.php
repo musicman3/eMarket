@@ -44,7 +44,7 @@ final class Ecb {
 
         self::discountHandler($input);
         $discounts_data = $INTERFACE->load('discountHandler', 'data', 'discounts_data');
-        $discounted_price = $INTERFACE->load('discountHandler', 'data', 'out_price');
+        $discounted_price = self::currencyPrice($INTERFACE->load('discountHandler', 'data', 'out_price'), $input['currency']);
 
         $count = 0;
         $discount_names = '';
