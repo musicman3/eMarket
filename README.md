@@ -20,6 +20,7 @@ Demo page and support: http://emarketforum.com
   
 ---
 ### eMarket Block Diagram  
+[![N|Solid](https://raw.githubusercontent.com/musicman3/eMarketHandler/main/header.png)](https://raw.githubusercontent.com/musicman3/eMarketHandler/main/header.png)
 [![N|Solid](https://raw.githubusercontent.com/musicman3/eMarketHandler/main/eMarket.png)](https://raw.githubusercontent.com/musicman3/eMarketHandler/main/eMarket.png)
 ---
 ### Intro  
