@@ -3,7 +3,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-/* Создание таблиц */
+/* Add tables */
 
 DROP TABLE IF EXISTS emkt_administrators;
 CREATE TABLE emkt_administrators (
@@ -345,7 +345,7 @@ PRIMARY KEY (id))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
-/* Загрузка первоначальных данных в таблицу стран */
+/* Load data */
 /* russian */
 INSERT INTO emkt_countries VALUES (1,'Афганистан','russian','AF','AFG','');
 
@@ -10342,21 +10342,21 @@ INSERT INTO emkt_regions VALUES(4247, 238, 'MS', 'Matabeleland South', 'english'
 INSERT INTO emkt_regions VALUES(4248, 238, 'MV', 'Masvingo', 'english');
 INSERT INTO emkt_regions VALUES(4249, 238, 'MW', 'Mashonaland West', 'english');
 
-/* ЗАГРУЗКА НАСТРОЕК */
+/* Basic Settings */
 INSERT INTO emkt_basic_settings VALUES (1, 20, 60, 0, 'smtp.mail.ru', 'login', 'password', 'ssl', 465, 0, 0, 'sale@localhost.ru', 'eMarket', '');
 
-/* ЗАГРУЗКА ЗОН */
+/* Zones */
 INSERT INTO emkt_zones VALUES (1, 'Moskow', null, 'english');
 INSERT INTO emkt_zones VALUES (1, 'Москва', null, 'russian');
 
-/* ЗАГРУЗКА ЗНАЧЕНИЙ ЗОН */
+/* Zones value */
 INSERT INTO emkt_zones_value VALUES (1, 175, 2869, 1);
 
-/* ЗАГРУЗКА НАЛОГОВ */
+/* Taxes */
 INSERT INTO emkt_taxes VALUES (1, 'VAT', 'english', '20.00', '1', '1', '1', '1');
 INSERT INTO emkt_taxes VALUES (1, 'НДС', 'russian', '20.00', '1', '1', '1', '1');
 
-/* ЗАГРУЗКА ДЛИНЫ */
+/* Length */
 INSERT INTO emkt_length VALUES (1, 'Meter', 'm.', 'english', '1.0000000', '1');
 INSERT INTO emkt_length VALUES (1, 'Метр', 'м.', 'russian', '1.0000000', '1');
 INSERT INTO emkt_length VALUES (2, 'Centimeter', 'cm.', 'english', '0.0100000', '0');
@@ -10368,7 +10368,7 @@ INSERT INTO emkt_length VALUES (4, 'Дюйм', 'д.', 'russian', '0.0254000', '0
 INSERT INTO emkt_length VALUES (5, 'Foot', 'ft.', 'english', '0.3048000', '0');
 INSERT INTO emkt_length VALUES (5, 'Фут', 'ф.', 'russian', '0.3048000', '0');
 
-/* ЗАГРУЗКА ВЕСА */
+/* ЗАГРУЗКА Weight */
 INSERT INTO emkt_weight VALUES (1, 'Kilogramm', 'kg.', 'english', '1.0000000', '1');
 INSERT INTO emkt_weight VALUES (1, 'Килограмм', 'кг', 'russian', '1.0000000', '1');
 INSERT INTO emkt_weight VALUES (2, 'Gramm', 'g.', 'english', '0.0010000', '0');
@@ -10376,7 +10376,7 @@ INSERT INTO emkt_weight VALUES (2, 'Грамм', 'г.', 'russian', '0.0010000', 
 INSERT INTO emkt_weight VALUES (3, 'Ounce', 'oz.', 'english', '0.0283500', '0');
 INSERT INTO emkt_weight VALUES (3, 'Унция', 'ун.', 'russian', '0.0283500', '0');
 
-/* ЗАГРУЗКА ИДЕНТИФИКАТОРОВ ТОВАРА */
+/* Vendor codes */
 INSERT INTO emkt_vendor_codes VALUES (1, 'Articul', 'english', '', '1');
 INSERT INTO emkt_vendor_codes VALUES (1, 'Артикул', 'russian', '', '1');
 INSERT INTO emkt_vendor_codes VALUES (2, 'SCU', 'english', '', '0');
@@ -10392,13 +10392,13 @@ INSERT INTO emkt_vendor_codes VALUES (6, 'ISBN', 'russian', '', '0');
 INSERT INTO emkt_vendor_codes VALUES (7, 'MPN', 'english', '', '0');
 INSERT INTO emkt_vendor_codes VALUES (7, 'MPN', 'russian', '', '0');
 
-/* ЗАГРУЗКА ЕДИНИЦ ИЗМЕРЕНИЯ */
+/* Units */
 INSERT INTO emkt_units VALUES (1, 'Pieces', 'english', 'pcs.', '1');
 INSERT INTO emkt_units VALUES (1, 'Штука', 'russian', 'шт.', '1');
 INSERT INTO emkt_units VALUES (2, 'Packing', 'english', 'pkg.', '0');
 INSERT INTO emkt_units VALUES (2, 'Упаковка', 'russian', 'уп.', '0');
 
-/* ЗАГРУЗКА СТАТУСОВ ЗАКАЗА */
+/* Statuses */
 INSERT INTO emkt_order_status VALUES (1, 'Delivered', 'english', '0', '1');
 INSERT INTO emkt_order_status VALUES (1, 'Доставлен', 'russian', '0', '1');
 INSERT INTO emkt_order_status VALUES (2, 'Processing', 'english', '0', '2');
@@ -10408,13 +10408,13 @@ INSERT INTO emkt_order_status VALUES (3, 'Оплачен', 'russian', '0', '3');
 INSERT INTO emkt_order_status VALUES (4, 'Pending payment', 'english', '1', '4');
 INSERT INTO emkt_order_status VALUES (4, 'Ожидает оплаты', 'russian', '1', '4');
 
-/* ЗАГРУЗКА ВАЛЮТ */
+/* Currencies */
 INSERT INTO emkt_currencies VALUES (1, 'Russian Rouble', 'rub.', 'RUB', 'english', '1.0000000000', '1', ' ₽', 'right', '2', NULL);
 INSERT INTO emkt_currencies VALUES (1, 'Рубль РФ', 'руб.', 'RUB', 'russian', '1.0000000000', '1', ' ₽', 'right', '2', NULL);
-INSERT INTO emkt_currencies VALUES (2, 'Dollar USA', 'doll.', 'USD', 'english', '0.0147000000', '0', '$', 'left', '2', NULL);
+INSERT INTO emkt_currencies VALUES (2, 'Dollar USA', '$.', 'USD', 'english', '0.0147000000', '0', '$', 'left', '2', NULL);
 INSERT INTO emkt_currencies VALUES (2, 'Доллар США', 'долл.', 'USD', 'russian', '0.0147000000', '0', '$', 'left', '2', NULL);
 
-/* ЗАГРУЗКА КОМПОНОВКИ ШАБЛОНОВ */
+/* Template constructor */
 /* ADMIN */
 INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/admin/header.php', 'admin', 'header', 'all', 'default', '0');
 INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name, sort) VALUES ('/controller/admin/footer.php', 'admin', 'footer', 'all', 'default', '0');
