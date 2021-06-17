@@ -74,7 +74,7 @@ class HeaderMenu {
         }
         foreach ($files as $filename) {
             $namespace = '\eMarket\Core\Modules\\' . ucfirst(pathinfo(dirname($filename, 1), PATHINFO_FILENAME)) . '\\' . ucfirst(pathinfo($filename, PATHINFO_FILENAME));
-            if (method_exists($namespace, 'menu')) {
+            if (method_exists($namespace, 'menu') && $namespace::status() != false) {
                 $namespace::menu();
             }
         }

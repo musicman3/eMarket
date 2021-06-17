@@ -19,7 +19,7 @@ use \eMarket\Core\{
     Pdo,
     Valid
 };
-
+use \eMarket\Admin\HeaderMenu;
 /**
  * Module Sale
  *
@@ -43,6 +43,10 @@ class Sale {
         $this->delete();
         $this->data();
         $this->modal();
+    }
+    
+        public static function menu() {
+        HeaderMenu::$menu[HeaderMenu::$menu_marketing][] = ['?route=settings/modules/edit&type=discount&name=sale', 'bi-star', lang('modules_discount_sale_name'), '', 'false'];
     }
 
     /**
