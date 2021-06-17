@@ -40,6 +40,7 @@ class HeaderMenu {
      */
     function __construct() {
         $this->init();
+        $this->initModules();
         $this->levelOne();
         $this->staticLevels();
     }
@@ -52,6 +53,27 @@ class HeaderMenu {
         $files = glob(ROOT . '/model/eMarket/Admin/*');
         foreach ($files as $filename) {
             $namespace = '\eMarket\Admin\\' . pathinfo($filename, PATHINFO_FILENAME);
+            if (method_exists($namespace, 'menu')) {
+                $namespace::menu();
+            }
+        }
+    }
+
+    /**
+     * Init Modules
+     *
+     */
+    public function initModules() {
+        $group = glob(ROOT . '/modules/*');
+        $files = [];
+        foreach ($group as $group_name) {
+            $path = glob($group_name . '/*');
+            foreach ($path as $value) {
+                array_push($files, $value);
+            }
+        }
+        foreach ($files as $filename) {
+            $namespace = '\eMarket\Core\Modules\Payment\\' . pathinfo($filename, PATHINFO_FILENAME);
             if (method_exists($namespace, 'menu')) {
                 $namespace::menu();
             }
@@ -112,7 +134,7 @@ class HeaderMenu {
         for ($lng = 0; $lng < count(lang('#lang_all')); $lng++) {
             self::$menu[self::$menu_languages][$lng] = [Settings::langCurrencyPath() . '&language=' . lang('#lang_all')[$lng], 'bi-caret-right-fill', lang('language_name', lang('#lang_all')[$lng]), '', 'false'];
         }
-        
+
         //HELP
         self::$menu[self::$menu_help][0] = ['http://emarketforum.com', 'bi-chat-quote', lang('menu_support'), 'target="_blank"', 'false'];
         self::$menu[self::$menu_help][1] = ['/', 'bi-bag', lang('menu_catalog'), 'target="_blank"', 'false'];
