@@ -139,6 +139,8 @@ class Success {
 # https://github.com/musicman3/eMarket #
 #**************************************#
 
+Options -Indexes
+
 RewriteEngine On
 #Redirect
 RewriteCond %{DOCUMENT_ROOT}/controller/catalog/$1 -d
