@@ -33,7 +33,7 @@ use \eMarket\Core\{
                         <?php } ?>
                     </ul>
                 </li>
-                <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle bi-credit-card" data-bs-toggle="dropdown"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('navbar_currencies') ?></span></a>
+                <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle bi-currency-exchange" data-bs-toggle="dropdown"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('navbar_currencies') ?></span></a>
                     <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
                         <?php foreach (Settings::currenciesData() as $value) { ?>
                             <li><a href="<?php echo Settings::langCurrencyPath() . '&currency_default=' . $value['id'] ?>" class="dropdown-item"><?php echo $value['name'] ?></a></li>
