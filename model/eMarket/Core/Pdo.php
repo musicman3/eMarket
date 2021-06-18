@@ -112,7 +112,7 @@ final class Pdo {
                 AND $result = $value[0]) {
             
         }
-        return Func::escape_sign($result);
+        return Func::escapeSign($result);
     }
 
     /**
@@ -130,7 +130,7 @@ final class Pdo {
                 AND $result = $exec->fetchAll(\PDO :: FETCH_NUM)) {
             
         }
-        return Func::escape_sign($result);
+        return Func::escapeSign($result);
     }
 
     /**
@@ -148,7 +148,7 @@ final class Pdo {
                 AND $result = $exec->fetchAll(\PDO :: FETCH_COLUMN)) {
             
         }
-        return Func::escape_sign($result);
+        return Func::escapeSign($result);
     }
 
     /**
@@ -166,7 +166,7 @@ final class Pdo {
                 AND $result = $exec->fetchAll(\PDO :: FETCH_NUM)) {
             
         }
-        return Func::escape_sign($result)[0];
+        return Func::escapeSign($result)[0];
     }
 
     /**
@@ -184,7 +184,7 @@ final class Pdo {
                 AND $result = $exec->fetchColumn()) {
             
         }
-        return Func::escape_sign($result);
+        return Func::escapeSign($result);
     }
 
     /**
@@ -239,7 +239,7 @@ final class Pdo {
                 AND $result = $value[0][0]) {
             
         }
-        return Func::escape_sign($result);
+        return Func::escapeSign($result);
     }
 
     /**
@@ -274,7 +274,7 @@ final class Pdo {
                 AND $result = $exec->fetchAll(\PDO :: FETCH_ASSOC)) {
             
         }
-        return Func::escape_sign($result);
+        return Func::escapeSign($result);
     }
 
     /**

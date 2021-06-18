@@ -27,7 +27,7 @@ class Categories {
      */
     public static function data() {
         $sql = \eMarket\Core\Pdo::getObj("SELECT id, name, status, parent_id FROM " . TABLE_CATEGORIES . " WHERE language=? AND status=? ORDER BY sort_category DESC", [lang('#lang_all')[0], 1]);
-        self::$categories_and_breadcrumb = \eMarket\Core\Func::escape_sign(\eMarket\Core\Tree::categories($sql, \eMarket\Core\Valid::inGET('category_id')));
+        self::$categories_and_breadcrumb = \eMarket\Core\Func::escapeSign(\eMarket\Core\Tree::categories($sql, \eMarket\Core\Valid::inGET('category_id')));
     }
 
     /**

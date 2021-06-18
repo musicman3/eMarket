@@ -396,7 +396,7 @@ class Func {
      * @param string|array $string String to escape characters
      * @return string|array
      */
-    public static function escape_sign($string) {
+    public static function escapeSign($string) {
         // symbol and replacement
         $symbols = ["'"];
         $escape = ["&#8216;"];
