@@ -7,10 +7,6 @@
 
 namespace eMarket\Core;
 
-use \eMarket\Core\{
-    Valid
-};
-
 /**
  * Tree
  *
@@ -130,16 +126,6 @@ class Tree {
         echo '</ul>';
 
         return $array_cat2;
-    }
-
-    /**
-     * Autoloading class files for modules
-     *
-     * @return array $return_array
-     */
-    public static function treeUp() {
-        $sql = \eMarket\Core\Pdo::getObj("SELECT id, name, status, parent_id FROM " . TABLE_CATEGORIES . " WHERE language=? AND status=? ORDER BY sort_category DESC", [lang('#lang_all')[0], 1]);
-        self::$categories_and_breadcrumb = \eMarket\Core\Func::escapeSign(\eMarket\Core\Tree::categories($sql, \eMarket\Core\Valid::inGET('category_id')));
     }
 
     /**
