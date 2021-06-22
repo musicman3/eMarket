@@ -25,7 +25,7 @@ if (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
                         ?>
 
                         <li class="nav-item dropdown">
-                            <a href="<?php echo HeaderMenu::$level[$i][0] ?>" class="nav-link<?php echo HeaderMenu::getParameters()[0] ?>" <?php echo HeaderMenu::getParameters()[1] ?>><span class="<?php echo \eMarket\Admin\HeaderMenu::$level[$i][3]; ?>"></span> <?php echo HeaderMenu::$level[$i][1] ?></a>
+                            <a href="<?php echo HeaderMenu::$level[$i][0] ?>" class="nav-link<?php echo HeaderMenu::getParameters()[0] ?>" <?php echo HeaderMenu::getParameters()[1] ?>><span class="<?php echo HeaderMenu::$level[$i][3]; ?>"></span> <?php echo HeaderMenu::$level[$i][1] ?></a>
                             <?php if (isset(HeaderMenu::$menu[$i])) { ?>
                                 <!-- Level 2 -->
                                 <ul class="dropdown-menu dropdown-menu-dark">
@@ -33,7 +33,7 @@ if (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
                                     for ($x = 0; $x < count(HeaderMenu::$menu[$i]); $x++) {
                                         ?>
                                         <li>
-                                            <a class="dropdown-item" <?php echo HeaderMenu::$menu[$i][$x][3]; ?> href="<?php echo HeaderMenu::$menu[$i][$x][0] ?>"><span class="<?php echo \eMarket\Admin\HeaderMenu::$menu[$i][$x][1]; ?>"></span> <?php echo \eMarket\Admin\HeaderMenu::$menu[$i][$x][2] ?></a>
+                                            <a class="dropdown-item" <?php echo HeaderMenu::$menu[$i][$x][3]; ?> href="<?php echo HeaderMenu::$menu[$i][$x][0] ?>"><span class="<?php echo HeaderMenu::$menu[$i][$x][1]; ?>"></span> <?php echo HeaderMenu::$menu[$i][$x][2] ?></a>
                                         </li><?php } ?>
                                 </ul><?php } ?>
                         </li><?php } ?>
