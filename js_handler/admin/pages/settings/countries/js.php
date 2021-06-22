@@ -4,7 +4,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
-<!-- Загрузка данных в модальное окно -->
+
 <script type="text/javascript">
     document.querySelector('#index').addEventListener('show.bs.modal', function (event) {
         var button = event.relatedTarget;
