@@ -64,10 +64,10 @@ use \eMarket\Admin\HeaderMenu;
                             <small class="form-text text-muted" for="staff_manager_note_<?php echo $x ?>"><?php echo lang('staff_manager_permissions') ?></small>
                             <span class="multiselect-native-select me-auto">
                                 <select id="permissions" name="permissions[]" multiple="multiple">
-                                    <?php foreach (HeaderMenu::$menu as $key_menu => $val_menu) { ?>
-                                        <optgroup class="multiselect-add" label="<?php echo HeaderMenu::$level[$key_menu][1] ?>">
-                                            <?php foreach (HeaderMenu::$menu[$key_menu] as $value_key => $value) { ?>
-                                                <option id="<?php echo 'hash_' . md5($val_menu[$value_key][0]) ?>" value="<?php echo $val_menu[$value_key][0] ?>"><?php echo $val_menu[$value_key][2] ?></option>
+                                    <?php foreach (HeaderMenu::$level as $level_key => $level) { ?>
+                                        <optgroup class="multiselect-add" label="<?php echo HeaderMenu::$level[$level_key][1] ?>">
+                                            <?php foreach (HeaderMenu::$menu[$level_key] as $level_value) { ?>
+                                                <option id="<?php echo 'hash_' . md5($level_value[0]) ?>" value="<?php echo $level_value[0] ?>"><?php echo $level_value[2] ?></option>
                                             <?php } ?>
                                         </optgroup>
                                     <?php } ?>
