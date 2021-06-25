@@ -65,7 +65,7 @@ use \eMarket\Admin\HeaderMenu;
                             <span class="multiselect-native-select me-auto">
                                 <select id="permissions" name="permissions[]" multiple="multiple">
                                     <?php foreach (HeaderMenu::$level as $level_key => $level) { ?>
-                                        <optgroup class="multiselect-add" label="<?php echo HeaderMenu::$level[$level_key][1] ?>">
+                                        <optgroup class="multiselect-add" label="<?php echo $level[1] ?>">
                                             <?php foreach (HeaderMenu::$menu[$level_key] as $level_value) { ?>
                                                 <option id="<?php echo 'hash_' . md5($level_value[0]) ?>" value="<?php echo $level_value[0] ?>"><?php echo $level_value[2] ?></option>
                                             <?php } ?>
