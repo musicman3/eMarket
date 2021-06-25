@@ -3,7 +3,7 @@
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 /**
- * Символьные генераторы
+ * Character generators 
  *
  * @package Randomizer
  * @author eMarket
@@ -12,9 +12,9 @@
 class Randomizer {
 
     /**
-     * Random generator uid (генератор случайной строки)
+     * Random generator uid (random string generator )
      * @author Waruyama
-     * @param length {String} (количество символов)
+     * @param length {String} (characters quantity)
      * @returns id {String}
      */
 
@@ -31,7 +31,7 @@ class Randomizer {
     }
 
     /**
-     * UUID 4 generator (генератор UUID 4 RFC 4122)
+     * UUID 4 generator (generator UUID 4 RFC 4122)
      * @author Robert Kieffer http://www.broofa.com
      * @returns id {String}
      */

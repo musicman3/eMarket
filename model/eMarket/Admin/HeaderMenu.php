@@ -8,7 +8,10 @@
 namespace eMarket\Admin;
 
 use \eMarket\Core\{
-    Settings
+    Settings,
+    Pdo,
+    Valid,
+    Func
 };
 
 /**
@@ -20,19 +23,17 @@ use \eMarket\Core\{
  */
 class HeaderMenu {
 
-    public static $menu_market = '0';
-    public static $menu_sales = '1';
-    public static $menu_marketing = '2';
-    public static $menu_customers = '3';
-    public static $menu_tools = '4';
-    public static $menu_languages = '5';
-    public static $menu_help = '6';
-    public static $menu_exit = '7';
+    public static $menu_market = 'market';
+    public static $menu_sales = 'sales';
+    public static $menu_marketing = 'marketing';
+    public static $menu_customers = 'customers';
+    public static $menu_tools = 'tools';
     public static $level = [];
     public static $menu = [];
     public static $submenu = [];
     public static $param_1 = [];
     public static $param_2 = [];
+    public static $staff_data = false;
 
     /**
      * Constructor
@@ -43,6 +44,8 @@ class HeaderMenu {
         $this->initModules();
         $this->levelOne();
         $this->staticLevels();
+        $this->staffInit();
+        $this->exit();
     }
 
     /**
@@ -90,9 +93,6 @@ class HeaderMenu {
         self::$level[self::$menu_marketing] = ['#', lang('menu_marketing'), 'true', 'bi-graph-up'];
         self::$level[self::$menu_customers] = ['#', lang('menu_customers'), 'true', 'bi-person-lines-fill'];
         self::$level[self::$menu_tools] = ['#', lang('menu_tools'), 'true', 'bi-tools'];
-        self::$level[self::$menu_languages] = ['#', lang('menu_languages'), 'true', 'bi-spellcheck'];
-        self::$level[self::$menu_help] = ['#', lang('menu_extra'), 'true', 'bi-lightbulb-fill'];
-        self::$level[self::$menu_exit] = ['?route=login&logout=ok', lang('menu_exit'), 'false', 'bi-box-arrow-right'];
     }
 
     /**
@@ -131,13 +131,90 @@ class HeaderMenu {
     public function staticLevels() {
 
         //LANGUAGES
+        self::$level['languages'] = ['#', lang('menu_languages'), 'true', 'bi-spellcheck'];
         for ($lng = 0; $lng < count(lang('#lang_all')); $lng++) {
-            self::$menu[self::$menu_languages][$lng] = [Settings::langCurrencyPath() . '&language=' . lang('#lang_all')[$lng], 'bi-caret-right-fill', lang('language_name', lang('#lang_all')[$lng]), '', 'false'];
+            self::$menu['languages'][$lng] = [Settings::langCurrencyPath() . '&language=' . lang('#lang_all')[$lng], 'bi-caret-right-fill', lang('language_name', lang('#lang_all')[$lng]), '', 'false'];
         }
 
         //HELP
-        self::$menu[self::$menu_help][0] = ['http://emarketforum.com', 'bi-chat-quote', lang('menu_support'), 'target="_blank"', 'false'];
-        self::$menu[self::$menu_help][1] = ['/', 'bi-bag', lang('menu_catalog'), 'target="_blank"', 'false'];
+        self::$level['help'] = ['#', lang('menu_extra'), 'true', 'bi-lightbulb-fill'];
+        self::$menu['help'][0] = ['http://emarketforum.com', 'bi-chat-quote', lang('menu_support'), 'target="_blank"', 'false'];
+        self::$menu['help'][1] = ['/', 'bi-bag', lang('menu_catalog'), 'target="_blank"', 'false'];
+    }
+
+    /**
+     * Exit
+     *
+     */
+    public function exit() {
+        //EXIT
+        self::$level['exit'] = ['?route=login&logout=ok', lang('menu_exit'), 'false', 'bi-box-arrow-right'];
+    }
+
+    /**
+     * Staff init
+     *
+     */
+    public function staffInit() {
+        if (isset($_SESSION['login'])) {
+            $staff_permission = Pdo::getCellFalse("SELECT permission FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [$_SESSION['login']]);
+            if ($staff_permission != 'admin') {
+                self::$staff_data = json_decode(Pdo::getColAssoc("SELECT permissions FROM " . TABLE_STAFF_MANAGER . " WHERE id=?", [$staff_permission])[0]['permissions'], 1);
+
+                $menu_array = [];
+                foreach (self::$menu as $menu_key => $menu_val) {
+                    foreach ($menu_val as $menu_item) {
+                        if (in_array($menu_item[0], self::$staff_data)) {
+                            $menu_array[$menu_key][] = $menu_item;
+                        }
+
+                        if (strpos($menu_item[0], '&language=') != FALSE) {
+                            $lang_string = strstr($menu_item[0], '&language=');
+                            foreach (self::$staff_data as $staff_string) {
+                                if (strpos($staff_string, $lang_string) != FALSE) {
+                                    $menu_array[$menu_key][] = $menu_item;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                $level_array = [];
+                foreach (self::$level as $key => $val) {
+                    if (array_key_exists($key, $menu_array)) {
+                        $level_array[$key] = $val;
+                    }
+                }
+                self::$level = $level_array;
+                self::$menu = $menu_array;
+
+                $this->permissions();
+            }
+        }
+    }
+
+    /**
+     * Permissions
+     *
+     */
+    public function permissions() {
+        $count = 0;
+        foreach (self::$staff_data as $page) {
+            $check = strpos('/?route=' . Valid::inGET('route'), $page);
+            if ($check != FALSE) {
+                $count++;
+            }
+            if (Valid::inGET('route') == 'settings/modules/edit') {
+                $check = strpos('/?route=' . Valid::inGET('route') . '&type=' . Valid::inGET('type') . '&name=' . Valid::inGET('name'), $page);
+                if ($check != FALSE) {
+                    $count++;
+                }
+            }
+        }
+
+        if ($count == 0) {
+            exit;
+        }
     }
 
 }

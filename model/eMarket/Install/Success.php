@@ -83,6 +83,8 @@ class Success {
                 '  define(\'TABLE_STIKERS\', \'' . $db_pref . 'stikers' . '\');' . "\n" .
                 '  define(\'TABLE_SLIDESHOW\', \'' . $db_pref . 'slideshow' . '\');' . "\n" .
                 '  define(\'TABLE_SLIDESHOW_PREF\', \'' . $db_pref . 'slideshow_pref' . '\');' . "\n" .
+                '  define(\'TABLE_STAFF_MANAGER\', \'' . $db_pref . 'staff_manager' . '\');' . "\n" .
+                '  define(\'TABLE_STAFF\', \'' . $db_pref . 'staff' . '\');' . "\n" .
                 '  define(\'TABLE_TAXES\', \'' . $db_pref . 'taxes' . '\');' . "\n" .
                 '  define(\'TABLE_TEMPLATE_CONSTRUCTOR\', \'' . $db_pref . 'template_constructor' . '\');' . "\n" .
                 '  define(\'TABLE_UNITS\', \'' . $db_pref . 'units' . '\');' . "\n" .

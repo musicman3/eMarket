@@ -417,7 +417,7 @@ class Func {
      *
      * @param array $data Input array
      * @param string $key Key
-     * @param string $val (Value
+     * @param string $val Value
      * @return array
      */
     public static function filterData($data, $key, $val) {

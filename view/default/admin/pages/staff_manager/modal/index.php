@@ -1,0 +1,89 @@
+<?php
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
+  |  https://github.com/musicman3/eMarket  |
+  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+
+use \eMarket\Core\{
+    Lang,
+    Settings
+};
+use \eMarket\Admin\HeaderMenu;
+?>
+<div id="index" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-light py-2 px-3">
+                <h5 class="modal-title"><?php echo Settings::titlePageGenerator() ?></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="form_add" class="was-validated" name="form_add" action="javascript:void(null);" onsubmit="Ajax.callAdd()">
+                <div class="modal-body">
+                    <input type="hidden" id="add" name="add" value="" />
+                    <input type="hidden" id="edit" name="edit" value="" />
+
+                    <?php require_once(ROOT . '/view/' . Settings::template() . '/layouts/lang_tabs_add.php') ?>
+
+                    <div class="tab-content pt-2">
+                        <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade show in active">
+                            <small class="form-text text-muted" for="staff_manager_group_0"><?php echo lang('staff_manager_group') ?></small>
+                            <div class="input-group input-group-sm mb-2">
+                                <span class="input-group-text bi-file-text"></span>
+                                <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="staff_manager_group_0" id="staff_manager_group_0" required />
+                            </div>
+                            <small class="form-text text-muted" for="staff_manager_note_0"><?php echo lang('staff_manager_note') ?></small>
+                            <div class="input-group input-group-sm mb-2">
+                                <span class="input-group-text bi-file-text"></span>
+                                <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="staff_manager_note_0" id="staff_manager_note_0" />
+                            </div>
+                        </div>
+
+                        <?php
+                        if (Lang::$count > 1) {
+                            for ($x = 1; $x < Lang::$count; $x++) {
+                                ?>
+
+                                <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">
+                                    <small class="form-text text-muted" for="staff_manager_group_<?php echo $x ?>"><?php echo lang('staff_manager_group') ?></small>
+                                    <div class="input-group input-group-sm mb-2">
+                                        <span class="input-group-text bi-file-text"></span>
+                                        <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="staff_manager_group_<?php echo $x ?>" id="staff_manager_group_<?php echo $x ?>" required />
+                                    </div>
+                                    <small class="form-text text-muted" for="staff_manager_note_<?php echo $x ?>"><?php echo lang('staff_manager_note') ?></small>
+                                    <div class="input-group input-group-sm mb-2">
+                                        <span class="input-group-text bi-file-text"></span>
+                                        <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="staff_manager_note_<?php echo $x ?>" id="staff_manager_note_<?php echo $x ?>" />
+                                    </div>
+                                </div>
+
+                                <?php
+                            }
+                        }
+                        ?>
+                        <div class="input-group input-group-sm mb-2">
+                            <small class="form-text text-muted" for="staff_manager_note_<?php echo $x ?>"><?php echo lang('staff_manager_permissions') ?></small>
+                            <span class="multiselect-native-select me-auto">
+                                <select id="permissions" name="permissions[]" multiple="multiple">
+                                    <?php foreach (HeaderMenu::$menu as $key_menu => $val_menu) { ?>
+                                        <optgroup class="multiselect-add" label="<?php echo HeaderMenu::$level[$key_menu][1] ?>">
+                                            <?php foreach (HeaderMenu::$menu[$key_menu] as $value_key => $value) { ?>
+                                                <option id="<?php echo 'hash_' . md5($val_menu[$value_key][0]) ?>" value="<?php echo $val_menu[$value_key][0] ?>"><?php echo $val_menu[$value_key][2] ?></option>
+                                            <?php } ?>
+                                        </optgroup>
+                                    <?php } ?>
+                                </select>
+                            </span>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-primary btn-sm bi-x-circle" type="button" data-bs-dismiss="modal"> <?php echo lang('cancel') ?></button>
+                    <button class="btn btn-primary btn-sm bi-check-circle" type="submit"> <?php echo lang('save') ?></button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

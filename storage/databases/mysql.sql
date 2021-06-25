@@ -270,6 +270,16 @@ CREATE TABLE emkt_slideshow_pref (
 PRIMARY KEY (id))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+DROP TABLE IF EXISTS emkt_staff_manager;
+CREATE TABLE emkt_staff_manager (
+	id int NOT NULL,
+        language varchar(64),
+	name varchar(256),
+        note varchar(256),
+        permissions json,
+PRIMARY KEY (id, language))
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 DROP TABLE IF EXISTS emkt_taxes;
 CREATE TABLE emkt_taxes (
 	id int NOT NULL,

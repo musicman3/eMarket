@@ -1,0 +1,153 @@
+<?php
+
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
+  |  https://github.com/musicman3/eMarket  |
+  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+
+namespace eMarket\Admin;
+
+use \eMarket\Core\{
+    Func,
+    Lang,
+    Messages,
+    Pages,
+    Pdo,
+    Valid
+};
+use \eMarket\Admin\HeaderMenu;
+
+/**
+ * Staff Manager
+ *
+ * @package Admin
+ * @author eMarket
+ * 
+ */
+class StaffManager {
+
+    public static $sql_data = FALSE;
+    public static $json_data = FALSE;
+
+    /**
+     * Constructor
+     *
+     */
+    function __construct() {
+        $this->add();
+        $this->edit();
+        $this->delete();
+        $this->data();
+        $this->modal();
+    }
+
+    /**
+     * Menu config
+     * [0] - url, [1] - icon, [2] - name, [3] - target="_blank", [4] - submenu (true/false)
+     * 
+     */
+    public static function menu() {
+        HeaderMenu::$menu[HeaderMenu::$menu_tools][] = ['?route=staff_manager', 'bi-person-plus', lang('title_staff_manager_index'), '', 'false'];
+    }
+
+    /**
+     * Add
+     *
+     */
+    public function add() {
+        if (Valid::inPOST('add')) {
+
+            $id_max = Pdo::selectPrepare("SELECT id FROM " . TABLE_STAFF_MANAGER . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+            $id = intval($id_max) + 1;
+
+            for ($x = 0; $x < Lang::$count; $x++) {
+                Pdo::action("INSERT INTO " . TABLE_STAFF_MANAGER . " SET id=?, name=?, language=?, note=?, permissions=?", [
+                    $id, Valid::inPOST('staff_manager_group_' . $x), lang('#lang_all')[$x], Valid::inPOST('staff_manager_note_' . $x),
+                    json_encode(Valid::inPOST('permissions'))
+                ]);
+            }
+
+            Messages::alert('success', lang('action_completed_successfully'));
+        }
+    }
+
+    /**
+     * Edit
+     *
+     */
+    public function edit() {
+        if (Valid::inPOST('edit')) {
+
+            for ($x = 0; $x < Lang::$count; $x++) {
+                Pdo::action("UPDATE " . TABLE_STAFF_MANAGER . " SET name=?, note=?, permissions=? WHERE id=? AND language=?", [
+                    Valid::inPOST('staff_manager_group_' . $x), Valid::inPOST('staff_manager_note_' . $x), json_encode(Valid::inPOST('permissions')),
+                    Valid::inPOST('edit'), lang('#lang_all')[$x]
+                ]);
+            }
+
+            Messages::alert('success', lang('action_completed_successfully'));
+        }
+    }
+
+    /**
+     * Delete
+     *
+     */
+    public function delete() {
+        if (Valid::inPOST('delete')) {
+
+            Pdo::action("DELETE FROM " . TABLE_STAFF_MANAGER . " WHERE id=?", [Valid::inPOST('delete')]);
+            Pdo::action("DELETE FROM " . TABLE_ADMINISTRATORS . " WHERE permission=?", [Valid::inPOST('delete')]);
+
+            Messages::alert('success', lang('action_completed_successfully'));
+        }
+    }
+
+    /**
+     * Data
+     *
+     */
+    public function data() {
+        $_SESSION['staff_manager_page'] = Valid::inSERVER('REQUEST_URI');
+        self::$sql_data = Pdo::getColAssoc("SELECT * FROM " . TABLE_STAFF_MANAGER . " ORDER BY name", []);
+        $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
+        Pages::data($lines);
+    }
+
+    /**
+     * Modal
+     *
+     */
+    public function modal() {
+        self::$json_data = json_encode([]);
+        $name = [];
+        $note = [];
+        $permissions = [];
+        for ($i = Pages::$start; $i < Pages::$finish; $i++) {
+            if (isset(Pages::$table['lines'][$i]['id']) == TRUE) {
+
+                $modal_id = Pages::$table['lines'][$i]['id'];
+
+                foreach (self::$sql_data as $sql_modal) {
+                    if ($sql_modal['id'] == $modal_id) {
+                        $name[array_search($sql_modal['language'], lang('#lang_all'))][$modal_id] = $sql_modal['name'];
+                        $note[array_search($sql_modal['language'], lang('#lang_all'))][$modal_id] = $sql_modal['note'];
+                    }
+                    if ($sql_modal['language'] == lang('#lang_all')[0] && $sql_modal['id'] == $modal_id) {
+                        $permissions[$modal_id] = $sql_modal['permissions'];
+                    }
+                }
+
+                ksort($name);
+                ksort($note);
+
+                self::$json_data = json_encode([
+                    'name' => $name,
+                    'note' => $note,
+                    'permissions' => $permissions
+                ]);
+            }
+        }
+    }
+
+}

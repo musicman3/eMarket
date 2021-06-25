@@ -19,26 +19,27 @@ if (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
                 <!-- Level 1 -->
                 <ul class="navbar-nav">
                     <?php
-                    for ($i = 0; $i < count(HeaderMenu::$level); $i++) {
-                        HeaderMenu::setParameters(' dropdown-toggle','data-bs-toggle="dropdown"');
-                        HeaderMenu::clearParameters(HeaderMenu::$level[$i][2]);
+                    foreach (HeaderMenu::$level as $level_key => $level) {
+                        HeaderMenu::setParameters(' dropdown-toggle', 'data-bs-toggle="dropdown"');
+                        HeaderMenu::clearParameters($level[2]);
                         ?>
 
                         <li class="nav-item dropdown">
-                            <a href="<?php echo HeaderMenu::$level[$i][0] ?>" class="nav-link<?php echo HeaderMenu::getParameters()[0] ?>" <?php echo HeaderMenu::getParameters()[1] ?>><span class="<?php echo HeaderMenu::$level[$i][3]; ?>"></span> <?php echo HeaderMenu::$level[$i][1] ?></a>
-                            <?php if (isset(HeaderMenu::$menu[$i])) { ?>
+                            <a href="<?php echo $level[0] ?>" class="nav-link<?php echo HeaderMenu::getParameters()[0] ?>" <?php echo HeaderMenu::getParameters()[1] ?>><span class="<?php echo $level[3]; ?>"></span> <?php echo $level[1] ?></a>
+                            <?php if (isset(HeaderMenu::$menu[$level_key])) { ?>
                                 <!-- Level 2 -->
                                 <ul class="dropdown-menu dropdown-menu-dark">
                                     <?php
-                                    for ($x = 0; $x < count(HeaderMenu::$menu[$i]); $x++) {
+                                    foreach (HeaderMenu::$menu[$level_key] as $level_value) {
                                         ?>
                                         <li>
-                                            <a class="dropdown-item" <?php echo HeaderMenu::$menu[$i][$x][3]; ?> href="<?php echo HeaderMenu::$menu[$i][$x][0] ?>"><span class="<?php echo HeaderMenu::$menu[$i][$x][1]; ?>"></span> <?php echo HeaderMenu::$menu[$i][$x][2] ?></a>
+                                            <a class="dropdown-item" <?php echo $level_value[3]; ?> href="<?php echo $level_value[0] ?>"><span class="<?php echo $level_value[1]; ?>"></span> <?php echo $level_value[2] ?></a>
                                         </li><?php } ?>
                                 </ul><?php } ?>
                         </li><?php } ?>
                 </ul>
             </div>
+
         </div>
     </nav>
 

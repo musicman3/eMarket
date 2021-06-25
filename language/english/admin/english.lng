@@ -31,8 +31,11 @@ title_slideshow_index = Slideshow
 title_stikers_index = Stikers
 title_stock_index = Stock
 title_customers_index = Customers
+title_staff_manager_index = Staff manager
+title_staff_manager_staff_index = Staff
 
 ;MENU_BUTTONS
+menu_dashboard = Monitoring
 menu_catalog = Catalog
 menu_market = Market
 menu_sellings = Sellings
@@ -189,7 +192,7 @@ weight_value = Value
 units_name_little = Little name
 units_name_full = Full name
 
-;VENDOR_CODES
+;VENDOR CODES
 vendor_codes_name = Vendor code
 vendor_codes_description = Description
 
@@ -324,3 +327,16 @@ slides_show_navigation_buttons = Show navigation buttons
 slides_quantity = Quantity
 slides_text_animation = Animating text
 slides_text_color = Text color
+
+;STAFF MANAGER
+staff_manager_group = Staff group 
+staff_manager_note = Note
+staff_manager_select = Select sections 
+staff_manager_permissions = Available sections for this group 
+
+;STAFF
+staff_email = Email
+staff_password = Password
+staff_generate_password = Generate
+staff_note = Note
+staff_tooltip = After the password has been generated, copy it and inform the new employee

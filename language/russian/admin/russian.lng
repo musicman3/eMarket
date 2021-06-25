@@ -31,8 +31,11 @@ title_slideshow_index = Слайдшоу
 title_stikers_index = Стикеры
 title_stock_index = Склад
 title_customers_index = Клиенты
+title_staff_manager_index = Менеджер персонала
+title_staff_manager_staff_index = Персонал
 
 ;КНОПКИ МЕНЮ
+menu_dashboard = Мониторинг
 menu_catalog = Каталог товаров
 menu_market = Магазин
 menu_sellings = Продажи
@@ -189,7 +192,7 @@ weight_value = Значение
 units_name_little = Сокращенное наименование
 units_name_full = Полное наименование
 
-;VENDOR_CODES
+;VENDOR CODES
 vendor_codes_name = Идентификатор товара
 vendor_codes_description = Описание
 
@@ -324,3 +327,16 @@ slides_show_navigation_buttons = Показать навигационные к�
 slides_quantity = Количество
 slides_text_animation = Анимация текста
 slides_text_color = Цвет текста
+
+;STAFF MANAGER
+staff_manager_group = Группа персонала
+staff_manager_note = Примечание
+staff_manager_select = Выберите разделы
+staff_manager_permissions = Доступные разделы для этой группы
+
+;STAFF
+staff_email = Email
+staff_password = Пароль
+staff_generate_password = Сгенерировать
+staff_note = Примечание
+staff_tooltip = После того как пароль будет сгенерирован, скопируйте его и сообщите новому сотруднику
