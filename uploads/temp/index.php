@@ -9,7 +9,7 @@
 *
 * View the documentation for an example of how to use this class.
 */
-
+ 
 error_reporting(E_ALL | E_STRICT);
 require_once('../../vendor/autoload.php');
 
