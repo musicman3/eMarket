@@ -20,7 +20,7 @@ require_once('modal/index.php')
         <div class="card-header">
             <div id="alert_block"><?php Messages::alert(); ?></div>
             <h5 class="card-title">
-                <span class="settings_back"><button type="button" onClick='location.href = "<?php echo Settings::parentPartitionGenerator() ?>"' class="btn btn-primary btn-sm bi-reply"></button></span><span class="settings_name"><?php echo Settings::titlePageGenerator() ?></span>
+                <span class="settings_name"><?php echo Settings::titlePageGenerator() ?></span>
             </h5>
         </div>
         <div class="card-body">

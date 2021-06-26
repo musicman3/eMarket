@@ -43,8 +43,8 @@ class HeaderMenu {
         $this->init();
         $this->initModules();
         $this->levelOne();
-        $this->staticLevels();
         $this->staffInit();
+        $this->staticLevels();
         $this->exit();
     }
 
