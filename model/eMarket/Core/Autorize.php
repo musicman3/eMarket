@@ -106,7 +106,6 @@ class Autorize {
         if (Settings::path() == 'catalog') {
 
             session_start();
-            self::demoModeInit();
             
             if (isset($_SESSION['email_customer'])) {
                 $customer_data = Pdo::getColAssoc("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']])[0];
