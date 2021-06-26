@@ -11,7 +11,7 @@
 */
 
 error_reporting(E_ALL | E_STRICT);
-require_once('../../model/vendor/autoload.php');
+require_once('../../vendor/autoload.php');
 
 $upload_dir = '../../uploads/temp/files/';
 $valid_extensions = array('gif', 'png', 'jpeg', 'jpg');
