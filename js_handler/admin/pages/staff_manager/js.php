@@ -63,6 +63,8 @@
                 document.querySelector('#hash_' + md5(permissions[y])).setAttribute('selected', true);
             }
             tail.select(document.querySelector('#permissions')).reload();
+            
+            document.querySelector('#demo_mode').checked = json_data.mode[modal_id];
 
         } else {
             document.querySelector('#edit').value = '';

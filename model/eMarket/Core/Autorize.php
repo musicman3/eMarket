@@ -42,6 +42,22 @@ class Autorize {
     }
 
     /**
+     * Demo mode init
+     *
+     */
+    public static function demoModeInit() {
+        if (isset($_SESSION['login'])) {
+            $staff_permission = Pdo::getCellFalse("SELECT permission FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [$_SESSION['login']]);
+            if ($staff_permission != 'admin') {
+                $mode = Pdo::getCellFalse("SELECT mode FROM " . TABLE_STAFF_MANAGER . " WHERE id=?", [$staff_permission]);
+                if ($mode == 1){
+                    Valid::$demo_mode = TRUE;
+                }
+            }
+        }
+    }
+
+    /**
      * Session authorization for Admin Panel
      *
      * @return string TRUE
@@ -49,8 +65,9 @@ class Autorize {
     public static function sessionAdmin() {
 
         if (Settings::path() == 'admin' && Settings::titleDir() != 'login') {
-
+            
             session_start();
+            self::demoModeInit();
 
             if (isset($_SESSION['session_start']) && (time() - $_SESSION['session_start']) / 60 > Settings::sessionExprTime()) {
                 unset($_SESSION['login']);
@@ -89,6 +106,8 @@ class Autorize {
         if (Settings::path() == 'catalog') {
 
             session_start();
+            self::demoModeInit();
+            
             if (isset($_SESSION['email_customer'])) {
                 $customer_data = Pdo::getColAssoc("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']])[0];
             } else {

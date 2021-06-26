@@ -57,13 +57,19 @@ class StaffManager {
     public function add() {
         if (Valid::inPOST('add')) {
 
+            if (Valid::inPOST('demo_mode')) {
+                $demo_mode = 1;
+            } else {
+                $demo_mode = 0;
+            }
+
             $id_max = Pdo::selectPrepare("SELECT id FROM " . TABLE_STAFF_MANAGER . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max) + 1;
 
             for ($x = 0; $x < Lang::$count; $x++) {
-                Pdo::action("INSERT INTO " . TABLE_STAFF_MANAGER . " SET id=?, name=?, language=?, note=?, permissions=?", [
+                Pdo::action("INSERT INTO " . TABLE_STAFF_MANAGER . " SET id=?, name=?, language=?, note=?, permissions=?, mode=?", [
                     $id, Valid::inPOST('staff_manager_group_' . $x), lang('#lang_all')[$x], Valid::inPOST('staff_manager_note_' . $x),
-                    json_encode(Valid::inPOST('permissions'))
+                    json_encode(Valid::inPOST('permissions')), $demo_mode
                 ]);
             }
 
@@ -78,10 +84,16 @@ class StaffManager {
     public function edit() {
         if (Valid::inPOST('edit')) {
 
+            if (Valid::inPOST('demo_mode')) {
+                $demo_mode = 1;
+            } else {
+                $demo_mode = 0;
+            }
+
             for ($x = 0; $x < Lang::$count; $x++) {
-                Pdo::action("UPDATE " . TABLE_STAFF_MANAGER . " SET name=?, note=?, permissions=? WHERE id=? AND language=?", [
+                Pdo::action("UPDATE " . TABLE_STAFF_MANAGER . " SET name=?, note=?, permissions=?, mode=? WHERE id=? AND language=?", [
                     Valid::inPOST('staff_manager_group_' . $x), Valid::inPOST('staff_manager_note_' . $x), json_encode(Valid::inPOST('permissions')),
-                    Valid::inPOST('edit'), lang('#lang_all')[$x]
+                    $demo_mode, Valid::inPOST('edit'), lang('#lang_all')[$x]
                 ]);
             }
 
@@ -123,6 +135,7 @@ class StaffManager {
         $name = [];
         $note = [];
         $permissions = [];
+        $mode = [];
         for ($i = Pages::$start; $i < Pages::$finish; $i++) {
             if (isset(Pages::$table['lines'][$i]['id']) == TRUE) {
 
@@ -135,6 +148,7 @@ class StaffManager {
                     }
                     if ($sql_modal['language'] == lang('#lang_all')[0] && $sql_modal['id'] == $modal_id) {
                         $permissions[$modal_id] = $sql_modal['permissions'];
+                        $mode[$modal_id] = (int) $sql_modal['mode'];
                     }
                 }
 
@@ -144,7 +158,8 @@ class StaffManager {
                 self::$json_data = json_encode([
                     'name' => $name,
                     'note' => $note,
-                    'permissions' => $permissions
+                    'permissions' => $permissions,
+                    'mode' => $mode
                 ]);
             }
         }

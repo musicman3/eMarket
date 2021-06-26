@@ -332,7 +332,8 @@ slides_text_color = Text color
 staff_manager_group = Staff group 
 staff_manager_note = Note
 staff_manager_select = Select sections 
-staff_manager_permissions = Available sections for this group 
+staff_manager_permissions = Available sections for this group
+staff_manager_mode = Enable demo mode for this group 
 
 ;STAFF
 staff_email = Email

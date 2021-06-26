@@ -81,6 +81,10 @@ use \eMarket\Admin\HeaderMenu;
                             </span>
 
                         </div>
+                        <div class="form-check form-switch mb-2">
+                            <input class="form-check-input" type="checkbox" name="demo_mode" id="demo_mode">
+                            <label class="form-check-label" for="demo_mode"><?php echo lang('staff_manager_mode') ?></label>
+                        </div>
                     </div>
                 </div>
 

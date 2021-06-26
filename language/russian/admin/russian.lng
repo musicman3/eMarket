@@ -333,6 +333,7 @@ staff_manager_group = Группа персонала
 staff_manager_note = Примечание
 staff_manager_select = Выберите разделы
 staff_manager_permissions = Доступные разделы для этой группы
+staff_manager_mode = Включить демо-режим для этой группы
 
 ;STAFF
 staff_email = Email

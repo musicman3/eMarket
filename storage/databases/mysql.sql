@@ -277,6 +277,7 @@ CREATE TABLE emkt_staff_manager (
 	name varchar(256),
         note varchar(256),
         permissions json,
+        mode varchar(256),
 PRIMARY KEY (id, language))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

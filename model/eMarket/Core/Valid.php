@@ -16,6 +16,8 @@ namespace eMarket\Core;
  */
 class Valid {
 
+    public static $demo_mode = FALSE;
+
     /**
      * POST validation
      *
@@ -23,7 +25,7 @@ class Valid {
      * @return array|string
      */
     public static function inPOST($input) {
-        if (filter_input(INPUT_POST, $input, FILTER_DEFAULT, FILTER_FORCE_ARRAY) == TRUE) {
+        if (filter_input(INPUT_POST, $input, FILTER_DEFAULT, FILTER_FORCE_ARRAY) == TRUE && self::$demo_mode == FALSE) {
             return (isset($_POST[$input])) ? $_POST[$input] : null;
         }
     }
@@ -72,7 +74,7 @@ class Valid {
      */
     public static function inPostJson($input) {
         $postData = file_get_contents('php://input');
-        if (is_string($postData) && is_array(json_decode($postData, true)) && (json_last_error() == JSON_ERROR_NONE)) {
+        if (is_string($postData) && is_array(json_decode($postData, true)) && (json_last_error() == JSON_ERROR_NONE) && self::$demo_mode == FALSE) {
             $data = json_decode($postData, true);
             if (isset($data[$input])) {
                 return $data[$input];
