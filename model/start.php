@@ -11,7 +11,7 @@ error_reporting(-1);
 ini_set('error_log', getenv('DOCUMENT_ROOT') . '/storage/logs/errors.log');
 
 //AUTOLOAD FOR CLASSES
-require_once('vendor/autoload.php');
+require_once(getenv('DOCUMENT_ROOT') . '/vendor/autoload.php');
 
 use \eMarket\Core\{
     Autorize,

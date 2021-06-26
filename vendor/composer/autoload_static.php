@@ -20,7 +20,7 @@ class ComposerStaticInit6d2863d5173dcc67b5162a89b66e5743
     public static $prefixDirsPsr4 = array (
         'eMarket\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/eMarket',
+            0 => __DIR__ . '/../..' . '/model/eMarket',
         ),
         'PHPMailer\\PHPMailer\\' => 
         array (
