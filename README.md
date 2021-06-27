@@ -2,12 +2,18 @@
 
 [![N|Solid](https://github.com/musicman3/eMarket/blob/master/view/default/catalog/images/emarket.png)](https://github.com/musicman3/eMarket)
 
+### System requipments: 
   - PHP >= 7.3
   - MySQL >= 5.7
   - Javascript >= ES6
   - HTML 5
 
-Features: Vanilla JS and Bootstrap 5.
+### Features: 
+  - Vanilla JS
+  - Bootstrap 5
+  - PSR-1 (Basic Coding Standard)
+  - PSR-3 (Logger Interface)
+  - PSR-4 (Autoloading Standard)
 
 ### Install  
 Copy files to server and open page: http://localhost/controller/install
