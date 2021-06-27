@@ -7,6 +7,8 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'eMarket\\' => array($baseDir . '/model/eMarket'),
+    'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
     'PHPMailer\\PHPMailer\\' => array($vendorDir . '/phpmailer/phpmailer/src'),
+    'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
     '' => array($vendorDir . '/league/color-extractor/src'),
 );

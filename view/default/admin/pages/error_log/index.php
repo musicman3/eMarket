@@ -10,6 +10,7 @@ use \eMarket\Core\{
     Valid,
     Settings
 };
+use \eMarket\Admin\ErrorLog;
 ?>
 
 <div id="error_log">
@@ -71,27 +72,12 @@ use \eMarket\Core\{
                             for (Pages::$start; Pages::$start < Pages::$finish; Pages::$start++, Pages::lineUpdate()) {
 
                                 if (isset(Pages::$table['line']) == TRUE) {
-
-                                    if (strrpos(Pages::$table['line'], 'PHP Notice:') == TRUE) {
-                                        ?><tr class="table-success align-middle"><td colspan="2"><?php echo Pages::$table['line'] . '</td></tr>'; ?><?php
-                                    } elseif
-                                    (strrpos(Pages::$table['line'], 'PHP Warning:') == TRUE) {
-                                        ?><tr class="table-warning align-middle"><td colspan="2"><?php echo Pages::$table['line'] . '</td></tr>'; ?><?php
-                                            } elseif
-                                            (strrpos(Pages::$table['line'], 'PHP Catchable fatal error:') == TRUE) {
-                                                ?><tr class="table-danger align-middle"><td colspan="2"><?php echo Pages::$table['line'] . '</td></tr>'; ?><?php
-                                            } elseif
-                                            (strrpos(Pages::$table['line'], 'PHP Fatal error:') == TRUE) {
-                                                ?><tr class="table-danger align-middle"><td colspan="2"><?php echo Pages::$table['line'] . '</td></tr>'; ?><?php
-                                            } elseif
-                                            (strrpos(Pages::$table['line'], 'PHP Parse error:') == TRUE) {
-                                                ?><tr class="table-info align-middle"><td colspan="2"><?php echo Pages::$table['line'] . '</td></tr>'; ?><?php } else {
-                                                ?><tr class="align-middle"><td colspan="2"><?php
-                                                echo Pages::$table['line'] . '</td></tr>';
-                                            }
-                                        }
-                                    }
                                     ?>
+                                    <tr class="<?php echo ErrorLog::errorClass(Pages::$table['line']) ?> align-middle"><td colspan="2"><?php echo Pages::$table['line'] ?></td></tr>
+                                <?php
+                                }
+                            }
+                            ?>
 
                         </tbody>
 
@@ -100,6 +86,6 @@ use \eMarket\Core\{
             </div>
         <?php } else { ?>
             <div class="card-body"><?php echo lang('no_listing') ?></div>
-        <?php } ?>
+<?php } ?>
     </div>
 </div>

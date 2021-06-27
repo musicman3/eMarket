@@ -6,9 +6,8 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 $TIME_START = microtime(1);
-//ENABLE LOG
+
 error_reporting(-1);
-ini_set('error_log', getenv('DOCUMENT_ROOT') . '/storage/logs/errors.log');
 
 //AUTOLOAD FOR CLASSES
 require_once(getenv('DOCUMENT_ROOT') . '/vendor/autoload.php');
@@ -17,10 +16,15 @@ use \eMarket\Core\{
     Autorize,
     Debug,
     Lang,
+    Messages,
     Settings,
     Tree
 };
 
+// MONOLOG LOGGING
+Messages::monologErrorHandler();
+
+//DEBUG
 Debug::$time_start = $TIME_START;
 unset($TIME_START);
 

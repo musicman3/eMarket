@@ -13,6 +13,10 @@ use \eMarket\Core\{
     Valid
 };
 
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+use Monolog\ErrorHandler;
+
 /**
  * Messages
  *
@@ -21,6 +25,17 @@ use \eMarket\Core\{
  * 
  */
 class Messages {
+
+    /**
+     * Monolog ErrorHandler logging
+     *
+     */
+    public static function monologErrorHandler() {
+        $log = new Logger('eMarket');
+        $log->pushHandler(new StreamHandler(getenv('DOCUMENT_ROOT') . '/storage/logs/errors.log', Logger::NOTICE));
+        $log->pushHandler(new StreamHandler("php://output", Logger::NOTICE));
+        ErrorHandler::register($log);
+    }
 
     /**
      * Error notifications, success, etc.

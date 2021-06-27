@@ -67,4 +67,29 @@ class ErrorLog {
         Pages::data($lines);
     }
 
+    /**
+     * Error class
+     *
+     * @param string $input input data
+     * @return string bootstrap class
+     */
+    public static function errorClass($input) {
+
+        if (strrpos($input, 'eMarket.NOTICE:') == TRUE) {
+            return 'table-secondary';
+        }
+        if (strrpos($input, 'eMarket.WARNING:') == TRUE) {
+            return 'table-primary';
+        }
+        if (strrpos($input, 'eMarket.ERROR:') == TRUE) {
+            return 'table-warning';
+        }
+        if (strrpos($input, 'eMarket.CRITICAL:') == TRUE) {
+            return 'table-danger';
+        }
+        if (strrpos($input, 'eMarket.ALERT:') == TRUE) {
+            return 'table-dark';
+        }
+    }
+
 }

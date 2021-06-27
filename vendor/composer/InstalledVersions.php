@@ -68,6 +68,15 @@ private static $installed = array (
         0 => '*',
       ),
     ),
+    'monolog/monolog' => 
+    array (
+      'pretty_version' => '2.2.0',
+      'version' => '2.2.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '1cb1cde8e8dd0f70cc0fe51354a59acad9302084',
+    ),
     'phpmailer/phpmailer' => 
     array (
       'pretty_version' => 'v6.5.0',
@@ -76,6 +85,22 @@ private static $installed = array (
       array (
       ),
       'reference' => 'a5b5c43e50b7fba655f793ad27303cd74c57363c',
+    ),
+    'psr/log' => 
+    array (
+      'pretty_version' => '1.1.4',
+      'version' => '1.1.4.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'd49695b909c3b7628b6289db5479a1c204601f11',
+    ),
+    'psr/log-implementation' => 
+    array (
+      'provided' => 
+      array (
+        0 => '1.0.0',
+      ),
     ),
   ),
 );
