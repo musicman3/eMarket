@@ -3,13 +3,13 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-use \eMarket\Core\{
+use eMarket\Core\{
     Messages,
     Pages,
     Valid,
     Settings
 };
-use \eMarket\Admin\Length;
+use eMarket\Admin\Length;
 require_once('modal/index.php')
 ?>
 

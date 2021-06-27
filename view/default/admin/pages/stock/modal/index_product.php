@@ -4,11 +4,11 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-use \eMarket\Core\{
+use eMarket\Core\{
     Lang,
     Settings
 };
-use \eMarket\Admin\Stock;
+use eMarket\Admin\Stock;
 ?>
 
 <div id="index_product" class="products modal fade" tabindex="-1">

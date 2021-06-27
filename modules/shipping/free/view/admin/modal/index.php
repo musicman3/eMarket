@@ -4,10 +4,10 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-use \eMarket\Core\{
+use eMarket\Core\{
     Settings
 };
-use \eMarket\Core\Modules\Shipping\Free;
+use eMarket\Core\Modules\Shipping\Free;
 ?>
 
 <div id="index" class="modal fade" tabindex="-1">

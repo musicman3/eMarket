@@ -7,7 +7,7 @@
 
 namespace eMarket\Admin;
 
-use \eMarket\Core\{
+use eMarket\Core\{
     Eac,
     Ecb,
     Func,
@@ -17,8 +17,8 @@ use \eMarket\Core\{
     Settings,
     Valid
 };
-use \eMarket\Admin\HeaderMenu;
-use \eMarket\Admin\Stikers;
+use eMarket\Admin\HeaderMenu;
+use eMarket\Admin\Stikers;
 
 /**
  * Stock

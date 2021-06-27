@@ -7,7 +7,7 @@
 
 namespace eMarket\Core;
 
-use \eMarket\Core\{
+use eMarket\Core\{
     Pdo
 };
 

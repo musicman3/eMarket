@@ -4,14 +4,14 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-use \eMarket\Core\{
+use eMarket\Core\{
     Messages,
     Pages,
     Settings,
     Valid,
     View
 };
-use \eMarket\Catalog\Orders;
+use eMarket\Catalog\Orders;
 
 foreach (View::tlpc('content') as $path) {
     require_once (ROOT . $path);

@@ -7,12 +7,12 @@
 
 namespace eMarket\Admin;
 
-use \eMarket\Core\{
+use eMarket\Core\{
     Messages,
     Pages,
     Valid
 };
-use \eMarket\Admin\HeaderMenu;
+use eMarket\Admin\HeaderMenu;
 
 /**
  * Dashboard

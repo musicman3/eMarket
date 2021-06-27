@@ -4,12 +4,12 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-use \eMarket\Core\{
+use eMarket\Core\{
     Ecb,
     Pages,
     Valid
 };
-use \eMarket\Core\Modules\Shipping\Free;
+use eMarket\Core\Modules\Shipping\Free;
 
 require_once('modal/index.php')
 ?>

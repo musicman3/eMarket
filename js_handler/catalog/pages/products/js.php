@@ -4,7 +4,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-use \eMarket\Catalog\Products;
+use eMarket\Catalog\Products;
 ?>
 
 <script type="text/javascript" src="/model/library/js/classes/attributes/attributes_processing.js"></script>

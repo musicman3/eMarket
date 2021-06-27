@@ -4,11 +4,11 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-use \eMarket\Core\{
+use eMarket\Core\{
     Lang,
     Settings
 };
-use \eMarket\Admin\HeaderMenu;
+use eMarket\Admin\HeaderMenu;
 ?>
 <div id="index" class="modal fade" tabindex="-1">
     <div class="modal-dialog">

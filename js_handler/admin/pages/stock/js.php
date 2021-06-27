@@ -4,8 +4,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-use \eMarket\Core\Files;
-use \eMarket\Admin\Stock;
+use eMarket\Core\Files;
+use eMarket\Admin\Stock;
 
 $resize_max = json_encode(Files::imgResizeMax(Stock::$resize_param));
 $resize_max_prod = json_encode(Files::imgResizeMax(Stock::$resize_param_product));

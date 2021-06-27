@@ -8,7 +8,7 @@
 // 
 //Load HTML
 //
-use \eMarket\Core\{
+use eMarket\Core\{
     Pdo,
     Settings,
     Valid

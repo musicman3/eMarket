@@ -4,7 +4,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-use \eMarket\Catalog\Categories;
+use eMarket\Catalog\Categories;
 
 Categories::listingData();
 ?>

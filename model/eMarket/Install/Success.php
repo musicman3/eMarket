@@ -7,7 +7,7 @@
 
 namespace eMarket\Install;
 
-use \eMarket\Core\{
+use eMarket\Core\{
     Autorize,
     Pdo,
     Valid

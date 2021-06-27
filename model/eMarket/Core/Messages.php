@@ -7,12 +7,11 @@
 
 namespace eMarket\Core;
 
-use \eMarket\Core\{
+use eMarket\Core\{
     Pdo,
     Settings,
     Valid
 };
-
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 use Monolog\ErrorHandler;

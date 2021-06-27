@@ -7,7 +7,7 @@
 
 namespace eMarket\Core\Modules\Shipping;
 
-use \eMarket\Core\{
+use eMarket\Core\{
     Ecb,
     Interfaces,
     Messages,

@@ -4,8 +4,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-use \eMarket\Admin\Slideshow;
-use \eMarket\Core\Settings;
+use eMarket\Admin\Slideshow;
+use eMarket\Core\Settings;
 
 Slideshow::view();
 

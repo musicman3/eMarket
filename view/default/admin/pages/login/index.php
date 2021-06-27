@@ -4,7 +4,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-use \eMarket\Admin\Login;
+use eMarket\Admin\Login;
 ?>
 
 <div id="login" class="row">

@@ -4,10 +4,10 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-use \eMarket\Core\{
+use eMarket\Core\{
     Settings,
 };
-use \eMarket\Admin\Slideshow;
+use eMarket\Admin\Slideshow;
 ?>
 
 <div id="index" class="modal fade" tabindex="-1">

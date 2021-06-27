@@ -4,11 +4,11 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-use \eMarket\Core\{
+use eMarket\Core\{
     Func,
     Settings
 };
-use \eMarket\Admin\ZonesListing;
+use eMarket\Admin\ZonesListing;
 ?>
 
 <div id="index" class="modal fade" tabindex="-1">

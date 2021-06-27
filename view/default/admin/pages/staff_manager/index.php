@@ -4,13 +4,13 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-use \eMarket\Core\{
+use eMarket\Core\{
     Messages,
     Pages,
     Valid,
     Settings
 };
-use \eMarket\Admin\StaffManager;
+use eMarket\Admin\StaffManager;
 
 require_once('modal/index.php')
 ?>

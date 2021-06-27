@@ -4,7 +4,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-use \eMarket\Core\{
+use eMarket\Core\{
     Cart,
     Ecb,
     Pages,
@@ -12,7 +12,7 @@ use \eMarket\Core\{
     Valid,
     View
 };
-use \eMarket\Catalog\Listing;
+use eMarket\Catalog\Listing;
 
 foreach (View::tlpc('content') as $path) {
     require_once (ROOT . $path);

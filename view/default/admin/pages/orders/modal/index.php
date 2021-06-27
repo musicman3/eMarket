@@ -4,7 +4,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-use \eMarket\Admin\Orders;
+use eMarket\Admin\Orders;
 ?>
 
 <div id="index" class="products modal fade" tabindex="-1">

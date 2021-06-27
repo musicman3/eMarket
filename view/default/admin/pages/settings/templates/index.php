@@ -4,10 +4,10 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-use \eMarket\Core\{
+use eMarket\Core\{
     Settings,
 };
-use \eMarket\Admin\Templates;
+use eMarket\Admin\Templates;
 ?>
 
 <div id="settings_templates">

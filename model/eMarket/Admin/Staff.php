@@ -7,7 +7,7 @@
 
 namespace eMarket\Admin;
 
-use \eMarket\Core\{
+use eMarket\Core\{
     Autorize,
     Func,
     Lang,

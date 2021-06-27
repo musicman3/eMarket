@@ -7,7 +7,7 @@
 
 namespace eMarket\Admin;
 
-use \eMarket\Core\{
+use eMarket\Core\{
     Func,
     Lang,
     Messages,
@@ -15,7 +15,7 @@ use \eMarket\Core\{
     Pdo,
     Valid
 };
-use \eMarket\Admin\HeaderMenu;
+use eMarket\Admin\HeaderMenu;
 
 /**
  * Staff Manager

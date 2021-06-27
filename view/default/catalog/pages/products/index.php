@@ -4,13 +4,13 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-use \eMarket\Core\{
+use eMarket\Core\{
     Cart,
     Ecb,
     Products as ProductsCore,
     View
 };
-use \eMarket\Catalog\Products;
+use eMarket\Catalog\Products;
 
 if (Products::$products != FALSE) {
     require_once('modal/cart_message.php')

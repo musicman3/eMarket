@@ -7,7 +7,7 @@
 
 $Checkout = new eMarket\Catalog\Checkout();
 
-use \eMarket\Core\{
+use eMarket\Core\{
     Valid
 };
 

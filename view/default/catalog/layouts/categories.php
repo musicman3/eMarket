@@ -4,8 +4,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-use \eMarket\Catalog\Categories;
-use \eMarket\Core\Settings;
+use eMarket\Catalog\Categories;
+use eMarket\Core\Settings;
 ?>
 
 <div id="layouts-categories" class="card mb-2">

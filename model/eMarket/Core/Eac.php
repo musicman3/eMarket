@@ -7,7 +7,7 @@
 
 namespace eMarket\Core;
 
-use \eMarket\Core\{
+use eMarket\Core\{
     Files,
     Func,
     Lang,
@@ -15,7 +15,7 @@ use \eMarket\Core\{
     Pdo,
     Valid
 };
-use \eMarket\Admin\Stikers;
+use eMarket\Admin\Stikers;
 
 /**
  * eMarket Ajax Catalog

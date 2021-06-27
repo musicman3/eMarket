@@ -7,11 +7,11 @@
 
 namespace eMarket\Core;
 
-use \eMarket\Core\{
+use eMarket\Core\{
     Navigation,
     Settings,
 };
-use \eMarket\Admin\Stock;
+use eMarket\Admin\Stock;
 
 /**
  * Pages

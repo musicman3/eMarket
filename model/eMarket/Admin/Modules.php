@@ -7,13 +7,13 @@
 
 namespace eMarket\Admin;
 
-use \eMarket\Core\{
+use eMarket\Core\{
     Func,
     Messages,
     Pdo,
     Valid
 };
-use \eMarket\Admin\Modules;
+use eMarket\Admin\Modules;
 
 /**
  * Modules

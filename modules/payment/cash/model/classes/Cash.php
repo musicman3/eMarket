@@ -7,7 +7,7 @@
 
 namespace eMarket\Core\Modules\Payment;
 
-use \eMarket\Core\{
+use eMarket\Core\{
     Interfaces,
     Messages,
     Modules,

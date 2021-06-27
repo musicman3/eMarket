@@ -7,7 +7,7 @@
 
 namespace eMarket\Catalog;
 
-use \eMarket\Core\{
+use eMarket\Core\{
     Func,
     Products as ProductsCore,
     Valid

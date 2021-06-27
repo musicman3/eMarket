@@ -12,7 +12,7 @@ error_reporting(-1);
 //AUTOLOAD FOR CLASSES
 require_once(getenv('DOCUMENT_ROOT') . '/vendor/autoload.php');
 
-use \eMarket\Core\{
+use eMarket\Core\{
     Autorize,
     Debug,
     Lang,

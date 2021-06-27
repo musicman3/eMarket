@@ -4,10 +4,10 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-use \eMarket\Core\{
+use eMarket\Core\{
     Valid
 };
-use \eMarket\Install\Error;
+use eMarket\Install\Error;
 ?>
 
 <div class="container-fluid">

@@ -4,13 +4,13 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-use \eMarket\Core\{
+use eMarket\Core\{
     Messages,
     Settings,
     Valid,
     View
 };
-use \eMarket\Admin\ModulesEdit;
+use eMarket\Admin\ModulesEdit;
 ?>
 
 <div id="settings_modules_edit">

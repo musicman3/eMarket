@@ -7,7 +7,7 @@
 
 namespace eMarket\Core\Modules\Discount;
 
-use \eMarket\Core\{
+use eMarket\Core\{
     Eac,
     Ecb,
     Func,
@@ -19,7 +19,7 @@ use \eMarket\Core\{
     Pdo,
     Valid
 };
-use \eMarket\Admin\HeaderMenu;
+use eMarket\Admin\HeaderMenu;
 /**
  * Module Sale
  *

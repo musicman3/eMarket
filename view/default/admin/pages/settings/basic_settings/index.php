@@ -4,12 +4,12 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-use \eMarket\Core\{
+use eMarket\Core\{
     Messages,
     Settings,
     Lang
 };
-use \eMarket\Admin\BasicSettings;
+use eMarket\Admin\BasicSettings;
 ?>
 
 <div id="settings_basic_settings">

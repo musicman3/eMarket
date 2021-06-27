@@ -7,7 +7,7 @@
 
 namespace eMarket\Admin;
 
-use \eMarket\Core\{
+use eMarket\Core\{
     Eac,
     Func,
     Lang,
@@ -16,7 +16,7 @@ use \eMarket\Core\{
     Pdo,
     Valid
 };
-use \eMarket\Admin\HeaderMenu;
+use eMarket\Admin\HeaderMenu;
 
 /**
  * Stikers
