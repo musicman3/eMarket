@@ -57,15 +57,16 @@ class StaffManager {
      */
     public function permissions() {
         $permission = Valid::inPOST('permissions');
+        if (!Valid::inPOST('permissions')) {
+            $permission = [];
+        }
         $dashboard_count = 0;
         foreach ($permission as $value) {
             if ($value == '?route=dashboard') {
                 $dashboard_count++;
             }
         }
-        if (is_array($permission) == false) {
-            $permission = [];
-        }
+
         if ($dashboard_count == 0) {
             array_push($permission, '?route=dashboard');
         }
