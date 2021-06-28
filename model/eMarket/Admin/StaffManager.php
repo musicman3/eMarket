@@ -51,6 +51,39 @@ class StaffManager {
     }
 
     /**
+     * Permissions
+     *
+     * @return array permissions
+     */
+    public function permissions() {
+        $permission = Valid::inPOST('permissions');
+        $dashboard_count = 0;
+        foreach ($permission as $value) {
+            if ($value == '?route=dashboard') {
+                $dashboard_count++;
+            }
+        }
+        if (is_array($permission) == false) {
+            $permission = [];
+        }
+        if ($dashboard_count == 0) {
+            array_push($permission, '?route=dashboard');
+        }
+        return $permission;
+    }
+
+    /**
+     * Permission class
+     *
+     * @return string Bootstrap class
+     */
+    public static function permissionClass($input) {
+        if ($input == '?route=dashboard') {
+            return ' disabled';
+        }
+    }
+
+    /**
      * Add
      *
      */
@@ -69,7 +102,7 @@ class StaffManager {
             for ($x = 0; $x < Lang::$count; $x++) {
                 Pdo::action("INSERT INTO " . TABLE_STAFF_MANAGER . " SET id=?, name=?, language=?, note=?, permissions=?, mode=?", [
                     $id, Valid::inPOST('staff_manager_group_' . $x), lang('#lang_all')[$x], Valid::inPOST('staff_manager_note_' . $x),
-                    json_encode(Valid::inPOST('permissions')), $demo_mode
+                    json_encode($this->permissions()), $demo_mode
                 ]);
             }
 
@@ -92,7 +125,7 @@ class StaffManager {
 
             for ($x = 0; $x < Lang::$count; $x++) {
                 Pdo::action("UPDATE " . TABLE_STAFF_MANAGER . " SET name=?, note=?, permissions=?, mode=? WHERE id=? AND language=?", [
-                    Valid::inPOST('staff_manager_group_' . $x), Valid::inPOST('staff_manager_note_' . $x), json_encode(Valid::inPOST('permissions')),
+                    Valid::inPOST('staff_manager_group_' . $x), Valid::inPOST('staff_manager_note_' . $x), json_encode($this->permissions()),
                     $demo_mode, Valid::inPOST('edit'), lang('#lang_all')[$x]
                 ]);
             }

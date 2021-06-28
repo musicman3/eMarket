@@ -8,7 +8,10 @@ use eMarket\Core\{
     Lang,
     Settings
 };
-use eMarket\Admin\HeaderMenu;
+use eMarket\Admin\{
+    HeaderMenu,
+    StaffManager
+};
 ?>
 <div id="index" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
@@ -70,7 +73,7 @@ use eMarket\Admin\HeaderMenu;
                                             if (isset(HeaderMenu::$menu[$level_key])) {
                                                 foreach (HeaderMenu::$menu[$level_key] as $level_value) {
                                                     ?>
-                                                    <option id="<?php echo 'hash_' . md5($level_value[0]) ?>" value="<?php echo $level_value[0] ?>"><?php echo $level_value[2] ?></option>
+                                                    <option id="<?php echo 'hash_' . md5($level_value[0]) ?>" value="<?php echo $level_value[0] ?>" <?php echo StaffManager::permissionClass($level_value[0]) ?>><?php echo $level_value[2] ?></option>
                                                     <?php
                                                 }
                                             }
