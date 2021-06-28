@@ -13,6 +13,7 @@
   - PSR-1 (Basic Coding Standard)
   - PSR-3 (Logger Interface)
   - PSR-4 (Autoloading Standard)
+  - PSR-12 partly (Extended Coding Style Guide)
   - PSR-19 (PHPDoc tags)
 
 ### Install  
