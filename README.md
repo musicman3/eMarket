@@ -13,6 +13,7 @@
   - PSR-1 (Basic Coding Standard)
   - PSR-3 (Logger Interface)
   - PSR-4 (Autoloading Standard)
+  - PSR-19 (PHPDoc tags)
 
 ### Install  
 Copy files to server and open page: http://localhost/controller/install
