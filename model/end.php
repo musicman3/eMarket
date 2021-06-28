@@ -27,4 +27,4 @@ if (Settings::path() == 'install') {
 }
 //Close DB connect
 Pdo::connect('end');
-?>
+

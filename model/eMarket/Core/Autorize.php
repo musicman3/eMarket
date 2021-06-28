@@ -50,9 +50,32 @@ class Autorize {
             $staff_permission = Pdo::getCellFalse("SELECT permission FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [$_SESSION['login']]);
             if ($staff_permission != 'admin') {
                 $mode = Pdo::getCellFalse("SELECT mode FROM " . TABLE_STAFF_MANAGER . " WHERE id=?", [$staff_permission]);
-                if ($mode == 1){
+                if ($mode == 1) {
                     Valid::$demo_mode = TRUE;
                 }
+            }
+        }
+    }
+
+    /**
+     * Dashboard check
+     *
+     */
+    public static function dashboardCheck() {
+        $staff_permission = Pdo::getCellFalse("SELECT permission FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [$_SESSION['login']]);
+        if ($staff_permission != 'admin') {
+            $staff_data = json_decode(Pdo::getCellFalse("SELECT permissions FROM " . TABLE_STAFF_MANAGER . " WHERE id=?", [$staff_permission]), 1);
+
+            $count = 0;
+            foreach ($staff_data as $value) {
+                if ($value == '?route=dashboard') {
+                    $count++;
+                }
+            }
+            if ($count == 0) {
+                unset($_SESSION['login']);
+                unset($_SESSION['pass']);
+                header('Location: ?route=login');
             }
         }
     }
@@ -65,9 +88,10 @@ class Autorize {
     public static function sessionAdmin() {
 
         if (Settings::path() == 'admin' && Settings::titleDir() != 'login') {
-            
+
             session_start();
             self::demoModeInit();
+            self::dashboardCheck();
 
             if (isset($_SESSION['session_start']) && (time() - $_SESSION['session_start']) / 60 > Settings::sessionExprTime()) {
                 unset($_SESSION['login']);
@@ -106,7 +130,7 @@ class Autorize {
         if (Settings::path() == 'catalog') {
 
             session_start();
-            
+
             if (isset($_SESSION['email_customer'])) {
                 $customer_data = Pdo::getColAssoc("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']])[0];
             } else {
