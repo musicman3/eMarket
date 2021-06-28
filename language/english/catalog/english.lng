@@ -182,6 +182,7 @@ messages_activation_complete = Activation successfully completed! Please login t
 messages_email_or_password_is_not_correct = E-mail or password is not correct!
 messages_recovery_password_complete = Password successfully changed! Please login to you account.
 messages_recovery_password_failed = Password not changed! Your password has expired. Please re-request access recovery.
+messages_alert_name = eMarket message
 
 ;NAVBAR
 navbar_pcs = pcs.
