@@ -30,7 +30,7 @@ private static $installed = array (
     array (
     ),
     'reference' => NULL,
-    'name' => 'emarket/classes',
+    'name' => 'emarket/emarket',
   ),
   'versions' => 
   array (
@@ -43,7 +43,7 @@ private static $installed = array (
       ),
       'reference' => '21b6f4bf4ef1927158b3e29bd0c2d99c6681c750',
     ),
-    'emarket/classes' => 
+    'emarket/emarket' => 
     array (
       'pretty_version' => '1.0.0+no-version-set',
       'version' => '1.0.0.0',

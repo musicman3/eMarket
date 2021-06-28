@@ -1,6 +1,8 @@
 {
     "name": "emarket/emarket",
     "description": "eMarket Online Store",
+    "type": "project",
+    "homepage": "https://github.com/musicman3/eMarket",
     "license": "GPL-3.0-only",
     "autoload": {
         "psr-4": {
