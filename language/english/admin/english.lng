@@ -341,3 +341,6 @@ staff_password = Password
 staff_generate_password = Generate
 staff_note = Note
 staff_tooltip = After the password has been generated, copy it and inform the new employee
+
+;MESSAGES
+messages_alert_name = eMarket message

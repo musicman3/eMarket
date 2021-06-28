@@ -50,9 +50,9 @@ class Messages {
         if ($message != null && $class != null) {
             $_SESSION['message_marker'] = 'ok';
             if ($time != null) {
-                $_SESSION['message'] = [$class, $message, $time, $start];
+                $_SESSION['message'] = [$class, $message, $time, $start, date('H:i')];
             } else {
-                $_SESSION['message'] = [$class, $message, 3000, $start];
+                $_SESSION['message'] = [$class, $message, 3000, $start, date('H:i')];
             }
             if (Valid::inGET('route') == 'settings/modules/edit') {
                 self::alert();

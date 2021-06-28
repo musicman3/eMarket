@@ -341,3 +341,6 @@ staff_password = Пароль
 staff_generate_password = Сгенерировать
 staff_note = Примечание
 staff_tooltip = После того как пароль будет сгенерирован, скопируйте его и сообщите новому сотруднику
+
+;MESSAGES
+messages_alert_name = Сообщение eMarket
