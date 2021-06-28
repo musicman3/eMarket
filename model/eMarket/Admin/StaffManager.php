@@ -80,7 +80,7 @@ class StaffManager {
      */
     public static function permissionClass($input) {
         if ($input == '?route=dashboard') {
-            return ' disabled';
+            return ' selected disabled';
         }
     }
 
