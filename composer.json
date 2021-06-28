@@ -1,5 +1,5 @@
 {
-    "name": "emarket/classes",
+    "name": "emarket/emarket",
     "description": "eMarket Online Store",
     "license": "GPL-3.0-only",
     "autoload": {
