@@ -51,7 +51,7 @@ class Modules {
             $namespace = '\eMarket\Core\Modules\\' . ucfirst($module[0]) . '\\' . ucfirst($module[1]);
             $namespace::install($module);
 
-            Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('add_' . Valid::inPOST('add'), 'success', lang('action_completed_successfully'));
         }
     }
 
@@ -70,6 +70,10 @@ class Modules {
             }
             $module = explode('_', Valid::inPOST('edit_active'));
             Pdo::action("UPDATE " . TABLE_MODULES . " SET active=? WHERE name=? AND type=?", [$active, $module[1], $module[0]]);
+
+            if (Valid::inPOST('alert_flag') == 'on') {
+                Messages::alert('edit_' . Valid::inPOST('edit_active'), 'success', lang('action_completed_successfully'));
+            }
         }
     }
 
@@ -83,7 +87,7 @@ class Modules {
             $namespace = '\eMarket\Core\Modules\\' . ucfirst($module[0]) . '\\' . ucfirst($module[1]);
             $namespace::uninstall($module);
 
-            Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('delete_' . Valid::inPOST('delete'), 'success', lang('action_completed_successfully'));
         }
     }
 

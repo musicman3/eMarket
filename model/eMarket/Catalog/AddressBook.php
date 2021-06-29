@@ -115,7 +115,7 @@ class AddressBook {
 
             Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET address_book=? WHERE email=?", [json_encode(self::$address_data), $_SESSION['email_customer']]);
 
-            Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('add', 'success', lang('action_completed_successfully'));
         }
     }
 
@@ -150,7 +150,7 @@ class AddressBook {
 
             Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET address_book=? WHERE email=?", [json_encode(self::$address_data), $_SESSION['email_customer']]);
 
-            Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('edit', 'success', lang('action_completed_successfully'));
         }
     }
 
@@ -179,7 +179,7 @@ class AddressBook {
 
             Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET address_book=? WHERE email=?", [$address_data_out_table, $_SESSION['email_customer']]);
 
-            Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('delete', 'success', lang('action_completed_successfully'));
         }
     }
 

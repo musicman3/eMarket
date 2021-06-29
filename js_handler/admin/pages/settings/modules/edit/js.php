@@ -7,6 +7,7 @@
 
 <script type="text/javascript">
     Helpers.on('body', 'click', '#switch_active', function (e) {
+        document.querySelector('#alert_flag').value = 'off';
         var msg = document.forms.form_edit_active;
         let data = new FormData(msg);
         let xhr = new XMLHttpRequest();

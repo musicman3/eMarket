@@ -107,7 +107,7 @@ class StaffManager {
                 ]);
             }
 
-            Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('add', 'success', lang('action_completed_successfully'));
         }
     }
 
@@ -131,7 +131,7 @@ class StaffManager {
                 ]);
             }
 
-            Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('edit', 'success', lang('action_completed_successfully'));
         }
     }
 
@@ -145,7 +145,7 @@ class StaffManager {
             Pdo::action("DELETE FROM " . TABLE_STAFF_MANAGER . " WHERE id=?", [Valid::inPOST('delete')]);
             Pdo::action("DELETE FROM " . TABLE_ADMINISTRATORS . " WHERE permission=?", [Valid::inPOST('delete')]);
 
-            Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('delete', 'success', lang('action_completed_successfully'));
         }
     }
 

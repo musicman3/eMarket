@@ -63,7 +63,7 @@ class Customers {
 
             Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET status=? WHERE id=?", [self::$status, Valid::inPOST('status')]);
 
-            Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('edit', 'success', lang('action_completed_successfully'));
         }
     }
 
@@ -76,7 +76,7 @@ class Customers {
 
             Pdo::action("DELETE FROM " . TABLE_CUSTOMERS . " WHERE id=?", [Valid::inPOST('delete')]);
 
-            Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('delete', 'success', lang('action_completed_successfully'));
         }
     }
 

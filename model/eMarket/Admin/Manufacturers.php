@@ -67,7 +67,7 @@ class Manufacturers {
                 Pdo::action("INSERT INTO " . TABLE_MANUFACTURERS . " SET id=?, name=?, language=?, site=?, logo=?", [$id, Valid::inPOST('name_manufacturers_' . $x), lang('#lang_all')[$x], Valid::inPOST('site_manufacturers'), json_encode([])]);
             }
 
-            Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('add', 'success', lang('action_completed_successfully'));
         }
     }
 
@@ -82,7 +82,7 @@ class Manufacturers {
                 Pdo::action("UPDATE " . TABLE_MANUFACTURERS . " SET name=?, site=? WHERE id=? AND language=?", [Valid::inPOST('name_manufacturers_' . $x), Valid::inPOST('site_manufacturers'), Valid::inPOST('edit'), lang('#lang_all')[$x]]);
             }
 
-            Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('edit', 'success', lang('action_completed_successfully'));
         }
     }
 
@@ -110,7 +110,7 @@ class Manufacturers {
 
             Pdo::action("DELETE FROM " . TABLE_MANUFACTURERS . " WHERE id=?", [Valid::inPOST('delete')]);
 
-            Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('delete', 'success', lang('action_completed_successfully'));
         }
     }
 

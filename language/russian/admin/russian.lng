@@ -9,6 +9,7 @@
 title_categories_index = Категории
 title_dashboard_index = Панель администратора
 title_error_log_index = Лог ошибок
+title_action_log_index = Лог действий
 title_login_index = Страница авторизации
 title_manufacturers_index = Производители
 title_orders_index = Заказы
@@ -43,6 +44,7 @@ menu_customers = Клиенты
 menu_marketing = Маркетинг
 menu_refunds = Возвраты
 menu_error_log = Лог ошибок
+menu_action_log = Лог действий
 menu_exit = Выход
 menu_extra = Дополнительно
 menu_help = Помощь

@@ -78,7 +78,7 @@ class BasicSettings {
 
             Pdo::action("UPDATE " . TABLE_BASIC_SETTINGS . " SET lines_on_page=?", [Valid::inPOST('lines_on_page')]);
 
-            Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('edit', 'success', lang('action_completed_successfully'));
 
             self::$lines_on_page = Settings::linesOnPage();
         }

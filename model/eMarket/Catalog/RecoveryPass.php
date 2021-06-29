@@ -51,10 +51,10 @@ class RecoveryPass {
 
                     $password_hash = Autorize::passwordHash(Valid::inPOST('password'));
                     Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET password=? WHERE id=?", [$password_hash, self::$customer_id]);
-                    Messages::alert('success', lang('messages_recovery_password_complete'), 7000, true);
+                    Messages::alert('messages_recovery_password_complete', 'success', lang('messages_recovery_password_complete'), 7000, true);
                 } else {
                     Pdo::action("DELETE FROM " . TABLE_PASSWORD_RECOVERY . " WHERE customer_id=?", [self::$customer_id]);
-                    Messages::alert('danger', lang('messages_recovery_password_failed'), 7000, true);
+                    Messages::alert('messages_recovery_password_failed', 'danger', lang('messages_recovery_password_failed'), 7000, true);
                 }
             }
         }

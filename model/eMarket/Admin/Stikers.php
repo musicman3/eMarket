@@ -81,7 +81,7 @@ class Stikers {
                 ]);
             }
 
-            Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('add', 'success', lang('action_completed_successfully'));
         }
     }
 
@@ -108,7 +108,7 @@ class Stikers {
                 ]);
             }
 
-            Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('edit', 'success', lang('action_completed_successfully'));
         }
     }
 
@@ -120,7 +120,7 @@ class Stikers {
         if (Valid::inPOST('delete')) {
             Pdo::action("DELETE FROM " . TABLE_STIKERS . " WHERE id=?", [Valid::inPOST('delete')]);
 
-            Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('delete', 'success', lang('action_completed_successfully'));
         }
     }
 

@@ -66,7 +66,7 @@ class Staff {
             Pdo::action("INSERT INTO " . TABLE_ADMINISTRATORS . "  SET login=?, password=?, permission=?, language=?, note=?", [Valid::inPOST('email'),
                 Autorize::passwordHash(Valid::inPOST('password')), self::$staff_manager_id, Settings::primaryLanguage(), Valid::inPOST('note')]);
 
-            Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('add', 'success', lang('action_completed_successfully'));
         }
     }
 
@@ -79,7 +79,7 @@ class Staff {
 
             Pdo::action("DELETE FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [Valid::inPOST('delete')]);
 
-            Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('delete', 'success', lang('action_completed_successfully'));
         }
     }
 

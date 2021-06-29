@@ -27,6 +27,7 @@ use eMarket\Admin\ModulesEdit;
                 <input id="edit_active" type="hidden" name="edit_active" value="<?php echo Valid::inGET('type') . '_' . Valid::inGET('name') ?>" />
                 <div class="float-end form-switch">
                     <input class="form-check-input" type="checkbox" name="switch_active" id="switch_active" <?php echo ModulesEdit::$switch_active ?>>
+                    <input type="hidden" id="alert_flag" name="alert_flag" value="off" />
                 </div>
             </form>
             <div class="float-start">

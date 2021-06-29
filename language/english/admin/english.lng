@@ -9,6 +9,7 @@
 title_categories_index = Categories
 title_dashboard_index = Administration Panel
 title_error_log_index = Error log
+title_action_log_index = Action log
 title_login_index = Login page
 title_manufacturers_index = Manufacturers
 title_orders_index = Orders
@@ -43,6 +44,7 @@ menu_customers = Customers
 menu_marketing = Marketing
 menu_refunds = Refunds
 menu_error_log = Error log
+menu_action_log = Action log
 menu_exit = Exit
 menu_extra = Extra
 menu_help = Help

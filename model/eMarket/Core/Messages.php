@@ -30,6 +30,7 @@ class Messages {
      *
      */
     public static function monologErrorHandler() {
+
         $log = new Logger('eMarket');
         $log->pushHandler(new StreamHandler(getenv('DOCUMENT_ROOT') . '/storage/logs/errors.log', Logger::NOTICE));
         $log->pushHandler(new StreamHandler("php://output", Logger::NOTICE));
@@ -37,22 +38,56 @@ class Messages {
     }
 
     /**
+     * Logging
+     *
+     * @param string $type message type (warning/error/success)
+     * @param string $page message page
+     * @param string $action (add/edit/delete/cut and etc)
+     */
+    public static function ActionLogging($type, $page = null, $action = null) {
+
+        $log = new Logger('eMarket');
+        $log->pushHandler(new StreamHandler(getenv('DOCUMENT_ROOT') . '/storage/logs/actions.log', Logger::INFO));
+        $staff = 'Unknown user';
+        if (Settings::path() == 'admin' && isset($_SESSION['login'])){
+            $staff = $_SESSION['login'];
+        }
+        if (Settings::path() == 'catalog' && isset($_SESSION['email_customer'])){
+            $staff = 'Catalog ' . $_SESSION['email_customer'] . ' - ' . Settings::ipAddress();
+        }
+        if (Settings::path() == 'catalog' && !isset($_SESSION['email_customer'])){
+            $staff = 'Catalog unknown user' . ' - ' . Settings::ipAddress();
+        }
+        if ($type == 'warning') {
+            $log->warning(strtoupper($action), [$page, $staff]);
+        }
+        if ($type == 'danger') {
+            $log->error(strtoupper($action), [$page, $staff]);
+        }
+        if ($type == 'success') {
+            $log->info(strtoupper($action), [$page, $staff]);
+        }
+    }
+
+    /**
      * Error notifications, success, etc.
      * 
+     * param string $action (add/edit/delete/cut and etc)
      * @param string $class Bootstrap class
      * @param string $message Message
      * @param string $time Show time
      * @param string $start Manual call
      *
      */
-    public static function alert($class = null, $message = null, $time = null, $start = false) {
-
+    public static function alert($action = null, $class = null, $message = null, $time = null, $start = false) {
         if ($message != null && $class != null) {
             $_SESSION['message_marker'] = 'ok';
             if ($time != null) {
                 $_SESSION['message'] = [$class, $message, $time, $start, date('H:i')];
+                self::ActionLogging($class, '?route=' . Valid::inGET('route'), $action);
             } else {
                 $_SESSION['message'] = [$class, $message, 3000, $start, date('H:i')];
+                self::ActionLogging($class, '?route=' . Valid::inGET('route'), $action);
             }
             if (Valid::inGET('route') == 'settings/modules/edit') {
                 self::alert();
@@ -97,6 +132,7 @@ class Messages {
      * @param string $body (message)
      */
     public static function sendProviders($to, $body) {
+
         $active_modules = Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE type=? AND active=?", ['providers', '1']);
         foreach ($active_modules as $module) {
             $namespace = '\eMarket\Core\Modules\Providers\\' . ucfirst($module['name']);

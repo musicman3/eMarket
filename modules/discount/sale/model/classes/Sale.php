@@ -336,7 +336,7 @@ class Sale {
                 Pdo::action("INSERT INTO " . $MODULE_DB . " SET id=?, name=?, language=?, sale_value=?, date_start=?, date_end=?, default_set=?", [$id, Valid::inPOST('name_module_' . $x), lang('#lang_all')[$x], Valid::inPOST('sale_value'), $start_date, $end_date, $default_value]);
             }
 
-            Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('add', 'success', lang('action_completed_successfully'));
         }
     }
 
@@ -374,7 +374,7 @@ class Sale {
                 Pdo::action("UPDATE " . $MODULE_DB . " SET name=?, sale_value=?, date_start=?, date_end=?, default_set=? WHERE id=? AND language=?", [Valid::inPOST('name_module_' . $x), Valid::inPOST('sale_value'), $start_date, $end_date, $default_value, Valid::inPOST('edit'), lang('#lang_all')[$x]]);
             }
 
-            Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('edit', 'success', lang('action_completed_successfully'));
         }
     }
 
@@ -398,7 +398,7 @@ class Sale {
             }
 
             Pdo::action("DELETE FROM " . $MODULE_DB . " WHERE id=?", [Valid::inPOST('delete')]);
-            Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('delete', 'success', lang('action_completed_successfully'));
         }
     }
 

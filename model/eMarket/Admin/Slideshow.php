@@ -119,7 +119,7 @@ class Slideshow {
                 Valid::inPOST('show_interval'), $mouse_stop, $autostart, $cicles, $indicators, $navigation, 1
             ]);
 
-            Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('slideshow_pref edit', 'success', lang('action_completed_successfully'));
         }
     }
 
@@ -160,7 +160,7 @@ class Slideshow {
                 $start_date, $end_date, $view_slideshow
             ]);
 
-            Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('add', 'success', lang('action_completed_successfully'));
         }
     }
 
@@ -200,7 +200,7 @@ class Slideshow {
                 Valid::inPOST('color'), $start_date, $end_date, $view_slideshow, Valid::inPOST('edit')
             ]);
 
-            Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('edit', 'success', lang('action_completed_successfully'));
         }
     }
 
@@ -228,7 +228,7 @@ class Slideshow {
         if (Valid::inPOST('delete')) {
             Pdo::action("DELETE FROM " . TABLE_SLIDESHOW . " WHERE id=?", [Valid::inPOST('delete')]);
 
-            Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('delete', 'success', lang('action_completed_successfully'));
         }
     }
 

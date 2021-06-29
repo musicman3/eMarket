@@ -74,7 +74,7 @@ class Taxes {
                 ]);
             }
 
-            Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('add', 'success', lang('action_completed_successfully'));
         }
     }
 
@@ -105,7 +105,7 @@ class Taxes {
                 ]);
             }
 
-            Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('edit', 'success', lang('action_completed_successfully'));
         }
     }
 
@@ -117,7 +117,7 @@ class Taxes {
         if (Valid::inPOST('delete')) {
             Pdo::action("DELETE FROM " . TABLE_TAXES . " WHERE id=?", [Valid::inPOST('delete')]);
 
-            Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('delete', 'success', lang('action_completed_successfully'));
         }
     }
 

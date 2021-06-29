@@ -54,7 +54,7 @@ class Zones {
                 Pdo::action("INSERT INTO " . TABLE_ZONES . " SET id=?, name=?, note=?, language=?", [$id, Valid::inPOST('name_zones_' . $x), Valid::inPOST('note_zones'), lang('#lang_all')[$x]]);
             }
 
-            Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('add', 'success', lang('action_completed_successfully'));
         }
     }
 
@@ -71,7 +71,7 @@ class Zones {
                 ]);
             }
 
-            Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('edit', 'success', lang('action_completed_successfully'));
         }
     }
 
@@ -85,7 +85,7 @@ class Zones {
             Pdo::action("DELETE FROM " . TABLE_ZONES . " WHERE id=?", [Valid::inPOST('delete')]);
             Pdo::action("DELETE FROM " . TABLE_ZONES_VALUE . " WHERE zones_id=?", [Valid::inPOST('delete')]);
 
-            Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('delete', 'success', lang('action_completed_successfully'));
         }
     }
 

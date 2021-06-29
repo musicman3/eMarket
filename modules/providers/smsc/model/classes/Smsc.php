@@ -140,7 +140,7 @@ class Smsc {
                 Pdo::action("UPDATE " . $MODULE_DB . " SET login=?, password=?, sender=?", [Valid::inPOST('login'), Valid::inPOST('password'), Valid::inPOST('sender')]);
             }
 
-            Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('save', 'success', lang('action_completed_successfully'));
             exit;
         }
     }

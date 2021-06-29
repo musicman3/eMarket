@@ -172,7 +172,7 @@ final class Eac {
                 ]);
             }
 
-            Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('add_category', 'success', lang('action_completed_successfully'));
         }
     }
 
@@ -190,7 +190,7 @@ final class Eac {
                 ]);
             }
 
-            Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('edit_category', 'success', lang('action_completed_successfully'));
         }
     }
 
@@ -250,7 +250,7 @@ final class Eac {
                     }
                 }
 
-                Messages::alert('success', lang('action_completed_successfully'));
+                Messages::alert('delete', 'success', lang('action_completed_successfully'));
             }
         }
 
@@ -355,7 +355,6 @@ final class Eac {
                 self::$parent_id = $parent_id_real; //
             }
 
-            Messages::alert('success', lang('action_completed_successfully'));
         }
 
         if (is_array(self::$parent_id) == TRUE) {
@@ -614,7 +613,7 @@ final class Eac {
                 ]);
             }
 
-            Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('add_product', 'success', lang('action_completed_successfully'));
         }
     }
 
@@ -731,7 +730,7 @@ final class Eac {
                 ]);
             }
 
-            Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('edit_product', 'success', lang('action_completed_successfully'));
         }
     }
 

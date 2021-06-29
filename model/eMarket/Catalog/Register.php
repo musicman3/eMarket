@@ -58,9 +58,9 @@ class Register {
                 $link = HTTP_SERVER . '?route=login&activation_code=' . $activation_code;
                 Messages::sendMail(Valid::inPOST('email'), lang('email_registration_subject'), sprintf(lang('email_registration_message'), $link, $link));
 
-                Messages::alert('success', lang('messages_registration_complete'), 7000, true);
+                Messages::alert('messages_registration_complete', 'success', lang('messages_registration_complete'), 7000, true);
             } else {
-                Messages::alert('danger', lang('messages_email_is_busy'), 7000, true);
+                Messages::alert('messages_email_is_busy', 'danger', lang('messages_email_is_busy'), 7000, true);
             }
         }
     }

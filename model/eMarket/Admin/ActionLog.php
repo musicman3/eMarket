@@ -15,13 +15,13 @@ use eMarket\Core\{
 use eMarket\Admin\HeaderMenu;
 
 /**
- * Error Log
+ * Actions Log
  *
  * @package Admin
  * @author eMarket
  * 
  */
-class ErrorLog {
+class ActionLog {
 
     /**
      * Constructor
@@ -38,7 +38,7 @@ class ErrorLog {
      * 
      */
     public static function menu() {
-        HeaderMenu::$menu[HeaderMenu::$menu_tools][] = ['?route=error_log', 'bi-exclamation-circle', lang('menu_error_log'), '', 'false'];
+        HeaderMenu::$menu[HeaderMenu::$menu_tools][] = ['?route=action_log', 'bi-exclamation-circle', lang('menu_action_log'), '', 'false'];
     }
 
     /**
@@ -46,9 +46,9 @@ class ErrorLog {
      *
      */
     public function delete() {
-        if (Valid::inPOST('delete') == 'delete' && file_exists(ROOT . '/storage/logs/errors.log')) {
-            unlink(ROOT . '/storage/logs/errors.log');
-
+        if (Valid::inPOST('delete') == 'delete' && file_exists(ROOT . '/storage/logs/actions.log')) {
+            
+            unlink(ROOT . '/storage/logs/actions.log');
             Messages::alert('delete', 'success', lang('action_completed_successfully'));
         }
     }
@@ -58,8 +58,8 @@ class ErrorLog {
      *
      */
     public function data() {
-        if (file_exists(ROOT . '/storage/logs/errors.log')) {
-            $lines = array_reverse(file(ROOT . '/storage/logs/errors.log'));
+        if (file_exists(ROOT . '/storage/logs/actions.log')) {
+            $lines = array_reverse(file(ROOT . '/storage/logs/actions.log'));
         } else {
             $lines = [];
         }
@@ -75,20 +75,14 @@ class ErrorLog {
      */
     public static function errorClass($input) {
 
-        if (strrpos($input, 'eMarket.NOTICE:') == TRUE) {
-            return 'table-secondary';
+        if (strrpos($input, 'eMarket.INFO:') == TRUE) {
+            return 'table-success';
         }
         if (strrpos($input, 'eMarket.WARNING:') == TRUE) {
-            return 'table-primary';
-        }
-        if (strrpos($input, 'eMarket.ERROR:') == TRUE) {
             return 'table-warning';
         }
-        if (strrpos($input, 'eMarket.CRITICAL:') == TRUE) {
+        if (strrpos($input, 'eMarket.ERROR:') == TRUE) {
             return 'table-danger';
-        }
-        if (strrpos($input, 'eMarket.ALERT:') == TRUE) {
-            return 'table-dark';
         }
     }
 

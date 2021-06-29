@@ -112,7 +112,7 @@ class Free {
             $MODULE_DB = Modules::moduleDatabase();
             Pdo::action("INSERT INTO " . $MODULE_DB . " SET minimum_price=?, shipping_zone=?, currency=?", [Valid::inPOST('minimum_price'), Valid::inPOST('zone'), Settings::currencyDefault()[0]]);
 
-            Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('add', 'success', lang('action_completed_successfully'));
             exit;
         }
     }
@@ -126,7 +126,7 @@ class Free {
             $MODULE_DB = Modules::moduleDatabase();
             Pdo::action("UPDATE " . $MODULE_DB . " SET minimum_price=?, shipping_zone=?, currency=? WHERE id=?", [Valid::inPOST('minimum_price'), Valid::inPOST('zone'), Settings::currencyDefault()[0], Valid::inPOST('edit')]);
 
-            Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('edit', 'success', lang('action_completed_successfully'));
             exit;
         }
     }
@@ -140,7 +140,7 @@ class Free {
             $MODULE_DB = Modules::moduleDatabase();
             Pdo::action("DELETE FROM " . $MODULE_DB . " WHERE id=?", [Valid::inPOST('delete')]);
 
-            Messages::alert('success', lang('action_completed_successfully'));
+            Messages::alert('delete', 'success', lang('action_completed_successfully'));
             exit;
         }
     }
