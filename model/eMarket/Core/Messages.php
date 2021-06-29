@@ -45,31 +45,26 @@ class Messages {
      * @param string $action (add/edit/delete/cut and etc)
      */
     public static function ActionLogging($type, $page = null, $action = null) {
+        if (Settings::path() == 'admin') {
+            $log = new Logger('eMarket');
+            $log->pushHandler(new StreamHandler(getenv('DOCUMENT_ROOT') . '/storage/logs/actions.log', Logger::INFO));
+            $staff = 'Unknown user';
 
-        $log = new Logger('eMarket');
-        $log->pushHandler(new StreamHandler(getenv('DOCUMENT_ROOT') . '/storage/logs/actions.log', Logger::INFO));
-        $staff = 'Unknown user';
-        
-        if (Settings::path() == 'admin' && isset($_SESSION['login'])){
-            $staff = $_SESSION['login'] . ' - ' . Settings::ipAddress();
-        }
-        if (Settings::path() == 'admin' && !isset($_SESSION['login'])){
-            $staff = Valid::inPOST('login') . ' - ' . Settings::ipAddress();
-        }
-        if (Settings::path() == 'catalog' && isset($_SESSION['email_customer'])){
-            $staff = 'Catalog ' . $_SESSION['email_customer'] . ' - ' . Settings::ipAddress();
-        }
-        if (Settings::path() == 'catalog' && !isset($_SESSION['email_customer'])){
-            $staff = 'Catalog unknown user' . ' - ' . Settings::ipAddress();
-        }
-        if ($type == 'warning') {
-            $log->warning(strtoupper($action), [$page, $staff]);
-        }
-        if ($type == 'danger') {
-            $log->error(strtoupper($action), [$page, $staff]);
-        }
-        if ($type == 'success') {
-            $log->info(strtoupper($action), [$page, $staff]);
+            if (isset($_SESSION['login'])) {
+                $staff = $_SESSION['login'] . ' - ' . Settings::ipAddress();
+            } else {
+                $staff = Valid::inPOST('login') . ' - ' . Settings::ipAddress();
+            }
+
+            if ($type == 'warning') {
+                $log->warning(strtoupper($action), [$page, $staff]);
+            }
+            if ($type == 'danger') {
+                $log->error(strtoupper($action), [$page, $staff]);
+            }
+            if ($type == 'success') {
+                $log->info(strtoupper($action), [$page, $staff]);
+            }
         }
     }
 
