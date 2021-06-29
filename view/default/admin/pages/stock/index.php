@@ -187,8 +187,12 @@ require_once('modal/add_values_attribute.php');
                     <table class="table table-hover mb-0">
                         <thead>
                             <tr class="align-middle">
-                                <th colspan="3">
-                                    <div><?php echo lang('no_listing') ?></div>
+                                <th colspan="3"><?php echo lang('no_listing') ?></th>
+                                <th>
+                                    <div class="gap-2 d-flex justify-content-end">
+					<a type="submit" class="btn btn-primary btn-sm disabled bi-arrow-left-short"></a>
+                                        <a type="submit" class="btn btn-primary btn-sm disabled bi-arrow-right-short"></a>
+                                    </div>
                                 </th>
                             </tr>
                         </thead>
