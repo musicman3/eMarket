@@ -141,6 +141,7 @@ final class Eac {
             foreach ($sort_array_id as $val) {
                 Pdo::action("UPDATE " . TABLE_CATEGORIES . " SET sort_category=? WHERE id=?", [(int) $sort_array_final[$val], (int) $val]);
             }
+            Messages::alert('sorting', 'success', lang('action_completed_successfully'), 0, true);
         }
     }
 
@@ -354,6 +355,8 @@ final class Eac {
             if ($parent_id_real > 0) {
                 self::$parent_id = $parent_id_real; //
             }
+            
+            Messages::alert('paste', 'success', lang('action_completed_successfully'), 0, true);
 
         }
 
@@ -407,12 +410,14 @@ final class Eac {
                             if ($parent_id_real > 0) {
                                 self::$parent_id = $parent_id_real;
                             }
+                            Messages::alert('status', 'success', lang('action_completed_successfully'), 0, true);
                         }
                     }
 
                     if ((Valid::inPostJson('idsx_status_on_key') == 'On')
                             or (Valid::inPostJson('idsx_status_off_key') == 'Off')) {
                         Pdo::action("UPDATE " . TABLE_CATEGORIES . " SET status=? WHERE id=?", [$status, $idx[$i]]);
+                        Messages::alert('status', 'success', lang('action_completed_successfully'), 0, true);
                     }
                 } else {
                     // This is product
@@ -420,6 +425,7 @@ final class Eac {
                             or (Valid::inPostJson('idsx_status_off_key') == 'Off')) {
                         $id_prod = explode('products_', $idx[$i]);
                         Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET status=? WHERE id=?", [$status, $id_prod[1]]);
+                        Messages::alert('status', 'success', lang('action_completed_successfully'), 0, true);
                     }
                 }
             }

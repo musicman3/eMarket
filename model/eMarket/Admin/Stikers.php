@@ -203,12 +203,14 @@ class Stikers {
                             if ($parent_id_real > 0) {
                                 Eac::$parent_id = $parent_id_real;
                             }
+                            Messages::alert('stiker_actions', 'success', lang('action_completed_successfully'), 0, true);
                         }
                     }
                 } else {
                     if (Valid::inPostJson('idsx_stikerOn_key') == 'On' OR Valid::inPostJson('idsx_stikerOff_key') == 'Off') {
                         $id_prod = explode('products_', $idx[$i]);
                         Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET stiker=? WHERE id=?", [$stiker, $id_prod[1]]);
+                        Messages::alert('stiker_actions', 'success', lang('action_completed_successfully'), 0, true);
                     }
                 }
             }

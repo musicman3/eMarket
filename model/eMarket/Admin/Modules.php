@@ -73,6 +73,8 @@ class Modules {
 
             if (Valid::inPOST('alert_flag') == 'on') {
                 Messages::alert('edit_' . Valid::inPOST('edit_active'), 'success', lang('action_completed_successfully'));
+            } else {
+                Messages::alert('edit_status_' . Valid::inPOST('edit_active'), 'success', lang('action_completed_successfully'), 0, true);
             }
         }
     }

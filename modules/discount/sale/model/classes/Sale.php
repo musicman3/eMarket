@@ -201,6 +201,7 @@ class Sale {
                                 }
 
                                 Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [json_encode($discount_array), $val['id']]);
+                                Messages::alert('sale_on', 'success', lang('action_completed_successfully'), 0, true);
                             }
 
                             if ($parent_id_real > 0) {
@@ -228,6 +229,7 @@ class Sale {
                             if ($parent_id_real > 0) {
                                 Eac::$parent_id = $parent_id_real;
                             }
+                            Messages::alert('sale_off', 'success', lang('action_completed_successfully'), 0, true);
                         }
                         if (Valid::inPostJson('idsx_sale_off_all_key') == 'OffAll') {
                             $products_id = Pdo::getColAssoc("SELECT id FROM " . TABLE_PRODUCTS . " WHERE language=? AND parent_id=?", [lang('#lang_all')[0], $keys[$x]]);
@@ -246,6 +248,7 @@ class Sale {
                             if ($parent_id_real > 0) {
                                 Eac::$parent_id = $parent_id_real;
                             }
+                            Messages::alert('sale_off_all', 'success', lang('action_completed_successfully'), 0, true);
                         }
                     }
                 } else {
@@ -263,6 +266,7 @@ class Sale {
                         }
 
                         Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [json_encode($discount_array), $id_prod[1]]);
+                        Messages::alert('sale_on', 'success', lang('action_completed_successfully'), 0, true);
                     }
                     if (Valid::inPostJson('idsx_sale_off_key') == 'Off') {
                         $id_prod = explode('products_', $idx[$i]);
@@ -278,6 +282,7 @@ class Sale {
                         }
 
                         Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [json_encode($discount_array), $id_prod[1]]);
+                        Messages::alert('sale_off', 'success', lang('action_completed_successfully'), 0, true);
                     }
                     if (Valid::inPostJson('idsx_sale_off_all_key') == 'OffAll') {
                         $id_prod = explode('products_', $idx[$i]);
@@ -288,6 +293,7 @@ class Sale {
                             unset($discount_array['sale']);
                         }
                         Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [json_encode($discount_array), $id_prod[1]]);
+                        Messages::alert('sale_off_all', 'success', lang('action_completed_successfully'), 0, true);
                     }
                 }
             }
