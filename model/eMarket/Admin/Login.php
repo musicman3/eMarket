@@ -109,10 +109,10 @@ class Login {
                 if (isset($_SESSION['session_page'])) {
                     $session_page = $_SESSION['session_page'];
                     unset($_SESSION['session_page']);
-                    Messages::alert('autorize', 'success', lang('action_completed_successfully'), 0, false);
+                    Messages::alert('autorize', 'success', lang('action_completed_successfully'), 0, true);
                     header('Location: ' . $session_page);
                 } else {
-                    Messages::alert('autorize', 'success', lang('action_completed_successfully'), 0, false);
+                    Messages::alert('autorize', 'success', lang('action_completed_successfully'), 0, true);
                     header('Location: ?route=dashboard');
                 }
             }
