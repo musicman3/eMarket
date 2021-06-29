@@ -1,6 +1,6 @@
 /.htaccess
 
-/storage/logs/errors.log
+/storage/logs/
 /storage/configure/configure.php
 /uploads/
 /vendor/claviska/simpleimage/LICENSE.md

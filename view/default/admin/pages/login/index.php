@@ -4,17 +4,13 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-use eMarket\Admin\Login;
+use eMarket\Core\Messages;
 ?>
 
 <div id="login" class="row">
     <div class="lbox-horz"></div>
-    <div class="lbox-vert">
-        <?php if (Login::$login_error == TRUE) { ?>
-            <div id="alert" class="alert alert-danger bi-exclamation-circle"> <?php echo Login::$login_error ?></div>
-        <?php } ?>
-    </div>
-
+    <div class="lbox-vert"></div>
+<div id="alert_block"><?php Messages::alert(); ?></div>
     <div class="login_logo">eMarket</div>
 
 

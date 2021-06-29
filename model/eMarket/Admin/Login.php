@@ -8,6 +8,7 @@
 namespace eMarket\Admin;
 
 use eMarket\Core\{
+    Messages,
     Pdo,
     Settings,
     Valid
@@ -100,6 +101,7 @@ class Login {
                 unset($_SESSION['login']);
                 unset($_SESSION['pass']);
                 $_SESSION['login_error'] = lang('login_error');
+                Messages::alert('login_error', 'danger', self::$login_error, 7000, true);
             } else {
                 $_SESSION['login'] = Valid::inPOST('login');
                 $_SESSION['pass'] = $HASH;
@@ -107,8 +109,10 @@ class Login {
                 if (isset($_SESSION['session_page'])) {
                     $session_page = $_SESSION['session_page'];
                     unset($_SESSION['session_page']);
+                    Messages::alert('autorize', 'success', lang('action_completed_successfully'), 0, false);
                     header('Location: ' . $session_page);
                 } else {
+                    Messages::alert('autorize', 'success', lang('action_completed_successfully'), 0, false);
                     header('Location: ?route=dashboard');
                 }
             }

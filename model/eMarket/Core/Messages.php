@@ -49,8 +49,12 @@ class Messages {
         $log = new Logger('eMarket');
         $log->pushHandler(new StreamHandler(getenv('DOCUMENT_ROOT') . '/storage/logs/actions.log', Logger::INFO));
         $staff = 'Unknown user';
+        
         if (Settings::path() == 'admin' && isset($_SESSION['login'])){
-            $staff = $_SESSION['login'];
+            $staff = $_SESSION['login'] . ' - ' . Settings::ipAddress();
+        }
+        if (Settings::path() == 'admin' && !isset($_SESSION['login'])){
+            $staff = Valid::inPOST('login') . ' - ' . Settings::ipAddress();
         }
         if (Settings::path() == 'catalog' && isset($_SESSION['email_customer'])){
             $staff = 'Catalog ' . $_SESSION['email_customer'] . ' - ' . Settings::ipAddress();
