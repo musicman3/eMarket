@@ -13,9 +13,8 @@
   - PSR-1 (Basic Coding Standard)
   - PSR-3 (Logger Interface)
   - PSR-4 (Autoloading Standard)
-  - PSR-5 (PHPDoc Standard)
   - PSR-12 partly (Extended Coding Style Guide)
-  - PSR-19 (PHPDoc tags)
+  - PHPDoc documenting (see PSR-5 and PSR-19)
 
 ### Install  
 Copy files to server and open page: http://localhost/controller/install
