@@ -62,20 +62,22 @@ class Autorize {
      *
      */
     public static function dashboardCheck() {
-        $staff_permission = Pdo::getCellFalse("SELECT permission FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [$_SESSION['login']]);
-        if ($staff_permission != 'admin') {
-            $staff_data = json_decode(Pdo::getCellFalse("SELECT permissions FROM " . TABLE_STAFF_MANAGER . " WHERE id=?", [$staff_permission]), 1);
+        if (isset($_SESSION['login'])) {
+            $staff_permission = Pdo::getCellFalse("SELECT permission FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [$_SESSION['login']]);
+            if ($staff_permission != 'admin') {
+                $staff_data = json_decode(Pdo::getCellFalse("SELECT permissions FROM " . TABLE_STAFF_MANAGER . " WHERE id=?", [$staff_permission]), 1);
 
-            $count = 0;
-            foreach ($staff_data as $value) {
-                if ($value == '?route=dashboard') {
-                    $count++;
+                $count = 0;
+                foreach ($staff_data as $value) {
+                    if ($value == '?route=dashboard') {
+                        $count++;
+                    }
                 }
-            }
-            if ($count == 0) {
-                unset($_SESSION['login']);
-                unset($_SESSION['pass']);
-                header('Location: ?route=login');
+                if ($count == 0) {
+                    unset($_SESSION['login']);
+                    unset($_SESSION['pass']);
+                    header('Location: ?route=login');
+                }
             }
         }
     }
