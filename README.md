@@ -1,7 +1,7 @@
 [![N|Solid](https://github.com/musicman3/eMarket/blob/master/view/default/catalog/images/emarket.png)](https://github.com/musicman3/eMarket)
 ## eMarket Online Store
 
-### System requipments: 
+### System requirements: 
   - PHP >= 7.3
   - MySQL >= 5.7
   - Javascript >= ES6
