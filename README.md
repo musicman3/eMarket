@@ -10,7 +10,7 @@
 ### Features: 
   - Vanilla JS
   - Bootstrap 5
-  - SQL + noSQL concept to optimize queries (MySQL json fields)
+  - SQL + noSQL concept for query optimization (MySQL json fields)
   - PSR-1 (Basic Coding Standard)
   - PSR-3 (Logger Interface)
   - PSR-4 (Autoloading Standard)
