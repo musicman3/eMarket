@@ -11,6 +11,7 @@
   - Vanilla JS
   - Bootstrap 5
   - SQL + noSQL concept for query optimization (MySQL json fields)
+  - Development in error_reporting(-1) mode;
   - PSR-1 (Basic Coding Standard)
   - PSR-3 (Logger Interface)
   - PSR-4 (Autoloading Standard)
