@@ -26,7 +26,7 @@ use eMarket\Core\{
                 <li class="nav-item dropdown"><a href="#" class="nav-link"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('articles') ?></span></a></li>-->
             </ul>
             <ul class="navbar-nav">
-                <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle bi-globe" data-bs-toggle="dropdown"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('navbar_languages') ?></span></a>
+                <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle bi-translate" data-bs-toggle="dropdown"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('navbar_languages') ?></span></a>
                     <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
                         <?php foreach (lang('#lang_all') as $value) { ?>
                             <li><a href="<?php echo Settings::langCurrencyPath() . '&language=' . $value ?>" class="dropdown-item"><img src="/view/<?php echo Settings::template() ?>/admin/images/langflags/<?php echo $value ?>.png"> <?php echo lang('language_name', $value) ?></a></li>

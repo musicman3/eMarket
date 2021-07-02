@@ -105,7 +105,7 @@ class Cash {
                 Pdo::action("UPDATE " . $MODULE_DB . " SET order_status=?, shipping_module=?", [Valid::inPOST('order_status'), NULL]);
             }
 
-            Messages::alert('save', 'success', lang('action_completed_successfully'));
+            Messages::alert('save_payment_cash', 'success', lang('action_completed_successfully'));
             exit;
         }
     }

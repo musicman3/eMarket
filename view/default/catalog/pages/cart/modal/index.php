@@ -34,7 +34,7 @@ use eMarket\Catalog\Cart;
                     <div class="mb-1">
                         <label for="address"><?php echo lang('cart_shipping_address') ?></label>
                         <div id="address_class" class="input-group input-group-sm">
-                            <span class="input-group-text bi-arrow-down-up"></span>
+                            <span class="input-group-text bi-house"></span>
                             <select name="address" id="address" class="form-control is-valid">
                                 <?php
                                 $x = 1;
@@ -53,7 +53,7 @@ use eMarket\Catalog\Cart;
                     <div class="mb-1">
                         <label for="shipping_method"><?php echo lang('cart_shipping_method') ?></label>
                         <div id="shipping_method_class" class="input-group input-group-sm">
-                            <span class="input-group-text bi-arrow-down-up"></span>
+                            <span class="input-group-text bi-box-seam"></span>
                             <select name="shipping_method" id="shipping_method" class="form-control is-valid">
                                 <option value="" data-shipping=""></option>
                             </select>
@@ -64,7 +64,7 @@ use eMarket\Catalog\Cart;
                     <div class="mb-1">
                         <label for="payment_method"><?php echo lang('cart_payment_method') ?></label>
                         <div id="payment_method_class" class="input-group input-group-sm">
-                            <span class="input-group-text bi-arrow-down-up"></span>
+                            <span class="input-group-text bi-credit-card"></span>
                             <select name="payment_method" id="payment_method" class="form-control is-valid">
                                 <option value=""></option>
                             </select>
