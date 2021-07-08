@@ -3,7 +3,7 @@
 
 ### System requirements: 
   - PHP >= 7.3
-  - MySQL >= 5.7
+  - MySQL >= 5.7.8
   - Javascript >= ES6
   - HTML 5
 
