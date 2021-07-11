@@ -83,9 +83,9 @@ class Valid {
     public static function inPostJson($input) {
         $postData = file_get_contents('php://input');
         if (is_string($postData) && is_array(json_decode($postData, true)) && (json_last_error() == JSON_ERROR_NONE) && self::$demo_mode == FALSE) {
-            $data = json_decode($postData, true);
+            $data = json_decode($postData, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
             if (isset($data[$input])) {
-                return htmlspecialchars($data[$input]);
+                return $data[$input];
             }
         }
         return FALSE;
