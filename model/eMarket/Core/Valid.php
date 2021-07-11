@@ -27,7 +27,7 @@ class Valid {
     public static function inPOST($input) {
         if (filter_input(INPUT_POST, $input, FILTER_DEFAULT, FILTER_FORCE_ARRAY) == TRUE && self::$demo_mode == FALSE) {
             if (isset($_POST[$input])) {
-                return htmlspecialchars($_POST[$input]);
+                return $_POST[$input];
             } else {
                 return FALSE;
             }
@@ -43,7 +43,7 @@ class Valid {
     public static function inGET($input) {
         if (filter_input(INPUT_GET, $input, FILTER_DEFAULT, FILTER_FORCE_ARRAY) == TRUE) {
             if (isset($_GET[$input])) {
-                return htmlspecialchars($_GET[$input]);
+                return $_GET[$input];
             } else {
                 return FALSE;
             }
@@ -85,7 +85,7 @@ class Valid {
         if (is_string($postData) && is_array(json_decode($postData, true)) && (json_last_error() == JSON_ERROR_NONE) && self::$demo_mode == FALSE) {
             $data = json_decode($postData, true);
             if (isset($data[$input])) {
-                return htmlspecialchars($data[$input]);
+                return $data[$input];
             }
         }
         return FALSE;

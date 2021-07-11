@@ -398,16 +398,16 @@ class Func {
      */
     public static function escapeSign($string) {
         // symbol and replacement
-        $symbols = ["'"];
-        $escape = ["&#8216;"];
+        $symbols = ["'", "<script>", "</script>"];
+        $escape = ["&#8216;", "!script!", "!/script!"];
 
         if (is_array($string)) {
             $output = [];
             foreach ($string as $key => $value) {
-                $output[$key] = str_replace($symbols, $escape, $value);
+                $output[$key] = str_ireplace($symbols, $escape, $value);
             }
         } else {
-            $output = str_replace($symbols, $escape, $string);
+            $output = str_ireplace($symbols, $escape, $string);
         }
         return $output;
     }
