@@ -15,6 +15,10 @@ modules_tabs_reviews_admin_tabs_zone = Зона доставки
 modules_tabs_reviews_admin_minimum_order_price = Минимальная сумма заказа
 modules_tabs_reviews_admin_minimum_order_price_for_reviews_tabs = Минимальная сумма заказа для бесплатной доставки
 modules_tabs_reviews_admin_confirm_publish = Опубликовать?
+modules_tabs_reviews_admin_product = Товар
+modules_tabs_reviews_admin_date_added = Дата добавления
+modules_tabs_reviews_admin_author = Автор
+modules_tabs_reviews_admin_rating = Рейтинг
 
 [catalog]
 

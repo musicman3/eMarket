@@ -56,10 +56,10 @@ require_once('modal/index.php')
             </tr>
             <?php if (Pages::$count > 0) { ?>
                 <tr class="align-middle">
-                    <th><?php echo lang('Дата добавления') ?></th>
-                    <th class="text-center"><?php echo lang('Товар') ?></th>
-                    <th class="text-center"><?php echo lang('Автор') ?></th>
-                    <th class="text-center"><?php echo lang('Рейтинг') ?></th>
+                    <th><?php echo lang('modules_tabs_reviews_admin_date_added') ?></th>
+                    <th class="text-center"><?php echo lang('modules_tabs_reviews_admin_product') ?></th>
+                    <th class="text-center"><?php echo lang('modules_tabs_reviews_admin_author') ?></th>
+                    <th class="text-center"><?php echo lang('modules_tabs_reviews_admin_rating') ?></th>
                     <th></th>
                 </tr>
             <?php } ?>

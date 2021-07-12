@@ -14,7 +14,12 @@ modules_tabs_reviews_version = 1.0
 modules_tabs_reviews_admin_tabs_zone = Shipping zone
 modules_tabs_reviews_admin_minimum_order_price = Minimum order price
 modules_tabs_reviews_admin_minimum_order_price_for_reviews_tabs = Minimum order price for reviews tabs
+modules_tabs_reviews_admin_publish = Publish?
 modules_tabs_reviews_admin_confirm_publish = Publish?
+modules_tabs_reviews_admin_product = Product
+modules_tabs_reviews_admin_date_added = Date added
+modules_tabs_reviews_admin_author = Author
+modules_tabs_reviews_admin_rating = Rating
 
 [catalog]
 
