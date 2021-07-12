@@ -62,7 +62,11 @@ class Reviews {
             var ajax_data = document.createElement('div');
             ajax_data.innerHTML = data;
             document.querySelector('#reviews_data').insertAdjacentHTML('beforeend', ajax_data.querySelector('#reviews_data').innerHTML);
-            document.querySelector('#more_block').replaceWith(ajax_data.querySelector('#more_block'));
+            if (ajax_data.querySelector('#more_block') !== null) {
+                document.querySelector('#more_block').replaceWith(ajax_data.querySelector('#more_block'));
+            } else {
+                document.querySelector('#button_more').setAttribute('disabled', true);
+            }
             new Reviews();
         }
     }

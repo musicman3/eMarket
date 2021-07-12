@@ -157,17 +157,6 @@ use eMarket\Core\Modules\Tabs\Reviews;
                     </div>
                 </div>
             </div>
-
-        <?php } else { ?>
-            <div class="card mt-2" id="more_block">
-                <div class="card-body">
-                    <div class="row justify-content-center">
-                        <div class="col-3">
-                            <button id="button_more" class="btn btn-primary btn-sm bi-arrow-down" type="button" disabled> <?php echo lang('modules_tabs_reviews_catalog_button_show_more') ?></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
         <?php } ?>
 
     </div>
