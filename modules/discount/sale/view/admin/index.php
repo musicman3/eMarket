@@ -57,7 +57,7 @@ require_once('modal/index.php')
                 </th>
             </tr>
             <?php if (Pages::$count > 0) { ?>
-                <tr class="border">
+                <tr class="align-middle">
                     <th><?php echo lang('modules_discount_sale_admin_name') ?></th>
                     <th class="text-center"><?php echo lang('modules_discount_sale_admin_value') ?></th>
                     <th class="text-center"><?php echo lang('modules_discount_sale_admin_sale_start_date') ?></th>

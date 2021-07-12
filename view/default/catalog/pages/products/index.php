@@ -7,10 +7,13 @@
 use eMarket\Core\{
     Cart,
     Ecb,
+    Messages,
     Products as ProductsCore,
     View
 };
-use eMarket\Catalog\Products;
+use eMarket\Catalog\{
+    Products
+};
 
 if (Products::$products != FALSE) {
     require_once('modal/cart_message.php')
@@ -18,9 +21,12 @@ if (Products::$products != FALSE) {
 
     <h1><?php echo Products::$products['name'] ?></h1>
 
+    <div id="alert_block"><?php Messages::alert(); ?></div>
+
     <div id="products" class="contentText">
         <div class="row">
             <div class="gallery col-md-6 col-12 mb-3">
+                <input id="selected_attributes" type="hidden" name="selected_attributes" value="" />
 
                 <div class="labelsblock">
                     <?php foreach (ProductsCore::stikers(Products::$products, 'bg-danger', 'bg-success') as $stiker) { ?>
@@ -86,7 +92,7 @@ if (Products::$products != FALSE) {
                 <button class="btn btn-primary bi-dash" type="button" onclick="Products.pcsProduct('minus', <?php echo Products::$products['id'] ?>, <?php echo Products::$products['quantity'] ?>)"></button>
                 <input id="number_<?php echo Products::$products['id'] ?>" data-bs-placement="top" data-bs-content="<?php echo lang('listing_no_more_in_stock') ?>" type="number" min="1" value="<?php echo Cart::maxQuantityToOrder(Products::$products) ?>" class="quantity" disabled>
                 <button class="btn btn-primary button-plus bi-plus" type="button" onclick="Products.pcsProduct('plus', <?php echo Products::$products['id'] ?>, <?php echo Cart::maxQuantityToOrder(Products::$products, 'true') ?>)"></button>
-                <button class="btn btn-primary plus<?php echo Cart::maxQuantityToOrder(Products::$products, 'class') ?>" onclick="Products.addToCart(<?php echo Products::$products['id'] ?>,  document.querySelector('#number_<?php echo Products::$products['id'] ?>').value)"><?php echo lang('add_to_cart') ?></button>
+                <button class="btn btn-primary plus<?php echo Cart::maxQuantityToOrder(Products::$products, 'class') ?>" onclick="Products.addToCart(<?php echo Products::$products['id'] ?>, document.querySelector('#number_<?php echo Products::$products['id'] ?>').value)"><?php echo lang('add_to_cart') ?></button>
             </div>
         </div>
         <div class="row">
@@ -94,16 +100,22 @@ if (Products::$products != FALSE) {
                 <ul class="nav nav-tabs">
                     <li class="nav-item bg-light"><a class="nav-link active" data-bs-toggle="tab" href="#panel_description"><?php echo lang('product_description') ?></a></li>
                     <li class="nav-item bg-light"><a class="nav-link" data-bs-toggle="tab" href="#panel_attribute"><?php echo lang('product_specification') ?></a></li>
+                    <?php foreach (Products::$tabs_data as $tabs) { ?>
+                        <li class="nav-item bg-light"><a class="nav-link" data-bs-toggle="tab" href="#panel_<?php echo $tabs['chanel_module_name'] ?>"><?php echo $tabs['chanel_name'] ?></a></li>
+                    <?php }
+                    ?>
                 </ul>
                 <div class="tab-content">
                     <div id="panel_description" class="tab-pane fade show active">
                         <div class="item-text border border-top-0 rounded-bottom p-2"><?php echo Products::$products['description'] ?></div>
                     </div>
-
-                    <input id="selected_attributes" type="hidden" name="selected_attributes" value="" />
                     <div id="panel_attribute" class="tab-pane fade show">
                         <div class="item-text border border-top-0 rounded-bottom p-2 product-attribute"></div>
                     </div>
+                        <?php foreach (Products::$tabs_data as $tabs) {
+                            require_once(ROOT. '/modules/tabs/' . $tabs['chanel_module_name'] . '/controller/catalog/index.php');
+                        }
+                        ?>
                 </div>
             </div>
         </div>
@@ -124,4 +136,4 @@ if (Products::$products != FALSE) {
 
 foreach (View::tlpc('content') as $path) {
     require_once (ROOT . $path);
-}
+}    

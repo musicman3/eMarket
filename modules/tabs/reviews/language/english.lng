@@ -1,0 +1,30 @@
+;=-=-=-= Copyright © 2018 eMarket =-=-=-=-=;
+;     GNU GENERAL PUBLIC LICENSE v.3.0     ;
+;   https://github.com/musicman3/eMarket   ;
+;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
+
+[all]
+modules_tabs_reviews_name = Reviews
+modules_tabs_reviews_author = eMarket
+modules_tabs_reviews_version = 1.0
+
+[admin]
+
+;TITLE
+modules_tabs_reviews_admin_tabs_zone = Shipping zone
+modules_tabs_reviews_admin_minimum_order_price = Minimum order price
+modules_tabs_reviews_admin_minimum_order_price_for_reviews_tabs = Minimum order price for reviews tabs
+modules_tabs_reviews_admin_confirm_publish = Publish?
+
+[catalog]
+
+;TITLE
+modules_tabs_reviews_catalog_name = Reviews
+modules_tabs_reviews_catalog_your_rating = Your rating:
+modules_tabs_reviews_catalog_write_review = Write review...
+modules_tabs_reviews_catalog_publish = Publish
+modules_tabs_reviews_catalog_thanks = Thank you. Your review has already been added for this product.
+modules_tabs_reviews_catalog_average_rating = Average rating:
+modules_tabs_reviews_catalog_cannot_post = You cannot post a review for this item because you have not purchased it yet. 
+modules_tabs_reviews_catalog_moderation = Thank you. Your review has been sent for moderation.
+modules_tabs_reviews_catalog_button_show_more = Show more

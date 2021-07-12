@@ -9,8 +9,10 @@ namespace eMarket\Catalog;
 
 use eMarket\Core\{
     Func,
+    Interfaces,
     Products as ProductsCore,
-    Valid
+    Valid,
+    Tabs
 };
 
 /**
@@ -32,6 +34,7 @@ class Products {
     public static $weight_value = FALSE;
     public static $images = FALSE;
     public static $attributes_data = FALSE;
+    public static $tabs_data = [];
 
     /**
      * Constructor
@@ -45,6 +48,7 @@ class Products {
         $this->weight();
         $this->images();
         $this->attributes();
+        $this->tabs();
     }
 
     /**
@@ -142,6 +146,32 @@ class Products {
         } else {
             self::$attributes_data = json_encode($categories_data['attributes']);
         }
+    }
+
+    /**
+     * Tabs
+     *
+     */
+    public function tabs() {
+        Tabs::loadData();
+
+        $INTERFACE = new Interfaces();
+        $modules_data = $INTERFACE->load('tabs');
+
+        $interface_data = [];
+        if (is_array($modules_data)) {
+            foreach ($modules_data as $data) {
+
+                // INTERFACE
+                $interface = [
+                    'chanel_module_name' => $data['chanel_module_name'],
+                    'chanel_name' => $data['chanel_name']
+                ];
+
+                array_push($interface_data, $interface);
+            }
+        }
+        self::$tabs_data = $interface_data;
     }
 
 }

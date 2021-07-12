@@ -12,6 +12,7 @@
  * 
  */
 class Products {
+
     /**
      * Add to cart
      * @param id {String} (id)
@@ -32,7 +33,6 @@ class Products {
                 document.querySelector('#cart_bar').replaceWith(ajax_data.querySelector('#cart_bar'));
                 document.querySelector('#products').replaceWith(ajax_data.querySelector('#products'));
                 new bootstrap.Modal(document.querySelector('#cart_message')).show();
-                new Products();
             }
         }
     }

@@ -145,6 +145,7 @@ payment_modules = Payment
 shipping_modules = Shipping
 discount_modules = Discount
 providers_modules = Providers
+tabs_modules = Product tabs
 cart_modules = Cart
 other_modules = Other
 installed_modules = Installed modules

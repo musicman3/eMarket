@@ -1,0 +1,30 @@
+;=-=-=-= Copyright © 2018 eMarket =-=-=-=-=;
+;     GNU GENERAL PUBLIC LICENSE v.3.0     ;
+;   https://github.com/musicman3/eMarket   ;
+;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
+
+[all]
+modules_tabs_reviews_name = Отзывы
+modules_tabs_reviews_author = eMarket
+modules_tabs_reviews_version = 1.0
+
+[admin]
+
+;TITLE
+modules_tabs_reviews_admin_tabs_zone = Зона доставки
+modules_tabs_reviews_admin_minimum_order_price = Минимальная сумма заказа
+modules_tabs_reviews_admin_minimum_order_price_for_reviews_tabs = Минимальная сумма заказа для бесплатной доставки
+modules_tabs_reviews_admin_confirm_publish = Опубликовать?
+
+[catalog]
+
+;TITLE
+modules_tabs_reviews_catalog_name = Отзывы
+modules_tabs_reviews_catalog_your_rating = Ваша оценка:
+modules_tabs_reviews_catalog_write_review = Напишите отзыв...
+modules_tabs_reviews_catalog_publish = Опубликовать
+modules_tabs_reviews_catalog_thanks = Спасибо. Ваш отзыв для этого товара уже добавлен.
+modules_tabs_reviews_catalog_average_rating = Средняя оценка:
+modules_tabs_reviews_catalog_cannot_post = Вы не можете опубликовать отзыв на этот товар, так как Вы еще не приобрели его.
+modules_tabs_reviews_catalog_moderation = Спасибо. Ваш отзыв отправлен на модерацию.
+modules_tabs_reviews_catalog_button_show_more = Показать еще

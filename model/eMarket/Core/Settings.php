@@ -119,17 +119,24 @@ class Settings {
     /**
      * JS Modules Handler
      *
+     * @param string $js_path Path to js.php
      * @return string
      */
-    public static function jsModulesHandler() {
+    public static function jsModulesHandler($js_path = null) {
         if (self::path() == 'admin') {
             $path = View::routingModules('js_handler');
             if (file_exists($path . '/js.php')) {
                 self::$js_modules_handler = $path;
             }
         }
-        if (self::path() == 'catalog') {
+        if (self::path() == 'catalog' && $js_path == null) {
             $path = ROOT . '/modules/payment/' . Valid::inPOST('payment_method') . '/js_handler/catalog';
+            if (file_exists($path . '/js.php')) {
+                self::$js_modules_handler = $path;
+            }
+        }
+        if (self::path() == 'catalog' && $js_path != null) {
+            $path = ROOT . '/modules/' . $js_path . '/js_handler/catalog';
             if (file_exists($path . '/js.php')) {
                 self::$js_modules_handler = $path;
             }

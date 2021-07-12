@@ -20,6 +20,7 @@ use eMarket\Core\{
     Valid
 };
 use eMarket\Admin\HeaderMenu;
+
 /**
  * Module Sale
  *
@@ -44,8 +45,13 @@ class Sale {
         $this->data();
         $this->modal();
     }
-    
-        public static function menu() {
+
+    /**
+     * Menu config
+     * [0] - url, [1] - icon, [2] - name, [3] - target="_blank", [4] - submenu (true/false)
+     * 
+     */
+    public static function menu() {
         HeaderMenu::$menu[HeaderMenu::$menu_marketing][] = ['?route=settings/modules/edit&type=discount&name=sale', 'bi-star', lang('modules_discount_sale_name'), '', 'false'];
     }
 

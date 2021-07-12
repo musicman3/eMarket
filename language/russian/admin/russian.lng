@@ -145,6 +145,7 @@ payment_modules = Оплата
 shipping_modules = Доставка
 discount_modules = Скидки
 providers_modules = Провайдеры
+tabs_modules = Вкладки товара
 cart_modules = Корзина
 other_modules = Другое
 installed_modules = Установленные модули

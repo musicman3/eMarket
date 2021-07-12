@@ -80,6 +80,7 @@ class Success {
                 '  define(\'TABLE_PRODUCTS\', \'' . $db_pref . 'products' . '\');' . "\n" .
                 '  define(\'TABLE_PASSWORD_RECOVERY\', \'' . $db_pref . 'password_recovery' . '\');' . "\n" .
                 '  define(\'TABLE_REGIONS\', \'' . $db_pref . 'regions' . '\');' . "\n" .
+                '  define(\'TABLE_REVIEWS\', \'' . $db_pref . 'reviews' . '\');' . "\n" .
                 '  define(\'TABLE_STIKERS\', \'' . $db_pref . 'stikers' . '\');' . "\n" .
                 '  define(\'TABLE_SLIDESHOW\', \'' . $db_pref . 'slideshow' . '\');' . "\n" .
                 '  define(\'TABLE_SLIDESHOW_PREF\', \'' . $db_pref . 'slideshow_pref' . '\');' . "\n" .

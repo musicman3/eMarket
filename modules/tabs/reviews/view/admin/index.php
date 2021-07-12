@@ -5,27 +5,25 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 use eMarket\Core\{
-    Ecb,
     Pages,
-    Valid
+    Valid,
+    Settings
 };
-use eMarket\Core\Modules\Shipping\Free;
+use eMarket\Core\Modules\Tabs\Reviews;
 
 require_once('modal/index.php')
 ?>
 
-<div id="ajax_data" class='hidden' data-jsondata='<?php echo Free::$json_data ?>'></div>
+<div id="ajax_data" class='hidden' data-jsondata='<?php echo Reviews::$json_data ?>'></div>
 
 <div class="table-responsive">
     <table class="table table-hover mb-0">
         <thead>
             <tr>
-                <th colspan="2"><?php echo Pages::counterPage() ?></th>
+                <th colspan="4"><?php echo Pages::counterPage() ?></th>
 
                 <th>
                     <div class="gap-2 d-flex justify-content-end">
-
-                        <a href="#index" class="btn btn-primary btn-sm bi-plus" data-bs-toggle="modal"></a>
 
                         <form>
                             <input hidden name="route" value="settings/modules/edit">
@@ -58,8 +56,10 @@ require_once('modal/index.php')
             </tr>
             <?php if (Pages::$count > 0) { ?>
                 <tr class="align-middle">
-                    <th><?php echo lang('modules_shipping_free_admin_shipping_zone') ?></th>
-                    <th class="text-center"><?php echo lang('modules_shipping_free_admin_minimum_order_price') ?></th>
+                    <th><?php echo lang('Дата добавления') ?></th>
+                    <th class="text-center"><?php echo lang('Товар') ?></th>
+                    <th class="text-center"><?php echo lang('Автор') ?></th>
+                    <th class="text-center"><?php echo lang('Рейтинг') ?></th>
                     <th></th>
                 </tr>
             <?php } ?>
@@ -69,10 +69,27 @@ require_once('modal/index.php')
             for (Pages::$start; Pages::$start < Pages::$finish; Pages::$start++, Pages::lineUpdate()) {
                 ?>
                 <tr>
-                    <td><?php echo Free::$zones_name[Pages::$table['line']['shipping_zone']] ?></td>
-                    <td class="text-center"><?php echo Ecb::formatPrice(Ecb::currencyPrice(Pages::$table['line']['minimum_price'], Pages::$table['line']['currency']), 1) ?></td>
+                    <td><?php echo Settings::dateLocale(Pages::$table['line']['date_add']) ?></td>
+                    <td class="text-center"><button type="button" class="btn btn-primary btn-sm bi-box-arrow-up-right" onClick="window.open('/?route=products&category_id=2&id=<?php echo Pages::$table['line']['product_id'] ?>')"></button></td>
+                    <td class="text-center"><?php echo Pages::$table['line']['author'] ?></td>
+                    <td class="text-center">
+                        <?php
+                        for ($count = 0; $count < 5; $count++) {
+                            if ($count < Pages::$table['line']['stars']) {
+                                ?>
+                                <span class="text-warning bi-star-fill"></span>
+                            <?php } else { ?>
+                                <span class="text-warning bi-star"></span>
+                                <?php
+                            }
+                        }
+                        ?>
                     <td>
                         <div class="gap-2 d-flex justify-content-end">
+                            <form id="form_publish<?php echo Pages::$table['line']['id'] ?>" name="form_publish" action="javascript:void(null);" enctype="multipart/form-data">
+                                <input hidden name="publish" value="<?php echo Pages::$table['line']['id'] ?>">
+                                <button type="button" name="publish_but" class="btn btn-success btn-sm bi-check2" onclick="Confirmation.update('form_publish<?php echo Pages::$table['line']['id'] ?>', '<?php echo lang('modules_tabs_reviews_admin_confirm_publish') ?>')"></button>
+                            </form>
                             <button type="button" class="btn btn-primary btn-sm bi-pencil-square" data-bs-toggle="modal" data-bs-target="#index" data-edit="<?php echo Pages::$table['line']['id'] ?>"></button>
                             <form id="form_delete<?php echo Pages::$table['line']['id'] ?>" name="form_delete" action="javascript:void(null);" onsubmit="Ajax.callDelete('<?php echo Pages::$table['line']['id'] ?>')" enctype="multipart/form-data">
                                 <input hidden name="delete" value="<?php echo Pages::$table['line']['id'] ?>">
