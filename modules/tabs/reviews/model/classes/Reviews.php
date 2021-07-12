@@ -264,7 +264,7 @@ class Reviews {
             Pdo::action("UPDATE " . $MODULE_DB . " SET reviews=?, date_edit=? WHERE id=?", [
                 json_encode([htmlspecialchars(Valid::inPOST('review'))]), date('Y-m-d H:i:s'), Valid::inPOST('edit')]);
 
-            Messages::alert('edit', 'success', lang('action_completed_successfully'));
+            Messages::alert('edit_tabs_reviews', 'success', lang('action_completed_successfully'));
             exit;
         }
     }
@@ -279,7 +279,7 @@ class Reviews {
             $MODULE_DB = Modules::moduleDatabase();
 
             Pdo::action("DELETE FROM " . $MODULE_DB . " WHERE id=?", [Valid::inPOST('delete')]);
-            Messages::alert('delete', 'success', lang('action_completed_successfully'));
+            Messages::alert('delete_tabs_reviews', 'success', lang('action_completed_successfully'));
         }
     }
 
