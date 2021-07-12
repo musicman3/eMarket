@@ -128,7 +128,7 @@ class Reviews {
      */
     public function authorCheck() {
         if (Autorize::$customer != FALSE) {
-            self::$author_check = Pdo::getCellFalse("SELECT id FROM " . DB_PREFIX . "modules_tabs_reviews WHERE author=?", [Autorize::$customer['email']]);
+            self::$author_check = Pdo::getCellFalse("SELECT id FROM " . DB_PREFIX . "modules_tabs_reviews WHERE author=? AND product_id=?", [Autorize::$customer['email'], Valid::inGET('id')]);
         }
     }
 
