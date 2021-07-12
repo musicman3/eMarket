@@ -33,7 +33,6 @@ class Reviews {
     public static $count_to_page = 0;
     public static $author_check = FALSE;
     public static $author = FALSE;
-    public static $author_email = FALSE;
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
 
@@ -139,10 +138,7 @@ class Reviews {
      * @return array Author data
      */
     public static function reviewAuthor($email) {
-        if (self::$author_email != $email) {
-            self::$author_email = $email;
-            self::$author = Pdo::getColAssoc("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$email])[0];
-        }
+        self::$author = Pdo::getColAssoc("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$email])[0];
 
         return self::$author;
     }
