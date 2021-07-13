@@ -60,7 +60,7 @@ class Reviews {
      * 
      */
     public static function menu() {
-        HeaderMenu::$menu[HeaderMenu::$menu_customers][] = ['?route=settings/modules/edit&type=tabs&name=reviews', 'bi-chat-left-text', lang('modules_tabs_reviews_name'), '', 'false'];
+        HeaderMenu::$menu[HeaderMenu::$menu_customers][] = ['?route=settings/modules/edit&type=tabs&name=reviews&alias=true', 'bi-chat-left-text', lang('modules_tabs_reviews_name'), '', 'false'];
     }
 
     /**

@@ -52,7 +52,7 @@ class Sale {
      * 
      */
     public static function menu() {
-        HeaderMenu::$menu[HeaderMenu::$menu_marketing][] = ['?route=settings/modules/edit&type=discount&name=sale', 'bi-star', lang('modules_discount_sale_name'), '', 'false'];
+        HeaderMenu::$menu[HeaderMenu::$menu_marketing][] = ['?route=settings/modules/edit&type=discount&name=sale&alias=true', 'bi-star', lang('modules_discount_sale_name'), '', 'false'];
     }
 
     /**
