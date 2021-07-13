@@ -20,7 +20,7 @@ require_once('modal/index.php')
         <div class="card-header">
             <div id="alert_block"><?php Messages::alert(); ?></div>
             <h5 class="card-title">
-                <span class="settings_name"><?php echo Settings::titlePageGenerator() ?></span>
+                <?php echo Settings::titlePageGenerator() ?>
             </h5>
         </div>
         <div class="card-body">
