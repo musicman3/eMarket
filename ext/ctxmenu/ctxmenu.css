@@ -7,7 +7,7 @@
 .ctxmenu li {margin: 1px 0;display: block;position: relative;}
 .ctxmenu li span,.ctxmenu li a {display: flex; align-items: center !important; padding: 3px 6px;cursor: pointer;}
 .ctxmenu li span::before {padding-right: 5px ;}
-.ctxmenu [class^="bi-"]::before, .ctxmenu [class*=" bi-"]::before {color: #0D6EFD;}
+.ctxmenu [class^="bi-"]::before, .ctxmenu [class*=" bi-"]::before {color: var(--bs-primary);}
 .ctxmenu li a {text-decoration: none;color: #e6e6e6;}
 
 /* any horizontal divider */
