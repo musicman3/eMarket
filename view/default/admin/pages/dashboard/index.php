@@ -5,7 +5,6 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
 
-<?php if (isset($_SESSION['login']) && isset($_SESSION['pass'])) { ?>
 <div id="dashboard">
     <div class="welcome text-center">
 	<?php echo lang('index-title') ?>
@@ -13,4 +12,3 @@
         <div class="welcome_description"><?php echo lang('index-text') ?></div>
     </div>
 </div>
-<?php }
