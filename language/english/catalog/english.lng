@@ -18,7 +18,7 @@ title_my_account_index = My Account
 title_checkout_index = Order prepared
 
 ;INDEX
-index_text = eMarket Bootstrap 3 Demo
+index_text = eMarket Bootstrap 5 Demo
 
 ;DEBUG
 debug_page_generation_time = Page generation time:
