@@ -192,7 +192,8 @@ class Success {
             'total' => Valid::inPOST('order_total'),
             'shipping_price' => Valid::inPOST('order_shipping_price'),
             'total_to_pay' => Valid::inPOST('order_to_pay'),
-            'order_total_tax' => Valid::inPOST('order_total_tax')
+            'order_total_tax' => Valid::inPOST('order_total_tax'),
+            'currency' => $_SESSION['currency_default_catalog']
         ];
     }
 

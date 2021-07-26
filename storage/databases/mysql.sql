@@ -10388,10 +10388,8 @@ INSERT INTO emkt_weight VALUES (3, 'Ounce', 'oz.', 'english', '0.0283500', '0');
 INSERT INTO emkt_weight VALUES (3, 'Унция', 'ун.', 'russian', '0.0283500', '0');
 
 /* Vendor codes */
-INSERT INTO emkt_vendor_codes VALUES (1, 'Articul', 'english', '', '1');
-INSERT INTO emkt_vendor_codes VALUES (1, 'Артикул', 'russian', '', '1');
-INSERT INTO emkt_vendor_codes VALUES (2, 'SCU', 'english', '', '0');
-INSERT INTO emkt_vendor_codes VALUES (2, 'SCU', 'russian', '', '0');
+INSERT INTO emkt_vendor_codes VALUES (2, 'SCU', 'english', '', '1');
+INSERT INTO emkt_vendor_codes VALUES (2, 'Артикул', 'russian', '', '1');
 INSERT INTO emkt_vendor_codes VALUES (3, 'UPC', 'english', '', '0');
 INSERT INTO emkt_vendor_codes VALUES (3, 'UPC', 'russian', '', '0');
 INSERT INTO emkt_vendor_codes VALUES (4, 'EAN', 'english', '', '0');
@@ -10418,6 +10416,8 @@ INSERT INTO emkt_order_status VALUES (3, 'Paid', 'english', '0', '3');
 INSERT INTO emkt_order_status VALUES (3, 'Оплачен', 'russian', '0', '3');
 INSERT INTO emkt_order_status VALUES (4, 'Pending payment', 'english', '1', '4');
 INSERT INTO emkt_order_status VALUES (4, 'Ожидает оплаты', 'russian', '1', '4');
+INSERT INTO emkt_order_status VALUES (5, 'Refund', 'english', '0', '5');
+INSERT INTO emkt_order_status VALUES (5, 'Возврат', 'russian', '0', '5');
 
 /* Currencies */
 INSERT INTO emkt_currencies VALUES (1, 'Russian Rouble', 'rub.', 'RUB', 'english', '1.0000000000', '1', ' ₽', 'right', '2', NULL);
