@@ -193,7 +193,7 @@ class Success {
             'shipping_price' => Valid::inPOST('order_shipping_price'),
             'total_to_pay' => Valid::inPOST('order_to_pay'),
             'order_total_tax' => Valid::inPOST('order_total_tax'),
-            'currency' => Settings::currencyDefault()[0]
+            'currency' => Pdo::getCellFalse("SELECT id FROM " . TABLE_CURRENCIES . " WHERE language=? AND default_value=?", [self::$primary_language, 1])
         ];
     }
 
