@@ -40,7 +40,8 @@ if (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
                 </ul>
             </div>
 
-        </div>
+        <div class="text-end badge bg-success text-white"><?php echo lang('emarket_version') ?></div></div>
+        
     </nav>
 
     <?php

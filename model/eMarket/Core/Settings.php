@@ -102,12 +102,24 @@ class Settings {
      * @return string
      */
     public static function jsHandler() {
-        if (self::path() == 'admin' OR Settings::path() == 'catalog') {
+        if (self::path() == 'admin') {
+            if (Valid::inGET('route')) {
+                $path = getenv('DOCUMENT_ROOT') . '/js_handler/' . self::path() . '/pages/' . Valid::inGET('route');
+            } else {
+                $path = getenv('DOCUMENT_ROOT') . '/js_handler/' . self::path() . '/pages/dashboard';
+            }
+            if (file_exists($path . '/js.php')) {
+                self::$js_handler = $path;
+            }
+        }
+        
+        if (Settings::path() == 'catalog') {
             $path = getenv('DOCUMENT_ROOT') . '/js_handler/' . self::path() . '/pages/' . Valid::inGET('route');
             if (file_exists($path . '/js.php')) {
                 self::$js_handler = $path;
             }
         }
+        
         if (self::path() == 'install') {
             $path = getenv('DOCUMENT_ROOT') . '/js_handler/' . self::path() . Valid::inGET('route');
             if (file_exists($path . '/js.php')) {
