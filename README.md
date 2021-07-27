@@ -3,7 +3,7 @@
 
 ### System requirements: 
   - OS Unix, Linux or Windows
-  - Apache Web Server >= 2.4
+  - Apache Web Server >= 2.4 or Nginx >= 1.17
   - PHP >= 7.3
   - MySQL >= 5.7.8 or MariaDB >= 10.2.3
   - Javascript >= ES6
