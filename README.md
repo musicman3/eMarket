@@ -2,8 +2,10 @@
 ## eMarket Online Store
 
 ### System requirements: 
+  - OS Unix, Linux or Windows
+  - Apache Web Server >= 2.4
   - PHP >= 7.3
-  - MySQL >= 5.7.8
+  - MySQL >= 5.7.8 or MariaDB >= 10.2.3
   - Javascript >= ES6
   - HTML 5
 
