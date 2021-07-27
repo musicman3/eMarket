@@ -71,7 +71,13 @@ class Dashboard {
     public static function minYear() {
         if (self::$min_year == FALSE) {
             $min_clients_id = Pdo::getCellFalse("SELECT MIN(id) FROM " . TABLE_CUSTOMERS, []);
-            $min_clients = Pdo::getCellFalse("SELECT YEAR(date_account_created) FROM " . TABLE_CUSTOMERS . " WHERE id=" . $min_clients_id, []);
+            
+            if ($min_clients_id != FALSE) {
+                $min_clients = Pdo::getCellFalse("SELECT YEAR(date_account_created) FROM " . TABLE_CUSTOMERS . " WHERE id=" . $min_clients_id, []);
+            } else {
+                $min_clients = date('Y');
+            }
+            
             self::$min_year = $min_clients;
         }
         return self::$min_year;
