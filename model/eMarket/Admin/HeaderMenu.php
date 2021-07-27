@@ -49,6 +49,14 @@ class HeaderMenu {
     }
 
     /**
+     * eMarket version
+     *
+     */
+    public static function version() {
+        return 'v. 1.0 beta 2';
+    }
+
+    /**
      * Init
      *
      */

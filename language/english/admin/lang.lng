@@ -11,4 +11,3 @@ language_locale = en_GB.UTF-8
 meta-language = en
 currency_separator = ,
 currency_group_separator = " "
-emarket_version = v. 1.0 beta 2
