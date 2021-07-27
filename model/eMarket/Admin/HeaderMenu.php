@@ -131,7 +131,7 @@ class HeaderMenu {
     public function staticLevels() {
 
         //LANGUAGES
-        self::$level['languages'] = ['#', lang('menu_languages'), 'true', 'bi-spellcheck'];
+        self::$level['languages'] = ['#', lang('menu_languages'), 'true', 'bi-translate'];
         for ($lng = 0; $lng < count(lang('#lang_all')); $lng++) {
             self::$menu['languages'][$lng] = [Settings::langCurrencyPath() . '&language=' . lang('#lang_all')[$lng], 'bi-caret-right-fill', lang('language_name', lang('#lang_all')[$lng]), '', 'false'];
         }

@@ -7,7 +7,7 @@
 
 ;TITLE
 title_categories_index = Категории
-title_dashboard_index = Панель администратора
+title_dashboard_index = Мониторинг
 title_error_log_index = Лог ошибок
 title_action_log_index = Лог действий
 title_login_index = Страница авторизации
@@ -91,8 +91,6 @@ with = Отображено с
 to = по
 of = из
 no_listing = Нет записей
-index-title = Добро пожаловать в систему управления контентом
-index-text = Современная платформа для создания интернет-магазина
 name = Название
 images = Изображение
 display = Отображать
@@ -347,3 +345,35 @@ staff_tooltip = После того как пароль будет сгенер�
 
 ;MESSAGES
 messages_alert_name = Сообщение eMarket
+
+;DASHBOARD
+dashboard_new_customers = Новые клиенты
+dashboard_average_check = Средний чек
+dashboard_repeat_orders = Повторные заказы
+dashboard_period = Период
+dashboard_orders_by_day_of_the_week = Заказы по дням недели
+dashboard_orders_quantity = Количество заказов
+dashboard_proceeds = Выручка
+dashboard_total = Итого:
+dashboard_orders_from_customers = Заказы от клиентов
+dashboard_new = Новые
+dashboard_repeat = Повторные
+dashboard_jan = Янв
+dashboard_feb = Фев
+dashboard_mar = Мар
+dashboard_apr = Апр
+dashboard_may = Май
+dashboard_jun = Июн
+dashboard_jul = Июл
+dashboard_aug = Авг
+dashboard_sep = Сен
+dashboard_oct = Окт
+dashboard_nov = Ноя
+dashboard_dec = Дек
+dashboard_sun = Вс
+dashboard_mon = Пн
+dashboard_tue = Вт
+dashboard_wed = Ср
+dashboard_thu = Чт
+dashboard_fri = Пт
+dashboard_sat = Сб

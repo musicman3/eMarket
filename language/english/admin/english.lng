@@ -7,7 +7,7 @@
 
 ;TITLE
 title_categories_index = Categories
-title_dashboard_index = Administration Panel
+title_dashboard_index = Dashboard
 title_error_log_index = Error log
 title_action_log_index = Action log
 title_login_index = Login page
@@ -36,7 +36,7 @@ title_staff_manager_index = Staff manager
 title_staff_manager_staff_index = Staff
 
 ;MENU_BUTTONS
-menu_dashboard = Monitoring
+menu_dashboard = Dashboard
 menu_catalog = Catalog
 menu_market = Market
 menu_sellings = Sellings
@@ -347,3 +347,35 @@ staff_tooltip = After the password has been generated, copy it and inform the ne
 
 ;MESSAGES
 messages_alert_name = eMarket message
+
+;DASHBOARD
+dashboard_new_customers = New customers
+dashboard_average_check = Average check
+dashboard_repeat_orders = Repeat orders
+dashboard_period = Period
+dashboard_orders_by_day_of_the_week = Orders by day of the week
+dashboard_orders_quantity = Orders quantity
+dashboard_proceeds = Proceeds
+dashboard_total = Total:
+dashboard_orders_from_customers = Orders from customers
+dashboard_new = New
+dashboard_repeat = Repeat
+dashboard_jan = Jan
+dashboard_feb = Feb
+dashboard_mar = Mar
+dashboard_apr = Apr
+dashboard_may = May
+dashboard_jun = Jun
+dashboard_jul = Jul
+dashboard_aug = Aug
+dashboard_sep = Sep
+dashboard_oct = Oct
+dashboard_nov = Nov
+dashboard_dec = Dec
+dashboard_sun = Sun
+dashboard_mon = Mon
+dashboard_tue = Tue
+dashboard_wed = Wed
+dashboard_thu = Thu
+dashboard_fri = Fri
+dashboard_sat = Sat
