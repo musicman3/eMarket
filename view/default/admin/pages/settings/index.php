@@ -3,6 +3,7 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+
 use eMarket\Core\{
     Settings
 };
@@ -12,12 +13,8 @@ use eMarket\Core\{
     <div class="card">
         <div class="card-header">
             <h5 class="card-title">
-                <div class="row justify-content-between">
-                    <div class="col-4 text-start"></div>
-                    <div class="col-4 text-center">
-                        <span><?php echo Settings::titlePageGenerator() ?></span>
-                    </div>
-                    <div class="col-4 text-end"></div>
+                <div class="col text-center">
+                    <span><?php echo Settings::titlePageGenerator() ?></span>
                 </div>
             </h5>
         </div>

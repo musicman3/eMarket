@@ -29,11 +29,9 @@ use eMarket\Admin\ModulesEdit;
                         </div>
                         <div class="col-4 text-end"></div>
                     <?php } else { ?>
-                        <div class="col-4 text-start"></div>
-                        <div class="col-4 text-center">
+                        <div class="col text-center">
                             <span><?php echo Settings::titlePageGenerator() ?></span>
                         </div>
-                        <div class="col-4 text-end"></div>
                     <?php } ?>
                 </div>
             </h5>
