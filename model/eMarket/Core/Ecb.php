@@ -72,7 +72,7 @@ final class Ecb {
 
         if (Settings::path() == 'catalog') {
             if ($discounts_data != [] && $input_price != $discounted_price) {
-                return '<del>' . self::formatPrice($input_price * $quantity, $marker) . '</del><br><span class="badge bg-' . $class . '">' . self::formatPrice($discounted_price * $quantity, $marker) . '</span>';
+                return '<del>' . self::formatPrice($input_price * $quantity, $marker) . '</del> <span class="badge bg-' . $class . '">' . self::formatPrice($discounted_price * $quantity, $marker) . '</span>';
             }
             return self::formatPrice($input_price * $quantity, $marker);
         }
