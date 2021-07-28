@@ -22,7 +22,13 @@ require_once('modal/index.php')
         <div class="card-header">
             <div id="alert_block"><?php Messages::alert(); ?></div>
             <h5 class="card-title">
-                <?php echo Settings::titlePageGenerator() ?>
+                <div class="row justify-content-between">
+                    <div class="col-4 text-start"></div>
+                    <div class="col-4 text-center">
+                        <span><?php echo Settings::titlePageGenerator() ?></span>
+                    </div>
+                    <div class="col-4 text-end"></div>
+                </div>
             </h5>
         </div>
         <div class="card-body">
@@ -34,8 +40,8 @@ require_once('modal/index.php')
 
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-		    <a class="nav-link <?php echo Settings::activeTab(Slideshow::$set_language, lang('#lang_all')[0]) ?>" data-bs-toggle="tab" href="#<?php echo lang('#lang_all')[0] ?>"><img src="/view/<?php echo Settings::template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[0] ?>.png" alt="<?php echo lang('#lang_all')[0] ?>" title="<?php echo lang('#lang_all')[0] ?>" width="16" height="10" /> <?php echo lang('language_name', lang('#lang_all')[0]) ?></a>
-		</li>
+                    <a class="nav-link <?php echo Settings::activeTab(Slideshow::$set_language, lang('#lang_all')[0]) ?>" data-bs-toggle="tab" href="#<?php echo lang('#lang_all')[0] ?>"><img src="/view/<?php echo Settings::template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[0] ?>.png" alt="<?php echo lang('#lang_all')[0] ?>" title="<?php echo lang('#lang_all')[0] ?>" width="16" height="10" /> <?php echo lang('language_name', lang('#lang_all')[0]) ?></a>
+                </li>
 
                 <?php
                 if (Lang::$count > 1) {
@@ -43,8 +49,8 @@ require_once('modal/index.php')
                         ?>
 
                         <li class="nav-item">
-			    <a class="nav-link <?php echo Settings::activeTab(Slideshow::$set_language, lang('#lang_all')[$x]) ?>" data-bs-toggle="tab" href="#<?php echo lang('#lang_all')[$x] ?>"><img src="/view/<?php echo Settings::template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[$x] ?>.png" alt="<?php echo lang('#lang_all')[$x] ?>" title="<?php echo lang('#lang_all')[$x] ?>" width="16" height="10" /> <?php echo lang('language_name', lang('#lang_all')[$x]) ?></a>
-			</li>
+                            <a class="nav-link <?php echo Settings::activeTab(Slideshow::$set_language, lang('#lang_all')[$x]) ?>" data-bs-toggle="tab" href="#<?php echo lang('#lang_all')[$x] ?>"><img src="/view/<?php echo Settings::template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[$x] ?>.png" alt="<?php echo lang('#lang_all')[$x] ?>" title="<?php echo lang('#lang_all')[$x] ?>" width="16" height="10" /> <?php echo lang('language_name', lang('#lang_all')[$x]) ?></a>
+                        </li>
 
                         <?php
                     }
@@ -65,7 +71,7 @@ require_once('modal/index.php')
                                         <div class="gap-2 d-flex justify-content-end">
 
                                             <a href="#index" class="btn btn-primary btn-sm bi-plus" data-bs-toggle="modal"></a>
- 
+
                                             <form>
                                                 <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
                                                 <input hidden name="slide_lang" value="<?php echo Valid::inGET('slide_lang') ?>">
@@ -102,7 +108,7 @@ require_once('modal/index.php')
                                         <th class="text-center"><?php echo lang('slides_show_end') ?></th>
                                         <th></th>
                                     </tr>
-				<?php } ?>
+                                <?php } ?>
                             </thead>
                             <tbody>
                                 <?php for (Pages::$start; Pages::$start < Pages::$finish; Pages::$start++, Pages::lineUpdate()) { ?>
@@ -175,15 +181,15 @@ require_once('modal/index.php')
                                         </tr>
 
                                         <?php if (Pages::$count > 0) { ?>
-					    <tr class="align-middle">
-						<th><?php echo lang('slides_image') ?></th>
-						<th class="text-center"><?php echo lang('slides_quantity') ?></th>
-						<th class="text-center"><?php echo lang('slides_name') ?></th>
-						<th class="text-center"><?php echo lang('slides_show_start') ?></th>
-						<th class="text-center"><?php echo lang('slides_show_end') ?></th>
-						<th></th>
-					    </tr>
-					<?php } ?>
+                                            <tr class="align-middle">
+                                                <th><?php echo lang('slides_image') ?></th>
+                                                <th class="text-center"><?php echo lang('slides_quantity') ?></th>
+                                                <th class="text-center"><?php echo lang('slides_name') ?></th>
+                                                <th class="text-center"><?php echo lang('slides_show_start') ?></th>
+                                                <th class="text-center"><?php echo lang('slides_show_end') ?></th>
+                                                <th></th>
+                                            </tr>
+                                        <?php } ?>
                                     </thead>
 
                                     <tbody>

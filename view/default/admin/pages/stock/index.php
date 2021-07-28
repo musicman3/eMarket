@@ -31,7 +31,13 @@ require_once('modal/add_values_attribute.php');
             <div id="alert_block"><?php Messages::alert(); ?></div>
 
             <h5 class="card-title">
-                <?php echo Settings::titlePageGenerator() ?>
+                <div class="row justify-content-between">
+                    <div class="col-4 text-start"></div>
+                    <div class="col-4 text-center">
+                        <span><?php echo Settings::titlePageGenerator() ?></span>
+                    </div>
+                    <div class="col-4 text-end"></div>
+                </div>
             </h5>
         </div>
         <div id="ajax_data" class='hidden' 
@@ -190,7 +196,7 @@ require_once('modal/add_values_attribute.php');
                                 <th colspan="3"><?php echo lang('no_listing') ?></th>
                                 <th>
                                     <div class="gap-2 d-flex justify-content-end">
-					<a type="submit" class="btn btn-primary btn-sm disabled bi-arrow-left-short"></a>
+                                        <a type="submit" class="btn btn-primary btn-sm disabled bi-arrow-left-short"></a>
                                         <a type="submit" class="btn btn-primary btn-sm disabled bi-arrow-right-short"></a>
                                     </div>
                                 </th>
@@ -223,7 +229,7 @@ require_once('modal/add_values_attribute.php');
                     </table>
                 </div>
             </div>
-        
+
         <?php } ?>
 
     </div>

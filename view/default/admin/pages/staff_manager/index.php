@@ -20,7 +20,13 @@ require_once('modal/index.php')
         <div class="card-header">
             <div id="alert_block"><?php Messages::alert(); ?></div>
             <h5 class="card-title">
-                <?php echo Settings::titlePageGenerator() ?>
+                <div class="row justify-content-between">
+                    <div class="col-4 text-start"></div>
+                    <div class="col-4 text-center">
+                        <span><?php echo Settings::titlePageGenerator() ?></span>
+                    </div>
+                    <div class="col-4 text-end"></div>
+                </div>
             </h5>
         </div>
         <div class="card-body">

@@ -19,8 +19,8 @@ use eMarket\Admin\ModulesEdit;
         <div class="card-header">
             <div id="alert_block"><?php Messages::alert(); ?></div>
             <h5 class="card-title">
-                <?php if (!Valid::inGET('alias') == 'true') { ?>
-                    <div class="row justify-content-between">
+                <div class="row justify-content-between">
+                    <?php if (!Valid::inGET('alias') == 'true') { ?>
                         <div class="col-4 text-start">
                             <button type="button" onClick='location.href = "<?php echo Settings::parentPartitionGenerator() ?>"' class="btn btn-primary btn-sm bi-reply"> <span><?php echo lang('button_back') ?></span></button>
                         </div>
@@ -28,10 +28,14 @@ use eMarket\Admin\ModulesEdit;
                             <span><?php echo Settings::titlePageGenerator() ?></span>
                         </div>
                         <div class="col-4 text-end"></div>
-                    </div>
-                <?php } else { ?>
-                    <?php echo Settings::titlePageGenerator() ?>
-                <?php } ?>
+                    <?php } else { ?>
+                        <div class="col-4 text-start"></div>
+                        <div class="col-4 text-center">
+                            <span><?php echo Settings::titlePageGenerator() ?></span>
+                        </div>
+                        <div class="col-4 text-end"></div>
+                    <?php } ?>
+                </div>
             </h5>
         </div>
         <div class="card-body">

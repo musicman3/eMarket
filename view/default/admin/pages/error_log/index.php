@@ -19,7 +19,13 @@ use eMarket\Admin\ErrorLog;
         <div class="card-header">
             <div id="alert_block"><?php Messages::alert(); ?></div>
             <h5 class="card-title">
-                <?php echo Settings::titlePageGenerator() ?>
+                <div class="row justify-content-between">
+                    <div class="col-4 text-start"></div>
+                    <div class="col-4 text-center">
+                        <span><?php echo Settings::titlePageGenerator() ?></span>
+                    </div>
+                    <div class="col-4 text-end"></div>
+                </div>
             </h5>
         </div>
         <?php if (file_exists(ROOT . '/storage/logs/errors.log') == true) { ?>
@@ -74,7 +80,7 @@ use eMarket\Admin\ErrorLog;
                                 if (isset(Pages::$table['line']) == TRUE) {
                                     ?>
                                     <tr class="<?php echo ErrorLog::errorClass(Pages::$table['line']) ?> align-middle"><td colspan="2"><?php echo Pages::$table['line'] ?></td></tr>
-                                <?php
+                                    <?php
                                 }
                             }
                             ?>
@@ -86,6 +92,6 @@ use eMarket\Admin\ErrorLog;
             </div>
         <?php } else { ?>
             <div class="card-body"><?php echo lang('no_listing') ?></div>
-<?php } ?>
+        <?php } ?>
     </div>
 </div>
