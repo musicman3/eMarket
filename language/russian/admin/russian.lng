@@ -78,6 +78,7 @@ button_off = ВЫКЛ.
 button_stiker = Стикер
 button_stiker_add = Добавить стикер
 button_stiker_delete = Удалить стикер
+button_back = Назад
 cut = Вырезать
 paste = Вставить
 search = Искать...

@@ -78,6 +78,7 @@ button_off = OFF
 button_stiker = Stiker
 button_stiker_add = Add stiker
 button_stiker_delete = Delete stiker
+button_back = Back
 cut = Cut
 paste = Paste
 search = Search...

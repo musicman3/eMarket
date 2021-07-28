@@ -14,63 +14,71 @@ use eMarket\Admin\Templates;
     <div class="card">
         <div class="card-header">
             <h5 class="card-title">
-                <span class="settings_back"><button type="button" onClick='location.href = "<?php echo Settings::parentPartitionGenerator() ?>"' class="btn btn-primary btn-sm bi-reply"></button></span><span class="settings_name"><?php echo Settings::titlePageGenerator() ?></span>
+                <div class="row justify-content-between">
+                    <div class="col-4 text-start">
+                        <button type="button" onClick='location.href = "<?php echo Settings::parentPartitionGenerator() ?>"' class="btn btn-primary btn-sm bi-reply"> <span><?php echo lang('button_back') ?></span></button>
+                    </div>
+                    <div class="col-4 text-center">
+                        <span><?php echo Settings::titlePageGenerator() ?></span>
+                    </div>
+                    <div class="col-4 text-end"></div>
+                </div>
             </h5>
         </div>
         <div class="card-body">
 
             <div class="row">
-		<div class="col-auto">
-		    <div class="input-group input-group-sm">
-			<span class="input-group-text bi-grid-fill"></span>
-			<form method="get" class="was-validated" name="select_template" action="index.php">
-			    <input hidden name="route" value="settings/templates">
-			    <select name="name_templates" id="name_templates" class="form-select"  onchange="selectTemplate()">
-				<option><?php echo Settings::template() ?></option>
-				<?php
-				foreach (Templates::$name_template as $path) {
-				    if ($path != '.' && $path != '..' && $path != Settings::template()) {
-					if ($path == Templates::$select_template) {
-					    ?>
-					    <option selected><?php echo $path ?></option>
-					<?php } else {
-					    ?>
-					    <option><?php echo $path ?></option>
-					    <?php
-					}
-				    }
-				}
-				?>
-			    </select>
-			</form>
-		    </div>
-		</div>
-		<div class="col">
-		    <div class="input-group input-group-sm">
-			<span class="input-group-text bi-file-text"></span>
-			<form method="get" class="was-validated" name="select_page">
-			    <input hidden name="route" value="settings/templates">
-			    <input type="hidden" name="name_templates" value="<?php echo Templates::$select_template ?>" />
-			    <select name="layout_pages_templates" id="layout_pages_templates" class="form-select" onchange="selectPage()">
-				<option value="all"><?php echo lang('all_pages_template') ?></option>
-				<?php
-				foreach (Templates::$layout_pages as $path) {
-				    if ($path != '.' && $path != '..') {
-					if ($path == Templates::$select_page) {
-					    ?>
-					    <option value="<?php echo $path ?>" selected><?php echo $path ?></option>
-					<?php } else {
-					    ?>
-					    <option><?php echo $path ?></option>
-					    <?php
-					}
-				    }
-				}
-				?>
-			    </select>
-			</form>
-		    </div>
-		</div>
+                <div class="col-auto">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text bi-grid-fill"></span>
+                        <form method="get" class="was-validated" name="select_template" action="index.php">
+                            <input hidden name="route" value="settings/templates">
+                            <select name="name_templates" id="name_templates" class="form-select"  onchange="selectTemplate()">
+                                <option><?php echo Settings::template() ?></option>
+                                <?php
+                                foreach (Templates::$name_template as $path) {
+                                    if ($path != '.' && $path != '..' && $path != Settings::template()) {
+                                        if ($path == Templates::$select_template) {
+                                            ?>
+                                            <option selected><?php echo $path ?></option>
+                                        <?php } else {
+                                            ?>
+                                            <option><?php echo $path ?></option>
+                                            <?php
+                                        }
+                                    }
+                                }
+                                ?>
+                            </select>
+                        </form>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text bi-file-text"></span>
+                        <form method="get" class="was-validated" name="select_page">
+                            <input hidden name="route" value="settings/templates">
+                            <input type="hidden" name="name_templates" value="<?php echo Templates::$select_template ?>" />
+                            <select name="layout_pages_templates" id="layout_pages_templates" class="form-select" onchange="selectPage()">
+                                <option value="all"><?php echo lang('all_pages_template') ?></option>
+                                <?php
+                                foreach (Templates::$layout_pages as $path) {
+                                    if ($path != '.' && $path != '..') {
+                                        if ($path == Templates::$select_page) {
+                                            ?>
+                                            <option value="<?php echo $path ?>" selected><?php echo $path ?></option>
+                                        <?php } else {
+                                            ?>
+                                            <option><?php echo $path ?></option>
+                                            <?php
+                                        }
+                                    }
+                                }
+                                ?>
+                            </select>
+                        </form>
+                    </div>
+                </div>
             </div>
 
             <div class="clearfix"></br></div>

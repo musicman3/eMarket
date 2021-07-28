@@ -20,7 +20,15 @@ use eMarket\Admin\ModulesEdit;
             <div id="alert_block"><?php Messages::alert(); ?></div>
             <h5 class="card-title">
                 <?php if (!Valid::inGET('alias') == 'true') { ?>
-                    <span class="settings_back"><button type="button" onClick='location.href = "<?php echo Settings::parentPartitionGenerator() ?>"' class="btn btn-primary btn-sm bi-reply"></button></span><span class="settings_name"><?php echo Settings::titlePageGenerator() ?></span>
+                    <div class="row justify-content-between">
+                        <div class="col-4 text-start">
+                            <button type="button" onClick='location.href = "<?php echo Settings::parentPartitionGenerator() ?>"' class="btn btn-primary btn-sm bi-reply"> <span><?php echo lang('button_back') ?></span></button>
+                        </div>
+                        <div class="col-4 text-center">
+                            <span><?php echo Settings::titlePageGenerator() ?></span>
+                        </div>
+                        <div class="col-4 text-end"></div>
+                    </div>
                 <?php } else { ?>
                     <?php echo Settings::titlePageGenerator() ?>
                 <?php } ?>
