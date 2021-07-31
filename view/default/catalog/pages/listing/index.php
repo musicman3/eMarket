@@ -66,35 +66,32 @@ require_once('modal/cart_message.php')
                         <div id="image" class="h-100">
                         <a href="/?route=products&category_id=<?php echo Pages::$table['line']['parent_id'] ?>&id=<?php echo Pages::$table['line']['id'] ?>"><img src="/uploads/images/products/resize_1/<?php echo Pages::$table['line']['logo_general'] ?>" alt="<?php echo Pages::$table['line']['name'] ?>" class="img-fluid rounded mx-auto d-block mb-2"></a>
                         </div>
-                        <div class="align-bottom caption">
-                            <h5 class="item-heading"><a href="/?route=products&category_id=<?php echo Pages::$table['line']['parent_id'] ?>&id=<?php echo Pages::$table['line']['id'] ?>"><?php echo Pages::$table['line']['name'] ?></a></h5>
-                            <div class="item-price mb-2"><?php echo Ecb::priceInterface(Pages::$table['line'], 2) ?></div>
-                            <div class="item-text">
-                                <ul>
-                                    <?php if (Pages::$table['line']['vendor_code'] != NULL && Pages::$table['line']['vendor_code'] != FALSE && Pages::$table['line']['vendor_code_value'] != NULL && Pages::$table['line']['vendor_code_value'] != FALSE) { ?>
-                                        <li>
-                                            <label><?php echo Products::vendorCode(Pages::$table['line']['vendor_code'])['name'] ?>: </label> 
-                                            <?php echo Pages::$table['line']['vendor_code_value'] ?>
-                                        </li>
-                                    <?php } if (Products::manufacturer(Pages::$table['line']['manufacturer'])['name'] != NULL && Products::manufacturer(Pages::$table['line']['manufacturer'])['name'] != FALSE) { ?>
-                                        <li>
-                                            <label><?php echo lang('product_manufacturer') ?></label> <?php echo Products::manufacturer(Pages::$table['line']['manufacturer'])['name'] ?>
-                                        </li>
-                                    <?php } if (Pages::$table['line']['model'] != NULL && Pages::$table['line']['model'] != FALSE) { ?>
-                                        <li>
-                                            <label><?php echo lang('product_model') ?></label> 
-                                            <?php echo Pages::$table['line']['model'] ?>
-                                        </li>
-                                    <?php } ?>
+                        <h5 class="item-heading"><a href="/?route=products&category_id=<?php echo Pages::$table['line']['parent_id'] ?>&id=<?php echo Pages::$table['line']['id'] ?>"><?php echo Pages::$table['line']['name'] ?></a></h5>
+                        <div class="item-price mb-2"><?php echo Ecb::priceInterface(Pages::$table['line'], 2) ?></div>
+                        <div class="item-text">
+                            <ul>
+                                <?php if (Pages::$table['line']['vendor_code'] != NULL && Pages::$table['line']['vendor_code'] != FALSE && Pages::$table['line']['vendor_code_value'] != NULL && Pages::$table['line']['vendor_code_value'] != FALSE) { ?>
                                     <li>
-                                        <label><?php echo lang('product_availability') ?></label>
-
-                                        <?php foreach (Products::inStock(Pages::$table['line']['date_available'], Pages::$table['line']['quantity']) as $in_stock) { ?>
-                                            <span class="<?php echo $in_stock[0] ?>"><?php echo $in_stock[1] ?></span>
-                                        <?php } ?>
+                                        <label><?php echo Products::vendorCode(Pages::$table['line']['vendor_code'])['name'] ?>: </label> 
+                                        <?php echo Pages::$table['line']['vendor_code_value'] ?>
                                     </li>
-                                </ul>
-                            </div>
+                                <?php } if (Products::manufacturer(Pages::$table['line']['manufacturer'])['name'] != NULL && Products::manufacturer(Pages::$table['line']['manufacturer'])['name'] != FALSE) { ?>
+                                    <li>
+                                        <label><?php echo lang('product_manufacturer') ?></label> <?php echo Products::manufacturer(Pages::$table['line']['manufacturer'])['name'] ?>
+                                    </li>
+                                <?php } if (Pages::$table['line']['model'] != NULL && Pages::$table['line']['model'] != FALSE) { ?>
+                                    <li>
+                                        <label><?php echo lang('product_model') ?></label> 
+                                        <?php echo Pages::$table['line']['model'] ?>
+                                    </li>
+                                <?php } ?>
+                                <li>
+                                    <label><?php echo lang('product_availability') ?></label>
+                                    <?php foreach (Products::inStock(Pages::$table['line']['date_available'], Pages::$table['line']['quantity']) as $in_stock) { ?>
+                                        <span class="<?php echo $in_stock[0] ?>"><?php echo $in_stock[1] ?></span>
+                                    <?php } ?>
+                                </li>
+                            </ul>
                         </div>
                         <div class="col-12 item-button">
                             <div class="block-button">
