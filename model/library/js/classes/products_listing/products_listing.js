@@ -141,7 +141,6 @@ class ProductsListing {
         document.querySelectorAll('.item').forEach(e => e.classList.remove('col-xl-3', 'col-lg-4', 'col-md-6', 'col-12', 'grid-group-item'));
         document.querySelectorAll('#card').forEach(e => e.classList.remove('card'));
         document.querySelectorAll('#image').forEach(e => e.classList.remove('h-100'));
-        document.querySelectorAll('#heading').forEach(e => e.classList.remove('h-100'));
         document.querySelectorAll('.item').forEach(e => e.classList.add('col-12', 'list-group-item'));
         document.querySelector('.item-grid').classList.remove('active');
         document.querySelector('.item-list').classList.add('active');
@@ -157,7 +156,6 @@ class ProductsListing {
         document.querySelectorAll('.item').forEach(e => e.classList.add('col-xl-3', 'col-lg-4', 'col-md-6', 'col-12', 'grid-group-item'));
         document.querySelectorAll('#card').forEach(e => e.classList.add('card'));
         document.querySelectorAll('#image').forEach(e => e.classList.add('h-100'));
-        document.querySelectorAll('#heading').forEach(e => e.classList.add('h-100'));
         document.querySelector('.item-list').classList.remove('active');
         document.querySelector('.item-grid').classList.add('active');
     }
