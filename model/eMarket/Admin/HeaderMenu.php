@@ -10,8 +10,7 @@ namespace eMarket\Admin;
 use eMarket\Core\{
     Settings,
     Pdo,
-    Valid,
-    Func
+    Valid
 };
 
 /**
@@ -46,14 +45,6 @@ class HeaderMenu {
         $this->staffInit();
         $this->staticLevels();
         $this->exit();
-    }
-
-    /**
-     * eMarket version
-     *
-     */
-    public static function version() {
-        return 'v. 1.0 beta 2';
     }
 
     /**

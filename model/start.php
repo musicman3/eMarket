@@ -39,7 +39,7 @@ foreach (Tree::modulesClasses() as $path) {
 }
 
 // Config file and etc.
-if (Settings::path() == 'admin' OR Settings::path() == 'catalog') {
+if (Settings::path() != 'install') {
     require_once(getenv('DOCUMENT_ROOT') . '/storage/configure/configure.php');
 }
 //Autorize

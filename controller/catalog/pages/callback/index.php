@@ -11,4 +11,6 @@ use eMarket\Core\{
     Valid
 };
 
-require_once(getenv('DOCUMENT_ROOT') . '/modules/' . Valid::inPost('request_callback_type') . '/' . Valid::inPost('request_callback_name') . '/controller/catalog/index.php');
+if (Valid::inPost('request_callback_type') && Valid::inPost('request_callback_name')) {
+    require_once(getenv('DOCUMENT_ROOT') . '/modules/' . Valid::inPost('request_callback_type') . '/' . Valid::inPost('request_callback_name') . '/controller/catalog/index.php');
+}

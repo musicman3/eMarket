@@ -5,6 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 use eMarket\Admin\HeaderMenu;
+use eMarket\Core\Update;
 
 if (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
     ?>
@@ -39,9 +40,15 @@ if (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
                         </li><?php } ?>
                 </ul>
             </div>
+            <div class="text-center">
+                <?php if (Update::checkVersion()['status'] != 'ok' OR Update::checkVersion()['this_version'] == Update::checkVersion()['new_version']) { ?>
+                    <span class="text-success bi-broadcast" data-bs-toggle="tooltip" data-bs-placement="left" title="<?php echo Update::checkVersion()['this_version'] ?>"></span>
+                <?php } else { ?>
+                    <span class="text-danger bi-broadcast" data-bs-toggle="tooltip" data-bs-placement="left" title="<?php echo Update::checkVersion()['new_version'] . ' (' . Update::checkVersion()['this_version'] . ')' ?>"></span>
+                <?php } ?>
+            </div>
+        </div>
 
-            <div class="text-end badge bg-success text-white"><?php echo HeaderMenu::version() ?></div></div>
-        
     </nav>
 
     <?php

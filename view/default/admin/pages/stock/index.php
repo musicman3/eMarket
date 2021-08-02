@@ -12,7 +12,6 @@ use eMarket\Core\{
     Valid
 };
 use eMarket\Admin\Stock;
-use eMarket\Admin\Stikers;
 
 require_once('modal/index.php');
 require_once('modal/index_product.php');
