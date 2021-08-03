@@ -105,7 +105,7 @@ class Update {
             ]
         ];
 
-        $response_string = self::curl($data, 'https://demo.emarketforum.com/services/jsonrpc/');
+        $response_string = self::curl($data, 'https://data.emarketforum.com/services/jsonrpc/');
 
         if ($response_string != FALSE) {
             if (isset($response_string->result)) {
