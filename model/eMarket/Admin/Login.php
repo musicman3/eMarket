@@ -109,6 +109,9 @@ class Login {
                 if (isset($_SESSION['session_page'])) {
                     $session_page = $_SESSION['session_page'];
                     unset($_SESSION['session_page']);
+                    if ($session_page == '/controller/admin/') {
+                        $session_page = '?route=dashboard';
+                    }
                     Messages::alert('autorize', 'success', lang('action_completed_successfully'), 0, true);
                     header('Location: ' . $session_page);
                 } else {
