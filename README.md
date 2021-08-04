@@ -1,4 +1,4 @@
-[![N|Solid](https://github.com/musicman3/eMarket/blob/master/view/default/catalog/images/emarket.png)](https://github.com/musicman3/eMarket)
+[![N|Solid](https://raw.githubusercontent.com/musicman3/eMarketHandler/main/logo2.png)](https://github.com/musicman3/eMarket)
 ## eMarket Online Store
 
 ### System requirements: 
@@ -25,10 +25,8 @@ Copy files to server and open page: http://localhost/controller/install
 
 ---
   
-Demo page and support: http://emarketforum.com
+### Demo page and support: http://emarketforum.com
 
-[![N|Solid](https://raw.githubusercontent.com/musicman3/eMarketHandler/main/donate.png)](https://funding.wmtransfer.com/widgets/horizontal/9971da3b-1647-48c0-8563-a84241a33eac?bt=0&hs=1&sum=5)
-  
 ---
 [![N|Solid](https://raw.githubusercontent.com/musicman3/eMarketHandler/main/header.png)](https://raw.githubusercontent.com/musicman3/eMarketHandler/main/header.png)
 ### eMarket Block Diagram  
