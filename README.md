@@ -24,10 +24,22 @@
 Copy files to server and open page: http://localhost/controller/install
 
 ---
-  
-### Demo page and support: http://emarketforum.com
+
+### Catalog Demo
+
+URL: http://demo.emarketforum.com  
+Login: user@mail.loc  
+Password: 1234567
 
 ---
+### Admin Panel Demo
+
+URL: http://demo.emarketforum.com/controller/admin/  
+Login: demo@mail.loc  
+Password: 1234567
+
+---
+### Screenshots
 [![N|Solid](https://raw.githubusercontent.com/musicman3/eMarketHandler/main/header.png)](https://raw.githubusercontent.com/musicman3/eMarketHandler/main/header.png)
 ### eMarket Block Diagram  
 [![N|Solid](https://raw.githubusercontent.com/musicman3/eMarketHandler/main/eMarket.png)](https://raw.githubusercontent.com/musicman3/eMarketHandler/main/eMarket.png)
