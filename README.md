@@ -22,7 +22,7 @@
   - PHPDoc documenting (see PSR-5 and PSR-19)
 
 ---
-### Install  
+### Installation  
 Copy files to server and open page: http://localhost/controller/install
 
 ---
