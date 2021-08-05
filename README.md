@@ -1,6 +1,7 @@
 [![N|Solid](https://raw.githubusercontent.com/musicman3/eMarketHandler/main/logo2.png)](https://github.com/musicman3/eMarket)
 ## eMarket Online Store
 
+---
 ### System requirements: 
   - OS Unix, Linux or Windows
   - Apache Web Server >= 2.4 or Nginx >= 1.17
@@ -20,11 +21,16 @@
   - PSR-12 partly (Extended Coding Style Guide)
   - PHPDoc documenting (see PSR-5 and PSR-19)
 
+---
 ### Install  
 Copy files to server and open page: http://localhost/controller/install
 
 ---
+### Wiki  
+For more information you can read the wiki  
+Wiki page: https://github.com/musicman3/eMarket/wiki
 
+---
 ### Catalog Demo
 
 URL: http://demo.emarketforum.com  
