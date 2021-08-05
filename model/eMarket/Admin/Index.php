@@ -8,7 +8,8 @@
 namespace eMarket\Admin;
 
 use eMarket\Core\{
-    Valid
+    Valid,
+    Func
 };
 
 /**
@@ -27,10 +28,11 @@ class Index {
      */
     public function route() {
         if (Valid::inGET('route') != '') {
-            return ROOT . '/controller/admin/pages/' . Valid::inGET('route') . '/index.php';
+            $path = ROOT . '/controller/admin/pages/' . Valid::inGET('route') . '/index.php';
         } else {
-            return ROOT . '/controller/admin/pages/dashboard/index.php';
+            $path = ROOT . '/controller/admin/pages/dashboard/index.php';
         }
+        return Func::escapeSign($path);
     }
 
 }

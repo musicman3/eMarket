@@ -8,7 +8,8 @@
 namespace eMarket\Catalog;
 
 use eMarket\Core\{
-    Valid
+    Valid,
+    Func
 };
 
 /**
@@ -27,10 +28,11 @@ class Index {
      */
     public function route() {
         if (Valid::inGET('route') != '') {
-            return ROOT . '/controller/catalog/pages/' . Valid::inGET('route') . '/index.php';
+            $path = ROOT . '/controller/catalog/pages/' . Valid::inGET('route') . '/index.php';
         } else {
-            return ROOT . '/controller/catalog/pages/catalog/index.php';
+            $path = ROOT . '/controller/catalog/pages/catalog/index.php';
         }
+        return Func::escapeSign($path);
     }
 
 }

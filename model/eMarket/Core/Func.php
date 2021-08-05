@@ -398,8 +398,8 @@ class Func {
      */
     public static function escapeSign($string) {
         // symbol and replacement
-        $symbols = ["'", "<script", "/script", "javascript:"];
-        $escape = ["&#8216;", "<!s-c-r-i-p-t!", "/!s-c-r-i-p-t!", "!j-a-v-a-s-c-r-i-p-t!:"];
+        $symbols = ["'", "<script", "/script", "javascript:", "/.", "//"];
+        $escape = ["&#8216;", "<!s-c-r-i-p-t!", "/!s-c-r-i-p-t!", "!j-a-v-a-s-c-r-i-p-t!:", "!/.!", "!//!"];
 
         if (is_array($string)) {
             $output = [];

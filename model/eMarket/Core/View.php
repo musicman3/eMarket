@@ -10,6 +10,7 @@ namespace eMarket\Core;
 use eMarket\Core\{
     Pdo,
     Settings,
+    Func,
     Modules,
     Valid
 };
@@ -56,7 +57,7 @@ class View {
             $str = str_replace('controller', 'view/' . Settings::template(), getenv('DOCUMENT_ROOT') . '/controller/' . Settings::path() . '/pages/dashboard/index.php');
         }
         if (file_exists($str)) {
-            return $str;
+            return Func::escapeSign($str);
         } else {
             return false;
         }
@@ -75,7 +76,7 @@ class View {
             $str = str_replace('controller', 'view/' . Settings::template(), getenv('DOCUMENT_ROOT') . '/controller/' . Settings::path() . '/pages/catalog/index.php');
         }
         if (file_exists($str)) {
-            return $str;
+            return Func::escapeSign($str);
         } else {
             return false;
         }
