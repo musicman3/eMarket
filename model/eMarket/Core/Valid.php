@@ -86,7 +86,7 @@ class Valid {
      * JSON POST validation
      *
      * @param string $input Input data
-     * @return array
+     * @return array|string|bool
      */
     public static function inPostJson($input) {
         $postData = htmlspecialchars(file_get_contents('php://input'), ENT_NOQUOTES);
