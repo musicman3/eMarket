@@ -57,7 +57,7 @@ class View {
             $str = str_replace('controller', 'view/' . Settings::template(), getenv('DOCUMENT_ROOT') . '/controller/' . Settings::path() . '/pages/dashboard/index.php');
         }
         if (file_exists($str)) {
-            return Func::escapeSign($str);
+            return Func::outputDataFiltering($str);
         } else {
             return false;
         }
@@ -76,7 +76,7 @@ class View {
             $str = str_replace('controller', 'view/' . Settings::template(), getenv('DOCUMENT_ROOT') . '/controller/' . Settings::path() . '/pages/catalog/index.php');
         }
         if (file_exists($str)) {
-            return Func::escapeSign($str);
+            return Func::outputDataFiltering($str);
         } else {
             return false;
         }

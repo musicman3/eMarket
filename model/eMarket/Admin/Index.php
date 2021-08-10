@@ -32,7 +32,7 @@ class Index {
         } else {
             $path = ROOT . '/controller/admin/pages/dashboard/index.php';
         }
-        return Func::escapeSign($path);
+        return Func::outputDataFiltering($path);
     }
 
 }

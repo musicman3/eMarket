@@ -391,12 +391,13 @@ class Func {
     }
 
     /**
-     * Function for escaping special characters
+     * Function for escaping special characters.
+     * Output data filtering 
      *
      * @param string|array $string String to escape characters
      * @return string|array
      */
-    public static function escapeSign($string) {
+    public static function outputDataFiltering($string) {
         // symbol and replacement
         $symbols = ["'", "script", "/script", "javascript:", "/.", "./"];
         $escape = ["&#8216;", "!s-c-r-i-p-t!", "/!s-c-r-i-p-t!", "!j-a-v-a-s-c-r-i-p-t!:", "!/.!", "!./!"];
